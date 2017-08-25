@@ -62,11 +62,8 @@
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
     <PackageReference Include="YamlDotNet.Signed" Version="4.2.1" />
-    <!-- <PackageReference Include="autorest.common"  Version="2.0.14" /> -->
-  </ItemGroup>
-  
-  <ItemGroup>
-    <ProjectReference Include="../../autorest.common/src/autorest.common.csproj" />
+    <PackageReference Include="autorest.common"  Version="2.0.26" />
+    <!-- <ProjectReference Include="../../autorest.common/src/autorest.common.csproj" /> -->
   </ItemGroup>
 
   <ItemGroup>
@@ -79,7 +76,7 @@
     </PackageReference>
   </ItemGroup>
 
-  <Target Name="UpdateDepsJson" AfterTargets="AfterBuild" >
+  <Target Name="UpdateDepsJson" AfterTargets="GenerateBuildDependencyFile;Publish">
     <Message Text="Fixing deps.json" Importance="high" />
     <PropertyGroup>
       <ResGenFix>$(Powershell)
