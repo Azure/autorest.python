@@ -1,0 +1,18 @@
+@using System;
+@using System.Linq;
+@using AutoRest.Python.azure.Templates
+@using AutoRest.Python.Model
+@using AutoRest.Python.vanilla.Templates
+@inherits AutoRest.Core.Template<AutoRest.Python.Azure.Model.MethodPya>
+@if (!Model.IsPagingMethod && !Model.IsLongRunningOperation)
+{
+@:@(Include(new MethodTemplate(), (MethodPy)Model))
+}
+else if (Model.IsPagingMethod)
+{
+@:@(Include(new AzurePagingMethodTemplate(), Model))
+}
+else //Long running operations
+{
+@:@(Include(new AzureLongRunningMethodTemplate(), Model))
+}
