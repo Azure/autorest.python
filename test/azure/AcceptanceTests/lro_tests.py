@@ -43,7 +43,7 @@ tests = realpath(join(cwd, pardir, "Expected", "AcceptanceTests"))
 sys.modules['fixtures'].__path__.append(join(tests, "Lro", "fixtures"))
 
 # Import mock from Autorest.Python.Tests
-mockfiles = realpath(join(cwd, pardir, pardir, "AutoRest.Python.Tests", "AcceptanceTests"))
+mockfiles = realpath(join(cwd, pardir, pardir, "vanilla", "AcceptanceTests"))
 sys.path.append(mockfiles)
 
 from msrest.serialization import Deserializer
