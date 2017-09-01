@@ -13,12 +13,6 @@ using IAnyPlugin = AutoRest.Core.Extensibility.IPlugin<AutoRest.Core.Extensibili
 
 namespace AutoRest.Python
 {
-    public static class ExtensionsLoader
-    {
-        public static IAnyPlugin GetPlugin(bool azure)
-            => azure ? new AutoRest.Python.Azure.PluginPya() : new AutoRest.Python.PluginPy();
-    }
-
     public class Program : NewPlugin
     {
         public static int Main(string[] args )
@@ -99,7 +93,9 @@ namespace AutoRest.Python
             }
 
             // process
-            var plugin = ExtensionsLoader.GetPlugin(await GetValue<bool?>("azure-arm") ?? false);
+            var plugin = await GetValue<bool?>("azure-arm") == true
+                ? (IAnyPlugin)new AutoRest.Python.Azure.PluginPya()
+                : (IAnyPlugin)new AutoRest.Python.PluginPy();
             Settings.PopulateSettings(plugin.Settings, Settings.Instance.CustomSettings);
             
             using (plugin.Activate())
