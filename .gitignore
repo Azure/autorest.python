@@ -288,4 +288,5 @@ __pycache__/
 *.xsd.cs
 
 package-lock.json
+*.tgz
 .tox/
