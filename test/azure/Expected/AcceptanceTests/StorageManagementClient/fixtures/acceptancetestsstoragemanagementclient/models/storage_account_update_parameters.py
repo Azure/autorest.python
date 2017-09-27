@@ -27,20 +27,20 @@ class StorageAccountUpdateParameters(Resource):
     :param location: Resource location
     :type location: str
     :param tags: Resource tags
-    :type tags: dict
+    :type tags: dict[str, str]
     :param account_type: Gets or sets the account type. Note that StandardZRS
      and PremiumLRS accounts cannot be changed to other account types, and
      other account types cannot be changed to StandardZRS or PremiumLRS.
      Possible values include: 'Standard_LRS', 'Standard_ZRS', 'Standard_GRS',
      'Standard_RAGRS', 'Premium_LRS'
-    :type account_type: str or :class:`AccountType
-     <fixtures.acceptancetestsstoragemanagementclient.models.AccountType>`
+    :type account_type: str or
+     ~fixtures.acceptancetestsstoragemanagementclient.models.AccountType
     :param custom_domain: User domain assigned to the storage account. Name is
      the CNAME source. Only one custom domain is supported per storage account
      at this time. To clear the existing custom domain, use an empty string for
      the custom domain name property.
-    :type custom_domain: :class:`CustomDomain
-     <fixtures.acceptancetestsstoragemanagementclient.models.CustomDomain>`
+    :type custom_domain:
+     ~fixtures.acceptancetestsstoragemanagementclient.models.CustomDomain
     """
 
     _validation = {

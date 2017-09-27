@@ -23,7 +23,7 @@ class FlattenedProduct(Resource):
     :ivar type: Resource Type
     :vartype type: str
     :param tags:
-    :type tags: dict
+    :type tags: dict[str, str]
     :param location: Resource Location
     :type location: str
     :ivar name: Resource Name
@@ -35,8 +35,8 @@ class FlattenedProduct(Resource):
     :ivar provisioning_state_values: Possible values include: 'Succeeded',
      'Failed', 'canceled', 'Accepted', 'Creating', 'Created', 'Updating',
      'Updated', 'Deleting', 'Deleted', 'OK'
-    :vartype provisioning_state_values: str or :class:`enum
-     <fixtures.acceptancetestsmodelflattening.models.enum>`
+    :vartype provisioning_state_values: str or
+     ~fixtures.acceptancetestsmodelflattening.models.enum
     :param provisioning_state:
     :type provisioning_state: str
     """

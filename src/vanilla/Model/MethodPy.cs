@@ -569,6 +569,11 @@ namespace AutoRest.Python.Model
             }
         }
 
+        public string GetDocumentationTypeName(IModelType type)
+        {
+            return type?.Name ?? PythonConstants.None;
+        }
+
         public string GetReturnTypeDocumentation(IModelType type)
         {
             return (type as IExtendedModelTypePy)?.ReturnTypeDocumentation ?? PythonConstants.None;

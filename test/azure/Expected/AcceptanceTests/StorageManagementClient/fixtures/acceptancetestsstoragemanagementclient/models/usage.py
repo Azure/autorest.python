@@ -18,8 +18,8 @@ class Usage(Model):
     :param unit: Gets the unit of measurement. Possible values include:
      'Count', 'Bytes', 'Seconds', 'Percent', 'CountsPerSecond',
      'BytesPerSecond'
-    :type unit: str or :class:`UsageUnit
-     <fixtures.acceptancetestsstoragemanagementclient.models.UsageUnit>`
+    :type unit: str or
+     ~fixtures.acceptancetestsstoragemanagementclient.models.UsageUnit
     :param current_value: Gets the current count of the allocated resources in
      the subscription.
     :type current_value: int
@@ -27,8 +27,8 @@ class Usage(Model):
      allocated in the subscription.
     :type limit: int
     :param name: Gets the name of the type of usage.
-    :type name: :class:`UsageName
-     <fixtures.acceptancetestsstoragemanagementclient.models.UsageName>`
+    :type name:
+     ~fixtures.acceptancetestsstoragemanagementclient.models.UsageName
     """
 
     _attribute_map = {

@@ -16,13 +16,14 @@ class ResourceCollection(Model):
     """ResourceCollection.
 
     :param productresource:
-    :type productresource: :class:`FlattenedProduct
-     <fixtures.acceptancetestsmodelflattening.models.FlattenedProduct>`
+    :type productresource:
+     ~fixtures.acceptancetestsmodelflattening.models.FlattenedProduct
     :param arrayofresources:
-    :type arrayofresources: list of :class:`FlattenedProduct
-     <fixtures.acceptancetestsmodelflattening.models.FlattenedProduct>`
+    :type arrayofresources:
+     list[~fixtures.acceptancetestsmodelflattening.models.FlattenedProduct]
     :param dictionaryofresources:
-    :type dictionaryofresources: dict
+    :type dictionaryofresources: dict[str,
+     ~fixtures.acceptancetestsmodelflattening.models.FlattenedProduct]
     """
 
     _attribute_map = {

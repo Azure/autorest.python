@@ -81,13 +81,9 @@ class AutoRestValidationTest(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: :class:`Product
-         <fixtures.acceptancetestsvalidation.models.Product>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: :class:`Product
-         <fixtures.acceptancetestsvalidation.models.Product>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: Product or ClientRawResponse if raw=true
+        :rtype: ~fixtures.acceptancetestsvalidation.models.Product or
+         ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsvalidation.models.ErrorException>`
         """
@@ -138,20 +134,15 @@ class AutoRestValidationTest(object):
         :param id: Required int multiple of 10 from 100 to 1000.
         :type id: int
         :param body:
-        :type body: :class:`Product
-         <fixtures.acceptancetestsvalidation.models.Product>`
+        :type body: ~fixtures.acceptancetestsvalidation.models.Product
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: :class:`Product
-         <fixtures.acceptancetestsvalidation.models.Product>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: :class:`Product
-         <fixtures.acceptancetestsvalidation.models.Product>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: Product or ClientRawResponse if raw=true
+        :rtype: ~fixtures.acceptancetestsvalidation.models.Product or
+         ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsvalidation.models.ErrorException>`
         """
@@ -208,11 +199,8 @@ class AutoRestValidationTest(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
         """
@@ -250,20 +238,15 @@ class AutoRestValidationTest(object):
         """
 
         :param body:
-        :type body: :class:`Product
-         <fixtures.acceptancetestsvalidation.models.Product>`
+        :type body: ~fixtures.acceptancetestsvalidation.models.Product
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: :class:`Product
-         <fixtures.acceptancetestsvalidation.models.Product>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: :class:`Product
-         <fixtures.acceptancetestsvalidation.models.Product>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: Product or ClientRawResponse if raw=true
+        :rtype: ~fixtures.acceptancetestsvalidation.models.Product or
+         ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
         """

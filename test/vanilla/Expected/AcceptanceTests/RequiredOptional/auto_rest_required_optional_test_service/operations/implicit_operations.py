@@ -42,13 +42,9 @@ class ImplicitOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: :class:`Error
-         <fixtures.acceptancetestsrequiredoptional.models.Error>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: :class:`Error
-         <fixtures.acceptancetestsrequiredoptional.models.Error>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: Error or ClientRawResponse if raw=true
+        :rtype: ~fixtures.acceptancetestsrequiredoptional.models.Error or
+         ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsrequiredoptional.models.ErrorException>`
         """
@@ -90,11 +86,8 @@ class ImplicitOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsrequiredoptional.models.ErrorException>`
         """
@@ -134,11 +127,8 @@ class ImplicitOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsrequiredoptional.models.ErrorException>`
         """
@@ -178,11 +168,8 @@ class ImplicitOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsrequiredoptional.models.ErrorException>`
         """
@@ -225,13 +212,9 @@ class ImplicitOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: :class:`Error
-         <fixtures.acceptancetestsrequiredoptional.models.Error>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: :class:`Error
-         <fixtures.acceptancetestsrequiredoptional.models.Error>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: Error or ClientRawResponse if raw=true
+        :rtype: ~fixtures.acceptancetestsrequiredoptional.models.Error or
+         ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsrequiredoptional.models.ErrorException>`
         """
@@ -271,13 +254,9 @@ class ImplicitOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: :class:`Error
-         <fixtures.acceptancetestsrequiredoptional.models.Error>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: :class:`Error
-         <fixtures.acceptancetestsrequiredoptional.models.Error>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: Error or ClientRawResponse if raw=true
+        :rtype: ~fixtures.acceptancetestsrequiredoptional.models.Error or
+         ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsrequiredoptional.models.ErrorException>`
         """
@@ -314,13 +293,9 @@ class ImplicitOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: :class:`Error
-         <fixtures.acceptancetestsrequiredoptional.models.Error>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: :class:`Error
-         <fixtures.acceptancetestsrequiredoptional.models.Error>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: Error or ClientRawResponse if raw=true
+        :rtype: ~fixtures.acceptancetestsrequiredoptional.models.Error or
+         ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsrequiredoptional.models.ErrorException>`
         """

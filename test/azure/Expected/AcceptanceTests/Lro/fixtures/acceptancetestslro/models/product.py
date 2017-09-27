@@ -23,7 +23,7 @@ class Product(Resource):
     :ivar type: Resource Type
     :vartype type: str
     :param tags:
-    :type tags: dict
+    :type tags: dict[str, str]
     :param location: Resource Location
     :type location: str
     :ivar name: Resource Name
@@ -33,8 +33,8 @@ class Product(Resource):
     :ivar provisioning_state_values: Possible values include: 'Succeeded',
      'Failed', 'canceled', 'Accepted', 'Creating', 'Created', 'Updating',
      'Updated', 'Deleting', 'Deleted', 'OK'
-    :vartype provisioning_state_values: str or :class:`enum
-     <fixtures.acceptancetestslro.models.enum>`
+    :vartype provisioning_state_values: str or
+     ~fixtures.acceptancetestslro.models.enum
     """
 
     _validation = {

@@ -46,13 +46,10 @@ class GroupOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: :class:`SampleResourceGroup
-         <fixtures.acceptancetestssubscriptionidapiversion.models.SampleResourceGroup>`
-         or :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: :class:`SampleResourceGroup
-         <fixtures.acceptancetestssubscriptionidapiversion.models.SampleResourceGroup>`
-         or :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: SampleResourceGroup or ClientRawResponse if raw=true
+        :rtype:
+         ~fixtures.acceptancetestssubscriptionidapiversion.models.SampleResourceGroup
+         or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestssubscriptionidapiversion.models.ErrorException>`
         """

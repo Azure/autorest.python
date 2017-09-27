@@ -17,8 +17,8 @@ class Bar(Model):
     table object.
 
     :param recursive_point: Recursive Endpoints
-    :type recursive_point: :class:`Endpoints
-     <fixtures.acceptancetestsstoragemanagementclient.models.Endpoints>`
+    :type recursive_point:
+     ~fixtures.acceptancetestsstoragemanagementclient.models.Endpoints
     """
 
     _attribute_map = {

@@ -41,17 +41,14 @@ class AvailabilitySetsOperations(object):
         :param avset: The name of the storage availability set.
         :type avset: str
         :param tags: A set of tags. A description about the set of tags.
-        :type tags: dict
+        :type tags: dict[str, str]
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
         """

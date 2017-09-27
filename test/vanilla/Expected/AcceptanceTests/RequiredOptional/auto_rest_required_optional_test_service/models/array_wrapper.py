@@ -16,7 +16,7 @@ class ArrayWrapper(Model):
     """ArrayWrapper.
 
     :param value:
-    :type value: list of str
+    :type value: list[str]
     """
 
     _validation = {

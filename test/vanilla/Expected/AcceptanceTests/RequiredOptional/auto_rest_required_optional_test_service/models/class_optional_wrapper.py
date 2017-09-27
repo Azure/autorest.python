@@ -16,8 +16,7 @@ class ClassOptionalWrapper(Model):
     """ClassOptionalWrapper.
 
     :param value:
-    :type value: :class:`Product
-     <fixtures.acceptancetestsrequiredoptional.models.Product>`
+    :type value: ~fixtures.acceptancetestsrequiredoptional.models.Product
     """
 
     _attribute_map = {

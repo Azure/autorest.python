@@ -37,17 +37,14 @@ class QueriesOperations(object):
 
         :param array_query: a null array of string using the multi-array
          format
-        :type array_query: list of str
+        :type array_query: list[str]
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsurlmulticollectionformat.models.ErrorException>`
         """
@@ -82,17 +79,14 @@ class QueriesOperations(object):
 
         :param array_query: an empty array [] of string using the multi-array
          format
-        :type array_query: list of str
+        :type array_query: list[str]
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsurlmulticollectionformat.models.ErrorException>`
         """
@@ -128,17 +122,14 @@ class QueriesOperations(object):
 
         :param array_query: an array of string ['ArrayQuery1', 'begin!*'();:@
          &=+$,/?#[]end' , null, ''] using the mult-array format
-        :type array_query: list of str
+        :type array_query: list[str]
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsurlmulticollectionformat.models.ErrorException>`
         """

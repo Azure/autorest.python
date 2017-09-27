@@ -17,8 +17,8 @@ class Foo(Model):
     table object.
 
     :param bar_point: Bar point
-    :type bar_point: :class:`Bar
-     <fixtures.acceptancetestsstoragemanagementclient.models.Bar>`
+    :type bar_point:
+     ~fixtures.acceptancetestsstoragemanagementclient.models.Bar
     """
 
     _attribute_map = {

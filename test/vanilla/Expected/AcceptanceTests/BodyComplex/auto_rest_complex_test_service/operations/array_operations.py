@@ -40,13 +40,9 @@ class ArrayOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: :class:`ArrayWrapper
-         <fixtures.acceptancetestsbodycomplex.models.ArrayWrapper>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: :class:`ArrayWrapper
-         <fixtures.acceptancetestsbodycomplex.models.ArrayWrapper>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: ArrayWrapper or ClientRawResponse if raw=true
+        :rtype: ~fixtures.acceptancetestsbodycomplex.models.ArrayWrapper or
+         ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodycomplex.models.ErrorException>`
         """
@@ -85,17 +81,14 @@ class ArrayOperations(object):
         """Put complex types with array property.
 
         :param array:
-        :type array: list of str
+        :type array: list[str]
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodycomplex.models.ErrorException>`
         """
@@ -137,13 +130,9 @@ class ArrayOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: :class:`ArrayWrapper
-         <fixtures.acceptancetestsbodycomplex.models.ArrayWrapper>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: :class:`ArrayWrapper
-         <fixtures.acceptancetestsbodycomplex.models.ArrayWrapper>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: ArrayWrapper or ClientRawResponse if raw=true
+        :rtype: ~fixtures.acceptancetestsbodycomplex.models.ArrayWrapper or
+         ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodycomplex.models.ErrorException>`
         """
@@ -182,17 +171,14 @@ class ArrayOperations(object):
         """Put complex types with array property which is empty.
 
         :param array:
-        :type array: list of str
+        :type array: list[str]
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodycomplex.models.ErrorException>`
         """
@@ -235,13 +221,9 @@ class ArrayOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: :class:`ArrayWrapper
-         <fixtures.acceptancetestsbodycomplex.models.ArrayWrapper>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: :class:`ArrayWrapper
-         <fixtures.acceptancetestsbodycomplex.models.ArrayWrapper>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: ArrayWrapper or ClientRawResponse if raw=true
+        :rtype: ~fixtures.acceptancetestsbodycomplex.models.ArrayWrapper or
+         ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodycomplex.models.ErrorException>`
         """

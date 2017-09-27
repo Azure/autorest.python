@@ -20,8 +20,7 @@ class Goblinshark(Shark):
     :param length:
     :type length: float
     :param siblings:
-    :type siblings: list of :class:`Fish
-     <fixtures.acceptancetestsbodycomplex.models.Fish>`
+    :type siblings: list[~fixtures.acceptancetestsbodycomplex.models.Fish]
     :param fishtype: Polymorphic Discriminator
     :type fishtype: str
     :param age:

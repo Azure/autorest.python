@@ -43,13 +43,9 @@ class ExplicitOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: :class:`Error
-         <fixtures.acceptancetestsrequiredoptional.models.Error>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: :class:`Error
-         <fixtures.acceptancetestsrequiredoptional.models.Error>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: Error or ClientRawResponse if raw=true
+        :rtype: ~fixtures.acceptancetestsrequiredoptional.models.Error or
+         ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsrequiredoptional.models.ErrorException>`
         """
@@ -91,11 +87,8 @@ class ExplicitOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsrequiredoptional.models.ErrorException>`
         """
@@ -142,13 +135,9 @@ class ExplicitOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: :class:`Error
-         <fixtures.acceptancetestsrequiredoptional.models.Error>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: :class:`Error
-         <fixtures.acceptancetestsrequiredoptional.models.Error>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: Error or ClientRawResponse if raw=true
+        :rtype: ~fixtures.acceptancetestsrequiredoptional.models.Error or
+         ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsrequiredoptional.models.ErrorException>`
         """
@@ -193,11 +182,8 @@ class ExplicitOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsrequiredoptional.models.ErrorException>`
         """
@@ -247,13 +233,9 @@ class ExplicitOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: :class:`Error
-         <fixtures.acceptancetestsrequiredoptional.models.Error>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: :class:`Error
-         <fixtures.acceptancetestsrequiredoptional.models.Error>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: Error or ClientRawResponse if raw=true
+        :rtype: ~fixtures.acceptancetestsrequiredoptional.models.Error or
+         ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsrequiredoptional.models.ErrorException>`
         """
@@ -293,11 +275,8 @@ class ExplicitOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsrequiredoptional.models.ErrorException>`
         """
@@ -338,13 +317,9 @@ class ExplicitOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: :class:`Error
-         <fixtures.acceptancetestsrequiredoptional.models.Error>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: :class:`Error
-         <fixtures.acceptancetestsrequiredoptional.models.Error>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: Error or ClientRawResponse if raw=true
+        :rtype: ~fixtures.acceptancetestsrequiredoptional.models.Error or
+         ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsrequiredoptional.models.ErrorException>`
         """
@@ -386,11 +361,8 @@ class ExplicitOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsrequiredoptional.models.ErrorException>`
         """
@@ -437,13 +409,9 @@ class ExplicitOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: :class:`Error
-         <fixtures.acceptancetestsrequiredoptional.models.Error>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: :class:`Error
-         <fixtures.acceptancetestsrequiredoptional.models.Error>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: Error or ClientRawResponse if raw=true
+        :rtype: ~fixtures.acceptancetestsrequiredoptional.models.Error or
+         ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsrequiredoptional.models.ErrorException>`
         """
@@ -488,11 +456,8 @@ class ExplicitOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsrequiredoptional.models.ErrorException>`
         """
@@ -542,13 +507,9 @@ class ExplicitOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: :class:`Error
-         <fixtures.acceptancetestsrequiredoptional.models.Error>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: :class:`Error
-         <fixtures.acceptancetestsrequiredoptional.models.Error>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: Error or ClientRawResponse if raw=true
+        :rtype: ~fixtures.acceptancetestsrequiredoptional.models.Error or
+         ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsrequiredoptional.models.ErrorException>`
         """
@@ -588,11 +549,8 @@ class ExplicitOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsrequiredoptional.models.ErrorException>`
         """
@@ -627,20 +585,16 @@ class ExplicitOperations(object):
         library should throw before the request is sent.
 
         :param body_parameter:
-        :type body_parameter: :class:`Product
-         <fixtures.acceptancetestsrequiredoptional.models.Product>`
+        :type body_parameter:
+         ~fixtures.acceptancetestsrequiredoptional.models.Product
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: :class:`Error
-         <fixtures.acceptancetestsrequiredoptional.models.Error>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: :class:`Error
-         <fixtures.acceptancetestsrequiredoptional.models.Error>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: Error or ClientRawResponse if raw=true
+        :rtype: ~fixtures.acceptancetestsrequiredoptional.models.Error or
+         ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsrequiredoptional.models.ErrorException>`
         """
@@ -676,18 +630,15 @@ class ExplicitOperations(object):
         """Test explicitly optional complex object. Please put null.
 
         :param body_parameter:
-        :type body_parameter: :class:`Product
-         <fixtures.acceptancetestsrequiredoptional.models.Product>`
+        :type body_parameter:
+         ~fixtures.acceptancetestsrequiredoptional.models.Product
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsrequiredoptional.models.ErrorException>`
         """
@@ -728,20 +679,15 @@ class ExplicitOperations(object):
         before the request is sent.
 
         :param value:
-        :type value: :class:`Product
-         <fixtures.acceptancetestsrequiredoptional.models.Product>`
+        :type value: ~fixtures.acceptancetestsrequiredoptional.models.Product
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: :class:`Error
-         <fixtures.acceptancetestsrequiredoptional.models.Error>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: :class:`Error
-         <fixtures.acceptancetestsrequiredoptional.models.Error>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: Error or ClientRawResponse if raw=true
+        :rtype: ~fixtures.acceptancetestsrequiredoptional.models.Error or
+         ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsrequiredoptional.models.ErrorException>`
         """
@@ -780,18 +726,14 @@ class ExplicitOperations(object):
         class-wrapper with 'value' = null.
 
         :param value:
-        :type value: :class:`Product
-         <fixtures.acceptancetestsrequiredoptional.models.Product>`
+        :type value: ~fixtures.acceptancetestsrequiredoptional.models.Product
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsrequiredoptional.models.ErrorException>`
         """
@@ -835,19 +777,15 @@ class ExplicitOperations(object):
         should throw before the request is sent.
 
         :param body_parameter:
-        :type body_parameter: list of str
+        :type body_parameter: list[str]
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: :class:`Error
-         <fixtures.acceptancetestsrequiredoptional.models.Error>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: :class:`Error
-         <fixtures.acceptancetestsrequiredoptional.models.Error>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: Error or ClientRawResponse if raw=true
+        :rtype: ~fixtures.acceptancetestsrequiredoptional.models.Error or
+         ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsrequiredoptional.models.ErrorException>`
         """
@@ -883,17 +821,14 @@ class ExplicitOperations(object):
         """Test explicitly optional array. Please put null.
 
         :param body_parameter:
-        :type body_parameter: list of str
+        :type body_parameter: list[str]
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsrequiredoptional.models.ErrorException>`
         """
@@ -934,19 +869,15 @@ class ExplicitOperations(object):
         is sent.
 
         :param value:
-        :type value: list of str
+        :type value: list[str]
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: :class:`Error
-         <fixtures.acceptancetestsrequiredoptional.models.Error>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: :class:`Error
-         <fixtures.acceptancetestsrequiredoptional.models.Error>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: Error or ClientRawResponse if raw=true
+        :rtype: ~fixtures.acceptancetestsrequiredoptional.models.Error or
+         ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsrequiredoptional.models.ErrorException>`
         """
@@ -985,17 +916,14 @@ class ExplicitOperations(object):
         'value' = null.
 
         :param value:
-        :type value: list of str
+        :type value: list[str]
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsrequiredoptional.models.ErrorException>`
         """
@@ -1039,19 +967,15 @@ class ExplicitOperations(object):
         => null and the client library should throw before the request is sent.
 
         :param header_parameter:
-        :type header_parameter: list of str
+        :type header_parameter: list[str]
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: :class:`Error
-         <fixtures.acceptancetestsrequiredoptional.models.Error>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: :class:`Error
-         <fixtures.acceptancetestsrequiredoptional.models.Error>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: Error or ClientRawResponse if raw=true
+        :rtype: ~fixtures.acceptancetestsrequiredoptional.models.Error or
+         ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsrequiredoptional.models.ErrorException>`
         """
@@ -1085,17 +1009,14 @@ class ExplicitOperations(object):
         => null.
 
         :param header_parameter:
-        :type header_parameter: list of str
+        :type header_parameter: list[str]
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsrequiredoptional.models.ErrorException>`
         """

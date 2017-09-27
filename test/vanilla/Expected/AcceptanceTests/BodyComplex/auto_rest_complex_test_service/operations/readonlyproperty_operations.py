@@ -40,13 +40,9 @@ class ReadonlypropertyOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: :class:`ReadonlyObj
-         <fixtures.acceptancetestsbodycomplex.models.ReadonlyObj>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: :class:`ReadonlyObj
-         <fixtures.acceptancetestsbodycomplex.models.ReadonlyObj>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: ReadonlyObj or ClientRawResponse if raw=true
+        :rtype: ~fixtures.acceptancetestsbodycomplex.models.ReadonlyObj or
+         ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodycomplex.models.ErrorException>`
         """
@@ -91,11 +87,8 @@ class ReadonlypropertyOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodycomplex.models.ErrorException>`
         """

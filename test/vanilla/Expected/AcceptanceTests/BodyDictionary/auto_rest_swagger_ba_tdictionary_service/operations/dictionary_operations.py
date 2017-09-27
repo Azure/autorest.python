@@ -40,11 +40,8 @@ class DictionaryOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: dict or ClientRawResponse if raw=true
+        :rtype: dict[str, int] or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodydictionary.models.ErrorException>`
         """
@@ -87,11 +84,8 @@ class DictionaryOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: dict or ClientRawResponse if raw=true
+        :rtype: dict[str, int] or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodydictionary.models.ErrorException>`
         """
@@ -130,17 +124,14 @@ class DictionaryOperations(object):
         """Set dictionary value empty {}.
 
         :param array_body:
-        :type array_body: dict
+        :type array_body: dict[str, str]
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodydictionary.models.ErrorException>`
         """
@@ -180,11 +171,8 @@ class DictionaryOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: dict or ClientRawResponse if raw=true
+        :rtype: dict[str, str] or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodydictionary.models.ErrorException>`
         """
@@ -227,11 +215,8 @@ class DictionaryOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: dict or ClientRawResponse if raw=true
+        :rtype: dict[str, str] or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodydictionary.models.ErrorException>`
         """
@@ -274,11 +259,8 @@ class DictionaryOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: dict or ClientRawResponse if raw=true
+        :rtype: dict[str, str] or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodydictionary.models.ErrorException>`
         """
@@ -321,11 +303,8 @@ class DictionaryOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: dict or ClientRawResponse if raw=true
+        :rtype: dict[str, str] or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodydictionary.models.ErrorException>`
         """
@@ -369,11 +348,8 @@ class DictionaryOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: dict or ClientRawResponse if raw=true
+        :rtype: dict[str, bool] or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodydictionary.models.ErrorException>`
         """
@@ -413,17 +389,14 @@ class DictionaryOperations(object):
         true }.
 
         :param array_body:
-        :type array_body: dict
+        :type array_body: dict[str, bool]
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodydictionary.models.ErrorException>`
         """
@@ -463,11 +436,8 @@ class DictionaryOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: dict or ClientRawResponse if raw=true
+        :rtype: dict[str, bool] or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodydictionary.models.ErrorException>`
         """
@@ -510,11 +480,8 @@ class DictionaryOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: dict or ClientRawResponse if raw=true
+        :rtype: dict[str, bool] or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodydictionary.models.ErrorException>`
         """
@@ -557,11 +524,8 @@ class DictionaryOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: dict or ClientRawResponse if raw=true
+        :rtype: dict[str, int] or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodydictionary.models.ErrorException>`
         """
@@ -600,17 +564,14 @@ class DictionaryOperations(object):
         """Set dictionary value empty {"0": 1, "1": -1, "2": 3, "3": 300}.
 
         :param array_body:
-        :type array_body: dict
+        :type array_body: dict[str, int]
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodydictionary.models.ErrorException>`
         """
@@ -650,11 +611,8 @@ class DictionaryOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: dict or ClientRawResponse if raw=true
+        :rtype: dict[str, int] or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodydictionary.models.ErrorException>`
         """
@@ -697,11 +655,8 @@ class DictionaryOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: dict or ClientRawResponse if raw=true
+        :rtype: dict[str, int] or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodydictionary.models.ErrorException>`
         """
@@ -744,11 +699,8 @@ class DictionaryOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: dict or ClientRawResponse if raw=true
+        :rtype: dict[str, long] or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodydictionary.models.ErrorException>`
         """
@@ -787,17 +739,14 @@ class DictionaryOperations(object):
         """Set dictionary value empty {"0": 1, "1": -1, "2": 3, "3": 300}.
 
         :param array_body:
-        :type array_body: dict
+        :type array_body: dict[str, long]
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodydictionary.models.ErrorException>`
         """
@@ -837,11 +786,8 @@ class DictionaryOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: dict or ClientRawResponse if raw=true
+        :rtype: dict[str, long] or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodydictionary.models.ErrorException>`
         """
@@ -884,11 +830,8 @@ class DictionaryOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: dict or ClientRawResponse if raw=true
+        :rtype: dict[str, long] or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodydictionary.models.ErrorException>`
         """
@@ -931,11 +874,8 @@ class DictionaryOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: dict or ClientRawResponse if raw=true
+        :rtype: dict[str, float] or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodydictionary.models.ErrorException>`
         """
@@ -974,17 +914,14 @@ class DictionaryOperations(object):
         """Set dictionary value {"0": 0, "1": -0.01, "2": 1.2e20}.
 
         :param array_body:
-        :type array_body: dict
+        :type array_body: dict[str, float]
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodydictionary.models.ErrorException>`
         """
@@ -1024,11 +961,8 @@ class DictionaryOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: dict or ClientRawResponse if raw=true
+        :rtype: dict[str, float] or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodydictionary.models.ErrorException>`
         """
@@ -1071,11 +1005,8 @@ class DictionaryOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: dict or ClientRawResponse if raw=true
+        :rtype: dict[str, float] or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodydictionary.models.ErrorException>`
         """
@@ -1118,11 +1049,8 @@ class DictionaryOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: dict or ClientRawResponse if raw=true
+        :rtype: dict[str, float] or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodydictionary.models.ErrorException>`
         """
@@ -1161,17 +1089,14 @@ class DictionaryOperations(object):
         """Set dictionary value {"0": 0, "1": -0.01, "2": 1.2e20}.
 
         :param array_body:
-        :type array_body: dict
+        :type array_body: dict[str, float]
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodydictionary.models.ErrorException>`
         """
@@ -1211,11 +1136,8 @@ class DictionaryOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: dict or ClientRawResponse if raw=true
+        :rtype: dict[str, float] or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodydictionary.models.ErrorException>`
         """
@@ -1258,11 +1180,8 @@ class DictionaryOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: dict or ClientRawResponse if raw=true
+        :rtype: dict[str, float] or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodydictionary.models.ErrorException>`
         """
@@ -1305,11 +1224,8 @@ class DictionaryOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: dict or ClientRawResponse if raw=true
+        :rtype: dict[str, str] or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodydictionary.models.ErrorException>`
         """
@@ -1348,17 +1264,14 @@ class DictionaryOperations(object):
         """Set dictionary value {"0": "foo1", "1": "foo2", "2": "foo3"}.
 
         :param array_body:
-        :type array_body: dict
+        :type array_body: dict[str, str]
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodydictionary.models.ErrorException>`
         """
@@ -1398,11 +1311,8 @@ class DictionaryOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: dict or ClientRawResponse if raw=true
+        :rtype: dict[str, str] or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodydictionary.models.ErrorException>`
         """
@@ -1445,11 +1355,8 @@ class DictionaryOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: dict or ClientRawResponse if raw=true
+        :rtype: dict[str, str] or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodydictionary.models.ErrorException>`
         """
@@ -1493,11 +1400,8 @@ class DictionaryOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: dict or ClientRawResponse if raw=true
+        :rtype: dict[str, date] or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodydictionary.models.ErrorException>`
         """
@@ -1537,17 +1441,14 @@ class DictionaryOperations(object):
         "1492-10-12"}.
 
         :param array_body:
-        :type array_body: dict
+        :type array_body: dict[str, date]
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodydictionary.models.ErrorException>`
         """
@@ -1588,11 +1489,8 @@ class DictionaryOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: dict or ClientRawResponse if raw=true
+        :rtype: dict[str, date] or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodydictionary.models.ErrorException>`
         """
@@ -1635,11 +1533,8 @@ class DictionaryOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: dict or ClientRawResponse if raw=true
+        :rtype: dict[str, date] or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodydictionary.models.ErrorException>`
         """
@@ -1683,11 +1578,8 @@ class DictionaryOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: dict or ClientRawResponse if raw=true
+        :rtype: dict[str, datetime] or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodydictionary.models.ErrorException>`
         """
@@ -1727,17 +1619,14 @@ class DictionaryOperations(object):
         "1980-01-02T00:11:35+01:00", "2": "1492-10-12T10:15:01-08:00"}.
 
         :param array_body:
-        :type array_body: dict
+        :type array_body: dict[str, datetime]
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodydictionary.models.ErrorException>`
         """
@@ -1777,11 +1666,8 @@ class DictionaryOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: dict or ClientRawResponse if raw=true
+        :rtype: dict[str, datetime] or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodydictionary.models.ErrorException>`
         """
@@ -1825,11 +1711,8 @@ class DictionaryOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: dict or ClientRawResponse if raw=true
+        :rtype: dict[str, datetime] or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodydictionary.models.ErrorException>`
         """
@@ -1874,11 +1757,8 @@ class DictionaryOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: dict or ClientRawResponse if raw=true
+        :rtype: dict[str, datetime] or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodydictionary.models.ErrorException>`
         """
@@ -1918,17 +1798,14 @@ class DictionaryOperations(object):
         "Wed, 02 Jan 1980 00:11:35 GMT", "2": "Wed, 12 Oct 1492 10:15:01 GMT"}.
 
         :param array_body:
-        :type array_body: dict
+        :type array_body: dict[str, datetime]
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodydictionary.models.ErrorException>`
         """
@@ -1969,11 +1846,8 @@ class DictionaryOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: dict or ClientRawResponse if raw=true
+        :rtype: dict[str, timedelta] or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodydictionary.models.ErrorException>`
         """
@@ -2012,17 +1886,14 @@ class DictionaryOperations(object):
         """Set dictionary value  {"0": "P123DT22H14M12.011S", "1": "P5DT1H0M0S"}.
 
         :param array_body:
-        :type array_body: dict
+        :type array_body: dict[str, timedelta]
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodydictionary.models.ErrorException>`
         """
@@ -2063,11 +1934,8 @@ class DictionaryOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: dict or ClientRawResponse if raw=true
+        :rtype: dict[str, bytearray] or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodydictionary.models.ErrorException>`
         """
@@ -2107,17 +1975,14 @@ class DictionaryOperations(object):
         "2": hex (25, 29, 43)} with each elementencoded in base 64.
 
         :param array_body:
-        :type array_body: dict
+        :type array_body: dict[str, bytearray]
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodydictionary.models.ErrorException>`
         """
@@ -2158,11 +2023,8 @@ class DictionaryOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: dict or ClientRawResponse if raw=true
+        :rtype: dict[str, bytearray] or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodydictionary.models.ErrorException>`
         """
@@ -2206,11 +2068,8 @@ class DictionaryOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: dict or ClientRawResponse if raw=true
+        :rtype: dict[str, bytes] or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodydictionary.models.ErrorException>`
         """
@@ -2253,11 +2112,10 @@ class DictionaryOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: dict or ClientRawResponse if raw=true
+        :rtype: dict[str,
+         ~fixtures.acceptancetestsbodydictionary.models.Widget] or
+         ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodydictionary.models.ErrorException>`
         """
@@ -2300,11 +2158,10 @@ class DictionaryOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: dict or ClientRawResponse if raw=true
+        :rtype: dict[str,
+         ~fixtures.acceptancetestsbodydictionary.models.Widget] or
+         ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodydictionary.models.ErrorException>`
         """
@@ -2348,11 +2205,10 @@ class DictionaryOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: dict or ClientRawResponse if raw=true
+        :rtype: dict[str,
+         ~fixtures.acceptancetestsbodydictionary.models.Widget] or
+         ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodydictionary.models.ErrorException>`
         """
@@ -2396,11 +2252,10 @@ class DictionaryOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: dict or ClientRawResponse if raw=true
+        :rtype: dict[str,
+         ~fixtures.acceptancetestsbodydictionary.models.Widget] or
+         ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodydictionary.models.ErrorException>`
         """
@@ -2445,11 +2300,10 @@ class DictionaryOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: dict or ClientRawResponse if raw=true
+        :rtype: dict[str,
+         ~fixtures.acceptancetestsbodydictionary.models.Widget] or
+         ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodydictionary.models.ErrorException>`
         """
@@ -2490,17 +2344,15 @@ class DictionaryOperations(object):
         "string": "6"}}.
 
         :param array_body:
-        :type array_body: dict
+        :type array_body: dict[str,
+         ~fixtures.acceptancetestsbodydictionary.models.Widget]
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodydictionary.models.ErrorException>`
         """
@@ -2540,11 +2392,8 @@ class DictionaryOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: dict or ClientRawResponse if raw=true
+        :rtype: dict[str, list[str]] or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodydictionary.models.ErrorException>`
         """
@@ -2587,11 +2436,8 @@ class DictionaryOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: dict or ClientRawResponse if raw=true
+        :rtype: dict[str, list[str]] or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodydictionary.models.ErrorException>`
         """
@@ -2635,11 +2481,8 @@ class DictionaryOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: dict or ClientRawResponse if raw=true
+        :rtype: dict[str, list[str]] or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodydictionary.models.ErrorException>`
         """
@@ -2683,11 +2526,8 @@ class DictionaryOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: dict or ClientRawResponse if raw=true
+        :rtype: dict[str, list[str]] or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodydictionary.models.ErrorException>`
         """
@@ -2731,11 +2571,8 @@ class DictionaryOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: dict or ClientRawResponse if raw=true
+        :rtype: dict[str, list[str]] or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodydictionary.models.ErrorException>`
         """
@@ -2775,17 +2612,14 @@ class DictionaryOperations(object):
         "6"], "2": ["7", "8", "9"]}.
 
         :param array_body:
-        :type array_body: dict
+        :type array_body: dict[str, list[str]]
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodydictionary.models.ErrorException>`
         """
@@ -2825,11 +2659,9 @@ class DictionaryOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: dict or ClientRawResponse if raw=true
+        :rtype: dict[str, dict[str, str]] or
+         ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodydictionary.models.ErrorException>`
         """
@@ -2873,11 +2705,9 @@ class DictionaryOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: dict or ClientRawResponse if raw=true
+        :rtype: dict[str, dict[str, str]] or
+         ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodydictionary.models.ErrorException>`
         """
@@ -2922,11 +2752,9 @@ class DictionaryOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: dict or ClientRawResponse if raw=true
+        :rtype: dict[str, dict[str, str]] or
+         ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodydictionary.models.ErrorException>`
         """
@@ -2971,11 +2799,9 @@ class DictionaryOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: dict or ClientRawResponse if raw=true
+        :rtype: dict[str, dict[str, str]] or
+         ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodydictionary.models.ErrorException>`
         """
@@ -3020,11 +2846,9 @@ class DictionaryOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: dict or ClientRawResponse if raw=true
+        :rtype: dict[str, dict[str, str]] or
+         ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodydictionary.models.ErrorException>`
         """
@@ -3065,17 +2889,14 @@ class DictionaryOperations(object):
         "five", "6": "six"}, "2": {"7": "seven", "8": "eight", "9": "nine"}}.
 
         :param array_body:
-        :type array_body: dict
+        :type array_body: dict[str, dict[str, str]]
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodydictionary.models.ErrorException>`
         """

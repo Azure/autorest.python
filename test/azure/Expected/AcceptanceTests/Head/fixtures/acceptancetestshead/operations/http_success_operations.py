@@ -40,11 +40,8 @@ class HttpSuccessOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: bool or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: bool or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: bool or ClientRawResponse if raw=true
+        :rtype: bool or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
         # Construct URL
@@ -87,11 +84,8 @@ class HttpSuccessOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: bool or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: bool or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: bool or ClientRawResponse if raw=true
+        :rtype: bool or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
         # Construct URL
@@ -134,11 +128,8 @@ class HttpSuccessOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: bool or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: bool or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: bool or ClientRawResponse if raw=true
+        :rtype: bool or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
         # Construct URL

@@ -23,7 +23,7 @@ class FlattenedProduct(Resource):
     :ivar type: Resource Type
     :vartype type: str
     :param tags:
-    :type tags: dict
+    :type tags: dict[str, str]
     :param location: Resource Location
     :type location: str
     :ivar name: Resource Name
