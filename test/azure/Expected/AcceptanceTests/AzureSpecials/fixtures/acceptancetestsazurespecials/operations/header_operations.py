@@ -44,11 +44,8 @@ class HeaderOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsazurespecials.models.ErrorException>`
         """
@@ -91,18 +88,14 @@ class HeaderOperations(object):
         :param header_custom_named_request_id_param_grouping_parameters:
          Additional parameters for the operation
         :type header_custom_named_request_id_param_grouping_parameters:
-         :class:`HeaderCustomNamedRequestIdParamGroupingParameters
-         <fixtures.acceptancetestsazurespecials.models.HeaderCustomNamedRequestIdParamGroupingParameters>`
+         ~fixtures.acceptancetestsazurespecials.models.HeaderCustomNamedRequestIdParamGroupingParameters
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsazurespecials.models.ErrorException>`
         """
@@ -153,11 +146,8 @@ class HeaderOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: bool or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: bool or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: bool or ClientRawResponse if raw=true
+        :rtype: bool or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsazurespecials.models.ErrorException>`
         """

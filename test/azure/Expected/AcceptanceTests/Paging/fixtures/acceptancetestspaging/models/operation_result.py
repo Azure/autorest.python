@@ -18,8 +18,7 @@ class OperationResult(Model):
     :param status: The status of the request. Possible values include:
      'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
      'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
-    :type status: str or :class:`enum
-     <fixtures.acceptancetestspaging.models.enum>`
+    :type status: str or ~fixtures.acceptancetestspaging.models.enum
     """
 
     _attribute_map = {

@@ -78,11 +78,8 @@ class AutoRestReportServiceForAzure(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: dict or ClientRawResponse if raw=true
+        :rtype: dict[str, int] or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsazurereport.models.ErrorException>`
         """

@@ -39,18 +39,14 @@ class ParameterGroupingOperations(object):
         :param parameter_grouping_post_required_parameters: Additional
          parameters for the operation
         :type parameter_grouping_post_required_parameters:
-         :class:`ParameterGroupingPostRequiredParameters
-         <fixtures.acceptancetestsazureparametergrouping.models.ParameterGroupingPostRequiredParameters>`
+         ~fixtures.acceptancetestsazureparametergrouping.models.ParameterGroupingPostRequiredParameters
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsazureparametergrouping.models.ErrorException>`
         """
@@ -113,18 +109,14 @@ class ParameterGroupingOperations(object):
         :param parameter_grouping_post_optional_parameters: Additional
          parameters for the operation
         :type parameter_grouping_post_optional_parameters:
-         :class:`ParameterGroupingPostOptionalParameters
-         <fixtures.acceptancetestsazureparametergrouping.models.ParameterGroupingPostOptionalParameters>`
+         ~fixtures.acceptancetestsazureparametergrouping.models.ParameterGroupingPostOptionalParameters
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsazureparametergrouping.models.ErrorException>`
         """
@@ -171,23 +163,19 @@ class ParameterGroupingOperations(object):
         """Post parameters from multiple different parameter groups.
 
         :param first_parameter_group: Additional parameters for the operation
-        :type first_parameter_group: :class:`FirstParameterGroup
-         <fixtures.acceptancetestsazureparametergrouping.models.FirstParameterGroup>`
+        :type first_parameter_group:
+         ~fixtures.acceptancetestsazureparametergrouping.models.FirstParameterGroup
         :param parameter_grouping_post_multi_param_groups_second_param_group:
          Additional parameters for the operation
         :type parameter_grouping_post_multi_param_groups_second_param_group:
-         :class:`ParameterGroupingPostMultiParamGroupsSecondParamGroup
-         <fixtures.acceptancetestsazureparametergrouping.models.ParameterGroupingPostMultiParamGroupsSecondParamGroup>`
+         ~fixtures.acceptancetestsazureparametergrouping.models.ParameterGroupingPostMultiParamGroupsSecondParamGroup
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsazureparametergrouping.models.ErrorException>`
         """
@@ -244,18 +232,15 @@ class ParameterGroupingOperations(object):
         """Post parameters with a shared parameter group object.
 
         :param first_parameter_group: Additional parameters for the operation
-        :type first_parameter_group: :class:`FirstParameterGroup
-         <fixtures.acceptancetestsazureparametergrouping.models.FirstParameterGroup>`
+        :type first_parameter_group:
+         ~fixtures.acceptancetestsazureparametergrouping.models.FirstParameterGroup
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsazureparametergrouping.models.ErrorException>`
         """

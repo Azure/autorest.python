@@ -21,8 +21,7 @@ class Error(Model):
     :param message:
     :type message: str
     :param parent_error:
-    :type parent_error: :class:`Error
-     <fixtures.acceptancetestsmodelflattening.models.Error>`
+    :type parent_error: ~fixtures.acceptancetestsmodelflattening.models.Error
     """
 
     _attribute_map = {

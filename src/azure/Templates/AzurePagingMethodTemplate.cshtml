@@ -17,8 +17,8 @@
         @ParameterWrapComment(string.Empty, ":param dict custom_headers: headers that will be added to the request")
         @ParameterWrapComment(string.Empty, ":param bool raw: returns the direct response alongside the deserialized response")
         @ParameterWrapComment(string.Empty, ":param operation_config: :ref:`Operation configuration overrides<msrest:optionsforoperations>`.")
-        @ParameterWrapComment(string.Empty, ":return: An iterator like instance of " + Model.GetReturnTypeDocumentation(Model.PagedResponseContentClass))
-        @ParameterWrapComment(string.Empty, string.Format(":rtype: {0}", Model.GetReturnTypeDocumentation(Model.ReturnType.Body)))
+        @ParameterWrapComment(string.Empty, ":return: An iterator like instance of " + Model.GetDocumentationTypeName(Model.PagedResponseContentClass))
+        @ParameterWrapComment(string.Empty, string.Format(":rtype: {0}[{1}]", Model.GetReturnTypeDocumentation(Model.ReturnType.Body), Model.GetReturnTypeDocumentation(Model.PagedResponseContentClass)))
         @ParameterWrapComment(string.Empty, string.Format(":raises: {0}", Model.ExceptionDocumentation))
         """
         @Model.BuildInputMappings()

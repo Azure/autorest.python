@@ -40,13 +40,9 @@ class PrimitiveOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: :class:`IntWrapper
-         <fixtures.acceptancetestsbodycomplex.models.IntWrapper>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: :class:`IntWrapper
-         <fixtures.acceptancetestsbodycomplex.models.IntWrapper>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: IntWrapper or ClientRawResponse if raw=true
+        :rtype: ~fixtures.acceptancetestsbodycomplex.models.IntWrapper or
+         ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodycomplex.models.ErrorException>`
         """
@@ -85,18 +81,15 @@ class PrimitiveOperations(object):
         """Put complex types with integer properties.
 
         :param complex_body: Please put -1 and 2
-        :type complex_body: :class:`IntWrapper
-         <fixtures.acceptancetestsbodycomplex.models.IntWrapper>`
+        :type complex_body:
+         ~fixtures.acceptancetestsbodycomplex.models.IntWrapper
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodycomplex.models.ErrorException>`
         """
@@ -136,13 +129,9 @@ class PrimitiveOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: :class:`LongWrapper
-         <fixtures.acceptancetestsbodycomplex.models.LongWrapper>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: :class:`LongWrapper
-         <fixtures.acceptancetestsbodycomplex.models.LongWrapper>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: LongWrapper or ClientRawResponse if raw=true
+        :rtype: ~fixtures.acceptancetestsbodycomplex.models.LongWrapper or
+         ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodycomplex.models.ErrorException>`
         """
@@ -181,18 +170,15 @@ class PrimitiveOperations(object):
         """Put complex types with long properties.
 
         :param complex_body: Please put 1099511627775 and -999511627788
-        :type complex_body: :class:`LongWrapper
-         <fixtures.acceptancetestsbodycomplex.models.LongWrapper>`
+        :type complex_body:
+         ~fixtures.acceptancetestsbodycomplex.models.LongWrapper
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodycomplex.models.ErrorException>`
         """
@@ -232,13 +218,9 @@ class PrimitiveOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: :class:`FloatWrapper
-         <fixtures.acceptancetestsbodycomplex.models.FloatWrapper>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: :class:`FloatWrapper
-         <fixtures.acceptancetestsbodycomplex.models.FloatWrapper>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: FloatWrapper or ClientRawResponse if raw=true
+        :rtype: ~fixtures.acceptancetestsbodycomplex.models.FloatWrapper or
+         ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodycomplex.models.ErrorException>`
         """
@@ -277,18 +259,15 @@ class PrimitiveOperations(object):
         """Put complex types with float properties.
 
         :param complex_body: Please put 1.05 and -0.003
-        :type complex_body: :class:`FloatWrapper
-         <fixtures.acceptancetestsbodycomplex.models.FloatWrapper>`
+        :type complex_body:
+         ~fixtures.acceptancetestsbodycomplex.models.FloatWrapper
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodycomplex.models.ErrorException>`
         """
@@ -328,13 +307,9 @@ class PrimitiveOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: :class:`DoubleWrapper
-         <fixtures.acceptancetestsbodycomplex.models.DoubleWrapper>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: :class:`DoubleWrapper
-         <fixtures.acceptancetestsbodycomplex.models.DoubleWrapper>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: DoubleWrapper or ClientRawResponse if raw=true
+        :rtype: ~fixtures.acceptancetestsbodycomplex.models.DoubleWrapper or
+         ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodycomplex.models.ErrorException>`
         """
@@ -374,18 +349,15 @@ class PrimitiveOperations(object):
 
         :param complex_body: Please put 3e-100 and
          -0.000000000000000000000000000000000000000000000000000000005
-        :type complex_body: :class:`DoubleWrapper
-         <fixtures.acceptancetestsbodycomplex.models.DoubleWrapper>`
+        :type complex_body:
+         ~fixtures.acceptancetestsbodycomplex.models.DoubleWrapper
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodycomplex.models.ErrorException>`
         """
@@ -425,13 +397,9 @@ class PrimitiveOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: :class:`BooleanWrapper
-         <fixtures.acceptancetestsbodycomplex.models.BooleanWrapper>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: :class:`BooleanWrapper
-         <fixtures.acceptancetestsbodycomplex.models.BooleanWrapper>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: BooleanWrapper or ClientRawResponse if raw=true
+        :rtype: ~fixtures.acceptancetestsbodycomplex.models.BooleanWrapper or
+         ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodycomplex.models.ErrorException>`
         """
@@ -470,18 +438,15 @@ class PrimitiveOperations(object):
         """Put complex types with bool properties.
 
         :param complex_body: Please put true and false
-        :type complex_body: :class:`BooleanWrapper
-         <fixtures.acceptancetestsbodycomplex.models.BooleanWrapper>`
+        :type complex_body:
+         ~fixtures.acceptancetestsbodycomplex.models.BooleanWrapper
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodycomplex.models.ErrorException>`
         """
@@ -521,13 +486,9 @@ class PrimitiveOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: :class:`StringWrapper
-         <fixtures.acceptancetestsbodycomplex.models.StringWrapper>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: :class:`StringWrapper
-         <fixtures.acceptancetestsbodycomplex.models.StringWrapper>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: StringWrapper or ClientRawResponse if raw=true
+        :rtype: ~fixtures.acceptancetestsbodycomplex.models.StringWrapper or
+         ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodycomplex.models.ErrorException>`
         """
@@ -566,18 +527,15 @@ class PrimitiveOperations(object):
         """Put complex types with string properties.
 
         :param complex_body: Please put 'goodrequest', '', and null
-        :type complex_body: :class:`StringWrapper
-         <fixtures.acceptancetestsbodycomplex.models.StringWrapper>`
+        :type complex_body:
+         ~fixtures.acceptancetestsbodycomplex.models.StringWrapper
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodycomplex.models.ErrorException>`
         """
@@ -617,13 +575,9 @@ class PrimitiveOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: :class:`DateWrapper
-         <fixtures.acceptancetestsbodycomplex.models.DateWrapper>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: :class:`DateWrapper
-         <fixtures.acceptancetestsbodycomplex.models.DateWrapper>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: DateWrapper or ClientRawResponse if raw=true
+        :rtype: ~fixtures.acceptancetestsbodycomplex.models.DateWrapper or
+         ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodycomplex.models.ErrorException>`
         """
@@ -662,18 +616,15 @@ class PrimitiveOperations(object):
         """Put complex types with date properties.
 
         :param complex_body: Please put '0001-01-01' and '2016-02-29'
-        :type complex_body: :class:`DateWrapper
-         <fixtures.acceptancetestsbodycomplex.models.DateWrapper>`
+        :type complex_body:
+         ~fixtures.acceptancetestsbodycomplex.models.DateWrapper
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodycomplex.models.ErrorException>`
         """
@@ -713,13 +664,9 @@ class PrimitiveOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: :class:`DatetimeWrapper
-         <fixtures.acceptancetestsbodycomplex.models.DatetimeWrapper>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: :class:`DatetimeWrapper
-         <fixtures.acceptancetestsbodycomplex.models.DatetimeWrapper>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: DatetimeWrapper or ClientRawResponse if raw=true
+        :rtype: ~fixtures.acceptancetestsbodycomplex.models.DatetimeWrapper or
+         ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodycomplex.models.ErrorException>`
         """
@@ -759,18 +706,15 @@ class PrimitiveOperations(object):
 
         :param complex_body: Please put '0001-01-01T12:00:00-04:00' and
          '2015-05-18T11:38:00-08:00'
-        :type complex_body: :class:`DatetimeWrapper
-         <fixtures.acceptancetestsbodycomplex.models.DatetimeWrapper>`
+        :type complex_body:
+         ~fixtures.acceptancetestsbodycomplex.models.DatetimeWrapper
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodycomplex.models.ErrorException>`
         """
@@ -810,13 +754,10 @@ class PrimitiveOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: :class:`Datetimerfc1123Wrapper
-         <fixtures.acceptancetestsbodycomplex.models.Datetimerfc1123Wrapper>`
-         or :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: :class:`Datetimerfc1123Wrapper
-         <fixtures.acceptancetestsbodycomplex.models.Datetimerfc1123Wrapper>`
-         or :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: Datetimerfc1123Wrapper or ClientRawResponse if raw=true
+        :rtype:
+         ~fixtures.acceptancetestsbodycomplex.models.Datetimerfc1123Wrapper or
+         ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodycomplex.models.ErrorException>`
         """
@@ -856,18 +797,15 @@ class PrimitiveOperations(object):
 
         :param complex_body: Please put 'Mon, 01 Jan 0001 12:00:00 GMT' and
          'Mon, 18 May 2015 11:38:00 GMT'
-        :type complex_body: :class:`Datetimerfc1123Wrapper
-         <fixtures.acceptancetestsbodycomplex.models.Datetimerfc1123Wrapper>`
+        :type complex_body:
+         ~fixtures.acceptancetestsbodycomplex.models.Datetimerfc1123Wrapper
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodycomplex.models.ErrorException>`
         """
@@ -907,13 +845,9 @@ class PrimitiveOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: :class:`DurationWrapper
-         <fixtures.acceptancetestsbodycomplex.models.DurationWrapper>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: :class:`DurationWrapper
-         <fixtures.acceptancetestsbodycomplex.models.DurationWrapper>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: DurationWrapper or ClientRawResponse if raw=true
+        :rtype: ~fixtures.acceptancetestsbodycomplex.models.DurationWrapper or
+         ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodycomplex.models.ErrorException>`
         """
@@ -958,11 +892,8 @@ class PrimitiveOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodycomplex.models.ErrorException>`
         """
@@ -1004,13 +935,9 @@ class PrimitiveOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: :class:`ByteWrapper
-         <fixtures.acceptancetestsbodycomplex.models.ByteWrapper>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: :class:`ByteWrapper
-         <fixtures.acceptancetestsbodycomplex.models.ByteWrapper>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: ByteWrapper or ClientRawResponse if raw=true
+        :rtype: ~fixtures.acceptancetestsbodycomplex.models.ByteWrapper or
+         ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodycomplex.models.ErrorException>`
         """
@@ -1055,11 +982,8 @@ class PrimitiveOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodycomplex.models.ErrorException>`
         """

@@ -40,11 +40,8 @@ class NumberOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: float or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: float or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: float or ClientRawResponse if raw=true
+        :rtype: float or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodynumber.models.ErrorException>`
         """
@@ -87,11 +84,8 @@ class NumberOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: float or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: float or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: float or ClientRawResponse if raw=true
+        :rtype: float or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodynumber.models.ErrorException>`
         """
@@ -134,11 +128,8 @@ class NumberOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: float or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: float or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: float or ClientRawResponse if raw=true
+        :rtype: float or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodynumber.models.ErrorException>`
         """
@@ -181,11 +172,8 @@ class NumberOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: decimal.Decimal or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: decimal.Decimal or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: decimal.Decimal or ClientRawResponse if raw=true
+        :rtype: decimal.Decimal or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodynumber.models.ErrorException>`
         """
@@ -230,11 +218,8 @@ class NumberOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodynumber.models.ErrorException>`
         """
@@ -274,11 +259,8 @@ class NumberOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: float or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: float or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: float or ClientRawResponse if raw=true
+        :rtype: float or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodynumber.models.ErrorException>`
         """
@@ -323,11 +305,8 @@ class NumberOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodynumber.models.ErrorException>`
         """
@@ -367,11 +346,8 @@ class NumberOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: float or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: float or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: float or ClientRawResponse if raw=true
+        :rtype: float or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodynumber.models.ErrorException>`
         """
@@ -416,11 +392,8 @@ class NumberOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodynumber.models.ErrorException>`
         """
@@ -460,11 +433,8 @@ class NumberOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: float or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: float or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: float or ClientRawResponse if raw=true
+        :rtype: float or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodynumber.models.ErrorException>`
         """
@@ -509,11 +479,8 @@ class NumberOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodynumber.models.ErrorException>`
         """
@@ -553,11 +520,8 @@ class NumberOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: float or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: float or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: float or ClientRawResponse if raw=true
+        :rtype: float or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodynumber.models.ErrorException>`
         """
@@ -602,11 +566,8 @@ class NumberOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodynumber.models.ErrorException>`
         """
@@ -646,11 +607,8 @@ class NumberOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: decimal.Decimal or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: decimal.Decimal or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: decimal.Decimal or ClientRawResponse if raw=true
+        :rtype: decimal.Decimal or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodynumber.models.ErrorException>`
         """
@@ -695,11 +653,8 @@ class NumberOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodynumber.models.ErrorException>`
         """
@@ -739,11 +694,8 @@ class NumberOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: decimal.Decimal or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: decimal.Decimal or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: decimal.Decimal or ClientRawResponse if raw=true
+        :rtype: decimal.Decimal or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodynumber.models.ErrorException>`
         """
@@ -788,11 +740,8 @@ class NumberOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodynumber.models.ErrorException>`
         """
@@ -832,11 +781,8 @@ class NumberOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: decimal.Decimal or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: decimal.Decimal or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: decimal.Decimal or ClientRawResponse if raw=true
+        :rtype: decimal.Decimal or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodynumber.models.ErrorException>`
         """
@@ -881,11 +827,8 @@ class NumberOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodynumber.models.ErrorException>`
         """
@@ -925,11 +868,8 @@ class NumberOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: float or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: float or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: float or ClientRawResponse if raw=true
+        :rtype: float or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodynumber.models.ErrorException>`
         """
@@ -974,11 +914,8 @@ class NumberOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodynumber.models.ErrorException>`
         """
@@ -1018,11 +955,8 @@ class NumberOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: float or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: float or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: float or ClientRawResponse if raw=true
+        :rtype: float or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodynumber.models.ErrorException>`
         """
@@ -1067,11 +1001,8 @@ class NumberOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodynumber.models.ErrorException>`
         """
@@ -1111,11 +1042,8 @@ class NumberOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: decimal.Decimal or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: decimal.Decimal or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: decimal.Decimal or ClientRawResponse if raw=true
+        :rtype: decimal.Decimal or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodynumber.models.ErrorException>`
         """

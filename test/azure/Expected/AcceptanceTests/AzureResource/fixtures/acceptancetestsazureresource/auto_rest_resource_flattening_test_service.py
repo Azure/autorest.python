@@ -74,18 +74,15 @@ class AutoRestResourceFlatteningTestService(object):
         """Put External Resource as an Array.
 
         :param resource_array: External Resource as an Array to put
-        :type resource_array: list of :class:`Resource
-         <fixtures.acceptancetestsazureresource.models.Resource>`
+        :type resource_array:
+         list[~fixtures.acceptancetestsazureresource.models.Resource]
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsazureresource.models.ErrorException>`
         """
@@ -132,13 +129,10 @@ class AutoRestResourceFlatteningTestService(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: list of :class:`FlattenedProduct
-         <fixtures.acceptancetestsazureresource.models.FlattenedProduct>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: list of :class:`FlattenedProduct
-         <fixtures.acceptancetestsazureresource.models.FlattenedProduct>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: list or ClientRawResponse if raw=true
+        :rtype:
+         list[~fixtures.acceptancetestsazureresource.models.FlattenedProduct]
+         or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsazureresource.models.ErrorException>`
         """
@@ -181,17 +175,15 @@ class AutoRestResourceFlatteningTestService(object):
         """Put External Resource as a Dictionary.
 
         :param resource_dictionary: External Resource as a Dictionary to put
-        :type resource_dictionary: dict
+        :type resource_dictionary: dict[str,
+         ~fixtures.acceptancetestsazureresource.models.FlattenedProduct]
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsazureresource.models.ErrorException>`
         """
@@ -238,11 +230,10 @@ class AutoRestResourceFlatteningTestService(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: dict or ClientRawResponse if raw=true
+        :rtype: dict[str,
+         ~fixtures.acceptancetestsazureresource.models.FlattenedProduct] or
+         ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsazureresource.models.ErrorException>`
         """
@@ -286,18 +277,15 @@ class AutoRestResourceFlatteningTestService(object):
 
         :param resource_complex_object: External Resource as a
          ResourceCollection to put
-        :type resource_complex_object: :class:`ResourceCollection
-         <fixtures.acceptancetestsazureresource.models.ResourceCollection>`
+        :type resource_complex_object:
+         ~fixtures.acceptancetestsazureresource.models.ResourceCollection
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsazureresource.models.ErrorException>`
         """
@@ -344,13 +332,10 @@ class AutoRestResourceFlatteningTestService(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: :class:`ResourceCollection
-         <fixtures.acceptancetestsazureresource.models.ResourceCollection>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: :class:`ResourceCollection
-         <fixtures.acceptancetestsazureresource.models.ResourceCollection>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: ResourceCollection or ClientRawResponse if raw=true
+        :rtype:
+         ~fixtures.acceptancetestsazureresource.models.ResourceCollection or
+         ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsazureresource.models.ErrorException>`
         """

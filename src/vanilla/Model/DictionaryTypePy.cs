@@ -13,8 +13,8 @@ namespace AutoRest.Python.Model
             Name.OnGet += v => $"dict";
         }
 
-        public string TypeDocumentation => "dict";
-        public string ReturnTypeDocumentation => "dict";
+        public string TypeDocumentation => $"dict[str, {((IExtendedModelTypePy)ValueType).TypeDocumentation}]";
+        public string ReturnTypeDocumentation => TypeDocumentation;
     }
 
 }

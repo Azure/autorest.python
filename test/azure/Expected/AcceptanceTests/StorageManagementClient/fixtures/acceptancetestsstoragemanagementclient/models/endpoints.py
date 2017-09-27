@@ -23,11 +23,11 @@ class Endpoints(Model):
     :param table: Gets the table endpoint.
     :type table: str
     :param dummy_end_point: Dummy EndPoint
-    :type dummy_end_point: :class:`Endpoints
-     <fixtures.acceptancetestsstoragemanagementclient.models.Endpoints>`
+    :type dummy_end_point:
+     ~fixtures.acceptancetestsstoragemanagementclient.models.Endpoints
     :param foo_point: Foo point
-    :type foo_point: :class:`Foo
-     <fixtures.acceptancetestsstoragemanagementclient.models.Foo>`
+    :type foo_point:
+     ~fixtures.acceptancetestsstoragemanagementclient.models.Foo
     """
 
     _attribute_map = {

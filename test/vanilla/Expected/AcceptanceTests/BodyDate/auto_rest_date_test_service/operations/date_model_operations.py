@@ -40,11 +40,8 @@ class DateModelOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: date or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: date or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: date or ClientRawResponse if raw=true
+        :rtype: date or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodydate.models.ErrorException>`
         """
@@ -87,11 +84,8 @@ class DateModelOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: date or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: date or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: date or ClientRawResponse if raw=true
+        :rtype: date or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodydate.models.ErrorException>`
         """
@@ -134,11 +128,8 @@ class DateModelOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: date or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: date or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: date or ClientRawResponse if raw=true
+        :rtype: date or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodydate.models.ErrorException>`
         """
@@ -181,11 +172,8 @@ class DateModelOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: date or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: date or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: date or ClientRawResponse if raw=true
+        :rtype: date or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodydate.models.ErrorException>`
         """
@@ -230,11 +218,8 @@ class DateModelOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodydate.models.ErrorException>`
         """
@@ -274,11 +259,8 @@ class DateModelOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: date or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: date or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: date or ClientRawResponse if raw=true
+        :rtype: date or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodydate.models.ErrorException>`
         """
@@ -323,11 +305,8 @@ class DateModelOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodydate.models.ErrorException>`
         """
@@ -367,11 +346,8 @@ class DateModelOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: date or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: date or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: date or ClientRawResponse if raw=true
+        :rtype: date or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodydate.models.ErrorException>`
         """
