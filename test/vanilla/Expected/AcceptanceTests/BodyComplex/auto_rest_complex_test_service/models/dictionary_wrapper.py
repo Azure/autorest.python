@@ -16,7 +16,7 @@ class DictionaryWrapper(Model):
     """DictionaryWrapper.
 
     :param default_program:
-    :type default_program: dict
+    :type default_program: dict[str, str]
     """
 
     _attribute_map = {

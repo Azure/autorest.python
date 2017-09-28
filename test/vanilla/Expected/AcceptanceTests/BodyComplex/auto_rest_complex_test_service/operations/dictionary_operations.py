@@ -40,13 +40,9 @@ class DictionaryOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: :class:`DictionaryWrapper
-         <fixtures.acceptancetestsbodycomplex.models.DictionaryWrapper>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: :class:`DictionaryWrapper
-         <fixtures.acceptancetestsbodycomplex.models.DictionaryWrapper>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: DictionaryWrapper or ClientRawResponse if raw=true
+        :rtype: ~fixtures.acceptancetestsbodycomplex.models.DictionaryWrapper
+         or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodycomplex.models.ErrorException>`
         """
@@ -85,17 +81,14 @@ class DictionaryOperations(object):
         """Put complex types with dictionary property.
 
         :param default_program:
-        :type default_program: dict
+        :type default_program: dict[str, str]
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodycomplex.models.ErrorException>`
         """
@@ -137,13 +130,9 @@ class DictionaryOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: :class:`DictionaryWrapper
-         <fixtures.acceptancetestsbodycomplex.models.DictionaryWrapper>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: :class:`DictionaryWrapper
-         <fixtures.acceptancetestsbodycomplex.models.DictionaryWrapper>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: DictionaryWrapper or ClientRawResponse if raw=true
+        :rtype: ~fixtures.acceptancetestsbodycomplex.models.DictionaryWrapper
+         or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodycomplex.models.ErrorException>`
         """
@@ -182,17 +171,14 @@ class DictionaryOperations(object):
         """Put complex types with dictionary property which is empty.
 
         :param default_program:
-        :type default_program: dict
+        :type default_program: dict[str, str]
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodycomplex.models.ErrorException>`
         """
@@ -234,13 +220,9 @@ class DictionaryOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: :class:`DictionaryWrapper
-         <fixtures.acceptancetestsbodycomplex.models.DictionaryWrapper>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: :class:`DictionaryWrapper
-         <fixtures.acceptancetestsbodycomplex.models.DictionaryWrapper>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: DictionaryWrapper or ClientRawResponse if raw=true
+        :rtype: ~fixtures.acceptancetestsbodycomplex.models.DictionaryWrapper
+         or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodycomplex.models.ErrorException>`
         """
@@ -284,13 +266,9 @@ class DictionaryOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: :class:`DictionaryWrapper
-         <fixtures.acceptancetestsbodycomplex.models.DictionaryWrapper>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: :class:`DictionaryWrapper
-         <fixtures.acceptancetestsbodycomplex.models.DictionaryWrapper>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: DictionaryWrapper or ClientRawResponse if raw=true
+        :rtype: ~fixtures.acceptancetestsbodycomplex.models.DictionaryWrapper
+         or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodycomplex.models.ErrorException>`
         """

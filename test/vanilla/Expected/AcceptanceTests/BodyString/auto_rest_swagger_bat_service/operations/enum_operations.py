@@ -41,13 +41,9 @@ class EnumOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: :class:`Colors
-         <fixtures.acceptancetestsbodystring.models.Colors>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: :class:`Colors
-         <fixtures.acceptancetestsbodystring.models.Colors>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: Colors or ClientRawResponse if raw=true
+        :rtype: ~fixtures.acceptancetestsbodystring.models.Colors or
+         ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodystring.models.ErrorException>`
         """
@@ -88,18 +84,15 @@ class EnumOperations(object):
 
         :param string_body: Possible values include: 'red color',
          'green-color', 'blue_color'
-        :type string_body: str or :class:`Colors
-         <fixtures.acceptancetestsbodystring.models.Colors>`
+        :type string_body: str or
+         ~fixtures.acceptancetestsbodystring.models.Colors
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodystring.models.ErrorException>`
         """
@@ -140,13 +133,9 @@ class EnumOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: :class:`Colors
-         <fixtures.acceptancetestsbodystring.models.Colors>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: :class:`Colors
-         <fixtures.acceptancetestsbodystring.models.Colors>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: Colors or ClientRawResponse if raw=true
+        :rtype: ~fixtures.acceptancetestsbodystring.models.Colors or
+         ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodystring.models.ErrorException>`
         """
@@ -187,18 +176,15 @@ class EnumOperations(object):
 
         :param enum_string_body: Possible values include: 'red color',
          'green-color', 'blue_color'
-        :type enum_string_body: str or :class:`Colors
-         <fixtures.acceptancetestsbodystring.models.Colors>`
+        :type enum_string_body: str or
+         ~fixtures.acceptancetestsbodystring.models.Colors
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodystring.models.ErrorException>`
         """
@@ -238,13 +224,9 @@ class EnumOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: :class:`RefColorConstant
-         <fixtures.acceptancetestsbodystring.models.RefColorConstant>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: :class:`RefColorConstant
-         <fixtures.acceptancetestsbodystring.models.RefColorConstant>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: RefColorConstant or ClientRawResponse if raw=true
+        :rtype: ~fixtures.acceptancetestsbodystring.models.RefColorConstant or
+         ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodystring.models.ErrorException>`
         """
@@ -289,11 +271,8 @@ class EnumOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodystring.models.ErrorException>`
         """

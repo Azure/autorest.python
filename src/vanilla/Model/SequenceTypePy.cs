@@ -13,7 +13,7 @@ namespace AutoRest.Python.Model
             Name.OnGet += v => $"list";
         }
 
-        public string TypeDocumentation => $"list of {((IExtendedModelTypePy)ElementType).TypeDocumentation}";
-        public string ReturnTypeDocumentation => $"list of {((IExtendedModelTypePy)ElementType).TypeDocumentation}";
+        public string TypeDocumentation => $"list[{((IExtendedModelTypePy)ElementType).TypeDocumentation}]";
+        public string ReturnTypeDocumentation => TypeDocumentation;
     }
 }

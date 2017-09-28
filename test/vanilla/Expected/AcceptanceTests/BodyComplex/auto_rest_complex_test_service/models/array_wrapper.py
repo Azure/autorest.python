@@ -16,7 +16,7 @@ class ArrayWrapper(Model):
     """ArrayWrapper.
 
     :param array:
-    :type array: list of str
+    :type array: list[str]
     """
 
     _attribute_map = {

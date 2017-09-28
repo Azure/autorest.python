@@ -21,25 +21,24 @@ class Product(Model):
 
     :param display_names: Non required array of unique items from 0 to 6
      elements.
-    :type display_names: list of str
+    :type display_names: list[str]
     :param capacity: Non required int betwen 0 and 100 exclusive.
     :type capacity: int
     :param image: Image URL representing the product.
     :type image: str
     :param child:
-    :type child: :class:`ChildProduct
-     <fixtures.acceptancetestsvalidation.models.ChildProduct>`
+    :type child: ~fixtures.acceptancetestsvalidation.models.ChildProduct
     :ivar const_child:
-    :vartype const_child: :class:`ConstantProduct
-     <fixtures.acceptancetestsvalidation.models.ConstantProduct>`
+    :vartype const_child:
+     ~fixtures.acceptancetestsvalidation.models.ConstantProduct
     :ivar const_int: Constant int. Default value: 0 .
     :vartype const_int: int
     :ivar const_string: Constant string. Default value: "constant" .
     :vartype const_string: str
     :param const_string_as_enum: Constant string as Enum. Possible values
      include: 'constant_string_as_enum'
-    :type const_string_as_enum: str or :class:`EnumConst
-     <fixtures.acceptancetestsvalidation.models.EnumConst>`
+    :type const_string_as_enum: str or
+     ~fixtures.acceptancetestsvalidation.models.EnumConst
     """
 
     _validation = {

@@ -42,13 +42,9 @@ class BasicOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: :class:`Basic
-         <fixtures.acceptancetestsbodycomplex.models.Basic>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: :class:`Basic
-         <fixtures.acceptancetestsbodycomplex.models.Basic>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: Basic or ClientRawResponse if raw=true
+        :rtype: ~fixtures.acceptancetestsbodycomplex.models.Basic or
+         ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodycomplex.models.ErrorException>`
         """
@@ -87,18 +83,14 @@ class BasicOperations(object):
         """Please put {id: 2, name: 'abc', color: 'Magenta'}.
 
         :param complex_body: Please put {id: 2, name: 'abc', color: 'Magenta'}
-        :type complex_body: :class:`Basic
-         <fixtures.acceptancetestsbodycomplex.models.Basic>`
+        :type complex_body: ~fixtures.acceptancetestsbodycomplex.models.Basic
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodycomplex.models.ErrorException>`
         """
@@ -139,13 +131,9 @@ class BasicOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: :class:`Basic
-         <fixtures.acceptancetestsbodycomplex.models.Basic>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: :class:`Basic
-         <fixtures.acceptancetestsbodycomplex.models.Basic>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: Basic or ClientRawResponse if raw=true
+        :rtype: ~fixtures.acceptancetestsbodycomplex.models.Basic or
+         ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodycomplex.models.ErrorException>`
         """
@@ -188,13 +176,9 @@ class BasicOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: :class:`Basic
-         <fixtures.acceptancetestsbodycomplex.models.Basic>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: :class:`Basic
-         <fixtures.acceptancetestsbodycomplex.models.Basic>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: Basic or ClientRawResponse if raw=true
+        :rtype: ~fixtures.acceptancetestsbodycomplex.models.Basic or
+         ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodycomplex.models.ErrorException>`
         """
@@ -237,13 +221,9 @@ class BasicOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: :class:`Basic
-         <fixtures.acceptancetestsbodycomplex.models.Basic>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: :class:`Basic
-         <fixtures.acceptancetestsbodycomplex.models.Basic>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: Basic or ClientRawResponse if raw=true
+        :rtype: ~fixtures.acceptancetestsbodycomplex.models.Basic or
+         ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodycomplex.models.ErrorException>`
         """
@@ -287,13 +267,9 @@ class BasicOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: :class:`Basic
-         <fixtures.acceptancetestsbodycomplex.models.Basic>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: :class:`Basic
-         <fixtures.acceptancetestsbodycomplex.models.Basic>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: Basic or ClientRawResponse if raw=true
+        :rtype: ~fixtures.acceptancetestsbodycomplex.models.Basic or
+         ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodycomplex.models.ErrorException>`
         """

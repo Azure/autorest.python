@@ -61,18 +61,15 @@ class AutoRestResourceFlatteningTestService(object):
         """Put External Resource as an Array.
 
         :param resource_array: External Resource as an Array to put
-        :type resource_array: list of :class:`Resource
-         <fixtures.acceptancetestsmodelflattening.models.Resource>`
+        :type resource_array:
+         list[~fixtures.acceptancetestsmodelflattening.models.Resource]
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsmodelflattening.models.ErrorException>`
         """
@@ -115,13 +112,10 @@ class AutoRestResourceFlatteningTestService(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: list of :class:`FlattenedProduct
-         <fixtures.acceptancetestsmodelflattening.models.FlattenedProduct>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: list of :class:`FlattenedProduct
-         <fixtures.acceptancetestsmodelflattening.models.FlattenedProduct>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: list or ClientRawResponse if raw=true
+        :rtype:
+         list[~fixtures.acceptancetestsmodelflattening.models.FlattenedProduct]
+         or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsmodelflattening.models.ErrorException>`
         """
@@ -162,18 +156,15 @@ class AutoRestResourceFlatteningTestService(object):
         array.
 
         :param resource_array: External Resource as an Array to put
-        :type resource_array: list of :class:`WrappedProduct
-         <fixtures.acceptancetestsmodelflattening.models.WrappedProduct>`
+        :type resource_array:
+         list[~fixtures.acceptancetestsmodelflattening.models.WrappedProduct]
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsmodelflattening.models.ErrorException>`
         """
@@ -218,13 +209,10 @@ class AutoRestResourceFlatteningTestService(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: list of :class:`ProductWrapper
-         <fixtures.acceptancetestsmodelflattening.models.ProductWrapper>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: list of :class:`ProductWrapper
-         <fixtures.acceptancetestsmodelflattening.models.ProductWrapper>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: list or ClientRawResponse if raw=true
+        :rtype:
+         list[~fixtures.acceptancetestsmodelflattening.models.ProductWrapper]
+         or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsmodelflattening.models.ErrorException>`
         """
@@ -263,17 +251,15 @@ class AutoRestResourceFlatteningTestService(object):
         """Put External Resource as a Dictionary.
 
         :param resource_dictionary: External Resource as a Dictionary to put
-        :type resource_dictionary: dict
+        :type resource_dictionary: dict[str,
+         ~fixtures.acceptancetestsmodelflattening.models.FlattenedProduct]
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsmodelflattening.models.ErrorException>`
         """
@@ -316,11 +302,10 @@ class AutoRestResourceFlatteningTestService(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: dict or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: dict or ClientRawResponse if raw=true
+        :rtype: dict[str,
+         ~fixtures.acceptancetestsmodelflattening.models.FlattenedProduct] or
+         ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsmodelflattening.models.ErrorException>`
         """
@@ -360,18 +345,15 @@ class AutoRestResourceFlatteningTestService(object):
 
         :param resource_complex_object: External Resource as a
          ResourceCollection to put
-        :type resource_complex_object: :class:`ResourceCollection
-         <fixtures.acceptancetestsmodelflattening.models.ResourceCollection>`
+        :type resource_complex_object:
+         ~fixtures.acceptancetestsmodelflattening.models.ResourceCollection
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: None or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsmodelflattening.models.ErrorException>`
         """
@@ -414,13 +396,10 @@ class AutoRestResourceFlatteningTestService(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: :class:`ResourceCollection
-         <fixtures.acceptancetestsmodelflattening.models.ResourceCollection>`
-         or :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: :class:`ResourceCollection
-         <fixtures.acceptancetestsmodelflattening.models.ResourceCollection>`
-         or :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: ResourceCollection or ClientRawResponse if raw=true
+        :rtype:
+         ~fixtures.acceptancetestsmodelflattening.models.ResourceCollection or
+         ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsmodelflattening.models.ErrorException>`
         """
@@ -459,20 +438,16 @@ class AutoRestResourceFlatteningTestService(object):
         """Put Simple Product with client flattening true on the model.
 
         :param simple_body_product: Simple body product to put
-        :type simple_body_product: :class:`SimpleProduct
-         <fixtures.acceptancetestsmodelflattening.models.SimpleProduct>`
+        :type simple_body_product:
+         ~fixtures.acceptancetestsmodelflattening.models.SimpleProduct
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: :class:`SimpleProduct
-         <fixtures.acceptancetestsmodelflattening.models.SimpleProduct>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: :class:`SimpleProduct
-         <fixtures.acceptancetestsmodelflattening.models.SimpleProduct>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: SimpleProduct or ClientRawResponse if raw=true
+        :rtype: ~fixtures.acceptancetestsmodelflattening.models.SimpleProduct
+         or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsmodelflattening.models.ErrorException>`
         """
@@ -535,13 +510,9 @@ class AutoRestResourceFlatteningTestService(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: :class:`SimpleProduct
-         <fixtures.acceptancetestsmodelflattening.models.SimpleProduct>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: :class:`SimpleProduct
-         <fixtures.acceptancetestsmodelflattening.models.SimpleProduct>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: SimpleProduct or ClientRawResponse if raw=true
+        :rtype: ~fixtures.acceptancetestsmodelflattening.models.SimpleProduct
+         or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsmodelflattening.models.ErrorException>`
         """
@@ -592,20 +563,16 @@ class AutoRestResourceFlatteningTestService(object):
 
         :param flatten_parameter_group: Additional parameters for the
          operation
-        :type flatten_parameter_group: :class:`FlattenParameterGroup
-         <fixtures.acceptancetestsmodelflattening.models.FlattenParameterGroup>`
+        :type flatten_parameter_group:
+         ~fixtures.acceptancetestsmodelflattening.models.FlattenParameterGroup
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: :class:`SimpleProduct
-         <fixtures.acceptancetestsmodelflattening.models.SimpleProduct>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>` if
-         raw=true
-        :rtype: :class:`SimpleProduct
-         <fixtures.acceptancetestsmodelflattening.models.SimpleProduct>` or
-         :class:`ClientRawResponse<msrest.pipeline.ClientRawResponse>`
+        :return: SimpleProduct or ClientRawResponse if raw=true
+        :rtype: ~fixtures.acceptancetestsmodelflattening.models.SimpleProduct
+         or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsmodelflattening.models.ErrorException>`
         """

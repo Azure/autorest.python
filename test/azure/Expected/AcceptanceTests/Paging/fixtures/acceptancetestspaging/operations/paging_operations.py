@@ -42,10 +42,9 @@ class PagingOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: An iterator like instance of :class:`Product
-         <fixtures.acceptancetestspaging.models.Product>`
-        :rtype: :class:`ProductPaged
-         <fixtures.acceptancetestspaging.models.ProductPaged>`
+        :return: An iterator like instance of Product
+        :rtype:
+         ~fixtures.acceptancetestspaging.models.ProductPaged[~fixtures.acceptancetestspaging.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
         def internal_paging(next_link=None, raw=False):
@@ -102,17 +101,15 @@ class PagingOperations(object):
         :param paging_get_multiple_pages_options: Additional parameters for
          the operation
         :type paging_get_multiple_pages_options:
-         :class:`PagingGetMultiplePagesOptions
-         <fixtures.acceptancetestspaging.models.PagingGetMultiplePagesOptions>`
+         ~fixtures.acceptancetestspaging.models.PagingGetMultiplePagesOptions
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: An iterator like instance of :class:`Product
-         <fixtures.acceptancetestspaging.models.Product>`
-        :rtype: :class:`ProductPaged
-         <fixtures.acceptancetestspaging.models.ProductPaged>`
+        :return: An iterator like instance of Product
+        :rtype:
+         ~fixtures.acceptancetestspaging.models.ProductPaged[~fixtures.acceptancetestspaging.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
         maxresults = None
@@ -183,17 +180,15 @@ class PagingOperations(object):
         :param paging_get_odata_multiple_pages_options: Additional parameters
          for the operation
         :type paging_get_odata_multiple_pages_options:
-         :class:`PagingGetOdataMultiplePagesOptions
-         <fixtures.acceptancetestspaging.models.PagingGetOdataMultiplePagesOptions>`
+         ~fixtures.acceptancetestspaging.models.PagingGetOdataMultiplePagesOptions
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: An iterator like instance of :class:`Product
-         <fixtures.acceptancetestspaging.models.Product>`
-        :rtype: :class:`ProductPaged1
-         <fixtures.acceptancetestspaging.models.ProductPaged1>`
+        :return: An iterator like instance of Product
+        :rtype:
+         ~fixtures.acceptancetestspaging.models.ProductPaged1[~fixtures.acceptancetestspaging.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
         maxresults = None
@@ -261,8 +256,7 @@ class PagingOperations(object):
         :param paging_get_multiple_pages_with_offset_options: Additional
          parameters for the operation
         :type paging_get_multiple_pages_with_offset_options:
-         :class:`PagingGetMultiplePagesWithOffsetOptions
-         <fixtures.acceptancetestspaging.models.PagingGetMultiplePagesWithOffsetOptions>`
+         ~fixtures.acceptancetestspaging.models.PagingGetMultiplePagesWithOffsetOptions
         :param client_request_id:
         :type client_request_id: str
         :param dict custom_headers: headers that will be added to the request
@@ -270,10 +264,9 @@ class PagingOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: An iterator like instance of :class:`Product
-         <fixtures.acceptancetestspaging.models.Product>`
-        :rtype: :class:`ProductPaged
-         <fixtures.acceptancetestspaging.models.ProductPaged>`
+        :return: An iterator like instance of Product
+        :rtype:
+         ~fixtures.acceptancetestspaging.models.ProductPaged[~fixtures.acceptancetestspaging.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
         maxresults = None
@@ -351,10 +344,9 @@ class PagingOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: An iterator like instance of :class:`Product
-         <fixtures.acceptancetestspaging.models.Product>`
-        :rtype: :class:`ProductPaged
-         <fixtures.acceptancetestspaging.models.ProductPaged>`
+        :return: An iterator like instance of Product
+        :rtype:
+         ~fixtures.acceptancetestspaging.models.ProductPaged[~fixtures.acceptancetestspaging.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
         def internal_paging(next_link=None, raw=False):
@@ -413,10 +405,9 @@ class PagingOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: An iterator like instance of :class:`Product
-         <fixtures.acceptancetestspaging.models.Product>`
-        :rtype: :class:`ProductPaged
-         <fixtures.acceptancetestspaging.models.ProductPaged>`
+        :return: An iterator like instance of Product
+        :rtype:
+         ~fixtures.acceptancetestspaging.models.ProductPaged[~fixtures.acceptancetestspaging.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
         def internal_paging(next_link=None, raw=False):
@@ -473,10 +464,9 @@ class PagingOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: An iterator like instance of :class:`Product
-         <fixtures.acceptancetestspaging.models.Product>`
-        :rtype: :class:`ProductPaged
-         <fixtures.acceptancetestspaging.models.ProductPaged>`
+        :return: An iterator like instance of Product
+        :rtype:
+         ~fixtures.acceptancetestspaging.models.ProductPaged[~fixtures.acceptancetestspaging.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
         def internal_paging(next_link=None, raw=False):
@@ -533,10 +523,9 @@ class PagingOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: An iterator like instance of :class:`Product
-         <fixtures.acceptancetestspaging.models.Product>`
-        :rtype: :class:`ProductPaged
-         <fixtures.acceptancetestspaging.models.ProductPaged>`
+        :return: An iterator like instance of Product
+        :rtype:
+         ~fixtures.acceptancetestspaging.models.ProductPaged[~fixtures.acceptancetestspaging.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
         def internal_paging(next_link=None, raw=False):
@@ -593,10 +582,9 @@ class PagingOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: An iterator like instance of :class:`Product
-         <fixtures.acceptancetestspaging.models.Product>`
-        :rtype: :class:`ProductPaged
-         <fixtures.acceptancetestspaging.models.ProductPaged>`
+        :return: An iterator like instance of Product
+        :rtype:
+         ~fixtures.acceptancetestspaging.models.ProductPaged[~fixtures.acceptancetestspaging.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
         def internal_paging(next_link=None, raw=False):
@@ -657,10 +645,9 @@ class PagingOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: An iterator like instance of :class:`Product
-         <fixtures.acceptancetestspaging.models.Product>`
-        :rtype: :class:`ProductPaged1
-         <fixtures.acceptancetestspaging.models.ProductPaged1>`
+        :return: An iterator like instance of Product
+        :rtype:
+         ~fixtures.acceptancetestspaging.models.ProductPaged1[~fixtures.acceptancetestspaging.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
         def internal_paging(next_link=None, raw=False):
@@ -725,17 +712,16 @@ class PagingOperations(object):
         parameters grouped.
 
         :param custom_parameter_group: Additional parameters for the operation
-        :type custom_parameter_group: :class:`CustomParameterGroup
-         <fixtures.acceptancetestspaging.models.CustomParameterGroup>`
+        :type custom_parameter_group:
+         ~fixtures.acceptancetestspaging.models.CustomParameterGroup
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: An iterator like instance of :class:`Product
-         <fixtures.acceptancetestspaging.models.Product>`
-        :rtype: :class:`ProductPaged1
-         <fixtures.acceptancetestspaging.models.ProductPaged1>`
+        :return: An iterator like instance of Product
+        :rtype:
+         ~fixtures.acceptancetestspaging.models.ProductPaged1[~fixtures.acceptancetestspaging.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
         api_version = None

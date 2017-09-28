@@ -27,12 +27,12 @@ class StorageAccountCreateParameters(Resource):
     :param location: Resource location
     :type location: str
     :param tags: Resource tags
-    :type tags: dict
+    :type tags: dict[str, str]
     :param account_type: Gets or sets the account type. Possible values
      include: 'Standard_LRS', 'Standard_ZRS', 'Standard_GRS', 'Standard_RAGRS',
      'Premium_LRS'
-    :type account_type: str or :class:`AccountType
-     <fixtures.acceptancetestsstoragemanagementclient.models.AccountType>`
+    :type account_type: str or
+     ~fixtures.acceptancetestsstoragemanagementclient.models.AccountType
     """
 
     _validation = {
