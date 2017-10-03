@@ -651,8 +651,11 @@ namespace AutoRest.Python.Model
                 {
                     builder.AppendLine("{0} = None",
                             transformation.OutputParameter.Name);
-                    builder.AppendLine("if {0}:", BuildNullCheckExpression(transformation))
-                       .Indent();
+                    if (!transformation.ParameterMappings.IsNullOrEmpty())
+                    {
+                        builder.AppendLine("if {0}:", BuildNullCheckExpression(transformation))
+                        .Indent();
+                    }
                     foreach (var mapping in transformation.ParameterMappings)
                     {
                         builder.AppendLine(mapping.CreateCode(transformation.OutputParameter));
