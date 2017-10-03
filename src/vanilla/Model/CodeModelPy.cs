@@ -169,6 +169,8 @@ namespace AutoRest.Python.Model
 
         public string Version => Settings.Instance.PackageVersion.Else(ApiVersion);
 
+        public bool ClientSideValidationEnabled => (bool)Settings.Instance.CustomSettings["ClientSideValidation"];
+
         public virtual bool HasAnyModel => ModelTemplateModels.Any();
 
         public string PackageName => Settings.Instance.PackageName.Else(Name.ToPythonCase().Replace("_", ""));
