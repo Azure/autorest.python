@@ -36,10 +36,6 @@ class AutoRestUrlTestServiceConfiguration(Configuration):
 
         if global_string_path is None:
             raise ValueError("Parameter 'global_string_path' must not be None.")
-        if not isinstance(global_string_path, str):
-            raise TypeError("Parameter 'global_string_path' must be str.")
-        if global_string_query is not None and not isinstance(global_string_query, str):
-            raise TypeError("Optional parameter 'global_string_query' must be str.")
         if not base_url:
             base_url = 'http://localhost'
 

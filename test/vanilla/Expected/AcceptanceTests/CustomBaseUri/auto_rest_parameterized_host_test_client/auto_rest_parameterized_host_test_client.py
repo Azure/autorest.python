@@ -31,8 +31,6 @@ class AutoRestParameterizedHostTestClientConfiguration(Configuration):
 
         if host is None:
             raise ValueError("Parameter 'host' must not be None.")
-        if not isinstance(host, str):
-            raise TypeError("Parameter 'host' must be str.")
         base_url = 'http://{accountName}{host}'
 
         super(AutoRestParameterizedHostTestClientConfiguration, self).__init__(base_url)
