@@ -33,12 +33,8 @@ class AutoRestParameterizedCustomHostTestClientConfiguration(Configuration):
 
         if subscription_id is None:
             raise ValueError("Parameter 'subscription_id' must not be None.")
-        if not isinstance(subscription_id, str):
-            raise TypeError("Parameter 'subscription_id' must be str.")
         if dns_suffix is None:
             raise ValueError("Parameter 'dns_suffix' must not be None.")
-        if not isinstance(dns_suffix, str):
-            raise TypeError("Parameter 'dns_suffix' must be str.")
         base_url = '{vault}{secret}{dnsSuffix}'
 
         super(AutoRestParameterizedCustomHostTestClientConfiguration, self).__init__(base_url)
