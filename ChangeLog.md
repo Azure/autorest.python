@@ -1,4 +1,5 @@
 ### 2017-09-XX - 2.0.15
+- Improve polymorphic discriminator documentation (#17)
 - Add deprecated support (#16)
 - Fix invalid headers test (#15)
 - Fix invalid python code in some scenario (#14)
