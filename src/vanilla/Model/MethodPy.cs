@@ -447,7 +447,7 @@ namespace AutoRest.Python.Model
 
             if (HasResponseHeader)
             {
-                if (code != null)
+                if (code == null)
                 {
                     headersType = this.ReturnType.Headers;
                 }
