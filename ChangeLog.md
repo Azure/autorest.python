@@ -1,4 +1,5 @@
 ### 2017-09-XX - 2.0.15
+- Add deprecated support (#16)
 - Fix invalid headers test (#15)
 - Fix invalid python code in some scenario (#14)
 - Stop checking str type for client parameter (#12)
