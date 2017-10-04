@@ -10,6 +10,10 @@
 # --------------------------------------------------------------------------
 @EmptyLine
 import uuid
+@if (Model.HasAnyDeprecated)
+{
+@:import warnings
+}
 from msrest.pipeline import ClientRawResponse
 @if (Model.HasAnyCloudErrors)
 {

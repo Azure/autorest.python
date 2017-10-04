@@ -10,6 +10,12 @@
             self, @(Model.MethodParameterDeclaration(Model.AddCustomHeader))):
         """@(WrapComment(string.Empty, Model.BuildSummaryAndDescriptionString()))
 @EmptyLine
+@if (Model.Deprecated)
+{
+@:        .. warning::
+@:           This method is deprecated
+@EmptyLine
+}
 @foreach(var parameter in Model.DocumentationParameters)
 {
 @:        @ParameterWrapComment(string.Empty, MethodPy.GetParameterDocumentationString(parameter))
@@ -27,6 +33,10 @@
         @ParameterWrapComment(string.Empty, string.Format(":rtype: {0} or ~msrest.pipeline.ClientRawResponse", Model.GetReturnTypeDocumentation(Model.ReturnType.Body)))
         @ParameterWrapComment(string.Empty, string.Format(":raises: {0}", Model.ExceptionDocumentation))
         """
+@if (Model.Deprecated)
+{
+@:        @(string.Format("warnings.warn(\"Method {0} is deprecated\", DeprecationWarning)", ((string)Model.Name).ToPythonCase()))
+}
         @Model.BuildInputMappings()
 @if (Model.InputParameterTransformation.Any())
 {
