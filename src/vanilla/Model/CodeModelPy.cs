@@ -237,6 +237,8 @@ namespace AutoRest.Python.Model
 
         public bool HasAnyDefaultExceptions => MethodTemplateModels.Any(item => item.DefaultResponse.Body == null);
 
+        public bool HasAnyDeprecated => this.MethodTemplateModels.Any(item => item.Deprecated);
+
         public virtual string GetExceptionNameIfExist(IModelType type, bool needsQuote)
         {
             CompositeType compType = type as CompositeType;

@@ -31,6 +31,8 @@ namespace AutoRest.Python.Model
 
         public bool HasAnyDefaultExceptions => this.MethodTemplateModels.Any(item => item.DefaultResponse.Body == null);
 
+        public bool HasAnyDeprecated => this.MethodTemplateModels.Any(item => item.Deprecated);
+
         public IEnumerable<PropertyPy> ConstantProperties { get; internal set; }
 
 

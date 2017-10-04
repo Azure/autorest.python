@@ -8,6 +8,12 @@
             self, @(Model.MethodParameterDeclaration(true))):
         """@(WrapComment(string.Empty, Model.BuildSummaryAndDescriptionString()))
 @EmptyLine
+@if (Model.Deprecated)
+{
+@:        .. warning::
+@:           This method is deprecated
+@EmptyLine
+}
 @*need to fix comment here for paging function*@
 @foreach(var parameter in Model.DocumentationParameters)
 {
@@ -21,6 +27,10 @@
         @ParameterWrapComment(string.Empty, string.Format(":rtype: {0}[{1}]", Model.GetReturnTypeDocumentation(Model.ReturnType.Body), Model.GetReturnTypeDocumentation(Model.PagedResponseContentClass)))
         @ParameterWrapComment(string.Empty, string.Format(":raises: {0}", Model.ExceptionDocumentation))
         """
+@if (Model.Deprecated)
+{
+@:        @(string.Format("warnings.warn(\"Method {0} is deprecated\", DeprecationWarning)", ((string)Model.Name).ToPythonCase()))
+}
         @Model.BuildInputMappings()
 @if (Model.InputParameterTransformation.Any())
 {
