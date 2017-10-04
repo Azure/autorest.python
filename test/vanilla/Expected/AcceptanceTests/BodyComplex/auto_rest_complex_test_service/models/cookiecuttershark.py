@@ -21,7 +21,7 @@ class Cookiecuttershark(Shark):
     :type length: float
     :param siblings:
     :type siblings: list[~fixtures.acceptancetestsbodycomplex.models.Fish]
-    :param fishtype: Polymorphic Discriminator
+    :param fishtype: Constant filled by server.
     :type fishtype: str
     :param age:
     :type age: int

@@ -15,13 +15,16 @@ from .fish import Fish
 class Shark(Fish):
     """Shark.
 
+    You probably want to use the sub-classes and not this class directly. Known
+    sub-classes are: Sawshark, Goblinshark, Cookiecuttershark
+
     :param species:
     :type species: str
     :param length:
     :type length: float
     :param siblings:
     :type siblings: list[~fixtures.acceptancetestsbodycomplex.models.Fish]
-    :param fishtype: Polymorphic Discriminator
+    :param fishtype: Constant filled by server.
     :type fishtype: str
     :param age:
     :type age: int
