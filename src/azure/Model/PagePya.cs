@@ -31,7 +31,11 @@ namespace AutoRest.Python.Azure.Model
 
         public string GetReturnTypeDocumentation()
         {
-            return (ItemType as IExtendedModelTypePy)?.ReturnTypeDocumentation ?? ItemType.Name;
+            if((ItemType as CompositeTypePy) == null)
+            {
+                return ItemType.Name;
+            }
+            return $":class:`{ItemType.Name} <{((CodeModelPy)ItemType.CodeModel)?.Namespace}.models.{ItemType.Name}>`";
         }
 
         public bool Equals(PagePya other)
