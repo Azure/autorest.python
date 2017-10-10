@@ -63,13 +63,15 @@ namespace AutoRest.Python.Model
                     IsRequired = true,
                     Name = PolymorphicDiscriminator,
                     SerializedName = PolymorphicDiscriminator,
-                    Documentation = "Polymorphic Discriminator",
+                    Documentation = "Constant filled by server.",
                     ModelType = New<PrimaryType>(KnownPrimaryType.String)
                 }));
             }
         }
 
         public IEnumerable<CompositeType> SubModelTypes => BaseIsPolymorphic?  CodeModel.ModelTypes.Where(each => ReferenceEquals(this, each.BaseModelType) ) : Enumerable.Empty<CompositeType>();
+
+        public string SubModelTypeAsString => string.Join(", ", SubModelTypes.Select(x => x.Name));
 
         public bool IsException => CodeModel.ErrorTypes.Contains(this);
 

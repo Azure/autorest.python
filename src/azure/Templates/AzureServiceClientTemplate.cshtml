@@ -13,6 +13,10 @@
 @Header("# ").TrimMultilineHeader()
 # --------------------------------------------------------------------------
 @EmptyLine
+@if (Model.HasAnyDeprecated)
+{
+@:import warnings
+}
 from msrest.service_client import ServiceClient
 from msrest import Serializer, Deserializer
 from msrestazure import AzureConfiguration

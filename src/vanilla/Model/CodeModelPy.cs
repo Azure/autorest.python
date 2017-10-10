@@ -134,29 +134,7 @@ namespace AutoRest.Python.Model
                             Indent().
                                 AppendLine(string.Format(CultureInfo.InvariantCulture, "raise ValueError(\"Parameter '{0}' must not be None.\")", property.Name)).
                             Outdent();
-                        if (property.ModelType.IsPrimaryType(KnownPrimaryType.String))
-                        {
-                            builder.
-                                AppendFormat("if not isinstance({0}, str):", property.Name).AppendLine().
-                                Indent().
-                                    AppendLine(string.Format(CultureInfo.InvariantCulture, "raise TypeError(\"Parameter '{0}' must be str.\")", property.Name)).
-                                Outdent();
-                        }
                     }
-                    else
-                    {
-                        if (property.ModelType.IsPrimaryType(KnownPrimaryType.String))
-                        {
-                            builder.
-                                AppendFormat("if {0} is not None and not isinstance({0}, str):", property.Name).AppendLine().
-                                Indent().
-                                    AppendLine(string.Format(CultureInfo.InvariantCulture, "raise TypeError(\"Optional parameter '{0}' must be str.\")", property.Name)).
-                                Outdent();
-                        }
-
-                    }
-                    
-
                 }
                 return builder.ToString();
             }
@@ -168,6 +146,8 @@ namespace AutoRest.Python.Model
         
 
         public string Version => Settings.Instance.PackageVersion.Else(ApiVersion);
+
+        public bool ClientSideValidationEnabled => (bool)Settings.Instance.CustomSettings["ClientSideValidation"];
 
         public virtual bool HasAnyModel => ModelTemplateModels.Any();
 
@@ -256,6 +236,8 @@ namespace AutoRest.Python.Model
         public virtual bool NeedsExtraImport => false;
 
         public bool HasAnyDefaultExceptions => MethodTemplateModels.Any(item => item.DefaultResponse.Body == null);
+
+        public bool HasAnyDeprecated => this.MethodTemplateModels.Any(item => item.Deprecated);
 
         public virtual string GetExceptionNameIfExist(IModelType type, bool needsQuote)
         {
