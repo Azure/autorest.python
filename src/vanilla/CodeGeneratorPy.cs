@@ -50,7 +50,7 @@ namespace AutoRest.Python
                             Path.Combine(initFolderName, "__init__.py"), true);
             }
 
-            var folderName = codeModel.Name.ToPythonCase().ToLower();
+            var folderName = Path.Combine(codeModel.Namespace.Split('.'));
             var setupTemplate = new SetupTemplate { Model = codeModel };
             await Write(setupTemplate, "setup.py");
 
