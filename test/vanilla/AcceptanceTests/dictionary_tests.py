@@ -35,13 +35,14 @@ from os.path import dirname, pardir, join, realpath
 cwd = dirname(realpath(__file__))
 log_level = int(os.environ.get('PythonLogLevel', 30))
 
+import fixtures # Ensure that fixtures is loaded on old python before the next line
 tests = realpath(join(cwd, pardir, "Expected", "AcceptanceTests"))
-sys.path.append(join(tests, "BodyDictionary"))
+sys.modules['fixtures'].__path__.append(join(tests, "BodyDictionary", "fixtures"))
 
 from msrest.exceptions import DeserializationError
 
-from auto_rest_swagger_ba_tdictionary_service import AutoRestSwaggerBATdictionaryService
-from auto_rest_swagger_ba_tdictionary_service.models import Widget, ErrorException
+from fixtures.acceptancetestsbodydictionary import AutoRestSwaggerBATdictionaryService
+from fixtures.acceptancetestsbodydictionary.models import Widget, ErrorException
 
 
 class DictionaryTests(unittest.TestCase):

@@ -37,13 +37,14 @@ from os.path import dirname, pardir, join, realpath
 cwd = dirname(realpath(__file__))
 log_level = int(os.environ.get('PythonLogLevel', 30))
 
+import fixtures # Ensure that fixtures is loaded on old python before the next line
 tests = realpath(join(cwd, pardir, "Expected", "AcceptanceTests"))
-sys.path.append(join(tests, "BodyDateTimeRfc1123"))
+sys.modules['fixtures'].__path__.append(join(tests, "BodyDateTimeRfc1123", "fixtures"))
 
 from msrest.serialization import Deserializer
 from msrest.exceptions import DeserializationError
 
-from auto_rest_rfc1123_date_time_test_service import AutoRestRFC1123DateTimeTestService
+from fixtures.acceptancetestsbodydatetimerfc1123 import AutoRestRFC1123DateTimeTestService
 
 
 class DateTimeRfcTests(unittest.TestCase):

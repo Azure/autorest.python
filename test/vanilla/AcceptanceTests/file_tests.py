@@ -37,13 +37,14 @@ from os.path import dirname, pardir, join, realpath
 cwd = dirname(realpath(__file__))
 log_level = int(os.environ.get('PythonLogLevel', 30))
 
+import fixtures # Ensure that fixtures is loaded on old python before the next line
 tests = realpath(join(cwd, pardir, "Expected", "AcceptanceTests"))
-sys.path.append(join(tests, "BodyFile"))
+sys.modules['fixtures'].__path__.append(join(tests, "BodyFile", "fixtures"))
 
 from msrest.exceptions import DeserializationError
 
-from auto_rest_swagger_bat_file_service import AutoRestSwaggerBATFileService
-from auto_rest_swagger_bat_file_service.models import ErrorException
+from fixtures.acceptancetestsbodyfile import AutoRestSwaggerBATFileService
+from fixtures.acceptancetestsbodyfile.models import ErrorException
 
 
 class FileTests(unittest.TestCase):
