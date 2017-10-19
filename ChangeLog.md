@@ -1,3 +1,7 @@
+### 2017-10-19 - 2.0.18
+
+- Fix namespace folders in Vanilla generator
+
 ### 2017-10-10 - 2.0.17
 
 - Fix paging description
