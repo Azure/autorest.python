@@ -35,9 +35,10 @@ from os.path import dirname, pardir, join, realpath
 cwd = dirname(realpath(__file__))
 log_level = int(os.environ.get('PythonLogLevel', 30))
 
+import fixtures # Ensure that fixtures is loaded on old python before the next line
 tests = realpath(join(cwd, pardir, "Expected", "AcceptanceTests"))
-sys.path.append(join(tests, "CustomBaseUri"))
-sys.path.append(join(tests, "CustomBaseUriMoreOptions"))
+sys.modules['fixtures'].__path__.append(join(tests, "CustomBaseUri", "fixtures"))
+sys.modules['fixtures'].__path__.append(join(tests, "CustomBaseUriMoreOptions", "fixtures"))
 
 from msrest.exceptions import (
     DeserializationError,
@@ -45,9 +46,9 @@ from msrest.exceptions import (
     ClientRequestError,
     ValidationError)
 
-from auto_rest_parameterized_host_test_client import AutoRestParameterizedHostTestClient
-from auto_rest_parameterized_host_test_client.models import Error, ErrorException
-from auto_rest_parameterized_custom_host_test_client import AutoRestParameterizedCustomHostTestClient
+from fixtures.acceptancetestscustombaseuri import AutoRestParameterizedHostTestClient
+from fixtures.acceptancetestscustombaseuri.models import Error, ErrorException
+from fixtures.acceptancetestscustombaseurimoreoptions import AutoRestParameterizedCustomHostTestClient
 
 
 class CustomBaseUriTests(unittest.TestCase):
