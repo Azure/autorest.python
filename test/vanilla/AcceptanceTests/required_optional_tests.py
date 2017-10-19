@@ -35,13 +35,14 @@ from os.path import dirname, pardir, join, realpath
 cwd = dirname(realpath(__file__))
 log_level = int(os.environ.get('PythonLogLevel', 30))
 
+import fixtures # Ensure that fixtures is loaded on old python before the next line
 tests = realpath(join(cwd, pardir, "Expected", "AcceptanceTests"))
-sys.path.append(join(tests, "RequiredOptional"))
+sys.modules['fixtures'].__path__.append(join(tests, "RequiredOptional", "fixtures"))
 
 from msrest.exceptions import DeserializationError, SerializationError, ValidationError
 
-from auto_rest_required_optional_test_service import AutoRestRequiredOptionalTestService
-from auto_rest_required_optional_test_service.models import StringWrapper, ArrayWrapper, ClassWrapper
+from fixtures.acceptancetestsrequiredoptional import AutoRestRequiredOptionalTestService
+from fixtures.acceptancetestsrequiredoptional.models import StringWrapper, ArrayWrapper, ClassWrapper
 
 
 class RequiredOptionalTests(unittest.TestCase):

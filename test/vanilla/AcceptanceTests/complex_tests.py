@@ -37,14 +37,15 @@ from os.path import dirname, pardir, join, realpath
 cwd = dirname(realpath(__file__))
 log_level = int(os.environ.get('PythonLogLevel', 30))
 
+import fixtures # Ensure that fixtures is loaded on old python before the next line
 tests = realpath(join(cwd, pardir, "Expected", "AcceptanceTests"))
-sys.path.append(join(tests, "BodyComplex"))
+sys.modules['fixtures'].__path__.append(join(tests, "BodyComplex", "fixtures"))
 
 from msrest.serialization import Deserializer
 from msrest.exceptions import DeserializationError, SerializationError, ValidationError
 
-from auto_rest_complex_test_service import AutoRestComplexTestService
-from auto_rest_complex_test_service.models import *
+from fixtures.acceptancetestsbodycomplex import AutoRestComplexTestService
+from fixtures.acceptancetestsbodycomplex.models import *
 
 class UTC(tzinfo):
     def utcoffset(self,dt):
