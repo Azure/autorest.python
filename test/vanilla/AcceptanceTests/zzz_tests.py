@@ -35,11 +35,12 @@ from os.path import dirname, pardir, join, realpath
 cwd = dirname(realpath(__file__))
 log_level = int(os.environ.get('PythonLogLevel', 30))
 
+import fixtures # Ensure that fixtures is loaded on old python before the next line
 tests = realpath(join(cwd, pardir, "Expected", "AcceptanceTests"))
-sys.path.append(join(tests, "Report"))
+sys.modules['fixtures'].__path__.append(join(tests, "Report", "fixtures"))
 
 
-from auto_rest_report_service import AutoRestReportService
+from fixtures.acceptancetestsreport import AutoRestReportService
 
 
 class AcceptanceTests(unittest.TestCase):

@@ -36,15 +36,16 @@ from os.path import dirname, pardir, join, realpath
 cwd = dirname(realpath(__file__))
 log_level = int(os.environ.get('PythonLogLevel', 30))
 
+import fixtures # Ensure that fixtures is loaded on old python before the next line
 tests = realpath(join(cwd, pardir, "Expected", "AcceptanceTests"))
-sys.path.append(join(tests, "Url"))
-sys.path.append(join(tests, "UrlMultiCollectionFormat"))
+sys.modules['fixtures'].__path__.append(join(tests, "Url", "fixtures"))
+sys.modules['fixtures'].__path__.append(join(tests, "UrlMultiCollectionFormat", "fixtures"))
 
 from msrest.exceptions import DeserializationError, ValidationError
 
-from auto_rest_url_test_service import AutoRestUrlTestService
-from auto_rest_url_mutli_collection_format_test_service import AutoRestUrlMutliCollectionFormatTestService
-from auto_rest_url_test_service.models.auto_rest_url_test_service_enums import UriColor
+from fixtures.acceptancetestsurl import AutoRestUrlTestService
+from fixtures.acceptancetestsurlmulticollectionformat import AutoRestUrlMutliCollectionFormatTestService
+from fixtures.acceptancetestsurl.models.auto_rest_url_test_service_enums import UriColor
 
 
 class UrlTests(unittest.TestCase):
