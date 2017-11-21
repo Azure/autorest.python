@@ -24,6 +24,8 @@ class HttpFailureOperations(object):
     :param deserializer: An object model deserializer.
     """
 
+    models = models
+
     def __init__(self, client, config, serializer, deserializer):
 
         self._client = client

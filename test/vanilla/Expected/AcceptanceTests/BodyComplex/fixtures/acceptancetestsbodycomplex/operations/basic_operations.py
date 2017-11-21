@@ -24,6 +24,8 @@ class BasicOperations(object):
     :ivar api_version: API ID. Constant value: "2016-02-29".
     """
 
+    models = models
+
     def __init__(self, client, config, serializer, deserializer):
 
         self._client = client

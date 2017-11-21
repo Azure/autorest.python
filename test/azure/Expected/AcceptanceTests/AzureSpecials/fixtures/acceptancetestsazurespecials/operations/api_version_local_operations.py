@@ -25,6 +25,8 @@ class ApiVersionLocalOperations(object):
     :ivar api_version: This should appear as a method parameter, use value '2.0'. Constant value: "2.0".
     """
 
+    models = models
+
     def __init__(self, client, config, serializer, deserializer):
 
         self._client = client

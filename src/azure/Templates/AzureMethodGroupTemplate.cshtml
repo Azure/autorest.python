@@ -43,6 +43,11 @@ class @((string) Model.TypeName)(object):
     @:@Model.GetPropertyDocumentationString(property)
 }
     """
+@if (Model.HasAnyModel)
+{
+@EmptyLine
+@:    models = models
+}
 @EmptyLine
     def __init__(self, client, config, serializer, deserializer):
 @EmptyLine

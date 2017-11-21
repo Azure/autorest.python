@@ -24,6 +24,8 @@ class OdataOperations(object):
     :param deserializer: An objec model deserializer.
     """
 
+    models = models
+
     def __init__(self, client, config, serializer, deserializer):
 
         self._client = client
