@@ -384,11 +384,9 @@ class NumberOperations(object):
         return deserialized
 
     def put_big_double_positive_decimal(
-            self, number_body, custom_headers=None, raw=False, **operation_config):
+            self, custom_headers=None, raw=False, **operation_config):
         """Put big double value 99999999.99.
 
-        :param number_body:
-        :type number_body: float
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
@@ -399,6 +397,8 @@ class NumberOperations(object):
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodynumber.models.ErrorException>`
         """
+        number_body = 99999999.99
+
         # Construct URL
         url = '/number/big/double/99999999.99'
 
@@ -471,11 +471,9 @@ class NumberOperations(object):
         return deserialized
 
     def put_big_double_negative_decimal(
-            self, number_body, custom_headers=None, raw=False, **operation_config):
+            self, custom_headers=None, raw=False, **operation_config):
         """Put big double value -99999999.99.
 
-        :param number_body:
-        :type number_body: float
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
@@ -486,6 +484,8 @@ class NumberOperations(object):
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodynumber.models.ErrorException>`
         """
+        number_body = -99999999.99
+
         # Construct URL
         url = '/number/big/double/-99999999.99'
 
@@ -645,11 +645,9 @@ class NumberOperations(object):
         return deserialized
 
     def put_big_decimal_positive_decimal(
-            self, number_body, custom_headers=None, raw=False, **operation_config):
+            self, custom_headers=None, raw=False, **operation_config):
         """Put big decimal value 99999999.99.
 
-        :param number_body:
-        :type number_body: decimal.Decimal
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
@@ -660,6 +658,8 @@ class NumberOperations(object):
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodynumber.models.ErrorException>`
         """
+        number_body = None
+
         # Construct URL
         url = '/number/big/decimal/99999999.99'
 
@@ -732,11 +732,9 @@ class NumberOperations(object):
         return deserialized
 
     def put_big_decimal_negative_decimal(
-            self, number_body, custom_headers=None, raw=False, **operation_config):
+            self, custom_headers=None, raw=False, **operation_config):
         """Put big decimal value -99999999.99.
 
-        :param number_body:
-        :type number_body: decimal.Decimal
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
@@ -747,6 +745,8 @@ class NumberOperations(object):
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodynumber.models.ErrorException>`
         """
+        number_body = None
+
         # Construct URL
         url = '/number/big/decimal/-99999999.99'
 

@@ -17,15 +17,15 @@ contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additio
 
 ``` yaml
 use-extension:
-  "@microsoft.azure/autorest.modeler": "2.1.22"
+  "@microsoft.azure/autorest.modeler": "2.3.38"
 
 pipeline:
-  python/modeler:
-    input: swagger-document/identity
+  python/imodeler1:
+    input: openapi-document/identity
     output-artifact: code-model-v1
     scope: python
   python/commonmarker:
-    input: modeler
+    input: imodeler1
     output-artifact: code-model-v1
   python/cm/transform:
     input: commonmarker

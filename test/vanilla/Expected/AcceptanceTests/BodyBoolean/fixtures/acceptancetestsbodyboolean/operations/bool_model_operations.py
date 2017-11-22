@@ -78,11 +78,9 @@ class BoolModelOperations(object):
         return deserialized
 
     def put_true(
-            self, bool_body, custom_headers=None, raw=False, **operation_config):
+            self, custom_headers=None, raw=False, **operation_config):
         """Set Boolean value true.
 
-        :param bool_body:
-        :type bool_body: bool
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
@@ -93,6 +91,8 @@ class BoolModelOperations(object):
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodyboolean.models.ErrorException>`
         """
+        bool_body = True
+
         # Construct URL
         url = '/bool/true'
 
@@ -165,11 +165,9 @@ class BoolModelOperations(object):
         return deserialized
 
     def put_false(
-            self, bool_body, custom_headers=None, raw=False, **operation_config):
+            self, custom_headers=None, raw=False, **operation_config):
         """Set Boolean value false.
 
-        :param bool_body:
-        :type bool_body: bool
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
@@ -180,6 +178,8 @@ class BoolModelOperations(object):
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodyboolean.models.ErrorException>`
         """
+        bool_body = False
+
         # Construct URL
         url = '/bool/false'
 

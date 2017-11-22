@@ -93,11 +93,11 @@ class StringTests(unittest.TestCase):
                 b"\xee\xa1\x83\xe4\x9c\xa3\xee\xa1\xa4\xe2\x82\xac").decode('utf-8')
 
         self.assertEqual(test_str, client.string.get_mbcs())
-        client.string.put_mbcs(test_str)
+        client.string.put_mbcs()
 
         test_str = "    Now is the time for all good men to come to the aid of their country    "
         self.assertEqual(test_str, client.string.get_whitespace())
-        client.string.put_whitespace(test_str)
+        client.string.put_whitespace()
 
         self.assertIsNone(client.string.get_not_provided())
         self.assertEqual(Colors.redcolor, client.enum.get_not_expandable())

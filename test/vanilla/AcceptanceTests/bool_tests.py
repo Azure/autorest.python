@@ -55,11 +55,8 @@ class BoolTests(unittest.TestCase):
         self.assertFalse(client.bool_model.get_false())
 
         client.bool_model.get_null()
-        client.bool_model.put_false(False)
-        client.bool_model.put_true(True)
-
-        with self.assertRaises(ErrorException):
-            client.bool_model.put_true(False)
+        client.bool_model.put_false()
+        client.bool_model.put_true()
 
         with self.assertRaises(DeserializationError):
             client.bool_model.get_invalid()
