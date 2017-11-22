@@ -1,3 +1,7 @@
+### 2017-11-22 - 2.0.XX
+
+- Add "models" link inside operation groups
+
 ### 2017-10-19 - 2.0.18
 
 - Fix namespace folders in Vanilla generator
