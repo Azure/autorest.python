@@ -26,6 +26,8 @@ class QueriesOperations(object):
     :ivar date_time_query: '2012-01-01T01:01:01Z' as date-time. Constant value: "2012-01-01T01:01:01Z".
     """
 
+    models = models
+
     def __init__(self, client, config, serializer, deserializer):
 
         self._client = client

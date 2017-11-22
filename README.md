@@ -52,3 +52,38 @@ scope-python/emitter:
 output-artifact:
 - source-file-python
 ```
+
+## Help
+
+``` yaml
+help-content:
+  python: # type: Help as defined in autorest-core/help.ts
+    activationScope: python
+    categoryFriendlyName: Python Generator
+    settings:
+    - key: azure-arm
+      description: generate code in Azure flavor
+    - key: namespace
+      description: determines the namespace to be used in generated code. impacts folder structure.
+      type: string
+    - key: license-header
+      description: 'text to include as a header comment in generated files (magic strings: MICROSOFT_MIT, MICROSOFT_APACHE, MICROSOFT_MIT_NO_VERSION, MICROSOFT_APACHE_NO_VERSION, MICROSOFT_MIT_NO_CODEGEN). Should be MICROSOFT_MIT_NO_VERSION.'
+      type: string
+    - key: payload-flattening-threshold
+      description: max. number of properties in a request body. If the number of properties in the request body is less than or equal to this value, these properties will be represented as individual method arguments instead. Should be 2.
+      type: number
+    - key: add-credentials
+      description: include a credential property and constructor parameter supporting different authentication behaviors. This value is frozen to true if azure-arm=true.
+    - key: override-client-name
+      description: overrides the name of the client class (usually derived from $.info.title)
+      type: string
+    - key: client-side-validation
+      description: 'whether to validate parameters at the client side (according to OpenAPI definition) before making a request; default: true'
+      type: boolean
+    - key: package-name
+      description: Distribution package name (i.e. PyPI). Impact base folder and UserAgent
+      type: string
+    - key: package-version
+      description: Distribution package version (i.e. PyPI). Impact __version__ and UserAgent
+      type: string
+```

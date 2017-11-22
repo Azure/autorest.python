@@ -26,6 +26,8 @@ class SkipUrlEncodingOperations(object):
     :ivar q1: An unencoded query parameter with value 'value1&q2=value2&q3=value3'. Constant value: "value1&q2=value2&q3=value3".
     """
 
+    models = models
+
     def __init__(self, client, config, serializer, deserializer):
 
         self._client = client

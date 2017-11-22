@@ -25,6 +25,8 @@ class GroupOperations(object):
     :ivar api_version: API Version with value '2014-04-01-preview'. Constant value: "2014-04-01-preview".
     """
 
+    models = models
+
     def __init__(self, client, config, serializer, deserializer):
 
         self._client = client
