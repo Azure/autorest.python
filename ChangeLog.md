@@ -1,6 +1,7 @@
-### 2017-11-22 - 2.0.XX
+### 2017-11-22 - 2.0.23
 
 - Add "models" link inside operation groups
+- Add help for Python
 
 ### 2017-10-19 - 2.0.18
 
