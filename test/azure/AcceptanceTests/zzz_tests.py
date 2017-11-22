@@ -33,6 +33,7 @@ import unittest
 import sys
 import datetime
 import os
+import platform
 from uuid import uuid4
 from os.path import dirname, pardir, join, realpath
 
@@ -56,7 +57,7 @@ class AcceptanceTests(unittest.TestCase):
 
         cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
         client = AutoRestReportServiceForAzure(cred, base_url="http://localhost:3000")
-        report = client.get_report()
+        report = client.get_report(platform.python_version())
 
         skipped = [k for k, v in report.items() if v == 0]
 

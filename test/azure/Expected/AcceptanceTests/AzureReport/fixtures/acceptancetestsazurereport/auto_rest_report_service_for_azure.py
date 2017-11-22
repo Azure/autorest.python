@@ -70,9 +70,14 @@ class AutoRestReportServiceForAzure(object):
 
 
     def get_report(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, qualifier=None, custom_headers=None, raw=False, **operation_config):
         """Get test coverage report.
 
+        :param qualifier: If specified, qualifies the generated report further
+         (e.g. '2.7' vs '3.5' in for Python). The only effect is, that
+         generators that run all tests several times, can distinguish the
+         generated reports.
+        :type qualifier: str
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
@@ -88,6 +93,8 @@ class AutoRestReportServiceForAzure(object):
 
         # Construct parameters
         query_parameters = {}
+        if qualifier is not None:
+            query_parameters['qualifier'] = self._serialize.query("qualifier", qualifier, 'str')
 
         # Construct headers
         header_parameters = {}
