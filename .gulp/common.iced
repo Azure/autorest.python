@@ -375,7 +375,10 @@ module.exports =
 module.exports.task 'build', 'builds project', -> 
   echo "Building project in #{basefolder}"
 
-module.exports.task 'clean', 'cleans the project files', -> 
+module.exports.task 'clean', 'cleans the project files', (done) -> 
+  await rmdir "#{basefolder}/test/vanilla/.tox", defer _
+  await rmdir "#{basefolder}/test/azure/.tox", defer _
+  done()
 
 module.exports.task 'regenerate', 'regenerates expected files for testing', -> 
 
