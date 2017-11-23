@@ -44,8 +44,12 @@ namespace AutoRest.Python.Azure
             }
 
             var folderName = Path.Combine(codeModel.Namespace.Split('.'));
-            var setupTemplate = new SetupTemplate { Model = codeModel };
-            await Write(setupTemplate, "setup.py");
+
+            if(codeModel.BasicSetupPy)
+            {
+                var setupTemplate = new SetupTemplate { Model = codeModel };
+                await Write(setupTemplate, "setup.py");
+            }
 
             var serviceClientInitTemplate = new ServiceClientInitTemplate { Model = codeModel };
             await Write(serviceClientInitTemplate, Path.Combine(folderName, "__init__.py"));

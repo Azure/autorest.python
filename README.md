@@ -86,4 +86,7 @@ help-content:
     - key: package-version
       description: Distribution package version (i.e. PyPI). Impact __version__ and UserAgent
       type: string
+    - key: basic-setup-py
+      description: If used, generate a basic setup.py to build a wheel package.
+      type: bool
 ```
