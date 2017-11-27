@@ -37,15 +37,14 @@ from os.path import dirname, pardir, join, realpath
 cwd = dirname(realpath(__file__))
 log_level = int(os.environ.get('PythonLogLevel', 10))
 
-import fixtures # Ensure that fixtures is loaded on old python before the next line
 tests = realpath(join(cwd, pardir, "Expected", "AcceptanceTests"))
-sys.modules['fixtures'].__path__.append(join(tests, "Validation", "fixtures"))
+sys.path.append(join(tests, "Validation"))
 
 from msrest.serialization import Deserializer
 from msrest.exceptions import DeserializationError, ValidationError
 
-from fixtures.acceptancetestsvalidation import AutoRestValidationTest
-from fixtures.acceptancetestsvalidation.models import (
+from validation import AutoRestValidationTest
+from validation.models import (
     Product,
     ConstantProduct,
     ChildProduct)

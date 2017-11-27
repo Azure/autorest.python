@@ -43,8 +43,8 @@ sys.path.append(join(tests, "BodyArray"))
 from msrest.serialization import Deserializer
 from msrest.exceptions import DeserializationError
 
-from fixtures.acceptancetestsbodyarray import AutoRestSwaggerBATArrayService
-from fixtures.acceptancetestsbodyarray.models import Product
+from bodyarray import AutoRestSwaggerBATArrayService
+from bodyarray.models import Product
 
 
 class ArrayTests(unittest.TestCase):

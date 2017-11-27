@@ -38,17 +38,17 @@ from os.path import dirname, pardir, join, realpath
 cwd = dirname(realpath(__file__))
 log_level = int(os.environ.get('PythonLogLevel', 30))
 
-import fixtures # Ensure that fixtures is loaded on old python before the next line
 tests = realpath(join(cwd, pardir, "Expected", "AcceptanceTests"))
-sys.modules['fixtures'].__path__.append(join(tests, "AzureSpecials", "fixtures"))
+sys.path.append(join(tests, "AzureSpecials"))
 
 from msrest.serialization import Deserializer
 from msrest.exceptions import DeserializationError
 from msrest.authentication import BasicTokenAuthentication
 from msrestazure.azure_exceptions import CloudError, CloudErrorData
 
-from fixtures.acceptancetestsazurespecials import AutoRestAzureSpecialParametersTestClient
-from fixtures.acceptancetestsazurespecials import models
+from azurespecialproperties import AutoRestAzureSpecialParametersTestClient
+from azurespecialproperties import models
+
 
 class XmsRequestClientIdTests(unittest.TestCase):
 

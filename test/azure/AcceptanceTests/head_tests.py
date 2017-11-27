@@ -38,18 +38,17 @@ from os.path import dirname, pardir, join, realpath
 cwd = dirname(realpath(__file__))
 log_level = int(os.environ.get('PythonLogLevel', 30))
 
-import fixtures # Ensure that fixtures is loaded on old python before the next line
 tests = realpath(join(cwd, pardir, "Expected", "AcceptanceTests"))
-sys.modules['fixtures'].__path__.append(join(tests, "Head", "fixtures"))
-sys.modules['fixtures'].__path__.append(join(tests, "HeadExceptions", "fixtures"))
+sys.path.append(join(tests, "Head"))
+sys.path.append(join(tests, "HeadExceptions"))
 
 from msrest.serialization import Deserializer
 from msrest.exceptions import DeserializationError, HttpOperationError
 from msrest.authentication import BasicTokenAuthentication
 from msrestazure.azure_exceptions import CloudError, CloudErrorData
 
-from fixtures.acceptancetestshead import AutoRestHeadTestService
-from fixtures.acceptancetestsheadexceptions import AutoRestHeadExceptionTestService
+from head import AutoRestHeadTestService
+from headexceptions import AutoRestHeadExceptionTestService
 
 class HeadTests(unittest.TestCase):
 

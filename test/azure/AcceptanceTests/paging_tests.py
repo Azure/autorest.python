@@ -38,9 +38,8 @@ from os.path import dirname, pardir, join, realpath
 cwd = dirname(realpath(__file__))
 log_level = int(os.environ.get('PythonLogLevel', 30))
 
-import fixtures # Ensure that fixtures is loaded on old python before the next line
 tests = realpath(join(cwd, pardir, "Expected", "AcceptanceTests"))
-sys.modules['fixtures'].__path__.append(join(tests, "Paging", "fixtures"))
+sys.path.append(join(tests, "Paging"))
 
 # Import mock from Autorest.Python.Tests
 mockfiles = realpath(join(cwd, pardir, pardir, "vanilla", "AcceptanceTests"))
@@ -51,8 +50,8 @@ from msrest.exceptions import DeserializationError
 from msrestazure.azure_exceptions import CloudError
 from msrest.authentication import BasicTokenAuthentication
 
-from fixtures.acceptancetestspaging import AutoRestPagingTestService
-from fixtures.acceptancetestspaging.models import PagingGetMultiplePagesWithOffsetOptions
+from paging import AutoRestPagingTestService
+from paging.models import PagingGetMultiplePagesWithOffsetOptions
 
 from http_tests import TestAuthentication
 

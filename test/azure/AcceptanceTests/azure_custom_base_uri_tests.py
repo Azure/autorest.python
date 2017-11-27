@@ -49,9 +49,8 @@ from msrest.exceptions import (
 )
 from msrest.authentication import BasicTokenAuthentication
 
-from fixtures.acceptancetestscustombaseuri import AutoRestParameterizedHostTestClient
-
-from fixtures.acceptancetestscustombaseuri.models import Error, ErrorException
+from custombaseurl import AutoRestParameterizedHostTestClient
+from custombaseurl.models import Error, ErrorException
 
 
 class CustomBaseUriTests(unittest.TestCase):

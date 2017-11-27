@@ -106,7 +106,6 @@ task 'regenerate-python', '', (done) ->
     'outputBaseDir': 'test/vanilla',
     'inputBaseDir': swaggerDir,
     'mappings': mappings,
-    'nsPrefix': "Fixtures"
     'outputDir': 'Expected',
     'language': 'python',
     'flatteningThreshold': '1'
@@ -122,7 +121,6 @@ task 'regenerate-pythonazure', '', (done) ->
     'outputBaseDir': 'test/azure',
     'inputBaseDir': swaggerDir,
     'mappings': mappings,
-    'nsPrefix': "Fixtures"
     'outputDir': 'Expected',
     'language': 'python',
     'azureArm': true,
