@@ -658,7 +658,7 @@ class NumberOperations(object):
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodynumber.models.ErrorException>`
         """
-        number_body = None
+        number_body = Decimal(99999999.99)
 
         # Construct URL
         url = '/number/big/decimal/99999999.99'
@@ -745,7 +745,7 @@ class NumberOperations(object):
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodynumber.models.ErrorException>`
         """
-        number_body = None
+        number_body = Decimal(-99999999.99)
 
         # Construct URL
         url = '/number/big/decimal/-99999999.99'
