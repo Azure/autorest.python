@@ -37,15 +37,14 @@ from os.path import dirname, pardir, join, realpath
 cwd = dirname(realpath(__file__))
 log_level = int(os.environ.get('PythonLogLevel', 30))
 
-import fixtures # Ensure that fixtures is loaded on old python before the next line
 tests = realpath(join(cwd, pardir, "Expected", "AcceptanceTests"))
-sys.modules['fixtures'].__path__.append(join(tests, "Header", "fixtures"))
+sys.path.append(join(tests, "Header"))
 
 from msrest.serialization import Deserializer
 from msrest.exceptions import DeserializationError
 
-from fixtures.acceptancetestsheader import AutoRestSwaggerBATHeaderService
-from fixtures.acceptancetestsheader.models.auto_rest_swagger_bat_header_service_enums import GreyscaleColors
+from header import AutoRestSwaggerBATHeaderService
+from header.models.auto_rest_swagger_bat_header_service_enums import GreyscaleColors
 
 
 class HeaderTests(unittest.TestCase):

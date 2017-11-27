@@ -38,13 +38,13 @@ cwd = dirname(realpath(__file__))
 log_level = int(os.environ.get('PythonLogLevel', 30))
 
 tests = realpath(join(cwd, pardir, "Expected", "AcceptanceTests"))
-sys.modules['fixtures'].__path__.append(join(tests, "BodyBoolean", "fixtures"))
+sys.path.append(join(tests, "BodyBoolean"))
 
 from msrest.serialization import Deserializer
 from msrest.exceptions import DeserializationError
 
-from fixtures.acceptancetestsbodyboolean import AutoRestBoolTestService
-from fixtures.acceptancetestsbodyboolean.models import ErrorException
+from bodyboolean import AutoRestBoolTestService
+from bodyboolean.models import ErrorException
 
 class BoolTests(unittest.TestCase):
 

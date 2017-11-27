@@ -41,19 +41,15 @@ namespace AutoRest.Python
                 throw new Exception("Code model is not a Python Code Model");
             }
 
-            // Service client
-            string[] namespaceParts = codeModel.Namespace.Split('.');
-            for (int i = 1; i < namespaceParts.Length; ++i)
+            writeNamespaceFolders(codeModel);
+
+            if(codeModel.BasicSetupPy)
             {
-                string initFolderName = Path.Combine(namespaceParts.Take(i).ToArray());
-                await Write("__import__('pkg_resources').declare_namespace(__name__)",
-                            Path.Combine(initFolderName, "__init__.py"), true);
+                var setupTemplate = new SetupTemplate { Model = codeModel };
+                await Write(setupTemplate, "setup.py");
             }
 
-            var folderName = Path.Combine(codeModel.Namespace.Split('.'));
-            var setupTemplate = new SetupTemplate { Model = codeModel };
-            await Write(setupTemplate, "setup.py");
-
+            var folderName = codeModel.NoNamespaceFolders?"":Path.Combine(codeModel.Namespace.Split('.'));
             var serviceClientInitTemplate = new ServiceClientInitTemplate { Model = codeModel };
             await Write(serviceClientInitTemplate, Path.Combine(folderName, "__init__.py"));
 
@@ -103,6 +99,20 @@ namespace AutoRest.Python
             {
                 var enumTemplate = new EnumTemplate { Model = codeModel.EnumTypes };
                 await Write(enumTemplate, Path.Combine(folderName, "models", codeModel.Name.ToPythonCase() + "_enums.py"));
+            }
+        }
+
+        public async void writeNamespaceFolders(CodeModelPy codeModel)
+        {
+            if(!codeModel.NoNamespaceFolders)
+            {
+                string[] namespaceParts = codeModel.Namespace.Split('.');
+                for (int i = 1; i < namespaceParts.Length; ++i)
+                {
+                    string initFolderName = Path.Combine(namespaceParts.Take(i).ToArray());
+                    await Write("__import__('pkg_resources').declare_namespace(__name__)",
+                                Path.Combine(initFolderName, "__init__.py"), true);
+                }
             }
         }
 

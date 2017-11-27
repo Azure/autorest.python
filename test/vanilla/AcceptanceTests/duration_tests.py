@@ -37,14 +37,13 @@ from os.path import dirname, pardir, join, realpath
 cwd = dirname(realpath(__file__))
 log_level = int(os.environ.get('PythonLogLevel', 30))
 
-import fixtures # Ensure that fixtures is loaded on old python before the next line
 tests = realpath(join(cwd, pardir, "Expected", "AcceptanceTests"))
-sys.modules['fixtures'].__path__.append(join(tests, "BodyDuration", "fixtures"))
+sys.path.append(join(tests, "BodyDuration"))
 
 from msrest.serialization import Deserializer
 from msrest.exceptions import DeserializationError
 
-from fixtures.acceptancetestsbodyduration import AutoRestDurationTestService
+from bodyduration import AutoRestDurationTestService
 
 
 class DurationTests(unittest.TestCase):

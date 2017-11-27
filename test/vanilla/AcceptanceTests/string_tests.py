@@ -38,15 +38,14 @@ from os.path import dirname, pardir, join, realpath
 cwd = dirname(realpath(__file__))
 log_level = int(os.environ.get('PythonLogLevel', 30))
 
-import fixtures # Ensure that fixtures is loaded on old python before the next line
 tests = realpath(join(cwd, pardir, "Expected", "AcceptanceTests"))
-sys.modules['fixtures'].__path__.append(join(tests, "BodyString", "fixtures"))
+sys.path.append(join(tests, "BodyString"))
 
 from msrest.serialization import Deserializer
 from msrest.exceptions import DeserializationError, SerializationError
 
-from fixtures.acceptancetestsbodystring import AutoRestSwaggerBATService
-from fixtures.acceptancetestsbodystring.models.auto_rest_swagger_bat_service_enums import *
+from bodystring import AutoRestSwaggerBATService
+from bodystring.models.auto_rest_swagger_bat_service_enums import *
 
 class StringTests(unittest.TestCase):
 

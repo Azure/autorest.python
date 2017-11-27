@@ -44,14 +44,13 @@ from os.path import dirname, pardir, join, realpath
 cwd = dirname(realpath(__file__))
 log_level = int(os.environ.get('PythonLogLevel', 30))
 
-import fixtures # Ensure that fixtures is loaded on old python before the next line
 tests = realpath(join(cwd, pardir, "Expected", "AcceptanceTests"))
-sys.modules['fixtures'].__path__.append(join(tests, "Http", "fixtures"))
+sys.path.append(join(tests, "Http"))
 
 from msrest.exceptions import DeserializationError, HttpOperationError
 
-from fixtures.acceptancetestshttp import AutoRestHttpInfrastructureTestService
-from fixtures.acceptancetestshttp.models import (
+from httpinfrastructure import AutoRestHttpInfrastructureTestService
+from httpinfrastructure.models import (
     A, B, C, D, ErrorException)
 
 

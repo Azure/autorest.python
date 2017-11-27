@@ -153,6 +153,10 @@ namespace AutoRest.Python.Model
 
         public string PackageName => Settings.Instance.PackageName.Else(Name.ToPythonCase().Replace("_", ""));
 
+        public bool BasicSetupPy => (bool)Settings.Instance.CustomSettings["BasicSetupPy"];
+
+        public bool NoNamespaceFolders => (bool)Settings.Instance.CustomSettings["NoNamespaceFolders"];
+
         private string _namespace;
         public override string Namespace
         {
