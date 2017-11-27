@@ -1,3 +1,8 @@
+### 2017-11-27 - 2.0.25
+
+- Add no-namespace-folders option
+- Add basic-setup-py. Change the default behavior to do NOT generate the setup.py.
+
 ### 2017-11-22 - 2.0.23
 
 - Add "models" link inside operation groups
