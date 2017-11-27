@@ -153,6 +153,96 @@ class PolymorphismOperations(object):
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
 
+    def get_complicated(
+            self, custom_headers=None, raw=False, **operation_config):
+        """Get complex types that are polymorphic, but not at the root of the
+        hierarchy; also have additional properties.
+
+        :param dict custom_headers: headers that will be added to the request
+        :param bool raw: returns the direct response alongside the
+         deserialized response
+        :param operation_config: :ref:`Operation configuration
+         overrides<msrest:optionsforoperations>`.
+        :return: Salmon or ClientRawResponse if raw=true
+        :rtype: ~fixtures.acceptancetestsbodycomplex.models.Salmon or
+         ~msrest.pipeline.ClientRawResponse
+        :raises:
+         :class:`ErrorException<fixtures.acceptancetestsbodycomplex.models.ErrorException>`
+        """
+        # Construct URL
+        url = '/complex/polymorphism/complicated'
+
+        # Construct parameters
+        query_parameters = {}
+
+        # Construct headers
+        header_parameters = {}
+        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
+        if custom_headers:
+            header_parameters.update(custom_headers)
+
+        # Construct and send request
+        request = self._client.get(url, query_parameters)
+        response = self._client.send(request, header_parameters, **operation_config)
+
+        if response.status_code not in [200]:
+            raise models.ErrorException(self._deserialize, response)
+
+        deserialized = None
+
+        if response.status_code == 200:
+            deserialized = self._deserialize('Salmon', response)
+
+        if raw:
+            client_raw_response = ClientRawResponse(deserialized, response)
+            return client_raw_response
+
+        return deserialized
+
+    def put_complicated(
+            self, complex_body, custom_headers=None, raw=False, **operation_config):
+        """Put complex types that are polymorphic, but not at the root of the
+        hierarchy; also have additional properties.
+
+        :param complex_body:
+        :type complex_body: ~fixtures.acceptancetestsbodycomplex.models.Salmon
+        :param dict custom_headers: headers that will be added to the request
+        :param bool raw: returns the direct response alongside the
+         deserialized response
+        :param operation_config: :ref:`Operation configuration
+         overrides<msrest:optionsforoperations>`.
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :raises:
+         :class:`ErrorException<fixtures.acceptancetestsbodycomplex.models.ErrorException>`
+        """
+        # Construct URL
+        url = '/complex/polymorphism/complicated'
+
+        # Construct parameters
+        query_parameters = {}
+
+        # Construct headers
+        header_parameters = {}
+        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
+        if custom_headers:
+            header_parameters.update(custom_headers)
+
+        # Construct body
+        body_content = self._serialize.body(complex_body, 'Salmon')
+
+        # Construct and send request
+        request = self._client.put(url, query_parameters)
+        response = self._client.send(
+            request, header_parameters, body_content, **operation_config)
+
+        if response.status_code not in [200]:
+            raise models.ErrorException(self._deserialize, response)
+
+        if raw:
+            client_raw_response = ClientRawResponse(None, response)
+            return client_raw_response
+
     def put_valid_missing_required(
             self, complex_body, custom_headers=None, raw=False, **operation_config):
         """Put complex types that are polymorphic, attempting to omit required

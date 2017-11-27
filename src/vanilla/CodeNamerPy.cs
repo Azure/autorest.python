@@ -129,6 +129,10 @@ namespace AutoRest.Python
                 {
                     return double.Parse(defaultValue).ToString();
                 }
+                if (primaryType.KnownPrimaryType == KnownPrimaryType.Decimal)
+                {
+                    return $"Decimal({double.Parse(defaultValue).ToString()})";
+                }
                 if (primaryType.KnownPrimaryType == KnownPrimaryType.String || primaryType.KnownPrimaryType== KnownPrimaryType.Uuid)
                 {
                     parsedDefault = QuoteValue(defaultValue);

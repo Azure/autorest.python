@@ -168,11 +168,9 @@ class StringOperations(object):
         return deserialized
 
     def put_empty(
-            self, string_body, custom_headers=None, raw=False, **operation_config):
+            self, custom_headers=None, raw=False, **operation_config):
         """Set string value empty ''.
 
-        :param string_body: Possible values include: ''
-        :type string_body: str
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
@@ -183,6 +181,8 @@ class StringOperations(object):
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodystring.models.ErrorException>`
         """
+        string_body = ""
+
         # Construct URL
         url = '/string/empty'
 
@@ -213,8 +213,7 @@ class StringOperations(object):
     def get_mbcs(
             self, custom_headers=None, raw=False, **operation_config):
         """Get mbcs string value
-        '啊齄丂狛狜隣郎隣兀﨩ˊ▇█〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€
-        '.
+        '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'.
 
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
@@ -257,15 +256,10 @@ class StringOperations(object):
         return deserialized
 
     def put_mbcs(
-            self, string_body, custom_headers=None, raw=False, **operation_config):
+            self, custom_headers=None, raw=False, **operation_config):
         """Set string value mbcs
-        '啊齄丂狛狜隣郎隣兀﨩ˊ▇█〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€
-        '.
+        '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'.
 
-        :param string_body: Possible values include:
-         '啊齄丂狛狜隣郎隣兀﨩ˊ▇█〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€
-         '
-        :type string_body: str
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
@@ -276,6 +270,8 @@ class StringOperations(object):
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodystring.models.ErrorException>`
         """
+        string_body = "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€"
+
         # Construct URL
         url = '/string/mbcs'
 
@@ -350,14 +346,11 @@ class StringOperations(object):
         return deserialized
 
     def put_whitespace(
-            self, string_body, custom_headers=None, raw=False, **operation_config):
+            self, custom_headers=None, raw=False, **operation_config):
         """Set String value with leading and trailing whitespace
         '<tab><space><space>Now is the time for all good men to come to the aid
         of their country<tab><space><space>'.
 
-        :param string_body: Possible values include: '    Now is the time for
-         all good men to come to the aid of their country    '
-        :type string_body: str
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
@@ -368,6 +361,8 @@ class StringOperations(object):
         :raises:
          :class:`ErrorException<fixtures.acceptancetestsbodystring.models.ErrorException>`
         """
+        string_body = "    Now is the time for all good men to come to the aid of their country    "
+
         # Construct URL
         url = '/string/whitespace'
 

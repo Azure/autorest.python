@@ -9,14 +9,11 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .fish import Fish
+from .salmon import Salmon
 
 
-class Salmon(Fish):
-    """Salmon.
-
-    You probably want to use the sub-classes and not this class directly. Known
-    sub-classes are: SmartSalmon
+class SmartSalmon(Salmon):
+    """SmartSalmon.
 
     :param species:
     :type species: str
@@ -30,6 +27,11 @@ class Salmon(Fish):
     :type location: str
     :param iswild:
     :type iswild: bool
+    :param additional_properties: Unmatched properties from the message are
+     deserialized this collection
+    :type additional_properties: dict[str, object]
+    :param college_degree:
+    :type college_degree: str
     """
 
     _validation = {
@@ -44,14 +46,12 @@ class Salmon(Fish):
         'fishtype': {'key': 'fishtype', 'type': 'str'},
         'location': {'key': 'location', 'type': 'str'},
         'iswild': {'key': 'iswild', 'type': 'bool'},
+        'additional_properties': {'key': '', 'type': '{object}'},
+        'college_degree': {'key': 'college_degree', 'type': 'str'},
     }
 
-    _subtype_map = {
-        'fishtype': {'smart_salmon': 'SmartSalmon'}
-    }
-
-    def __init__(self, length, species=None, siblings=None, location=None, iswild=None):
-        super(Salmon, self).__init__(species=species, length=length, siblings=siblings)
-        self.location = location
-        self.iswild = iswild
-        self.fishtype = 'salmon'
+    def __init__(self, length, species=None, siblings=None, location=None, iswild=None, additional_properties=None, college_degree=None):
+        super(SmartSalmon, self).__init__(species=species, length=length, siblings=siblings, location=location, iswild=iswild)
+        self.additional_properties = additional_properties
+        self.college_degree = college_degree
+        self.fishtype = 'smart_salmon'
