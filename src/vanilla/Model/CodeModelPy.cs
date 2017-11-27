@@ -155,6 +155,8 @@ namespace AutoRest.Python.Model
 
         public bool BasicSetupPy => (bool)Settings.Instance.CustomSettings["BasicSetupPy"];
 
+        public bool NoNamespaceFolders => (bool)Settings.Instance.CustomSettings["NoNamespaceFolders"];
+
         private string _namespace;
         public override string Namespace
         {

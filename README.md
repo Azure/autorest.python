@@ -89,4 +89,7 @@ help-content:
     - key: basic-setup-py
       description: If used, generate a basic setup.py to build a wheel package.
       type: bool
+    - key: no-namespace-folders
+      description: If used, does not generate the namespace folder hierarchy, but directly the client. Useful for update.
+      type: bool
 ```
