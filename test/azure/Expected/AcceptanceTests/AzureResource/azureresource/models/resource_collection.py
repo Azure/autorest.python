@@ -31,6 +31,7 @@ class ResourceCollection(Model):
     }
 
     def __init__(self, productresource=None, arrayofresources=None, dictionaryofresources=None):
+        super(Model, self).__init__()
         self.productresource = productresource
         self.arrayofresources = arrayofresources
         self.dictionaryofresources = dictionaryofresources

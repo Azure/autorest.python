@@ -33,5 +33,6 @@ class BaseProduct(Model):
     }
 
     def __init__(self, product_id, description=None):
+        super(Model, self).__init__()
         self.product_id = product_id
         self.description = description

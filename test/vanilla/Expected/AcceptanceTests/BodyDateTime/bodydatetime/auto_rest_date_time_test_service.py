@@ -28,7 +28,7 @@ class AutoRestDateTimeTestServiceConfiguration(Configuration):
             self, base_url=None):
 
         if not base_url:
-            base_url = 'https://localhost'
+            base_url = 'http://localhost:3000'
 
         super(AutoRestDateTimeTestServiceConfiguration, self).__init__(base_url)
 

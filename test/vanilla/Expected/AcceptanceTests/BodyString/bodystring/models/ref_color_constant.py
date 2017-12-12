@@ -37,4 +37,5 @@ class RefColorConstant(Model):
     color_constant = "green-color"
 
     def __init__(self, field1=None):
+        super(Model, self).__init__()
         self.field1 = field1

@@ -29,7 +29,7 @@ class AutoRestSwaggerBATServiceConfiguration(Configuration):
             self, base_url=None):
 
         if not base_url:
-            base_url = 'http://localhost'
+            base_url = 'http://localhost:3000'
 
         super(AutoRestSwaggerBATServiceConfiguration, self).__init__(base_url)
 

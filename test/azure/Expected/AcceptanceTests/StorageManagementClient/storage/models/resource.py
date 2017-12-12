@@ -46,6 +46,7 @@ class Resource(Model):
     }
 
     def __init__(self, location, tags=None):
+        super(Model, self).__init__()
         self.id = None
         self.name = None
         self.type = None

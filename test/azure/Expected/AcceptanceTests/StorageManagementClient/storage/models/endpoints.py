@@ -37,6 +37,7 @@ class Endpoints(Model):
     }
 
     def __init__(self, blob=None, queue=None, table=None, dummy_end_point=None, foo_point=None):
+        super(Model, self).__init__()
         self.blob = blob
         self.queue = queue
         self.table = table

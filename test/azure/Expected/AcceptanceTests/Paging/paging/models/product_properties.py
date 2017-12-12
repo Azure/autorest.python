@@ -27,5 +27,6 @@ class ProductProperties(Model):
     }
 
     def __init__(self, id=None, name=None):
+        super(Model, self).__init__()
         self.id = id
         self.name = name

@@ -37,6 +37,7 @@ class Usage(Model):
     }
 
     def __init__(self, unit=None, current_value=None, limit=None, name=None):
+        super(Model, self).__init__()
         self.unit = unit
         self.current_value = current_value
         self.limit = limit

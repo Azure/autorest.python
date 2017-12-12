@@ -24,5 +24,6 @@ class FirstParameterGroup(Model):
     """
 
     def __init__(self, header_one=None, query_one=30):
+        super(Model, self).__init__()
         self.header_one = header_one
         self.query_one = query_one

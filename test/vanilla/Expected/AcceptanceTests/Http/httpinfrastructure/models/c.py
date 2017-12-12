@@ -24,4 +24,5 @@ class C(Model):
     }
 
     def __init__(self, http_code=None):
+        super(Model, self).__init__()
         self.http_code = http_code

@@ -25,4 +25,5 @@ class Foo(Model):
     }
 
     def __init__(self, bar_point=None):
+        super(Model, self).__init__()
         self.bar_point = bar_point

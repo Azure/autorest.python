@@ -868,7 +868,7 @@ class MultipleResponsesOperations(object):
         :return: A or ClientRawResponse if raw=true
         :rtype: ~httpinfrastructure.models.A or
          ~msrest.pipeline.ClientRawResponse
-        :raises: :class:`MyException<httpinfrastructure.models.MyException>`
+        :raises: :class:`AException<httpinfrastructure.models.AException>`
         """
         # Construct URL
         url = '/http/payloads/default/A/response/200/valid'
@@ -887,7 +887,7 @@ class MultipleResponsesOperations(object):
         response = self._client.send(request, header_parameters, **operation_config)
 
         if response.status_code < 200 or response.status_code >= 300:
-            raise models.MyException(self._deserialize, response)
+            raise models.AException(self._deserialize, response)
 
         if raw:
             client_raw_response = ClientRawResponse(None, response)
@@ -905,7 +905,7 @@ class MultipleResponsesOperations(object):
         :return: A or ClientRawResponse if raw=true
         :rtype: ~httpinfrastructure.models.A or
          ~msrest.pipeline.ClientRawResponse
-        :raises: :class:`MyException<httpinfrastructure.models.MyException>`
+        :raises: :class:`AException<httpinfrastructure.models.AException>`
         """
         # Construct URL
         url = '/http/payloads/default/A/response/200/none'
@@ -924,7 +924,7 @@ class MultipleResponsesOperations(object):
         response = self._client.send(request, header_parameters, **operation_config)
 
         if response.status_code < 200 or response.status_code >= 300:
-            raise models.MyException(self._deserialize, response)
+            raise models.AException(self._deserialize, response)
 
         if raw:
             client_raw_response = ClientRawResponse(None, response)
@@ -942,7 +942,7 @@ class MultipleResponsesOperations(object):
         :return: A or ClientRawResponse if raw=true
         :rtype: ~httpinfrastructure.models.A or
          ~msrest.pipeline.ClientRawResponse
-        :raises: :class:`MyException<httpinfrastructure.models.MyException>`
+        :raises: :class:`AException<httpinfrastructure.models.AException>`
         """
         # Construct URL
         url = '/http/payloads/default/A/response/400/valid'
@@ -961,7 +961,7 @@ class MultipleResponsesOperations(object):
         response = self._client.send(request, header_parameters, **operation_config)
 
         if response.status_code < 200 or response.status_code >= 300:
-            raise models.MyException(self._deserialize, response)
+            raise models.AException(self._deserialize, response)
 
         if raw:
             client_raw_response = ClientRawResponse(None, response)
@@ -979,7 +979,7 @@ class MultipleResponsesOperations(object):
         :return: A or ClientRawResponse if raw=true
         :rtype: ~httpinfrastructure.models.A or
          ~msrest.pipeline.ClientRawResponse
-        :raises: :class:`MyException<httpinfrastructure.models.MyException>`
+        :raises: :class:`AException<httpinfrastructure.models.AException>`
         """
         # Construct URL
         url = '/http/payloads/default/A/response/400/none'
@@ -998,7 +998,7 @@ class MultipleResponsesOperations(object):
         response = self._client.send(request, header_parameters, **operation_config)
 
         if response.status_code < 200 or response.status_code >= 300:
-            raise models.MyException(self._deserialize, response)
+            raise models.AException(self._deserialize, response)
 
         if raw:
             client_raw_response = ClientRawResponse(None, response)

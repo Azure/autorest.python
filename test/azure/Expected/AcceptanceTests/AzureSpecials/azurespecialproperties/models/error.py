@@ -16,13 +16,20 @@ from msrest.exceptions import HttpOperationError
 class Error(Model):
     """Error.
 
+    Variables are only populated by the server, and will be ignored when
+    sending a request.
+
     :param status:
     :type status: int
-    :param constant_id:
-    :type constant_id: int
+    :ivar constant_id:  Default value: 1 .
+    :vartype constant_id: int
     :param message:
     :type message: str
     """
+
+    _validation = {
+        'constant_id': {'required': True, 'constant': True},
+    }
 
     _attribute_map = {
         'status': {'key': 'status', 'type': 'int'},
@@ -30,9 +37,11 @@ class Error(Model):
         'message': {'key': 'message', 'type': 'str'},
     }
 
-    def __init__(self, status=None, constant_id=None, message=None):
+    constant_id = 1
+
+    def __init__(self, status=None, message=None):
+        super(Model, self).__init__()
         self.status = status
-        self.constant_id = constant_id
         self.message = message
 
 

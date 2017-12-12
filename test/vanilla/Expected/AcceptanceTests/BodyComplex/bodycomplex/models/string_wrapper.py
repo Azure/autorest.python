@@ -30,6 +30,7 @@ class StringWrapper(Model):
     }
 
     def __init__(self, field=None, empty=None, null=None):
+        super(Model, self).__init__()
         self.field = field
         self.empty = empty
         self.null = null

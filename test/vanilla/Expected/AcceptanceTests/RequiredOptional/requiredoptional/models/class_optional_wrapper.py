@@ -24,4 +24,5 @@ class ClassOptionalWrapper(Model):
     }
 
     def __init__(self, value=None):
+        super(Model, self).__init__()
         self.value = value

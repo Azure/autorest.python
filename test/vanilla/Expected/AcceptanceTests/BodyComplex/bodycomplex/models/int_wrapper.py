@@ -27,5 +27,6 @@ class IntWrapper(Model):
     }
 
     def __init__(self, field1=None, field2=None):
+        super(Model, self).__init__()
         self.field1 = field1
         self.field2 = field2

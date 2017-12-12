@@ -45,6 +45,7 @@ class Fish(Model):
     }
 
     def __init__(self, length, species=None, siblings=None):
+        super(Model, self).__init__()
         self.species = species
         self.length = length
         self.siblings = siblings

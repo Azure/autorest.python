@@ -27,5 +27,6 @@ class DateWrapper(Model):
     }
 
     def __init__(self, field=None, leap=None):
+        super(Model, self).__init__()
         self.field = field
         self.leap = leap
