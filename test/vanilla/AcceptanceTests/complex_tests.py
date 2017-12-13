@@ -386,8 +386,8 @@ class ComplexTests(unittest.TestCase):
         """
         Complex types that uses additional properties and polymorphism
         """
-        # smart_salmon = client.polymorphism.get_complicated()
-        # client.polymorphism.put_complicated(smart_salmon)
+        smart_salmon = client.polymorphism.get_complicated()
+        client.polymorphism.put_complicated(smart_salmon)
 
 
 if __name__ == '__main__':
