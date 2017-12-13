@@ -24,5 +24,6 @@ class PagingGetOdataMultiplePagesOptions(Model):
     """
 
     def __init__(self, maxresults=None, timeout=30):
+        super(PagingGetOdataMultiplePagesOptions, self).__init__()
         self.maxresults = maxresults
         self.timeout = timeout

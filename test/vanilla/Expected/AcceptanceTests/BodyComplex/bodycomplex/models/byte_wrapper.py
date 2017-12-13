@@ -24,4 +24,5 @@ class ByteWrapper(Model):
     }
 
     def __init__(self, field=None):
+        super(ByteWrapper, self).__init__()
         self.field = field

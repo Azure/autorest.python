@@ -28,7 +28,7 @@ class AutoRestReportServiceConfiguration(Configuration):
             self, base_url=None):
 
         if not base_url:
-            base_url = 'http://localhost'
+            base_url = 'http://localhost:3000'
 
         super(AutoRestReportServiceConfiguration, self).__init__(base_url)
 

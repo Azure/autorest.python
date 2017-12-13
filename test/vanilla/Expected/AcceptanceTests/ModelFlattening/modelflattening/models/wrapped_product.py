@@ -24,4 +24,5 @@ class WrappedProduct(Model):
     }
 
     def __init__(self, value=None):
+        super(WrappedProduct, self).__init__()
         self.value = value

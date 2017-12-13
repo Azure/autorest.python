@@ -26,4 +26,5 @@ class OperationResult(Model):
     }
 
     def __init__(self, status=None):
+        super(OperationResult, self).__init__()
         self.status = status

@@ -27,5 +27,6 @@ class BooleanWrapper(Model):
     }
 
     def __init__(self, field_true=None, field_false=None):
+        super(BooleanWrapper, self).__init__()
         self.field_true = field_true
         self.field_false = field_false

@@ -39,7 +39,7 @@ class AutoRestRequiredOptionalTestServiceConfiguration(Configuration):
         if required_global_query is None:
             raise ValueError("Parameter 'required_global_query' must not be None.")
         if not base_url:
-            base_url = 'http://localhost'
+            base_url = 'http://localhost:3000'
 
         super(AutoRestRequiredOptionalTestServiceConfiguration, self).__init__(base_url)
 

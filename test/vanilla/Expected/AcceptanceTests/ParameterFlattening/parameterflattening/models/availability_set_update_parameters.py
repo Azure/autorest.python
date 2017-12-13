@@ -28,4 +28,5 @@ class AvailabilitySetUpdateParameters(Model):
     }
 
     def __init__(self, tags):
+        super(AvailabilitySetUpdateParameters, self).__init__()
         self.tags = tags

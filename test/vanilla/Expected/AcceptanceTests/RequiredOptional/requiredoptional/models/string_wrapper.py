@@ -28,4 +28,5 @@ class StringWrapper(Model):
     }
 
     def __init__(self, value):
+        super(StringWrapper, self).__init__()
         self.value = value

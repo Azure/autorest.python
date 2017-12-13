@@ -1,3 +1,7 @@
+### 2017-12-13 - 2.0.28
+
+- All Model call super(XX, self).__init__()
+
 ### 2017-11-27 - 2.0.25
 
 - Add no-namespace-folders option

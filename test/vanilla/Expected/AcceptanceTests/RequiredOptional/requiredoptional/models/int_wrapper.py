@@ -28,4 +28,5 @@ class IntWrapper(Model):
     }
 
     def __init__(self, value):
+        super(IntWrapper, self).__init__()
         self.value = value

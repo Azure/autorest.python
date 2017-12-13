@@ -37,7 +37,7 @@ class AutoRestLongRunningOperationTestServiceConfiguration(AzureConfiguration):
         if credentials is None:
             raise ValueError("Parameter 'credentials' must not be None.")
         if not base_url:
-            base_url = 'http://localhost'
+            base_url = 'http://localhost:3000'
 
         super(AutoRestLongRunningOperationTestServiceConfiguration, self).__init__(base_url)
 

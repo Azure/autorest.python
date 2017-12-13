@@ -25,10 +25,11 @@ class A(Model):
     }
 
     def __init__(self, status_code=None):
+        super(A, self).__init__()
         self.status_code = status_code
 
 
-class MyException(HttpOperationError):
+class AException(HttpOperationError):
     """Server responsed with exception of type: 'A'.
 
     :param deserialize: A deserializer
@@ -37,4 +38,4 @@ class MyException(HttpOperationError):
 
     def __init__(self, deserialize, response, *args):
 
-        super(MyException, self).__init__(deserialize, response, 'A', *args)
+        super(AException, self).__init__(deserialize, response, 'A', *args)

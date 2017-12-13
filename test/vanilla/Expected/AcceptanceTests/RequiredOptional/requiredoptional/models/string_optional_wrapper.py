@@ -24,4 +24,5 @@ class StringOptionalWrapper(Model):
     }
 
     def __init__(self, value=None):
+        super(StringOptionalWrapper, self).__init__()
         self.value = value

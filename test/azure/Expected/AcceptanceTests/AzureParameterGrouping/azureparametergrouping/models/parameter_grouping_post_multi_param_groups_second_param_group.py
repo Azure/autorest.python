@@ -22,5 +22,6 @@ class ParameterGroupingPostMultiParamGroupsSecondParamGroup(Model):
     """
 
     def __init__(self, header_two=None, query_two=30):
+        super(ParameterGroupingPostMultiParamGroupsSecondParamGroup, self).__init__()
         self.header_two = header_two
         self.query_two = query_two

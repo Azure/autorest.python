@@ -27,5 +27,6 @@ class SampleResourceGroup(Model):
     }
 
     def __init__(self, name=None, location=None):
+        super(SampleResourceGroup, self).__init__()
         self.name = name
         self.location = location

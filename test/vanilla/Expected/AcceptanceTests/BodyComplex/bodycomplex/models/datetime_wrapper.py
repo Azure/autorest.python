@@ -27,5 +27,6 @@ class DatetimeWrapper(Model):
     }
 
     def __init__(self, field=None, now=None):
+        super(DatetimeWrapper, self).__init__()
         self.field = field
         self.now = now

@@ -27,5 +27,6 @@ class Product(Model):
     }
 
     def __init__(self, integer=None, string=None):
+        super(Product, self).__init__()
         self.integer = integer
         self.string = string

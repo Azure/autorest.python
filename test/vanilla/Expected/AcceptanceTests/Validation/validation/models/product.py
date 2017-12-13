@@ -67,6 +67,7 @@ class Product(Model):
     const_string = "constant"
 
     def __init__(self, child, display_names=None, capacity=None, image=None, const_string_as_enum=None):
+        super(Product, self).__init__()
         self.display_names = display_names
         self.capacity = capacity
         self.image = image

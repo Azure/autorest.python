@@ -120,6 +120,10 @@ else
     {
         @:super(@(Model.Name), self).__init__(@(Model.SuperParameterDeclaration()))
     }
+    else
+    {
+        @:super(@(Model.Name), self).__init__()
+    }
     var propertyList = new List<Property>(Model.Properties);
     if (propertyList.Count > 0)
     {

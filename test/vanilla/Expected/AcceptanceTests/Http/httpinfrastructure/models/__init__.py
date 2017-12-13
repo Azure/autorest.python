@@ -10,14 +10,14 @@
 # --------------------------------------------------------------------------
 
 from .error import Error, ErrorException
-from .a import A, MyException
+from .a import A, AException
 from .b import B
 from .c import C
 from .d import D
 
 __all__ = [
     'Error', 'ErrorException',
-    'A', 'MyException',
+    'A', 'AException',
     'B',
     'C',
     'D',

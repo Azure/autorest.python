@@ -34,5 +34,6 @@ class ReadonlyObj(Model):
     }
 
     def __init__(self, size=None):
+        super(ReadonlyObj, self).__init__()
         self.id = None
         self.size = size

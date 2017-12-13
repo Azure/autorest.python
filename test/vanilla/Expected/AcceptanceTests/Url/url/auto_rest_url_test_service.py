@@ -37,7 +37,7 @@ class AutoRestUrlTestServiceConfiguration(Configuration):
         if global_string_path is None:
             raise ValueError("Parameter 'global_string_path' must not be None.")
         if not base_url:
-            base_url = 'http://localhost'
+            base_url = 'http://localhost:3000'
 
         super(AutoRestUrlTestServiceConfiguration, self).__init__(base_url)
 

@@ -24,4 +24,5 @@ class UsageListResult(Model):
     }
 
     def __init__(self, value=None):
+        super(UsageListResult, self).__init__()
         self.value = value

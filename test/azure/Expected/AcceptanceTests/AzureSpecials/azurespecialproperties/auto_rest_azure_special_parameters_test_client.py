@@ -46,7 +46,7 @@ class AutoRestAzureSpecialParametersTestClientConfiguration(AzureConfiguration):
         if subscription_id is None:
             raise ValueError("Parameter 'subscription_id' must not be None.")
         if not base_url:
-            base_url = 'http://localhost'
+            base_url = 'http://localhost:3000'
 
         super(AutoRestAzureSpecialParametersTestClientConfiguration, self).__init__(base_url)
 
