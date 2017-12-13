@@ -25,5 +25,5 @@ class Bar(Model):
     }
 
     def __init__(self, recursive_point=None):
-        super(Model, self).__init__()
+        super(Bar, self).__init__()
         self.recursive_point = recursive_point

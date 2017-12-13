@@ -25,7 +25,7 @@ class A(Model):
     }
 
     def __init__(self, status_code=None):
-        super(Model, self).__init__()
+        super(A, self).__init__()
         self.status_code = status_code
 
 

@@ -28,5 +28,5 @@ class StringWrapper(Model):
     }
 
     def __init__(self, value):
-        super(Model, self).__init__()
+        super(StringWrapper, self).__init__()
         self.value = value

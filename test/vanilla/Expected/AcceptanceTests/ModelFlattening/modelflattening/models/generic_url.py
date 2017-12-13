@@ -24,5 +24,5 @@ class GenericUrl(Model):
     }
 
     def __init__(self, generic_value=None):
-        super(Model, self).__init__()
+        super(GenericUrl, self).__init__()
         self.generic_value = generic_value

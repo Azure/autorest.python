@@ -28,5 +28,5 @@ class ArrayWrapper(Model):
     }
 
     def __init__(self, value):
-        super(Model, self).__init__()
+        super(ArrayWrapper, self).__init__()
         self.value = value

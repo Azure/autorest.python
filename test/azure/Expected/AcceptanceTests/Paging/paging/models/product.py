@@ -24,5 +24,5 @@ class Product(Model):
     }
 
     def __init__(self, properties=None):
-        super(Model, self).__init__()
+        super(Product, self).__init__()
         self.properties = properties

@@ -28,5 +28,5 @@ class IntWrapper(Model):
     }
 
     def __init__(self, value):
-        super(Model, self).__init__()
+        super(IntWrapper, self).__init__()
         self.value = value

@@ -24,5 +24,5 @@ class ArrayWrapper(Model):
     }
 
     def __init__(self, array=None):
-        super(Model, self).__init__()
+        super(ArrayWrapper, self).__init__()
         self.array = array

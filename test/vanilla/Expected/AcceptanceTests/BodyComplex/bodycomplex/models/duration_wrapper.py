@@ -24,5 +24,5 @@ class DurationWrapper(Model):
     }
 
     def __init__(self, field=None):
-        super(Model, self).__init__()
+        super(DurationWrapper, self).__init__()
         self.field = field

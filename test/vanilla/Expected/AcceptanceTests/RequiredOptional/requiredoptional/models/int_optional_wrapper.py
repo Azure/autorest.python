@@ -24,5 +24,5 @@ class IntOptionalWrapper(Model):
     }
 
     def __init__(self, value=None):
-        super(Model, self).__init__()
+        super(IntOptionalWrapper, self).__init__()
         self.value = value

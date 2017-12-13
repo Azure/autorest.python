@@ -40,7 +40,7 @@ class Error(Model):
     constant_id = 1
 
     def __init__(self, status=None, message=None):
-        super(Model, self).__init__()
+        super(Error, self).__init__()
         self.status = status
         self.message = message
 

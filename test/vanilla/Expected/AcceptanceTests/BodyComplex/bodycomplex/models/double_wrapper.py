@@ -30,6 +30,6 @@ class DoubleWrapper(Model):
     }
 
     def __init__(self, field1=None, field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose=None):
-        super(Model, self).__init__()
+        super(DoubleWrapper, self).__init__()
         self.field1 = field1
         self.field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose = field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose

@@ -22,6 +22,6 @@ class ParameterGroupingPostOptionalParameters(Model):
     """
 
     def __init__(self, custom_header=None, query=30):
-        super(Model, self).__init__()
+        super(ParameterGroupingPostOptionalParameters, self).__init__()
         self.custom_header = custom_header
         self.query = query

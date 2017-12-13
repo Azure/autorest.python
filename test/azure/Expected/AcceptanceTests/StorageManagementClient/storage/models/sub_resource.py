@@ -24,5 +24,5 @@ class SubResource(Model):
     }
 
     def __init__(self, id=None):
-        super(Model, self).__init__()
+        super(SubResource, self).__init__()
         self.id = id

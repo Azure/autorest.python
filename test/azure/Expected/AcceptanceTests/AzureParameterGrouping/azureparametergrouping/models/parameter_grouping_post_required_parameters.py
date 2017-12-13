@@ -31,7 +31,7 @@ class ParameterGroupingPostRequiredParameters(Model):
     }
 
     def __init__(self, body, path, custom_header=None, query=30):
-        super(Model, self).__init__()
+        super(ParameterGroupingPostRequiredParameters, self).__init__()
         self.body = body
         self.custom_header = custom_header
         self.query = query

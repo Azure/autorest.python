@@ -219,6 +219,7 @@ class ModelFlatteningTests(unittest.TestCase):
             )
 
         result = self.client.put_simple_product(simple_prduct)
+        result.additional_properties = {} # Not the purpose of this test. This enables the ==.
         self.assertEqual(result, simple_prduct)
 
     def test_model_flattening_with_parameter_flattening(self):
@@ -231,6 +232,7 @@ class ModelFlatteningTests(unittest.TestCase):
             )
 
         result = self.client.post_flattened_simple_product("123", "max name", "product description", None, "http://foo")
+        result.additional_properties = {} # Not the purpose of this test. This enables the ==.
         self.assertEqual(result, simple_product)
 
     def test_model_flattening_with_grouping(self):
@@ -250,6 +252,7 @@ class ModelFlatteningTests(unittest.TestCase):
             name="groupproduct")
 
         result = self.client.put_simple_product_with_grouping(group)
+        result.additional_properties = {} # Not the purpose of this test. This enables the ==.
         self.assertEqual(result, simple_prduct)
 
 if __name__ == '__main__':

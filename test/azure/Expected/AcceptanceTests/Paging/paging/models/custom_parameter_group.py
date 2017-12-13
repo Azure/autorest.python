@@ -28,6 +28,6 @@ class CustomParameterGroup(Model):
     }
 
     def __init__(self, api_version, tenant):
-        super(Model, self).__init__()
+        super(CustomParameterGroup, self).__init__()
         self.api_version = api_version
         self.tenant = tenant

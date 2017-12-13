@@ -24,5 +24,5 @@ class ArrayOptionalWrapper(Model):
     }
 
     def __init__(self, value=None):
-        super(Model, self).__init__()
+        super(ArrayOptionalWrapper, self).__init__()
         self.value = value

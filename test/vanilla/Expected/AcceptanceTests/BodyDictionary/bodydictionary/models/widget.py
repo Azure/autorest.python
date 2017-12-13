@@ -27,6 +27,6 @@ class Widget(Model):
     }
 
     def __init__(self, integer=None, string=None):
-        super(Model, self).__init__()
+        super(Widget, self).__init__()
         self.integer = integer
         self.string = string

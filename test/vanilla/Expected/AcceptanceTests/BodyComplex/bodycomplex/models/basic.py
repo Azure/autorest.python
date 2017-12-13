@@ -32,7 +32,7 @@ class Basic(Model):
     }
 
     def __init__(self, id=None, name=None, color=None):
-        super(Model, self).__init__()
+        super(Basic, self).__init__()
         self.id = id
         self.name = name
         self.color = color

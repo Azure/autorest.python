@@ -38,7 +38,7 @@ class FlattenParameterGroup(Model):
     }
 
     def __init__(self, name, product_id, max_product_display_name, description=None, generic_value=None, odatavalue=None):
-        super(Model, self).__init__()
+        super(FlattenParameterGroup, self).__init__()
         self.name = name
         self.product_id = product_id
         self.description = description

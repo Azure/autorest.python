@@ -27,6 +27,6 @@ class Sku(Model):
     }
 
     def __init__(self, name=None, id=None):
-        super(Model, self).__init__()
+        super(Sku, self).__init__()
         self.name = name
         self.id = id

@@ -24,5 +24,5 @@ class DictionaryWrapper(Model):
     }
 
     def __init__(self, default_program=None):
-        super(Model, self).__init__()
+        super(DictionaryWrapper, self).__init__()
         self.default_program = default_program
