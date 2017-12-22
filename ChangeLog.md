@@ -1,3 +1,7 @@
+### 2017-12-22 - 2.0.30
+
+- Add "async", "await" and "mro" as Python reserved keywords.
+
 ### 2017-12-13 - 2.0.28
 
 - All Model call super(XX, self).__init__()
