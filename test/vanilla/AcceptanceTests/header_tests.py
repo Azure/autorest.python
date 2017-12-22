@@ -111,9 +111,13 @@ class HeaderTests(unittest.TestCase):
         raw = client.header.response_enum("valid", raw=True)
         self.assertEqual(GreyscaleColors.grey, raw.headers.get("value"))
 
-        # We can't deserialize 'null'
-        with self.assertRaises(DeserializationError):
-            raw = client.header.response_enum("null", raw=True)
+        # We receive an empty string.
+        # Starting msrest 0.4.22, we consider that if a string is not in the enum, this not
+        # a Deserialization issue and we return the string.
+        # Here we now return empty string without failin **on purpose**
+        # with self.assertRaises(DeserializationError):
+        raw = client.header.response_enum("null", raw=True)
+        self.assertEquals("", raw.headers.get("value"))
 
         client.header.param_date("valid", isodate.parse_date("2010-01-01"))
         client.header.param_date("min", datetime.min)
