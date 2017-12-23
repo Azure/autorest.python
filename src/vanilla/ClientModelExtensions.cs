@@ -155,7 +155,7 @@ namespace AutoRest.Python
             }
 
             var enumType = type as EnumType;
-            if (enumType != null && enumType.ModelAsString)
+            if (enumType != null)
             {
                 return "str";
             }
@@ -310,7 +310,7 @@ namespace AutoRest.Python
             }
 
             EnumType enumType = type as EnumType;
-            if (enumType != null && enumType.ModelAsString)
+            if (enumType != null)
             {
                 return "str";
             }
