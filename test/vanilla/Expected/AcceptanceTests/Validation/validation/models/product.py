@@ -66,10 +66,10 @@ class Product(Model):
 
     const_string = "constant"
 
-    def __init__(self, child, display_names=None, capacity=None, image=None, const_string_as_enum=None):
-        super(Product, self).__init__()
-        self.display_names = display_names
-        self.capacity = capacity
-        self.image = image
-        self.child = child
-        self.const_string_as_enum = const_string_as_enum
+    def __init__(self, **kwargs):
+        super(Product, self).__init__(**kwargs)
+        self.display_names = kwargs.get('display_names', None)
+        self.capacity = kwargs.get('capacity', None)
+        self.image = kwargs.get('image', None)
+        self.child = kwargs.get('child', None)
+        self.const_string_as_enum = kwargs.get('const_string_as_enum', None)

@@ -27,6 +27,6 @@ class StringWrapper(Model):
         'value': {'key': 'value', 'type': 'str'},
     }
 
-    def __init__(self, value):
-        super(StringWrapper, self).__init__()
-        self.value = value
+    def __init__(self, **kwargs):
+        super(StringWrapper, self).__init__(**kwargs)
+        self.value = kwargs.get('value', None)

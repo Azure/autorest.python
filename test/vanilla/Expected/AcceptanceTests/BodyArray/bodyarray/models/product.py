@@ -26,7 +26,7 @@ class Product(Model):
         'string': {'key': 'string', 'type': 'str'},
     }
 
-    def __init__(self, integer=None, string=None):
-        super(Product, self).__init__()
-        self.integer = integer
-        self.string = string
+    def __init__(self, **kwargs):
+        super(Product, self).__init__(**kwargs)
+        self.integer = kwargs.get('integer', None)
+        self.string = kwargs.get('string', None)

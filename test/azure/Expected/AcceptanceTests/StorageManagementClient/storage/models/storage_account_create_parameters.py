@@ -50,6 +50,6 @@ class StorageAccountCreateParameters(Resource):
         'account_type': {'key': 'properties.accountType', 'type': 'AccountType'},
     }
 
-    def __init__(self, location, tags=None, account_type=None):
-        super(StorageAccountCreateParameters, self).__init__(location=location, tags=tags)
-        self.account_type = account_type
+    def __init__(self, **kwargs):
+        super(StorageAccountCreateParameters, self).__init__(**kwargs)
+        self.account_type = kwargs.get('account_type', None)

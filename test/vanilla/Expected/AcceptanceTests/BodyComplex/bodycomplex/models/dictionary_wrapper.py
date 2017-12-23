@@ -23,6 +23,6 @@ class DictionaryWrapper(Model):
         'default_program': {'key': 'defaultProgram', 'type': '{str}'},
     }
 
-    def __init__(self, default_program=None):
-        super(DictionaryWrapper, self).__init__()
-        self.default_program = default_program
+    def __init__(self, **kwargs):
+        super(DictionaryWrapper, self).__init__(**kwargs)
+        self.default_program = kwargs.get('default_program', None)

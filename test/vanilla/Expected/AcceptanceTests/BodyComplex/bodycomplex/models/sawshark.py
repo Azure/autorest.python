@@ -47,7 +47,7 @@ class Sawshark(Shark):
         'picture': {'key': 'picture', 'type': 'bytearray'},
     }
 
-    def __init__(self, length, birthday, species=None, siblings=None, age=None, picture=None):
-        super(Sawshark, self).__init__(species=species, length=length, siblings=siblings, age=age, birthday=birthday)
-        self.picture = picture
+    def __init__(self, **kwargs):
+        super(Sawshark, self).__init__(**kwargs)
+        self.picture = kwargs.get('picture', None)
         self.fishtype = 'sawshark'

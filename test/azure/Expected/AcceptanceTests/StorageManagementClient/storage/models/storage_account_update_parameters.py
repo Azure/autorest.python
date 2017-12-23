@@ -58,7 +58,7 @@ class StorageAccountUpdateParameters(Resource):
         'custom_domain': {'key': 'properties.customDomain', 'type': 'CustomDomain'},
     }
 
-    def __init__(self, location, tags=None, account_type=None, custom_domain=None):
-        super(StorageAccountUpdateParameters, self).__init__(location=location, tags=tags)
-        self.account_type = account_type
-        self.custom_domain = custom_domain
+    def __init__(self, **kwargs):
+        super(StorageAccountUpdateParameters, self).__init__(**kwargs)
+        self.account_type = kwargs.get('account_type', None)
+        self.custom_domain = kwargs.get('custom_domain', None)

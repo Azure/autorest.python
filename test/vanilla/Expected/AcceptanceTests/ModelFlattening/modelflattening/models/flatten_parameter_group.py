@@ -37,11 +37,20 @@ class FlattenParameterGroup(Model):
         'max_product_display_name': {'required': True},
     }
 
-    def __init__(self, name, product_id, max_product_display_name, description=None, generic_value=None, odatavalue=None):
-        super(FlattenParameterGroup, self).__init__()
-        self.name = name
-        self.product_id = product_id
-        self.description = description
-        self.max_product_display_name = max_product_display_name
-        self.generic_value = generic_value
-        self.odatavalue = odatavalue
+    _attribute_map = {
+        'name': {'key': '', 'type': 'str'},
+        'product_id': {'key': '', 'type': 'str'},
+        'description': {'key': '', 'type': 'str'},
+        'max_product_display_name': {'key': '', 'type': 'str'},
+        'generic_value': {'key': '', 'type': 'str'},
+        'odatavalue': {'key': '', 'type': 'str'},
+    }
+
+    def __init__(self, **kwargs):
+        super(FlattenParameterGroup, self).__init__(**kwargs)
+        self.name = kwargs.get('name', None)
+        self.product_id = kwargs.get('product_id', None)
+        self.description = kwargs.get('description', None)
+        self.max_product_display_name = kwargs.get('max_product_display_name', None)
+        self.generic_value = kwargs.get('generic_value', None)
+        self.odatavalue = kwargs.get('odatavalue', None)

@@ -23,6 +23,6 @@ class UsageListResult(Model):
         'value': {'key': 'value', 'type': '[Usage]'},
     }
 
-    def __init__(self, value=None):
-        super(UsageListResult, self).__init__()
-        self.value = value
+    def __init__(self, **kwargs):
+        super(UsageListResult, self).__init__(**kwargs)
+        self.value = kwargs.get('value', None)
