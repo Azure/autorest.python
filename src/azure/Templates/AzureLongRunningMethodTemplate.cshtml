@@ -99,11 +99,11 @@
 @if (Model.RequestBody != null)
 {
             @:return self._client.send(
-                @:request, header_parameters, body_content, **operation_config)
+                @:request, header_parameters, body_content, stream=False, **operation_config)
 }
 else
 {
-            @:return self._client.send(request, header_parameters, **operation_config)
+            @:return self._client.send(request, header_parameters, stream=False, **operation_config)
 }
 @EmptyLine
         def get_long_running_status(status_link, headers=None):
@@ -112,7 +112,7 @@ else
             if headers:
                 request.headers.update(headers)
             return self._client.send(
-                request, header_parameters, **operation_config)
+                request, header_parameters, stream=False, **operation_config)
 @EmptyLine
         def get_long_running_output(response):
 @EmptyLine
