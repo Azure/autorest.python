@@ -83,7 +83,7 @@ class LROsCustomHeaderOperations(object):
 
             request = self._client.put(url, query_parameters)
             return self._client.send(
-                request, header_parameters, body_content, **operation_config)
+                request, header_parameters, body_content, stream=False, **operation_config)
 
         def get_long_running_status(status_link, headers=None):
 
@@ -91,7 +91,7 @@ class LROsCustomHeaderOperations(object):
             if headers:
                 request.headers.update(headers)
             return self._client.send(
-                request, header_parameters, **operation_config)
+                request, header_parameters, stream=False, **operation_config)
 
         def get_long_running_output(response):
 
@@ -176,7 +176,7 @@ class LROsCustomHeaderOperations(object):
 
             request = self._client.put(url, query_parameters)
             return self._client.send(
-                request, header_parameters, body_content, **operation_config)
+                request, header_parameters, body_content, stream=False, **operation_config)
 
         def get_long_running_status(status_link, headers=None):
 
@@ -184,7 +184,7 @@ class LROsCustomHeaderOperations(object):
             if headers:
                 request.headers.update(headers)
             return self._client.send(
-                request, header_parameters, **operation_config)
+                request, header_parameters, stream=False, **operation_config)
 
         def get_long_running_output(response):
 
@@ -263,7 +263,7 @@ class LROsCustomHeaderOperations(object):
 
             request = self._client.post(url, query_parameters)
             return self._client.send(
-                request, header_parameters, body_content, **operation_config)
+                request, header_parameters, body_content, stream=False, **operation_config)
 
         def get_long_running_status(status_link, headers=None):
 
@@ -271,7 +271,7 @@ class LROsCustomHeaderOperations(object):
             if headers:
                 request.headers.update(headers)
             return self._client.send(
-                request, header_parameters, **operation_config)
+                request, header_parameters, stream=False, **operation_config)
 
         def get_long_running_output(response):
 
@@ -345,7 +345,7 @@ class LROsCustomHeaderOperations(object):
 
             request = self._client.post(url, query_parameters)
             return self._client.send(
-                request, header_parameters, body_content, **operation_config)
+                request, header_parameters, body_content, stream=False, **operation_config)
 
         def get_long_running_status(status_link, headers=None):
 
@@ -353,7 +353,7 @@ class LROsCustomHeaderOperations(object):
             if headers:
                 request.headers.update(headers)
             return self._client.send(
-                request, header_parameters, **operation_config)
+                request, header_parameters, stream=False, **operation_config)
 
         def get_long_running_output(response):
 
