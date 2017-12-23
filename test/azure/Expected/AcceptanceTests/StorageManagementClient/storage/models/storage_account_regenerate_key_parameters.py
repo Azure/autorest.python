@@ -20,7 +20,7 @@ class StorageAccountRegenerateKeyParameters(Model):
     """
 
     _attribute_map = {
-        'key_name': {'key': 'keyName', 'type': 'KeyName'},
+        'key_name': {'key': 'keyName', 'type': 'str', 'enum':'KeyName'},
     }
 
     def __init__(self, **kwargs):

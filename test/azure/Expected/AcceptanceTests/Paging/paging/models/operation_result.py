@@ -22,7 +22,7 @@ class OperationResult(Model):
     """
 
     _attribute_map = {
-        'status': {'key': 'status', 'type': 'str'},
+        'status': {'key': 'status', 'type': 'str', 'enum':'enum'},
     }
 
     def __init__(self, **kwargs):

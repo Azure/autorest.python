@@ -28,7 +28,7 @@ class Basic(Model):
     _attribute_map = {
         'id': {'key': 'id', 'type': 'int'},
         'name': {'key': 'name', 'type': 'str'},
-        'color': {'key': 'color', 'type': 'str'},
+        'color': {'key': 'color', 'type': 'str', 'enum':'CMYKColors'},
     }
 
     def __init__(self, **kwargs):

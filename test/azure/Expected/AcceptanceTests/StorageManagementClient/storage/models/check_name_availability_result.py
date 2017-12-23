@@ -30,7 +30,7 @@ class CheckNameAvailabilityResult(Model):
 
     _attribute_map = {
         'name_available': {'key': 'nameAvailable', 'type': 'bool'},
-        'reason': {'key': 'reason', 'type': 'Reason'},
+        'reason': {'key': 'reason', 'type': 'str', 'enum':'Reason'},
         'message': {'key': 'message', 'type': 'str'},
     }
 
