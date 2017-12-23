@@ -33,7 +33,7 @@ class ReadonlyObj(Model):
         'size': {'key': 'size', 'type': 'int'},
     }
 
-    def __init__(self, size=None):
-        super(ReadonlyObj, self).__init__()
+    def __init__(self, **kwargs):
+        super(ReadonlyObj, self).__init__(**kwargs)
         self.id = None
-        self.size = size
+        self.size = kwargs.get('size', None)

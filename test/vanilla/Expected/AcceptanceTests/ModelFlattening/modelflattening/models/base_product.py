@@ -32,7 +32,7 @@ class BaseProduct(Model):
         'description': {'key': 'base_product_description', 'type': 'str'},
     }
 
-    def __init__(self, product_id, description=None):
-        super(BaseProduct, self).__init__()
-        self.product_id = product_id
-        self.description = description
+    def __init__(self, **kwargs):
+        super(BaseProduct, self).__init__(**kwargs)
+        self.product_id = kwargs.get('product_id', None)
+        self.description = kwargs.get('description', None)

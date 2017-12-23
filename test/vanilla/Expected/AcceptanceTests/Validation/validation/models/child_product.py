@@ -35,6 +35,6 @@ class ChildProduct(Model):
 
     const_property = "constant"
 
-    def __init__(self, count=None):
-        super(ChildProduct, self).__init__()
-        self.count = count
+    def __init__(self, **kwargs):
+        super(ChildProduct, self).__init__(**kwargs)
+        self.count = kwargs.get('count', None)

@@ -27,6 +27,6 @@ class AvailabilitySetUpdateParameters(Model):
         'tags': {'key': 'tags', 'type': '{str}'},
     }
 
-    def __init__(self, tags):
-        super(AvailabilitySetUpdateParameters, self).__init__()
-        self.tags = tags
+    def __init__(self, **kwargs):
+        super(AvailabilitySetUpdateParameters, self).__init__(**kwargs)
+        self.tags = kwargs.get('tags', None)

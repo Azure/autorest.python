@@ -23,6 +23,6 @@ class C(Model):
         'http_code': {'key': 'httpCode', 'type': 'str'},
     }
 
-    def __init__(self, http_code=None):
-        super(C, self).__init__()
-        self.http_code = http_code
+    def __init__(self, **kwargs):
+        super(C, self).__init__(**kwargs)
+        self.http_code = kwargs.get('http_code', None)

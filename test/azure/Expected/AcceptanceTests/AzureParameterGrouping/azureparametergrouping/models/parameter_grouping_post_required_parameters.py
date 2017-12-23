@@ -30,9 +30,16 @@ class ParameterGroupingPostRequiredParameters(Model):
         'path': {'required': True},
     }
 
-    def __init__(self, body, path, custom_header=None, query=30):
-        super(ParameterGroupingPostRequiredParameters, self).__init__()
-        self.body = body
-        self.custom_header = custom_header
-        self.query = query
-        self.path = path
+    _attribute_map = {
+        'body': {'key': '', 'type': 'int'},
+        'custom_header': {'key': '', 'type': 'str'},
+        'query': {'key': '', 'type': 'int'},
+        'path': {'key': '', 'type': 'str'},
+    }
+
+    def __init__(self, **kwargs):
+        super(ParameterGroupingPostRequiredParameters, self).__init__(**kwargs)
+        self.body = kwargs.get('body', None)
+        self.custom_header = kwargs.get('custom_header', None)
+        self.query = kwargs.get('query', 30)
+        self.path = kwargs.get('path', None)

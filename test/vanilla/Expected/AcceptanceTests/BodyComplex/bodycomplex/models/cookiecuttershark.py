@@ -35,6 +35,15 @@ class Cookiecuttershark(Shark):
         'birthday': {'required': True},
     }
 
-    def __init__(self, length, birthday, species=None, siblings=None, age=None):
-        super(Cookiecuttershark, self).__init__(species=species, length=length, siblings=siblings, age=age, birthday=birthday)
+    _attribute_map = {
+        'species': {'key': 'species', 'type': 'str'},
+        'length': {'key': 'length', 'type': 'float'},
+        'siblings': {'key': 'siblings', 'type': '[Fish]'},
+        'fishtype': {'key': 'fishtype', 'type': 'str'},
+        'age': {'key': 'age', 'type': 'int'},
+        'birthday': {'key': 'birthday', 'type': 'iso-8601'},
+    }
+
+    def __init__(self, **kwargs):
+        super(Cookiecuttershark, self).__init__(**kwargs)
         self.fishtype = 'cookiecuttershark'

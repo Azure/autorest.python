@@ -27,10 +27,10 @@ class Error(Model):
         'message': {'key': 'message', 'type': 'str'},
     }
 
-    def __init__(self, status=None, message=None):
-        super(Error, self).__init__()
-        self.status = status
-        self.message = message
+    def __init__(self, **kwargs):
+        super(Error, self).__init__(**kwargs)
+        self.status = kwargs.get('status', None)
+        self.message = kwargs.get('message', None)
 
 
 class ErrorException(HttpOperationError):

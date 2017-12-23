@@ -23,7 +23,12 @@ class FirstParameterGroup(Model):
     :type query_one: int
     """
 
-    def __init__(self, header_one=None, query_one=30):
-        super(FirstParameterGroup, self).__init__()
-        self.header_one = header_one
-        self.query_one = query_one
+    _attribute_map = {
+        'header_one': {'key': '', 'type': 'str'},
+        'query_one': {'key': '', 'type': 'int'},
+    }
+
+    def __init__(self, **kwargs):
+        super(FirstParameterGroup, self).__init__(**kwargs)
+        self.header_one = kwargs.get('header_one', None)
+        self.query_one = kwargs.get('query_one', 30)

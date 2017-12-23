@@ -23,6 +23,10 @@ class HeaderCustomNamedRequestIdParamGroupingParameters(Model):
         'foo_client_request_id': {'required': True},
     }
 
-    def __init__(self, foo_client_request_id):
-        super(HeaderCustomNamedRequestIdParamGroupingParameters, self).__init__()
-        self.foo_client_request_id = foo_client_request_id
+    _attribute_map = {
+        'foo_client_request_id': {'key': '', 'type': 'str'},
+    }
+
+    def __init__(self, **kwargs):
+        super(HeaderCustomNamedRequestIdParamGroupingParameters, self).__init__(**kwargs)
+        self.foo_client_request_id = kwargs.get('foo_client_request_id', None)

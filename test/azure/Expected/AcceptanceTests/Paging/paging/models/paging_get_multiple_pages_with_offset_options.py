@@ -29,8 +29,14 @@ class PagingGetMultiplePagesWithOffsetOptions(Model):
         'offset': {'required': True},
     }
 
-    def __init__(self, offset, maxresults=None, timeout=30):
-        super(PagingGetMultiplePagesWithOffsetOptions, self).__init__()
-        self.maxresults = maxresults
-        self.offset = offset
-        self.timeout = timeout
+    _attribute_map = {
+        'maxresults': {'key': '', 'type': 'int'},
+        'offset': {'key': '', 'type': 'int'},
+        'timeout': {'key': '', 'type': 'int'},
+    }
+
+    def __init__(self, **kwargs):
+        super(PagingGetMultiplePagesWithOffsetOptions, self).__init__(**kwargs)
+        self.maxresults = kwargs.get('maxresults', None)
+        self.offset = kwargs.get('offset', None)
+        self.timeout = kwargs.get('timeout', 30)

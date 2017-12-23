@@ -21,7 +21,12 @@ class ParameterGroupingPostMultiParamGroupsSecondParamGroup(Model):
     :type query_two: int
     """
 
-    def __init__(self, header_two=None, query_two=30):
-        super(ParameterGroupingPostMultiParamGroupsSecondParamGroup, self).__init__()
-        self.header_two = header_two
-        self.query_two = query_two
+    _attribute_map = {
+        'header_two': {'key': '', 'type': 'str'},
+        'query_two': {'key': '', 'type': 'int'},
+    }
+
+    def __init__(self, **kwargs):
+        super(ParameterGroupingPostMultiParamGroupsSecondParamGroup, self).__init__(**kwargs)
+        self.header_two = kwargs.get('header_two', None)
+        self.query_two = kwargs.get('query_two', 30)

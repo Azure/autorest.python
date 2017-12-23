@@ -27,7 +27,12 @@ class CustomParameterGroup(Model):
         'tenant': {'required': True},
     }
 
-    def __init__(self, api_version, tenant):
-        super(CustomParameterGroup, self).__init__()
-        self.api_version = api_version
-        self.tenant = tenant
+    _attribute_map = {
+        'api_version': {'key': '', 'type': 'str'},
+        'tenant': {'key': '', 'type': 'str'},
+    }
+
+    def __init__(self, **kwargs):
+        super(CustomParameterGroup, self).__init__(**kwargs)
+        self.api_version = kwargs.get('api_version', None)
+        self.tenant = kwargs.get('tenant', None)
