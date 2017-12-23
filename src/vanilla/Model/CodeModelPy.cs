@@ -142,7 +142,7 @@ namespace AutoRest.Python.Model
 
         public virtual string UserAgent => PackageName;
 
-        public virtual string SetupRequires => @"""msrest>=0.2.0""";
+        public virtual string SetupRequires => @"""msrest>=0.4.22""";
         
 
         public string Version => Settings.Instance.PackageVersion.Else(ApiVersion);

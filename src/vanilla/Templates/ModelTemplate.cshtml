@@ -81,8 +81,6 @@ else
 }
 @{
     var mapAttrList = new List<Property>(Model.ComposedProperties);
-    if (!Model.IsParameterGroup)
-    {
 @EmptyLine
     @:_attribute_map = {
     if (mapAttrList.Count > 0)
@@ -93,7 +91,6 @@ else
       }
     }
     @:}
-  }
 }
 @if (Model.SubModelTypes.Any())
 {
@@ -115,15 +112,8 @@ else
 @if (Model.NeedsConstructor)
 { 
 @EmptyLine
-    @:def __init__(self@(Model.MethodParameterDeclaration())):
-    if (Model.HasParent)
-    {
-        @:super(@(Model.Name), self).__init__(@(Model.SuperParameterDeclaration()))
-    }
-    else
-    {
-        @:super(@(Model.Name), self).__init__()
-    }
+    @:def __init__(self, **kwargs):
+    @:    super(@(Model.Name), self).__init__(**kwargs)
     var propertyList = new List<Property>(Model.Properties);
     if (propertyList.Count > 0)
     {
