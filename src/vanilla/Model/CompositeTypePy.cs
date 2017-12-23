@@ -339,6 +339,18 @@ namespace AutoRest.Python.Model
                 throw new ArgumentNullException("modelProperty");
             }
 
+            EnumTypePy enumType = modelProperty.ModelType as EnumTypePy;
+            if(enumType != null)
+            {
+                //'id':{'key':'id', 'type':'str', 'enum':'EnumType'},
+                return string.Format(CultureInfo.InvariantCulture,
+                    "'{0}': {{'key': '{1}', 'type': '{2}', 'enum':'{3}'}},",
+                    modelProperty.Name, modelProperty.SerializedName,
+                    ClientModelExtensions.GetPythonSerializationType(modelProperty.ModelType),
+                    enumType.Name
+                );
+            }
+
             //'id':{'key':'id', 'type':'str'},
             return string.Format(CultureInfo.InvariantCulture,
                 "'{0}': {{'key': '{1}', 'type': '{2}'}},",
