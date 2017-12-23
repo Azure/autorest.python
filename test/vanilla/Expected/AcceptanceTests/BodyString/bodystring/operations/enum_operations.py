@@ -44,8 +44,7 @@ class EnumOperations(object):
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
         :return: Colors or ClientRawResponse if raw=true
-        :rtype: ~bodystring.models.Colors or
-         ~msrest.pipeline.ClientRawResponse
+        :rtype: str or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodystring.models.ErrorException>`
         """
         # Construct URL
@@ -70,7 +69,7 @@ class EnumOperations(object):
         deserialized = None
 
         if response.status_code == 200:
-            deserialized = self._deserialize('Colors', response)
+            deserialized = self._deserialize('str', response)
 
         if raw:
             client_raw_response = ClientRawResponse(deserialized, response)
@@ -108,7 +107,7 @@ class EnumOperations(object):
             header_parameters.update(custom_headers)
 
         # Construct body
-        body_content = self._serialize.body(string_body, 'Colors')
+        body_content = self._serialize.body(string_body, 'str')
 
         # Construct and send request
         request = self._client.put(url, query_parameters)
@@ -133,8 +132,7 @@ class EnumOperations(object):
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
         :return: Colors or ClientRawResponse if raw=true
-        :rtype: ~bodystring.models.Colors or
-         ~msrest.pipeline.ClientRawResponse
+        :rtype: str or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodystring.models.ErrorException>`
         """
         # Construct URL
@@ -159,7 +157,7 @@ class EnumOperations(object):
         deserialized = None
 
         if response.status_code == 200:
-            deserialized = self._deserialize('Colors', response)
+            deserialized = self._deserialize('str', response)
 
         if raw:
             client_raw_response = ClientRawResponse(deserialized, response)
@@ -197,7 +195,7 @@ class EnumOperations(object):
             header_parameters.update(custom_headers)
 
         # Construct body
-        body_content = self._serialize.body(enum_string_body, 'Colors')
+        body_content = self._serialize.body(enum_string_body, 'str')
 
         # Construct and send request
         request = self._client.put(url, query_parameters)

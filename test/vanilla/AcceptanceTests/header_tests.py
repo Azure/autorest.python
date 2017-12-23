@@ -109,7 +109,7 @@ class HeaderTests(unittest.TestCase):
         client.header.param_enum("null", None)
 
         raw = client.header.response_enum("valid", raw=True)
-        self.assertEqual(GreyscaleColors.grey, raw.headers.get("value"))
+        self.assertEqual('GREY', raw.headers.get("value"))
 
         # We receive an empty string.
         # Starting msrest 0.4.22, we consider that if a string is not in the enum, this not
