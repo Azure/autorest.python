@@ -110,16 +110,16 @@ else if (Model.IsFormData)
 @if (Model.RequestBody != null)
 {
         @:response = self._client.send(
-            @:request, header_parameters, body_content, **operation_config)
+            @:request, header_parameters, body_content, stream=@(Model.ReturnType.Body.IsPrimaryType(KnownPrimaryType.Stream)?"True":"False"), **operation_config)
 }
 else if (Model.IsFormData)
 {
         @:response = self._client.send_formdata(
-            @:request, header_parameters, form_data_content, **operation_config)
+            @:request, header_parameters, form_data_content, stream=@(Model.ReturnType.Body.IsPrimaryType(KnownPrimaryType.Stream)?"True":"False"), **operation_config)
 }
 else
 {
-        @:response = self._client.send(request, header_parameters, **operation_config)
+        @:response = self._client.send(request, header_parameters, stream=@(Model.ReturnType.Body.IsPrimaryType(KnownPrimaryType.Stream)?"True":"False"), **operation_config)
 }
 @EmptyLine
         if @Model.FailureStatusCodePredicate:

@@ -95,12 +95,12 @@ else
 @if (Model.RequestBody != null)
 {
             @:response = self._client.send(
-                @:request, header_parameters, body_content, **operation_config)
+                @:request, header_parameters, body_content, stream=False, **operation_config)
 }
 else
 {
             @:response = self._client.send(
-                @:request, header_parameters, **operation_config)
+                @:request, header_parameters, stream=False, **operation_config)
 }
 @EmptyLine
             if @Model.FailureStatusCodePredicate:
