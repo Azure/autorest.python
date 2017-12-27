@@ -71,7 +71,7 @@ class LroTests(unittest.TestCase):
             self.fail("CloudError wasn't raised as expected")
 
         except CloudError as err:
-            self.assertTrue(msg in err.message)
+            self.assertIn(msg, err.message)
             self.assertIsNotNone(err.response)
             error = err.error
             self.assertIsNotNone(error)
@@ -298,6 +298,8 @@ class LroTests(unittest.TestCase):
         self.assertRaisesWithMessage("The response from long running operation does not contain a body.",
             self.client.lrosa_ds.post_async_relative_retry_no_payload)
 
+        self.assertRaisesWithMessage("Operation failed",
+            self.client.lrosa_ds.put_non_retry201_creating400_invalid_json, product)
 
 if __name__ == '__main__':
     unittest.main()
