@@ -12,6 +12,7 @@
 import uuid
 from msrest.pipeline import ClientRawResponse
 from msrestazure.azure_exceptions import CloudError
+from msrest.exceptions import DeserializationError
 from msrestazure.azure_operation import AzureOperationPoller
 
 from .. import models
@@ -36,22 +37,9 @@ class LROSADsOperations(object):
 
         self.config = config
 
-    def put_non_retry400(
-            self, product=None, custom_headers=None, raw=False, **operation_config):
-        """Long running put request, service returns a 400 to the initial request.
 
-        :param product: Product to put
-        :type product: ~lro.models.Product
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: An instance of AzureOperationPoller that returns Product or
-         ClientRawResponse if raw=true
-        :rtype:
-         ~msrestazure.azure_operation.AzureOperationPoller[~lro.models.Product]
-         or ~msrest.pipeline.ClientRawResponse
-        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
-        """
+    def _put_non_retry400_initial(
+            self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = '/lro/nonretryerror/put/400'
 
@@ -75,55 +63,31 @@ class LROSADsOperations(object):
             body_content = None
 
         # Construct and send request
-        def long_running_send():
+        request = self._client.put(url, query_parameters)
+        response = self._client.send(
+            request, header_parameters, body_content, stream=False, **operation_config)
 
-            request = self._client.put(url, query_parameters)
-            return self._client.send(
-                request, header_parameters, body_content, stream=False, **operation_config)
+        if response.status_code not in [200, 201]:
+            exp = CloudError(response)
+            exp.request_id = response.headers.get('x-ms-request-id')
+            raise exp
 
-        def get_long_running_status(status_link, headers=None):
+        deserialized = None
 
-            request = self._client.get(status_link)
-            if headers:
-                request.headers.update(headers)
-            return self._client.send(
-                request, header_parameters, stream=False, **operation_config)
-
-        def get_long_running_output(response):
-
-            if response.status_code not in [200, 201]:
-                exp = CloudError(response)
-                exp.request_id = response.headers.get('x-ms-request-id')
-                raise exp
-
-            deserialized = None
-
-            if response.status_code == 200:
-                deserialized = self._deserialize('Product', response)
-            if response.status_code == 201:
-                deserialized = self._deserialize('Product', response)
-
-            if raw:
-                client_raw_response = ClientRawResponse(deserialized, response)
-                return client_raw_response
-
-            return deserialized
+        if response.status_code == 200:
+            deserialized = self._deserialize('Product', response)
+        if response.status_code == 201:
+            deserialized = self._deserialize('Product', response)
 
         if raw:
-            response = long_running_send()
-            return get_long_running_output(response)
+            client_raw_response = ClientRawResponse(deserialized, response)
+            return client_raw_response
 
-        long_running_operation_timeout = operation_config.get(
-            'long_running_operation_timeout',
-            self.config.long_running_operation_timeout)
-        return AzureOperationPoller(
-            long_running_send, get_long_running_output,
-            get_long_running_status, long_running_operation_timeout)
+        return deserialized
 
-    def put_non_retry201_creating400(
+    def put_non_retry400(
             self, product=None, custom_headers=None, raw=False, **operation_config):
-        """Long running put request, service returns a Product with
-        'ProvisioningState' = 'Creating' and 201 response code.
+        """Long running put request, service returns a 400 to the initial request.
 
         :param product: Product to put
         :type product: ~lro.models.Product
@@ -137,6 +101,57 @@ class LROSADsOperations(object):
          or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
+        raw_result = self._put_non_retry400_initial(
+            product=product,
+            custom_headers=custom_headers,
+            raw=True,
+            **operation_config
+        )
+        if raw:
+            return raw_result
+
+        # Construct and send request
+        def long_running_send():
+            return raw_result.response
+
+        def get_long_running_status(status_link, headers=None):
+
+            request = self._client.get(status_link)
+            if headers:
+                request.headers.update(headers)
+            header_parameters = {}
+            header_parameters['x-ms-client-request-id'] = raw_result.response.request.headers['x-ms-client-request-id']
+            return self._client.send(
+                request, header_parameters, stream=False, **operation_config)
+
+        def get_long_running_output(response):
+
+            if response.status_code not in [200, 201]:
+                exp = CloudError(response)
+                exp.request_id = response.headers.get('x-ms-request-id')
+                raise exp
+
+            deserialized = None
+
+            deserialized = self._deserialize('Product', response)
+            header_dict = {}
+
+            if raw:
+                client_raw_response = ClientRawResponse(deserialized, response)
+                return client_raw_response
+
+            return deserialized
+
+        long_running_operation_timeout = operation_config.get(
+            'long_running_operation_timeout',
+            self.config.long_running_operation_timeout)
+        return AzureOperationPoller(
+            long_running_send, get_long_running_output,
+            get_long_running_status, long_running_operation_timeout)
+
+
+    def _put_non_retry201_creating400_initial(
+            self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = '/lro/nonretryerror/put/201/creating/400'
 
@@ -160,52 +175,29 @@ class LROSADsOperations(object):
             body_content = None
 
         # Construct and send request
-        def long_running_send():
+        request = self._client.put(url, query_parameters)
+        response = self._client.send(
+            request, header_parameters, body_content, stream=False, **operation_config)
 
-            request = self._client.put(url, query_parameters)
-            return self._client.send(
-                request, header_parameters, body_content, stream=False, **operation_config)
+        if response.status_code not in [200, 201]:
+            exp = CloudError(response)
+            exp.request_id = response.headers.get('x-ms-request-id')
+            raise exp
 
-        def get_long_running_status(status_link, headers=None):
+        deserialized = None
 
-            request = self._client.get(status_link)
-            if headers:
-                request.headers.update(headers)
-            return self._client.send(
-                request, header_parameters, stream=False, **operation_config)
-
-        def get_long_running_output(response):
-
-            if response.status_code not in [200, 201]:
-                exp = CloudError(response)
-                exp.request_id = response.headers.get('x-ms-request-id')
-                raise exp
-
-            deserialized = None
-
-            if response.status_code == 200:
-                deserialized = self._deserialize('Product', response)
-            if response.status_code == 201:
-                deserialized = self._deserialize('Product', response)
-
-            if raw:
-                client_raw_response = ClientRawResponse(deserialized, response)
-                return client_raw_response
-
-            return deserialized
+        if response.status_code == 200:
+            deserialized = self._deserialize('Product', response)
+        if response.status_code == 201:
+            deserialized = self._deserialize('Product', response)
 
         if raw:
-            response = long_running_send()
-            return get_long_running_output(response)
+            client_raw_response = ClientRawResponse(deserialized, response)
+            return client_raw_response
 
-        long_running_operation_timeout = operation_config.get(
-            'long_running_operation_timeout',
-            self.config.long_running_operation_timeout)
-        return AzureOperationPoller(
-            long_running_send, get_long_running_output,
-            get_long_running_status, long_running_operation_timeout)
+        return deserialized
 
-    def put_non_retry201_creating400_invalid_json(
+    def put_non_retry201_creating400(
             self, product=None, custom_headers=None, raw=False, **operation_config):
         """Long running put request, service returns a Product with
         'ProvisioningState' = 'Creating' and 201 response code.
@@ -222,6 +214,57 @@ class LROSADsOperations(object):
          or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
+        raw_result = self._put_non_retry201_creating400_initial(
+            product=product,
+            custom_headers=custom_headers,
+            raw=True,
+            **operation_config
+        )
+        if raw:
+            return raw_result
+
+        # Construct and send request
+        def long_running_send():
+            return raw_result.response
+
+        def get_long_running_status(status_link, headers=None):
+
+            request = self._client.get(status_link)
+            if headers:
+                request.headers.update(headers)
+            header_parameters = {}
+            header_parameters['x-ms-client-request-id'] = raw_result.response.request.headers['x-ms-client-request-id']
+            return self._client.send(
+                request, header_parameters, stream=False, **operation_config)
+
+        def get_long_running_output(response):
+
+            if response.status_code not in [200, 201]:
+                exp = CloudError(response)
+                exp.request_id = response.headers.get('x-ms-request-id')
+                raise exp
+
+            deserialized = None
+
+            deserialized = self._deserialize('Product', response)
+            header_dict = {}
+
+            if raw:
+                client_raw_response = ClientRawResponse(deserialized, response)
+                return client_raw_response
+
+            return deserialized
+
+        long_running_operation_timeout = operation_config.get(
+            'long_running_operation_timeout',
+            self.config.long_running_operation_timeout)
+        return AzureOperationPoller(
+            long_running_send, get_long_running_output,
+            get_long_running_status, long_running_operation_timeout)
+
+
+    def _put_non_retry201_creating400_invalid_json_initial(
+            self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = '/lro/nonretryerror/put/201/creating/400/invalidjson'
 
@@ -245,56 +288,32 @@ class LROSADsOperations(object):
             body_content = None
 
         # Construct and send request
-        def long_running_send():
+        request = self._client.put(url, query_parameters)
+        response = self._client.send(
+            request, header_parameters, body_content, stream=False, **operation_config)
 
-            request = self._client.put(url, query_parameters)
-            return self._client.send(
-                request, header_parameters, body_content, stream=False, **operation_config)
+        if response.status_code not in [200, 201]:
+            exp = CloudError(response)
+            exp.request_id = response.headers.get('x-ms-request-id')
+            raise exp
 
-        def get_long_running_status(status_link, headers=None):
+        deserialized = None
 
-            request = self._client.get(status_link)
-            if headers:
-                request.headers.update(headers)
-            return self._client.send(
-                request, header_parameters, stream=False, **operation_config)
-
-        def get_long_running_output(response):
-
-            if response.status_code not in [200, 201]:
-                exp = CloudError(response)
-                exp.request_id = response.headers.get('x-ms-request-id')
-                raise exp
-
-            deserialized = None
-
-            if response.status_code == 200:
-                deserialized = self._deserialize('Product', response)
-            if response.status_code == 201:
-                deserialized = self._deserialize('Product', response)
-
-            if raw:
-                client_raw_response = ClientRawResponse(deserialized, response)
-                return client_raw_response
-
-            return deserialized
+        if response.status_code == 200:
+            deserialized = self._deserialize('Product', response)
+        if response.status_code == 201:
+            deserialized = self._deserialize('Product', response)
 
         if raw:
-            response = long_running_send()
-            return get_long_running_output(response)
+            client_raw_response = ClientRawResponse(deserialized, response)
+            return client_raw_response
 
-        long_running_operation_timeout = operation_config.get(
-            'long_running_operation_timeout',
-            self.config.long_running_operation_timeout)
-        return AzureOperationPoller(
-            long_running_send, get_long_running_output,
-            get_long_running_status, long_running_operation_timeout)
+        return deserialized
 
-    def put_async_relative_retry400(
+    def put_non_retry201_creating400_invalid_json(
             self, product=None, custom_headers=None, raw=False, **operation_config):
-        """Long running put request, service returns a 200 with
-        ProvisioningState=’Creating’. Poll the endpoint indicated in the
-        Azure-AsyncOperation header for operation status.
+        """Long running put request, service returns a Product with
+        'ProvisioningState' = 'Creating' and 201 response code.
 
         :param product: Product to put
         :type product: ~lro.models.Product
@@ -308,6 +327,57 @@ class LROSADsOperations(object):
          or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
+        raw_result = self._put_non_retry201_creating400_invalid_json_initial(
+            product=product,
+            custom_headers=custom_headers,
+            raw=True,
+            **operation_config
+        )
+        if raw:
+            return raw_result
+
+        # Construct and send request
+        def long_running_send():
+            return raw_result.response
+
+        def get_long_running_status(status_link, headers=None):
+
+            request = self._client.get(status_link)
+            if headers:
+                request.headers.update(headers)
+            header_parameters = {}
+            header_parameters['x-ms-client-request-id'] = raw_result.response.request.headers['x-ms-client-request-id']
+            return self._client.send(
+                request, header_parameters, stream=False, **operation_config)
+
+        def get_long_running_output(response):
+
+            if response.status_code not in [200, 201]:
+                exp = CloudError(response)
+                exp.request_id = response.headers.get('x-ms-request-id')
+                raise exp
+
+            deserialized = None
+
+            deserialized = self._deserialize('Product', response)
+            header_dict = {}
+
+            if raw:
+                client_raw_response = ClientRawResponse(deserialized, response)
+                return client_raw_response
+
+            return deserialized
+
+        long_running_operation_timeout = operation_config.get(
+            'long_running_operation_timeout',
+            self.config.long_running_operation_timeout)
+        return AzureOperationPoller(
+            long_running_send, get_long_running_output,
+            get_long_running_status, long_running_operation_timeout)
+
+
+    def _put_async_relative_retry400_initial(
+            self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = '/lro/nonretryerror/putasync/retry/400'
 
@@ -331,17 +401,74 @@ class LROSADsOperations(object):
             body_content = None
 
         # Construct and send request
-        def long_running_send():
+        request = self._client.put(url, query_parameters)
+        response = self._client.send(
+            request, header_parameters, body_content, stream=False, **operation_config)
 
-            request = self._client.put(url, query_parameters)
-            return self._client.send(
-                request, header_parameters, body_content, stream=False, **operation_config)
+        if response.status_code not in [200]:
+            exp = CloudError(response)
+            exp.request_id = response.headers.get('x-ms-request-id')
+            raise exp
+
+        deserialized = None
+        header_dict = {}
+
+        if response.status_code == 200:
+            deserialized = self._deserialize('Product', response)
+            header_dict = {
+                'Azure-AsyncOperation': 'str',
+                'Location': 'str',
+                'Retry-After': 'int',
+            }
+
+        if raw:
+            client_raw_response = ClientRawResponse(deserialized, response)
+            try:
+                client_raw_response.add_headers(header_dict)
+            except DeserializationError:
+                pass # Deserialization of Headers here can fail
+            return client_raw_response
+
+        return deserialized
+
+    def put_async_relative_retry400(
+            self, product=None, custom_headers=None, raw=False, **operation_config):
+        """Long running put request, service returns a 200 with
+        ProvisioningState=’Creating’. Poll the endpoint indicated in the
+        Azure-AsyncOperation header for operation status.
+
+        :param product: Product to put
+        :type product: ~lro.models.Product
+        :param dict custom_headers: headers that will be added to the request
+        :param bool raw: returns the direct response alongside the
+         deserialized response
+        :return: An instance of AzureOperationPoller that returns Product or
+         ClientRawResponse if raw=true
+        :rtype:
+         ~msrestazure.azure_operation.AzureOperationPoller[~lro.models.Product]
+         or ~msrest.pipeline.ClientRawResponse
+        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
+        """
+        raw_result = self._put_async_relative_retry400_initial(
+            product=product,
+            custom_headers=custom_headers,
+            raw=True,
+            **operation_config
+        )
+        if raw:
+            return raw_result
+
+        # Construct and send request
+        def long_running_send():
+            return raw_result.response
 
         def get_long_running_status(status_link, headers=None):
 
             request = self._client.get(status_link)
             if headers:
                 request.headers.update(headers)
+            header_parameters = {}
+            header_parameters['x-ms-client-request-id'] = raw_result.response.request.headers['x-ms-client-request-id']
             return self._client.send(
                 request, header_parameters, stream=False, **operation_config)
 
@@ -355,13 +482,12 @@ class LROSADsOperations(object):
             deserialized = None
             header_dict = {}
 
-            if response.status_code == 200:
-                deserialized = self._deserialize('Product', response)
-                header_dict = {
-                    'Azure-AsyncOperation': 'str',
-                    'Location': 'str',
-                    'Retry-After': 'int',
-                }
+            deserialized = self._deserialize('Product', response)
+            header_dict = {
+                'Azure-AsyncOperation': 'str',
+                'Location': 'str',
+                'Retry-After': 'int',
+            }
 
             if raw:
                 client_raw_response = ClientRawResponse(deserialized, response)
@@ -370,10 +496,6 @@ class LROSADsOperations(object):
 
             return deserialized
 
-        if raw:
-            response = long_running_send()
-            return get_long_running_output(response)
-
         long_running_operation_timeout = operation_config.get(
             'long_running_operation_timeout',
             self.config.long_running_operation_timeout)
@@ -381,19 +503,9 @@ class LROSADsOperations(object):
             long_running_send, get_long_running_output,
             get_long_running_status, long_running_operation_timeout)
 
-    def delete_non_retry400(
-            self, custom_headers=None, raw=False, **operation_config):
-        """Long running delete request, service returns a 400 with an error body.
 
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: An instance of AzureOperationPoller that returns None or
-         ClientRawResponse if raw=true
-        :rtype: ~msrestazure.azure_operation.AzureOperationPoller[None] or
-         ~msrest.pipeline.ClientRawResponse
-        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
-        """
+    def _delete_non_retry400_initial(
+            self, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = '/lro/nonretryerror/delete/400'
 
@@ -411,16 +523,55 @@ class LROSADsOperations(object):
             header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
 
         # Construct and send request
-        def long_running_send():
+        request = self._client.delete(url, query_parameters)
+        response = self._client.send(request, header_parameters, stream=False, **operation_config)
 
-            request = self._client.delete(url, query_parameters)
-            return self._client.send(request, header_parameters, stream=False, **operation_config)
+        if response.status_code not in [202]:
+            exp = CloudError(response)
+            exp.request_id = response.headers.get('x-ms-request-id')
+            raise exp
+
+        if raw:
+            client_raw_response = ClientRawResponse(None, response)
+            header_dict = {
+                'Location': 'str',
+                'Retry-After': 'int',
+            }
+            client_raw_response.add_headers(header_dict)
+            return client_raw_response
+
+    def delete_non_retry400(
+            self, custom_headers=None, raw=False, **operation_config):
+        """Long running delete request, service returns a 400 with an error body.
+
+        :param dict custom_headers: headers that will be added to the request
+        :param bool raw: returns the direct response alongside the
+         deserialized response
+        :return: An instance of AzureOperationPoller that returns None or
+         ClientRawResponse if raw=true
+        :rtype: ~msrestazure.azure_operation.AzureOperationPoller[None] or
+         ~msrest.pipeline.ClientRawResponse
+        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
+        """
+        raw_result = self._delete_non_retry400_initial(
+            custom_headers=custom_headers,
+            raw=True,
+            **operation_config
+        )
+        if raw:
+            return raw_result
+
+        # Construct and send request
+        def long_running_send():
+            return raw_result.response
 
         def get_long_running_status(status_link, headers=None):
 
             request = self._client.get(status_link)
             if headers:
                 request.headers.update(headers)
+            header_parameters = {}
+            header_parameters['x-ms-client-request-id'] = raw_result.response.request.headers['x-ms-client-request-id']
             return self._client.send(
                 request, header_parameters, stream=False, **operation_config)
 
@@ -439,10 +590,6 @@ class LROSADsOperations(object):
                 })
                 return client_raw_response
 
-        if raw:
-            response = long_running_send()
-            return get_long_running_output(response)
-
         long_running_operation_timeout = operation_config.get(
             'long_running_operation_timeout',
             self.config.long_running_operation_timeout)
@@ -450,20 +597,9 @@ class LROSADsOperations(object):
             long_running_send, get_long_running_output,
             get_long_running_status, long_running_operation_timeout)
 
-    def delete202_non_retry400(
-            self, custom_headers=None, raw=False, **operation_config):
-        """Long running delete request, service returns a 202 with a location
-        header.
 
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: An instance of AzureOperationPoller that returns None or
-         ClientRawResponse if raw=true
-        :rtype: ~msrestazure.azure_operation.AzureOperationPoller[None] or
-         ~msrest.pipeline.ClientRawResponse
-        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
-        """
+    def _delete202_non_retry400_initial(
+            self, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = '/lro/nonretryerror/delete/202/retry/400'
 
@@ -481,16 +617,56 @@ class LROSADsOperations(object):
             header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
 
         # Construct and send request
-        def long_running_send():
+        request = self._client.delete(url, query_parameters)
+        response = self._client.send(request, header_parameters, stream=False, **operation_config)
 
-            request = self._client.delete(url, query_parameters)
-            return self._client.send(request, header_parameters, stream=False, **operation_config)
+        if response.status_code not in [202]:
+            exp = CloudError(response)
+            exp.request_id = response.headers.get('x-ms-request-id')
+            raise exp
+
+        if raw:
+            client_raw_response = ClientRawResponse(None, response)
+            header_dict = {
+                'Location': 'str',
+                'Retry-After': 'int',
+            }
+            client_raw_response.add_headers(header_dict)
+            return client_raw_response
+
+    def delete202_non_retry400(
+            self, custom_headers=None, raw=False, **operation_config):
+        """Long running delete request, service returns a 202 with a location
+        header.
+
+        :param dict custom_headers: headers that will be added to the request
+        :param bool raw: returns the direct response alongside the
+         deserialized response
+        :return: An instance of AzureOperationPoller that returns None or
+         ClientRawResponse if raw=true
+        :rtype: ~msrestazure.azure_operation.AzureOperationPoller[None] or
+         ~msrest.pipeline.ClientRawResponse
+        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
+        """
+        raw_result = self._delete202_non_retry400_initial(
+            custom_headers=custom_headers,
+            raw=True,
+            **operation_config
+        )
+        if raw:
+            return raw_result
+
+        # Construct and send request
+        def long_running_send():
+            return raw_result.response
 
         def get_long_running_status(status_link, headers=None):
 
             request = self._client.get(status_link)
             if headers:
                 request.headers.update(headers)
+            header_parameters = {}
+            header_parameters['x-ms-client-request-id'] = raw_result.response.request.headers['x-ms-client-request-id']
             return self._client.send(
                 request, header_parameters, stream=False, **operation_config)
 
@@ -509,10 +685,6 @@ class LROSADsOperations(object):
                 })
                 return client_raw_response
 
-        if raw:
-            response = long_running_send()
-            return get_long_running_output(response)
-
         long_running_operation_timeout = operation_config.get(
             'long_running_operation_timeout',
             self.config.long_running_operation_timeout)
@@ -520,21 +692,9 @@ class LROSADsOperations(object):
             long_running_send, get_long_running_output,
             get_long_running_status, long_running_operation_timeout)
 
-    def delete_async_relative_retry400(
-            self, custom_headers=None, raw=False, **operation_config):
-        """Long running delete request, service returns a 202 to the initial
-        request. Poll the endpoint indicated in the Azure-AsyncOperation header
-        for operation status.
 
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: An instance of AzureOperationPoller that returns None or
-         ClientRawResponse if raw=true
-        :rtype: ~msrestazure.azure_operation.AzureOperationPoller[None] or
-         ~msrest.pipeline.ClientRawResponse
-        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
-        """
+    def _delete_async_relative_retry400_initial(
+            self, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = '/lro/nonretryerror/deleteasync/retry/400'
 
@@ -552,16 +712,58 @@ class LROSADsOperations(object):
             header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
 
         # Construct and send request
-        def long_running_send():
+        request = self._client.delete(url, query_parameters)
+        response = self._client.send(request, header_parameters, stream=False, **operation_config)
 
-            request = self._client.delete(url, query_parameters)
-            return self._client.send(request, header_parameters, stream=False, **operation_config)
+        if response.status_code not in [202]:
+            exp = CloudError(response)
+            exp.request_id = response.headers.get('x-ms-request-id')
+            raise exp
+
+        if raw:
+            client_raw_response = ClientRawResponse(None, response)
+            header_dict = {
+                'Azure-AsyncOperation': 'str',
+                'Location': 'str',
+                'Retry-After': 'int',
+            }
+            client_raw_response.add_headers(header_dict)
+            return client_raw_response
+
+    def delete_async_relative_retry400(
+            self, custom_headers=None, raw=False, **operation_config):
+        """Long running delete request, service returns a 202 to the initial
+        request. Poll the endpoint indicated in the Azure-AsyncOperation header
+        for operation status.
+
+        :param dict custom_headers: headers that will be added to the request
+        :param bool raw: returns the direct response alongside the
+         deserialized response
+        :return: An instance of AzureOperationPoller that returns None or
+         ClientRawResponse if raw=true
+        :rtype: ~msrestazure.azure_operation.AzureOperationPoller[None] or
+         ~msrest.pipeline.ClientRawResponse
+        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
+        """
+        raw_result = self._delete_async_relative_retry400_initial(
+            custom_headers=custom_headers,
+            raw=True,
+            **operation_config
+        )
+        if raw:
+            return raw_result
+
+        # Construct and send request
+        def long_running_send():
+            return raw_result.response
 
         def get_long_running_status(status_link, headers=None):
 
             request = self._client.get(status_link)
             if headers:
                 request.headers.update(headers)
+            header_parameters = {}
+            header_parameters['x-ms-client-request-id'] = raw_result.response.request.headers['x-ms-client-request-id']
             return self._client.send(
                 request, header_parameters, stream=False, **operation_config)
 
@@ -581,10 +783,6 @@ class LROSADsOperations(object):
                 })
                 return client_raw_response
 
-        if raw:
-            response = long_running_send()
-            return get_long_running_output(response)
-
         long_running_operation_timeout = operation_config.get(
             'long_running_operation_timeout',
             self.config.long_running_operation_timeout)
@@ -592,21 +790,9 @@ class LROSADsOperations(object):
             long_running_send, get_long_running_output,
             get_long_running_status, long_running_operation_timeout)
 
-    def post_non_retry400(
-            self, product=None, custom_headers=None, raw=False, **operation_config):
-        """Long running post request, service returns a 400 with no error body.
 
-        :param product: Product to put
-        :type product: ~lro.models.Product
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: An instance of AzureOperationPoller that returns None or
-         ClientRawResponse if raw=true
-        :rtype: ~msrestazure.azure_operation.AzureOperationPoller[None] or
-         ~msrest.pipeline.ClientRawResponse
-        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
-        """
+    def _post_non_retry400_initial(
+            self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = '/lro/nonretryerror/post/400'
 
@@ -630,17 +816,59 @@ class LROSADsOperations(object):
             body_content = None
 
         # Construct and send request
-        def long_running_send():
+        request = self._client.post(url, query_parameters)
+        response = self._client.send(
+            request, header_parameters, body_content, stream=False, **operation_config)
 
-            request = self._client.post(url, query_parameters)
-            return self._client.send(
-                request, header_parameters, body_content, stream=False, **operation_config)
+        if response.status_code not in [202]:
+            exp = CloudError(response)
+            exp.request_id = response.headers.get('x-ms-request-id')
+            raise exp
+
+        if raw:
+            client_raw_response = ClientRawResponse(None, response)
+            header_dict = {
+                'Location': 'str',
+                'Retry-After': 'int',
+            }
+            client_raw_response.add_headers(header_dict)
+            return client_raw_response
+
+    def post_non_retry400(
+            self, product=None, custom_headers=None, raw=False, **operation_config):
+        """Long running post request, service returns a 400 with no error body.
+
+        :param product: Product to put
+        :type product: ~lro.models.Product
+        :param dict custom_headers: headers that will be added to the request
+        :param bool raw: returns the direct response alongside the
+         deserialized response
+        :return: An instance of AzureOperationPoller that returns None or
+         ClientRawResponse if raw=true
+        :rtype: ~msrestazure.azure_operation.AzureOperationPoller[None] or
+         ~msrest.pipeline.ClientRawResponse
+        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
+        """
+        raw_result = self._post_non_retry400_initial(
+            product=product,
+            custom_headers=custom_headers,
+            raw=True,
+            **operation_config
+        )
+        if raw:
+            return raw_result
+
+        # Construct and send request
+        def long_running_send():
+            return raw_result.response
 
         def get_long_running_status(status_link, headers=None):
 
             request = self._client.get(status_link)
             if headers:
                 request.headers.update(headers)
+            header_parameters = {}
+            header_parameters['x-ms-client-request-id'] = raw_result.response.request.headers['x-ms-client-request-id']
             return self._client.send(
                 request, header_parameters, stream=False, **operation_config)
 
@@ -659,10 +887,6 @@ class LROSADsOperations(object):
                 })
                 return client_raw_response
 
-        if raw:
-            response = long_running_send()
-            return get_long_running_output(response)
-
         long_running_operation_timeout = operation_config.get(
             'long_running_operation_timeout',
             self.config.long_running_operation_timeout)
@@ -670,22 +894,9 @@ class LROSADsOperations(object):
             long_running_send, get_long_running_output,
             get_long_running_status, long_running_operation_timeout)
 
-    def post202_non_retry400(
-            self, product=None, custom_headers=None, raw=False, **operation_config):
-        """Long running post request, service returns a 202 with a location
-        header.
 
-        :param product: Product to put
-        :type product: ~lro.models.Product
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: An instance of AzureOperationPoller that returns None or
-         ClientRawResponse if raw=true
-        :rtype: ~msrestazure.azure_operation.AzureOperationPoller[None] or
-         ~msrest.pipeline.ClientRawResponse
-        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
-        """
+    def _post202_non_retry400_initial(
+            self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = '/lro/nonretryerror/post/202/retry/400'
 
@@ -709,17 +920,60 @@ class LROSADsOperations(object):
             body_content = None
 
         # Construct and send request
-        def long_running_send():
+        request = self._client.post(url, query_parameters)
+        response = self._client.send(
+            request, header_parameters, body_content, stream=False, **operation_config)
 
-            request = self._client.post(url, query_parameters)
-            return self._client.send(
-                request, header_parameters, body_content, stream=False, **operation_config)
+        if response.status_code not in [202]:
+            exp = CloudError(response)
+            exp.request_id = response.headers.get('x-ms-request-id')
+            raise exp
+
+        if raw:
+            client_raw_response = ClientRawResponse(None, response)
+            header_dict = {
+                'Location': 'str',
+                'Retry-After': 'int',
+            }
+            client_raw_response.add_headers(header_dict)
+            return client_raw_response
+
+    def post202_non_retry400(
+            self, product=None, custom_headers=None, raw=False, **operation_config):
+        """Long running post request, service returns a 202 with a location
+        header.
+
+        :param product: Product to put
+        :type product: ~lro.models.Product
+        :param dict custom_headers: headers that will be added to the request
+        :param bool raw: returns the direct response alongside the
+         deserialized response
+        :return: An instance of AzureOperationPoller that returns None or
+         ClientRawResponse if raw=true
+        :rtype: ~msrestazure.azure_operation.AzureOperationPoller[None] or
+         ~msrest.pipeline.ClientRawResponse
+        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
+        """
+        raw_result = self._post202_non_retry400_initial(
+            product=product,
+            custom_headers=custom_headers,
+            raw=True,
+            **operation_config
+        )
+        if raw:
+            return raw_result
+
+        # Construct and send request
+        def long_running_send():
+            return raw_result.response
 
         def get_long_running_status(status_link, headers=None):
 
             request = self._client.get(status_link)
             if headers:
                 request.headers.update(headers)
+            header_parameters = {}
+            header_parameters['x-ms-client-request-id'] = raw_result.response.request.headers['x-ms-client-request-id']
             return self._client.send(
                 request, header_parameters, stream=False, **operation_config)
 
@@ -738,10 +992,6 @@ class LROSADsOperations(object):
                 })
                 return client_raw_response
 
-        if raw:
-            response = long_running_send()
-            return get_long_running_output(response)
-
         long_running_operation_timeout = operation_config.get(
             'long_running_operation_timeout',
             self.config.long_running_operation_timeout)
@@ -749,23 +999,9 @@ class LROSADsOperations(object):
             long_running_send, get_long_running_output,
             get_long_running_status, long_running_operation_timeout)
 
-    def post_async_relative_retry400(
-            self, product=None, custom_headers=None, raw=False, **operation_config):
-        """Long running post request, service returns a 202 to the initial request
-        Poll the endpoint indicated in the Azure-AsyncOperation header for
-        operation status.
 
-        :param product: Product to put
-        :type product: ~lro.models.Product
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: An instance of AzureOperationPoller that returns None or
-         ClientRawResponse if raw=true
-        :rtype: ~msrestazure.azure_operation.AzureOperationPoller[None] or
-         ~msrest.pipeline.ClientRawResponse
-        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
-        """
+    def _post_async_relative_retry400_initial(
+            self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = '/lro/nonretryerror/postasync/retry/400'
 
@@ -789,17 +1025,62 @@ class LROSADsOperations(object):
             body_content = None
 
         # Construct and send request
-        def long_running_send():
+        request = self._client.post(url, query_parameters)
+        response = self._client.send(
+            request, header_parameters, body_content, stream=False, **operation_config)
 
-            request = self._client.post(url, query_parameters)
-            return self._client.send(
-                request, header_parameters, body_content, stream=False, **operation_config)
+        if response.status_code not in [202]:
+            exp = CloudError(response)
+            exp.request_id = response.headers.get('x-ms-request-id')
+            raise exp
+
+        if raw:
+            client_raw_response = ClientRawResponse(None, response)
+            header_dict = {
+                'Azure-AsyncOperation': 'str',
+                'Location': 'str',
+                'Retry-After': 'int',
+            }
+            client_raw_response.add_headers(header_dict)
+            return client_raw_response
+
+    def post_async_relative_retry400(
+            self, product=None, custom_headers=None, raw=False, **operation_config):
+        """Long running post request, service returns a 202 to the initial request
+        Poll the endpoint indicated in the Azure-AsyncOperation header for
+        operation status.
+
+        :param product: Product to put
+        :type product: ~lro.models.Product
+        :param dict custom_headers: headers that will be added to the request
+        :param bool raw: returns the direct response alongside the
+         deserialized response
+        :return: An instance of AzureOperationPoller that returns None or
+         ClientRawResponse if raw=true
+        :rtype: ~msrestazure.azure_operation.AzureOperationPoller[None] or
+         ~msrest.pipeline.ClientRawResponse
+        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
+        """
+        raw_result = self._post_async_relative_retry400_initial(
+            product=product,
+            custom_headers=custom_headers,
+            raw=True,
+            **operation_config
+        )
+        if raw:
+            return raw_result
+
+        # Construct and send request
+        def long_running_send():
+            return raw_result.response
 
         def get_long_running_status(status_link, headers=None):
 
             request = self._client.get(status_link)
             if headers:
                 request.headers.update(headers)
+            header_parameters = {}
+            header_parameters['x-ms-client-request-id'] = raw_result.response.request.headers['x-ms-client-request-id']
             return self._client.send(
                 request, header_parameters, stream=False, **operation_config)
 
@@ -819,10 +1100,6 @@ class LROSADsOperations(object):
                 })
                 return client_raw_response
 
-        if raw:
-            response = long_running_send()
-            return get_long_running_output(response)
-
         long_running_operation_timeout = operation_config.get(
             'long_running_operation_timeout',
             self.config.long_running_operation_timeout)
@@ -830,23 +1107,9 @@ class LROSADsOperations(object):
             long_running_send, get_long_running_output,
             get_long_running_status, long_running_operation_timeout)
 
-    def put_error201_no_provisioning_state_payload(
-            self, product=None, custom_headers=None, raw=False, **operation_config):
-        """Long running put request, service returns a 201 to the initial request
-        with no payload.
 
-        :param product: Product to put
-        :type product: ~lro.models.Product
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: An instance of AzureOperationPoller that returns Product or
-         ClientRawResponse if raw=true
-        :rtype:
-         ~msrestazure.azure_operation.AzureOperationPoller[~lro.models.Product]
-         or ~msrest.pipeline.ClientRawResponse
-        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
-        """
+    def _put_error201_no_provisioning_state_payload_initial(
+            self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = '/lro/error/put/201/noprovisioningstatepayload'
 
@@ -870,57 +1133,32 @@ class LROSADsOperations(object):
             body_content = None
 
         # Construct and send request
-        def long_running_send():
+        request = self._client.put(url, query_parameters)
+        response = self._client.send(
+            request, header_parameters, body_content, stream=False, **operation_config)
 
-            request = self._client.put(url, query_parameters)
-            return self._client.send(
-                request, header_parameters, body_content, stream=False, **operation_config)
+        if response.status_code not in [200, 201]:
+            exp = CloudError(response)
+            exp.request_id = response.headers.get('x-ms-request-id')
+            raise exp
 
-        def get_long_running_status(status_link, headers=None):
+        deserialized = None
 
-            request = self._client.get(status_link)
-            if headers:
-                request.headers.update(headers)
-            return self._client.send(
-                request, header_parameters, stream=False, **operation_config)
-
-        def get_long_running_output(response):
-
-            if response.status_code not in [200, 201]:
-                exp = CloudError(response)
-                exp.request_id = response.headers.get('x-ms-request-id')
-                raise exp
-
-            deserialized = None
-
-            if response.status_code == 200:
-                deserialized = self._deserialize('Product', response)
-            if response.status_code == 201:
-                deserialized = self._deserialize('Product', response)
-
-            if raw:
-                client_raw_response = ClientRawResponse(deserialized, response)
-                return client_raw_response
-
-            return deserialized
+        if response.status_code == 200:
+            deserialized = self._deserialize('Product', response)
+        if response.status_code == 201:
+            deserialized = self._deserialize('Product', response)
 
         if raw:
-            response = long_running_send()
-            return get_long_running_output(response)
+            client_raw_response = ClientRawResponse(deserialized, response)
+            return client_raw_response
 
-        long_running_operation_timeout = operation_config.get(
-            'long_running_operation_timeout',
-            self.config.long_running_operation_timeout)
-        return AzureOperationPoller(
-            long_running_send, get_long_running_output,
-            get_long_running_status, long_running_operation_timeout)
+        return deserialized
 
-    def put_async_relative_retry_no_status(
+    def put_error201_no_provisioning_state_payload(
             self, product=None, custom_headers=None, raw=False, **operation_config):
-        """Long running put request, service returns a 200 to the initial request,
-        with an entity that contains ProvisioningState=’Creating’. Poll the
-        endpoint indicated in the Azure-AsyncOperation header for operation
-        status.
+        """Long running put request, service returns a 201 to the initial request
+        with no payload.
 
         :param product: Product to put
         :type product: ~lro.models.Product
@@ -934,6 +1172,57 @@ class LROSADsOperations(object):
          or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
+        raw_result = self._put_error201_no_provisioning_state_payload_initial(
+            product=product,
+            custom_headers=custom_headers,
+            raw=True,
+            **operation_config
+        )
+        if raw:
+            return raw_result
+
+        # Construct and send request
+        def long_running_send():
+            return raw_result.response
+
+        def get_long_running_status(status_link, headers=None):
+
+            request = self._client.get(status_link)
+            if headers:
+                request.headers.update(headers)
+            header_parameters = {}
+            header_parameters['x-ms-client-request-id'] = raw_result.response.request.headers['x-ms-client-request-id']
+            return self._client.send(
+                request, header_parameters, stream=False, **operation_config)
+
+        def get_long_running_output(response):
+
+            if response.status_code not in [200, 201]:
+                exp = CloudError(response)
+                exp.request_id = response.headers.get('x-ms-request-id')
+                raise exp
+
+            deserialized = None
+
+            deserialized = self._deserialize('Product', response)
+            header_dict = {}
+
+            if raw:
+                client_raw_response = ClientRawResponse(deserialized, response)
+                return client_raw_response
+
+            return deserialized
+
+        long_running_operation_timeout = operation_config.get(
+            'long_running_operation_timeout',
+            self.config.long_running_operation_timeout)
+        return AzureOperationPoller(
+            long_running_send, get_long_running_output,
+            get_long_running_status, long_running_operation_timeout)
+
+
+    def _put_async_relative_retry_no_status_initial(
+            self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = '/lro/error/putasync/retry/nostatus'
 
@@ -957,57 +1246,37 @@ class LROSADsOperations(object):
             body_content = None
 
         # Construct and send request
-        def long_running_send():
+        request = self._client.put(url, query_parameters)
+        response = self._client.send(
+            request, header_parameters, body_content, stream=False, **operation_config)
 
-            request = self._client.put(url, query_parameters)
-            return self._client.send(
-                request, header_parameters, body_content, stream=False, **operation_config)
+        if response.status_code not in [200]:
+            exp = CloudError(response)
+            exp.request_id = response.headers.get('x-ms-request-id')
+            raise exp
 
-        def get_long_running_status(status_link, headers=None):
+        deserialized = None
+        header_dict = {}
 
-            request = self._client.get(status_link)
-            if headers:
-                request.headers.update(headers)
-            return self._client.send(
-                request, header_parameters, stream=False, **operation_config)
-
-        def get_long_running_output(response):
-
-            if response.status_code not in [200]:
-                exp = CloudError(response)
-                exp.request_id = response.headers.get('x-ms-request-id')
-                raise exp
-
-            deserialized = None
-            header_dict = {}
-
-            if response.status_code == 200:
-                deserialized = self._deserialize('Product', response)
-                header_dict = {
-                    'Azure-AsyncOperation': 'str',
-                    'Location': 'str',
-                    'Retry-After': 'int',
-                }
-
-            if raw:
-                client_raw_response = ClientRawResponse(deserialized, response)
-                client_raw_response.add_headers(header_dict)
-                return client_raw_response
-
-            return deserialized
+        if response.status_code == 200:
+            deserialized = self._deserialize('Product', response)
+            header_dict = {
+                'Azure-AsyncOperation': 'str',
+                'Location': 'str',
+                'Retry-After': 'int',
+            }
 
         if raw:
-            response = long_running_send()
-            return get_long_running_output(response)
+            client_raw_response = ClientRawResponse(deserialized, response)
+            try:
+                client_raw_response.add_headers(header_dict)
+            except DeserializationError:
+                pass # Deserialization of Headers here can fail
+            return client_raw_response
 
-        long_running_operation_timeout = operation_config.get(
-            'long_running_operation_timeout',
-            self.config.long_running_operation_timeout)
-        return AzureOperationPoller(
-            long_running_send, get_long_running_output,
-            get_long_running_status, long_running_operation_timeout)
+        return deserialized
 
-    def put_async_relative_retry_no_status_payload(
+    def put_async_relative_retry_no_status(
             self, product=None, custom_headers=None, raw=False, **operation_config):
         """Long running put request, service returns a 200 to the initial request,
         with an entity that contains ProvisioningState=’Creating’. Poll the
@@ -1026,6 +1295,63 @@ class LROSADsOperations(object):
          or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
+        raw_result = self._put_async_relative_retry_no_status_initial(
+            product=product,
+            custom_headers=custom_headers,
+            raw=True,
+            **operation_config
+        )
+        if raw:
+            return raw_result
+
+        # Construct and send request
+        def long_running_send():
+            return raw_result.response
+
+        def get_long_running_status(status_link, headers=None):
+
+            request = self._client.get(status_link)
+            if headers:
+                request.headers.update(headers)
+            header_parameters = {}
+            header_parameters['x-ms-client-request-id'] = raw_result.response.request.headers['x-ms-client-request-id']
+            return self._client.send(
+                request, header_parameters, stream=False, **operation_config)
+
+        def get_long_running_output(response):
+
+            if response.status_code not in [200]:
+                exp = CloudError(response)
+                exp.request_id = response.headers.get('x-ms-request-id')
+                raise exp
+
+            deserialized = None
+            header_dict = {}
+
+            deserialized = self._deserialize('Product', response)
+            header_dict = {
+                'Azure-AsyncOperation': 'str',
+                'Location': 'str',
+                'Retry-After': 'int',
+            }
+
+            if raw:
+                client_raw_response = ClientRawResponse(deserialized, response)
+                client_raw_response.add_headers(header_dict)
+                return client_raw_response
+
+            return deserialized
+
+        long_running_operation_timeout = operation_config.get(
+            'long_running_operation_timeout',
+            self.config.long_running_operation_timeout)
+        return AzureOperationPoller(
+            long_running_send, get_long_running_output,
+            get_long_running_status, long_running_operation_timeout)
+
+
+    def _put_async_relative_retry_no_status_payload_initial(
+            self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = '/lro/error/putasync/retry/nostatuspayload'
 
@@ -1049,17 +1375,75 @@ class LROSADsOperations(object):
             body_content = None
 
         # Construct and send request
-        def long_running_send():
+        request = self._client.put(url, query_parameters)
+        response = self._client.send(
+            request, header_parameters, body_content, stream=False, **operation_config)
 
-            request = self._client.put(url, query_parameters)
-            return self._client.send(
-                request, header_parameters, body_content, stream=False, **operation_config)
+        if response.status_code not in [200]:
+            exp = CloudError(response)
+            exp.request_id = response.headers.get('x-ms-request-id')
+            raise exp
+
+        deserialized = None
+        header_dict = {}
+
+        if response.status_code == 200:
+            deserialized = self._deserialize('Product', response)
+            header_dict = {
+                'Azure-AsyncOperation': 'str',
+                'Location': 'str',
+                'Retry-After': 'int',
+            }
+
+        if raw:
+            client_raw_response = ClientRawResponse(deserialized, response)
+            try:
+                client_raw_response.add_headers(header_dict)
+            except DeserializationError:
+                pass # Deserialization of Headers here can fail
+            return client_raw_response
+
+        return deserialized
+
+    def put_async_relative_retry_no_status_payload(
+            self, product=None, custom_headers=None, raw=False, **operation_config):
+        """Long running put request, service returns a 200 to the initial request,
+        with an entity that contains ProvisioningState=’Creating’. Poll the
+        endpoint indicated in the Azure-AsyncOperation header for operation
+        status.
+
+        :param product: Product to put
+        :type product: ~lro.models.Product
+        :param dict custom_headers: headers that will be added to the request
+        :param bool raw: returns the direct response alongside the
+         deserialized response
+        :return: An instance of AzureOperationPoller that returns Product or
+         ClientRawResponse if raw=true
+        :rtype:
+         ~msrestazure.azure_operation.AzureOperationPoller[~lro.models.Product]
+         or ~msrest.pipeline.ClientRawResponse
+        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
+        """
+        raw_result = self._put_async_relative_retry_no_status_payload_initial(
+            product=product,
+            custom_headers=custom_headers,
+            raw=True,
+            **operation_config
+        )
+        if raw:
+            return raw_result
+
+        # Construct and send request
+        def long_running_send():
+            return raw_result.response
 
         def get_long_running_status(status_link, headers=None):
 
             request = self._client.get(status_link)
             if headers:
                 request.headers.update(headers)
+            header_parameters = {}
+            header_parameters['x-ms-client-request-id'] = raw_result.response.request.headers['x-ms-client-request-id']
             return self._client.send(
                 request, header_parameters, stream=False, **operation_config)
 
@@ -1073,13 +1457,12 @@ class LROSADsOperations(object):
             deserialized = None
             header_dict = {}
 
-            if response.status_code == 200:
-                deserialized = self._deserialize('Product', response)
-                header_dict = {
-                    'Azure-AsyncOperation': 'str',
-                    'Location': 'str',
-                    'Retry-After': 'int',
-                }
+            deserialized = self._deserialize('Product', response)
+            header_dict = {
+                'Azure-AsyncOperation': 'str',
+                'Location': 'str',
+                'Retry-After': 'int',
+            }
 
             if raw:
                 client_raw_response = ClientRawResponse(deserialized, response)
@@ -1088,10 +1471,6 @@ class LROSADsOperations(object):
 
             return deserialized
 
-        if raw:
-            response = long_running_send()
-            return get_long_running_output(response)
-
         long_running_operation_timeout = operation_config.get(
             'long_running_operation_timeout',
             self.config.long_running_operation_timeout)
@@ -1099,20 +1478,9 @@ class LROSADsOperations(object):
             long_running_send, get_long_running_output,
             get_long_running_status, long_running_operation_timeout)
 
-    def delete204_succeeded(
-            self, custom_headers=None, raw=False, **operation_config):
-        """Long running delete request, service returns a 204 to the initial
-        request, indicating success.
 
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: An instance of AzureOperationPoller that returns None or
-         ClientRawResponse if raw=true
-        :rtype: ~msrestazure.azure_operation.AzureOperationPoller[None] or
-         ~msrest.pipeline.ClientRawResponse
-        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
-        """
+    def _delete204_succeeded_initial(
+            self, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = '/lro/error/delete/204/nolocation'
 
@@ -1130,16 +1498,51 @@ class LROSADsOperations(object):
             header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
 
         # Construct and send request
-        def long_running_send():
+        request = self._client.delete(url, query_parameters)
+        response = self._client.send(request, header_parameters, stream=False, **operation_config)
 
-            request = self._client.delete(url, query_parameters)
-            return self._client.send(request, header_parameters, stream=False, **operation_config)
+        if response.status_code not in [204]:
+            exp = CloudError(response)
+            exp.request_id = response.headers.get('x-ms-request-id')
+            raise exp
+
+        if raw:
+            client_raw_response = ClientRawResponse(None, response)
+            return client_raw_response
+
+    def delete204_succeeded(
+            self, custom_headers=None, raw=False, **operation_config):
+        """Long running delete request, service returns a 204 to the initial
+        request, indicating success.
+
+        :param dict custom_headers: headers that will be added to the request
+        :param bool raw: returns the direct response alongside the
+         deserialized response
+        :return: An instance of AzureOperationPoller that returns None or
+         ClientRawResponse if raw=true
+        :rtype: ~msrestazure.azure_operation.AzureOperationPoller[None] or
+         ~msrest.pipeline.ClientRawResponse
+        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
+        """
+        raw_result = self._delete204_succeeded_initial(
+            custom_headers=custom_headers,
+            raw=True,
+            **operation_config
+        )
+        if raw:
+            return raw_result
+
+        # Construct and send request
+        def long_running_send():
+            return raw_result.response
 
         def get_long_running_status(status_link, headers=None):
 
             request = self._client.get(status_link)
             if headers:
                 request.headers.update(headers)
+            header_parameters = {}
+            header_parameters['x-ms-client-request-id'] = raw_result.response.request.headers['x-ms-client-request-id']
             return self._client.send(
                 request, header_parameters, stream=False, **operation_config)
 
@@ -1154,10 +1557,6 @@ class LROSADsOperations(object):
                 client_raw_response = ClientRawResponse(None, response)
                 return client_raw_response
 
-        if raw:
-            response = long_running_send()
-            return get_long_running_output(response)
-
         long_running_operation_timeout = operation_config.get(
             'long_running_operation_timeout',
             self.config.long_running_operation_timeout)
@@ -1165,21 +1564,9 @@ class LROSADsOperations(object):
             long_running_send, get_long_running_output,
             get_long_running_status, long_running_operation_timeout)
 
-    def delete_async_relative_retry_no_status(
-            self, custom_headers=None, raw=False, **operation_config):
-        """Long running delete request, service returns a 202 to the initial
-        request. Poll the endpoint indicated in the Azure-AsyncOperation header
-        for operation status.
 
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: An instance of AzureOperationPoller that returns None or
-         ClientRawResponse if raw=true
-        :rtype: ~msrestazure.azure_operation.AzureOperationPoller[None] or
-         ~msrest.pipeline.ClientRawResponse
-        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
-        """
+    def _delete_async_relative_retry_no_status_initial(
+            self, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = '/lro/error/deleteasync/retry/nostatus'
 
@@ -1197,16 +1584,58 @@ class LROSADsOperations(object):
             header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
 
         # Construct and send request
-        def long_running_send():
+        request = self._client.delete(url, query_parameters)
+        response = self._client.send(request, header_parameters, stream=False, **operation_config)
 
-            request = self._client.delete(url, query_parameters)
-            return self._client.send(request, header_parameters, stream=False, **operation_config)
+        if response.status_code not in [202]:
+            exp = CloudError(response)
+            exp.request_id = response.headers.get('x-ms-request-id')
+            raise exp
+
+        if raw:
+            client_raw_response = ClientRawResponse(None, response)
+            header_dict = {
+                'Azure-AsyncOperation': 'str',
+                'Location': 'str',
+                'Retry-After': 'int',
+            }
+            client_raw_response.add_headers(header_dict)
+            return client_raw_response
+
+    def delete_async_relative_retry_no_status(
+            self, custom_headers=None, raw=False, **operation_config):
+        """Long running delete request, service returns a 202 to the initial
+        request. Poll the endpoint indicated in the Azure-AsyncOperation header
+        for operation status.
+
+        :param dict custom_headers: headers that will be added to the request
+        :param bool raw: returns the direct response alongside the
+         deserialized response
+        :return: An instance of AzureOperationPoller that returns None or
+         ClientRawResponse if raw=true
+        :rtype: ~msrestazure.azure_operation.AzureOperationPoller[None] or
+         ~msrest.pipeline.ClientRawResponse
+        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
+        """
+        raw_result = self._delete_async_relative_retry_no_status_initial(
+            custom_headers=custom_headers,
+            raw=True,
+            **operation_config
+        )
+        if raw:
+            return raw_result
+
+        # Construct and send request
+        def long_running_send():
+            return raw_result.response
 
         def get_long_running_status(status_link, headers=None):
 
             request = self._client.get(status_link)
             if headers:
                 request.headers.update(headers)
+            header_parameters = {}
+            header_parameters['x-ms-client-request-id'] = raw_result.response.request.headers['x-ms-client-request-id']
             return self._client.send(
                 request, header_parameters, stream=False, **operation_config)
 
@@ -1226,10 +1655,6 @@ class LROSADsOperations(object):
                 })
                 return client_raw_response
 
-        if raw:
-            response = long_running_send()
-            return get_long_running_output(response)
-
         long_running_operation_timeout = operation_config.get(
             'long_running_operation_timeout',
             self.config.long_running_operation_timeout)
@@ -1237,22 +1662,9 @@ class LROSADsOperations(object):
             long_running_send, get_long_running_output,
             get_long_running_status, long_running_operation_timeout)
 
-    def post202_no_location(
-            self, product=None, custom_headers=None, raw=False, **operation_config):
-        """Long running post request, service returns a 202 to the initial
-        request, without a location header.
 
-        :param product: Product to put
-        :type product: ~lro.models.Product
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: An instance of AzureOperationPoller that returns None or
-         ClientRawResponse if raw=true
-        :rtype: ~msrestazure.azure_operation.AzureOperationPoller[None] or
-         ~msrest.pipeline.ClientRawResponse
-        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
-        """
+    def _post202_no_location_initial(
+            self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = '/lro/error/post/202/nolocation'
 
@@ -1276,17 +1688,60 @@ class LROSADsOperations(object):
             body_content = None
 
         # Construct and send request
-        def long_running_send():
+        request = self._client.post(url, query_parameters)
+        response = self._client.send(
+            request, header_parameters, body_content, stream=False, **operation_config)
 
-            request = self._client.post(url, query_parameters)
-            return self._client.send(
-                request, header_parameters, body_content, stream=False, **operation_config)
+        if response.status_code not in [202]:
+            exp = CloudError(response)
+            exp.request_id = response.headers.get('x-ms-request-id')
+            raise exp
+
+        if raw:
+            client_raw_response = ClientRawResponse(None, response)
+            header_dict = {
+                'Location': 'str',
+                'Retry-After': 'int',
+            }
+            client_raw_response.add_headers(header_dict)
+            return client_raw_response
+
+    def post202_no_location(
+            self, product=None, custom_headers=None, raw=False, **operation_config):
+        """Long running post request, service returns a 202 to the initial
+        request, without a location header.
+
+        :param product: Product to put
+        :type product: ~lro.models.Product
+        :param dict custom_headers: headers that will be added to the request
+        :param bool raw: returns the direct response alongside the
+         deserialized response
+        :return: An instance of AzureOperationPoller that returns None or
+         ClientRawResponse if raw=true
+        :rtype: ~msrestazure.azure_operation.AzureOperationPoller[None] or
+         ~msrest.pipeline.ClientRawResponse
+        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
+        """
+        raw_result = self._post202_no_location_initial(
+            product=product,
+            custom_headers=custom_headers,
+            raw=True,
+            **operation_config
+        )
+        if raw:
+            return raw_result
+
+        # Construct and send request
+        def long_running_send():
+            return raw_result.response
 
         def get_long_running_status(status_link, headers=None):
 
             request = self._client.get(status_link)
             if headers:
                 request.headers.update(headers)
+            header_parameters = {}
+            header_parameters['x-ms-client-request-id'] = raw_result.response.request.headers['x-ms-client-request-id']
             return self._client.send(
                 request, header_parameters, stream=False, **operation_config)
 
@@ -1305,10 +1760,6 @@ class LROSADsOperations(object):
                 })
                 return client_raw_response
 
-        if raw:
-            response = long_running_send()
-            return get_long_running_output(response)
-
         long_running_operation_timeout = operation_config.get(
             'long_running_operation_timeout',
             self.config.long_running_operation_timeout)
@@ -1316,24 +1767,9 @@ class LROSADsOperations(object):
             long_running_send, get_long_running_output,
             get_long_running_status, long_running_operation_timeout)
 
-    def post_async_relative_retry_no_payload(
-            self, product=None, custom_headers=None, raw=False, **operation_config):
-        """Long running post request, service returns a 202 to the initial
-        request, with an entity that contains ProvisioningState=’Creating’.
-        Poll the endpoint indicated in the Azure-AsyncOperation header for
-        operation status.
 
-        :param product: Product to put
-        :type product: ~lro.models.Product
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: An instance of AzureOperationPoller that returns None or
-         ClientRawResponse if raw=true
-        :rtype: ~msrestazure.azure_operation.AzureOperationPoller[None] or
-         ~msrest.pipeline.ClientRawResponse
-        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
-        """
+    def _post_async_relative_retry_no_payload_initial(
+            self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = '/lro/error/postasync/retry/nopayload'
 
@@ -1357,17 +1793,63 @@ class LROSADsOperations(object):
             body_content = None
 
         # Construct and send request
-        def long_running_send():
+        request = self._client.post(url, query_parameters)
+        response = self._client.send(
+            request, header_parameters, body_content, stream=False, **operation_config)
 
-            request = self._client.post(url, query_parameters)
-            return self._client.send(
-                request, header_parameters, body_content, stream=False, **operation_config)
+        if response.status_code not in [202]:
+            exp = CloudError(response)
+            exp.request_id = response.headers.get('x-ms-request-id')
+            raise exp
+
+        if raw:
+            client_raw_response = ClientRawResponse(None, response)
+            header_dict = {
+                'Azure-AsyncOperation': 'str',
+                'Location': 'str',
+                'Retry-After': 'int',
+            }
+            client_raw_response.add_headers(header_dict)
+            return client_raw_response
+
+    def post_async_relative_retry_no_payload(
+            self, product=None, custom_headers=None, raw=False, **operation_config):
+        """Long running post request, service returns a 202 to the initial
+        request, with an entity that contains ProvisioningState=’Creating’.
+        Poll the endpoint indicated in the Azure-AsyncOperation header for
+        operation status.
+
+        :param product: Product to put
+        :type product: ~lro.models.Product
+        :param dict custom_headers: headers that will be added to the request
+        :param bool raw: returns the direct response alongside the
+         deserialized response
+        :return: An instance of AzureOperationPoller that returns None or
+         ClientRawResponse if raw=true
+        :rtype: ~msrestazure.azure_operation.AzureOperationPoller[None] or
+         ~msrest.pipeline.ClientRawResponse
+        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
+        """
+        raw_result = self._post_async_relative_retry_no_payload_initial(
+            product=product,
+            custom_headers=custom_headers,
+            raw=True,
+            **operation_config
+        )
+        if raw:
+            return raw_result
+
+        # Construct and send request
+        def long_running_send():
+            return raw_result.response
 
         def get_long_running_status(status_link, headers=None):
 
             request = self._client.get(status_link)
             if headers:
                 request.headers.update(headers)
+            header_parameters = {}
+            header_parameters['x-ms-client-request-id'] = raw_result.response.request.headers['x-ms-client-request-id']
             return self._client.send(
                 request, header_parameters, stream=False, **operation_config)
 
@@ -1387,10 +1869,6 @@ class LROSADsOperations(object):
                 })
                 return client_raw_response
 
-        if raw:
-            response = long_running_send()
-            return get_long_running_output(response)
-
         long_running_operation_timeout = operation_config.get(
             'long_running_operation_timeout',
             self.config.long_running_operation_timeout)
@@ -1398,23 +1876,9 @@ class LROSADsOperations(object):
             long_running_send, get_long_running_output,
             get_long_running_status, long_running_operation_timeout)
 
-    def put200_invalid_json(
-            self, product=None, custom_headers=None, raw=False, **operation_config):
-        """Long running put request, service returns a 200 to the initial request,
-        with an entity that is not a valid json.
 
-        :param product: Product to put
-        :type product: ~lro.models.Product
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: An instance of AzureOperationPoller that returns Product or
-         ClientRawResponse if raw=true
-        :rtype:
-         ~msrestazure.azure_operation.AzureOperationPoller[~lro.models.Product]
-         or ~msrest.pipeline.ClientRawResponse
-        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
-        """
+    def _put200_invalid_json_initial(
+            self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = '/lro/error/put/200/invalidjson'
 
@@ -1438,54 +1902,30 @@ class LROSADsOperations(object):
             body_content = None
 
         # Construct and send request
-        def long_running_send():
+        request = self._client.put(url, query_parameters)
+        response = self._client.send(
+            request, header_parameters, body_content, stream=False, **operation_config)
 
-            request = self._client.put(url, query_parameters)
-            return self._client.send(
-                request, header_parameters, body_content, stream=False, **operation_config)
+        if response.status_code not in [200, 204]:
+            exp = CloudError(response)
+            exp.request_id = response.headers.get('x-ms-request-id')
+            raise exp
 
-        def get_long_running_status(status_link, headers=None):
+        deserialized = None
 
-            request = self._client.get(status_link)
-            if headers:
-                request.headers.update(headers)
-            return self._client.send(
-                request, header_parameters, stream=False, **operation_config)
-
-        def get_long_running_output(response):
-
-            if response.status_code not in [200, 204]:
-                exp = CloudError(response)
-                exp.request_id = response.headers.get('x-ms-request-id')
-                raise exp
-
-            deserialized = None
-
-            if response.status_code == 200:
-                deserialized = self._deserialize('Product', response)
-
-            if raw:
-                client_raw_response = ClientRawResponse(deserialized, response)
-                return client_raw_response
-
-            return deserialized
+        if response.status_code == 200:
+            deserialized = self._deserialize('Product', response)
 
         if raw:
-            response = long_running_send()
-            return get_long_running_output(response)
+            client_raw_response = ClientRawResponse(deserialized, response)
+            return client_raw_response
 
-        long_running_operation_timeout = operation_config.get(
-            'long_running_operation_timeout',
-            self.config.long_running_operation_timeout)
-        return AzureOperationPoller(
-            long_running_send, get_long_running_output,
-            get_long_running_status, long_running_operation_timeout)
+        return deserialized
 
-    def put_async_relative_retry_invalid_header(
+    def put200_invalid_json(
             self, product=None, custom_headers=None, raw=False, **operation_config):
         """Long running put request, service returns a 200 to the initial request,
-        with an entity that contains ProvisioningState=’Creating’. The endpoint
-        indicated in the Azure-AsyncOperation header is invalid.
+        with an entity that is not a valid json.
 
         :param product: Product to put
         :type product: ~lro.models.Product
@@ -1499,6 +1939,57 @@ class LROSADsOperations(object):
          or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
+        raw_result = self._put200_invalid_json_initial(
+            product=product,
+            custom_headers=custom_headers,
+            raw=True,
+            **operation_config
+        )
+        if raw:
+            return raw_result
+
+        # Construct and send request
+        def long_running_send():
+            return raw_result.response
+
+        def get_long_running_status(status_link, headers=None):
+
+            request = self._client.get(status_link)
+            if headers:
+                request.headers.update(headers)
+            header_parameters = {}
+            header_parameters['x-ms-client-request-id'] = raw_result.response.request.headers['x-ms-client-request-id']
+            return self._client.send(
+                request, header_parameters, stream=False, **operation_config)
+
+        def get_long_running_output(response):
+
+            if response.status_code not in [200, 204]:
+                exp = CloudError(response)
+                exp.request_id = response.headers.get('x-ms-request-id')
+                raise exp
+
+            deserialized = None
+
+            deserialized = self._deserialize('Product', response)
+            header_dict = {}
+
+            if raw:
+                client_raw_response = ClientRawResponse(deserialized, response)
+                return client_raw_response
+
+            return deserialized
+
+        long_running_operation_timeout = operation_config.get(
+            'long_running_operation_timeout',
+            self.config.long_running_operation_timeout)
+        return AzureOperationPoller(
+            long_running_send, get_long_running_output,
+            get_long_running_status, long_running_operation_timeout)
+
+
+    def _put_async_relative_retry_invalid_header_initial(
+            self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = '/lro/error/putasync/retry/invalidheader'
 
@@ -1522,62 +2013,41 @@ class LROSADsOperations(object):
             body_content = None
 
         # Construct and send request
-        def long_running_send():
+        request = self._client.put(url, query_parameters)
+        response = self._client.send(
+            request, header_parameters, body_content, stream=False, **operation_config)
 
-            request = self._client.put(url, query_parameters)
-            return self._client.send(
-                request, header_parameters, body_content, stream=False, **operation_config)
+        if response.status_code not in [200]:
+            exp = CloudError(response)
+            exp.request_id = response.headers.get('x-ms-request-id')
+            raise exp
 
-        def get_long_running_status(status_link, headers=None):
+        deserialized = None
+        header_dict = {}
 
-            request = self._client.get(status_link)
-            if headers:
-                request.headers.update(headers)
-            return self._client.send(
-                request, header_parameters, stream=False, **operation_config)
-
-        def get_long_running_output(response):
-
-            if response.status_code not in [200]:
-                exp = CloudError(response)
-                exp.request_id = response.headers.get('x-ms-request-id')
-                raise exp
-
-            deserialized = None
-            header_dict = {}
-
-            if response.status_code == 200:
-                deserialized = self._deserialize('Product', response)
-                header_dict = {
-                    'Azure-AsyncOperation': 'str',
-                    'Location': 'str',
-                    'Retry-After': 'int',
-                }
-
-            if raw:
-                client_raw_response = ClientRawResponse(deserialized, response)
-                client_raw_response.add_headers(header_dict)
-                return client_raw_response
-
-            return deserialized
+        if response.status_code == 200:
+            deserialized = self._deserialize('Product', response)
+            header_dict = {
+                'Azure-AsyncOperation': 'str',
+                'Location': 'str',
+                'Retry-After': 'int',
+            }
 
         if raw:
-            response = long_running_send()
-            return get_long_running_output(response)
+            client_raw_response = ClientRawResponse(deserialized, response)
+            try:
+                client_raw_response.add_headers(header_dict)
+            except DeserializationError:
+                pass # Deserialization of Headers here can fail
+            return client_raw_response
 
-        long_running_operation_timeout = operation_config.get(
-            'long_running_operation_timeout',
-            self.config.long_running_operation_timeout)
-        return AzureOperationPoller(
-            long_running_send, get_long_running_output,
-            get_long_running_status, long_running_operation_timeout)
+        return deserialized
 
-    def put_async_relative_retry_invalid_json_polling(
+    def put_async_relative_retry_invalid_header(
             self, product=None, custom_headers=None, raw=False, **operation_config):
         """Long running put request, service returns a 200 to the initial request,
-        with an entity that contains ProvisioningState=’Creating’. Poll the
-        endpoint indicated in the Azure-AsyncOperation header for operation
-        status.
+        with an entity that contains ProvisioningState=’Creating’. The endpoint
+        indicated in the Azure-AsyncOperation header is invalid.
 
         :param product: Product to put
         :type product: ~lro.models.Product
@@ -1591,6 +2061,63 @@ class LROSADsOperations(object):
          or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
+        raw_result = self._put_async_relative_retry_invalid_header_initial(
+            product=product,
+            custom_headers=custom_headers,
+            raw=True,
+            **operation_config
+        )
+        if raw:
+            return raw_result
+
+        # Construct and send request
+        def long_running_send():
+            return raw_result.response
+
+        def get_long_running_status(status_link, headers=None):
+
+            request = self._client.get(status_link)
+            if headers:
+                request.headers.update(headers)
+            header_parameters = {}
+            header_parameters['x-ms-client-request-id'] = raw_result.response.request.headers['x-ms-client-request-id']
+            return self._client.send(
+                request, header_parameters, stream=False, **operation_config)
+
+        def get_long_running_output(response):
+
+            if response.status_code not in [200]:
+                exp = CloudError(response)
+                exp.request_id = response.headers.get('x-ms-request-id')
+                raise exp
+
+            deserialized = None
+            header_dict = {}
+
+            deserialized = self._deserialize('Product', response)
+            header_dict = {
+                'Azure-AsyncOperation': 'str',
+                'Location': 'str',
+                'Retry-After': 'int',
+            }
+
+            if raw:
+                client_raw_response = ClientRawResponse(deserialized, response)
+                client_raw_response.add_headers(header_dict)
+                return client_raw_response
+
+            return deserialized
+
+        long_running_operation_timeout = operation_config.get(
+            'long_running_operation_timeout',
+            self.config.long_running_operation_timeout)
+        return AzureOperationPoller(
+            long_running_send, get_long_running_output,
+            get_long_running_status, long_running_operation_timeout)
+
+
+    def _put_async_relative_retry_invalid_json_polling_initial(
+            self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = '/lro/error/putasync/retry/invalidjsonpolling'
 
@@ -1614,17 +2141,75 @@ class LROSADsOperations(object):
             body_content = None
 
         # Construct and send request
-        def long_running_send():
+        request = self._client.put(url, query_parameters)
+        response = self._client.send(
+            request, header_parameters, body_content, stream=False, **operation_config)
 
-            request = self._client.put(url, query_parameters)
-            return self._client.send(
-                request, header_parameters, body_content, stream=False, **operation_config)
+        if response.status_code not in [200]:
+            exp = CloudError(response)
+            exp.request_id = response.headers.get('x-ms-request-id')
+            raise exp
+
+        deserialized = None
+        header_dict = {}
+
+        if response.status_code == 200:
+            deserialized = self._deserialize('Product', response)
+            header_dict = {
+                'Azure-AsyncOperation': 'str',
+                'Location': 'str',
+                'Retry-After': 'int',
+            }
+
+        if raw:
+            client_raw_response = ClientRawResponse(deserialized, response)
+            try:
+                client_raw_response.add_headers(header_dict)
+            except DeserializationError:
+                pass # Deserialization of Headers here can fail
+            return client_raw_response
+
+        return deserialized
+
+    def put_async_relative_retry_invalid_json_polling(
+            self, product=None, custom_headers=None, raw=False, **operation_config):
+        """Long running put request, service returns a 200 to the initial request,
+        with an entity that contains ProvisioningState=’Creating’. Poll the
+        endpoint indicated in the Azure-AsyncOperation header for operation
+        status.
+
+        :param product: Product to put
+        :type product: ~lro.models.Product
+        :param dict custom_headers: headers that will be added to the request
+        :param bool raw: returns the direct response alongside the
+         deserialized response
+        :return: An instance of AzureOperationPoller that returns Product or
+         ClientRawResponse if raw=true
+        :rtype:
+         ~msrestazure.azure_operation.AzureOperationPoller[~lro.models.Product]
+         or ~msrest.pipeline.ClientRawResponse
+        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
+        """
+        raw_result = self._put_async_relative_retry_invalid_json_polling_initial(
+            product=product,
+            custom_headers=custom_headers,
+            raw=True,
+            **operation_config
+        )
+        if raw:
+            return raw_result
+
+        # Construct and send request
+        def long_running_send():
+            return raw_result.response
 
         def get_long_running_status(status_link, headers=None):
 
             request = self._client.get(status_link)
             if headers:
                 request.headers.update(headers)
+            header_parameters = {}
+            header_parameters['x-ms-client-request-id'] = raw_result.response.request.headers['x-ms-client-request-id']
             return self._client.send(
                 request, header_parameters, stream=False, **operation_config)
 
@@ -1638,13 +2223,12 @@ class LROSADsOperations(object):
             deserialized = None
             header_dict = {}
 
-            if response.status_code == 200:
-                deserialized = self._deserialize('Product', response)
-                header_dict = {
-                    'Azure-AsyncOperation': 'str',
-                    'Location': 'str',
-                    'Retry-After': 'int',
-                }
+            deserialized = self._deserialize('Product', response)
+            header_dict = {
+                'Azure-AsyncOperation': 'str',
+                'Location': 'str',
+                'Retry-After': 'int',
+            }
 
             if raw:
                 client_raw_response = ClientRawResponse(deserialized, response)
@@ -1653,10 +2237,6 @@ class LROSADsOperations(object):
 
             return deserialized
 
-        if raw:
-            response = long_running_send()
-            return get_long_running_output(response)
-
         long_running_operation_timeout = operation_config.get(
             'long_running_operation_timeout',
             self.config.long_running_operation_timeout)
@@ -1664,21 +2244,9 @@ class LROSADsOperations(object):
             long_running_send, get_long_running_output,
             get_long_running_status, long_running_operation_timeout)
 
-    def delete202_retry_invalid_header(
-            self, custom_headers=None, raw=False, **operation_config):
-        """Long running delete request, service returns a 202 to the initial
-        request receing a reponse with an invalid 'Location' and 'Retry-After'
-        headers.
 
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: An instance of AzureOperationPoller that returns None or
-         ClientRawResponse if raw=true
-        :rtype: ~msrestazure.azure_operation.AzureOperationPoller[None] or
-         ~msrest.pipeline.ClientRawResponse
-        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
-        """
+    def _delete202_retry_invalid_header_initial(
+            self, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = '/lro/error/delete/202/retry/invalidheader'
 
@@ -1696,16 +2264,57 @@ class LROSADsOperations(object):
             header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
 
         # Construct and send request
-        def long_running_send():
+        request = self._client.delete(url, query_parameters)
+        response = self._client.send(request, header_parameters, stream=False, **operation_config)
 
-            request = self._client.delete(url, query_parameters)
-            return self._client.send(request, header_parameters, stream=False, **operation_config)
+        if response.status_code not in [202]:
+            exp = CloudError(response)
+            exp.request_id = response.headers.get('x-ms-request-id')
+            raise exp
+
+        if raw:
+            client_raw_response = ClientRawResponse(None, response)
+            header_dict = {
+                'Location': 'str',
+                'Retry-After': 'int',
+            }
+            client_raw_response.add_headers(header_dict)
+            return client_raw_response
+
+    def delete202_retry_invalid_header(
+            self, custom_headers=None, raw=False, **operation_config):
+        """Long running delete request, service returns a 202 to the initial
+        request receing a reponse with an invalid 'Location' and 'Retry-After'
+        headers.
+
+        :param dict custom_headers: headers that will be added to the request
+        :param bool raw: returns the direct response alongside the
+         deserialized response
+        :return: An instance of AzureOperationPoller that returns None or
+         ClientRawResponse if raw=true
+        :rtype: ~msrestazure.azure_operation.AzureOperationPoller[None] or
+         ~msrest.pipeline.ClientRawResponse
+        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
+        """
+        raw_result = self._delete202_retry_invalid_header_initial(
+            custom_headers=custom_headers,
+            raw=True,
+            **operation_config
+        )
+        if raw:
+            return raw_result
+
+        # Construct and send request
+        def long_running_send():
+            return raw_result.response
 
         def get_long_running_status(status_link, headers=None):
 
             request = self._client.get(status_link)
             if headers:
                 request.headers.update(headers)
+            header_parameters = {}
+            header_parameters['x-ms-client-request-id'] = raw_result.response.request.headers['x-ms-client-request-id']
             return self._client.send(
                 request, header_parameters, stream=False, **operation_config)
 
@@ -1724,10 +2333,6 @@ class LROSADsOperations(object):
                 })
                 return client_raw_response
 
-        if raw:
-            response = long_running_send()
-            return get_long_running_output(response)
-
         long_running_operation_timeout = operation_config.get(
             'long_running_operation_timeout',
             self.config.long_running_operation_timeout)
@@ -1735,21 +2340,9 @@ class LROSADsOperations(object):
             long_running_send, get_long_running_output,
             get_long_running_status, long_running_operation_timeout)
 
-    def delete_async_relative_retry_invalid_header(
-            self, custom_headers=None, raw=False, **operation_config):
-        """Long running delete request, service returns a 202 to the initial
-        request. The endpoint indicated in the Azure-AsyncOperation header is
-        invalid.
 
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: An instance of AzureOperationPoller that returns None or
-         ClientRawResponse if raw=true
-        :rtype: ~msrestazure.azure_operation.AzureOperationPoller[None] or
-         ~msrest.pipeline.ClientRawResponse
-        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
-        """
+    def _delete_async_relative_retry_invalid_header_initial(
+            self, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = '/lro/error/deleteasync/retry/invalidheader'
 
@@ -1767,16 +2360,58 @@ class LROSADsOperations(object):
             header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
 
         # Construct and send request
-        def long_running_send():
+        request = self._client.delete(url, query_parameters)
+        response = self._client.send(request, header_parameters, stream=False, **operation_config)
 
-            request = self._client.delete(url, query_parameters)
-            return self._client.send(request, header_parameters, stream=False, **operation_config)
+        if response.status_code not in [202]:
+            exp = CloudError(response)
+            exp.request_id = response.headers.get('x-ms-request-id')
+            raise exp
+
+        if raw:
+            client_raw_response = ClientRawResponse(None, response)
+            header_dict = {
+                'Azure-AsyncOperation': 'str',
+                'Location': 'str',
+                'Retry-After': 'int',
+            }
+            client_raw_response.add_headers(header_dict)
+            return client_raw_response
+
+    def delete_async_relative_retry_invalid_header(
+            self, custom_headers=None, raw=False, **operation_config):
+        """Long running delete request, service returns a 202 to the initial
+        request. The endpoint indicated in the Azure-AsyncOperation header is
+        invalid.
+
+        :param dict custom_headers: headers that will be added to the request
+        :param bool raw: returns the direct response alongside the
+         deserialized response
+        :return: An instance of AzureOperationPoller that returns None or
+         ClientRawResponse if raw=true
+        :rtype: ~msrestazure.azure_operation.AzureOperationPoller[None] or
+         ~msrest.pipeline.ClientRawResponse
+        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
+        """
+        raw_result = self._delete_async_relative_retry_invalid_header_initial(
+            custom_headers=custom_headers,
+            raw=True,
+            **operation_config
+        )
+        if raw:
+            return raw_result
+
+        # Construct and send request
+        def long_running_send():
+            return raw_result.response
 
         def get_long_running_status(status_link, headers=None):
 
             request = self._client.get(status_link)
             if headers:
                 request.headers.update(headers)
+            header_parameters = {}
+            header_parameters['x-ms-client-request-id'] = raw_result.response.request.headers['x-ms-client-request-id']
             return self._client.send(
                 request, header_parameters, stream=False, **operation_config)
 
@@ -1796,10 +2431,6 @@ class LROSADsOperations(object):
                 })
                 return client_raw_response
 
-        if raw:
-            response = long_running_send()
-            return get_long_running_output(response)
-
         long_running_operation_timeout = operation_config.get(
             'long_running_operation_timeout',
             self.config.long_running_operation_timeout)
@@ -1807,21 +2438,9 @@ class LROSADsOperations(object):
             long_running_send, get_long_running_output,
             get_long_running_status, long_running_operation_timeout)
 
-    def delete_async_relative_retry_invalid_json_polling(
-            self, custom_headers=None, raw=False, **operation_config):
-        """Long running delete request, service returns a 202 to the initial
-        request. Poll the endpoint indicated in the Azure-AsyncOperation header
-        for operation status.
 
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: An instance of AzureOperationPoller that returns None or
-         ClientRawResponse if raw=true
-        :rtype: ~msrestazure.azure_operation.AzureOperationPoller[None] or
-         ~msrest.pipeline.ClientRawResponse
-        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
-        """
+    def _delete_async_relative_retry_invalid_json_polling_initial(
+            self, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = '/lro/error/deleteasync/retry/invalidjsonpolling'
 
@@ -1839,16 +2458,58 @@ class LROSADsOperations(object):
             header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
 
         # Construct and send request
-        def long_running_send():
+        request = self._client.delete(url, query_parameters)
+        response = self._client.send(request, header_parameters, stream=False, **operation_config)
 
-            request = self._client.delete(url, query_parameters)
-            return self._client.send(request, header_parameters, stream=False, **operation_config)
+        if response.status_code not in [202]:
+            exp = CloudError(response)
+            exp.request_id = response.headers.get('x-ms-request-id')
+            raise exp
+
+        if raw:
+            client_raw_response = ClientRawResponse(None, response)
+            header_dict = {
+                'Azure-AsyncOperation': 'str',
+                'Location': 'str',
+                'Retry-After': 'int',
+            }
+            client_raw_response.add_headers(header_dict)
+            return client_raw_response
+
+    def delete_async_relative_retry_invalid_json_polling(
+            self, custom_headers=None, raw=False, **operation_config):
+        """Long running delete request, service returns a 202 to the initial
+        request. Poll the endpoint indicated in the Azure-AsyncOperation header
+        for operation status.
+
+        :param dict custom_headers: headers that will be added to the request
+        :param bool raw: returns the direct response alongside the
+         deserialized response
+        :return: An instance of AzureOperationPoller that returns None or
+         ClientRawResponse if raw=true
+        :rtype: ~msrestazure.azure_operation.AzureOperationPoller[None] or
+         ~msrest.pipeline.ClientRawResponse
+        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
+        """
+        raw_result = self._delete_async_relative_retry_invalid_json_polling_initial(
+            custom_headers=custom_headers,
+            raw=True,
+            **operation_config
+        )
+        if raw:
+            return raw_result
+
+        # Construct and send request
+        def long_running_send():
+            return raw_result.response
 
         def get_long_running_status(status_link, headers=None):
 
             request = self._client.get(status_link)
             if headers:
                 request.headers.update(headers)
+            header_parameters = {}
+            header_parameters['x-ms-client-request-id'] = raw_result.response.request.headers['x-ms-client-request-id']
             return self._client.send(
                 request, header_parameters, stream=False, **operation_config)
 
@@ -1868,10 +2529,6 @@ class LROSADsOperations(object):
                 })
                 return client_raw_response
 
-        if raw:
-            response = long_running_send()
-            return get_long_running_output(response)
-
         long_running_operation_timeout = operation_config.get(
             'long_running_operation_timeout',
             self.config.long_running_operation_timeout)
@@ -1879,22 +2536,9 @@ class LROSADsOperations(object):
             long_running_send, get_long_running_output,
             get_long_running_status, long_running_operation_timeout)
 
-    def post202_retry_invalid_header(
-            self, product=None, custom_headers=None, raw=False, **operation_config):
-        """Long running post request, service returns a 202 to the initial
-        request, with invalid 'Location' and 'Retry-After' headers.
 
-        :param product: Product to put
-        :type product: ~lro.models.Product
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: An instance of AzureOperationPoller that returns None or
-         ClientRawResponse if raw=true
-        :rtype: ~msrestazure.azure_operation.AzureOperationPoller[None] or
-         ~msrest.pipeline.ClientRawResponse
-        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
-        """
+    def _post202_retry_invalid_header_initial(
+            self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = '/lro/error/post/202/retry/invalidheader'
 
@@ -1918,17 +2562,60 @@ class LROSADsOperations(object):
             body_content = None
 
         # Construct and send request
-        def long_running_send():
+        request = self._client.post(url, query_parameters)
+        response = self._client.send(
+            request, header_parameters, body_content, stream=False, **operation_config)
 
-            request = self._client.post(url, query_parameters)
-            return self._client.send(
-                request, header_parameters, body_content, stream=False, **operation_config)
+        if response.status_code not in [202]:
+            exp = CloudError(response)
+            exp.request_id = response.headers.get('x-ms-request-id')
+            raise exp
+
+        if raw:
+            client_raw_response = ClientRawResponse(None, response)
+            header_dict = {
+                'Location': 'str',
+                'Retry-After': 'int',
+            }
+            client_raw_response.add_headers(header_dict)
+            return client_raw_response
+
+    def post202_retry_invalid_header(
+            self, product=None, custom_headers=None, raw=False, **operation_config):
+        """Long running post request, service returns a 202 to the initial
+        request, with invalid 'Location' and 'Retry-After' headers.
+
+        :param product: Product to put
+        :type product: ~lro.models.Product
+        :param dict custom_headers: headers that will be added to the request
+        :param bool raw: returns the direct response alongside the
+         deserialized response
+        :return: An instance of AzureOperationPoller that returns None or
+         ClientRawResponse if raw=true
+        :rtype: ~msrestazure.azure_operation.AzureOperationPoller[None] or
+         ~msrest.pipeline.ClientRawResponse
+        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
+        """
+        raw_result = self._post202_retry_invalid_header_initial(
+            product=product,
+            custom_headers=custom_headers,
+            raw=True,
+            **operation_config
+        )
+        if raw:
+            return raw_result
+
+        # Construct and send request
+        def long_running_send():
+            return raw_result.response
 
         def get_long_running_status(status_link, headers=None):
 
             request = self._client.get(status_link)
             if headers:
                 request.headers.update(headers)
+            header_parameters = {}
+            header_parameters['x-ms-client-request-id'] = raw_result.response.request.headers['x-ms-client-request-id']
             return self._client.send(
                 request, header_parameters, stream=False, **operation_config)
 
@@ -1947,10 +2634,6 @@ class LROSADsOperations(object):
                 })
                 return client_raw_response
 
-        if raw:
-            response = long_running_send()
-            return get_long_running_output(response)
-
         long_running_operation_timeout = operation_config.get(
             'long_running_operation_timeout',
             self.config.long_running_operation_timeout)
@@ -1958,23 +2641,9 @@ class LROSADsOperations(object):
             long_running_send, get_long_running_output,
             get_long_running_status, long_running_operation_timeout)
 
-    def post_async_relative_retry_invalid_header(
-            self, product=None, custom_headers=None, raw=False, **operation_config):
-        """Long running post request, service returns a 202 to the initial
-        request, with an entity that contains ProvisioningState=’Creating’. The
-        endpoint indicated in the Azure-AsyncOperation header is invalid.
 
-        :param product: Product to put
-        :type product: ~lro.models.Product
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: An instance of AzureOperationPoller that returns None or
-         ClientRawResponse if raw=true
-        :rtype: ~msrestazure.azure_operation.AzureOperationPoller[None] or
-         ~msrest.pipeline.ClientRawResponse
-        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
-        """
+    def _post_async_relative_retry_invalid_header_initial(
+            self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = '/lro/error/postasync/retry/invalidheader'
 
@@ -1998,17 +2667,62 @@ class LROSADsOperations(object):
             body_content = None
 
         # Construct and send request
-        def long_running_send():
+        request = self._client.post(url, query_parameters)
+        response = self._client.send(
+            request, header_parameters, body_content, stream=False, **operation_config)
 
-            request = self._client.post(url, query_parameters)
-            return self._client.send(
-                request, header_parameters, body_content, stream=False, **operation_config)
+        if response.status_code not in [202]:
+            exp = CloudError(response)
+            exp.request_id = response.headers.get('x-ms-request-id')
+            raise exp
+
+        if raw:
+            client_raw_response = ClientRawResponse(None, response)
+            header_dict = {
+                'Azure-AsyncOperation': 'str',
+                'Location': 'str',
+                'Retry-After': 'int',
+            }
+            client_raw_response.add_headers(header_dict)
+            return client_raw_response
+
+    def post_async_relative_retry_invalid_header(
+            self, product=None, custom_headers=None, raw=False, **operation_config):
+        """Long running post request, service returns a 202 to the initial
+        request, with an entity that contains ProvisioningState=’Creating’. The
+        endpoint indicated in the Azure-AsyncOperation header is invalid.
+
+        :param product: Product to put
+        :type product: ~lro.models.Product
+        :param dict custom_headers: headers that will be added to the request
+        :param bool raw: returns the direct response alongside the
+         deserialized response
+        :return: An instance of AzureOperationPoller that returns None or
+         ClientRawResponse if raw=true
+        :rtype: ~msrestazure.azure_operation.AzureOperationPoller[None] or
+         ~msrest.pipeline.ClientRawResponse
+        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
+        """
+        raw_result = self._post_async_relative_retry_invalid_header_initial(
+            product=product,
+            custom_headers=custom_headers,
+            raw=True,
+            **operation_config
+        )
+        if raw:
+            return raw_result
+
+        # Construct and send request
+        def long_running_send():
+            return raw_result.response
 
         def get_long_running_status(status_link, headers=None):
 
             request = self._client.get(status_link)
             if headers:
                 request.headers.update(headers)
+            header_parameters = {}
+            header_parameters['x-ms-client-request-id'] = raw_result.response.request.headers['x-ms-client-request-id']
             return self._client.send(
                 request, header_parameters, stream=False, **operation_config)
 
@@ -2028,10 +2742,6 @@ class LROSADsOperations(object):
                 })
                 return client_raw_response
 
-        if raw:
-            response = long_running_send()
-            return get_long_running_output(response)
-
         long_running_operation_timeout = operation_config.get(
             'long_running_operation_timeout',
             self.config.long_running_operation_timeout)
@@ -2039,24 +2749,9 @@ class LROSADsOperations(object):
             long_running_send, get_long_running_output,
             get_long_running_status, long_running_operation_timeout)
 
-    def post_async_relative_retry_invalid_json_polling(
-            self, product=None, custom_headers=None, raw=False, **operation_config):
-        """Long running post request, service returns a 202 to the initial
-        request, with an entity that contains ProvisioningState=’Creating’.
-        Poll the endpoint indicated in the Azure-AsyncOperation header for
-        operation status.
 
-        :param product: Product to put
-        :type product: ~lro.models.Product
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: An instance of AzureOperationPoller that returns None or
-         ClientRawResponse if raw=true
-        :rtype: ~msrestazure.azure_operation.AzureOperationPoller[None] or
-         ~msrest.pipeline.ClientRawResponse
-        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
-        """
+    def _post_async_relative_retry_invalid_json_polling_initial(
+            self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = '/lro/error/postasync/retry/invalidjsonpolling'
 
@@ -2080,17 +2775,63 @@ class LROSADsOperations(object):
             body_content = None
 
         # Construct and send request
-        def long_running_send():
+        request = self._client.post(url, query_parameters)
+        response = self._client.send(
+            request, header_parameters, body_content, stream=False, **operation_config)
 
-            request = self._client.post(url, query_parameters)
-            return self._client.send(
-                request, header_parameters, body_content, stream=False, **operation_config)
+        if response.status_code not in [202]:
+            exp = CloudError(response)
+            exp.request_id = response.headers.get('x-ms-request-id')
+            raise exp
+
+        if raw:
+            client_raw_response = ClientRawResponse(None, response)
+            header_dict = {
+                'Azure-AsyncOperation': 'str',
+                'Location': 'str',
+                'Retry-After': 'int',
+            }
+            client_raw_response.add_headers(header_dict)
+            return client_raw_response
+
+    def post_async_relative_retry_invalid_json_polling(
+            self, product=None, custom_headers=None, raw=False, **operation_config):
+        """Long running post request, service returns a 202 to the initial
+        request, with an entity that contains ProvisioningState=’Creating’.
+        Poll the endpoint indicated in the Azure-AsyncOperation header for
+        operation status.
+
+        :param product: Product to put
+        :type product: ~lro.models.Product
+        :param dict custom_headers: headers that will be added to the request
+        :param bool raw: returns the direct response alongside the
+         deserialized response
+        :return: An instance of AzureOperationPoller that returns None or
+         ClientRawResponse if raw=true
+        :rtype: ~msrestazure.azure_operation.AzureOperationPoller[None] or
+         ~msrest.pipeline.ClientRawResponse
+        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
+        """
+        raw_result = self._post_async_relative_retry_invalid_json_polling_initial(
+            product=product,
+            custom_headers=custom_headers,
+            raw=True,
+            **operation_config
+        )
+        if raw:
+            return raw_result
+
+        # Construct and send request
+        def long_running_send():
+            return raw_result.response
 
         def get_long_running_status(status_link, headers=None):
 
             request = self._client.get(status_link)
             if headers:
                 request.headers.update(headers)
+            header_parameters = {}
+            header_parameters['x-ms-client-request-id'] = raw_result.response.request.headers['x-ms-client-request-id']
             return self._client.send(
                 request, header_parameters, stream=False, **operation_config)
 
@@ -2109,10 +2850,6 @@ class LROSADsOperations(object):
                     'Retry-After': 'int',
                 })
                 return client_raw_response
-
-        if raw:
-            response = long_running_send()
-            return get_long_running_output(response)
 
         long_running_operation_timeout = operation_config.get(
             'long_running_operation_timeout',
