@@ -6,38 +6,9 @@
 @using AutoRest.Python.Model
 @using AutoRest.Python.vanilla.Templates
 @inherits AutoRest.Python.PythonTemplate<AutoRest.Python.Azure.Model.MethodPya>
-    def @(Model.Name.ToPythonCase())(
+@EmptyLine
+    def _@(Model.Name.ToPythonCase())_initial(
             self, @(Model.MethodParameterDeclaration(Model.AddCustomHeader))):
-        """@(WrapComment(string.Empty, Model.BuildSummaryAndDescriptionString()))
-@*need to fix comment here for long running function*@
-@EmptyLine
-@if (Model.Deprecated)
-{
-@:        .. warning::
-@:           This method is deprecated
-@EmptyLine
-}
-
-@foreach(var parameter in Model.DocumentationParameters)
-{
-@:        @ParameterWrapComment(string.Empty, MethodPy.GetParameterDocumentationString(parameter))
-@:        @ParameterWrapComment(string.Empty, ":type " + parameter.Name + ": " + Model.GetDocumentationType(parameter.ModelType))
-}
-        @ParameterWrapComment(string.Empty, ":param dict custom_headers: headers that will be added to the request")
-        @ParameterWrapComment(string.Empty, ":param bool raw: returns the direct response alongside the deserialized response")
-@if (Model.NeedsCallback)
-{
-@:        @ParameterWrapComment(string.Empty, ":param callback: When specified, will be called with each chunk of data that is streamed. The callback should take two arguments, the bytes of the current chunk of data and the response object. If the data is uploading, response will be None.")
-@:        @ParameterWrapComment(string.Empty, ":type callback: Callable[Bytes, response=None]")
-}
-        @ParameterWrapComment(string.Empty, ":return: An instance of AzureOperationPoller that returns " + Model.GetDocumentationTypeName(Model.ReturnType.Body) + " or ClientRawResponse if raw=true")
-        @ParameterWrapComment(string.Empty, string.Format(":rtype: ~msrestazure.azure_operation.AzureOperationPoller[{0}] or ~msrest.pipeline.ClientRawResponse", Model.GetReturnTypeDocumentation(Model.ReturnType.Body)))
-        @ParameterWrapComment(string.Empty, string.Format(":raises: {0}", Model.ExceptionDocumentation))
-        """
-@if (Model.Deprecated)
-{
-@:        @(string.Format("warnings.warn(\"Method {0} is deprecated\", DeprecationWarning)", ((string)Model.Name).ToPythonCase()))
-}
         @Model.BuildInputMappings()
 @if (Model.InputParameterTransformation.Any())
 {
@@ -93,24 +64,112 @@
 @EmptyLine
 }
         # Construct and send request
-        def long_running_send():
-@EmptyLine
-            request = self._client.@(MethodPy.GetHttpFunction(Model.HttpMethod))(url, query_parameters)
+        request = self._client.@(MethodPy.GetHttpFunction(Model.HttpMethod))(url, query_parameters)
 @if (Model.RequestBody != null)
 {
-            @:return self._client.send(
-                @:request, header_parameters, body_content, stream=False, **operation_config)
+        @:response = self._client.send(
+            @:request, header_parameters, body_content, stream=False, **operation_config)
 }
 else
 {
-            @:return self._client.send(request, header_parameters, stream=False, **operation_config)
+        @:response = self._client.send(request, header_parameters, stream=False, **operation_config)
 }
+@EmptyLine
+        if @Model.FailureStatusCodePredicate:
+            @Model.RaisedException
+@EmptyLine
+@if (Model.HasAnyResponse)
+{
+        @:deserialized = None
+  if (Model.HasResponseHeader)
+  {
+        @:header_dict = {}
+  }
+@EmptyLine
+  foreach (var responsePair in Model.Responses.Where(r => r.Value.Body != null))
+  {
+        @:if response.status_code == @MethodPy.GetStatusCodeReference(responsePair.Key):
+            @:deserialized = self._deserialize('@responsePair.Value.Body.ToPythonRuntimeTypeString()', response)
+            @:@Model.AddIndividualResponseHeader(responsePair.Key)
+  }
+@EmptyLine
+        @:if raw:
+            @:client_raw_response = ClientRawResponse(deserialized, response)
+@if (Model.HasResponseHeader)
+{
+            @:try:
+                @:@Model.AddResponseHeader()
+            @:except DeserializationError:
+                @:pass # Deserialization of Headers here can fail
+}
+            @:return client_raw_response
+@EmptyLine
+        @:return deserialized
+}
+else
+{
+@* Bypass @:@Model.ReturnEmptyResponse, since the HEAD extensions bothers me here*@
+        @:if raw:
+            @:client_raw_response = ClientRawResponse(None, response)
+@if (Model.HasResponseHeader)
+{
+            @:@Model.AddIndividualResponseHeader(null)
+            @:@Model.AddResponseHeader()
+}
+            @:return client_raw_response
+
+}
+@EmptyLine
+    def @(Model.Name.ToPythonCase())(
+            self, @(Model.MethodParameterDeclaration(Model.AddCustomHeader))):
+        """@(WrapComment(string.Empty, Model.BuildSummaryAndDescriptionString()))
+@*need to fix comment here for long running function*@
+@EmptyLine
+@if (Model.Deprecated)
+{
+@:        .. warning::
+@:           This method is deprecated
+@EmptyLine
+}
+
+@foreach(var parameter in Model.DocumentationParameters)
+{
+@:        @ParameterWrapComment(string.Empty, MethodPy.GetParameterDocumentationString(parameter))
+@:        @ParameterWrapComment(string.Empty, ":type " + parameter.Name + ": " + Model.GetDocumentationType(parameter.ModelType))
+}
+        @ParameterWrapComment(string.Empty, ":param dict custom_headers: headers that will be added to the request")
+        @ParameterWrapComment(string.Empty, ":param bool raw: returns the direct response alongside the deserialized response")
+        @ParameterWrapComment(string.Empty, ":return: An instance of AzureOperationPoller that returns " + Model.GetDocumentationTypeName(Model.ReturnType.Body) + " or ClientRawResponse if raw=true")
+        @ParameterWrapComment(string.Empty, string.Format(":rtype: ~msrestazure.azure_operation.AzureOperationPoller[{0}] or ~msrest.pipeline.ClientRawResponse", Model.GetReturnTypeDocumentation(Model.ReturnType.Body)))
+        @ParameterWrapComment(string.Empty, string.Format(":raises: {0}", Model.ExceptionDocumentation))
+        """
+@if (Model.Deprecated)
+{
+@:        @(string.Format("warnings.warn(\"Method {0} is deprecated\", DeprecationWarning)", ((string)Model.Name).ToPythonCase()))
+}
+        raw_result = self._@(Model.Name.ToPythonCase())_initial(
+@foreach(var parameter in Model.DocumentationParameters)
+{
+@:            @parameter.Name=@parameter.Name,
+}                    
+            custom_headers=custom_headers,
+            raw=True,
+            **operation_config
+        )
+        if raw:
+            return raw_result
+@EmptyLine
+        # Construct and send request
+        def long_running_send():
+            return raw_result.response
 @EmptyLine
         def get_long_running_status(status_link, headers=None):
 @EmptyLine
             request = self._client.get(status_link)
             if headers:
                 request.headers.update(headers)
+            header_parameters = {}
+            header_parameters['x-ms-client-request-id'] = raw_result.response.request.headers['x-ms-client-request-id']
             return self._client.send(
                 request, header_parameters, stream=False, **operation_config)
 @EmptyLine
@@ -127,19 +186,8 @@ else
             @:header_dict = {}
   }
 @EmptyLine
-  foreach (var responsePair in Model.Responses.Where(r => r.Value.Body != null))
-  {
-            @:if response.status_code == @MethodPy.GetStatusCodeReference(responsePair.Key):
-    if (responsePair.Value.Body.IsPrimaryType(KnownPrimaryType.Stream))
-    {
-                @:deserialized = self._client.stream_download(response, callback)
-    }
-    else
-    {
-                @:deserialized = self._deserialize('@responsePair.Value.Body.ToPythonRuntimeTypeString()', response)
-    }
-                @:@Model.AddIndividualResponseHeader(responsePair.Key)
-  }
+            @:deserialized = self._deserialize('@Model.ReturnType.Body.ToPythonRuntimeTypeString()', response)
+            @:@Model.AddIndividualResponseHeader(null)
 @EmptyLine
             @:if raw:
                 @:client_raw_response = ClientRawResponse(deserialized, response)
@@ -152,10 +200,6 @@ else
 {
             @:@Model.ReturnEmptyResponse
 }
-@EmptyLine
-        if raw:
-            response = long_running_send()
-            return get_long_running_output(response)
 @EmptyLine
         long_running_operation_timeout = operation_config.get(
             'long_running_operation_timeout',
