@@ -131,10 +131,7 @@ class LROSADsOperations(object):
                 exp.request_id = response.headers.get('x-ms-request-id')
                 raise exp
 
-            deserialized = None
-
             deserialized = self._deserialize('Product', response)
-            header_dict = {}
 
             if raw:
                 client_raw_response = ClientRawResponse(deserialized, response)
@@ -244,10 +241,7 @@ class LROSADsOperations(object):
                 exp.request_id = response.headers.get('x-ms-request-id')
                 raise exp
 
-            deserialized = None
-
             deserialized = self._deserialize('Product', response)
-            header_dict = {}
 
             if raw:
                 client_raw_response = ClientRawResponse(deserialized, response)
@@ -357,10 +351,7 @@ class LROSADsOperations(object):
                 exp.request_id = response.headers.get('x-ms-request-id')
                 raise exp
 
-            deserialized = None
-
             deserialized = self._deserialize('Product', response)
-            header_dict = {}
 
             if raw:
                 client_raw_response = ClientRawResponse(deserialized, response)
@@ -479,15 +470,12 @@ class LROSADsOperations(object):
                 exp.request_id = response.headers.get('x-ms-request-id')
                 raise exp
 
-            deserialized = None
-            header_dict = {}
-
-            deserialized = self._deserialize('Product', response)
             header_dict = {
                 'Azure-AsyncOperation': 'str',
                 'Location': 'str',
                 'Retry-After': 'int',
             }
+            deserialized = self._deserialize('Product', response)
 
             if raw:
                 client_raw_response = ClientRawResponse(deserialized, response)
@@ -1202,10 +1190,7 @@ class LROSADsOperations(object):
                 exp.request_id = response.headers.get('x-ms-request-id')
                 raise exp
 
-            deserialized = None
-
             deserialized = self._deserialize('Product', response)
-            header_dict = {}
 
             if raw:
                 client_raw_response = ClientRawResponse(deserialized, response)
@@ -1325,15 +1310,12 @@ class LROSADsOperations(object):
                 exp.request_id = response.headers.get('x-ms-request-id')
                 raise exp
 
-            deserialized = None
-            header_dict = {}
-
-            deserialized = self._deserialize('Product', response)
             header_dict = {
                 'Azure-AsyncOperation': 'str',
                 'Location': 'str',
                 'Retry-After': 'int',
             }
+            deserialized = self._deserialize('Product', response)
 
             if raw:
                 client_raw_response = ClientRawResponse(deserialized, response)
@@ -1454,15 +1436,12 @@ class LROSADsOperations(object):
                 exp.request_id = response.headers.get('x-ms-request-id')
                 raise exp
 
-            deserialized = None
-            header_dict = {}
-
-            deserialized = self._deserialize('Product', response)
             header_dict = {
                 'Azure-AsyncOperation': 'str',
                 'Location': 'str',
                 'Retry-After': 'int',
             }
+            deserialized = self._deserialize('Product', response)
 
             if raw:
                 client_raw_response = ClientRawResponse(deserialized, response)
@@ -1969,10 +1948,7 @@ class LROSADsOperations(object):
                 exp.request_id = response.headers.get('x-ms-request-id')
                 raise exp
 
-            deserialized = None
-
             deserialized = self._deserialize('Product', response)
-            header_dict = {}
 
             if raw:
                 client_raw_response = ClientRawResponse(deserialized, response)
@@ -2091,15 +2067,12 @@ class LROSADsOperations(object):
                 exp.request_id = response.headers.get('x-ms-request-id')
                 raise exp
 
-            deserialized = None
-            header_dict = {}
-
-            deserialized = self._deserialize('Product', response)
             header_dict = {
                 'Azure-AsyncOperation': 'str',
                 'Location': 'str',
                 'Retry-After': 'int',
             }
+            deserialized = self._deserialize('Product', response)
 
             if raw:
                 client_raw_response = ClientRawResponse(deserialized, response)
@@ -2220,15 +2193,12 @@ class LROSADsOperations(object):
                 exp.request_id = response.headers.get('x-ms-request-id')
                 raise exp
 
-            deserialized = None
-            header_dict = {}
-
-            deserialized = self._deserialize('Product', response)
             header_dict = {
                 'Azure-AsyncOperation': 'str',
                 'Location': 'str',
                 'Retry-After': 'int',
             }
+            deserialized = self._deserialize('Product', response)
 
             if raw:
                 client_raw_response = ClientRawResponse(deserialized, response)

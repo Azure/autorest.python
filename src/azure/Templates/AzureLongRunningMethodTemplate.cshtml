@@ -180,14 +180,11 @@ else
 @EmptyLine
 @if (Model.HasAnyResponse)
 {
-            @:deserialized = None
   if (Model.HasResponseHeader)
   {
-            @:header_dict = {}
-  }
-@EmptyLine
-            @:deserialized = self._deserialize('@Model.ReturnType.Body.ToPythonRuntimeTypeString()', response)
             @:@Model.AddIndividualResponseHeader(null)
+  }
+            @:deserialized = self._deserialize('@Model.ReturnType.Body.ToPythonRuntimeTypeString()', response)
 @EmptyLine
             @:if raw:
                 @:client_raw_response = ClientRawResponse(deserialized, response)
