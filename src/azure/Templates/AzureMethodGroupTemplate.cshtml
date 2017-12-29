@@ -21,6 +21,7 @@ from msrest.pipeline import ClientRawResponse
 }
 @if (Model.HasAnyLongRunOperation)
 {
+@:from msrest.exceptions import DeserializationError
 @:from msrestazure.azure_operation import AzureOperationPoller
 }
 @if (Model.HasAnyModel)

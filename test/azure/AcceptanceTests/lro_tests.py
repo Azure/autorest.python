@@ -269,16 +269,16 @@ class LroTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.client.lrosa_ds.put_async_relative_retry_invalid_header(product).result()
 
-        with self.assertRaises(ValueError):
+        with self.assertRaises(Exception):
             self.client.lrosa_ds.delete202_retry_invalid_header().result()
 
-        with self.assertRaises(ValueError):
+        with self.assertRaises(Exception):
             self.client.lrosa_ds.delete_async_relative_retry_invalid_header().result()
 
-        with self.assertRaises(ValueError):
+        with self.assertRaises(Exception):
             self.client.lrosa_ds.post202_retry_invalid_header().result()
 
-        with self.assertRaises(ValueError):
+        with self.assertRaises(Exception):
             self.client.lrosa_ds.post_async_relative_retry_invalid_header().result()
 
         with self.assertRaises(DeserializationError):
