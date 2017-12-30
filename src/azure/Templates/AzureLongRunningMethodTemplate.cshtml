@@ -8,7 +8,7 @@
 @inherits AutoRest.Python.PythonTemplate<AutoRest.Python.Azure.Model.MethodPya>
 @EmptyLine
     def _@(Model.Name.ToPythonCase())_initial(
-            self, @(Model.MethodParameterDeclaration(Model.AddCustomHeader))):
+            self, @(Model.MethodParameterDeclaration(Model.AddCustomHeader)), **operation_config):
         @Model.BuildInputMappings()
 @if (Model.InputParameterTransformation.Any())
 {
@@ -97,10 +97,7 @@ else
             @:client_raw_response = ClientRawResponse(deserialized, response)
 @if (Model.HasResponseHeader)
 {
-            @:try:
-                @:@Model.AddResponseHeader()
-            @:except DeserializationError:
-                @:pass # Deserialization of Headers here can fail
+            @:@Model.AddResponseHeader()
 }
             @:return client_raw_response
 @EmptyLine
@@ -117,11 +114,10 @@ else
             @:@Model.AddResponseHeader()
 }
             @:return client_raw_response
-
 }
 @EmptyLine
     def @(Model.Name.ToPythonCase())(
-            self, @(Model.MethodParameterDeclaration(Model.AddCustomHeader))):
+            self, @(Model.MethodParameterDeclaration(Model.AddCustomHeader)), polling=True, **operation_config):
         """@(WrapComment(string.Empty, Model.BuildSummaryAndDescriptionString()))
 @*need to fix comment here for long running function*@
 @EmptyLine
@@ -138,9 +134,10 @@ else
 @:        @ParameterWrapComment(string.Empty, ":type " + parameter.Name + ": " + Model.GetDocumentationType(parameter.ModelType))
 }
         @ParameterWrapComment(string.Empty, ":param dict custom_headers: headers that will be added to the request")
-        @ParameterWrapComment(string.Empty, ":param bool raw: returns the direct response alongside the deserialized response")
-        @ParameterWrapComment(string.Empty, ":return: An instance of AzureOperationPoller that returns " + Model.GetDocumentationTypeName(Model.ReturnType.Body) + " or ClientRawResponse if raw=true")
-        @ParameterWrapComment(string.Empty, string.Format(":rtype: ~msrestazure.azure_operation.AzureOperationPoller[{0}] or ~msrest.pipeline.ClientRawResponse", Model.GetReturnTypeDocumentation(Model.ReturnType.Body)))
+        @ParameterWrapComment(string.Empty, ":param bool raw: The poller return type is ClientRawResponse, the direct response alongside the deserialized response")
+        @ParameterWrapComment(string.Empty, ":param polling: True for ARMPolling, False for no polling, or a polling object for personal polling strategy")
+        @ParameterWrapComment(string.Empty, ":return: An instance of LROPoller that returns " + Model.GetDocumentationTypeName(Model.ReturnType.Body) + " or ClientRawResponse<" + Model.GetDocumentationTypeName(Model.ReturnType.Body) + "> if raw==True")
+        @ParameterWrapComment(string.Empty, string.Format(":rtype: ~msrestazure.azure_operation.AzureOperationPoller[{0}] or ~msrestazure.azure_operation.AzureOperationPoller[~msrest.pipeline.ClientRawResponse[{0}]]", Model.GetReturnTypeDocumentation(Model.ReturnType.Body)))
         @ParameterWrapComment(string.Empty, string.Format(":raises: {0}", Model.ExceptionDocumentation))
         """
 @if (Model.Deprecated)
@@ -156,28 +153,8 @@ else
             raw=True,
             **operation_config
         )
-        if raw:
-            return raw_result
-@EmptyLine
-        # Construct and send request
-        def long_running_send():
-            return raw_result.response
-@EmptyLine
-        def get_long_running_status(status_link, headers=None):
-@EmptyLine
-            request = self._client.get(status_link)
-            if headers:
-                request.headers.update(headers)
-            header_parameters = {}
-            header_parameters['x-ms-client-request-id'] = raw_result.response.request.headers['x-ms-client-request-id']
-            return self._client.send(
-                request, header_parameters, stream=False, **operation_config)
 @EmptyLine
         def get_long_running_output(response):
-@EmptyLine
-            if @Model.FailureStatusCodePredicate:
-                @Model.RaisedException
-@EmptyLine
 @if (Model.HasAnyResponse)
 {
   if (Model.HasResponseHeader)
@@ -198,9 +175,10 @@ else
             @:@Model.ReturnEmptyResponse
 }
 @EmptyLine
-        long_running_operation_timeout = operation_config.get(
+        lro_delay = operation_config.get(
             'long_running_operation_timeout',
             self.config.long_running_operation_timeout)
-        return AzureOperationPoller(
-            long_running_send, get_long_running_output,
-            get_long_running_status, long_running_operation_timeout)
+        if polling is True: polling_method = ARMPolling(lro_delay)
+        elif polling is False: polling_method = NoPolling()
+        else: polling_method = polling
+        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
