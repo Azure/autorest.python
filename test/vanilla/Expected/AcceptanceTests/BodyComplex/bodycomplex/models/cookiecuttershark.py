@@ -15,17 +15,19 @@ from .shark import Shark
 class Cookiecuttershark(Shark):
     """Cookiecuttershark.
 
+    All required parameters must be populated in order to send to Azure.
+
     :param species:
     :type species: str
-    :param length:
+    :param length: Required.
     :type length: float
     :param siblings:
     :type siblings: list[~bodycomplex.models.Fish]
-    :param fishtype: Constant filled by server.
+    :param fishtype: Required. Constant filled by server.
     :type fishtype: str
     :param age:
     :type age: int
-    :param birthday:
+    :param birthday: Required.
     :type birthday: datetime
     """
 

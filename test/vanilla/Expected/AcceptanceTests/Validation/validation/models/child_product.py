@@ -18,7 +18,10 @@ class ChildProduct(Model):
     Variables are only populated by the server, and will be ignored when
     sending a request.
 
-    :ivar const_property: Constant string. Default value: "constant" .
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar const_property: Required. Constant string. Default value: "constant"
+     .
     :vartype const_property: str
     :param count: Count
     :type count: int

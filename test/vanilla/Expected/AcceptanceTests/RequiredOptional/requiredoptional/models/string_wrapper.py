@@ -15,7 +15,9 @@ from msrest.serialization import Model
 class StringWrapper(Model):
     """StringWrapper.
 
-    :param value:
+    All required parameters must be populated in order to send to Azure.
+
+    :param value: Required.
     :type value: str
     """
 

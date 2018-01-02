@@ -15,15 +15,17 @@ from msrest.serialization import Model
 class FlattenParameterGroup(Model):
     """Additional parameters for put_simple_product_with_grouping operation.
 
-    :param name: Product name with value 'groupproduct'
+    All required parameters must be populated in order to send to Azure.
+
+    :param name: Required. Product name with value 'groupproduct'
     :type name: str
-    :param product_id: Unique identifier representing a specific product for a
-     given latitude & longitude. For example, uberX in San Francisco will have
-     a different product_id than uberX in Los Angeles.
+    :param product_id: Required. Unique identifier representing a specific
+     product for a given latitude & longitude. For example, uberX in San
+     Francisco will have a different product_id than uberX in Los Angeles.
     :type product_id: str
     :param description: Description of product.
     :type description: str
-    :param max_product_display_name: Display name of product.
+    :param max_product_display_name: Required. Display name of product.
     :type max_product_display_name: str
     :param generic_value: Generic URL value.
     :type generic_value: str

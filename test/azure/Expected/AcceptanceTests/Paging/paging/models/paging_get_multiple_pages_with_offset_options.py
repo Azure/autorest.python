@@ -15,10 +15,12 @@ from msrest.serialization import Model
 class PagingGetMultiplePagesWithOffsetOptions(Model):
     """Additional parameters for get_multiple_pages_with_offset operation.
 
+    All required parameters must be populated in order to send to Azure.
+
     :param maxresults: Sets the maximum number of items to return in the
      response.
     :type maxresults: int
-    :param offset: Offset of return value
+    :param offset: Required. Offset of return value
     :type offset: int
     :param timeout: Sets the maximum time that the server can spend processing
      the request, in seconds. The default is 30 seconds. Default value: 30 .

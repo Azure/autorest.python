@@ -19,9 +19,11 @@ class Error(Model):
     Variables are only populated by the server, and will be ignored when
     sending a request.
 
+    All required parameters must be populated in order to send to Azure.
+
     :param status:
     :type status: int
-    :ivar constant_id:  Default value: 1 .
+    :ivar constant_id: Required.  Default value: 1 .
     :vartype constant_id: int
     :param message:
     :type message: str

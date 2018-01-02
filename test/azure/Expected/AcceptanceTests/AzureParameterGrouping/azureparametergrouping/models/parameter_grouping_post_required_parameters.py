@@ -15,13 +15,15 @@ from msrest.serialization import Model
 class ParameterGroupingPostRequiredParameters(Model):
     """Additional parameters for post_required operation.
 
-    :param body:
+    All required parameters must be populated in order to send to Azure.
+
+    :param body: Required.
     :type body: int
     :param custom_header:
     :type custom_header: str
     :param query: Query parameter with default. Default value: 30 .
     :type query: int
-    :param path: Path parameter
+    :param path: Required. Path parameter
     :type path: str
     """
 
