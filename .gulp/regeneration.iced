@@ -57,6 +57,7 @@ regenExpected = (opts,done) ->
       return done() if instances is 0 
 
 defaultMappings = {
+  'AcceptanceTests/AdditionalProperties': 'additionalProperties.json',
   'AcceptanceTests/ParameterFlattening': 'parameter-flattening.json',
   'AcceptanceTests/BodyArray': 'body-array.json',
   'AcceptanceTests/BodyBoolean': 'body-boolean.json',
