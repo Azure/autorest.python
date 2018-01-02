@@ -230,6 +230,11 @@ namespace AutoRest.Python.Model
                 docString = string.Format(CultureInfo.InvariantCulture, ":ivar {0}:", property.Name);
             }
 
+            if (property.IsRequired)
+            {
+                docString += " Required.";
+            }
+
             string summary = property.Summary;
             if (!string.IsNullOrWhiteSpace(summary) && !summary.EndsWith(".", StringComparison.OrdinalIgnoreCase))
             {
