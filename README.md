@@ -17,7 +17,7 @@ contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additio
 
 ``` yaml
 use-extension:
-  "@microsoft.azure/autorest.modeler": "2.3.38"
+  "@microsoft.azure/autorest.modeler": "2.3.44"
 
 pipeline:
   python/imodeler1:
