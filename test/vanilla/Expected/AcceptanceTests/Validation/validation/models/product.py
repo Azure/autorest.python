@@ -19,6 +19,8 @@ class Product(Model):
     Variables are only populated by the server, and will be ignored when
     sending a request.
 
+    All required parameters must be populated in order to send to Azure.
+
     :param display_names: Non required array of unique items from 0 to 6
      elements.
     :type display_names: list[str]
@@ -26,13 +28,13 @@ class Product(Model):
     :type capacity: int
     :param image: Image URL representing the product.
     :type image: str
-    :param child:
+    :param child: Required.
     :type child: ~validation.models.ChildProduct
-    :ivar const_child:
+    :ivar const_child: Required.
     :vartype const_child: ~validation.models.ConstantProduct
-    :ivar const_int: Constant int. Default value: 0 .
+    :ivar const_int: Required. Constant int. Default value: 0 .
     :vartype const_int: int
-    :ivar const_string: Constant string. Default value: "constant" .
+    :ivar const_string: Required. Constant string. Default value: "constant" .
     :vartype const_string: str
     :param const_string_as_enum: Constant string as Enum. Possible values
      include: 'constant_string_as_enum'

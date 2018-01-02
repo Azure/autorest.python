@@ -15,9 +15,11 @@ from msrest.serialization import Model
 class BaseProduct(Model):
     """The product documentation.
 
-    :param product_id: Unique identifier representing a specific product for a
-     given latitude & longitude. For example, uberX in San Francisco will have
-     a different product_id than uberX in Los Angeles.
+    All required parameters must be populated in order to send to Azure.
+
+    :param product_id: Required. Unique identifier representing a specific
+     product for a given latitude & longitude. For example, uberX in San
+     Francisco will have a different product_id than uberX in Los Angeles.
     :type product_id: str
     :param description: Description of product.
     :type description: str

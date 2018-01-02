@@ -15,7 +15,9 @@ from msrest.serialization import Model
 class StorageAccountCheckNameAvailabilityParameters(Model):
     """StorageAccountCheckNameAvailabilityParameters.
 
-    :param name:
+    All required parameters must be populated in order to send to Azure.
+
+    :param name: Required.
     :type name: str
     :param type:  Default value: "Microsoft.Storage/storageAccounts" .
     :type type: str

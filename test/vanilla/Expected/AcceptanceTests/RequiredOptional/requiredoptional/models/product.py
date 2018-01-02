@@ -15,7 +15,9 @@ from msrest.serialization import Model
 class Product(Model):
     """Product.
 
-    :param id:
+    All required parameters must be populated in order to send to Azure.
+
+    :param id: Required.
     :type id: int
     :param name:
     :type name: str

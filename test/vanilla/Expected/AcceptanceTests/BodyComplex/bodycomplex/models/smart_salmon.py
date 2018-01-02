@@ -15,13 +15,15 @@ from .salmon import Salmon
 class SmartSalmon(Salmon):
     """SmartSalmon.
 
+    All required parameters must be populated in order to send to Azure.
+
     :param species:
     :type species: str
-    :param length:
+    :param length: Required.
     :type length: float
     :param siblings:
     :type siblings: list[~bodycomplex.models.Fish]
-    :param fishtype: Constant filled by server.
+    :param fishtype: Required. Constant filled by server.
     :type fishtype: str
     :param location:
     :type location: str

@@ -15,7 +15,9 @@ from msrest.serialization import Model
 class AvailabilitySetUpdateParameters(Model):
     """AvailabilitySetUpdateParameters.
 
-    :param tags: A set of tags. A description about the set of tags.
+    All required parameters must be populated in order to send to Azure.
+
+    :param tags: Required. A set of tags. A description about the set of tags.
     :type tags: dict[str, str]
     """
 
