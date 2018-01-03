@@ -61,11 +61,11 @@ class IntegerTests(unittest.TestCase):
         with self.assertRaises(DeserializationError):
             client.int_model.get_invalid()
 
-        # These wont fail in Python
-        #client.int_model.get_overflow_int32()
-        #client.int_model.get_overflow_int64()
-        #client.int_model.get_underflow_int32()
-        #client.int_model.get_underflow_int64()
+        # Testserver excepts these to fail, but they won't in Python and it's ok.
+        client.int_model.get_overflow_int32()
+        client.int_model.get_overflow_int64()
+        client.int_model.get_underflow_int32()
+        client.int_model.get_underflow_int64()
 
         unix_date = datetime(year=2016, month=4, day=13)
         client.int_model.put_unix_time_date(unix_date)
