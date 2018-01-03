@@ -50,10 +50,6 @@ class AcceptanceTests(unittest.TestCase):
 
         # Add tests that wont be supported due to the nature of Python here
         not_supported = {
-            'getIntegerOverflow': 1,
-            'getIntegerUnderflow': 1,
-            'getLongOverflow': 1,
-            'getLongUnderflow': 1,
             'getDateInvalid': 1,
             'getDictionaryNullkey': 1,
             'HttpRedirect300Get': 1,
