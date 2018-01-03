@@ -49,9 +49,7 @@ class AcceptanceTests(unittest.TestCase):
         report = client.get_report(platform.python_version())
 
         # Add tests that wont be supported due to the nature of Python here
-        not_supported = {
-            'getDateInvalid': 1,
-        }
+        not_supported = {}
 
         # Please add missing features or failing tests here
         missing_features_or_bugs = {'FileStreamVeryLarge' : 1}
