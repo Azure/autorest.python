@@ -51,7 +51,6 @@ class AcceptanceTests(unittest.TestCase):
         # Add tests that wont be supported due to the nature of Python here
         not_supported = {
             'getDateInvalid': 1,
-            'getDictionaryNullkey': 1,
             'HttpRedirect300Get': 1,
         }
 
