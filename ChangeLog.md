@@ -1,3 +1,7 @@
+### 2017-12-28 - 2.0.32
+
+- Refactor LRO operations with an external \_XXX_initial call
+
 ### 2017-12-22 - 2.0.30
 
 - Add "async", "await" and "mro" as Python reserved keywords.
