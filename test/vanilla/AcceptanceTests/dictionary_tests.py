@@ -196,8 +196,10 @@ class DictionaryTests(unittest.TestCase):
         with self.assertRaises(DeserializationError):
             self.client.dictionary.get_invalid()
 
-        # {null:"val1"} is not standard JSON format (JSON require key as string. Should we skip this case
-        #self.assertEqual({"None":"val1"}, self.client.dictionary.get_null_key())
+        # {null:"val1"} is not standard JSON format. C# might work and excepts this test to pass,
+        # but we fail and we're happy with it.
+        with self.assertRaises(DeserializationError):
+            self.client.dictionary.get_null_key()
         self.assertEqual({"key1":None}, self.client.dictionary.get_null_value())
         self.assertEqual({"":"val1"}, self.client.dictionary.get_empty_string_key())
 
