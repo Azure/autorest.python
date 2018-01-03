@@ -401,9 +401,10 @@ class HttpTests(unittest.TestCase):
 
     def test_redirect_status_codes(self):
 
-        #TODO: 300 is user choice, so should we automatic redirect?
-        #self.assertStatus(200, self.client.http_redirects.head300)
-        #self.assertStatus(200, self.client.http_redirects.get300)
+        # requests does NOT redirect on 300. We is ok with the HTTP
+        # spec that is fuzzy about this. Let's keep it that way for now.
+        self.assertStatus(300, self.client.http_redirects.get300)
+
         self.assertStatus(200, self.client.http_redirects.head302)
         self.assertStatus(200, self.client.http_redirects.head301)
         self.assertStatus(200, self.client.http_redirects.get301)
@@ -418,7 +419,6 @@ class HttpTests(unittest.TestCase):
 
         # TODO, 4042586: Support options operations in swagger modeler
         #self.assertStatus(200, self.client.http_redirects.options307)
-
         self.assertStatus(200, self.client.http_redirects.put307, True)
         self.assertStatus(200, self.client.http_redirects.post307, True)
         self.assertStatus(200, self.client.http_redirects.patch307, True)
