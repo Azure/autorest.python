@@ -1,8 +1,12 @@
-### 2017-12-22 - 2.0.30
+### 2017-12-28 - 2.1.32
+
+- Refactor LRO operations with an external \_XXX_initial call
+
+### 2017-12-22 - 2.1.30
 
 - Add "async", "await" and "mro" as Python reserved keywords.
 
-### 2017-12-13 - 2.0.28
+### 2017-12-13 - 2.1.28
 
 - All Model call super(XX, self).__init__()
 
