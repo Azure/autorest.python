@@ -44,7 +44,6 @@ from extensibleenumsswagger.models import (
     IntEnum,
 )
 
-@unittest.skip("Waiting for testserver 2.3.21")
 class ExtensibleEnumsTest(unittest.TestCase):
 
     def test_ext_enums(self):
