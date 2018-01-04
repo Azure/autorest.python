@@ -51,6 +51,27 @@ namespace AutoRest.Python.Model
             }
         }
 
+        public override IEnumerable<Property> ComposedProperties
+        {
+            get
+            {
+                var originalComposed = base.ComposedProperties;
+                var addProps = originalComposed.Where(prop => IsAdditionalProperty(prop));
+                if (addProps.Count() > 1)
+                {
+                    // Remove duplicate additionalProperty
+                    var addPropAsList = addProps.ToList();
+                    var originalComposedAsList = originalComposed.ToList();
+                    addPropAsList.RemoveAt(0); // Remove randomly one
+                    addPropAsList.ForEach(delegate(Property prop) {
+                        originalComposedAsList.Remove(prop);
+                    });
+                    return originalComposedAsList;
+                }
+                return originalComposed;
+            }
+        }
+
         /// <summary>
         /// If PolymorphicDiscriminator is set, makes sure we have a PolymorphicDiscriminator property.
         /// </summary>
@@ -76,6 +97,13 @@ namespace AutoRest.Python.Model
         public bool IsException => CodeModel.ErrorTypes.Contains(this);
 
         public bool IsParameterGroup => Properties.All(prop => prop.SerializedName == null);
+
+        public bool IsAdditionalProperty(Property prop)
+        {
+            return prop.Name.EqualsIgnoreCase("additional_properties") && prop.SerializedName == null && prop.ModelType is DictionaryTypePy;
+        }
+
+        public bool HasAdditionalProperty => Properties.Any(prop => IsAdditionalProperty(prop));
 
         public IList<string> Validators
         {
