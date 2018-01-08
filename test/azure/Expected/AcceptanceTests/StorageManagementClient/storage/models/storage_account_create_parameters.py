@@ -49,7 +49,7 @@ class StorageAccountCreateParameters(Resource):
         'type': {'key': 'type', 'type': 'str'},
         'location': {'key': 'location', 'type': 'str'},
         'tags': {'key': 'tags', 'type': '{str}'},
-        'account_type': {'key': 'properties.accountType', 'type': 'str', 'enum':'AccountType'},
+        'account_type': {'key': 'properties.accountType', 'type': 'AccountType'},
     }
 
     def __init__(self, **kwargs):
