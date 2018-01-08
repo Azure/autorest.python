@@ -59,7 +59,7 @@ class Product(Model):
         'const_child': {'key': 'constChild', 'type': 'ConstantProduct'},
         'const_int': {'key': 'constInt', 'type': 'int'},
         'const_string': {'key': 'constString', 'type': 'str'},
-        'const_string_as_enum': {'key': 'constStringAsEnum', 'type': 'str', 'enum':'EnumConst'},
+        'const_string_as_enum': {'key': 'constStringAsEnum', 'type': 'EnumConst'},
     }
 
     const_child = ConstantProduct()

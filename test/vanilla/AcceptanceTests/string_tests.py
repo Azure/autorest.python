@@ -46,7 +46,6 @@ from msrest.exceptions import DeserializationError, SerializationError
 
 from bodystring import AutoRestSwaggerBATService
 from bodystring.models.auto_rest_swagger_bat_service_enums import *
-from bodystring.models.error import ErrorException
 
 class StringTests(unittest.TestCase):
 
@@ -100,11 +99,10 @@ class StringTests(unittest.TestCase):
         client.string.put_whitespace()
 
         self.assertIsNone(client.string.get_not_provided())
-        self.assertEqual('red color', client.enum.get_not_expandable())
+        self.assertEqual(Colors.redcolor, client.enum.get_not_expandable())
         client.enum.put_not_expandable('red color')
         client.enum.put_not_expandable(Colors.redcolor)
-        # Not a Serialization issue, now we don't check enum at all => we write
-        with self.assertRaises(ErrorException):
+        with self.assertRaises(SerializationError):
             client.enum.put_not_expandable('not a colour')
 
         self.assertEqual(client.string.get_base64_encoded(), 'a string that gets encoded with base64'.encode())
@@ -115,7 +113,7 @@ class StringTests(unittest.TestCase):
         client.enum.put_referenced(Colors.redcolor)
         client.enum.put_referenced("red color")
         client.enum.put_referenced_constant()
-        self.assertEqual(client.enum.get_referenced(), 'red color')
+        self.assertEqual(client.enum.get_referenced(), Colors.redcolor)
         self.assertEqual(client.enum.get_referenced_constant().color_constant, Colors.green_color.value)
 
 

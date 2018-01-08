@@ -808,7 +808,7 @@ class QueriesOperations(object):
         # Construct parameters
         query_parameters = {}
         if enum_query is not None:
-            query_parameters['enumQuery'] = self._serialize.query("enum_query", enum_query, 'str')
+            query_parameters['enumQuery'] = self._serialize.query("enum_query", enum_query, 'UriColor')
 
         # Construct headers
         header_parameters = {}
@@ -849,7 +849,7 @@ class QueriesOperations(object):
         # Construct parameters
         query_parameters = {}
         if enum_query is not None:
-            query_parameters['enumQuery'] = self._serialize.query("enum_query", enum_query, 'str')
+            query_parameters['enumQuery'] = self._serialize.query("enum_query", enum_query, 'UriColor')
 
         # Construct headers
         header_parameters = {}

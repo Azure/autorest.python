@@ -36,7 +36,7 @@ class SubProduct(SubResource):
     _attribute_map = {
         'id': {'key': 'id', 'type': 'str'},
         'provisioning_state': {'key': 'properties.provisioningState', 'type': 'str'},
-        'provisioning_state_values': {'key': 'properties.provisioningStateValues', 'type': 'str', 'enum':'enum'},
+        'provisioning_state_values': {'key': 'properties.provisioningStateValues', 'type': 'str'},
     }
 
     def __init__(self, **kwargs):

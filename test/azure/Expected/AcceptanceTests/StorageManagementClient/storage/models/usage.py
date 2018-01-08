@@ -30,7 +30,7 @@ class Usage(Model):
     """
 
     _attribute_map = {
-        'unit': {'key': 'unit', 'type': 'str', 'enum':'UsageUnit'},
+        'unit': {'key': 'unit', 'type': 'UsageUnit'},
         'current_value': {'key': 'currentValue', 'type': 'int'},
         'limit': {'key': 'limit', 'type': 'int'},
         'name': {'key': 'name', 'type': 'UsageName'},

@@ -24,7 +24,7 @@ class OperationResult(Model):
     """
 
     _attribute_map = {
-        'status': {'key': 'status', 'type': 'str', 'enum':'enum'},
+        'status': {'key': 'status', 'type': 'str'},
         'error': {'key': 'error', 'type': 'OperationResultError'},
     }
 

@@ -646,7 +646,7 @@ class PathsOperations(object):
         # Construct URL
         url = '/paths/enum/green%20color/{enumPath}'
         path_format_arguments = {
-            'enumPath': self._serialize.url("enum_path", enum_path, 'str')
+            'enumPath': self._serialize.url("enum_path", enum_path, 'UriColor')
         }
         url = self._client.format_url(url, **path_format_arguments)
 
@@ -690,7 +690,7 @@ class PathsOperations(object):
         # Construct URL
         url = '/paths/string/null/{enumPath}'
         path_format_arguments = {
-            'enumPath': self._serialize.url("enum_path", enum_path, 'str')
+            'enumPath': self._serialize.url("enum_path", enum_path, 'UriColor')
         }
         url = self._client.format_url(url, **path_format_arguments)
 
