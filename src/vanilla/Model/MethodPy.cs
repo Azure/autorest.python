@@ -428,7 +428,15 @@ namespace AutoRest.Python.Model
 
             foreach (var prop in headersType.Properties)
             {
-                builder.AppendLine(String.Format(CultureInfo.InvariantCulture, "'{0}': '{1}',", prop.SerializedName, prop.ModelType.ToPythonRuntimeTypeString()));
+                var enumType = prop.ModelType as EnumType;
+                if (CodeModel.EnumTypes.Contains(prop.ModelType) && !enumType.ModelAsString)
+                {
+                    builder.AppendLine(String.Format(CultureInfo.InvariantCulture, "'{0}': models.{1},", prop.SerializedName, prop.ModelType.ToPythonRuntimeTypeString()));
+                }
+                else
+                {
+                    builder.AppendLine(String.Format(CultureInfo.InvariantCulture, "'{0}': '{1}',", prop.SerializedName, prop.ModelType.ToPythonRuntimeTypeString()));
+                }
             }
         }
 

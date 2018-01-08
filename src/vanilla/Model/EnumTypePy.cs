@@ -10,6 +10,8 @@ namespace AutoRest.Python.Model
     public class EnumTypePy : EnumType, IExtendedModelTypePy
     {
         public string TypeDocumentation => Parent == null || Name.IsNullOrEmpty() ? "str" : $"str or ~{((CodeModelPy)CodeModel)?.Namespace}.models.{Name}";
-        public string ReturnTypeDocumentation => "str";
+        //ModelAsString ? 
+        //"str" : 
+        public string ReturnTypeDocumentation => ModelAsString || Parent == null ? "str" :  $"~{((CodeModelPy)CodeModel)?.Namespace}.models.{Name}";
     }
 }
