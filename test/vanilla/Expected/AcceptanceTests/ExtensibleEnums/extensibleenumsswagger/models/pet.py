@@ -34,8 +34,8 @@ class Pet(Model):
 
     _attribute_map = {
         'name': {'key': 'name', 'type': 'str'},
-        'days_of_week': {'key': 'DaysOfWeek', 'type': 'str', 'enum':'DaysOfWeekExtensibleEnum'},
-        'int_enum': {'key': 'IntEnum', 'type': 'str', 'enum':'IntEnum'},
+        'days_of_week': {'key': 'DaysOfWeek', 'type': 'DaysOfWeekExtensibleEnum'},
+        'int_enum': {'key': 'IntEnum', 'type': 'str'},
     }
 
     def __init__(self, **kwargs):
