@@ -12,7 +12,7 @@
 from enum import Enum
 
 
-class DaysOfWeekExtensibleEnum(Enum):
+class DaysOfWeekExtensibleEnum(str, Enum):
 
     monday = "Monday"
     tuesday = "Tuesday"
@@ -23,7 +23,7 @@ class DaysOfWeekExtensibleEnum(Enum):
     sunday = "Sunday"
 
 
-class IntEnum(Enum):
+class IntEnum(str, Enum):
 
     one = "1"
     two = "2"
