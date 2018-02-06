@@ -28,6 +28,13 @@ namespace AutoRest.Python
             // api_version is no longer a parameter of the constructor
             codeModel.Remove(codeModel.Properties.FirstOrDefault(p => p.Name == "api_version"));
 
+            // If one of the constructor parameter is called base_url, rename it to base_url_parameter
+            Property baseUrlPRop = codeModel.Properties.FirstOrDefault(each => each.Name == "base_url");
+            if(baseUrlPRop != null)
+            {
+                baseUrlPRop.Name = "base_url_parameter";
+            }
+
             TransformGroupApiVersionToLocal(codeModel);
             SwaggerExtensions.NormalizeClientModel(codeModel);
             PopulateAdditionalProperties(codeModel);

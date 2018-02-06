@@ -23,6 +23,11 @@ namespace AutoRest.Python.Model
                     {
                         return $"self.{value}";
                     }
+                    // base_url as the client level and parameter as to be renamed base_url_parameter
+                    if (value == "base_url" && IsClientProperty)
+                    {
+                        return $"self.config.base_url_parameter";
+                    }
 
                     if (IsClientProperty)
                     {
