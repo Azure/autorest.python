@@ -1,3 +1,7 @@
+### 2018-02-06 - 2.1.35
+
+- Allow "baseUrl" as a custom parameter at the client level.
+
 ### 2017-12-28 - 2.1.32
 
 - Refactor LRO operations with an external \_XXX_initial call
