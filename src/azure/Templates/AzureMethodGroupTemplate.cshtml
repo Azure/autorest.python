@@ -38,7 +38,7 @@ class @((string) Model.TypeName)(object):
     :param client: Client for service requests.
     :param config: Configuration of service client.
     :param serializer: An object model serializer.
-    :param deserializer: An objec model deserializer.
+    :param deserializer: An object model deserializer.
 @foreach(var property in Model.ConstantProperties)
 {
     @:@Model.GetPropertyDocumentationString(property)

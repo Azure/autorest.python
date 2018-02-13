@@ -21,7 +21,7 @@ class ApiVersionLocalOperations(object):
     :param client: Client for service requests.
     :param config: Configuration of service client.
     :param serializer: An object model serializer.
-    :param deserializer: An objec model deserializer.
+    :param deserializer: An object model deserializer.
     :ivar api_version: This should appear as a method parameter, use value '2.0'. Constant value: "2.0".
     """
 

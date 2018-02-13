@@ -21,7 +21,7 @@ class SubscriptionInCredentialsOperations(object):
     :param client: Client for service requests.
     :param config: Configuration of service client.
     :param serializer: An object model serializer.
-    :param deserializer: An objec model deserializer.
+    :param deserializer: An object model deserializer.
     :ivar api_version: The api version, which appears in the query, the value is always '2015-07-01-preview'. Constant value: "2015-07-01-preview".
     """
 

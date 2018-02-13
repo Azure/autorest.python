@@ -21,7 +21,7 @@ class SkipUrlEncodingOperations(object):
     :param client: Client for service requests.
     :param config: Configuration of service client.
     :param serializer: An object model serializer.
-    :param deserializer: An objec model deserializer.
+    :param deserializer: An object model deserializer.
     :ivar unencoded_path_param: An unencoded path parameter with value 'path1/path2/path3'. Constant value: "path1/path2/path3".
     :ivar q1: An unencoded query parameter with value 'value1&q2=value2&q3=value3'. Constant value: "value1&q2=value2&q3=value3".
     """
