@@ -55,7 +55,7 @@ class QueriesOperations(object):
         bool_query = True
 
         # Construct URL
-        url = '/queries/bool/true'
+        url = self.get_boolean_true.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -77,6 +77,7 @@ class QueriesOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    get_boolean_true.metadata = {'url': '/queries/bool/true'}
 
     def get_boolean_false(
             self, custom_headers=None, raw=False, **operation_config):
@@ -94,7 +95,7 @@ class QueriesOperations(object):
         bool_query = False
 
         # Construct URL
-        url = '/queries/bool/false'
+        url = self.get_boolean_false.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -116,6 +117,7 @@ class QueriesOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    get_boolean_false.metadata = {'url': '/queries/bool/false'}
 
     def get_boolean_null(
             self, bool_query=None, custom_headers=None, raw=False, **operation_config):
@@ -133,7 +135,7 @@ class QueriesOperations(object):
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
-        url = '/queries/bool/null'
+        url = self.get_boolean_null.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -156,6 +158,7 @@ class QueriesOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    get_boolean_null.metadata = {'url': '/queries/bool/null'}
 
     def get_int_one_million(
             self, custom_headers=None, raw=False, **operation_config):
@@ -173,7 +176,7 @@ class QueriesOperations(object):
         int_query = 1000000
 
         # Construct URL
-        url = '/queries/int/1000000'
+        url = self.get_int_one_million.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -195,6 +198,7 @@ class QueriesOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    get_int_one_million.metadata = {'url': '/queries/int/1000000'}
 
     def get_int_negative_one_million(
             self, custom_headers=None, raw=False, **operation_config):
@@ -212,7 +216,7 @@ class QueriesOperations(object):
         int_query = -1000000
 
         # Construct URL
-        url = '/queries/int/-1000000'
+        url = self.get_int_negative_one_million.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -234,6 +238,7 @@ class QueriesOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    get_int_negative_one_million.metadata = {'url': '/queries/int/-1000000'}
 
     def get_int_null(
             self, int_query=None, custom_headers=None, raw=False, **operation_config):
@@ -251,7 +256,7 @@ class QueriesOperations(object):
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
-        url = '/queries/int/null'
+        url = self.get_int_null.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -274,6 +279,7 @@ class QueriesOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    get_int_null.metadata = {'url': '/queries/int/null'}
 
     def get_ten_billion(
             self, custom_headers=None, raw=False, **operation_config):
@@ -291,7 +297,7 @@ class QueriesOperations(object):
         long_query = 10000000000
 
         # Construct URL
-        url = '/queries/long/10000000000'
+        url = self.get_ten_billion.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -313,6 +319,7 @@ class QueriesOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    get_ten_billion.metadata = {'url': '/queries/long/10000000000'}
 
     def get_negative_ten_billion(
             self, custom_headers=None, raw=False, **operation_config):
@@ -330,7 +337,7 @@ class QueriesOperations(object):
         long_query = -10000000000
 
         # Construct URL
-        url = '/queries/long/-10000000000'
+        url = self.get_negative_ten_billion.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -352,6 +359,7 @@ class QueriesOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    get_negative_ten_billion.metadata = {'url': '/queries/long/-10000000000'}
 
     def get_long_null(
             self, long_query=None, custom_headers=None, raw=False, **operation_config):
@@ -369,7 +377,7 @@ class QueriesOperations(object):
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
-        url = '/queries/long/null'
+        url = self.get_long_null.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -392,6 +400,7 @@ class QueriesOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    get_long_null.metadata = {'url': '/queries/long/null'}
 
     def float_scientific_positive(
             self, custom_headers=None, raw=False, **operation_config):
@@ -409,7 +418,7 @@ class QueriesOperations(object):
         float_query = 1.034E+20
 
         # Construct URL
-        url = '/queries/float/1.034E+20'
+        url = self.float_scientific_positive.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -431,6 +440,7 @@ class QueriesOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    float_scientific_positive.metadata = {'url': '/queries/float/1.034E+20'}
 
     def float_scientific_negative(
             self, custom_headers=None, raw=False, **operation_config):
@@ -448,7 +458,7 @@ class QueriesOperations(object):
         float_query = -1.034E-20
 
         # Construct URL
-        url = '/queries/float/-1.034E-20'
+        url = self.float_scientific_negative.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -470,6 +480,7 @@ class QueriesOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    float_scientific_negative.metadata = {'url': '/queries/float/-1.034E-20'}
 
     def float_null(
             self, float_query=None, custom_headers=None, raw=False, **operation_config):
@@ -487,7 +498,7 @@ class QueriesOperations(object):
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
-        url = '/queries/float/null'
+        url = self.float_null.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -510,6 +521,7 @@ class QueriesOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    float_null.metadata = {'url': '/queries/float/null'}
 
     def double_decimal_positive(
             self, custom_headers=None, raw=False, **operation_config):
@@ -527,7 +539,7 @@ class QueriesOperations(object):
         double_query = 9999999.999
 
         # Construct URL
-        url = '/queries/double/9999999.999'
+        url = self.double_decimal_positive.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -549,6 +561,7 @@ class QueriesOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    double_decimal_positive.metadata = {'url': '/queries/double/9999999.999'}
 
     def double_decimal_negative(
             self, custom_headers=None, raw=False, **operation_config):
@@ -566,7 +579,7 @@ class QueriesOperations(object):
         double_query = -9999999.999
 
         # Construct URL
-        url = '/queries/double/-9999999.999'
+        url = self.double_decimal_negative.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -588,6 +601,7 @@ class QueriesOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    double_decimal_negative.metadata = {'url': '/queries/double/-9999999.999'}
 
     def double_null(
             self, double_query=None, custom_headers=None, raw=False, **operation_config):
@@ -605,7 +619,7 @@ class QueriesOperations(object):
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
-        url = '/queries/double/null'
+        url = self.double_null.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -628,6 +642,7 @@ class QueriesOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    double_null.metadata = {'url': '/queries/double/null'}
 
     def string_unicode(
             self, custom_headers=None, raw=False, **operation_config):
@@ -645,7 +660,7 @@ class QueriesOperations(object):
         string_query = "啊齄丂狛狜隣郎隣兀﨩"
 
         # Construct URL
-        url = '/queries/string/unicode/'
+        url = self.string_unicode.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -667,6 +682,7 @@ class QueriesOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    string_unicode.metadata = {'url': '/queries/string/unicode/'}
 
     def string_url_encoded(
             self, custom_headers=None, raw=False, **operation_config):
@@ -684,7 +700,7 @@ class QueriesOperations(object):
         string_query = "begin!*'();:@ &=+$,/?#[]end"
 
         # Construct URL
-        url = '/queries/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend'
+        url = self.string_url_encoded.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -706,6 +722,7 @@ class QueriesOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    string_url_encoded.metadata = {'url': '/queries/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend'}
 
     def string_empty(
             self, custom_headers=None, raw=False, **operation_config):
@@ -723,7 +740,7 @@ class QueriesOperations(object):
         string_query = ""
 
         # Construct URL
-        url = '/queries/string/empty'
+        url = self.string_empty.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -745,6 +762,7 @@ class QueriesOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    string_empty.metadata = {'url': '/queries/string/empty'}
 
     def string_null(
             self, string_query=None, custom_headers=None, raw=False, **operation_config):
@@ -762,7 +780,7 @@ class QueriesOperations(object):
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
-        url = '/queries/string/null'
+        url = self.string_null.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -785,6 +803,7 @@ class QueriesOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    string_null.metadata = {'url': '/queries/string/null'}
 
     def enum_valid(
             self, enum_query=None, custom_headers=None, raw=False, **operation_config):
@@ -803,7 +822,7 @@ class QueriesOperations(object):
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
-        url = '/queries/enum/green%20color'
+        url = self.enum_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -826,6 +845,7 @@ class QueriesOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    enum_valid.metadata = {'url': '/queries/enum/green%20color'}
 
     def enum_null(
             self, enum_query=None, custom_headers=None, raw=False, **operation_config):
@@ -844,7 +864,7 @@ class QueriesOperations(object):
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
-        url = '/queries/enum/null'
+        url = self.enum_null.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -867,6 +887,7 @@ class QueriesOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    enum_null.metadata = {'url': '/queries/enum/null'}
 
     def byte_multi_byte(
             self, byte_query=None, custom_headers=None, raw=False, **operation_config):
@@ -885,7 +906,7 @@ class QueriesOperations(object):
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
-        url = '/queries/byte/multibyte'
+        url = self.byte_multi_byte.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -908,6 +929,7 @@ class QueriesOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    byte_multi_byte.metadata = {'url': '/queries/byte/multibyte'}
 
     def byte_empty(
             self, custom_headers=None, raw=False, **operation_config):
@@ -923,7 +945,7 @@ class QueriesOperations(object):
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
-        url = '/queries/byte/empty'
+        url = self.byte_empty.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -945,6 +967,7 @@ class QueriesOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    byte_empty.metadata = {'url': '/queries/byte/empty'}
 
     def byte_null(
             self, byte_query=None, custom_headers=None, raw=False, **operation_config):
@@ -962,7 +985,7 @@ class QueriesOperations(object):
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
-        url = '/queries/byte/null'
+        url = self.byte_null.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -985,6 +1008,7 @@ class QueriesOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    byte_null.metadata = {'url': '/queries/byte/null'}
 
     def date_valid(
             self, custom_headers=None, raw=False, **operation_config):
@@ -1000,7 +1024,7 @@ class QueriesOperations(object):
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
-        url = '/queries/date/2012-01-01'
+        url = self.date_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1022,6 +1046,7 @@ class QueriesOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    date_valid.metadata = {'url': '/queries/date/2012-01-01'}
 
     def date_null(
             self, date_query=None, custom_headers=None, raw=False, **operation_config):
@@ -1039,7 +1064,7 @@ class QueriesOperations(object):
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
-        url = '/queries/date/null'
+        url = self.date_null.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1062,6 +1087,7 @@ class QueriesOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    date_null.metadata = {'url': '/queries/date/null'}
 
     def date_time_valid(
             self, custom_headers=None, raw=False, **operation_config):
@@ -1077,7 +1103,7 @@ class QueriesOperations(object):
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
-        url = '/queries/datetime/2012-01-01T01%3A01%3A01Z'
+        url = self.date_time_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1099,6 +1125,7 @@ class QueriesOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    date_time_valid.metadata = {'url': '/queries/datetime/2012-01-01T01%3A01%3A01Z'}
 
     def date_time_null(
             self, date_time_query=None, custom_headers=None, raw=False, **operation_config):
@@ -1116,7 +1143,7 @@ class QueriesOperations(object):
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
-        url = '/queries/datetime/null'
+        url = self.date_time_null.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1139,6 +1166,7 @@ class QueriesOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    date_time_null.metadata = {'url': '/queries/datetime/null'}
 
     def array_string_csv_valid(
             self, array_query=None, custom_headers=None, raw=False, **operation_config):
@@ -1158,7 +1186,7 @@ class QueriesOperations(object):
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
-        url = '/queries/array/csv/string/valid'
+        url = self.array_string_csv_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1181,6 +1209,7 @@ class QueriesOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    array_string_csv_valid.metadata = {'url': '/queries/array/csv/string/valid'}
 
     def array_string_csv_null(
             self, array_query=None, custom_headers=None, raw=False, **operation_config):
@@ -1198,7 +1227,7 @@ class QueriesOperations(object):
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
-        url = '/queries/array/csv/string/null'
+        url = self.array_string_csv_null.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1221,6 +1250,7 @@ class QueriesOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    array_string_csv_null.metadata = {'url': '/queries/array/csv/string/null'}
 
     def array_string_csv_empty(
             self, array_query=None, custom_headers=None, raw=False, **operation_config):
@@ -1239,7 +1269,7 @@ class QueriesOperations(object):
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
-        url = '/queries/array/csv/string/empty'
+        url = self.array_string_csv_empty.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1262,6 +1292,7 @@ class QueriesOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    array_string_csv_empty.metadata = {'url': '/queries/array/csv/string/empty'}
 
     def array_string_ssv_valid(
             self, array_query=None, custom_headers=None, raw=False, **operation_config):
@@ -1281,7 +1312,7 @@ class QueriesOperations(object):
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
-        url = '/queries/array/ssv/string/valid'
+        url = self.array_string_ssv_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1304,6 +1335,7 @@ class QueriesOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    array_string_ssv_valid.metadata = {'url': '/queries/array/ssv/string/valid'}
 
     def array_string_tsv_valid(
             self, array_query=None, custom_headers=None, raw=False, **operation_config):
@@ -1323,7 +1355,7 @@ class QueriesOperations(object):
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
-        url = '/queries/array/tsv/string/valid'
+        url = self.array_string_tsv_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1346,6 +1378,7 @@ class QueriesOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    array_string_tsv_valid.metadata = {'url': '/queries/array/tsv/string/valid'}
 
     def array_string_pipes_valid(
             self, array_query=None, custom_headers=None, raw=False, **operation_config):
@@ -1365,7 +1398,7 @@ class QueriesOperations(object):
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
-        url = '/queries/array/pipes/string/valid'
+        url = self.array_string_pipes_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1388,3 +1421,4 @@ class QueriesOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    array_string_pipes_valid.metadata = {'url': '/queries/array/pipes/string/valid'}

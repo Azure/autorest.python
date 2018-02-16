@@ -47,7 +47,7 @@ class DictionaryOperations(object):
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
         """
         # Construct URL
-        url = '/dictionary/null'
+        url = self.get_null.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -75,6 +75,7 @@ class DictionaryOperations(object):
             return client_raw_response
 
         return deserialized
+    get_null.metadata = {'url': '/dictionary/null'}
 
     def get_empty(
             self, custom_headers=None, raw=False, **operation_config):
@@ -90,7 +91,7 @@ class DictionaryOperations(object):
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
         """
         # Construct URL
-        url = '/dictionary/empty'
+        url = self.get_empty.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -118,6 +119,7 @@ class DictionaryOperations(object):
             return client_raw_response
 
         return deserialized
+    get_empty.metadata = {'url': '/dictionary/empty'}
 
     def put_empty(
             self, array_body, custom_headers=None, raw=False, **operation_config):
@@ -135,7 +137,7 @@ class DictionaryOperations(object):
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
         """
         # Construct URL
-        url = '/dictionary/empty'
+        url = self.put_empty.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -160,6 +162,7 @@ class DictionaryOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    put_empty.metadata = {'url': '/dictionary/empty'}
 
     def get_null_value(
             self, custom_headers=None, raw=False, **operation_config):
@@ -175,7 +178,7 @@ class DictionaryOperations(object):
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
         """
         # Construct URL
-        url = '/dictionary/nullvalue'
+        url = self.get_null_value.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -203,6 +206,7 @@ class DictionaryOperations(object):
             return client_raw_response
 
         return deserialized
+    get_null_value.metadata = {'url': '/dictionary/nullvalue'}
 
     def get_null_key(
             self, custom_headers=None, raw=False, **operation_config):
@@ -218,7 +222,7 @@ class DictionaryOperations(object):
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
         """
         # Construct URL
-        url = '/dictionary/nullkey'
+        url = self.get_null_key.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -246,6 +250,7 @@ class DictionaryOperations(object):
             return client_raw_response
 
         return deserialized
+    get_null_key.metadata = {'url': '/dictionary/nullkey'}
 
     def get_empty_string_key(
             self, custom_headers=None, raw=False, **operation_config):
@@ -261,7 +266,7 @@ class DictionaryOperations(object):
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
         """
         # Construct URL
-        url = '/dictionary/keyemptystring'
+        url = self.get_empty_string_key.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -289,6 +294,7 @@ class DictionaryOperations(object):
             return client_raw_response
 
         return deserialized
+    get_empty_string_key.metadata = {'url': '/dictionary/keyemptystring'}
 
     def get_invalid(
             self, custom_headers=None, raw=False, **operation_config):
@@ -304,7 +310,7 @@ class DictionaryOperations(object):
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
         """
         # Construct URL
-        url = '/dictionary/invalid'
+        url = self.get_invalid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -332,6 +338,7 @@ class DictionaryOperations(object):
             return client_raw_response
 
         return deserialized
+    get_invalid.metadata = {'url': '/dictionary/invalid'}
 
     def get_boolean_tfft(
             self, custom_headers=None, raw=False, **operation_config):
@@ -348,7 +355,7 @@ class DictionaryOperations(object):
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
         """
         # Construct URL
-        url = '/dictionary/prim/boolean/tfft'
+        url = self.get_boolean_tfft.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -376,6 +383,7 @@ class DictionaryOperations(object):
             return client_raw_response
 
         return deserialized
+    get_boolean_tfft.metadata = {'url': '/dictionary/prim/boolean/tfft'}
 
     def put_boolean_tfft(
             self, array_body, custom_headers=None, raw=False, **operation_config):
@@ -394,7 +402,7 @@ class DictionaryOperations(object):
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
         """
         # Construct URL
-        url = '/dictionary/prim/boolean/tfft'
+        url = self.put_boolean_tfft.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -419,6 +427,7 @@ class DictionaryOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    put_boolean_tfft.metadata = {'url': '/dictionary/prim/boolean/tfft'}
 
     def get_boolean_invalid_null(
             self, custom_headers=None, raw=False, **operation_config):
@@ -434,7 +443,7 @@ class DictionaryOperations(object):
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
         """
         # Construct URL
-        url = '/dictionary/prim/boolean/true.null.false'
+        url = self.get_boolean_invalid_null.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -462,6 +471,7 @@ class DictionaryOperations(object):
             return client_raw_response
 
         return deserialized
+    get_boolean_invalid_null.metadata = {'url': '/dictionary/prim/boolean/true.null.false'}
 
     def get_boolean_invalid_string(
             self, custom_headers=None, raw=False, **operation_config):
@@ -477,7 +487,7 @@ class DictionaryOperations(object):
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
         """
         # Construct URL
-        url = '/dictionary/prim/boolean/true.boolean.false'
+        url = self.get_boolean_invalid_string.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -505,6 +515,7 @@ class DictionaryOperations(object):
             return client_raw_response
 
         return deserialized
+    get_boolean_invalid_string.metadata = {'url': '/dictionary/prim/boolean/true.boolean.false'}
 
     def get_integer_valid(
             self, custom_headers=None, raw=False, **operation_config):
@@ -520,7 +531,7 @@ class DictionaryOperations(object):
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
         """
         # Construct URL
-        url = '/dictionary/prim/integer/1.-1.3.300'
+        url = self.get_integer_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -548,6 +559,7 @@ class DictionaryOperations(object):
             return client_raw_response
 
         return deserialized
+    get_integer_valid.metadata = {'url': '/dictionary/prim/integer/1.-1.3.300'}
 
     def put_integer_valid(
             self, array_body, custom_headers=None, raw=False, **operation_config):
@@ -565,7 +577,7 @@ class DictionaryOperations(object):
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
         """
         # Construct URL
-        url = '/dictionary/prim/integer/1.-1.3.300'
+        url = self.put_integer_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -590,6 +602,7 @@ class DictionaryOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    put_integer_valid.metadata = {'url': '/dictionary/prim/integer/1.-1.3.300'}
 
     def get_int_invalid_null(
             self, custom_headers=None, raw=False, **operation_config):
@@ -605,7 +618,7 @@ class DictionaryOperations(object):
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
         """
         # Construct URL
-        url = '/dictionary/prim/integer/1.null.zero'
+        url = self.get_int_invalid_null.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -633,6 +646,7 @@ class DictionaryOperations(object):
             return client_raw_response
 
         return deserialized
+    get_int_invalid_null.metadata = {'url': '/dictionary/prim/integer/1.null.zero'}
 
     def get_int_invalid_string(
             self, custom_headers=None, raw=False, **operation_config):
@@ -648,7 +662,7 @@ class DictionaryOperations(object):
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
         """
         # Construct URL
-        url = '/dictionary/prim/integer/1.integer.0'
+        url = self.get_int_invalid_string.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -676,6 +690,7 @@ class DictionaryOperations(object):
             return client_raw_response
 
         return deserialized
+    get_int_invalid_string.metadata = {'url': '/dictionary/prim/integer/1.integer.0'}
 
     def get_long_valid(
             self, custom_headers=None, raw=False, **operation_config):
@@ -691,7 +706,7 @@ class DictionaryOperations(object):
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
         """
         # Construct URL
-        url = '/dictionary/prim/long/1.-1.3.300'
+        url = self.get_long_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -719,6 +734,7 @@ class DictionaryOperations(object):
             return client_raw_response
 
         return deserialized
+    get_long_valid.metadata = {'url': '/dictionary/prim/long/1.-1.3.300'}
 
     def put_long_valid(
             self, array_body, custom_headers=None, raw=False, **operation_config):
@@ -736,7 +752,7 @@ class DictionaryOperations(object):
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
         """
         # Construct URL
-        url = '/dictionary/prim/long/1.-1.3.300'
+        url = self.put_long_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -761,6 +777,7 @@ class DictionaryOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    put_long_valid.metadata = {'url': '/dictionary/prim/long/1.-1.3.300'}
 
     def get_long_invalid_null(
             self, custom_headers=None, raw=False, **operation_config):
@@ -776,7 +793,7 @@ class DictionaryOperations(object):
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
         """
         # Construct URL
-        url = '/dictionary/prim/long/1.null.zero'
+        url = self.get_long_invalid_null.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -804,6 +821,7 @@ class DictionaryOperations(object):
             return client_raw_response
 
         return deserialized
+    get_long_invalid_null.metadata = {'url': '/dictionary/prim/long/1.null.zero'}
 
     def get_long_invalid_string(
             self, custom_headers=None, raw=False, **operation_config):
@@ -819,7 +837,7 @@ class DictionaryOperations(object):
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
         """
         # Construct URL
-        url = '/dictionary/prim/long/1.integer.0'
+        url = self.get_long_invalid_string.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -847,6 +865,7 @@ class DictionaryOperations(object):
             return client_raw_response
 
         return deserialized
+    get_long_invalid_string.metadata = {'url': '/dictionary/prim/long/1.integer.0'}
 
     def get_float_valid(
             self, custom_headers=None, raw=False, **operation_config):
@@ -862,7 +881,7 @@ class DictionaryOperations(object):
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
         """
         # Construct URL
-        url = '/dictionary/prim/float/0--0.01-1.2e20'
+        url = self.get_float_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -890,6 +909,7 @@ class DictionaryOperations(object):
             return client_raw_response
 
         return deserialized
+    get_float_valid.metadata = {'url': '/dictionary/prim/float/0--0.01-1.2e20'}
 
     def put_float_valid(
             self, array_body, custom_headers=None, raw=False, **operation_config):
@@ -907,7 +927,7 @@ class DictionaryOperations(object):
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
         """
         # Construct URL
-        url = '/dictionary/prim/float/0--0.01-1.2e20'
+        url = self.put_float_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -932,6 +952,7 @@ class DictionaryOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    put_float_valid.metadata = {'url': '/dictionary/prim/float/0--0.01-1.2e20'}
 
     def get_float_invalid_null(
             self, custom_headers=None, raw=False, **operation_config):
@@ -947,7 +968,7 @@ class DictionaryOperations(object):
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
         """
         # Construct URL
-        url = '/dictionary/prim/float/0.0-null-1.2e20'
+        url = self.get_float_invalid_null.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -975,6 +996,7 @@ class DictionaryOperations(object):
             return client_raw_response
 
         return deserialized
+    get_float_invalid_null.metadata = {'url': '/dictionary/prim/float/0.0-null-1.2e20'}
 
     def get_float_invalid_string(
             self, custom_headers=None, raw=False, **operation_config):
@@ -990,7 +1012,7 @@ class DictionaryOperations(object):
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
         """
         # Construct URL
-        url = '/dictionary/prim/float/1.number.0'
+        url = self.get_float_invalid_string.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1018,6 +1040,7 @@ class DictionaryOperations(object):
             return client_raw_response
 
         return deserialized
+    get_float_invalid_string.metadata = {'url': '/dictionary/prim/float/1.number.0'}
 
     def get_double_valid(
             self, custom_headers=None, raw=False, **operation_config):
@@ -1033,7 +1056,7 @@ class DictionaryOperations(object):
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
         """
         # Construct URL
-        url = '/dictionary/prim/double/0--0.01-1.2e20'
+        url = self.get_double_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1061,6 +1084,7 @@ class DictionaryOperations(object):
             return client_raw_response
 
         return deserialized
+    get_double_valid.metadata = {'url': '/dictionary/prim/double/0--0.01-1.2e20'}
 
     def put_double_valid(
             self, array_body, custom_headers=None, raw=False, **operation_config):
@@ -1078,7 +1102,7 @@ class DictionaryOperations(object):
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
         """
         # Construct URL
-        url = '/dictionary/prim/double/0--0.01-1.2e20'
+        url = self.put_double_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1103,6 +1127,7 @@ class DictionaryOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    put_double_valid.metadata = {'url': '/dictionary/prim/double/0--0.01-1.2e20'}
 
     def get_double_invalid_null(
             self, custom_headers=None, raw=False, **operation_config):
@@ -1118,7 +1143,7 @@ class DictionaryOperations(object):
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
         """
         # Construct URL
-        url = '/dictionary/prim/double/0.0-null-1.2e20'
+        url = self.get_double_invalid_null.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1146,6 +1171,7 @@ class DictionaryOperations(object):
             return client_raw_response
 
         return deserialized
+    get_double_invalid_null.metadata = {'url': '/dictionary/prim/double/0.0-null-1.2e20'}
 
     def get_double_invalid_string(
             self, custom_headers=None, raw=False, **operation_config):
@@ -1161,7 +1187,7 @@ class DictionaryOperations(object):
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
         """
         # Construct URL
-        url = '/dictionary/prim/double/1.number.0'
+        url = self.get_double_invalid_string.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1189,6 +1215,7 @@ class DictionaryOperations(object):
             return client_raw_response
 
         return deserialized
+    get_double_invalid_string.metadata = {'url': '/dictionary/prim/double/1.number.0'}
 
     def get_string_valid(
             self, custom_headers=None, raw=False, **operation_config):
@@ -1204,7 +1231,7 @@ class DictionaryOperations(object):
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
         """
         # Construct URL
-        url = '/dictionary/prim/string/foo1.foo2.foo3'
+        url = self.get_string_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1232,6 +1259,7 @@ class DictionaryOperations(object):
             return client_raw_response
 
         return deserialized
+    get_string_valid.metadata = {'url': '/dictionary/prim/string/foo1.foo2.foo3'}
 
     def put_string_valid(
             self, array_body, custom_headers=None, raw=False, **operation_config):
@@ -1249,7 +1277,7 @@ class DictionaryOperations(object):
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
         """
         # Construct URL
-        url = '/dictionary/prim/string/foo1.foo2.foo3'
+        url = self.put_string_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1274,6 +1302,7 @@ class DictionaryOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    put_string_valid.metadata = {'url': '/dictionary/prim/string/foo1.foo2.foo3'}
 
     def get_string_with_null(
             self, custom_headers=None, raw=False, **operation_config):
@@ -1289,7 +1318,7 @@ class DictionaryOperations(object):
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
         """
         # Construct URL
-        url = '/dictionary/prim/string/foo.null.foo2'
+        url = self.get_string_with_null.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1317,6 +1346,7 @@ class DictionaryOperations(object):
             return client_raw_response
 
         return deserialized
+    get_string_with_null.metadata = {'url': '/dictionary/prim/string/foo.null.foo2'}
 
     def get_string_with_invalid(
             self, custom_headers=None, raw=False, **operation_config):
@@ -1332,7 +1362,7 @@ class DictionaryOperations(object):
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
         """
         # Construct URL
-        url = '/dictionary/prim/string/foo.123.foo2'
+        url = self.get_string_with_invalid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1360,6 +1390,7 @@ class DictionaryOperations(object):
             return client_raw_response
 
         return deserialized
+    get_string_with_invalid.metadata = {'url': '/dictionary/prim/string/foo.123.foo2'}
 
     def get_date_valid(
             self, custom_headers=None, raw=False, **operation_config):
@@ -1376,7 +1407,7 @@ class DictionaryOperations(object):
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
         """
         # Construct URL
-        url = '/dictionary/prim/date/valid'
+        url = self.get_date_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1404,6 +1435,7 @@ class DictionaryOperations(object):
             return client_raw_response
 
         return deserialized
+    get_date_valid.metadata = {'url': '/dictionary/prim/date/valid'}
 
     def put_date_valid(
             self, array_body, custom_headers=None, raw=False, **operation_config):
@@ -1422,7 +1454,7 @@ class DictionaryOperations(object):
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
         """
         # Construct URL
-        url = '/dictionary/prim/date/valid'
+        url = self.put_date_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1447,6 +1479,7 @@ class DictionaryOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    put_date_valid.metadata = {'url': '/dictionary/prim/date/valid'}
 
     def get_date_invalid_null(
             self, custom_headers=None, raw=False, **operation_config):
@@ -1463,7 +1496,7 @@ class DictionaryOperations(object):
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
         """
         # Construct URL
-        url = '/dictionary/prim/date/invalidnull'
+        url = self.get_date_invalid_null.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1491,6 +1524,7 @@ class DictionaryOperations(object):
             return client_raw_response
 
         return deserialized
+    get_date_invalid_null.metadata = {'url': '/dictionary/prim/date/invalidnull'}
 
     def get_date_invalid_chars(
             self, custom_headers=None, raw=False, **operation_config):
@@ -1506,7 +1540,7 @@ class DictionaryOperations(object):
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
         """
         # Construct URL
-        url = '/dictionary/prim/date/invalidchars'
+        url = self.get_date_invalid_chars.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1534,6 +1568,7 @@ class DictionaryOperations(object):
             return client_raw_response
 
         return deserialized
+    get_date_invalid_chars.metadata = {'url': '/dictionary/prim/date/invalidchars'}
 
     def get_date_time_valid(
             self, custom_headers=None, raw=False, **operation_config):
@@ -1550,7 +1585,7 @@ class DictionaryOperations(object):
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
         """
         # Construct URL
-        url = '/dictionary/prim/date-time/valid'
+        url = self.get_date_time_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1578,6 +1613,7 @@ class DictionaryOperations(object):
             return client_raw_response
 
         return deserialized
+    get_date_time_valid.metadata = {'url': '/dictionary/prim/date-time/valid'}
 
     def put_date_time_valid(
             self, array_body, custom_headers=None, raw=False, **operation_config):
@@ -1596,7 +1632,7 @@ class DictionaryOperations(object):
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
         """
         # Construct URL
-        url = '/dictionary/prim/date-time/valid'
+        url = self.put_date_time_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1621,6 +1657,7 @@ class DictionaryOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    put_date_time_valid.metadata = {'url': '/dictionary/prim/date-time/valid'}
 
     def get_date_time_invalid_null(
             self, custom_headers=None, raw=False, **operation_config):
@@ -1636,7 +1673,7 @@ class DictionaryOperations(object):
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
         """
         # Construct URL
-        url = '/dictionary/prim/date-time/invalidnull'
+        url = self.get_date_time_invalid_null.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1664,6 +1701,7 @@ class DictionaryOperations(object):
             return client_raw_response
 
         return deserialized
+    get_date_time_invalid_null.metadata = {'url': '/dictionary/prim/date-time/invalidnull'}
 
     def get_date_time_invalid_chars(
             self, custom_headers=None, raw=False, **operation_config):
@@ -1680,7 +1718,7 @@ class DictionaryOperations(object):
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
         """
         # Construct URL
-        url = '/dictionary/prim/date-time/invalidchars'
+        url = self.get_date_time_invalid_chars.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1708,6 +1746,7 @@ class DictionaryOperations(object):
             return client_raw_response
 
         return deserialized
+    get_date_time_invalid_chars.metadata = {'url': '/dictionary/prim/date-time/invalidchars'}
 
     def get_date_time_rfc1123_valid(
             self, custom_headers=None, raw=False, **operation_config):
@@ -1725,7 +1764,7 @@ class DictionaryOperations(object):
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
         """
         # Construct URL
-        url = '/dictionary/prim/date-time-rfc1123/valid'
+        url = self.get_date_time_rfc1123_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1753,6 +1792,7 @@ class DictionaryOperations(object):
             return client_raw_response
 
         return deserialized
+    get_date_time_rfc1123_valid.metadata = {'url': '/dictionary/prim/date-time-rfc1123/valid'}
 
     def put_date_time_rfc1123_valid(
             self, array_body, custom_headers=None, raw=False, **operation_config):
@@ -1771,7 +1811,7 @@ class DictionaryOperations(object):
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
         """
         # Construct URL
-        url = '/dictionary/prim/date-time-rfc1123/valid'
+        url = self.put_date_time_rfc1123_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1796,6 +1836,7 @@ class DictionaryOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    put_date_time_rfc1123_valid.metadata = {'url': '/dictionary/prim/date-time-rfc1123/valid'}
 
     def get_duration_valid(
             self, custom_headers=None, raw=False, **operation_config):
@@ -1812,7 +1853,7 @@ class DictionaryOperations(object):
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
         """
         # Construct URL
-        url = '/dictionary/prim/duration/valid'
+        url = self.get_duration_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1840,6 +1881,7 @@ class DictionaryOperations(object):
             return client_raw_response
 
         return deserialized
+    get_duration_valid.metadata = {'url': '/dictionary/prim/duration/valid'}
 
     def put_duration_valid(
             self, array_body, custom_headers=None, raw=False, **operation_config):
@@ -1857,7 +1899,7 @@ class DictionaryOperations(object):
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
         """
         # Construct URL
-        url = '/dictionary/prim/duration/valid'
+        url = self.put_duration_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1882,6 +1924,7 @@ class DictionaryOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    put_duration_valid.metadata = {'url': '/dictionary/prim/duration/valid'}
 
     def get_byte_valid(
             self, custom_headers=None, raw=False, **operation_config):
@@ -1898,7 +1941,7 @@ class DictionaryOperations(object):
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
         """
         # Construct URL
-        url = '/dictionary/prim/byte/valid'
+        url = self.get_byte_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1926,6 +1969,7 @@ class DictionaryOperations(object):
             return client_raw_response
 
         return deserialized
+    get_byte_valid.metadata = {'url': '/dictionary/prim/byte/valid'}
 
     def put_byte_valid(
             self, array_body, custom_headers=None, raw=False, **operation_config):
@@ -1944,7 +1988,7 @@ class DictionaryOperations(object):
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
         """
         # Construct URL
-        url = '/dictionary/prim/byte/valid'
+        url = self.put_byte_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1969,6 +2013,7 @@ class DictionaryOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    put_byte_valid.metadata = {'url': '/dictionary/prim/byte/valid'}
 
     def get_byte_invalid_null(
             self, custom_headers=None, raw=False, **operation_config):
@@ -1985,7 +2030,7 @@ class DictionaryOperations(object):
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
         """
         # Construct URL
-        url = '/dictionary/prim/byte/invalidnull'
+        url = self.get_byte_invalid_null.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -2013,6 +2058,7 @@ class DictionaryOperations(object):
             return client_raw_response
 
         return deserialized
+    get_byte_invalid_null.metadata = {'url': '/dictionary/prim/byte/invalidnull'}
 
     def get_base64_url(
             self, custom_headers=None, raw=False, **operation_config):
@@ -2029,7 +2075,7 @@ class DictionaryOperations(object):
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
         """
         # Construct URL
-        url = '/dictionary/prim/base64url/valid'
+        url = self.get_base64_url.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -2057,6 +2103,7 @@ class DictionaryOperations(object):
             return client_raw_response
 
         return deserialized
+    get_base64_url.metadata = {'url': '/dictionary/prim/base64url/valid'}
 
     def get_complex_null(
             self, custom_headers=None, raw=False, **operation_config):
@@ -2073,7 +2120,7 @@ class DictionaryOperations(object):
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
         """
         # Construct URL
-        url = '/dictionary/complex/null'
+        url = self.get_complex_null.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -2101,6 +2148,7 @@ class DictionaryOperations(object):
             return client_raw_response
 
         return deserialized
+    get_complex_null.metadata = {'url': '/dictionary/complex/null'}
 
     def get_complex_empty(
             self, custom_headers=None, raw=False, **operation_config):
@@ -2117,7 +2165,7 @@ class DictionaryOperations(object):
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
         """
         # Construct URL
-        url = '/dictionary/complex/empty'
+        url = self.get_complex_empty.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -2145,6 +2193,7 @@ class DictionaryOperations(object):
             return client_raw_response
 
         return deserialized
+    get_complex_empty.metadata = {'url': '/dictionary/complex/empty'}
 
     def get_complex_item_null(
             self, custom_headers=None, raw=False, **operation_config):
@@ -2162,7 +2211,7 @@ class DictionaryOperations(object):
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
         """
         # Construct URL
-        url = '/dictionary/complex/itemnull'
+        url = self.get_complex_item_null.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -2190,6 +2239,7 @@ class DictionaryOperations(object):
             return client_raw_response
 
         return deserialized
+    get_complex_item_null.metadata = {'url': '/dictionary/complex/itemnull'}
 
     def get_complex_item_empty(
             self, custom_headers=None, raw=False, **operation_config):
@@ -2207,7 +2257,7 @@ class DictionaryOperations(object):
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
         """
         # Construct URL
-        url = '/dictionary/complex/itemempty'
+        url = self.get_complex_item_empty.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -2235,6 +2285,7 @@ class DictionaryOperations(object):
             return client_raw_response
 
         return deserialized
+    get_complex_item_empty.metadata = {'url': '/dictionary/complex/itemempty'}
 
     def get_complex_valid(
             self, custom_headers=None, raw=False, **operation_config):
@@ -2253,7 +2304,7 @@ class DictionaryOperations(object):
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
         """
         # Construct URL
-        url = '/dictionary/complex/valid'
+        url = self.get_complex_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -2281,6 +2332,7 @@ class DictionaryOperations(object):
             return client_raw_response
 
         return deserialized
+    get_complex_valid.metadata = {'url': '/dictionary/complex/valid'}
 
     def put_complex_valid(
             self, array_body, custom_headers=None, raw=False, **operation_config):
@@ -2300,7 +2352,7 @@ class DictionaryOperations(object):
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
         """
         # Construct URL
-        url = '/dictionary/complex/valid'
+        url = self.put_complex_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -2325,6 +2377,7 @@ class DictionaryOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    put_complex_valid.metadata = {'url': '/dictionary/complex/valid'}
 
     def get_array_null(
             self, custom_headers=None, raw=False, **operation_config):
@@ -2340,7 +2393,7 @@ class DictionaryOperations(object):
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
         """
         # Construct URL
-        url = '/dictionary/array/null'
+        url = self.get_array_null.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -2368,6 +2421,7 @@ class DictionaryOperations(object):
             return client_raw_response
 
         return deserialized
+    get_array_null.metadata = {'url': '/dictionary/array/null'}
 
     def get_array_empty(
             self, custom_headers=None, raw=False, **operation_config):
@@ -2383,7 +2437,7 @@ class DictionaryOperations(object):
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
         """
         # Construct URL
-        url = '/dictionary/array/empty'
+        url = self.get_array_empty.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -2411,6 +2465,7 @@ class DictionaryOperations(object):
             return client_raw_response
 
         return deserialized
+    get_array_empty.metadata = {'url': '/dictionary/array/empty'}
 
     def get_array_item_null(
             self, custom_headers=None, raw=False, **operation_config):
@@ -2427,7 +2482,7 @@ class DictionaryOperations(object):
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
         """
         # Construct URL
-        url = '/dictionary/array/itemnull'
+        url = self.get_array_item_null.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -2455,6 +2510,7 @@ class DictionaryOperations(object):
             return client_raw_response
 
         return deserialized
+    get_array_item_null.metadata = {'url': '/dictionary/array/itemnull'}
 
     def get_array_item_empty(
             self, custom_headers=None, raw=False, **operation_config):
@@ -2471,7 +2527,7 @@ class DictionaryOperations(object):
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
         """
         # Construct URL
-        url = '/dictionary/array/itemempty'
+        url = self.get_array_item_empty.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -2499,6 +2555,7 @@ class DictionaryOperations(object):
             return client_raw_response
 
         return deserialized
+    get_array_item_empty.metadata = {'url': '/dictionary/array/itemempty'}
 
     def get_array_valid(
             self, custom_headers=None, raw=False, **operation_config):
@@ -2515,7 +2572,7 @@ class DictionaryOperations(object):
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
         """
         # Construct URL
-        url = '/dictionary/array/valid'
+        url = self.get_array_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -2543,6 +2600,7 @@ class DictionaryOperations(object):
             return client_raw_response
 
         return deserialized
+    get_array_valid.metadata = {'url': '/dictionary/array/valid'}
 
     def put_array_valid(
             self, array_body, custom_headers=None, raw=False, **operation_config):
@@ -2561,7 +2619,7 @@ class DictionaryOperations(object):
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
         """
         # Construct URL
-        url = '/dictionary/array/valid'
+        url = self.put_array_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -2586,6 +2644,7 @@ class DictionaryOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    put_array_valid.metadata = {'url': '/dictionary/array/valid'}
 
     def get_dictionary_null(
             self, custom_headers=None, raw=False, **operation_config):
@@ -2602,7 +2661,7 @@ class DictionaryOperations(object):
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
         """
         # Construct URL
-        url = '/dictionary/dictionary/null'
+        url = self.get_dictionary_null.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -2630,6 +2689,7 @@ class DictionaryOperations(object):
             return client_raw_response
 
         return deserialized
+    get_dictionary_null.metadata = {'url': '/dictionary/dictionary/null'}
 
     def get_dictionary_empty(
             self, custom_headers=None, raw=False, **operation_config):
@@ -2647,7 +2707,7 @@ class DictionaryOperations(object):
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
         """
         # Construct URL
-        url = '/dictionary/dictionary/empty'
+        url = self.get_dictionary_empty.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -2675,6 +2735,7 @@ class DictionaryOperations(object):
             return client_raw_response
 
         return deserialized
+    get_dictionary_empty.metadata = {'url': '/dictionary/dictionary/empty'}
 
     def get_dictionary_item_null(
             self, custom_headers=None, raw=False, **operation_config):
@@ -2693,7 +2754,7 @@ class DictionaryOperations(object):
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
         """
         # Construct URL
-        url = '/dictionary/dictionary/itemnull'
+        url = self.get_dictionary_item_null.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -2721,6 +2782,7 @@ class DictionaryOperations(object):
             return client_raw_response
 
         return deserialized
+    get_dictionary_item_null.metadata = {'url': '/dictionary/dictionary/itemnull'}
 
     def get_dictionary_item_empty(
             self, custom_headers=None, raw=False, **operation_config):
@@ -2739,7 +2801,7 @@ class DictionaryOperations(object):
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
         """
         # Construct URL
-        url = '/dictionary/dictionary/itemempty'
+        url = self.get_dictionary_item_empty.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -2767,6 +2829,7 @@ class DictionaryOperations(object):
             return client_raw_response
 
         return deserialized
+    get_dictionary_item_empty.metadata = {'url': '/dictionary/dictionary/itemempty'}
 
     def get_dictionary_valid(
             self, custom_headers=None, raw=False, **operation_config):
@@ -2785,7 +2848,7 @@ class DictionaryOperations(object):
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
         """
         # Construct URL
-        url = '/dictionary/dictionary/valid'
+        url = self.get_dictionary_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -2813,6 +2876,7 @@ class DictionaryOperations(object):
             return client_raw_response
 
         return deserialized
+    get_dictionary_valid.metadata = {'url': '/dictionary/dictionary/valid'}
 
     def put_dictionary_valid(
             self, array_body, custom_headers=None, raw=False, **operation_config):
@@ -2832,7 +2896,7 @@ class DictionaryOperations(object):
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
         """
         # Construct URL
-        url = '/dictionary/dictionary/valid'
+        url = self.put_dictionary_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -2857,3 +2921,4 @@ class DictionaryOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    put_dictionary_valid.metadata = {'url': '/dictionary/dictionary/valid'}

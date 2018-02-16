@@ -73,7 +73,7 @@ class AutoRestResourceFlatteningTestService(object):
          :class:`ErrorException<modelflattening.models.ErrorException>`
         """
         # Construct URL
-        url = '/model-flatten/array'
+        url = self.put_array.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -101,6 +101,7 @@ class AutoRestResourceFlatteningTestService(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    put_array.metadata = {'url': '/model-flatten/array'}
 
     def get_array(
             self, custom_headers=None, raw=False, **operation_config):
@@ -118,7 +119,7 @@ class AutoRestResourceFlatteningTestService(object):
          :class:`ErrorException<modelflattening.models.ErrorException>`
         """
         # Construct URL
-        url = '/model-flatten/array'
+        url = self.get_array.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -146,6 +147,7 @@ class AutoRestResourceFlatteningTestService(object):
             return client_raw_response
 
         return deserialized
+    get_array.metadata = {'url': '/model-flatten/array'}
 
     def put_wrapped_array(
             self, resource_array=None, custom_headers=None, raw=False, **operation_config):
@@ -166,7 +168,7 @@ class AutoRestResourceFlatteningTestService(object):
          :class:`ErrorException<modelflattening.models.ErrorException>`
         """
         # Construct URL
-        url = '/model-flatten/wrappedarray'
+        url = self.put_wrapped_array.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -194,6 +196,7 @@ class AutoRestResourceFlatteningTestService(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    put_wrapped_array.metadata = {'url': '/model-flatten/wrappedarray'}
 
     def get_wrapped_array(
             self, custom_headers=None, raw=False, **operation_config):
@@ -213,7 +216,7 @@ class AutoRestResourceFlatteningTestService(object):
          :class:`ErrorException<modelflattening.models.ErrorException>`
         """
         # Construct URL
-        url = '/model-flatten/wrappedarray'
+        url = self.get_wrapped_array.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -241,6 +244,7 @@ class AutoRestResourceFlatteningTestService(object):
             return client_raw_response
 
         return deserialized
+    get_wrapped_array.metadata = {'url': '/model-flatten/wrappedarray'}
 
     def put_dictionary(
             self, resource_dictionary=None, custom_headers=None, raw=False, **operation_config):
@@ -260,7 +264,7 @@ class AutoRestResourceFlatteningTestService(object):
          :class:`ErrorException<modelflattening.models.ErrorException>`
         """
         # Construct URL
-        url = '/model-flatten/dictionary'
+        url = self.put_dictionary.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -288,6 +292,7 @@ class AutoRestResourceFlatteningTestService(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    put_dictionary.metadata = {'url': '/model-flatten/dictionary'}
 
     def get_dictionary(
             self, custom_headers=None, raw=False, **operation_config):
@@ -305,7 +310,7 @@ class AutoRestResourceFlatteningTestService(object):
          :class:`ErrorException<modelflattening.models.ErrorException>`
         """
         # Construct URL
-        url = '/model-flatten/dictionary'
+        url = self.get_dictionary.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -333,6 +338,7 @@ class AutoRestResourceFlatteningTestService(object):
             return client_raw_response
 
         return deserialized
+    get_dictionary.metadata = {'url': '/model-flatten/dictionary'}
 
     def put_resource_collection(
             self, resource_complex_object=None, custom_headers=None, raw=False, **operation_config):
@@ -353,7 +359,7 @@ class AutoRestResourceFlatteningTestService(object):
          :class:`ErrorException<modelflattening.models.ErrorException>`
         """
         # Construct URL
-        url = '/model-flatten/resourcecollection'
+        url = self.put_resource_collection.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -381,6 +387,7 @@ class AutoRestResourceFlatteningTestService(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    put_resource_collection.metadata = {'url': '/model-flatten/resourcecollection'}
 
     def get_resource_collection(
             self, custom_headers=None, raw=False, **operation_config):
@@ -398,7 +405,7 @@ class AutoRestResourceFlatteningTestService(object):
          :class:`ErrorException<modelflattening.models.ErrorException>`
         """
         # Construct URL
-        url = '/model-flatten/resourcecollection'
+        url = self.get_resource_collection.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -426,6 +433,7 @@ class AutoRestResourceFlatteningTestService(object):
             return client_raw_response
 
         return deserialized
+    get_resource_collection.metadata = {'url': '/model-flatten/resourcecollection'}
 
     def put_simple_product(
             self, simple_body_product=None, custom_headers=None, raw=False, **operation_config):
@@ -445,7 +453,7 @@ class AutoRestResourceFlatteningTestService(object):
          :class:`ErrorException<modelflattening.models.ErrorException>`
         """
         # Construct URL
-        url = '/model-flatten/customFlattening'
+        url = self.put_simple_product.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -480,6 +488,7 @@ class AutoRestResourceFlatteningTestService(object):
             return client_raw_response
 
         return deserialized
+    put_simple_product.metadata = {'url': '/model-flatten/customFlattening'}
 
     def post_flattened_simple_product(
             self, product_id, max_product_display_name, description=None, generic_value=None, odatavalue=None, custom_headers=None, raw=False, **operation_config):
@@ -514,7 +523,7 @@ class AutoRestResourceFlatteningTestService(object):
             simple_body_product = models.SimpleProduct(product_id=product_id, description=description, max_product_display_name=max_product_display_name, generic_value=generic_value, odatavalue=odatavalue)
 
         # Construct URL
-        url = '/model-flatten/customFlattening'
+        url = self.post_flattened_simple_product.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -549,6 +558,7 @@ class AutoRestResourceFlatteningTestService(object):
             return client_raw_response
 
         return deserialized
+    post_flattened_simple_product.metadata = {'url': '/model-flatten/customFlattening'}
 
     def put_simple_product_with_grouping(
             self, flatten_parameter_group, custom_headers=None, raw=False, **operation_config):
@@ -592,7 +602,7 @@ class AutoRestResourceFlatteningTestService(object):
             simple_body_product = models.SimpleProduct(product_id=product_id, description=description, max_product_display_name=max_product_display_name, generic_value=generic_value, odatavalue=odatavalue)
 
         # Construct URL
-        url = '/model-flatten/customFlattening/parametergrouping/{name}/'
+        url = self.put_simple_product_with_grouping.metadata['url']
         path_format_arguments = {
             'name': self._serialize.url("name", name, 'str')
         }
@@ -631,3 +641,4 @@ class AutoRestResourceFlatteningTestService(object):
             return client_raw_response
 
         return deserialized
+    put_simple_product_with_grouping.metadata = {'url': '/model-flatten/customFlattening/parametergrouping/{name}/'}

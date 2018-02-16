@@ -62,7 +62,7 @@ class PathItemsOperations(object):
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
-        url = '/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/pathItemStringQuery/localStringQuery'
+        url = self.get_all_with_values.metadata['url']
         path_format_arguments = {
             'localStringPath': self._serialize.url("local_string_path", local_string_path, 'str'),
             'pathItemStringPath': self._serialize.url("path_item_string_path", path_item_string_path, 'str'),
@@ -95,6 +95,7 @@ class PathItemsOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    get_all_with_values.metadata = {'url': '/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/pathItemStringQuery/localStringQuery'}
 
     def get_global_query_null(
             self, local_string_path, path_item_string_path, local_string_query=None, path_item_string_query=None, custom_headers=None, raw=False, **operation_config):
@@ -124,7 +125,7 @@ class PathItemsOperations(object):
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
-        url = '/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/localStringQuery'
+        url = self.get_global_query_null.metadata['url']
         path_format_arguments = {
             'localStringPath': self._serialize.url("local_string_path", local_string_path, 'str'),
             'pathItemStringPath': self._serialize.url("path_item_string_path", path_item_string_path, 'str'),
@@ -157,6 +158,7 @@ class PathItemsOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    get_global_query_null.metadata = {'url': '/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/localStringQuery'}
 
     def get_global_and_local_query_null(
             self, local_string_path, path_item_string_path, local_string_query=None, path_item_string_query=None, custom_headers=None, raw=False, **operation_config):
@@ -185,7 +187,7 @@ class PathItemsOperations(object):
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
-        url = '/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/null'
+        url = self.get_global_and_local_query_null.metadata['url']
         path_format_arguments = {
             'localStringPath': self._serialize.url("local_string_path", local_string_path, 'str'),
             'pathItemStringPath': self._serialize.url("path_item_string_path", path_item_string_path, 'str'),
@@ -218,6 +220,7 @@ class PathItemsOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    get_global_and_local_query_null.metadata = {'url': '/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/null'}
 
     def get_local_path_item_query_null(
             self, local_string_path, path_item_string_path, local_string_query=None, path_item_string_query=None, custom_headers=None, raw=False, **operation_config):
@@ -246,7 +249,7 @@ class PathItemsOperations(object):
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
-        url = '/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/null/null'
+        url = self.get_local_path_item_query_null.metadata['url']
         path_format_arguments = {
             'localStringPath': self._serialize.url("local_string_path", local_string_path, 'str'),
             'pathItemStringPath': self._serialize.url("path_item_string_path", path_item_string_path, 'str'),
@@ -279,3 +282,4 @@ class PathItemsOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    get_local_path_item_query_null.metadata = {'url': '/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/null/null'}

@@ -52,7 +52,7 @@ class ExplicitOperations(object):
          :class:`ErrorException<requiredoptional.models.ErrorException>`
         """
         # Construct URL
-        url = '/reqopt/requied/integer/parameter'
+        url = self.post_required_integer_parameter.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -77,6 +77,7 @@ class ExplicitOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    post_required_integer_parameter.metadata = {'url': '/reqopt/requied/integer/parameter'}
 
     def post_optional_integer_parameter(
             self, body_parameter=None, custom_headers=None, raw=False, **operation_config):
@@ -95,7 +96,7 @@ class ExplicitOperations(object):
          :class:`ErrorException<requiredoptional.models.ErrorException>`
         """
         # Construct URL
-        url = '/reqopt/optional/integer/parameter'
+        url = self.post_optional_integer_parameter.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -123,6 +124,7 @@ class ExplicitOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    post_optional_integer_parameter.metadata = {'url': '/reqopt/optional/integer/parameter'}
 
     def post_required_integer_property(
             self, value, custom_headers=None, raw=False, **operation_config):
@@ -146,7 +148,7 @@ class ExplicitOperations(object):
         body_parameter = models.IntWrapper(value=value)
 
         # Construct URL
-        url = '/reqopt/requied/integer/property'
+        url = self.post_required_integer_property.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -171,6 +173,7 @@ class ExplicitOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    post_required_integer_property.metadata = {'url': '/reqopt/requied/integer/property'}
 
     def post_optional_integer_property(
             self, value=None, custom_headers=None, raw=False, **operation_config):
@@ -194,7 +197,7 @@ class ExplicitOperations(object):
             body_parameter = models.IntOptionalWrapper(value=value)
 
         # Construct URL
-        url = '/reqopt/optional/integer/property'
+        url = self.post_optional_integer_property.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -222,6 +225,7 @@ class ExplicitOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    post_optional_integer_property.metadata = {'url': '/reqopt/optional/integer/property'}
 
     def post_required_integer_header(
             self, header_parameter, custom_headers=None, raw=False, **operation_config):
@@ -242,7 +246,7 @@ class ExplicitOperations(object):
          :class:`ErrorException<requiredoptional.models.ErrorException>`
         """
         # Construct URL
-        url = '/reqopt/requied/integer/header'
+        url = self.post_required_integer_header.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -264,6 +268,7 @@ class ExplicitOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    post_required_integer_header.metadata = {'url': '/reqopt/requied/integer/header'}
 
     def post_optional_integer_header(
             self, header_parameter=None, custom_headers=None, raw=False, **operation_config):
@@ -283,7 +288,7 @@ class ExplicitOperations(object):
          :class:`ErrorException<requiredoptional.models.ErrorException>`
         """
         # Construct URL
-        url = '/reqopt/optional/integer/header'
+        url = self.post_optional_integer_header.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -306,6 +311,7 @@ class ExplicitOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    post_optional_integer_header.metadata = {'url': '/reqopt/optional/integer/header'}
 
     def post_required_string_parameter(
             self, body_parameter, custom_headers=None, raw=False, **operation_config):
@@ -326,7 +332,7 @@ class ExplicitOperations(object):
          :class:`ErrorException<requiredoptional.models.ErrorException>`
         """
         # Construct URL
-        url = '/reqopt/requied/string/parameter'
+        url = self.post_required_string_parameter.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -351,6 +357,7 @@ class ExplicitOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    post_required_string_parameter.metadata = {'url': '/reqopt/requied/string/parameter'}
 
     def post_optional_string_parameter(
             self, body_parameter=None, custom_headers=None, raw=False, **operation_config):
@@ -369,7 +376,7 @@ class ExplicitOperations(object):
          :class:`ErrorException<requiredoptional.models.ErrorException>`
         """
         # Construct URL
-        url = '/reqopt/optional/string/parameter'
+        url = self.post_optional_string_parameter.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -397,6 +404,7 @@ class ExplicitOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    post_optional_string_parameter.metadata = {'url': '/reqopt/optional/string/parameter'}
 
     def post_required_string_property(
             self, value, custom_headers=None, raw=False, **operation_config):
@@ -420,7 +428,7 @@ class ExplicitOperations(object):
         body_parameter = models.StringWrapper(value=value)
 
         # Construct URL
-        url = '/reqopt/requied/string/property'
+        url = self.post_required_string_property.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -445,6 +453,7 @@ class ExplicitOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    post_required_string_property.metadata = {'url': '/reqopt/requied/string/property'}
 
     def post_optional_string_property(
             self, value=None, custom_headers=None, raw=False, **operation_config):
@@ -468,7 +477,7 @@ class ExplicitOperations(object):
             body_parameter = models.StringOptionalWrapper(value=value)
 
         # Construct URL
-        url = '/reqopt/optional/string/property'
+        url = self.post_optional_string_property.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -496,6 +505,7 @@ class ExplicitOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    post_optional_string_property.metadata = {'url': '/reqopt/optional/string/property'}
 
     def post_required_string_header(
             self, header_parameter, custom_headers=None, raw=False, **operation_config):
@@ -516,7 +526,7 @@ class ExplicitOperations(object):
          :class:`ErrorException<requiredoptional.models.ErrorException>`
         """
         # Construct URL
-        url = '/reqopt/requied/string/header'
+        url = self.post_required_string_header.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -538,6 +548,7 @@ class ExplicitOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    post_required_string_header.metadata = {'url': '/reqopt/requied/string/header'}
 
     def post_optional_string_header(
             self, body_parameter=None, custom_headers=None, raw=False, **operation_config):
@@ -557,7 +568,7 @@ class ExplicitOperations(object):
          :class:`ErrorException<requiredoptional.models.ErrorException>`
         """
         # Construct URL
-        url = '/reqopt/optional/string/header'
+        url = self.post_optional_string_header.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -580,6 +591,7 @@ class ExplicitOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    post_optional_string_header.metadata = {'url': '/reqopt/optional/string/header'}
 
     def post_required_class_parameter(
             self, body_parameter, custom_headers=None, raw=False, **operation_config):
@@ -600,7 +612,7 @@ class ExplicitOperations(object):
          :class:`ErrorException<requiredoptional.models.ErrorException>`
         """
         # Construct URL
-        url = '/reqopt/requied/class/parameter'
+        url = self.post_required_class_parameter.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -625,6 +637,7 @@ class ExplicitOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    post_required_class_parameter.metadata = {'url': '/reqopt/requied/class/parameter'}
 
     def post_optional_class_parameter(
             self, body_parameter=None, custom_headers=None, raw=False, **operation_config):
@@ -643,7 +656,7 @@ class ExplicitOperations(object):
          :class:`ErrorException<requiredoptional.models.ErrorException>`
         """
         # Construct URL
-        url = '/reqopt/optional/class/parameter'
+        url = self.post_optional_class_parameter.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -671,6 +684,7 @@ class ExplicitOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    post_optional_class_parameter.metadata = {'url': '/reqopt/optional/class/parameter'}
 
     def post_required_class_property(
             self, value, custom_headers=None, raw=False, **operation_config):
@@ -694,7 +708,7 @@ class ExplicitOperations(object):
         body_parameter = models.ClassWrapper(value=value)
 
         # Construct URL
-        url = '/reqopt/requied/class/property'
+        url = self.post_required_class_property.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -719,6 +733,7 @@ class ExplicitOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    post_required_class_property.metadata = {'url': '/reqopt/requied/class/property'}
 
     def post_optional_class_property(
             self, value=None, custom_headers=None, raw=False, **operation_config):
@@ -742,7 +757,7 @@ class ExplicitOperations(object):
             body_parameter = models.ClassOptionalWrapper(value=value)
 
         # Construct URL
-        url = '/reqopt/optional/class/property'
+        url = self.post_optional_class_property.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -770,6 +785,7 @@ class ExplicitOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    post_optional_class_property.metadata = {'url': '/reqopt/optional/class/property'}
 
     def post_required_array_parameter(
             self, body_parameter, custom_headers=None, raw=False, **operation_config):
@@ -790,7 +806,7 @@ class ExplicitOperations(object):
          :class:`ErrorException<requiredoptional.models.ErrorException>`
         """
         # Construct URL
-        url = '/reqopt/requied/array/parameter'
+        url = self.post_required_array_parameter.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -815,6 +831,7 @@ class ExplicitOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    post_required_array_parameter.metadata = {'url': '/reqopt/requied/array/parameter'}
 
     def post_optional_array_parameter(
             self, body_parameter=None, custom_headers=None, raw=False, **operation_config):
@@ -833,7 +850,7 @@ class ExplicitOperations(object):
          :class:`ErrorException<requiredoptional.models.ErrorException>`
         """
         # Construct URL
-        url = '/reqopt/optional/array/parameter'
+        url = self.post_optional_array_parameter.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -861,6 +878,7 @@ class ExplicitOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    post_optional_array_parameter.metadata = {'url': '/reqopt/optional/array/parameter'}
 
     def post_required_array_property(
             self, value, custom_headers=None, raw=False, **operation_config):
@@ -884,7 +902,7 @@ class ExplicitOperations(object):
         body_parameter = models.ArrayWrapper(value=value)
 
         # Construct URL
-        url = '/reqopt/requied/array/property'
+        url = self.post_required_array_property.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -909,6 +927,7 @@ class ExplicitOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    post_required_array_property.metadata = {'url': '/reqopt/requied/array/property'}
 
     def post_optional_array_property(
             self, value=None, custom_headers=None, raw=False, **operation_config):
@@ -932,7 +951,7 @@ class ExplicitOperations(object):
             body_parameter = models.ArrayOptionalWrapper(value=value)
 
         # Construct URL
-        url = '/reqopt/optional/array/property'
+        url = self.post_optional_array_property.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -960,6 +979,7 @@ class ExplicitOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    post_optional_array_property.metadata = {'url': '/reqopt/optional/array/property'}
 
     def post_required_array_header(
             self, header_parameter, custom_headers=None, raw=False, **operation_config):
@@ -980,7 +1000,7 @@ class ExplicitOperations(object):
          :class:`ErrorException<requiredoptional.models.ErrorException>`
         """
         # Construct URL
-        url = '/reqopt/requied/array/header'
+        url = self.post_required_array_header.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1002,6 +1022,7 @@ class ExplicitOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    post_required_array_header.metadata = {'url': '/reqopt/requied/array/header'}
 
     def post_optional_array_header(
             self, header_parameter=None, custom_headers=None, raw=False, **operation_config):
@@ -1021,7 +1042,7 @@ class ExplicitOperations(object):
          :class:`ErrorException<requiredoptional.models.ErrorException>`
         """
         # Construct URL
-        url = '/reqopt/optional/array/header'
+        url = self.post_optional_array_header.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1044,3 +1065,4 @@ class ExplicitOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    post_optional_array_header.metadata = {'url': '/reqopt/optional/array/header'}

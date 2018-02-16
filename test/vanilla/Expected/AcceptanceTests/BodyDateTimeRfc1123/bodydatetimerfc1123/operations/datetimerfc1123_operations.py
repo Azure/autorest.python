@@ -48,7 +48,7 @@ class Datetimerfc1123Operations(object):
          :class:`ErrorException<bodydatetimerfc1123.models.ErrorException>`
         """
         # Construct URL
-        url = '/datetimerfc1123/null'
+        url = self.get_null.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -76,6 +76,7 @@ class Datetimerfc1123Operations(object):
             return client_raw_response
 
         return deserialized
+    get_null.metadata = {'url': '/datetimerfc1123/null'}
 
     def get_invalid(
             self, custom_headers=None, raw=False, **operation_config):
@@ -92,7 +93,7 @@ class Datetimerfc1123Operations(object):
          :class:`ErrorException<bodydatetimerfc1123.models.ErrorException>`
         """
         # Construct URL
-        url = '/datetimerfc1123/invalid'
+        url = self.get_invalid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -120,6 +121,7 @@ class Datetimerfc1123Operations(object):
             return client_raw_response
 
         return deserialized
+    get_invalid.metadata = {'url': '/datetimerfc1123/invalid'}
 
     def get_overflow(
             self, custom_headers=None, raw=False, **operation_config):
@@ -136,7 +138,7 @@ class Datetimerfc1123Operations(object):
          :class:`ErrorException<bodydatetimerfc1123.models.ErrorException>`
         """
         # Construct URL
-        url = '/datetimerfc1123/overflow'
+        url = self.get_overflow.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -164,6 +166,7 @@ class Datetimerfc1123Operations(object):
             return client_raw_response
 
         return deserialized
+    get_overflow.metadata = {'url': '/datetimerfc1123/overflow'}
 
     def get_underflow(
             self, custom_headers=None, raw=False, **operation_config):
@@ -180,7 +183,7 @@ class Datetimerfc1123Operations(object):
          :class:`ErrorException<bodydatetimerfc1123.models.ErrorException>`
         """
         # Construct URL
-        url = '/datetimerfc1123/underflow'
+        url = self.get_underflow.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -208,6 +211,7 @@ class Datetimerfc1123Operations(object):
             return client_raw_response
 
         return deserialized
+    get_underflow.metadata = {'url': '/datetimerfc1123/underflow'}
 
     def put_utc_max_date_time(
             self, datetime_body, custom_headers=None, raw=False, **operation_config):
@@ -226,7 +230,7 @@ class Datetimerfc1123Operations(object):
          :class:`ErrorException<bodydatetimerfc1123.models.ErrorException>`
         """
         # Construct URL
-        url = '/datetimerfc1123/max'
+        url = self.put_utc_max_date_time.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -251,6 +255,7 @@ class Datetimerfc1123Operations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    put_utc_max_date_time.metadata = {'url': '/datetimerfc1123/max'}
 
     def get_utc_lowercase_max_date_time(
             self, custom_headers=None, raw=False, **operation_config):
@@ -267,7 +272,7 @@ class Datetimerfc1123Operations(object):
          :class:`ErrorException<bodydatetimerfc1123.models.ErrorException>`
         """
         # Construct URL
-        url = '/datetimerfc1123/max/lowercase'
+        url = self.get_utc_lowercase_max_date_time.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -295,6 +300,7 @@ class Datetimerfc1123Operations(object):
             return client_raw_response
 
         return deserialized
+    get_utc_lowercase_max_date_time.metadata = {'url': '/datetimerfc1123/max/lowercase'}
 
     def get_utc_uppercase_max_date_time(
             self, custom_headers=None, raw=False, **operation_config):
@@ -311,7 +317,7 @@ class Datetimerfc1123Operations(object):
          :class:`ErrorException<bodydatetimerfc1123.models.ErrorException>`
         """
         # Construct URL
-        url = '/datetimerfc1123/max/uppercase'
+        url = self.get_utc_uppercase_max_date_time.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -339,6 +345,7 @@ class Datetimerfc1123Operations(object):
             return client_raw_response
 
         return deserialized
+    get_utc_uppercase_max_date_time.metadata = {'url': '/datetimerfc1123/max/uppercase'}
 
     def put_utc_min_date_time(
             self, datetime_body, custom_headers=None, raw=False, **operation_config):
@@ -357,7 +364,7 @@ class Datetimerfc1123Operations(object):
          :class:`ErrorException<bodydatetimerfc1123.models.ErrorException>`
         """
         # Construct URL
-        url = '/datetimerfc1123/min'
+        url = self.put_utc_min_date_time.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -382,6 +389,7 @@ class Datetimerfc1123Operations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    put_utc_min_date_time.metadata = {'url': '/datetimerfc1123/min'}
 
     def get_utc_min_date_time(
             self, custom_headers=None, raw=False, **operation_config):
@@ -398,7 +406,7 @@ class Datetimerfc1123Operations(object):
          :class:`ErrorException<bodydatetimerfc1123.models.ErrorException>`
         """
         # Construct URL
-        url = '/datetimerfc1123/min'
+        url = self.get_utc_min_date_time.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -426,3 +434,4 @@ class Datetimerfc1123Operations(object):
             return client_raw_response
 
         return deserialized
+    get_utc_min_date_time.metadata = {'url': '/datetimerfc1123/min'}

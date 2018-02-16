@@ -51,7 +51,7 @@ class QueriesOperations(object):
          :class:`ErrorException<urlmulticollectionformat.models.ErrorException>`
         """
         # Construct URL
-        url = '/queries/array/multi/string/null'
+        url = self.array_string_multi_null.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -74,6 +74,7 @@ class QueriesOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    array_string_multi_null.metadata = {'url': '/queries/array/multi/string/null'}
 
     def array_string_multi_empty(
             self, array_query=None, custom_headers=None, raw=False, **operation_config):
@@ -93,7 +94,7 @@ class QueriesOperations(object):
          :class:`ErrorException<urlmulticollectionformat.models.ErrorException>`
         """
         # Construct URL
-        url = '/queries/array/multi/string/empty'
+        url = self.array_string_multi_empty.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -116,6 +117,7 @@ class QueriesOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    array_string_multi_empty.metadata = {'url': '/queries/array/multi/string/empty'}
 
     def array_string_multi_valid(
             self, array_query=None, custom_headers=None, raw=False, **operation_config):
@@ -136,7 +138,7 @@ class QueriesOperations(object):
          :class:`ErrorException<urlmulticollectionformat.models.ErrorException>`
         """
         # Construct URL
-        url = '/queries/array/multi/string/valid'
+        url = self.array_string_multi_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -159,3 +161,4 @@ class QueriesOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    array_string_multi_valid.metadata = {'url': '/queries/array/multi/string/valid'}

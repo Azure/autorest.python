@@ -41,7 +41,7 @@ class LROsCustomHeaderOperations(object):
     def _put_async_retry_succeeded_initial(
             self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = '/lro/customheader/putasync/retry/succeeded'
+        url = self.put_async_retry_succeeded.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -163,12 +163,13 @@ class LROsCustomHeaderOperations(object):
         return AzureOperationPoller(
             long_running_send, get_long_running_output,
             get_long_running_status, long_running_operation_timeout)
+    put_async_retry_succeeded.metadata = {'url': '/lro/customheader/putasync/retry/succeeded'}
 
 
     def _put201_creating_succeeded200_initial(
             self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = '/lro/customheader/put/201/creating/succeeded/200'
+        url = self.put201_creating_succeeded200.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -276,12 +277,13 @@ class LROsCustomHeaderOperations(object):
         return AzureOperationPoller(
             long_running_send, get_long_running_output,
             get_long_running_status, long_running_operation_timeout)
+    put201_creating_succeeded200.metadata = {'url': '/lro/customheader/put/201/creating/succeeded/200'}
 
 
     def _post202_retry200_initial(
             self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = '/lro/customheader/post/202/retry/200'
+        url = self.post202_retry200.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -384,12 +386,13 @@ class LROsCustomHeaderOperations(object):
         return AzureOperationPoller(
             long_running_send, get_long_running_output,
             get_long_running_status, long_running_operation_timeout)
+    post202_retry200.metadata = {'url': '/lro/customheader/post/202/retry/200'}
 
 
     def _post_async_retry_succeeded_initial(
             self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = '/lro/customheader/postasync/retry/succeeded'
+        url = self.post_async_retry_succeeded.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -494,3 +497,4 @@ class LROsCustomHeaderOperations(object):
         return AzureOperationPoller(
             long_running_send, get_long_running_output,
             get_long_running_status, long_running_operation_timeout)
+    post_async_retry_succeeded.metadata = {'url': '/lro/customheader/postasync/retry/succeeded'}

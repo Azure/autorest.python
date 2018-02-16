@@ -41,7 +41,7 @@ class LROsOperations(object):
     def _put200_succeeded_initial(
             self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = '/lro/put/200/succeeded'
+        url = self.put200_succeeded.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -144,12 +144,13 @@ class LROsOperations(object):
         return AzureOperationPoller(
             long_running_send, get_long_running_output,
             get_long_running_status, long_running_operation_timeout)
+    put200_succeeded.metadata = {'url': '/lro/put/200/succeeded'}
 
 
     def _put200_succeeded_no_state_initial(
             self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = '/lro/put/200/succeeded/nostate'
+        url = self.put200_succeeded_no_state.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -252,12 +253,13 @@ class LROsOperations(object):
         return AzureOperationPoller(
             long_running_send, get_long_running_output,
             get_long_running_status, long_running_operation_timeout)
+    put200_succeeded_no_state.metadata = {'url': '/lro/put/200/succeeded/nostate'}
 
 
     def _put202_retry200_initial(
             self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = '/lro/put/202/retry/200'
+        url = self.put202_retry200.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -361,12 +363,13 @@ class LROsOperations(object):
         return AzureOperationPoller(
             long_running_send, get_long_running_output,
             get_long_running_status, long_running_operation_timeout)
+    put202_retry200.metadata = {'url': '/lro/put/202/retry/200'}
 
 
     def _put201_creating_succeeded200_initial(
             self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = '/lro/put/201/creating/succeeded/200'
+        url = self.put201_creating_succeeded200.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -473,12 +476,13 @@ class LROsOperations(object):
         return AzureOperationPoller(
             long_running_send, get_long_running_output,
             get_long_running_status, long_running_operation_timeout)
+    put201_creating_succeeded200.metadata = {'url': '/lro/put/201/creating/succeeded/200'}
 
 
     def _put200_updating_succeeded204_initial(
             self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = '/lro/put/200/updating/succeeded/200'
+        url = self.put200_updating_succeeded204.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -583,12 +587,13 @@ class LROsOperations(object):
         return AzureOperationPoller(
             long_running_send, get_long_running_output,
             get_long_running_status, long_running_operation_timeout)
+    put200_updating_succeeded204.metadata = {'url': '/lro/put/200/updating/succeeded/200'}
 
 
     def _put201_creating_failed200_initial(
             self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = '/lro/put/201/created/failed/200'
+        url = self.put201_creating_failed200.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -695,12 +700,13 @@ class LROsOperations(object):
         return AzureOperationPoller(
             long_running_send, get_long_running_output,
             get_long_running_status, long_running_operation_timeout)
+    put201_creating_failed200.metadata = {'url': '/lro/put/201/created/failed/200'}
 
 
     def _put200_acceptedcanceled200_initial(
             self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = '/lro/put/200/accepted/canceled/200'
+        url = self.put200_acceptedcanceled200.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -805,12 +811,13 @@ class LROsOperations(object):
         return AzureOperationPoller(
             long_running_send, get_long_running_output,
             get_long_running_status, long_running_operation_timeout)
+    put200_acceptedcanceled200.metadata = {'url': '/lro/put/200/accepted/canceled/200'}
 
 
     def _put_no_header_in_retry_initial(
             self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = '/lro/put/noheader/202/200'
+        url = self.put_no_header_in_retry.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -926,12 +933,13 @@ class LROsOperations(object):
         return AzureOperationPoller(
             long_running_send, get_long_running_output,
             get_long_running_status, long_running_operation_timeout)
+    put_no_header_in_retry.metadata = {'url': '/lro/put/noheader/202/200'}
 
 
     def _put_async_retry_succeeded_initial(
             self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = '/lro/putasync/retry/succeeded'
+        url = self.put_async_retry_succeeded.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1052,12 +1060,13 @@ class LROsOperations(object):
         return AzureOperationPoller(
             long_running_send, get_long_running_output,
             get_long_running_status, long_running_operation_timeout)
+    put_async_retry_succeeded.metadata = {'url': '/lro/putasync/retry/succeeded'}
 
 
     def _put_async_no_retry_succeeded_initial(
             self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = '/lro/putasync/noretry/succeeded'
+        url = self.put_async_no_retry_succeeded.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1176,12 +1185,13 @@ class LROsOperations(object):
         return AzureOperationPoller(
             long_running_send, get_long_running_output,
             get_long_running_status, long_running_operation_timeout)
+    put_async_no_retry_succeeded.metadata = {'url': '/lro/putasync/noretry/succeeded'}
 
 
     def _put_async_retry_failed_initial(
             self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = '/lro/putasync/retry/failed'
+        url = self.put_async_retry_failed.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1302,12 +1312,13 @@ class LROsOperations(object):
         return AzureOperationPoller(
             long_running_send, get_long_running_output,
             get_long_running_status, long_running_operation_timeout)
+    put_async_retry_failed.metadata = {'url': '/lro/putasync/retry/failed'}
 
 
     def _put_async_no_retrycanceled_initial(
             self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = '/lro/putasync/noretry/canceled'
+        url = self.put_async_no_retrycanceled.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1426,12 +1437,13 @@ class LROsOperations(object):
         return AzureOperationPoller(
             long_running_send, get_long_running_output,
             get_long_running_status, long_running_operation_timeout)
+    put_async_no_retrycanceled.metadata = {'url': '/lro/putasync/noretry/canceled'}
 
 
     def _put_async_no_header_in_retry_initial(
             self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = '/lro/putasync/noheader/201/200'
+        url = self.put_async_no_header_in_retry.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1547,12 +1559,13 @@ class LROsOperations(object):
         return AzureOperationPoller(
             long_running_send, get_long_running_output,
             get_long_running_status, long_running_operation_timeout)
+    put_async_no_header_in_retry.metadata = {'url': '/lro/putasync/noheader/201/200'}
 
 
     def _put_non_resource_initial(
             self, sku=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = '/lro/putnonresource/202/200'
+        url = self.put_non_resource.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1654,12 +1667,13 @@ class LROsOperations(object):
         return AzureOperationPoller(
             long_running_send, get_long_running_output,
             get_long_running_status, long_running_operation_timeout)
+    put_non_resource.metadata = {'url': '/lro/putnonresource/202/200'}
 
 
     def _put_async_non_resource_initial(
             self, sku=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = '/lro/putnonresourceasync/202/200'
+        url = self.put_async_non_resource.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1761,6 +1775,7 @@ class LROsOperations(object):
         return AzureOperationPoller(
             long_running_send, get_long_running_output,
             get_long_running_status, long_running_operation_timeout)
+    put_async_non_resource.metadata = {'url': '/lro/putnonresourceasync/202/200'}
 
 
     def _put_sub_resource_initial(
@@ -1770,7 +1785,7 @@ class LROsOperations(object):
             product = models.SubProduct(provisioning_state=provisioning_state)
 
         # Construct URL
-        url = '/lro/putsubresource/202/200'
+        url = self.put_sub_resource.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1872,6 +1887,7 @@ class LROsOperations(object):
         return AzureOperationPoller(
             long_running_send, get_long_running_output,
             get_long_running_status, long_running_operation_timeout)
+    put_sub_resource.metadata = {'url': '/lro/putsubresource/202/200'}
 
 
     def _put_async_sub_resource_initial(
@@ -1881,7 +1897,7 @@ class LROsOperations(object):
             product = models.SubProduct(provisioning_state=provisioning_state)
 
         # Construct URL
-        url = '/lro/putsubresourceasync/202/200'
+        url = self.put_async_sub_resource.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1983,12 +1999,13 @@ class LROsOperations(object):
         return AzureOperationPoller(
             long_running_send, get_long_running_output,
             get_long_running_status, long_running_operation_timeout)
+    put_async_sub_resource.metadata = {'url': '/lro/putsubresourceasync/202/200'}
 
 
     def _delete_provisioning202_accepted200_succeeded_initial(
             self, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = '/lro/delete/provisioning/202/accepted/200/succeeded'
+        url = self.delete_provisioning202_accepted200_succeeded.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -2103,12 +2120,13 @@ class LROsOperations(object):
         return AzureOperationPoller(
             long_running_send, get_long_running_output,
             get_long_running_status, long_running_operation_timeout)
+    delete_provisioning202_accepted200_succeeded.metadata = {'url': '/lro/delete/provisioning/202/accepted/200/succeeded'}
 
 
     def _delete_provisioning202_deleting_failed200_initial(
             self, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = '/lro/delete/provisioning/202/deleting/200/failed'
+        url = self.delete_provisioning202_deleting_failed200.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -2223,12 +2241,13 @@ class LROsOperations(object):
         return AzureOperationPoller(
             long_running_send, get_long_running_output,
             get_long_running_status, long_running_operation_timeout)
+    delete_provisioning202_deleting_failed200.metadata = {'url': '/lro/delete/provisioning/202/deleting/200/failed'}
 
 
     def _delete_provisioning202_deletingcanceled200_initial(
             self, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = '/lro/delete/provisioning/202/deleting/200/canceled'
+        url = self.delete_provisioning202_deletingcanceled200.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -2343,12 +2362,13 @@ class LROsOperations(object):
         return AzureOperationPoller(
             long_running_send, get_long_running_output,
             get_long_running_status, long_running_operation_timeout)
+    delete_provisioning202_deletingcanceled200.metadata = {'url': '/lro/delete/provisioning/202/deleting/200/canceled'}
 
 
     def _delete204_succeeded_initial(
             self, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = '/lro/delete/204/succeeded'
+        url = self.delete204_succeeded.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -2428,12 +2448,13 @@ class LROsOperations(object):
         return AzureOperationPoller(
             long_running_send, get_long_running_output,
             get_long_running_status, long_running_operation_timeout)
+    delete204_succeeded.metadata = {'url': '/lro/delete/204/succeeded'}
 
 
     def _delete202_retry200_initial(
             self, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = '/lro/delete/202/retry/200'
+        url = self.delete202_retry200.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -2541,12 +2562,13 @@ class LROsOperations(object):
         return AzureOperationPoller(
             long_running_send, get_long_running_output,
             get_long_running_status, long_running_operation_timeout)
+    delete202_retry200.metadata = {'url': '/lro/delete/202/retry/200'}
 
 
     def _delete202_no_retry204_initial(
             self, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = '/lro/delete/202/noretry/204'
+        url = self.delete202_no_retry204.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -2654,12 +2676,13 @@ class LROsOperations(object):
         return AzureOperationPoller(
             long_running_send, get_long_running_output,
             get_long_running_status, long_running_operation_timeout)
+    delete202_no_retry204.metadata = {'url': '/lro/delete/202/noretry/204'}
 
 
     def _delete_no_header_in_retry_initial(
             self, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = '/lro/delete/noheader'
+        url = self.delete_no_header_in_retry.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -2748,12 +2771,13 @@ class LROsOperations(object):
         return AzureOperationPoller(
             long_running_send, get_long_running_output,
             get_long_running_status, long_running_operation_timeout)
+    delete_no_header_in_retry.metadata = {'url': '/lro/delete/noheader'}
 
 
     def _delete_async_no_header_in_retry_initial(
             self, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = '/lro/deleteasync/noheader/202/204'
+        url = self.delete_async_no_header_in_retry.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -2842,12 +2866,13 @@ class LROsOperations(object):
         return AzureOperationPoller(
             long_running_send, get_long_running_output,
             get_long_running_status, long_running_operation_timeout)
+    delete_async_no_header_in_retry.metadata = {'url': '/lro/deleteasync/noheader/202/204'}
 
 
     def _delete_async_retry_succeeded_initial(
             self, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = '/lro/deleteasync/retry/succeeded'
+        url = self.delete_async_retry_succeeded.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -2940,12 +2965,13 @@ class LROsOperations(object):
         return AzureOperationPoller(
             long_running_send, get_long_running_output,
             get_long_running_status, long_running_operation_timeout)
+    delete_async_retry_succeeded.metadata = {'url': '/lro/deleteasync/retry/succeeded'}
 
 
     def _delete_async_no_retry_succeeded_initial(
             self, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = '/lro/deleteasync/noretry/succeeded'
+        url = self.delete_async_no_retry_succeeded.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -3038,12 +3064,13 @@ class LROsOperations(object):
         return AzureOperationPoller(
             long_running_send, get_long_running_output,
             get_long_running_status, long_running_operation_timeout)
+    delete_async_no_retry_succeeded.metadata = {'url': '/lro/deleteasync/noretry/succeeded'}
 
 
     def _delete_async_retry_failed_initial(
             self, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = '/lro/deleteasync/retry/failed'
+        url = self.delete_async_retry_failed.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -3136,12 +3163,13 @@ class LROsOperations(object):
         return AzureOperationPoller(
             long_running_send, get_long_running_output,
             get_long_running_status, long_running_operation_timeout)
+    delete_async_retry_failed.metadata = {'url': '/lro/deleteasync/retry/failed'}
 
 
     def _delete_async_retrycanceled_initial(
             self, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = '/lro/deleteasync/retry/canceled'
+        url = self.delete_async_retrycanceled.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -3234,12 +3262,13 @@ class LROsOperations(object):
         return AzureOperationPoller(
             long_running_send, get_long_running_output,
             get_long_running_status, long_running_operation_timeout)
+    delete_async_retrycanceled.metadata = {'url': '/lro/deleteasync/retry/canceled'}
 
 
     def _post200_with_payload_initial(
             self, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = '/lro/post/payload/200'
+        url = self.post200_with_payload.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -3335,12 +3364,13 @@ class LROsOperations(object):
         return AzureOperationPoller(
             long_running_send, get_long_running_output,
             get_long_running_status, long_running_operation_timeout)
+    post200_with_payload.metadata = {'url': '/lro/post/payload/200'}
 
 
     def _post202_retry200_initial(
             self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = '/lro/post/202/retry/200'
+        url = self.post202_retry200.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -3441,12 +3471,13 @@ class LROsOperations(object):
         return AzureOperationPoller(
             long_running_send, get_long_running_output,
             get_long_running_status, long_running_operation_timeout)
+    post202_retry200.metadata = {'url': '/lro/post/202/retry/200'}
 
 
     def _post202_no_retry204_initial(
             self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = '/lro/post/202/noretry/204'
+        url = self.post202_no_retry204.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -3564,12 +3595,13 @@ class LROsOperations(object):
         return AzureOperationPoller(
             long_running_send, get_long_running_output,
             get_long_running_status, long_running_operation_timeout)
+    post202_no_retry204.metadata = {'url': '/lro/post/202/noretry/204'}
 
 
     def _post_async_retry_succeeded_initial(
             self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = '/lro/postasync/retry/succeeded'
+        url = self.post_async_retry_succeeded.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -3690,12 +3722,13 @@ class LROsOperations(object):
         return AzureOperationPoller(
             long_running_send, get_long_running_output,
             get_long_running_status, long_running_operation_timeout)
+    post_async_retry_succeeded.metadata = {'url': '/lro/postasync/retry/succeeded'}
 
 
     def _post_async_no_retry_succeeded_initial(
             self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = '/lro/postasync/noretry/succeeded'
+        url = self.post_async_no_retry_succeeded.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -3816,12 +3849,13 @@ class LROsOperations(object):
         return AzureOperationPoller(
             long_running_send, get_long_running_output,
             get_long_running_status, long_running_operation_timeout)
+    post_async_no_retry_succeeded.metadata = {'url': '/lro/postasync/noretry/succeeded'}
 
 
     def _post_async_retry_failed_initial(
             self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = '/lro/postasync/retry/failed'
+        url = self.post_async_retry_failed.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -3925,12 +3959,13 @@ class LROsOperations(object):
         return AzureOperationPoller(
             long_running_send, get_long_running_output,
             get_long_running_status, long_running_operation_timeout)
+    post_async_retry_failed.metadata = {'url': '/lro/postasync/retry/failed'}
 
 
     def _post_async_retrycanceled_initial(
             self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = '/lro/postasync/retry/canceled'
+        url = self.post_async_retrycanceled.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -4034,3 +4069,4 @@ class LROsOperations(object):
         return AzureOperationPoller(
             long_running_send, get_long_running_output,
             get_long_running_status, long_running_operation_timeout)
+    post_async_retrycanceled.metadata = {'url': '/lro/postasync/retry/canceled'}

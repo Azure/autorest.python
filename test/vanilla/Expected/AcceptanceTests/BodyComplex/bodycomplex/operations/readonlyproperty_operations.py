@@ -48,7 +48,7 @@ class ReadonlypropertyOperations(object):
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
-        url = '/complex/readonlyproperty/valid'
+        url = self.get_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -76,6 +76,7 @@ class ReadonlypropertyOperations(object):
             return client_raw_response
 
         return deserialized
+    get_valid.metadata = {'url': '/complex/readonlyproperty/valid'}
 
     def put_valid(
             self, size=None, custom_headers=None, raw=False, **operation_config):
@@ -95,7 +96,7 @@ class ReadonlypropertyOperations(object):
         complex_body = models.ReadonlyObj(size=size)
 
         # Construct URL
-        url = '/complex/readonlyproperty/valid'
+        url = self.put_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -120,3 +121,4 @@ class ReadonlypropertyOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    put_valid.metadata = {'url': '/complex/readonlyproperty/valid'}

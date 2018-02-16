@@ -48,7 +48,7 @@ class HttpRedirectsOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/redirect/300'
+        url = self.head300.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -72,6 +72,7 @@ class HttpRedirectsOperations(object):
                 'Location': 'str',
             })
             return client_raw_response
+    head300.metadata = {'url': '/http/redirect/300'}
 
     def get300(
             self, custom_headers=None, raw=False, **operation_config):
@@ -88,7 +89,7 @@ class HttpRedirectsOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/redirect/300'
+        url = self.get300.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -121,6 +122,7 @@ class HttpRedirectsOperations(object):
             return client_raw_response
 
         return deserialized
+    get300.metadata = {'url': '/http/redirect/300'}
 
     def head301(
             self, custom_headers=None, raw=False, **operation_config):
@@ -137,7 +139,7 @@ class HttpRedirectsOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/redirect/301'
+        url = self.head301.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -161,6 +163,7 @@ class HttpRedirectsOperations(object):
                 'Location': 'str',
             })
             return client_raw_response
+    head301.metadata = {'url': '/http/redirect/301'}
 
     def get301(
             self, custom_headers=None, raw=False, **operation_config):
@@ -177,7 +180,7 @@ class HttpRedirectsOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/redirect/301'
+        url = self.get301.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -201,6 +204,7 @@ class HttpRedirectsOperations(object):
                 'Location': 'str',
             })
             return client_raw_response
+    get301.metadata = {'url': '/http/redirect/301'}
 
     def put301(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
@@ -221,7 +225,7 @@ class HttpRedirectsOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/redirect/301'
+        url = self.put301.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -252,6 +256,7 @@ class HttpRedirectsOperations(object):
                 'Location': 'str',
             })
             return client_raw_response
+    put301.metadata = {'url': '/http/redirect/301'}
 
     def head302(
             self, custom_headers=None, raw=False, **operation_config):
@@ -268,7 +273,7 @@ class HttpRedirectsOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/redirect/302'
+        url = self.head302.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -292,6 +297,7 @@ class HttpRedirectsOperations(object):
                 'Location': 'str',
             })
             return client_raw_response
+    head302.metadata = {'url': '/http/redirect/302'}
 
     def get302(
             self, custom_headers=None, raw=False, **operation_config):
@@ -308,7 +314,7 @@ class HttpRedirectsOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/redirect/302'
+        url = self.get302.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -332,6 +338,7 @@ class HttpRedirectsOperations(object):
                 'Location': 'str',
             })
             return client_raw_response
+    get302.metadata = {'url': '/http/redirect/302'}
 
     def patch302(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
@@ -352,7 +359,7 @@ class HttpRedirectsOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/redirect/302'
+        url = self.patch302.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -383,6 +390,7 @@ class HttpRedirectsOperations(object):
                 'Location': 'str',
             })
             return client_raw_response
+    patch302.metadata = {'url': '/http/redirect/302'}
 
     def post303(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
@@ -403,7 +411,7 @@ class HttpRedirectsOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/redirect/303'
+        url = self.post303.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -434,6 +442,7 @@ class HttpRedirectsOperations(object):
                 'Location': 'str',
             })
             return client_raw_response
+    post303.metadata = {'url': '/http/redirect/303'}
 
     def head307(
             self, custom_headers=None, raw=False, **operation_config):
@@ -450,7 +459,7 @@ class HttpRedirectsOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/redirect/307'
+        url = self.head307.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -474,6 +483,7 @@ class HttpRedirectsOperations(object):
                 'Location': 'str',
             })
             return client_raw_response
+    head307.metadata = {'url': '/http/redirect/307'}
 
     def get307(
             self, custom_headers=None, raw=False, **operation_config):
@@ -490,7 +500,7 @@ class HttpRedirectsOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/redirect/307'
+        url = self.get307.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -514,6 +524,7 @@ class HttpRedirectsOperations(object):
                 'Location': 'str',
             })
             return client_raw_response
+    get307.metadata = {'url': '/http/redirect/307'}
 
     def put307(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
@@ -532,7 +543,7 @@ class HttpRedirectsOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/redirect/307'
+        url = self.put307.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -563,6 +574,7 @@ class HttpRedirectsOperations(object):
                 'Location': 'str',
             })
             return client_raw_response
+    put307.metadata = {'url': '/http/redirect/307'}
 
     def patch307(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
@@ -581,7 +593,7 @@ class HttpRedirectsOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/redirect/307'
+        url = self.patch307.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -612,6 +624,7 @@ class HttpRedirectsOperations(object):
                 'Location': 'str',
             })
             return client_raw_response
+    patch307.metadata = {'url': '/http/redirect/307'}
 
     def post307(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
@@ -630,7 +643,7 @@ class HttpRedirectsOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/redirect/307'
+        url = self.post307.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -661,6 +674,7 @@ class HttpRedirectsOperations(object):
                 'Location': 'str',
             })
             return client_raw_response
+    post307.metadata = {'url': '/http/redirect/307'}
 
     def delete307(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
@@ -679,7 +693,7 @@ class HttpRedirectsOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/redirect/307'
+        url = self.delete307.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -710,3 +724,4 @@ class HttpRedirectsOperations(object):
                 'Location': 'str',
             })
             return client_raw_response
+    delete307.metadata = {'url': '/http/redirect/307'}

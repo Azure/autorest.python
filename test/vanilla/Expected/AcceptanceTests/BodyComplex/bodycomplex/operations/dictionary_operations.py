@@ -48,7 +48,7 @@ class DictionaryOperations(object):
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
-        url = '/complex/dictionary/typed/valid'
+        url = self.get_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -76,6 +76,7 @@ class DictionaryOperations(object):
             return client_raw_response
 
         return deserialized
+    get_valid.metadata = {'url': '/complex/dictionary/typed/valid'}
 
     def put_valid(
             self, default_program=None, custom_headers=None, raw=False, **operation_config):
@@ -95,7 +96,7 @@ class DictionaryOperations(object):
         complex_body = models.DictionaryWrapper(default_program=default_program)
 
         # Construct URL
-        url = '/complex/dictionary/typed/valid'
+        url = self.put_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -120,6 +121,7 @@ class DictionaryOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    put_valid.metadata = {'url': '/complex/dictionary/typed/valid'}
 
     def get_empty(
             self, custom_headers=None, raw=False, **operation_config):
@@ -136,7 +138,7 @@ class DictionaryOperations(object):
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
-        url = '/complex/dictionary/typed/empty'
+        url = self.get_empty.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -164,6 +166,7 @@ class DictionaryOperations(object):
             return client_raw_response
 
         return deserialized
+    get_empty.metadata = {'url': '/complex/dictionary/typed/empty'}
 
     def put_empty(
             self, default_program=None, custom_headers=None, raw=False, **operation_config):
@@ -183,7 +186,7 @@ class DictionaryOperations(object):
         complex_body = models.DictionaryWrapper(default_program=default_program)
 
         # Construct URL
-        url = '/complex/dictionary/typed/empty'
+        url = self.put_empty.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -208,6 +211,7 @@ class DictionaryOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    put_empty.metadata = {'url': '/complex/dictionary/typed/empty'}
 
     def get_null(
             self, custom_headers=None, raw=False, **operation_config):
@@ -224,7 +228,7 @@ class DictionaryOperations(object):
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
-        url = '/complex/dictionary/typed/null'
+        url = self.get_null.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -252,6 +256,7 @@ class DictionaryOperations(object):
             return client_raw_response
 
         return deserialized
+    get_null.metadata = {'url': '/complex/dictionary/typed/null'}
 
     def get_not_provided(
             self, custom_headers=None, raw=False, **operation_config):
@@ -269,7 +274,7 @@ class DictionaryOperations(object):
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
-        url = '/complex/dictionary/typed/notprovided'
+        url = self.get_not_provided.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -297,3 +302,4 @@ class DictionaryOperations(object):
             return client_raw_response
 
         return deserialized
+    get_not_provided.metadata = {'url': '/complex/dictionary/typed/notprovided'}

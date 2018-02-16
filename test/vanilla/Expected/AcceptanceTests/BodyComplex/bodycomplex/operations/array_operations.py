@@ -48,7 +48,7 @@ class ArrayOperations(object):
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
-        url = '/complex/array/valid'
+        url = self.get_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -76,6 +76,7 @@ class ArrayOperations(object):
             return client_raw_response
 
         return deserialized
+    get_valid.metadata = {'url': '/complex/array/valid'}
 
     def put_valid(
             self, array=None, custom_headers=None, raw=False, **operation_config):
@@ -95,7 +96,7 @@ class ArrayOperations(object):
         complex_body = models.ArrayWrapper(array=array)
 
         # Construct URL
-        url = '/complex/array/valid'
+        url = self.put_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -120,6 +121,7 @@ class ArrayOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    put_valid.metadata = {'url': '/complex/array/valid'}
 
     def get_empty(
             self, custom_headers=None, raw=False, **operation_config):
@@ -136,7 +138,7 @@ class ArrayOperations(object):
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
-        url = '/complex/array/empty'
+        url = self.get_empty.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -164,6 +166,7 @@ class ArrayOperations(object):
             return client_raw_response
 
         return deserialized
+    get_empty.metadata = {'url': '/complex/array/empty'}
 
     def put_empty(
             self, array=None, custom_headers=None, raw=False, **operation_config):
@@ -183,7 +186,7 @@ class ArrayOperations(object):
         complex_body = models.ArrayWrapper(array=array)
 
         # Construct URL
-        url = '/complex/array/empty'
+        url = self.put_empty.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -208,6 +211,7 @@ class ArrayOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    put_empty.metadata = {'url': '/complex/array/empty'}
 
     def get_not_provided(
             self, custom_headers=None, raw=False, **operation_config):
@@ -225,7 +229,7 @@ class ArrayOperations(object):
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
-        url = '/complex/array/notprovided'
+        url = self.get_not_provided.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -253,3 +257,4 @@ class ArrayOperations(object):
             return client_raw_response
 
         return deserialized
+    get_not_provided.metadata = {'url': '/complex/array/notprovided'}

@@ -48,7 +48,7 @@ class InheritanceOperations(object):
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
-        url = '/complex/inheritance/valid'
+        url = self.get_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -76,6 +76,7 @@ class InheritanceOperations(object):
             return client_raw_response
 
         return deserialized
+    get_valid.metadata = {'url': '/complex/inheritance/valid'}
 
     def put_valid(
             self, complex_body, custom_headers=None, raw=False, **operation_config):
@@ -96,7 +97,7 @@ class InheritanceOperations(object):
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
-        url = '/complex/inheritance/valid'
+        url = self.put_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -121,3 +122,4 @@ class InheritanceOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    put_valid.metadata = {'url': '/complex/inheritance/valid'}

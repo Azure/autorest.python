@@ -47,7 +47,7 @@ class StringOperations(object):
         :raises: :class:`ErrorException<bodystring.models.ErrorException>`
         """
         # Construct URL
-        url = '/string/null'
+        url = self.get_null.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -75,6 +75,7 @@ class StringOperations(object):
             return client_raw_response
 
         return deserialized
+    get_null.metadata = {'url': '/string/null'}
 
     def put_null(
             self, string_body=None, custom_headers=None, raw=False, **operation_config):
@@ -92,7 +93,7 @@ class StringOperations(object):
         :raises: :class:`ErrorException<bodystring.models.ErrorException>`
         """
         # Construct URL
-        url = '/string/null'
+        url = self.put_null.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -120,6 +121,7 @@ class StringOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    put_null.metadata = {'url': '/string/null'}
 
     def get_empty(
             self, custom_headers=None, raw=False, **operation_config):
@@ -135,7 +137,7 @@ class StringOperations(object):
         :raises: :class:`ErrorException<bodystring.models.ErrorException>`
         """
         # Construct URL
-        url = '/string/empty'
+        url = self.get_empty.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -163,6 +165,7 @@ class StringOperations(object):
             return client_raw_response
 
         return deserialized
+    get_empty.metadata = {'url': '/string/empty'}
 
     def put_empty(
             self, custom_headers=None, raw=False, **operation_config):
@@ -180,7 +183,7 @@ class StringOperations(object):
         string_body = ""
 
         # Construct URL
-        url = '/string/empty'
+        url = self.put_empty.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -205,6 +208,7 @@ class StringOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    put_empty.metadata = {'url': '/string/empty'}
 
     def get_mbcs(
             self, custom_headers=None, raw=False, **operation_config):
@@ -221,7 +225,7 @@ class StringOperations(object):
         :raises: :class:`ErrorException<bodystring.models.ErrorException>`
         """
         # Construct URL
-        url = '/string/mbcs'
+        url = self.get_mbcs.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -249,6 +253,7 @@ class StringOperations(object):
             return client_raw_response
 
         return deserialized
+    get_mbcs.metadata = {'url': '/string/mbcs'}
 
     def put_mbcs(
             self, custom_headers=None, raw=False, **operation_config):
@@ -267,7 +272,7 @@ class StringOperations(object):
         string_body = "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€"
 
         # Construct URL
-        url = '/string/mbcs'
+        url = self.put_mbcs.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -292,6 +297,7 @@ class StringOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    put_mbcs.metadata = {'url': '/string/mbcs'}
 
     def get_whitespace(
             self, custom_headers=None, raw=False, **operation_config):
@@ -309,7 +315,7 @@ class StringOperations(object):
         :raises: :class:`ErrorException<bodystring.models.ErrorException>`
         """
         # Construct URL
-        url = '/string/whitespace'
+        url = self.get_whitespace.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -337,6 +343,7 @@ class StringOperations(object):
             return client_raw_response
 
         return deserialized
+    get_whitespace.metadata = {'url': '/string/whitespace'}
 
     def put_whitespace(
             self, custom_headers=None, raw=False, **operation_config):
@@ -356,7 +363,7 @@ class StringOperations(object):
         string_body = "    Now is the time for all good men to come to the aid of their country    "
 
         # Construct URL
-        url = '/string/whitespace'
+        url = self.put_whitespace.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -381,6 +388,7 @@ class StringOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    put_whitespace.metadata = {'url': '/string/whitespace'}
 
     def get_not_provided(
             self, custom_headers=None, raw=False, **operation_config):
@@ -396,7 +404,7 @@ class StringOperations(object):
         :raises: :class:`ErrorException<bodystring.models.ErrorException>`
         """
         # Construct URL
-        url = '/string/notProvided'
+        url = self.get_not_provided.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -424,6 +432,7 @@ class StringOperations(object):
             return client_raw_response
 
         return deserialized
+    get_not_provided.metadata = {'url': '/string/notProvided'}
 
     def get_base64_encoded(
             self, custom_headers=None, raw=False, **operation_config):
@@ -439,7 +448,7 @@ class StringOperations(object):
         :raises: :class:`ErrorException<bodystring.models.ErrorException>`
         """
         # Construct URL
-        url = '/string/base64Encoding'
+        url = self.get_base64_encoded.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -467,6 +476,7 @@ class StringOperations(object):
             return client_raw_response
 
         return deserialized
+    get_base64_encoded.metadata = {'url': '/string/base64Encoding'}
 
     def get_base64_url_encoded(
             self, custom_headers=None, raw=False, **operation_config):
@@ -482,7 +492,7 @@ class StringOperations(object):
         :raises: :class:`ErrorException<bodystring.models.ErrorException>`
         """
         # Construct URL
-        url = '/string/base64UrlEncoding'
+        url = self.get_base64_url_encoded.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -510,6 +520,7 @@ class StringOperations(object):
             return client_raw_response
 
         return deserialized
+    get_base64_url_encoded.metadata = {'url': '/string/base64UrlEncoding'}
 
     def put_base64_url_encoded(
             self, string_body, custom_headers=None, raw=False, **operation_config):
@@ -527,7 +538,7 @@ class StringOperations(object):
         :raises: :class:`ErrorException<bodystring.models.ErrorException>`
         """
         # Construct URL
-        url = '/string/base64UrlEncoding'
+        url = self.put_base64_url_encoded.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -552,6 +563,7 @@ class StringOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    put_base64_url_encoded.metadata = {'url': '/string/base64UrlEncoding'}
 
     def get_null_base64_url_encoded(
             self, custom_headers=None, raw=False, **operation_config):
@@ -567,7 +579,7 @@ class StringOperations(object):
         :raises: :class:`ErrorException<bodystring.models.ErrorException>`
         """
         # Construct URL
-        url = '/string/nullBase64UrlEncoding'
+        url = self.get_null_base64_url_encoded.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -595,3 +607,4 @@ class StringOperations(object):
             return client_raw_response
 
         return deserialized
+    get_null_base64_url_encoded.metadata = {'url': '/string/nullBase64UrlEncoding'}

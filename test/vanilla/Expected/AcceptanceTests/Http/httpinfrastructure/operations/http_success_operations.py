@@ -48,7 +48,7 @@ class HttpSuccessOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/success/200'
+        url = self.head200.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -69,6 +69,7 @@ class HttpSuccessOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    head200.metadata = {'url': '/http/success/200'}
 
     def get200(
             self, custom_headers=None, raw=False, **operation_config):
@@ -85,7 +86,7 @@ class HttpSuccessOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/success/200'
+        url = self.get200.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -113,6 +114,7 @@ class HttpSuccessOperations(object):
             return client_raw_response
 
         return deserialized
+    get200.metadata = {'url': '/http/success/200'}
 
     def put200(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
@@ -131,7 +133,7 @@ class HttpSuccessOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/success/200'
+        url = self.put200.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -159,6 +161,7 @@ class HttpSuccessOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    put200.metadata = {'url': '/http/success/200'}
 
     def patch200(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
@@ -177,7 +180,7 @@ class HttpSuccessOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/success/200'
+        url = self.patch200.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -205,6 +208,7 @@ class HttpSuccessOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    patch200.metadata = {'url': '/http/success/200'}
 
     def post200(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
@@ -223,7 +227,7 @@ class HttpSuccessOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/success/200'
+        url = self.post200.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -251,6 +255,7 @@ class HttpSuccessOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    post200.metadata = {'url': '/http/success/200'}
 
     def delete200(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
@@ -269,7 +274,7 @@ class HttpSuccessOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/success/200'
+        url = self.delete200.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -297,6 +302,7 @@ class HttpSuccessOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    delete200.metadata = {'url': '/http/success/200'}
 
     def put201(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
@@ -315,7 +321,7 @@ class HttpSuccessOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/success/201'
+        url = self.put201.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -343,6 +349,7 @@ class HttpSuccessOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    put201.metadata = {'url': '/http/success/201'}
 
     def post201(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
@@ -361,7 +368,7 @@ class HttpSuccessOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/success/201'
+        url = self.post201.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -389,6 +396,7 @@ class HttpSuccessOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    post201.metadata = {'url': '/http/success/201'}
 
     def put202(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
@@ -407,7 +415,7 @@ class HttpSuccessOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/success/202'
+        url = self.put202.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -435,6 +443,7 @@ class HttpSuccessOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    put202.metadata = {'url': '/http/success/202'}
 
     def patch202(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
@@ -453,7 +462,7 @@ class HttpSuccessOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/success/202'
+        url = self.patch202.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -481,6 +490,7 @@ class HttpSuccessOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    patch202.metadata = {'url': '/http/success/202'}
 
     def post202(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
@@ -499,7 +509,7 @@ class HttpSuccessOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/success/202'
+        url = self.post202.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -527,6 +537,7 @@ class HttpSuccessOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    post202.metadata = {'url': '/http/success/202'}
 
     def delete202(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
@@ -545,7 +556,7 @@ class HttpSuccessOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/success/202'
+        url = self.delete202.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -573,6 +584,7 @@ class HttpSuccessOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    delete202.metadata = {'url': '/http/success/202'}
 
     def head204(
             self, custom_headers=None, raw=False, **operation_config):
@@ -589,7 +601,7 @@ class HttpSuccessOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/success/204'
+        url = self.head204.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -610,6 +622,7 @@ class HttpSuccessOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    head204.metadata = {'url': '/http/success/204'}
 
     def put204(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
@@ -628,7 +641,7 @@ class HttpSuccessOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/success/204'
+        url = self.put204.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -656,6 +669,7 @@ class HttpSuccessOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    put204.metadata = {'url': '/http/success/204'}
 
     def patch204(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
@@ -674,7 +688,7 @@ class HttpSuccessOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/success/204'
+        url = self.patch204.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -702,6 +716,7 @@ class HttpSuccessOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    patch204.metadata = {'url': '/http/success/204'}
 
     def post204(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
@@ -720,7 +735,7 @@ class HttpSuccessOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/success/204'
+        url = self.post204.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -748,6 +763,7 @@ class HttpSuccessOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    post204.metadata = {'url': '/http/success/204'}
 
     def delete204(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
@@ -766,7 +782,7 @@ class HttpSuccessOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/success/204'
+        url = self.delete204.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -794,6 +810,7 @@ class HttpSuccessOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    delete204.metadata = {'url': '/http/success/204'}
 
     def head404(
             self, custom_headers=None, raw=False, **operation_config):
@@ -810,7 +827,7 @@ class HttpSuccessOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/success/404'
+        url = self.head404.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -831,3 +848,4 @@ class HttpSuccessOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    head404.metadata = {'url': '/http/success/404'}

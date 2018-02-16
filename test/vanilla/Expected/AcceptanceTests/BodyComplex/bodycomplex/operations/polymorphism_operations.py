@@ -47,7 +47,7 @@ class PolymorphismOperations(object):
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
-        url = '/complex/polymorphism/valid'
+        url = self.get_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -75,6 +75,7 @@ class PolymorphismOperations(object):
             return client_raw_response
 
         return deserialized
+    get_valid.metadata = {'url': '/complex/polymorphism/valid'}
 
     def put_valid(
             self, complex_body, custom_headers=None, raw=False, **operation_config):
@@ -124,7 +125,7 @@ class PolymorphismOperations(object):
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
-        url = '/complex/polymorphism/valid'
+        url = self.put_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -149,6 +150,7 @@ class PolymorphismOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    put_valid.metadata = {'url': '/complex/polymorphism/valid'}
 
     def get_complicated(
             self, custom_headers=None, raw=False, **operation_config):
@@ -166,7 +168,7 @@ class PolymorphismOperations(object):
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
-        url = '/complex/polymorphism/complicated'
+        url = self.get_complicated.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -194,6 +196,7 @@ class PolymorphismOperations(object):
             return client_raw_response
 
         return deserialized
+    get_complicated.metadata = {'url': '/complex/polymorphism/complicated'}
 
     def put_complicated(
             self, complex_body, custom_headers=None, raw=False, **operation_config):
@@ -212,7 +215,7 @@ class PolymorphismOperations(object):
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
-        url = '/complex/polymorphism/complicated'
+        url = self.put_complicated.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -237,6 +240,7 @@ class PolymorphismOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    put_complicated.metadata = {'url': '/complex/polymorphism/complicated'}
 
     def put_missing_discriminator(
             self, complex_body, custom_headers=None, raw=False, **operation_config):
@@ -255,7 +259,7 @@ class PolymorphismOperations(object):
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
-        url = '/complex/polymorphism/missingdiscriminator'
+        url = self.put_missing_discriminator.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -287,6 +291,7 @@ class PolymorphismOperations(object):
             return client_raw_response
 
         return deserialized
+    put_missing_discriminator.metadata = {'url': '/complex/polymorphism/missingdiscriminator'}
 
     def put_valid_missing_required(
             self, complex_body, custom_headers=None, raw=False, **operation_config):
@@ -331,7 +336,7 @@ class PolymorphismOperations(object):
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
-        url = '/complex/polymorphism/missingrequired/invalid'
+        url = self.put_valid_missing_required.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -356,3 +361,4 @@ class PolymorphismOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    put_valid_missing_required.metadata = {'url': '/complex/polymorphism/missingrequired/invalid'}

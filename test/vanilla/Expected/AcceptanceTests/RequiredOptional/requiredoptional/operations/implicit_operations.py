@@ -51,7 +51,7 @@ class ImplicitOperations(object):
          :class:`ErrorException<requiredoptional.models.ErrorException>`
         """
         # Construct URL
-        url = '/reqopt/implicit/required/path/{pathParameter}'
+        url = self.get_required_path.metadata['url']
         path_format_arguments = {
             'pathParameter': self._serialize.url("path_parameter", path_parameter, 'str')
         }
@@ -76,6 +76,7 @@ class ImplicitOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    get_required_path.metadata = {'url': '/reqopt/implicit/required/path/{pathParameter}'}
 
     def put_optional_query(
             self, query_parameter=None, custom_headers=None, raw=False, **operation_config):
@@ -94,7 +95,7 @@ class ImplicitOperations(object):
          :class:`ErrorException<requiredoptional.models.ErrorException>`
         """
         # Construct URL
-        url = '/reqopt/implicit/optional/query'
+        url = self.put_optional_query.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -117,6 +118,7 @@ class ImplicitOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    put_optional_query.metadata = {'url': '/reqopt/implicit/optional/query'}
 
     def put_optional_header(
             self, query_parameter=None, custom_headers=None, raw=False, **operation_config):
@@ -135,7 +137,7 @@ class ImplicitOperations(object):
          :class:`ErrorException<requiredoptional.models.ErrorException>`
         """
         # Construct URL
-        url = '/reqopt/implicit/optional/header'
+        url = self.put_optional_header.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -158,6 +160,7 @@ class ImplicitOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    put_optional_header.metadata = {'url': '/reqopt/implicit/optional/header'}
 
     def put_optional_body(
             self, body_parameter=None, custom_headers=None, raw=False, **operation_config):
@@ -176,7 +179,7 @@ class ImplicitOperations(object):
          :class:`ErrorException<requiredoptional.models.ErrorException>`
         """
         # Construct URL
-        url = '/reqopt/implicit/optional/body'
+        url = self.put_optional_body.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -204,6 +207,7 @@ class ImplicitOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    put_optional_body.metadata = {'url': '/reqopt/implicit/optional/body'}
 
     def get_required_global_path(
             self, custom_headers=None, raw=False, **operation_config):
@@ -221,7 +225,7 @@ class ImplicitOperations(object):
          :class:`ErrorException<requiredoptional.models.ErrorException>`
         """
         # Construct URL
-        url = '/reqopt/global/required/path/{required-global-path}'
+        url = self.get_required_global_path.metadata['url']
         path_format_arguments = {
             'required-global-path': self._serialize.url("self.config.required_global_path", self.config.required_global_path, 'str')
         }
@@ -246,6 +250,7 @@ class ImplicitOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    get_required_global_path.metadata = {'url': '/reqopt/global/required/path/{required-global-path}'}
 
     def get_required_global_query(
             self, custom_headers=None, raw=False, **operation_config):
@@ -263,7 +268,7 @@ class ImplicitOperations(object):
          :class:`ErrorException<requiredoptional.models.ErrorException>`
         """
         # Construct URL
-        url = '/reqopt/global/required/query'
+        url = self.get_required_global_query.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -285,6 +290,7 @@ class ImplicitOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    get_required_global_query.metadata = {'url': '/reqopt/global/required/query'}
 
     def get_optional_global_query(
             self, custom_headers=None, raw=False, **operation_config):
@@ -302,7 +308,7 @@ class ImplicitOperations(object):
          :class:`ErrorException<requiredoptional.models.ErrorException>`
         """
         # Construct URL
-        url = '/reqopt/global/optional/query'
+        url = self.get_optional_global_query.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -325,3 +331,4 @@ class ImplicitOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    get_optional_global_query.metadata = {'url': '/reqopt/global/optional/query'}

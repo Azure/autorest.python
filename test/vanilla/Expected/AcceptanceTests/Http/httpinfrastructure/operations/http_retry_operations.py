@@ -48,7 +48,7 @@ class HttpRetryOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/retry/408'
+        url = self.head408.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -69,6 +69,7 @@ class HttpRetryOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    head408.metadata = {'url': '/http/retry/408'}
 
     def put500(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
@@ -87,7 +88,7 @@ class HttpRetryOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/retry/500'
+        url = self.put500.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -115,6 +116,7 @@ class HttpRetryOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    put500.metadata = {'url': '/http/retry/500'}
 
     def patch500(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
@@ -133,7 +135,7 @@ class HttpRetryOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/retry/500'
+        url = self.patch500.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -161,6 +163,7 @@ class HttpRetryOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    patch500.metadata = {'url': '/http/retry/500'}
 
     def get502(
             self, custom_headers=None, raw=False, **operation_config):
@@ -177,7 +180,7 @@ class HttpRetryOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/retry/502'
+        url = self.get502.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -198,6 +201,7 @@ class HttpRetryOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    get502.metadata = {'url': '/http/retry/502'}
 
     def post503(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
@@ -216,7 +220,7 @@ class HttpRetryOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/retry/503'
+        url = self.post503.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -244,6 +248,7 @@ class HttpRetryOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    post503.metadata = {'url': '/http/retry/503'}
 
     def delete503(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
@@ -262,7 +267,7 @@ class HttpRetryOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/retry/503'
+        url = self.delete503.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -290,6 +295,7 @@ class HttpRetryOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    delete503.metadata = {'url': '/http/retry/503'}
 
     def put504(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
@@ -308,7 +314,7 @@ class HttpRetryOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/retry/504'
+        url = self.put504.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -336,6 +342,7 @@ class HttpRetryOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    put504.metadata = {'url': '/http/retry/504'}
 
     def patch504(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
@@ -354,7 +361,7 @@ class HttpRetryOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/retry/504'
+        url = self.patch504.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -382,3 +389,4 @@ class HttpRetryOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    patch504.metadata = {'url': '/http/retry/504'}

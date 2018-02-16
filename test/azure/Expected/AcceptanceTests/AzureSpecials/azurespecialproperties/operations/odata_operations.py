@@ -57,7 +57,7 @@ class OdataOperations(object):
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
         """
         # Construct URL
-        url = '/azurespecials/odata/filter'
+        url = self.get_with_filter.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -88,3 +88,4 @@ class OdataOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    get_with_filter.metadata = {'url': '/azurespecials/odata/filter'}

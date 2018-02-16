@@ -50,7 +50,7 @@ class HttpServerFailureOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/failure/server/501'
+        url = self.head501.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -71,6 +71,7 @@ class HttpServerFailureOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    head501.metadata = {'url': '/http/failure/server/501'}
 
     def get501(
             self, custom_headers=None, raw=False, **operation_config):
@@ -89,7 +90,7 @@ class HttpServerFailureOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/failure/server/501'
+        url = self.get501.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -110,6 +111,7 @@ class HttpServerFailureOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    get501.metadata = {'url': '/http/failure/server/501'}
 
     def post505(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
@@ -130,7 +132,7 @@ class HttpServerFailureOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/failure/server/505'
+        url = self.post505.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -158,6 +160,7 @@ class HttpServerFailureOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    post505.metadata = {'url': '/http/failure/server/505'}
 
     def delete505(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
@@ -178,7 +181,7 @@ class HttpServerFailureOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/failure/server/505'
+        url = self.delete505.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -206,3 +209,4 @@ class HttpServerFailureOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    delete505.metadata = {'url': '/http/failure/server/505'}

@@ -57,7 +57,7 @@ class AvailabilitySetsOperations(object):
         tags1 = models.AvailabilitySetUpdateParameters(tags=tags)
 
         # Construct URL
-        url = '/parameterFlattening/{resourceGroupName}/{availabilitySetName}'
+        url = self.update.metadata['url']
         path_format_arguments = {
             'resourceGroupName': self._serialize.url("resource_group_name", resource_group_name, 'str'),
             'availabilitySetName': self._serialize.url("avset", avset, 'str', max_length=80)
@@ -87,3 +87,4 @@ class AvailabilitySetsOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    update.metadata = {'url': '/parameterFlattening/{resourceGroupName}/{availabilitySetName}'}
