@@ -48,7 +48,7 @@
 @EmptyLine
             if not next_link:
                 # Construct URL
-                url = '@(Model.Url)'
+                url = self.@(((string)Model.Name).ToPythonCase()).metadata['url']
                 @(Model.BuildUrlPath("url", Model.LogicalParameters))
 @EmptyLine
                 # Construct parameters
@@ -117,3 +117,4 @@ else
             return client_raw_response
 @EmptyLine
         return deserialized
+    @(((string)Model.Name).ToPythonCase()).metadata = {'url': '@(Model.Url)'}

@@ -23,7 +23,7 @@
 @EmptyLine
 }
         # Construct URL
-        url = '@(Model.Url)'
+        url = self.@(((string)Model.Name).ToPythonCase()).metadata['url']
         @(Model.BuildUrlPath("url", Model.LogicalParameters))
 @EmptyLine
         # Construct parameters
@@ -204,3 +204,4 @@ else
         return AzureOperationPoller(
             long_running_send, get_long_running_output,
             get_long_running_status, long_running_operation_timeout)
+    @(((string)Model.Name).ToPythonCase()).metadata = {'url': '@(Model.Url)'}
