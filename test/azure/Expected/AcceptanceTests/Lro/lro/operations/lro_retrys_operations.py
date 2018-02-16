@@ -41,7 +41,7 @@ class LRORetrysOperations(object):
     def _put201_creating_succeeded200_initial(
             self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = '/lro/retryerror/put/201/creating/succeeded/200'
+        url = self.put201_creating_succeeded200.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -148,12 +148,13 @@ class LRORetrysOperations(object):
         return AzureOperationPoller(
             long_running_send, get_long_running_output,
             get_long_running_status, long_running_operation_timeout)
+    put201_creating_succeeded200.metadata = {'url': '/lro/retryerror/put/201/creating/succeeded/200'}
 
 
     def _put_async_relative_retry_succeeded_initial(
             self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = '/lro/retryerror/putasync/retry/succeeded'
+        url = self.put_async_relative_retry_succeeded.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -274,12 +275,13 @@ class LRORetrysOperations(object):
         return AzureOperationPoller(
             long_running_send, get_long_running_output,
             get_long_running_status, long_running_operation_timeout)
+    put_async_relative_retry_succeeded.metadata = {'url': '/lro/retryerror/putasync/retry/succeeded'}
 
 
     def _delete_provisioning202_accepted200_succeeded_initial(
             self, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = '/lro/retryerror/delete/provisioning/202/accepted/200/succeeded'
+        url = self.delete_provisioning202_accepted200_succeeded.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -394,12 +396,13 @@ class LRORetrysOperations(object):
         return AzureOperationPoller(
             long_running_send, get_long_running_output,
             get_long_running_status, long_running_operation_timeout)
+    delete_provisioning202_accepted200_succeeded.metadata = {'url': '/lro/retryerror/delete/provisioning/202/accepted/200/succeeded'}
 
 
     def _delete202_retry200_initial(
             self, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = '/lro/retryerror/delete/202/retry/200'
+        url = self.delete202_retry200.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -490,12 +493,13 @@ class LRORetrysOperations(object):
         return AzureOperationPoller(
             long_running_send, get_long_running_output,
             get_long_running_status, long_running_operation_timeout)
+    delete202_retry200.metadata = {'url': '/lro/retryerror/delete/202/retry/200'}
 
 
     def _delete_async_relative_retry_succeeded_initial(
             self, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = '/lro/retryerror/deleteasync/retry/succeeded'
+        url = self.delete_async_relative_retry_succeeded.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -588,12 +592,13 @@ class LRORetrysOperations(object):
         return AzureOperationPoller(
             long_running_send, get_long_running_output,
             get_long_running_status, long_running_operation_timeout)
+    delete_async_relative_retry_succeeded.metadata = {'url': '/lro/retryerror/deleteasync/retry/succeeded'}
 
 
     def _post202_retry200_initial(
             self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = '/lro/retryerror/post/202/retry/200'
+        url = self.post202_retry200.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -694,12 +699,13 @@ class LRORetrysOperations(object):
         return AzureOperationPoller(
             long_running_send, get_long_running_output,
             get_long_running_status, long_running_operation_timeout)
+    post202_retry200.metadata = {'url': '/lro/retryerror/post/202/retry/200'}
 
 
     def _post_async_relative_retry_succeeded_initial(
             self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = '/lro/retryerror/postasync/retry/succeeded'
+        url = self.post_async_relative_retry_succeeded.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -803,3 +809,4 @@ class LRORetrysOperations(object):
         return AzureOperationPoller(
             long_running_send, get_long_running_output,
             get_long_running_status, long_running_operation_timeout)
+    post_async_relative_retry_succeeded.metadata = {'url': '/lro/retryerror/postasync/retry/succeeded'}

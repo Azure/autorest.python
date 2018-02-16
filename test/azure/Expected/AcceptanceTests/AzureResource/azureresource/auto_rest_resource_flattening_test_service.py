@@ -85,7 +85,7 @@ class AutoRestResourceFlatteningTestService(object):
         :raises: :class:`ErrorException<azureresource.models.ErrorException>`
         """
         # Construct URL
-        url = '/azure/resource-flatten/array'
+        url = self.put_array.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -117,6 +117,7 @@ class AutoRestResourceFlatteningTestService(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    put_array.metadata = {'url': '/azure/resource-flatten/array'}
 
     def get_array(
             self, custom_headers=None, raw=False, **operation_config):
@@ -133,7 +134,7 @@ class AutoRestResourceFlatteningTestService(object):
         :raises: :class:`ErrorException<azureresource.models.ErrorException>`
         """
         # Construct URL
-        url = '/azure/resource-flatten/array'
+        url = self.get_array.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -165,6 +166,7 @@ class AutoRestResourceFlatteningTestService(object):
             return client_raw_response
 
         return deserialized
+    get_array.metadata = {'url': '/azure/resource-flatten/array'}
 
     def put_dictionary(
             self, resource_dictionary=None, custom_headers=None, raw=False, **operation_config):
@@ -183,7 +185,7 @@ class AutoRestResourceFlatteningTestService(object):
         :raises: :class:`ErrorException<azureresource.models.ErrorException>`
         """
         # Construct URL
-        url = '/azure/resource-flatten/dictionary'
+        url = self.put_dictionary.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -215,6 +217,7 @@ class AutoRestResourceFlatteningTestService(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    put_dictionary.metadata = {'url': '/azure/resource-flatten/dictionary'}
 
     def get_dictionary(
             self, custom_headers=None, raw=False, **operation_config):
@@ -231,7 +234,7 @@ class AutoRestResourceFlatteningTestService(object):
         :raises: :class:`ErrorException<azureresource.models.ErrorException>`
         """
         # Construct URL
-        url = '/azure/resource-flatten/dictionary'
+        url = self.get_dictionary.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -263,6 +266,7 @@ class AutoRestResourceFlatteningTestService(object):
             return client_raw_response
 
         return deserialized
+    get_dictionary.metadata = {'url': '/azure/resource-flatten/dictionary'}
 
     def put_resource_collection(
             self, resource_complex_object=None, custom_headers=None, raw=False, **operation_config):
@@ -282,7 +286,7 @@ class AutoRestResourceFlatteningTestService(object):
         :raises: :class:`ErrorException<azureresource.models.ErrorException>`
         """
         # Construct URL
-        url = '/azure/resource-flatten/resourcecollection'
+        url = self.put_resource_collection.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -314,6 +318,7 @@ class AutoRestResourceFlatteningTestService(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    put_resource_collection.metadata = {'url': '/azure/resource-flatten/resourcecollection'}
 
     def get_resource_collection(
             self, custom_headers=None, raw=False, **operation_config):
@@ -330,7 +335,7 @@ class AutoRestResourceFlatteningTestService(object):
         :raises: :class:`ErrorException<azureresource.models.ErrorException>`
         """
         # Construct URL
-        url = '/azure/resource-flatten/resourcecollection'
+        url = self.get_resource_collection.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -362,3 +367,4 @@ class AutoRestResourceFlatteningTestService(object):
             return client_raw_response
 
         return deserialized
+    get_resource_collection.metadata = {'url': '/azure/resource-flatten/resourcecollection'}

@@ -47,7 +47,7 @@ class PolymorphicrecursiveOperations(object):
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
-        url = '/complex/polymorphicrecursive/valid'
+        url = self.get_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -75,6 +75,7 @@ class PolymorphicrecursiveOperations(object):
             return client_raw_response
 
         return deserialized
+    get_valid.metadata = {'url': '/complex/polymorphicrecursive/valid'}
 
     def put_valid(
             self, complex_body, custom_headers=None, raw=False, **operation_config):
@@ -144,7 +145,7 @@ class PolymorphicrecursiveOperations(object):
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
-        url = '/complex/polymorphicrecursive/valid'
+        url = self.put_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -169,3 +170,4 @@ class PolymorphicrecursiveOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    put_valid.metadata = {'url': '/complex/polymorphicrecursive/valid'}

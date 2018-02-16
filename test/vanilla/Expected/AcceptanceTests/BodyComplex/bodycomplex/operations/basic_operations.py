@@ -50,7 +50,7 @@ class BasicOperations(object):
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
-        url = '/complex/basic/valid'
+        url = self.get_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -78,6 +78,7 @@ class BasicOperations(object):
             return client_raw_response
 
         return deserialized
+    get_valid.metadata = {'url': '/complex/basic/valid'}
 
     def put_valid(
             self, complex_body, custom_headers=None, raw=False, **operation_config):
@@ -95,7 +96,7 @@ class BasicOperations(object):
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
-        url = '/complex/basic/valid'
+        url = self.put_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -121,6 +122,7 @@ class BasicOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    put_valid.metadata = {'url': '/complex/basic/valid'}
 
     def get_invalid(
             self, custom_headers=None, raw=False, **operation_config):
@@ -137,7 +139,7 @@ class BasicOperations(object):
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
-        url = '/complex/basic/invalid'
+        url = self.get_invalid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -165,6 +167,7 @@ class BasicOperations(object):
             return client_raw_response
 
         return deserialized
+    get_invalid.metadata = {'url': '/complex/basic/invalid'}
 
     def get_empty(
             self, custom_headers=None, raw=False, **operation_config):
@@ -181,7 +184,7 @@ class BasicOperations(object):
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
-        url = '/complex/basic/empty'
+        url = self.get_empty.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -209,6 +212,7 @@ class BasicOperations(object):
             return client_raw_response
 
         return deserialized
+    get_empty.metadata = {'url': '/complex/basic/empty'}
 
     def get_null(
             self, custom_headers=None, raw=False, **operation_config):
@@ -225,7 +229,7 @@ class BasicOperations(object):
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
-        url = '/complex/basic/null'
+        url = self.get_null.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -253,6 +257,7 @@ class BasicOperations(object):
             return client_raw_response
 
         return deserialized
+    get_null.metadata = {'url': '/complex/basic/null'}
 
     def get_not_provided(
             self, custom_headers=None, raw=False, **operation_config):
@@ -270,7 +275,7 @@ class BasicOperations(object):
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
-        url = '/complex/basic/notprovided'
+        url = self.get_not_provided.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -298,3 +303,4 @@ class BasicOperations(object):
             return client_raw_response
 
         return deserialized
+    get_not_provided.metadata = {'url': '/complex/basic/notprovided'}

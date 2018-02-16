@@ -52,7 +52,7 @@ class HeaderOperations(object):
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
         """
         # Construct URL
-        url = '/azurespecials/customNamedRequestId'
+        url = self.custom_named_request_id.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -81,6 +81,7 @@ class HeaderOperations(object):
                 'foo-request-id': 'str',
             })
             return client_raw_response
+    custom_named_request_id.metadata = {'url': '/azurespecials/customNamedRequestId'}
 
     def custom_named_request_id_param_grouping(
             self, header_custom_named_request_id_param_grouping_parameters, custom_headers=None, raw=False, **operation_config):
@@ -106,7 +107,7 @@ class HeaderOperations(object):
             foo_client_request_id = header_custom_named_request_id_param_grouping_parameters.foo_client_request_id
 
         # Construct URL
-        url = '/azurespecials/customNamedRequestIdParamGrouping'
+        url = self.custom_named_request_id_param_grouping.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -135,6 +136,7 @@ class HeaderOperations(object):
                 'foo-request-id': 'str',
             })
             return client_raw_response
+    custom_named_request_id_param_grouping.metadata = {'url': '/azurespecials/customNamedRequestIdParamGrouping'}
 
     def custom_named_request_id_head(
             self, foo_client_request_id, custom_headers=None, raw=False, **operation_config):
@@ -154,7 +156,7 @@ class HeaderOperations(object):
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
         """
         # Construct URL
-        url = '/azurespecials/customNamedRequestIdHead'
+        url = self.custom_named_request_id_head.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -185,3 +187,4 @@ class HeaderOperations(object):
                 })
             return client_raw_response
         return deserialized
+    custom_named_request_id_head.metadata = {'url': '/azurespecials/customNamedRequestIdHead'}

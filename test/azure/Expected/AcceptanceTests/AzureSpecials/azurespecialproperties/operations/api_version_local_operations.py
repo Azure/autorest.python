@@ -52,7 +52,7 @@ class ApiVersionLocalOperations(object):
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
         """
         # Construct URL
-        url = '/azurespecials/apiVersion/method/string/none/query/local/2.0'
+        url = self.get_method_local_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -78,6 +78,7 @@ class ApiVersionLocalOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    get_method_local_valid.metadata = {'url': '/azurespecials/apiVersion/method/string/none/query/local/2.0'}
 
     def get_method_local_null(
             self, api_version=None, custom_headers=None, raw=False, **operation_config):
@@ -98,7 +99,7 @@ class ApiVersionLocalOperations(object):
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
         """
         # Construct URL
-        url = '/azurespecials/apiVersion/method/string/none/query/local/null'
+        url = self.get_method_local_null.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -125,6 +126,7 @@ class ApiVersionLocalOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    get_method_local_null.metadata = {'url': '/azurespecials/apiVersion/method/string/none/query/local/null'}
 
     def get_path_local_valid(
             self, custom_headers=None, raw=False, **operation_config):
@@ -142,7 +144,7 @@ class ApiVersionLocalOperations(object):
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
         """
         # Construct URL
-        url = '/azurespecials/apiVersion/path/string/none/query/local/2.0'
+        url = self.get_path_local_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -168,6 +170,7 @@ class ApiVersionLocalOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    get_path_local_valid.metadata = {'url': '/azurespecials/apiVersion/path/string/none/query/local/2.0'}
 
     def get_swagger_local_valid(
             self, custom_headers=None, raw=False, **operation_config):
@@ -185,7 +188,7 @@ class ApiVersionLocalOperations(object):
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
         """
         # Construct URL
-        url = '/azurespecials/apiVersion/swagger/string/none/query/local/2.0'
+        url = self.get_swagger_local_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -211,3 +214,4 @@ class ApiVersionLocalOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    get_swagger_local_valid.metadata = {'url': '/azurespecials/apiVersion/swagger/string/none/query/local/2.0'}

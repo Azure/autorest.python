@@ -50,7 +50,7 @@ class HttpClientFailureOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/failure/client/400'
+        url = self.head400.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -71,6 +71,7 @@ class HttpClientFailureOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    head400.metadata = {'url': '/http/failure/client/400'}
 
     def get400(
             self, custom_headers=None, raw=False, **operation_config):
@@ -89,7 +90,7 @@ class HttpClientFailureOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/failure/client/400'
+        url = self.get400.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -110,6 +111,7 @@ class HttpClientFailureOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    get400.metadata = {'url': '/http/failure/client/400'}
 
     def put400(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
@@ -130,7 +132,7 @@ class HttpClientFailureOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/failure/client/400'
+        url = self.put400.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -158,6 +160,7 @@ class HttpClientFailureOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    put400.metadata = {'url': '/http/failure/client/400'}
 
     def patch400(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
@@ -178,7 +181,7 @@ class HttpClientFailureOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/failure/client/400'
+        url = self.patch400.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -206,6 +209,7 @@ class HttpClientFailureOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    patch400.metadata = {'url': '/http/failure/client/400'}
 
     def post400(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
@@ -226,7 +230,7 @@ class HttpClientFailureOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/failure/client/400'
+        url = self.post400.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -254,6 +258,7 @@ class HttpClientFailureOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    post400.metadata = {'url': '/http/failure/client/400'}
 
     def delete400(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
@@ -274,7 +279,7 @@ class HttpClientFailureOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/failure/client/400'
+        url = self.delete400.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -302,6 +307,7 @@ class HttpClientFailureOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    delete400.metadata = {'url': '/http/failure/client/400'}
 
     def head401(
             self, custom_headers=None, raw=False, **operation_config):
@@ -320,7 +326,7 @@ class HttpClientFailureOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/failure/client/401'
+        url = self.head401.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -341,6 +347,7 @@ class HttpClientFailureOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    head401.metadata = {'url': '/http/failure/client/401'}
 
     def get402(
             self, custom_headers=None, raw=False, **operation_config):
@@ -359,7 +366,7 @@ class HttpClientFailureOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/failure/client/402'
+        url = self.get402.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -380,6 +387,7 @@ class HttpClientFailureOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    get402.metadata = {'url': '/http/failure/client/402'}
 
     def get403(
             self, custom_headers=None, raw=False, **operation_config):
@@ -398,7 +406,7 @@ class HttpClientFailureOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/failure/client/403'
+        url = self.get403.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -419,6 +427,7 @@ class HttpClientFailureOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    get403.metadata = {'url': '/http/failure/client/403'}
 
     def put404(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
@@ -439,7 +448,7 @@ class HttpClientFailureOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/failure/client/404'
+        url = self.put404.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -467,6 +476,7 @@ class HttpClientFailureOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    put404.metadata = {'url': '/http/failure/client/404'}
 
     def patch405(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
@@ -487,7 +497,7 @@ class HttpClientFailureOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/failure/client/405'
+        url = self.patch405.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -515,6 +525,7 @@ class HttpClientFailureOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    patch405.metadata = {'url': '/http/failure/client/405'}
 
     def post406(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
@@ -535,7 +546,7 @@ class HttpClientFailureOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/failure/client/406'
+        url = self.post406.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -563,6 +574,7 @@ class HttpClientFailureOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    post406.metadata = {'url': '/http/failure/client/406'}
 
     def delete407(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
@@ -583,7 +595,7 @@ class HttpClientFailureOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/failure/client/407'
+        url = self.delete407.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -611,6 +623,7 @@ class HttpClientFailureOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    delete407.metadata = {'url': '/http/failure/client/407'}
 
     def put409(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
@@ -631,7 +644,7 @@ class HttpClientFailureOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/failure/client/409'
+        url = self.put409.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -659,6 +672,7 @@ class HttpClientFailureOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    put409.metadata = {'url': '/http/failure/client/409'}
 
     def head410(
             self, custom_headers=None, raw=False, **operation_config):
@@ -677,7 +691,7 @@ class HttpClientFailureOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/failure/client/410'
+        url = self.head410.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -698,6 +712,7 @@ class HttpClientFailureOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    head410.metadata = {'url': '/http/failure/client/410'}
 
     def get411(
             self, custom_headers=None, raw=False, **operation_config):
@@ -716,7 +731,7 @@ class HttpClientFailureOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/failure/client/411'
+        url = self.get411.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -737,6 +752,7 @@ class HttpClientFailureOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    get411.metadata = {'url': '/http/failure/client/411'}
 
     def get412(
             self, custom_headers=None, raw=False, **operation_config):
@@ -755,7 +771,7 @@ class HttpClientFailureOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/failure/client/412'
+        url = self.get412.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -776,6 +792,7 @@ class HttpClientFailureOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    get412.metadata = {'url': '/http/failure/client/412'}
 
     def put413(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
@@ -796,7 +813,7 @@ class HttpClientFailureOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/failure/client/413'
+        url = self.put413.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -824,6 +841,7 @@ class HttpClientFailureOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    put413.metadata = {'url': '/http/failure/client/413'}
 
     def patch414(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
@@ -844,7 +862,7 @@ class HttpClientFailureOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/failure/client/414'
+        url = self.patch414.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -872,6 +890,7 @@ class HttpClientFailureOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    patch414.metadata = {'url': '/http/failure/client/414'}
 
     def post415(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
@@ -892,7 +911,7 @@ class HttpClientFailureOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/failure/client/415'
+        url = self.post415.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -920,6 +939,7 @@ class HttpClientFailureOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    post415.metadata = {'url': '/http/failure/client/415'}
 
     def get416(
             self, custom_headers=None, raw=False, **operation_config):
@@ -938,7 +958,7 @@ class HttpClientFailureOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/failure/client/416'
+        url = self.get416.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -959,6 +979,7 @@ class HttpClientFailureOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    get416.metadata = {'url': '/http/failure/client/416'}
 
     def delete417(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
@@ -979,7 +1000,7 @@ class HttpClientFailureOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/failure/client/417'
+        url = self.delete417.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1007,6 +1028,7 @@ class HttpClientFailureOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    delete417.metadata = {'url': '/http/failure/client/417'}
 
     def head429(
             self, custom_headers=None, raw=False, **operation_config):
@@ -1025,7 +1047,7 @@ class HttpClientFailureOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/failure/client/429'
+        url = self.head429.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1046,3 +1068,4 @@ class HttpClientFailureOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    head429.metadata = {'url': '/http/failure/client/429'}

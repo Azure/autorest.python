@@ -49,7 +49,7 @@ class EnumOperations(object):
         :raises: :class:`ErrorException<bodystring.models.ErrorException>`
         """
         # Construct URL
-        url = '/string/enum/notExpandable'
+        url = self.get_not_expandable.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -77,6 +77,7 @@ class EnumOperations(object):
             return client_raw_response
 
         return deserialized
+    get_not_expandable.metadata = {'url': '/string/enum/notExpandable'}
 
     def put_not_expandable(
             self, string_body, custom_headers=None, raw=False, **operation_config):
@@ -96,7 +97,7 @@ class EnumOperations(object):
         :raises: :class:`ErrorException<bodystring.models.ErrorException>`
         """
         # Construct URL
-        url = '/string/enum/notExpandable'
+        url = self.put_not_expandable.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -121,6 +122,7 @@ class EnumOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    put_not_expandable.metadata = {'url': '/string/enum/notExpandable'}
 
     def get_referenced(
             self, custom_headers=None, raw=False, **operation_config):
@@ -138,7 +140,7 @@ class EnumOperations(object):
         :raises: :class:`ErrorException<bodystring.models.ErrorException>`
         """
         # Construct URL
-        url = '/string/enum/Referenced'
+        url = self.get_referenced.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -166,6 +168,7 @@ class EnumOperations(object):
             return client_raw_response
 
         return deserialized
+    get_referenced.metadata = {'url': '/string/enum/Referenced'}
 
     def put_referenced(
             self, enum_string_body, custom_headers=None, raw=False, **operation_config):
@@ -185,7 +188,7 @@ class EnumOperations(object):
         :raises: :class:`ErrorException<bodystring.models.ErrorException>`
         """
         # Construct URL
-        url = '/string/enum/Referenced'
+        url = self.put_referenced.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -210,6 +213,7 @@ class EnumOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    put_referenced.metadata = {'url': '/string/enum/Referenced'}
 
     def get_referenced_constant(
             self, custom_headers=None, raw=False, **operation_config):
@@ -226,7 +230,7 @@ class EnumOperations(object):
         :raises: :class:`ErrorException<bodystring.models.ErrorException>`
         """
         # Construct URL
-        url = '/string/enum/ReferencedConstant'
+        url = self.get_referenced_constant.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -254,6 +258,7 @@ class EnumOperations(object):
             return client_raw_response
 
         return deserialized
+    get_referenced_constant.metadata = {'url': '/string/enum/ReferencedConstant'}
 
     def put_referenced_constant(
             self, field1=None, custom_headers=None, raw=False, **operation_config):
@@ -273,7 +278,7 @@ class EnumOperations(object):
         enum_string_body = models.RefColorConstant(field1=field1)
 
         # Construct URL
-        url = '/string/enum/ReferencedConstant'
+        url = self.put_referenced_constant.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -298,3 +303,4 @@ class EnumOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    put_referenced_constant.metadata = {'url': '/string/enum/ReferencedConstant'}

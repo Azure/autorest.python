@@ -50,7 +50,7 @@ class MultipleResponsesOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/payloads/200/A/204/none/default/Error/response/200/valid'
+        url = self.get200_model204_no_model_default_error200_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -78,6 +78,7 @@ class MultipleResponsesOperations(object):
             return client_raw_response
 
         return deserialized
+    get200_model204_no_model_default_error200_valid.metadata = {'url': '/http/payloads/200/A/204/none/default/Error/response/200/valid'}
 
     def get200_model204_no_model_default_error204_valid(
             self, custom_headers=None, raw=False, **operation_config):
@@ -95,7 +96,7 @@ class MultipleResponsesOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/payloads/200/A/204/none/default/Error/response/204/none'
+        url = self.get200_model204_no_model_default_error204_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -123,6 +124,7 @@ class MultipleResponsesOperations(object):
             return client_raw_response
 
         return deserialized
+    get200_model204_no_model_default_error204_valid.metadata = {'url': '/http/payloads/200/A/204/none/default/Error/response/204/none'}
 
     def get200_model204_no_model_default_error201_invalid(
             self, custom_headers=None, raw=False, **operation_config):
@@ -140,7 +142,7 @@ class MultipleResponsesOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/payloads/200/A/204/none/default/Error/response/201/valid'
+        url = self.get200_model204_no_model_default_error201_invalid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -168,6 +170,7 @@ class MultipleResponsesOperations(object):
             return client_raw_response
 
         return deserialized
+    get200_model204_no_model_default_error201_invalid.metadata = {'url': '/http/payloads/200/A/204/none/default/Error/response/201/valid'}
 
     def get200_model204_no_model_default_error202_none(
             self, custom_headers=None, raw=False, **operation_config):
@@ -185,7 +188,7 @@ class MultipleResponsesOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/payloads/200/A/204/none/default/Error/response/202/none'
+        url = self.get200_model204_no_model_default_error202_none.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -213,6 +216,7 @@ class MultipleResponsesOperations(object):
             return client_raw_response
 
         return deserialized
+    get200_model204_no_model_default_error202_none.metadata = {'url': '/http/payloads/200/A/204/none/default/Error/response/202/none'}
 
     def get200_model204_no_model_default_error400_valid(
             self, custom_headers=None, raw=False, **operation_config):
@@ -231,7 +235,7 @@ class MultipleResponsesOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/payloads/200/A/204/none/default/Error/response/400/valid'
+        url = self.get200_model204_no_model_default_error400_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -259,6 +263,7 @@ class MultipleResponsesOperations(object):
             return client_raw_response
 
         return deserialized
+    get200_model204_no_model_default_error400_valid.metadata = {'url': '/http/payloads/200/A/204/none/default/Error/response/400/valid'}
 
     def get200_model201_model_default_error200_valid(
             self, custom_headers=None, raw=False, **operation_config):
@@ -276,7 +281,7 @@ class MultipleResponsesOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/payloads/200/A/201/B/default/Error/response/200/valid'
+        url = self.get200_model201_model_default_error200_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -306,6 +311,7 @@ class MultipleResponsesOperations(object):
             return client_raw_response
 
         return deserialized
+    get200_model201_model_default_error200_valid.metadata = {'url': '/http/payloads/200/A/201/B/default/Error/response/200/valid'}
 
     def get200_model201_model_default_error201_valid(
             self, custom_headers=None, raw=False, **operation_config):
@@ -324,7 +330,7 @@ class MultipleResponsesOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/payloads/200/A/201/B/default/Error/response/201/valid'
+        url = self.get200_model201_model_default_error201_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -354,6 +360,7 @@ class MultipleResponsesOperations(object):
             return client_raw_response
 
         return deserialized
+    get200_model201_model_default_error201_valid.metadata = {'url': '/http/payloads/200/A/201/B/default/Error/response/201/valid'}
 
     def get200_model201_model_default_error400_valid(
             self, custom_headers=None, raw=False, **operation_config):
@@ -372,7 +379,7 @@ class MultipleResponsesOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/payloads/200/A/201/B/default/Error/response/400/valid'
+        url = self.get200_model201_model_default_error400_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -402,6 +409,7 @@ class MultipleResponsesOperations(object):
             return client_raw_response
 
         return deserialized
+    get200_model201_model_default_error400_valid.metadata = {'url': '/http/payloads/200/A/201/B/default/Error/response/400/valid'}
 
     def get200_model_a201_model_c404_model_ddefault_error200_valid(
             self, custom_headers=None, raw=False, **operation_config):
@@ -418,7 +426,7 @@ class MultipleResponsesOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/payloads/200/A/201/C/404/D/default/Error/response/200/valid'
+        url = self.get200_model_a201_model_c404_model_ddefault_error200_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -450,6 +458,7 @@ class MultipleResponsesOperations(object):
             return client_raw_response
 
         return deserialized
+    get200_model_a201_model_c404_model_ddefault_error200_valid.metadata = {'url': '/http/payloads/200/A/201/C/404/D/default/Error/response/200/valid'}
 
     def get200_model_a201_model_c404_model_ddefault_error201_valid(
             self, custom_headers=None, raw=False, **operation_config):
@@ -466,7 +475,7 @@ class MultipleResponsesOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/payloads/200/A/201/C/404/D/default/Error/response/201/valid'
+        url = self.get200_model_a201_model_c404_model_ddefault_error201_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -498,6 +507,7 @@ class MultipleResponsesOperations(object):
             return client_raw_response
 
         return deserialized
+    get200_model_a201_model_c404_model_ddefault_error201_valid.metadata = {'url': '/http/payloads/200/A/201/C/404/D/default/Error/response/201/valid'}
 
     def get200_model_a201_model_c404_model_ddefault_error404_valid(
             self, custom_headers=None, raw=False, **operation_config):
@@ -514,7 +524,7 @@ class MultipleResponsesOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/payloads/200/A/201/C/404/D/default/Error/response/404/valid'
+        url = self.get200_model_a201_model_c404_model_ddefault_error404_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -546,6 +556,7 @@ class MultipleResponsesOperations(object):
             return client_raw_response
 
         return deserialized
+    get200_model_a201_model_c404_model_ddefault_error404_valid.metadata = {'url': '/http/payloads/200/A/201/C/404/D/default/Error/response/404/valid'}
 
     def get200_model_a201_model_c404_model_ddefault_error400_valid(
             self, custom_headers=None, raw=False, **operation_config):
@@ -563,7 +574,7 @@ class MultipleResponsesOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/payloads/200/A/201/C/404/D/default/Error/response/400/valid'
+        url = self.get200_model_a201_model_c404_model_ddefault_error400_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -595,6 +606,7 @@ class MultipleResponsesOperations(object):
             return client_raw_response
 
         return deserialized
+    get200_model_a201_model_c404_model_ddefault_error400_valid.metadata = {'url': '/http/payloads/200/A/201/C/404/D/default/Error/response/400/valid'}
 
     def get202_none204_none_default_error202_none(
             self, custom_headers=None, raw=False, **operation_config):
@@ -611,7 +623,7 @@ class MultipleResponsesOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/payloads/202/none/204/none/default/Error/response/202/none'
+        url = self.get202_none204_none_default_error202_none.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -632,6 +644,7 @@ class MultipleResponsesOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    get202_none204_none_default_error202_none.metadata = {'url': '/http/payloads/202/none/204/none/default/Error/response/202/none'}
 
     def get202_none204_none_default_error204_none(
             self, custom_headers=None, raw=False, **operation_config):
@@ -648,7 +661,7 @@ class MultipleResponsesOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/payloads/202/none/204/none/default/Error/response/204/none'
+        url = self.get202_none204_none_default_error204_none.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -669,6 +682,7 @@ class MultipleResponsesOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    get202_none204_none_default_error204_none.metadata = {'url': '/http/payloads/202/none/204/none/default/Error/response/204/none'}
 
     def get202_none204_none_default_error400_valid(
             self, custom_headers=None, raw=False, **operation_config):
@@ -686,7 +700,7 @@ class MultipleResponsesOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/payloads/202/none/204/none/default/Error/response/400/valid'
+        url = self.get202_none204_none_default_error400_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -707,6 +721,7 @@ class MultipleResponsesOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    get202_none204_none_default_error400_valid.metadata = {'url': '/http/payloads/202/none/204/none/default/Error/response/400/valid'}
 
     def get202_none204_none_default_none202_invalid(
             self, custom_headers=None, raw=False, **operation_config):
@@ -723,7 +738,7 @@ class MultipleResponsesOperations(object):
          :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
         """
         # Construct URL
-        url = '/http/payloads/202/none/204/none/default/none/response/202/invalid'
+        url = self.get202_none204_none_default_none202_invalid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -744,6 +759,7 @@ class MultipleResponsesOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    get202_none204_none_default_none202_invalid.metadata = {'url': '/http/payloads/202/none/204/none/default/none/response/202/invalid'}
 
     def get202_none204_none_default_none204_none(
             self, custom_headers=None, raw=False, **operation_config):
@@ -760,7 +776,7 @@ class MultipleResponsesOperations(object):
          :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
         """
         # Construct URL
-        url = '/http/payloads/202/none/204/none/default/none/response/204/none'
+        url = self.get202_none204_none_default_none204_none.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -781,6 +797,7 @@ class MultipleResponsesOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    get202_none204_none_default_none204_none.metadata = {'url': '/http/payloads/202/none/204/none/default/none/response/204/none'}
 
     def get202_none204_none_default_none400_none(
             self, custom_headers=None, raw=False, **operation_config):
@@ -797,7 +814,7 @@ class MultipleResponsesOperations(object):
          :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
         """
         # Construct URL
-        url = '/http/payloads/202/none/204/none/default/none/response/400/none'
+        url = self.get202_none204_none_default_none400_none.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -818,6 +835,7 @@ class MultipleResponsesOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    get202_none204_none_default_none400_none.metadata = {'url': '/http/payloads/202/none/204/none/default/none/response/400/none'}
 
     def get202_none204_none_default_none400_invalid(
             self, custom_headers=None, raw=False, **operation_config):
@@ -834,7 +852,7 @@ class MultipleResponsesOperations(object):
          :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
         """
         # Construct URL
-        url = '/http/payloads/202/none/204/none/default/none/response/400/invalid'
+        url = self.get202_none204_none_default_none400_invalid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -855,6 +873,7 @@ class MultipleResponsesOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    get202_none204_none_default_none400_invalid.metadata = {'url': '/http/payloads/202/none/204/none/default/none/response/400/invalid'}
 
     def get_default_model_a200_valid(
             self, custom_headers=None, raw=False, **operation_config):
@@ -871,7 +890,7 @@ class MultipleResponsesOperations(object):
         :raises: :class:`AException<httpinfrastructure.models.AException>`
         """
         # Construct URL
-        url = '/http/payloads/default/A/response/200/valid'
+        url = self.get_default_model_a200_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -892,6 +911,7 @@ class MultipleResponsesOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    get_default_model_a200_valid.metadata = {'url': '/http/payloads/default/A/response/200/valid'}
 
     def get_default_model_a200_none(
             self, custom_headers=None, raw=False, **operation_config):
@@ -908,7 +928,7 @@ class MultipleResponsesOperations(object):
         :raises: :class:`AException<httpinfrastructure.models.AException>`
         """
         # Construct URL
-        url = '/http/payloads/default/A/response/200/none'
+        url = self.get_default_model_a200_none.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -929,6 +949,7 @@ class MultipleResponsesOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    get_default_model_a200_none.metadata = {'url': '/http/payloads/default/A/response/200/none'}
 
     def get_default_model_a400_valid(
             self, custom_headers=None, raw=False, **operation_config):
@@ -945,7 +966,7 @@ class MultipleResponsesOperations(object):
         :raises: :class:`AException<httpinfrastructure.models.AException>`
         """
         # Construct URL
-        url = '/http/payloads/default/A/response/400/valid'
+        url = self.get_default_model_a400_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -966,6 +987,7 @@ class MultipleResponsesOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    get_default_model_a400_valid.metadata = {'url': '/http/payloads/default/A/response/400/valid'}
 
     def get_default_model_a400_none(
             self, custom_headers=None, raw=False, **operation_config):
@@ -982,7 +1004,7 @@ class MultipleResponsesOperations(object):
         :raises: :class:`AException<httpinfrastructure.models.AException>`
         """
         # Construct URL
-        url = '/http/payloads/default/A/response/400/none'
+        url = self.get_default_model_a400_none.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1003,6 +1025,7 @@ class MultipleResponsesOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    get_default_model_a400_none.metadata = {'url': '/http/payloads/default/A/response/400/none'}
 
     def get_default_none200_invalid(
             self, custom_headers=None, raw=False, **operation_config):
@@ -1019,7 +1042,7 @@ class MultipleResponsesOperations(object):
          :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
         """
         # Construct URL
-        url = '/http/payloads/default/none/response/200/invalid'
+        url = self.get_default_none200_invalid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1040,6 +1063,7 @@ class MultipleResponsesOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    get_default_none200_invalid.metadata = {'url': '/http/payloads/default/none/response/200/invalid'}
 
     def get_default_none200_none(
             self, custom_headers=None, raw=False, **operation_config):
@@ -1056,7 +1080,7 @@ class MultipleResponsesOperations(object):
          :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
         """
         # Construct URL
-        url = '/http/payloads/default/none/response/200/none'
+        url = self.get_default_none200_none.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1077,6 +1101,7 @@ class MultipleResponsesOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    get_default_none200_none.metadata = {'url': '/http/payloads/default/none/response/200/none'}
 
     def get_default_none400_invalid(
             self, custom_headers=None, raw=False, **operation_config):
@@ -1093,7 +1118,7 @@ class MultipleResponsesOperations(object):
          :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
         """
         # Construct URL
-        url = '/http/payloads/default/none/response/400/invalid'
+        url = self.get_default_none400_invalid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1114,6 +1139,7 @@ class MultipleResponsesOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    get_default_none400_invalid.metadata = {'url': '/http/payloads/default/none/response/400/invalid'}
 
     def get_default_none400_none(
             self, custom_headers=None, raw=False, **operation_config):
@@ -1130,7 +1156,7 @@ class MultipleResponsesOperations(object):
          :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
         """
         # Construct URL
-        url = '/http/payloads/default/none/response/400/none'
+        url = self.get_default_none400_none.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1151,6 +1177,7 @@ class MultipleResponsesOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    get_default_none400_none.metadata = {'url': '/http/payloads/default/none/response/400/none'}
 
     def get200_model_a200_none(
             self, custom_headers=None, raw=False, **operation_config):
@@ -1169,7 +1196,7 @@ class MultipleResponsesOperations(object):
          :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
         """
         # Construct URL
-        url = '/http/payloads/200/A/response/200/none'
+        url = self.get200_model_a200_none.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1197,6 +1224,7 @@ class MultipleResponsesOperations(object):
             return client_raw_response
 
         return deserialized
+    get200_model_a200_none.metadata = {'url': '/http/payloads/200/A/response/200/none'}
 
     def get200_model_a200_valid(
             self, custom_headers=None, raw=False, **operation_config):
@@ -1214,7 +1242,7 @@ class MultipleResponsesOperations(object):
          :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
         """
         # Construct URL
-        url = '/http/payloads/200/A/response/200/valid'
+        url = self.get200_model_a200_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1242,6 +1270,7 @@ class MultipleResponsesOperations(object):
             return client_raw_response
 
         return deserialized
+    get200_model_a200_valid.metadata = {'url': '/http/payloads/200/A/response/200/valid'}
 
     def get200_model_a200_invalid(
             self, custom_headers=None, raw=False, **operation_config):
@@ -1259,7 +1288,7 @@ class MultipleResponsesOperations(object):
          :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
         """
         # Construct URL
-        url = '/http/payloads/200/A/response/200/invalid'
+        url = self.get200_model_a200_invalid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1287,6 +1316,7 @@ class MultipleResponsesOperations(object):
             return client_raw_response
 
         return deserialized
+    get200_model_a200_invalid.metadata = {'url': '/http/payloads/200/A/response/200/invalid'}
 
     def get200_model_a400_none(
             self, custom_headers=None, raw=False, **operation_config):
@@ -1305,7 +1335,7 @@ class MultipleResponsesOperations(object):
          :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
         """
         # Construct URL
-        url = '/http/payloads/200/A/response/400/none'
+        url = self.get200_model_a400_none.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1333,6 +1363,7 @@ class MultipleResponsesOperations(object):
             return client_raw_response
 
         return deserialized
+    get200_model_a400_none.metadata = {'url': '/http/payloads/200/A/response/400/none'}
 
     def get200_model_a400_valid(
             self, custom_headers=None, raw=False, **operation_config):
@@ -1350,7 +1381,7 @@ class MultipleResponsesOperations(object):
          :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
         """
         # Construct URL
-        url = '/http/payloads/200/A/response/400/valid'
+        url = self.get200_model_a400_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1378,6 +1409,7 @@ class MultipleResponsesOperations(object):
             return client_raw_response
 
         return deserialized
+    get200_model_a400_valid.metadata = {'url': '/http/payloads/200/A/response/400/valid'}
 
     def get200_model_a400_invalid(
             self, custom_headers=None, raw=False, **operation_config):
@@ -1395,7 +1427,7 @@ class MultipleResponsesOperations(object):
          :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
         """
         # Construct URL
-        url = '/http/payloads/200/A/response/400/invalid'
+        url = self.get200_model_a400_invalid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1423,6 +1455,7 @@ class MultipleResponsesOperations(object):
             return client_raw_response
 
         return deserialized
+    get200_model_a400_invalid.metadata = {'url': '/http/payloads/200/A/response/400/invalid'}
 
     def get200_model_a202_valid(
             self, custom_headers=None, raw=False, **operation_config):
@@ -1440,7 +1473,7 @@ class MultipleResponsesOperations(object):
          :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
         """
         # Construct URL
-        url = '/http/payloads/200/A/response/202/valid'
+        url = self.get200_model_a202_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1468,3 +1501,4 @@ class MultipleResponsesOperations(object):
             return client_raw_response
 
         return deserialized
+    get200_model_a202_valid.metadata = {'url': '/http/payloads/200/A/response/202/valid'}

@@ -49,7 +49,7 @@ class HttpFailureOperations(object):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = '/http/failure/emptybody/error'
+        url = self.get_empty_error.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -77,6 +77,7 @@ class HttpFailureOperations(object):
             return client_raw_response
 
         return deserialized
+    get_empty_error.metadata = {'url': '/http/failure/emptybody/error'}
 
     def get_no_model_error(
             self, custom_headers=None, raw=False, **operation_config):
@@ -93,7 +94,7 @@ class HttpFailureOperations(object):
          :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
         """
         # Construct URL
-        url = '/http/failure/nomodel/error'
+        url = self.get_no_model_error.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -121,6 +122,7 @@ class HttpFailureOperations(object):
             return client_raw_response
 
         return deserialized
+    get_no_model_error.metadata = {'url': '/http/failure/nomodel/error'}
 
     def get_no_model_empty(
             self, custom_headers=None, raw=False, **operation_config):
@@ -137,7 +139,7 @@ class HttpFailureOperations(object):
          :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
         """
         # Construct URL
-        url = '/http/failure/nomodel/empty'
+        url = self.get_no_model_empty.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -165,3 +167,4 @@ class HttpFailureOperations(object):
             return client_raw_response
 
         return deserialized
+    get_no_model_empty.metadata = {'url': '/http/failure/nomodel/empty'}

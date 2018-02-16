@@ -88,7 +88,7 @@ class AutoRestReportServiceForAzure(object):
         :raises: :class:`ErrorException<azurereport.models.ErrorException>`
         """
         # Construct URL
-        url = '/report/azure'
+        url = self.get_report.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -122,3 +122,4 @@ class AutoRestReportServiceForAzure(object):
             return client_raw_response
 
         return deserialized
+    get_report.metadata = {'url': '/report/azure'}

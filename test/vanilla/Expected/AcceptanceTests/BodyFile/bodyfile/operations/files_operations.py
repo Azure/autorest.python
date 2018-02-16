@@ -52,7 +52,7 @@ class FilesOperations(object):
         :raises: :class:`ErrorException<bodyfile.models.ErrorException>`
         """
         # Construct URL
-        url = '/files/stream/nonempty'
+        url = self.get_file.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -80,6 +80,7 @@ class FilesOperations(object):
             return client_raw_response
 
         return deserialized
+    get_file.metadata = {'url': '/files/stream/nonempty'}
 
     def get_file_large(
             self, custom_headers=None, raw=False, callback=None, **operation_config):
@@ -100,7 +101,7 @@ class FilesOperations(object):
         :raises: :class:`ErrorException<bodyfile.models.ErrorException>`
         """
         # Construct URL
-        url = '/files/stream/verylarge'
+        url = self.get_file_large.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -128,6 +129,7 @@ class FilesOperations(object):
             return client_raw_response
 
         return deserialized
+    get_file_large.metadata = {'url': '/files/stream/verylarge'}
 
     def get_empty_file(
             self, custom_headers=None, raw=False, callback=None, **operation_config):
@@ -148,7 +150,7 @@ class FilesOperations(object):
         :raises: :class:`ErrorException<bodyfile.models.ErrorException>`
         """
         # Construct URL
-        url = '/files/stream/empty'
+        url = self.get_empty_file.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -176,3 +178,4 @@ class FilesOperations(object):
             return client_raw_response
 
         return deserialized
+    get_empty_file.metadata = {'url': '/files/stream/empty'}

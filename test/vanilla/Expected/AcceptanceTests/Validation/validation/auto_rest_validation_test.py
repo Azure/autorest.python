@@ -85,7 +85,7 @@ class AutoRestValidationTest(object):
         :raises: :class:`ErrorException<validation.models.ErrorException>`
         """
         # Construct URL
-        url = '/fakepath/{subscriptionId}/{resourceGroupName}/{id}'
+        url = self.validation_of_method_parameters.metadata['url']
         path_format_arguments = {
             'subscriptionId': self._serialize.url("self.config.subscription_id", self.config.subscription_id, 'str'),
             'resourceGroupName': self._serialize.url("resource_group_name", resource_group_name, 'str', max_length=10, min_length=3, pattern=r'[a-zA-Z0-9]+'),
@@ -120,6 +120,7 @@ class AutoRestValidationTest(object):
             return client_raw_response
 
         return deserialized
+    validation_of_method_parameters.metadata = {'url': '/fakepath/{subscriptionId}/{resourceGroupName}/{id}'}
 
     def validation_of_body(
             self, resource_group_name, id, body=None, custom_headers=None, raw=False, **operation_config):
@@ -143,7 +144,7 @@ class AutoRestValidationTest(object):
         :raises: :class:`ErrorException<validation.models.ErrorException>`
         """
         # Construct URL
-        url = '/fakepath/{subscriptionId}/{resourceGroupName}/{id}'
+        url = self.validation_of_body.metadata['url']
         path_format_arguments = {
             'subscriptionId': self._serialize.url("self.config.subscription_id", self.config.subscription_id, 'str'),
             'resourceGroupName': self._serialize.url("resource_group_name", resource_group_name, 'str', max_length=10, min_length=3, pattern=r'[a-zA-Z0-9]+'),
@@ -185,6 +186,7 @@ class AutoRestValidationTest(object):
             return client_raw_response
 
         return deserialized
+    validation_of_body.metadata = {'url': '/fakepath/{subscriptionId}/{resourceGroupName}/{id}'}
 
     def get_with_constant_in_path(
             self, custom_headers=None, raw=False, **operation_config):
@@ -203,7 +205,7 @@ class AutoRestValidationTest(object):
         constant_param = "constant"
 
         # Construct URL
-        url = '/validation/constantsInPath/{constantParam}/value'
+        url = self.get_with_constant_in_path.metadata['url']
         path_format_arguments = {
             'constantParam': self._serialize.url("constant_param", constant_param, 'str')
         }
@@ -228,6 +230,7 @@ class AutoRestValidationTest(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    get_with_constant_in_path.metadata = {'url': '/validation/constantsInPath/{constantParam}/value'}
 
     def post_with_constant_in_body(
             self, body=None, custom_headers=None, raw=False, **operation_config):
@@ -249,7 +252,7 @@ class AutoRestValidationTest(object):
         constant_param = "constant"
 
         # Construct URL
-        url = '/validation/constantsInPath/{constantParam}/value'
+        url = self.post_with_constant_in_body.metadata['url']
         path_format_arguments = {
             'constantParam': self._serialize.url("constant_param", constant_param, 'str')
         }
@@ -288,3 +291,4 @@ class AutoRestValidationTest(object):
             return client_raw_response
 
         return deserialized
+    post_with_constant_in_body.metadata = {'url': '/validation/constantsInPath/{constantParam}/value'}

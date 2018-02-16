@@ -45,7 +45,7 @@ class HeadExceptionOperations(object):
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
         # Construct URL
-        url = '/http/success/200'
+        url = self.head200.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -72,6 +72,7 @@ class HeadExceptionOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    head200.metadata = {'url': '/http/success/200'}
 
     def head204(
             self, custom_headers=None, raw=False, **operation_config):
@@ -87,7 +88,7 @@ class HeadExceptionOperations(object):
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
         # Construct URL
-        url = '/http/success/204'
+        url = self.head204.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -114,6 +115,7 @@ class HeadExceptionOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    head204.metadata = {'url': '/http/success/204'}
 
     def head404(
             self, custom_headers=None, raw=False, **operation_config):
@@ -129,7 +131,7 @@ class HeadExceptionOperations(object):
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
         # Construct URL
-        url = '/http/success/404'
+        url = self.head404.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -156,3 +158,4 @@ class HeadExceptionOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    head404.metadata = {'url': '/http/success/404'}

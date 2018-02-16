@@ -47,7 +47,7 @@ class NumberOperations(object):
         :raises: :class:`ErrorException<bodynumber.models.ErrorException>`
         """
         # Construct URL
-        url = '/number/null'
+        url = self.get_null.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -75,6 +75,7 @@ class NumberOperations(object):
             return client_raw_response
 
         return deserialized
+    get_null.metadata = {'url': '/number/null'}
 
     def get_invalid_float(
             self, custom_headers=None, raw=False, **operation_config):
@@ -90,7 +91,7 @@ class NumberOperations(object):
         :raises: :class:`ErrorException<bodynumber.models.ErrorException>`
         """
         # Construct URL
-        url = '/number/invalidfloat'
+        url = self.get_invalid_float.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -118,6 +119,7 @@ class NumberOperations(object):
             return client_raw_response
 
         return deserialized
+    get_invalid_float.metadata = {'url': '/number/invalidfloat'}
 
     def get_invalid_double(
             self, custom_headers=None, raw=False, **operation_config):
@@ -133,7 +135,7 @@ class NumberOperations(object):
         :raises: :class:`ErrorException<bodynumber.models.ErrorException>`
         """
         # Construct URL
-        url = '/number/invaliddouble'
+        url = self.get_invalid_double.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -161,6 +163,7 @@ class NumberOperations(object):
             return client_raw_response
 
         return deserialized
+    get_invalid_double.metadata = {'url': '/number/invaliddouble'}
 
     def get_invalid_decimal(
             self, custom_headers=None, raw=False, **operation_config):
@@ -176,7 +179,7 @@ class NumberOperations(object):
         :raises: :class:`ErrorException<bodynumber.models.ErrorException>`
         """
         # Construct URL
-        url = '/number/invaliddecimal'
+        url = self.get_invalid_decimal.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -204,6 +207,7 @@ class NumberOperations(object):
             return client_raw_response
 
         return deserialized
+    get_invalid_decimal.metadata = {'url': '/number/invaliddecimal'}
 
     def put_big_float(
             self, number_body, custom_headers=None, raw=False, **operation_config):
@@ -221,7 +225,7 @@ class NumberOperations(object):
         :raises: :class:`ErrorException<bodynumber.models.ErrorException>`
         """
         # Construct URL
-        url = '/number/big/float/3.402823e+20'
+        url = self.put_big_float.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -246,6 +250,7 @@ class NumberOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    put_big_float.metadata = {'url': '/number/big/float/3.402823e+20'}
 
     def get_big_float(
             self, custom_headers=None, raw=False, **operation_config):
@@ -261,7 +266,7 @@ class NumberOperations(object):
         :raises: :class:`ErrorException<bodynumber.models.ErrorException>`
         """
         # Construct URL
-        url = '/number/big/float/3.402823e+20'
+        url = self.get_big_float.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -289,6 +294,7 @@ class NumberOperations(object):
             return client_raw_response
 
         return deserialized
+    get_big_float.metadata = {'url': '/number/big/float/3.402823e+20'}
 
     def put_big_double(
             self, number_body, custom_headers=None, raw=False, **operation_config):
@@ -306,7 +312,7 @@ class NumberOperations(object):
         :raises: :class:`ErrorException<bodynumber.models.ErrorException>`
         """
         # Construct URL
-        url = '/number/big/double/2.5976931e+101'
+        url = self.put_big_double.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -331,6 +337,7 @@ class NumberOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    put_big_double.metadata = {'url': '/number/big/double/2.5976931e+101'}
 
     def get_big_double(
             self, custom_headers=None, raw=False, **operation_config):
@@ -346,7 +353,7 @@ class NumberOperations(object):
         :raises: :class:`ErrorException<bodynumber.models.ErrorException>`
         """
         # Construct URL
-        url = '/number/big/double/2.5976931e+101'
+        url = self.get_big_double.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -374,6 +381,7 @@ class NumberOperations(object):
             return client_raw_response
 
         return deserialized
+    get_big_double.metadata = {'url': '/number/big/double/2.5976931e+101'}
 
     def put_big_double_positive_decimal(
             self, custom_headers=None, raw=False, **operation_config):
@@ -391,7 +399,7 @@ class NumberOperations(object):
         number_body = 99999999.99
 
         # Construct URL
-        url = '/number/big/double/99999999.99'
+        url = self.put_big_double_positive_decimal.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -416,6 +424,7 @@ class NumberOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    put_big_double_positive_decimal.metadata = {'url': '/number/big/double/99999999.99'}
 
     def get_big_double_positive_decimal(
             self, custom_headers=None, raw=False, **operation_config):
@@ -431,7 +440,7 @@ class NumberOperations(object):
         :raises: :class:`ErrorException<bodynumber.models.ErrorException>`
         """
         # Construct URL
-        url = '/number/big/double/99999999.99'
+        url = self.get_big_double_positive_decimal.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -459,6 +468,7 @@ class NumberOperations(object):
             return client_raw_response
 
         return deserialized
+    get_big_double_positive_decimal.metadata = {'url': '/number/big/double/99999999.99'}
 
     def put_big_double_negative_decimal(
             self, custom_headers=None, raw=False, **operation_config):
@@ -476,7 +486,7 @@ class NumberOperations(object):
         number_body = -99999999.99
 
         # Construct URL
-        url = '/number/big/double/-99999999.99'
+        url = self.put_big_double_negative_decimal.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -501,6 +511,7 @@ class NumberOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    put_big_double_negative_decimal.metadata = {'url': '/number/big/double/-99999999.99'}
 
     def get_big_double_negative_decimal(
             self, custom_headers=None, raw=False, **operation_config):
@@ -516,7 +527,7 @@ class NumberOperations(object):
         :raises: :class:`ErrorException<bodynumber.models.ErrorException>`
         """
         # Construct URL
-        url = '/number/big/double/-99999999.99'
+        url = self.get_big_double_negative_decimal.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -544,6 +555,7 @@ class NumberOperations(object):
             return client_raw_response
 
         return deserialized
+    get_big_double_negative_decimal.metadata = {'url': '/number/big/double/-99999999.99'}
 
     def put_big_decimal(
             self, number_body, custom_headers=None, raw=False, **operation_config):
@@ -561,7 +573,7 @@ class NumberOperations(object):
         :raises: :class:`ErrorException<bodynumber.models.ErrorException>`
         """
         # Construct URL
-        url = '/number/big/decimal/2.5976931e+101'
+        url = self.put_big_decimal.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -586,6 +598,7 @@ class NumberOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    put_big_decimal.metadata = {'url': '/number/big/decimal/2.5976931e+101'}
 
     def get_big_decimal(
             self, custom_headers=None, raw=False, **operation_config):
@@ -601,7 +614,7 @@ class NumberOperations(object):
         :raises: :class:`ErrorException<bodynumber.models.ErrorException>`
         """
         # Construct URL
-        url = '/number/big/decimal/2.5976931e+101'
+        url = self.get_big_decimal.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -629,6 +642,7 @@ class NumberOperations(object):
             return client_raw_response
 
         return deserialized
+    get_big_decimal.metadata = {'url': '/number/big/decimal/2.5976931e+101'}
 
     def put_big_decimal_positive_decimal(
             self, custom_headers=None, raw=False, **operation_config):
@@ -646,7 +660,7 @@ class NumberOperations(object):
         number_body = Decimal(99999999.99)
 
         # Construct URL
-        url = '/number/big/decimal/99999999.99'
+        url = self.put_big_decimal_positive_decimal.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -671,6 +685,7 @@ class NumberOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    put_big_decimal_positive_decimal.metadata = {'url': '/number/big/decimal/99999999.99'}
 
     def get_big_decimal_positive_decimal(
             self, custom_headers=None, raw=False, **operation_config):
@@ -686,7 +701,7 @@ class NumberOperations(object):
         :raises: :class:`ErrorException<bodynumber.models.ErrorException>`
         """
         # Construct URL
-        url = '/number/big/decimal/99999999.99'
+        url = self.get_big_decimal_positive_decimal.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -714,6 +729,7 @@ class NumberOperations(object):
             return client_raw_response
 
         return deserialized
+    get_big_decimal_positive_decimal.metadata = {'url': '/number/big/decimal/99999999.99'}
 
     def put_big_decimal_negative_decimal(
             self, custom_headers=None, raw=False, **operation_config):
@@ -731,7 +747,7 @@ class NumberOperations(object):
         number_body = Decimal(-99999999.99)
 
         # Construct URL
-        url = '/number/big/decimal/-99999999.99'
+        url = self.put_big_decimal_negative_decimal.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -756,6 +772,7 @@ class NumberOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    put_big_decimal_negative_decimal.metadata = {'url': '/number/big/decimal/-99999999.99'}
 
     def get_big_decimal_negative_decimal(
             self, custom_headers=None, raw=False, **operation_config):
@@ -771,7 +788,7 @@ class NumberOperations(object):
         :raises: :class:`ErrorException<bodynumber.models.ErrorException>`
         """
         # Construct URL
-        url = '/number/big/decimal/-99999999.99'
+        url = self.get_big_decimal_negative_decimal.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -799,6 +816,7 @@ class NumberOperations(object):
             return client_raw_response
 
         return deserialized
+    get_big_decimal_negative_decimal.metadata = {'url': '/number/big/decimal/-99999999.99'}
 
     def put_small_float(
             self, number_body, custom_headers=None, raw=False, **operation_config):
@@ -816,7 +834,7 @@ class NumberOperations(object):
         :raises: :class:`ErrorException<bodynumber.models.ErrorException>`
         """
         # Construct URL
-        url = '/number/small/float/3.402823e-20'
+        url = self.put_small_float.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -841,6 +859,7 @@ class NumberOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    put_small_float.metadata = {'url': '/number/small/float/3.402823e-20'}
 
     def get_small_float(
             self, custom_headers=None, raw=False, **operation_config):
@@ -856,7 +875,7 @@ class NumberOperations(object):
         :raises: :class:`ErrorException<bodynumber.models.ErrorException>`
         """
         # Construct URL
-        url = '/number/small/float/3.402823e-20'
+        url = self.get_small_float.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -884,6 +903,7 @@ class NumberOperations(object):
             return client_raw_response
 
         return deserialized
+    get_small_float.metadata = {'url': '/number/small/float/3.402823e-20'}
 
     def put_small_double(
             self, number_body, custom_headers=None, raw=False, **operation_config):
@@ -901,7 +921,7 @@ class NumberOperations(object):
         :raises: :class:`ErrorException<bodynumber.models.ErrorException>`
         """
         # Construct URL
-        url = '/number/small/double/2.5976931e-101'
+        url = self.put_small_double.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -926,6 +946,7 @@ class NumberOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    put_small_double.metadata = {'url': '/number/small/double/2.5976931e-101'}
 
     def get_small_double(
             self, custom_headers=None, raw=False, **operation_config):
@@ -941,7 +962,7 @@ class NumberOperations(object):
         :raises: :class:`ErrorException<bodynumber.models.ErrorException>`
         """
         # Construct URL
-        url = '/number/small/double/2.5976931e-101'
+        url = self.get_small_double.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -969,6 +990,7 @@ class NumberOperations(object):
             return client_raw_response
 
         return deserialized
+    get_small_double.metadata = {'url': '/number/small/double/2.5976931e-101'}
 
     def put_small_decimal(
             self, number_body, custom_headers=None, raw=False, **operation_config):
@@ -986,7 +1008,7 @@ class NumberOperations(object):
         :raises: :class:`ErrorException<bodynumber.models.ErrorException>`
         """
         # Construct URL
-        url = '/number/small/decimal/2.5976931e-101'
+        url = self.put_small_decimal.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1011,6 +1033,7 @@ class NumberOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    put_small_decimal.metadata = {'url': '/number/small/decimal/2.5976931e-101'}
 
     def get_small_decimal(
             self, custom_headers=None, raw=False, **operation_config):
@@ -1026,7 +1049,7 @@ class NumberOperations(object):
         :raises: :class:`ErrorException<bodynumber.models.ErrorException>`
         """
         # Construct URL
-        url = '/number/small/decimal/2.5976931e-101'
+        url = self.get_small_decimal.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1054,3 +1077,4 @@ class NumberOperations(object):
             return client_raw_response
 
         return deserialized
+    get_small_decimal.metadata = {'url': '/number/small/decimal/2.5976931e-101'}

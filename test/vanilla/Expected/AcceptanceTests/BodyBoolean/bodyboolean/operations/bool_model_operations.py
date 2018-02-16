@@ -47,7 +47,7 @@ class BoolModelOperations(object):
         :raises: :class:`ErrorException<bodyboolean.models.ErrorException>`
         """
         # Construct URL
-        url = '/bool/true'
+        url = self.get_true.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -75,6 +75,7 @@ class BoolModelOperations(object):
             return client_raw_response
 
         return deserialized
+    get_true.metadata = {'url': '/bool/true'}
 
     def put_true(
             self, custom_headers=None, raw=False, **operation_config):
@@ -92,7 +93,7 @@ class BoolModelOperations(object):
         bool_body = True
 
         # Construct URL
-        url = '/bool/true'
+        url = self.put_true.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -117,6 +118,7 @@ class BoolModelOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    put_true.metadata = {'url': '/bool/true'}
 
     def get_false(
             self, custom_headers=None, raw=False, **operation_config):
@@ -132,7 +134,7 @@ class BoolModelOperations(object):
         :raises: :class:`ErrorException<bodyboolean.models.ErrorException>`
         """
         # Construct URL
-        url = '/bool/false'
+        url = self.get_false.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -160,6 +162,7 @@ class BoolModelOperations(object):
             return client_raw_response
 
         return deserialized
+    get_false.metadata = {'url': '/bool/false'}
 
     def put_false(
             self, custom_headers=None, raw=False, **operation_config):
@@ -177,7 +180,7 @@ class BoolModelOperations(object):
         bool_body = False
 
         # Construct URL
-        url = '/bool/false'
+        url = self.put_false.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -202,6 +205,7 @@ class BoolModelOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    put_false.metadata = {'url': '/bool/false'}
 
     def get_null(
             self, custom_headers=None, raw=False, **operation_config):
@@ -217,7 +221,7 @@ class BoolModelOperations(object):
         :raises: :class:`ErrorException<bodyboolean.models.ErrorException>`
         """
         # Construct URL
-        url = '/bool/null'
+        url = self.get_null.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -245,6 +249,7 @@ class BoolModelOperations(object):
             return client_raw_response
 
         return deserialized
+    get_null.metadata = {'url': '/bool/null'}
 
     def get_invalid(
             self, custom_headers=None, raw=False, **operation_config):
@@ -260,7 +265,7 @@ class BoolModelOperations(object):
         :raises: :class:`ErrorException<bodyboolean.models.ErrorException>`
         """
         # Construct URL
-        url = '/bool/invalid'
+        url = self.get_invalid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -288,3 +293,4 @@ class BoolModelOperations(object):
             return client_raw_response
 
         return deserialized
+    get_invalid.metadata = {'url': '/bool/invalid'}

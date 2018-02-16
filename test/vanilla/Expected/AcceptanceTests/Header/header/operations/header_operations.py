@@ -50,7 +50,7 @@ class HeaderOperations(object):
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
-        url = '/header/param/existingkey'
+        url = self.param_existing_key.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -72,6 +72,7 @@ class HeaderOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    param_existing_key.metadata = {'url': '/header/param/existingkey'}
 
     def response_existing_key(
             self, custom_headers=None, raw=False, **operation_config):
@@ -87,7 +88,7 @@ class HeaderOperations(object):
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
-        url = '/header/response/existingkey'
+        url = self.response_existing_key.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -111,6 +112,7 @@ class HeaderOperations(object):
                 'User-Agent': 'str',
             })
             return client_raw_response
+    response_existing_key.metadata = {'url': '/header/response/existingkey'}
 
     def param_protected_key(
             self, content_type, custom_headers=None, raw=False, **operation_config):
@@ -129,7 +131,7 @@ class HeaderOperations(object):
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
-        url = '/header/param/protectedkey'
+        url = self.param_protected_key.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -151,6 +153,7 @@ class HeaderOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    param_protected_key.metadata = {'url': '/header/param/protectedkey'}
 
     def response_protected_key(
             self, custom_headers=None, raw=False, **operation_config):
@@ -166,7 +169,7 @@ class HeaderOperations(object):
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
-        url = '/header/response/protectedkey'
+        url = self.response_protected_key.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -190,6 +193,7 @@ class HeaderOperations(object):
                 'Content-Type': 'str',
             })
             return client_raw_response
+    response_protected_key.metadata = {'url': '/header/response/protectedkey'}
 
     def param_integer(
             self, scenario, value, custom_headers=None, raw=False, **operation_config):
@@ -211,7 +215,7 @@ class HeaderOperations(object):
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
-        url = '/header/param/prim/integer'
+        url = self.param_integer.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -234,6 +238,7 @@ class HeaderOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    param_integer.metadata = {'url': '/header/param/prim/integer'}
 
     def response_integer(
             self, scenario, custom_headers=None, raw=False, **operation_config):
@@ -252,7 +257,7 @@ class HeaderOperations(object):
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
-        url = '/header/response/prim/integer'
+        url = self.response_integer.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -277,6 +282,7 @@ class HeaderOperations(object):
                 'value': 'int',
             })
             return client_raw_response
+    response_integer.metadata = {'url': '/header/response/prim/integer'}
 
     def param_long(
             self, scenario, value, custom_headers=None, raw=False, **operation_config):
@@ -298,7 +304,7 @@ class HeaderOperations(object):
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
-        url = '/header/param/prim/long'
+        url = self.param_long.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -321,6 +327,7 @@ class HeaderOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    param_long.metadata = {'url': '/header/param/prim/long'}
 
     def response_long(
             self, scenario, custom_headers=None, raw=False, **operation_config):
@@ -339,7 +346,7 @@ class HeaderOperations(object):
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
-        url = '/header/response/prim/long'
+        url = self.response_long.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -364,6 +371,7 @@ class HeaderOperations(object):
                 'value': 'long',
             })
             return client_raw_response
+    response_long.metadata = {'url': '/header/response/prim/long'}
 
     def param_float(
             self, scenario, value, custom_headers=None, raw=False, **operation_config):
@@ -385,7 +393,7 @@ class HeaderOperations(object):
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
-        url = '/header/param/prim/float'
+        url = self.param_float.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -408,6 +416,7 @@ class HeaderOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    param_float.metadata = {'url': '/header/param/prim/float'}
 
     def response_float(
             self, scenario, custom_headers=None, raw=False, **operation_config):
@@ -426,7 +435,7 @@ class HeaderOperations(object):
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
-        url = '/header/response/prim/float'
+        url = self.response_float.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -451,6 +460,7 @@ class HeaderOperations(object):
                 'value': 'float',
             })
             return client_raw_response
+    response_float.metadata = {'url': '/header/response/prim/float'}
 
     def param_double(
             self, scenario, value, custom_headers=None, raw=False, **operation_config):
@@ -472,7 +482,7 @@ class HeaderOperations(object):
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
-        url = '/header/param/prim/double'
+        url = self.param_double.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -495,6 +505,7 @@ class HeaderOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    param_double.metadata = {'url': '/header/param/prim/double'}
 
     def response_double(
             self, scenario, custom_headers=None, raw=False, **operation_config):
@@ -513,7 +524,7 @@ class HeaderOperations(object):
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
-        url = '/header/response/prim/double'
+        url = self.response_double.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -538,6 +549,7 @@ class HeaderOperations(object):
                 'value': 'float',
             })
             return client_raw_response
+    response_double.metadata = {'url': '/header/response/prim/double'}
 
     def param_bool(
             self, scenario, value, custom_headers=None, raw=False, **operation_config):
@@ -559,7 +571,7 @@ class HeaderOperations(object):
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
-        url = '/header/param/prim/bool'
+        url = self.param_bool.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -582,6 +594,7 @@ class HeaderOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    param_bool.metadata = {'url': '/header/param/prim/bool'}
 
     def response_bool(
             self, scenario, custom_headers=None, raw=False, **operation_config):
@@ -600,7 +613,7 @@ class HeaderOperations(object):
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
-        url = '/header/response/prim/bool'
+        url = self.response_bool.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -625,6 +638,7 @@ class HeaderOperations(object):
                 'value': 'bool',
             })
             return client_raw_response
+    response_bool.metadata = {'url': '/header/response/prim/bool'}
 
     def param_string(
             self, scenario, value=None, custom_headers=None, raw=False, **operation_config):
@@ -648,7 +662,7 @@ class HeaderOperations(object):
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
-        url = '/header/param/prim/string'
+        url = self.param_string.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -672,6 +686,7 @@ class HeaderOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    param_string.metadata = {'url': '/header/param/prim/string'}
 
     def response_string(
             self, scenario, custom_headers=None, raw=False, **operation_config):
@@ -691,7 +706,7 @@ class HeaderOperations(object):
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
-        url = '/header/response/prim/string'
+        url = self.response_string.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -716,6 +731,7 @@ class HeaderOperations(object):
                 'value': 'str',
             })
             return client_raw_response
+    response_string.metadata = {'url': '/header/response/prim/string'}
 
     def param_date(
             self, scenario, value, custom_headers=None, raw=False, **operation_config):
@@ -738,7 +754,7 @@ class HeaderOperations(object):
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
-        url = '/header/param/prim/date'
+        url = self.param_date.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -761,6 +777,7 @@ class HeaderOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    param_date.metadata = {'url': '/header/param/prim/date'}
 
     def response_date(
             self, scenario, custom_headers=None, raw=False, **operation_config):
@@ -779,7 +796,7 @@ class HeaderOperations(object):
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
-        url = '/header/response/prim/date'
+        url = self.response_date.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -804,6 +821,7 @@ class HeaderOperations(object):
                 'value': 'date',
             })
             return client_raw_response
+    response_date.metadata = {'url': '/header/response/prim/date'}
 
     def param_datetime(
             self, scenario, value, custom_headers=None, raw=False, **operation_config):
@@ -827,7 +845,7 @@ class HeaderOperations(object):
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
-        url = '/header/param/prim/datetime'
+        url = self.param_datetime.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -850,6 +868,7 @@ class HeaderOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    param_datetime.metadata = {'url': '/header/param/prim/datetime'}
 
     def response_datetime(
             self, scenario, custom_headers=None, raw=False, **operation_config):
@@ -869,7 +888,7 @@ class HeaderOperations(object):
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
-        url = '/header/response/prim/datetime'
+        url = self.response_datetime.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -894,6 +913,7 @@ class HeaderOperations(object):
                 'value': 'iso-8601',
             })
             return client_raw_response
+    response_datetime.metadata = {'url': '/header/response/prim/datetime'}
 
     def param_datetime_rfc1123(
             self, scenario, value=None, custom_headers=None, raw=False, **operation_config):
@@ -917,7 +937,7 @@ class HeaderOperations(object):
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
-        url = '/header/param/prim/datetimerfc1123'
+        url = self.param_datetime_rfc1123.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -941,6 +961,7 @@ class HeaderOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    param_datetime_rfc1123.metadata = {'url': '/header/param/prim/datetimerfc1123'}
 
     def response_datetime_rfc1123(
             self, scenario, custom_headers=None, raw=False, **operation_config):
@@ -960,7 +981,7 @@ class HeaderOperations(object):
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
-        url = '/header/response/prim/datetimerfc1123'
+        url = self.response_datetime_rfc1123.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -985,6 +1006,7 @@ class HeaderOperations(object):
                 'value': 'rfc-1123',
             })
             return client_raw_response
+    response_datetime_rfc1123.metadata = {'url': '/header/response/prim/datetimerfc1123'}
 
     def param_duration(
             self, scenario, value, custom_headers=None, raw=False, **operation_config):
@@ -1007,7 +1029,7 @@ class HeaderOperations(object):
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
-        url = '/header/param/prim/duration'
+        url = self.param_duration.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1030,6 +1052,7 @@ class HeaderOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    param_duration.metadata = {'url': '/header/param/prim/duration'}
 
     def response_duration(
             self, scenario, custom_headers=None, raw=False, **operation_config):
@@ -1048,7 +1071,7 @@ class HeaderOperations(object):
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
-        url = '/header/response/prim/duration'
+        url = self.response_duration.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1073,6 +1096,7 @@ class HeaderOperations(object):
                 'value': 'duration',
             })
             return client_raw_response
+    response_duration.metadata = {'url': '/header/response/prim/duration'}
 
     def param_byte(
             self, scenario, value, custom_headers=None, raw=False, **operation_config):
@@ -1094,7 +1118,7 @@ class HeaderOperations(object):
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
-        url = '/header/param/prim/byte'
+        url = self.param_byte.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1117,6 +1141,7 @@ class HeaderOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    param_byte.metadata = {'url': '/header/param/prim/byte'}
 
     def response_byte(
             self, scenario, custom_headers=None, raw=False, **operation_config):
@@ -1135,7 +1160,7 @@ class HeaderOperations(object):
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
-        url = '/header/response/prim/byte'
+        url = self.response_byte.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1160,6 +1185,7 @@ class HeaderOperations(object):
                 'value': 'bytearray',
             })
             return client_raw_response
+    response_byte.metadata = {'url': '/header/response/prim/byte'}
 
     def param_enum(
             self, scenario, value=None, custom_headers=None, raw=False, **operation_config):
@@ -1182,7 +1208,7 @@ class HeaderOperations(object):
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
-        url = '/header/param/prim/enum'
+        url = self.param_enum.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1206,6 +1232,7 @@ class HeaderOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    param_enum.metadata = {'url': '/header/param/prim/enum'}
 
     def response_enum(
             self, scenario, custom_headers=None, raw=False, **operation_config):
@@ -1224,7 +1251,7 @@ class HeaderOperations(object):
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
-        url = '/header/response/prim/enum'
+        url = self.response_enum.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1249,6 +1276,7 @@ class HeaderOperations(object):
                 'value': models.GreyscaleColors,
             })
             return client_raw_response
+    response_enum.metadata = {'url': '/header/response/prim/enum'}
 
     def custom_request_id(
             self, custom_headers=None, raw=False, **operation_config):
@@ -1265,7 +1293,7 @@ class HeaderOperations(object):
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
-        url = '/header/custom/x-ms-client-request-id/9C4D50EE-2D56-4CD3-8152-34347DC9F2B0'
+        url = self.custom_request_id.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1286,3 +1314,4 @@ class HeaderOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    custom_request_id.metadata = {'url': '/header/custom/x-ms-client-request-id/9C4D50EE-2D56-4CD3-8152-34347DC9F2B0'}

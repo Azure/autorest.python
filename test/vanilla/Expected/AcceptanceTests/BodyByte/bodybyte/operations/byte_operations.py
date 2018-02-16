@@ -47,7 +47,7 @@ class ByteOperations(object):
         :raises: :class:`ErrorException<bodybyte.models.ErrorException>`
         """
         # Construct URL
-        url = '/byte/null'
+        url = self.get_null.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -75,6 +75,7 @@ class ByteOperations(object):
             return client_raw_response
 
         return deserialized
+    get_null.metadata = {'url': '/byte/null'}
 
     def get_empty(
             self, custom_headers=None, raw=False, **operation_config):
@@ -90,7 +91,7 @@ class ByteOperations(object):
         :raises: :class:`ErrorException<bodybyte.models.ErrorException>`
         """
         # Construct URL
-        url = '/byte/empty'
+        url = self.get_empty.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -118,6 +119,7 @@ class ByteOperations(object):
             return client_raw_response
 
         return deserialized
+    get_empty.metadata = {'url': '/byte/empty'}
 
     def get_non_ascii(
             self, custom_headers=None, raw=False, **operation_config):
@@ -133,7 +135,7 @@ class ByteOperations(object):
         :raises: :class:`ErrorException<bodybyte.models.ErrorException>`
         """
         # Construct URL
-        url = '/byte/nonAscii'
+        url = self.get_non_ascii.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -161,6 +163,7 @@ class ByteOperations(object):
             return client_raw_response
 
         return deserialized
+    get_non_ascii.metadata = {'url': '/byte/nonAscii'}
 
     def put_non_ascii(
             self, byte_body, custom_headers=None, raw=False, **operation_config):
@@ -179,7 +182,7 @@ class ByteOperations(object):
         :raises: :class:`ErrorException<bodybyte.models.ErrorException>`
         """
         # Construct URL
-        url = '/byte/nonAscii'
+        url = self.put_non_ascii.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -204,6 +207,7 @@ class ByteOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    put_non_ascii.metadata = {'url': '/byte/nonAscii'}
 
     def get_invalid(
             self, custom_headers=None, raw=False, **operation_config):
@@ -219,7 +223,7 @@ class ByteOperations(object):
         :raises: :class:`ErrorException<bodybyte.models.ErrorException>`
         """
         # Construct URL
-        url = '/byte/invalid'
+        url = self.get_invalid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -247,3 +251,4 @@ class ByteOperations(object):
             return client_raw_response
 
         return deserialized
+    get_invalid.metadata = {'url': '/byte/invalid'}

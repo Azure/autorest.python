@@ -50,7 +50,7 @@ class XMsClientRequestIdOperations(object):
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
         # Construct URL
-        url = '/azurespecials/overwrite/x-ms-client-request-id/method/'
+        url = self.get.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -77,6 +77,7 @@ class XMsClientRequestIdOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    get.metadata = {'url': '/azurespecials/overwrite/x-ms-client-request-id/method/'}
 
     def param_get(
             self, x_ms_client_request_id, custom_headers=None, raw=False, **operation_config):
@@ -97,7 +98,7 @@ class XMsClientRequestIdOperations(object):
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
         """
         # Construct URL
-        url = '/azurespecials/overwrite/x-ms-client-request-id/via-param/method/'
+        url = self.param_get.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -123,3 +124,4 @@ class XMsClientRequestIdOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
+    param_get.metadata = {'url': '/azurespecials/overwrite/x-ms-client-request-id/via-param/method/'}
