@@ -3,7 +3,7 @@
 @using AutoRest.Python
 @using AutoRest.Python.Azure.Model
 @using AutoRest.Python.azure.Templates
-@inherits AutoRest.Core.Template<AutoRest.Python.Azure.Model.MethodGroupPya>
+@inherits AutoRest.Python.PythonTemplate<AutoRest.Python.Azure.Model.MethodGroupPya>
 # coding=utf-8
 # --------------------------------------------------------------------------
 @Header("# ").TrimMultilineHeader()
@@ -64,5 +64,5 @@ class @((string) Model.TypeName)(object):
 @foreach (var method in Model.MethodTemplateModels)
 {
 @EmptyLine
-@:@(Include(new AzureMethodTemplate(), (MethodPya)method))
+@:@(Include(new AzureMethodTemplate() {AsyncMode = AsyncMode, Python3Mode = Python3Mode}, (MethodPya)method))
 }

@@ -3,16 +3,16 @@
 @using AutoRest.Python.azure.Templates
 @using AutoRest.Python.Model
 @using AutoRest.Python.vanilla.Templates
-@inherits AutoRest.Core.Template<AutoRest.Python.Azure.Model.MethodPya>
+@inherits AutoRest.Python.PythonTemplate<AutoRest.Python.Azure.Model.MethodPya>
 @if (!Model.IsPagingMethod && !Model.IsLongRunningOperation)
 {
-@:@(Include(new MethodTemplate(), (MethodPy)Model))
+@:@(Include(new MethodTemplate() {AsyncMode = AsyncMode, Python3Mode = Python3Mode}, (MethodPy)Model))
 }
 else if (Model.IsPagingMethod)
 {
-@:@(Include(new AzurePagingMethodTemplate(), Model))
+@:@(Include(new AzurePagingMethodTemplate() {AsyncMode = AsyncMode, Python3Mode = Python3Mode}, Model))
 }
 else //Long running operations
 {
-@:@(Include(new AzureLongRunningMethodTemplate(), Model))
+@:@(Include(new AzureLongRunningMethodTemplate() {AsyncMode = AsyncMode, Python3Mode = Python3Mode}, Model))
 }
