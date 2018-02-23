@@ -9,7 +9,10 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .error import Error, ErrorException
+try:
+    from .error_py3 import Error, ErrorException
+except (SyntaxError, ImportError):
+    from .error import Error, ErrorException
 
 __all__ = [
     'Error', 'ErrorException',

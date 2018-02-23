@@ -9,16 +9,28 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .error import Error, ErrorException
-from .resource import Resource
-from .flattened_product import FlattenedProduct
-from .resource_collection import ResourceCollection
-from .base_product import BaseProduct
-from .simple_product import SimpleProduct
-from .generic_url import GenericUrl
-from .wrapped_product import WrappedProduct
-from .product_wrapper import ProductWrapper
-from .flatten_parameter_group import FlattenParameterGroup
+try:
+    from .error_py3 import Error, ErrorException
+    from .resource_py3 import Resource
+    from .flattened_product_py3 import FlattenedProduct
+    from .resource_collection_py3 import ResourceCollection
+    from .base_product_py3 import BaseProduct
+    from .simple_product_py3 import SimpleProduct
+    from .generic_url_py3 import GenericUrl
+    from .wrapped_product_py3 import WrappedProduct
+    from .product_wrapper_py3 import ProductWrapper
+    from .flatten_parameter_group_py3 import FlattenParameterGroup
+except (SyntaxError, ImportError):
+    from .error import Error, ErrorException
+    from .resource import Resource
+    from .flattened_product import FlattenedProduct
+    from .resource_collection import ResourceCollection
+    from .base_product import BaseProduct
+    from .simple_product import SimpleProduct
+    from .generic_url import GenericUrl
+    from .wrapped_product import WrappedProduct
+    from .product_wrapper import ProductWrapper
+    from .flatten_parameter_group import FlattenParameterGroup
 
 __all__ = [
     'Error', 'ErrorException',

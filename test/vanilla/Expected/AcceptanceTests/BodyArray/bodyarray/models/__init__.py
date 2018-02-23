@@ -9,8 +9,12 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .product import Product
-from .error import Error, ErrorException
+try:
+    from .product_py3 import Product
+    from .error_py3 import Error, ErrorException
+except (SyntaxError, ImportError):
+    from .product import Product
+    from .error import Error, ErrorException
 
 __all__ = [
     'Product',
