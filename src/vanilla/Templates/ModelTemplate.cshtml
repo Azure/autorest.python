@@ -111,14 +111,29 @@ else
     if (property.IsConstant)
     {
 @EmptyLine
-    @:@(Model.InitializeProperty(String.Empty, property))
+    @:@(Model.InitializeProperty(String.Empty, property, false))
     }
 }
 @if (Model.NeedsConstructor)
 { 
 @EmptyLine
+@if (Python3Mode)
+{
+    @:def __init__(self@(Model.ModelParameterDeclaration())) -> None: 
+    if (Model.HasParent)
+    {
+        @:super(@(Model.Name), self).__init__(@(Model.SuperParameterDeclaration()))
+    }
+    else
+    {
+        @:super(@(Model.Name), self).__init__(**kwargs)
+    }    
+}
+else
+{
     @:def __init__(self, **kwargs):
     @:    super(@(Model.Name), self).__init__(**kwargs)
+}
     var propertyList = new List<Property>(Model.Properties);
     if (propertyList.Count > 0)
     {
@@ -126,7 +141,7 @@ else
         {
             if (!propertyList[i].IsConstant)
             {
-        @:@(Model.InitializeProperty("self", propertyList[i]))
+        @:@(Model.InitializeProperty("self", propertyList[i], !Python3Mode))
             }
 	    }
 	}
