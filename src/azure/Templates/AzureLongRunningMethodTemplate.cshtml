@@ -7,7 +7,14 @@
 @using AutoRest.Python.vanilla.Templates
 @inherits AutoRest.Python.PythonTemplate<AutoRest.Python.Azure.Model.MethodPya>
 @EmptyLine
-    def _@(Model.Name.ToPythonCase())_initial(
+@if(AsyncMode)
+{
+@:    async def _@(Model.Name.ToPythonCase())_initial(
+}
+else
+{
+@:    def _@(Model.Name.ToPythonCase())_initial(
+}
             self, @(Model.MethodParameterDeclaration(Model.AddCustomHeader)), **operation_config):
         @Model.BuildInputMappings()
 @if (Model.InputParameterTransformation.Any())
@@ -65,14 +72,15 @@
 }
         # Construct and send request
         request = self._client.@(MethodPy.GetHttpFunction(Model.HttpMethod))(url, query_parameters)
+@{string sendCall = Model.GetSendCall(AsyncMode);}
 @if (Model.RequestBody != null)
 {
-        @:response = self._client.send(
+        @:response = @(sendCall)(
             @:request, header_parameters, body_content, stream=False, **operation_config)
 }
 else
 {
-        @:response = self._client.send(request, header_parameters, stream=False, **operation_config)
+        @:response = @(sendCall)(request, header_parameters, stream=False, **operation_config)
 }
 @EmptyLine
         if @Model.FailureStatusCodePredicate:
@@ -116,7 +124,14 @@ else
             @:return client_raw_response
 }
 @EmptyLine
-    def @(Model.Name.ToPythonCase())(
+@if(AsyncMode)
+{
+@:    async def @(Model.Name.ToPythonCase())(
+}
+else
+{
+@:    def @(Model.Name.ToPythonCase())(
+}
             self, @(Model.MethodParameterDeclaration(Model.AddCustomHeader)), polling=True, **operation_config):
         """@(WrapComment(string.Empty, Model.BuildSummaryAndDescriptionString()))
 @*need to fix comment here for long running function*@
@@ -144,7 +159,14 @@ else
 {
 @:        @(string.Format("warnings.warn(\"Method {0} is deprecated\", DeprecationWarning)", ((string)Model.Name).ToPythonCase()))
 }
-        raw_result = self._@(Model.Name.ToPythonCase())_initial(
+@if (AsyncMode)
+{
+@:        raw_result = await self._@(Model.Name.ToPythonCase())_initial(
+}
+else
+{
+@:        raw_result = self._@(Model.Name.ToPythonCase())_initial(
+}
 @foreach(var parameter in Model.DocumentationParameters)
 {
 @:            @parameter.Name=@parameter.Name,
@@ -178,8 +200,18 @@ else
         lro_delay = operation_config.get(
             'long_running_operation_timeout',
             self.config.long_running_operation_timeout)
-        if polling is True: polling_method = ARMPolling(lro_delay, **operation_config)
-        elif polling is False: polling_method = NoPolling()
-        else: polling_method = polling
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+@if (AsyncMode)
+{
+@:        if polling is True: polling_method = AsyncARMPolling(lro_delay, **operation_config)
+@:        elif polling is False: polling_method = AsyncNoPolling()
+@:        else: polling_method = polling
+@:        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
+}
+else
+{
+@:        if polling is True: polling_method = ARMPolling(lro_delay, **operation_config)
+@:        elif polling is False: polling_method = NoPolling()
+@:        else: polling_method = polling
+@:        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+}
     @(((string)Model.Name).ToPythonCase()).metadata = {'url': '@(Model.Url)'}

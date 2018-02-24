@@ -44,7 +44,14 @@
 	}
 @EmptyLine
 }
-        def internal_paging(next_link=None, raw=False):
+@if(AsyncMode)
+{
+@:        async def internal_paging(next_link=None, raw=False):
+}
+else
+{
+@:        def internal_paging(next_link=None, raw=False):
+}
 @EmptyLine
             if not next_link:
                 # Construct URL

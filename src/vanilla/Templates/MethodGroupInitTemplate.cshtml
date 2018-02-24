@@ -7,19 +7,20 @@
 @Header("# ").TrimMultilineHeader()
 # --------------------------------------------------------------------------
 @EmptyLine
-@{
-  if (Model.MethodGroupModels.Any())
-  {
-    foreach (var modelGroupType in Model.MethodGroupModels)
+try:
+@foreach (var modelGroupType in Model.MethodGroupModels)
     {
-@:from .@( modelGroupType.TypeName.ToPythonCase()) import @modelGroupType.TypeName
+@:    from .@( modelGroupType.TypeName.ToPythonCase())_async import @modelGroupType.TypeName
+    }
+except (SyntaxError, ImportError):
+@foreach (var modelGroupType in Model.MethodGroupModels)
+    {
+@:    from .@( modelGroupType.TypeName.ToPythonCase()) import @modelGroupType.TypeName
     }
 @EmptyLine
-@:__all__ = [
-    foreach (var modelGroupType in Model.MethodGroupModels)
+__all__ = [
+@foreach (var modelGroupType in Model.MethodGroupModels)
     {
 @:    '@modelGroupType.TypeName.Value',
     }
-@:]
-  }
-}
+]

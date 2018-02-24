@@ -687,6 +687,24 @@ namespace AutoRest.Python.Model
             }
         }
 
+        public string GetSendCall(bool asyncMode)
+        {
+            if(asyncMode) {
+                if(IsFormData)
+                {
+                    return "await self._client.async_send_formdata";
+                }
+                return "await self._client.async_send";
+            }
+            else {
+                if(IsFormData)
+                {
+                    return "self._client.send_formdata";
+                }
+                return "self._client.send";
+            }
+        }
+
         public static string GetHttpFunction(HttpMethod method)
         {
             switch (method)

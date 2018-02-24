@@ -6,7 +6,14 @@
 @using AutoRest.Python.Model
 @using AutoRest.Python.vanilla.Templates
 @inherits AutoRest.Python.PythonTemplate<AutoRest.Python.Model.MethodPy>
-    def @(((string)Model.Name).ToPythonCase())(
+@if(AsyncMode)
+{
+@:    async def @(((string)Model.Name).ToPythonCase())(
+}
+else
+{
+@:    def @(((string)Model.Name).ToPythonCase())(
+}
             self, @(Model.MethodParameterDeclaration(Model.AddCustomHeader)), **operation_config):
         """@(WrapComment(string.Empty, Model.BuildSummaryAndDescriptionString()))
 @EmptyLine
@@ -107,19 +114,21 @@ else if (Model.IsFormData)
 }
         # Construct and send request
         request = self._client.@(MethodPy.GetHttpFunction(Model.HttpMethod))(url, query_parameters)
+@{string streamParameter = "stream="+(Model.ReturnType.Body.IsPrimaryType(KnownPrimaryType.Stream)?"True":"False");}
+@{string sendCall = Model.GetSendCall(AsyncMode);}
 @if (Model.RequestBody != null)
 {
-        @:response = self._client.send(
-            @:request, header_parameters, body_content, stream=@(Model.ReturnType.Body.IsPrimaryType(KnownPrimaryType.Stream)?"True":"False"), **operation_config)
+        @:response = @(sendCall)(
+            @:request, header_parameters, body_content, @(streamParameter), **operation_config)
 }
 else if (Model.IsFormData)
 {
-        @:response = self._client.send_formdata(
-            @:request, header_parameters, form_data_content, stream=@(Model.ReturnType.Body.IsPrimaryType(KnownPrimaryType.Stream)?"True":"False"), **operation_config)
+        @:response = @(sendCall)(
+            @:request, header_parameters, form_data_content, @(streamParameter), **operation_config)
 }
 else
 {
-        @:response = self._client.send(request, header_parameters, stream=@(Model.ReturnType.Body.IsPrimaryType(KnownPrimaryType.Stream)?"True":"False"), **operation_config)
+        @:response = @(sendCall)(request, header_parameters, @(streamParameter), **operation_config)
 }
 @EmptyLine
         if @Model.FailureStatusCodePredicate:

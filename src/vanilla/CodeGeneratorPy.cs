@@ -94,6 +94,12 @@ namespace AutoRest.Python
                         Model = methodGroupModel
                     };
                     await Write(methodGroupTemplate, Path.Combine(folderName, "operations", ((string) methodGroupModel.TypeName).ToPythonCase() + ".py"));
+                    // Build a Py3 version that import the Py2 one
+                    var methodGroupTemplatePy3 = new MethodGroupTemplateAsync
+                    {
+                        Model = methodGroupModel
+                    };
+                    await Write(methodGroupTemplatePy3, Path.Combine(folderName, "operations", ((string) methodGroupModel.TypeName).ToPythonCase() + "_async.py"));
                 }
             }
 

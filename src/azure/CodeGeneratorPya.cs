@@ -89,6 +89,12 @@ namespace AutoRest.Python.Azure
                         Model = methodGroupModel as MethodGroupPya
                     };
                     await Write(methodGroupTemplate, Path.Combine(folderName, "operations", ((string) methodGroupModel.TypeName).ToPythonCase() + ".py"));
+                    // Build a Py3 version that import the Py2 one
+                    var methodGroupTemplatePy3 = new AzureMethodGroupTemplateAsync
+                    {
+                        Model = methodGroupModel as MethodGroupPya
+                    };
+                    await Write(methodGroupTemplatePy3, Path.Combine(folderName, "operations", ((string) methodGroupModel.TypeName).ToPythonCase() + "_async.py"));                    
                 }
             }
 
