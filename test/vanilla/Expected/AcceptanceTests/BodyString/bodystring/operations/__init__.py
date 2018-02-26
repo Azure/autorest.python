@@ -9,8 +9,12 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .string_operations import StringOperations
-from .enum_operations import EnumOperations
+try:
+    from .string_operations_async import StringOperations
+    from .enum_operations_async import EnumOperations
+except (SyntaxError, ImportError):
+    from .string_operations import StringOperations
+    from .enum_operations import EnumOperations
 
 __all__ = [
     'StringOperations',

@@ -9,9 +9,14 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .paths_operations import PathsOperations
-from .queries_operations import QueriesOperations
-from .path_items_operations import PathItemsOperations
+try:
+    from .paths_operations_async import PathsOperations
+    from .queries_operations_async import QueriesOperations
+    from .path_items_operations_async import PathItemsOperations
+except (SyntaxError, ImportError):
+    from .paths_operations import PathsOperations
+    from .queries_operations import QueriesOperations
+    from .path_items_operations import PathItemsOperations
 
 __all__ = [
     'PathsOperations',

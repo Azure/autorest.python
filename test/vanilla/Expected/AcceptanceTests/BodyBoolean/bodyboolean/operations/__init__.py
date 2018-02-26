@@ -9,7 +9,10 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .bool_model_operations import BoolModelOperations
+try:
+    from .bool_model_operations_async import BoolModelOperations
+except (SyntaxError, ImportError):
+    from .bool_model_operations import BoolModelOperations
 
 __all__ = [
     'BoolModelOperations',

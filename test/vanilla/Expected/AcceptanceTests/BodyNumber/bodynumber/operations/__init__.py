@@ -9,7 +9,10 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .number_operations import NumberOperations
+try:
+    from .number_operations_async import NumberOperations
+except (SyntaxError, ImportError):
+    from .number_operations import NumberOperations
 
 __all__ = [
     'NumberOperations',
