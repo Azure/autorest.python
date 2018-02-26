@@ -268,11 +268,9 @@ namespace AutoRest.Python
                     case KnownPrimaryType.Double:
                         return "float";
 
+                    case KnownPrimaryType.Long:
                     case KnownPrimaryType.Int:
                         return "int";
-
-                    case KnownPrimaryType.Long:
-                        return "long";
 
                     case KnownPrimaryType.Uuid:
                     case KnownPrimaryType.String:
