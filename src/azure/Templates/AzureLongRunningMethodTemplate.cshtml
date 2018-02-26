@@ -9,7 +9,7 @@
 @EmptyLine
 @if(AsyncMode)
 {
-@:    async def _@(Model.Name.ToPythonCase())_initial(
+@:    async def _@(Model.Name.ToPythonCase())_initial_async(
 }
 else
 {
@@ -126,7 +126,7 @@ else
 @EmptyLine
 @if(AsyncMode)
 {
-@:    async def @(Model.Name.ToPythonCase())(
+@:    async def @(Model.Name.ToPythonCase())_async(
 }
 else
 {

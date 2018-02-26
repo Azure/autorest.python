@@ -8,7 +8,7 @@
 @inherits AutoRest.Python.PythonTemplate<AutoRest.Python.Model.MethodPy>
 @if(AsyncMode)
 {
-@:    async def @(((string)Model.Name).ToPythonCase())(
+@:    async def @(((string)Model.Name).ToPythonCase())_async(
 }
 else
 {
