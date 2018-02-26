@@ -18,7 +18,7 @@ from .date_model_operations import DateModelOperations as _DateModelOperations
 class DateModelOperations(_DateModelOperations):
     """DateModelOperations operations."""
 
-    async def get_null(
+    async def get_null_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get null date value.
 
@@ -62,7 +62,7 @@ class DateModelOperations(_DateModelOperations):
         return deserialized
     get_null.metadata = {'url': '/date/null'}
 
-    async def get_invalid_date(
+    async def get_invalid_date_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get invalid date value.
 
@@ -106,7 +106,7 @@ class DateModelOperations(_DateModelOperations):
         return deserialized
     get_invalid_date.metadata = {'url': '/date/invaliddate'}
 
-    async def get_overflow_date(
+    async def get_overflow_date_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get overflow date value.
 
@@ -150,7 +150,7 @@ class DateModelOperations(_DateModelOperations):
         return deserialized
     get_overflow_date.metadata = {'url': '/date/overflowdate'}
 
-    async def get_underflow_date(
+    async def get_underflow_date_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get underflow date value.
 
@@ -194,7 +194,7 @@ class DateModelOperations(_DateModelOperations):
         return deserialized
     get_underflow_date.metadata = {'url': '/date/underflowdate'}
 
-    async def put_max_date(
+    async def put_max_date_async(
             self, date_body, custom_headers=None, raw=False, **operation_config):
         """Put max date value 9999-12-31.
 
@@ -237,7 +237,7 @@ class DateModelOperations(_DateModelOperations):
             return client_raw_response
     put_max_date.metadata = {'url': '/date/max'}
 
-    async def get_max_date(
+    async def get_max_date_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get max date value 9999-12-31.
 
@@ -281,7 +281,7 @@ class DateModelOperations(_DateModelOperations):
         return deserialized
     get_max_date.metadata = {'url': '/date/max'}
 
-    async def put_min_date(
+    async def put_min_date_async(
             self, date_body, custom_headers=None, raw=False, **operation_config):
         """Put min date value 0000-01-01.
 
@@ -324,7 +324,7 @@ class DateModelOperations(_DateModelOperations):
             return client_raw_response
     put_min_date.metadata = {'url': '/date/min'}
 
-    async def get_min_date(
+    async def get_min_date_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get min date value 0000-01-01.
 

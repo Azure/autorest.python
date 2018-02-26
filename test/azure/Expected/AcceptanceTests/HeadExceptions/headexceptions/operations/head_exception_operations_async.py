@@ -17,7 +17,7 @@ from .head_exception_operations import HeadExceptionOperations as _HeadException
 
 class HeadExceptionOperations(_HeadExceptionOperations):
 
-    async def head200(
+    async def head200_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Return 200 status code if successful.
 
@@ -60,7 +60,7 @@ class HeadExceptionOperations(_HeadExceptionOperations):
             return client_raw_response
     head200.metadata = {'url': '/http/success/200'}
 
-    async def head204(
+    async def head204_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Return 204 status code if successful.
 
@@ -103,7 +103,7 @@ class HeadExceptionOperations(_HeadExceptionOperations):
             return client_raw_response
     head204.metadata = {'url': '/http/success/204'}
 
-    async def head404(
+    async def head404_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Return 404 status code if successful.
 

@@ -18,7 +18,7 @@ from .polymorphism_operations import PolymorphismOperations as _PolymorphismOper
 class PolymorphismOperations(_PolymorphismOperations):
     """PolymorphismOperations operations."""
 
-    async def get_valid(
+    async def get_valid_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get complex types that are polymorphic.
 
@@ -62,7 +62,7 @@ class PolymorphismOperations(_PolymorphismOperations):
         return deserialized
     get_valid.metadata = {'url': '/complex/polymorphism/valid'}
 
-    async def put_valid(
+    async def put_valid_async(
             self, complex_body, custom_headers=None, raw=False, **operation_config):
         """Put complex types that are polymorphic.
 
@@ -137,7 +137,7 @@ class PolymorphismOperations(_PolymorphismOperations):
             return client_raw_response
     put_valid.metadata = {'url': '/complex/polymorphism/valid'}
 
-    async def get_complicated(
+    async def get_complicated_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get complex types that are polymorphic, but not at the root of the
         hierarchy; also have additional properties.
@@ -183,7 +183,7 @@ class PolymorphismOperations(_PolymorphismOperations):
         return deserialized
     get_complicated.metadata = {'url': '/complex/polymorphism/complicated'}
 
-    async def put_complicated(
+    async def put_complicated_async(
             self, complex_body, custom_headers=None, raw=False, **operation_config):
         """Put complex types that are polymorphic, but not at the root of the
         hierarchy; also have additional properties.
@@ -227,7 +227,7 @@ class PolymorphismOperations(_PolymorphismOperations):
             return client_raw_response
     put_complicated.metadata = {'url': '/complex/polymorphism/complicated'}
 
-    async def put_missing_discriminator(
+    async def put_missing_discriminator_async(
             self, complex_body, custom_headers=None, raw=False, **operation_config):
         """Put complex types that are polymorphic, omitting the discriminator.
 
@@ -278,7 +278,7 @@ class PolymorphismOperations(_PolymorphismOperations):
         return deserialized
     put_missing_discriminator.metadata = {'url': '/complex/polymorphism/missingdiscriminator'}
 
-    async def put_valid_missing_required(
+    async def put_valid_missing_required_async(
             self, complex_body, custom_headers=None, raw=False, **operation_config):
         """Put complex types that are polymorphic, attempting to omit required
         'birthday' field - the request should not be allowed from the client.

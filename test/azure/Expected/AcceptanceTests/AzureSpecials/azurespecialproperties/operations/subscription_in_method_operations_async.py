@@ -18,7 +18,7 @@ from .subscription_in_method_operations import SubscriptionInMethodOperations as
 
 class SubscriptionInMethodOperations(_SubscriptionInMethodOperations):
 
-    async def post_method_local_valid(
+    async def post_method_local_valid_async(
             self, subscription_id, custom_headers=None, raw=False, **operation_config):
         """POST method with subscriptionId modeled in the method.  pass in
         subscription id = '1234-5678-9012-3456' to succeed.
@@ -68,7 +68,7 @@ class SubscriptionInMethodOperations(_SubscriptionInMethodOperations):
             return client_raw_response
     post_method_local_valid.metadata = {'url': '/azurespecials/subscriptionId/method/string/none/path/local/1234-5678-9012-3456/{subscriptionId}'}
 
-    async def post_method_local_null(
+    async def post_method_local_null_async(
             self, subscription_id, custom_headers=None, raw=False, **operation_config):
         """POST method with subscriptionId modeled in the method.  pass in
         subscription id = null, client-side validation should prevent you from
@@ -119,7 +119,7 @@ class SubscriptionInMethodOperations(_SubscriptionInMethodOperations):
             return client_raw_response
     post_method_local_null.metadata = {'url': '/azurespecials/subscriptionId/method/string/none/path/local/null/{subscriptionId}'}
 
-    async def post_path_local_valid(
+    async def post_path_local_valid_async(
             self, subscription_id, custom_headers=None, raw=False, **operation_config):
         """POST method with subscriptionId modeled in the method.  pass in
         subscription id = '1234-5678-9012-3456' to succeed.
@@ -169,7 +169,7 @@ class SubscriptionInMethodOperations(_SubscriptionInMethodOperations):
             return client_raw_response
     post_path_local_valid.metadata = {'url': '/azurespecials/subscriptionId/path/string/none/path/local/1234-5678-9012-3456/{subscriptionId}'}
 
-    async def post_swagger_local_valid(
+    async def post_swagger_local_valid_async(
             self, subscription_id, custom_headers=None, raw=False, **operation_config):
         """POST method with subscriptionId modeled in the method.  pass in
         subscription id = '1234-5678-9012-3456' to succeed.

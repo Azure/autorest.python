@@ -18,7 +18,7 @@ from .array_operations import ArrayOperations as _ArrayOperations
 class ArrayOperations(_ArrayOperations):
     """ArrayOperations operations."""
 
-    async def get_valid(
+    async def get_valid_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get complex types with array property.
 
@@ -63,7 +63,7 @@ class ArrayOperations(_ArrayOperations):
         return deserialized
     get_valid.metadata = {'url': '/complex/array/valid'}
 
-    async def put_valid(
+    async def put_valid_async(
             self, array=None, custom_headers=None, raw=False, **operation_config):
         """Put complex types with array property.
 
@@ -108,7 +108,7 @@ class ArrayOperations(_ArrayOperations):
             return client_raw_response
     put_valid.metadata = {'url': '/complex/array/valid'}
 
-    async def get_empty(
+    async def get_empty_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get complex types with array property which is empty.
 
@@ -153,7 +153,7 @@ class ArrayOperations(_ArrayOperations):
         return deserialized
     get_empty.metadata = {'url': '/complex/array/empty'}
 
-    async def put_empty(
+    async def put_empty_async(
             self, array=None, custom_headers=None, raw=False, **operation_config):
         """Put complex types with array property which is empty.
 
@@ -198,7 +198,7 @@ class ArrayOperations(_ArrayOperations):
             return client_raw_response
     put_empty.metadata = {'url': '/complex/array/empty'}
 
-    async def get_not_provided(
+    async def get_not_provided_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get complex types with array property while server doesn't provide a
         response payload.

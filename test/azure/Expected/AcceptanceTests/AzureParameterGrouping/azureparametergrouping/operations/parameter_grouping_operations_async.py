@@ -18,7 +18,7 @@ from .parameter_grouping_operations import ParameterGroupingOperations as _Param
 
 class ParameterGroupingOperations(_ParameterGroupingOperations):
 
-    async def post_required(
+    async def post_required_async(
             self, parameter_grouping_post_required_parameters, custom_headers=None, raw=False, **operation_config):
         """Post a bunch of required parameters grouped.
 
@@ -89,7 +89,7 @@ class ParameterGroupingOperations(_ParameterGroupingOperations):
             return client_raw_response
     post_required.metadata = {'url': '/parameterGrouping/postRequired/{path}'}
 
-    async def post_optional(
+    async def post_optional_async(
             self, parameter_grouping_post_optional_parameters=None, custom_headers=None, raw=False, **operation_config):
         """Post a bunch of optional parameters grouped.
 
@@ -146,7 +146,7 @@ class ParameterGroupingOperations(_ParameterGroupingOperations):
             return client_raw_response
     post_optional.metadata = {'url': '/parameterGrouping/postOptional'}
 
-    async def post_multi_param_groups(
+    async def post_multi_param_groups_async(
             self, first_parameter_group=None, parameter_grouping_post_multi_param_groups_second_param_group=None, custom_headers=None, raw=False, **operation_config):
         """Post parameters from multiple different parameter groups.
 
@@ -216,7 +216,7 @@ class ParameterGroupingOperations(_ParameterGroupingOperations):
             return client_raw_response
     post_multi_param_groups.metadata = {'url': '/parameterGrouping/postMultipleParameterGroups'}
 
-    async def post_shared_parameter_group_object(
+    async def post_shared_parameter_group_object_async(
             self, first_parameter_group=None, custom_headers=None, raw=False, **operation_config):
         """Post parameters with a shared parameter group object.
 

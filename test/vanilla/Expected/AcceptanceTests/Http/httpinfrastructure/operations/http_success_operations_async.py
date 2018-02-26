@@ -18,7 +18,7 @@ from .http_success_operations import HttpSuccessOperations as _HttpSuccessOperat
 class HttpSuccessOperations(_HttpSuccessOperations):
     """HttpSuccessOperations operations."""
 
-    async def head200(
+    async def head200_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Return 200 status code if successful.
 
@@ -56,7 +56,7 @@ class HttpSuccessOperations(_HttpSuccessOperations):
             return client_raw_response
     head200.metadata = {'url': '/http/success/200'}
 
-    async def get200(
+    async def get200_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get 200 success.
 
@@ -101,7 +101,7 @@ class HttpSuccessOperations(_HttpSuccessOperations):
         return deserialized
     get200.metadata = {'url': '/http/success/200'}
 
-    async def put200(
+    async def put200_async(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
         """Put boolean value true returning 200 success.
 
@@ -148,7 +148,7 @@ class HttpSuccessOperations(_HttpSuccessOperations):
             return client_raw_response
     put200.metadata = {'url': '/http/success/200'}
 
-    async def patch200(
+    async def patch200_async(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
         """Patch true Boolean value in request returning 200.
 
@@ -195,7 +195,7 @@ class HttpSuccessOperations(_HttpSuccessOperations):
             return client_raw_response
     patch200.metadata = {'url': '/http/success/200'}
 
-    async def post200(
+    async def post200_async(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
         """Post bollean value true in request that returns a 200.
 
@@ -242,7 +242,7 @@ class HttpSuccessOperations(_HttpSuccessOperations):
             return client_raw_response
     post200.metadata = {'url': '/http/success/200'}
 
-    async def delete200(
+    async def delete200_async(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
         """Delete simple boolean value true returns 200.
 
@@ -289,7 +289,7 @@ class HttpSuccessOperations(_HttpSuccessOperations):
             return client_raw_response
     delete200.metadata = {'url': '/http/success/200'}
 
-    async def put201(
+    async def put201_async(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
         """Put true Boolean value in request returns 201.
 
@@ -336,7 +336,7 @@ class HttpSuccessOperations(_HttpSuccessOperations):
             return client_raw_response
     put201.metadata = {'url': '/http/success/201'}
 
-    async def post201(
+    async def post201_async(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
         """Post true Boolean value in request returns 201 (Created).
 
@@ -383,7 +383,7 @@ class HttpSuccessOperations(_HttpSuccessOperations):
             return client_raw_response
     post201.metadata = {'url': '/http/success/201'}
 
-    async def put202(
+    async def put202_async(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
         """Put true Boolean value in request returns 202 (Accepted).
 
@@ -430,7 +430,7 @@ class HttpSuccessOperations(_HttpSuccessOperations):
             return client_raw_response
     put202.metadata = {'url': '/http/success/202'}
 
-    async def patch202(
+    async def patch202_async(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
         """Patch true Boolean value in request returns 202.
 
@@ -477,7 +477,7 @@ class HttpSuccessOperations(_HttpSuccessOperations):
             return client_raw_response
     patch202.metadata = {'url': '/http/success/202'}
 
-    async def post202(
+    async def post202_async(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
         """Post true Boolean value in request returns 202 (Accepted).
 
@@ -524,7 +524,7 @@ class HttpSuccessOperations(_HttpSuccessOperations):
             return client_raw_response
     post202.metadata = {'url': '/http/success/202'}
 
-    async def delete202(
+    async def delete202_async(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
         """Delete true Boolean value in request returns 202 (accepted).
 
@@ -571,7 +571,7 @@ class HttpSuccessOperations(_HttpSuccessOperations):
             return client_raw_response
     delete202.metadata = {'url': '/http/success/202'}
 
-    async def head204(
+    async def head204_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Return 204 status code if successful.
 
@@ -609,7 +609,7 @@ class HttpSuccessOperations(_HttpSuccessOperations):
             return client_raw_response
     head204.metadata = {'url': '/http/success/204'}
 
-    async def put204(
+    async def put204_async(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
         """Put true Boolean value in request returns 204 (no content).
 
@@ -656,7 +656,7 @@ class HttpSuccessOperations(_HttpSuccessOperations):
             return client_raw_response
     put204.metadata = {'url': '/http/success/204'}
 
-    async def patch204(
+    async def patch204_async(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
         """Patch true Boolean value in request returns 204 (no content).
 
@@ -703,7 +703,7 @@ class HttpSuccessOperations(_HttpSuccessOperations):
             return client_raw_response
     patch204.metadata = {'url': '/http/success/204'}
 
-    async def post204(
+    async def post204_async(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
         """Post true Boolean value in request returns 204 (no content).
 
@@ -750,7 +750,7 @@ class HttpSuccessOperations(_HttpSuccessOperations):
             return client_raw_response
     post204.metadata = {'url': '/http/success/204'}
 
-    async def delete204(
+    async def delete204_async(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
         """Delete true Boolean value in request returns 204 (no content).
 
@@ -797,7 +797,7 @@ class HttpSuccessOperations(_HttpSuccessOperations):
             return client_raw_response
     delete204.metadata = {'url': '/http/success/204'}
 
-    async def head404(
+    async def head404_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Return 404 status code.
 

@@ -18,7 +18,7 @@ from .byte_operations import ByteOperations as _ByteOperations
 class ByteOperations(_ByteOperations):
     """ByteOperations operations."""
 
-    async def get_null(
+    async def get_null_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get null byte value.
 
@@ -62,7 +62,7 @@ class ByteOperations(_ByteOperations):
         return deserialized
     get_null.metadata = {'url': '/byte/null'}
 
-    async def get_empty(
+    async def get_empty_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get empty byte value ''.
 
@@ -106,7 +106,7 @@ class ByteOperations(_ByteOperations):
         return deserialized
     get_empty.metadata = {'url': '/byte/empty'}
 
-    async def get_non_ascii(
+    async def get_non_ascii_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
 
@@ -150,7 +150,7 @@ class ByteOperations(_ByteOperations):
         return deserialized
     get_non_ascii.metadata = {'url': '/byte/nonAscii'}
 
-    async def put_non_ascii(
+    async def put_non_ascii_async(
             self, byte_body, custom_headers=None, raw=False, **operation_config):
         """Put non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
 
@@ -194,7 +194,7 @@ class ByteOperations(_ByteOperations):
             return client_raw_response
     put_non_ascii.metadata = {'url': '/byte/nonAscii'}
 
-    async def get_invalid(
+    async def get_invalid_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get invalid byte value ':::SWAGGER::::'.
 

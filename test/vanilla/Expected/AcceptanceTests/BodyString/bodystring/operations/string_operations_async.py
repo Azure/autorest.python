@@ -18,7 +18,7 @@ from .string_operations import StringOperations as _StringOperations
 class StringOperations(_StringOperations):
     """StringOperations operations."""
 
-    async def get_null(
+    async def get_null_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get null string value value.
 
@@ -62,7 +62,7 @@ class StringOperations(_StringOperations):
         return deserialized
     get_null.metadata = {'url': '/string/null'}
 
-    async def put_null(
+    async def put_null_async(
             self, string_body=None, custom_headers=None, raw=False, **operation_config):
         """Set string value null.
 
@@ -108,7 +108,7 @@ class StringOperations(_StringOperations):
             return client_raw_response
     put_null.metadata = {'url': '/string/null'}
 
-    async def get_empty(
+    async def get_empty_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get empty string value value ''.
 
@@ -152,7 +152,7 @@ class StringOperations(_StringOperations):
         return deserialized
     get_empty.metadata = {'url': '/string/empty'}
 
-    async def put_empty(
+    async def put_empty_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Set string value empty ''.
 
@@ -195,7 +195,7 @@ class StringOperations(_StringOperations):
             return client_raw_response
     put_empty.metadata = {'url': '/string/empty'}
 
-    async def get_mbcs(
+    async def get_mbcs_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get mbcs string value
         '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'.
@@ -240,7 +240,7 @@ class StringOperations(_StringOperations):
         return deserialized
     get_mbcs.metadata = {'url': '/string/mbcs'}
 
-    async def put_mbcs(
+    async def put_mbcs_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Set string value mbcs
         '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'.
@@ -284,7 +284,7 @@ class StringOperations(_StringOperations):
             return client_raw_response
     put_mbcs.metadata = {'url': '/string/mbcs'}
 
-    async def get_whitespace(
+    async def get_whitespace_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get string value with leading and trailing whitespace
         '<tab><space><space>Now is the time for all good men to come to the aid
@@ -330,7 +330,7 @@ class StringOperations(_StringOperations):
         return deserialized
     get_whitespace.metadata = {'url': '/string/whitespace'}
 
-    async def put_whitespace(
+    async def put_whitespace_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Set String value with leading and trailing whitespace
         '<tab><space><space>Now is the time for all good men to come to the aid
@@ -375,7 +375,7 @@ class StringOperations(_StringOperations):
             return client_raw_response
     put_whitespace.metadata = {'url': '/string/whitespace'}
 
-    async def get_not_provided(
+    async def get_not_provided_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get String value when no string value is sent in response payload.
 
@@ -419,7 +419,7 @@ class StringOperations(_StringOperations):
         return deserialized
     get_not_provided.metadata = {'url': '/string/notProvided'}
 
-    async def get_base64_encoded(
+    async def get_base64_encoded_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get value that is base64 encoded.
 
@@ -463,7 +463,7 @@ class StringOperations(_StringOperations):
         return deserialized
     get_base64_encoded.metadata = {'url': '/string/base64Encoding'}
 
-    async def get_base64_url_encoded(
+    async def get_base64_url_encoded_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get value that is base64url encoded.
 
@@ -507,7 +507,7 @@ class StringOperations(_StringOperations):
         return deserialized
     get_base64_url_encoded.metadata = {'url': '/string/base64UrlEncoding'}
 
-    async def put_base64_url_encoded(
+    async def put_base64_url_encoded_async(
             self, string_body, custom_headers=None, raw=False, **operation_config):
         """Put value that is base64url encoded.
 
@@ -550,7 +550,7 @@ class StringOperations(_StringOperations):
             return client_raw_response
     put_base64_url_encoded.metadata = {'url': '/string/base64UrlEncoding'}
 
-    async def get_null_base64_url_encoded(
+    async def get_null_base64_url_encoded_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get null value that is expected to be base64url encoded.
 

@@ -18,7 +18,7 @@ from .duration_operations import DurationOperations as _DurationOperations
 class DurationOperations(_DurationOperations):
     """DurationOperations operations."""
 
-    async def get_null(
+    async def get_null_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get null duration value.
 
@@ -62,7 +62,7 @@ class DurationOperations(_DurationOperations):
         return deserialized
     get_null.metadata = {'url': '/duration/null'}
 
-    async def put_positive_duration(
+    async def put_positive_duration_async(
             self, duration_body, custom_headers=None, raw=False, **operation_config):
         """Put a positive duration value.
 
@@ -105,7 +105,7 @@ class DurationOperations(_DurationOperations):
             return client_raw_response
     put_positive_duration.metadata = {'url': '/duration/positiveduration'}
 
-    async def get_positive_duration(
+    async def get_positive_duration_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get a positive duration value.
 
@@ -149,7 +149,7 @@ class DurationOperations(_DurationOperations):
         return deserialized
     get_positive_duration.metadata = {'url': '/duration/positiveduration'}
 
-    async def get_invalid(
+    async def get_invalid_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get an invalid duration value.
 

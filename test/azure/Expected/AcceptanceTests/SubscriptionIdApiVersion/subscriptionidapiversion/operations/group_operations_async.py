@@ -18,7 +18,7 @@ from .group_operations import GroupOperations as _GroupOperations
 
 class GroupOperations(_GroupOperations):
 
-    async def get_sample_resource_group(
+    async def get_sample_resource_group_async(
             self, resource_group_name, custom_headers=None, raw=False, **operation_config):
         """Provides a resouce group with name 'testgroup101' and location 'West
         US'.

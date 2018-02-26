@@ -21,7 +21,7 @@ from .storage_accounts_operations import StorageAccountsOperations as _StorageAc
 
 class StorageAccountsOperations(_StorageAccountsOperations):
 
-    async def check_name_availability(
+    async def check_name_availability_async(
             self, account_name, custom_headers=None, raw=False, **operation_config):
         """Checks that account name is valid and is not in use.
 
@@ -87,7 +87,7 @@ class StorageAccountsOperations(_StorageAccountsOperations):
     check_name_availability.metadata = {'url': '/subscriptions/{subscriptionId}/providers/Microsoft.Storage/checkNameAvailability'}
 
 
-    async def _create_initial(
+    async def _create_initial_async(
             self, resource_group_name, account_name, parameters, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = self.create.metadata['url']
@@ -136,7 +136,7 @@ class StorageAccountsOperations(_StorageAccountsOperations):
 
         return deserialized
 
-    async def create(
+    async def create_async(
             self, resource_group_name, account_name, parameters, custom_headers=None, raw=False, polling=True, **operation_config):
         """Asynchronously creates a new storage account with the specified
         parameters. Existing accounts cannot be updated with this API and
@@ -193,7 +193,7 @@ class StorageAccountsOperations(_StorageAccountsOperations):
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     create.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}'}
 
-    async def delete(
+    async def delete_async(
             self, resource_group_name, account_name, custom_headers=None, raw=False, **operation_config):
         """Deletes a storage account in Microsoft Azure.
 
@@ -250,7 +250,7 @@ class StorageAccountsOperations(_StorageAccountsOperations):
             return client_raw_response
     delete.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}'}
 
-    async def get_properties(
+    async def get_properties_async(
             self, resource_group_name, account_name, custom_headers=None, raw=False, **operation_config):
         """Returns the properties for the specified storage account including but
         not limited to name, account type, location, and account status. The
@@ -317,7 +317,7 @@ class StorageAccountsOperations(_StorageAccountsOperations):
         return deserialized
     get_properties.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}'}
 
-    async def update(
+    async def update_async(
             self, resource_group_name, account_name, parameters, custom_headers=None, raw=False, **operation_config):
         """Updates the account type or tags for a storage account. It can also be
         used to add a custom domain (note that custom domains cannot be added
@@ -398,7 +398,7 @@ class StorageAccountsOperations(_StorageAccountsOperations):
         return deserialized
     update.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}'}
 
-    async def list_keys(
+    async def list_keys_async(
             self, resource_group_name, account_name, custom_headers=None, raw=False, **operation_config):
         """Lists the access keys for the specified storage account.
 
@@ -599,7 +599,7 @@ class StorageAccountsOperations(_StorageAccountsOperations):
         return deserialized
     list_by_resource_group.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts'}
 
-    async def regenerate_key(
+    async def regenerate_key_async(
             self, resource_group_name, account_name, key_name=None, custom_headers=None, raw=False, **operation_config):
         """Regenerates the access keys for the specified storage account.
 

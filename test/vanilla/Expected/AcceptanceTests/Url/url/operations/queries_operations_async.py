@@ -18,7 +18,7 @@ from .queries_operations import QueriesOperations as _QueriesOperations
 class QueriesOperations(_QueriesOperations):
     """QueriesOperations operations."""
 
-    async def get_boolean_true(
+    async def get_boolean_true_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get true Boolean value on path.
 
@@ -58,7 +58,7 @@ class QueriesOperations(_QueriesOperations):
             return client_raw_response
     get_boolean_true.metadata = {'url': '/queries/bool/true'}
 
-    async def get_boolean_false(
+    async def get_boolean_false_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get false Boolean value on path.
 
@@ -98,7 +98,7 @@ class QueriesOperations(_QueriesOperations):
             return client_raw_response
     get_boolean_false.metadata = {'url': '/queries/bool/false'}
 
-    async def get_boolean_null(
+    async def get_boolean_null_async(
             self, bool_query=None, custom_headers=None, raw=False, **operation_config):
         """Get null Boolean value on query (query string should be absent).
 
@@ -139,7 +139,7 @@ class QueriesOperations(_QueriesOperations):
             return client_raw_response
     get_boolean_null.metadata = {'url': '/queries/bool/null'}
 
-    async def get_int_one_million(
+    async def get_int_one_million_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get '1000000' integer value.
 
@@ -179,7 +179,7 @@ class QueriesOperations(_QueriesOperations):
             return client_raw_response
     get_int_one_million.metadata = {'url': '/queries/int/1000000'}
 
-    async def get_int_negative_one_million(
+    async def get_int_negative_one_million_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get '-1000000' integer value.
 
@@ -219,7 +219,7 @@ class QueriesOperations(_QueriesOperations):
             return client_raw_response
     get_int_negative_one_million.metadata = {'url': '/queries/int/-1000000'}
 
-    async def get_int_null(
+    async def get_int_null_async(
             self, int_query=None, custom_headers=None, raw=False, **operation_config):
         """Get null integer value (no query parameter).
 
@@ -260,7 +260,7 @@ class QueriesOperations(_QueriesOperations):
             return client_raw_response
     get_int_null.metadata = {'url': '/queries/int/null'}
 
-    async def get_ten_billion(
+    async def get_ten_billion_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get '10000000000' 64 bit integer value.
 
@@ -300,7 +300,7 @@ class QueriesOperations(_QueriesOperations):
             return client_raw_response
     get_ten_billion.metadata = {'url': '/queries/long/10000000000'}
 
-    async def get_negative_ten_billion(
+    async def get_negative_ten_billion_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get '-10000000000' 64 bit integer value.
 
@@ -340,7 +340,7 @@ class QueriesOperations(_QueriesOperations):
             return client_raw_response
     get_negative_ten_billion.metadata = {'url': '/queries/long/-10000000000'}
 
-    async def get_long_null(
+    async def get_long_null_async(
             self, long_query=None, custom_headers=None, raw=False, **operation_config):
         """Get 'null 64 bit integer value (no query param in uri).
 
@@ -381,7 +381,7 @@ class QueriesOperations(_QueriesOperations):
             return client_raw_response
     get_long_null.metadata = {'url': '/queries/long/null'}
 
-    async def float_scientific_positive(
+    async def float_scientific_positive_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get '1.034E+20' numeric value.
 
@@ -421,7 +421,7 @@ class QueriesOperations(_QueriesOperations):
             return client_raw_response
     float_scientific_positive.metadata = {'url': '/queries/float/1.034E+20'}
 
-    async def float_scientific_negative(
+    async def float_scientific_negative_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get '-1.034E-20' numeric value.
 
@@ -461,7 +461,7 @@ class QueriesOperations(_QueriesOperations):
             return client_raw_response
     float_scientific_negative.metadata = {'url': '/queries/float/-1.034E-20'}
 
-    async def float_null(
+    async def float_null_async(
             self, float_query=None, custom_headers=None, raw=False, **operation_config):
         """Get null numeric value (no query parameter).
 
@@ -502,7 +502,7 @@ class QueriesOperations(_QueriesOperations):
             return client_raw_response
     float_null.metadata = {'url': '/queries/float/null'}
 
-    async def double_decimal_positive(
+    async def double_decimal_positive_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get '9999999.999' numeric value.
 
@@ -542,7 +542,7 @@ class QueriesOperations(_QueriesOperations):
             return client_raw_response
     double_decimal_positive.metadata = {'url': '/queries/double/9999999.999'}
 
-    async def double_decimal_negative(
+    async def double_decimal_negative_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get '-9999999.999' numeric value.
 
@@ -582,7 +582,7 @@ class QueriesOperations(_QueriesOperations):
             return client_raw_response
     double_decimal_negative.metadata = {'url': '/queries/double/-9999999.999'}
 
-    async def double_null(
+    async def double_null_async(
             self, double_query=None, custom_headers=None, raw=False, **operation_config):
         """Get null numeric value (no query parameter).
 
@@ -623,7 +623,7 @@ class QueriesOperations(_QueriesOperations):
             return client_raw_response
     double_null.metadata = {'url': '/queries/double/null'}
 
-    async def string_unicode(
+    async def string_unicode_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value.
 
@@ -663,7 +663,7 @@ class QueriesOperations(_QueriesOperations):
             return client_raw_response
     string_unicode.metadata = {'url': '/queries/string/unicode/'}
 
-    async def string_url_encoded(
+    async def string_url_encoded_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get 'begin!*'();:@ &=+$,/?#[]end.
 
@@ -703,7 +703,7 @@ class QueriesOperations(_QueriesOperations):
             return client_raw_response
     string_url_encoded.metadata = {'url': '/queries/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend'}
 
-    async def string_empty(
+    async def string_empty_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get ''.
 
@@ -743,7 +743,7 @@ class QueriesOperations(_QueriesOperations):
             return client_raw_response
     string_empty.metadata = {'url': '/queries/string/empty'}
 
-    async def string_null(
+    async def string_null_async(
             self, string_query=None, custom_headers=None, raw=False, **operation_config):
         """Get null (no query parameter in url).
 
@@ -784,7 +784,7 @@ class QueriesOperations(_QueriesOperations):
             return client_raw_response
     string_null.metadata = {'url': '/queries/string/null'}
 
-    async def enum_valid(
+    async def enum_valid_async(
             self, enum_query=None, custom_headers=None, raw=False, **operation_config):
         """Get using uri with query parameter 'green color'.
 
@@ -826,7 +826,7 @@ class QueriesOperations(_QueriesOperations):
             return client_raw_response
     enum_valid.metadata = {'url': '/queries/enum/green%20color'}
 
-    async def enum_null(
+    async def enum_null_async(
             self, enum_query=None, custom_headers=None, raw=False, **operation_config):
         """Get null (no query parameter in url).
 
@@ -868,7 +868,7 @@ class QueriesOperations(_QueriesOperations):
             return client_raw_response
     enum_null.metadata = {'url': '/queries/enum/null'}
 
-    async def byte_multi_byte(
+    async def byte_multi_byte_async(
             self, byte_query=None, custom_headers=None, raw=False, **operation_config):
         """Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
 
@@ -910,7 +910,7 @@ class QueriesOperations(_QueriesOperations):
             return client_raw_response
     byte_multi_byte.metadata = {'url': '/queries/byte/multibyte'}
 
-    async def byte_empty(
+    async def byte_empty_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get '' as byte array.
 
@@ -948,7 +948,7 @@ class QueriesOperations(_QueriesOperations):
             return client_raw_response
     byte_empty.metadata = {'url': '/queries/byte/empty'}
 
-    async def byte_null(
+    async def byte_null_async(
             self, byte_query=None, custom_headers=None, raw=False, **operation_config):
         """Get null as byte array (no query parameters in uri).
 
@@ -989,7 +989,7 @@ class QueriesOperations(_QueriesOperations):
             return client_raw_response
     byte_null.metadata = {'url': '/queries/byte/null'}
 
-    async def date_valid(
+    async def date_valid_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get '2012-01-01' as date.
 
@@ -1027,7 +1027,7 @@ class QueriesOperations(_QueriesOperations):
             return client_raw_response
     date_valid.metadata = {'url': '/queries/date/2012-01-01'}
 
-    async def date_null(
+    async def date_null_async(
             self, date_query=None, custom_headers=None, raw=False, **operation_config):
         """Get null as date - this should result in no query parameters in uri.
 
@@ -1068,7 +1068,7 @@ class QueriesOperations(_QueriesOperations):
             return client_raw_response
     date_null.metadata = {'url': '/queries/date/null'}
 
-    async def date_time_valid(
+    async def date_time_valid_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get '2012-01-01T01:01:01Z' as date-time.
 
@@ -1106,7 +1106,7 @@ class QueriesOperations(_QueriesOperations):
             return client_raw_response
     date_time_valid.metadata = {'url': '/queries/datetime/2012-01-01T01%3A01%3A01Z'}
 
-    async def date_time_null(
+    async def date_time_null_async(
             self, date_time_query=None, custom_headers=None, raw=False, **operation_config):
         """Get null as date-time, should result in no query parameters in uri.
 
@@ -1147,7 +1147,7 @@ class QueriesOperations(_QueriesOperations):
             return client_raw_response
     date_time_null.metadata = {'url': '/queries/datetime/null'}
 
-    async def array_string_csv_valid(
+    async def array_string_csv_valid_async(
             self, array_query=None, custom_headers=None, raw=False, **operation_config):
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' ,
         null, ''] using the csv-array format.
@@ -1190,7 +1190,7 @@ class QueriesOperations(_QueriesOperations):
             return client_raw_response
     array_string_csv_valid.metadata = {'url': '/queries/array/csv/string/valid'}
 
-    async def array_string_csv_null(
+    async def array_string_csv_null_async(
             self, array_query=None, custom_headers=None, raw=False, **operation_config):
         """Get a null array of string using the csv-array format.
 
@@ -1231,7 +1231,7 @@ class QueriesOperations(_QueriesOperations):
             return client_raw_response
     array_string_csv_null.metadata = {'url': '/queries/array/csv/string/null'}
 
-    async def array_string_csv_empty(
+    async def array_string_csv_empty_async(
             self, array_query=None, custom_headers=None, raw=False, **operation_config):
         """Get an empty array [] of string using the csv-array format.
 
@@ -1273,7 +1273,7 @@ class QueriesOperations(_QueriesOperations):
             return client_raw_response
     array_string_csv_empty.metadata = {'url': '/queries/array/csv/string/empty'}
 
-    async def array_string_ssv_valid(
+    async def array_string_ssv_valid_async(
             self, array_query=None, custom_headers=None, raw=False, **operation_config):
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' ,
         null, ''] using the ssv-array format.
@@ -1316,7 +1316,7 @@ class QueriesOperations(_QueriesOperations):
             return client_raw_response
     array_string_ssv_valid.metadata = {'url': '/queries/array/ssv/string/valid'}
 
-    async def array_string_tsv_valid(
+    async def array_string_tsv_valid_async(
             self, array_query=None, custom_headers=None, raw=False, **operation_config):
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' ,
         null, ''] using the tsv-array format.
@@ -1359,7 +1359,7 @@ class QueriesOperations(_QueriesOperations):
             return client_raw_response
     array_string_tsv_valid.metadata = {'url': '/queries/array/tsv/string/valid'}
 
-    async def array_string_pipes_valid(
+    async def array_string_pipes_valid_async(
             self, array_query=None, custom_headers=None, raw=False, **operation_config):
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' ,
         null, ''] using the pipes-array format.

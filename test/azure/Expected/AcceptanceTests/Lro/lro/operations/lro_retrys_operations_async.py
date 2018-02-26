@@ -22,7 +22,7 @@ from .lro_retrys_operations import LRORetrysOperations as _LRORetrysOperations
 class LRORetrysOperations(_LRORetrysOperations):
 
 
-    async def _put201_creating_succeeded200_initial(
+    async def _put201_creating_succeeded200_initial_async(
             self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = self.put201_creating_succeeded200.metadata['url']
@@ -69,7 +69,7 @@ class LRORetrysOperations(_LRORetrysOperations):
 
         return deserialized
 
-    async def put201_creating_succeeded200(
+    async def put201_creating_succeeded200_async(
             self, product=None, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running put request, service returns a 500, then a 201 to the
         initial request, with an entity that contains
@@ -117,7 +117,7 @@ class LRORetrysOperations(_LRORetrysOperations):
     put201_creating_succeeded200.metadata = {'url': '/lro/retryerror/put/201/creating/succeeded/200'}
 
 
-    async def _put_async_relative_retry_succeeded_initial(
+    async def _put_async_relative_retry_succeeded_initial_async(
             self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = self.put_async_relative_retry_succeeded.metadata['url']
@@ -169,7 +169,7 @@ class LRORetrysOperations(_LRORetrysOperations):
 
         return deserialized
 
-    async def put_async_relative_retry_succeeded(
+    async def put_async_relative_retry_succeeded_async(
             self, product=None, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running put request, service returns a 500, then a 200 to the
         initial request, with an entity that contains
@@ -223,7 +223,7 @@ class LRORetrysOperations(_LRORetrysOperations):
     put_async_relative_retry_succeeded.metadata = {'url': '/lro/retryerror/putasync/retry/succeeded'}
 
 
-    async def _delete_provisioning202_accepted200_succeeded_initial(
+    async def _delete_provisioning202_accepted200_succeeded_initial_async(
             self, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = self.delete_provisioning202_accepted200_succeeded.metadata['url']
@@ -273,7 +273,7 @@ class LRORetrysOperations(_LRORetrysOperations):
 
         return deserialized
 
-    async def delete_provisioning202_accepted200_succeeded(
+    async def delete_provisioning202_accepted200_succeeded_async(
             self, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running delete request, service returns a 500, then a  202 to the
         initial request, with an entity that contains
@@ -323,7 +323,7 @@ class LRORetrysOperations(_LRORetrysOperations):
     delete_provisioning202_accepted200_succeeded.metadata = {'url': '/lro/retryerror/delete/provisioning/202/accepted/200/succeeded'}
 
 
-    async def _delete202_retry200_initial(
+    async def _delete202_retry200_initial_async(
             self, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = self.delete202_retry200.metadata['url']
@@ -359,7 +359,7 @@ class LRORetrysOperations(_LRORetrysOperations):
             client_raw_response.add_headers(header_dict)
             return client_raw_response
 
-    async def delete202_retry200(
+    async def delete202_retry200_async(
             self, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running delete request, service returns a 500, then a 202 to the
         initial request. Polls return this value until the last poll returns a
@@ -401,7 +401,7 @@ class LRORetrysOperations(_LRORetrysOperations):
     delete202_retry200.metadata = {'url': '/lro/retryerror/delete/202/retry/200'}
 
 
-    async def _delete_async_relative_retry_succeeded_initial(
+    async def _delete_async_relative_retry_succeeded_initial_async(
             self, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = self.delete_async_relative_retry_succeeded.metadata['url']
@@ -438,7 +438,7 @@ class LRORetrysOperations(_LRORetrysOperations):
             client_raw_response.add_headers(header_dict)
             return client_raw_response
 
-    async def delete_async_relative_retry_succeeded(
+    async def delete_async_relative_retry_succeeded_async(
             self, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running delete request, service returns a 500, then a 202 to the
         initial request. Poll the endpoint indicated in the
@@ -481,7 +481,7 @@ class LRORetrysOperations(_LRORetrysOperations):
     delete_async_relative_retry_succeeded.metadata = {'url': '/lro/retryerror/deleteasync/retry/succeeded'}
 
 
-    async def _post202_retry200_initial(
+    async def _post202_retry200_initial_async(
             self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = self.post202_retry200.metadata['url']
@@ -524,7 +524,7 @@ class LRORetrysOperations(_LRORetrysOperations):
             client_raw_response.add_headers(header_dict)
             return client_raw_response
 
-    async def post202_retry200(
+    async def post202_retry200_async(
             self, product=None, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running post request, service returns a 500, then a 202 to the
         initial request, with 'Location' and 'Retry-After' headers, Polls
@@ -569,7 +569,7 @@ class LRORetrysOperations(_LRORetrysOperations):
     post202_retry200.metadata = {'url': '/lro/retryerror/post/202/retry/200'}
 
 
-    async def _post_async_relative_retry_succeeded_initial(
+    async def _post_async_relative_retry_succeeded_initial_async(
             self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = self.post_async_relative_retry_succeeded.metadata['url']
@@ -613,7 +613,7 @@ class LRORetrysOperations(_LRORetrysOperations):
             client_raw_response.add_headers(header_dict)
             return client_raw_response
 
-    async def post_async_relative_retry_succeeded(
+    async def post_async_relative_retry_succeeded_async(
             self, product=None, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running post request, service returns a 500, then a 202 to the
         initial request, with an entity that contains

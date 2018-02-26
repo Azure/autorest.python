@@ -18,7 +18,7 @@ from .files_operations import FilesOperations as _FilesOperations
 class FilesOperations(_FilesOperations):
     """FilesOperations operations."""
 
-    async def get_file(
+    async def get_file_async(
             self, custom_headers=None, raw=False, callback=None, **operation_config):
         """Get file.
 
@@ -67,7 +67,7 @@ class FilesOperations(_FilesOperations):
         return deserialized
     get_file.metadata = {'url': '/files/stream/nonempty'}
 
-    async def get_file_large(
+    async def get_file_large_async(
             self, custom_headers=None, raw=False, callback=None, **operation_config):
         """Get a large file.
 
@@ -116,7 +116,7 @@ class FilesOperations(_FilesOperations):
         return deserialized
     get_file_large.metadata = {'url': '/files/stream/verylarge'}
 
-    async def get_empty_file(
+    async def get_empty_file_async(
             self, custom_headers=None, raw=False, callback=None, **operation_config):
         """Get empty file.
 

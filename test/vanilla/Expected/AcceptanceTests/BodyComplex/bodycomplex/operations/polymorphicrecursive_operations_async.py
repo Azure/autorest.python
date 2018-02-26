@@ -18,7 +18,7 @@ from .polymorphicrecursive_operations import PolymorphicrecursiveOperations as _
 class PolymorphicrecursiveOperations(_PolymorphicrecursiveOperations):
     """PolymorphicrecursiveOperations operations."""
 
-    async def get_valid(
+    async def get_valid_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get complex types that are polymorphic and have recursive references.
 
@@ -62,7 +62,7 @@ class PolymorphicrecursiveOperations(_PolymorphicrecursiveOperations):
         return deserialized
     get_valid.metadata = {'url': '/complex/polymorphicrecursive/valid'}
 
-    async def put_valid(
+    async def put_valid_async(
             self, complex_body, custom_headers=None, raw=False, **operation_config):
         """Put complex types that are polymorphic and have recursive references.
 

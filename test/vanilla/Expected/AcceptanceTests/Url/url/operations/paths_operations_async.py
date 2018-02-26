@@ -18,7 +18,7 @@ from .paths_operations import PathsOperations as _PathsOperations
 class PathsOperations(_PathsOperations):
     """PathsOperations operations."""
 
-    async def get_boolean_true(
+    async def get_boolean_true_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get true Boolean value on path.
 
@@ -61,7 +61,7 @@ class PathsOperations(_PathsOperations):
             return client_raw_response
     get_boolean_true.metadata = {'url': '/paths/bool/true/{boolPath}'}
 
-    async def get_boolean_false(
+    async def get_boolean_false_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get false Boolean value on path.
 
@@ -104,7 +104,7 @@ class PathsOperations(_PathsOperations):
             return client_raw_response
     get_boolean_false.metadata = {'url': '/paths/bool/false/{boolPath}'}
 
-    async def get_int_one_million(
+    async def get_int_one_million_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get '1000000' integer value.
 
@@ -147,7 +147,7 @@ class PathsOperations(_PathsOperations):
             return client_raw_response
     get_int_one_million.metadata = {'url': '/paths/int/1000000/{intPath}'}
 
-    async def get_int_negative_one_million(
+    async def get_int_negative_one_million_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get '-1000000' integer value.
 
@@ -190,7 +190,7 @@ class PathsOperations(_PathsOperations):
             return client_raw_response
     get_int_negative_one_million.metadata = {'url': '/paths/int/-1000000/{intPath}'}
 
-    async def get_ten_billion(
+    async def get_ten_billion_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get '10000000000' 64 bit integer value.
 
@@ -233,7 +233,7 @@ class PathsOperations(_PathsOperations):
             return client_raw_response
     get_ten_billion.metadata = {'url': '/paths/long/10000000000/{longPath}'}
 
-    async def get_negative_ten_billion(
+    async def get_negative_ten_billion_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get '-10000000000' 64 bit integer value.
 
@@ -276,7 +276,7 @@ class PathsOperations(_PathsOperations):
             return client_raw_response
     get_negative_ten_billion.metadata = {'url': '/paths/long/-10000000000/{longPath}'}
 
-    async def float_scientific_positive(
+    async def float_scientific_positive_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get '1.034E+20' numeric value.
 
@@ -319,7 +319,7 @@ class PathsOperations(_PathsOperations):
             return client_raw_response
     float_scientific_positive.metadata = {'url': '/paths/float/1.034E+20/{floatPath}'}
 
-    async def float_scientific_negative(
+    async def float_scientific_negative_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get '-1.034E-20' numeric value.
 
@@ -362,7 +362,7 @@ class PathsOperations(_PathsOperations):
             return client_raw_response
     float_scientific_negative.metadata = {'url': '/paths/float/-1.034E-20/{floatPath}'}
 
-    async def double_decimal_positive(
+    async def double_decimal_positive_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get '9999999.999' numeric value.
 
@@ -405,7 +405,7 @@ class PathsOperations(_PathsOperations):
             return client_raw_response
     double_decimal_positive.metadata = {'url': '/paths/double/9999999.999/{doublePath}'}
 
-    async def double_decimal_negative(
+    async def double_decimal_negative_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get '-9999999.999' numeric value.
 
@@ -448,7 +448,7 @@ class PathsOperations(_PathsOperations):
             return client_raw_response
     double_decimal_negative.metadata = {'url': '/paths/double/-9999999.999/{doublePath}'}
 
-    async def string_unicode(
+    async def string_unicode_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value.
 
@@ -491,7 +491,7 @@ class PathsOperations(_PathsOperations):
             return client_raw_response
     string_unicode.metadata = {'url': '/paths/string/unicode/{stringPath}'}
 
-    async def string_url_encoded(
+    async def string_url_encoded_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get 'begin!*'();:@ &=+$,/?#[]end.
 
@@ -534,7 +534,7 @@ class PathsOperations(_PathsOperations):
             return client_raw_response
     string_url_encoded.metadata = {'url': '/paths/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend/{stringPath}'}
 
-    async def string_empty(
+    async def string_empty_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get ''.
 
@@ -577,7 +577,7 @@ class PathsOperations(_PathsOperations):
             return client_raw_response
     string_empty.metadata = {'url': '/paths/string/empty/{stringPath}'}
 
-    async def string_null(
+    async def string_null_async(
             self, string_path, custom_headers=None, raw=False, **operation_config):
         """Get null (should throw).
 
@@ -620,7 +620,7 @@ class PathsOperations(_PathsOperations):
             return client_raw_response
     string_null.metadata = {'url': '/paths/string/null/{stringPath}'}
 
-    async def enum_valid(
+    async def enum_valid_async(
             self, enum_path, custom_headers=None, raw=False, **operation_config):
         """Get using uri with 'green color' in path parameter.
 
@@ -664,7 +664,7 @@ class PathsOperations(_PathsOperations):
             return client_raw_response
     enum_valid.metadata = {'url': '/paths/enum/green%20color/{enumPath}'}
 
-    async def enum_null(
+    async def enum_null_async(
             self, enum_path, custom_headers=None, raw=False, **operation_config):
         """Get null (should throw on the client before the request is sent on
         wire).
@@ -709,7 +709,7 @@ class PathsOperations(_PathsOperations):
             return client_raw_response
     enum_null.metadata = {'url': '/paths/string/null/{enumPath}'}
 
-    async def byte_multi_byte(
+    async def byte_multi_byte_async(
             self, byte_path, custom_headers=None, raw=False, **operation_config):
         """Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
 
@@ -753,7 +753,7 @@ class PathsOperations(_PathsOperations):
             return client_raw_response
     byte_multi_byte.metadata = {'url': '/paths/byte/multibyte/{bytePath}'}
 
-    async def byte_empty(
+    async def byte_empty_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get '' as byte array.
 
@@ -794,7 +794,7 @@ class PathsOperations(_PathsOperations):
             return client_raw_response
     byte_empty.metadata = {'url': '/paths/byte/empty/{bytePath}'}
 
-    async def byte_null(
+    async def byte_null_async(
             self, byte_path, custom_headers=None, raw=False, **operation_config):
         """Get null as byte array (should throw).
 
@@ -837,7 +837,7 @@ class PathsOperations(_PathsOperations):
             return client_raw_response
     byte_null.metadata = {'url': '/paths/byte/null/{bytePath}'}
 
-    async def date_valid(
+    async def date_valid_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get '2012-01-01' as date.
 
@@ -878,7 +878,7 @@ class PathsOperations(_PathsOperations):
             return client_raw_response
     date_valid.metadata = {'url': '/paths/date/2012-01-01/{datePath}'}
 
-    async def date_null(
+    async def date_null_async(
             self, date_path, custom_headers=None, raw=False, **operation_config):
         """Get null as date - this should throw or be unusable on the client side,
         depending on date representation.
@@ -922,7 +922,7 @@ class PathsOperations(_PathsOperations):
             return client_raw_response
     date_null.metadata = {'url': '/paths/date/null/{datePath}'}
 
-    async def date_time_valid(
+    async def date_time_valid_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get '2012-01-01T01:01:01Z' as date-time.
 
@@ -963,7 +963,7 @@ class PathsOperations(_PathsOperations):
             return client_raw_response
     date_time_valid.metadata = {'url': '/paths/datetime/2012-01-01T01%3A01%3A01Z/{dateTimePath}'}
 
-    async def date_time_null(
+    async def date_time_null_async(
             self, date_time_path, custom_headers=None, raw=False, **operation_config):
         """Get null as date-time, should be disallowed or throw depending on
         representation of date-time.
@@ -1007,7 +1007,7 @@ class PathsOperations(_PathsOperations):
             return client_raw_response
     date_time_null.metadata = {'url': '/paths/datetime/null/{dateTimePath}'}
 
-    async def base64_url(
+    async def base64_url_async(
             self, base64_url_path, custom_headers=None, raw=False, **operation_config):
         """Get 'lorem' encoded value as 'bG9yZW0' (base64url).
 
@@ -1050,7 +1050,7 @@ class PathsOperations(_PathsOperations):
             return client_raw_response
     base64_url.metadata = {'url': '/paths/string/bG9yZW0/{base64UrlPath}'}
 
-    async def array_csv_in_path(
+    async def array_csv_in_path_async(
             self, array_path, custom_headers=None, raw=False, **operation_config):
         """Get an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' ,
         null, ''] using the csv-array format.
@@ -1095,7 +1095,7 @@ class PathsOperations(_PathsOperations):
             return client_raw_response
     array_csv_in_path.metadata = {'url': '/paths/array/ArrayPath1%2cbegin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend%2c%2c/{arrayPath}'}
 
-    async def unix_time_url(
+    async def unix_time_url_async(
             self, unix_time_url_path, custom_headers=None, raw=False, **operation_config):
         """Get the date 2016-04-13 encoded value as '1460505600' (Unix time).
 

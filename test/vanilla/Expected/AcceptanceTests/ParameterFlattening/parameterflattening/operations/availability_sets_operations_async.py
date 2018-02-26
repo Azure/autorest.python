@@ -19,7 +19,7 @@ from .availability_sets_operations import AvailabilitySetsOperations as _Availab
 class AvailabilitySetsOperations(_AvailabilitySetsOperations):
     """AvailabilitySetsOperations operations."""
 
-    async def update(
+    async def update_async(
             self, resource_group_name, avset, tags, custom_headers=None, raw=False, **operation_config):
         """Updates the tags for an availability set.
 

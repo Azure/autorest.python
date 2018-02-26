@@ -18,7 +18,7 @@ from .number_operations import NumberOperations as _NumberOperations
 class NumberOperations(_NumberOperations):
     """NumberOperations operations."""
 
-    async def get_null(
+    async def get_null_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get null Number value.
 
@@ -62,7 +62,7 @@ class NumberOperations(_NumberOperations):
         return deserialized
     get_null.metadata = {'url': '/number/null'}
 
-    async def get_invalid_float(
+    async def get_invalid_float_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get invalid float Number value.
 
@@ -106,7 +106,7 @@ class NumberOperations(_NumberOperations):
         return deserialized
     get_invalid_float.metadata = {'url': '/number/invalidfloat'}
 
-    async def get_invalid_double(
+    async def get_invalid_double_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get invalid double Number value.
 
@@ -150,7 +150,7 @@ class NumberOperations(_NumberOperations):
         return deserialized
     get_invalid_double.metadata = {'url': '/number/invaliddouble'}
 
-    async def get_invalid_decimal(
+    async def get_invalid_decimal_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get invalid decimal Number value.
 
@@ -194,7 +194,7 @@ class NumberOperations(_NumberOperations):
         return deserialized
     get_invalid_decimal.metadata = {'url': '/number/invaliddecimal'}
 
-    async def put_big_float(
+    async def put_big_float_async(
             self, number_body, custom_headers=None, raw=False, **operation_config):
         """Put big float value 3.402823e+20.
 
@@ -237,7 +237,7 @@ class NumberOperations(_NumberOperations):
             return client_raw_response
     put_big_float.metadata = {'url': '/number/big/float/3.402823e+20'}
 
-    async def get_big_float(
+    async def get_big_float_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get big float value 3.402823e+20.
 
@@ -281,7 +281,7 @@ class NumberOperations(_NumberOperations):
         return deserialized
     get_big_float.metadata = {'url': '/number/big/float/3.402823e+20'}
 
-    async def put_big_double(
+    async def put_big_double_async(
             self, number_body, custom_headers=None, raw=False, **operation_config):
         """Put big double value 2.5976931e+101.
 
@@ -324,7 +324,7 @@ class NumberOperations(_NumberOperations):
             return client_raw_response
     put_big_double.metadata = {'url': '/number/big/double/2.5976931e+101'}
 
-    async def get_big_double(
+    async def get_big_double_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get big double value 2.5976931e+101.
 
@@ -368,7 +368,7 @@ class NumberOperations(_NumberOperations):
         return deserialized
     get_big_double.metadata = {'url': '/number/big/double/2.5976931e+101'}
 
-    async def put_big_double_positive_decimal(
+    async def put_big_double_positive_decimal_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Put big double value 99999999.99.
 
@@ -411,7 +411,7 @@ class NumberOperations(_NumberOperations):
             return client_raw_response
     put_big_double_positive_decimal.metadata = {'url': '/number/big/double/99999999.99'}
 
-    async def get_big_double_positive_decimal(
+    async def get_big_double_positive_decimal_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get big double value 99999999.99.
 
@@ -455,7 +455,7 @@ class NumberOperations(_NumberOperations):
         return deserialized
     get_big_double_positive_decimal.metadata = {'url': '/number/big/double/99999999.99'}
 
-    async def put_big_double_negative_decimal(
+    async def put_big_double_negative_decimal_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Put big double value -99999999.99.
 
@@ -498,7 +498,7 @@ class NumberOperations(_NumberOperations):
             return client_raw_response
     put_big_double_negative_decimal.metadata = {'url': '/number/big/double/-99999999.99'}
 
-    async def get_big_double_negative_decimal(
+    async def get_big_double_negative_decimal_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get big double value -99999999.99.
 
@@ -542,7 +542,7 @@ class NumberOperations(_NumberOperations):
         return deserialized
     get_big_double_negative_decimal.metadata = {'url': '/number/big/double/-99999999.99'}
 
-    async def put_big_decimal(
+    async def put_big_decimal_async(
             self, number_body, custom_headers=None, raw=False, **operation_config):
         """Put big decimal value 2.5976931e+101.
 
@@ -585,7 +585,7 @@ class NumberOperations(_NumberOperations):
             return client_raw_response
     put_big_decimal.metadata = {'url': '/number/big/decimal/2.5976931e+101'}
 
-    async def get_big_decimal(
+    async def get_big_decimal_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get big decimal value 2.5976931e+101.
 
@@ -629,7 +629,7 @@ class NumberOperations(_NumberOperations):
         return deserialized
     get_big_decimal.metadata = {'url': '/number/big/decimal/2.5976931e+101'}
 
-    async def put_big_decimal_positive_decimal(
+    async def put_big_decimal_positive_decimal_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Put big decimal value 99999999.99.
 
@@ -672,7 +672,7 @@ class NumberOperations(_NumberOperations):
             return client_raw_response
     put_big_decimal_positive_decimal.metadata = {'url': '/number/big/decimal/99999999.99'}
 
-    async def get_big_decimal_positive_decimal(
+    async def get_big_decimal_positive_decimal_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get big decimal value 99999999.99.
 
@@ -716,7 +716,7 @@ class NumberOperations(_NumberOperations):
         return deserialized
     get_big_decimal_positive_decimal.metadata = {'url': '/number/big/decimal/99999999.99'}
 
-    async def put_big_decimal_negative_decimal(
+    async def put_big_decimal_negative_decimal_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Put big decimal value -99999999.99.
 
@@ -759,7 +759,7 @@ class NumberOperations(_NumberOperations):
             return client_raw_response
     put_big_decimal_negative_decimal.metadata = {'url': '/number/big/decimal/-99999999.99'}
 
-    async def get_big_decimal_negative_decimal(
+    async def get_big_decimal_negative_decimal_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get big decimal value -99999999.99.
 
@@ -803,7 +803,7 @@ class NumberOperations(_NumberOperations):
         return deserialized
     get_big_decimal_negative_decimal.metadata = {'url': '/number/big/decimal/-99999999.99'}
 
-    async def put_small_float(
+    async def put_small_float_async(
             self, number_body, custom_headers=None, raw=False, **operation_config):
         """Put small float value 3.402823e-20.
 
@@ -846,7 +846,7 @@ class NumberOperations(_NumberOperations):
             return client_raw_response
     put_small_float.metadata = {'url': '/number/small/float/3.402823e-20'}
 
-    async def get_small_float(
+    async def get_small_float_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get big double value 3.402823e-20.
 
@@ -890,7 +890,7 @@ class NumberOperations(_NumberOperations):
         return deserialized
     get_small_float.metadata = {'url': '/number/small/float/3.402823e-20'}
 
-    async def put_small_double(
+    async def put_small_double_async(
             self, number_body, custom_headers=None, raw=False, **operation_config):
         """Put small double value 2.5976931e-101.
 
@@ -933,7 +933,7 @@ class NumberOperations(_NumberOperations):
             return client_raw_response
     put_small_double.metadata = {'url': '/number/small/double/2.5976931e-101'}
 
-    async def get_small_double(
+    async def get_small_double_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get big double value 2.5976931e-101.
 
@@ -977,7 +977,7 @@ class NumberOperations(_NumberOperations):
         return deserialized
     get_small_double.metadata = {'url': '/number/small/double/2.5976931e-101'}
 
-    async def put_small_decimal(
+    async def put_small_decimal_async(
             self, number_body, custom_headers=None, raw=False, **operation_config):
         """Put small decimal value 2.5976931e-101.
 
@@ -1020,7 +1020,7 @@ class NumberOperations(_NumberOperations):
             return client_raw_response
     put_small_decimal.metadata = {'url': '/number/small/decimal/2.5976931e-101'}
 
-    async def get_small_decimal(
+    async def get_small_decimal_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get small decimal value 2.5976931e-101.
 

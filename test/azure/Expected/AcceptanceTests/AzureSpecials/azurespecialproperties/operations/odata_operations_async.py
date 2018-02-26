@@ -18,7 +18,7 @@ from .odata_operations import OdataOperations as _OdataOperations
 
 class OdataOperations(_OdataOperations):
 
-    async def get_with_filter(
+    async def get_with_filter_async(
             self, filter=None, top=None, orderby=None, custom_headers=None, raw=False, **operation_config):
         """Specify filter parameter with value '$filter=id gt 5 and name eq
         'foo'&$orderby=id&$top=10'.

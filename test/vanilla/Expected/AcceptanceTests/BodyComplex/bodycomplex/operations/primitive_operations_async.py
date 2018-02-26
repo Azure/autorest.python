@@ -18,7 +18,7 @@ from .primitive_operations import PrimitiveOperations as _PrimitiveOperations
 class PrimitiveOperations(_PrimitiveOperations):
     """PrimitiveOperations operations."""
 
-    async def get_int(
+    async def get_int_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get complex types with integer properties.
 
@@ -63,7 +63,7 @@ class PrimitiveOperations(_PrimitiveOperations):
         return deserialized
     get_int.metadata = {'url': '/complex/primitive/integer'}
 
-    async def put_int(
+    async def put_int_async(
             self, complex_body, custom_headers=None, raw=False, **operation_config):
         """Put complex types with integer properties.
 
@@ -106,7 +106,7 @@ class PrimitiveOperations(_PrimitiveOperations):
             return client_raw_response
     put_int.metadata = {'url': '/complex/primitive/integer'}
 
-    async def get_long(
+    async def get_long_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get complex types with long properties.
 
@@ -151,7 +151,7 @@ class PrimitiveOperations(_PrimitiveOperations):
         return deserialized
     get_long.metadata = {'url': '/complex/primitive/long'}
 
-    async def put_long(
+    async def put_long_async(
             self, complex_body, custom_headers=None, raw=False, **operation_config):
         """Put complex types with long properties.
 
@@ -194,7 +194,7 @@ class PrimitiveOperations(_PrimitiveOperations):
             return client_raw_response
     put_long.metadata = {'url': '/complex/primitive/long'}
 
-    async def get_float(
+    async def get_float_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get complex types with float properties.
 
@@ -239,7 +239,7 @@ class PrimitiveOperations(_PrimitiveOperations):
         return deserialized
     get_float.metadata = {'url': '/complex/primitive/float'}
 
-    async def put_float(
+    async def put_float_async(
             self, complex_body, custom_headers=None, raw=False, **operation_config):
         """Put complex types with float properties.
 
@@ -282,7 +282,7 @@ class PrimitiveOperations(_PrimitiveOperations):
             return client_raw_response
     put_float.metadata = {'url': '/complex/primitive/float'}
 
-    async def get_double(
+    async def get_double_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get complex types with double properties.
 
@@ -327,7 +327,7 @@ class PrimitiveOperations(_PrimitiveOperations):
         return deserialized
     get_double.metadata = {'url': '/complex/primitive/double'}
 
-    async def put_double(
+    async def put_double_async(
             self, complex_body, custom_headers=None, raw=False, **operation_config):
         """Put complex types with double properties.
 
@@ -371,7 +371,7 @@ class PrimitiveOperations(_PrimitiveOperations):
             return client_raw_response
     put_double.metadata = {'url': '/complex/primitive/double'}
 
-    async def get_bool(
+    async def get_bool_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get complex types with bool properties.
 
@@ -416,7 +416,7 @@ class PrimitiveOperations(_PrimitiveOperations):
         return deserialized
     get_bool.metadata = {'url': '/complex/primitive/bool'}
 
-    async def put_bool(
+    async def put_bool_async(
             self, complex_body, custom_headers=None, raw=False, **operation_config):
         """Put complex types with bool properties.
 
@@ -459,7 +459,7 @@ class PrimitiveOperations(_PrimitiveOperations):
             return client_raw_response
     put_bool.metadata = {'url': '/complex/primitive/bool'}
 
-    async def get_string(
+    async def get_string_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get complex types with string properties.
 
@@ -504,7 +504,7 @@ class PrimitiveOperations(_PrimitiveOperations):
         return deserialized
     get_string.metadata = {'url': '/complex/primitive/string'}
 
-    async def put_string(
+    async def put_string_async(
             self, complex_body, custom_headers=None, raw=False, **operation_config):
         """Put complex types with string properties.
 
@@ -547,7 +547,7 @@ class PrimitiveOperations(_PrimitiveOperations):
             return client_raw_response
     put_string.metadata = {'url': '/complex/primitive/string'}
 
-    async def get_date(
+    async def get_date_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get complex types with date properties.
 
@@ -592,7 +592,7 @@ class PrimitiveOperations(_PrimitiveOperations):
         return deserialized
     get_date.metadata = {'url': '/complex/primitive/date'}
 
-    async def put_date(
+    async def put_date_async(
             self, complex_body, custom_headers=None, raw=False, **operation_config):
         """Put complex types with date properties.
 
@@ -635,7 +635,7 @@ class PrimitiveOperations(_PrimitiveOperations):
             return client_raw_response
     put_date.metadata = {'url': '/complex/primitive/date'}
 
-    async def get_date_time(
+    async def get_date_time_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get complex types with datetime properties.
 
@@ -680,7 +680,7 @@ class PrimitiveOperations(_PrimitiveOperations):
         return deserialized
     get_date_time.metadata = {'url': '/complex/primitive/datetime'}
 
-    async def put_date_time(
+    async def put_date_time_async(
             self, complex_body, custom_headers=None, raw=False, **operation_config):
         """Put complex types with datetime properties.
 
@@ -724,7 +724,7 @@ class PrimitiveOperations(_PrimitiveOperations):
             return client_raw_response
     put_date_time.metadata = {'url': '/complex/primitive/datetime'}
 
-    async def get_date_time_rfc1123(
+    async def get_date_time_rfc1123_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get complex types with datetimeRfc1123 properties.
 
@@ -769,7 +769,7 @@ class PrimitiveOperations(_PrimitiveOperations):
         return deserialized
     get_date_time_rfc1123.metadata = {'url': '/complex/primitive/datetimerfc1123'}
 
-    async def put_date_time_rfc1123(
+    async def put_date_time_rfc1123_async(
             self, complex_body, custom_headers=None, raw=False, **operation_config):
         """Put complex types with datetimeRfc1123 properties.
 
@@ -813,7 +813,7 @@ class PrimitiveOperations(_PrimitiveOperations):
             return client_raw_response
     put_date_time_rfc1123.metadata = {'url': '/complex/primitive/datetimerfc1123'}
 
-    async def get_duration(
+    async def get_duration_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get complex types with duration properties.
 
@@ -858,7 +858,7 @@ class PrimitiveOperations(_PrimitiveOperations):
         return deserialized
     get_duration.metadata = {'url': '/complex/primitive/duration'}
 
-    async def put_duration(
+    async def put_duration_async(
             self, field=None, custom_headers=None, raw=False, **operation_config):
         """Put complex types with duration properties.
 
@@ -903,7 +903,7 @@ class PrimitiveOperations(_PrimitiveOperations):
             return client_raw_response
     put_duration.metadata = {'url': '/complex/primitive/duration'}
 
-    async def get_byte(
+    async def get_byte_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get complex types with byte properties.
 
@@ -948,7 +948,7 @@ class PrimitiveOperations(_PrimitiveOperations):
         return deserialized
     get_byte.metadata = {'url': '/complex/primitive/byte'}
 
-    async def put_byte(
+    async def put_byte_async(
             self, field=None, custom_headers=None, raw=False, **operation_config):
         """Put complex types with byte properties.
 

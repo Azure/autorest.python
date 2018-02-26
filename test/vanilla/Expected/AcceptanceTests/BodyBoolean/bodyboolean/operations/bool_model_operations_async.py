@@ -18,7 +18,7 @@ from .bool_model_operations import BoolModelOperations as _BoolModelOperations
 class BoolModelOperations(_BoolModelOperations):
     """BoolModelOperations operations."""
 
-    async def get_true(
+    async def get_true_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get true Boolean value.
 
@@ -62,7 +62,7 @@ class BoolModelOperations(_BoolModelOperations):
         return deserialized
     get_true.metadata = {'url': '/bool/true'}
 
-    async def put_true(
+    async def put_true_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Set Boolean value true.
 
@@ -105,7 +105,7 @@ class BoolModelOperations(_BoolModelOperations):
             return client_raw_response
     put_true.metadata = {'url': '/bool/true'}
 
-    async def get_false(
+    async def get_false_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get false Boolean value.
 
@@ -149,7 +149,7 @@ class BoolModelOperations(_BoolModelOperations):
         return deserialized
     get_false.metadata = {'url': '/bool/false'}
 
-    async def put_false(
+    async def put_false_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Set Boolean value false.
 
@@ -192,7 +192,7 @@ class BoolModelOperations(_BoolModelOperations):
             return client_raw_response
     put_false.metadata = {'url': '/bool/false'}
 
-    async def get_null(
+    async def get_null_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get null Boolean value.
 
@@ -236,7 +236,7 @@ class BoolModelOperations(_BoolModelOperations):
         return deserialized
     get_null.metadata = {'url': '/bool/null'}
 
-    async def get_invalid(
+    async def get_invalid_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get invalid Boolean value.
 

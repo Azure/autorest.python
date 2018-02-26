@@ -18,7 +18,7 @@ from .explicit_operations import ExplicitOperations as _ExplicitOperations
 class ExplicitOperations(_ExplicitOperations):
     """ExplicitOperations operations."""
 
-    async def post_required_integer_parameter(
+    async def post_required_integer_parameter_async(
             self, body_parameter, custom_headers=None, raw=False, **operation_config):
         """Test explicitly required integer. Please put null and the client
         library should throw before the request is sent.
@@ -64,7 +64,7 @@ class ExplicitOperations(_ExplicitOperations):
             return client_raw_response
     post_required_integer_parameter.metadata = {'url': '/reqopt/requied/integer/parameter'}
 
-    async def post_optional_integer_parameter(
+    async def post_optional_integer_parameter_async(
             self, body_parameter=None, custom_headers=None, raw=False, **operation_config):
         """Test explicitly optional integer. Please put null.
 
@@ -111,7 +111,7 @@ class ExplicitOperations(_ExplicitOperations):
             return client_raw_response
     post_optional_integer_parameter.metadata = {'url': '/reqopt/optional/integer/parameter'}
 
-    async def post_required_integer_property(
+    async def post_required_integer_property_async(
             self, value, custom_headers=None, raw=False, **operation_config):
         """Test explicitly required integer. Please put a valid int-wrapper with
         'value' = null and the client library should throw before the request
@@ -160,7 +160,7 @@ class ExplicitOperations(_ExplicitOperations):
             return client_raw_response
     post_required_integer_property.metadata = {'url': '/reqopt/requied/integer/property'}
 
-    async def post_optional_integer_property(
+    async def post_optional_integer_property_async(
             self, value=None, custom_headers=None, raw=False, **operation_config):
         """Test explicitly optional integer. Please put a valid int-wrapper with
         'value' = null.
@@ -212,7 +212,7 @@ class ExplicitOperations(_ExplicitOperations):
             return client_raw_response
     post_optional_integer_property.metadata = {'url': '/reqopt/optional/integer/property'}
 
-    async def post_required_integer_header(
+    async def post_required_integer_header_async(
             self, header_parameter, custom_headers=None, raw=False, **operation_config):
         """Test explicitly required integer. Please put a header 'headerParameter'
         => null and the client library should throw before the request is sent.
@@ -255,7 +255,7 @@ class ExplicitOperations(_ExplicitOperations):
             return client_raw_response
     post_required_integer_header.metadata = {'url': '/reqopt/requied/integer/header'}
 
-    async def post_optional_integer_header(
+    async def post_optional_integer_header_async(
             self, header_parameter=None, custom_headers=None, raw=False, **operation_config):
         """Test explicitly optional integer. Please put a header 'headerParameter'
         => null.
@@ -298,7 +298,7 @@ class ExplicitOperations(_ExplicitOperations):
             return client_raw_response
     post_optional_integer_header.metadata = {'url': '/reqopt/optional/integer/header'}
 
-    async def post_required_string_parameter(
+    async def post_required_string_parameter_async(
             self, body_parameter, custom_headers=None, raw=False, **operation_config):
         """Test explicitly required string. Please put null and the client library
         should throw before the request is sent.
@@ -344,7 +344,7 @@ class ExplicitOperations(_ExplicitOperations):
             return client_raw_response
     post_required_string_parameter.metadata = {'url': '/reqopt/requied/string/parameter'}
 
-    async def post_optional_string_parameter(
+    async def post_optional_string_parameter_async(
             self, body_parameter=None, custom_headers=None, raw=False, **operation_config):
         """Test explicitly optional string. Please put null.
 
@@ -391,7 +391,7 @@ class ExplicitOperations(_ExplicitOperations):
             return client_raw_response
     post_optional_string_parameter.metadata = {'url': '/reqopt/optional/string/parameter'}
 
-    async def post_required_string_property(
+    async def post_required_string_property_async(
             self, value, custom_headers=None, raw=False, **operation_config):
         """Test explicitly required string. Please put a valid string-wrapper with
         'value' = null and the client library should throw before the request
@@ -440,7 +440,7 @@ class ExplicitOperations(_ExplicitOperations):
             return client_raw_response
     post_required_string_property.metadata = {'url': '/reqopt/requied/string/property'}
 
-    async def post_optional_string_property(
+    async def post_optional_string_property_async(
             self, value=None, custom_headers=None, raw=False, **operation_config):
         """Test explicitly optional integer. Please put a valid string-wrapper
         with 'value' = null.
@@ -492,7 +492,7 @@ class ExplicitOperations(_ExplicitOperations):
             return client_raw_response
     post_optional_string_property.metadata = {'url': '/reqopt/optional/string/property'}
 
-    async def post_required_string_header(
+    async def post_required_string_header_async(
             self, header_parameter, custom_headers=None, raw=False, **operation_config):
         """Test explicitly required string. Please put a header 'headerParameter'
         => null and the client library should throw before the request is sent.
@@ -535,7 +535,7 @@ class ExplicitOperations(_ExplicitOperations):
             return client_raw_response
     post_required_string_header.metadata = {'url': '/reqopt/requied/string/header'}
 
-    async def post_optional_string_header(
+    async def post_optional_string_header_async(
             self, body_parameter=None, custom_headers=None, raw=False, **operation_config):
         """Test explicitly optional string. Please put a header 'headerParameter'
         => null.
@@ -578,7 +578,7 @@ class ExplicitOperations(_ExplicitOperations):
             return client_raw_response
     post_optional_string_header.metadata = {'url': '/reqopt/optional/string/header'}
 
-    async def post_required_class_parameter(
+    async def post_required_class_parameter_async(
             self, body_parameter, custom_headers=None, raw=False, **operation_config):
         """Test explicitly required complex object. Please put null and the client
         library should throw before the request is sent.
@@ -624,7 +624,7 @@ class ExplicitOperations(_ExplicitOperations):
             return client_raw_response
     post_required_class_parameter.metadata = {'url': '/reqopt/requied/class/parameter'}
 
-    async def post_optional_class_parameter(
+    async def post_optional_class_parameter_async(
             self, body_parameter=None, custom_headers=None, raw=False, **operation_config):
         """Test explicitly optional complex object. Please put null.
 
@@ -671,7 +671,7 @@ class ExplicitOperations(_ExplicitOperations):
             return client_raw_response
     post_optional_class_parameter.metadata = {'url': '/reqopt/optional/class/parameter'}
 
-    async def post_required_class_property(
+    async def post_required_class_property_async(
             self, value, custom_headers=None, raw=False, **operation_config):
         """Test explicitly required complex object. Please put a valid
         class-wrapper with 'value' = null and the client library should throw
@@ -720,7 +720,7 @@ class ExplicitOperations(_ExplicitOperations):
             return client_raw_response
     post_required_class_property.metadata = {'url': '/reqopt/requied/class/property'}
 
-    async def post_optional_class_property(
+    async def post_optional_class_property_async(
             self, value=None, custom_headers=None, raw=False, **operation_config):
         """Test explicitly optional complex object. Please put a valid
         class-wrapper with 'value' = null.
@@ -772,7 +772,7 @@ class ExplicitOperations(_ExplicitOperations):
             return client_raw_response
     post_optional_class_property.metadata = {'url': '/reqopt/optional/class/property'}
 
-    async def post_required_array_parameter(
+    async def post_required_array_parameter_async(
             self, body_parameter, custom_headers=None, raw=False, **operation_config):
         """Test explicitly required array. Please put null and the client library
         should throw before the request is sent.
@@ -818,7 +818,7 @@ class ExplicitOperations(_ExplicitOperations):
             return client_raw_response
     post_required_array_parameter.metadata = {'url': '/reqopt/requied/array/parameter'}
 
-    async def post_optional_array_parameter(
+    async def post_optional_array_parameter_async(
             self, body_parameter=None, custom_headers=None, raw=False, **operation_config):
         """Test explicitly optional array. Please put null.
 
@@ -865,7 +865,7 @@ class ExplicitOperations(_ExplicitOperations):
             return client_raw_response
     post_optional_array_parameter.metadata = {'url': '/reqopt/optional/array/parameter'}
 
-    async def post_required_array_property(
+    async def post_required_array_property_async(
             self, value, custom_headers=None, raw=False, **operation_config):
         """Test explicitly required array. Please put a valid array-wrapper with
         'value' = null and the client library should throw before the request
@@ -914,7 +914,7 @@ class ExplicitOperations(_ExplicitOperations):
             return client_raw_response
     post_required_array_property.metadata = {'url': '/reqopt/requied/array/property'}
 
-    async def post_optional_array_property(
+    async def post_optional_array_property_async(
             self, value=None, custom_headers=None, raw=False, **operation_config):
         """Test explicitly optional array. Please put a valid array-wrapper with
         'value' = null.
@@ -966,7 +966,7 @@ class ExplicitOperations(_ExplicitOperations):
             return client_raw_response
     post_optional_array_property.metadata = {'url': '/reqopt/optional/array/property'}
 
-    async def post_required_array_header(
+    async def post_required_array_header_async(
             self, header_parameter, custom_headers=None, raw=False, **operation_config):
         """Test explicitly required array. Please put a header 'headerParameter'
         => null and the client library should throw before the request is sent.
@@ -1009,7 +1009,7 @@ class ExplicitOperations(_ExplicitOperations):
             return client_raw_response
     post_required_array_header.metadata = {'url': '/reqopt/requied/array/header'}
 
-    async def post_optional_array_header(
+    async def post_optional_array_header_async(
             self, header_parameter=None, custom_headers=None, raw=False, **operation_config):
         """Test explicitly optional integer. Please put a header 'headerParameter'
         => null.

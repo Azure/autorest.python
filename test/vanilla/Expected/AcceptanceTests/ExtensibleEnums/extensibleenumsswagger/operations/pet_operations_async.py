@@ -19,7 +19,7 @@ from .pet_operations import PetOperations as _PetOperations
 class PetOperations(_PetOperations):
     """PetOperations operations."""
 
-    async def get_by_pet_id(
+    async def get_by_pet_id_async(
             self, pet_id, custom_headers=None, raw=False, **operation_config):
         """
 
@@ -71,7 +71,7 @@ class PetOperations(_PetOperations):
         return deserialized
     get_by_pet_id.metadata = {'url': '/extensibleenums/pet/{petId}'}
 
-    async def add_pet(
+    async def add_pet_async(
             self, pet_param=None, custom_headers=None, raw=False, **operation_config):
         """
 

@@ -18,7 +18,7 @@ from .api_version_default_operations import ApiVersionDefaultOperations as _ApiV
 
 class ApiVersionDefaultOperations(_ApiVersionDefaultOperations):
 
-    async def get_method_global_valid(
+    async def get_method_global_valid_async(
             self, custom_headers=None, raw=False, **operation_config):
         """GET method with api-version modeled in global settings.
 
@@ -61,7 +61,7 @@ class ApiVersionDefaultOperations(_ApiVersionDefaultOperations):
             return client_raw_response
     get_method_global_valid.metadata = {'url': '/azurespecials/apiVersion/method/string/none/query/global/2015-07-01-preview'}
 
-    async def get_method_global_not_provided_valid(
+    async def get_method_global_not_provided_valid_async(
             self, custom_headers=None, raw=False, **operation_config):
         """GET method with api-version modeled in global settings.
 
@@ -104,7 +104,7 @@ class ApiVersionDefaultOperations(_ApiVersionDefaultOperations):
             return client_raw_response
     get_method_global_not_provided_valid.metadata = {'url': '/azurespecials/apiVersion/method/string/none/query/globalNotProvided/2015-07-01-preview'}
 
-    async def get_path_global_valid(
+    async def get_path_global_valid_async(
             self, custom_headers=None, raw=False, **operation_config):
         """GET method with api-version modeled in global settings.
 
@@ -147,7 +147,7 @@ class ApiVersionDefaultOperations(_ApiVersionDefaultOperations):
             return client_raw_response
     get_path_global_valid.metadata = {'url': '/azurespecials/apiVersion/path/string/none/query/global/2015-07-01-preview'}
 
-    async def get_swagger_global_valid(
+    async def get_swagger_global_valid_async(
             self, custom_headers=None, raw=False, **operation_config):
         """GET method with api-version modeled in global settings.
 

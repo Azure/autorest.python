@@ -18,7 +18,7 @@ from .inheritance_operations import InheritanceOperations as _InheritanceOperati
 class InheritanceOperations(_InheritanceOperations):
     """InheritanceOperations operations."""
 
-    async def get_valid(
+    async def get_valid_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get complex types that extend others.
 
@@ -63,7 +63,7 @@ class InheritanceOperations(_InheritanceOperations):
         return deserialized
     get_valid.metadata = {'url': '/complex/inheritance/valid'}
 
-    async def put_valid(
+    async def put_valid_async(
             self, complex_body, custom_headers=None, raw=False, **operation_config):
         """Put complex types that extend others.
 

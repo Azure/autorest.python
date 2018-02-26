@@ -22,7 +22,7 @@ from .lr_os_operations import LROsOperations as _LROsOperations
 class LROsOperations(_LROsOperations):
 
 
-    async def _put200_succeeded_initial(
+    async def _put200_succeeded_initial_async(
             self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = self.put200_succeeded.metadata['url']
@@ -67,7 +67,7 @@ class LROsOperations(_LROsOperations):
 
         return deserialized
 
-    async def put200_succeeded(
+    async def put200_succeeded_async(
             self, product=None, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running put request, service returns a 200 to the initial request,
         with an entity that contains ProvisioningState=’Succeeded’.
@@ -113,7 +113,7 @@ class LROsOperations(_LROsOperations):
     put200_succeeded.metadata = {'url': '/lro/put/200/succeeded'}
 
 
-    async def _put200_succeeded_no_state_initial(
+    async def _put200_succeeded_no_state_initial_async(
             self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = self.put200_succeeded_no_state.metadata['url']
@@ -158,7 +158,7 @@ class LROsOperations(_LROsOperations):
 
         return deserialized
 
-    async def put200_succeeded_no_state(
+    async def put200_succeeded_no_state_async(
             self, product=None, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running put request, service returns a 200 to the initial request,
         with an entity that does not contain ProvisioningState=’Succeeded’.
@@ -204,7 +204,7 @@ class LROsOperations(_LROsOperations):
     put200_succeeded_no_state.metadata = {'url': '/lro/put/200/succeeded/nostate'}
 
 
-    async def _put202_retry200_initial(
+    async def _put202_retry200_initial_async(
             self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = self.put202_retry200.metadata['url']
@@ -249,7 +249,7 @@ class LROsOperations(_LROsOperations):
 
         return deserialized
 
-    async def put202_retry200(
+    async def put202_retry200_async(
             self, product=None, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running put request, service returns a 202 to the initial request,
         with a location header that points to a polling URL that returns a 200
@@ -296,7 +296,7 @@ class LROsOperations(_LROsOperations):
     put202_retry200.metadata = {'url': '/lro/put/202/retry/200'}
 
 
-    async def _put201_creating_succeeded200_initial(
+    async def _put201_creating_succeeded200_initial_async(
             self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = self.put201_creating_succeeded200.metadata['url']
@@ -343,7 +343,7 @@ class LROsOperations(_LROsOperations):
 
         return deserialized
 
-    async def put201_creating_succeeded200(
+    async def put201_creating_succeeded200_async(
             self, product=None, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running put request, service returns a 201 to the initial request,
         with an entity that contains ProvisioningState=’Creating’.  Polls
@@ -391,7 +391,7 @@ class LROsOperations(_LROsOperations):
     put201_creating_succeeded200.metadata = {'url': '/lro/put/201/creating/succeeded/200'}
 
 
-    async def _put200_updating_succeeded204_initial(
+    async def _put200_updating_succeeded204_initial_async(
             self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = self.put200_updating_succeeded204.metadata['url']
@@ -436,7 +436,7 @@ class LROsOperations(_LROsOperations):
 
         return deserialized
 
-    async def put200_updating_succeeded204(
+    async def put200_updating_succeeded204_async(
             self, product=None, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running put request, service returns a 201 to the initial request,
         with an entity that contains ProvisioningState=’Updating’.  Polls
@@ -484,7 +484,7 @@ class LROsOperations(_LROsOperations):
     put200_updating_succeeded204.metadata = {'url': '/lro/put/200/updating/succeeded/200'}
 
 
-    async def _put201_creating_failed200_initial(
+    async def _put201_creating_failed200_initial_async(
             self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = self.put201_creating_failed200.metadata['url']
@@ -531,7 +531,7 @@ class LROsOperations(_LROsOperations):
 
         return deserialized
 
-    async def put201_creating_failed200(
+    async def put201_creating_failed200_async(
             self, product=None, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running put request, service returns a 201 to the initial request,
         with an entity that contains ProvisioningState=’Created’.  Polls return
@@ -579,7 +579,7 @@ class LROsOperations(_LROsOperations):
     put201_creating_failed200.metadata = {'url': '/lro/put/201/created/failed/200'}
 
 
-    async def _put200_acceptedcanceled200_initial(
+    async def _put200_acceptedcanceled200_initial_async(
             self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = self.put200_acceptedcanceled200.metadata['url']
@@ -624,7 +624,7 @@ class LROsOperations(_LROsOperations):
 
         return deserialized
 
-    async def put200_acceptedcanceled200(
+    async def put200_acceptedcanceled200_async(
             self, product=None, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running put request, service returns a 201 to the initial request,
         with an entity that contains ProvisioningState=’Creating’.  Polls
@@ -672,7 +672,7 @@ class LROsOperations(_LROsOperations):
     put200_acceptedcanceled200.metadata = {'url': '/lro/put/200/accepted/canceled/200'}
 
 
-    async def _put_no_header_in_retry_initial(
+    async def _put_no_header_in_retry_initial_async(
             self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = self.put_no_header_in_retry.metadata['url']
@@ -722,7 +722,7 @@ class LROsOperations(_LROsOperations):
 
         return deserialized
 
-    async def put_no_header_in_retry(
+    async def put_no_header_in_retry_async(
             self, product=None, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running put request, service returns a 202 to the initial request
         with location header. Subsequent calls to operation status do not
@@ -773,7 +773,7 @@ class LROsOperations(_LROsOperations):
     put_no_header_in_retry.metadata = {'url': '/lro/put/noheader/202/200'}
 
 
-    async def _put_async_retry_succeeded_initial(
+    async def _put_async_retry_succeeded_initial_async(
             self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = self.put_async_retry_succeeded.metadata['url']
@@ -825,7 +825,7 @@ class LROsOperations(_LROsOperations):
 
         return deserialized
 
-    async def put_async_retry_succeeded(
+    async def put_async_retry_succeeded_async(
             self, product=None, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running put request, service returns a 200 to the initial request,
         with an entity that contains ProvisioningState=’Creating’. Poll the
@@ -879,7 +879,7 @@ class LROsOperations(_LROsOperations):
     put_async_retry_succeeded.metadata = {'url': '/lro/putasync/retry/succeeded'}
 
 
-    async def _put_async_no_retry_succeeded_initial(
+    async def _put_async_no_retry_succeeded_initial_async(
             self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = self.put_async_no_retry_succeeded.metadata['url']
@@ -930,7 +930,7 @@ class LROsOperations(_LROsOperations):
 
         return deserialized
 
-    async def put_async_no_retry_succeeded(
+    async def put_async_no_retry_succeeded_async(
             self, product=None, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running put request, service returns a 200 to the initial request,
         with an entity that contains ProvisioningState=’Creating’. Poll the
@@ -983,7 +983,7 @@ class LROsOperations(_LROsOperations):
     put_async_no_retry_succeeded.metadata = {'url': '/lro/putasync/noretry/succeeded'}
 
 
-    async def _put_async_retry_failed_initial(
+    async def _put_async_retry_failed_initial_async(
             self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = self.put_async_retry_failed.metadata['url']
@@ -1035,7 +1035,7 @@ class LROsOperations(_LROsOperations):
 
         return deserialized
 
-    async def put_async_retry_failed(
+    async def put_async_retry_failed_async(
             self, product=None, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running put request, service returns a 200 to the initial request,
         with an entity that contains ProvisioningState=’Creating’. Poll the
@@ -1089,7 +1089,7 @@ class LROsOperations(_LROsOperations):
     put_async_retry_failed.metadata = {'url': '/lro/putasync/retry/failed'}
 
 
-    async def _put_async_no_retrycanceled_initial(
+    async def _put_async_no_retrycanceled_initial_async(
             self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = self.put_async_no_retrycanceled.metadata['url']
@@ -1140,7 +1140,7 @@ class LROsOperations(_LROsOperations):
 
         return deserialized
 
-    async def put_async_no_retrycanceled(
+    async def put_async_no_retrycanceled_async(
             self, product=None, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running put request, service returns a 200 to the initial request,
         with an entity that contains ProvisioningState=’Creating’. Poll the
@@ -1193,7 +1193,7 @@ class LROsOperations(_LROsOperations):
     put_async_no_retrycanceled.metadata = {'url': '/lro/putasync/noretry/canceled'}
 
 
-    async def _put_async_no_header_in_retry_initial(
+    async def _put_async_no_header_in_retry_initial_async(
             self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = self.put_async_no_header_in_retry.metadata['url']
@@ -1243,7 +1243,7 @@ class LROsOperations(_LROsOperations):
 
         return deserialized
 
-    async def put_async_no_header_in_retry(
+    async def put_async_no_header_in_retry_async(
             self, product=None, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running put request, service returns a 202 to the initial request
         with Azure-AsyncOperation header. Subsequent calls to operation status
@@ -1294,7 +1294,7 @@ class LROsOperations(_LROsOperations):
     put_async_no_header_in_retry.metadata = {'url': '/lro/putasync/noheader/201/200'}
 
 
-    async def _put_non_resource_initial(
+    async def _put_non_resource_initial_async(
             self, sku=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = self.put_non_resource.metadata['url']
@@ -1339,7 +1339,7 @@ class LROsOperations(_LROsOperations):
 
         return deserialized
 
-    async def put_non_resource(
+    async def put_non_resource_async(
             self, sku=None, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running put request with non resource.
 
@@ -1383,7 +1383,7 @@ class LROsOperations(_LROsOperations):
     put_non_resource.metadata = {'url': '/lro/putnonresource/202/200'}
 
 
-    async def _put_async_non_resource_initial(
+    async def _put_async_non_resource_initial_async(
             self, sku=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = self.put_async_non_resource.metadata['url']
@@ -1428,7 +1428,7 @@ class LROsOperations(_LROsOperations):
 
         return deserialized
 
-    async def put_async_non_resource(
+    async def put_async_non_resource_async(
             self, sku=None, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running put request with non resource.
 
@@ -1472,7 +1472,7 @@ class LROsOperations(_LROsOperations):
     put_async_non_resource.metadata = {'url': '/lro/putnonresourceasync/202/200'}
 
 
-    async def _put_sub_resource_initial(
+    async def _put_sub_resource_initial_async(
             self, provisioning_state=None, custom_headers=None, raw=False, **operation_config):
         product = None
         if provisioning_state is not None:
@@ -1521,7 +1521,7 @@ class LROsOperations(_LROsOperations):
 
         return deserialized
 
-    async def put_sub_resource(
+    async def put_sub_resource_async(
             self, provisioning_state=None, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running put request with sub resource.
 
@@ -1566,7 +1566,7 @@ class LROsOperations(_LROsOperations):
     put_sub_resource.metadata = {'url': '/lro/putsubresource/202/200'}
 
 
-    async def _put_async_sub_resource_initial(
+    async def _put_async_sub_resource_initial_async(
             self, provisioning_state=None, custom_headers=None, raw=False, **operation_config):
         product = None
         if provisioning_state is not None:
@@ -1615,7 +1615,7 @@ class LROsOperations(_LROsOperations):
 
         return deserialized
 
-    async def put_async_sub_resource(
+    async def put_async_sub_resource_async(
             self, provisioning_state=None, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running put request with sub resource.
 
@@ -1660,7 +1660,7 @@ class LROsOperations(_LROsOperations):
     put_async_sub_resource.metadata = {'url': '/lro/putsubresourceasync/202/200'}
 
 
-    async def _delete_provisioning202_accepted200_succeeded_initial(
+    async def _delete_provisioning202_accepted200_succeeded_initial_async(
             self, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = self.delete_provisioning202_accepted200_succeeded.metadata['url']
@@ -1710,7 +1710,7 @@ class LROsOperations(_LROsOperations):
 
         return deserialized
 
-    async def delete_provisioning202_accepted200_succeeded(
+    async def delete_provisioning202_accepted200_succeeded_async(
             self, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running delete request, service returns a 202 to the initial
         request, with an entity that contains ProvisioningState=’Accepted’.
@@ -1760,7 +1760,7 @@ class LROsOperations(_LROsOperations):
     delete_provisioning202_accepted200_succeeded.metadata = {'url': '/lro/delete/provisioning/202/accepted/200/succeeded'}
 
 
-    async def _delete_provisioning202_deleting_failed200_initial(
+    async def _delete_provisioning202_deleting_failed200_initial_async(
             self, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = self.delete_provisioning202_deleting_failed200.metadata['url']
@@ -1810,7 +1810,7 @@ class LROsOperations(_LROsOperations):
 
         return deserialized
 
-    async def delete_provisioning202_deleting_failed200(
+    async def delete_provisioning202_deleting_failed200_async(
             self, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running delete request, service returns a 202 to the initial
         request, with an entity that contains ProvisioningState=’Creating’.
@@ -1860,7 +1860,7 @@ class LROsOperations(_LROsOperations):
     delete_provisioning202_deleting_failed200.metadata = {'url': '/lro/delete/provisioning/202/deleting/200/failed'}
 
 
-    async def _delete_provisioning202_deletingcanceled200_initial(
+    async def _delete_provisioning202_deletingcanceled200_initial_async(
             self, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = self.delete_provisioning202_deletingcanceled200.metadata['url']
@@ -1910,7 +1910,7 @@ class LROsOperations(_LROsOperations):
 
         return deserialized
 
-    async def delete_provisioning202_deletingcanceled200(
+    async def delete_provisioning202_deletingcanceled200_async(
             self, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running delete request, service returns a 202 to the initial
         request, with an entity that contains ProvisioningState=’Creating’.
@@ -1960,7 +1960,7 @@ class LROsOperations(_LROsOperations):
     delete_provisioning202_deletingcanceled200.metadata = {'url': '/lro/delete/provisioning/202/deleting/200/canceled'}
 
 
-    async def _delete204_succeeded_initial(
+    async def _delete204_succeeded_initial_async(
             self, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = self.delete204_succeeded.metadata['url']
@@ -1991,7 +1991,7 @@ class LROsOperations(_LROsOperations):
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
 
-    async def delete204_succeeded(
+    async def delete204_succeeded_async(
             self, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running delete succeeds and returns right away.
 
@@ -2027,7 +2027,7 @@ class LROsOperations(_LROsOperations):
     delete204_succeeded.metadata = {'url': '/lro/delete/204/succeeded'}
 
 
-    async def _delete202_retry200_initial(
+    async def _delete202_retry200_initial_async(
             self, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = self.delete202_retry200.metadata['url']
@@ -2071,7 +2071,7 @@ class LROsOperations(_LROsOperations):
 
         return deserialized
 
-    async def delete202_retry200(
+    async def delete202_retry200_async(
             self, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running delete request, service returns a 202 to the initial
         request. Polls return this value until the last poll returns a ‘200’
@@ -2120,7 +2120,7 @@ class LROsOperations(_LROsOperations):
     delete202_retry200.metadata = {'url': '/lro/delete/202/retry/200'}
 
 
-    async def _delete202_no_retry204_initial(
+    async def _delete202_no_retry204_initial_async(
             self, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = self.delete202_no_retry204.metadata['url']
@@ -2164,7 +2164,7 @@ class LROsOperations(_LROsOperations):
 
         return deserialized
 
-    async def delete202_no_retry204(
+    async def delete202_no_retry204_async(
             self, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running delete request, service returns a 202 to the initial
         request. Polls return this value until the last poll returns a ‘200’
@@ -2213,7 +2213,7 @@ class LROsOperations(_LROsOperations):
     delete202_no_retry204.metadata = {'url': '/lro/delete/202/noretry/204'}
 
 
-    async def _delete_no_header_in_retry_initial(
+    async def _delete_no_header_in_retry_initial_async(
             self, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = self.delete_no_header_in_retry.metadata['url']
@@ -2248,7 +2248,7 @@ class LROsOperations(_LROsOperations):
             client_raw_response.add_headers(header_dict)
             return client_raw_response
 
-    async def delete_no_header_in_retry(
+    async def delete_no_header_in_retry_async(
             self, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running delete request, service returns a location header in the
         initial request. Subsequent calls to operation status do not contain
@@ -2289,7 +2289,7 @@ class LROsOperations(_LROsOperations):
     delete_no_header_in_retry.metadata = {'url': '/lro/delete/noheader'}
 
 
-    async def _delete_async_no_header_in_retry_initial(
+    async def _delete_async_no_header_in_retry_initial_async(
             self, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = self.delete_async_no_header_in_retry.metadata['url']
@@ -2324,7 +2324,7 @@ class LROsOperations(_LROsOperations):
             client_raw_response.add_headers(header_dict)
             return client_raw_response
 
-    async def delete_async_no_header_in_retry(
+    async def delete_async_no_header_in_retry_async(
             self, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running delete request, service returns an Azure-AsyncOperation
         header in the initial request. Subsequent calls to operation status do
@@ -2365,7 +2365,7 @@ class LROsOperations(_LROsOperations):
     delete_async_no_header_in_retry.metadata = {'url': '/lro/deleteasync/noheader/202/204'}
 
 
-    async def _delete_async_retry_succeeded_initial(
+    async def _delete_async_retry_succeeded_initial_async(
             self, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = self.delete_async_retry_succeeded.metadata['url']
@@ -2402,7 +2402,7 @@ class LROsOperations(_LROsOperations):
             client_raw_response.add_headers(header_dict)
             return client_raw_response
 
-    async def delete_async_retry_succeeded(
+    async def delete_async_retry_succeeded_async(
             self, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running delete request, service returns a 202 to the initial
         request. Poll the endpoint indicated in the Azure-AsyncOperation header
@@ -2445,7 +2445,7 @@ class LROsOperations(_LROsOperations):
     delete_async_retry_succeeded.metadata = {'url': '/lro/deleteasync/retry/succeeded'}
 
 
-    async def _delete_async_no_retry_succeeded_initial(
+    async def _delete_async_no_retry_succeeded_initial_async(
             self, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = self.delete_async_no_retry_succeeded.metadata['url']
@@ -2482,7 +2482,7 @@ class LROsOperations(_LROsOperations):
             client_raw_response.add_headers(header_dict)
             return client_raw_response
 
-    async def delete_async_no_retry_succeeded(
+    async def delete_async_no_retry_succeeded_async(
             self, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running delete request, service returns a 202 to the initial
         request. Poll the endpoint indicated in the Azure-AsyncOperation header
@@ -2525,7 +2525,7 @@ class LROsOperations(_LROsOperations):
     delete_async_no_retry_succeeded.metadata = {'url': '/lro/deleteasync/noretry/succeeded'}
 
 
-    async def _delete_async_retry_failed_initial(
+    async def _delete_async_retry_failed_initial_async(
             self, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = self.delete_async_retry_failed.metadata['url']
@@ -2562,7 +2562,7 @@ class LROsOperations(_LROsOperations):
             client_raw_response.add_headers(header_dict)
             return client_raw_response
 
-    async def delete_async_retry_failed(
+    async def delete_async_retry_failed_async(
             self, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running delete request, service returns a 202 to the initial
         request. Poll the endpoint indicated in the Azure-AsyncOperation header
@@ -2605,7 +2605,7 @@ class LROsOperations(_LROsOperations):
     delete_async_retry_failed.metadata = {'url': '/lro/deleteasync/retry/failed'}
 
 
-    async def _delete_async_retrycanceled_initial(
+    async def _delete_async_retrycanceled_initial_async(
             self, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = self.delete_async_retrycanceled.metadata['url']
@@ -2642,7 +2642,7 @@ class LROsOperations(_LROsOperations):
             client_raw_response.add_headers(header_dict)
             return client_raw_response
 
-    async def delete_async_retrycanceled(
+    async def delete_async_retrycanceled_async(
             self, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running delete request, service returns a 202 to the initial
         request. Poll the endpoint indicated in the Azure-AsyncOperation header
@@ -2685,7 +2685,7 @@ class LROsOperations(_LROsOperations):
     delete_async_retrycanceled.metadata = {'url': '/lro/deleteasync/retry/canceled'}
 
 
-    async def _post200_with_payload_initial(
+    async def _post200_with_payload_initial_async(
             self, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = self.post200_with_payload.metadata['url']
@@ -2725,7 +2725,7 @@ class LROsOperations(_LROsOperations):
 
         return deserialized
 
-    async def post200_with_payload(
+    async def post200_with_payload_async(
             self, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running post request, service returns a 202 to the initial
         request, with 'Location' header. Poll returns a 200 with a response
@@ -2768,7 +2768,7 @@ class LROsOperations(_LROsOperations):
     post200_with_payload.metadata = {'url': '/lro/post/payload/200'}
 
 
-    async def _post202_retry200_initial(
+    async def _post202_retry200_initial_async(
             self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = self.post202_retry200.metadata['url']
@@ -2811,7 +2811,7 @@ class LROsOperations(_LROsOperations):
             client_raw_response.add_headers(header_dict)
             return client_raw_response
 
-    async def post202_retry200(
+    async def post202_retry200_async(
             self, product=None, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running post request, service returns a 202 to the initial
         request, with 'Location' and 'Retry-After' headers, Polls return a 200
@@ -2856,7 +2856,7 @@ class LROsOperations(_LROsOperations):
     post202_retry200.metadata = {'url': '/lro/post/202/retry/200'}
 
 
-    async def _post202_no_retry204_initial(
+    async def _post202_no_retry204_initial_async(
             self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = self.post202_no_retry204.metadata['url']
@@ -2907,7 +2907,7 @@ class LROsOperations(_LROsOperations):
 
         return deserialized
 
-    async def post202_no_retry204(
+    async def post202_no_retry204_async(
             self, product=None, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running post request, service returns a 202 to the initial
         request, with 'Location' header, 204 with noresponse body after
@@ -2959,7 +2959,7 @@ class LROsOperations(_LROsOperations):
     post202_no_retry204.metadata = {'url': '/lro/post/202/noretry/204'}
 
 
-    async def _post_async_retry_succeeded_initial(
+    async def _post_async_retry_succeeded_initial_async(
             self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = self.post_async_retry_succeeded.metadata['url']
@@ -3011,7 +3011,7 @@ class LROsOperations(_LROsOperations):
 
         return deserialized
 
-    async def post_async_retry_succeeded(
+    async def post_async_retry_succeeded_async(
             self, product=None, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running post request, service returns a 202 to the initial
         request, with an entity that contains ProvisioningState=’Creating’.
@@ -3065,7 +3065,7 @@ class LROsOperations(_LROsOperations):
     post_async_retry_succeeded.metadata = {'url': '/lro/postasync/retry/succeeded'}
 
 
-    async def _post_async_no_retry_succeeded_initial(
+    async def _post_async_no_retry_succeeded_initial_async(
             self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = self.post_async_no_retry_succeeded.metadata['url']
@@ -3117,7 +3117,7 @@ class LROsOperations(_LROsOperations):
 
         return deserialized
 
-    async def post_async_no_retry_succeeded(
+    async def post_async_no_retry_succeeded_async(
             self, product=None, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running post request, service returns a 202 to the initial
         request, with an entity that contains ProvisioningState=’Creating’.
@@ -3171,7 +3171,7 @@ class LROsOperations(_LROsOperations):
     post_async_no_retry_succeeded.metadata = {'url': '/lro/postasync/noretry/succeeded'}
 
 
-    async def _post_async_retry_failed_initial(
+    async def _post_async_retry_failed_initial_async(
             self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = self.post_async_retry_failed.metadata['url']
@@ -3215,7 +3215,7 @@ class LROsOperations(_LROsOperations):
             client_raw_response.add_headers(header_dict)
             return client_raw_response
 
-    async def post_async_retry_failed(
+    async def post_async_retry_failed_async(
             self, product=None, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running post request, service returns a 202 to the initial
         request, with an entity that contains ProvisioningState=’Creating’.
@@ -3262,7 +3262,7 @@ class LROsOperations(_LROsOperations):
     post_async_retry_failed.metadata = {'url': '/lro/postasync/retry/failed'}
 
 
-    async def _post_async_retrycanceled_initial(
+    async def _post_async_retrycanceled_initial_async(
             self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = self.post_async_retrycanceled.metadata['url']
@@ -3306,7 +3306,7 @@ class LROsOperations(_LROsOperations):
             client_raw_response.add_headers(header_dict)
             return client_raw_response
 
-    async def post_async_retrycanceled(
+    async def post_async_retrycanceled_async(
             self, product=None, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running post request, service returns a 202 to the initial
         request, with an entity that contains ProvisioningState=’Creating’.

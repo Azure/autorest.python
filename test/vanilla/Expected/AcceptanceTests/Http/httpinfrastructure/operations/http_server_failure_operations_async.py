@@ -18,7 +18,7 @@ from .http_server_failure_operations import HttpServerFailureOperations as _Http
 class HttpServerFailureOperations(_HttpServerFailureOperations):
     """HttpServerFailureOperations operations."""
 
-    async def head501(
+    async def head501_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Return 501 status code - should be represented in the client as an
         error.
@@ -58,7 +58,7 @@ class HttpServerFailureOperations(_HttpServerFailureOperations):
             return client_raw_response
     head501.metadata = {'url': '/http/failure/server/501'}
 
-    async def get501(
+    async def get501_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Return 501 status code - should be represented in the client as an
         error.
@@ -98,7 +98,7 @@ class HttpServerFailureOperations(_HttpServerFailureOperations):
             return client_raw_response
     get501.metadata = {'url': '/http/failure/server/501'}
 
-    async def post505(
+    async def post505_async(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
         """Return 505 status code - should be represented in the client as an
         error.
@@ -147,7 +147,7 @@ class HttpServerFailureOperations(_HttpServerFailureOperations):
             return client_raw_response
     post505.metadata = {'url': '/http/failure/server/505'}
 
-    async def delete505(
+    async def delete505_async(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
         """Return 505 status code - should be represented in the client as an
         error.

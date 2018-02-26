@@ -18,7 +18,7 @@ from .api_version_local_operations import ApiVersionLocalOperations as _ApiVersi
 
 class ApiVersionLocalOperations(_ApiVersionLocalOperations):
 
-    async def get_method_local_valid(
+    async def get_method_local_valid_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get method with api-version modeled in the method.  pass in api-version
         = '2.0' to succeed.
@@ -62,7 +62,7 @@ class ApiVersionLocalOperations(_ApiVersionLocalOperations):
             return client_raw_response
     get_method_local_valid.metadata = {'url': '/azurespecials/apiVersion/method/string/none/query/local/2.0'}
 
-    async def get_method_local_null(
+    async def get_method_local_null_async(
             self, api_version=None, custom_headers=None, raw=False, **operation_config):
         """Get method with api-version modeled in the method.  pass in api-version
         = null to succeed.
@@ -110,7 +110,7 @@ class ApiVersionLocalOperations(_ApiVersionLocalOperations):
             return client_raw_response
     get_method_local_null.metadata = {'url': '/azurespecials/apiVersion/method/string/none/query/local/null'}
 
-    async def get_path_local_valid(
+    async def get_path_local_valid_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get method with api-version modeled in the method.  pass in api-version
         = '2.0' to succeed.
@@ -154,7 +154,7 @@ class ApiVersionLocalOperations(_ApiVersionLocalOperations):
             return client_raw_response
     get_path_local_valid.metadata = {'url': '/azurespecials/apiVersion/path/string/none/query/local/2.0'}
 
-    async def get_swagger_local_valid(
+    async def get_swagger_local_valid_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get method with api-version modeled in the method.  pass in api-version
         = '2.0' to succeed.

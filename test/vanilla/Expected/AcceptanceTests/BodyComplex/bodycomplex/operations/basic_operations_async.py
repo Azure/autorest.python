@@ -18,7 +18,7 @@ from .basic_operations import BasicOperations as _BasicOperations
 class BasicOperations(_BasicOperations):
     """BasicOperations operations."""
 
-    async def get_valid(
+    async def get_valid_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get complex type {id: 2, name: 'abc', color: 'YELLOW'}.
 
@@ -63,7 +63,7 @@ class BasicOperations(_BasicOperations):
         return deserialized
     get_valid.metadata = {'url': '/complex/basic/valid'}
 
-    async def put_valid(
+    async def put_valid_async(
             self, complex_body, custom_headers=None, raw=False, **operation_config):
         """Please put {id: 2, name: 'abc', color: 'Magenta'}.
 
@@ -107,7 +107,7 @@ class BasicOperations(_BasicOperations):
             return client_raw_response
     put_valid.metadata = {'url': '/complex/basic/valid'}
 
-    async def get_invalid(
+    async def get_invalid_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get a basic complex type that is invalid for the local strong type.
 
@@ -152,7 +152,7 @@ class BasicOperations(_BasicOperations):
         return deserialized
     get_invalid.metadata = {'url': '/complex/basic/invalid'}
 
-    async def get_empty(
+    async def get_empty_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get a basic complex type that is empty.
 
@@ -197,7 +197,7 @@ class BasicOperations(_BasicOperations):
         return deserialized
     get_empty.metadata = {'url': '/complex/basic/empty'}
 
-    async def get_null(
+    async def get_null_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get a basic complex type whose properties are null.
 
@@ -242,7 +242,7 @@ class BasicOperations(_BasicOperations):
         return deserialized
     get_null.metadata = {'url': '/complex/basic/null'}
 
-    async def get_not_provided(
+    async def get_not_provided_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get a basic complex type while the server doesn't provide a response
         payload.

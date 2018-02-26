@@ -18,7 +18,7 @@ from .readonlyproperty_operations import ReadonlypropertyOperations as _Readonly
 class ReadonlypropertyOperations(_ReadonlypropertyOperations):
     """ReadonlypropertyOperations operations."""
 
-    async def get_valid(
+    async def get_valid_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get complex types that have readonly properties.
 
@@ -63,7 +63,7 @@ class ReadonlypropertyOperations(_ReadonlypropertyOperations):
         return deserialized
     get_valid.metadata = {'url': '/complex/readonlyproperty/valid'}
 
-    async def put_valid(
+    async def put_valid_async(
             self, size=None, custom_headers=None, raw=False, **operation_config):
         """Put complex types that have readonly properties.
 

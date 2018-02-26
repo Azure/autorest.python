@@ -19,7 +19,7 @@ from .multiple_responses_operations import MultipleResponsesOperations as _Multi
 class MultipleResponsesOperations(_MultipleResponsesOperations):
     """MultipleResponsesOperations operations."""
 
-    async def get200_model204_no_model_default_error200_valid(
+    async def get200_model204_no_model_default_error200_valid_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Send a 200 response with valid payload: {'statusCode': '200'}.
 
@@ -65,7 +65,7 @@ class MultipleResponsesOperations(_MultipleResponsesOperations):
         return deserialized
     get200_model204_no_model_default_error200_valid.metadata = {'url': '/http/payloads/200/A/204/none/default/Error/response/200/valid'}
 
-    async def get200_model204_no_model_default_error204_valid(
+    async def get200_model204_no_model_default_error204_valid_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Send a 204 response with no payload.
 
@@ -111,7 +111,7 @@ class MultipleResponsesOperations(_MultipleResponsesOperations):
         return deserialized
     get200_model204_no_model_default_error204_valid.metadata = {'url': '/http/payloads/200/A/204/none/default/Error/response/204/none'}
 
-    async def get200_model204_no_model_default_error201_invalid(
+    async def get200_model204_no_model_default_error201_invalid_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Send a 201 response with valid payload: {'statusCode': '201'}.
 
@@ -157,7 +157,7 @@ class MultipleResponsesOperations(_MultipleResponsesOperations):
         return deserialized
     get200_model204_no_model_default_error201_invalid.metadata = {'url': '/http/payloads/200/A/204/none/default/Error/response/201/valid'}
 
-    async def get200_model204_no_model_default_error202_none(
+    async def get200_model204_no_model_default_error202_none_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Send a 202 response with no payload:.
 
@@ -203,7 +203,7 @@ class MultipleResponsesOperations(_MultipleResponsesOperations):
         return deserialized
     get200_model204_no_model_default_error202_none.metadata = {'url': '/http/payloads/200/A/204/none/default/Error/response/202/none'}
 
-    async def get200_model204_no_model_default_error400_valid(
+    async def get200_model204_no_model_default_error400_valid_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Send a 400 response with valid error payload: {'status': 400,
         'message': 'client error'}.
@@ -250,7 +250,7 @@ class MultipleResponsesOperations(_MultipleResponsesOperations):
         return deserialized
     get200_model204_no_model_default_error400_valid.metadata = {'url': '/http/payloads/200/A/204/none/default/Error/response/400/valid'}
 
-    async def get200_model201_model_default_error200_valid(
+    async def get200_model201_model_default_error200_valid_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Send a 200 response with valid payload: {'statusCode': '200'}.
 
@@ -298,7 +298,7 @@ class MultipleResponsesOperations(_MultipleResponsesOperations):
         return deserialized
     get200_model201_model_default_error200_valid.metadata = {'url': '/http/payloads/200/A/201/B/default/Error/response/200/valid'}
 
-    async def get200_model201_model_default_error201_valid(
+    async def get200_model201_model_default_error201_valid_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Send a 201 response with valid payload: {'statusCode': '201',
         'textStatusCode': 'Created'}.
@@ -347,7 +347,7 @@ class MultipleResponsesOperations(_MultipleResponsesOperations):
         return deserialized
     get200_model201_model_default_error201_valid.metadata = {'url': '/http/payloads/200/A/201/B/default/Error/response/201/valid'}
 
-    async def get200_model201_model_default_error400_valid(
+    async def get200_model201_model_default_error400_valid_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Send a 400 response with valid payload: {'code': '400', 'message':
         'client error'}.
@@ -396,7 +396,7 @@ class MultipleResponsesOperations(_MultipleResponsesOperations):
         return deserialized
     get200_model201_model_default_error400_valid.metadata = {'url': '/http/payloads/200/A/201/B/default/Error/response/400/valid'}
 
-    async def get200_model_a201_model_c404_model_ddefault_error200_valid(
+    async def get200_model_a201_model_c404_model_ddefault_error200_valid_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Send a 200 response with valid payload: {'statusCode': '200'}.
 
@@ -445,7 +445,7 @@ class MultipleResponsesOperations(_MultipleResponsesOperations):
         return deserialized
     get200_model_a201_model_c404_model_ddefault_error200_valid.metadata = {'url': '/http/payloads/200/A/201/C/404/D/default/Error/response/200/valid'}
 
-    async def get200_model_a201_model_c404_model_ddefault_error201_valid(
+    async def get200_model_a201_model_c404_model_ddefault_error201_valid_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Send a 200 response with valid payload: {'httpCode': '201'}.
 
@@ -494,7 +494,7 @@ class MultipleResponsesOperations(_MultipleResponsesOperations):
         return deserialized
     get200_model_a201_model_c404_model_ddefault_error201_valid.metadata = {'url': '/http/payloads/200/A/201/C/404/D/default/Error/response/201/valid'}
 
-    async def get200_model_a201_model_c404_model_ddefault_error404_valid(
+    async def get200_model_a201_model_c404_model_ddefault_error404_valid_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Send a 200 response with valid payload: {'httpStatusCode': '404'}.
 
@@ -543,7 +543,7 @@ class MultipleResponsesOperations(_MultipleResponsesOperations):
         return deserialized
     get200_model_a201_model_c404_model_ddefault_error404_valid.metadata = {'url': '/http/payloads/200/A/201/C/404/D/default/Error/response/404/valid'}
 
-    async def get200_model_a201_model_c404_model_ddefault_error400_valid(
+    async def get200_model_a201_model_c404_model_ddefault_error400_valid_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Send a 400 response with valid payload: {'code': '400', 'message':
         'client error'}.
@@ -593,7 +593,7 @@ class MultipleResponsesOperations(_MultipleResponsesOperations):
         return deserialized
     get200_model_a201_model_c404_model_ddefault_error400_valid.metadata = {'url': '/http/payloads/200/A/201/C/404/D/default/Error/response/400/valid'}
 
-    async def get202_none204_none_default_error202_none(
+    async def get202_none204_none_default_error202_none_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Send a 202 response with no payload.
 
@@ -631,7 +631,7 @@ class MultipleResponsesOperations(_MultipleResponsesOperations):
             return client_raw_response
     get202_none204_none_default_error202_none.metadata = {'url': '/http/payloads/202/none/204/none/default/Error/response/202/none'}
 
-    async def get202_none204_none_default_error204_none(
+    async def get202_none204_none_default_error204_none_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Send a 204 response with no payload.
 
@@ -669,7 +669,7 @@ class MultipleResponsesOperations(_MultipleResponsesOperations):
             return client_raw_response
     get202_none204_none_default_error204_none.metadata = {'url': '/http/payloads/202/none/204/none/default/Error/response/204/none'}
 
-    async def get202_none204_none_default_error400_valid(
+    async def get202_none204_none_default_error400_valid_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Send a 400 response with valid payload: {'code': '400', 'message':
         'client error'}.
@@ -708,7 +708,7 @@ class MultipleResponsesOperations(_MultipleResponsesOperations):
             return client_raw_response
     get202_none204_none_default_error400_valid.metadata = {'url': '/http/payloads/202/none/204/none/default/Error/response/400/valid'}
 
-    async def get202_none204_none_default_none202_invalid(
+    async def get202_none204_none_default_none202_invalid_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Send a 202 response with an unexpected payload {'property': 'value'}.
 
@@ -746,7 +746,7 @@ class MultipleResponsesOperations(_MultipleResponsesOperations):
             return client_raw_response
     get202_none204_none_default_none202_invalid.metadata = {'url': '/http/payloads/202/none/204/none/default/none/response/202/invalid'}
 
-    async def get202_none204_none_default_none204_none(
+    async def get202_none204_none_default_none204_none_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Send a 204 response with no payload.
 
@@ -784,7 +784,7 @@ class MultipleResponsesOperations(_MultipleResponsesOperations):
             return client_raw_response
     get202_none204_none_default_none204_none.metadata = {'url': '/http/payloads/202/none/204/none/default/none/response/204/none'}
 
-    async def get202_none204_none_default_none400_none(
+    async def get202_none204_none_default_none400_none_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Send a 400 response with no payload.
 
@@ -822,7 +822,7 @@ class MultipleResponsesOperations(_MultipleResponsesOperations):
             return client_raw_response
     get202_none204_none_default_none400_none.metadata = {'url': '/http/payloads/202/none/204/none/default/none/response/400/none'}
 
-    async def get202_none204_none_default_none400_invalid(
+    async def get202_none204_none_default_none400_invalid_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Send a 400 response with an unexpected payload {'property': 'value'}.
 
@@ -860,7 +860,7 @@ class MultipleResponsesOperations(_MultipleResponsesOperations):
             return client_raw_response
     get202_none204_none_default_none400_invalid.metadata = {'url': '/http/payloads/202/none/204/none/default/none/response/400/invalid'}
 
-    async def get_default_model_a200_valid(
+    async def get_default_model_a200_valid_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Send a 200 response with valid payload: {'statusCode': '200'}.
 
@@ -898,7 +898,7 @@ class MultipleResponsesOperations(_MultipleResponsesOperations):
             return client_raw_response
     get_default_model_a200_valid.metadata = {'url': '/http/payloads/default/A/response/200/valid'}
 
-    async def get_default_model_a200_none(
+    async def get_default_model_a200_none_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Send a 200 response with no payload.
 
@@ -936,7 +936,7 @@ class MultipleResponsesOperations(_MultipleResponsesOperations):
             return client_raw_response
     get_default_model_a200_none.metadata = {'url': '/http/payloads/default/A/response/200/none'}
 
-    async def get_default_model_a400_valid(
+    async def get_default_model_a400_valid_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Send a 400 response with valid payload: {'statusCode': '400'}.
 
@@ -974,7 +974,7 @@ class MultipleResponsesOperations(_MultipleResponsesOperations):
             return client_raw_response
     get_default_model_a400_valid.metadata = {'url': '/http/payloads/default/A/response/400/valid'}
 
-    async def get_default_model_a400_none(
+    async def get_default_model_a400_none_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Send a 400 response with no payload.
 
@@ -1012,7 +1012,7 @@ class MultipleResponsesOperations(_MultipleResponsesOperations):
             return client_raw_response
     get_default_model_a400_none.metadata = {'url': '/http/payloads/default/A/response/400/none'}
 
-    async def get_default_none200_invalid(
+    async def get_default_none200_invalid_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Send a 200 response with invalid payload: {'statusCode': '200'}.
 
@@ -1050,7 +1050,7 @@ class MultipleResponsesOperations(_MultipleResponsesOperations):
             return client_raw_response
     get_default_none200_invalid.metadata = {'url': '/http/payloads/default/none/response/200/invalid'}
 
-    async def get_default_none200_none(
+    async def get_default_none200_none_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Send a 200 response with no payload.
 
@@ -1088,7 +1088,7 @@ class MultipleResponsesOperations(_MultipleResponsesOperations):
             return client_raw_response
     get_default_none200_none.metadata = {'url': '/http/payloads/default/none/response/200/none'}
 
-    async def get_default_none400_invalid(
+    async def get_default_none400_invalid_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Send a 400 response with valid payload: {'statusCode': '400'}.
 
@@ -1126,7 +1126,7 @@ class MultipleResponsesOperations(_MultipleResponsesOperations):
             return client_raw_response
     get_default_none400_invalid.metadata = {'url': '/http/payloads/default/none/response/400/invalid'}
 
-    async def get_default_none400_none(
+    async def get_default_none400_none_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Send a 400 response with no payload.
 
@@ -1164,7 +1164,7 @@ class MultipleResponsesOperations(_MultipleResponsesOperations):
             return client_raw_response
     get_default_none400_none.metadata = {'url': '/http/payloads/default/none/response/400/none'}
 
-    async def get200_model_a200_none(
+    async def get200_model_a200_none_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Send a 200 response with no payload, when a payload is expected -
         client should return a null object of thde type for model A.
@@ -1211,7 +1211,7 @@ class MultipleResponsesOperations(_MultipleResponsesOperations):
         return deserialized
     get200_model_a200_none.metadata = {'url': '/http/payloads/200/A/response/200/none'}
 
-    async def get200_model_a200_valid(
+    async def get200_model_a200_valid_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Send a 200 response with payload {'statusCode': '200'}.
 
@@ -1257,7 +1257,7 @@ class MultipleResponsesOperations(_MultipleResponsesOperations):
         return deserialized
     get200_model_a200_valid.metadata = {'url': '/http/payloads/200/A/response/200/valid'}
 
-    async def get200_model_a200_invalid(
+    async def get200_model_a200_invalid_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Send a 200 response with invalid payload {'statusCodeInvalid': '200'}.
 
@@ -1303,7 +1303,7 @@ class MultipleResponsesOperations(_MultipleResponsesOperations):
         return deserialized
     get200_model_a200_invalid.metadata = {'url': '/http/payloads/200/A/response/200/invalid'}
 
-    async def get200_model_a400_none(
+    async def get200_model_a400_none_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Send a 400 response with no payload client should treat as an http
         error with no error model.
@@ -1350,7 +1350,7 @@ class MultipleResponsesOperations(_MultipleResponsesOperations):
         return deserialized
     get200_model_a400_none.metadata = {'url': '/http/payloads/200/A/response/400/none'}
 
-    async def get200_model_a400_valid(
+    async def get200_model_a400_valid_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Send a 200 response with payload {'statusCode': '400'}.
 
@@ -1396,7 +1396,7 @@ class MultipleResponsesOperations(_MultipleResponsesOperations):
         return deserialized
     get200_model_a400_valid.metadata = {'url': '/http/payloads/200/A/response/400/valid'}
 
-    async def get200_model_a400_invalid(
+    async def get200_model_a400_invalid_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Send a 200 response with invalid payload {'statusCodeInvalid': '400'}.
 
@@ -1442,7 +1442,7 @@ class MultipleResponsesOperations(_MultipleResponsesOperations):
         return deserialized
     get200_model_a400_invalid.metadata = {'url': '/http/payloads/200/A/response/400/invalid'}
 
-    async def get200_model_a202_valid(
+    async def get200_model_a202_valid_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Send a 202 response with payload {'statusCode': '202'}.
 

@@ -19,7 +19,7 @@ from .http_failure_operations import HttpFailureOperations as _HttpFailureOperat
 class HttpFailureOperations(_HttpFailureOperations):
     """HttpFailureOperations operations."""
 
-    async def get_empty_error(
+    async def get_empty_error_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get empty error form server.
 
@@ -64,7 +64,7 @@ class HttpFailureOperations(_HttpFailureOperations):
         return deserialized
     get_empty_error.metadata = {'url': '/http/failure/emptybody/error'}
 
-    async def get_no_model_error(
+    async def get_no_model_error_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get empty error form server.
 
@@ -109,7 +109,7 @@ class HttpFailureOperations(_HttpFailureOperations):
         return deserialized
     get_no_model_error.metadata = {'url': '/http/failure/nomodel/error'}
 
-    async def get_no_model_empty(
+    async def get_no_model_empty_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get empty response from server.
 

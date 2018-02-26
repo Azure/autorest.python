@@ -18,7 +18,7 @@ from .datetimerfc1123_operations import Datetimerfc1123Operations as _Datetimerf
 class Datetimerfc1123Operations(_Datetimerfc1123Operations):
     """Datetimerfc1123Operations operations."""
 
-    async def get_null(
+    async def get_null_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get null datetime value.
 
@@ -63,7 +63,7 @@ class Datetimerfc1123Operations(_Datetimerfc1123Operations):
         return deserialized
     get_null.metadata = {'url': '/datetimerfc1123/null'}
 
-    async def get_invalid(
+    async def get_invalid_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get invalid datetime value.
 
@@ -108,7 +108,7 @@ class Datetimerfc1123Operations(_Datetimerfc1123Operations):
         return deserialized
     get_invalid.metadata = {'url': '/datetimerfc1123/invalid'}
 
-    async def get_overflow(
+    async def get_overflow_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get overflow datetime value.
 
@@ -153,7 +153,7 @@ class Datetimerfc1123Operations(_Datetimerfc1123Operations):
         return deserialized
     get_overflow.metadata = {'url': '/datetimerfc1123/overflow'}
 
-    async def get_underflow(
+    async def get_underflow_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get underflow datetime value.
 
@@ -198,7 +198,7 @@ class Datetimerfc1123Operations(_Datetimerfc1123Operations):
         return deserialized
     get_underflow.metadata = {'url': '/datetimerfc1123/underflow'}
 
-    async def put_utc_max_date_time(
+    async def put_utc_max_date_time_async(
             self, datetime_body, custom_headers=None, raw=False, **operation_config):
         """Put max datetime value Fri, 31 Dec 9999 23:59:59 GMT.
 
@@ -242,7 +242,7 @@ class Datetimerfc1123Operations(_Datetimerfc1123Operations):
             return client_raw_response
     put_utc_max_date_time.metadata = {'url': '/datetimerfc1123/max'}
 
-    async def get_utc_lowercase_max_date_time(
+    async def get_utc_lowercase_max_date_time_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get max datetime value fri, 31 dec 9999 23:59:59 gmt.
 
@@ -287,7 +287,7 @@ class Datetimerfc1123Operations(_Datetimerfc1123Operations):
         return deserialized
     get_utc_lowercase_max_date_time.metadata = {'url': '/datetimerfc1123/max/lowercase'}
 
-    async def get_utc_uppercase_max_date_time(
+    async def get_utc_uppercase_max_date_time_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get max datetime value FRI, 31 DEC 9999 23:59:59 GMT.
 
@@ -332,7 +332,7 @@ class Datetimerfc1123Operations(_Datetimerfc1123Operations):
         return deserialized
     get_utc_uppercase_max_date_time.metadata = {'url': '/datetimerfc1123/max/uppercase'}
 
-    async def put_utc_min_date_time(
+    async def put_utc_min_date_time_async(
             self, datetime_body, custom_headers=None, raw=False, **operation_config):
         """Put min datetime value Mon, 1 Jan 0001 00:00:00 GMT.
 
@@ -376,7 +376,7 @@ class Datetimerfc1123Operations(_Datetimerfc1123Operations):
             return client_raw_response
     put_utc_min_date_time.metadata = {'url': '/datetimerfc1123/min'}
 
-    async def get_utc_min_date_time(
+    async def get_utc_min_date_time_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get min datetime value Mon, 1 Jan 0001 00:00:00 GMT.
 

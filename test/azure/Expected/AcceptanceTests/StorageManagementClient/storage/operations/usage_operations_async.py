@@ -19,7 +19,7 @@ from .usage_operations import UsageOperations as _UsageOperations
 
 class UsageOperations(_UsageOperations):
 
-    async def list(
+    async def list_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Gets the current usage count and the limit for the resources under the
         subscription.

@@ -18,7 +18,7 @@ from .enum_operations import EnumOperations as _EnumOperations
 class EnumOperations(_EnumOperations):
     """EnumOperations operations."""
 
-    async def get_not_expandable(
+    async def get_not_expandable_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get enum value 'red color' from enumeration of 'red color',
         'green-color', 'blue_color'.
@@ -64,7 +64,7 @@ class EnumOperations(_EnumOperations):
         return deserialized
     get_not_expandable.metadata = {'url': '/string/enum/notExpandable'}
 
-    async def put_not_expandable(
+    async def put_not_expandable_async(
             self, string_body, custom_headers=None, raw=False, **operation_config):
         """Sends value 'red color' from enumeration of 'red color', 'green-color',
         'blue_color'.
@@ -109,7 +109,7 @@ class EnumOperations(_EnumOperations):
             return client_raw_response
     put_not_expandable.metadata = {'url': '/string/enum/notExpandable'}
 
-    async def get_referenced(
+    async def get_referenced_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get enum value 'red color' from enumeration of 'red color',
         'green-color', 'blue_color'.
@@ -155,7 +155,7 @@ class EnumOperations(_EnumOperations):
         return deserialized
     get_referenced.metadata = {'url': '/string/enum/Referenced'}
 
-    async def put_referenced(
+    async def put_referenced_async(
             self, enum_string_body, custom_headers=None, raw=False, **operation_config):
         """Sends value 'red color' from enumeration of 'red color', 'green-color',
         'blue_color'.
@@ -200,7 +200,7 @@ class EnumOperations(_EnumOperations):
             return client_raw_response
     put_referenced.metadata = {'url': '/string/enum/Referenced'}
 
-    async def get_referenced_constant(
+    async def get_referenced_constant_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get value 'green-color' from the constant.
 
@@ -245,7 +245,7 @@ class EnumOperations(_EnumOperations):
         return deserialized
     get_referenced_constant.metadata = {'url': '/string/enum/ReferencedConstant'}
 
-    async def put_referenced_constant(
+    async def put_referenced_constant_async(
             self, field1=None, custom_headers=None, raw=False, **operation_config):
         """Sends value 'green-color' from a constant.
 

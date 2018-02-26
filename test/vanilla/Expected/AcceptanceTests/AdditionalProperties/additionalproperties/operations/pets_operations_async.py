@@ -18,7 +18,7 @@ from .pets_operations import PetsOperations as _PetsOperations
 class PetsOperations(_PetsOperations):
     """PetsOperations operations."""
 
-    async def create_ap_true(
+    async def create_ap_true_async(
             self, create_parameters, custom_headers=None, raw=False, **operation_config):
         """Create a Pet which contains more properties than what is defined.
 
@@ -70,7 +70,7 @@ class PetsOperations(_PetsOperations):
         return deserialized
     create_ap_true.metadata = {'url': '/additionalProperties/true'}
 
-    async def create_ap_object(
+    async def create_ap_object_async(
             self, create_parameters, custom_headers=None, raw=False, **operation_config):
         """Create a Pet which contains more properties than what is defined.
 
@@ -122,7 +122,7 @@ class PetsOperations(_PetsOperations):
         return deserialized
     create_ap_object.metadata = {'url': '/additionalProperties/type/object'}
 
-    async def create_ap_string(
+    async def create_ap_string_async(
             self, create_parameters, custom_headers=None, raw=False, **operation_config):
         """Create a Pet which contains more properties than what is defined.
 
@@ -174,7 +174,7 @@ class PetsOperations(_PetsOperations):
         return deserialized
     create_ap_string.metadata = {'url': '/additionalProperties/type/string'}
 
-    async def create_ap_in_properties(
+    async def create_ap_in_properties_async(
             self, create_parameters, custom_headers=None, raw=False, **operation_config):
         """Create a Pet which contains more properties than what is defined.
 
@@ -227,7 +227,7 @@ class PetsOperations(_PetsOperations):
         return deserialized
     create_ap_in_properties.metadata = {'url': '/additionalProperties/in/properties'}
 
-    async def create_ap_in_properties_with_ap_string(
+    async def create_ap_in_properties_with_ap_string_async(
             self, create_parameters, custom_headers=None, raw=False, **operation_config):
         """Create a Pet which contains more properties than what is defined.
 

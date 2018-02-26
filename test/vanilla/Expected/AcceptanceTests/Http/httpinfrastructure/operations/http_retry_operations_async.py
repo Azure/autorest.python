@@ -18,7 +18,7 @@ from .http_retry_operations import HttpRetryOperations as _HttpRetryOperations
 class HttpRetryOperations(_HttpRetryOperations):
     """HttpRetryOperations operations."""
 
-    async def head408(
+    async def head408_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Return 408 status code, then 200 after retry.
 
@@ -56,7 +56,7 @@ class HttpRetryOperations(_HttpRetryOperations):
             return client_raw_response
     head408.metadata = {'url': '/http/retry/408'}
 
-    async def put500(
+    async def put500_async(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
         """Return 500 status code, then 200 after retry.
 
@@ -103,7 +103,7 @@ class HttpRetryOperations(_HttpRetryOperations):
             return client_raw_response
     put500.metadata = {'url': '/http/retry/500'}
 
-    async def patch500(
+    async def patch500_async(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
         """Return 500 status code, then 200 after retry.
 
@@ -150,7 +150,7 @@ class HttpRetryOperations(_HttpRetryOperations):
             return client_raw_response
     patch500.metadata = {'url': '/http/retry/500'}
 
-    async def get502(
+    async def get502_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Return 502 status code, then 200 after retry.
 
@@ -188,7 +188,7 @@ class HttpRetryOperations(_HttpRetryOperations):
             return client_raw_response
     get502.metadata = {'url': '/http/retry/502'}
 
-    async def post503(
+    async def post503_async(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
         """Return 503 status code, then 200 after retry.
 
@@ -235,7 +235,7 @@ class HttpRetryOperations(_HttpRetryOperations):
             return client_raw_response
     post503.metadata = {'url': '/http/retry/503'}
 
-    async def delete503(
+    async def delete503_async(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
         """Return 503 status code, then 200 after retry.
 
@@ -282,7 +282,7 @@ class HttpRetryOperations(_HttpRetryOperations):
             return client_raw_response
     delete503.metadata = {'url': '/http/retry/503'}
 
-    async def put504(
+    async def put504_async(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
         """Return 504 status code, then 200 after retry.
 
@@ -329,7 +329,7 @@ class HttpRetryOperations(_HttpRetryOperations):
             return client_raw_response
     put504.metadata = {'url': '/http/retry/504'}
 
-    async def patch504(
+    async def patch504_async(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
         """Return 504 status code, then 200 after retry.
 

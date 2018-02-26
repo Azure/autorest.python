@@ -18,7 +18,7 @@ from .datetime_model_operations import DatetimeModelOperations as _DatetimeModel
 class DatetimeModelOperations(_DatetimeModelOperations):
     """DatetimeModelOperations operations."""
 
-    async def get_null(
+    async def get_null_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get null datetime value.
 
@@ -62,7 +62,7 @@ class DatetimeModelOperations(_DatetimeModelOperations):
         return deserialized
     get_null.metadata = {'url': '/datetime/null'}
 
-    async def get_invalid(
+    async def get_invalid_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get invalid datetime value.
 
@@ -106,7 +106,7 @@ class DatetimeModelOperations(_DatetimeModelOperations):
         return deserialized
     get_invalid.metadata = {'url': '/datetime/invalid'}
 
-    async def get_overflow(
+    async def get_overflow_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get overflow datetime value.
 
@@ -150,7 +150,7 @@ class DatetimeModelOperations(_DatetimeModelOperations):
         return deserialized
     get_overflow.metadata = {'url': '/datetime/overflow'}
 
-    async def get_underflow(
+    async def get_underflow_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get underflow datetime value.
 
@@ -194,7 +194,7 @@ class DatetimeModelOperations(_DatetimeModelOperations):
         return deserialized
     get_underflow.metadata = {'url': '/datetime/underflow'}
 
-    async def put_utc_max_date_time(
+    async def put_utc_max_date_time_async(
             self, datetime_body, custom_headers=None, raw=False, **operation_config):
         """Put max datetime value 9999-12-31T23:59:59.9999999Z.
 
@@ -237,7 +237,7 @@ class DatetimeModelOperations(_DatetimeModelOperations):
             return client_raw_response
     put_utc_max_date_time.metadata = {'url': '/datetime/max/utc'}
 
-    async def get_utc_lowercase_max_date_time(
+    async def get_utc_lowercase_max_date_time_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get max datetime value 9999-12-31t23:59:59.9999999z.
 
@@ -281,7 +281,7 @@ class DatetimeModelOperations(_DatetimeModelOperations):
         return deserialized
     get_utc_lowercase_max_date_time.metadata = {'url': '/datetime/max/utc/lowercase'}
 
-    async def get_utc_uppercase_max_date_time(
+    async def get_utc_uppercase_max_date_time_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get max datetime value 9999-12-31T23:59:59.9999999Z.
 
@@ -325,7 +325,7 @@ class DatetimeModelOperations(_DatetimeModelOperations):
         return deserialized
     get_utc_uppercase_max_date_time.metadata = {'url': '/datetime/max/utc/uppercase'}
 
-    async def put_local_positive_offset_max_date_time(
+    async def put_local_positive_offset_max_date_time_async(
             self, datetime_body, custom_headers=None, raw=False, **operation_config):
         """Put max datetime value with positive numoffset
         9999-12-31t23:59:59.9999999+14:00.
@@ -369,7 +369,7 @@ class DatetimeModelOperations(_DatetimeModelOperations):
             return client_raw_response
     put_local_positive_offset_max_date_time.metadata = {'url': '/datetime/max/localpositiveoffset'}
 
-    async def get_local_positive_offset_lowercase_max_date_time(
+    async def get_local_positive_offset_lowercase_max_date_time_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get max datetime value with positive num offset
         9999-12-31t23:59:59.9999999+14:00.
@@ -414,7 +414,7 @@ class DatetimeModelOperations(_DatetimeModelOperations):
         return deserialized
     get_local_positive_offset_lowercase_max_date_time.metadata = {'url': '/datetime/max/localpositiveoffset/lowercase'}
 
-    async def get_local_positive_offset_uppercase_max_date_time(
+    async def get_local_positive_offset_uppercase_max_date_time_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get max datetime value with positive num offset
         9999-12-31T23:59:59.9999999+14:00.
@@ -459,7 +459,7 @@ class DatetimeModelOperations(_DatetimeModelOperations):
         return deserialized
     get_local_positive_offset_uppercase_max_date_time.metadata = {'url': '/datetime/max/localpositiveoffset/uppercase'}
 
-    async def put_local_negative_offset_max_date_time(
+    async def put_local_negative_offset_max_date_time_async(
             self, datetime_body, custom_headers=None, raw=False, **operation_config):
         """Put max datetime value with positive numoffset
         9999-12-31t23:59:59.9999999-14:00.
@@ -503,7 +503,7 @@ class DatetimeModelOperations(_DatetimeModelOperations):
             return client_raw_response
     put_local_negative_offset_max_date_time.metadata = {'url': '/datetime/max/localnegativeoffset'}
 
-    async def get_local_negative_offset_uppercase_max_date_time(
+    async def get_local_negative_offset_uppercase_max_date_time_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get max datetime value with positive num offset
         9999-12-31T23:59:59.9999999-14:00.
@@ -548,7 +548,7 @@ class DatetimeModelOperations(_DatetimeModelOperations):
         return deserialized
     get_local_negative_offset_uppercase_max_date_time.metadata = {'url': '/datetime/max/localnegativeoffset/uppercase'}
 
-    async def get_local_negative_offset_lowercase_max_date_time(
+    async def get_local_negative_offset_lowercase_max_date_time_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get max datetime value with positive num offset
         9999-12-31t23:59:59.9999999-14:00.
@@ -593,7 +593,7 @@ class DatetimeModelOperations(_DatetimeModelOperations):
         return deserialized
     get_local_negative_offset_lowercase_max_date_time.metadata = {'url': '/datetime/max/localnegativeoffset/lowercase'}
 
-    async def put_utc_min_date_time(
+    async def put_utc_min_date_time_async(
             self, datetime_body, custom_headers=None, raw=False, **operation_config):
         """Put min datetime value 0001-01-01T00:00:00Z.
 
@@ -636,7 +636,7 @@ class DatetimeModelOperations(_DatetimeModelOperations):
             return client_raw_response
     put_utc_min_date_time.metadata = {'url': '/datetime/min/utc'}
 
-    async def get_utc_min_date_time(
+    async def get_utc_min_date_time_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get min datetime value 0001-01-01T00:00:00Z.
 
@@ -680,7 +680,7 @@ class DatetimeModelOperations(_DatetimeModelOperations):
         return deserialized
     get_utc_min_date_time.metadata = {'url': '/datetime/min/utc'}
 
-    async def put_local_positive_offset_min_date_time(
+    async def put_local_positive_offset_min_date_time_async(
             self, datetime_body, custom_headers=None, raw=False, **operation_config):
         """Put min datetime value 0001-01-01T00:00:00+14:00.
 
@@ -723,7 +723,7 @@ class DatetimeModelOperations(_DatetimeModelOperations):
             return client_raw_response
     put_local_positive_offset_min_date_time.metadata = {'url': '/datetime/min/localpositiveoffset'}
 
-    async def get_local_positive_offset_min_date_time(
+    async def get_local_positive_offset_min_date_time_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get min datetime value 0001-01-01T00:00:00+14:00.
 
@@ -767,7 +767,7 @@ class DatetimeModelOperations(_DatetimeModelOperations):
         return deserialized
     get_local_positive_offset_min_date_time.metadata = {'url': '/datetime/min/localpositiveoffset'}
 
-    async def put_local_negative_offset_min_date_time(
+    async def put_local_negative_offset_min_date_time_async(
             self, datetime_body, custom_headers=None, raw=False, **operation_config):
         """Put min datetime value 0001-01-01T00:00:00-14:00.
 
@@ -810,7 +810,7 @@ class DatetimeModelOperations(_DatetimeModelOperations):
             return client_raw_response
     put_local_negative_offset_min_date_time.metadata = {'url': '/datetime/min/localnegativeoffset'}
 
-    async def get_local_negative_offset_min_date_time(
+    async def get_local_negative_offset_min_date_time_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Get min datetime value 0001-01-01T00:00:00-14:00.
 

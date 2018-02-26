@@ -18,7 +18,7 @@ from .http_redirects_operations import HttpRedirectsOperations as _HttpRedirects
 class HttpRedirectsOperations(_HttpRedirectsOperations):
     """HttpRedirectsOperations operations."""
 
-    async def head300(
+    async def head300_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Return 300 status code and redirect to /http/success/200.
 
@@ -59,7 +59,7 @@ class HttpRedirectsOperations(_HttpRedirectsOperations):
             return client_raw_response
     head300.metadata = {'url': '/http/redirect/300'}
 
-    async def get300(
+    async def get300_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Return 300 status code and redirect to /http/success/200.
 
@@ -109,7 +109,7 @@ class HttpRedirectsOperations(_HttpRedirectsOperations):
         return deserialized
     get300.metadata = {'url': '/http/redirect/300'}
 
-    async def head301(
+    async def head301_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Return 301 status code and redirect to /http/success/200.
 
@@ -150,7 +150,7 @@ class HttpRedirectsOperations(_HttpRedirectsOperations):
             return client_raw_response
     head301.metadata = {'url': '/http/redirect/301'}
 
-    async def get301(
+    async def get301_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Return 301 status code and redirect to /http/success/200.
 
@@ -191,7 +191,7 @@ class HttpRedirectsOperations(_HttpRedirectsOperations):
             return client_raw_response
     get301.metadata = {'url': '/http/redirect/301'}
 
-    async def put301(
+    async def put301_async(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
         """Put true Boolean value in request returns 301.  This request should not
         be automatically redirected, but should return the received 301 to the
@@ -243,7 +243,7 @@ class HttpRedirectsOperations(_HttpRedirectsOperations):
             return client_raw_response
     put301.metadata = {'url': '/http/redirect/301'}
 
-    async def head302(
+    async def head302_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Return 302 status code and redirect to /http/success/200.
 
@@ -284,7 +284,7 @@ class HttpRedirectsOperations(_HttpRedirectsOperations):
             return client_raw_response
     head302.metadata = {'url': '/http/redirect/302'}
 
-    async def get302(
+    async def get302_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Return 302 status code and redirect to /http/success/200.
 
@@ -325,7 +325,7 @@ class HttpRedirectsOperations(_HttpRedirectsOperations):
             return client_raw_response
     get302.metadata = {'url': '/http/redirect/302'}
 
-    async def patch302(
+    async def patch302_async(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
         """Patch true Boolean value in request returns 302.  This request should
         not be automatically redirected, but should return the received 302 to
@@ -377,7 +377,7 @@ class HttpRedirectsOperations(_HttpRedirectsOperations):
             return client_raw_response
     patch302.metadata = {'url': '/http/redirect/302'}
 
-    async def post303(
+    async def post303_async(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
         """Post true Boolean value in request returns 303.  This request should be
         automatically redirected usign a get, ultimately returning a 200 status
@@ -429,7 +429,7 @@ class HttpRedirectsOperations(_HttpRedirectsOperations):
             return client_raw_response
     post303.metadata = {'url': '/http/redirect/303'}
 
-    async def head307(
+    async def head307_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Redirect with 307, resulting in a 200 success.
 
@@ -470,7 +470,7 @@ class HttpRedirectsOperations(_HttpRedirectsOperations):
             return client_raw_response
     head307.metadata = {'url': '/http/redirect/307'}
 
-    async def get307(
+    async def get307_async(
             self, custom_headers=None, raw=False, **operation_config):
         """Redirect get with 307, resulting in a 200 success.
 
@@ -511,7 +511,7 @@ class HttpRedirectsOperations(_HttpRedirectsOperations):
             return client_raw_response
     get307.metadata = {'url': '/http/redirect/307'}
 
-    async def put307(
+    async def put307_async(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
         """Put redirected with 307, resulting in a 200 after redirect.
 
@@ -561,7 +561,7 @@ class HttpRedirectsOperations(_HttpRedirectsOperations):
             return client_raw_response
     put307.metadata = {'url': '/http/redirect/307'}
 
-    async def patch307(
+    async def patch307_async(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
         """Patch redirected with 307, resulting in a 200 after redirect.
 
@@ -611,7 +611,7 @@ class HttpRedirectsOperations(_HttpRedirectsOperations):
             return client_raw_response
     patch307.metadata = {'url': '/http/redirect/307'}
 
-    async def post307(
+    async def post307_async(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
         """Post redirected with 307, resulting in a 200 after redirect.
 
@@ -661,7 +661,7 @@ class HttpRedirectsOperations(_HttpRedirectsOperations):
             return client_raw_response
     post307.metadata = {'url': '/http/redirect/307'}
 
-    async def delete307(
+    async def delete307_async(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
         """Delete redirected with 307, resulting in a 200 after redirect.
 

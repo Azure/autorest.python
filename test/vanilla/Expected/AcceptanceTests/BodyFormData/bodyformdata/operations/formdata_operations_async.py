@@ -18,7 +18,7 @@ from .formdata_operations import FormdataOperations as _FormdataOperations
 class FormdataOperations(_FormdataOperations):
     """FormdataOperations operations."""
 
-    async def upload_file(
+    async def upload_file_async(
             self, file_content, file_name, custom_headers=None, raw=False, callback=None, **operation_config):
         """Upload file.
 
@@ -79,7 +79,7 @@ class FormdataOperations(_FormdataOperations):
         return deserialized
     upload_file.metadata = {'url': '/formdata/stream/uploadfile'}
 
-    async def upload_file_via_body(
+    async def upload_file_via_body_async(
             self, file_content, custom_headers=None, raw=False, callback=None, **operation_config):
         """Upload file.
 
