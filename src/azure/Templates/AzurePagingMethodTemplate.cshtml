@@ -136,20 +136,18 @@ else
 @EmptyLine
 }
         # Deserialize response
+        header_dict = None
+        if raw:
+            @Model.AddIndividualResponseHeader(null)
 @if(AsyncMode)
 {
         @:deserialized = models.@(Model.PagedResponseClass.Name)(
-            @:internal_paging, self._deserialize.dependencies, async_command=internal_paging_async)
+            @:internal_paging, self._deserialize.dependencies, header_dict, async_command=internal_paging_async)
 }
 else
 {
-        @:deserialized = models.@(Model.PagedResponseClass.Name)(internal_paging, self._deserialize.dependencies)
+        @:deserialized = models.@(Model.PagedResponseClass.Name)(internal_paging, self._deserialize.dependencies, header_dict)
 }
-@EmptyLine
-        if raw:
-            @Model.AddIndividualResponseHeader(null)
-            client_raw_response = models.@(Model.PagedResponseClass.Name)(internal_paging, self._deserialize.dependencies, header_dict)
-            return client_raw_response
 @EmptyLine
         return deserialized
     @(methodName).metadata = {'url': '@(Model.Url)'}
