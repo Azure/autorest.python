@@ -158,15 +158,15 @@ else
         """
 @if (Model.Deprecated)
 {
-@:        @(string.Format("warnings.warn(\"Method {0} is deprecated\", DeprecationWarning)", ((string)Model.Name).ToPythonCase()))
+@:        warnings.warn('Method @methodName is deprecated', DeprecationWarning)
 }
 @if (AsyncMode)
 {
-@:        raw_result = await self._@(Model.Name.ToPythonCase())_initial(
+@:        raw_result = await self.@(initialMethodName)(
 }
 else
 {
-@:        raw_result = self._@(Model.Name.ToPythonCase())_initial(
+@:        raw_result = self.@(initialMethodName)(
 }
 @foreach(var parameter in Model.DocumentationParameters)
 {
