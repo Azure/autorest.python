@@ -89,7 +89,7 @@ class LRORetrysOperations(_LRORetrysOperations):
          ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._put201_creating_succeeded200_initial(
+        raw_result = await self._put201_creating_succeeded200_initial_async(
             product=product,
             custom_headers=custom_headers,
             raw=True,
@@ -187,7 +187,7 @@ class LRORetrysOperations(_LRORetrysOperations):
          ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._put_async_relative_retry_succeeded_initial(
+        raw_result = await self._put_async_relative_retry_succeeded_initial_async(
             product=product,
             custom_headers=custom_headers,
             raw=True,
@@ -287,7 +287,7 @@ class LRORetrysOperations(_LRORetrysOperations):
          ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._delete_provisioning202_accepted200_succeeded_initial(
+        raw_result = await self._delete_provisioning202_accepted200_succeeded_initial_async(
             custom_headers=custom_headers,
             raw=True,
             **operation_config
@@ -368,7 +368,7 @@ class LRORetrysOperations(_LRORetrysOperations):
         :rtype: ~None or ~msrest.pipeline.ClientRawResponse[None]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._delete202_retry200_initial(
+        raw_result = await self._delete202_retry200_initial_async(
             custom_headers=custom_headers,
             raw=True,
             **operation_config
@@ -445,7 +445,7 @@ class LRORetrysOperations(_LRORetrysOperations):
         :rtype: ~None or ~msrest.pipeline.ClientRawResponse[None]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._delete_async_relative_retry_succeeded_initial(
+        raw_result = await self._delete_async_relative_retry_succeeded_initial_async(
             custom_headers=custom_headers,
             raw=True,
             **operation_config
@@ -531,7 +531,7 @@ class LRORetrysOperations(_LRORetrysOperations):
         :rtype: ~None or ~msrest.pipeline.ClientRawResponse[None]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._post202_retry200_initial(
+        raw_result = await self._post202_retry200_initial_async(
             product=product,
             custom_headers=custom_headers,
             raw=True,
@@ -619,7 +619,7 @@ class LRORetrysOperations(_LRORetrysOperations):
         :rtype: ~None or ~msrest.pipeline.ClientRawResponse[None]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._post_async_relative_retry_succeeded_initial(
+        raw_result = await self._post_async_relative_retry_succeeded_initial_async(
             product=product,
             custom_headers=custom_headers,
             raw=True,

@@ -95,7 +95,7 @@ class LROsCustomHeaderOperations(_LROsCustomHeaderOperations):
          ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._put_async_retry_succeeded_initial(
+        raw_result = await self._put_async_retry_succeeded_initial_async(
             product=product,
             custom_headers=custom_headers,
             raw=True,
@@ -195,7 +195,7 @@ class LROsCustomHeaderOperations(_LROsCustomHeaderOperations):
          ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._put201_creating_succeeded200_initial(
+        raw_result = await self._put201_creating_succeeded200_initial_async(
             product=product,
             custom_headers=custom_headers,
             raw=True,
@@ -283,7 +283,7 @@ class LROsCustomHeaderOperations(_LROsCustomHeaderOperations):
         :rtype: ~None or ~msrest.pipeline.ClientRawResponse[None]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._post202_retry200_initial(
+        raw_result = await self._post202_retry200_initial_async(
             product=product,
             custom_headers=custom_headers,
             raw=True,
@@ -372,7 +372,7 @@ class LROsCustomHeaderOperations(_LROsCustomHeaderOperations):
         :rtype: ~None or ~msrest.pipeline.ClientRawResponse[None]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._post_async_retry_succeeded_initial(
+        raw_result = await self._post_async_retry_succeeded_initial_async(
             product=product,
             custom_headers=custom_headers,
             raw=True,

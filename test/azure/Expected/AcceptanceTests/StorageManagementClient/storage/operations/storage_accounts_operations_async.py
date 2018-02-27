@@ -164,7 +164,7 @@ class StorageAccountsOperations(_StorageAccountsOperations):
          ~msrest.pipeline.ClientRawResponse[~storage.models.StorageAccount]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._create_initial(
+        raw_result = await self._create_initial_async(
             resource_group_name=resource_group_name,
             account_name=account_name,
             parameters=parameters,

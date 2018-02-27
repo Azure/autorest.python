@@ -85,7 +85,7 @@ class LROsOperations(_LROsOperations):
          ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._put200_succeeded_initial(
+        raw_result = await self._put200_succeeded_initial_async(
             product=product,
             custom_headers=custom_headers,
             raw=True,
@@ -174,7 +174,7 @@ class LROsOperations(_LROsOperations):
          ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._put200_succeeded_no_state_initial(
+        raw_result = await self._put200_succeeded_no_state_initial_async(
             product=product,
             custom_headers=custom_headers,
             raw=True,
@@ -264,7 +264,7 @@ class LROsOperations(_LROsOperations):
          ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._put202_retry200_initial(
+        raw_result = await self._put202_retry200_initial_async(
             product=product,
             custom_headers=custom_headers,
             raw=True,
@@ -357,7 +357,7 @@ class LROsOperations(_LROsOperations):
          ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._put201_creating_succeeded200_initial(
+        raw_result = await self._put201_creating_succeeded200_initial_async(
             product=product,
             custom_headers=custom_headers,
             raw=True,
@@ -448,7 +448,7 @@ class LROsOperations(_LROsOperations):
          ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._put200_updating_succeeded204_initial(
+        raw_result = await self._put200_updating_succeeded204_initial_async(
             product=product,
             custom_headers=custom_headers,
             raw=True,
@@ -541,7 +541,7 @@ class LROsOperations(_LROsOperations):
          ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._put201_creating_failed200_initial(
+        raw_result = await self._put201_creating_failed200_initial_async(
             product=product,
             custom_headers=custom_headers,
             raw=True,
@@ -632,7 +632,7 @@ class LROsOperations(_LROsOperations):
          ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._put200_acceptedcanceled200_initial(
+        raw_result = await self._put200_acceptedcanceled200_initial_async(
             product=product,
             custom_headers=custom_headers,
             raw=True,
@@ -727,7 +727,7 @@ class LROsOperations(_LROsOperations):
          ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._put_no_header_in_retry_initial(
+        raw_result = await self._put_no_header_in_retry_initial_async(
             product=product,
             custom_headers=custom_headers,
             raw=True,
@@ -829,7 +829,7 @@ class LROsOperations(_LROsOperations):
          ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._put_async_retry_succeeded_initial(
+        raw_result = await self._put_async_retry_succeeded_initial_async(
             product=product,
             custom_headers=custom_headers,
             raw=True,
@@ -932,7 +932,7 @@ class LROsOperations(_LROsOperations):
          ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._put_async_no_retry_succeeded_initial(
+        raw_result = await self._put_async_no_retry_succeeded_initial_async(
             product=product,
             custom_headers=custom_headers,
             raw=True,
@@ -1035,7 +1035,7 @@ class LROsOperations(_LROsOperations):
          ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._put_async_retry_failed_initial(
+        raw_result = await self._put_async_retry_failed_initial_async(
             product=product,
             custom_headers=custom_headers,
             raw=True,
@@ -1138,7 +1138,7 @@ class LROsOperations(_LROsOperations):
          ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._put_async_no_retrycanceled_initial(
+        raw_result = await self._put_async_no_retrycanceled_initial_async(
             product=product,
             custom_headers=custom_headers,
             raw=True,
@@ -1238,7 +1238,7 @@ class LROsOperations(_LROsOperations):
          ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._put_async_no_header_in_retry_initial(
+        raw_result = await self._put_async_no_header_in_retry_initial_async(
             product=product,
             custom_headers=custom_headers,
             raw=True,
@@ -1329,7 +1329,7 @@ class LROsOperations(_LROsOperations):
          ~msrest.pipeline.ClientRawResponse[~lro.models.Sku]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._put_non_resource_initial(
+        raw_result = await self._put_non_resource_initial_async(
             sku=sku,
             custom_headers=custom_headers,
             raw=True,
@@ -1416,7 +1416,7 @@ class LROsOperations(_LROsOperations):
          ~msrest.pipeline.ClientRawResponse[~lro.models.Sku]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._put_async_non_resource_initial(
+        raw_result = await self._put_async_non_resource_initial_async(
             sku=sku,
             custom_headers=custom_headers,
             raw=True,
@@ -1508,7 +1508,7 @@ class LROsOperations(_LROsOperations):
          ~msrest.pipeline.ClientRawResponse[~lro.models.SubProduct]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._put_sub_resource_initial(
+        raw_result = await self._put_sub_resource_initial_async(
             provisioning_state=provisioning_state,
             custom_headers=custom_headers,
             raw=True,
@@ -1600,7 +1600,7 @@ class LROsOperations(_LROsOperations):
          ~msrest.pipeline.ClientRawResponse[~lro.models.SubProduct]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._put_async_sub_resource_initial(
+        raw_result = await self._put_async_sub_resource_initial_async(
             provisioning_state=provisioning_state,
             custom_headers=custom_headers,
             raw=True,
@@ -1694,7 +1694,7 @@ class LROsOperations(_LROsOperations):
          ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._delete_provisioning202_accepted200_succeeded_initial(
+        raw_result = await self._delete_provisioning202_accepted200_succeeded_initial_async(
             custom_headers=custom_headers,
             raw=True,
             **operation_config
@@ -1792,7 +1792,7 @@ class LROsOperations(_LROsOperations):
          ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._delete_provisioning202_deleting_failed200_initial(
+        raw_result = await self._delete_provisioning202_deleting_failed200_initial_async(
             custom_headers=custom_headers,
             raw=True,
             **operation_config
@@ -1890,7 +1890,7 @@ class LROsOperations(_LROsOperations):
          ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._delete_provisioning202_deletingcanceled200_initial(
+        raw_result = await self._delete_provisioning202_deletingcanceled200_initial_async(
             custom_headers=custom_headers,
             raw=True,
             **operation_config
@@ -1964,7 +1964,7 @@ class LROsOperations(_LROsOperations):
         :rtype: ~None or ~msrest.pipeline.ClientRawResponse[None]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._delete204_succeeded_initial(
+        raw_result = await self._delete204_succeeded_initial_async(
             custom_headers=custom_headers,
             raw=True,
             **operation_config
@@ -2046,7 +2046,7 @@ class LROsOperations(_LROsOperations):
          ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._delete202_retry200_initial(
+        raw_result = await self._delete202_retry200_initial_async(
             custom_headers=custom_headers,
             raw=True,
             **operation_config
@@ -2137,7 +2137,7 @@ class LROsOperations(_LROsOperations):
          ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._delete202_no_retry204_initial(
+        raw_result = await self._delete202_no_retry204_initial_async(
             custom_headers=custom_headers,
             raw=True,
             **operation_config
@@ -2217,7 +2217,7 @@ class LROsOperations(_LROsOperations):
         :rtype: ~None or ~msrest.pipeline.ClientRawResponse[None]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._delete_no_header_in_retry_initial(
+        raw_result = await self._delete_no_header_in_retry_initial_async(
             custom_headers=custom_headers,
             raw=True,
             **operation_config
@@ -2291,7 +2291,7 @@ class LROsOperations(_LROsOperations):
         :rtype: ~None or ~msrest.pipeline.ClientRawResponse[None]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._delete_async_no_header_in_retry_initial(
+        raw_result = await self._delete_async_no_header_in_retry_initial_async(
             custom_headers=custom_headers,
             raw=True,
             **operation_config
@@ -2367,7 +2367,7 @@ class LROsOperations(_LROsOperations):
         :rtype: ~None or ~msrest.pipeline.ClientRawResponse[None]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._delete_async_retry_succeeded_initial(
+        raw_result = await self._delete_async_retry_succeeded_initial_async(
             custom_headers=custom_headers,
             raw=True,
             **operation_config
@@ -2445,7 +2445,7 @@ class LROsOperations(_LROsOperations):
         :rtype: ~None or ~msrest.pipeline.ClientRawResponse[None]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._delete_async_no_retry_succeeded_initial(
+        raw_result = await self._delete_async_no_retry_succeeded_initial_async(
             custom_headers=custom_headers,
             raw=True,
             **operation_config
@@ -2523,7 +2523,7 @@ class LROsOperations(_LROsOperations):
         :rtype: ~None or ~msrest.pipeline.ClientRawResponse[None]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._delete_async_retry_failed_initial(
+        raw_result = await self._delete_async_retry_failed_initial_async(
             custom_headers=custom_headers,
             raw=True,
             **operation_config
@@ -2601,7 +2601,7 @@ class LROsOperations(_LROsOperations):
         :rtype: ~None or ~msrest.pipeline.ClientRawResponse[None]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._delete_async_retrycanceled_initial(
+        raw_result = await self._delete_async_retrycanceled_initial_async(
             custom_headers=custom_headers,
             raw=True,
             **operation_config
@@ -2683,7 +2683,7 @@ class LROsOperations(_LROsOperations):
          ~msrest.pipeline.ClientRawResponse[~lro.models.Sku]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._post200_with_payload_initial(
+        raw_result = await self._post200_with_payload_initial_async(
             custom_headers=custom_headers,
             raw=True,
             **operation_config
@@ -2768,7 +2768,7 @@ class LROsOperations(_LROsOperations):
         :rtype: ~None or ~msrest.pipeline.ClientRawResponse[None]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._post202_retry200_initial(
+        raw_result = await self._post202_retry200_initial_async(
             product=product,
             custom_headers=custom_headers,
             raw=True,
@@ -2864,7 +2864,7 @@ class LROsOperations(_LROsOperations):
          ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._post202_no_retry204_initial(
+        raw_result = await self._post202_no_retry204_initial_async(
             product=product,
             custom_headers=custom_headers,
             raw=True,
@@ -2967,7 +2967,7 @@ class LROsOperations(_LROsOperations):
          ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._post_async_retry_succeeded_initial(
+        raw_result = await self._post_async_retry_succeeded_initial_async(
             product=product,
             custom_headers=custom_headers,
             raw=True,
@@ -3071,7 +3071,7 @@ class LROsOperations(_LROsOperations):
          ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._post_async_no_retry_succeeded_initial(
+        raw_result = await self._post_async_no_retry_succeeded_initial_async(
             product=product,
             custom_headers=custom_headers,
             raw=True,
@@ -3165,7 +3165,7 @@ class LROsOperations(_LROsOperations):
         :rtype: ~None or ~msrest.pipeline.ClientRawResponse[None]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._post_async_retry_failed_initial(
+        raw_result = await self._post_async_retry_failed_initial_async(
             product=product,
             custom_headers=custom_headers,
             raw=True,
@@ -3254,7 +3254,7 @@ class LROsOperations(_LROsOperations):
         :rtype: ~None or ~msrest.pipeline.ClientRawResponse[None]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._post_async_retrycanceled_initial(
+        raw_result = await self._post_async_retrycanceled_initial_async(
             product=product,
             custom_headers=custom_headers,
             raw=True,
