@@ -12,7 +12,7 @@
 from msrest.service_client import ServiceClient
 from msrest import Configuration, Serializer, Deserializer
 from .version import VERSION
-from .operations.datetimerfc1123_operations import Datetimerfc1123Operations
+from .operations import Datetimerfc1123Operations
 from . import models
 
 

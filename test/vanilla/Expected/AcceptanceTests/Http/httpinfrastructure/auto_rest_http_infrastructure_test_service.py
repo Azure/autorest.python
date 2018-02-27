@@ -13,13 +13,13 @@ from msrest.service_client import ServiceClient
 from msrest import Configuration, Serializer, Deserializer
 from .version import VERSION
 from msrest.exceptions import HttpOperationError
-from .operations.http_failure_operations import HttpFailureOperations
-from .operations.http_success_operations import HttpSuccessOperations
-from .operations.http_redirects_operations import HttpRedirectsOperations
-from .operations.http_client_failure_operations import HttpClientFailureOperations
-from .operations.http_server_failure_operations import HttpServerFailureOperations
-from .operations.http_retry_operations import HttpRetryOperations
-from .operations.multiple_responses_operations import MultipleResponsesOperations
+from .operations import HttpFailureOperations
+from .operations import HttpSuccessOperations
+from .operations import HttpRedirectsOperations
+from .operations import HttpClientFailureOperations
+from .operations import HttpServerFailureOperations
+from .operations import HttpRetryOperations
+from .operations import MultipleResponsesOperations
 from . import models
 
 

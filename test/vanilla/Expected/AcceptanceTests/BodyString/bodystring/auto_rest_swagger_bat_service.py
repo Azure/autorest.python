@@ -12,8 +12,8 @@
 from msrest.service_client import ServiceClient
 from msrest import Configuration, Serializer, Deserializer
 from .version import VERSION
-from .operations.string_operations import StringOperations
-from .operations.enum_operations import EnumOperations
+from .operations import StringOperations
+from .operations import EnumOperations
 from . import models
 
 

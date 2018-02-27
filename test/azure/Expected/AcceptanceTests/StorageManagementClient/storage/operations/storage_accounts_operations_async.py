@@ -522,7 +522,7 @@ class StorageAccountsOperations(_StorageAccountsOperations):
         async def internal_paging_async(next_link=None):
             request, header_parameters = prepare_request(next_link)
 
-            response = await self._client.send_async(
+            response = await self._client.async_send(
                 request, header_parameters, stream=False, **operation_config)
 
             if response.status_code not in [200]:
@@ -533,13 +533,11 @@ class StorageAccountsOperations(_StorageAccountsOperations):
             return response
 
         # Deserialize response
-        deserialized = models.StorageAccountPaged(
-            internal_paging, self._deserialize.dependencies, async_command=internal_paging_async)
-
+        header_dict = None
         if raw:
             header_dict = {}
-            client_raw_response = models.StorageAccountPaged(internal_paging, self._deserialize.dependencies, header_dict)
-            return client_raw_response
+        deserialized = models.StorageAccountPaged(
+            internal_paging, self._deserialize.dependencies, header_dict, async_command=internal_paging_async)
 
         return deserialized
     list.metadata = {'url': '/subscriptions/{subscriptionId}/providers/Microsoft.Storage/storageAccounts'}
@@ -611,7 +609,7 @@ class StorageAccountsOperations(_StorageAccountsOperations):
         async def internal_paging_async(next_link=None):
             request, header_parameters = prepare_request(next_link)
 
-            response = await self._client.send_async(
+            response = await self._client.async_send(
                 request, header_parameters, stream=False, **operation_config)
 
             if response.status_code not in [200]:
@@ -622,13 +620,11 @@ class StorageAccountsOperations(_StorageAccountsOperations):
             return response
 
         # Deserialize response
-        deserialized = models.StorageAccountPaged(
-            internal_paging, self._deserialize.dependencies, async_command=internal_paging_async)
-
+        header_dict = None
         if raw:
             header_dict = {}
-            client_raw_response = models.StorageAccountPaged(internal_paging, self._deserialize.dependencies, header_dict)
-            return client_raw_response
+        deserialized = models.StorageAccountPaged(
+            internal_paging, self._deserialize.dependencies, header_dict, async_command=internal_paging_async)
 
         return deserialized
     list_by_resource_group.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts'}

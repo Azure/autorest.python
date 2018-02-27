@@ -12,8 +12,8 @@
 from msrest.service_client import ServiceClient
 from msrest import Configuration, Serializer, Deserializer
 from .version import VERSION
-from .operations.implicit_operations import ImplicitOperations
-from .operations.explicit_operations import ExplicitOperations
+from .operations import ImplicitOperations
+from .operations import ExplicitOperations
 from . import models
 
 

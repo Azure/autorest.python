@@ -12,9 +12,9 @@
 from msrest.service_client import ServiceClient
 from msrest import Configuration, Serializer, Deserializer
 from .version import VERSION
-from .operations.paths_operations import PathsOperations
-from .operations.queries_operations import QueriesOperations
-from .operations.path_items_operations import PathItemsOperations
+from .operations import PathsOperations
+from .operations import QueriesOperations
+from .operations import PathItemsOperations
 from . import models
 
 

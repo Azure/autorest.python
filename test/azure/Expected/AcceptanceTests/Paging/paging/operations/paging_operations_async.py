@@ -74,7 +74,7 @@ class PagingOperations(_PagingOperations):
         async def internal_paging_async(next_link=None):
             request, header_parameters = prepare_request(next_link)
 
-            response = await self._client.send_async(
+            response = await self._client.async_send(
                 request, header_parameters, stream=False, **operation_config)
 
             if response.status_code not in [200]:
@@ -85,13 +85,11 @@ class PagingOperations(_PagingOperations):
             return response
 
         # Deserialize response
-        deserialized = models.ProductPaged(
-            internal_paging, self._deserialize.dependencies, async_command=internal_paging_async)
-
+        header_dict = None
         if raw:
             header_dict = {}
-            client_raw_response = models.ProductPaged(internal_paging, self._deserialize.dependencies, header_dict)
-            return client_raw_response
+        deserialized = models.ProductPaged(
+            internal_paging, self._deserialize.dependencies, header_dict, async_command=internal_paging_async)
 
         return deserialized
     get_single_pages.metadata = {'url': '/paging/single'}
@@ -170,7 +168,7 @@ class PagingOperations(_PagingOperations):
         async def internal_paging_async(next_link=None):
             request, header_parameters = prepare_request(next_link)
 
-            response = await self._client.send_async(
+            response = await self._client.async_send(
                 request, header_parameters, stream=False, **operation_config)
 
             if response.status_code not in [200]:
@@ -181,13 +179,11 @@ class PagingOperations(_PagingOperations):
             return response
 
         # Deserialize response
-        deserialized = models.ProductPaged(
-            internal_paging, self._deserialize.dependencies, async_command=internal_paging_async)
-
+        header_dict = None
         if raw:
             header_dict = {}
-            client_raw_response = models.ProductPaged(internal_paging, self._deserialize.dependencies, header_dict)
-            return client_raw_response
+        deserialized = models.ProductPaged(
+            internal_paging, self._deserialize.dependencies, header_dict, async_command=internal_paging_async)
 
         return deserialized
     get_multiple_pages.metadata = {'url': '/paging/multiple'}
@@ -267,7 +263,7 @@ class PagingOperations(_PagingOperations):
         async def internal_paging_async(next_link=None):
             request, header_parameters = prepare_request(next_link)
 
-            response = await self._client.send_async(
+            response = await self._client.async_send(
                 request, header_parameters, stream=False, **operation_config)
 
             if response.status_code not in [200]:
@@ -278,13 +274,11 @@ class PagingOperations(_PagingOperations):
             return response
 
         # Deserialize response
-        deserialized = models.ProductPaged1(
-            internal_paging, self._deserialize.dependencies, async_command=internal_paging_async)
-
+        header_dict = None
         if raw:
             header_dict = {}
-            client_raw_response = models.ProductPaged1(internal_paging, self._deserialize.dependencies, header_dict)
-            return client_raw_response
+        deserialized = models.ProductPaged1(
+            internal_paging, self._deserialize.dependencies, header_dict, async_command=internal_paging_async)
 
         return deserialized
     get_odata_multiple_pages.metadata = {'url': '/paging/multiple/odata'}
@@ -370,7 +364,7 @@ class PagingOperations(_PagingOperations):
         async def internal_paging_async(next_link=None):
             request, header_parameters = prepare_request(next_link)
 
-            response = await self._client.send_async(
+            response = await self._client.async_send(
                 request, header_parameters, stream=False, **operation_config)
 
             if response.status_code not in [200]:
@@ -381,13 +375,11 @@ class PagingOperations(_PagingOperations):
             return response
 
         # Deserialize response
-        deserialized = models.ProductPaged(
-            internal_paging, self._deserialize.dependencies, async_command=internal_paging_async)
-
+        header_dict = None
         if raw:
             header_dict = {}
-            client_raw_response = models.ProductPaged(internal_paging, self._deserialize.dependencies, header_dict)
-            return client_raw_response
+        deserialized = models.ProductPaged(
+            internal_paging, self._deserialize.dependencies, header_dict, async_command=internal_paging_async)
 
         return deserialized
     get_multiple_pages_with_offset.metadata = {'url': '/paging/multiple/withpath/{offset}'}
@@ -448,7 +440,7 @@ class PagingOperations(_PagingOperations):
         async def internal_paging_async(next_link=None):
             request, header_parameters = prepare_request(next_link)
 
-            response = await self._client.send_async(
+            response = await self._client.async_send(
                 request, header_parameters, stream=False, **operation_config)
 
             if response.status_code not in [200]:
@@ -459,13 +451,11 @@ class PagingOperations(_PagingOperations):
             return response
 
         # Deserialize response
-        deserialized = models.ProductPaged(
-            internal_paging, self._deserialize.dependencies, async_command=internal_paging_async)
-
+        header_dict = None
         if raw:
             header_dict = {}
-            client_raw_response = models.ProductPaged(internal_paging, self._deserialize.dependencies, header_dict)
-            return client_raw_response
+        deserialized = models.ProductPaged(
+            internal_paging, self._deserialize.dependencies, header_dict, async_command=internal_paging_async)
 
         return deserialized
     get_multiple_pages_retry_first.metadata = {'url': '/paging/multiple/retryfirst'}
@@ -527,7 +517,7 @@ class PagingOperations(_PagingOperations):
         async def internal_paging_async(next_link=None):
             request, header_parameters = prepare_request(next_link)
 
-            response = await self._client.send_async(
+            response = await self._client.async_send(
                 request, header_parameters, stream=False, **operation_config)
 
             if response.status_code not in [200]:
@@ -538,13 +528,11 @@ class PagingOperations(_PagingOperations):
             return response
 
         # Deserialize response
-        deserialized = models.ProductPaged(
-            internal_paging, self._deserialize.dependencies, async_command=internal_paging_async)
-
+        header_dict = None
         if raw:
             header_dict = {}
-            client_raw_response = models.ProductPaged(internal_paging, self._deserialize.dependencies, header_dict)
-            return client_raw_response
+        deserialized = models.ProductPaged(
+            internal_paging, self._deserialize.dependencies, header_dict, async_command=internal_paging_async)
 
         return deserialized
     get_multiple_pages_retry_second.metadata = {'url': '/paging/multiple/retrysecond'}
@@ -604,7 +592,7 @@ class PagingOperations(_PagingOperations):
         async def internal_paging_async(next_link=None):
             request, header_parameters = prepare_request(next_link)
 
-            response = await self._client.send_async(
+            response = await self._client.async_send(
                 request, header_parameters, stream=False, **operation_config)
 
             if response.status_code not in [200]:
@@ -615,13 +603,11 @@ class PagingOperations(_PagingOperations):
             return response
 
         # Deserialize response
-        deserialized = models.ProductPaged(
-            internal_paging, self._deserialize.dependencies, async_command=internal_paging_async)
-
+        header_dict = None
         if raw:
             header_dict = {}
-            client_raw_response = models.ProductPaged(internal_paging, self._deserialize.dependencies, header_dict)
-            return client_raw_response
+        deserialized = models.ProductPaged(
+            internal_paging, self._deserialize.dependencies, header_dict, async_command=internal_paging_async)
 
         return deserialized
     get_single_pages_failure.metadata = {'url': '/paging/single/failure'}
@@ -681,7 +667,7 @@ class PagingOperations(_PagingOperations):
         async def internal_paging_async(next_link=None):
             request, header_parameters = prepare_request(next_link)
 
-            response = await self._client.send_async(
+            response = await self._client.async_send(
                 request, header_parameters, stream=False, **operation_config)
 
             if response.status_code not in [200]:
@@ -692,13 +678,11 @@ class PagingOperations(_PagingOperations):
             return response
 
         # Deserialize response
-        deserialized = models.ProductPaged(
-            internal_paging, self._deserialize.dependencies, async_command=internal_paging_async)
-
+        header_dict = None
         if raw:
             header_dict = {}
-            client_raw_response = models.ProductPaged(internal_paging, self._deserialize.dependencies, header_dict)
-            return client_raw_response
+        deserialized = models.ProductPaged(
+            internal_paging, self._deserialize.dependencies, header_dict, async_command=internal_paging_async)
 
         return deserialized
     get_multiple_pages_failure.metadata = {'url': '/paging/multiple/failure'}
@@ -758,7 +742,7 @@ class PagingOperations(_PagingOperations):
         async def internal_paging_async(next_link=None):
             request, header_parameters = prepare_request(next_link)
 
-            response = await self._client.send_async(
+            response = await self._client.async_send(
                 request, header_parameters, stream=False, **operation_config)
 
             if response.status_code not in [200]:
@@ -769,13 +753,11 @@ class PagingOperations(_PagingOperations):
             return response
 
         # Deserialize response
-        deserialized = models.ProductPaged(
-            internal_paging, self._deserialize.dependencies, async_command=internal_paging_async)
-
+        header_dict = None
         if raw:
             header_dict = {}
-            client_raw_response = models.ProductPaged(internal_paging, self._deserialize.dependencies, header_dict)
-            return client_raw_response
+        deserialized = models.ProductPaged(
+            internal_paging, self._deserialize.dependencies, header_dict, async_command=internal_paging_async)
 
         return deserialized
     get_multiple_pages_failure_uri.metadata = {'url': '/paging/multiple/failureuri'}
@@ -850,7 +832,7 @@ class PagingOperations(_PagingOperations):
         async def internal_paging_async(next_link=None):
             request, header_parameters = prepare_request(next_link)
 
-            response = await self._client.send_async(
+            response = await self._client.async_send(
                 request, header_parameters, stream=False, **operation_config)
 
             if response.status_code not in [200]:
@@ -861,13 +843,11 @@ class PagingOperations(_PagingOperations):
             return response
 
         # Deserialize response
-        deserialized = models.ProductPaged1(
-            internal_paging, self._deserialize.dependencies, async_command=internal_paging_async)
-
+        header_dict = None
         if raw:
             header_dict = {}
-            client_raw_response = models.ProductPaged1(internal_paging, self._deserialize.dependencies, header_dict)
-            return client_raw_response
+        deserialized = models.ProductPaged1(
+            internal_paging, self._deserialize.dependencies, header_dict, async_command=internal_paging_async)
 
         return deserialized
     get_multiple_pages_fragment_next_link.metadata = {'url': '/paging/multiple/fragment/{tenant}'}
@@ -948,7 +928,7 @@ class PagingOperations(_PagingOperations):
         async def internal_paging_async(next_link=None):
             request, header_parameters = prepare_request(next_link)
 
-            response = await self._client.send_async(
+            response = await self._client.async_send(
                 request, header_parameters, stream=False, **operation_config)
 
             if response.status_code not in [200]:
@@ -959,13 +939,11 @@ class PagingOperations(_PagingOperations):
             return response
 
         # Deserialize response
-        deserialized = models.ProductPaged1(
-            internal_paging, self._deserialize.dependencies, async_command=internal_paging_async)
-
+        header_dict = None
         if raw:
             header_dict = {}
-            client_raw_response = models.ProductPaged1(internal_paging, self._deserialize.dependencies, header_dict)
-            return client_raw_response
+        deserialized = models.ProductPaged1(
+            internal_paging, self._deserialize.dependencies, header_dict, async_command=internal_paging_async)
 
         return deserialized
     get_multiple_pages_fragment_with_grouping_next_link.metadata = {'url': '/paging/multiple/fragmentwithgrouping/{tenant}'}

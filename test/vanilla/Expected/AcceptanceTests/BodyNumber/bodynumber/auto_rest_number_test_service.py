@@ -12,7 +12,7 @@
 from msrest.service_client import ServiceClient
 from msrest import Configuration, Serializer, Deserializer
 from .version import VERSION
-from .operations.number_operations import NumberOperations
+from .operations import NumberOperations
 from . import models
 
 

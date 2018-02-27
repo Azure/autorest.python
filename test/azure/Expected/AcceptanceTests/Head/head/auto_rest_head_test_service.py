@@ -13,7 +13,7 @@ from msrest.service_client import ServiceClient
 from msrest import Serializer, Deserializer
 from msrestazure import AzureConfiguration
 from .version import VERSION
-from .operations.http_success_operations import HttpSuccessOperations
+from .operations import HttpSuccessOperations
 
 
 class AutoRestHeadTestServiceConfiguration(AzureConfiguration):

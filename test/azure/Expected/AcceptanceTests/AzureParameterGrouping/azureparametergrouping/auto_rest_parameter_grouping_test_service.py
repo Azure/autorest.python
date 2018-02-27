@@ -13,7 +13,7 @@ from msrest.service_client import ServiceClient
 from msrest import Serializer, Deserializer
 from msrestazure import AzureConfiguration
 from .version import VERSION
-from .operations.parameter_grouping_operations import ParameterGroupingOperations
+from .operations import ParameterGroupingOperations
 from . import models
 
 

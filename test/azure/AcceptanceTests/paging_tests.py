@@ -138,33 +138,32 @@ class PagingTests(unittest.TestCase):
 
         pages = self.client.paging.get_single_pages_failure()
         with self.assertRaises(CloudError):
-            items = [i for i in pages]
+            list(pages)
 
         pages = self.client.paging.get_multiple_pages_failure()
         self.assertIsNotNone(pages.next_link)
 
         with self.assertRaises(CloudError):
-            items = [i for i in pages]
+            list(pages)
 
         pages = self.client.paging.get_multiple_pages_failure_uri()
-
         with self.assertRaises(CloudError):
-            items = [i for i in pages]
+            list(pages)
 
         pages = self.client.paging.get_single_pages_failure(raw=True)
         with self.assertRaises(CloudError):
-            items = [i for i in pages]
+            list(pages)
 
         pages = self.client.paging.get_multiple_pages_failure(raw=True)
         self.assertIsNotNone(pages.next_link)
 
         with self.assertRaises(CloudError):
-            items = [i for i in pages]
+            list(pages)
 
         pages = self.client.paging.get_multiple_pages_failure_uri(raw=True)
 
         with self.assertRaises(CloudError):
-            items = [i for i in pages]
+            list(pages)
 
     def test_paging_fragment_path(self):
 
@@ -174,7 +173,8 @@ class PagingTests(unittest.TestCase):
         self.assertEqual(len(items), 10)
 
         with self.assertRaises(AttributeError):
-            self.client.paging.get_multiple_pages_fragment_next_link_next()
+            # Be sure this method is not generated (Transform work)
+            self.client.paging.get_multiple_pages_fragment_next_link_next()  # pylint: disable=E1101
 
 
 if __name__ == '__main__':
