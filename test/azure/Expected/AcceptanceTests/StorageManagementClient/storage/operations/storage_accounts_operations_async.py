@@ -475,8 +475,7 @@ class StorageAccountsOperations(_StorageAccountsOperations):
          ~storage.models.StorageAccountPaged[~storage.models.StorageAccount]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        async def internal_paging(next_link=None, raw=False):
-
+        def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
                 url = self.list.metadata['url']
@@ -505,7 +504,26 @@ class StorageAccountsOperations(_StorageAccountsOperations):
 
             # Construct and send request
             request = self._client.get(url, query_parameters)
-            response = await self._client.async_send(request, header_parameters, stream=False, **operation_config)
+            return request, header_parameters
+
+        def internal_paging(next_link=None):
+            request, header_parameters = prepare_request(next_link)
+
+            response = self._client.send(
+                request, header_parameters, stream=False, **operation_config)
+
+            if response.status_code not in [200]:
+                exp = CloudError(response)
+                exp.request_id = response.headers.get('x-ms-request-id')
+                raise exp
+
+            return response
+
+        async def internal_paging_async(next_link=None):
+            request, header_parameters = prepare_request(next_link)
+
+            response = await self._client.send_async(
+                request, header_parameters, stream=False, **operation_config)
 
             if response.status_code not in [200]:
                 exp = CloudError(response)
@@ -515,7 +533,8 @@ class StorageAccountsOperations(_StorageAccountsOperations):
             return response
 
         # Deserialize response
-        deserialized = models.StorageAccountPaged(internal_paging, self._deserialize.dependencies)
+        deserialized = models.StorageAccountPaged(
+            internal_paging, self._deserialize.dependencies, async_command=internal_paging_async)
 
         if raw:
             header_dict = {}
@@ -544,8 +563,7 @@ class StorageAccountsOperations(_StorageAccountsOperations):
          ~storage.models.StorageAccountPaged[~storage.models.StorageAccount]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        async def internal_paging(next_link=None, raw=False):
-
+        def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
                 url = self.list_by_resource_group.metadata['url']
@@ -575,7 +593,26 @@ class StorageAccountsOperations(_StorageAccountsOperations):
 
             # Construct and send request
             request = self._client.get(url, query_parameters)
-            response = await self._client.async_send(request, header_parameters, stream=False, **operation_config)
+            return request, header_parameters
+
+        def internal_paging(next_link=None):
+            request, header_parameters = prepare_request(next_link)
+
+            response = self._client.send(
+                request, header_parameters, stream=False, **operation_config)
+
+            if response.status_code not in [200]:
+                exp = CloudError(response)
+                exp.request_id = response.headers.get('x-ms-request-id')
+                raise exp
+
+            return response
+
+        async def internal_paging_async(next_link=None):
+            request, header_parameters = prepare_request(next_link)
+
+            response = await self._client.send_async(
+                request, header_parameters, stream=False, **operation_config)
 
             if response.status_code not in [200]:
                 exp = CloudError(response)
@@ -585,7 +622,8 @@ class StorageAccountsOperations(_StorageAccountsOperations):
             return response
 
         # Deserialize response
-        deserialized = models.StorageAccountPaged(internal_paging, self._deserialize.dependencies)
+        deserialized = models.StorageAccountPaged(
+            internal_paging, self._deserialize.dependencies, async_command=internal_paging_async)
 
         if raw:
             header_dict = {}

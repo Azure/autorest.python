@@ -495,8 +495,7 @@ class StorageAccountsOperations(object):
          ~storage.models.StorageAccountPaged[~storage.models.StorageAccount]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        def internal_paging(next_link=None, raw=False):
-
+        def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
                 url = self.list.metadata['url']
@@ -525,7 +524,13 @@ class StorageAccountsOperations(object):
 
             # Construct and send request
             request = self._client.get(url, query_parameters)
-            response = self._client.send(request, header_parameters, stream=False, **operation_config)
+            return request, header_parameters
+
+        def internal_paging(next_link=None):
+            request, header_parameters = prepare_request(next_link)
+
+            response = self._client.send(
+                request, header_parameters, stream=False, **operation_config)
 
             if response.status_code not in [200]:
                 exp = CloudError(response)
@@ -564,8 +569,7 @@ class StorageAccountsOperations(object):
          ~storage.models.StorageAccountPaged[~storage.models.StorageAccount]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        def internal_paging(next_link=None, raw=False):
-
+        def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
                 url = self.list_by_resource_group.metadata['url']
@@ -595,7 +599,13 @@ class StorageAccountsOperations(object):
 
             # Construct and send request
             request = self._client.get(url, query_parameters)
-            response = self._client.send(request, header_parameters, stream=False, **operation_config)
+            return request, header_parameters
+
+        def internal_paging(next_link=None):
+            request, header_parameters = prepare_request(next_link)
+
+            response = self._client.send(
+                request, header_parameters, stream=False, **operation_config)
 
             if response.status_code not in [200]:
                 exp = CloudError(response)

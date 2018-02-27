@@ -48,8 +48,7 @@ class PagingOperations(object):
         :rtype: ~paging.models.ProductPaged[~paging.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        def internal_paging(next_link=None, raw=False):
-
+        def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
                 url = self.get_single_pages.metadata['url']
@@ -73,7 +72,13 @@ class PagingOperations(object):
 
             # Construct and send request
             request = self._client.get(url, query_parameters)
-            response = self._client.send(request, header_parameters, stream=False, **operation_config)
+            return request, header_parameters
+
+        def internal_paging(next_link=None):
+            request, header_parameters = prepare_request(next_link)
+
+            response = self._client.send(
+                request, header_parameters, stream=False, **operation_config)
 
             if response.status_code not in [200]:
                 exp = CloudError(response)
@@ -119,8 +124,7 @@ class PagingOperations(object):
         if paging_get_multiple_pages_options is not None:
             timeout = paging_get_multiple_pages_options.timeout
 
-        def internal_paging(next_link=None, raw=False):
-
+        def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
                 url = self.get_multiple_pages.metadata['url']
@@ -150,7 +154,13 @@ class PagingOperations(object):
 
             # Construct and send request
             request = self._client.get(url, query_parameters)
-            response = self._client.send(request, header_parameters, stream=False, **operation_config)
+            return request, header_parameters
+
+        def internal_paging(next_link=None):
+            request, header_parameters = prepare_request(next_link)
+
+            response = self._client.send(
+                request, header_parameters, stream=False, **operation_config)
 
             if response.status_code not in [200]:
                 exp = CloudError(response)
@@ -197,8 +207,7 @@ class PagingOperations(object):
         if paging_get_odata_multiple_pages_options is not None:
             timeout = paging_get_odata_multiple_pages_options.timeout
 
-        def internal_paging(next_link=None, raw=False):
-
+        def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
                 url = self.get_odata_multiple_pages.metadata['url']
@@ -228,7 +237,13 @@ class PagingOperations(object):
 
             # Construct and send request
             request = self._client.get(url, query_parameters)
-            response = self._client.send(request, header_parameters, stream=False, **operation_config)
+            return request, header_parameters
+
+        def internal_paging(next_link=None):
+            request, header_parameters = prepare_request(next_link)
+
+            response = self._client.send(
+                request, header_parameters, stream=False, **operation_config)
 
             if response.status_code not in [200]:
                 exp = CloudError(response)
@@ -277,8 +292,7 @@ class PagingOperations(object):
         if paging_get_multiple_pages_with_offset_options is not None:
             timeout = paging_get_multiple_pages_with_offset_options.timeout
 
-        def internal_paging(next_link=None, raw=False):
-
+        def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
                 url = self.get_multiple_pages_with_offset.metadata['url']
@@ -312,7 +326,13 @@ class PagingOperations(object):
 
             # Construct and send request
             request = self._client.get(url, query_parameters)
-            response = self._client.send(request, header_parameters, stream=False, **operation_config)
+            return request, header_parameters
+
+        def internal_paging(next_link=None):
+            request, header_parameters = prepare_request(next_link)
+
+            response = self._client.send(
+                request, header_parameters, stream=False, **operation_config)
 
             if response.status_code not in [200]:
                 exp = CloudError(response)
@@ -346,8 +366,7 @@ class PagingOperations(object):
         :rtype: ~paging.models.ProductPaged[~paging.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        def internal_paging(next_link=None, raw=False):
-
+        def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
                 url = self.get_multiple_pages_retry_first.metadata['url']
@@ -371,7 +390,13 @@ class PagingOperations(object):
 
             # Construct and send request
             request = self._client.get(url, query_parameters)
-            response = self._client.send(request, header_parameters, stream=False, **operation_config)
+            return request, header_parameters
+
+        def internal_paging(next_link=None):
+            request, header_parameters = prepare_request(next_link)
+
+            response = self._client.send(
+                request, header_parameters, stream=False, **operation_config)
 
             if response.status_code not in [200]:
                 exp = CloudError(response)
@@ -406,8 +431,7 @@ class PagingOperations(object):
         :rtype: ~paging.models.ProductPaged[~paging.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        def internal_paging(next_link=None, raw=False):
-
+        def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
                 url = self.get_multiple_pages_retry_second.metadata['url']
@@ -431,7 +455,13 @@ class PagingOperations(object):
 
             # Construct and send request
             request = self._client.get(url, query_parameters)
-            response = self._client.send(request, header_parameters, stream=False, **operation_config)
+            return request, header_parameters
+
+        def internal_paging(next_link=None):
+            request, header_parameters = prepare_request(next_link)
+
+            response = self._client.send(
+                request, header_parameters, stream=False, **operation_config)
 
             if response.status_code not in [200]:
                 exp = CloudError(response)
@@ -464,8 +494,7 @@ class PagingOperations(object):
         :rtype: ~paging.models.ProductPaged[~paging.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        def internal_paging(next_link=None, raw=False):
-
+        def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
                 url = self.get_single_pages_failure.metadata['url']
@@ -489,7 +518,13 @@ class PagingOperations(object):
 
             # Construct and send request
             request = self._client.get(url, query_parameters)
-            response = self._client.send(request, header_parameters, stream=False, **operation_config)
+            return request, header_parameters
+
+        def internal_paging(next_link=None):
+            request, header_parameters = prepare_request(next_link)
+
+            response = self._client.send(
+                request, header_parameters, stream=False, **operation_config)
 
             if response.status_code not in [200]:
                 exp = CloudError(response)
@@ -522,8 +557,7 @@ class PagingOperations(object):
         :rtype: ~paging.models.ProductPaged[~paging.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        def internal_paging(next_link=None, raw=False):
-
+        def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
                 url = self.get_multiple_pages_failure.metadata['url']
@@ -547,7 +581,13 @@ class PagingOperations(object):
 
             # Construct and send request
             request = self._client.get(url, query_parameters)
-            response = self._client.send(request, header_parameters, stream=False, **operation_config)
+            return request, header_parameters
+
+        def internal_paging(next_link=None):
+            request, header_parameters = prepare_request(next_link)
+
+            response = self._client.send(
+                request, header_parameters, stream=False, **operation_config)
 
             if response.status_code not in [200]:
                 exp = CloudError(response)
@@ -580,8 +620,7 @@ class PagingOperations(object):
         :rtype: ~paging.models.ProductPaged[~paging.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        def internal_paging(next_link=None, raw=False):
-
+        def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
                 url = self.get_multiple_pages_failure_uri.metadata['url']
@@ -605,7 +644,13 @@ class PagingOperations(object):
 
             # Construct and send request
             request = self._client.get(url, query_parameters)
-            response = self._client.send(request, header_parameters, stream=False, **operation_config)
+            return request, header_parameters
+
+        def internal_paging(next_link=None):
+            request, header_parameters = prepare_request(next_link)
+
+            response = self._client.send(
+                request, header_parameters, stream=False, **operation_config)
 
             if response.status_code not in [200]:
                 exp = CloudError(response)
@@ -642,8 +687,7 @@ class PagingOperations(object):
         :rtype: ~paging.models.ProductPaged1[~paging.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        def internal_paging(next_link=None, raw=False):
-
+        def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
                 url = self.get_multiple_pages_fragment_next_link.metadata['url']
@@ -678,7 +722,13 @@ class PagingOperations(object):
 
             # Construct and send request
             request = self._client.get(url, query_parameters)
-            response = self._client.send(request, header_parameters, stream=False, **operation_config)
+            return request, header_parameters
+
+        def internal_paging(next_link=None):
+            request, header_parameters = prepare_request(next_link)
+
+            response = self._client.send(
+                request, header_parameters, stream=False, **operation_config)
 
             if response.status_code not in [200]:
                 exp = CloudError(response)
@@ -721,8 +771,7 @@ class PagingOperations(object):
         if custom_parameter_group is not None:
             tenant = custom_parameter_group.tenant
 
-        def internal_paging(next_link=None, raw=False):
-
+        def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
                 url = self.get_multiple_pages_fragment_with_grouping_next_link.metadata['url']
@@ -757,7 +806,13 @@ class PagingOperations(object):
 
             # Construct and send request
             request = self._client.get(url, query_parameters)
-            response = self._client.send(request, header_parameters, stream=False, **operation_config)
+            return request, header_parameters
+
+        def internal_paging(next_link=None):
+            request, header_parameters = prepare_request(next_link)
+
+            response = self._client.send(
+                request, header_parameters, stream=False, **operation_config)
 
             if response.status_code not in [200]:
                 exp = CloudError(response)
