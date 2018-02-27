@@ -7,14 +7,14 @@
 @using AutoRest.Python.vanilla.Templates
 @inherits AutoRest.Python.PythonTemplate<AutoRest.Python.Azure.Model.MethodPya>
 @EmptyLine
-@if(AsyncMode)
-{
-@:    async def _@(Model.Name.ToPythonCase())_initial_async(
+@{
+string defKeyword = AsyncMode? "async def" : "def";
+string methodName = Model.Name.ToPythonCase();
+string initialMethodName = "_" + methodName + "_initial";
+if (AsyncMode) methodName += "_async";
+if (AsyncMode) initialMethodName += "_async";
 }
-else
-{
-@:    def _@(Model.Name.ToPythonCase())_initial(
-}
+    @(defKeyword) @(initialMethodName)(
             self, @(Model.MethodParameterDeclaration(Model.AddCustomHeader)), **operation_config):
         @Model.BuildInputMappings()
 @if (Model.InputParameterTransformation.Any())
@@ -30,7 +30,7 @@ else
 @EmptyLine
 }
         # Construct URL
-        url = self.@(((string)Model.Name).ToPythonCase()).metadata['url']
+        url = self.@(methodName).metadata['url']
         @(Model.BuildUrlPath("url", Model.LogicalParameters))
 @EmptyLine
         # Construct parameters
@@ -124,14 +124,7 @@ else
             @:return client_raw_response
 }
 @EmptyLine
-@if(AsyncMode)
-{
-@:    async def @(Model.Name.ToPythonCase())_async(
-}
-else
-{
-@:    def @(Model.Name.ToPythonCase())(
-}
+    @(defKeyword) @(methodName)(
             self, @(Model.MethodParameterDeclaration(Model.AddCustomHeader)), polling=True, **operation_config):
         """@(WrapComment(string.Empty, Model.BuildSummaryAndDescriptionString()))
 @*need to fix comment here for long running function*@
@@ -214,4 +207,4 @@ else
 @:        else: polling_method = polling
 @:        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 }
-    @(((string)Model.Name).ToPythonCase()).metadata = {'url': '@(Model.Url)'}
+    @(methodName).metadata = {'url': '@(Model.Url)'}

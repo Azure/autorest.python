@@ -6,14 +6,12 @@
 @using AutoRest.Python.Model
 @using AutoRest.Python.vanilla.Templates
 @inherits AutoRest.Python.PythonTemplate<AutoRest.Python.Model.MethodPy>
-@if(AsyncMode)
-{
-@:    async def @(((string)Model.Name).ToPythonCase())_async(
+@{
+string methodName = Model.Name.ToPythonCase();
+string defKeyword = AsyncMode? "async def" : "def";
+if (AsyncMode) methodName += "_async";
 }
-else
-{
-@:    def @(((string)Model.Name).ToPythonCase())(
-}
+    @(defKeyword) @(methodName)(
             self, @(Model.MethodParameterDeclaration(Model.AddCustomHeader)), **operation_config):
         """@(WrapComment(string.Empty, Model.BuildSummaryAndDescriptionString()))
 @EmptyLine
@@ -42,7 +40,7 @@ else
         """
 @if (Model.Deprecated)
 {
-@:        @(string.Format("warnings.warn(\"Method {0} is deprecated\", DeprecationWarning)", ((string)Model.Name).ToPythonCase()))
+@:        @(string.Format("warnings.warn(\"Method {0} is deprecated\", DeprecationWarning)", methodName))
 }
         @Model.BuildInputMappings()
 @if (Model.InputParameterTransformation.Any())
@@ -58,7 +56,7 @@ else
 @EmptyLine
 }
         # Construct URL
-        url = self.@(((string)Model.Name).ToPythonCase()).metadata['url']
+        url = self.@(methodName).metadata['url']
         @(Model.BuildUrlPath("url", Model.LogicalParameters))
 @EmptyLine
         # Construct parameters
@@ -167,4 +165,4 @@ else
 {
         @:@Model.ReturnEmptyResponse
 }
-    @(((string)Model.Name).ToPythonCase()).metadata = {'url': '@(Model.Url)'}
+    @(methodName).metadata = {'url': '@(Model.Url)'}

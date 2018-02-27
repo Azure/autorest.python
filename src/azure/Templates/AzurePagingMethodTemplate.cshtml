@@ -4,7 +4,11 @@
 @using AutoRest.Python.Model
 @using AutoRest.Python.vanilla.Templates
 @inherits AutoRest.Python.PythonTemplate<AutoRest.Python.Azure.Model.MethodPya>
-    def @(Model.Name.ToPythonCase())(
+@{
+string methodName = Model.Name.ToPythonCase();
+string defKeyword = AsyncMode? "async def" : "def";
+}
+    def @(methodName)(
             self, @(Model.MethodParameterDeclaration(true)), **operation_config):
         """@(WrapComment(string.Empty, Model.BuildSummaryAndDescriptionString()))
 @EmptyLine
@@ -44,14 +48,7 @@
 	}
 @EmptyLine
 }
-@if(AsyncMode)
-{
-@:        async def internal_paging(next_link=None, raw=False):
-}
-else
-{
-@:        def internal_paging(next_link=None, raw=False):
-}
+        @(defKeyword) internal_paging(next_link=None, raw=False):
 @EmptyLine
             if not next_link:
                 # Construct URL
@@ -99,15 +96,15 @@ else
 }
             # Construct and send request
             request = self._client.@(MethodPy.GetHttpFunction(Model.HttpMethod))(url, query_parameters)
+@{string sendCall = Model.GetSendCall(AsyncMode);}
 @if (Model.RequestBody != null)
 {
-            @:response = self._client.send(
+            @:response = @(sendCall)(
                 @:request, header_parameters, body_content, stream=False, **operation_config)
 }
 else
 {
-            @:response = self._client.send(
-                @:request, header_parameters, stream=False, **operation_config)
+            @:response = @(sendCall)(request, header_parameters, stream=False, **operation_config)
 }
 @EmptyLine
             if @Model.FailureStatusCodePredicate:
@@ -124,4 +121,4 @@ else
             return client_raw_response
 @EmptyLine
         return deserialized
-    @(((string)Model.Name).ToPythonCase()).metadata = {'url': '@(Model.Url)'}
+    @(methodName).metadata = {'url': '@(Model.Url)'}
