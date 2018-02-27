@@ -119,7 +119,7 @@ else
 @:        async def internal_paging_async(next_link=None):
 @:            request, header_parameters = prepare_request(next_link)
 @EmptyLine
-            @:response = await self._client.send_async(
+            @:response = await self._client.async_send(
 if (Model.RequestBody != null)
 {
                 @:request, header_parameters, body_content, stream=False, **operation_config)
