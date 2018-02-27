@@ -41,7 +41,7 @@ import uuid
 {
   foreach (var modelGroupType in Model.MethodGroupModels)
   {
-@:from .operations.@(((string) modelGroupType.TypeName).ToPythonCase()) import @((string) modelGroupType.TypeName)
+@:from .operations import @((string) modelGroupType.TypeName)
   }
 }
 @if (Model.HasAnyModel)
