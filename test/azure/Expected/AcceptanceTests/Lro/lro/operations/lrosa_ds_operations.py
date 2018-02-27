@@ -92,7 +92,7 @@ class LROSADsOperations(object):
         :param product: Product to put
         :type product: ~lro.models.Product
         :param dict custom_headers: headers that will be added to the request
-        :param bool raw: The poller return type is ClientRawResponse, the
+        param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
@@ -185,7 +185,7 @@ class LROSADsOperations(object):
         :param product: Product to put
         :type product: ~lro.models.Product
         :param dict custom_headers: headers that will be added to the request
-        :param bool raw: The poller return type is ClientRawResponse, the
+        param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
@@ -278,7 +278,7 @@ class LROSADsOperations(object):
         :param product: Product to put
         :type product: ~lro.models.Product
         :param dict custom_headers: headers that will be added to the request
-        :param bool raw: The poller return type is ClientRawResponse, the
+        param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
@@ -377,7 +377,7 @@ class LROSADsOperations(object):
         :param product: Product to put
         :type product: ~lro.models.Product
         :param dict custom_headers: headers that will be added to the request
-        :param bool raw: The poller return type is ClientRawResponse, the
+        param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
@@ -462,7 +462,7 @@ class LROSADsOperations(object):
         """Long running delete request, service returns a 400 with an error body.
 
         :param dict custom_headers: headers that will be added to the request
-        :param bool raw: The poller return type is ClientRawResponse, the
+        param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
@@ -539,7 +539,7 @@ class LROSADsOperations(object):
         header.
 
         :param dict custom_headers: headers that will be added to the request
-        :param bool raw: The poller return type is ClientRawResponse, the
+        param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
@@ -618,7 +618,7 @@ class LROSADsOperations(object):
         for operation status.
 
         :param dict custom_headers: headers that will be added to the request
-        :param bool raw: The poller return type is ClientRawResponse, the
+        param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
@@ -704,7 +704,7 @@ class LROSADsOperations(object):
         :param product: Product to put
         :type product: ~lro.models.Product
         :param dict custom_headers: headers that will be added to the request
-        :param bool raw: The poller return type is ClientRawResponse, the
+        param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
@@ -791,7 +791,7 @@ class LROSADsOperations(object):
         :param product: Product to put
         :type product: ~lro.models.Product
         :param dict custom_headers: headers that will be added to the request
-        :param bool raw: The poller return type is ClientRawResponse, the
+        param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
@@ -880,7 +880,7 @@ class LROSADsOperations(object):
         :param product: Product to put
         :type product: ~lro.models.Product
         :param dict custom_headers: headers that will be added to the request
-        :param bool raw: The poller return type is ClientRawResponse, the
+        param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
@@ -972,7 +972,7 @@ class LROSADsOperations(object):
         :param product: Product to put
         :type product: ~lro.models.Product
         :param dict custom_headers: headers that will be added to the request
-        :param bool raw: The poller return type is ClientRawResponse, the
+        param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
@@ -1072,7 +1072,7 @@ class LROSADsOperations(object):
         :param product: Product to put
         :type product: ~lro.models.Product
         :param dict custom_headers: headers that will be added to the request
-        :param bool raw: The poller return type is ClientRawResponse, the
+        param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
@@ -1178,7 +1178,7 @@ class LROSADsOperations(object):
         :param product: Product to put
         :type product: ~lro.models.Product
         :param dict custom_headers: headers that will be added to the request
-        :param bool raw: The poller return type is ClientRawResponse, the
+        param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
@@ -1259,7 +1259,7 @@ class LROSADsOperations(object):
         request, indicating success.
 
         :param dict custom_headers: headers that will be added to the request
-        :param bool raw: The poller return type is ClientRawResponse, the
+        param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
@@ -1334,7 +1334,7 @@ class LROSADsOperations(object):
         for operation status.
 
         :param dict custom_headers: headers that will be added to the request
-        :param bool raw: The poller return type is ClientRawResponse, the
+        param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
@@ -1421,7 +1421,7 @@ class LROSADsOperations(object):
         :param product: Product to put
         :type product: ~lro.models.Product
         :param dict custom_headers: headers that will be added to the request
-        :param bool raw: The poller return type is ClientRawResponse, the
+        param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
@@ -1511,7 +1511,7 @@ class LROSADsOperations(object):
         :param product: Product to put
         :type product: ~lro.models.Product
         :param dict custom_headers: headers that will be added to the request
-        :param bool raw: The poller return type is ClientRawResponse, the
+        param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
@@ -1601,7 +1601,7 @@ class LROSADsOperations(object):
         :param product: Product to put
         :type product: ~lro.models.Product
         :param dict custom_headers: headers that will be added to the request
-        :param bool raw: The poller return type is ClientRawResponse, the
+        param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
@@ -1700,7 +1700,7 @@ class LROSADsOperations(object):
         :param product: Product to put
         :type product: ~lro.models.Product
         :param dict custom_headers: headers that will be added to the request
-        :param bool raw: The poller return type is ClientRawResponse, the
+        param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
@@ -1806,7 +1806,7 @@ class LROSADsOperations(object):
         :param product: Product to put
         :type product: ~lro.models.Product
         :param dict custom_headers: headers that will be added to the request
-        :param bool raw: The poller return type is ClientRawResponse, the
+        param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
@@ -1893,7 +1893,7 @@ class LROSADsOperations(object):
         headers.
 
         :param dict custom_headers: headers that will be added to the request
-        :param bool raw: The poller return type is ClientRawResponse, the
+        param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
@@ -1972,7 +1972,7 @@ class LROSADsOperations(object):
         invalid.
 
         :param dict custom_headers: headers that will be added to the request
-        :param bool raw: The poller return type is ClientRawResponse, the
+        param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
@@ -2052,7 +2052,7 @@ class LROSADsOperations(object):
         for operation status.
 
         :param dict custom_headers: headers that will be added to the request
-        :param bool raw: The poller return type is ClientRawResponse, the
+        param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
@@ -2139,7 +2139,7 @@ class LROSADsOperations(object):
         :param product: Product to put
         :type product: ~lro.models.Product
         :param dict custom_headers: headers that will be added to the request
-        :param bool raw: The poller return type is ClientRawResponse, the
+        param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
@@ -2228,7 +2228,7 @@ class LROSADsOperations(object):
         :param product: Product to put
         :type product: ~lro.models.Product
         :param dict custom_headers: headers that will be added to the request
-        :param bool raw: The poller return type is ClientRawResponse, the
+        param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
@@ -2319,7 +2319,7 @@ class LROSADsOperations(object):
         :param product: Product to put
         :type product: ~lro.models.Product
         :param dict custom_headers: headers that will be added to the request
-        :param bool raw: The poller return type is ClientRawResponse, the
+        param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy

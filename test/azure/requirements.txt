@@ -1,2 +1,3 @@
 requests>=2.14.0
-msrestazure>=0.4.20
+git+https://github.com/Azure/msrest-for-python@async2
+git+https://github.com/Azure/msrestazure-for-python@async

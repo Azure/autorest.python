@@ -76,16 +76,14 @@ class LROSADsOperations(_LROSADsOperations):
         :param product: Product to put
         :type product: ~lro.models.Product
         :param dict custom_headers: headers that will be added to the request
-        :param bool raw: The poller return type is ClientRawResponse, the
+        param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
-        :return: An instance of LROPoller that returns Product or
-         ClientRawResponse<Product> if raw==True
-        :rtype:
-         ~msrestazure.azure_operation.AzureOperationPoller[~lro.models.Product]
-         or
-         ~msrestazure.azure_operation.AzureOperationPoller[~msrest.pipeline.ClientRawResponse[~lro.models.Product]]
+        :return: An instance of Product or ClientRawResponse<Product> if
+         raw==True
+        :rtype: ~~lro.models.Product or
+         ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
         raw_result = await self._put_non_retry400_initial(
@@ -169,16 +167,14 @@ class LROSADsOperations(_LROSADsOperations):
         :param product: Product to put
         :type product: ~lro.models.Product
         :param dict custom_headers: headers that will be added to the request
-        :param bool raw: The poller return type is ClientRawResponse, the
+        param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
-        :return: An instance of LROPoller that returns Product or
-         ClientRawResponse<Product> if raw==True
-        :rtype:
-         ~msrestazure.azure_operation.AzureOperationPoller[~lro.models.Product]
-         or
-         ~msrestazure.azure_operation.AzureOperationPoller[~msrest.pipeline.ClientRawResponse[~lro.models.Product]]
+        :return: An instance of Product or ClientRawResponse<Product> if
+         raw==True
+        :rtype: ~~lro.models.Product or
+         ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
         raw_result = await self._put_non_retry201_creating400_initial(
@@ -262,16 +258,14 @@ class LROSADsOperations(_LROSADsOperations):
         :param product: Product to put
         :type product: ~lro.models.Product
         :param dict custom_headers: headers that will be added to the request
-        :param bool raw: The poller return type is ClientRawResponse, the
+        param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
-        :return: An instance of LROPoller that returns Product or
-         ClientRawResponse<Product> if raw==True
-        :rtype:
-         ~msrestazure.azure_operation.AzureOperationPoller[~lro.models.Product]
-         or
-         ~msrestazure.azure_operation.AzureOperationPoller[~msrest.pipeline.ClientRawResponse[~lro.models.Product]]
+        :return: An instance of Product or ClientRawResponse<Product> if
+         raw==True
+        :rtype: ~~lro.models.Product or
+         ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
         raw_result = await self._put_non_retry201_creating400_invalid_json_initial(
@@ -361,16 +355,14 @@ class LROSADsOperations(_LROSADsOperations):
         :param product: Product to put
         :type product: ~lro.models.Product
         :param dict custom_headers: headers that will be added to the request
-        :param bool raw: The poller return type is ClientRawResponse, the
+        param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
-        :return: An instance of LROPoller that returns Product or
-         ClientRawResponse<Product> if raw==True
-        :rtype:
-         ~msrestazure.azure_operation.AzureOperationPoller[~lro.models.Product]
-         or
-         ~msrestazure.azure_operation.AzureOperationPoller[~msrest.pipeline.ClientRawResponse[~lro.models.Product]]
+        :return: An instance of Product or ClientRawResponse<Product> if
+         raw==True
+        :rtype: ~~lro.models.Product or
+         ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
         raw_result = await self._put_async_relative_retry400_initial(
@@ -446,14 +438,12 @@ class LROSADsOperations(_LROSADsOperations):
         """Long running delete request, service returns a 400 with an error body.
 
         :param dict custom_headers: headers that will be added to the request
-        :param bool raw: The poller return type is ClientRawResponse, the
+        param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
-        :return: An instance of LROPoller that returns None or
-         ClientRawResponse<None> if raw==True
-        :rtype: ~msrestazure.azure_operation.AzureOperationPoller[None] or
-         ~msrestazure.azure_operation.AzureOperationPoller[~msrest.pipeline.ClientRawResponse[None]]
+        :return: An instance of None or ClientRawResponse<None> if raw==True
+        :rtype: ~None or ~msrest.pipeline.ClientRawResponse[None]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
         raw_result = await self._delete_non_retry400_initial(
@@ -523,14 +513,12 @@ class LROSADsOperations(_LROSADsOperations):
         header.
 
         :param dict custom_headers: headers that will be added to the request
-        :param bool raw: The poller return type is ClientRawResponse, the
+        param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
-        :return: An instance of LROPoller that returns None or
-         ClientRawResponse<None> if raw==True
-        :rtype: ~msrestazure.azure_operation.AzureOperationPoller[None] or
-         ~msrestazure.azure_operation.AzureOperationPoller[~msrest.pipeline.ClientRawResponse[None]]
+        :return: An instance of None or ClientRawResponse<None> if raw==True
+        :rtype: ~None or ~msrest.pipeline.ClientRawResponse[None]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
         raw_result = await self._delete202_non_retry400_initial(
@@ -602,14 +590,12 @@ class LROSADsOperations(_LROSADsOperations):
         for operation status.
 
         :param dict custom_headers: headers that will be added to the request
-        :param bool raw: The poller return type is ClientRawResponse, the
+        param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
-        :return: An instance of LROPoller that returns None or
-         ClientRawResponse<None> if raw==True
-        :rtype: ~msrestazure.azure_operation.AzureOperationPoller[None] or
-         ~msrestazure.azure_operation.AzureOperationPoller[~msrest.pipeline.ClientRawResponse[None]]
+        :return: An instance of None or ClientRawResponse<None> if raw==True
+        :rtype: ~None or ~msrest.pipeline.ClientRawResponse[None]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
         raw_result = await self._delete_async_relative_retry400_initial(
@@ -688,14 +674,12 @@ class LROSADsOperations(_LROSADsOperations):
         :param product: Product to put
         :type product: ~lro.models.Product
         :param dict custom_headers: headers that will be added to the request
-        :param bool raw: The poller return type is ClientRawResponse, the
+        param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
-        :return: An instance of LROPoller that returns None or
-         ClientRawResponse<None> if raw==True
-        :rtype: ~msrestazure.azure_operation.AzureOperationPoller[None] or
-         ~msrestazure.azure_operation.AzureOperationPoller[~msrest.pipeline.ClientRawResponse[None]]
+        :return: An instance of None or ClientRawResponse<None> if raw==True
+        :rtype: ~None or ~msrest.pipeline.ClientRawResponse[None]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
         raw_result = await self._post_non_retry400_initial(
@@ -775,14 +759,12 @@ class LROSADsOperations(_LROSADsOperations):
         :param product: Product to put
         :type product: ~lro.models.Product
         :param dict custom_headers: headers that will be added to the request
-        :param bool raw: The poller return type is ClientRawResponse, the
+        param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
-        :return: An instance of LROPoller that returns None or
-         ClientRawResponse<None> if raw==True
-        :rtype: ~msrestazure.azure_operation.AzureOperationPoller[None] or
-         ~msrestazure.azure_operation.AzureOperationPoller[~msrest.pipeline.ClientRawResponse[None]]
+        :return: An instance of None or ClientRawResponse<None> if raw==True
+        :rtype: ~None or ~msrest.pipeline.ClientRawResponse[None]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
         raw_result = await self._post202_non_retry400_initial(
@@ -864,14 +846,12 @@ class LROSADsOperations(_LROSADsOperations):
         :param product: Product to put
         :type product: ~lro.models.Product
         :param dict custom_headers: headers that will be added to the request
-        :param bool raw: The poller return type is ClientRawResponse, the
+        param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
-        :return: An instance of LROPoller that returns None or
-         ClientRawResponse<None> if raw==True
-        :rtype: ~msrestazure.azure_operation.AzureOperationPoller[None] or
-         ~msrestazure.azure_operation.AzureOperationPoller[~msrest.pipeline.ClientRawResponse[None]]
+        :return: An instance of None or ClientRawResponse<None> if raw==True
+        :rtype: ~None or ~msrest.pipeline.ClientRawResponse[None]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
         raw_result = await self._post_async_relative_retry400_initial(
@@ -956,16 +936,14 @@ class LROSADsOperations(_LROSADsOperations):
         :param product: Product to put
         :type product: ~lro.models.Product
         :param dict custom_headers: headers that will be added to the request
-        :param bool raw: The poller return type is ClientRawResponse, the
+        param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
-        :return: An instance of LROPoller that returns Product or
-         ClientRawResponse<Product> if raw==True
-        :rtype:
-         ~msrestazure.azure_operation.AzureOperationPoller[~lro.models.Product]
-         or
-         ~msrestazure.azure_operation.AzureOperationPoller[~msrest.pipeline.ClientRawResponse[~lro.models.Product]]
+        :return: An instance of Product or ClientRawResponse<Product> if
+         raw==True
+        :rtype: ~~lro.models.Product or
+         ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
         raw_result = await self._put_error201_no_provisioning_state_payload_initial(
@@ -1056,16 +1034,14 @@ class LROSADsOperations(_LROSADsOperations):
         :param product: Product to put
         :type product: ~lro.models.Product
         :param dict custom_headers: headers that will be added to the request
-        :param bool raw: The poller return type is ClientRawResponse, the
+        param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
-        :return: An instance of LROPoller that returns Product or
-         ClientRawResponse<Product> if raw==True
-        :rtype:
-         ~msrestazure.azure_operation.AzureOperationPoller[~lro.models.Product]
-         or
-         ~msrestazure.azure_operation.AzureOperationPoller[~msrest.pipeline.ClientRawResponse[~lro.models.Product]]
+        :return: An instance of Product or ClientRawResponse<Product> if
+         raw==True
+        :rtype: ~~lro.models.Product or
+         ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
         raw_result = await self._put_async_relative_retry_no_status_initial(
@@ -1162,16 +1138,14 @@ class LROSADsOperations(_LROSADsOperations):
         :param product: Product to put
         :type product: ~lro.models.Product
         :param dict custom_headers: headers that will be added to the request
-        :param bool raw: The poller return type is ClientRawResponse, the
+        param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
-        :return: An instance of LROPoller that returns Product or
-         ClientRawResponse<Product> if raw==True
-        :rtype:
-         ~msrestazure.azure_operation.AzureOperationPoller[~lro.models.Product]
-         or
-         ~msrestazure.azure_operation.AzureOperationPoller[~msrest.pipeline.ClientRawResponse[~lro.models.Product]]
+        :return: An instance of Product or ClientRawResponse<Product> if
+         raw==True
+        :rtype: ~~lro.models.Product or
+         ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
         raw_result = await self._put_async_relative_retry_no_status_payload_initial(
@@ -1243,14 +1217,12 @@ class LROSADsOperations(_LROSADsOperations):
         request, indicating success.
 
         :param dict custom_headers: headers that will be added to the request
-        :param bool raw: The poller return type is ClientRawResponse, the
+        param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
-        :return: An instance of LROPoller that returns None or
-         ClientRawResponse<None> if raw==True
-        :rtype: ~msrestazure.azure_operation.AzureOperationPoller[None] or
-         ~msrestazure.azure_operation.AzureOperationPoller[~msrest.pipeline.ClientRawResponse[None]]
+        :return: An instance of None or ClientRawResponse<None> if raw==True
+        :rtype: ~None or ~msrest.pipeline.ClientRawResponse[None]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
         raw_result = await self._delete204_succeeded_initial(
@@ -1318,14 +1290,12 @@ class LROSADsOperations(_LROSADsOperations):
         for operation status.
 
         :param dict custom_headers: headers that will be added to the request
-        :param bool raw: The poller return type is ClientRawResponse, the
+        param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
-        :return: An instance of LROPoller that returns None or
-         ClientRawResponse<None> if raw==True
-        :rtype: ~msrestazure.azure_operation.AzureOperationPoller[None] or
-         ~msrestazure.azure_operation.AzureOperationPoller[~msrest.pipeline.ClientRawResponse[None]]
+        :return: An instance of None or ClientRawResponse<None> if raw==True
+        :rtype: ~None or ~msrest.pipeline.ClientRawResponse[None]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
         raw_result = await self._delete_async_relative_retry_no_status_initial(
@@ -1405,14 +1375,12 @@ class LROSADsOperations(_LROSADsOperations):
         :param product: Product to put
         :type product: ~lro.models.Product
         :param dict custom_headers: headers that will be added to the request
-        :param bool raw: The poller return type is ClientRawResponse, the
+        param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
-        :return: An instance of LROPoller that returns None or
-         ClientRawResponse<None> if raw==True
-        :rtype: ~msrestazure.azure_operation.AzureOperationPoller[None] or
-         ~msrestazure.azure_operation.AzureOperationPoller[~msrest.pipeline.ClientRawResponse[None]]
+        :return: An instance of None or ClientRawResponse<None> if raw==True
+        :rtype: ~None or ~msrest.pipeline.ClientRawResponse[None]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
         raw_result = await self._post202_no_location_initial(
@@ -1495,14 +1463,12 @@ class LROSADsOperations(_LROSADsOperations):
         :param product: Product to put
         :type product: ~lro.models.Product
         :param dict custom_headers: headers that will be added to the request
-        :param bool raw: The poller return type is ClientRawResponse, the
+        param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
-        :return: An instance of LROPoller that returns None or
-         ClientRawResponse<None> if raw==True
-        :rtype: ~msrestazure.azure_operation.AzureOperationPoller[None] or
-         ~msrestazure.azure_operation.AzureOperationPoller[~msrest.pipeline.ClientRawResponse[None]]
+        :return: An instance of None or ClientRawResponse<None> if raw==True
+        :rtype: ~None or ~msrest.pipeline.ClientRawResponse[None]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
         raw_result = await self._post_async_relative_retry_no_payload_initial(
@@ -1585,16 +1551,14 @@ class LROSADsOperations(_LROSADsOperations):
         :param product: Product to put
         :type product: ~lro.models.Product
         :param dict custom_headers: headers that will be added to the request
-        :param bool raw: The poller return type is ClientRawResponse, the
+        param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
-        :return: An instance of LROPoller that returns Product or
-         ClientRawResponse<Product> if raw==True
-        :rtype:
-         ~msrestazure.azure_operation.AzureOperationPoller[~lro.models.Product]
-         or
-         ~msrestazure.azure_operation.AzureOperationPoller[~msrest.pipeline.ClientRawResponse[~lro.models.Product]]
+        :return: An instance of Product or ClientRawResponse<Product> if
+         raw==True
+        :rtype: ~~lro.models.Product or
+         ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
         raw_result = await self._put200_invalid_json_initial(
@@ -1684,16 +1648,14 @@ class LROSADsOperations(_LROSADsOperations):
         :param product: Product to put
         :type product: ~lro.models.Product
         :param dict custom_headers: headers that will be added to the request
-        :param bool raw: The poller return type is ClientRawResponse, the
+        param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
-        :return: An instance of LROPoller that returns Product or
-         ClientRawResponse<Product> if raw==True
-        :rtype:
-         ~msrestazure.azure_operation.AzureOperationPoller[~lro.models.Product]
-         or
-         ~msrestazure.azure_operation.AzureOperationPoller[~msrest.pipeline.ClientRawResponse[~lro.models.Product]]
+        :return: An instance of Product or ClientRawResponse<Product> if
+         raw==True
+        :rtype: ~~lro.models.Product or
+         ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
         raw_result = await self._put_async_relative_retry_invalid_header_initial(
@@ -1790,16 +1752,14 @@ class LROSADsOperations(_LROSADsOperations):
         :param product: Product to put
         :type product: ~lro.models.Product
         :param dict custom_headers: headers that will be added to the request
-        :param bool raw: The poller return type is ClientRawResponse, the
+        param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
-        :return: An instance of LROPoller that returns Product or
-         ClientRawResponse<Product> if raw==True
-        :rtype:
-         ~msrestazure.azure_operation.AzureOperationPoller[~lro.models.Product]
-         or
-         ~msrestazure.azure_operation.AzureOperationPoller[~msrest.pipeline.ClientRawResponse[~lro.models.Product]]
+        :return: An instance of Product or ClientRawResponse<Product> if
+         raw==True
+        :rtype: ~~lro.models.Product or
+         ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
         raw_result = await self._put_async_relative_retry_invalid_json_polling_initial(
@@ -1877,14 +1837,12 @@ class LROSADsOperations(_LROSADsOperations):
         headers.
 
         :param dict custom_headers: headers that will be added to the request
-        :param bool raw: The poller return type is ClientRawResponse, the
+        param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
-        :return: An instance of LROPoller that returns None or
-         ClientRawResponse<None> if raw==True
-        :rtype: ~msrestazure.azure_operation.AzureOperationPoller[None] or
-         ~msrestazure.azure_operation.AzureOperationPoller[~msrest.pipeline.ClientRawResponse[None]]
+        :return: An instance of None or ClientRawResponse<None> if raw==True
+        :rtype: ~None or ~msrest.pipeline.ClientRawResponse[None]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
         raw_result = await self._delete202_retry_invalid_header_initial(
@@ -1956,14 +1914,12 @@ class LROSADsOperations(_LROSADsOperations):
         invalid.
 
         :param dict custom_headers: headers that will be added to the request
-        :param bool raw: The poller return type is ClientRawResponse, the
+        param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
-        :return: An instance of LROPoller that returns None or
-         ClientRawResponse<None> if raw==True
-        :rtype: ~msrestazure.azure_operation.AzureOperationPoller[None] or
-         ~msrestazure.azure_operation.AzureOperationPoller[~msrest.pipeline.ClientRawResponse[None]]
+        :return: An instance of None or ClientRawResponse<None> if raw==True
+        :rtype: ~None or ~msrest.pipeline.ClientRawResponse[None]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
         raw_result = await self._delete_async_relative_retry_invalid_header_initial(
@@ -2036,14 +1992,12 @@ class LROSADsOperations(_LROSADsOperations):
         for operation status.
 
         :param dict custom_headers: headers that will be added to the request
-        :param bool raw: The poller return type is ClientRawResponse, the
+        param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
-        :return: An instance of LROPoller that returns None or
-         ClientRawResponse<None> if raw==True
-        :rtype: ~msrestazure.azure_operation.AzureOperationPoller[None] or
-         ~msrestazure.azure_operation.AzureOperationPoller[~msrest.pipeline.ClientRawResponse[None]]
+        :return: An instance of None or ClientRawResponse<None> if raw==True
+        :rtype: ~None or ~msrest.pipeline.ClientRawResponse[None]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
         raw_result = await self._delete_async_relative_retry_invalid_json_polling_initial(
@@ -2123,14 +2077,12 @@ class LROSADsOperations(_LROSADsOperations):
         :param product: Product to put
         :type product: ~lro.models.Product
         :param dict custom_headers: headers that will be added to the request
-        :param bool raw: The poller return type is ClientRawResponse, the
+        param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
-        :return: An instance of LROPoller that returns None or
-         ClientRawResponse<None> if raw==True
-        :rtype: ~msrestazure.azure_operation.AzureOperationPoller[None] or
-         ~msrestazure.azure_operation.AzureOperationPoller[~msrest.pipeline.ClientRawResponse[None]]
+        :return: An instance of None or ClientRawResponse<None> if raw==True
+        :rtype: ~None or ~msrest.pipeline.ClientRawResponse[None]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
         raw_result = await self._post202_retry_invalid_header_initial(
@@ -2212,14 +2164,12 @@ class LROSADsOperations(_LROSADsOperations):
         :param product: Product to put
         :type product: ~lro.models.Product
         :param dict custom_headers: headers that will be added to the request
-        :param bool raw: The poller return type is ClientRawResponse, the
+        param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
-        :return: An instance of LROPoller that returns None or
-         ClientRawResponse<None> if raw==True
-        :rtype: ~msrestazure.azure_operation.AzureOperationPoller[None] or
-         ~msrestazure.azure_operation.AzureOperationPoller[~msrest.pipeline.ClientRawResponse[None]]
+        :return: An instance of None or ClientRawResponse<None> if raw==True
+        :rtype: ~None or ~msrest.pipeline.ClientRawResponse[None]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
         raw_result = await self._post_async_relative_retry_invalid_header_initial(
@@ -2303,14 +2253,12 @@ class LROSADsOperations(_LROSADsOperations):
         :param product: Product to put
         :type product: ~lro.models.Product
         :param dict custom_headers: headers that will be added to the request
-        :param bool raw: The poller return type is ClientRawResponse, the
+        param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
-        :return: An instance of LROPoller that returns None or
-         ClientRawResponse<None> if raw==True
-        :rtype: ~msrestazure.azure_operation.AzureOperationPoller[None] or
-         ~msrestazure.azure_operation.AzureOperationPoller[~msrest.pipeline.ClientRawResponse[None]]
+        :return: An instance of None or ClientRawResponse<None> if raw==True
+        :rtype: ~None or ~msrest.pipeline.ClientRawResponse[None]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
         raw_result = await self._post_async_relative_retry_invalid_json_polling_initial(

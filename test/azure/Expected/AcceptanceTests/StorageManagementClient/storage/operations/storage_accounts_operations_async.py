@@ -154,16 +154,14 @@ class StorageAccountsOperations(_StorageAccountsOperations):
         :param parameters: The parameters to provide for the created account.
         :type parameters: ~storage.models.StorageAccountCreateParameters
         :param dict custom_headers: headers that will be added to the request
-        :param bool raw: The poller return type is ClientRawResponse, the
+        param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
-        :return: An instance of LROPoller that returns StorageAccount or
+        :return: An instance of StorageAccount or
          ClientRawResponse<StorageAccount> if raw==True
-        :rtype:
-         ~msrestazure.azure_operation.AzureOperationPoller[~storage.models.StorageAccount]
-         or
-         ~msrestazure.azure_operation.AzureOperationPoller[~msrest.pipeline.ClientRawResponse[~storage.models.StorageAccount]]
+        :rtype: ~~storage.models.StorageAccount or
+         ~msrest.pipeline.ClientRawResponse[~storage.models.StorageAccount]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
         raw_result = await self._create_initial(

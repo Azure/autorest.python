@@ -101,7 +101,7 @@ class LROsCustomHeaderOperations(object):
         :param product: Product to put
         :type product: ~lro.models.Product
         :param dict custom_headers: headers that will be added to the request
-        :param bool raw: The poller return type is ClientRawResponse, the
+        param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
@@ -203,7 +203,7 @@ class LROsCustomHeaderOperations(object):
         :param product: Product to put
         :type product: ~lro.models.Product
         :param dict custom_headers: headers that will be added to the request
-        :param bool raw: The poller return type is ClientRawResponse, the
+        param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
@@ -295,7 +295,7 @@ class LROsCustomHeaderOperations(object):
         :param product: Product to put
         :type product: ~lro.models.Product
         :param dict custom_headers: headers that will be added to the request
-        :param bool raw: The poller return type is ClientRawResponse, the
+        param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
@@ -386,7 +386,7 @@ class LROsCustomHeaderOperations(object):
         :param product: Product to put
         :type product: ~lro.models.Product
         :param dict custom_headers: headers that will be added to the request
-        :param bool raw: The poller return type is ClientRawResponse, the
+        param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
