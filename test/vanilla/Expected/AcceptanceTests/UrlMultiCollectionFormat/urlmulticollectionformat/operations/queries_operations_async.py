@@ -36,7 +36,7 @@ class QueriesOperations(_QueriesOperations):
          :class:`ErrorException<urlmulticollectionformat.models.ErrorException>`
         """
         # Construct URL
-        url = self.array_string_multi_null.metadata['url']
+        url = self.array_string_multi_null_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -59,7 +59,7 @@ class QueriesOperations(_QueriesOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    array_string_multi_null.metadata = {'url': '/queries/array/multi/string/null'}
+    array_string_multi_null_async.metadata = {'url': '/queries/array/multi/string/null'}
 
     async def array_string_multi_empty_async(
             self, array_query=None, custom_headers=None, raw=False, **operation_config):
@@ -79,7 +79,7 @@ class QueriesOperations(_QueriesOperations):
          :class:`ErrorException<urlmulticollectionformat.models.ErrorException>`
         """
         # Construct URL
-        url = self.array_string_multi_empty.metadata['url']
+        url = self.array_string_multi_empty_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -102,7 +102,7 @@ class QueriesOperations(_QueriesOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    array_string_multi_empty.metadata = {'url': '/queries/array/multi/string/empty'}
+    array_string_multi_empty_async.metadata = {'url': '/queries/array/multi/string/empty'}
 
     async def array_string_multi_valid_async(
             self, array_query=None, custom_headers=None, raw=False, **operation_config):
@@ -123,7 +123,7 @@ class QueriesOperations(_QueriesOperations):
          :class:`ErrorException<urlmulticollectionformat.models.ErrorException>`
         """
         # Construct URL
-        url = self.array_string_multi_valid.metadata['url']
+        url = self.array_string_multi_valid_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -146,4 +146,4 @@ class QueriesOperations(_QueriesOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    array_string_multi_valid.metadata = {'url': '/queries/array/multi/string/valid'}
+    array_string_multi_valid_async.metadata = {'url': '/queries/array/multi/string/valid'}

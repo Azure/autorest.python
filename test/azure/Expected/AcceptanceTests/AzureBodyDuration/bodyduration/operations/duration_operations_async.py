@@ -32,7 +32,7 @@ class DurationOperations(_DurationOperations):
         :raises: :class:`ErrorException<bodyduration.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_null.metadata['url']
+        url = self.get_null_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -64,7 +64,7 @@ class DurationOperations(_DurationOperations):
             return client_raw_response
 
         return deserialized
-    get_null.metadata = {'url': '/duration/null'}
+    get_null_async.metadata = {'url': '/duration/null'}
 
     async def put_positive_duration_async(
             self, duration_body, custom_headers=None, raw=False, **operation_config):
@@ -82,7 +82,7 @@ class DurationOperations(_DurationOperations):
         :raises: :class:`ErrorException<bodyduration.models.ErrorException>`
         """
         # Construct URL
-        url = self.put_positive_duration.metadata['url']
+        url = self.put_positive_duration_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -111,7 +111,7 @@ class DurationOperations(_DurationOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_positive_duration.metadata = {'url': '/duration/positiveduration'}
+    put_positive_duration_async.metadata = {'url': '/duration/positiveduration'}
 
     async def get_positive_duration_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -127,7 +127,7 @@ class DurationOperations(_DurationOperations):
         :raises: :class:`ErrorException<bodyduration.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_positive_duration.metadata['url']
+        url = self.get_positive_duration_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -159,7 +159,7 @@ class DurationOperations(_DurationOperations):
             return client_raw_response
 
         return deserialized
-    get_positive_duration.metadata = {'url': '/duration/positiveduration'}
+    get_positive_duration_async.metadata = {'url': '/duration/positiveduration'}
 
     async def get_invalid_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -175,7 +175,7 @@ class DurationOperations(_DurationOperations):
         :raises: :class:`ErrorException<bodyduration.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_invalid.metadata['url']
+        url = self.get_invalid_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -207,4 +207,4 @@ class DurationOperations(_DurationOperations):
             return client_raw_response
 
         return deserialized
-    get_invalid.metadata = {'url': '/duration/invalid'}
+    get_invalid_async.metadata = {'url': '/duration/invalid'}

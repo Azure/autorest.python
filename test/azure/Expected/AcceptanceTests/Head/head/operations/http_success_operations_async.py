@@ -31,7 +31,7 @@ class HttpSuccessOperations(_HttpSuccessOperations):
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
         # Construct URL
-        url = self.head200.metadata['url']
+        url = self.head200_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -60,7 +60,7 @@ class HttpSuccessOperations(_HttpSuccessOperations):
             client_raw_response = ClientRawResponse(deserialized, response)
             return client_raw_response
         return deserialized
-    head200.metadata = {'url': '/http/success/200'}
+    head200_async.metadata = {'url': '/http/success/200'}
 
     async def head204_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -76,7 +76,7 @@ class HttpSuccessOperations(_HttpSuccessOperations):
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
         # Construct URL
-        url = self.head204.metadata['url']
+        url = self.head204_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -105,7 +105,7 @@ class HttpSuccessOperations(_HttpSuccessOperations):
             client_raw_response = ClientRawResponse(deserialized, response)
             return client_raw_response
         return deserialized
-    head204.metadata = {'url': '/http/success/204'}
+    head204_async.metadata = {'url': '/http/success/204'}
 
     async def head404_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -121,7 +121,7 @@ class HttpSuccessOperations(_HttpSuccessOperations):
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
         # Construct URL
-        url = self.head404.metadata['url']
+        url = self.head404_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -150,4 +150,4 @@ class HttpSuccessOperations(_HttpSuccessOperations):
             client_raw_response = ClientRawResponse(deserialized, response)
             return client_raw_response
         return deserialized
-    head404.metadata = {'url': '/http/success/404'}
+    head404_async.metadata = {'url': '/http/success/404'}

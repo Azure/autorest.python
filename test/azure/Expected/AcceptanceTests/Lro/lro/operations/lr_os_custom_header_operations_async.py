@@ -25,7 +25,7 @@ class LROsCustomHeaderOperations(_LROsCustomHeaderOperations):
     async def _put_async_retry_succeeded_initial_async(
             self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = self.put_async_retry_succeeded.metadata['url']
+        url = self.put_async_retry_succeeded_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -126,13 +126,13 @@ class LROsCustomHeaderOperations(_LROsCustomHeaderOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    put_async_retry_succeeded.metadata = {'url': '/lro/customheader/putasync/retry/succeeded'}
+    put_async_retry_succeeded_async.metadata = {'url': '/lro/customheader/putasync/retry/succeeded'}
 
 
     async def _put201_creating_succeeded200_initial_async(
             self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = self.put201_creating_succeeded200.metadata['url']
+        url = self.put201_creating_succeeded200_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -222,13 +222,13 @@ class LROsCustomHeaderOperations(_LROsCustomHeaderOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    put201_creating_succeeded200.metadata = {'url': '/lro/customheader/put/201/creating/succeeded/200'}
+    put201_creating_succeeded200_async.metadata = {'url': '/lro/customheader/put/201/creating/succeeded/200'}
 
 
     async def _post202_retry200_initial_async(
             self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = self.post202_retry200.metadata['url']
+        url = self.post202_retry200_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -312,13 +312,13 @@ class LROsCustomHeaderOperations(_LROsCustomHeaderOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    post202_retry200.metadata = {'url': '/lro/customheader/post/202/retry/200'}
+    post202_retry200_async.metadata = {'url': '/lro/customheader/post/202/retry/200'}
 
 
     async def _post_async_retry_succeeded_initial_async(
             self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = self.post_async_retry_succeeded.metadata['url']
+        url = self.post_async_retry_succeeded_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -404,4 +404,4 @@ class LROsCustomHeaderOperations(_LROsCustomHeaderOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    post_async_retry_succeeded.metadata = {'url': '/lro/customheader/postasync/retry/succeeded'}
+    post_async_retry_succeeded_async.metadata = {'url': '/lro/customheader/postasync/retry/succeeded'}

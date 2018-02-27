@@ -33,7 +33,7 @@ class DictionaryOperations(_DictionaryOperations):
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_valid.metadata['url']
+        url = self.get_valid_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -61,7 +61,7 @@ class DictionaryOperations(_DictionaryOperations):
             return client_raw_response
 
         return deserialized
-    get_valid.metadata = {'url': '/complex/dictionary/typed/valid'}
+    get_valid_async.metadata = {'url': '/complex/dictionary/typed/valid'}
 
     async def put_valid_async(
             self, default_program=None, custom_headers=None, raw=False, **operation_config):
@@ -81,7 +81,7 @@ class DictionaryOperations(_DictionaryOperations):
         complex_body = models.DictionaryWrapper(default_program=default_program)
 
         # Construct URL
-        url = self.put_valid.metadata['url']
+        url = self.put_valid_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -106,7 +106,7 @@ class DictionaryOperations(_DictionaryOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_valid.metadata = {'url': '/complex/dictionary/typed/valid'}
+    put_valid_async.metadata = {'url': '/complex/dictionary/typed/valid'}
 
     async def get_empty_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -123,7 +123,7 @@ class DictionaryOperations(_DictionaryOperations):
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_empty.metadata['url']
+        url = self.get_empty_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -151,7 +151,7 @@ class DictionaryOperations(_DictionaryOperations):
             return client_raw_response
 
         return deserialized
-    get_empty.metadata = {'url': '/complex/dictionary/typed/empty'}
+    get_empty_async.metadata = {'url': '/complex/dictionary/typed/empty'}
 
     async def put_empty_async(
             self, default_program=None, custom_headers=None, raw=False, **operation_config):
@@ -171,7 +171,7 @@ class DictionaryOperations(_DictionaryOperations):
         complex_body = models.DictionaryWrapper(default_program=default_program)
 
         # Construct URL
-        url = self.put_empty.metadata['url']
+        url = self.put_empty_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -196,7 +196,7 @@ class DictionaryOperations(_DictionaryOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_empty.metadata = {'url': '/complex/dictionary/typed/empty'}
+    put_empty_async.metadata = {'url': '/complex/dictionary/typed/empty'}
 
     async def get_null_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -213,7 +213,7 @@ class DictionaryOperations(_DictionaryOperations):
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_null.metadata['url']
+        url = self.get_null_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -241,7 +241,7 @@ class DictionaryOperations(_DictionaryOperations):
             return client_raw_response
 
         return deserialized
-    get_null.metadata = {'url': '/complex/dictionary/typed/null'}
+    get_null_async.metadata = {'url': '/complex/dictionary/typed/null'}
 
     async def get_not_provided_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -259,7 +259,7 @@ class DictionaryOperations(_DictionaryOperations):
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_not_provided.metadata['url']
+        url = self.get_not_provided_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -287,4 +287,4 @@ class DictionaryOperations(_DictionaryOperations):
             return client_raw_response
 
         return deserialized
-    get_not_provided.metadata = {'url': '/complex/dictionary/typed/notprovided'}
+    get_not_provided_async.metadata = {'url': '/complex/dictionary/typed/notprovided'}

@@ -34,7 +34,7 @@ class PathsOperations(_PathsOperations):
         :raises: :class:`ErrorException<custombaseurl.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_empty.metadata['url']
+        url = self.get_empty_async.metadata['url']
         path_format_arguments = {
             'accountName': self._serialize.url("account_name", account_name, 'str', skip_quote=True),
             'host': self._serialize.url("self.config.host", self.config.host, 'str', skip_quote=True)
@@ -64,4 +64,4 @@ class PathsOperations(_PathsOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    get_empty.metadata = {'url': '/customuri'}
+    get_empty_async.metadata = {'url': '/customuri'}

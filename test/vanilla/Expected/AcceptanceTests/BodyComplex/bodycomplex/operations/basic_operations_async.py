@@ -33,7 +33,7 @@ class BasicOperations(_BasicOperations):
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_valid.metadata['url']
+        url = self.get_valid_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -61,7 +61,7 @@ class BasicOperations(_BasicOperations):
             return client_raw_response
 
         return deserialized
-    get_valid.metadata = {'url': '/complex/basic/valid'}
+    get_valid_async.metadata = {'url': '/complex/basic/valid'}
 
     async def put_valid_async(
             self, complex_body, custom_headers=None, raw=False, **operation_config):
@@ -79,7 +79,7 @@ class BasicOperations(_BasicOperations):
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
-        url = self.put_valid.metadata['url']
+        url = self.put_valid_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -105,7 +105,7 @@ class BasicOperations(_BasicOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_valid.metadata = {'url': '/complex/basic/valid'}
+    put_valid_async.metadata = {'url': '/complex/basic/valid'}
 
     async def get_invalid_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -122,7 +122,7 @@ class BasicOperations(_BasicOperations):
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_invalid.metadata['url']
+        url = self.get_invalid_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -150,7 +150,7 @@ class BasicOperations(_BasicOperations):
             return client_raw_response
 
         return deserialized
-    get_invalid.metadata = {'url': '/complex/basic/invalid'}
+    get_invalid_async.metadata = {'url': '/complex/basic/invalid'}
 
     async def get_empty_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -167,7 +167,7 @@ class BasicOperations(_BasicOperations):
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_empty.metadata['url']
+        url = self.get_empty_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -195,7 +195,7 @@ class BasicOperations(_BasicOperations):
             return client_raw_response
 
         return deserialized
-    get_empty.metadata = {'url': '/complex/basic/empty'}
+    get_empty_async.metadata = {'url': '/complex/basic/empty'}
 
     async def get_null_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -212,7 +212,7 @@ class BasicOperations(_BasicOperations):
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_null.metadata['url']
+        url = self.get_null_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -240,7 +240,7 @@ class BasicOperations(_BasicOperations):
             return client_raw_response
 
         return deserialized
-    get_null.metadata = {'url': '/complex/basic/null'}
+    get_null_async.metadata = {'url': '/complex/basic/null'}
 
     async def get_not_provided_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -258,7 +258,7 @@ class BasicOperations(_BasicOperations):
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_not_provided.metadata['url']
+        url = self.get_not_provided_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -286,4 +286,4 @@ class BasicOperations(_BasicOperations):
             return client_raw_response
 
         return deserialized
-    get_not_provided.metadata = {'url': '/complex/basic/notprovided'}
+    get_not_provided_async.metadata = {'url': '/complex/basic/notprovided'}

@@ -36,7 +36,7 @@ class PetsOperations(_PetsOperations):
          :class:`ErrorException<additionalproperties.models.ErrorException>`
         """
         # Construct URL
-        url = self.create_ap_true.metadata['url']
+        url = self.create_ap_true_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -68,7 +68,7 @@ class PetsOperations(_PetsOperations):
             return client_raw_response
 
         return deserialized
-    create_ap_true.metadata = {'url': '/additionalProperties/true'}
+    create_ap_true_async.metadata = {'url': '/additionalProperties/true'}
 
     async def create_ap_object_async(
             self, create_parameters, custom_headers=None, raw=False, **operation_config):
@@ -88,7 +88,7 @@ class PetsOperations(_PetsOperations):
          :class:`ErrorException<additionalproperties.models.ErrorException>`
         """
         # Construct URL
-        url = self.create_ap_object.metadata['url']
+        url = self.create_ap_object_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -120,7 +120,7 @@ class PetsOperations(_PetsOperations):
             return client_raw_response
 
         return deserialized
-    create_ap_object.metadata = {'url': '/additionalProperties/type/object'}
+    create_ap_object_async.metadata = {'url': '/additionalProperties/type/object'}
 
     async def create_ap_string_async(
             self, create_parameters, custom_headers=None, raw=False, **operation_config):
@@ -140,7 +140,7 @@ class PetsOperations(_PetsOperations):
          :class:`ErrorException<additionalproperties.models.ErrorException>`
         """
         # Construct URL
-        url = self.create_ap_string.metadata['url']
+        url = self.create_ap_string_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -172,7 +172,7 @@ class PetsOperations(_PetsOperations):
             return client_raw_response
 
         return deserialized
-    create_ap_string.metadata = {'url': '/additionalProperties/type/string'}
+    create_ap_string_async.metadata = {'url': '/additionalProperties/type/string'}
 
     async def create_ap_in_properties_async(
             self, create_parameters, custom_headers=None, raw=False, **operation_config):
@@ -193,7 +193,7 @@ class PetsOperations(_PetsOperations):
          :class:`ErrorException<additionalproperties.models.ErrorException>`
         """
         # Construct URL
-        url = self.create_ap_in_properties.metadata['url']
+        url = self.create_ap_in_properties_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -225,7 +225,7 @@ class PetsOperations(_PetsOperations):
             return client_raw_response
 
         return deserialized
-    create_ap_in_properties.metadata = {'url': '/additionalProperties/in/properties'}
+    create_ap_in_properties_async.metadata = {'url': '/additionalProperties/in/properties'}
 
     async def create_ap_in_properties_with_ap_string_async(
             self, create_parameters, custom_headers=None, raw=False, **operation_config):
@@ -247,7 +247,7 @@ class PetsOperations(_PetsOperations):
          :class:`ErrorException<additionalproperties.models.ErrorException>`
         """
         # Construct URL
-        url = self.create_ap_in_properties_with_ap_string.metadata['url']
+        url = self.create_ap_in_properties_with_ap_string_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -279,4 +279,4 @@ class PetsOperations(_PetsOperations):
             return client_raw_response
 
         return deserialized
-    create_ap_in_properties_with_ap_string.metadata = {'url': '/additionalProperties/in/properties/with/additionalProperties/string'}
+    create_ap_in_properties_with_ap_string_async.metadata = {'url': '/additionalProperties/in/properties/with/additionalProperties/string'}

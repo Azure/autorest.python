@@ -25,7 +25,7 @@ class LROsOperations(_LROsOperations):
     async def _put200_succeeded_initial_async(
             self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = self.put200_succeeded.metadata['url']
+        url = self.put200_succeeded_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -110,13 +110,13 @@ class LROsOperations(_LROsOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    put200_succeeded.metadata = {'url': '/lro/put/200/succeeded'}
+    put200_succeeded_async.metadata = {'url': '/lro/put/200/succeeded'}
 
 
     async def _put200_succeeded_no_state_initial_async(
             self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = self.put200_succeeded_no_state.metadata['url']
+        url = self.put200_succeeded_no_state_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -201,13 +201,13 @@ class LROsOperations(_LROsOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    put200_succeeded_no_state.metadata = {'url': '/lro/put/200/succeeded/nostate'}
+    put200_succeeded_no_state_async.metadata = {'url': '/lro/put/200/succeeded/nostate'}
 
 
     async def _put202_retry200_initial_async(
             self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = self.put202_retry200.metadata['url']
+        url = self.put202_retry200_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -293,13 +293,13 @@ class LROsOperations(_LROsOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    put202_retry200.metadata = {'url': '/lro/put/202/retry/200'}
+    put202_retry200_async.metadata = {'url': '/lro/put/202/retry/200'}
 
 
     async def _put201_creating_succeeded200_initial_async(
             self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = self.put201_creating_succeeded200.metadata['url']
+        url = self.put201_creating_succeeded200_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -388,13 +388,13 @@ class LROsOperations(_LROsOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    put201_creating_succeeded200.metadata = {'url': '/lro/put/201/creating/succeeded/200'}
+    put201_creating_succeeded200_async.metadata = {'url': '/lro/put/201/creating/succeeded/200'}
 
 
     async def _put200_updating_succeeded204_initial_async(
             self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = self.put200_updating_succeeded204.metadata['url']
+        url = self.put200_updating_succeeded204_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -481,13 +481,13 @@ class LROsOperations(_LROsOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    put200_updating_succeeded204.metadata = {'url': '/lro/put/200/updating/succeeded/200'}
+    put200_updating_succeeded204_async.metadata = {'url': '/lro/put/200/updating/succeeded/200'}
 
 
     async def _put201_creating_failed200_initial_async(
             self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = self.put201_creating_failed200.metadata['url']
+        url = self.put201_creating_failed200_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -576,13 +576,13 @@ class LROsOperations(_LROsOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    put201_creating_failed200.metadata = {'url': '/lro/put/201/created/failed/200'}
+    put201_creating_failed200_async.metadata = {'url': '/lro/put/201/created/failed/200'}
 
 
     async def _put200_acceptedcanceled200_initial_async(
             self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = self.put200_acceptedcanceled200.metadata['url']
+        url = self.put200_acceptedcanceled200_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -669,13 +669,13 @@ class LROsOperations(_LROsOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    put200_acceptedcanceled200.metadata = {'url': '/lro/put/200/accepted/canceled/200'}
+    put200_acceptedcanceled200_async.metadata = {'url': '/lro/put/200/accepted/canceled/200'}
 
 
     async def _put_no_header_in_retry_initial_async(
             self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = self.put_no_header_in_retry.metadata['url']
+        url = self.put_no_header_in_retry_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -770,13 +770,13 @@ class LROsOperations(_LROsOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    put_no_header_in_retry.metadata = {'url': '/lro/put/noheader/202/200'}
+    put_no_header_in_retry_async.metadata = {'url': '/lro/put/noheader/202/200'}
 
 
     async def _put_async_retry_succeeded_initial_async(
             self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = self.put_async_retry_succeeded.metadata['url']
+        url = self.put_async_retry_succeeded_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -876,13 +876,13 @@ class LROsOperations(_LROsOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    put_async_retry_succeeded.metadata = {'url': '/lro/putasync/retry/succeeded'}
+    put_async_retry_succeeded_async.metadata = {'url': '/lro/putasync/retry/succeeded'}
 
 
     async def _put_async_no_retry_succeeded_initial_async(
             self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = self.put_async_no_retry_succeeded.metadata['url']
+        url = self.put_async_no_retry_succeeded_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -980,13 +980,13 @@ class LROsOperations(_LROsOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    put_async_no_retry_succeeded.metadata = {'url': '/lro/putasync/noretry/succeeded'}
+    put_async_no_retry_succeeded_async.metadata = {'url': '/lro/putasync/noretry/succeeded'}
 
 
     async def _put_async_retry_failed_initial_async(
             self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = self.put_async_retry_failed.metadata['url']
+        url = self.put_async_retry_failed_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1086,13 +1086,13 @@ class LROsOperations(_LROsOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    put_async_retry_failed.metadata = {'url': '/lro/putasync/retry/failed'}
+    put_async_retry_failed_async.metadata = {'url': '/lro/putasync/retry/failed'}
 
 
     async def _put_async_no_retrycanceled_initial_async(
             self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = self.put_async_no_retrycanceled.metadata['url']
+        url = self.put_async_no_retrycanceled_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1190,13 +1190,13 @@ class LROsOperations(_LROsOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    put_async_no_retrycanceled.metadata = {'url': '/lro/putasync/noretry/canceled'}
+    put_async_no_retrycanceled_async.metadata = {'url': '/lro/putasync/noretry/canceled'}
 
 
     async def _put_async_no_header_in_retry_initial_async(
             self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = self.put_async_no_header_in_retry.metadata['url']
+        url = self.put_async_no_header_in_retry_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1291,13 +1291,13 @@ class LROsOperations(_LROsOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    put_async_no_header_in_retry.metadata = {'url': '/lro/putasync/noheader/201/200'}
+    put_async_no_header_in_retry_async.metadata = {'url': '/lro/putasync/noheader/201/200'}
 
 
     async def _put_non_resource_initial_async(
             self, sku=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = self.put_non_resource.metadata['url']
+        url = self.put_non_resource_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1380,13 +1380,13 @@ class LROsOperations(_LROsOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    put_non_resource.metadata = {'url': '/lro/putnonresource/202/200'}
+    put_non_resource_async.metadata = {'url': '/lro/putnonresource/202/200'}
 
 
     async def _put_async_non_resource_initial_async(
             self, sku=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = self.put_async_non_resource.metadata['url']
+        url = self.put_async_non_resource_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1469,7 +1469,7 @@ class LROsOperations(_LROsOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    put_async_non_resource.metadata = {'url': '/lro/putnonresourceasync/202/200'}
+    put_async_non_resource_async.metadata = {'url': '/lro/putnonresourceasync/202/200'}
 
 
     async def _put_sub_resource_initial_async(
@@ -1479,7 +1479,7 @@ class LROsOperations(_LROsOperations):
             product = models.SubProduct(provisioning_state=provisioning_state)
 
         # Construct URL
-        url = self.put_sub_resource.metadata['url']
+        url = self.put_sub_resource_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1563,7 +1563,7 @@ class LROsOperations(_LROsOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    put_sub_resource.metadata = {'url': '/lro/putsubresource/202/200'}
+    put_sub_resource_async.metadata = {'url': '/lro/putsubresource/202/200'}
 
 
     async def _put_async_sub_resource_initial_async(
@@ -1573,7 +1573,7 @@ class LROsOperations(_LROsOperations):
             product = models.SubProduct(provisioning_state=provisioning_state)
 
         # Construct URL
-        url = self.put_async_sub_resource.metadata['url']
+        url = self.put_async_sub_resource_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1657,13 +1657,13 @@ class LROsOperations(_LROsOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    put_async_sub_resource.metadata = {'url': '/lro/putsubresourceasync/202/200'}
+    put_async_sub_resource_async.metadata = {'url': '/lro/putsubresourceasync/202/200'}
 
 
     async def _delete_provisioning202_accepted200_succeeded_initial_async(
             self, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = self.delete_provisioning202_accepted200_succeeded.metadata['url']
+        url = self.delete_provisioning202_accepted200_succeeded_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1757,13 +1757,13 @@ class LROsOperations(_LROsOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    delete_provisioning202_accepted200_succeeded.metadata = {'url': '/lro/delete/provisioning/202/accepted/200/succeeded'}
+    delete_provisioning202_accepted200_succeeded_async.metadata = {'url': '/lro/delete/provisioning/202/accepted/200/succeeded'}
 
 
     async def _delete_provisioning202_deleting_failed200_initial_async(
             self, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = self.delete_provisioning202_deleting_failed200.metadata['url']
+        url = self.delete_provisioning202_deleting_failed200_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1857,13 +1857,13 @@ class LROsOperations(_LROsOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    delete_provisioning202_deleting_failed200.metadata = {'url': '/lro/delete/provisioning/202/deleting/200/failed'}
+    delete_provisioning202_deleting_failed200_async.metadata = {'url': '/lro/delete/provisioning/202/deleting/200/failed'}
 
 
     async def _delete_provisioning202_deletingcanceled200_initial_async(
             self, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = self.delete_provisioning202_deletingcanceled200.metadata['url']
+        url = self.delete_provisioning202_deletingcanceled200_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1957,13 +1957,13 @@ class LROsOperations(_LROsOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    delete_provisioning202_deletingcanceled200.metadata = {'url': '/lro/delete/provisioning/202/deleting/200/canceled'}
+    delete_provisioning202_deletingcanceled200_async.metadata = {'url': '/lro/delete/provisioning/202/deleting/200/canceled'}
 
 
     async def _delete204_succeeded_initial_async(
             self, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = self.delete204_succeeded.metadata['url']
+        url = self.delete204_succeeded_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -2024,13 +2024,13 @@ class LROsOperations(_LROsOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    delete204_succeeded.metadata = {'url': '/lro/delete/204/succeeded'}
+    delete204_succeeded_async.metadata = {'url': '/lro/delete/204/succeeded'}
 
 
     async def _delete202_retry200_initial_async(
             self, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = self.delete202_retry200.metadata['url']
+        url = self.delete202_retry200_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -2117,13 +2117,13 @@ class LROsOperations(_LROsOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    delete202_retry200.metadata = {'url': '/lro/delete/202/retry/200'}
+    delete202_retry200_async.metadata = {'url': '/lro/delete/202/retry/200'}
 
 
     async def _delete202_no_retry204_initial_async(
             self, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = self.delete202_no_retry204.metadata['url']
+        url = self.delete202_no_retry204_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -2210,13 +2210,13 @@ class LROsOperations(_LROsOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    delete202_no_retry204.metadata = {'url': '/lro/delete/202/noretry/204'}
+    delete202_no_retry204_async.metadata = {'url': '/lro/delete/202/noretry/204'}
 
 
     async def _delete_no_header_in_retry_initial_async(
             self, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = self.delete_no_header_in_retry.metadata['url']
+        url = self.delete_no_header_in_retry_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -2286,13 +2286,13 @@ class LROsOperations(_LROsOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    delete_no_header_in_retry.metadata = {'url': '/lro/delete/noheader'}
+    delete_no_header_in_retry_async.metadata = {'url': '/lro/delete/noheader'}
 
 
     async def _delete_async_no_header_in_retry_initial_async(
             self, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = self.delete_async_no_header_in_retry.metadata['url']
+        url = self.delete_async_no_header_in_retry_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -2362,13 +2362,13 @@ class LROsOperations(_LROsOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    delete_async_no_header_in_retry.metadata = {'url': '/lro/deleteasync/noheader/202/204'}
+    delete_async_no_header_in_retry_async.metadata = {'url': '/lro/deleteasync/noheader/202/204'}
 
 
     async def _delete_async_retry_succeeded_initial_async(
             self, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = self.delete_async_retry_succeeded.metadata['url']
+        url = self.delete_async_retry_succeeded_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -2442,13 +2442,13 @@ class LROsOperations(_LROsOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    delete_async_retry_succeeded.metadata = {'url': '/lro/deleteasync/retry/succeeded'}
+    delete_async_retry_succeeded_async.metadata = {'url': '/lro/deleteasync/retry/succeeded'}
 
 
     async def _delete_async_no_retry_succeeded_initial_async(
             self, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = self.delete_async_no_retry_succeeded.metadata['url']
+        url = self.delete_async_no_retry_succeeded_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -2522,13 +2522,13 @@ class LROsOperations(_LROsOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    delete_async_no_retry_succeeded.metadata = {'url': '/lro/deleteasync/noretry/succeeded'}
+    delete_async_no_retry_succeeded_async.metadata = {'url': '/lro/deleteasync/noretry/succeeded'}
 
 
     async def _delete_async_retry_failed_initial_async(
             self, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = self.delete_async_retry_failed.metadata['url']
+        url = self.delete_async_retry_failed_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -2602,13 +2602,13 @@ class LROsOperations(_LROsOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    delete_async_retry_failed.metadata = {'url': '/lro/deleteasync/retry/failed'}
+    delete_async_retry_failed_async.metadata = {'url': '/lro/deleteasync/retry/failed'}
 
 
     async def _delete_async_retrycanceled_initial_async(
             self, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = self.delete_async_retrycanceled.metadata['url']
+        url = self.delete_async_retrycanceled_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -2682,13 +2682,13 @@ class LROsOperations(_LROsOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    delete_async_retrycanceled.metadata = {'url': '/lro/deleteasync/retry/canceled'}
+    delete_async_retrycanceled_async.metadata = {'url': '/lro/deleteasync/retry/canceled'}
 
 
     async def _post200_with_payload_initial_async(
             self, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = self.post200_with_payload.metadata['url']
+        url = self.post200_with_payload_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -2765,13 +2765,13 @@ class LROsOperations(_LROsOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    post200_with_payload.metadata = {'url': '/lro/post/payload/200'}
+    post200_with_payload_async.metadata = {'url': '/lro/post/payload/200'}
 
 
     async def _post202_retry200_initial_async(
             self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = self.post202_retry200.metadata['url']
+        url = self.post202_retry200_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -2853,13 +2853,13 @@ class LROsOperations(_LROsOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    post202_retry200.metadata = {'url': '/lro/post/202/retry/200'}
+    post202_retry200_async.metadata = {'url': '/lro/post/202/retry/200'}
 
 
     async def _post202_no_retry204_initial_async(
             self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = self.post202_no_retry204.metadata['url']
+        url = self.post202_no_retry204_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -2956,13 +2956,13 @@ class LROsOperations(_LROsOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    post202_no_retry204.metadata = {'url': '/lro/post/202/noretry/204'}
+    post202_no_retry204_async.metadata = {'url': '/lro/post/202/noretry/204'}
 
 
     async def _post_async_retry_succeeded_initial_async(
             self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = self.post_async_retry_succeeded.metadata['url']
+        url = self.post_async_retry_succeeded_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -3062,13 +3062,13 @@ class LROsOperations(_LROsOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    post_async_retry_succeeded.metadata = {'url': '/lro/postasync/retry/succeeded'}
+    post_async_retry_succeeded_async.metadata = {'url': '/lro/postasync/retry/succeeded'}
 
 
     async def _post_async_no_retry_succeeded_initial_async(
             self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = self.post_async_no_retry_succeeded.metadata['url']
+        url = self.post_async_no_retry_succeeded_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -3168,13 +3168,13 @@ class LROsOperations(_LROsOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    post_async_no_retry_succeeded.metadata = {'url': '/lro/postasync/noretry/succeeded'}
+    post_async_no_retry_succeeded_async.metadata = {'url': '/lro/postasync/noretry/succeeded'}
 
 
     async def _post_async_retry_failed_initial_async(
             self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = self.post_async_retry_failed.metadata['url']
+        url = self.post_async_retry_failed_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -3259,13 +3259,13 @@ class LROsOperations(_LROsOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    post_async_retry_failed.metadata = {'url': '/lro/postasync/retry/failed'}
+    post_async_retry_failed_async.metadata = {'url': '/lro/postasync/retry/failed'}
 
 
     async def _post_async_retrycanceled_initial_async(
             self, product=None, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = self.post_async_retrycanceled.metadata['url']
+        url = self.post_async_retrycanceled_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -3350,4 +3350,4 @@ class LROsOperations(_LROsOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    post_async_retrycanceled.metadata = {'url': '/lro/postasync/retry/canceled'}
+    post_async_retrycanceled_async.metadata = {'url': '/lro/postasync/retry/canceled'}

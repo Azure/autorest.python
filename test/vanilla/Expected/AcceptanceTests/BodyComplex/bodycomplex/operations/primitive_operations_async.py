@@ -33,7 +33,7 @@ class PrimitiveOperations(_PrimitiveOperations):
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_int.metadata['url']
+        url = self.get_int_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -61,7 +61,7 @@ class PrimitiveOperations(_PrimitiveOperations):
             return client_raw_response
 
         return deserialized
-    get_int.metadata = {'url': '/complex/primitive/integer'}
+    get_int_async.metadata = {'url': '/complex/primitive/integer'}
 
     async def put_int_async(
             self, complex_body, custom_headers=None, raw=False, **operation_config):
@@ -79,7 +79,7 @@ class PrimitiveOperations(_PrimitiveOperations):
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
-        url = self.put_int.metadata['url']
+        url = self.put_int_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -104,7 +104,7 @@ class PrimitiveOperations(_PrimitiveOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_int.metadata = {'url': '/complex/primitive/integer'}
+    put_int_async.metadata = {'url': '/complex/primitive/integer'}
 
     async def get_long_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -121,7 +121,7 @@ class PrimitiveOperations(_PrimitiveOperations):
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_long.metadata['url']
+        url = self.get_long_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -149,7 +149,7 @@ class PrimitiveOperations(_PrimitiveOperations):
             return client_raw_response
 
         return deserialized
-    get_long.metadata = {'url': '/complex/primitive/long'}
+    get_long_async.metadata = {'url': '/complex/primitive/long'}
 
     async def put_long_async(
             self, complex_body, custom_headers=None, raw=False, **operation_config):
@@ -167,7 +167,7 @@ class PrimitiveOperations(_PrimitiveOperations):
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
-        url = self.put_long.metadata['url']
+        url = self.put_long_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -192,7 +192,7 @@ class PrimitiveOperations(_PrimitiveOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_long.metadata = {'url': '/complex/primitive/long'}
+    put_long_async.metadata = {'url': '/complex/primitive/long'}
 
     async def get_float_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -209,7 +209,7 @@ class PrimitiveOperations(_PrimitiveOperations):
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_float.metadata['url']
+        url = self.get_float_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -237,7 +237,7 @@ class PrimitiveOperations(_PrimitiveOperations):
             return client_raw_response
 
         return deserialized
-    get_float.metadata = {'url': '/complex/primitive/float'}
+    get_float_async.metadata = {'url': '/complex/primitive/float'}
 
     async def put_float_async(
             self, complex_body, custom_headers=None, raw=False, **operation_config):
@@ -255,7 +255,7 @@ class PrimitiveOperations(_PrimitiveOperations):
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
-        url = self.put_float.metadata['url']
+        url = self.put_float_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -280,7 +280,7 @@ class PrimitiveOperations(_PrimitiveOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_float.metadata = {'url': '/complex/primitive/float'}
+    put_float_async.metadata = {'url': '/complex/primitive/float'}
 
     async def get_double_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -297,7 +297,7 @@ class PrimitiveOperations(_PrimitiveOperations):
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_double.metadata['url']
+        url = self.get_double_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -325,7 +325,7 @@ class PrimitiveOperations(_PrimitiveOperations):
             return client_raw_response
 
         return deserialized
-    get_double.metadata = {'url': '/complex/primitive/double'}
+    get_double_async.metadata = {'url': '/complex/primitive/double'}
 
     async def put_double_async(
             self, complex_body, custom_headers=None, raw=False, **operation_config):
@@ -344,7 +344,7 @@ class PrimitiveOperations(_PrimitiveOperations):
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
-        url = self.put_double.metadata['url']
+        url = self.put_double_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -369,7 +369,7 @@ class PrimitiveOperations(_PrimitiveOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_double.metadata = {'url': '/complex/primitive/double'}
+    put_double_async.metadata = {'url': '/complex/primitive/double'}
 
     async def get_bool_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -386,7 +386,7 @@ class PrimitiveOperations(_PrimitiveOperations):
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_bool.metadata['url']
+        url = self.get_bool_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -414,7 +414,7 @@ class PrimitiveOperations(_PrimitiveOperations):
             return client_raw_response
 
         return deserialized
-    get_bool.metadata = {'url': '/complex/primitive/bool'}
+    get_bool_async.metadata = {'url': '/complex/primitive/bool'}
 
     async def put_bool_async(
             self, complex_body, custom_headers=None, raw=False, **operation_config):
@@ -432,7 +432,7 @@ class PrimitiveOperations(_PrimitiveOperations):
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
-        url = self.put_bool.metadata['url']
+        url = self.put_bool_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -457,7 +457,7 @@ class PrimitiveOperations(_PrimitiveOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_bool.metadata = {'url': '/complex/primitive/bool'}
+    put_bool_async.metadata = {'url': '/complex/primitive/bool'}
 
     async def get_string_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -474,7 +474,7 @@ class PrimitiveOperations(_PrimitiveOperations):
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_string.metadata['url']
+        url = self.get_string_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -502,7 +502,7 @@ class PrimitiveOperations(_PrimitiveOperations):
             return client_raw_response
 
         return deserialized
-    get_string.metadata = {'url': '/complex/primitive/string'}
+    get_string_async.metadata = {'url': '/complex/primitive/string'}
 
     async def put_string_async(
             self, complex_body, custom_headers=None, raw=False, **operation_config):
@@ -520,7 +520,7 @@ class PrimitiveOperations(_PrimitiveOperations):
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
-        url = self.put_string.metadata['url']
+        url = self.put_string_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -545,7 +545,7 @@ class PrimitiveOperations(_PrimitiveOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_string.metadata = {'url': '/complex/primitive/string'}
+    put_string_async.metadata = {'url': '/complex/primitive/string'}
 
     async def get_date_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -562,7 +562,7 @@ class PrimitiveOperations(_PrimitiveOperations):
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_date.metadata['url']
+        url = self.get_date_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -590,7 +590,7 @@ class PrimitiveOperations(_PrimitiveOperations):
             return client_raw_response
 
         return deserialized
-    get_date.metadata = {'url': '/complex/primitive/date'}
+    get_date_async.metadata = {'url': '/complex/primitive/date'}
 
     async def put_date_async(
             self, complex_body, custom_headers=None, raw=False, **operation_config):
@@ -608,7 +608,7 @@ class PrimitiveOperations(_PrimitiveOperations):
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
-        url = self.put_date.metadata['url']
+        url = self.put_date_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -633,7 +633,7 @@ class PrimitiveOperations(_PrimitiveOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_date.metadata = {'url': '/complex/primitive/date'}
+    put_date_async.metadata = {'url': '/complex/primitive/date'}
 
     async def get_date_time_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -650,7 +650,7 @@ class PrimitiveOperations(_PrimitiveOperations):
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_date_time.metadata['url']
+        url = self.get_date_time_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -678,7 +678,7 @@ class PrimitiveOperations(_PrimitiveOperations):
             return client_raw_response
 
         return deserialized
-    get_date_time.metadata = {'url': '/complex/primitive/datetime'}
+    get_date_time_async.metadata = {'url': '/complex/primitive/datetime'}
 
     async def put_date_time_async(
             self, complex_body, custom_headers=None, raw=False, **operation_config):
@@ -697,7 +697,7 @@ class PrimitiveOperations(_PrimitiveOperations):
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
-        url = self.put_date_time.metadata['url']
+        url = self.put_date_time_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -722,7 +722,7 @@ class PrimitiveOperations(_PrimitiveOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_date_time.metadata = {'url': '/complex/primitive/datetime'}
+    put_date_time_async.metadata = {'url': '/complex/primitive/datetime'}
 
     async def get_date_time_rfc1123_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -739,7 +739,7 @@ class PrimitiveOperations(_PrimitiveOperations):
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_date_time_rfc1123.metadata['url']
+        url = self.get_date_time_rfc1123_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -767,7 +767,7 @@ class PrimitiveOperations(_PrimitiveOperations):
             return client_raw_response
 
         return deserialized
-    get_date_time_rfc1123.metadata = {'url': '/complex/primitive/datetimerfc1123'}
+    get_date_time_rfc1123_async.metadata = {'url': '/complex/primitive/datetimerfc1123'}
 
     async def put_date_time_rfc1123_async(
             self, complex_body, custom_headers=None, raw=False, **operation_config):
@@ -786,7 +786,7 @@ class PrimitiveOperations(_PrimitiveOperations):
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
-        url = self.put_date_time_rfc1123.metadata['url']
+        url = self.put_date_time_rfc1123_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -811,7 +811,7 @@ class PrimitiveOperations(_PrimitiveOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_date_time_rfc1123.metadata = {'url': '/complex/primitive/datetimerfc1123'}
+    put_date_time_rfc1123_async.metadata = {'url': '/complex/primitive/datetimerfc1123'}
 
     async def get_duration_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -828,7 +828,7 @@ class PrimitiveOperations(_PrimitiveOperations):
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_duration.metadata['url']
+        url = self.get_duration_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -856,7 +856,7 @@ class PrimitiveOperations(_PrimitiveOperations):
             return client_raw_response
 
         return deserialized
-    get_duration.metadata = {'url': '/complex/primitive/duration'}
+    get_duration_async.metadata = {'url': '/complex/primitive/duration'}
 
     async def put_duration_async(
             self, field=None, custom_headers=None, raw=False, **operation_config):
@@ -876,7 +876,7 @@ class PrimitiveOperations(_PrimitiveOperations):
         complex_body = models.DurationWrapper(field=field)
 
         # Construct URL
-        url = self.put_duration.metadata['url']
+        url = self.put_duration_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -901,7 +901,7 @@ class PrimitiveOperations(_PrimitiveOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_duration.metadata = {'url': '/complex/primitive/duration'}
+    put_duration_async.metadata = {'url': '/complex/primitive/duration'}
 
     async def get_byte_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -918,7 +918,7 @@ class PrimitiveOperations(_PrimitiveOperations):
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_byte.metadata['url']
+        url = self.get_byte_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -946,7 +946,7 @@ class PrimitiveOperations(_PrimitiveOperations):
             return client_raw_response
 
         return deserialized
-    get_byte.metadata = {'url': '/complex/primitive/byte'}
+    get_byte_async.metadata = {'url': '/complex/primitive/byte'}
 
     async def put_byte_async(
             self, field=None, custom_headers=None, raw=False, **operation_config):
@@ -966,7 +966,7 @@ class PrimitiveOperations(_PrimitiveOperations):
         complex_body = models.ByteWrapper(field=field)
 
         # Construct URL
-        url = self.put_byte.metadata['url']
+        url = self.put_byte_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -991,4 +991,4 @@ class PrimitiveOperations(_PrimitiveOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_byte.metadata = {'url': '/complex/primitive/byte'}
+    put_byte_async.metadata = {'url': '/complex/primitive/byte'}

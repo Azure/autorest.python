@@ -35,7 +35,7 @@ class HttpServerFailureOperations(_HttpServerFailureOperations):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = self.head501.metadata['url']
+        url = self.head501_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -56,7 +56,7 @@ class HttpServerFailureOperations(_HttpServerFailureOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    head501.metadata = {'url': '/http/failure/server/501'}
+    head501_async.metadata = {'url': '/http/failure/server/501'}
 
     async def get501_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -75,7 +75,7 @@ class HttpServerFailureOperations(_HttpServerFailureOperations):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = self.get501.metadata['url']
+        url = self.get501_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -96,7 +96,7 @@ class HttpServerFailureOperations(_HttpServerFailureOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    get501.metadata = {'url': '/http/failure/server/501'}
+    get501_async.metadata = {'url': '/http/failure/server/501'}
 
     async def post505_async(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
@@ -117,7 +117,7 @@ class HttpServerFailureOperations(_HttpServerFailureOperations):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = self.post505.metadata['url']
+        url = self.post505_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -145,7 +145,7 @@ class HttpServerFailureOperations(_HttpServerFailureOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    post505.metadata = {'url': '/http/failure/server/505'}
+    post505_async.metadata = {'url': '/http/failure/server/505'}
 
     async def delete505_async(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
@@ -166,7 +166,7 @@ class HttpServerFailureOperations(_HttpServerFailureOperations):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = self.delete505.metadata['url']
+        url = self.delete505_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -194,4 +194,4 @@ class HttpServerFailureOperations(_HttpServerFailureOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    delete505.metadata = {'url': '/http/failure/server/505'}
+    delete505_async.metadata = {'url': '/http/failure/server/505'}

@@ -32,7 +32,7 @@ class DatetimeModelOperations(_DatetimeModelOperations):
         :raises: :class:`ErrorException<bodydatetime.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_null.metadata['url']
+        url = self.get_null_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -60,7 +60,7 @@ class DatetimeModelOperations(_DatetimeModelOperations):
             return client_raw_response
 
         return deserialized
-    get_null.metadata = {'url': '/datetime/null'}
+    get_null_async.metadata = {'url': '/datetime/null'}
 
     async def get_invalid_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -76,7 +76,7 @@ class DatetimeModelOperations(_DatetimeModelOperations):
         :raises: :class:`ErrorException<bodydatetime.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_invalid.metadata['url']
+        url = self.get_invalid_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -104,7 +104,7 @@ class DatetimeModelOperations(_DatetimeModelOperations):
             return client_raw_response
 
         return deserialized
-    get_invalid.metadata = {'url': '/datetime/invalid'}
+    get_invalid_async.metadata = {'url': '/datetime/invalid'}
 
     async def get_overflow_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -120,7 +120,7 @@ class DatetimeModelOperations(_DatetimeModelOperations):
         :raises: :class:`ErrorException<bodydatetime.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_overflow.metadata['url']
+        url = self.get_overflow_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -148,7 +148,7 @@ class DatetimeModelOperations(_DatetimeModelOperations):
             return client_raw_response
 
         return deserialized
-    get_overflow.metadata = {'url': '/datetime/overflow'}
+    get_overflow_async.metadata = {'url': '/datetime/overflow'}
 
     async def get_underflow_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -164,7 +164,7 @@ class DatetimeModelOperations(_DatetimeModelOperations):
         :raises: :class:`ErrorException<bodydatetime.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_underflow.metadata['url']
+        url = self.get_underflow_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -192,7 +192,7 @@ class DatetimeModelOperations(_DatetimeModelOperations):
             return client_raw_response
 
         return deserialized
-    get_underflow.metadata = {'url': '/datetime/underflow'}
+    get_underflow_async.metadata = {'url': '/datetime/underflow'}
 
     async def put_utc_max_date_time_async(
             self, datetime_body, custom_headers=None, raw=False, **operation_config):
@@ -210,7 +210,7 @@ class DatetimeModelOperations(_DatetimeModelOperations):
         :raises: :class:`ErrorException<bodydatetime.models.ErrorException>`
         """
         # Construct URL
-        url = self.put_utc_max_date_time.metadata['url']
+        url = self.put_utc_max_date_time_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -235,7 +235,7 @@ class DatetimeModelOperations(_DatetimeModelOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_utc_max_date_time.metadata = {'url': '/datetime/max/utc'}
+    put_utc_max_date_time_async.metadata = {'url': '/datetime/max/utc'}
 
     async def get_utc_lowercase_max_date_time_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -251,7 +251,7 @@ class DatetimeModelOperations(_DatetimeModelOperations):
         :raises: :class:`ErrorException<bodydatetime.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_utc_lowercase_max_date_time.metadata['url']
+        url = self.get_utc_lowercase_max_date_time_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -279,7 +279,7 @@ class DatetimeModelOperations(_DatetimeModelOperations):
             return client_raw_response
 
         return deserialized
-    get_utc_lowercase_max_date_time.metadata = {'url': '/datetime/max/utc/lowercase'}
+    get_utc_lowercase_max_date_time_async.metadata = {'url': '/datetime/max/utc/lowercase'}
 
     async def get_utc_uppercase_max_date_time_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -295,7 +295,7 @@ class DatetimeModelOperations(_DatetimeModelOperations):
         :raises: :class:`ErrorException<bodydatetime.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_utc_uppercase_max_date_time.metadata['url']
+        url = self.get_utc_uppercase_max_date_time_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -323,7 +323,7 @@ class DatetimeModelOperations(_DatetimeModelOperations):
             return client_raw_response
 
         return deserialized
-    get_utc_uppercase_max_date_time.metadata = {'url': '/datetime/max/utc/uppercase'}
+    get_utc_uppercase_max_date_time_async.metadata = {'url': '/datetime/max/utc/uppercase'}
 
     async def put_local_positive_offset_max_date_time_async(
             self, datetime_body, custom_headers=None, raw=False, **operation_config):
@@ -342,7 +342,7 @@ class DatetimeModelOperations(_DatetimeModelOperations):
         :raises: :class:`ErrorException<bodydatetime.models.ErrorException>`
         """
         # Construct URL
-        url = self.put_local_positive_offset_max_date_time.metadata['url']
+        url = self.put_local_positive_offset_max_date_time_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -367,7 +367,7 @@ class DatetimeModelOperations(_DatetimeModelOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_local_positive_offset_max_date_time.metadata = {'url': '/datetime/max/localpositiveoffset'}
+    put_local_positive_offset_max_date_time_async.metadata = {'url': '/datetime/max/localpositiveoffset'}
 
     async def get_local_positive_offset_lowercase_max_date_time_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -384,7 +384,7 @@ class DatetimeModelOperations(_DatetimeModelOperations):
         :raises: :class:`ErrorException<bodydatetime.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_local_positive_offset_lowercase_max_date_time.metadata['url']
+        url = self.get_local_positive_offset_lowercase_max_date_time_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -412,7 +412,7 @@ class DatetimeModelOperations(_DatetimeModelOperations):
             return client_raw_response
 
         return deserialized
-    get_local_positive_offset_lowercase_max_date_time.metadata = {'url': '/datetime/max/localpositiveoffset/lowercase'}
+    get_local_positive_offset_lowercase_max_date_time_async.metadata = {'url': '/datetime/max/localpositiveoffset/lowercase'}
 
     async def get_local_positive_offset_uppercase_max_date_time_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -429,7 +429,7 @@ class DatetimeModelOperations(_DatetimeModelOperations):
         :raises: :class:`ErrorException<bodydatetime.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_local_positive_offset_uppercase_max_date_time.metadata['url']
+        url = self.get_local_positive_offset_uppercase_max_date_time_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -457,7 +457,7 @@ class DatetimeModelOperations(_DatetimeModelOperations):
             return client_raw_response
 
         return deserialized
-    get_local_positive_offset_uppercase_max_date_time.metadata = {'url': '/datetime/max/localpositiveoffset/uppercase'}
+    get_local_positive_offset_uppercase_max_date_time_async.metadata = {'url': '/datetime/max/localpositiveoffset/uppercase'}
 
     async def put_local_negative_offset_max_date_time_async(
             self, datetime_body, custom_headers=None, raw=False, **operation_config):
@@ -476,7 +476,7 @@ class DatetimeModelOperations(_DatetimeModelOperations):
         :raises: :class:`ErrorException<bodydatetime.models.ErrorException>`
         """
         # Construct URL
-        url = self.put_local_negative_offset_max_date_time.metadata['url']
+        url = self.put_local_negative_offset_max_date_time_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -501,7 +501,7 @@ class DatetimeModelOperations(_DatetimeModelOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_local_negative_offset_max_date_time.metadata = {'url': '/datetime/max/localnegativeoffset'}
+    put_local_negative_offset_max_date_time_async.metadata = {'url': '/datetime/max/localnegativeoffset'}
 
     async def get_local_negative_offset_uppercase_max_date_time_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -518,7 +518,7 @@ class DatetimeModelOperations(_DatetimeModelOperations):
         :raises: :class:`ErrorException<bodydatetime.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_local_negative_offset_uppercase_max_date_time.metadata['url']
+        url = self.get_local_negative_offset_uppercase_max_date_time_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -546,7 +546,7 @@ class DatetimeModelOperations(_DatetimeModelOperations):
             return client_raw_response
 
         return deserialized
-    get_local_negative_offset_uppercase_max_date_time.metadata = {'url': '/datetime/max/localnegativeoffset/uppercase'}
+    get_local_negative_offset_uppercase_max_date_time_async.metadata = {'url': '/datetime/max/localnegativeoffset/uppercase'}
 
     async def get_local_negative_offset_lowercase_max_date_time_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -563,7 +563,7 @@ class DatetimeModelOperations(_DatetimeModelOperations):
         :raises: :class:`ErrorException<bodydatetime.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_local_negative_offset_lowercase_max_date_time.metadata['url']
+        url = self.get_local_negative_offset_lowercase_max_date_time_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -591,7 +591,7 @@ class DatetimeModelOperations(_DatetimeModelOperations):
             return client_raw_response
 
         return deserialized
-    get_local_negative_offset_lowercase_max_date_time.metadata = {'url': '/datetime/max/localnegativeoffset/lowercase'}
+    get_local_negative_offset_lowercase_max_date_time_async.metadata = {'url': '/datetime/max/localnegativeoffset/lowercase'}
 
     async def put_utc_min_date_time_async(
             self, datetime_body, custom_headers=None, raw=False, **operation_config):
@@ -609,7 +609,7 @@ class DatetimeModelOperations(_DatetimeModelOperations):
         :raises: :class:`ErrorException<bodydatetime.models.ErrorException>`
         """
         # Construct URL
-        url = self.put_utc_min_date_time.metadata['url']
+        url = self.put_utc_min_date_time_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -634,7 +634,7 @@ class DatetimeModelOperations(_DatetimeModelOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_utc_min_date_time.metadata = {'url': '/datetime/min/utc'}
+    put_utc_min_date_time_async.metadata = {'url': '/datetime/min/utc'}
 
     async def get_utc_min_date_time_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -650,7 +650,7 @@ class DatetimeModelOperations(_DatetimeModelOperations):
         :raises: :class:`ErrorException<bodydatetime.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_utc_min_date_time.metadata['url']
+        url = self.get_utc_min_date_time_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -678,7 +678,7 @@ class DatetimeModelOperations(_DatetimeModelOperations):
             return client_raw_response
 
         return deserialized
-    get_utc_min_date_time.metadata = {'url': '/datetime/min/utc'}
+    get_utc_min_date_time_async.metadata = {'url': '/datetime/min/utc'}
 
     async def put_local_positive_offset_min_date_time_async(
             self, datetime_body, custom_headers=None, raw=False, **operation_config):
@@ -696,7 +696,7 @@ class DatetimeModelOperations(_DatetimeModelOperations):
         :raises: :class:`ErrorException<bodydatetime.models.ErrorException>`
         """
         # Construct URL
-        url = self.put_local_positive_offset_min_date_time.metadata['url']
+        url = self.put_local_positive_offset_min_date_time_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -721,7 +721,7 @@ class DatetimeModelOperations(_DatetimeModelOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_local_positive_offset_min_date_time.metadata = {'url': '/datetime/min/localpositiveoffset'}
+    put_local_positive_offset_min_date_time_async.metadata = {'url': '/datetime/min/localpositiveoffset'}
 
     async def get_local_positive_offset_min_date_time_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -737,7 +737,7 @@ class DatetimeModelOperations(_DatetimeModelOperations):
         :raises: :class:`ErrorException<bodydatetime.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_local_positive_offset_min_date_time.metadata['url']
+        url = self.get_local_positive_offset_min_date_time_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -765,7 +765,7 @@ class DatetimeModelOperations(_DatetimeModelOperations):
             return client_raw_response
 
         return deserialized
-    get_local_positive_offset_min_date_time.metadata = {'url': '/datetime/min/localpositiveoffset'}
+    get_local_positive_offset_min_date_time_async.metadata = {'url': '/datetime/min/localpositiveoffset'}
 
     async def put_local_negative_offset_min_date_time_async(
             self, datetime_body, custom_headers=None, raw=False, **operation_config):
@@ -783,7 +783,7 @@ class DatetimeModelOperations(_DatetimeModelOperations):
         :raises: :class:`ErrorException<bodydatetime.models.ErrorException>`
         """
         # Construct URL
-        url = self.put_local_negative_offset_min_date_time.metadata['url']
+        url = self.put_local_negative_offset_min_date_time_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -808,7 +808,7 @@ class DatetimeModelOperations(_DatetimeModelOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_local_negative_offset_min_date_time.metadata = {'url': '/datetime/min/localnegativeoffset'}
+    put_local_negative_offset_min_date_time_async.metadata = {'url': '/datetime/min/localnegativeoffset'}
 
     async def get_local_negative_offset_min_date_time_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -824,7 +824,7 @@ class DatetimeModelOperations(_DatetimeModelOperations):
         :raises: :class:`ErrorException<bodydatetime.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_local_negative_offset_min_date_time.metadata['url']
+        url = self.get_local_negative_offset_min_date_time_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -852,4 +852,4 @@ class DatetimeModelOperations(_DatetimeModelOperations):
             return client_raw_response
 
         return deserialized
-    get_local_negative_offset_min_date_time.metadata = {'url': '/datetime/min/localnegativeoffset'}
+    get_local_negative_offset_min_date_time_async.metadata = {'url': '/datetime/min/localnegativeoffset'}

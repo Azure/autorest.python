@@ -32,7 +32,7 @@ class ArrayOperations(_ArrayOperations):
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_null.metadata['url']
+        url = self.get_null_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -60,7 +60,7 @@ class ArrayOperations(_ArrayOperations):
             return client_raw_response
 
         return deserialized
-    get_null.metadata = {'url': '/array/null'}
+    get_null_async.metadata = {'url': '/array/null'}
 
     async def get_invalid_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -76,7 +76,7 @@ class ArrayOperations(_ArrayOperations):
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_invalid.metadata['url']
+        url = self.get_invalid_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -104,7 +104,7 @@ class ArrayOperations(_ArrayOperations):
             return client_raw_response
 
         return deserialized
-    get_invalid.metadata = {'url': '/array/invalid'}
+    get_invalid_async.metadata = {'url': '/array/invalid'}
 
     async def get_empty_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -120,7 +120,7 @@ class ArrayOperations(_ArrayOperations):
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_empty.metadata['url']
+        url = self.get_empty_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -148,7 +148,7 @@ class ArrayOperations(_ArrayOperations):
             return client_raw_response
 
         return deserialized
-    get_empty.metadata = {'url': '/array/empty'}
+    get_empty_async.metadata = {'url': '/array/empty'}
 
     async def put_empty_async(
             self, array_body, custom_headers=None, raw=False, **operation_config):
@@ -166,7 +166,7 @@ class ArrayOperations(_ArrayOperations):
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
-        url = self.put_empty.metadata['url']
+        url = self.put_empty_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -191,7 +191,7 @@ class ArrayOperations(_ArrayOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_empty.metadata = {'url': '/array/empty'}
+    put_empty_async.metadata = {'url': '/array/empty'}
 
     async def get_boolean_tfft_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -207,7 +207,7 @@ class ArrayOperations(_ArrayOperations):
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_boolean_tfft.metadata['url']
+        url = self.get_boolean_tfft_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -235,7 +235,7 @@ class ArrayOperations(_ArrayOperations):
             return client_raw_response
 
         return deserialized
-    get_boolean_tfft.metadata = {'url': '/array/prim/boolean/tfft'}
+    get_boolean_tfft_async.metadata = {'url': '/array/prim/boolean/tfft'}
 
     async def put_boolean_tfft_async(
             self, array_body, custom_headers=None, raw=False, **operation_config):
@@ -253,7 +253,7 @@ class ArrayOperations(_ArrayOperations):
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
-        url = self.put_boolean_tfft.metadata['url']
+        url = self.put_boolean_tfft_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -278,7 +278,7 @@ class ArrayOperations(_ArrayOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_boolean_tfft.metadata = {'url': '/array/prim/boolean/tfft'}
+    put_boolean_tfft_async.metadata = {'url': '/array/prim/boolean/tfft'}
 
     async def get_boolean_invalid_null_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -294,7 +294,7 @@ class ArrayOperations(_ArrayOperations):
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_boolean_invalid_null.metadata['url']
+        url = self.get_boolean_invalid_null_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -322,7 +322,7 @@ class ArrayOperations(_ArrayOperations):
             return client_raw_response
 
         return deserialized
-    get_boolean_invalid_null.metadata = {'url': '/array/prim/boolean/true.null.false'}
+    get_boolean_invalid_null_async.metadata = {'url': '/array/prim/boolean/true.null.false'}
 
     async def get_boolean_invalid_string_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -338,7 +338,7 @@ class ArrayOperations(_ArrayOperations):
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_boolean_invalid_string.metadata['url']
+        url = self.get_boolean_invalid_string_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -366,7 +366,7 @@ class ArrayOperations(_ArrayOperations):
             return client_raw_response
 
         return deserialized
-    get_boolean_invalid_string.metadata = {'url': '/array/prim/boolean/true.boolean.false'}
+    get_boolean_invalid_string_async.metadata = {'url': '/array/prim/boolean/true.boolean.false'}
 
     async def get_integer_valid_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -382,7 +382,7 @@ class ArrayOperations(_ArrayOperations):
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_integer_valid.metadata['url']
+        url = self.get_integer_valid_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -410,7 +410,7 @@ class ArrayOperations(_ArrayOperations):
             return client_raw_response
 
         return deserialized
-    get_integer_valid.metadata = {'url': '/array/prim/integer/1.-1.3.300'}
+    get_integer_valid_async.metadata = {'url': '/array/prim/integer/1.-1.3.300'}
 
     async def put_integer_valid_async(
             self, array_body, custom_headers=None, raw=False, **operation_config):
@@ -428,7 +428,7 @@ class ArrayOperations(_ArrayOperations):
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
-        url = self.put_integer_valid.metadata['url']
+        url = self.put_integer_valid_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -453,7 +453,7 @@ class ArrayOperations(_ArrayOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_integer_valid.metadata = {'url': '/array/prim/integer/1.-1.3.300'}
+    put_integer_valid_async.metadata = {'url': '/array/prim/integer/1.-1.3.300'}
 
     async def get_int_invalid_null_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -469,7 +469,7 @@ class ArrayOperations(_ArrayOperations):
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_int_invalid_null.metadata['url']
+        url = self.get_int_invalid_null_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -497,7 +497,7 @@ class ArrayOperations(_ArrayOperations):
             return client_raw_response
 
         return deserialized
-    get_int_invalid_null.metadata = {'url': '/array/prim/integer/1.null.zero'}
+    get_int_invalid_null_async.metadata = {'url': '/array/prim/integer/1.null.zero'}
 
     async def get_int_invalid_string_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -513,7 +513,7 @@ class ArrayOperations(_ArrayOperations):
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_int_invalid_string.metadata['url']
+        url = self.get_int_invalid_string_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -541,7 +541,7 @@ class ArrayOperations(_ArrayOperations):
             return client_raw_response
 
         return deserialized
-    get_int_invalid_string.metadata = {'url': '/array/prim/integer/1.integer.0'}
+    get_int_invalid_string_async.metadata = {'url': '/array/prim/integer/1.integer.0'}
 
     async def get_long_valid_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -557,7 +557,7 @@ class ArrayOperations(_ArrayOperations):
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_long_valid.metadata['url']
+        url = self.get_long_valid_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -585,7 +585,7 @@ class ArrayOperations(_ArrayOperations):
             return client_raw_response
 
         return deserialized
-    get_long_valid.metadata = {'url': '/array/prim/long/1.-1.3.300'}
+    get_long_valid_async.metadata = {'url': '/array/prim/long/1.-1.3.300'}
 
     async def put_long_valid_async(
             self, array_body, custom_headers=None, raw=False, **operation_config):
@@ -603,7 +603,7 @@ class ArrayOperations(_ArrayOperations):
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
-        url = self.put_long_valid.metadata['url']
+        url = self.put_long_valid_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -628,7 +628,7 @@ class ArrayOperations(_ArrayOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_long_valid.metadata = {'url': '/array/prim/long/1.-1.3.300'}
+    put_long_valid_async.metadata = {'url': '/array/prim/long/1.-1.3.300'}
 
     async def get_long_invalid_null_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -644,7 +644,7 @@ class ArrayOperations(_ArrayOperations):
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_long_invalid_null.metadata['url']
+        url = self.get_long_invalid_null_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -672,7 +672,7 @@ class ArrayOperations(_ArrayOperations):
             return client_raw_response
 
         return deserialized
-    get_long_invalid_null.metadata = {'url': '/array/prim/long/1.null.zero'}
+    get_long_invalid_null_async.metadata = {'url': '/array/prim/long/1.null.zero'}
 
     async def get_long_invalid_string_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -688,7 +688,7 @@ class ArrayOperations(_ArrayOperations):
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_long_invalid_string.metadata['url']
+        url = self.get_long_invalid_string_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -716,7 +716,7 @@ class ArrayOperations(_ArrayOperations):
             return client_raw_response
 
         return deserialized
-    get_long_invalid_string.metadata = {'url': '/array/prim/long/1.integer.0'}
+    get_long_invalid_string_async.metadata = {'url': '/array/prim/long/1.integer.0'}
 
     async def get_float_valid_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -732,7 +732,7 @@ class ArrayOperations(_ArrayOperations):
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_float_valid.metadata['url']
+        url = self.get_float_valid_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -760,7 +760,7 @@ class ArrayOperations(_ArrayOperations):
             return client_raw_response
 
         return deserialized
-    get_float_valid.metadata = {'url': '/array/prim/float/0--0.01-1.2e20'}
+    get_float_valid_async.metadata = {'url': '/array/prim/float/0--0.01-1.2e20'}
 
     async def put_float_valid_async(
             self, array_body, custom_headers=None, raw=False, **operation_config):
@@ -778,7 +778,7 @@ class ArrayOperations(_ArrayOperations):
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
-        url = self.put_float_valid.metadata['url']
+        url = self.put_float_valid_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -803,7 +803,7 @@ class ArrayOperations(_ArrayOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_float_valid.metadata = {'url': '/array/prim/float/0--0.01-1.2e20'}
+    put_float_valid_async.metadata = {'url': '/array/prim/float/0--0.01-1.2e20'}
 
     async def get_float_invalid_null_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -819,7 +819,7 @@ class ArrayOperations(_ArrayOperations):
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_float_invalid_null.metadata['url']
+        url = self.get_float_invalid_null_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -847,7 +847,7 @@ class ArrayOperations(_ArrayOperations):
             return client_raw_response
 
         return deserialized
-    get_float_invalid_null.metadata = {'url': '/array/prim/float/0.0-null-1.2e20'}
+    get_float_invalid_null_async.metadata = {'url': '/array/prim/float/0.0-null-1.2e20'}
 
     async def get_float_invalid_string_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -863,7 +863,7 @@ class ArrayOperations(_ArrayOperations):
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_float_invalid_string.metadata['url']
+        url = self.get_float_invalid_string_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -891,7 +891,7 @@ class ArrayOperations(_ArrayOperations):
             return client_raw_response
 
         return deserialized
-    get_float_invalid_string.metadata = {'url': '/array/prim/float/1.number.0'}
+    get_float_invalid_string_async.metadata = {'url': '/array/prim/float/1.number.0'}
 
     async def get_double_valid_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -907,7 +907,7 @@ class ArrayOperations(_ArrayOperations):
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_double_valid.metadata['url']
+        url = self.get_double_valid_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -935,7 +935,7 @@ class ArrayOperations(_ArrayOperations):
             return client_raw_response
 
         return deserialized
-    get_double_valid.metadata = {'url': '/array/prim/double/0--0.01-1.2e20'}
+    get_double_valid_async.metadata = {'url': '/array/prim/double/0--0.01-1.2e20'}
 
     async def put_double_valid_async(
             self, array_body, custom_headers=None, raw=False, **operation_config):
@@ -953,7 +953,7 @@ class ArrayOperations(_ArrayOperations):
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
-        url = self.put_double_valid.metadata['url']
+        url = self.put_double_valid_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -978,7 +978,7 @@ class ArrayOperations(_ArrayOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_double_valid.metadata = {'url': '/array/prim/double/0--0.01-1.2e20'}
+    put_double_valid_async.metadata = {'url': '/array/prim/double/0--0.01-1.2e20'}
 
     async def get_double_invalid_null_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -994,7 +994,7 @@ class ArrayOperations(_ArrayOperations):
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_double_invalid_null.metadata['url']
+        url = self.get_double_invalid_null_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1022,7 +1022,7 @@ class ArrayOperations(_ArrayOperations):
             return client_raw_response
 
         return deserialized
-    get_double_invalid_null.metadata = {'url': '/array/prim/double/0.0-null-1.2e20'}
+    get_double_invalid_null_async.metadata = {'url': '/array/prim/double/0.0-null-1.2e20'}
 
     async def get_double_invalid_string_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -1038,7 +1038,7 @@ class ArrayOperations(_ArrayOperations):
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_double_invalid_string.metadata['url']
+        url = self.get_double_invalid_string_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1066,7 +1066,7 @@ class ArrayOperations(_ArrayOperations):
             return client_raw_response
 
         return deserialized
-    get_double_invalid_string.metadata = {'url': '/array/prim/double/1.number.0'}
+    get_double_invalid_string_async.metadata = {'url': '/array/prim/double/1.number.0'}
 
     async def get_string_valid_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -1082,7 +1082,7 @@ class ArrayOperations(_ArrayOperations):
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_string_valid.metadata['url']
+        url = self.get_string_valid_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1110,7 +1110,7 @@ class ArrayOperations(_ArrayOperations):
             return client_raw_response
 
         return deserialized
-    get_string_valid.metadata = {'url': '/array/prim/string/foo1.foo2.foo3'}
+    get_string_valid_async.metadata = {'url': '/array/prim/string/foo1.foo2.foo3'}
 
     async def put_string_valid_async(
             self, array_body, custom_headers=None, raw=False, **operation_config):
@@ -1128,7 +1128,7 @@ class ArrayOperations(_ArrayOperations):
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
-        url = self.put_string_valid.metadata['url']
+        url = self.put_string_valid_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1153,7 +1153,7 @@ class ArrayOperations(_ArrayOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_string_valid.metadata = {'url': '/array/prim/string/foo1.foo2.foo3'}
+    put_string_valid_async.metadata = {'url': '/array/prim/string/foo1.foo2.foo3'}
 
     async def get_string_with_null_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -1169,7 +1169,7 @@ class ArrayOperations(_ArrayOperations):
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_string_with_null.metadata['url']
+        url = self.get_string_with_null_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1197,7 +1197,7 @@ class ArrayOperations(_ArrayOperations):
             return client_raw_response
 
         return deserialized
-    get_string_with_null.metadata = {'url': '/array/prim/string/foo.null.foo2'}
+    get_string_with_null_async.metadata = {'url': '/array/prim/string/foo.null.foo2'}
 
     async def get_string_with_invalid_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -1213,7 +1213,7 @@ class ArrayOperations(_ArrayOperations):
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_string_with_invalid.metadata['url']
+        url = self.get_string_with_invalid_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1241,7 +1241,7 @@ class ArrayOperations(_ArrayOperations):
             return client_raw_response
 
         return deserialized
-    get_string_with_invalid.metadata = {'url': '/array/prim/string/foo.123.foo2'}
+    get_string_with_invalid_async.metadata = {'url': '/array/prim/string/foo.123.foo2'}
 
     async def get_uuid_valid_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -1259,7 +1259,7 @@ class ArrayOperations(_ArrayOperations):
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_uuid_valid.metadata['url']
+        url = self.get_uuid_valid_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1287,7 +1287,7 @@ class ArrayOperations(_ArrayOperations):
             return client_raw_response
 
         return deserialized
-    get_uuid_valid.metadata = {'url': '/array/prim/uuid/valid'}
+    get_uuid_valid_async.metadata = {'url': '/array/prim/uuid/valid'}
 
     async def put_uuid_valid_async(
             self, array_body, custom_headers=None, raw=False, **operation_config):
@@ -1307,7 +1307,7 @@ class ArrayOperations(_ArrayOperations):
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
-        url = self.put_uuid_valid.metadata['url']
+        url = self.put_uuid_valid_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1332,7 +1332,7 @@ class ArrayOperations(_ArrayOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_uuid_valid.metadata = {'url': '/array/prim/uuid/valid'}
+    put_uuid_valid_async.metadata = {'url': '/array/prim/uuid/valid'}
 
     async def get_uuid_invalid_chars_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -1348,7 +1348,7 @@ class ArrayOperations(_ArrayOperations):
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_uuid_invalid_chars.metadata['url']
+        url = self.get_uuid_invalid_chars_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1376,7 +1376,7 @@ class ArrayOperations(_ArrayOperations):
             return client_raw_response
 
         return deserialized
-    get_uuid_invalid_chars.metadata = {'url': '/array/prim/uuid/invalidchars'}
+    get_uuid_invalid_chars_async.metadata = {'url': '/array/prim/uuid/invalidchars'}
 
     async def get_date_valid_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -1392,7 +1392,7 @@ class ArrayOperations(_ArrayOperations):
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_date_valid.metadata['url']
+        url = self.get_date_valid_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1420,7 +1420,7 @@ class ArrayOperations(_ArrayOperations):
             return client_raw_response
 
         return deserialized
-    get_date_valid.metadata = {'url': '/array/prim/date/valid'}
+    get_date_valid_async.metadata = {'url': '/array/prim/date/valid'}
 
     async def put_date_valid_async(
             self, array_body, custom_headers=None, raw=False, **operation_config):
@@ -1438,7 +1438,7 @@ class ArrayOperations(_ArrayOperations):
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
-        url = self.put_date_valid.metadata['url']
+        url = self.put_date_valid_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1463,7 +1463,7 @@ class ArrayOperations(_ArrayOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_date_valid.metadata = {'url': '/array/prim/date/valid'}
+    put_date_valid_async.metadata = {'url': '/array/prim/date/valid'}
 
     async def get_date_invalid_null_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -1479,7 +1479,7 @@ class ArrayOperations(_ArrayOperations):
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_date_invalid_null.metadata['url']
+        url = self.get_date_invalid_null_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1507,7 +1507,7 @@ class ArrayOperations(_ArrayOperations):
             return client_raw_response
 
         return deserialized
-    get_date_invalid_null.metadata = {'url': '/array/prim/date/invalidnull'}
+    get_date_invalid_null_async.metadata = {'url': '/array/prim/date/invalidnull'}
 
     async def get_date_invalid_chars_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -1523,7 +1523,7 @@ class ArrayOperations(_ArrayOperations):
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_date_invalid_chars.metadata['url']
+        url = self.get_date_invalid_chars_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1551,7 +1551,7 @@ class ArrayOperations(_ArrayOperations):
             return client_raw_response
 
         return deserialized
-    get_date_invalid_chars.metadata = {'url': '/array/prim/date/invalidchars'}
+    get_date_invalid_chars_async.metadata = {'url': '/array/prim/date/invalidchars'}
 
     async def get_date_time_valid_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -1568,7 +1568,7 @@ class ArrayOperations(_ArrayOperations):
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_date_time_valid.metadata['url']
+        url = self.get_date_time_valid_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1596,7 +1596,7 @@ class ArrayOperations(_ArrayOperations):
             return client_raw_response
 
         return deserialized
-    get_date_time_valid.metadata = {'url': '/array/prim/date-time/valid'}
+    get_date_time_valid_async.metadata = {'url': '/array/prim/date-time/valid'}
 
     async def put_date_time_valid_async(
             self, array_body, custom_headers=None, raw=False, **operation_config):
@@ -1615,7 +1615,7 @@ class ArrayOperations(_ArrayOperations):
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
-        url = self.put_date_time_valid.metadata['url']
+        url = self.put_date_time_valid_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1640,7 +1640,7 @@ class ArrayOperations(_ArrayOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_date_time_valid.metadata = {'url': '/array/prim/date-time/valid'}
+    put_date_time_valid_async.metadata = {'url': '/array/prim/date-time/valid'}
 
     async def get_date_time_invalid_null_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -1656,7 +1656,7 @@ class ArrayOperations(_ArrayOperations):
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_date_time_invalid_null.metadata['url']
+        url = self.get_date_time_invalid_null_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1684,7 +1684,7 @@ class ArrayOperations(_ArrayOperations):
             return client_raw_response
 
         return deserialized
-    get_date_time_invalid_null.metadata = {'url': '/array/prim/date-time/invalidnull'}
+    get_date_time_invalid_null_async.metadata = {'url': '/array/prim/date-time/invalidnull'}
 
     async def get_date_time_invalid_chars_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -1700,7 +1700,7 @@ class ArrayOperations(_ArrayOperations):
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_date_time_invalid_chars.metadata['url']
+        url = self.get_date_time_invalid_chars_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1728,7 +1728,7 @@ class ArrayOperations(_ArrayOperations):
             return client_raw_response
 
         return deserialized
-    get_date_time_invalid_chars.metadata = {'url': '/array/prim/date-time/invalidchars'}
+    get_date_time_invalid_chars_async.metadata = {'url': '/array/prim/date-time/invalidchars'}
 
     async def get_date_time_rfc1123_valid_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -1745,7 +1745,7 @@ class ArrayOperations(_ArrayOperations):
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_date_time_rfc1123_valid.metadata['url']
+        url = self.get_date_time_rfc1123_valid_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1773,7 +1773,7 @@ class ArrayOperations(_ArrayOperations):
             return client_raw_response
 
         return deserialized
-    get_date_time_rfc1123_valid.metadata = {'url': '/array/prim/date-time-rfc1123/valid'}
+    get_date_time_rfc1123_valid_async.metadata = {'url': '/array/prim/date-time-rfc1123/valid'}
 
     async def put_date_time_rfc1123_valid_async(
             self, array_body, custom_headers=None, raw=False, **operation_config):
@@ -1792,7 +1792,7 @@ class ArrayOperations(_ArrayOperations):
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
-        url = self.put_date_time_rfc1123_valid.metadata['url']
+        url = self.put_date_time_rfc1123_valid_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1817,7 +1817,7 @@ class ArrayOperations(_ArrayOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_date_time_rfc1123_valid.metadata = {'url': '/array/prim/date-time-rfc1123/valid'}
+    put_date_time_rfc1123_valid_async.metadata = {'url': '/array/prim/date-time-rfc1123/valid'}
 
     async def get_duration_valid_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -1833,7 +1833,7 @@ class ArrayOperations(_ArrayOperations):
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_duration_valid.metadata['url']
+        url = self.get_duration_valid_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1861,7 +1861,7 @@ class ArrayOperations(_ArrayOperations):
             return client_raw_response
 
         return deserialized
-    get_duration_valid.metadata = {'url': '/array/prim/duration/valid'}
+    get_duration_valid_async.metadata = {'url': '/array/prim/duration/valid'}
 
     async def put_duration_valid_async(
             self, array_body, custom_headers=None, raw=False, **operation_config):
@@ -1879,7 +1879,7 @@ class ArrayOperations(_ArrayOperations):
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
-        url = self.put_duration_valid.metadata['url']
+        url = self.put_duration_valid_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1904,7 +1904,7 @@ class ArrayOperations(_ArrayOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_duration_valid.metadata = {'url': '/array/prim/duration/valid'}
+    put_duration_valid_async.metadata = {'url': '/array/prim/duration/valid'}
 
     async def get_byte_valid_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -1921,7 +1921,7 @@ class ArrayOperations(_ArrayOperations):
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_byte_valid.metadata['url']
+        url = self.get_byte_valid_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1949,7 +1949,7 @@ class ArrayOperations(_ArrayOperations):
             return client_raw_response
 
         return deserialized
-    get_byte_valid.metadata = {'url': '/array/prim/byte/valid'}
+    get_byte_valid_async.metadata = {'url': '/array/prim/byte/valid'}
 
     async def put_byte_valid_async(
             self, array_body, custom_headers=None, raw=False, **operation_config):
@@ -1968,7 +1968,7 @@ class ArrayOperations(_ArrayOperations):
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
-        url = self.put_byte_valid.metadata['url']
+        url = self.put_byte_valid_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1993,7 +1993,7 @@ class ArrayOperations(_ArrayOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_byte_valid.metadata = {'url': '/array/prim/byte/valid'}
+    put_byte_valid_async.metadata = {'url': '/array/prim/byte/valid'}
 
     async def get_byte_invalid_null_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -2010,7 +2010,7 @@ class ArrayOperations(_ArrayOperations):
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_byte_invalid_null.metadata['url']
+        url = self.get_byte_invalid_null_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -2038,7 +2038,7 @@ class ArrayOperations(_ArrayOperations):
             return client_raw_response
 
         return deserialized
-    get_byte_invalid_null.metadata = {'url': '/array/prim/byte/invalidnull'}
+    get_byte_invalid_null_async.metadata = {'url': '/array/prim/byte/invalidnull'}
 
     async def get_base64_url_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -2055,7 +2055,7 @@ class ArrayOperations(_ArrayOperations):
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_base64_url.metadata['url']
+        url = self.get_base64_url_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -2083,7 +2083,7 @@ class ArrayOperations(_ArrayOperations):
             return client_raw_response
 
         return deserialized
-    get_base64_url.metadata = {'url': '/array/prim/base64url/valid'}
+    get_base64_url_async.metadata = {'url': '/array/prim/base64url/valid'}
 
     async def get_complex_null_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -2100,7 +2100,7 @@ class ArrayOperations(_ArrayOperations):
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_complex_null.metadata['url']
+        url = self.get_complex_null_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -2128,7 +2128,7 @@ class ArrayOperations(_ArrayOperations):
             return client_raw_response
 
         return deserialized
-    get_complex_null.metadata = {'url': '/array/complex/null'}
+    get_complex_null_async.metadata = {'url': '/array/complex/null'}
 
     async def get_complex_empty_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -2145,7 +2145,7 @@ class ArrayOperations(_ArrayOperations):
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_complex_empty.metadata['url']
+        url = self.get_complex_empty_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -2173,7 +2173,7 @@ class ArrayOperations(_ArrayOperations):
             return client_raw_response
 
         return deserialized
-    get_complex_empty.metadata = {'url': '/array/complex/empty'}
+    get_complex_empty_async.metadata = {'url': '/array/complex/empty'}
 
     async def get_complex_item_null_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -2191,7 +2191,7 @@ class ArrayOperations(_ArrayOperations):
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_complex_item_null.metadata['url']
+        url = self.get_complex_item_null_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -2219,7 +2219,7 @@ class ArrayOperations(_ArrayOperations):
             return client_raw_response
 
         return deserialized
-    get_complex_item_null.metadata = {'url': '/array/complex/itemnull'}
+    get_complex_item_null_async.metadata = {'url': '/array/complex/itemnull'}
 
     async def get_complex_item_empty_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -2237,7 +2237,7 @@ class ArrayOperations(_ArrayOperations):
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_complex_item_empty.metadata['url']
+        url = self.get_complex_item_empty_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -2265,7 +2265,7 @@ class ArrayOperations(_ArrayOperations):
             return client_raw_response
 
         return deserialized
-    get_complex_item_empty.metadata = {'url': '/array/complex/itemempty'}
+    get_complex_item_empty_async.metadata = {'url': '/array/complex/itemempty'}
 
     async def get_complex_valid_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -2283,7 +2283,7 @@ class ArrayOperations(_ArrayOperations):
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_complex_valid.metadata['url']
+        url = self.get_complex_valid_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -2311,7 +2311,7 @@ class ArrayOperations(_ArrayOperations):
             return client_raw_response
 
         return deserialized
-    get_complex_valid.metadata = {'url': '/array/complex/valid'}
+    get_complex_valid_async.metadata = {'url': '/array/complex/valid'}
 
     async def put_complex_valid_async(
             self, array_body, custom_headers=None, raw=False, **operation_config):
@@ -2330,7 +2330,7 @@ class ArrayOperations(_ArrayOperations):
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
-        url = self.put_complex_valid.metadata['url']
+        url = self.put_complex_valid_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -2355,7 +2355,7 @@ class ArrayOperations(_ArrayOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_complex_valid.metadata = {'url': '/array/complex/valid'}
+    put_complex_valid_async.metadata = {'url': '/array/complex/valid'}
 
     async def get_array_null_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -2371,7 +2371,7 @@ class ArrayOperations(_ArrayOperations):
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_array_null.metadata['url']
+        url = self.get_array_null_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -2399,7 +2399,7 @@ class ArrayOperations(_ArrayOperations):
             return client_raw_response
 
         return deserialized
-    get_array_null.metadata = {'url': '/array/array/null'}
+    get_array_null_async.metadata = {'url': '/array/array/null'}
 
     async def get_array_empty_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -2415,7 +2415,7 @@ class ArrayOperations(_ArrayOperations):
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_array_empty.metadata['url']
+        url = self.get_array_empty_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -2443,7 +2443,7 @@ class ArrayOperations(_ArrayOperations):
             return client_raw_response
 
         return deserialized
-    get_array_empty.metadata = {'url': '/array/array/empty'}
+    get_array_empty_async.metadata = {'url': '/array/array/empty'}
 
     async def get_array_item_null_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -2460,7 +2460,7 @@ class ArrayOperations(_ArrayOperations):
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_array_item_null.metadata['url']
+        url = self.get_array_item_null_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -2488,7 +2488,7 @@ class ArrayOperations(_ArrayOperations):
             return client_raw_response
 
         return deserialized
-    get_array_item_null.metadata = {'url': '/array/array/itemnull'}
+    get_array_item_null_async.metadata = {'url': '/array/array/itemnull'}
 
     async def get_array_item_empty_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -2505,7 +2505,7 @@ class ArrayOperations(_ArrayOperations):
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_array_item_empty.metadata['url']
+        url = self.get_array_item_empty_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -2533,7 +2533,7 @@ class ArrayOperations(_ArrayOperations):
             return client_raw_response
 
         return deserialized
-    get_array_item_empty.metadata = {'url': '/array/array/itemempty'}
+    get_array_item_empty_async.metadata = {'url': '/array/array/itemempty'}
 
     async def get_array_valid_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -2550,7 +2550,7 @@ class ArrayOperations(_ArrayOperations):
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_array_valid.metadata['url']
+        url = self.get_array_valid_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -2578,7 +2578,7 @@ class ArrayOperations(_ArrayOperations):
             return client_raw_response
 
         return deserialized
-    get_array_valid.metadata = {'url': '/array/array/valid'}
+    get_array_valid_async.metadata = {'url': '/array/array/valid'}
 
     async def put_array_valid_async(
             self, array_body, custom_headers=None, raw=False, **operation_config):
@@ -2597,7 +2597,7 @@ class ArrayOperations(_ArrayOperations):
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
-        url = self.put_array_valid.metadata['url']
+        url = self.put_array_valid_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -2622,7 +2622,7 @@ class ArrayOperations(_ArrayOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_array_valid.metadata = {'url': '/array/array/valid'}
+    put_array_valid_async.metadata = {'url': '/array/array/valid'}
 
     async def get_dictionary_null_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -2638,7 +2638,7 @@ class ArrayOperations(_ArrayOperations):
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_dictionary_null.metadata['url']
+        url = self.get_dictionary_null_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -2666,7 +2666,7 @@ class ArrayOperations(_ArrayOperations):
             return client_raw_response
 
         return deserialized
-    get_dictionary_null.metadata = {'url': '/array/dictionary/null'}
+    get_dictionary_null_async.metadata = {'url': '/array/dictionary/null'}
 
     async def get_dictionary_empty_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -2682,7 +2682,7 @@ class ArrayOperations(_ArrayOperations):
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_dictionary_empty.metadata['url']
+        url = self.get_dictionary_empty_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -2710,7 +2710,7 @@ class ArrayOperations(_ArrayOperations):
             return client_raw_response
 
         return deserialized
-    get_dictionary_empty.metadata = {'url': '/array/dictionary/empty'}
+    get_dictionary_empty_async.metadata = {'url': '/array/dictionary/empty'}
 
     async def get_dictionary_item_null_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -2728,7 +2728,7 @@ class ArrayOperations(_ArrayOperations):
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_dictionary_item_null.metadata['url']
+        url = self.get_dictionary_item_null_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -2756,7 +2756,7 @@ class ArrayOperations(_ArrayOperations):
             return client_raw_response
 
         return deserialized
-    get_dictionary_item_null.metadata = {'url': '/array/dictionary/itemnull'}
+    get_dictionary_item_null_async.metadata = {'url': '/array/dictionary/itemnull'}
 
     async def get_dictionary_item_empty_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -2774,7 +2774,7 @@ class ArrayOperations(_ArrayOperations):
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_dictionary_item_empty.metadata['url']
+        url = self.get_dictionary_item_empty_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -2802,7 +2802,7 @@ class ArrayOperations(_ArrayOperations):
             return client_raw_response
 
         return deserialized
-    get_dictionary_item_empty.metadata = {'url': '/array/dictionary/itemempty'}
+    get_dictionary_item_empty_async.metadata = {'url': '/array/dictionary/itemempty'}
 
     async def get_dictionary_valid_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -2820,7 +2820,7 @@ class ArrayOperations(_ArrayOperations):
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_dictionary_valid.metadata['url']
+        url = self.get_dictionary_valid_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -2848,7 +2848,7 @@ class ArrayOperations(_ArrayOperations):
             return client_raw_response
 
         return deserialized
-    get_dictionary_valid.metadata = {'url': '/array/dictionary/valid'}
+    get_dictionary_valid_async.metadata = {'url': '/array/dictionary/valid'}
 
     async def put_dictionary_valid_async(
             self, array_body, custom_headers=None, raw=False, **operation_config):
@@ -2868,7 +2868,7 @@ class ArrayOperations(_ArrayOperations):
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
-        url = self.put_dictionary_valid.metadata['url']
+        url = self.put_dictionary_valid_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -2893,4 +2893,4 @@ class ArrayOperations(_ArrayOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_dictionary_valid.metadata = {'url': '/array/dictionary/valid'}
+    put_dictionary_valid_async.metadata = {'url': '/array/dictionary/valid'}

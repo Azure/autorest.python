@@ -34,7 +34,7 @@ class HttpFailureOperations(_HttpFailureOperations):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_empty_error.metadata['url']
+        url = self.get_empty_error_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -62,7 +62,7 @@ class HttpFailureOperations(_HttpFailureOperations):
             return client_raw_response
 
         return deserialized
-    get_empty_error.metadata = {'url': '/http/failure/emptybody/error'}
+    get_empty_error_async.metadata = {'url': '/http/failure/emptybody/error'}
 
     async def get_no_model_error_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -79,7 +79,7 @@ class HttpFailureOperations(_HttpFailureOperations):
          :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
         """
         # Construct URL
-        url = self.get_no_model_error.metadata['url']
+        url = self.get_no_model_error_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -107,7 +107,7 @@ class HttpFailureOperations(_HttpFailureOperations):
             return client_raw_response
 
         return deserialized
-    get_no_model_error.metadata = {'url': '/http/failure/nomodel/error'}
+    get_no_model_error_async.metadata = {'url': '/http/failure/nomodel/error'}
 
     async def get_no_model_empty_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -124,7 +124,7 @@ class HttpFailureOperations(_HttpFailureOperations):
          :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
         """
         # Construct URL
-        url = self.get_no_model_empty.metadata['url']
+        url = self.get_no_model_empty_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -152,4 +152,4 @@ class HttpFailureOperations(_HttpFailureOperations):
             return client_raw_response
 
         return deserialized
-    get_no_model_empty.metadata = {'url': '/http/failure/nomodel/empty'}
+    get_no_model_empty_async.metadata = {'url': '/http/failure/nomodel/empty'}

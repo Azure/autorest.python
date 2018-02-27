@@ -32,7 +32,7 @@ class BoolModelOperations(_BoolModelOperations):
         :raises: :class:`ErrorException<bodyboolean.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_true.metadata['url']
+        url = self.get_true_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -60,7 +60,7 @@ class BoolModelOperations(_BoolModelOperations):
             return client_raw_response
 
         return deserialized
-    get_true.metadata = {'url': '/bool/true'}
+    get_true_async.metadata = {'url': '/bool/true'}
 
     async def put_true_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -78,7 +78,7 @@ class BoolModelOperations(_BoolModelOperations):
         bool_body = True
 
         # Construct URL
-        url = self.put_true.metadata['url']
+        url = self.put_true_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -103,7 +103,7 @@ class BoolModelOperations(_BoolModelOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_true.metadata = {'url': '/bool/true'}
+    put_true_async.metadata = {'url': '/bool/true'}
 
     async def get_false_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -119,7 +119,7 @@ class BoolModelOperations(_BoolModelOperations):
         :raises: :class:`ErrorException<bodyboolean.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_false.metadata['url']
+        url = self.get_false_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -147,7 +147,7 @@ class BoolModelOperations(_BoolModelOperations):
             return client_raw_response
 
         return deserialized
-    get_false.metadata = {'url': '/bool/false'}
+    get_false_async.metadata = {'url': '/bool/false'}
 
     async def put_false_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -165,7 +165,7 @@ class BoolModelOperations(_BoolModelOperations):
         bool_body = False
 
         # Construct URL
-        url = self.put_false.metadata['url']
+        url = self.put_false_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -190,7 +190,7 @@ class BoolModelOperations(_BoolModelOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_false.metadata = {'url': '/bool/false'}
+    put_false_async.metadata = {'url': '/bool/false'}
 
     async def get_null_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -206,7 +206,7 @@ class BoolModelOperations(_BoolModelOperations):
         :raises: :class:`ErrorException<bodyboolean.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_null.metadata['url']
+        url = self.get_null_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -234,7 +234,7 @@ class BoolModelOperations(_BoolModelOperations):
             return client_raw_response
 
         return deserialized
-    get_null.metadata = {'url': '/bool/null'}
+    get_null_async.metadata = {'url': '/bool/null'}
 
     async def get_invalid_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -250,7 +250,7 @@ class BoolModelOperations(_BoolModelOperations):
         :raises: :class:`ErrorException<bodyboolean.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_invalid.metadata['url']
+        url = self.get_invalid_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -278,4 +278,4 @@ class BoolModelOperations(_BoolModelOperations):
             return client_raw_response
 
         return deserialized
-    get_invalid.metadata = {'url': '/bool/invalid'}
+    get_invalid_async.metadata = {'url': '/bool/invalid'}

@@ -37,7 +37,7 @@ class PetOperations(_PetOperations):
          :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
         """
         # Construct URL
-        url = self.get_by_pet_id.metadata['url']
+        url = self.get_by_pet_id_async.metadata['url']
         path_format_arguments = {
             'petId': self._serialize.url("pet_id", pet_id, 'str')
         }
@@ -69,7 +69,7 @@ class PetOperations(_PetOperations):
             return client_raw_response
 
         return deserialized
-    get_by_pet_id.metadata = {'url': '/extensibleenums/pet/{petId}'}
+    get_by_pet_id_async.metadata = {'url': '/extensibleenums/pet/{petId}'}
 
     async def add_pet_async(
             self, pet_param=None, custom_headers=None, raw=False, **operation_config):
@@ -89,7 +89,7 @@ class PetOperations(_PetOperations):
          :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
         """
         # Construct URL
-        url = self.add_pet.metadata['url']
+        url = self.add_pet_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -124,4 +124,4 @@ class PetOperations(_PetOperations):
             return client_raw_response
 
         return deserialized
-    add_pet.metadata = {'url': '/extensibleenums/pet/addPet'}
+    add_pet_async.metadata = {'url': '/extensibleenums/pet/addPet'}

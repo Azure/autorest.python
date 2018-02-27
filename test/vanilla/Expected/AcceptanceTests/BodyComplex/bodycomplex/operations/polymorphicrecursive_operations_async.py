@@ -32,7 +32,7 @@ class PolymorphicrecursiveOperations(_PolymorphicrecursiveOperations):
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_valid.metadata['url']
+        url = self.get_valid_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -60,7 +60,7 @@ class PolymorphicrecursiveOperations(_PolymorphicrecursiveOperations):
             return client_raw_response
 
         return deserialized
-    get_valid.metadata = {'url': '/complex/polymorphicrecursive/valid'}
+    get_valid_async.metadata = {'url': '/complex/polymorphicrecursive/valid'}
 
     async def put_valid_async(
             self, complex_body, custom_headers=None, raw=False, **operation_config):
@@ -130,7 +130,7 @@ class PolymorphicrecursiveOperations(_PolymorphicrecursiveOperations):
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
-        url = self.put_valid.metadata['url']
+        url = self.put_valid_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -155,4 +155,4 @@ class PolymorphicrecursiveOperations(_PolymorphicrecursiveOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_valid.metadata = {'url': '/complex/polymorphicrecursive/valid'}
+    put_valid_async.metadata = {'url': '/complex/polymorphicrecursive/valid'}

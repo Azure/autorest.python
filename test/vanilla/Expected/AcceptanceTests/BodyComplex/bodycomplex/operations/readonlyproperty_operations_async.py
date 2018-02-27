@@ -33,7 +33,7 @@ class ReadonlypropertyOperations(_ReadonlypropertyOperations):
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_valid.metadata['url']
+        url = self.get_valid_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -61,7 +61,7 @@ class ReadonlypropertyOperations(_ReadonlypropertyOperations):
             return client_raw_response
 
         return deserialized
-    get_valid.metadata = {'url': '/complex/readonlyproperty/valid'}
+    get_valid_async.metadata = {'url': '/complex/readonlyproperty/valid'}
 
     async def put_valid_async(
             self, size=None, custom_headers=None, raw=False, **operation_config):
@@ -81,7 +81,7 @@ class ReadonlypropertyOperations(_ReadonlypropertyOperations):
         complex_body = models.ReadonlyObj(size=size)
 
         # Construct URL
-        url = self.put_valid.metadata['url']
+        url = self.put_valid_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -106,4 +106,4 @@ class ReadonlypropertyOperations(_ReadonlypropertyOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_valid.metadata = {'url': '/complex/readonlyproperty/valid'}
+    put_valid_async.metadata = {'url': '/complex/readonlyproperty/valid'}

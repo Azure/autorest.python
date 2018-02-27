@@ -42,7 +42,7 @@ class FormdataOperations(_FormdataOperations):
         :raises: :class:`ErrorException<bodyformdata.models.ErrorException>`
         """
         # Construct URL
-        url = self.upload_file.metadata['url']
+        url = self.upload_file_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -77,7 +77,7 @@ class FormdataOperations(_FormdataOperations):
             return client_raw_response
 
         return deserialized
-    upload_file.metadata = {'url': '/formdata/stream/uploadfile'}
+    upload_file_async.metadata = {'url': '/formdata/stream/uploadfile'}
 
     async def upload_file_via_body_async(
             self, file_content, custom_headers=None, raw=False, callback=None, **operation_config):
@@ -100,7 +100,7 @@ class FormdataOperations(_FormdataOperations):
         :raises: :class:`ErrorException<bodyformdata.models.ErrorException>`
         """
         # Construct URL
-        url = self.upload_file_via_body.metadata['url']
+        url = self.upload_file_via_body_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -132,4 +132,4 @@ class FormdataOperations(_FormdataOperations):
             return client_raw_response
 
         return deserialized
-    upload_file_via_body.metadata = {'url': '/formdata/stream/uploadfile'}
+    upload_file_via_body_async.metadata = {'url': '/formdata/stream/uploadfile'}

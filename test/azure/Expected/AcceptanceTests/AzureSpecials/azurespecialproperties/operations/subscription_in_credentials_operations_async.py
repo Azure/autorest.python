@@ -34,7 +34,7 @@ class SubscriptionInCredentialsOperations(_SubscriptionInCredentialsOperations):
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
         """
         # Construct URL
-        url = self.post_method_global_valid.metadata['url']
+        url = self.post_method_global_valid_async.metadata['url']
         path_format_arguments = {
             'subscriptionId': self._serialize.url("self.config.subscription_id", self.config.subscription_id, 'str')
         }
@@ -63,7 +63,7 @@ class SubscriptionInCredentialsOperations(_SubscriptionInCredentialsOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    post_method_global_valid.metadata = {'url': '/azurespecials/subscriptionId/method/string/none/path/global/1234-5678-9012-3456/{subscriptionId}'}
+    post_method_global_valid_async.metadata = {'url': '/azurespecials/subscriptionId/method/string/none/path/global/1234-5678-9012-3456/{subscriptionId}'}
 
     async def post_method_global_null_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -82,7 +82,7 @@ class SubscriptionInCredentialsOperations(_SubscriptionInCredentialsOperations):
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
         """
         # Construct URL
-        url = self.post_method_global_null.metadata['url']
+        url = self.post_method_global_null_async.metadata['url']
         path_format_arguments = {
             'subscriptionId': self._serialize.url("self.config.subscription_id", self.config.subscription_id, 'str')
         }
@@ -111,7 +111,7 @@ class SubscriptionInCredentialsOperations(_SubscriptionInCredentialsOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    post_method_global_null.metadata = {'url': '/azurespecials/subscriptionId/method/string/none/path/global/null/{subscriptionId}'}
+    post_method_global_null_async.metadata = {'url': '/azurespecials/subscriptionId/method/string/none/path/global/null/{subscriptionId}'}
 
     async def post_method_global_not_provided_valid_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -129,7 +129,7 @@ class SubscriptionInCredentialsOperations(_SubscriptionInCredentialsOperations):
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
         """
         # Construct URL
-        url = self.post_method_global_not_provided_valid.metadata['url']
+        url = self.post_method_global_not_provided_valid_async.metadata['url']
         path_format_arguments = {
             'subscriptionId': self._serialize.url("self.config.subscription_id", self.config.subscription_id, 'str')
         }
@@ -159,7 +159,7 @@ class SubscriptionInCredentialsOperations(_SubscriptionInCredentialsOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    post_method_global_not_provided_valid.metadata = {'url': '/azurespecials/subscriptionId/method/string/none/path/globalNotProvided/1234-5678-9012-3456/{subscriptionId}'}
+    post_method_global_not_provided_valid_async.metadata = {'url': '/azurespecials/subscriptionId/method/string/none/path/globalNotProvided/1234-5678-9012-3456/{subscriptionId}'}
 
     async def post_path_global_valid_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -177,7 +177,7 @@ class SubscriptionInCredentialsOperations(_SubscriptionInCredentialsOperations):
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
         """
         # Construct URL
-        url = self.post_path_global_valid.metadata['url']
+        url = self.post_path_global_valid_async.metadata['url']
         path_format_arguments = {
             'subscriptionId': self._serialize.url("self.config.subscription_id", self.config.subscription_id, 'str')
         }
@@ -206,7 +206,7 @@ class SubscriptionInCredentialsOperations(_SubscriptionInCredentialsOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    post_path_global_valid.metadata = {'url': '/azurespecials/subscriptionId/path/string/none/path/global/1234-5678-9012-3456/{subscriptionId}'}
+    post_path_global_valid_async.metadata = {'url': '/azurespecials/subscriptionId/path/string/none/path/global/1234-5678-9012-3456/{subscriptionId}'}
 
     async def post_swagger_global_valid_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -224,7 +224,7 @@ class SubscriptionInCredentialsOperations(_SubscriptionInCredentialsOperations):
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
         """
         # Construct URL
-        url = self.post_swagger_global_valid.metadata['url']
+        url = self.post_swagger_global_valid_async.metadata['url']
         path_format_arguments = {
             'subscriptionId': self._serialize.url("self.config.subscription_id", self.config.subscription_id, 'str')
         }
@@ -253,4 +253,4 @@ class SubscriptionInCredentialsOperations(_SubscriptionInCredentialsOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    post_swagger_global_valid.metadata = {'url': '/azurespecials/subscriptionId/swagger/string/none/path/global/1234-5678-9012-3456/{subscriptionId}'}
+    post_swagger_global_valid_async.metadata = {'url': '/azurespecials/subscriptionId/swagger/string/none/path/global/1234-5678-9012-3456/{subscriptionId}'}

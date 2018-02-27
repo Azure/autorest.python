@@ -33,7 +33,7 @@ class HttpSuccessOperations(_HttpSuccessOperations):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = self.head200.metadata['url']
+        url = self.head200_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -54,7 +54,7 @@ class HttpSuccessOperations(_HttpSuccessOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    head200.metadata = {'url': '/http/success/200'}
+    head200_async.metadata = {'url': '/http/success/200'}
 
     async def get200_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -71,7 +71,7 @@ class HttpSuccessOperations(_HttpSuccessOperations):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = self.get200.metadata['url']
+        url = self.get200_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -99,7 +99,7 @@ class HttpSuccessOperations(_HttpSuccessOperations):
             return client_raw_response
 
         return deserialized
-    get200.metadata = {'url': '/http/success/200'}
+    get200_async.metadata = {'url': '/http/success/200'}
 
     async def put200_async(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
@@ -118,7 +118,7 @@ class HttpSuccessOperations(_HttpSuccessOperations):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = self.put200.metadata['url']
+        url = self.put200_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -146,7 +146,7 @@ class HttpSuccessOperations(_HttpSuccessOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put200.metadata = {'url': '/http/success/200'}
+    put200_async.metadata = {'url': '/http/success/200'}
 
     async def patch200_async(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
@@ -165,7 +165,7 @@ class HttpSuccessOperations(_HttpSuccessOperations):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = self.patch200.metadata['url']
+        url = self.patch200_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -193,7 +193,7 @@ class HttpSuccessOperations(_HttpSuccessOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    patch200.metadata = {'url': '/http/success/200'}
+    patch200_async.metadata = {'url': '/http/success/200'}
 
     async def post200_async(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
@@ -212,7 +212,7 @@ class HttpSuccessOperations(_HttpSuccessOperations):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = self.post200.metadata['url']
+        url = self.post200_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -240,7 +240,7 @@ class HttpSuccessOperations(_HttpSuccessOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    post200.metadata = {'url': '/http/success/200'}
+    post200_async.metadata = {'url': '/http/success/200'}
 
     async def delete200_async(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
@@ -259,7 +259,7 @@ class HttpSuccessOperations(_HttpSuccessOperations):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = self.delete200.metadata['url']
+        url = self.delete200_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -287,7 +287,7 @@ class HttpSuccessOperations(_HttpSuccessOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    delete200.metadata = {'url': '/http/success/200'}
+    delete200_async.metadata = {'url': '/http/success/200'}
 
     async def put201_async(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
@@ -306,7 +306,7 @@ class HttpSuccessOperations(_HttpSuccessOperations):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = self.put201.metadata['url']
+        url = self.put201_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -334,7 +334,7 @@ class HttpSuccessOperations(_HttpSuccessOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put201.metadata = {'url': '/http/success/201'}
+    put201_async.metadata = {'url': '/http/success/201'}
 
     async def post201_async(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
@@ -353,7 +353,7 @@ class HttpSuccessOperations(_HttpSuccessOperations):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = self.post201.metadata['url']
+        url = self.post201_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -381,7 +381,7 @@ class HttpSuccessOperations(_HttpSuccessOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    post201.metadata = {'url': '/http/success/201'}
+    post201_async.metadata = {'url': '/http/success/201'}
 
     async def put202_async(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
@@ -400,7 +400,7 @@ class HttpSuccessOperations(_HttpSuccessOperations):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = self.put202.metadata['url']
+        url = self.put202_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -428,7 +428,7 @@ class HttpSuccessOperations(_HttpSuccessOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put202.metadata = {'url': '/http/success/202'}
+    put202_async.metadata = {'url': '/http/success/202'}
 
     async def patch202_async(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
@@ -447,7 +447,7 @@ class HttpSuccessOperations(_HttpSuccessOperations):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = self.patch202.metadata['url']
+        url = self.patch202_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -475,7 +475,7 @@ class HttpSuccessOperations(_HttpSuccessOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    patch202.metadata = {'url': '/http/success/202'}
+    patch202_async.metadata = {'url': '/http/success/202'}
 
     async def post202_async(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
@@ -494,7 +494,7 @@ class HttpSuccessOperations(_HttpSuccessOperations):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = self.post202.metadata['url']
+        url = self.post202_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -522,7 +522,7 @@ class HttpSuccessOperations(_HttpSuccessOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    post202.metadata = {'url': '/http/success/202'}
+    post202_async.metadata = {'url': '/http/success/202'}
 
     async def delete202_async(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
@@ -541,7 +541,7 @@ class HttpSuccessOperations(_HttpSuccessOperations):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = self.delete202.metadata['url']
+        url = self.delete202_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -569,7 +569,7 @@ class HttpSuccessOperations(_HttpSuccessOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    delete202.metadata = {'url': '/http/success/202'}
+    delete202_async.metadata = {'url': '/http/success/202'}
 
     async def head204_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -586,7 +586,7 @@ class HttpSuccessOperations(_HttpSuccessOperations):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = self.head204.metadata['url']
+        url = self.head204_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -607,7 +607,7 @@ class HttpSuccessOperations(_HttpSuccessOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    head204.metadata = {'url': '/http/success/204'}
+    head204_async.metadata = {'url': '/http/success/204'}
 
     async def put204_async(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
@@ -626,7 +626,7 @@ class HttpSuccessOperations(_HttpSuccessOperations):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = self.put204.metadata['url']
+        url = self.put204_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -654,7 +654,7 @@ class HttpSuccessOperations(_HttpSuccessOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put204.metadata = {'url': '/http/success/204'}
+    put204_async.metadata = {'url': '/http/success/204'}
 
     async def patch204_async(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
@@ -673,7 +673,7 @@ class HttpSuccessOperations(_HttpSuccessOperations):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = self.patch204.metadata['url']
+        url = self.patch204_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -701,7 +701,7 @@ class HttpSuccessOperations(_HttpSuccessOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    patch204.metadata = {'url': '/http/success/204'}
+    patch204_async.metadata = {'url': '/http/success/204'}
 
     async def post204_async(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
@@ -720,7 +720,7 @@ class HttpSuccessOperations(_HttpSuccessOperations):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = self.post204.metadata['url']
+        url = self.post204_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -748,7 +748,7 @@ class HttpSuccessOperations(_HttpSuccessOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    post204.metadata = {'url': '/http/success/204'}
+    post204_async.metadata = {'url': '/http/success/204'}
 
     async def delete204_async(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
@@ -767,7 +767,7 @@ class HttpSuccessOperations(_HttpSuccessOperations):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = self.delete204.metadata['url']
+        url = self.delete204_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -795,7 +795,7 @@ class HttpSuccessOperations(_HttpSuccessOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    delete204.metadata = {'url': '/http/success/204'}
+    delete204_async.metadata = {'url': '/http/success/204'}
 
     async def head404_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -812,7 +812,7 @@ class HttpSuccessOperations(_HttpSuccessOperations):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = self.head404.metadata['url']
+        url = self.head404_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -833,4 +833,4 @@ class HttpSuccessOperations(_HttpSuccessOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    head404.metadata = {'url': '/http/success/404'}
+    head404_async.metadata = {'url': '/http/success/404'}

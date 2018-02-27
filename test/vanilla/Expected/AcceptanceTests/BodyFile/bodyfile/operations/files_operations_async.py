@@ -37,7 +37,7 @@ class FilesOperations(_FilesOperations):
         :raises: :class:`ErrorException<bodyfile.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_file.metadata['url']
+        url = self.get_file_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -65,7 +65,7 @@ class FilesOperations(_FilesOperations):
             return client_raw_response
 
         return deserialized
-    get_file.metadata = {'url': '/files/stream/nonempty'}
+    get_file_async.metadata = {'url': '/files/stream/nonempty'}
 
     async def get_file_large_async(
             self, custom_headers=None, raw=False, callback=None, **operation_config):
@@ -86,7 +86,7 @@ class FilesOperations(_FilesOperations):
         :raises: :class:`ErrorException<bodyfile.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_file_large.metadata['url']
+        url = self.get_file_large_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -114,7 +114,7 @@ class FilesOperations(_FilesOperations):
             return client_raw_response
 
         return deserialized
-    get_file_large.metadata = {'url': '/files/stream/verylarge'}
+    get_file_large_async.metadata = {'url': '/files/stream/verylarge'}
 
     async def get_empty_file_async(
             self, custom_headers=None, raw=False, callback=None, **operation_config):
@@ -135,7 +135,7 @@ class FilesOperations(_FilesOperations):
         :raises: :class:`ErrorException<bodyfile.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_empty_file.metadata['url']
+        url = self.get_empty_file_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -163,4 +163,4 @@ class FilesOperations(_FilesOperations):
             return client_raw_response
 
         return deserialized
-    get_empty_file.metadata = {'url': '/files/stream/empty'}
+    get_empty_file_async.metadata = {'url': '/files/stream/empty'}

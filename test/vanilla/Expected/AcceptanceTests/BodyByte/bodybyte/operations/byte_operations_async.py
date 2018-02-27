@@ -32,7 +32,7 @@ class ByteOperations(_ByteOperations):
         :raises: :class:`ErrorException<bodybyte.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_null.metadata['url']
+        url = self.get_null_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -60,7 +60,7 @@ class ByteOperations(_ByteOperations):
             return client_raw_response
 
         return deserialized
-    get_null.metadata = {'url': '/byte/null'}
+    get_null_async.metadata = {'url': '/byte/null'}
 
     async def get_empty_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -76,7 +76,7 @@ class ByteOperations(_ByteOperations):
         :raises: :class:`ErrorException<bodybyte.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_empty.metadata['url']
+        url = self.get_empty_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -104,7 +104,7 @@ class ByteOperations(_ByteOperations):
             return client_raw_response
 
         return deserialized
-    get_empty.metadata = {'url': '/byte/empty'}
+    get_empty_async.metadata = {'url': '/byte/empty'}
 
     async def get_non_ascii_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -120,7 +120,7 @@ class ByteOperations(_ByteOperations):
         :raises: :class:`ErrorException<bodybyte.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_non_ascii.metadata['url']
+        url = self.get_non_ascii_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -148,7 +148,7 @@ class ByteOperations(_ByteOperations):
             return client_raw_response
 
         return deserialized
-    get_non_ascii.metadata = {'url': '/byte/nonAscii'}
+    get_non_ascii_async.metadata = {'url': '/byte/nonAscii'}
 
     async def put_non_ascii_async(
             self, byte_body, custom_headers=None, raw=False, **operation_config):
@@ -167,7 +167,7 @@ class ByteOperations(_ByteOperations):
         :raises: :class:`ErrorException<bodybyte.models.ErrorException>`
         """
         # Construct URL
-        url = self.put_non_ascii.metadata['url']
+        url = self.put_non_ascii_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -192,7 +192,7 @@ class ByteOperations(_ByteOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_non_ascii.metadata = {'url': '/byte/nonAscii'}
+    put_non_ascii_async.metadata = {'url': '/byte/nonAscii'}
 
     async def get_invalid_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -208,7 +208,7 @@ class ByteOperations(_ByteOperations):
         :raises: :class:`ErrorException<bodybyte.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_invalid.metadata['url']
+        url = self.get_invalid_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -236,4 +236,4 @@ class ByteOperations(_ByteOperations):
             return client_raw_response
 
         return deserialized
-    get_invalid.metadata = {'url': '/byte/invalid'}
+    get_invalid_async.metadata = {'url': '/byte/invalid'}

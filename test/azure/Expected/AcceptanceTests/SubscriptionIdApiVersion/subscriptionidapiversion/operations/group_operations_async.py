@@ -37,7 +37,7 @@ class GroupOperations(_GroupOperations):
          :class:`ErrorException<subscriptionidapiversion.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_sample_resource_group.metadata['url']
+        url = self.get_sample_resource_group_async.metadata['url']
         path_format_arguments = {
             'subscriptionId': self._serialize.url("self.config.subscription_id", self.config.subscription_id, 'str'),
             'resourceGroupName': self._serialize.url("resource_group_name", resource_group_name, 'str')
@@ -75,4 +75,4 @@ class GroupOperations(_GroupOperations):
             return client_raw_response
 
         return deserialized
-    get_sample_resource_group.metadata = {'url': '/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}'}
+    get_sample_resource_group_async.metadata = {'url': '/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}'}

@@ -35,7 +35,7 @@ class UsageOperations(_UsageOperations):
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
         # Construct URL
-        url = self.list.metadata['url']
+        url = self.list_async.metadata['url']
         path_format_arguments = {
             'subscriptionId': self._serialize.url("self.config.subscription_id", self.config.subscription_id, 'str')
         }
@@ -74,4 +74,4 @@ class UsageOperations(_UsageOperations):
             return client_raw_response
 
         return deserialized
-    list.metadata = {'url': '/subscriptions/{subscriptionId}/providers/Microsoft.Storage/usages'}
+    list_async.metadata = {'url': '/subscriptions/{subscriptionId}/providers/Microsoft.Storage/usages'}

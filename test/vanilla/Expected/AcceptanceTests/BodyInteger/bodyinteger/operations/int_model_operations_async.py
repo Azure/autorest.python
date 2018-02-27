@@ -32,7 +32,7 @@ class IntModelOperations(_IntModelOperations):
         :raises: :class:`ErrorException<bodyinteger.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_null.metadata['url']
+        url = self.get_null_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -60,7 +60,7 @@ class IntModelOperations(_IntModelOperations):
             return client_raw_response
 
         return deserialized
-    get_null.metadata = {'url': '/int/null'}
+    get_null_async.metadata = {'url': '/int/null'}
 
     async def get_invalid_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -76,7 +76,7 @@ class IntModelOperations(_IntModelOperations):
         :raises: :class:`ErrorException<bodyinteger.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_invalid.metadata['url']
+        url = self.get_invalid_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -104,7 +104,7 @@ class IntModelOperations(_IntModelOperations):
             return client_raw_response
 
         return deserialized
-    get_invalid.metadata = {'url': '/int/invalid'}
+    get_invalid_async.metadata = {'url': '/int/invalid'}
 
     async def get_overflow_int32_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -120,7 +120,7 @@ class IntModelOperations(_IntModelOperations):
         :raises: :class:`ErrorException<bodyinteger.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_overflow_int32.metadata['url']
+        url = self.get_overflow_int32_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -148,7 +148,7 @@ class IntModelOperations(_IntModelOperations):
             return client_raw_response
 
         return deserialized
-    get_overflow_int32.metadata = {'url': '/int/overflowint32'}
+    get_overflow_int32_async.metadata = {'url': '/int/overflowint32'}
 
     async def get_underflow_int32_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -164,7 +164,7 @@ class IntModelOperations(_IntModelOperations):
         :raises: :class:`ErrorException<bodyinteger.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_underflow_int32.metadata['url']
+        url = self.get_underflow_int32_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -192,7 +192,7 @@ class IntModelOperations(_IntModelOperations):
             return client_raw_response
 
         return deserialized
-    get_underflow_int32.metadata = {'url': '/int/underflowint32'}
+    get_underflow_int32_async.metadata = {'url': '/int/underflowint32'}
 
     async def get_overflow_int64_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -208,7 +208,7 @@ class IntModelOperations(_IntModelOperations):
         :raises: :class:`ErrorException<bodyinteger.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_overflow_int64.metadata['url']
+        url = self.get_overflow_int64_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -236,7 +236,7 @@ class IntModelOperations(_IntModelOperations):
             return client_raw_response
 
         return deserialized
-    get_overflow_int64.metadata = {'url': '/int/overflowint64'}
+    get_overflow_int64_async.metadata = {'url': '/int/overflowint64'}
 
     async def get_underflow_int64_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -252,7 +252,7 @@ class IntModelOperations(_IntModelOperations):
         :raises: :class:`ErrorException<bodyinteger.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_underflow_int64.metadata['url']
+        url = self.get_underflow_int64_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -280,7 +280,7 @@ class IntModelOperations(_IntModelOperations):
             return client_raw_response
 
         return deserialized
-    get_underflow_int64.metadata = {'url': '/int/underflowint64'}
+    get_underflow_int64_async.metadata = {'url': '/int/underflowint64'}
 
     async def put_max32_async(
             self, int_body, custom_headers=None, raw=False, **operation_config):
@@ -298,7 +298,7 @@ class IntModelOperations(_IntModelOperations):
         :raises: :class:`ErrorException<bodyinteger.models.ErrorException>`
         """
         # Construct URL
-        url = self.put_max32.metadata['url']
+        url = self.put_max32_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -323,7 +323,7 @@ class IntModelOperations(_IntModelOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_max32.metadata = {'url': '/int/max/32'}
+    put_max32_async.metadata = {'url': '/int/max/32'}
 
     async def put_max64_async(
             self, int_body, custom_headers=None, raw=False, **operation_config):
@@ -341,7 +341,7 @@ class IntModelOperations(_IntModelOperations):
         :raises: :class:`ErrorException<bodyinteger.models.ErrorException>`
         """
         # Construct URL
-        url = self.put_max64.metadata['url']
+        url = self.put_max64_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -366,7 +366,7 @@ class IntModelOperations(_IntModelOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_max64.metadata = {'url': '/int/max/64'}
+    put_max64_async.metadata = {'url': '/int/max/64'}
 
     async def put_min32_async(
             self, int_body, custom_headers=None, raw=False, **operation_config):
@@ -384,7 +384,7 @@ class IntModelOperations(_IntModelOperations):
         :raises: :class:`ErrorException<bodyinteger.models.ErrorException>`
         """
         # Construct URL
-        url = self.put_min32.metadata['url']
+        url = self.put_min32_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -409,7 +409,7 @@ class IntModelOperations(_IntModelOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_min32.metadata = {'url': '/int/min/32'}
+    put_min32_async.metadata = {'url': '/int/min/32'}
 
     async def put_min64_async(
             self, int_body, custom_headers=None, raw=False, **operation_config):
@@ -427,7 +427,7 @@ class IntModelOperations(_IntModelOperations):
         :raises: :class:`ErrorException<bodyinteger.models.ErrorException>`
         """
         # Construct URL
-        url = self.put_min64.metadata['url']
+        url = self.put_min64_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -452,7 +452,7 @@ class IntModelOperations(_IntModelOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_min64.metadata = {'url': '/int/min/64'}
+    put_min64_async.metadata = {'url': '/int/min/64'}
 
     async def get_unix_time_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -468,7 +468,7 @@ class IntModelOperations(_IntModelOperations):
         :raises: :class:`ErrorException<bodyinteger.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_unix_time.metadata['url']
+        url = self.get_unix_time_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -496,7 +496,7 @@ class IntModelOperations(_IntModelOperations):
             return client_raw_response
 
         return deserialized
-    get_unix_time.metadata = {'url': '/int/unixtime'}
+    get_unix_time_async.metadata = {'url': '/int/unixtime'}
 
     async def put_unix_time_date_async(
             self, int_body, custom_headers=None, raw=False, **operation_config):
@@ -514,7 +514,7 @@ class IntModelOperations(_IntModelOperations):
         :raises: :class:`ErrorException<bodyinteger.models.ErrorException>`
         """
         # Construct URL
-        url = self.put_unix_time_date.metadata['url']
+        url = self.put_unix_time_date_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -539,7 +539,7 @@ class IntModelOperations(_IntModelOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_unix_time_date.metadata = {'url': '/int/unixtime'}
+    put_unix_time_date_async.metadata = {'url': '/int/unixtime'}
 
     async def get_invalid_unix_time_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -555,7 +555,7 @@ class IntModelOperations(_IntModelOperations):
         :raises: :class:`ErrorException<bodyinteger.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_invalid_unix_time.metadata['url']
+        url = self.get_invalid_unix_time_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -583,7 +583,7 @@ class IntModelOperations(_IntModelOperations):
             return client_raw_response
 
         return deserialized
-    get_invalid_unix_time.metadata = {'url': '/int/invalidunixtime'}
+    get_invalid_unix_time_async.metadata = {'url': '/int/invalidunixtime'}
 
     async def get_null_unix_time_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -599,7 +599,7 @@ class IntModelOperations(_IntModelOperations):
         :raises: :class:`ErrorException<bodyinteger.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_null_unix_time.metadata['url']
+        url = self.get_null_unix_time_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -627,4 +627,4 @@ class IntModelOperations(_IntModelOperations):
             return client_raw_response
 
         return deserialized
-    get_null_unix_time.metadata = {'url': '/int/nullunixtime'}
+    get_null_unix_time_async.metadata = {'url': '/int/nullunixtime'}

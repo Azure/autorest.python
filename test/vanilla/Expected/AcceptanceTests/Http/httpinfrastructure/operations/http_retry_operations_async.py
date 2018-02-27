@@ -33,7 +33,7 @@ class HttpRetryOperations(_HttpRetryOperations):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = self.head408.metadata['url']
+        url = self.head408_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -54,7 +54,7 @@ class HttpRetryOperations(_HttpRetryOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    head408.metadata = {'url': '/http/retry/408'}
+    head408_async.metadata = {'url': '/http/retry/408'}
 
     async def put500_async(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
@@ -73,7 +73,7 @@ class HttpRetryOperations(_HttpRetryOperations):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = self.put500.metadata['url']
+        url = self.put500_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -101,7 +101,7 @@ class HttpRetryOperations(_HttpRetryOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put500.metadata = {'url': '/http/retry/500'}
+    put500_async.metadata = {'url': '/http/retry/500'}
 
     async def patch500_async(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
@@ -120,7 +120,7 @@ class HttpRetryOperations(_HttpRetryOperations):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = self.patch500.metadata['url']
+        url = self.patch500_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -148,7 +148,7 @@ class HttpRetryOperations(_HttpRetryOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    patch500.metadata = {'url': '/http/retry/500'}
+    patch500_async.metadata = {'url': '/http/retry/500'}
 
     async def get502_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -165,7 +165,7 @@ class HttpRetryOperations(_HttpRetryOperations):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = self.get502.metadata['url']
+        url = self.get502_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -186,7 +186,7 @@ class HttpRetryOperations(_HttpRetryOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    get502.metadata = {'url': '/http/retry/502'}
+    get502_async.metadata = {'url': '/http/retry/502'}
 
     async def post503_async(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
@@ -205,7 +205,7 @@ class HttpRetryOperations(_HttpRetryOperations):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = self.post503.metadata['url']
+        url = self.post503_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -233,7 +233,7 @@ class HttpRetryOperations(_HttpRetryOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    post503.metadata = {'url': '/http/retry/503'}
+    post503_async.metadata = {'url': '/http/retry/503'}
 
     async def delete503_async(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
@@ -252,7 +252,7 @@ class HttpRetryOperations(_HttpRetryOperations):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = self.delete503.metadata['url']
+        url = self.delete503_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -280,7 +280,7 @@ class HttpRetryOperations(_HttpRetryOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    delete503.metadata = {'url': '/http/retry/503'}
+    delete503_async.metadata = {'url': '/http/retry/503'}
 
     async def put504_async(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
@@ -299,7 +299,7 @@ class HttpRetryOperations(_HttpRetryOperations):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = self.put504.metadata['url']
+        url = self.put504_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -327,7 +327,7 @@ class HttpRetryOperations(_HttpRetryOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put504.metadata = {'url': '/http/retry/504'}
+    put504_async.metadata = {'url': '/http/retry/504'}
 
     async def patch504_async(
             self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
@@ -346,7 +346,7 @@ class HttpRetryOperations(_HttpRetryOperations):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = self.patch504.metadata['url']
+        url = self.patch504_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -374,4 +374,4 @@ class HttpRetryOperations(_HttpRetryOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    patch504.metadata = {'url': '/http/retry/504'}
+    patch504_async.metadata = {'url': '/http/retry/504'}

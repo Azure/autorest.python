@@ -37,7 +37,7 @@ class SkipUrlEncodingOperations(_SkipUrlEncodingOperations):
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_method_path_valid.metadata['url']
+        url = self.get_method_path_valid_async.metadata['url']
         path_format_arguments = {
             'unencodedPathParam': self._serialize.url("unencoded_path_param", unencoded_path_param, 'str', skip_quote=True)
         }
@@ -66,7 +66,7 @@ class SkipUrlEncodingOperations(_SkipUrlEncodingOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    get_method_path_valid.metadata = {'url': '/azurespecials/skipUrlEncoding/method/path/valid/{unencodedPathParam}'}
+    get_method_path_valid_async.metadata = {'url': '/azurespecials/skipUrlEncoding/method/path/valid/{unencodedPathParam}'}
 
     async def get_path_path_valid_async(
             self, unencoded_path_param, custom_headers=None, raw=False, **operation_config):
@@ -87,7 +87,7 @@ class SkipUrlEncodingOperations(_SkipUrlEncodingOperations):
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_path_path_valid.metadata['url']
+        url = self.get_path_path_valid_async.metadata['url']
         path_format_arguments = {
             'unencodedPathParam': self._serialize.url("unencoded_path_param", unencoded_path_param, 'str', skip_quote=True)
         }
@@ -116,7 +116,7 @@ class SkipUrlEncodingOperations(_SkipUrlEncodingOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    get_path_path_valid.metadata = {'url': '/azurespecials/skipUrlEncoding/path/path/valid/{unencodedPathParam}'}
+    get_path_path_valid_async.metadata = {'url': '/azurespecials/skipUrlEncoding/path/path/valid/{unencodedPathParam}'}
 
     async def get_swagger_path_valid_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -134,7 +134,7 @@ class SkipUrlEncodingOperations(_SkipUrlEncodingOperations):
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_swagger_path_valid.metadata['url']
+        url = self.get_swagger_path_valid_async.metadata['url']
         path_format_arguments = {
             'unencodedPathParam': self._serialize.url("self.unencoded_path_param", self.unencoded_path_param, 'str', skip_quote=True)
         }
@@ -163,7 +163,7 @@ class SkipUrlEncodingOperations(_SkipUrlEncodingOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    get_swagger_path_valid.metadata = {'url': '/azurespecials/skipUrlEncoding/swagger/path/valid/{unencodedPathParam}'}
+    get_swagger_path_valid_async.metadata = {'url': '/azurespecials/skipUrlEncoding/swagger/path/valid/{unencodedPathParam}'}
 
     async def get_method_query_valid_async(
             self, q1, custom_headers=None, raw=False, **operation_config):
@@ -184,7 +184,7 @@ class SkipUrlEncodingOperations(_SkipUrlEncodingOperations):
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_method_query_valid.metadata['url']
+        url = self.get_method_query_valid_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -210,7 +210,7 @@ class SkipUrlEncodingOperations(_SkipUrlEncodingOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    get_method_query_valid.metadata = {'url': '/azurespecials/skipUrlEncoding/method/query/valid'}
+    get_method_query_valid_async.metadata = {'url': '/azurespecials/skipUrlEncoding/method/query/valid'}
 
     async def get_method_query_null_async(
             self, q1=None, custom_headers=None, raw=False, **operation_config):
@@ -229,7 +229,7 @@ class SkipUrlEncodingOperations(_SkipUrlEncodingOperations):
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_method_query_null.metadata['url']
+        url = self.get_method_query_null_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -256,7 +256,7 @@ class SkipUrlEncodingOperations(_SkipUrlEncodingOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    get_method_query_null.metadata = {'url': '/azurespecials/skipUrlEncoding/method/query/null'}
+    get_method_query_null_async.metadata = {'url': '/azurespecials/skipUrlEncoding/method/query/null'}
 
     async def get_path_query_valid_async(
             self, q1, custom_headers=None, raw=False, **operation_config):
@@ -277,7 +277,7 @@ class SkipUrlEncodingOperations(_SkipUrlEncodingOperations):
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_path_query_valid.metadata['url']
+        url = self.get_path_query_valid_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -303,7 +303,7 @@ class SkipUrlEncodingOperations(_SkipUrlEncodingOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    get_path_query_valid.metadata = {'url': '/azurespecials/skipUrlEncoding/path/query/valid'}
+    get_path_query_valid_async.metadata = {'url': '/azurespecials/skipUrlEncoding/path/query/valid'}
 
     async def get_swagger_query_valid_async(
             self, custom_headers=None, raw=False, **operation_config):
@@ -321,7 +321,7 @@ class SkipUrlEncodingOperations(_SkipUrlEncodingOperations):
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_swagger_query_valid.metadata['url']
+        url = self.get_swagger_query_valid_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -347,4 +347,4 @@ class SkipUrlEncodingOperations(_SkipUrlEncodingOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    get_swagger_query_valid.metadata = {'url': '/azurespecials/skipUrlEncoding/swagger/query/valid'}
+    get_swagger_query_valid_async.metadata = {'url': '/azurespecials/skipUrlEncoding/swagger/query/valid'}

@@ -41,7 +41,7 @@ class PathsOperations(_PathsOperations):
          :class:`ErrorException<custombaseurlmoreoptions.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_empty.metadata['url']
+        url = self.get_empty_async.metadata['url']
         path_format_arguments = {
             'vault': self._serialize.url("vault", vault, 'str', skip_quote=True),
             'secret': self._serialize.url("secret", secret, 'str', skip_quote=True),
@@ -72,4 +72,4 @@ class PathsOperations(_PathsOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    get_empty.metadata = {'url': '/customuri/{subscriptionId}/{keyName}'}
+    get_empty_async.metadata = {'url': '/customuri/{subscriptionId}/{keyName}'}
