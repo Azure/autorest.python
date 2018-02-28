@@ -15,7 +15,7 @@ from .version import VERSION
 from msrest.pipeline import ClientRawResponse
 from . import models
 try:
-    from auto_rest_resource_flattening_test_service_async import AutoRestResourceFlatteningTestServiceAsyncMixin
+    from .auto_rest_resource_flattening_test_service_async import AutoRestResourceFlatteningTestServiceAsyncMixin
 except (SyntaxError, ImportError):
     class AutoRestResourceFlatteningTestServiceAsyncMixin:
         pass

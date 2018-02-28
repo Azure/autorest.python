@@ -60,7 +60,7 @@ namespace AutoRest.Python
             if(codeModel.MethodTemplateModels.Any( each => each.MethodGroup.IsCodeModelMethodGroup))
             {
                 var serviceClientTemplateAsync = new ServiceClientTemplateAsync { Model = codeModel };
-                await Write(serviceClientTemplateAsync, Path.Combine(folderName, codeModel.Name.ToPythonCase() + "_async_.py"));
+                await Write(serviceClientTemplateAsync, Path.Combine(folderName, codeModel.Name.ToPythonCase() + "_async.py"));
             }
 
             var versionTemplate = new VersionTemplate { Model = codeModel };

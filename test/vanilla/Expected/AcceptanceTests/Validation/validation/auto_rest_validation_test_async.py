@@ -11,6 +11,7 @@
 
 from msrest.pipeline import ClientRawResponse
 from msrest.exceptions import HttpOperationError
+from . import models
 
 
 class AutoRestValidationTestAsyncMixin(object):

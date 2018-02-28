@@ -15,7 +15,7 @@ from .version import VERSION
 from msrest.pipeline import ClientRawResponse
 from . import models
 try:
-    from auto_rest_report_service_async import AutoRestReportServiceAsyncMixin
+    from .auto_rest_report_service_async import AutoRestReportServiceAsyncMixin
 except (SyntaxError, ImportError):
     class AutoRestReportServiceAsyncMixin:
         pass

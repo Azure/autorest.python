@@ -43,7 +43,7 @@ bool hasClientLevelMethods = Model.MethodTemplateModels.Any( each => each.Method
 {
 <text>
 try:
-    from @(Model.Name.ToPythonCase())_async import @(Model.Name)AsyncMixin
+    from .@(Model.Name.ToPythonCase())_async import @(Model.Name)AsyncMixin
 except (SyntaxError, ImportError):
     class @(Model.Name)AsyncMixin:
         pass

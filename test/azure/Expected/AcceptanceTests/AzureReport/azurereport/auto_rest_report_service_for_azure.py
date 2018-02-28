@@ -17,7 +17,7 @@ from msrest.pipeline import ClientRawResponse
 import uuid
 from . import models
 try:
-    from auto_rest_report_service_for_azure_async import AutoRestReportServiceForAzureAsyncMixin
+    from .auto_rest_report_service_for_azure_async import AutoRestReportServiceForAzureAsyncMixin
 except (SyntaxError, ImportError):
     class AutoRestReportServiceForAzureAsyncMixin:
         pass

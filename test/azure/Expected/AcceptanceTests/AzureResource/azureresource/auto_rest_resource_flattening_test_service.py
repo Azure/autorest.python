@@ -17,7 +17,7 @@ from msrest.pipeline import ClientRawResponse
 import uuid
 from . import models
 try:
-    from auto_rest_resource_flattening_test_service_async import AutoRestResourceFlatteningTestServiceAsyncMixin
+    from .auto_rest_resource_flattening_test_service_async import AutoRestResourceFlatteningTestServiceAsyncMixin
 except (SyntaxError, ImportError):
     class AutoRestResourceFlatteningTestServiceAsyncMixin:
         pass

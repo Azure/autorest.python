@@ -19,6 +19,10 @@ from msrest.pipeline import ClientRawResponse
 {
 @:from msrest.exceptions import HttpOperationError
 }
+@if (Model.HasAnyModel)
+{
+@:from . import models
+}
 @EmptyLine
 @EmptyLine
 class @(Model.Name)AsyncMixin(object):

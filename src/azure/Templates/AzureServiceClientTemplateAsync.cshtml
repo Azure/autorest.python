@@ -27,6 +27,10 @@ from msrest.pipeline import ClientRawResponse
 @:from msrest.polling import LROPoller, NoPolling
 @:from msrestazure.polling.arm_polling import ARMPolling
 }
+@if (Model.HasAnyModel)
+{
+@:from . import models
+}
 import uuid
 @EmptyLine
 @EmptyLine

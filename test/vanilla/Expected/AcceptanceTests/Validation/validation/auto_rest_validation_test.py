@@ -16,7 +16,7 @@ from msrest.pipeline import ClientRawResponse
 from msrest.exceptions import HttpOperationError
 from . import models
 try:
-    from auto_rest_validation_test_async import AutoRestValidationTestAsyncMixin
+    from .auto_rest_validation_test_async import AutoRestValidationTestAsyncMixin
 except (SyntaxError, ImportError):
     class AutoRestValidationTestAsyncMixin:
         pass
