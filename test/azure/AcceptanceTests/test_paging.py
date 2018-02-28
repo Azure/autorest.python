@@ -41,10 +41,6 @@ log_level = int(os.environ.get('PythonLogLevel', 30))
 tests = realpath(join(cwd, pardir, "Expected", "AcceptanceTests"))
 sys.path.append(join(tests, "Paging"))
 
-# Import mock from Autorest.Python.Tests
-mockfiles = realpath(join(cwd, pardir, pardir, "vanilla", "AcceptanceTests"))
-sys.path.append(mockfiles)
-
 from msrest.serialization import Deserializer
 from msrest.exceptions import DeserializationError
 from msrestazure.azure_exceptions import CloudError
@@ -53,14 +49,13 @@ from msrest.authentication import BasicTokenAuthentication
 from paging import AutoRestPagingTestService
 from paging.models import PagingGetMultiplePagesWithOffsetOptions
 
-from test_http import TestAuthentication
-
 import pytest
 
 @pytest.fixture
 def paging_client():
     cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
     client = AutoRestPagingTestService(cred, base_url="http://localhost:3000")
+    from .conftest import TestAuthentication  # Ugly, should migrate this file to pytest as I did for async.
     client._client.creds = TestAuthentication()
     return client
 

@@ -298,3 +298,4 @@ package/
 *.tgz
 src/obj/
 *.log
+.pytest_cache

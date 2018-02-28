@@ -41,10 +41,6 @@ log_level = int(os.environ.get('PythonLogLevel', 30))
 tests = realpath(join(cwd, pardir, "Expected", "AcceptanceTests"))
 sys.path.append(join(tests, "Lro"))
 
-# Import mock from Autorest.Python.Tests
-mockfiles = realpath(join(cwd, pardir, pardir, "vanilla", "AcceptanceTests"))
-sys.path.append(mockfiles)
-
 from msrest.serialization import Deserializer
 from msrest.exceptions import DeserializationError
 from msrest.authentication import BasicTokenAuthentication
@@ -55,7 +51,6 @@ from msrestazure.polling.arm_polling import ARMPolling
 from lro import AutoRestLongRunningOperationTestService
 from lro.models import *  # pylint: disable=W0614
 
-from test_http import TestAuthentication
 
 try:
     from urlparse import urlparse
@@ -94,6 +89,7 @@ class LroTests(unittest.TestCase):
 
         cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
         self.client = AutoRestLongRunningOperationTestService(cred, base_url="http://localhost:3000")
+        from .conftest import TestAuthentication  # Ugly, should migrate this file to pytest as I did for async.
         self.client._client.creds = TestAuthentication()
         self.client.config.long_running_operation_timeout = 0 # In theory pointless, since we use AutorestTestARMPolling
         return super(LroTests, self).setUp()
