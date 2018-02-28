@@ -54,18 +54,18 @@ from httpinfrastructure.models import (
     A, B, C, D, ErrorException)
 
 
-class TestRetry(Retry):
+class RetryForTest(Retry):
     """Wrapper for urllib3 Retry object.
     """
 
     def __init__(self, **kwargs):
         self.retry_cookie = None
 
-        return super(TestRetry, self).__init__(**kwargs)
+        return super(RetryForTest, self).__init__(**kwargs)
 
     def increment(self, method=None, url=None, response=None,
                   error=None, _pool=None, _stacktrace=None):
-        increment = super(TestRetry, self).increment(
+        increment = super(RetryForTest, self).increment(
             method, url, response, error, _pool, _stacktrace)
 
         if response:
@@ -78,7 +78,7 @@ class TestRetry(Retry):
             increment.retry_cookie = response.getheader("Set-Cookie")
         return increment
 
-class TestHTTPConnectionPool(HTTPConnectionPool):
+class HTTPConnectionPoolForTest(HTTPConnectionPool):
     """Cookie logic only used for test server (localhost)"""
 
     def _add_test_cookie(self, retries, headers):
@@ -103,14 +103,14 @@ class TestHTTPConnectionPool(HTTPConnectionPool):
         if hasattr(retries, 'retry_cookie'):
             self._add_test_cookie(retries, headers)
 
-        response = super(TestHTTPConnectionPool, self).urlopen(
+        response = super(HTTPConnectionPoolForTest, self).urlopen(
             method, url, body, headers, retries, *args, **kwargs)
 
         if hasattr(retries, 'retry_cookie'):
             self._remove_test_cookie(retries, headers)
         return response
 
-class TestAdapter(HTTPAdapter):
+class AdapterForTest(HTTPAdapter):
 
     def init_poolmanager(self, connections, maxsize, block=False):
         self.poolmanager = PoolManager(
@@ -127,8 +127,8 @@ class TestAdapter(HTTPAdapter):
         test_hosts = [_default_key_normalizer(PoolKey, context)]
         for host in test_hosts:
             self.poolmanager.pools[host] = \
-                TestHTTPConnectionPool(host[1], port=host[2])
-        self.max_retries = TestRetry()
+                HTTPConnectionPoolForTest(host[1], port=host[2])
+        self.max_retries = RetryForTest()
         self.max_retries.status_forcelist.add(408)
         self.max_retries.status_forcelist.add(500)
         self.max_retries.status_forcelist.add(502)
@@ -139,7 +139,7 @@ class TestAdapter(HTTPAdapter):
 class TestAuthentication(object):
     def signed_session(self):
         session = requests.Session()
-        session.mount('http://localhost:3000/', TestAdapter())
+        session.mount('http://localhost:3000/', AdapterForTest())
         return session
 
 class HttpTests(unittest.TestCase):

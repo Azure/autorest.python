@@ -55,7 +55,7 @@ from msrestazure.polling.arm_polling import ARMPolling
 from lro import AutoRestLongRunningOperationTestService
 from lro.models import *  # pylint: disable=W0614
 
-from http_tests import TestAuthentication
+from test_http import TestAuthentication
 
 try:
     from urlparse import urlparse
