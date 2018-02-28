@@ -9,73 +9,14 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.service_client import ServiceClient
-from msrest import Serializer, Deserializer
-from msrestazure import AzureConfiguration
-from .version import VERSION
 from msrest.pipeline import ClientRawResponse
 import uuid
-from . import models
-try:
-    from auto_rest_resource_flattening_test_service_async import AutoRestResourceFlatteningTestServiceAsyncMixin
-except (SyntaxError, ImportError):
-    class AutoRestResourceFlatteningTestServiceAsyncMixin:
-        pass
 
 
-class AutoRestResourceFlatteningTestServiceConfiguration(AzureConfiguration):
-    """Configuration for AutoRestResourceFlatteningTestService
-    Note that all parameters used to create this instance are saved as instance
-    attributes.
+class AutoRestResourceFlatteningTestServiceAsyncMixin(object):
 
-    :param credentials: Credentials needed for the client to connect to Azure.
-    :type credentials: :mod:`A msrestazure Credentials
-     object<msrestazure.azure_active_directory>`
-    :param str base_url: Service URL
-    """
-
-    def __init__(
-            self, credentials, base_url=None):
-
-        if credentials is None:
-            raise ValueError("Parameter 'credentials' must not be None.")
-        if not base_url:
-            base_url = 'http://localhost:3000'
-
-        super(AutoRestResourceFlatteningTestServiceConfiguration, self).__init__(base_url)
-
-        self.add_user_agent('autorestresourceflatteningtestservice/{}'.format(VERSION))
-        self.add_user_agent('Azure-SDK-For-Python')
-
-        self.credentials = credentials
-
-
-class AutoRestResourceFlatteningTestService(AutoRestResourceFlatteningTestServiceAsyncMixin, object):
-    """Resource Flattening for AutoRest
-
-    :ivar config: Configuration for client.
-    :vartype config: AutoRestResourceFlatteningTestServiceConfiguration
-
-    :param credentials: Credentials needed for the client to connect to Azure.
-    :type credentials: :mod:`A msrestazure Credentials
-     object<msrestazure.azure_active_directory>`
-    :param str base_url: Service URL
-    """
-
-    def __init__(
-            self, credentials, base_url=None):
-
-        self.config = AutoRestResourceFlatteningTestServiceConfiguration(credentials, base_url)
-        self._client = ServiceClient(self.config.credentials, self.config)
-
-        client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
-        self.api_version = '1.0.0'
-        self._serialize = Serializer(client_models)
-        self._deserialize = Deserializer(client_models)
-
-
-    def put_array(
-            self, resource_array=None, custom_headers=None, raw=False, **operation_config):
+    async def put_array_async(
+            self, resource_array=None, *, custom_headers=None, raw=False, **operation_config):
         """Put External Resource as an Array.
 
         :param resource_array: External Resource as an Array to put
@@ -90,7 +31,7 @@ class AutoRestResourceFlatteningTestService(AutoRestResourceFlatteningTestServic
         :raises: :class:`ErrorException<azureresource.models.ErrorException>`
         """
         # Construct URL
-        url = self.put_array.metadata['url']
+        url = self.put_array_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -113,7 +54,7 @@ class AutoRestResourceFlatteningTestService(AutoRestResourceFlatteningTestServic
 
         # Construct and send request
         request = self._client.put(url, query_parameters)
-        response = self._client.send(
+        response = await self._client.async_send(
             request, header_parameters, body_content, stream=False, **operation_config)
 
         if response.status_code not in [200]:
@@ -122,10 +63,10 @@ class AutoRestResourceFlatteningTestService(AutoRestResourceFlatteningTestServic
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_array.metadata = {'url': '/azure/resource-flatten/array'}
+    put_array_async.metadata = {'url': '/azure/resource-flatten/array'}
 
-    def get_array(
-            self, custom_headers=None, raw=False, **operation_config):
+    async def get_array_async(
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get External Resource as an Array.
 
         :param dict custom_headers: headers that will be added to the request
@@ -139,7 +80,7 @@ class AutoRestResourceFlatteningTestService(AutoRestResourceFlatteningTestServic
         :raises: :class:`ErrorException<azureresource.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_array.metadata['url']
+        url = self.get_array_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -156,7 +97,7 @@ class AutoRestResourceFlatteningTestService(AutoRestResourceFlatteningTestServic
 
         # Construct and send request
         request = self._client.get(url, query_parameters)
-        response = self._client.send(request, header_parameters, stream=False, **operation_config)
+        response = await self._client.async_send(request, header_parameters, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -171,10 +112,10 @@ class AutoRestResourceFlatteningTestService(AutoRestResourceFlatteningTestServic
             return client_raw_response
 
         return deserialized
-    get_array.metadata = {'url': '/azure/resource-flatten/array'}
+    get_array_async.metadata = {'url': '/azure/resource-flatten/array'}
 
-    def put_dictionary(
-            self, resource_dictionary=None, custom_headers=None, raw=False, **operation_config):
+    async def put_dictionary_async(
+            self, resource_dictionary=None, *, custom_headers=None, raw=False, **operation_config):
         """Put External Resource as a Dictionary.
 
         :param resource_dictionary: External Resource as a Dictionary to put
@@ -190,7 +131,7 @@ class AutoRestResourceFlatteningTestService(AutoRestResourceFlatteningTestServic
         :raises: :class:`ErrorException<azureresource.models.ErrorException>`
         """
         # Construct URL
-        url = self.put_dictionary.metadata['url']
+        url = self.put_dictionary_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -213,7 +154,7 @@ class AutoRestResourceFlatteningTestService(AutoRestResourceFlatteningTestServic
 
         # Construct and send request
         request = self._client.put(url, query_parameters)
-        response = self._client.send(
+        response = await self._client.async_send(
             request, header_parameters, body_content, stream=False, **operation_config)
 
         if response.status_code not in [200]:
@@ -222,10 +163,10 @@ class AutoRestResourceFlatteningTestService(AutoRestResourceFlatteningTestServic
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_dictionary.metadata = {'url': '/azure/resource-flatten/dictionary'}
+    put_dictionary_async.metadata = {'url': '/azure/resource-flatten/dictionary'}
 
-    def get_dictionary(
-            self, custom_headers=None, raw=False, **operation_config):
+    async def get_dictionary_async(
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get External Resource as a Dictionary.
 
         :param dict custom_headers: headers that will be added to the request
@@ -239,7 +180,7 @@ class AutoRestResourceFlatteningTestService(AutoRestResourceFlatteningTestServic
         :raises: :class:`ErrorException<azureresource.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_dictionary.metadata['url']
+        url = self.get_dictionary_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -256,7 +197,7 @@ class AutoRestResourceFlatteningTestService(AutoRestResourceFlatteningTestServic
 
         # Construct and send request
         request = self._client.get(url, query_parameters)
-        response = self._client.send(request, header_parameters, stream=False, **operation_config)
+        response = await self._client.async_send(request, header_parameters, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -271,10 +212,10 @@ class AutoRestResourceFlatteningTestService(AutoRestResourceFlatteningTestServic
             return client_raw_response
 
         return deserialized
-    get_dictionary.metadata = {'url': '/azure/resource-flatten/dictionary'}
+    get_dictionary_async.metadata = {'url': '/azure/resource-flatten/dictionary'}
 
-    def put_resource_collection(
-            self, resource_complex_object=None, custom_headers=None, raw=False, **operation_config):
+    async def put_resource_collection_async(
+            self, resource_complex_object=None, *, custom_headers=None, raw=False, **operation_config):
         """Put External Resource as a ResourceCollection.
 
         :param resource_complex_object: External Resource as a
@@ -291,7 +232,7 @@ class AutoRestResourceFlatteningTestService(AutoRestResourceFlatteningTestServic
         :raises: :class:`ErrorException<azureresource.models.ErrorException>`
         """
         # Construct URL
-        url = self.put_resource_collection.metadata['url']
+        url = self.put_resource_collection_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -314,7 +255,7 @@ class AutoRestResourceFlatteningTestService(AutoRestResourceFlatteningTestServic
 
         # Construct and send request
         request = self._client.put(url, query_parameters)
-        response = self._client.send(
+        response = await self._client.async_send(
             request, header_parameters, body_content, stream=False, **operation_config)
 
         if response.status_code not in [200]:
@@ -323,10 +264,10 @@ class AutoRestResourceFlatteningTestService(AutoRestResourceFlatteningTestServic
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_resource_collection.metadata = {'url': '/azure/resource-flatten/resourcecollection'}
+    put_resource_collection_async.metadata = {'url': '/azure/resource-flatten/resourcecollection'}
 
-    def get_resource_collection(
-            self, custom_headers=None, raw=False, **operation_config):
+    async def get_resource_collection_async(
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get External Resource as a ResourceCollection.
 
         :param dict custom_headers: headers that will be added to the request
@@ -340,7 +281,7 @@ class AutoRestResourceFlatteningTestService(AutoRestResourceFlatteningTestServic
         :raises: :class:`ErrorException<azureresource.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_resource_collection.metadata['url']
+        url = self.get_resource_collection_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -357,7 +298,7 @@ class AutoRestResourceFlatteningTestService(AutoRestResourceFlatteningTestServic
 
         # Construct and send request
         request = self._client.get(url, query_parameters)
-        response = self._client.send(request, header_parameters, stream=False, **operation_config)
+        response = await self._client.async_send(request, header_parameters, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -372,4 +313,4 @@ class AutoRestResourceFlatteningTestService(AutoRestResourceFlatteningTestServic
             return client_raw_response
 
         return deserialized
-    get_resource_collection.metadata = {'url': '/azure/resource-flatten/resourcecollection'}
+    get_resource_collection_async.metadata = {'url': '/azure/resource-flatten/resourcecollection'}

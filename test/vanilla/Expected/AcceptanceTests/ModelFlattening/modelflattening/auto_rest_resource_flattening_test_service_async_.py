@@ -9,60 +9,13 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.service_client import ServiceClient
-from msrest import Configuration, Serializer, Deserializer
-from .version import VERSION
 from msrest.pipeline import ClientRawResponse
-from . import models
-try:
-    from auto_rest_resource_flattening_test_service_async import AutoRestResourceFlatteningTestServiceAsyncMixin
-except (SyntaxError, ImportError):
-    class AutoRestResourceFlatteningTestServiceAsyncMixin:
-        pass
 
 
-class AutoRestResourceFlatteningTestServiceConfiguration(Configuration):
-    """Configuration for AutoRestResourceFlatteningTestService
-    Note that all parameters used to create this instance are saved as instance
-    attributes.
+class AutoRestResourceFlatteningTestServiceAsyncMixin(object):
 
-    :param str base_url: Service URL
-    """
-
-    def __init__(
-            self, base_url=None):
-
-        if not base_url:
-            base_url = 'http://localhost:3000'
-
-        super(AutoRestResourceFlatteningTestServiceConfiguration, self).__init__(base_url)
-
-        self.add_user_agent('autorestresourceflatteningtestservice/{}'.format(VERSION))
-
-
-class AutoRestResourceFlatteningTestService(AutoRestResourceFlatteningTestServiceAsyncMixin, object):
-    """Resource Flattening for AutoRest
-
-    :ivar config: Configuration for client.
-    :vartype config: AutoRestResourceFlatteningTestServiceConfiguration
-
-    :param str base_url: Service URL
-    """
-
-    def __init__(
-            self, base_url=None):
-
-        self.config = AutoRestResourceFlatteningTestServiceConfiguration(base_url)
-        self._client = ServiceClient(None, self.config)
-
-        client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
-        self.api_version = '1.0.0'
-        self._serialize = Serializer(client_models)
-        self._deserialize = Deserializer(client_models)
-
-
-    def put_array(
-            self, resource_array=None, custom_headers=None, raw=False, **operation_config):
+    async def put_array_async(
+            self, resource_array=None, *, custom_headers=None, raw=False, **operation_config):
         """Put External Resource as an Array.
 
         :param resource_array: External Resource as an Array to put
@@ -78,7 +31,7 @@ class AutoRestResourceFlatteningTestService(AutoRestResourceFlatteningTestServic
          :class:`ErrorException<modelflattening.models.ErrorException>`
         """
         # Construct URL
-        url = self.put_array.metadata['url']
+        url = self.put_array_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -97,7 +50,7 @@ class AutoRestResourceFlatteningTestService(AutoRestResourceFlatteningTestServic
 
         # Construct and send request
         request = self._client.put(url, query_parameters)
-        response = self._client.send(
+        response = await self._client.async_send(
             request, header_parameters, body_content, stream=False, **operation_config)
 
         if response.status_code not in [200]:
@@ -106,10 +59,10 @@ class AutoRestResourceFlatteningTestService(AutoRestResourceFlatteningTestServic
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_array.metadata = {'url': '/model-flatten/array'}
+    put_array_async.metadata = {'url': '/model-flatten/array'}
 
-    def get_array(
-            self, custom_headers=None, raw=False, **operation_config):
+    async def get_array_async(
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get External Resource as an Array.
 
         :param dict custom_headers: headers that will be added to the request
@@ -124,7 +77,7 @@ class AutoRestResourceFlatteningTestService(AutoRestResourceFlatteningTestServic
          :class:`ErrorException<modelflattening.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_array.metadata['url']
+        url = self.get_array_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -137,7 +90,7 @@ class AutoRestResourceFlatteningTestService(AutoRestResourceFlatteningTestServic
 
         # Construct and send request
         request = self._client.get(url, query_parameters)
-        response = self._client.send(request, header_parameters, stream=False, **operation_config)
+        response = await self._client.async_send(request, header_parameters, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -152,10 +105,10 @@ class AutoRestResourceFlatteningTestService(AutoRestResourceFlatteningTestServic
             return client_raw_response
 
         return deserialized
-    get_array.metadata = {'url': '/model-flatten/array'}
+    get_array_async.metadata = {'url': '/model-flatten/array'}
 
-    def put_wrapped_array(
-            self, resource_array=None, custom_headers=None, raw=False, **operation_config):
+    async def put_wrapped_array_async(
+            self, resource_array=None, *, custom_headers=None, raw=False, **operation_config):
         """No need to have a route in Express server for this operation. Used to
         verify the type flattened is not removed if it's referenced in an
         array.
@@ -173,7 +126,7 @@ class AutoRestResourceFlatteningTestService(AutoRestResourceFlatteningTestServic
          :class:`ErrorException<modelflattening.models.ErrorException>`
         """
         # Construct URL
-        url = self.put_wrapped_array.metadata['url']
+        url = self.put_wrapped_array_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -192,7 +145,7 @@ class AutoRestResourceFlatteningTestService(AutoRestResourceFlatteningTestServic
 
         # Construct and send request
         request = self._client.put(url, query_parameters)
-        response = self._client.send(
+        response = await self._client.async_send(
             request, header_parameters, body_content, stream=False, **operation_config)
 
         if response.status_code not in [200]:
@@ -201,10 +154,10 @@ class AutoRestResourceFlatteningTestService(AutoRestResourceFlatteningTestServic
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_wrapped_array.metadata = {'url': '/model-flatten/wrappedarray'}
+    put_wrapped_array_async.metadata = {'url': '/model-flatten/wrappedarray'}
 
-    def get_wrapped_array(
-            self, custom_headers=None, raw=False, **operation_config):
+    async def get_wrapped_array_async(
+            self, *, custom_headers=None, raw=False, **operation_config):
         """No need to have a route in Express server for this operation. Used to
         verify the type flattened is not removed if it's referenced in an
         array.
@@ -221,7 +174,7 @@ class AutoRestResourceFlatteningTestService(AutoRestResourceFlatteningTestServic
          :class:`ErrorException<modelflattening.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_wrapped_array.metadata['url']
+        url = self.get_wrapped_array_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -234,7 +187,7 @@ class AutoRestResourceFlatteningTestService(AutoRestResourceFlatteningTestServic
 
         # Construct and send request
         request = self._client.get(url, query_parameters)
-        response = self._client.send(request, header_parameters, stream=False, **operation_config)
+        response = await self._client.async_send(request, header_parameters, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -249,10 +202,10 @@ class AutoRestResourceFlatteningTestService(AutoRestResourceFlatteningTestServic
             return client_raw_response
 
         return deserialized
-    get_wrapped_array.metadata = {'url': '/model-flatten/wrappedarray'}
+    get_wrapped_array_async.metadata = {'url': '/model-flatten/wrappedarray'}
 
-    def put_dictionary(
-            self, resource_dictionary=None, custom_headers=None, raw=False, **operation_config):
+    async def put_dictionary_async(
+            self, resource_dictionary=None, *, custom_headers=None, raw=False, **operation_config):
         """Put External Resource as a Dictionary.
 
         :param resource_dictionary: External Resource as a Dictionary to put
@@ -269,7 +222,7 @@ class AutoRestResourceFlatteningTestService(AutoRestResourceFlatteningTestServic
          :class:`ErrorException<modelflattening.models.ErrorException>`
         """
         # Construct URL
-        url = self.put_dictionary.metadata['url']
+        url = self.put_dictionary_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -288,7 +241,7 @@ class AutoRestResourceFlatteningTestService(AutoRestResourceFlatteningTestServic
 
         # Construct and send request
         request = self._client.put(url, query_parameters)
-        response = self._client.send(
+        response = await self._client.async_send(
             request, header_parameters, body_content, stream=False, **operation_config)
 
         if response.status_code not in [200]:
@@ -297,10 +250,10 @@ class AutoRestResourceFlatteningTestService(AutoRestResourceFlatteningTestServic
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_dictionary.metadata = {'url': '/model-flatten/dictionary'}
+    put_dictionary_async.metadata = {'url': '/model-flatten/dictionary'}
 
-    def get_dictionary(
-            self, custom_headers=None, raw=False, **operation_config):
+    async def get_dictionary_async(
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get External Resource as a Dictionary.
 
         :param dict custom_headers: headers that will be added to the request
@@ -315,7 +268,7 @@ class AutoRestResourceFlatteningTestService(AutoRestResourceFlatteningTestServic
          :class:`ErrorException<modelflattening.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_dictionary.metadata['url']
+        url = self.get_dictionary_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -328,7 +281,7 @@ class AutoRestResourceFlatteningTestService(AutoRestResourceFlatteningTestServic
 
         # Construct and send request
         request = self._client.get(url, query_parameters)
-        response = self._client.send(request, header_parameters, stream=False, **operation_config)
+        response = await self._client.async_send(request, header_parameters, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -343,10 +296,10 @@ class AutoRestResourceFlatteningTestService(AutoRestResourceFlatteningTestServic
             return client_raw_response
 
         return deserialized
-    get_dictionary.metadata = {'url': '/model-flatten/dictionary'}
+    get_dictionary_async.metadata = {'url': '/model-flatten/dictionary'}
 
-    def put_resource_collection(
-            self, resource_complex_object=None, custom_headers=None, raw=False, **operation_config):
+    async def put_resource_collection_async(
+            self, resource_complex_object=None, *, custom_headers=None, raw=False, **operation_config):
         """Put External Resource as a ResourceCollection.
 
         :param resource_complex_object: External Resource as a
@@ -364,7 +317,7 @@ class AutoRestResourceFlatteningTestService(AutoRestResourceFlatteningTestServic
          :class:`ErrorException<modelflattening.models.ErrorException>`
         """
         # Construct URL
-        url = self.put_resource_collection.metadata['url']
+        url = self.put_resource_collection_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -383,7 +336,7 @@ class AutoRestResourceFlatteningTestService(AutoRestResourceFlatteningTestServic
 
         # Construct and send request
         request = self._client.put(url, query_parameters)
-        response = self._client.send(
+        response = await self._client.async_send(
             request, header_parameters, body_content, stream=False, **operation_config)
 
         if response.status_code not in [200]:
@@ -392,10 +345,10 @@ class AutoRestResourceFlatteningTestService(AutoRestResourceFlatteningTestServic
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_resource_collection.metadata = {'url': '/model-flatten/resourcecollection'}
+    put_resource_collection_async.metadata = {'url': '/model-flatten/resourcecollection'}
 
-    def get_resource_collection(
-            self, custom_headers=None, raw=False, **operation_config):
+    async def get_resource_collection_async(
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get External Resource as a ResourceCollection.
 
         :param dict custom_headers: headers that will be added to the request
@@ -410,7 +363,7 @@ class AutoRestResourceFlatteningTestService(AutoRestResourceFlatteningTestServic
          :class:`ErrorException<modelflattening.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_resource_collection.metadata['url']
+        url = self.get_resource_collection_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -423,7 +376,7 @@ class AutoRestResourceFlatteningTestService(AutoRestResourceFlatteningTestServic
 
         # Construct and send request
         request = self._client.get(url, query_parameters)
-        response = self._client.send(request, header_parameters, stream=False, **operation_config)
+        response = await self._client.async_send(request, header_parameters, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -438,10 +391,10 @@ class AutoRestResourceFlatteningTestService(AutoRestResourceFlatteningTestServic
             return client_raw_response
 
         return deserialized
-    get_resource_collection.metadata = {'url': '/model-flatten/resourcecollection'}
+    get_resource_collection_async.metadata = {'url': '/model-flatten/resourcecollection'}
 
-    def put_simple_product(
-            self, simple_body_product=None, custom_headers=None, raw=False, **operation_config):
+    async def put_simple_product_async(
+            self, simple_body_product=None, *, custom_headers=None, raw=False, **operation_config):
         """Put Simple Product with client flattening true on the model.
 
         :param simple_body_product: Simple body product to put
@@ -458,7 +411,7 @@ class AutoRestResourceFlatteningTestService(AutoRestResourceFlatteningTestServic
          :class:`ErrorException<modelflattening.models.ErrorException>`
         """
         # Construct URL
-        url = self.put_simple_product.metadata['url']
+        url = self.put_simple_product_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -477,7 +430,7 @@ class AutoRestResourceFlatteningTestService(AutoRestResourceFlatteningTestServic
 
         # Construct and send request
         request = self._client.put(url, query_parameters)
-        response = self._client.send(
+        response = await self._client.async_send(
             request, header_parameters, body_content, stream=False, **operation_config)
 
         if response.status_code not in [200]:
@@ -493,10 +446,10 @@ class AutoRestResourceFlatteningTestService(AutoRestResourceFlatteningTestServic
             return client_raw_response
 
         return deserialized
-    put_simple_product.metadata = {'url': '/model-flatten/customFlattening'}
+    put_simple_product_async.metadata = {'url': '/model-flatten/customFlattening'}
 
-    def post_flattened_simple_product(
-            self, product_id, max_product_display_name, description=None, generic_value=None, odatavalue=None, custom_headers=None, raw=False, **operation_config):
+    async def post_flattened_simple_product_async(
+            self, product_id, max_product_display_name, description=None, generic_value=None, odatavalue=None, *, custom_headers=None, raw=False, **operation_config):
         """Put Flattened Simple Product with client flattening true on the
         parameter.
 
@@ -528,7 +481,7 @@ class AutoRestResourceFlatteningTestService(AutoRestResourceFlatteningTestServic
             simple_body_product = models.SimpleProduct(product_id=product_id, description=description, max_product_display_name=max_product_display_name, generic_value=generic_value, odatavalue=odatavalue)
 
         # Construct URL
-        url = self.post_flattened_simple_product.metadata['url']
+        url = self.post_flattened_simple_product_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -547,7 +500,7 @@ class AutoRestResourceFlatteningTestService(AutoRestResourceFlatteningTestServic
 
         # Construct and send request
         request = self._client.post(url, query_parameters)
-        response = self._client.send(
+        response = await self._client.async_send(
             request, header_parameters, body_content, stream=False, **operation_config)
 
         if response.status_code not in [200]:
@@ -563,10 +516,10 @@ class AutoRestResourceFlatteningTestService(AutoRestResourceFlatteningTestServic
             return client_raw_response
 
         return deserialized
-    post_flattened_simple_product.metadata = {'url': '/model-flatten/customFlattening'}
+    post_flattened_simple_product_async.metadata = {'url': '/model-flatten/customFlattening'}
 
-    def put_simple_product_with_grouping(
-            self, flatten_parameter_group, custom_headers=None, raw=False, **operation_config):
+    async def put_simple_product_with_grouping_async(
+            self, flatten_parameter_group, *, custom_headers=None, raw=False, **operation_config):
         """Put Simple Product with client flattening true on the model.
 
         :param flatten_parameter_group: Additional parameters for the
@@ -607,7 +560,7 @@ class AutoRestResourceFlatteningTestService(AutoRestResourceFlatteningTestServic
             simple_body_product = models.SimpleProduct(product_id=product_id, description=description, max_product_display_name=max_product_display_name, generic_value=generic_value, odatavalue=odatavalue)
 
         # Construct URL
-        url = self.put_simple_product_with_grouping.metadata['url']
+        url = self.put_simple_product_with_grouping_async.metadata['url']
         path_format_arguments = {
             'name': self._serialize.url("name", name, 'str')
         }
@@ -630,7 +583,7 @@ class AutoRestResourceFlatteningTestService(AutoRestResourceFlatteningTestServic
 
         # Construct and send request
         request = self._client.put(url, query_parameters)
-        response = self._client.send(
+        response = await self._client.async_send(
             request, header_parameters, body_content, stream=False, **operation_config)
 
         if response.status_code not in [200]:
@@ -646,4 +599,4 @@ class AutoRestResourceFlatteningTestService(AutoRestResourceFlatteningTestServic
             return client_raw_response
 
         return deserialized
-    put_simple_product_with_grouping.metadata = {'url': '/model-flatten/customFlattening/parametergrouping/{name}/'}
+    put_simple_product_with_grouping_async.metadata = {'url': '/model-flatten/customFlattening/parametergrouping/{name}/'}

@@ -9,60 +9,13 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.service_client import ServiceClient
-from msrest import Configuration, Serializer, Deserializer
-from .version import VERSION
 from msrest.pipeline import ClientRawResponse
-from . import models
-try:
-    from auto_rest_report_service_async import AutoRestReportServiceAsyncMixin
-except (SyntaxError, ImportError):
-    class AutoRestReportServiceAsyncMixin:
-        pass
 
 
-class AutoRestReportServiceConfiguration(Configuration):
-    """Configuration for AutoRestReportService
-    Note that all parameters used to create this instance are saved as instance
-    attributes.
+class AutoRestReportServiceAsyncMixin(object):
 
-    :param str base_url: Service URL
-    """
-
-    def __init__(
-            self, base_url=None):
-
-        if not base_url:
-            base_url = 'http://localhost:3000'
-
-        super(AutoRestReportServiceConfiguration, self).__init__(base_url)
-
-        self.add_user_agent('autorestreportservice/{}'.format(VERSION))
-
-
-class AutoRestReportService(AutoRestReportServiceAsyncMixin, object):
-    """Test Infrastructure for AutoRest
-
-    :ivar config: Configuration for client.
-    :vartype config: AutoRestReportServiceConfiguration
-
-    :param str base_url: Service URL
-    """
-
-    def __init__(
-            self, base_url=None):
-
-        self.config = AutoRestReportServiceConfiguration(base_url)
-        self._client = ServiceClient(None, self.config)
-
-        client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
-        self.api_version = '1.0.0'
-        self._serialize = Serializer(client_models)
-        self._deserialize = Deserializer(client_models)
-
-
-    def get_report(
-            self, qualifier=None, custom_headers=None, raw=False, **operation_config):
+    async def get_report_async(
+            self, qualifier=None, *, custom_headers=None, raw=False, **operation_config):
         """Get test coverage report.
 
         :param qualifier: If specified, qualifies the generated report further
@@ -80,7 +33,7 @@ class AutoRestReportService(AutoRestReportServiceAsyncMixin, object):
         :raises: :class:`ErrorException<report.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_report.metadata['url']
+        url = self.get_report_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -95,7 +48,7 @@ class AutoRestReportService(AutoRestReportServiceAsyncMixin, object):
 
         # Construct and send request
         request = self._client.get(url, query_parameters)
-        response = self._client.send(request, header_parameters, stream=False, **operation_config)
+        response = await self._client.async_send(request, header_parameters, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -110,4 +63,4 @@ class AutoRestReportService(AutoRestReportServiceAsyncMixin, object):
             return client_raw_response
 
         return deserialized
-    get_report.metadata = {'url': '/report'}
+    get_report_async.metadata = {'url': '/report'}

@@ -9,73 +9,14 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.service_client import ServiceClient
-from msrest import Serializer, Deserializer
-from msrestazure import AzureConfiguration
-from .version import VERSION
 from msrest.pipeline import ClientRawResponse
 import uuid
-from . import models
-try:
-    from auto_rest_report_service_for_azure_async import AutoRestReportServiceForAzureAsyncMixin
-except (SyntaxError, ImportError):
-    class AutoRestReportServiceForAzureAsyncMixin:
-        pass
 
 
-class AutoRestReportServiceForAzureConfiguration(AzureConfiguration):
-    """Configuration for AutoRestReportServiceForAzure
-    Note that all parameters used to create this instance are saved as instance
-    attributes.
+class AutoRestReportServiceForAzureAsyncMixin(object):
 
-    :param credentials: Credentials needed for the client to connect to Azure.
-    :type credentials: :mod:`A msrestazure Credentials
-     object<msrestazure.azure_active_directory>`
-    :param str base_url: Service URL
-    """
-
-    def __init__(
-            self, credentials, base_url=None):
-
-        if credentials is None:
-            raise ValueError("Parameter 'credentials' must not be None.")
-        if not base_url:
-            base_url = 'http://localhost:3000'
-
-        super(AutoRestReportServiceForAzureConfiguration, self).__init__(base_url)
-
-        self.add_user_agent('autorestreportserviceforazure/{}'.format(VERSION))
-        self.add_user_agent('Azure-SDK-For-Python')
-
-        self.credentials = credentials
-
-
-class AutoRestReportServiceForAzure(AutoRestReportServiceForAzureAsyncMixin, object):
-    """Test Infrastructure for AutoRest
-
-    :ivar config: Configuration for client.
-    :vartype config: AutoRestReportServiceForAzureConfiguration
-
-    :param credentials: Credentials needed for the client to connect to Azure.
-    :type credentials: :mod:`A msrestazure Credentials
-     object<msrestazure.azure_active_directory>`
-    :param str base_url: Service URL
-    """
-
-    def __init__(
-            self, credentials, base_url=None):
-
-        self.config = AutoRestReportServiceForAzureConfiguration(credentials, base_url)
-        self._client = ServiceClient(self.config.credentials, self.config)
-
-        client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
-        self.api_version = '1.0.0'
-        self._serialize = Serializer(client_models)
-        self._deserialize = Deserializer(client_models)
-
-
-    def get_report(
-            self, qualifier=None, custom_headers=None, raw=False, **operation_config):
+    async def get_report_async(
+            self, qualifier=None, *, custom_headers=None, raw=False, **operation_config):
         """Get test coverage report.
 
         :param qualifier: If specified, qualifies the generated report further
@@ -93,7 +34,7 @@ class AutoRestReportServiceForAzure(AutoRestReportServiceForAzureAsyncMixin, obj
         :raises: :class:`ErrorException<azurereport.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_report.metadata['url']
+        url = self.get_report_async.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -112,7 +53,7 @@ class AutoRestReportServiceForAzure(AutoRestReportServiceForAzureAsyncMixin, obj
 
         # Construct and send request
         request = self._client.get(url, query_parameters)
-        response = self._client.send(request, header_parameters, stream=False, **operation_config)
+        response = await self._client.async_send(request, header_parameters, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -127,4 +68,4 @@ class AutoRestReportServiceForAzure(AutoRestReportServiceForAzureAsyncMixin, obj
             return client_raw_response
 
         return deserialized
-    get_report.metadata = {'url': '/report/azure'}
+    get_report_async.metadata = {'url': '/report/azure'}
