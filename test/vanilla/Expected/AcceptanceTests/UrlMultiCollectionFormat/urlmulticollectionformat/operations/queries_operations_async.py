@@ -19,7 +19,7 @@ class QueriesOperations(_QueriesOperations):
     """QueriesOperations operations."""
 
     async def array_string_multi_null_async(
-            self, array_query=None, custom_headers=None, raw=False, **operation_config):
+            self, array_query=None, *, custom_headers=None, raw=False, **operation_config):
         """Get a null array of string using the multi-array format.
 
         :param array_query: a null array of string using the multi-array
@@ -62,7 +62,7 @@ class QueriesOperations(_QueriesOperations):
     array_string_multi_null_async.metadata = {'url': '/queries/array/multi/string/null'}
 
     async def array_string_multi_empty_async(
-            self, array_query=None, custom_headers=None, raw=False, **operation_config):
+            self, array_query=None, *, custom_headers=None, raw=False, **operation_config):
         """Get an empty array [] of string using the multi-array format.
 
         :param array_query: an empty array [] of string using the multi-array
@@ -105,7 +105,7 @@ class QueriesOperations(_QueriesOperations):
     array_string_multi_empty_async.metadata = {'url': '/queries/array/multi/string/empty'}
 
     async def array_string_multi_valid_async(
-            self, array_query=None, custom_headers=None, raw=False, **operation_config):
+            self, array_query=None, *, custom_headers=None, raw=False, **operation_config):
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' ,
         null, ''] using the mult-array format.
 

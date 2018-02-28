@@ -19,7 +19,7 @@ from .paths_operations import PathsOperations as _PathsOperations
 class PathsOperations(_PathsOperations):
 
     async def get_empty_async(
-            self, account_name, custom_headers=None, raw=False, **operation_config):
+            self, account_name, *, custom_headers=None, raw=False, **operation_config):
         """Get a 200 to test a valid base uri.
 
         :param account_name: Account Name

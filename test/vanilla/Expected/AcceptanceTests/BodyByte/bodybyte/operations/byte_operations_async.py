@@ -19,7 +19,7 @@ class ByteOperations(_ByteOperations):
     """ByteOperations operations."""
 
     async def get_null_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get null byte value.
 
         :param dict custom_headers: headers that will be added to the request
@@ -63,7 +63,7 @@ class ByteOperations(_ByteOperations):
     get_null_async.metadata = {'url': '/byte/null'}
 
     async def get_empty_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get empty byte value ''.
 
         :param dict custom_headers: headers that will be added to the request
@@ -107,7 +107,7 @@ class ByteOperations(_ByteOperations):
     get_empty_async.metadata = {'url': '/byte/empty'}
 
     async def get_non_ascii_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
 
         :param dict custom_headers: headers that will be added to the request
@@ -151,7 +151,7 @@ class ByteOperations(_ByteOperations):
     get_non_ascii_async.metadata = {'url': '/byte/nonAscii'}
 
     async def put_non_ascii_async(
-            self, byte_body, custom_headers=None, raw=False, **operation_config):
+            self, byte_body, *, custom_headers=None, raw=False, **operation_config):
         """Put non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
 
         :param byte_body: Base64-encoded non-ascii byte string hex(FF FE FD FC
@@ -195,7 +195,7 @@ class ByteOperations(_ByteOperations):
     put_non_ascii_async.metadata = {'url': '/byte/nonAscii'}
 
     async def get_invalid_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get invalid byte value ':::SWAGGER::::'.
 
         :param dict custom_headers: headers that will be added to the request

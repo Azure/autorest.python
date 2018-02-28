@@ -19,7 +19,7 @@ class PetsOperations(_PetsOperations):
     """PetsOperations operations."""
 
     async def create_ap_true_async(
-            self, create_parameters, custom_headers=None, raw=False, **operation_config):
+            self, create_parameters, *, custom_headers=None, raw=False, **operation_config):
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
@@ -71,7 +71,7 @@ class PetsOperations(_PetsOperations):
     create_ap_true_async.metadata = {'url': '/additionalProperties/true'}
 
     async def create_ap_object_async(
-            self, create_parameters, custom_headers=None, raw=False, **operation_config):
+            self, create_parameters, *, custom_headers=None, raw=False, **operation_config):
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
@@ -123,7 +123,7 @@ class PetsOperations(_PetsOperations):
     create_ap_object_async.metadata = {'url': '/additionalProperties/type/object'}
 
     async def create_ap_string_async(
-            self, create_parameters, custom_headers=None, raw=False, **operation_config):
+            self, create_parameters, *, custom_headers=None, raw=False, **operation_config):
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
@@ -175,7 +175,7 @@ class PetsOperations(_PetsOperations):
     create_ap_string_async.metadata = {'url': '/additionalProperties/type/string'}
 
     async def create_ap_in_properties_async(
-            self, create_parameters, custom_headers=None, raw=False, **operation_config):
+            self, create_parameters, *, custom_headers=None, raw=False, **operation_config):
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
@@ -228,7 +228,7 @@ class PetsOperations(_PetsOperations):
     create_ap_in_properties_async.metadata = {'url': '/additionalProperties/in/properties'}
 
     async def create_ap_in_properties_with_ap_string_async(
-            self, create_parameters, custom_headers=None, raw=False, **operation_config):
+            self, create_parameters, *, custom_headers=None, raw=False, **operation_config):
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:

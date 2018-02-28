@@ -19,7 +19,7 @@ from .skip_url_encoding_operations import SkipUrlEncodingOperations as _SkipUrlE
 class SkipUrlEncodingOperations(_SkipUrlEncodingOperations):
 
     async def get_method_path_valid_async(
-            self, unencoded_path_param, custom_headers=None, raw=False, **operation_config):
+            self, unencoded_path_param, *, custom_headers=None, raw=False, **operation_config):
         """Get method with unencoded path parameter with value
         'path1/path2/path3'.
 
@@ -69,7 +69,7 @@ class SkipUrlEncodingOperations(_SkipUrlEncodingOperations):
     get_method_path_valid_async.metadata = {'url': '/azurespecials/skipUrlEncoding/method/path/valid/{unencodedPathParam}'}
 
     async def get_path_path_valid_async(
-            self, unencoded_path_param, custom_headers=None, raw=False, **operation_config):
+            self, unencoded_path_param, *, custom_headers=None, raw=False, **operation_config):
         """Get method with unencoded path parameter with value
         'path1/path2/path3'.
 
@@ -119,7 +119,7 @@ class SkipUrlEncodingOperations(_SkipUrlEncodingOperations):
     get_path_path_valid_async.metadata = {'url': '/azurespecials/skipUrlEncoding/path/path/valid/{unencodedPathParam}'}
 
     async def get_swagger_path_valid_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get method with unencoded path parameter with value
         'path1/path2/path3'.
 
@@ -166,7 +166,7 @@ class SkipUrlEncodingOperations(_SkipUrlEncodingOperations):
     get_swagger_path_valid_async.metadata = {'url': '/azurespecials/skipUrlEncoding/swagger/path/valid/{unencodedPathParam}'}
 
     async def get_method_query_valid_async(
-            self, q1, custom_headers=None, raw=False, **operation_config):
+            self, q1, *, custom_headers=None, raw=False, **operation_config):
         """Get method with unencoded query parameter with value
         'value1&q2=value2&q3=value3'.
 
@@ -213,7 +213,7 @@ class SkipUrlEncodingOperations(_SkipUrlEncodingOperations):
     get_method_query_valid_async.metadata = {'url': '/azurespecials/skipUrlEncoding/method/query/valid'}
 
     async def get_method_query_null_async(
-            self, q1=None, custom_headers=None, raw=False, **operation_config):
+            self, q1=None, *, custom_headers=None, raw=False, **operation_config):
         """Get method with unencoded query parameter with value null.
 
         :param q1: Unencoded query parameter with value null
@@ -259,7 +259,7 @@ class SkipUrlEncodingOperations(_SkipUrlEncodingOperations):
     get_method_query_null_async.metadata = {'url': '/azurespecials/skipUrlEncoding/method/query/null'}
 
     async def get_path_query_valid_async(
-            self, q1, custom_headers=None, raw=False, **operation_config):
+            self, q1, *, custom_headers=None, raw=False, **operation_config):
         """Get method with unencoded query parameter with value
         'value1&q2=value2&q3=value3'.
 
@@ -306,7 +306,7 @@ class SkipUrlEncodingOperations(_SkipUrlEncodingOperations):
     get_path_query_valid_async.metadata = {'url': '/azurespecials/skipUrlEncoding/path/query/valid'}
 
     async def get_swagger_query_valid_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get method with unencoded query parameter with value
         'value1&q2=value2&q3=value3'.
 

@@ -19,7 +19,7 @@ class DictionaryOperations(_DictionaryOperations):
     """DictionaryOperations operations."""
 
     async def get_valid_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get complex types with dictionary property.
 
         :param dict custom_headers: headers that will be added to the request
@@ -64,7 +64,7 @@ class DictionaryOperations(_DictionaryOperations):
     get_valid_async.metadata = {'url': '/complex/dictionary/typed/valid'}
 
     async def put_valid_async(
-            self, default_program=None, custom_headers=None, raw=False, **operation_config):
+            self, default_program=None, *, custom_headers=None, raw=False, **operation_config):
         """Put complex types with dictionary property.
 
         :param default_program:
@@ -109,7 +109,7 @@ class DictionaryOperations(_DictionaryOperations):
     put_valid_async.metadata = {'url': '/complex/dictionary/typed/valid'}
 
     async def get_empty_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get complex types with dictionary property which is empty.
 
         :param dict custom_headers: headers that will be added to the request
@@ -154,7 +154,7 @@ class DictionaryOperations(_DictionaryOperations):
     get_empty_async.metadata = {'url': '/complex/dictionary/typed/empty'}
 
     async def put_empty_async(
-            self, default_program=None, custom_headers=None, raw=False, **operation_config):
+            self, default_program=None, *, custom_headers=None, raw=False, **operation_config):
         """Put complex types with dictionary property which is empty.
 
         :param default_program:
@@ -199,7 +199,7 @@ class DictionaryOperations(_DictionaryOperations):
     put_empty_async.metadata = {'url': '/complex/dictionary/typed/empty'}
 
     async def get_null_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get complex types with dictionary property which is null.
 
         :param dict custom_headers: headers that will be added to the request
@@ -244,7 +244,7 @@ class DictionaryOperations(_DictionaryOperations):
     get_null_async.metadata = {'url': '/complex/dictionary/typed/null'}
 
     async def get_not_provided_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get complex types with dictionary property while server doesn't provide
         a response payload.
 

@@ -19,7 +19,7 @@ class PathItemsOperations(_PathItemsOperations):
     """PathItemsOperations operations."""
 
     async def get_all_with_values_async(
-            self, local_string_path, path_item_string_path, local_string_query=None, path_item_string_query=None, custom_headers=None, raw=False, **operation_config):
+            self, local_string_path, path_item_string_path, local_string_query=None, path_item_string_query=None, *, custom_headers=None, raw=False, **operation_config):
         """send globalStringPath='globalStringPath',
         pathItemStringPath='pathItemStringPath',
         localStringPath='localStringPath',
@@ -83,7 +83,7 @@ class PathItemsOperations(_PathItemsOperations):
     get_all_with_values_async.metadata = {'url': '/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/pathItemStringQuery/localStringQuery'}
 
     async def get_global_query_null_async(
-            self, local_string_path, path_item_string_path, local_string_query=None, path_item_string_query=None, custom_headers=None, raw=False, **operation_config):
+            self, local_string_path, path_item_string_path, local_string_query=None, path_item_string_query=None, *, custom_headers=None, raw=False, **operation_config):
         """send globalStringPath='globalStringPath',
         pathItemStringPath='pathItemStringPath',
         localStringPath='localStringPath', globalStringQuery=null,
@@ -146,7 +146,7 @@ class PathItemsOperations(_PathItemsOperations):
     get_global_query_null_async.metadata = {'url': '/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/localStringQuery'}
 
     async def get_global_and_local_query_null_async(
-            self, local_string_path, path_item_string_path, local_string_query=None, path_item_string_query=None, custom_headers=None, raw=False, **operation_config):
+            self, local_string_path, path_item_string_path, local_string_query=None, path_item_string_query=None, *, custom_headers=None, raw=False, **operation_config):
         """send globalStringPath=globalStringPath,
         pathItemStringPath='pathItemStringPath',
         localStringPath='localStringPath', globalStringQuery=null,
@@ -208,7 +208,7 @@ class PathItemsOperations(_PathItemsOperations):
     get_global_and_local_query_null_async.metadata = {'url': '/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/null'}
 
     async def get_local_path_item_query_null_async(
-            self, local_string_path, path_item_string_path, local_string_query=None, path_item_string_query=None, custom_headers=None, raw=False, **operation_config):
+            self, local_string_path, path_item_string_path, local_string_query=None, path_item_string_query=None, *, custom_headers=None, raw=False, **operation_config):
         """send globalStringPath='globalStringPath',
         pathItemStringPath='pathItemStringPath',
         localStringPath='localStringPath',

@@ -20,7 +20,7 @@ class HttpFailureOperations(_HttpFailureOperations):
     """HttpFailureOperations operations."""
 
     async def get_empty_error_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get empty error form server.
 
         :param dict custom_headers: headers that will be added to the request
@@ -65,7 +65,7 @@ class HttpFailureOperations(_HttpFailureOperations):
     get_empty_error_async.metadata = {'url': '/http/failure/emptybody/error'}
 
     async def get_no_model_error_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get empty error form server.
 
         :param dict custom_headers: headers that will be added to the request
@@ -110,7 +110,7 @@ class HttpFailureOperations(_HttpFailureOperations):
     get_no_model_error_async.metadata = {'url': '/http/failure/nomodel/error'}
 
     async def get_no_model_empty_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get empty response from server.
 
         :param dict custom_headers: headers that will be added to the request

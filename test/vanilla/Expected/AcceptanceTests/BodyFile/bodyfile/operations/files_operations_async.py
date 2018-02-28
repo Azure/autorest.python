@@ -19,7 +19,7 @@ class FilesOperations(_FilesOperations):
     """FilesOperations operations."""
 
     async def get_file_async(
-            self, custom_headers=None, raw=False, callback=None, **operation_config):
+            self, *, custom_headers=None, raw=False, callback=None, **operation_config):
         """Get file.
 
         :param dict custom_headers: headers that will be added to the request
@@ -68,7 +68,7 @@ class FilesOperations(_FilesOperations):
     get_file_async.metadata = {'url': '/files/stream/nonempty'}
 
     async def get_file_large_async(
-            self, custom_headers=None, raw=False, callback=None, **operation_config):
+            self, *, custom_headers=None, raw=False, callback=None, **operation_config):
         """Get a large file.
 
         :param dict custom_headers: headers that will be added to the request
@@ -117,7 +117,7 @@ class FilesOperations(_FilesOperations):
     get_file_large_async.metadata = {'url': '/files/stream/verylarge'}
 
     async def get_empty_file_async(
-            self, custom_headers=None, raw=False, callback=None, **operation_config):
+            self, *, custom_headers=None, raw=False, callback=None, **operation_config):
         """Get empty file.
 
         :param dict custom_headers: headers that will be added to the request

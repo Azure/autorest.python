@@ -19,7 +19,7 @@ from .api_version_default_operations import ApiVersionDefaultOperations as _ApiV
 class ApiVersionDefaultOperations(_ApiVersionDefaultOperations):
 
     async def get_method_global_valid_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """GET method with api-version modeled in global settings.
 
         :param dict custom_headers: headers that will be added to the request
@@ -62,7 +62,7 @@ class ApiVersionDefaultOperations(_ApiVersionDefaultOperations):
     get_method_global_valid_async.metadata = {'url': '/azurespecials/apiVersion/method/string/none/query/global/2015-07-01-preview'}
 
     async def get_method_global_not_provided_valid_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """GET method with api-version modeled in global settings.
 
         :param dict custom_headers: headers that will be added to the request
@@ -105,7 +105,7 @@ class ApiVersionDefaultOperations(_ApiVersionDefaultOperations):
     get_method_global_not_provided_valid_async.metadata = {'url': '/azurespecials/apiVersion/method/string/none/query/globalNotProvided/2015-07-01-preview'}
 
     async def get_path_global_valid_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """GET method with api-version modeled in global settings.
 
         :param dict custom_headers: headers that will be added to the request
@@ -148,7 +148,7 @@ class ApiVersionDefaultOperations(_ApiVersionDefaultOperations):
     get_path_global_valid_async.metadata = {'url': '/azurespecials/apiVersion/path/string/none/query/global/2015-07-01-preview'}
 
     async def get_swagger_global_valid_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """GET method with api-version modeled in global settings.
 
         :param dict custom_headers: headers that will be added to the request

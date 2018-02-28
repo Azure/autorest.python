@@ -19,7 +19,7 @@ class ArrayOperations(_ArrayOperations):
     """ArrayOperations operations."""
 
     async def get_valid_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get complex types with array property.
 
         :param dict custom_headers: headers that will be added to the request
@@ -64,7 +64,7 @@ class ArrayOperations(_ArrayOperations):
     get_valid_async.metadata = {'url': '/complex/array/valid'}
 
     async def put_valid_async(
-            self, array=None, custom_headers=None, raw=False, **operation_config):
+            self, array=None, *, custom_headers=None, raw=False, **operation_config):
         """Put complex types with array property.
 
         :param array:
@@ -109,7 +109,7 @@ class ArrayOperations(_ArrayOperations):
     put_valid_async.metadata = {'url': '/complex/array/valid'}
 
     async def get_empty_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get complex types with array property which is empty.
 
         :param dict custom_headers: headers that will be added to the request
@@ -154,7 +154,7 @@ class ArrayOperations(_ArrayOperations):
     get_empty_async.metadata = {'url': '/complex/array/empty'}
 
     async def put_empty_async(
-            self, array=None, custom_headers=None, raw=False, **operation_config):
+            self, array=None, *, custom_headers=None, raw=False, **operation_config):
         """Put complex types with array property which is empty.
 
         :param array:
@@ -199,7 +199,7 @@ class ArrayOperations(_ArrayOperations):
     put_empty_async.metadata = {'url': '/complex/array/empty'}
 
     async def get_not_provided_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get complex types with array property while server doesn't provide a
         response payload.
 

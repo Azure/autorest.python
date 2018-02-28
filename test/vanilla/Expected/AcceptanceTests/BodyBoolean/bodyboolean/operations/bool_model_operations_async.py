@@ -19,7 +19,7 @@ class BoolModelOperations(_BoolModelOperations):
     """BoolModelOperations operations."""
 
     async def get_true_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get true Boolean value.
 
         :param dict custom_headers: headers that will be added to the request
@@ -63,7 +63,7 @@ class BoolModelOperations(_BoolModelOperations):
     get_true_async.metadata = {'url': '/bool/true'}
 
     async def put_true_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Set Boolean value true.
 
         :param dict custom_headers: headers that will be added to the request
@@ -106,7 +106,7 @@ class BoolModelOperations(_BoolModelOperations):
     put_true_async.metadata = {'url': '/bool/true'}
 
     async def get_false_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get false Boolean value.
 
         :param dict custom_headers: headers that will be added to the request
@@ -150,7 +150,7 @@ class BoolModelOperations(_BoolModelOperations):
     get_false_async.metadata = {'url': '/bool/false'}
 
     async def put_false_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Set Boolean value false.
 
         :param dict custom_headers: headers that will be added to the request
@@ -193,7 +193,7 @@ class BoolModelOperations(_BoolModelOperations):
     put_false_async.metadata = {'url': '/bool/false'}
 
     async def get_null_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get null Boolean value.
 
         :param dict custom_headers: headers that will be added to the request
@@ -237,7 +237,7 @@ class BoolModelOperations(_BoolModelOperations):
     get_null_async.metadata = {'url': '/bool/null'}
 
     async def get_invalid_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get invalid Boolean value.
 
         :param dict custom_headers: headers that will be added to the request

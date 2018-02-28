@@ -19,7 +19,7 @@ class HttpSuccessOperations(_HttpSuccessOperations):
     """HttpSuccessOperations operations."""
 
     async def head200_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Return 200 status code if successful.
 
         :param dict custom_headers: headers that will be added to the request
@@ -57,7 +57,7 @@ class HttpSuccessOperations(_HttpSuccessOperations):
     head200_async.metadata = {'url': '/http/success/200'}
 
     async def get200_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get 200 success.
 
         :param dict custom_headers: headers that will be added to the request
@@ -102,7 +102,7 @@ class HttpSuccessOperations(_HttpSuccessOperations):
     get200_async.metadata = {'url': '/http/success/200'}
 
     async def put200_async(
-            self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
+            self, boolean_value=None, *, custom_headers=None, raw=False, **operation_config):
         """Put boolean value true returning 200 success.
 
         :param boolean_value: Simple boolean value true
@@ -149,7 +149,7 @@ class HttpSuccessOperations(_HttpSuccessOperations):
     put200_async.metadata = {'url': '/http/success/200'}
 
     async def patch200_async(
-            self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
+            self, boolean_value=None, *, custom_headers=None, raw=False, **operation_config):
         """Patch true Boolean value in request returning 200.
 
         :param boolean_value: Simple boolean value true
@@ -196,7 +196,7 @@ class HttpSuccessOperations(_HttpSuccessOperations):
     patch200_async.metadata = {'url': '/http/success/200'}
 
     async def post200_async(
-            self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
+            self, boolean_value=None, *, custom_headers=None, raw=False, **operation_config):
         """Post bollean value true in request that returns a 200.
 
         :param boolean_value: Simple boolean value true
@@ -243,7 +243,7 @@ class HttpSuccessOperations(_HttpSuccessOperations):
     post200_async.metadata = {'url': '/http/success/200'}
 
     async def delete200_async(
-            self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
+            self, boolean_value=None, *, custom_headers=None, raw=False, **operation_config):
         """Delete simple boolean value true returns 200.
 
         :param boolean_value: Simple boolean value true
@@ -290,7 +290,7 @@ class HttpSuccessOperations(_HttpSuccessOperations):
     delete200_async.metadata = {'url': '/http/success/200'}
 
     async def put201_async(
-            self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
+            self, boolean_value=None, *, custom_headers=None, raw=False, **operation_config):
         """Put true Boolean value in request returns 201.
 
         :param boolean_value: Simple boolean value true
@@ -337,7 +337,7 @@ class HttpSuccessOperations(_HttpSuccessOperations):
     put201_async.metadata = {'url': '/http/success/201'}
 
     async def post201_async(
-            self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
+            self, boolean_value=None, *, custom_headers=None, raw=False, **operation_config):
         """Post true Boolean value in request returns 201 (Created).
 
         :param boolean_value: Simple boolean value true
@@ -384,7 +384,7 @@ class HttpSuccessOperations(_HttpSuccessOperations):
     post201_async.metadata = {'url': '/http/success/201'}
 
     async def put202_async(
-            self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
+            self, boolean_value=None, *, custom_headers=None, raw=False, **operation_config):
         """Put true Boolean value in request returns 202 (Accepted).
 
         :param boolean_value: Simple boolean value true
@@ -431,7 +431,7 @@ class HttpSuccessOperations(_HttpSuccessOperations):
     put202_async.metadata = {'url': '/http/success/202'}
 
     async def patch202_async(
-            self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
+            self, boolean_value=None, *, custom_headers=None, raw=False, **operation_config):
         """Patch true Boolean value in request returns 202.
 
         :param boolean_value: Simple boolean value true
@@ -478,7 +478,7 @@ class HttpSuccessOperations(_HttpSuccessOperations):
     patch202_async.metadata = {'url': '/http/success/202'}
 
     async def post202_async(
-            self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
+            self, boolean_value=None, *, custom_headers=None, raw=False, **operation_config):
         """Post true Boolean value in request returns 202 (Accepted).
 
         :param boolean_value: Simple boolean value true
@@ -525,7 +525,7 @@ class HttpSuccessOperations(_HttpSuccessOperations):
     post202_async.metadata = {'url': '/http/success/202'}
 
     async def delete202_async(
-            self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
+            self, boolean_value=None, *, custom_headers=None, raw=False, **operation_config):
         """Delete true Boolean value in request returns 202 (accepted).
 
         :param boolean_value: Simple boolean value true
@@ -572,7 +572,7 @@ class HttpSuccessOperations(_HttpSuccessOperations):
     delete202_async.metadata = {'url': '/http/success/202'}
 
     async def head204_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Return 204 status code if successful.
 
         :param dict custom_headers: headers that will be added to the request
@@ -610,7 +610,7 @@ class HttpSuccessOperations(_HttpSuccessOperations):
     head204_async.metadata = {'url': '/http/success/204'}
 
     async def put204_async(
-            self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
+            self, boolean_value=None, *, custom_headers=None, raw=False, **operation_config):
         """Put true Boolean value in request returns 204 (no content).
 
         :param boolean_value: Simple boolean value true
@@ -657,7 +657,7 @@ class HttpSuccessOperations(_HttpSuccessOperations):
     put204_async.metadata = {'url': '/http/success/204'}
 
     async def patch204_async(
-            self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
+            self, boolean_value=None, *, custom_headers=None, raw=False, **operation_config):
         """Patch true Boolean value in request returns 204 (no content).
 
         :param boolean_value: Simple boolean value true
@@ -704,7 +704,7 @@ class HttpSuccessOperations(_HttpSuccessOperations):
     patch204_async.metadata = {'url': '/http/success/204'}
 
     async def post204_async(
-            self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
+            self, boolean_value=None, *, custom_headers=None, raw=False, **operation_config):
         """Post true Boolean value in request returns 204 (no content).
 
         :param boolean_value: Simple boolean value true
@@ -751,7 +751,7 @@ class HttpSuccessOperations(_HttpSuccessOperations):
     post204_async.metadata = {'url': '/http/success/204'}
 
     async def delete204_async(
-            self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
+            self, boolean_value=None, *, custom_headers=None, raw=False, **operation_config):
         """Delete true Boolean value in request returns 204 (no content).
 
         :param boolean_value: Simple boolean value true
@@ -798,7 +798,7 @@ class HttpSuccessOperations(_HttpSuccessOperations):
     delete204_async.metadata = {'url': '/http/success/204'}
 
     async def head404_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Return 404 status code.
 
         :param dict custom_headers: headers that will be added to the request

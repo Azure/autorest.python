@@ -19,7 +19,7 @@ class HeaderOperations(_HeaderOperations):
     """HeaderOperations operations."""
 
     async def param_existing_key_async(
-            self, user_agent, custom_headers=None, raw=False, **operation_config):
+            self, user_agent, *, custom_headers=None, raw=False, **operation_config):
         """Send a post request with header value "User-Agent": "overwrite".
 
         :param user_agent: Send a post request with header value "User-Agent":
@@ -60,7 +60,7 @@ class HeaderOperations(_HeaderOperations):
     param_existing_key_async.metadata = {'url': '/header/param/existingkey'}
 
     async def response_existing_key_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get a response with header value "User-Agent": "overwrite".
 
         :param dict custom_headers: headers that will be added to the request
@@ -100,7 +100,7 @@ class HeaderOperations(_HeaderOperations):
     response_existing_key_async.metadata = {'url': '/header/response/existingkey'}
 
     async def param_protected_key_async(
-            self, content_type, custom_headers=None, raw=False, **operation_config):
+            self, content_type, *, custom_headers=None, raw=False, **operation_config):
         """Send a post request with header value "Content-Type": "text/html".
 
         :param content_type: Send a post request with header value
@@ -141,7 +141,7 @@ class HeaderOperations(_HeaderOperations):
     param_protected_key_async.metadata = {'url': '/header/param/protectedkey'}
 
     async def response_protected_key_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get a response with header value "Content-Type": "text/html".
 
         :param dict custom_headers: headers that will be added to the request
@@ -181,7 +181,7 @@ class HeaderOperations(_HeaderOperations):
     response_protected_key_async.metadata = {'url': '/header/response/protectedkey'}
 
     async def param_integer_async(
-            self, scenario, value, custom_headers=None, raw=False, **operation_config):
+            self, scenario, value, *, custom_headers=None, raw=False, **operation_config):
         """Send a post request with header values "scenario": "positive", "value":
         1 or "scenario": "negative", "value": -2 .
 
@@ -226,7 +226,7 @@ class HeaderOperations(_HeaderOperations):
     param_integer_async.metadata = {'url': '/header/param/prim/integer'}
 
     async def response_integer_async(
-            self, scenario, custom_headers=None, raw=False, **operation_config):
+            self, scenario, *, custom_headers=None, raw=False, **operation_config):
         """Get a response with header value "value": 1 or -2.
 
         :param scenario: Send a post request with header values "scenario":
@@ -270,7 +270,7 @@ class HeaderOperations(_HeaderOperations):
     response_integer_async.metadata = {'url': '/header/response/prim/integer'}
 
     async def param_long_async(
-            self, scenario, value, custom_headers=None, raw=False, **operation_config):
+            self, scenario, value, *, custom_headers=None, raw=False, **operation_config):
         """Send a post request with header values "scenario": "positive", "value":
         105 or "scenario": "negative", "value": -2 .
 
@@ -315,7 +315,7 @@ class HeaderOperations(_HeaderOperations):
     param_long_async.metadata = {'url': '/header/param/prim/long'}
 
     async def response_long_async(
-            self, scenario, custom_headers=None, raw=False, **operation_config):
+            self, scenario, *, custom_headers=None, raw=False, **operation_config):
         """Get a response with header value "value": 105 or -2.
 
         :param scenario: Send a post request with header values "scenario":
@@ -359,7 +359,7 @@ class HeaderOperations(_HeaderOperations):
     response_long_async.metadata = {'url': '/header/response/prim/long'}
 
     async def param_float_async(
-            self, scenario, value, custom_headers=None, raw=False, **operation_config):
+            self, scenario, value, *, custom_headers=None, raw=False, **operation_config):
         """Send a post request with header values "scenario": "positive", "value":
         0.07 or "scenario": "negative", "value": -3.0.
 
@@ -404,7 +404,7 @@ class HeaderOperations(_HeaderOperations):
     param_float_async.metadata = {'url': '/header/param/prim/float'}
 
     async def response_float_async(
-            self, scenario, custom_headers=None, raw=False, **operation_config):
+            self, scenario, *, custom_headers=None, raw=False, **operation_config):
         """Get a response with header value "value": 0.07 or -3.0.
 
         :param scenario: Send a post request with header values "scenario":
@@ -448,7 +448,7 @@ class HeaderOperations(_HeaderOperations):
     response_float_async.metadata = {'url': '/header/response/prim/float'}
 
     async def param_double_async(
-            self, scenario, value, custom_headers=None, raw=False, **operation_config):
+            self, scenario, value, *, custom_headers=None, raw=False, **operation_config):
         """Send a post request with header values "scenario": "positive", "value":
         7e120 or "scenario": "negative", "value": -3.0.
 
@@ -493,7 +493,7 @@ class HeaderOperations(_HeaderOperations):
     param_double_async.metadata = {'url': '/header/param/prim/double'}
 
     async def response_double_async(
-            self, scenario, custom_headers=None, raw=False, **operation_config):
+            self, scenario, *, custom_headers=None, raw=False, **operation_config):
         """Get a response with header value "value": 7e120 or -3.0.
 
         :param scenario: Send a post request with header values "scenario":
@@ -537,7 +537,7 @@ class HeaderOperations(_HeaderOperations):
     response_double_async.metadata = {'url': '/header/response/prim/double'}
 
     async def param_bool_async(
-            self, scenario, value, custom_headers=None, raw=False, **operation_config):
+            self, scenario, value, *, custom_headers=None, raw=False, **operation_config):
         """Send a post request with header values "scenario": "true", "value":
         true or "scenario": "false", "value": false.
 
@@ -582,7 +582,7 @@ class HeaderOperations(_HeaderOperations):
     param_bool_async.metadata = {'url': '/header/param/prim/bool'}
 
     async def response_bool_async(
-            self, scenario, custom_headers=None, raw=False, **operation_config):
+            self, scenario, *, custom_headers=None, raw=False, **operation_config):
         """Get a response with header value "value": true or false.
 
         :param scenario: Send a post request with header values "scenario":
@@ -626,7 +626,7 @@ class HeaderOperations(_HeaderOperations):
     response_bool_async.metadata = {'url': '/header/response/prim/bool'}
 
     async def param_string_async(
-            self, scenario, value=None, custom_headers=None, raw=False, **operation_config):
+            self, scenario, value=None, *, custom_headers=None, raw=False, **operation_config):
         """Send a post request with header values "scenario": "valid", "value":
         "The quick brown fox jumps over the lazy dog" or "scenario": "null",
         "value": null or "scenario": "empty", "value": "".
@@ -674,7 +674,7 @@ class HeaderOperations(_HeaderOperations):
     param_string_async.metadata = {'url': '/header/param/prim/string'}
 
     async def response_string_async(
-            self, scenario, custom_headers=None, raw=False, **operation_config):
+            self, scenario, *, custom_headers=None, raw=False, **operation_config):
         """Get a response with header values "The quick brown fox jumps over the
         lazy dog" or null or "".
 
@@ -719,7 +719,7 @@ class HeaderOperations(_HeaderOperations):
     response_string_async.metadata = {'url': '/header/response/prim/string'}
 
     async def param_date_async(
-            self, scenario, value, custom_headers=None, raw=False, **operation_config):
+            self, scenario, value, *, custom_headers=None, raw=False, **operation_config):
         """Send a post request with header values "scenario": "valid", "value":
         "2010-01-01" or "scenario": "min", "value": "0001-01-01".
 
@@ -765,7 +765,7 @@ class HeaderOperations(_HeaderOperations):
     param_date_async.metadata = {'url': '/header/param/prim/date'}
 
     async def response_date_async(
-            self, scenario, custom_headers=None, raw=False, **operation_config):
+            self, scenario, *, custom_headers=None, raw=False, **operation_config):
         """Get a response with header values "2010-01-01" or "0001-01-01".
 
         :param scenario: Send a post request with header values "scenario":
@@ -809,7 +809,7 @@ class HeaderOperations(_HeaderOperations):
     response_date_async.metadata = {'url': '/header/response/prim/date'}
 
     async def param_datetime_async(
-            self, scenario, value, custom_headers=None, raw=False, **operation_config):
+            self, scenario, value, *, custom_headers=None, raw=False, **operation_config):
         """Send a post request with header values "scenario": "valid", "value":
         "2010-01-01T12:34:56Z" or "scenario": "min", "value":
         "0001-01-01T00:00:00Z".
@@ -856,7 +856,7 @@ class HeaderOperations(_HeaderOperations):
     param_datetime_async.metadata = {'url': '/header/param/prim/datetime'}
 
     async def response_datetime_async(
-            self, scenario, custom_headers=None, raw=False, **operation_config):
+            self, scenario, *, custom_headers=None, raw=False, **operation_config):
         """Get a response with header values "2010-01-01T12:34:56Z" or
         "0001-01-01T00:00:00Z".
 
@@ -901,7 +901,7 @@ class HeaderOperations(_HeaderOperations):
     response_datetime_async.metadata = {'url': '/header/response/prim/datetime'}
 
     async def param_datetime_rfc1123_async(
-            self, scenario, value=None, custom_headers=None, raw=False, **operation_config):
+            self, scenario, value=None, *, custom_headers=None, raw=False, **operation_config):
         """Send a post request with header values "scenario": "valid", "value":
         "Wed, 01 Jan 2010 12:34:56 GMT" or "scenario": "min", "value": "Mon, 01
         Jan 0001 00:00:00 GMT".
@@ -949,7 +949,7 @@ class HeaderOperations(_HeaderOperations):
     param_datetime_rfc1123_async.metadata = {'url': '/header/param/prim/datetimerfc1123'}
 
     async def response_datetime_rfc1123_async(
-            self, scenario, custom_headers=None, raw=False, **operation_config):
+            self, scenario, *, custom_headers=None, raw=False, **operation_config):
         """Get a response with header values "Wed, 01 Jan 2010 12:34:56 GMT" or
         "Mon, 01 Jan 0001 00:00:00 GMT".
 
@@ -994,7 +994,7 @@ class HeaderOperations(_HeaderOperations):
     response_datetime_rfc1123_async.metadata = {'url': '/header/response/prim/datetimerfc1123'}
 
     async def param_duration_async(
-            self, scenario, value, custom_headers=None, raw=False, **operation_config):
+            self, scenario, value, *, custom_headers=None, raw=False, **operation_config):
         """Send a post request with header values "scenario": "valid", "value":
         "P123DT22H14M12.011S".
 
@@ -1040,7 +1040,7 @@ class HeaderOperations(_HeaderOperations):
     param_duration_async.metadata = {'url': '/header/param/prim/duration'}
 
     async def response_duration_async(
-            self, scenario, custom_headers=None, raw=False, **operation_config):
+            self, scenario, *, custom_headers=None, raw=False, **operation_config):
         """Get a response with header values "P123DT22H14M12.011S".
 
         :param scenario: Send a post request with header values "scenario":
@@ -1084,7 +1084,7 @@ class HeaderOperations(_HeaderOperations):
     response_duration_async.metadata = {'url': '/header/response/prim/duration'}
 
     async def param_byte_async(
-            self, scenario, value, custom_headers=None, raw=False, **operation_config):
+            self, scenario, value, *, custom_headers=None, raw=False, **operation_config):
         """Send a post request with header values "scenario": "valid", "value":
         "啊齄丂狛狜隣郎隣兀﨩".
 
@@ -1129,7 +1129,7 @@ class HeaderOperations(_HeaderOperations):
     param_byte_async.metadata = {'url': '/header/param/prim/byte'}
 
     async def response_byte_async(
-            self, scenario, custom_headers=None, raw=False, **operation_config):
+            self, scenario, *, custom_headers=None, raw=False, **operation_config):
         """Get a response with header values "啊齄丂狛狜隣郎隣兀﨩".
 
         :param scenario: Send a post request with header values "scenario":
@@ -1173,7 +1173,7 @@ class HeaderOperations(_HeaderOperations):
     response_byte_async.metadata = {'url': '/header/response/prim/byte'}
 
     async def param_enum_async(
-            self, scenario, value=None, custom_headers=None, raw=False, **operation_config):
+            self, scenario, value=None, *, custom_headers=None, raw=False, **operation_config):
         """Send a post request with header values "scenario": "valid", "value":
         "GREY" or "scenario": "null", "value": null.
 
@@ -1220,7 +1220,7 @@ class HeaderOperations(_HeaderOperations):
     param_enum_async.metadata = {'url': '/header/param/prim/enum'}
 
     async def response_enum_async(
-            self, scenario, custom_headers=None, raw=False, **operation_config):
+            self, scenario, *, custom_headers=None, raw=False, **operation_config):
         """Get a response with header values "GREY" or null.
 
         :param scenario: Send a post request with header values "scenario":
@@ -1264,7 +1264,7 @@ class HeaderOperations(_HeaderOperations):
     response_enum_async.metadata = {'url': '/header/response/prim/enum'}
 
     async def custom_request_id_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Send x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in
         the header of the request.
 

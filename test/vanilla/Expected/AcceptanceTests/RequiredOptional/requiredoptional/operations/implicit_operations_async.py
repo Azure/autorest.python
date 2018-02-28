@@ -19,7 +19,7 @@ class ImplicitOperations(_ImplicitOperations):
     """ImplicitOperations operations."""
 
     async def get_required_path_async(
-            self, path_parameter, custom_headers=None, raw=False, **operation_config):
+            self, path_parameter, *, custom_headers=None, raw=False, **operation_config):
         """Test implicitly required path parameter.
 
         :param path_parameter:
@@ -64,7 +64,7 @@ class ImplicitOperations(_ImplicitOperations):
     get_required_path_async.metadata = {'url': '/reqopt/implicit/required/path/{pathParameter}'}
 
     async def put_optional_query_async(
-            self, query_parameter=None, custom_headers=None, raw=False, **operation_config):
+            self, query_parameter=None, *, custom_headers=None, raw=False, **operation_config):
         """Test implicitly optional query parameter.
 
         :param query_parameter:
@@ -106,7 +106,7 @@ class ImplicitOperations(_ImplicitOperations):
     put_optional_query_async.metadata = {'url': '/reqopt/implicit/optional/query'}
 
     async def put_optional_header_async(
-            self, query_parameter=None, custom_headers=None, raw=False, **operation_config):
+            self, query_parameter=None, *, custom_headers=None, raw=False, **operation_config):
         """Test implicitly optional header parameter.
 
         :param query_parameter:
@@ -148,7 +148,7 @@ class ImplicitOperations(_ImplicitOperations):
     put_optional_header_async.metadata = {'url': '/reqopt/implicit/optional/header'}
 
     async def put_optional_body_async(
-            self, body_parameter=None, custom_headers=None, raw=False, **operation_config):
+            self, body_parameter=None, *, custom_headers=None, raw=False, **operation_config):
         """Test implicitly optional body parameter.
 
         :param body_parameter:
@@ -195,7 +195,7 @@ class ImplicitOperations(_ImplicitOperations):
     put_optional_body_async.metadata = {'url': '/reqopt/implicit/optional/body'}
 
     async def get_required_global_path_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Test implicitly required path parameter.
 
         :param dict custom_headers: headers that will be added to the request
@@ -238,7 +238,7 @@ class ImplicitOperations(_ImplicitOperations):
     get_required_global_path_async.metadata = {'url': '/reqopt/global/required/path/{required-global-path}'}
 
     async def get_required_global_query_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Test implicitly required query parameter.
 
         :param dict custom_headers: headers that will be added to the request
@@ -278,7 +278,7 @@ class ImplicitOperations(_ImplicitOperations):
     get_required_global_query_async.metadata = {'url': '/reqopt/global/required/query'}
 
     async def get_optional_global_query_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Test implicitly optional query parameter.
 
         :param dict custom_headers: headers that will be added to the request

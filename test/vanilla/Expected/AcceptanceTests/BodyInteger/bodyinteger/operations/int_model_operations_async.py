@@ -19,7 +19,7 @@ class IntModelOperations(_IntModelOperations):
     """IntModelOperations operations."""
 
     async def get_null_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get null Int value.
 
         :param dict custom_headers: headers that will be added to the request
@@ -63,7 +63,7 @@ class IntModelOperations(_IntModelOperations):
     get_null_async.metadata = {'url': '/int/null'}
 
     async def get_invalid_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get invalid Int value.
 
         :param dict custom_headers: headers that will be added to the request
@@ -107,7 +107,7 @@ class IntModelOperations(_IntModelOperations):
     get_invalid_async.metadata = {'url': '/int/invalid'}
 
     async def get_overflow_int32_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get overflow Int32 value.
 
         :param dict custom_headers: headers that will be added to the request
@@ -151,7 +151,7 @@ class IntModelOperations(_IntModelOperations):
     get_overflow_int32_async.metadata = {'url': '/int/overflowint32'}
 
     async def get_underflow_int32_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get underflow Int32 value.
 
         :param dict custom_headers: headers that will be added to the request
@@ -195,7 +195,7 @@ class IntModelOperations(_IntModelOperations):
     get_underflow_int32_async.metadata = {'url': '/int/underflowint32'}
 
     async def get_overflow_int64_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get overflow Int64 value.
 
         :param dict custom_headers: headers that will be added to the request
@@ -239,7 +239,7 @@ class IntModelOperations(_IntModelOperations):
     get_overflow_int64_async.metadata = {'url': '/int/overflowint64'}
 
     async def get_underflow_int64_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get underflow Int64 value.
 
         :param dict custom_headers: headers that will be added to the request
@@ -283,7 +283,7 @@ class IntModelOperations(_IntModelOperations):
     get_underflow_int64_async.metadata = {'url': '/int/underflowint64'}
 
     async def put_max32_async(
-            self, int_body, custom_headers=None, raw=False, **operation_config):
+            self, int_body, *, custom_headers=None, raw=False, **operation_config):
         """Put max int32 value.
 
         :param int_body:
@@ -326,7 +326,7 @@ class IntModelOperations(_IntModelOperations):
     put_max32_async.metadata = {'url': '/int/max/32'}
 
     async def put_max64_async(
-            self, int_body, custom_headers=None, raw=False, **operation_config):
+            self, int_body, *, custom_headers=None, raw=False, **operation_config):
         """Put max int64 value.
 
         :param int_body:
@@ -369,7 +369,7 @@ class IntModelOperations(_IntModelOperations):
     put_max64_async.metadata = {'url': '/int/max/64'}
 
     async def put_min32_async(
-            self, int_body, custom_headers=None, raw=False, **operation_config):
+            self, int_body, *, custom_headers=None, raw=False, **operation_config):
         """Put min int32 value.
 
         :param int_body:
@@ -412,7 +412,7 @@ class IntModelOperations(_IntModelOperations):
     put_min32_async.metadata = {'url': '/int/min/32'}
 
     async def put_min64_async(
-            self, int_body, custom_headers=None, raw=False, **operation_config):
+            self, int_body, *, custom_headers=None, raw=False, **operation_config):
         """Put min int64 value.
 
         :param int_body:
@@ -455,7 +455,7 @@ class IntModelOperations(_IntModelOperations):
     put_min64_async.metadata = {'url': '/int/min/64'}
 
     async def get_unix_time_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get datetime encoded as Unix time value.
 
         :param dict custom_headers: headers that will be added to the request
@@ -499,7 +499,7 @@ class IntModelOperations(_IntModelOperations):
     get_unix_time_async.metadata = {'url': '/int/unixtime'}
 
     async def put_unix_time_date_async(
-            self, int_body, custom_headers=None, raw=False, **operation_config):
+            self, int_body, *, custom_headers=None, raw=False, **operation_config):
         """Put datetime encoded as Unix time.
 
         :param int_body:
@@ -542,7 +542,7 @@ class IntModelOperations(_IntModelOperations):
     put_unix_time_date_async.metadata = {'url': '/int/unixtime'}
 
     async def get_invalid_unix_time_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get invalid Unix time value.
 
         :param dict custom_headers: headers that will be added to the request
@@ -586,7 +586,7 @@ class IntModelOperations(_IntModelOperations):
     get_invalid_unix_time_async.metadata = {'url': '/int/invalidunixtime'}
 
     async def get_null_unix_time_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get null Unix time value.
 
         :param dict custom_headers: headers that will be added to the request

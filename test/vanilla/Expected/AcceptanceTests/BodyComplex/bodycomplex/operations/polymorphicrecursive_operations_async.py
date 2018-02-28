@@ -19,7 +19,7 @@ class PolymorphicrecursiveOperations(_PolymorphicrecursiveOperations):
     """PolymorphicrecursiveOperations operations."""
 
     async def get_valid_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get complex types that are polymorphic and have recursive references.
 
         :param dict custom_headers: headers that will be added to the request
@@ -63,7 +63,7 @@ class PolymorphicrecursiveOperations(_PolymorphicrecursiveOperations):
     get_valid_async.metadata = {'url': '/complex/polymorphicrecursive/valid'}
 
     async def put_valid_async(
-            self, complex_body, custom_headers=None, raw=False, **operation_config):
+            self, complex_body, *, custom_headers=None, raw=False, **operation_config):
         """Put complex types that are polymorphic and have recursive references.
 
         :param complex_body: Please put a salmon that looks like this:

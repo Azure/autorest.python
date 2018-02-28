@@ -19,7 +19,7 @@ from .subscription_in_credentials_operations import SubscriptionInCredentialsOpe
 class SubscriptionInCredentialsOperations(_SubscriptionInCredentialsOperations):
 
     async def post_method_global_valid_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """POST method with subscriptionId modeled in credentials.  Set the
         credential subscriptionId to '1234-5678-9012-3456' to succeed.
 
@@ -66,7 +66,7 @@ class SubscriptionInCredentialsOperations(_SubscriptionInCredentialsOperations):
     post_method_global_valid_async.metadata = {'url': '/azurespecials/subscriptionId/method/string/none/path/global/1234-5678-9012-3456/{subscriptionId}'}
 
     async def post_method_global_null_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """POST method with subscriptionId modeled in credentials.  Set the
         credential subscriptionId to null, and client-side validation should
         prevent you from making this call.
@@ -114,7 +114,7 @@ class SubscriptionInCredentialsOperations(_SubscriptionInCredentialsOperations):
     post_method_global_null_async.metadata = {'url': '/azurespecials/subscriptionId/method/string/none/path/global/null/{subscriptionId}'}
 
     async def post_method_global_not_provided_valid_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """POST method with subscriptionId modeled in credentials.  Set the
         credential subscriptionId to '1234-5678-9012-3456' to succeed.
 
@@ -162,7 +162,7 @@ class SubscriptionInCredentialsOperations(_SubscriptionInCredentialsOperations):
     post_method_global_not_provided_valid_async.metadata = {'url': '/azurespecials/subscriptionId/method/string/none/path/globalNotProvided/1234-5678-9012-3456/{subscriptionId}'}
 
     async def post_path_global_valid_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """POST method with subscriptionId modeled in credentials.  Set the
         credential subscriptionId to '1234-5678-9012-3456' to succeed.
 
@@ -209,7 +209,7 @@ class SubscriptionInCredentialsOperations(_SubscriptionInCredentialsOperations):
     post_path_global_valid_async.metadata = {'url': '/azurespecials/subscriptionId/path/string/none/path/global/1234-5678-9012-3456/{subscriptionId}'}
 
     async def post_swagger_global_valid_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """POST method with subscriptionId modeled in credentials.  Set the
         credential subscriptionId to '1234-5678-9012-3456' to succeed.
 

@@ -19,7 +19,7 @@ class PrimitiveOperations(_PrimitiveOperations):
     """PrimitiveOperations operations."""
 
     async def get_int_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get complex types with integer properties.
 
         :param dict custom_headers: headers that will be added to the request
@@ -64,7 +64,7 @@ class PrimitiveOperations(_PrimitiveOperations):
     get_int_async.metadata = {'url': '/complex/primitive/integer'}
 
     async def put_int_async(
-            self, complex_body, custom_headers=None, raw=False, **operation_config):
+            self, complex_body, *, custom_headers=None, raw=False, **operation_config):
         """Put complex types with integer properties.
 
         :param complex_body: Please put -1 and 2
@@ -107,7 +107,7 @@ class PrimitiveOperations(_PrimitiveOperations):
     put_int_async.metadata = {'url': '/complex/primitive/integer'}
 
     async def get_long_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get complex types with long properties.
 
         :param dict custom_headers: headers that will be added to the request
@@ -152,7 +152,7 @@ class PrimitiveOperations(_PrimitiveOperations):
     get_long_async.metadata = {'url': '/complex/primitive/long'}
 
     async def put_long_async(
-            self, complex_body, custom_headers=None, raw=False, **operation_config):
+            self, complex_body, *, custom_headers=None, raw=False, **operation_config):
         """Put complex types with long properties.
 
         :param complex_body: Please put 1099511627775 and -999511627788
@@ -195,7 +195,7 @@ class PrimitiveOperations(_PrimitiveOperations):
     put_long_async.metadata = {'url': '/complex/primitive/long'}
 
     async def get_float_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get complex types with float properties.
 
         :param dict custom_headers: headers that will be added to the request
@@ -240,7 +240,7 @@ class PrimitiveOperations(_PrimitiveOperations):
     get_float_async.metadata = {'url': '/complex/primitive/float'}
 
     async def put_float_async(
-            self, complex_body, custom_headers=None, raw=False, **operation_config):
+            self, complex_body, *, custom_headers=None, raw=False, **operation_config):
         """Put complex types with float properties.
 
         :param complex_body: Please put 1.05 and -0.003
@@ -283,7 +283,7 @@ class PrimitiveOperations(_PrimitiveOperations):
     put_float_async.metadata = {'url': '/complex/primitive/float'}
 
     async def get_double_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get complex types with double properties.
 
         :param dict custom_headers: headers that will be added to the request
@@ -328,7 +328,7 @@ class PrimitiveOperations(_PrimitiveOperations):
     get_double_async.metadata = {'url': '/complex/primitive/double'}
 
     async def put_double_async(
-            self, complex_body, custom_headers=None, raw=False, **operation_config):
+            self, complex_body, *, custom_headers=None, raw=False, **operation_config):
         """Put complex types with double properties.
 
         :param complex_body: Please put 3e-100 and
@@ -372,7 +372,7 @@ class PrimitiveOperations(_PrimitiveOperations):
     put_double_async.metadata = {'url': '/complex/primitive/double'}
 
     async def get_bool_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get complex types with bool properties.
 
         :param dict custom_headers: headers that will be added to the request
@@ -417,7 +417,7 @@ class PrimitiveOperations(_PrimitiveOperations):
     get_bool_async.metadata = {'url': '/complex/primitive/bool'}
 
     async def put_bool_async(
-            self, complex_body, custom_headers=None, raw=False, **operation_config):
+            self, complex_body, *, custom_headers=None, raw=False, **operation_config):
         """Put complex types with bool properties.
 
         :param complex_body: Please put true and false
@@ -460,7 +460,7 @@ class PrimitiveOperations(_PrimitiveOperations):
     put_bool_async.metadata = {'url': '/complex/primitive/bool'}
 
     async def get_string_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get complex types with string properties.
 
         :param dict custom_headers: headers that will be added to the request
@@ -505,7 +505,7 @@ class PrimitiveOperations(_PrimitiveOperations):
     get_string_async.metadata = {'url': '/complex/primitive/string'}
 
     async def put_string_async(
-            self, complex_body, custom_headers=None, raw=False, **operation_config):
+            self, complex_body, *, custom_headers=None, raw=False, **operation_config):
         """Put complex types with string properties.
 
         :param complex_body: Please put 'goodrequest', '', and null
@@ -548,7 +548,7 @@ class PrimitiveOperations(_PrimitiveOperations):
     put_string_async.metadata = {'url': '/complex/primitive/string'}
 
     async def get_date_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get complex types with date properties.
 
         :param dict custom_headers: headers that will be added to the request
@@ -593,7 +593,7 @@ class PrimitiveOperations(_PrimitiveOperations):
     get_date_async.metadata = {'url': '/complex/primitive/date'}
 
     async def put_date_async(
-            self, complex_body, custom_headers=None, raw=False, **operation_config):
+            self, complex_body, *, custom_headers=None, raw=False, **operation_config):
         """Put complex types with date properties.
 
         :param complex_body: Please put '0001-01-01' and '2016-02-29'
@@ -636,7 +636,7 @@ class PrimitiveOperations(_PrimitiveOperations):
     put_date_async.metadata = {'url': '/complex/primitive/date'}
 
     async def get_date_time_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get complex types with datetime properties.
 
         :param dict custom_headers: headers that will be added to the request
@@ -681,7 +681,7 @@ class PrimitiveOperations(_PrimitiveOperations):
     get_date_time_async.metadata = {'url': '/complex/primitive/datetime'}
 
     async def put_date_time_async(
-            self, complex_body, custom_headers=None, raw=False, **operation_config):
+            self, complex_body, *, custom_headers=None, raw=False, **operation_config):
         """Put complex types with datetime properties.
 
         :param complex_body: Please put '0001-01-01T12:00:00-04:00' and
@@ -725,7 +725,7 @@ class PrimitiveOperations(_PrimitiveOperations):
     put_date_time_async.metadata = {'url': '/complex/primitive/datetime'}
 
     async def get_date_time_rfc1123_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get complex types with datetimeRfc1123 properties.
 
         :param dict custom_headers: headers that will be added to the request
@@ -770,7 +770,7 @@ class PrimitiveOperations(_PrimitiveOperations):
     get_date_time_rfc1123_async.metadata = {'url': '/complex/primitive/datetimerfc1123'}
 
     async def put_date_time_rfc1123_async(
-            self, complex_body, custom_headers=None, raw=False, **operation_config):
+            self, complex_body, *, custom_headers=None, raw=False, **operation_config):
         """Put complex types with datetimeRfc1123 properties.
 
         :param complex_body: Please put 'Mon, 01 Jan 0001 12:00:00 GMT' and
@@ -814,7 +814,7 @@ class PrimitiveOperations(_PrimitiveOperations):
     put_date_time_rfc1123_async.metadata = {'url': '/complex/primitive/datetimerfc1123'}
 
     async def get_duration_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get complex types with duration properties.
 
         :param dict custom_headers: headers that will be added to the request
@@ -859,7 +859,7 @@ class PrimitiveOperations(_PrimitiveOperations):
     get_duration_async.metadata = {'url': '/complex/primitive/duration'}
 
     async def put_duration_async(
-            self, field=None, custom_headers=None, raw=False, **operation_config):
+            self, field=None, *, custom_headers=None, raw=False, **operation_config):
         """Put complex types with duration properties.
 
         :param field:
@@ -904,7 +904,7 @@ class PrimitiveOperations(_PrimitiveOperations):
     put_duration_async.metadata = {'url': '/complex/primitive/duration'}
 
     async def get_byte_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get complex types with byte properties.
 
         :param dict custom_headers: headers that will be added to the request
@@ -949,7 +949,7 @@ class PrimitiveOperations(_PrimitiveOperations):
     get_byte_async.metadata = {'url': '/complex/primitive/byte'}
 
     async def put_byte_async(
-            self, field=None, custom_headers=None, raw=False, **operation_config):
+            self, field=None, *, custom_headers=None, raw=False, **operation_config):
         """Put complex types with byte properties.
 
         :param field:

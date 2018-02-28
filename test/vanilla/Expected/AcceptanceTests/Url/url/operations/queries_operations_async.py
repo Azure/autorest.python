@@ -19,7 +19,7 @@ class QueriesOperations(_QueriesOperations):
     """QueriesOperations operations."""
 
     async def get_boolean_true_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get true Boolean value on path.
 
         :param dict custom_headers: headers that will be added to the request
@@ -59,7 +59,7 @@ class QueriesOperations(_QueriesOperations):
     get_boolean_true_async.metadata = {'url': '/queries/bool/true'}
 
     async def get_boolean_false_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get false Boolean value on path.
 
         :param dict custom_headers: headers that will be added to the request
@@ -99,7 +99,7 @@ class QueriesOperations(_QueriesOperations):
     get_boolean_false_async.metadata = {'url': '/queries/bool/false'}
 
     async def get_boolean_null_async(
-            self, bool_query=None, custom_headers=None, raw=False, **operation_config):
+            self, bool_query=None, *, custom_headers=None, raw=False, **operation_config):
         """Get null Boolean value on query (query string should be absent).
 
         :param bool_query: null boolean value
@@ -140,7 +140,7 @@ class QueriesOperations(_QueriesOperations):
     get_boolean_null_async.metadata = {'url': '/queries/bool/null'}
 
     async def get_int_one_million_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get '1000000' integer value.
 
         :param dict custom_headers: headers that will be added to the request
@@ -180,7 +180,7 @@ class QueriesOperations(_QueriesOperations):
     get_int_one_million_async.metadata = {'url': '/queries/int/1000000'}
 
     async def get_int_negative_one_million_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get '-1000000' integer value.
 
         :param dict custom_headers: headers that will be added to the request
@@ -220,7 +220,7 @@ class QueriesOperations(_QueriesOperations):
     get_int_negative_one_million_async.metadata = {'url': '/queries/int/-1000000'}
 
     async def get_int_null_async(
-            self, int_query=None, custom_headers=None, raw=False, **operation_config):
+            self, int_query=None, *, custom_headers=None, raw=False, **operation_config):
         """Get null integer value (no query parameter).
 
         :param int_query: null integer value
@@ -261,7 +261,7 @@ class QueriesOperations(_QueriesOperations):
     get_int_null_async.metadata = {'url': '/queries/int/null'}
 
     async def get_ten_billion_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get '10000000000' 64 bit integer value.
 
         :param dict custom_headers: headers that will be added to the request
@@ -301,7 +301,7 @@ class QueriesOperations(_QueriesOperations):
     get_ten_billion_async.metadata = {'url': '/queries/long/10000000000'}
 
     async def get_negative_ten_billion_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get '-10000000000' 64 bit integer value.
 
         :param dict custom_headers: headers that will be added to the request
@@ -341,7 +341,7 @@ class QueriesOperations(_QueriesOperations):
     get_negative_ten_billion_async.metadata = {'url': '/queries/long/-10000000000'}
 
     async def get_long_null_async(
-            self, long_query=None, custom_headers=None, raw=False, **operation_config):
+            self, long_query=None, *, custom_headers=None, raw=False, **operation_config):
         """Get 'null 64 bit integer value (no query param in uri).
 
         :param long_query: null 64 bit integer value
@@ -382,7 +382,7 @@ class QueriesOperations(_QueriesOperations):
     get_long_null_async.metadata = {'url': '/queries/long/null'}
 
     async def float_scientific_positive_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get '1.034E+20' numeric value.
 
         :param dict custom_headers: headers that will be added to the request
@@ -422,7 +422,7 @@ class QueriesOperations(_QueriesOperations):
     float_scientific_positive_async.metadata = {'url': '/queries/float/1.034E+20'}
 
     async def float_scientific_negative_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get '-1.034E-20' numeric value.
 
         :param dict custom_headers: headers that will be added to the request
@@ -462,7 +462,7 @@ class QueriesOperations(_QueriesOperations):
     float_scientific_negative_async.metadata = {'url': '/queries/float/-1.034E-20'}
 
     async def float_null_async(
-            self, float_query=None, custom_headers=None, raw=False, **operation_config):
+            self, float_query=None, *, custom_headers=None, raw=False, **operation_config):
         """Get null numeric value (no query parameter).
 
         :param float_query: null numeric value
@@ -503,7 +503,7 @@ class QueriesOperations(_QueriesOperations):
     float_null_async.metadata = {'url': '/queries/float/null'}
 
     async def double_decimal_positive_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get '9999999.999' numeric value.
 
         :param dict custom_headers: headers that will be added to the request
@@ -543,7 +543,7 @@ class QueriesOperations(_QueriesOperations):
     double_decimal_positive_async.metadata = {'url': '/queries/double/9999999.999'}
 
     async def double_decimal_negative_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get '-9999999.999' numeric value.
 
         :param dict custom_headers: headers that will be added to the request
@@ -583,7 +583,7 @@ class QueriesOperations(_QueriesOperations):
     double_decimal_negative_async.metadata = {'url': '/queries/double/-9999999.999'}
 
     async def double_null_async(
-            self, double_query=None, custom_headers=None, raw=False, **operation_config):
+            self, double_query=None, *, custom_headers=None, raw=False, **operation_config):
         """Get null numeric value (no query parameter).
 
         :param double_query: null numeric value
@@ -624,7 +624,7 @@ class QueriesOperations(_QueriesOperations):
     double_null_async.metadata = {'url': '/queries/double/null'}
 
     async def string_unicode_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value.
 
         :param dict custom_headers: headers that will be added to the request
@@ -664,7 +664,7 @@ class QueriesOperations(_QueriesOperations):
     string_unicode_async.metadata = {'url': '/queries/string/unicode/'}
 
     async def string_url_encoded_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get 'begin!*'();:@ &=+$,/?#[]end.
 
         :param dict custom_headers: headers that will be added to the request
@@ -704,7 +704,7 @@ class QueriesOperations(_QueriesOperations):
     string_url_encoded_async.metadata = {'url': '/queries/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend'}
 
     async def string_empty_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get ''.
 
         :param dict custom_headers: headers that will be added to the request
@@ -744,7 +744,7 @@ class QueriesOperations(_QueriesOperations):
     string_empty_async.metadata = {'url': '/queries/string/empty'}
 
     async def string_null_async(
-            self, string_query=None, custom_headers=None, raw=False, **operation_config):
+            self, string_query=None, *, custom_headers=None, raw=False, **operation_config):
         """Get null (no query parameter in url).
 
         :param string_query: null string value
@@ -785,7 +785,7 @@ class QueriesOperations(_QueriesOperations):
     string_null_async.metadata = {'url': '/queries/string/null'}
 
     async def enum_valid_async(
-            self, enum_query=None, custom_headers=None, raw=False, **operation_config):
+            self, enum_query=None, *, custom_headers=None, raw=False, **operation_config):
         """Get using uri with query parameter 'green color'.
 
         :param enum_query: 'green color' enum value. Possible values include:
@@ -827,7 +827,7 @@ class QueriesOperations(_QueriesOperations):
     enum_valid_async.metadata = {'url': '/queries/enum/green%20color'}
 
     async def enum_null_async(
-            self, enum_query=None, custom_headers=None, raw=False, **operation_config):
+            self, enum_query=None, *, custom_headers=None, raw=False, **operation_config):
         """Get null (no query parameter in url).
 
         :param enum_query: null string value. Possible values include: 'red
@@ -869,7 +869,7 @@ class QueriesOperations(_QueriesOperations):
     enum_null_async.metadata = {'url': '/queries/enum/null'}
 
     async def byte_multi_byte_async(
-            self, byte_query=None, custom_headers=None, raw=False, **operation_config):
+            self, byte_query=None, *, custom_headers=None, raw=False, **operation_config):
         """Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
 
         :param byte_query: '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte
@@ -911,7 +911,7 @@ class QueriesOperations(_QueriesOperations):
     byte_multi_byte_async.metadata = {'url': '/queries/byte/multibyte'}
 
     async def byte_empty_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get '' as byte array.
 
         :param dict custom_headers: headers that will be added to the request
@@ -949,7 +949,7 @@ class QueriesOperations(_QueriesOperations):
     byte_empty_async.metadata = {'url': '/queries/byte/empty'}
 
     async def byte_null_async(
-            self, byte_query=None, custom_headers=None, raw=False, **operation_config):
+            self, byte_query=None, *, custom_headers=None, raw=False, **operation_config):
         """Get null as byte array (no query parameters in uri).
 
         :param byte_query: null as byte array (no query parameters in uri)
@@ -990,7 +990,7 @@ class QueriesOperations(_QueriesOperations):
     byte_null_async.metadata = {'url': '/queries/byte/null'}
 
     async def date_valid_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get '2012-01-01' as date.
 
         :param dict custom_headers: headers that will be added to the request
@@ -1028,7 +1028,7 @@ class QueriesOperations(_QueriesOperations):
     date_valid_async.metadata = {'url': '/queries/date/2012-01-01'}
 
     async def date_null_async(
-            self, date_query=None, custom_headers=None, raw=False, **operation_config):
+            self, date_query=None, *, custom_headers=None, raw=False, **operation_config):
         """Get null as date - this should result in no query parameters in uri.
 
         :param date_query: null as date (no query parameters in uri)
@@ -1069,7 +1069,7 @@ class QueriesOperations(_QueriesOperations):
     date_null_async.metadata = {'url': '/queries/date/null'}
 
     async def date_time_valid_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get '2012-01-01T01:01:01Z' as date-time.
 
         :param dict custom_headers: headers that will be added to the request
@@ -1107,7 +1107,7 @@ class QueriesOperations(_QueriesOperations):
     date_time_valid_async.metadata = {'url': '/queries/datetime/2012-01-01T01%3A01%3A01Z'}
 
     async def date_time_null_async(
-            self, date_time_query=None, custom_headers=None, raw=False, **operation_config):
+            self, date_time_query=None, *, custom_headers=None, raw=False, **operation_config):
         """Get null as date-time, should result in no query parameters in uri.
 
         :param date_time_query: null as date-time (no query parameters)
@@ -1148,7 +1148,7 @@ class QueriesOperations(_QueriesOperations):
     date_time_null_async.metadata = {'url': '/queries/datetime/null'}
 
     async def array_string_csv_valid_async(
-            self, array_query=None, custom_headers=None, raw=False, **operation_config):
+            self, array_query=None, *, custom_headers=None, raw=False, **operation_config):
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' ,
         null, ''] using the csv-array format.
 
@@ -1191,7 +1191,7 @@ class QueriesOperations(_QueriesOperations):
     array_string_csv_valid_async.metadata = {'url': '/queries/array/csv/string/valid'}
 
     async def array_string_csv_null_async(
-            self, array_query=None, custom_headers=None, raw=False, **operation_config):
+            self, array_query=None, *, custom_headers=None, raw=False, **operation_config):
         """Get a null array of string using the csv-array format.
 
         :param array_query: a null array of string using the csv-array format
@@ -1232,7 +1232,7 @@ class QueriesOperations(_QueriesOperations):
     array_string_csv_null_async.metadata = {'url': '/queries/array/csv/string/null'}
 
     async def array_string_csv_empty_async(
-            self, array_query=None, custom_headers=None, raw=False, **operation_config):
+            self, array_query=None, *, custom_headers=None, raw=False, **operation_config):
         """Get an empty array [] of string using the csv-array format.
 
         :param array_query: an empty array [] of string using the csv-array
@@ -1274,7 +1274,7 @@ class QueriesOperations(_QueriesOperations):
     array_string_csv_empty_async.metadata = {'url': '/queries/array/csv/string/empty'}
 
     async def array_string_ssv_valid_async(
-            self, array_query=None, custom_headers=None, raw=False, **operation_config):
+            self, array_query=None, *, custom_headers=None, raw=False, **operation_config):
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' ,
         null, ''] using the ssv-array format.
 
@@ -1317,7 +1317,7 @@ class QueriesOperations(_QueriesOperations):
     array_string_ssv_valid_async.metadata = {'url': '/queries/array/ssv/string/valid'}
 
     async def array_string_tsv_valid_async(
-            self, array_query=None, custom_headers=None, raw=False, **operation_config):
+            self, array_query=None, *, custom_headers=None, raw=False, **operation_config):
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' ,
         null, ''] using the tsv-array format.
 
@@ -1360,7 +1360,7 @@ class QueriesOperations(_QueriesOperations):
     array_string_tsv_valid_async.metadata = {'url': '/queries/array/tsv/string/valid'}
 
     async def array_string_pipes_valid_async(
-            self, array_query=None, custom_headers=None, raw=False, **operation_config):
+            self, array_query=None, *, custom_headers=None, raw=False, **operation_config):
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' ,
         null, ''] using the pipes-array format.
 

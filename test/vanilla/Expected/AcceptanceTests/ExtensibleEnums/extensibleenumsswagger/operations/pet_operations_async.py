@@ -20,7 +20,7 @@ class PetOperations(_PetOperations):
     """PetOperations operations."""
 
     async def get_by_pet_id_async(
-            self, pet_id, custom_headers=None, raw=False, **operation_config):
+            self, pet_id, *, custom_headers=None, raw=False, **operation_config):
         """
 
         :param pet_id: Pet id
@@ -72,7 +72,7 @@ class PetOperations(_PetOperations):
     get_by_pet_id_async.metadata = {'url': '/extensibleenums/pet/{petId}'}
 
     async def add_pet_async(
-            self, pet_param=None, custom_headers=None, raw=False, **operation_config):
+            self, pet_param=None, *, custom_headers=None, raw=False, **operation_config):
         """
 
         :param pet_param:

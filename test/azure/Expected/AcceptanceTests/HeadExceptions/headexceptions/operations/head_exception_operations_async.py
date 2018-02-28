@@ -18,7 +18,7 @@ from .head_exception_operations import HeadExceptionOperations as _HeadException
 class HeadExceptionOperations(_HeadExceptionOperations):
 
     async def head200_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Return 200 status code if successful.
 
         :param dict custom_headers: headers that will be added to the request
@@ -61,7 +61,7 @@ class HeadExceptionOperations(_HeadExceptionOperations):
     head200_async.metadata = {'url': '/http/success/200'}
 
     async def head204_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Return 204 status code if successful.
 
         :param dict custom_headers: headers that will be added to the request
@@ -104,7 +104,7 @@ class HeadExceptionOperations(_HeadExceptionOperations):
     head204_async.metadata = {'url': '/http/success/204'}
 
     async def head404_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Return 404 status code if successful.
 
         :param dict custom_headers: headers that will be added to the request

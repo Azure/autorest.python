@@ -20,7 +20,7 @@ class AvailabilitySetsOperations(_AvailabilitySetsOperations):
     """AvailabilitySetsOperations operations."""
 
     async def update_async(
-            self, resource_group_name, avset, tags, custom_headers=None, raw=False, **operation_config):
+            self, resource_group_name, avset, tags, *, custom_headers=None, raw=False, **operation_config):
         """Updates the tags for an availability set.
 
         :param resource_group_name: The name of the resource group.

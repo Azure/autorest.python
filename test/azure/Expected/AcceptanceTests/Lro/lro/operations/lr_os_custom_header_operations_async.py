@@ -23,7 +23,7 @@ class LROsCustomHeaderOperations(_LROsCustomHeaderOperations):
 
 
     async def _put_async_retry_succeeded_initial_async(
-            self, product=None, custom_headers=None, raw=False, **operation_config):
+            self, product=None, *, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = self.put_async_retry_succeeded_async.metadata['url']
 
@@ -75,7 +75,7 @@ class LROsCustomHeaderOperations(_LROsCustomHeaderOperations):
         return deserialized
 
     async def put_async_retry_succeeded_async(
-            self, product=None, custom_headers=None, raw=False, polling=True, **operation_config):
+            self, product=None, *, custom_headers=None, raw=False, polling=True, **operation_config):
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is
         required message header for all requests. Long running put request,
         service returns a 200 to the initial request, with an entity that
@@ -128,7 +128,7 @@ class LROsCustomHeaderOperations(_LROsCustomHeaderOperations):
 
 
     async def _put201_creating_succeeded200_initial_async(
-            self, product=None, custom_headers=None, raw=False, **operation_config):
+            self, product=None, *, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = self.put201_creating_succeeded200_async.metadata['url']
 
@@ -175,7 +175,7 @@ class LROsCustomHeaderOperations(_LROsCustomHeaderOperations):
         return deserialized
 
     async def put201_creating_succeeded200_async(
-            self, product=None, custom_headers=None, raw=False, polling=True, **operation_config):
+            self, product=None, *, custom_headers=None, raw=False, polling=True, **operation_config):
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is
         required message header for all requests. Long running put request,
         service returns a 201 to the initial request, with an entity that
@@ -222,7 +222,7 @@ class LROsCustomHeaderOperations(_LROsCustomHeaderOperations):
 
 
     async def _post202_retry200_initial_async(
-            self, product=None, custom_headers=None, raw=False, **operation_config):
+            self, product=None, *, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = self.post202_retry200_async.metadata['url']
 
@@ -265,7 +265,7 @@ class LROsCustomHeaderOperations(_LROsCustomHeaderOperations):
             return client_raw_response
 
     async def post202_retry200_async(
-            self, product=None, custom_headers=None, raw=False, polling=True, **operation_config):
+            self, product=None, *, custom_headers=None, raw=False, polling=True, **operation_config):
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is
         required message header for all requests. Long running post request,
         service returns a 202 to the initial request, with 'Location' and
@@ -310,7 +310,7 @@ class LROsCustomHeaderOperations(_LROsCustomHeaderOperations):
 
 
     async def _post_async_retry_succeeded_initial_async(
-            self, product=None, custom_headers=None, raw=False, **operation_config):
+            self, product=None, *, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = self.post_async_retry_succeeded_async.metadata['url']
 
@@ -354,7 +354,7 @@ class LROsCustomHeaderOperations(_LROsCustomHeaderOperations):
             return client_raw_response
 
     async def post_async_retry_succeeded_async(
-            self, product=None, custom_headers=None, raw=False, polling=True, **operation_config):
+            self, product=None, *, custom_headers=None, raw=False, polling=True, **operation_config):
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is
         required message header for all requests. Long running post request,
         service returns a 202 to the initial request, with an entity that

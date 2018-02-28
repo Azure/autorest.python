@@ -19,7 +19,7 @@ class DateModelOperations(_DateModelOperations):
     """DateModelOperations operations."""
 
     async def get_null_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get null date value.
 
         :param dict custom_headers: headers that will be added to the request
@@ -63,7 +63,7 @@ class DateModelOperations(_DateModelOperations):
     get_null_async.metadata = {'url': '/date/null'}
 
     async def get_invalid_date_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get invalid date value.
 
         :param dict custom_headers: headers that will be added to the request
@@ -107,7 +107,7 @@ class DateModelOperations(_DateModelOperations):
     get_invalid_date_async.metadata = {'url': '/date/invaliddate'}
 
     async def get_overflow_date_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get overflow date value.
 
         :param dict custom_headers: headers that will be added to the request
@@ -151,7 +151,7 @@ class DateModelOperations(_DateModelOperations):
     get_overflow_date_async.metadata = {'url': '/date/overflowdate'}
 
     async def get_underflow_date_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get underflow date value.
 
         :param dict custom_headers: headers that will be added to the request
@@ -195,7 +195,7 @@ class DateModelOperations(_DateModelOperations):
     get_underflow_date_async.metadata = {'url': '/date/underflowdate'}
 
     async def put_max_date_async(
-            self, date_body, custom_headers=None, raw=False, **operation_config):
+            self, date_body, *, custom_headers=None, raw=False, **operation_config):
         """Put max date value 9999-12-31.
 
         :param date_body:
@@ -238,7 +238,7 @@ class DateModelOperations(_DateModelOperations):
     put_max_date_async.metadata = {'url': '/date/max'}
 
     async def get_max_date_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get max date value 9999-12-31.
 
         :param dict custom_headers: headers that will be added to the request
@@ -282,7 +282,7 @@ class DateModelOperations(_DateModelOperations):
     get_max_date_async.metadata = {'url': '/date/max'}
 
     async def put_min_date_async(
-            self, date_body, custom_headers=None, raw=False, **operation_config):
+            self, date_body, *, custom_headers=None, raw=False, **operation_config):
         """Put min date value 0000-01-01.
 
         :param date_body:
@@ -325,7 +325,7 @@ class DateModelOperations(_DateModelOperations):
     put_min_date_async.metadata = {'url': '/date/min'}
 
     async def get_min_date_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get min date value 0000-01-01.
 
         :param dict custom_headers: headers that will be added to the request

@@ -19,7 +19,7 @@ class BasicOperations(_BasicOperations):
     """BasicOperations operations."""
 
     async def get_valid_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get complex type {id: 2, name: 'abc', color: 'YELLOW'}.
 
         :param dict custom_headers: headers that will be added to the request
@@ -64,7 +64,7 @@ class BasicOperations(_BasicOperations):
     get_valid_async.metadata = {'url': '/complex/basic/valid'}
 
     async def put_valid_async(
-            self, complex_body, custom_headers=None, raw=False, **operation_config):
+            self, complex_body, *, custom_headers=None, raw=False, **operation_config):
         """Please put {id: 2, name: 'abc', color: 'Magenta'}.
 
         :param complex_body: Please put {id: 2, name: 'abc', color: 'Magenta'}
@@ -108,7 +108,7 @@ class BasicOperations(_BasicOperations):
     put_valid_async.metadata = {'url': '/complex/basic/valid'}
 
     async def get_invalid_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get a basic complex type that is invalid for the local strong type.
 
         :param dict custom_headers: headers that will be added to the request
@@ -153,7 +153,7 @@ class BasicOperations(_BasicOperations):
     get_invalid_async.metadata = {'url': '/complex/basic/invalid'}
 
     async def get_empty_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get a basic complex type that is empty.
 
         :param dict custom_headers: headers that will be added to the request
@@ -198,7 +198,7 @@ class BasicOperations(_BasicOperations):
     get_empty_async.metadata = {'url': '/complex/basic/empty'}
 
     async def get_null_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get a basic complex type whose properties are null.
 
         :param dict custom_headers: headers that will be added to the request
@@ -243,7 +243,7 @@ class BasicOperations(_BasicOperations):
     get_null_async.metadata = {'url': '/complex/basic/null'}
 
     async def get_not_provided_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get a basic complex type while the server doesn't provide a response
         payload.
 

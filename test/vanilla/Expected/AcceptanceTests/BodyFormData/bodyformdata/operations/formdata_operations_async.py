@@ -19,7 +19,7 @@ class FormdataOperations(_FormdataOperations):
     """FormdataOperations operations."""
 
     async def upload_file_async(
-            self, file_content, file_name, custom_headers=None, raw=False, callback=None, **operation_config):
+            self, file_content, file_name, *, custom_headers=None, raw=False, callback=None, **operation_config):
         """Upload file.
 
         :param file_content: File to upload.
@@ -80,7 +80,7 @@ class FormdataOperations(_FormdataOperations):
     upload_file_async.metadata = {'url': '/formdata/stream/uploadfile'}
 
     async def upload_file_via_body_async(
-            self, file_content, custom_headers=None, raw=False, callback=None, **operation_config):
+            self, file_content, *, custom_headers=None, raw=False, callback=None, **operation_config):
         """Upload file.
 
         :param file_content: File to upload.

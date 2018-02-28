@@ -23,7 +23,7 @@ class LROSADsOperations(_LROSADsOperations):
 
 
     async def _put_non_retry400_initial_async(
-            self, product=None, custom_headers=None, raw=False, **operation_config):
+            self, product=None, *, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = self.put_non_retry400_async.metadata['url']
 
@@ -70,7 +70,7 @@ class LROSADsOperations(_LROSADsOperations):
         return deserialized
 
     async def put_non_retry400_async(
-            self, product=None, custom_headers=None, raw=False, polling=True, **operation_config):
+            self, product=None, *, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running put request, service returns a 400 to the initial request.
 
         :param product: Product to put
@@ -113,7 +113,7 @@ class LROSADsOperations(_LROSADsOperations):
 
 
     async def _put_non_retry201_creating400_initial_async(
-            self, product=None, custom_headers=None, raw=False, **operation_config):
+            self, product=None, *, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = self.put_non_retry201_creating400_async.metadata['url']
 
@@ -160,7 +160,7 @@ class LROSADsOperations(_LROSADsOperations):
         return deserialized
 
     async def put_non_retry201_creating400_async(
-            self, product=None, custom_headers=None, raw=False, polling=True, **operation_config):
+            self, product=None, *, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running put request, service returns a Product with
         'ProvisioningState' = 'Creating' and 201 response code.
 
@@ -204,7 +204,7 @@ class LROSADsOperations(_LROSADsOperations):
 
 
     async def _put_non_retry201_creating400_invalid_json_initial_async(
-            self, product=None, custom_headers=None, raw=False, **operation_config):
+            self, product=None, *, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = self.put_non_retry201_creating400_invalid_json_async.metadata['url']
 
@@ -251,7 +251,7 @@ class LROSADsOperations(_LROSADsOperations):
         return deserialized
 
     async def put_non_retry201_creating400_invalid_json_async(
-            self, product=None, custom_headers=None, raw=False, polling=True, **operation_config):
+            self, product=None, *, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running put request, service returns a Product with
         'ProvisioningState' = 'Creating' and 201 response code.
 
@@ -295,7 +295,7 @@ class LROSADsOperations(_LROSADsOperations):
 
 
     async def _put_async_relative_retry400_initial_async(
-            self, product=None, custom_headers=None, raw=False, **operation_config):
+            self, product=None, *, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = self.put_async_relative_retry400_async.metadata['url']
 
@@ -347,7 +347,7 @@ class LROSADsOperations(_LROSADsOperations):
         return deserialized
 
     async def put_async_relative_retry400_async(
-            self, product=None, custom_headers=None, raw=False, polling=True, **operation_config):
+            self, product=None, *, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running put request, service returns a 200 with
         ProvisioningState=’Creating’. Poll the endpoint indicated in the
         Azure-AsyncOperation header for operation status.
@@ -398,7 +398,7 @@ class LROSADsOperations(_LROSADsOperations):
 
 
     async def _delete_non_retry400_initial_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = self.delete_non_retry400_async.metadata['url']
 
@@ -434,7 +434,7 @@ class LROSADsOperations(_LROSADsOperations):
             return client_raw_response
 
     async def delete_non_retry400_async(
-            self, custom_headers=None, raw=False, polling=True, **operation_config):
+            self, *, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running delete request, service returns a 400 with an error body.
 
         :param dict custom_headers: headers that will be added to the request
@@ -472,7 +472,7 @@ class LROSADsOperations(_LROSADsOperations):
 
 
     async def _delete202_non_retry400_initial_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = self.delete202_non_retry400_async.metadata['url']
 
@@ -508,7 +508,7 @@ class LROSADsOperations(_LROSADsOperations):
             return client_raw_response
 
     async def delete202_non_retry400_async(
-            self, custom_headers=None, raw=False, polling=True, **operation_config):
+            self, *, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running delete request, service returns a 202 with a location
         header.
 
@@ -547,7 +547,7 @@ class LROSADsOperations(_LROSADsOperations):
 
 
     async def _delete_async_relative_retry400_initial_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = self.delete_async_relative_retry400_async.metadata['url']
 
@@ -584,7 +584,7 @@ class LROSADsOperations(_LROSADsOperations):
             return client_raw_response
 
     async def delete_async_relative_retry400_async(
-            self, custom_headers=None, raw=False, polling=True, **operation_config):
+            self, *, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running delete request, service returns a 202 to the initial
         request. Poll the endpoint indicated in the Azure-AsyncOperation header
         for operation status.
@@ -625,7 +625,7 @@ class LROSADsOperations(_LROSADsOperations):
 
 
     async def _post_non_retry400_initial_async(
-            self, product=None, custom_headers=None, raw=False, **operation_config):
+            self, product=None, *, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = self.post_non_retry400_async.metadata['url']
 
@@ -668,7 +668,7 @@ class LROSADsOperations(_LROSADsOperations):
             return client_raw_response
 
     async def post_non_retry400_async(
-            self, product=None, custom_headers=None, raw=False, polling=True, **operation_config):
+            self, product=None, *, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running post request, service returns a 400 with no error body.
 
         :param product: Product to put
@@ -709,7 +709,7 @@ class LROSADsOperations(_LROSADsOperations):
 
 
     async def _post202_non_retry400_initial_async(
-            self, product=None, custom_headers=None, raw=False, **operation_config):
+            self, product=None, *, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = self.post202_non_retry400_async.metadata['url']
 
@@ -752,7 +752,7 @@ class LROSADsOperations(_LROSADsOperations):
             return client_raw_response
 
     async def post202_non_retry400_async(
-            self, product=None, custom_headers=None, raw=False, polling=True, **operation_config):
+            self, product=None, *, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running post request, service returns a 202 with a location
         header.
 
@@ -794,7 +794,7 @@ class LROSADsOperations(_LROSADsOperations):
 
 
     async def _post_async_relative_retry400_initial_async(
-            self, product=None, custom_headers=None, raw=False, **operation_config):
+            self, product=None, *, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = self.post_async_relative_retry400_async.metadata['url']
 
@@ -838,7 +838,7 @@ class LROSADsOperations(_LROSADsOperations):
             return client_raw_response
 
     async def post_async_relative_retry400_async(
-            self, product=None, custom_headers=None, raw=False, polling=True, **operation_config):
+            self, product=None, *, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running post request, service returns a 202 to the initial request
         Poll the endpoint indicated in the Azure-AsyncOperation header for
         operation status.
@@ -882,7 +882,7 @@ class LROSADsOperations(_LROSADsOperations):
 
 
     async def _put_error201_no_provisioning_state_payload_initial_async(
-            self, product=None, custom_headers=None, raw=False, **operation_config):
+            self, product=None, *, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = self.put_error201_no_provisioning_state_payload_async.metadata['url']
 
@@ -929,7 +929,7 @@ class LROSADsOperations(_LROSADsOperations):
         return deserialized
 
     async def put_error201_no_provisioning_state_payload_async(
-            self, product=None, custom_headers=None, raw=False, polling=True, **operation_config):
+            self, product=None, *, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running put request, service returns a 201 to the initial request
         with no payload.
 
@@ -973,7 +973,7 @@ class LROSADsOperations(_LROSADsOperations):
 
 
     async def _put_async_relative_retry_no_status_initial_async(
-            self, product=None, custom_headers=None, raw=False, **operation_config):
+            self, product=None, *, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = self.put_async_relative_retry_no_status_async.metadata['url']
 
@@ -1025,7 +1025,7 @@ class LROSADsOperations(_LROSADsOperations):
         return deserialized
 
     async def put_async_relative_retry_no_status_async(
-            self, product=None, custom_headers=None, raw=False, polling=True, **operation_config):
+            self, product=None, *, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running put request, service returns a 200 to the initial request,
         with an entity that contains ProvisioningState=’Creating’. Poll the
         endpoint indicated in the Azure-AsyncOperation header for operation
@@ -1077,7 +1077,7 @@ class LROSADsOperations(_LROSADsOperations):
 
 
     async def _put_async_relative_retry_no_status_payload_initial_async(
-            self, product=None, custom_headers=None, raw=False, **operation_config):
+            self, product=None, *, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = self.put_async_relative_retry_no_status_payload_async.metadata['url']
 
@@ -1129,7 +1129,7 @@ class LROSADsOperations(_LROSADsOperations):
         return deserialized
 
     async def put_async_relative_retry_no_status_payload_async(
-            self, product=None, custom_headers=None, raw=False, polling=True, **operation_config):
+            self, product=None, *, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running put request, service returns a 200 to the initial request,
         with an entity that contains ProvisioningState=’Creating’. Poll the
         endpoint indicated in the Azure-AsyncOperation header for operation
@@ -1181,7 +1181,7 @@ class LROSADsOperations(_LROSADsOperations):
 
 
     async def _delete204_succeeded_initial_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = self.delete204_succeeded_async.metadata['url']
 
@@ -1212,7 +1212,7 @@ class LROSADsOperations(_LROSADsOperations):
             return client_raw_response
 
     async def delete204_succeeded_async(
-            self, custom_headers=None, raw=False, polling=True, **operation_config):
+            self, *, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running delete request, service returns a 204 to the initial
         request, indicating success.
 
@@ -1247,7 +1247,7 @@ class LROSADsOperations(_LROSADsOperations):
 
 
     async def _delete_async_relative_retry_no_status_initial_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = self.delete_async_relative_retry_no_status_async.metadata['url']
 
@@ -1284,7 +1284,7 @@ class LROSADsOperations(_LROSADsOperations):
             return client_raw_response
 
     async def delete_async_relative_retry_no_status_async(
-            self, custom_headers=None, raw=False, polling=True, **operation_config):
+            self, *, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running delete request, service returns a 202 to the initial
         request. Poll the endpoint indicated in the Azure-AsyncOperation header
         for operation status.
@@ -1325,7 +1325,7 @@ class LROSADsOperations(_LROSADsOperations):
 
 
     async def _post202_no_location_initial_async(
-            self, product=None, custom_headers=None, raw=False, **operation_config):
+            self, product=None, *, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = self.post202_no_location_async.metadata['url']
 
@@ -1368,7 +1368,7 @@ class LROSADsOperations(_LROSADsOperations):
             return client_raw_response
 
     async def post202_no_location_async(
-            self, product=None, custom_headers=None, raw=False, polling=True, **operation_config):
+            self, product=None, *, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running post request, service returns a 202 to the initial
         request, without a location header.
 
@@ -1410,7 +1410,7 @@ class LROSADsOperations(_LROSADsOperations):
 
 
     async def _post_async_relative_retry_no_payload_initial_async(
-            self, product=None, custom_headers=None, raw=False, **operation_config):
+            self, product=None, *, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = self.post_async_relative_retry_no_payload_async.metadata['url']
 
@@ -1454,7 +1454,7 @@ class LROSADsOperations(_LROSADsOperations):
             return client_raw_response
 
     async def post_async_relative_retry_no_payload_async(
-            self, product=None, custom_headers=None, raw=False, polling=True, **operation_config):
+            self, product=None, *, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running post request, service returns a 202 to the initial
         request, with an entity that contains ProvisioningState=’Creating’.
         Poll the endpoint indicated in the Azure-AsyncOperation header for
@@ -1499,7 +1499,7 @@ class LROSADsOperations(_LROSADsOperations):
 
 
     async def _put200_invalid_json_initial_async(
-            self, product=None, custom_headers=None, raw=False, **operation_config):
+            self, product=None, *, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = self.put200_invalid_json_async.metadata['url']
 
@@ -1544,7 +1544,7 @@ class LROSADsOperations(_LROSADsOperations):
         return deserialized
 
     async def put200_invalid_json_async(
-            self, product=None, custom_headers=None, raw=False, polling=True, **operation_config):
+            self, product=None, *, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running put request, service returns a 200 to the initial request,
         with an entity that is not a valid json.
 
@@ -1588,7 +1588,7 @@ class LROSADsOperations(_LROSADsOperations):
 
 
     async def _put_async_relative_retry_invalid_header_initial_async(
-            self, product=None, custom_headers=None, raw=False, **operation_config):
+            self, product=None, *, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = self.put_async_relative_retry_invalid_header_async.metadata['url']
 
@@ -1640,7 +1640,7 @@ class LROSADsOperations(_LROSADsOperations):
         return deserialized
 
     async def put_async_relative_retry_invalid_header_async(
-            self, product=None, custom_headers=None, raw=False, polling=True, **operation_config):
+            self, product=None, *, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running put request, service returns a 200 to the initial request,
         with an entity that contains ProvisioningState=’Creating’. The endpoint
         indicated in the Azure-AsyncOperation header is invalid.
@@ -1691,7 +1691,7 @@ class LROSADsOperations(_LROSADsOperations):
 
 
     async def _put_async_relative_retry_invalid_json_polling_initial_async(
-            self, product=None, custom_headers=None, raw=False, **operation_config):
+            self, product=None, *, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = self.put_async_relative_retry_invalid_json_polling_async.metadata['url']
 
@@ -1743,7 +1743,7 @@ class LROSADsOperations(_LROSADsOperations):
         return deserialized
 
     async def put_async_relative_retry_invalid_json_polling_async(
-            self, product=None, custom_headers=None, raw=False, polling=True, **operation_config):
+            self, product=None, *, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running put request, service returns a 200 to the initial request,
         with an entity that contains ProvisioningState=’Creating’. Poll the
         endpoint indicated in the Azure-AsyncOperation header for operation
@@ -1795,7 +1795,7 @@ class LROSADsOperations(_LROSADsOperations):
 
 
     async def _delete202_retry_invalid_header_initial_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = self.delete202_retry_invalid_header_async.metadata['url']
 
@@ -1831,7 +1831,7 @@ class LROSADsOperations(_LROSADsOperations):
             return client_raw_response
 
     async def delete202_retry_invalid_header_async(
-            self, custom_headers=None, raw=False, polling=True, **operation_config):
+            self, *, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running delete request, service returns a 202 to the initial
         request receing a reponse with an invalid 'Location' and 'Retry-After'
         headers.
@@ -1871,7 +1871,7 @@ class LROSADsOperations(_LROSADsOperations):
 
 
     async def _delete_async_relative_retry_invalid_header_initial_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = self.delete_async_relative_retry_invalid_header_async.metadata['url']
 
@@ -1908,7 +1908,7 @@ class LROSADsOperations(_LROSADsOperations):
             return client_raw_response
 
     async def delete_async_relative_retry_invalid_header_async(
-            self, custom_headers=None, raw=False, polling=True, **operation_config):
+            self, *, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running delete request, service returns a 202 to the initial
         request. The endpoint indicated in the Azure-AsyncOperation header is
         invalid.
@@ -1949,7 +1949,7 @@ class LROSADsOperations(_LROSADsOperations):
 
 
     async def _delete_async_relative_retry_invalid_json_polling_initial_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = self.delete_async_relative_retry_invalid_json_polling_async.metadata['url']
 
@@ -1986,7 +1986,7 @@ class LROSADsOperations(_LROSADsOperations):
             return client_raw_response
 
     async def delete_async_relative_retry_invalid_json_polling_async(
-            self, custom_headers=None, raw=False, polling=True, **operation_config):
+            self, *, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running delete request, service returns a 202 to the initial
         request. Poll the endpoint indicated in the Azure-AsyncOperation header
         for operation status.
@@ -2027,7 +2027,7 @@ class LROSADsOperations(_LROSADsOperations):
 
 
     async def _post202_retry_invalid_header_initial_async(
-            self, product=None, custom_headers=None, raw=False, **operation_config):
+            self, product=None, *, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = self.post202_retry_invalid_header_async.metadata['url']
 
@@ -2070,7 +2070,7 @@ class LROSADsOperations(_LROSADsOperations):
             return client_raw_response
 
     async def post202_retry_invalid_header_async(
-            self, product=None, custom_headers=None, raw=False, polling=True, **operation_config):
+            self, product=None, *, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running post request, service returns a 202 to the initial
         request, with invalid 'Location' and 'Retry-After' headers.
 
@@ -2112,7 +2112,7 @@ class LROSADsOperations(_LROSADsOperations):
 
 
     async def _post_async_relative_retry_invalid_header_initial_async(
-            self, product=None, custom_headers=None, raw=False, **operation_config):
+            self, product=None, *, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = self.post_async_relative_retry_invalid_header_async.metadata['url']
 
@@ -2156,7 +2156,7 @@ class LROSADsOperations(_LROSADsOperations):
             return client_raw_response
 
     async def post_async_relative_retry_invalid_header_async(
-            self, product=None, custom_headers=None, raw=False, polling=True, **operation_config):
+            self, product=None, *, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running post request, service returns a 202 to the initial
         request, with an entity that contains ProvisioningState=’Creating’. The
         endpoint indicated in the Azure-AsyncOperation header is invalid.
@@ -2200,7 +2200,7 @@ class LROSADsOperations(_LROSADsOperations):
 
 
     async def _post_async_relative_retry_invalid_json_polling_initial_async(
-            self, product=None, custom_headers=None, raw=False, **operation_config):
+            self, product=None, *, custom_headers=None, raw=False, **operation_config):
         # Construct URL
         url = self.post_async_relative_retry_invalid_json_polling_async.metadata['url']
 
@@ -2244,7 +2244,7 @@ class LROSADsOperations(_LROSADsOperations):
             return client_raw_response
 
     async def post_async_relative_retry_invalid_json_polling_async(
-            self, product=None, custom_headers=None, raw=False, polling=True, **operation_config):
+            self, product=None, *, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running post request, service returns a 202 to the initial
         request, with an entity that contains ProvisioningState=’Creating’.
         Poll the endpoint indicated in the Azure-AsyncOperation header for

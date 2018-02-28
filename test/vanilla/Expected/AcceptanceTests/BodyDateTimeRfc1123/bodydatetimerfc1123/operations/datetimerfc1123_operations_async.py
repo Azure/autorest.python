@@ -19,7 +19,7 @@ class Datetimerfc1123Operations(_Datetimerfc1123Operations):
     """Datetimerfc1123Operations operations."""
 
     async def get_null_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get null datetime value.
 
         :param dict custom_headers: headers that will be added to the request
@@ -64,7 +64,7 @@ class Datetimerfc1123Operations(_Datetimerfc1123Operations):
     get_null_async.metadata = {'url': '/datetimerfc1123/null'}
 
     async def get_invalid_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get invalid datetime value.
 
         :param dict custom_headers: headers that will be added to the request
@@ -109,7 +109,7 @@ class Datetimerfc1123Operations(_Datetimerfc1123Operations):
     get_invalid_async.metadata = {'url': '/datetimerfc1123/invalid'}
 
     async def get_overflow_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get overflow datetime value.
 
         :param dict custom_headers: headers that will be added to the request
@@ -154,7 +154,7 @@ class Datetimerfc1123Operations(_Datetimerfc1123Operations):
     get_overflow_async.metadata = {'url': '/datetimerfc1123/overflow'}
 
     async def get_underflow_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get underflow datetime value.
 
         :param dict custom_headers: headers that will be added to the request
@@ -199,7 +199,7 @@ class Datetimerfc1123Operations(_Datetimerfc1123Operations):
     get_underflow_async.metadata = {'url': '/datetimerfc1123/underflow'}
 
     async def put_utc_max_date_time_async(
-            self, datetime_body, custom_headers=None, raw=False, **operation_config):
+            self, datetime_body, *, custom_headers=None, raw=False, **operation_config):
         """Put max datetime value Fri, 31 Dec 9999 23:59:59 GMT.
 
         :param datetime_body:
@@ -243,7 +243,7 @@ class Datetimerfc1123Operations(_Datetimerfc1123Operations):
     put_utc_max_date_time_async.metadata = {'url': '/datetimerfc1123/max'}
 
     async def get_utc_lowercase_max_date_time_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get max datetime value fri, 31 dec 9999 23:59:59 gmt.
 
         :param dict custom_headers: headers that will be added to the request
@@ -288,7 +288,7 @@ class Datetimerfc1123Operations(_Datetimerfc1123Operations):
     get_utc_lowercase_max_date_time_async.metadata = {'url': '/datetimerfc1123/max/lowercase'}
 
     async def get_utc_uppercase_max_date_time_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get max datetime value FRI, 31 DEC 9999 23:59:59 GMT.
 
         :param dict custom_headers: headers that will be added to the request
@@ -333,7 +333,7 @@ class Datetimerfc1123Operations(_Datetimerfc1123Operations):
     get_utc_uppercase_max_date_time_async.metadata = {'url': '/datetimerfc1123/max/uppercase'}
 
     async def put_utc_min_date_time_async(
-            self, datetime_body, custom_headers=None, raw=False, **operation_config):
+            self, datetime_body, *, custom_headers=None, raw=False, **operation_config):
         """Put min datetime value Mon, 1 Jan 0001 00:00:00 GMT.
 
         :param datetime_body:
@@ -377,7 +377,7 @@ class Datetimerfc1123Operations(_Datetimerfc1123Operations):
     put_utc_min_date_time_async.metadata = {'url': '/datetimerfc1123/min'}
 
     async def get_utc_min_date_time_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get min datetime value Mon, 1 Jan 0001 00:00:00 GMT.
 
         :param dict custom_headers: headers that will be added to the request

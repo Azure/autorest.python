@@ -20,7 +20,7 @@ from .paging_operations import PagingOperations as _PagingOperations
 class PagingOperations(_PagingOperations):
 
     def get_single_pages(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """A paging operation that finishes on the first call without a nextlink.
 
         :param dict custom_headers: headers that will be added to the request
@@ -95,7 +95,7 @@ class PagingOperations(_PagingOperations):
     get_single_pages.metadata = {'url': '/paging/single'}
 
     def get_multiple_pages(
-            self, client_request_id=None, paging_get_multiple_pages_options=None, custom_headers=None, raw=False, **operation_config):
+            self, client_request_id=None, paging_get_multiple_pages_options=None, *, custom_headers=None, raw=False, **operation_config):
         """A paging operation that includes a nextLink that has 10 pages.
 
         :param client_request_id:
@@ -189,7 +189,7 @@ class PagingOperations(_PagingOperations):
     get_multiple_pages.metadata = {'url': '/paging/multiple'}
 
     def get_odata_multiple_pages(
-            self, client_request_id=None, paging_get_odata_multiple_pages_options=None, custom_headers=None, raw=False, **operation_config):
+            self, client_request_id=None, paging_get_odata_multiple_pages_options=None, *, custom_headers=None, raw=False, **operation_config):
         """A paging operation that includes a nextLink in odata format that has 10
         pages.
 
@@ -284,7 +284,7 @@ class PagingOperations(_PagingOperations):
     get_odata_multiple_pages.metadata = {'url': '/paging/multiple/odata'}
 
     def get_multiple_pages_with_offset(
-            self, paging_get_multiple_pages_with_offset_options, client_request_id=None, custom_headers=None, raw=False, **operation_config):
+            self, paging_get_multiple_pages_with_offset_options, client_request_id=None, *, custom_headers=None, raw=False, **operation_config):
         """A paging operation that includes a nextLink that has 10 pages.
 
         :param paging_get_multiple_pages_with_offset_options: Additional
@@ -385,7 +385,7 @@ class PagingOperations(_PagingOperations):
     get_multiple_pages_with_offset.metadata = {'url': '/paging/multiple/withpath/{offset}'}
 
     def get_multiple_pages_retry_first(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """A paging operation that fails on the first call with 500 and then
         retries and then get a response including a nextLink that has 10 pages.
 
@@ -461,7 +461,7 @@ class PagingOperations(_PagingOperations):
     get_multiple_pages_retry_first.metadata = {'url': '/paging/multiple/retryfirst'}
 
     def get_multiple_pages_retry_second(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """A paging operation that includes a nextLink that has 10 pages, of which
         the 2nd call fails first with 500. The client should retry and finish
         all 10 pages eventually.
@@ -538,7 +538,7 @@ class PagingOperations(_PagingOperations):
     get_multiple_pages_retry_second.metadata = {'url': '/paging/multiple/retrysecond'}
 
     def get_single_pages_failure(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """A paging operation that receives a 400 on the first call.
 
         :param dict custom_headers: headers that will be added to the request
@@ -613,7 +613,7 @@ class PagingOperations(_PagingOperations):
     get_single_pages_failure.metadata = {'url': '/paging/single/failure'}
 
     def get_multiple_pages_failure(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """A paging operation that receives a 400 on the second call.
 
         :param dict custom_headers: headers that will be added to the request
@@ -688,7 +688,7 @@ class PagingOperations(_PagingOperations):
     get_multiple_pages_failure.metadata = {'url': '/paging/multiple/failure'}
 
     def get_multiple_pages_failure_uri(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """A paging operation that receives an invalid nextLink.
 
         :param dict custom_headers: headers that will be added to the request
@@ -763,7 +763,7 @@ class PagingOperations(_PagingOperations):
     get_multiple_pages_failure_uri.metadata = {'url': '/paging/multiple/failureuri'}
 
     def get_multiple_pages_fragment_next_link(
-            self, api_version, tenant, custom_headers=None, raw=False, **operation_config):
+            self, api_version, tenant, *, custom_headers=None, raw=False, **operation_config):
         """A paging operation that doesn't return a full URL, just a fragment.
 
         :param api_version: Sets the api version to use.
@@ -853,7 +853,7 @@ class PagingOperations(_PagingOperations):
     get_multiple_pages_fragment_next_link.metadata = {'url': '/paging/multiple/fragment/{tenant}'}
 
     def get_multiple_pages_fragment_with_grouping_next_link(
-            self, custom_parameter_group, custom_headers=None, raw=False, **operation_config):
+            self, custom_parameter_group, *, custom_headers=None, raw=False, **operation_config):
         """A paging operation that doesn't return a full URL, just a fragment with
         parameters grouped.
 

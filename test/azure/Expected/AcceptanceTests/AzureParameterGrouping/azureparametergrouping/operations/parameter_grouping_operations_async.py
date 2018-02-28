@@ -19,7 +19,7 @@ from .parameter_grouping_operations import ParameterGroupingOperations as _Param
 class ParameterGroupingOperations(_ParameterGroupingOperations):
 
     async def post_required_async(
-            self, parameter_grouping_post_required_parameters, custom_headers=None, raw=False, **operation_config):
+            self, parameter_grouping_post_required_parameters, *, custom_headers=None, raw=False, **operation_config):
         """Post a bunch of required parameters grouped.
 
         :param parameter_grouping_post_required_parameters: Additional
@@ -90,7 +90,7 @@ class ParameterGroupingOperations(_ParameterGroupingOperations):
     post_required_async.metadata = {'url': '/parameterGrouping/postRequired/{path}'}
 
     async def post_optional_async(
-            self, parameter_grouping_post_optional_parameters=None, custom_headers=None, raw=False, **operation_config):
+            self, parameter_grouping_post_optional_parameters=None, *, custom_headers=None, raw=False, **operation_config):
         """Post a bunch of optional parameters grouped.
 
         :param parameter_grouping_post_optional_parameters: Additional
@@ -147,7 +147,7 @@ class ParameterGroupingOperations(_ParameterGroupingOperations):
     post_optional_async.metadata = {'url': '/parameterGrouping/postOptional'}
 
     async def post_multi_param_groups_async(
-            self, first_parameter_group=None, parameter_grouping_post_multi_param_groups_second_param_group=None, custom_headers=None, raw=False, **operation_config):
+            self, first_parameter_group=None, parameter_grouping_post_multi_param_groups_second_param_group=None, *, custom_headers=None, raw=False, **operation_config):
         """Post parameters from multiple different parameter groups.
 
         :param first_parameter_group: Additional parameters for the operation
@@ -217,7 +217,7 @@ class ParameterGroupingOperations(_ParameterGroupingOperations):
     post_multi_param_groups_async.metadata = {'url': '/parameterGrouping/postMultipleParameterGroups'}
 
     async def post_shared_parameter_group_object_async(
-            self, first_parameter_group=None, custom_headers=None, raw=False, **operation_config):
+            self, first_parameter_group=None, *, custom_headers=None, raw=False, **operation_config):
         """Post parameters with a shared parameter group object.
 
         :param first_parameter_group: Additional parameters for the operation

@@ -19,7 +19,7 @@ from .header_operations import HeaderOperations as _HeaderOperations
 class HeaderOperations(_HeaderOperations):
 
     async def custom_named_request_id_async(
-            self, foo_client_request_id, custom_headers=None, raw=False, **operation_config):
+            self, foo_client_request_id, *, custom_headers=None, raw=False, **operation_config):
         """Send foo-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in
         the header of the request.
 
@@ -68,7 +68,7 @@ class HeaderOperations(_HeaderOperations):
     custom_named_request_id_async.metadata = {'url': '/azurespecials/customNamedRequestId'}
 
     async def custom_named_request_id_param_grouping_async(
-            self, header_custom_named_request_id_param_grouping_parameters, custom_headers=None, raw=False, **operation_config):
+            self, header_custom_named_request_id_param_grouping_parameters, *, custom_headers=None, raw=False, **operation_config):
         """Send foo-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in
         the header of the request, via a parameter group.
 
@@ -123,7 +123,7 @@ class HeaderOperations(_HeaderOperations):
     custom_named_request_id_param_grouping_async.metadata = {'url': '/azurespecials/customNamedRequestIdParamGrouping'}
 
     async def custom_named_request_id_head_async(
-            self, foo_client_request_id, custom_headers=None, raw=False, **operation_config):
+            self, foo_client_request_id, *, custom_headers=None, raw=False, **operation_config):
         """Send foo-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in
         the header of the request.
 

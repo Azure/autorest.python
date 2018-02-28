@@ -19,7 +19,7 @@ class ReadonlypropertyOperations(_ReadonlypropertyOperations):
     """ReadonlypropertyOperations operations."""
 
     async def get_valid_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get complex types that have readonly properties.
 
         :param dict custom_headers: headers that will be added to the request
@@ -64,7 +64,7 @@ class ReadonlypropertyOperations(_ReadonlypropertyOperations):
     get_valid_async.metadata = {'url': '/complex/readonlyproperty/valid'}
 
     async def put_valid_async(
-            self, size=None, custom_headers=None, raw=False, **operation_config):
+            self, size=None, *, custom_headers=None, raw=False, **operation_config):
         """Put complex types that have readonly properties.
 
         :param size:

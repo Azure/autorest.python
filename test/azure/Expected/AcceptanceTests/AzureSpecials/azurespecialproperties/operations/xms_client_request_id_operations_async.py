@@ -20,7 +20,7 @@ from .xms_client_request_id_operations import XMsClientRequestIdOperations as _X
 class XMsClientRequestIdOperations(_XMsClientRequestIdOperations):
 
     async def get_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get method that overwrites x-ms-client-request header with value
         9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
 
@@ -64,7 +64,7 @@ class XMsClientRequestIdOperations(_XMsClientRequestIdOperations):
     get_async.metadata = {'url': '/azurespecials/overwrite/x-ms-client-request-id/method/'}
 
     async def param_get_async(
-            self, x_ms_client_request_id, custom_headers=None, raw=False, **operation_config):
+            self, x_ms_client_request_id, *, custom_headers=None, raw=False, **operation_config):
         """Get method that overwrites x-ms-client-request header with value
         9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
 

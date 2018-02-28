@@ -19,7 +19,7 @@ class InheritanceOperations(_InheritanceOperations):
     """InheritanceOperations operations."""
 
     async def get_valid_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get complex types that extend others.
 
         :param dict custom_headers: headers that will be added to the request
@@ -64,7 +64,7 @@ class InheritanceOperations(_InheritanceOperations):
     get_valid_async.metadata = {'url': '/complex/inheritance/valid'}
 
     async def put_valid_async(
-            self, complex_body, custom_headers=None, raw=False, **operation_config):
+            self, complex_body, *, custom_headers=None, raw=False, **operation_config):
         """Put complex types that extend others.
 
         :param complex_body: Please put a siamese with id=2, name="Siameee",

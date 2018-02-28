@@ -19,7 +19,7 @@ from .duration_operations import DurationOperations as _DurationOperations
 class DurationOperations(_DurationOperations):
 
     async def get_null_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get null duration value.
 
         :param dict custom_headers: headers that will be added to the request
@@ -67,7 +67,7 @@ class DurationOperations(_DurationOperations):
     get_null_async.metadata = {'url': '/duration/null'}
 
     async def put_positive_duration_async(
-            self, duration_body, custom_headers=None, raw=False, **operation_config):
+            self, duration_body, *, custom_headers=None, raw=False, **operation_config):
         """Put a positive duration value.
 
         :param duration_body:
@@ -114,7 +114,7 @@ class DurationOperations(_DurationOperations):
     put_positive_duration_async.metadata = {'url': '/duration/positiveduration'}
 
     async def get_positive_duration_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get a positive duration value.
 
         :param dict custom_headers: headers that will be added to the request
@@ -162,7 +162,7 @@ class DurationOperations(_DurationOperations):
     get_positive_duration_async.metadata = {'url': '/duration/positiveduration'}
 
     async def get_invalid_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Get an invalid duration value.
 
         :param dict custom_headers: headers that will be added to the request

@@ -19,7 +19,7 @@ class HttpServerFailureOperations(_HttpServerFailureOperations):
     """HttpServerFailureOperations operations."""
 
     async def head501_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Return 501 status code - should be represented in the client as an
         error.
 
@@ -59,7 +59,7 @@ class HttpServerFailureOperations(_HttpServerFailureOperations):
     head501_async.metadata = {'url': '/http/failure/server/501'}
 
     async def get501_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Return 501 status code - should be represented in the client as an
         error.
 
@@ -99,7 +99,7 @@ class HttpServerFailureOperations(_HttpServerFailureOperations):
     get501_async.metadata = {'url': '/http/failure/server/501'}
 
     async def post505_async(
-            self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
+            self, boolean_value=None, *, custom_headers=None, raw=False, **operation_config):
         """Return 505 status code - should be represented in the client as an
         error.
 
@@ -148,7 +148,7 @@ class HttpServerFailureOperations(_HttpServerFailureOperations):
     post505_async.metadata = {'url': '/http/failure/server/505'}
 
     async def delete505_async(
-            self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
+            self, boolean_value=None, *, custom_headers=None, raw=False, **operation_config):
         """Return 505 status code - should be represented in the client as an
         error.
 

@@ -19,7 +19,7 @@ class PathsOperations(_PathsOperations):
     """PathsOperations operations."""
 
     async def get_empty_async(
-            self, vault, secret, key_name, key_version="v1", custom_headers=None, raw=False, **operation_config):
+            self, vault, secret, key_name, key_version="v1", *, custom_headers=None, raw=False, **operation_config):
         """Get a 200 to test a valid base uri.
 
         :param vault: The vault name, e.g. https://myvault

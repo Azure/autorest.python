@@ -19,7 +19,7 @@ class HttpClientFailureOperations(_HttpClientFailureOperations):
     """HttpClientFailureOperations operations."""
 
     async def head400_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Return 400 status code - should be represented in the client as an
         error.
 
@@ -59,7 +59,7 @@ class HttpClientFailureOperations(_HttpClientFailureOperations):
     head400_async.metadata = {'url': '/http/failure/client/400'}
 
     async def get400_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Return 400 status code - should be represented in the client as an
         error.
 
@@ -99,7 +99,7 @@ class HttpClientFailureOperations(_HttpClientFailureOperations):
     get400_async.metadata = {'url': '/http/failure/client/400'}
 
     async def put400_async(
-            self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
+            self, boolean_value=None, *, custom_headers=None, raw=False, **operation_config):
         """Return 400 status code - should be represented in the client as an
         error.
 
@@ -148,7 +148,7 @@ class HttpClientFailureOperations(_HttpClientFailureOperations):
     put400_async.metadata = {'url': '/http/failure/client/400'}
 
     async def patch400_async(
-            self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
+            self, boolean_value=None, *, custom_headers=None, raw=False, **operation_config):
         """Return 400 status code - should be represented in the client as an
         error.
 
@@ -197,7 +197,7 @@ class HttpClientFailureOperations(_HttpClientFailureOperations):
     patch400_async.metadata = {'url': '/http/failure/client/400'}
 
     async def post400_async(
-            self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
+            self, boolean_value=None, *, custom_headers=None, raw=False, **operation_config):
         """Return 400 status code - should be represented in the client as an
         error.
 
@@ -246,7 +246,7 @@ class HttpClientFailureOperations(_HttpClientFailureOperations):
     post400_async.metadata = {'url': '/http/failure/client/400'}
 
     async def delete400_async(
-            self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
+            self, boolean_value=None, *, custom_headers=None, raw=False, **operation_config):
         """Return 400 status code - should be represented in the client as an
         error.
 
@@ -295,7 +295,7 @@ class HttpClientFailureOperations(_HttpClientFailureOperations):
     delete400_async.metadata = {'url': '/http/failure/client/400'}
 
     async def head401_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Return 401 status code - should be represented in the client as an
         error.
 
@@ -335,7 +335,7 @@ class HttpClientFailureOperations(_HttpClientFailureOperations):
     head401_async.metadata = {'url': '/http/failure/client/401'}
 
     async def get402_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Return 402 status code - should be represented in the client as an
         error.
 
@@ -375,7 +375,7 @@ class HttpClientFailureOperations(_HttpClientFailureOperations):
     get402_async.metadata = {'url': '/http/failure/client/402'}
 
     async def get403_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Return 403 status code - should be represented in the client as an
         error.
 
@@ -415,7 +415,7 @@ class HttpClientFailureOperations(_HttpClientFailureOperations):
     get403_async.metadata = {'url': '/http/failure/client/403'}
 
     async def put404_async(
-            self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
+            self, boolean_value=None, *, custom_headers=None, raw=False, **operation_config):
         """Return 404 status code - should be represented in the client as an
         error.
 
@@ -464,7 +464,7 @@ class HttpClientFailureOperations(_HttpClientFailureOperations):
     put404_async.metadata = {'url': '/http/failure/client/404'}
 
     async def patch405_async(
-            self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
+            self, boolean_value=None, *, custom_headers=None, raw=False, **operation_config):
         """Return 405 status code - should be represented in the client as an
         error.
 
@@ -513,7 +513,7 @@ class HttpClientFailureOperations(_HttpClientFailureOperations):
     patch405_async.metadata = {'url': '/http/failure/client/405'}
 
     async def post406_async(
-            self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
+            self, boolean_value=None, *, custom_headers=None, raw=False, **operation_config):
         """Return 406 status code - should be represented in the client as an
         error.
 
@@ -562,7 +562,7 @@ class HttpClientFailureOperations(_HttpClientFailureOperations):
     post406_async.metadata = {'url': '/http/failure/client/406'}
 
     async def delete407_async(
-            self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
+            self, boolean_value=None, *, custom_headers=None, raw=False, **operation_config):
         """Return 407 status code - should be represented in the client as an
         error.
 
@@ -611,7 +611,7 @@ class HttpClientFailureOperations(_HttpClientFailureOperations):
     delete407_async.metadata = {'url': '/http/failure/client/407'}
 
     async def put409_async(
-            self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
+            self, boolean_value=None, *, custom_headers=None, raw=False, **operation_config):
         """Return 409 status code - should be represented in the client as an
         error.
 
@@ -660,7 +660,7 @@ class HttpClientFailureOperations(_HttpClientFailureOperations):
     put409_async.metadata = {'url': '/http/failure/client/409'}
 
     async def head410_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Return 410 status code - should be represented in the client as an
         error.
 
@@ -700,7 +700,7 @@ class HttpClientFailureOperations(_HttpClientFailureOperations):
     head410_async.metadata = {'url': '/http/failure/client/410'}
 
     async def get411_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Return 411 status code - should be represented in the client as an
         error.
 
@@ -740,7 +740,7 @@ class HttpClientFailureOperations(_HttpClientFailureOperations):
     get411_async.metadata = {'url': '/http/failure/client/411'}
 
     async def get412_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Return 412 status code - should be represented in the client as an
         error.
 
@@ -780,7 +780,7 @@ class HttpClientFailureOperations(_HttpClientFailureOperations):
     get412_async.metadata = {'url': '/http/failure/client/412'}
 
     async def put413_async(
-            self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
+            self, boolean_value=None, *, custom_headers=None, raw=False, **operation_config):
         """Return 413 status code - should be represented in the client as an
         error.
 
@@ -829,7 +829,7 @@ class HttpClientFailureOperations(_HttpClientFailureOperations):
     put413_async.metadata = {'url': '/http/failure/client/413'}
 
     async def patch414_async(
-            self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
+            self, boolean_value=None, *, custom_headers=None, raw=False, **operation_config):
         """Return 414 status code - should be represented in the client as an
         error.
 
@@ -878,7 +878,7 @@ class HttpClientFailureOperations(_HttpClientFailureOperations):
     patch414_async.metadata = {'url': '/http/failure/client/414'}
 
     async def post415_async(
-            self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
+            self, boolean_value=None, *, custom_headers=None, raw=False, **operation_config):
         """Return 415 status code - should be represented in the client as an
         error.
 
@@ -927,7 +927,7 @@ class HttpClientFailureOperations(_HttpClientFailureOperations):
     post415_async.metadata = {'url': '/http/failure/client/415'}
 
     async def get416_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Return 416 status code - should be represented in the client as an
         error.
 
@@ -967,7 +967,7 @@ class HttpClientFailureOperations(_HttpClientFailureOperations):
     get416_async.metadata = {'url': '/http/failure/client/416'}
 
     async def delete417_async(
-            self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
+            self, boolean_value=None, *, custom_headers=None, raw=False, **operation_config):
         """Return 417 status code - should be represented in the client as an
         error.
 
@@ -1016,7 +1016,7 @@ class HttpClientFailureOperations(_HttpClientFailureOperations):
     delete417_async.metadata = {'url': '/http/failure/client/417'}
 
     async def head429_async(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, *, custom_headers=None, raw=False, **operation_config):
         """Return 429 status code - should be represented in the client as an
         error.
 
