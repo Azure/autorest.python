@@ -15,7 +15,7 @@ if (AsyncMode) methodName += "_async";
 if (AsyncMode) initialMethodName += "_async";
 }
     @(defKeyword) @(initialMethodName)(
-            self, @(Model.MethodParameterDeclaration(Model.AddCustomHeader)), **operation_config):
+            self, @(Model.MethodParameterDeclaration(Model.AddCustomHeader, Python3Mode)), **operation_config):
         @Model.BuildInputMappings()
 @if (Model.InputParameterTransformation.Any())
 {
@@ -125,7 +125,7 @@ else
 }
 @EmptyLine
     @(defKeyword) @(methodName)(
-            self, @(Model.MethodParameterDeclaration(Model.AddCustomHeader)), polling=True, **operation_config):
+            self, @(Model.MethodParameterDeclaration(Model.AddCustomHeader, Python3Mode)), polling=True, **operation_config):
         """@(WrapComment(string.Empty, Model.BuildSummaryAndDescriptionString()))
 @*need to fix comment here for long running function*@
 @EmptyLine

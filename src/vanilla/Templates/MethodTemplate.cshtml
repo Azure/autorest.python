@@ -12,7 +12,7 @@ string defKeyword = AsyncMode? "async def" : "def";
 if (AsyncMode) methodName += "_async";
 }
     @(defKeyword) @(methodName)(
-            self, @(Model.MethodParameterDeclaration(Model.AddCustomHeader)), **operation_config):
+            self, @(Model.MethodParameterDeclaration(Model.AddCustomHeader, Python3Mode)), **operation_config):
         """@(WrapComment(string.Empty, Model.BuildSummaryAndDescriptionString()))
 @EmptyLine
 @if (Model.Deprecated)

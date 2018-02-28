@@ -8,7 +8,7 @@
 string methodName = Model.Name.ToPythonCase();
 }
     def @(methodName)(
-            self, @(Model.MethodParameterDeclaration(true)), **operation_config):
+            self, @(Model.MethodParameterDeclaration(true, Python3Mode)), **operation_config):
         """@(WrapComment(string.Empty, Model.BuildSummaryAndDescriptionString()))
 @EmptyLine
 @if (Model.Deprecated)
