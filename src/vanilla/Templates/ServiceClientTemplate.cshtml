@@ -17,11 +17,12 @@
 from msrest.service_client import ServiceClient
 from msrest import Configuration, Serializer, Deserializer
 from .version import VERSION
-@if (Model.MethodTemplateModels.Any( each => each.MethodGroup.IsCodeModelMethodGroup))
+@{
+bool hasClientLevelMethods = Model.MethodTemplateModels.Any( each => each.MethodGroup.IsCodeModelMethodGroup);
+}
+@if (hasClientLevelMethods)
 {
-<text>
-from msrest.pipeline import ClientRawResponse
-</text>
+@:from msrest.pipeline import ClientRawResponse
 }
 @if (Model.HasAnyDefaultExceptions)
 {
@@ -37,6 +38,16 @@ from msrest.pipeline import ClientRawResponse
 @if (Model.HasAnyModel)
 {
 @:from . import models
+}
+@if (hasClientLevelMethods)
+{
+<text>
+try:
+    from @(Model.Name.ToPythonCase())_async import @(Model.Name)AsyncMixin
+except (SyntaxError, ImportError):
+    class @(Model.Name)AsyncMixin:
+        pass
+</text>
 }
 @EmptyLine
 @EmptyLine
@@ -80,7 +91,7 @@ else
 @EmptyLine
         super(@(Model.Name)Configuration, self).__init__(base_url)
 @EmptyLine
-        self.add_user_agent('@Model.UserAgent/{}'.format(VERSION))
+        self.add_user_agent('@(Model.UserAgent)/{}'.format(VERSION))
 @if (Model.Properties.Any() || Model.ConstantProperties.Any())
 {
     @EmptyLine
@@ -95,7 +106,14 @@ else
 }
 @EmptyLine
 @EmptyLine
-class @(Model.Name)(object):
+@if (hasClientLevelMethods)
+{
+@:class @(Model.Name)(@(Model.Name)AsyncMixin, object):
+}
+else
+{
+@:class @(Model.Name)(object):
+}
     """@Model.ServiceDocument
 @EmptyLine
     :ivar config: Configuration for client.

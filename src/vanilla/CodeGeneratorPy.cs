@@ -56,6 +56,13 @@ namespace AutoRest.Python
             var serviceClientTemplate = new ServiceClientTemplate { Model = codeModel };
             await Write(serviceClientTemplate, Path.Combine(folderName, codeModel.Name.ToPythonCase() + ".py"));
 
+            // If async method at the client level, create another file
+            if(codeModel.MethodTemplateModels.Any( each => each.MethodGroup.IsCodeModelMethodGroup))
+            {
+                var serviceClientTemplateAsync = new ServiceClientTemplateAsync { Model = codeModel };
+                await Write(serviceClientTemplateAsync, Path.Combine(folderName, codeModel.Name.ToPythonCase() + "_async_.py"));
+            }
+
             var versionTemplate = new VersionTemplate { Model = codeModel };
             await Write(versionTemplate, Path.Combine(folderName, "version.py"));
 
