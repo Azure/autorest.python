@@ -51,35 +51,37 @@ from modelflattening.models import (
     SimpleProduct,
     FlattenParameterGroup)
 
-class ModelFlatteningTests(unittest.TestCase):
+import pytest
 
-    def setUp(self):
-        self.client = AutoRestResourceFlatteningTestService(base_url="http://localhost:3000")
-        return super(ModelFlatteningTests, self).setUp()
+@pytest.fixture()
+def client():
+    return AutoRestResourceFlatteningTestService(base_url="http://localhost:3000")
 
-    def test_flattening_array(self):
+class TestModelFlatteningTests(object):
+
+    def test_flattening_array(self, client):
 
         #Array
-        result = self.client.get_array()
-        self.assertEqual(3, len(result))
+        result = client.get_array()
+        assert 3 ==  len(result)
         # Resource 1
-        self.assertEqual("1", result[0].id)
-        self.assertEqual("OK", result[0].provisioning_state_values)
-        self.assertEqual("Product1", result[0].pname)
-        self.assertEqual("Flat", result[0].flattened_product_type)
-        self.assertEqual("Building 44", result[0].location)
-        self.assertEqual("Resource1", result[0].name)
-        self.assertEqual("Succeeded", result[0].provisioning_state)
-        self.assertEqual("Microsoft.Web/sites", result[0].type)
-        self.assertEqual("value1", result[0].tags["tag1"])
-        self.assertEqual("value3", result[0].tags["tag2"])
+        assert "1" ==  result[0].id
+        assert "OK" ==  result[0].provisioning_state_values
+        assert "Product1" ==  result[0].pname
+        assert "Flat" ==  result[0].flattened_product_type
+        assert "Building 44" ==  result[0].location
+        assert "Resource1" ==  result[0].name
+        assert "Succeeded" ==  result[0].provisioning_state
+        assert "Microsoft.Web/sites" ==  result[0].type
+        assert "value1" ==  result[0].tags["tag1"]
+        assert "value3" ==  result[0].tags["tag2"]
         # Resource 2
-        self.assertEqual("2", result[1].id)
-        self.assertEqual("Resource2", result[1].name)
-        self.assertEqual("Building 44", result[1].location)
+        assert "2" ==  result[1].id
+        assert "Resource2" ==  result[1].name
+        assert "Building 44" ==  result[1].location
         # Resource 3
-        self.assertEqual("3", result[2].id)
-        self.assertEqual("Resource3", result[2].name)
+        assert "3" ==  result[2].id
+        assert "Resource3" ==  result[2].name
 
         resourceArray = [
                 {
@@ -88,31 +90,31 @@ class ModelFlatteningTests(unittest.TestCase):
                 {
                     'location': "Building 44"}]
 
-        self.client.put_array(resourceArray)
+        client.put_array(resourceArray)
 
-    def test_flattening_dictionary(self):
+    def test_flattening_dictionary(self, client):
 
         #Dictionary
-        resultDictionary = self.client.get_dictionary()
-        self.assertEqual(3, len(resultDictionary))
+        resultDictionary = client.get_dictionary()
+        assert 3 ==  len(resultDictionary)
         # Resource 1
-        self.assertEqual("1", resultDictionary["Product1"].id)
-        self.assertEqual("OK", resultDictionary["Product1"].provisioning_state_values)
-        self.assertEqual("Product1", resultDictionary["Product1"].pname)
-        self.assertEqual("Flat", resultDictionary["Product1"].flattened_product_type)
-        self.assertEqual("Building 44", resultDictionary["Product1"].location)
-        self.assertEqual("Resource1", resultDictionary["Product1"].name)
-        self.assertEqual("Succeeded", resultDictionary["Product1"].provisioning_state)
-        self.assertEqual("Microsoft.Web/sites", resultDictionary["Product1"].type)
-        self.assertEqual("value1", resultDictionary["Product1"].tags["tag1"])
-        self.assertEqual("value3", resultDictionary["Product1"].tags["tag2"])
+        assert "1" ==  resultDictionary["Product1"].id
+        assert "OK" ==  resultDictionary["Product1"].provisioning_state_values
+        assert "Product1" ==  resultDictionary["Product1"].pname
+        assert "Flat" ==  resultDictionary["Product1"].flattened_product_type
+        assert "Building 44" ==  resultDictionary["Product1"].location
+        assert "Resource1" ==  resultDictionary["Product1"].name
+        assert "Succeeded" ==  resultDictionary["Product1"].provisioning_state
+        assert "Microsoft.Web/sites" ==  resultDictionary["Product1"].type
+        assert "value1" ==  resultDictionary["Product1"].tags["tag1"]
+        assert "value3" ==  resultDictionary["Product1"].tags["tag2"]
         # Resource 2
-        self.assertEqual("2", resultDictionary["Product2"].id)
-        self.assertEqual("Resource2", resultDictionary["Product2"].name)
-        self.assertEqual("Building 44", resultDictionary["Product2"].location)
+        assert "2" ==  resultDictionary["Product2"].id
+        assert "Resource2" ==  resultDictionary["Product2"].name
+        assert "Building 44" ==  resultDictionary["Product2"].location
         # Resource 3
-        self.assertEqual("3", resultDictionary["Product3"].id)
-        self.assertEqual("Resource3", resultDictionary["Product3"].name)
+        assert "3" ==  resultDictionary["Product3"].id
+        assert "Resource3" ==  resultDictionary["Product3"].name
 
         resourceDictionary = {
                 "Resource1": {
@@ -125,58 +127,58 @@ class ModelFlatteningTests(unittest.TestCase):
                     'pname': "Product2",
                     'flattened_product_type': "Flat"}}
 
-        self.client.put_dictionary(resourceDictionary)
+        client.put_dictionary(resourceDictionary)
 
-    def test_flattening_complex_object(self):
+    def test_flattening_complex_object(self, client):
 
         #ResourceCollection
-        resultResource = self.client.get_resource_collection()
+        resultResource = client.get_resource_collection()
 
         #dictionaryofresources
-        self.assertEqual(3, len(resultResource.dictionaryofresources))
+        assert 3 ==  len(resultResource.dictionaryofresources)
         # Resource 1
-        self.assertEqual("1", resultResource.dictionaryofresources["Product1"].id)
-        self.assertEqual("OK", resultResource.dictionaryofresources["Product1"].provisioning_state_values)
-        self.assertEqual("Product1", resultResource.dictionaryofresources["Product1"].pname)
-        self.assertEqual("Flat", resultResource.dictionaryofresources["Product1"].flattened_product_type)
-        self.assertEqual("Building 44", resultResource.dictionaryofresources["Product1"].location)
-        self.assertEqual("Resource1", resultResource.dictionaryofresources["Product1"].name)
-        self.assertEqual("Succeeded", resultResource.dictionaryofresources["Product1"].provisioning_state)
-        self.assertEqual("Microsoft.Web/sites", resultResource.dictionaryofresources["Product1"].type)
-        self.assertEqual("value1", resultResource.dictionaryofresources["Product1"].tags["tag1"])
-        self.assertEqual("value3", resultResource.dictionaryofresources["Product1"].tags["tag2"])
+        assert "1" ==  resultResource.dictionaryofresources["Product1"].id
+        assert "OK" ==  resultResource.dictionaryofresources["Product1"].provisioning_state_values
+        assert "Product1" ==  resultResource.dictionaryofresources["Product1"].pname
+        assert "Flat" ==  resultResource.dictionaryofresources["Product1"].flattened_product_type
+        assert "Building 44" ==  resultResource.dictionaryofresources["Product1"].location
+        assert "Resource1" ==  resultResource.dictionaryofresources["Product1"].name
+        assert "Succeeded" ==  resultResource.dictionaryofresources["Product1"].provisioning_state
+        assert "Microsoft.Web/sites" ==  resultResource.dictionaryofresources["Product1"].type
+        assert "value1" ==  resultResource.dictionaryofresources["Product1"].tags["tag1"]
+        assert "value3" ==  resultResource.dictionaryofresources["Product1"].tags["tag2"]
         # Resource 2
-        self.assertEqual("2", resultResource.dictionaryofresources["Product2"].id)
-        self.assertEqual("Resource2", resultResource.dictionaryofresources["Product2"].name)
-        self.assertEqual("Building 44", resultResource.dictionaryofresources["Product2"].location)
+        assert "2" ==  resultResource.dictionaryofresources["Product2"].id
+        assert "Resource2" ==  resultResource.dictionaryofresources["Product2"].name
+        assert "Building 44" ==  resultResource.dictionaryofresources["Product2"].location
         # Resource 3
-        self.assertEqual("3", resultResource.dictionaryofresources["Product3"].id)
-        self.assertEqual("Resource3", resultResource.dictionaryofresources["Product3"].name)
+        assert "3" ==  resultResource.dictionaryofresources["Product3"].id
+        assert "Resource3" ==  resultResource.dictionaryofresources["Product3"].name
 
         #arrayofresources
-        self.assertEqual(3, len(resultResource.arrayofresources))
+        assert 3 ==  len(resultResource.arrayofresources)
         # Resource 1
-        self.assertEqual("4", resultResource.arrayofresources[0].id)
-        self.assertEqual("OK", resultResource.arrayofresources[0].provisioning_state_values)
-        self.assertEqual("Product4", resultResource.arrayofresources[0].pname)
-        self.assertEqual("Flat", resultResource.arrayofresources[0].flattened_product_type)
-        self.assertEqual("Building 44", resultResource.arrayofresources[0].location)
-        self.assertEqual("Resource4", resultResource.arrayofresources[0].name)
-        self.assertEqual("Succeeded", resultResource.arrayofresources[0].provisioning_state)
-        self.assertEqual("Microsoft.Web/sites", resultResource.arrayofresources[0].type)
-        self.assertEqual("value1", resultResource.arrayofresources[0].tags["tag1"])
-        self.assertEqual("value3", resultResource.arrayofresources[0].tags["tag2"])
+        assert "4" ==  resultResource.arrayofresources[0].id
+        assert "OK" ==  resultResource.arrayofresources[0].provisioning_state_values
+        assert "Product4" ==  resultResource.arrayofresources[0].pname
+        assert "Flat" ==  resultResource.arrayofresources[0].flattened_product_type
+        assert "Building 44" ==  resultResource.arrayofresources[0].location
+        assert "Resource4" ==  resultResource.arrayofresources[0].name
+        assert "Succeeded" ==  resultResource.arrayofresources[0].provisioning_state
+        assert "Microsoft.Web/sites" ==  resultResource.arrayofresources[0].type
+        assert "value1" ==  resultResource.arrayofresources[0].tags["tag1"]
+        assert "value3" ==  resultResource.arrayofresources[0].tags["tag2"]
         # Resource 2
-        self.assertEqual("5", resultResource.arrayofresources[1].id)
-        self.assertEqual("Resource5", resultResource.arrayofresources[1].name)
-        self.assertEqual("Building 44", resultResource.arrayofresources[1].location)
+        assert "5" ==  resultResource.arrayofresources[1].id
+        assert "Resource5" ==  resultResource.arrayofresources[1].name
+        assert "Building 44" ==  resultResource.arrayofresources[1].location
         # Resource 3
-        self.assertEqual("6", resultResource.arrayofresources[2].id)
-        self.assertEqual("Resource6", resultResource.arrayofresources[2].name)
+        assert "6" ==  resultResource.arrayofresources[2].id
+        assert "Resource6" ==  resultResource.arrayofresources[2].name
 
         #productresource
-        self.assertEqual("7", resultResource.productresource.id)
-        self.assertEqual("Resource7", resultResource.productresource.name)
+        assert "7" ==  resultResource.productresource.id
+        assert "Resource7" ==  resultResource.productresource.name
 
         resourceDictionary = {
                 "Resource1": FlattenedProduct(
@@ -206,9 +208,9 @@ class ModelFlatteningTests(unittest.TestCase):
                     pname = "Azure",
                     flattened_product_type = "Flat"))
 
-        self.client.put_resource_collection(resourceComplexObject)
+        client.put_resource_collection(resourceComplexObject)
 
-    def test_model_flattening_simple(self):
+    def test_model_flattening_simple(self, client):
 
         simple_product = SimpleProduct(
             product_id = "123",
@@ -219,11 +221,11 @@ class ModelFlatteningTests(unittest.TestCase):
         )
         simple_product.additional_properties = {} # Not the purpose of this test. This enables the ==.
 
-        result = self.client.put_simple_product(simple_product)
+        result = client.put_simple_product(simple_product)
         result.additional_properties = {} # Not the purpose of this test. This enables the ==.
-        self.assertEqual(result, simple_product)
+        assert result ==  simple_product
 
-    def test_model_flattening_with_parameter_flattening(self):
+    def test_model_flattening_with_parameter_flattening(self, client):
 
         simple_product = SimpleProduct(
             product_id = "123",
@@ -233,11 +235,11 @@ class ModelFlatteningTests(unittest.TestCase):
         )
         simple_product.additional_properties = {} # Not the purpose of this test. This enables the ==.
 
-        result = self.client.post_flattened_simple_product("123", "max name", "product description", None, "http://foo")
+        result = client.post_flattened_simple_product("123", "max name", "product description", None, "http://foo")
         result.additional_properties = {} # Not the purpose of this test. This enables the ==.
-        self.assertEqual(result, simple_product)
+        assert result ==  simple_product
 
-    def test_model_flattening_with_grouping(self):
+    def test_model_flattening_with_grouping(self, client):
 
         simple_product = SimpleProduct(
             product_id = "123",
@@ -254,9 +256,6 @@ class ModelFlatteningTests(unittest.TestCase):
             odatavalue="http://foo",
             name="groupproduct")
 
-        result = self.client.put_simple_product_with_grouping(group)
+        result = client.put_simple_product_with_grouping(group)
         result.additional_properties = {} # Not the purpose of this test. This enables the ==.
-        self.assertEqual(result, simple_product)
-
-if __name__ == '__main__':
-    unittest.main()
+        assert result ==  simple_product
