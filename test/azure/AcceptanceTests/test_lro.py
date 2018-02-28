@@ -53,7 +53,7 @@ from msrestazure.azure_exceptions import CloudError, CloudErrorData
 from msrestazure.polling.arm_polling import ARMPolling
 
 from lro import AutoRestLongRunningOperationTestService
-from lro.models import *
+from lro.models import *  # pylint: disable=W0614
 
 from http_tests import TestAuthentication
 
