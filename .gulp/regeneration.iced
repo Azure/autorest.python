@@ -91,7 +91,6 @@ defaultAzureMappings = {
   'AcceptanceTests/Paging': 'paging.json',
   'AcceptanceTests/AzureReport': 'azure-report.json',
   'AcceptanceTests/AzureParameterGrouping': 'azure-parameter-grouping.json',
-  'AcceptanceTests/AzureResource': 'azure-resource.json',
   'AcceptanceTests/Head': 'head.json',
   'AcceptanceTests/HeadExceptions': 'head-exceptions.json',
   'AcceptanceTests/SubscriptionIdApiVersion': 'subscriptionId-apiVersion.json',
