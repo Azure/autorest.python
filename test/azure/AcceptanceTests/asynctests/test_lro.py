@@ -262,16 +262,16 @@ class TestLro:
 
         custom_headers = {"x-ms-client-request-id": '9C4D50EE-2D56-4CD3-8152-34347DC9F2B0'}
 
-        process = await self.lro_result(client.lr_os_custom_header.put_async_retry_succeeded_async, product, custom_headers)
+        process = await self.lro_result(client.lr_os_custom_header.put_async_retry_succeeded_async, product, custom_headers=custom_headers)
         assert process is not None
 
-        process = await self.lro_result(client.lr_os_custom_header.post_async_retry_succeeded_async, product, custom_headers)
+        process = await self.lro_result(client.lr_os_custom_header.post_async_retry_succeeded_async, product, custom_headers=custom_headers)
         assert process is None
 
-        process = await self.lro_result(client.lr_os_custom_header.put201_creating_succeeded200_async, product, custom_headers)
+        process = await self.lro_result(client.lr_os_custom_header.put201_creating_succeeded200_async, product, custom_headers=custom_headers)
         assert process is not None
 
-        process = await self.lro_result(client.lr_os_custom_header.post202_retry200_async, product, custom_headers)
+        process = await self.lro_result(client.lr_os_custom_header.post202_retry200_async, product, custom_headers=custom_headers)
         assert process is None
 
     @pytest.mark.asyncio
