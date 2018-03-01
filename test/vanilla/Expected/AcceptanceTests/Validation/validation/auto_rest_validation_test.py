@@ -12,7 +12,6 @@
 from msrest.service_client import ServiceClient
 from msrest import Configuration, Serializer, Deserializer
 from .version import VERSION
-from msrest.pipeline import ClientRawResponse
 from .operations import AutoRestValidationTestOperationsMixin
 from msrest.exceptions import HttpOperationError
 from . import models

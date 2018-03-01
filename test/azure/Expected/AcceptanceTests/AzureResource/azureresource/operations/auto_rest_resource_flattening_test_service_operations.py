@@ -10,14 +10,14 @@
 # --------------------------------------------------------------------------
 
 from msrest.pipeline import ClientRawResponse
-from . import models
+from .. import models
 import uuid
 
 
-class AutoRestResourceFlatteningTestServiceAsyncMixin(object):
+class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
 
-    async def put_array_async(
-            self, resource_array=None, *, custom_headers=None, raw=False, **operation_config):
+    def put_array(
+            self, resource_array=None, custom_headers=None, raw=False, **operation_config):
         """Put External Resource as an Array.
 
         :param resource_array: External Resource as an Array to put
@@ -32,7 +32,7 @@ class AutoRestResourceFlatteningTestServiceAsyncMixin(object):
         :raises: :class:`ErrorException<azureresource.models.ErrorException>`
         """
         # Construct URL
-        url = self.put_array_async.metadata['url']
+        url = self.put_array.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -55,7 +55,7 @@ class AutoRestResourceFlatteningTestServiceAsyncMixin(object):
 
         # Construct and send request
         request = self._client.put(url, query_parameters)
-        response = await self._client.async_send(
+        response = self._client.send(
             request, header_parameters, body_content, stream=False, **operation_config)
 
         if response.status_code not in [200]:
@@ -64,10 +64,10 @@ class AutoRestResourceFlatteningTestServiceAsyncMixin(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_array_async.metadata = {'url': '/azure/resource-flatten/array'}
+    put_array.metadata = {'url': '/azure/resource-flatten/array'}
 
-    async def get_array_async(
-            self, *, custom_headers=None, raw=False, **operation_config):
+    def get_array(
+            self, custom_headers=None, raw=False, **operation_config):
         """Get External Resource as an Array.
 
         :param dict custom_headers: headers that will be added to the request
@@ -81,7 +81,7 @@ class AutoRestResourceFlatteningTestServiceAsyncMixin(object):
         :raises: :class:`ErrorException<azureresource.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_array_async.metadata['url']
+        url = self.get_array.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -98,7 +98,7 @@ class AutoRestResourceFlatteningTestServiceAsyncMixin(object):
 
         # Construct and send request
         request = self._client.get(url, query_parameters)
-        response = await self._client.async_send(request, header_parameters, stream=False, **operation_config)
+        response = self._client.send(request, header_parameters, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -113,10 +113,10 @@ class AutoRestResourceFlatteningTestServiceAsyncMixin(object):
             return client_raw_response
 
         return deserialized
-    get_array_async.metadata = {'url': '/azure/resource-flatten/array'}
+    get_array.metadata = {'url': '/azure/resource-flatten/array'}
 
-    async def put_dictionary_async(
-            self, resource_dictionary=None, *, custom_headers=None, raw=False, **operation_config):
+    def put_dictionary(
+            self, resource_dictionary=None, custom_headers=None, raw=False, **operation_config):
         """Put External Resource as a Dictionary.
 
         :param resource_dictionary: External Resource as a Dictionary to put
@@ -132,7 +132,7 @@ class AutoRestResourceFlatteningTestServiceAsyncMixin(object):
         :raises: :class:`ErrorException<azureresource.models.ErrorException>`
         """
         # Construct URL
-        url = self.put_dictionary_async.metadata['url']
+        url = self.put_dictionary.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -155,7 +155,7 @@ class AutoRestResourceFlatteningTestServiceAsyncMixin(object):
 
         # Construct and send request
         request = self._client.put(url, query_parameters)
-        response = await self._client.async_send(
+        response = self._client.send(
             request, header_parameters, body_content, stream=False, **operation_config)
 
         if response.status_code not in [200]:
@@ -164,10 +164,10 @@ class AutoRestResourceFlatteningTestServiceAsyncMixin(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_dictionary_async.metadata = {'url': '/azure/resource-flatten/dictionary'}
+    put_dictionary.metadata = {'url': '/azure/resource-flatten/dictionary'}
 
-    async def get_dictionary_async(
-            self, *, custom_headers=None, raw=False, **operation_config):
+    def get_dictionary(
+            self, custom_headers=None, raw=False, **operation_config):
         """Get External Resource as a Dictionary.
 
         :param dict custom_headers: headers that will be added to the request
@@ -181,7 +181,7 @@ class AutoRestResourceFlatteningTestServiceAsyncMixin(object):
         :raises: :class:`ErrorException<azureresource.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_dictionary_async.metadata['url']
+        url = self.get_dictionary.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -198,7 +198,7 @@ class AutoRestResourceFlatteningTestServiceAsyncMixin(object):
 
         # Construct and send request
         request = self._client.get(url, query_parameters)
-        response = await self._client.async_send(request, header_parameters, stream=False, **operation_config)
+        response = self._client.send(request, header_parameters, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -213,10 +213,10 @@ class AutoRestResourceFlatteningTestServiceAsyncMixin(object):
             return client_raw_response
 
         return deserialized
-    get_dictionary_async.metadata = {'url': '/azure/resource-flatten/dictionary'}
+    get_dictionary.metadata = {'url': '/azure/resource-flatten/dictionary'}
 
-    async def put_resource_collection_async(
-            self, resource_complex_object=None, *, custom_headers=None, raw=False, **operation_config):
+    def put_resource_collection(
+            self, resource_complex_object=None, custom_headers=None, raw=False, **operation_config):
         """Put External Resource as a ResourceCollection.
 
         :param resource_complex_object: External Resource as a
@@ -233,7 +233,7 @@ class AutoRestResourceFlatteningTestServiceAsyncMixin(object):
         :raises: :class:`ErrorException<azureresource.models.ErrorException>`
         """
         # Construct URL
-        url = self.put_resource_collection_async.metadata['url']
+        url = self.put_resource_collection.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -256,7 +256,7 @@ class AutoRestResourceFlatteningTestServiceAsyncMixin(object):
 
         # Construct and send request
         request = self._client.put(url, query_parameters)
-        response = await self._client.async_send(
+        response = self._client.send(
             request, header_parameters, body_content, stream=False, **operation_config)
 
         if response.status_code not in [200]:
@@ -265,10 +265,10 @@ class AutoRestResourceFlatteningTestServiceAsyncMixin(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_resource_collection_async.metadata = {'url': '/azure/resource-flatten/resourcecollection'}
+    put_resource_collection.metadata = {'url': '/azure/resource-flatten/resourcecollection'}
 
-    async def get_resource_collection_async(
-            self, *, custom_headers=None, raw=False, **operation_config):
+    def get_resource_collection(
+            self, custom_headers=None, raw=False, **operation_config):
         """Get External Resource as a ResourceCollection.
 
         :param dict custom_headers: headers that will be added to the request
@@ -282,7 +282,7 @@ class AutoRestResourceFlatteningTestServiceAsyncMixin(object):
         :raises: :class:`ErrorException<azureresource.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_resource_collection_async.metadata['url']
+        url = self.get_resource_collection.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -299,7 +299,7 @@ class AutoRestResourceFlatteningTestServiceAsyncMixin(object):
 
         # Construct and send request
         request = self._client.get(url, query_parameters)
-        response = await self._client.async_send(request, header_parameters, stream=False, **operation_config)
+        response = self._client.send(request, header_parameters, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -314,4 +314,4 @@ class AutoRestResourceFlatteningTestServiceAsyncMixin(object):
             return client_raw_response
 
         return deserialized
-    get_resource_collection_async.metadata = {'url': '/azure/resource-flatten/resourcecollection'}
+    get_resource_collection.metadata = {'url': '/azure/resource-flatten/resourcecollection'}

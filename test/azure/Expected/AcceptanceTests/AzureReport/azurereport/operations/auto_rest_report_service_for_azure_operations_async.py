@@ -10,11 +10,12 @@
 # --------------------------------------------------------------------------
 
 from msrest.pipeline import ClientRawResponse
-from . import models
+from .. import models
 import uuid
+from .auto_rest_report_service_for_azure_operations import AutoRestReportServiceForAzureOperationsMixin as _AutoRestReportServiceForAzureOperationsMixin
 
 
-class AutoRestReportServiceForAzureAsyncMixin(object):
+class AutoRestReportServiceForAzureOperationsMixin(_AutoRestReportServiceForAzureOperationsMixin):
 
     async def get_report_async(
             self, qualifier=None, *, custom_headers=None, raw=False, **operation_config):
