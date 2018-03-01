@@ -1,0 +1,43 @@
+﻿@using AutoRest.Python.vanilla.Templates
+@using System.Linq
+@using AutoRest.Core.Model
+@using AutoRest.Core.Utilities
+@using AutoRest.Extensions.Azure
+@using AutoRest.Python
+@using AutoRest.Python.Azure.Model
+@using AutoRest.Python.azure.Templates
+@using AutoRest.Python.Model
+@inherits AutoRest.Python.PythonTemplate<CodeModelPya>
+# coding=utf-8
+# --------------------------------------------------------------------------
+@Header("# ").TrimMultilineHeader()
+# --------------------------------------------------------------------------
+@EmptyLine
+@if (Model.HasAnyDeprecated)
+{
+@:import warnings
+}
+from msrest.pipeline import ClientRawResponse
+@if(Model.HasAnyCloudErrors)
+{
+@:from msrestazure.azure_exceptions import CloudError
+}
+@if (Model.HasAnyLongRunOperation)
+{
+@:from msrest.polling import LROPoller, NoPolling
+@:from msrestazure.polling.arm_polling import ARMPolling
+}
+@if (Model.HasAnyModel)
+{
+@:from .. import models
+}
+import uuid
+from .@( Model.Name.ToPythonCase())_operations import @(Model.Name)OperationsMixin as _@(Model.Name)OperationsMixin
+@EmptyLine
+@EmptyLine
+class @(Model.Name)OperationsMixin(_@(Model.Name)OperationsMixin):
+@foreach (var method in Model.MethodTemplateModels.Where(each => each.MethodGroup.IsCodeModelMethodGroup))
+{
+@EmptyLine
+@(Include(new AzureMethodTemplate() {AsyncMode = true, Python3Mode = true}, (MethodPya)method))
+}

@@ -29,14 +29,14 @@ from msrest.pipeline import ClientRawResponse
 }
 @if (Model.HasAnyModel)
 {
-@:from . import models
+@:from .. import models
 }
 import uuid
 @EmptyLine
 @EmptyLine
-class @(Model.Name)AsyncMixin(object):
+class @(Model.Name)OperationsMixin(object):
 @foreach (var method in Model.MethodTemplateModels.Where(each => each.MethodGroup.IsCodeModelMethodGroup))
 {
 @EmptyLine
-@(Include(new AzureMethodTemplate() {AsyncMode = true, Python3Mode = true}, (MethodPya)method))
+@(Include(new AzureMethodTemplate() {AsyncMode = false, Python3Mode = false}, (MethodPya)method))
 }

@@ -22,7 +22,6 @@ bool hasClientLevelMethods = Model.MethodTemplateModels.Any( each => each.Method
 }
 @if (hasClientLevelMethods)
 {
-@:from msrest.pipeline import ClientRawResponse
 @:from .operations import @(Model.Name)OperationsMixin
 }
 @if (Model.HasAnyDefaultExceptions)

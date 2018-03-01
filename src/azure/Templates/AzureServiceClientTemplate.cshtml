@@ -26,19 +26,7 @@ bool hasClientLevelMethods = Model.MethodTemplateModels.Any( each => each.Method
 }
 @if (hasClientLevelMethods)
 {
-<text>
-from msrest.pipeline import ClientRawResponse
-@if(Model.HasAnyCloudErrors)
-{
-@:from msrestazure.azure_exceptions import CloudError
-}
-@if (Model.HasAnyLongRunOperation)
-{
-@:from msrest.polling import LROPoller, NoPolling
-@:from msrestazure.polling.arm_polling import ARMPolling
-}
-import uuid
-</text>
+@:from .operations import @(Model.Name)OperationsMixin
 }
 @if (Model.MethodGroupModels.Any())
 {
@@ -50,16 +38,6 @@ import uuid
 @if (Model.HasAnyModel)
 {
 @:from . import models
-}
-@if (hasClientLevelMethods)
-{
-<text>
-try:
-    from .@(Model.Name.ToPythonCase())_async import @(Model.Name)AsyncMixin
-except (SyntaxError, ImportError):
-    class @(Model.Name)AsyncMixin:
-        pass
-</text>
 }
 @EmptyLine
 @EmptyLine
@@ -121,7 +99,7 @@ else
 @EmptyLine
 @if (hasClientLevelMethods)
 {
-@:class @(Model.Name)(@(Model.Name)AsyncMixin, object):
+@:class @(Model.Name)(@(Model.Name)OperationsMixin, object):
 }
 else
 {
@@ -178,9 +156,4 @@ else
 {
         @:self.@(((string) methodGroup.Name).ToPythonCase()) = @((string) methodGroup.TypeName)(
             @:self._client, self.config, self._serialize, self._deserialize)
-}
-@foreach (var method in Model.MethodTemplateModels.Where(each => each.MethodGroup.IsCodeModelMethodGroup))
-{
-@EmptyLine
-@(Include(new AzureMethodTemplate(), (MethodPya)method))
 }
