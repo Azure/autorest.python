@@ -142,15 +142,16 @@ else
 @:        @ParameterWrapComment(":type " + parameter.Name + ": " + Model.GetDocumentationType(parameter.ModelType))
 }
         @ParameterWrapComment(":param dict custom_headers: headers that will be added to the request")
-        @ParameterWrapComment("param bool raw: The poller return type is ClientRawResponse, the direct response alongside the deserialized response")
-        @ParameterWrapComment(":param polling: True for ARMPolling, False for no polling, or a polling object for personal polling strategy")
+        @ParameterWrapComment(":param bool raw: The poller return type is ClientRawResponse, the direct response alongside the deserialized response")
 @if (AsyncMode)
 {
+@:        @ParameterWrapComment(":param polling: True for AsyncARMPolling, False for no polling, or a polling object for personal polling strategy")
 @:        @ParameterWrapComment(":return: An instance of " + Model.GetDocumentationTypeName(Model.ReturnType.Body) + " or ClientRawResponse<" + Model.GetDocumentationTypeName(Model.ReturnType.Body) + "> if raw==True")
 @:        @ParameterWrapComment(string.Format(":rtype: ~{0} or ~msrest.pipeline.ClientRawResponse[{0}]", Model.GetReturnTypeDocumentation(Model.ReturnType.Body)))
 }
 else
 {
+@:        @ParameterWrapComment(":param polling: True for ARMPolling, False for no polling, or a polling object for personal polling strategy")
 @:        @ParameterWrapComment(":return: An instance of LROPoller that returns " + Model.GetDocumentationTypeName(Model.ReturnType.Body) + " or ClientRawResponse<" + Model.GetDocumentationTypeName(Model.ReturnType.Body) + "> if raw==True")
 @:        @ParameterWrapComment(string.Format(":rtype: ~msrestazure.azure_operation.AzureOperationPoller[{0}] or ~msrestazure.azure_operation.AzureOperationPoller[~msrest.pipeline.ClientRawResponse[{0}]]", Model.GetReturnTypeDocumentation(Model.ReturnType.Body)))
 }

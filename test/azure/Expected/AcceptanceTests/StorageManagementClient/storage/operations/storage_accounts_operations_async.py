@@ -154,9 +154,9 @@ class StorageAccountsOperations(_StorageAccountsOperations):
         :param parameters: The parameters to provide for the created account.
         :type parameters: ~storage.models.StorageAccountCreateParameters
         :param dict custom_headers: headers that will be added to the request
-        param bool raw: The poller return type is ClientRawResponse, the
+        :param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
-        :param polling: True for ARMPolling, False for no polling, or a
+        :param polling: True for AsyncARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of StorageAccount or
          ClientRawResponse<StorageAccount> if raw==True
