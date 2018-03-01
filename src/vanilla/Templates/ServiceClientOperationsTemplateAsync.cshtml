@@ -21,11 +21,12 @@ from msrest.pipeline import ClientRawResponse
 }
 @if (Model.HasAnyModel)
 {
-@:from . import models
+@:from .. import models
 }
+from .@( Model.Name.ToPythonCase())_operations import @(Model.Name)OperationsMixin as _@(Model.Name)OperationsMixin
 @EmptyLine
 @EmptyLine
-class @(Model.Name)AsyncMixin(object):
+class @(Model.Name)OperationsMixin(_@(Model.Name)OperationsMixin):
 @foreach (var method in Model.MethodTemplateModels.Where(each => each.MethodGroup.IsCodeModelMethodGroup))
 {
 @EmptyLine

@@ -59,8 +59,11 @@ namespace AutoRest.Python
             // If async method at the client level, create another file
             if(codeModel.MethodTemplateModels.Any( each => each.MethodGroup.IsCodeModelMethodGroup))
             {
-                var serviceClientTemplateAsync = new ServiceClientTemplateAsync { Model = codeModel };
-                await Write(serviceClientTemplateAsync, Path.Combine(folderName, codeModel.Name.ToPythonCase() + "_async.py"));
+                var serviceClientOpTemplate = new ServiceClientOperationsTemplate { Model = codeModel };
+                await Write(serviceClientOpTemplate, Path.Combine(folderName, "operations", codeModel.Name.ToPythonCase() + "_operations.py"));
+
+                var serviceClientOpTemplateAsync = new ServiceClientOperationsTemplateAsync { Model = codeModel };
+                await Write(serviceClientOpTemplateAsync, Path.Combine(folderName, "operations", codeModel.Name.ToPythonCase() + "_operations_async.py"));
             }
 
             var versionTemplate = new VersionTemplate { Model = codeModel };
@@ -86,7 +89,7 @@ namespace AutoRest.Python
             }
 
             //MethodGroups
-            if (codeModel.MethodGroupModels.Any())
+            if (codeModel.MethodGroupModels.Any() || codeModel.MethodTemplateModels.Any( each => each.MethodGroup.IsCodeModelMethodGroup))
             {
                 var methodGroupIndexTemplate = new MethodGroupInitTemplate
                 {

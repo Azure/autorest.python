@@ -23,6 +23,7 @@ bool hasClientLevelMethods = Model.MethodTemplateModels.Any( each => each.Method
 @if (hasClientLevelMethods)
 {
 @:from msrest.pipeline import ClientRawResponse
+@:from .operations import @(Model.Name)OperationsMixin
 }
 @if (Model.HasAnyDefaultExceptions)
 {
@@ -38,16 +39,6 @@ bool hasClientLevelMethods = Model.MethodTemplateModels.Any( each => each.Method
 @if (Model.HasAnyModel)
 {
 @:from . import models
-}
-@if (hasClientLevelMethods)
-{
-<text>
-try:
-    from .@(Model.Name.ToPythonCase())_async import @(Model.Name)AsyncMixin
-except (SyntaxError, ImportError):
-    class @(Model.Name)AsyncMixin:
-        pass
-</text>
 }
 @EmptyLine
 @EmptyLine
@@ -108,7 +99,7 @@ else
 @EmptyLine
 @if (hasClientLevelMethods)
 {
-@:class @(Model.Name)(@(Model.Name)AsyncMixin, object):
+@:class @(Model.Name)(@(Model.Name)OperationsMixin, object):
 }
 else
 {
@@ -169,9 +160,4 @@ else
 {
         @:self.@(((string) methodGroup.Name).ToPythonCase()) = @((string) methodGroup.TypeName)(
             @:self._client, self.config, self._serialize, self._deserialize)
-}
-@foreach (var method in Model.MethodTemplateModels.Where(each => each.MethodGroup.IsCodeModelMethodGroup))
-{
-@EmptyLine
-@(Include(new MethodTemplate(), method))
 }
