@@ -15,7 +15,9 @@ from msrest.serialization import Model
 class Product(Model):
     """Product.
 
-    :param id:
+    All required parameters must be populated in order to send to Azure.
+
+    :param id: Required.
     :type id: int
     :param name:
     :type name: str
@@ -30,7 +32,7 @@ class Product(Model):
         'name': {'key': 'name', 'type': 'str'},
     }
 
-    def __init__(self, id, name=None):
-        super(Product, self).__init__()
-        self.id = id
-        self.name = name
+    def __init__(self, **kwargs):
+        super(Product, self).__init__(**kwargs)
+        self.id = kwargs.get('id', None)
+        self.name = kwargs.get('name', None)

@@ -18,17 +18,19 @@ class Shark(Fish):
     You probably want to use the sub-classes and not this class directly. Known
     sub-classes are: Sawshark, Goblinshark, Cookiecuttershark
 
+    All required parameters must be populated in order to send to Azure.
+
     :param species:
     :type species: str
-    :param length:
+    :param length: Required.
     :type length: float
     :param siblings:
     :type siblings: list[~bodycomplex.models.Fish]
-    :param fishtype: Constant filled by server.
+    :param fishtype: Required. Constant filled by server.
     :type fishtype: str
     :param age:
     :type age: int
-    :param birthday:
+    :param birthday: Required.
     :type birthday: datetime
     """
 
@@ -51,8 +53,8 @@ class Shark(Fish):
         'fishtype': {'sawshark': 'Sawshark', 'goblin': 'Goblinshark', 'cookiecuttershark': 'Cookiecuttershark'}
     }
 
-    def __init__(self, length, birthday, species=None, siblings=None, age=None):
-        super(Shark, self).__init__(species=species, length=length, siblings=siblings)
-        self.age = age
-        self.birthday = birthday
+    def __init__(self, **kwargs):
+        super(Shark, self).__init__(**kwargs)
+        self.age = kwargs.get('age', None)
+        self.birthday = kwargs.get('birthday', None)
         self.fishtype = 'shark'

@@ -16,7 +16,7 @@ namespace AutoRest.Python.Azure
 {
     public class CodeGeneratorPya : CodeGeneratorPy
     {
-        private const string ClientRuntimePackage = "msrestazure version 0.4.7";
+        private const string ClientRuntimePackage = "msrestazure version 0.4.20";
 
         public override string UsageInstructions => $"The {ClientRuntimePackage} pip package is required to execute the generated code.";
 

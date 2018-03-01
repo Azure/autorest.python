@@ -71,7 +71,6 @@ namespace AutoRest.Python.Model
                 return originalComposed;
             }
         }
-
         /// <summary>
         /// If PolymorphicDiscriminator is set, makes sure we have a PolymorphicDiscriminator property.
         /// </summary>
@@ -231,6 +230,11 @@ namespace AutoRest.Python.Model
                 docString = string.Format(CultureInfo.InvariantCulture, ":ivar {0}:", property.Name);
             }
 
+            if (property.IsRequired)
+            {
+                docString += " Required.";
+            }
+
             string summary = property.Summary;
             if (!string.IsNullOrWhiteSpace(summary) && !summary.EndsWith(".", StringComparison.OrdinalIgnoreCase))
             {
@@ -308,55 +312,6 @@ namespace AutoRest.Python.Model
             }
         }
 
-        public virtual string SuperParameterDeclaration()
-        {
-            List<string> combinedDeclarations = new List<string>();
-
-            foreach (var property in ComposedProperties.Except(Properties).Except(ReadOnlyAttributes).Where( each =>!each.IsPolymorphicDiscriminator))
-            {
-                combinedDeclarations.Add(string.Format(CultureInfo.InvariantCulture, "{0}={0}", property.Name));
-            }
-            return string.Join(", ", combinedDeclarations);
-        }
-
-        public virtual string MethodParameterDeclaration()
-        {
-            List<string> declarations = new List<string>();
-            List<string> requiredDeclarations = new List<string>();
-            List<string> combinedDeclarations = new List<string>();
-
-            foreach (var property in ComposedProperties.Except(ReadOnlyAttributes).Where(each => !each.IsPolymorphicDiscriminator))
-            {
-                if (this.BaseIsPolymorphic)
-                    if (property.Name == this.BasePolymorphicDiscriminator)
-                        continue;
-
-                if (property.IsRequired && property.DefaultValue.RawValue.IsNullOrEmpty())
-                {
-                    requiredDeclarations.Add(property.Name);
-                }
-                else
-                {
-                    declarations.Add($"{property.Name}={property.DefaultValue}");
-                }
-            }
-
-            if (requiredDeclarations.Any())
-            {
-                combinedDeclarations.Add(string.Join(", ", requiredDeclarations));
-            }
-            if (declarations.Any())
-            {
-                combinedDeclarations.Add(string.Join(", ", declarations));
-            }
-
-            if (!combinedDeclarations.Any())
-            {
-                return string.Empty;
-            }
-            return ", " + string.Join(", ", combinedDeclarations);
-        }
-
         public string SubModelTypeList
         {
             get
@@ -421,7 +376,11 @@ namespace AutoRest.Python.Model
             {
                 return string.Format(CultureInfo.InvariantCulture, "{0}.{1} = None", objectName, property.Name);
             }
-            return string.Format(CultureInfo.InvariantCulture, "{0}.{1} = {1}", objectName, property.Name);
+            if (property.IsRequired && property.DefaultValue.RawValue.IsNullOrEmpty())
+            {
+                return string.Format(CultureInfo.InvariantCulture, "{0}.{1} = kwargs.get('{1}', None)", objectName, property.Name);    
+            }
+            return string.Format(CultureInfo.InvariantCulture, "{0}.{1} = kwargs.get('{1}', {2})", objectName, property.Name, property.DefaultValue);
         }
 
         public bool NeedsPolymorphicConverter => BaseIsPolymorphic && BaseModelType != null;

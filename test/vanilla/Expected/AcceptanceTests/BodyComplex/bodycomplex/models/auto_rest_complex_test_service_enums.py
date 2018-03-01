@@ -12,7 +12,7 @@
 from enum import Enum
 
 
-class CMYKColors(Enum):
+class CMYKColors(str, Enum):
 
     cyan = "cyan"
     magenta = "Magenta"

@@ -15,17 +15,19 @@ from .shark import Shark
 class Sawshark(Shark):
     """Sawshark.
 
+    All required parameters must be populated in order to send to Azure.
+
     :param species:
     :type species: str
-    :param length:
+    :param length: Required.
     :type length: float
     :param siblings:
     :type siblings: list[~bodycomplex.models.Fish]
-    :param fishtype: Constant filled by server.
+    :param fishtype: Required. Constant filled by server.
     :type fishtype: str
     :param age:
     :type age: int
-    :param birthday:
+    :param birthday: Required.
     :type birthday: datetime
     :param picture:
     :type picture: bytearray
@@ -47,7 +49,7 @@ class Sawshark(Shark):
         'picture': {'key': 'picture', 'type': 'bytearray'},
     }
 
-    def __init__(self, length, birthday, species=None, siblings=None, age=None, picture=None):
-        super(Sawshark, self).__init__(species=species, length=length, siblings=siblings, age=age, birthday=birthday)
-        self.picture = picture
+    def __init__(self, **kwargs):
+        super(Sawshark, self).__init__(**kwargs)
+        self.picture = kwargs.get('picture', None)
         self.fishtype = 'sawshark'

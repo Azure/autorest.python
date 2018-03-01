@@ -31,8 +31,8 @@ class Basic(Model):
         'color': {'key': 'color', 'type': 'str'},
     }
 
-    def __init__(self, id=None, name=None, color=None):
-        super(Basic, self).__init__()
-        self.id = id
-        self.name = name
-        self.color = color
+    def __init__(self, **kwargs):
+        super(Basic, self).__init__(**kwargs)
+        self.id = kwargs.get('id', None)
+        self.name = kwargs.get('name', None)
+        self.color = kwargs.get('color', None)

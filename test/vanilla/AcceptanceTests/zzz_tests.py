@@ -49,15 +49,7 @@ class AcceptanceTests(unittest.TestCase):
         report = client.get_report(platform.python_version())
 
         # Add tests that wont be supported due to the nature of Python here
-        not_supported = {
-            'getIntegerOverflow': 1,
-            'getIntegerUnderflow': 1,
-            'getLongOverflow': 1,
-            'getLongUnderflow': 1,
-            'getDateInvalid': 1,
-            'getDictionaryNullkey': 1,
-            'HttpRedirect300Get': 1,
-        }
+        not_supported = {}
 
         # Please add missing features or failing tests here
         missing_features_or_bugs = {'FileStreamVeryLarge' : 1}

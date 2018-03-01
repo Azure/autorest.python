@@ -23,6 +23,6 @@ class D(Model):
         'http_status_code': {'key': 'httpStatusCode', 'type': 'str'},
     }
 
-    def __init__(self, http_status_code=None):
-        super(D, self).__init__()
-        self.http_status_code = http_status_code
+    def __init__(self, **kwargs):
+        super(D, self).__init__(**kwargs)
+        self.http_status_code = kwargs.get('http_status_code', None)

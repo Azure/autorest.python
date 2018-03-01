@@ -24,9 +24,9 @@ class A(Model):
         'status_code': {'key': 'statusCode', 'type': 'str'},
     }
 
-    def __init__(self, status_code=None):
-        super(A, self).__init__()
-        self.status_code = status_code
+    def __init__(self, **kwargs):
+        super(A, self).__init__(**kwargs)
+        self.status_code = kwargs.get('status_code', None)
 
 
 class AException(HttpOperationError):

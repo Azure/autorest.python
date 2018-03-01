@@ -15,17 +15,19 @@ from .shark import Shark
 class Goblinshark(Shark):
     """Goblinshark.
 
+    All required parameters must be populated in order to send to Azure.
+
     :param species:
     :type species: str
-    :param length:
+    :param length: Required.
     :type length: float
     :param siblings:
     :type siblings: list[~bodycomplex.models.Fish]
-    :param fishtype: Constant filled by server.
+    :param fishtype: Required. Constant filled by server.
     :type fishtype: str
     :param age:
     :type age: int
-    :param birthday:
+    :param birthday: Required.
     :type birthday: datetime
     :param jawsize:
     :type jawsize: int
@@ -47,7 +49,7 @@ class Goblinshark(Shark):
         'jawsize': {'key': 'jawsize', 'type': 'int'},
     }
 
-    def __init__(self, length, birthday, species=None, siblings=None, age=None, jawsize=None):
-        super(Goblinshark, self).__init__(species=species, length=length, siblings=siblings, age=age, birthday=birthday)
-        self.jawsize = jawsize
+    def __init__(self, **kwargs):
+        super(Goblinshark, self).__init__(**kwargs)
+        self.jawsize = kwargs.get('jawsize', None)
         self.fishtype = 'goblin'

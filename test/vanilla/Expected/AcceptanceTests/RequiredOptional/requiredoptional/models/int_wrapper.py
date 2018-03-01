@@ -15,7 +15,9 @@ from msrest.serialization import Model
 class IntWrapper(Model):
     """IntWrapper.
 
-    :param value:
+    All required parameters must be populated in order to send to Azure.
+
+    :param value: Required.
     :type value: int
     """
 
@@ -27,6 +29,6 @@ class IntWrapper(Model):
         'value': {'key': 'value', 'type': 'int'},
     }
 
-    def __init__(self, value):
-        super(IntWrapper, self).__init__()
-        self.value = value
+    def __init__(self, **kwargs):
+        super(IntWrapper, self).__init__(**kwargs)
+        self.value = kwargs.get('value', None)

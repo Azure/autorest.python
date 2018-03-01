@@ -12,6 +12,6 @@
 from enum import Enum
 
 
-class EnumConst(Enum):
+class EnumConst(str, Enum):
 
     constant_string_as_enum = "constant_string_as_enum"

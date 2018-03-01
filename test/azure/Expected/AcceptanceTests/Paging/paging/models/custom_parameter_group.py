@@ -16,9 +16,11 @@ class CustomParameterGroup(Model):
     """Additional parameters for
     get_multiple_pages_fragment_with_grouping_next_link operation.
 
-    :param api_version: Sets the api version to use.
+    All required parameters must be populated in order to send to Azure.
+
+    :param api_version: Required. Sets the api version to use.
     :type api_version: str
-    :param tenant: Sets the tenant to use.
+    :param tenant: Required. Sets the tenant to use.
     :type tenant: str
     """
 
@@ -27,7 +29,12 @@ class CustomParameterGroup(Model):
         'tenant': {'required': True},
     }
 
-    def __init__(self, api_version, tenant):
-        super(CustomParameterGroup, self).__init__()
-        self.api_version = api_version
-        self.tenant = tenant
+    _attribute_map = {
+        'api_version': {'key': '', 'type': 'str'},
+        'tenant': {'key': '', 'type': 'str'},
+    }
+
+    def __init__(self, **kwargs):
+        super(CustomParameterGroup, self).__init__(**kwargs)
+        self.api_version = kwargs.get('api_version', None)
+        self.tenant = kwargs.get('tenant', None)

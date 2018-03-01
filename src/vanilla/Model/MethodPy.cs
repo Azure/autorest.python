@@ -173,7 +173,6 @@ namespace AutoRest.Python.Model
             {
                 declarations.Add("callback=None");
             }
-            declarations.Add("**operation_config");
 
             if (requiredDeclarations.Any())
             {

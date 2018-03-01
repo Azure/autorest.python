@@ -23,6 +23,6 @@ class Product(Model):
         'properties': {'key': 'properties', 'type': 'ProductProperties'},
     }
 
-    def __init__(self, properties=None):
-        super(Product, self).__init__()
-        self.properties = properties
+    def __init__(self, **kwargs):
+        super(Product, self).__init__(**kwargs)
+        self.properties = kwargs.get('properties', None)
