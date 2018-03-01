@@ -11,13 +11,13 @@
 
 from msrest.pipeline import ClientRawResponse
 from msrest.exceptions import HttpOperationError
-from . import models
+from .. import models
 
 
-class AutoRestValidationTestAsyncMixin(object):
+class AutoRestValidationTestOperationsMixin(object):
 
-    async def validation_of_method_parameters_async(
-            self, resource_group_name, id, *, custom_headers=None, raw=False, **operation_config):
+    def validation_of_method_parameters(
+            self, resource_group_name, id, custom_headers=None, raw=False, **operation_config):
         """Validates input parameters on the method. See swagger for details.
 
         :param resource_group_name: Required string between 3 and 10 chars
@@ -36,7 +36,7 @@ class AutoRestValidationTestAsyncMixin(object):
         :raises: :class:`ErrorException<validation.models.ErrorException>`
         """
         # Construct URL
-        url = self.validation_of_method_parameters_async.metadata['url']
+        url = self.validation_of_method_parameters.metadata['url']
         path_format_arguments = {
             'subscriptionId': self._serialize.url("self.config.subscription_id", self.config.subscription_id, 'str'),
             'resourceGroupName': self._serialize.url("resource_group_name", resource_group_name, 'str', max_length=10, min_length=3, pattern=r'[a-zA-Z0-9]+'),
@@ -56,7 +56,7 @@ class AutoRestValidationTestAsyncMixin(object):
 
         # Construct and send request
         request = self._client.get(url, query_parameters)
-        response = await self._client.async_send(request, header_parameters, stream=False, **operation_config)
+        response = self._client.send(request, header_parameters, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -71,10 +71,10 @@ class AutoRestValidationTestAsyncMixin(object):
             return client_raw_response
 
         return deserialized
-    validation_of_method_parameters_async.metadata = {'url': '/fakepath/{subscriptionId}/{resourceGroupName}/{id}'}
+    validation_of_method_parameters.metadata = {'url': '/fakepath/{subscriptionId}/{resourceGroupName}/{id}'}
 
-    async def validation_of_body_async(
-            self, resource_group_name, id, body=None, *, custom_headers=None, raw=False, **operation_config):
+    def validation_of_body(
+            self, resource_group_name, id, body=None, custom_headers=None, raw=False, **operation_config):
         """Validates body parameters on the method. See swagger for details.
 
         :param resource_group_name: Required string between 3 and 10 chars
@@ -95,7 +95,7 @@ class AutoRestValidationTestAsyncMixin(object):
         :raises: :class:`ErrorException<validation.models.ErrorException>`
         """
         # Construct URL
-        url = self.validation_of_body_async.metadata['url']
+        url = self.validation_of_body.metadata['url']
         path_format_arguments = {
             'subscriptionId': self._serialize.url("self.config.subscription_id", self.config.subscription_id, 'str'),
             'resourceGroupName': self._serialize.url("resource_group_name", resource_group_name, 'str', max_length=10, min_length=3, pattern=r'[a-zA-Z0-9]+'),
@@ -121,7 +121,7 @@ class AutoRestValidationTestAsyncMixin(object):
 
         # Construct and send request
         request = self._client.put(url, query_parameters)
-        response = await self._client.async_send(
+        response = self._client.send(
             request, header_parameters, body_content, stream=False, **operation_config)
 
         if response.status_code not in [200]:
@@ -137,10 +137,10 @@ class AutoRestValidationTestAsyncMixin(object):
             return client_raw_response
 
         return deserialized
-    validation_of_body_async.metadata = {'url': '/fakepath/{subscriptionId}/{resourceGroupName}/{id}'}
+    validation_of_body.metadata = {'url': '/fakepath/{subscriptionId}/{resourceGroupName}/{id}'}
 
-    async def get_with_constant_in_path_async(
-            self, *, custom_headers=None, raw=False, **operation_config):
+    def get_with_constant_in_path(
+            self, custom_headers=None, raw=False, **operation_config):
         """
 
         :param dict custom_headers: headers that will be added to the request
@@ -156,7 +156,7 @@ class AutoRestValidationTestAsyncMixin(object):
         constant_param = "constant"
 
         # Construct URL
-        url = self.get_with_constant_in_path_async.metadata['url']
+        url = self.get_with_constant_in_path.metadata['url']
         path_format_arguments = {
             'constantParam': self._serialize.url("constant_param", constant_param, 'str')
         }
@@ -173,7 +173,7 @@ class AutoRestValidationTestAsyncMixin(object):
 
         # Construct and send request
         request = self._client.get(url, query_parameters)
-        response = await self._client.async_send(request, header_parameters, stream=False, **operation_config)
+        response = self._client.send(request, header_parameters, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise HttpOperationError(self._deserialize, response)
@@ -181,10 +181,10 @@ class AutoRestValidationTestAsyncMixin(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    get_with_constant_in_path_async.metadata = {'url': '/validation/constantsInPath/{constantParam}/value'}
+    get_with_constant_in_path.metadata = {'url': '/validation/constantsInPath/{constantParam}/value'}
 
-    async def post_with_constant_in_body_async(
-            self, body=None, *, custom_headers=None, raw=False, **operation_config):
+    def post_with_constant_in_body(
+            self, body=None, custom_headers=None, raw=False, **operation_config):
         """
 
         :param body:
@@ -203,7 +203,7 @@ class AutoRestValidationTestAsyncMixin(object):
         constant_param = "constant"
 
         # Construct URL
-        url = self.post_with_constant_in_body_async.metadata['url']
+        url = self.post_with_constant_in_body.metadata['url']
         path_format_arguments = {
             'constantParam': self._serialize.url("constant_param", constant_param, 'str')
         }
@@ -226,7 +226,7 @@ class AutoRestValidationTestAsyncMixin(object):
 
         # Construct and send request
         request = self._client.post(url, query_parameters)
-        response = await self._client.async_send(
+        response = self._client.send(
             request, header_parameters, body_content, stream=False, **operation_config)
 
         if response.status_code not in [200]:
@@ -242,4 +242,4 @@ class AutoRestValidationTestAsyncMixin(object):
             return client_raw_response
 
         return deserialized
-    post_with_constant_in_body_async.metadata = {'url': '/validation/constantsInPath/{constantParam}/value'}
+    post_with_constant_in_body.metadata = {'url': '/validation/constantsInPath/{constantParam}/value'}

@@ -10,10 +10,11 @@
 # --------------------------------------------------------------------------
 
 from msrest.pipeline import ClientRawResponse
-from . import models
+from .. import models
+from .auto_rest_resource_flattening_test_service_operations import AutoRestResourceFlatteningTestServiceOperationsMixin as _AutoRestResourceFlatteningTestServiceOperationsMixin
 
 
-class AutoRestResourceFlatteningTestServiceAsyncMixin(object):
+class AutoRestResourceFlatteningTestServiceOperationsMixin(_AutoRestResourceFlatteningTestServiceOperationsMixin):
 
     async def put_array_async(
             self, resource_array=None, *, custom_headers=None, raw=False, **operation_config):

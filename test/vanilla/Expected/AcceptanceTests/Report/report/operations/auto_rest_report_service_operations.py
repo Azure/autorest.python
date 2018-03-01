@@ -10,13 +10,13 @@
 # --------------------------------------------------------------------------
 
 from msrest.pipeline import ClientRawResponse
-from . import models
+from .. import models
 
 
-class AutoRestReportServiceAsyncMixin(object):
+class AutoRestReportServiceOperationsMixin(object):
 
-    async def get_report_async(
-            self, qualifier=None, *, custom_headers=None, raw=False, **operation_config):
+    def get_report(
+            self, qualifier=None, custom_headers=None, raw=False, **operation_config):
         """Get test coverage report.
 
         :param qualifier: If specified, qualifies the generated report further
@@ -34,7 +34,7 @@ class AutoRestReportServiceAsyncMixin(object):
         :raises: :class:`ErrorException<report.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_report_async.metadata['url']
+        url = self.get_report.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -49,7 +49,7 @@ class AutoRestReportServiceAsyncMixin(object):
 
         # Construct and send request
         request = self._client.get(url, query_parameters)
-        response = await self._client.async_send(request, header_parameters, stream=False, **operation_config)
+        response = self._client.send(request, header_parameters, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -64,4 +64,4 @@ class AutoRestReportServiceAsyncMixin(object):
             return client_raw_response
 
         return deserialized
-    get_report_async.metadata = {'url': '/report'}
+    get_report.metadata = {'url': '/report'}
