@@ -37,7 +37,7 @@ from os.path import dirname, pardir, join, realpath
 cwd = dirname(realpath(__file__))
 log_level = int(os.environ.get('PythonLogLevel', 30))
 
-tests = realpath(join(cwd, pardir, "Expected", "AcceptanceTests"))
+tests = realpath(join(cwd, pardir, pardir, "Expected", "AcceptanceTests"))
 sys.path.append(join(tests, "ModelFlattening"))
 
 from msrest.serialization import Deserializer
