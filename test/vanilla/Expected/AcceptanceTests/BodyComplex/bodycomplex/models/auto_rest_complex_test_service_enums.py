@@ -18,3 +18,10 @@ class CMYKColors(Enum):
     magenta = "Magenta"
     yellow = "YELLOW"
     blac_k = "blacK"
+
+
+class GoblinSharkColor(Enum):
+
+    pink = "pink"
+    gray = "gray"
+    brown = "brown"

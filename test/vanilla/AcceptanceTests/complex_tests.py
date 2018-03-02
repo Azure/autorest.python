@@ -306,7 +306,7 @@ class ComplexTests(unittest.TestCase):
                                  age=105, species="dangerous",
                                  picture=bytearray([255, 255, 255, 255, 254])),
                         Goblinshark(30, isodate.parse_datetime("2015-08-08T00:00:00Z"),
-                                    age=1, species="scary", jawsize=5)]
+                                    age=1, species="scary", jawsize=5, color='pinkish-gray')]
             )
         client.polymorphism.put_valid(request)
 
