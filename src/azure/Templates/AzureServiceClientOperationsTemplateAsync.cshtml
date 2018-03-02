@@ -24,8 +24,8 @@ from msrest.pipeline import ClientRawResponse
 }
 @if (Model.HasAnyLongRunOperation)
 {
-@:from msrest.polling import LROPoller, NoPolling
-@:from msrestazure.polling.arm_polling import ARMPolling
+@:from msrest.polling.async_poller import async_poller, AsyncNoPolling
+@:from msrestazure.polling.async_arm_polling import AsyncARMPolling
 }
 @if (Model.HasAnyModel)
 {
