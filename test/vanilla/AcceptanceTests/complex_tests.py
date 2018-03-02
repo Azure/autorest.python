@@ -296,28 +296,32 @@ class ComplexTests(unittest.TestCase):
 
 
         # PUT polymorphism/valid
-        request = Salmon(1,
+        request = Salmon(length=1,
             iswild = True,
             location = "alaska",
             species = "king",
-            siblings = [Shark(20, isodate.parse_datetime("2012-01-05T01:00:00Z"),
+            siblings = [Shark(length=20,
+                              birthday=isodate.parse_datetime("2012-01-05T01:00:00Z"),
                               age=6, species="predator"),
-                        Sawshark(10, isodate.parse_datetime("1900-01-05T01:00:00Z"),
+                        Sawshark(length=10,
+                                 birthday=isodate.parse_datetime("1900-01-05T01:00:00Z"),
                                  age=105, species="dangerous",
                                  picture=bytearray([255, 255, 255, 255, 254])),
-                        Goblinshark(30, isodate.parse_datetime("2015-08-08T00:00:00Z"),
+                        Goblinshark(length=30,
+                                    birthday=isodate.parse_datetime("2015-08-08T00:00:00Z"),
                                     age=1, species="scary", jawsize=5, color='pinkish-gray')]
             )
         client.polymorphism.put_valid(request)
 
-        bad_request = Salmon(1,
+        bad_request = Salmon(length=1,
             iswild=True,
             location="alaska",
             species="king",
             siblings = [
-                Shark(20, isodate.parse_datetime("2012-01-05T01:00:00Z"),
+                Shark(length=20,
+                      birthday=isodate.parse_datetime("2012-01-05T01:00:00Z"),
                       age=6, species="predator"),
-                Sawshark(10, None, age=105, species="dangerous",
+                Sawshark(length=10, birthday=None, age=105, species="dangerous",
                          picture=bytearray([255, 255, 255, 255, 254]))]
             )
 
@@ -388,7 +392,6 @@ class ComplexTests(unittest.TestCase):
         """
         smart_salmon = client.polymorphism.get_complicated()
         client.polymorphism.put_complicated(smart_salmon)
-
 
         """
         Complex types that uses missing discriminator

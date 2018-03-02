@@ -23,7 +23,12 @@ class PagingGetMultiplePagesOptions(Model):
     :type timeout: int
     """
 
-    def __init__(self, maxresults=None, timeout=30):
-        super(PagingGetMultiplePagesOptions, self).__init__()
-        self.maxresults = maxresults
-        self.timeout = timeout
+    _attribute_map = {
+        'maxresults': {'key': '', 'type': 'int'},
+        'timeout': {'key': '', 'type': 'int'},
+    }
+
+    def __init__(self, **kwargs):
+        super(PagingGetMultiplePagesOptions, self).__init__(**kwargs)
+        self.maxresults = kwargs.get('maxresults', None)
+        self.timeout = kwargs.get('timeout', 30)

@@ -29,6 +29,6 @@ class Dog(Pet):
         'food': {'key': 'food', 'type': 'str'},
     }
 
-    def __init__(self, id=None, name=None, food=None):
-        super(Dog, self).__init__(id=id, name=name)
-        self.food = food
+    def __init__(self, **kwargs):
+        super(Dog, self).__init__(**kwargs)
+        self.food = kwargs.get('food', None)

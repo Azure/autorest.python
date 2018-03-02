@@ -15,7 +15,9 @@ from msrest.serialization import Model
 class AvailabilitySetUpdateParameters(Model):
     """AvailabilitySetUpdateParameters.
 
-    :param tags: A set of tags. A description about the set of tags.
+    All required parameters must be populated in order to send to Azure.
+
+    :param tags: Required. A set of tags. A description about the set of tags.
     :type tags: dict[str, str]
     """
 
@@ -27,6 +29,6 @@ class AvailabilitySetUpdateParameters(Model):
         'tags': {'key': 'tags', 'type': '{str}'},
     }
 
-    def __init__(self, tags):
-        super(AvailabilitySetUpdateParameters, self).__init__()
-        self.tags = tags
+    def __init__(self, **kwargs):
+        super(AvailabilitySetUpdateParameters, self).__init__(**kwargs)
+        self.tags = kwargs.get('tags', None)

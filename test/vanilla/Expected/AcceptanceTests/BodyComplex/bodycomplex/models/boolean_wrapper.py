@@ -26,7 +26,7 @@ class BooleanWrapper(Model):
         'field_false': {'key': 'field_false', 'type': 'bool'},
     }
 
-    def __init__(self, field_true=None, field_false=None):
-        super(BooleanWrapper, self).__init__()
-        self.field_true = field_true
-        self.field_false = field_false
+    def __init__(self, **kwargs):
+        super(BooleanWrapper, self).__init__(**kwargs)
+        self.field_true = kwargs.get('field_true', None)
+        self.field_false = kwargs.get('field_false', None)

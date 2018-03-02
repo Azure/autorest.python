@@ -12,7 +12,7 @@
 from enum import Enum
 
 
-class UriColor(Enum):
+class UriColor(str, Enum):
 
     redcolor = "red color"
     greencolor = "green color"

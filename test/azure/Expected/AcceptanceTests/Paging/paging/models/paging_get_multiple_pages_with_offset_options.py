@@ -15,10 +15,12 @@ from msrest.serialization import Model
 class PagingGetMultiplePagesWithOffsetOptions(Model):
     """Additional parameters for get_multiple_pages_with_offset operation.
 
+    All required parameters must be populated in order to send to Azure.
+
     :param maxresults: Sets the maximum number of items to return in the
      response.
     :type maxresults: int
-    :param offset: Offset of return value
+    :param offset: Required. Offset of return value
     :type offset: int
     :param timeout: Sets the maximum time that the server can spend processing
      the request, in seconds. The default is 30 seconds. Default value: 30 .
@@ -29,8 +31,14 @@ class PagingGetMultiplePagesWithOffsetOptions(Model):
         'offset': {'required': True},
     }
 
-    def __init__(self, offset, maxresults=None, timeout=30):
-        super(PagingGetMultiplePagesWithOffsetOptions, self).__init__()
-        self.maxresults = maxresults
-        self.offset = offset
-        self.timeout = timeout
+    _attribute_map = {
+        'maxresults': {'key': '', 'type': 'int'},
+        'offset': {'key': '', 'type': 'int'},
+        'timeout': {'key': '', 'type': 'int'},
+    }
+
+    def __init__(self, **kwargs):
+        super(PagingGetMultiplePagesWithOffsetOptions, self).__init__(**kwargs)
+        self.maxresults = kwargs.get('maxresults', None)
+        self.offset = kwargs.get('offset', None)
+        self.timeout = kwargs.get('timeout', 30)

@@ -15,7 +15,9 @@ from msrest.serialization import Model
 class HeaderCustomNamedRequestIdParamGroupingParameters(Model):
     """Additional parameters for custom_named_request_id_param_grouping operation.
 
-    :param foo_client_request_id: The fooRequestId
+    All required parameters must be populated in order to send to Azure.
+
+    :param foo_client_request_id: Required. The fooRequestId
     :type foo_client_request_id: str
     """
 
@@ -23,6 +25,10 @@ class HeaderCustomNamedRequestIdParamGroupingParameters(Model):
         'foo_client_request_id': {'required': True},
     }
 
-    def __init__(self, foo_client_request_id):
-        super(HeaderCustomNamedRequestIdParamGroupingParameters, self).__init__()
-        self.foo_client_request_id = foo_client_request_id
+    _attribute_map = {
+        'foo_client_request_id': {'key': '', 'type': 'str'},
+    }
+
+    def __init__(self, **kwargs):
+        super(HeaderCustomNamedRequestIdParamGroupingParameters, self).__init__(**kwargs)
+        self.foo_client_request_id = kwargs.get('foo_client_request_id', None)

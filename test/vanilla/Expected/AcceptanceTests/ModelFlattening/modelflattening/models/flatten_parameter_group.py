@@ -15,15 +15,17 @@ from msrest.serialization import Model
 class FlattenParameterGroup(Model):
     """Additional parameters for put_simple_product_with_grouping operation.
 
-    :param name: Product name with value 'groupproduct'
+    All required parameters must be populated in order to send to Azure.
+
+    :param name: Required. Product name with value 'groupproduct'
     :type name: str
-    :param product_id: Unique identifier representing a specific product for a
-     given latitude & longitude. For example, uberX in San Francisco will have
-     a different product_id than uberX in Los Angeles.
+    :param product_id: Required. Unique identifier representing a specific
+     product for a given latitude & longitude. For example, uberX in San
+     Francisco will have a different product_id than uberX in Los Angeles.
     :type product_id: str
     :param description: Description of product.
     :type description: str
-    :param max_product_display_name: Display name of product.
+    :param max_product_display_name: Required. Display name of product.
     :type max_product_display_name: str
     :param generic_value: Generic URL value.
     :type generic_value: str
@@ -37,11 +39,20 @@ class FlattenParameterGroup(Model):
         'max_product_display_name': {'required': True},
     }
 
-    def __init__(self, name, product_id, max_product_display_name, description=None, generic_value=None, odatavalue=None):
-        super(FlattenParameterGroup, self).__init__()
-        self.name = name
-        self.product_id = product_id
-        self.description = description
-        self.max_product_display_name = max_product_display_name
-        self.generic_value = generic_value
-        self.odatavalue = odatavalue
+    _attribute_map = {
+        'name': {'key': '', 'type': 'str'},
+        'product_id': {'key': '', 'type': 'str'},
+        'description': {'key': '', 'type': 'str'},
+        'max_product_display_name': {'key': '', 'type': 'str'},
+        'generic_value': {'key': '', 'type': 'str'},
+        'odatavalue': {'key': '', 'type': 'str'},
+    }
+
+    def __init__(self, **kwargs):
+        super(FlattenParameterGroup, self).__init__(**kwargs)
+        self.name = kwargs.get('name', None)
+        self.product_id = kwargs.get('product_id', None)
+        self.description = kwargs.get('description', None)
+        self.max_product_display_name = kwargs.get('max_product_display_name', None)
+        self.generic_value = kwargs.get('generic_value', None)
+        self.odatavalue = kwargs.get('odatavalue', None)

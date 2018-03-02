@@ -12,7 +12,7 @@
 from enum import Enum
 
 
-class CMYKColors(Enum):
+class CMYKColors(str, Enum):
 
     cyan = "cyan"
     magenta = "Magenta"
@@ -20,7 +20,7 @@ class CMYKColors(Enum):
     blac_k = "blacK"
 
 
-class GoblinSharkColor(Enum):
+class GoblinSharkColor(str, Enum):
 
     pink = "pink"
     gray = "gray"

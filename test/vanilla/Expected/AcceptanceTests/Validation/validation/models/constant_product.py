@@ -18,9 +18,13 @@ class ConstantProduct(Model):
     Variables are only populated by the server, and will be ignored when
     sending a request.
 
-    :ivar const_property: Constant string. Default value: "constant" .
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar const_property: Required. Constant string. Default value: "constant"
+     .
     :vartype const_property: str
-    :ivar const_property2: Constant string2. Default value: "constant2" .
+    :ivar const_property2: Required. Constant string2. Default value:
+     "constant2" .
     :vartype const_property2: str
     """
 

@@ -18,13 +18,15 @@ class Salmon(Fish):
     You probably want to use the sub-classes and not this class directly. Known
     sub-classes are: SmartSalmon
 
+    All required parameters must be populated in order to send to Azure.
+
     :param species:
     :type species: str
-    :param length:
+    :param length: Required.
     :type length: float
     :param siblings:
     :type siblings: list[~bodycomplex.models.Fish]
-    :param fishtype: Constant filled by server.
+    :param fishtype: Required. Constant filled by server.
     :type fishtype: str
     :param location:
     :type location: str
@@ -50,8 +52,8 @@ class Salmon(Fish):
         'fishtype': {'smart_salmon': 'SmartSalmon'}
     }
 
-    def __init__(self, length, species=None, siblings=None, location=None, iswild=None):
-        super(Salmon, self).__init__(species=species, length=length, siblings=siblings)
-        self.location = location
-        self.iswild = iswild
+    def __init__(self, **kwargs):
+        super(Salmon, self).__init__(**kwargs)
+        self.location = kwargs.get('location', None)
+        self.iswild = kwargs.get('iswild', None)
         self.fishtype = 'salmon'

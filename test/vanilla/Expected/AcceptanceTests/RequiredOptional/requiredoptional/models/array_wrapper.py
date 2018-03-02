@@ -15,7 +15,9 @@ from msrest.serialization import Model
 class ArrayWrapper(Model):
     """ArrayWrapper.
 
-    :param value:
+    All required parameters must be populated in order to send to Azure.
+
+    :param value: Required.
     :type value: list[str]
     """
 
@@ -27,6 +29,6 @@ class ArrayWrapper(Model):
         'value': {'key': 'value', 'type': '[str]'},
     }
 
-    def __init__(self, value):
-        super(ArrayWrapper, self).__init__()
-        self.value = value
+    def __init__(self, **kwargs):
+        super(ArrayWrapper, self).__init__(**kwargs)
+        self.value = kwargs.get('value', None)

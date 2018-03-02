@@ -23,6 +23,6 @@ class ByteWrapper(Model):
         'field': {'key': 'field', 'type': 'bytearray'},
     }
 
-    def __init__(self, field=None):
-        super(ByteWrapper, self).__init__()
-        self.field = field
+    def __init__(self, **kwargs):
+        super(ByteWrapper, self).__init__(**kwargs)
+        self.field = kwargs.get('field', None)

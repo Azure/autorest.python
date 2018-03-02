@@ -15,7 +15,9 @@ from msrest.serialization import Model
 class ClassWrapper(Model):
     """ClassWrapper.
 
-    :param value:
+    All required parameters must be populated in order to send to Azure.
+
+    :param value: Required.
     :type value: ~requiredoptional.models.Product
     """
 
@@ -27,6 +29,6 @@ class ClassWrapper(Model):
         'value': {'key': 'value', 'type': 'Product'},
     }
 
-    def __init__(self, value):
-        super(ClassWrapper, self).__init__()
-        self.value = value
+    def __init__(self, **kwargs):
+        super(ClassWrapper, self).__init__(**kwargs)
+        self.value = kwargs.get('value', None)

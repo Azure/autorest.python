@@ -18,8 +18,10 @@ class RefColorConstant(Model):
     Variables are only populated by the server, and will be ignored when
     sending a request.
 
-    :ivar color_constant: Referenced Color Constant Description. Default
-     value: "green-color" .
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar color_constant: Required. Referenced Color Constant Description.
+     Default value: "green-color" .
     :vartype color_constant: str
     :param field1: Sample string.
     :type field1: str
@@ -36,6 +38,6 @@ class RefColorConstant(Model):
 
     color_constant = "green-color"
 
-    def __init__(self, field1=None):
-        super(RefColorConstant, self).__init__()
-        self.field1 = field1
+    def __init__(self, **kwargs):
+        super(RefColorConstant, self).__init__(**kwargs)
+        self.field1 = kwargs.get('field1', None)

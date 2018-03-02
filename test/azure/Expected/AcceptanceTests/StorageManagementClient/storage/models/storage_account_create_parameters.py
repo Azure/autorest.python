@@ -18,13 +18,15 @@ class StorageAccountCreateParameters(Resource):
     Variables are only populated by the server, and will be ignored when
     sending a request.
 
+    All required parameters must be populated in order to send to Azure.
+
     :ivar id: Resource Id
     :vartype id: str
     :ivar name: Resource name
     :vartype name: str
     :ivar type: Resource type
     :vartype type: str
-    :param location: Resource location
+    :param location: Required. Resource location
     :type location: str
     :param tags: Resource tags
     :type tags: dict[str, str]
@@ -50,6 +52,6 @@ class StorageAccountCreateParameters(Resource):
         'account_type': {'key': 'properties.accountType', 'type': 'AccountType'},
     }
 
-    def __init__(self, location, tags=None, account_type=None):
-        super(StorageAccountCreateParameters, self).__init__(location=location, tags=tags)
-        self.account_type = account_type
+    def __init__(self, **kwargs):
+        super(StorageAccountCreateParameters, self).__init__(**kwargs)
+        self.account_type = kwargs.get('account_type', None)

@@ -18,10 +18,12 @@ class PetAPTrue(Model):
     Variables are only populated by the server, and will be ignored when
     sending a request.
 
+    All required parameters must be populated in order to send to Azure.
+
     :param additional_properties: Unmatched properties from the message are
      deserialized this collection
     :type additional_properties: dict[str, object]
-    :param id:
+    :param id: Required.
     :type id: int
     :param name:
     :type name: str
@@ -41,9 +43,9 @@ class PetAPTrue(Model):
         'status': {'key': 'status', 'type': 'bool'},
     }
 
-    def __init__(self, id, additional_properties=None, name=None):
-        super(PetAPTrue, self).__init__()
-        self.additional_properties = additional_properties
-        self.id = id
-        self.name = name
+    def __init__(self, **kwargs):
+        super(PetAPTrue, self).__init__(**kwargs)
+        self.additional_properties = kwargs.get('additional_properties', None)
+        self.id = kwargs.get('id', None)
+        self.name = kwargs.get('name', None)
         self.status = None

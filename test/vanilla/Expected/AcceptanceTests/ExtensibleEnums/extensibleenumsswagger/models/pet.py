@@ -15,6 +15,8 @@ from msrest.serialization import Model
 class Pet(Model):
     """Pet.
 
+    All required parameters must be populated in order to send to Azure.
+
     :param name:
     :type name: str
     :param days_of_week: Type of Pet. Possible values include: 'Monday',
@@ -22,7 +24,7 @@ class Pet(Model):
      Default value: "Friday" .
     :type days_of_week: str or
      ~extensibleenumsswagger.models.DaysOfWeekExtensibleEnum
-    :param int_enum: Possible values include: '1', '2', '3'
+    :param int_enum: Required. Possible values include: '1', '2', '3'
     :type int_enum: str or ~extensibleenumsswagger.models.IntEnum
     """
 
@@ -36,8 +38,8 @@ class Pet(Model):
         'int_enum': {'key': 'IntEnum', 'type': 'str'},
     }
 
-    def __init__(self, int_enum, name=None, days_of_week="Friday"):
-        super(Pet, self).__init__()
-        self.name = name
-        self.days_of_week = days_of_week
-        self.int_enum = int_enum
+    def __init__(self, **kwargs):
+        super(Pet, self).__init__(**kwargs)
+        self.name = kwargs.get('name', None)
+        self.days_of_week = kwargs.get('days_of_week', "Friday")
+        self.int_enum = kwargs.get('int_enum', None)
