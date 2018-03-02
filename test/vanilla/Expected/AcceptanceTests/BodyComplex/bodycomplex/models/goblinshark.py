@@ -29,6 +29,9 @@ class Goblinshark(Shark):
     :type birthday: datetime
     :param jawsize:
     :type jawsize: int
+    :param color: Colors possible. Possible values include: 'pink', 'gray',
+     'brown'. Default value: "gray" .
+    :type color: str or ~bodycomplex.models.GoblinSharkColor
     """
 
     _validation = {
@@ -45,9 +48,11 @@ class Goblinshark(Shark):
         'age': {'key': 'age', 'type': 'int'},
         'birthday': {'key': 'birthday', 'type': 'iso-8601'},
         'jawsize': {'key': 'jawsize', 'type': 'int'},
+        'color': {'key': 'color', 'type': 'str'},
     }
 
-    def __init__(self, length, birthday, species=None, siblings=None, age=None, jawsize=None):
+    def __init__(self, length, birthday, species=None, siblings=None, age=None, jawsize=None, color="gray"):
         super(Goblinshark, self).__init__(species=species, length=length, siblings=siblings, age=age, birthday=birthday)
         self.jawsize = jawsize
+        self.color = color
         self.fishtype = 'goblin'

@@ -306,7 +306,7 @@ class ComplexTests(unittest.TestCase):
                                  age=105, species="dangerous",
                                  picture=bytearray([255, 255, 255, 255, 254])),
                         Goblinshark(30, isodate.parse_datetime("2015-08-08T00:00:00Z"),
-                                    age=1, species="scary", jawsize=5)]
+                                    age=1, species="scary", jawsize=5, color='pinkish-gray')]
             )
         client.polymorphism.put_valid(request)
 
@@ -389,6 +389,37 @@ class ComplexTests(unittest.TestCase):
         smart_salmon = client.polymorphism.get_complicated()
         client.polymorphism.put_complicated(smart_salmon)
 
+
+        """
+        Complex types that uses missing discriminator
+        """
+        regular_salmon = Salmon(
+            iswild=True,
+            location='alaska',
+            species='king',
+            length=1.0,
+            siblings=[Shark(
+                age=6,
+                birthday=isodate.parse_datetime("2012-01-05T01:00:00Z"),
+                length=20,
+                species='predator'
+            ), Sawshark(
+                age=105,
+                length=10,
+                species="dangerous",
+                birthday=isodate.parse_datetime("1900-01-05T01:00:00Z"),
+                picture=bytearray([255, 255, 255, 255, 254])
+            ), Goblinshark(
+                length=30,
+                birthday=isodate.parse_datetime("2015-08-08T00:00:00Z"),
+                age=1,
+                species="scary",
+                jawsize=5,
+                color=None
+            )]
+        )
+        # Not raise is enough of a test
+        client.polymorphism.put_missing_discriminator(regular_salmon)
 
 if __name__ == '__main__':
     unittest.main()

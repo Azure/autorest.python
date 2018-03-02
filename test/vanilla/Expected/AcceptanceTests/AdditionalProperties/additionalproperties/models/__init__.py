@@ -9,19 +9,18 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from enum import Enum
+from .error import Error, ErrorException
+from .pet_ap_true import PetAPTrue
+from .pet_ap_object import PetAPObject
+from .pet_ap_string import PetAPString
+from .pet_ap_in_properties import PetAPInProperties
+from .pet_ap_in_properties_with_ap_string import PetAPInPropertiesWithAPString
 
-
-class CMYKColors(Enum):
-
-    cyan = "cyan"
-    magenta = "Magenta"
-    yellow = "YELLOW"
-    blac_k = "blacK"
-
-
-class GoblinSharkColor(Enum):
-
-    pink = "pink"
-    gray = "gray"
-    brown = "brown"
+__all__ = [
+    'Error', 'ErrorException',
+    'PetAPTrue',
+    'PetAPObject',
+    'PetAPString',
+    'PetAPInProperties',
+    'PetAPInPropertiesWithAPString',
+]

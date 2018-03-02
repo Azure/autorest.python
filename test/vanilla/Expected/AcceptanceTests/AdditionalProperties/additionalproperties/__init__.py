@@ -9,19 +9,10 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from enum import Enum
+from .additional_properties_client import AdditionalPropertiesClient
+from .version import VERSION
 
+__all__ = ['AdditionalPropertiesClient']
 
-class CMYKColors(Enum):
+__version__ = VERSION
 
-    cyan = "cyan"
-    magenta = "Magenta"
-    yellow = "YELLOW"
-    blac_k = "blacK"
-
-
-class GoblinSharkColor(Enum):
-
-    pink = "pink"
-    gray = "gray"
-    brown = "brown"

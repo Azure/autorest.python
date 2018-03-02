@@ -12,16 +12,19 @@
 from enum import Enum
 
 
-class CMYKColors(Enum):
+class DaysOfWeekExtensibleEnum(Enum):
 
-    cyan = "cyan"
-    magenta = "Magenta"
-    yellow = "YELLOW"
-    blac_k = "blacK"
+    monday = "Monday"
+    tuesday = "Tuesday"
+    wednesday = "Wednesday"
+    thursday = "Thursday"
+    friday = "Friday"
+    saturday = "Saturday"
+    sunday = "Sunday"
 
 
-class GoblinSharkColor(Enum):
+class IntEnum(Enum):
 
-    pink = "pink"
-    gray = "gray"
-    brown = "brown"
+    one = "1"
+    two = "2"
+    three = "3"

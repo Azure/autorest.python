@@ -9,19 +9,5 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from enum import Enum
+VERSION = "2016-07-07"
 
-
-class CMYKColors(Enum):
-
-    cyan = "cyan"
-    magenta = "Magenta"
-    yellow = "YELLOW"
-    blac_k = "blacK"
-
-
-class GoblinSharkColor(Enum):
-
-    pink = "pink"
-    gray = "gray"
-    brown = "brown"

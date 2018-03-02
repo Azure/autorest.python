@@ -38,6 +38,7 @@ from .dictionary_wrapper import DictionaryWrapper
 from .readonly_obj import ReadonlyObj
 from .auto_rest_complex_test_service_enums import (
     CMYKColors,
+    GoblinSharkColor,
 )
 
 __all__ = [
@@ -69,4 +70,5 @@ __all__ = [
     'DictionaryWrapper',
     'ReadonlyObj',
     'CMYKColors',
+    'GoblinSharkColor',
 ]

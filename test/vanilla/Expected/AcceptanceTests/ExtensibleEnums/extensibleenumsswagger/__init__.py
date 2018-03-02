@@ -9,19 +9,10 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from enum import Enum
+from .pet_store_inc import PetStoreInc
+from .version import VERSION
 
+__all__ = ['PetStoreInc']
 
-class CMYKColors(Enum):
+__version__ = VERSION
 
-    cyan = "cyan"
-    magenta = "Magenta"
-    yellow = "YELLOW"
-    blac_k = "blacK"
-
-
-class GoblinSharkColor(Enum):
-
-    pink = "pink"
-    gray = "gray"
-    brown = "brown"

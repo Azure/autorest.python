@@ -9,19 +9,14 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from enum import Enum
+from .pet import Pet
+from .pet_store_inc_enums import (
+    DaysOfWeekExtensibleEnum,
+    IntEnum,
+)
 
-
-class CMYKColors(Enum):
-
-    cyan = "cyan"
-    magenta = "Magenta"
-    yellow = "YELLOW"
-    blac_k = "blacK"
-
-
-class GoblinSharkColor(Enum):
-
-    pink = "pink"
-    gray = "gray"
-    brown = "brown"
+__all__ = [
+    'Pet',
+    'DaysOfWeekExtensibleEnum',
+    'IntEnum',
+]
