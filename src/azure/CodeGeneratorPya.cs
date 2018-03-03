@@ -67,6 +67,9 @@ namespace AutoRest.Python.Azure
                 {
                     var modelTemplate = new ModelTemplate { Model = modelType };
                     await Write(modelTemplate, Path.Combine(folderName, "models", modelType.Name.ToPythonCase() + ".py"));
+                    // Rebuild the same in Python 3 mode
+                    modelTemplate.Python3Mode = true;
+                    await Write(modelTemplate, Path.Combine(folderName, "models", modelType.Name.ToPythonCase() + "_py3.py"));                    
                 }
             }
 
