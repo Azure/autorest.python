@@ -12,21 +12,21 @@
 from msrest.serialization import Model
 
 
-class LongWrapper(Model):
-    """LongWrapper.
+class ProductProperties(Model):
+    """ProductProperties.
 
-    :param field1:
-    :type field1: long
-    :param field2:
-    :type field2: long
+    :param id:
+    :type id: int
+    :param name:
+    :type name: str
     """
 
     _attribute_map = {
-        'field1': {'key': 'field1', 'type': 'long'},
-        'field2': {'key': 'field2', 'type': 'long'},
+        'id': {'key': 'id', 'type': 'int'},
+        'name': {'key': 'name', 'type': 'str'},
     }
 
-    def __init__(self, *, field1: int=None, field2: int=None, **kwargs) -> None:
-        super(LongWrapper, self).__init__(**kwargs)
-        self.field1 = field1
-        self.field2 = field2
+    def __init__(self, *, id: int=None, name: str=None, **kwargs) -> None:
+        super(ProductProperties, self).__init__(**kwargs)
+        self.id = id
+        self.name = name

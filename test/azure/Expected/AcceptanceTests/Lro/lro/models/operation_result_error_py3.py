@@ -12,21 +12,21 @@
 from msrest.serialization import Model
 
 
-class LongWrapper(Model):
-    """LongWrapper.
+class OperationResultError(Model):
+    """OperationResultError.
 
-    :param field1:
-    :type field1: long
-    :param field2:
-    :type field2: long
+    :param code: The error code for an operation failure
+    :type code: int
+    :param message: The detailed arror message
+    :type message: str
     """
 
     _attribute_map = {
-        'field1': {'key': 'field1', 'type': 'long'},
-        'field2': {'key': 'field2', 'type': 'long'},
+        'code': {'key': 'code', 'type': 'int'},
+        'message': {'key': 'message', 'type': 'str'},
     }
 
-    def __init__(self, *, field1: int=None, field2: int=None, **kwargs) -> None:
-        super(LongWrapper, self).__init__(**kwargs)
-        self.field1 = field1
-        self.field2 = field2
+    def __init__(self, *, code: int=None, message: str=None, **kwargs) -> None:
+        super(OperationResultError, self).__init__(**kwargs)
+        self.code = code
+        self.message = message

@@ -9,14 +9,20 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-try:
-    from .sample_resource_group_py3 import SampleResourceGroup
-    from .error_py3 import Error, ErrorException
-except (SyntaxError, ImportError):
-    from .sample_resource_group import SampleResourceGroup
-    from .error import Error, ErrorException
+from msrest.serialization import Model
 
-__all__ = [
-    'SampleResourceGroup',
-    'Error', 'ErrorException',
-]
+
+class GenericUrl(Model):
+    """The Generic URL.
+
+    :param generic_value: Generic URL value.
+    :type generic_value: str
+    """
+
+    _attribute_map = {
+        'generic_value': {'key': 'generic_value', 'type': 'str'},
+    }
+
+    def __init__(self, *, generic_value: str=None, **kwargs) -> None:
+        super(GenericUrl, self).__init__(**kwargs)
+        self.generic_value = generic_value

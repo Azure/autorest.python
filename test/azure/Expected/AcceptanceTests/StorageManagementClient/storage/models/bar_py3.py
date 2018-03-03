@@ -12,21 +12,18 @@
 from msrest.serialization import Model
 
 
-class LongWrapper(Model):
-    """LongWrapper.
+class Bar(Model):
+    """The URIs that are used to perform a retrieval of a public blob, queue or
+    table object.
 
-    :param field1:
-    :type field1: long
-    :param field2:
-    :type field2: long
+    :param recursive_point: Recursive Endpoints
+    :type recursive_point: ~storage.models.Endpoints
     """
 
     _attribute_map = {
-        'field1': {'key': 'field1', 'type': 'long'},
-        'field2': {'key': 'field2', 'type': 'long'},
+        'recursive_point': {'key': 'RecursivePoint', 'type': 'Endpoints'},
     }
 
-    def __init__(self, *, field1: int=None, field2: int=None, **kwargs) -> None:
-        super(LongWrapper, self).__init__(**kwargs)
-        self.field1 = field1
-        self.field2 = field2
+    def __init__(self, *, recursive_point=None, **kwargs) -> None:
+        super(Bar, self).__init__(**kwargs)
+        self.recursive_point = recursive_point

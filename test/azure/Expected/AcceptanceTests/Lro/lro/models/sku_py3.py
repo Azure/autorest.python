@@ -9,14 +9,24 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-try:
-    from .sample_resource_group_py3 import SampleResourceGroup
-    from .error_py3 import Error, ErrorException
-except (SyntaxError, ImportError):
-    from .sample_resource_group import SampleResourceGroup
-    from .error import Error, ErrorException
+from msrest.serialization import Model
 
-__all__ = [
-    'SampleResourceGroup',
-    'Error', 'ErrorException',
-]
+
+class Sku(Model):
+    """Sku.
+
+    :param name:
+    :type name: str
+    :param id:
+    :type id: str
+    """
+
+    _attribute_map = {
+        'name': {'key': 'name', 'type': 'str'},
+        'id': {'key': 'id', 'type': 'str'},
+    }
+
+    def __init__(self, *, name: str=None, id: str=None, **kwargs) -> None:
+        super(Sku, self).__init__(**kwargs)
+        self.name = name
+        self.id = id

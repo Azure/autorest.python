@@ -9,10 +9,16 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .error import Error, ErrorException
-from .resource import Resource
-from .flattened_product import FlattenedProduct
-from .resource_collection import ResourceCollection
+try:
+    from .error_py3 import Error, ErrorException
+    from .resource_py3 import Resource
+    from .flattened_product_py3 import FlattenedProduct
+    from .resource_collection_py3 import ResourceCollection
+except (SyntaxError, ImportError):
+    from .error import Error, ErrorException
+    from .resource import Resource
+    from .flattened_product import FlattenedProduct
+    from .resource_collection import ResourceCollection
 
 __all__ = [
     'Error', 'ErrorException',

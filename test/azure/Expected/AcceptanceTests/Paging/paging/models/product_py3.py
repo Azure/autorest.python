@@ -9,14 +9,20 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-try:
-    from .sample_resource_group_py3 import SampleResourceGroup
-    from .error_py3 import Error, ErrorException
-except (SyntaxError, ImportError):
-    from .sample_resource_group import SampleResourceGroup
-    from .error import Error, ErrorException
+from msrest.serialization import Model
 
-__all__ = [
-    'SampleResourceGroup',
-    'Error', 'ErrorException',
-]
+
+class Product(Model):
+    """Product.
+
+    :param properties:
+    :type properties: ~paging.models.ProductProperties
+    """
+
+    _attribute_map = {
+        'properties': {'key': 'properties', 'type': 'ProductProperties'},
+    }
+
+    def __init__(self, *, properties=None, **kwargs) -> None:
+        super(Product, self).__init__(**kwargs)
+        self.properties = properties

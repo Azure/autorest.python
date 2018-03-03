@@ -9,14 +9,20 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-try:
-    from .sample_resource_group_py3 import SampleResourceGroup
-    from .error_py3 import Error, ErrorException
-except (SyntaxError, ImportError):
-    from .sample_resource_group import SampleResourceGroup
-    from .error import Error, ErrorException
+from msrest.serialization import Model
 
-__all__ = [
-    'SampleResourceGroup',
-    'Error', 'ErrorException',
-]
+
+class SubResource(Model):
+    """SubResource.
+
+    :param id: Resource Id
+    :type id: str
+    """
+
+    _attribute_map = {
+        'id': {'key': 'id', 'type': 'str'},
+    }
+
+    def __init__(self, *, id: str=None, **kwargs) -> None:
+        super(SubResource, self).__init__(**kwargs)
+        self.id = id

@@ -12,21 +12,24 @@
 from msrest.serialization import Model
 
 
-class LongWrapper(Model):
-    """LongWrapper.
+class SubResource(Model):
+    """SubResource.
 
-    :param field1:
-    :type field1: long
-    :param field2:
-    :type field2: long
+    Variables are only populated by the server, and will be ignored when
+    sending a request.
+
+    :ivar id: Sub Resource Id
+    :vartype id: str
     """
 
-    _attribute_map = {
-        'field1': {'key': 'field1', 'type': 'long'},
-        'field2': {'key': 'field2', 'type': 'long'},
+    _validation = {
+        'id': {'readonly': True},
     }
 
-    def __init__(self, *, field1: int=None, field2: int=None, **kwargs) -> None:
-        super(LongWrapper, self).__init__(**kwargs)
-        self.field1 = field1
-        self.field2 = field2
+    _attribute_map = {
+        'id': {'key': 'id', 'type': 'str'},
+    }
+
+    def __init__(self, **kwargs) -> None:
+        super(SubResource, self).__init__(**kwargs)
+        self.id = None

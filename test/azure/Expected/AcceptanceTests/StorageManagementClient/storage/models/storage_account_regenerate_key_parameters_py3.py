@@ -12,21 +12,17 @@
 from msrest.serialization import Model
 
 
-class LongWrapper(Model):
-    """LongWrapper.
+class StorageAccountRegenerateKeyParameters(Model):
+    """StorageAccountRegenerateKeyParameters.
 
-    :param field1:
-    :type field1: long
-    :param field2:
-    :type field2: long
+    :param key_name: Possible values include: 'key1', 'key2'
+    :type key_name: str or ~storage.models.KeyName
     """
 
     _attribute_map = {
-        'field1': {'key': 'field1', 'type': 'long'},
-        'field2': {'key': 'field2', 'type': 'long'},
+        'key_name': {'key': 'keyName', 'type': 'KeyName'},
     }
 
-    def __init__(self, *, field1: int=None, field2: int=None, **kwargs) -> None:
-        super(LongWrapper, self).__init__(**kwargs)
-        self.field1 = field1
-        self.field2 = field2
+    def __init__(self, *, key_name=None, **kwargs) -> None:
+        super(StorageAccountRegenerateKeyParameters, self).__init__(**kwargs)
+        self.key_name = key_name

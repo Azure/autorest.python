@@ -12,21 +12,21 @@
 from msrest.serialization import Model
 
 
-class LongWrapper(Model):
-    """LongWrapper.
+class StorageAccountKeys(Model):
+    """The access keys for the storage account.
 
-    :param field1:
-    :type field1: long
-    :param field2:
-    :type field2: long
+    :param key1: Gets the value of key 1.
+    :type key1: str
+    :param key2: Gets the value of key 2.
+    :type key2: str
     """
 
     _attribute_map = {
-        'field1': {'key': 'field1', 'type': 'long'},
-        'field2': {'key': 'field2', 'type': 'long'},
+        'key1': {'key': 'key1', 'type': 'str'},
+        'key2': {'key': 'key2', 'type': 'str'},
     }
 
-    def __init__(self, *, field1: int=None, field2: int=None, **kwargs) -> None:
-        super(LongWrapper, self).__init__(**kwargs)
-        self.field1 = field1
-        self.field2 = field2
+    def __init__(self, *, key1: str=None, key2: str=None, **kwargs) -> None:
+        super(StorageAccountKeys, self).__init__(**kwargs)
+        self.key1 = key1
+        self.key2 = key2

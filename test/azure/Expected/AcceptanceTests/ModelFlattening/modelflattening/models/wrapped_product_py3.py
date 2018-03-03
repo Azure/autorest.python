@@ -9,14 +9,20 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-try:
-    from .sample_resource_group_py3 import SampleResourceGroup
-    from .error_py3 import Error, ErrorException
-except (SyntaxError, ImportError):
-    from .sample_resource_group import SampleResourceGroup
-    from .error import Error, ErrorException
+from msrest.serialization import Model
 
-__all__ = [
-    'SampleResourceGroup',
-    'Error', 'ErrorException',
-]
+
+class WrappedProduct(Model):
+    """The wrapped produc.
+
+    :param value: the product value
+    :type value: str
+    """
+
+    _attribute_map = {
+        'value': {'key': 'value', 'type': 'str'},
+    }
+
+    def __init__(self, *, value: str=None, **kwargs) -> None:
+        super(WrappedProduct, self).__init__(**kwargs)
+        self.value = value

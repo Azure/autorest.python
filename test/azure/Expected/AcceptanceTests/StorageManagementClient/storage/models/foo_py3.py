@@ -9,14 +9,21 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-try:
-    from .sample_resource_group_py3 import SampleResourceGroup
-    from .error_py3 import Error, ErrorException
-except (SyntaxError, ImportError):
-    from .sample_resource_group import SampleResourceGroup
-    from .error import Error, ErrorException
+from msrest.serialization import Model
 
-__all__ = [
-    'SampleResourceGroup',
-    'Error', 'ErrorException',
-]
+
+class Foo(Model):
+    """The URIs that are used to perform a retrieval of a public blob, queue or
+    table object.
+
+    :param bar_point: Bar point
+    :type bar_point: ~storage.models.Bar
+    """
+
+    _attribute_map = {
+        'bar_point': {'key': 'Bar\\.Point', 'type': 'Bar'},
+    }
+
+    def __init__(self, *, bar_point=None, **kwargs) -> None:
+        super(Foo, self).__init__(**kwargs)
+        self.bar_point = bar_point

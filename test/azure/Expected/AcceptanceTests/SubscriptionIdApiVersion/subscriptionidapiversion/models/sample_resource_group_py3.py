@@ -12,21 +12,21 @@
 from msrest.serialization import Model
 
 
-class LongWrapper(Model):
-    """LongWrapper.
+class SampleResourceGroup(Model):
+    """SampleResourceGroup.
 
-    :param field1:
-    :type field1: long
-    :param field2:
-    :type field2: long
+    :param name: resource group name 'testgroup101'
+    :type name: str
+    :param location: resource group location 'West US'
+    :type location: str
     """
 
     _attribute_map = {
-        'field1': {'key': 'field1', 'type': 'long'},
-        'field2': {'key': 'field2', 'type': 'long'},
+        'name': {'key': 'name', 'type': 'str'},
+        'location': {'key': 'location', 'type': 'str'},
     }
 
-    def __init__(self, *, field1: int=None, field2: int=None, **kwargs) -> None:
-        super(LongWrapper, self).__init__(**kwargs)
-        self.field1 = field1
-        self.field2 = field2
+    def __init__(self, *, name: str=None, location: str=None, **kwargs) -> None:
+        super(SampleResourceGroup, self).__init__(**kwargs)
+        self.name = name
+        self.location = location
