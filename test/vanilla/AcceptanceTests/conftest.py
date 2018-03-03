@@ -61,7 +61,7 @@ def terminate_server_process(process):
     else:
         os.killpg(os.getpgid(process.pid), signal.SIGTERM)  # Send the signal to all the process groups
 
-@pytest.fixture(scope="module")
+@pytest.fixture(scope="session")
 def testserver():
     """Start the Autorest testserver."""
     server = start_server_process()

@@ -89,8 +89,12 @@ def client(test_server_credentials):
     """Create a AutoRestLongRunningOperationTestService client with test server credentials."""
     cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
     client = AutoRestLongRunningOperationTestService(cred, base_url="http://localhost:3000")
-    client._client.creds = test_server_credentials
     client.config.long_running_operation_timeout = 0 # In theory pointless, since we use AutorestTestARMPolling
+    return client
+
+@pytest.fixture()
+def special_client(client, test_server_credentials):
+    client._client.creds = test_server_credentials
     return client
 
 class TestLro:
@@ -114,7 +118,8 @@ class TestLro:
         return await func(*args, **kwargs)
 
     @pytest.mark.asyncio
-    async def test_lro_happy_paths(self, client):
+    async def test_lro_happy_paths(self, special_client):
+        client = special_client
 
         product = Product(location="West US")
 

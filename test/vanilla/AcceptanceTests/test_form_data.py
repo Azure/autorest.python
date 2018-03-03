@@ -24,7 +24,6 @@
 #
 # --------------------------------------------------------------------------
 
-import unittest
 import subprocess
 import sys
 import io
@@ -43,26 +42,35 @@ from msrest.exceptions import DeserializationError
 
 from bodyformdata import AutoRestSwaggerBATFormDataService
 
-class FormDataTests(unittest.TestCase):
+import pytest
 
-    def setUp(self):
-        with tempfile.NamedTemporaryFile(mode='w', delete=False) as dummy:
-            self.dummy_file = dummy.name
-            dummy.write("Test file")
+@pytest.fixture
+def dummy_file():
+    with tempfile.NamedTemporaryFile(mode='w', delete=False) as dummy:
+        dummy.write("Test file")
+    # Get outside of the "with", so file can be re-opened on Windows
+    yield dummy.name
+    os.remove(dummy.name)
 
-        return super(FormDataTests, self).setUp()
+@pytest.fixture
+def client():
+    client = AutoRestSwaggerBATFormDataService(base_url="http://localhost:3000")
+    client.config.connection.data_block_size = 2
+    client.config.retry_policy.retries = 50  # Be agressive on this test, sometimes testserver DDOS :-p
+    client.config.retry_policy.backoff_factor = 1.6
+    return client    
 
-    def test_file_upload_stream(self):
+class TestFormData(object):
+
+    def test_file_upload_stream(self, client):
 
         def test_callback(data, response, progress = [0]):
-            self.assertTrue(len(data) > 0)
+            assert len(data) > 0
             progress[0] += len(data)
             total = float(response.headers.get('Content-Length', 100))
             print("Progress... {}%".format(int(progress[0]*100/total)))
-            self.assertIsNotNone(response)
+            assert response is not None
 
-        client = AutoRestSwaggerBATFormDataService(base_url="http://localhost:3000")
-        client.config.connection.data_block_size = 2
 
         test_string = "Upload file test case"
         test_bytes = bytearray(test_string, encoding='utf-8')
@@ -71,19 +79,16 @@ class FormDataTests(unittest.TestCase):
             resp = client.formdata.upload_file(stream_data, "UploadFile.txt", callback=test_callback)
             for r in resp:
                 result.write(r)
-            self.assertEqual(result.getvalue().decode(), test_string)
+            assert result.getvalue().decode() ==  test_string
 
-    def test_file_upload_stream_raw(self):
+    def test_file_upload_stream_raw(self, client):
 
         def test_callback(data, response, progress = [0]):
-            self.assertTrue(len(data) > 0)
+            assert len(data) > 0
             progress[0] += len(data)
             total = float(response.headers.get('Content-Length', 100))
             print("Progress... {}%".format(int(progress[0]*100/total)))
-            self.assertIsNotNone(response)
-
-        client = AutoRestSwaggerBATFormDataService(base_url="http://localhost:3000")
-        client.config.connection.data_block_size = 2
+            assert response is not None
 
         test_string = "Upload file test case"
         test_bytes = bytearray(test_string, encoding='utf-8')
@@ -92,55 +97,49 @@ class FormDataTests(unittest.TestCase):
             resp = client.formdata.upload_file(stream_data, "UploadFile.txt", raw=True)
             for r in resp.output:
                 result.write(r)
-            self.assertEqual(result.getvalue().decode(), test_string)
+            assert result.getvalue().decode() ==  test_string
 
-    def test_file_upload_file_stream(self):
+    def test_file_upload_file_stream(self, client, dummy_file):
 
         def test_callback(data, response, progress = [0]):
-            self.assertTrue(len(data) > 0)
+            assert len(data) > 0
             progress[0] += len(data)
             total = float(response.headers.get('Content-Length', 100))
             print("Progress... {}%".format(int(progress[0]*100/total)))
-            self.assertIsNotNone(response)
+            assert response is not None
 
-        client = AutoRestSwaggerBATFormDataService(base_url="http://localhost:3000")
-        client.config.connection.data_block_size = 2
-
-        name = os.path.basename(self.dummy_file)
+        name = os.path.basename(dummy_file)
         result = io.BytesIO()
-        with open(self.dummy_file, 'rb') as upload_data:
+        with open(dummy_file, 'rb') as upload_data:
             resp = client.formdata.upload_file(upload_data, name, callback=test_callback)
             for r in resp:
                 result.write(r)
-            self.assertEqual(result.getvalue().decode(), "Test file")
+            assert result.getvalue().decode() ==  "Test file"
 
-    def test_file_upload_file_stream_raw(self):
+    def test_file_upload_file_stream_raw(self, client, dummy_file):
 
         def test_callback(data, response, progress = [0]):
-            self.assertTrue(len(data) > 0)
+            assert len(data) > 0
             progress[0] += len(data)
             total = float(response.headers.get('Content-Length', 100))
             print("Progress... {}%".format(int(progress[0]*100/total)))
-            self.assertIsNotNone(response)
+            assert response is not None
 
-        client = AutoRestSwaggerBATFormDataService(base_url="http://localhost:3000")
-        client.config.connection.data_block_size = 2
-
-        name = os.path.basename(self.dummy_file)
+        name = os.path.basename(dummy_file)
         result = io.BytesIO()
-        with open(self.dummy_file, 'rb') as upload_data:
+        with open(dummy_file, 'rb') as upload_data:
             resp = client.formdata.upload_file(upload_data, name, raw=True, callback=test_callback)
             for r in resp.output:
                 result.write(r)
-            self.assertEqual(result.getvalue().decode(), "Test file")
+            assert result.getvalue().decode() ==  "Test file"
 
-    def test_file_body_upload(self):
+    def test_file_body_upload(self, client, dummy_file):
 
         test_string = "Upload file test case"
         test_bytes = bytearray(test_string, encoding='utf-8')
 
         def test_callback(data, response, progress = [0]):
-            self.assertTrue(len(data) > 0)
+            assert len(data) > 0
             progress[0] += len(data)
             total = float(len(test_bytes))
             if response:
@@ -148,25 +147,21 @@ class FormDataTests(unittest.TestCase):
             else:
                 print("Uploading... {}%".format(int(progress[0]*100/total)))
 
-        client = AutoRestSwaggerBATFormDataService(base_url="http://localhost:3000")
-        client.config.connection.data_block_size = 2
-
         result = io.BytesIO()
         with io.BytesIO(test_bytes) as stream_data:
             resp = client.formdata.upload_file_via_body(stream_data, callback=test_callback)
             for r in resp:
                 result.write(r)
-            self.assertEqual(result.getvalue().decode(), test_string)
+            assert result.getvalue().decode() ==  test_string
 
         result = io.BytesIO()
-        with open(self.dummy_file, 'rb') as upload_data:
+        with open(dummy_file, 'rb') as upload_data:
             resp = client.formdata.upload_file_via_body(upload_data, callback=test_callback)
             for r in resp:
                 result.write(r)
-            self.assertEqual(result.getvalue().decode(), "Test file")
+            assert result.getvalue().decode() ==  "Test file"
 
-    def test_file_body_upload_raw(self):
-        client = AutoRestSwaggerBATFormDataService(base_url="http://localhost:3000")
+    def test_file_body_upload_raw(self, client, dummy_file):
 
         test_string = "Upload file test case"
         test_bytes = bytearray(test_string, encoding='utf-8')
@@ -175,18 +170,11 @@ class FormDataTests(unittest.TestCase):
             resp = client.formdata.upload_file_via_body(stream_data)
             for r in resp:
                 result.write(r)
-            self.assertEqual(result.getvalue().decode(), test_string)
+            assert result.getvalue().decode() ==  test_string
 
         result = io.BytesIO()
-        with open(self.dummy_file, 'rb') as upload_data:
+        with open(dummy_file, 'rb') as upload_data:
             resp = client.formdata.upload_file_via_body(upload_data, raw=True)
             for r in resp.output:
                 result.write(r)
-            self.assertEqual(result.getvalue().decode(), "Test file")
-
-    def tearDown(self):
-        os.remove(self.dummy_file)
-        return super(FormDataTests, self).tearDown()
-
-if __name__ == '__main__':
-    unittest.main()
+            assert result.getvalue().decode() == "Test file"

@@ -55,12 +55,15 @@ import pytest
 def paging_client():
     cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
     client = AutoRestPagingTestService(cred, base_url="http://localhost:3000")
-    from .conftest import TestAuthentication  # Ugly, should migrate this file to pytest as I did for async.
-    client._client.creds = TestAuthentication()
     return client
 
+@pytest.fixture
+def special_paging_client(paging_client, test_server_credentials):
+    paging_client._client.creds = test_server_credentials
+    return paging_client
 
-def test_paging_happy_path(paging_client):
+def test_paging_happy_path(special_paging_client):
+    paging_client = special_paging_client
 
     pages = paging_client.paging.get_single_pages()
     items = [i for i in pages]

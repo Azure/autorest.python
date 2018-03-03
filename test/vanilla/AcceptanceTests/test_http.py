@@ -55,6 +55,10 @@ import pytest
 def client(test_server_credentials):
     """Create a AutoRestHttpInfrastructureTestService client with test server credentials."""
     client = AutoRestHttpInfrastructureTestService(base_url="http://localhost:3000")
+    return client
+
+@pytest.fixture()
+def special_client(client, test_server_credentials):
     client._client.creds = test_server_credentials
     return client
 
@@ -200,7 +204,8 @@ class TestHttp(object):
         self.assertRaisesWithStatus(202,
             client.multiple_responses.get200_model_a202_valid)
 
-    def test_server_error_status_codes(self, client):
+    def test_server_error_status_codes(self, special_client):
+        client = special_client
 
         self.assertRaisesWithStatus(requests.codes.not_implemented,
             client.http_server_failure.head501)
