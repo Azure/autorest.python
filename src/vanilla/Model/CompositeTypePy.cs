@@ -327,7 +327,7 @@ namespace AutoRest.Python.Model
         }
 
         /// <remarks>
-        /// Used in Python 3, Python 2 doesn't have super signature now.
+        /// Used in Python 3, Python 2 doesn't have typehing * syntax
         /// </remarks>
         public virtual string ModelParameterDeclaration()
         {
@@ -367,7 +367,7 @@ namespace AutoRest.Python.Model
 
             if (!combinedDeclarations.Any())
             {
-                return "**kwargs";
+                return ", **kwargs";
             }
             return ", *, " + string.Join(", ", combinedDeclarations) + ", **kwargs";
         }
