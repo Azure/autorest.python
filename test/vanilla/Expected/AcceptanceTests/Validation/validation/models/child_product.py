@@ -18,7 +18,10 @@ class ChildProduct(Model):
     Variables are only populated by the server, and will be ignored when
     sending a request.
 
-    :ivar const_property: Constant string. Default value: "constant" .
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar const_property: Required. Constant string. Default value: "constant"
+     .
     :vartype const_property: str
     :param count: Count
     :type count: int
@@ -35,6 +38,6 @@ class ChildProduct(Model):
 
     const_property = "constant"
 
-    def __init__(self, count=None):
-        super(ChildProduct, self).__init__()
-        self.count = count
+    def __init__(self, **kwargs):
+        super(ChildProduct, self).__init__(**kwargs)
+        self.count = kwargs.get('count', None)

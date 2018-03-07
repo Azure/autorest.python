@@ -9,9 +9,14 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .error import Error, ErrorException
-from .odata_filter import OdataFilter
-from .header_custom_named_request_id_param_grouping_parameters import HeaderCustomNamedRequestIdParamGroupingParameters
+try:
+    from .error_py3 import Error, ErrorException
+    from .odata_filter_py3 import OdataFilter
+    from .header_custom_named_request_id_param_grouping_parameters_py3 import HeaderCustomNamedRequestIdParamGroupingParameters
+except (SyntaxError, ImportError):
+    from .error import Error, ErrorException
+    from .odata_filter import OdataFilter
+    from .header_custom_named_request_id_param_grouping_parameters import HeaderCustomNamedRequestIdParamGroupingParameters
 
 __all__ = [
     'Error', 'ErrorException',

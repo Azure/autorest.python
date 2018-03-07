@@ -246,6 +246,41 @@ namespace AutoRest.Python
             }
         }
 
+        public static string GetPythonTypeHint(IModelType type)
+        {
+            if (type == null)
+            {
+                throw new ArgumentNullException("type");
+            }
+            PrimaryType primaryType = type as PrimaryType;
+            if (primaryType != null)
+            {
+                switch (primaryType.KnownPrimaryType)
+                {
+                    case KnownPrimaryType.Base64Url:
+                        return "bytes";
+                    case KnownPrimaryType.ByteArray:
+                        return "bytearray";
+
+                    case KnownPrimaryType.Boolean:
+                        return "bool";
+
+                    case KnownPrimaryType.Double:
+                        return "float";
+
+                    case KnownPrimaryType.Long:
+                    case KnownPrimaryType.Int:
+                        return "int";
+
+                    case KnownPrimaryType.Uuid:
+                    case KnownPrimaryType.String:
+                        return "str";
+                }
+            }
+            // FIXME needs to do all of them using "typing"
+            return null;
+        }
+
         public static string GetPythonSerializationType(IModelType type)
         {
             if (type == null)

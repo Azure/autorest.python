@@ -18,7 +18,9 @@ class PetAPInProperties(Model):
     Variables are only populated by the server, and will be ignored when
     sending a request.
 
-    :param id:
+    All required parameters must be populated in order to send to Azure.
+
+    :param id: Required.
     :type id: int
     :param name:
     :type name: str
@@ -40,9 +42,9 @@ class PetAPInProperties(Model):
         'additional_properties': {'key': 'additionalProperties', 'type': '{float}'},
     }
 
-    def __init__(self, id, name=None, additional_properties=None):
-        super(PetAPInProperties, self).__init__()
-        self.id = id
-        self.name = name
+    def __init__(self, **kwargs):
+        super(PetAPInProperties, self).__init__(**kwargs)
+        self.id = kwargs.get('id', None)
+        self.name = kwargs.get('name', None)
         self.status = None
-        self.additional_properties = additional_properties
+        self.additional_properties = kwargs.get('additional_properties', None)

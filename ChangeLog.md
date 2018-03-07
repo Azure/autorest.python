@@ -1,6 +1,38 @@
+### 2018-03-07 - 3.0.41
+
+**Breaking changes**
+
+- Model signatures are now using only keywords-arguments syntax. Every positional arguments are required to be rewritten as keywords-arguments.
+  To keep auto-completion in most cases, models are now generated for Python 2 and Python 3. Python 3 uses the "*" syntax for keyword-only arguments.
+- Enum type are now using the "str" mixin (`class AzureEnum(str, Enum)`) to improve experiences when unkown enum are met. This is not a breaking change,
+  but documentation about mixin enum and some recommendations should be known:
+  https://docs.python.org/3/library/enum.html#others
+  At a glance:
+
+  - "is" should not be used at all.
+  - "format" will return the string value, where "%s" string formatting will return `NameOfEnum.stringvalue`. Format syntax should be used always.
+
+- New Long Running Operation:
+
+  - Return type changes from msrestazure.azure_operation.AzureOperationPoller to msrest.polling.LROPoller. External API is the same.
+  - Return type is now **always** a msrest.polling.LROPoller, whatever the optional parameters.
+  - raw=True changes behavior. Instead of not polling and returning the initial call as ClientRawResponse, now we return a LROPoller as well and the final 
+    resource is returned as a ClientRawResponse.
+  - Adding "polling" parameters. Polling=True is the default and poll using ARM algorithm. Polling=False does not poll and return the initial call reponse.
+  - Polling accept instances of subclasses of msrest.polling.PollingMethod.
+  - `add_done_callback` now does not fail if poller is done, but execute the callback right away.
+
+### 2018-02-16 - 2.1.38
+
+- Externalize Url as a metadata property on operation
+
 ### 2018-02-06 - 2.1.35
 
 - Allow "baseUrl" as a custom parameter at the client level.
+
+### 2018-01-04 - 2.1.34
+
+- Fix inheritance and additionalProperties used together
 
 ### 2017-12-28 - 2.1.32
 

@@ -71,7 +71,6 @@ namespace AutoRest.Python.Model
                 return originalComposed;
             }
         }
-
         /// <summary>
         /// If PolymorphicDiscriminator is set, makes sure we have a PolymorphicDiscriminator property.
         /// </summary>
@@ -231,6 +230,11 @@ namespace AutoRest.Python.Model
                 docString = string.Format(CultureInfo.InvariantCulture, ":ivar {0}:", property.Name);
             }
 
+            if (property.IsRequired)
+            {
+                docString += " Required.";
+            }
+
             string summary = property.Summary;
             if (!string.IsNullOrWhiteSpace(summary) && !summary.EndsWith(".", StringComparison.OrdinalIgnoreCase))
             {
@@ -308,6 +312,9 @@ namespace AutoRest.Python.Model
             }
         }
 
+        /// <remarks>
+        /// Used in Python 3, Python 2 doesn't have super signature now.
+        /// </remarks>
         public virtual string SuperParameterDeclaration()
         {
             List<string> combinedDeclarations = new List<string>();
@@ -316,10 +323,13 @@ namespace AutoRest.Python.Model
             {
                 combinedDeclarations.Add(string.Format(CultureInfo.InvariantCulture, "{0}={0}", property.Name));
             }
-            return string.Join(", ", combinedDeclarations);
+            return string.Join(", ", combinedDeclarations) + ", **kwargs";
         }
 
-        public virtual string MethodParameterDeclaration()
+        /// <remarks>
+        /// Used in Python 3, Python 2 doesn't have typehing * syntax
+        /// </remarks>
+        public virtual string ModelParameterDeclaration()
         {
             List<string> declarations = new List<string>();
             List<string> requiredDeclarations = new List<string>();
@@ -331,13 +341,18 @@ namespace AutoRest.Python.Model
                     if (property.Name == this.BasePolymorphicDiscriminator)
                         continue;
 
+                string typeHint = ClientModelExtensions.GetPythonTypeHint(property.ModelType) ?? "";
+                if(typeHint != "")
+                {
+                    typeHint = ": " + typeHint;
+                }
                 if (property.IsRequired && property.DefaultValue.RawValue.IsNullOrEmpty())
                 {
-                    requiredDeclarations.Add(property.Name);
+                    requiredDeclarations.Add($"{property.Name}{typeHint}");
                 }
                 else
                 {
-                    declarations.Add($"{property.Name}={property.DefaultValue}");
+                    declarations.Add($"{property.Name}{typeHint}={property.DefaultValue}");
                 }
             }
 
@@ -352,11 +367,10 @@ namespace AutoRest.Python.Model
 
             if (!combinedDeclarations.Any())
             {
-                return string.Empty;
+                return ", **kwargs";
             }
-            return ", " + string.Join(", ", combinedDeclarations);
+            return ", *, " + string.Join(", ", combinedDeclarations) + ", **kwargs";
         }
-
         public string SubModelTypeList
         {
             get
@@ -396,7 +410,7 @@ namespace AutoRest.Python.Model
                 ClientModelExtensions.GetPythonSerializationType(modelProperty.ModelType));
         }
 
-        public string InitializeProperty(string objectName, Property property)
+        public string InitializeProperty(string objectName, Property property, bool kwargsMode)
         {
             if (property == null || property.ModelType == null)
             {
@@ -421,7 +435,18 @@ namespace AutoRest.Python.Model
             {
                 return string.Format(CultureInfo.InvariantCulture, "{0}.{1} = None", objectName, property.Name);
             }
-            return string.Format(CultureInfo.InvariantCulture, "{0}.{1} = {1}", objectName, property.Name);
+            if(!kwargsMode)
+            {
+                return string.Format(CultureInfo.InvariantCulture, "{0}.{1} = {1}", objectName, property.Name);
+            }
+            else
+            {
+                if (property.IsRequired && property.DefaultValue.RawValue.IsNullOrEmpty())
+                {
+                    return string.Format(CultureInfo.InvariantCulture, "{0}.{1} = kwargs.get('{1}', None)", objectName, property.Name);    
+                }
+                return string.Format(CultureInfo.InvariantCulture, "{0}.{1} = kwargs.get('{1}', {2})", objectName, property.Name, property.DefaultValue);
+            }
         }
 
         public bool NeedsPolymorphicConverter => BaseIsPolymorphic && BaseModelType != null;

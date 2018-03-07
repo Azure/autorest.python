@@ -15,13 +15,15 @@ from msrest.serialization import Model
 class ParameterGroupingPostRequiredParameters(Model):
     """Additional parameters for post_required operation.
 
-    :param body:
+    All required parameters must be populated in order to send to Azure.
+
+    :param body: Required.
     :type body: int
     :param custom_header:
     :type custom_header: str
     :param query: Query parameter with default. Default value: 30 .
     :type query: int
-    :param path: Path parameter
+    :param path: Required. Path parameter
     :type path: str
     """
 
@@ -30,9 +32,16 @@ class ParameterGroupingPostRequiredParameters(Model):
         'path': {'required': True},
     }
 
-    def __init__(self, body, path, custom_header=None, query=30):
-        super(ParameterGroupingPostRequiredParameters, self).__init__()
-        self.body = body
-        self.custom_header = custom_header
-        self.query = query
-        self.path = path
+    _attribute_map = {
+        'body': {'key': '', 'type': 'int'},
+        'custom_header': {'key': '', 'type': 'str'},
+        'query': {'key': '', 'type': 'int'},
+        'path': {'key': '', 'type': 'str'},
+    }
+
+    def __init__(self, **kwargs):
+        super(ParameterGroupingPostRequiredParameters, self).__init__(**kwargs)
+        self.body = kwargs.get('body', None)
+        self.custom_header = kwargs.get('custom_header', None)
+        self.query = kwargs.get('query', 30)
+        self.path = kwargs.get('path', None)

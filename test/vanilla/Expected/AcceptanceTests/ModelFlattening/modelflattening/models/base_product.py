@@ -15,9 +15,11 @@ from msrest.serialization import Model
 class BaseProduct(Model):
     """The product documentation.
 
-    :param product_id: Unique identifier representing a specific product for a
-     given latitude & longitude. For example, uberX in San Francisco will have
-     a different product_id than uberX in Los Angeles.
+    All required parameters must be populated in order to send to Azure.
+
+    :param product_id: Required. Unique identifier representing a specific
+     product for a given latitude & longitude. For example, uberX in San
+     Francisco will have a different product_id than uberX in Los Angeles.
     :type product_id: str
     :param description: Description of product.
     :type description: str
@@ -32,7 +34,7 @@ class BaseProduct(Model):
         'description': {'key': 'base_product_description', 'type': 'str'},
     }
 
-    def __init__(self, product_id, description=None):
-        super(BaseProduct, self).__init__()
-        self.product_id = product_id
-        self.description = description
+    def __init__(self, **kwargs):
+        super(BaseProduct, self).__init__(**kwargs)
+        self.product_id = kwargs.get('product_id', None)
+        self.description = kwargs.get('description', None)

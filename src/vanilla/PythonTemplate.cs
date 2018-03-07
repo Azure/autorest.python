@@ -8,6 +8,9 @@ namespace AutoRest.Python
 {
     public abstract class PythonTemplate<T> : Template<T>
     {
+
+        public bool AsyncMode { get; set; } = false;
+        public bool Python3Mode { get; set; } = false;
         protected string ParameterWrapComment(string prefix, string comment)
         {
             if (string.IsNullOrWhiteSpace(comment))
@@ -26,6 +29,11 @@ namespace AutoRest.Python
                 1; // - Extra space for parameter start
 
             return string.Join(Environment.NewLine + " ", comment.WordWrap(available).Select(s => $"{prefix}{s}"));
+        }
+
+        protected string ParameterWrapComment(string comment)
+        {
+            return ParameterWrapComment(string.Empty, comment);
         }
     }
 }

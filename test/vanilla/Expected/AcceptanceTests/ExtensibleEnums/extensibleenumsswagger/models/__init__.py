@@ -9,7 +9,10 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .pet import Pet
+try:
+    from .pet_py3 import Pet
+except (SyntaxError, ImportError):
+    from .pet import Pet
 from .pet_store_inc_enums import (
     DaysOfWeekExtensibleEnum,
     IntEnum,

@@ -18,16 +18,18 @@ class PetAPInPropertiesWithAPString(Model):
     Variables are only populated by the server, and will be ignored when
     sending a request.
 
+    All required parameters must be populated in order to send to Azure.
+
     :param additional_properties: Unmatched properties from the message are
      deserialized this collection
     :type additional_properties: dict[str, str]
-    :param id:
+    :param id: Required.
     :type id: int
     :param name:
     :type name: str
     :ivar status:
     :vartype status: bool
-    :param odatalocation:
+    :param odatalocation: Required.
     :type odatalocation: str
     :param additional_properties1:
     :type additional_properties1: dict[str, float]
@@ -48,11 +50,11 @@ class PetAPInPropertiesWithAPString(Model):
         'additional_properties1': {'key': 'additionalProperties', 'type': '{float}'},
     }
 
-    def __init__(self, id, odatalocation, additional_properties=None, name=None, additional_properties1=None):
-        super(PetAPInPropertiesWithAPString, self).__init__()
-        self.additional_properties = additional_properties
-        self.id = id
-        self.name = name
+    def __init__(self, **kwargs):
+        super(PetAPInPropertiesWithAPString, self).__init__(**kwargs)
+        self.additional_properties = kwargs.get('additional_properties', None)
+        self.id = kwargs.get('id', None)
+        self.name = kwargs.get('name', None)
         self.status = None
-        self.odatalocation = odatalocation
-        self.additional_properties1 = additional_properties1
+        self.odatalocation = kwargs.get('odatalocation', None)
+        self.additional_properties1 = kwargs.get('additional_properties1', None)

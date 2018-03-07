@@ -9,11 +9,18 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .error import Error, ErrorException
-from .a import A, AException
-from .b import B
-from .c import C
-from .d import D
+try:
+    from .error_py3 import Error, ErrorException
+    from .a_py3 import A, AException
+    from .b_py3 import B
+    from .c_py3 import C
+    from .d_py3 import D
+except (SyntaxError, ImportError):
+    from .error import Error, ErrorException
+    from .a import A, AException
+    from .b import B
+    from .c import C
+    from .d import D
 
 __all__ = [
     'Error', 'ErrorException',

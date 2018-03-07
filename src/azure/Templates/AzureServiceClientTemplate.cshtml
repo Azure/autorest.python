@@ -31,7 +31,8 @@ from msrest.pipeline import ClientRawResponse
 }
 @if (Model.HasAnyLongRunOperation)
 {
-@:from msrestazure.azure_operation import AzureOperationPoller
+@:from msrest.polling import LROPoller, NoPolling
+@:from msrestazure.polling.arm_polling import ARMPolling
 }
 import uuid
 </text>

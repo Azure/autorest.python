@@ -15,17 +15,19 @@ from .shark import Shark
 class Cookiecuttershark(Shark):
     """Cookiecuttershark.
 
+    All required parameters must be populated in order to send to Azure.
+
     :param species:
     :type species: str
-    :param length:
+    :param length: Required.
     :type length: float
     :param siblings:
     :type siblings: list[~bodycomplex.models.Fish]
-    :param fishtype: Constant filled by server.
+    :param fishtype: Required. Constant filled by server.
     :type fishtype: str
     :param age:
     :type age: int
-    :param birthday:
+    :param birthday: Required.
     :type birthday: datetime
     """
 
@@ -35,6 +37,15 @@ class Cookiecuttershark(Shark):
         'birthday': {'required': True},
     }
 
-    def __init__(self, length, birthday, species=None, siblings=None, age=None):
-        super(Cookiecuttershark, self).__init__(species=species, length=length, siblings=siblings, age=age, birthday=birthday)
+    _attribute_map = {
+        'species': {'key': 'species', 'type': 'str'},
+        'length': {'key': 'length', 'type': 'float'},
+        'siblings': {'key': 'siblings', 'type': '[Fish]'},
+        'fishtype': {'key': 'fishtype', 'type': 'str'},
+        'age': {'key': 'age', 'type': 'int'},
+        'birthday': {'key': 'birthday', 'type': 'iso-8601'},
+    }
+
+    def __init__(self, **kwargs):
+        super(Cookiecuttershark, self).__init__(**kwargs)
         self.fishtype = 'cookiecuttershark'

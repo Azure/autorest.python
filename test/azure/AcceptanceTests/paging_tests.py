@@ -117,7 +117,7 @@ class PagingTests(unittest.TestCase):
         self.assertEqual(len(items), 10)
         self.assertIsNotNone(pages.raw.response)
 
-        options = PagingGetMultiplePagesWithOffsetOptions(100)
+        options = PagingGetMultiplePagesWithOffsetOptions(offset=100)
         pages = self.client.paging.get_multiple_pages_with_offset(paging_get_multiple_pages_with_offset_options=options)
         self.assertIsNotNone(pages.next_link)
         items = [i for i in pages]

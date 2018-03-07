@@ -35,6 +35,6 @@ class Siamese(Cat):
         'breed': {'key': 'breed', 'type': 'str'},
     }
 
-    def __init__(self, id=None, name=None, color=None, hates=None, breed=None):
-        super(Siamese, self).__init__(id=id, name=name, color=color, hates=hates)
-        self.breed = breed
+    def __init__(self, **kwargs):
+        super(Siamese, self).__init__(**kwargs)
+        self.breed = kwargs.get('breed', None)

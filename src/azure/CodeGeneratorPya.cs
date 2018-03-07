@@ -16,7 +16,7 @@ namespace AutoRest.Python.Azure
 {
     public class CodeGeneratorPya : CodeGeneratorPy
     {
-        private const string ClientRuntimePackage = "msrestazure version 0.4.7";
+        private const string ClientRuntimePackage = "msrestazure version 0.4.20";
 
         public override string UsageInstructions => $"The {ClientRuntimePackage} pip package is required to execute the generated code.";
 
@@ -67,6 +67,9 @@ namespace AutoRest.Python.Azure
                 {
                     var modelTemplate = new ModelTemplate { Model = modelType };
                     await Write(modelTemplate, Path.Combine(folderName, "models", modelType.Name.ToPythonCase() + ".py"));
+                    // Rebuild the same in Python 3 mode
+                    modelTemplate.Python3Mode = true;
+                    await Write(modelTemplate, Path.Combine(folderName, "models", modelType.Name.ToPythonCase() + "_py3.py"));                    
                 }
             }
 

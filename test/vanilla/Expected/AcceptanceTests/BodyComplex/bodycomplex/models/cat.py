@@ -32,7 +32,7 @@ class Cat(Pet):
         'hates': {'key': 'hates', 'type': '[Dog]'},
     }
 
-    def __init__(self, id=None, name=None, color=None, hates=None):
-        super(Cat, self).__init__(id=id, name=name)
-        self.color = color
-        self.hates = hates
+    def __init__(self, **kwargs):
+        super(Cat, self).__init__(**kwargs)
+        self.color = kwargs.get('color', None)
+        self.hates = kwargs.get('hates', None)

@@ -50,6 +50,11 @@ else
 @EmptyLine
 @:    @WrapComment(string.Empty, "Variables are only populated by the server, and will be ignored when sending a request.")
 }
+@if (Model.RequiredFieldsList.Any())
+{
+@EmptyLine
+@:    @WrapComment(string.Empty, "All required parameters must be populated in order to send to Azure.")
+}
 @if (Model.ComposedProperties.Any())
 {
 @EmptyLine
@@ -81,8 +86,6 @@ else
 }
 @{
     var mapAttrList = new List<Property>(Model.ComposedProperties);
-    if (!Model.IsParameterGroup)
-    {
 @EmptyLine
     @:_attribute_map = {
     if (mapAttrList.Count > 0)
@@ -93,7 +96,6 @@ else
       }
     }
     @:}
-  }
 }
 @if (Model.SubModelTypes.Any())
 {
@@ -109,21 +111,29 @@ else
     if (property.IsConstant)
     {
 @EmptyLine
-    @:@(Model.InitializeProperty(String.Empty, property))
+    @:@(Model.InitializeProperty(String.Empty, property, false))
     }
 }
 @if (Model.NeedsConstructor)
 { 
 @EmptyLine
-    @:def __init__(self@(Model.MethodParameterDeclaration())):
+@if (Python3Mode)
+{
+    @:def __init__(self@(Model.ModelParameterDeclaration())) -> None: 
     if (Model.HasParent)
     {
         @:super(@(Model.Name), self).__init__(@(Model.SuperParameterDeclaration()))
     }
     else
     {
-        @:super(@(Model.Name), self).__init__()
-    }
+        @:super(@(Model.Name), self).__init__(**kwargs)
+    }    
+}
+else
+{
+    @:def __init__(self, **kwargs):
+    @:    super(@(Model.Name), self).__init__(**kwargs)
+}
     var propertyList = new List<Property>(Model.Properties);
     if (propertyList.Count > 0)
     {
@@ -131,7 +141,7 @@ else
         {
             if (!propertyList[i].IsConstant)
             {
-        @:@(Model.InitializeProperty("self", propertyList[i]))
+        @:@(Model.InitializeProperty("self", propertyList[i], !Python3Mode))
             }
 	    }
 	}

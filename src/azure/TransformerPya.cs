@@ -30,8 +30,9 @@ namespace AutoRest.Python.Azure
             AzureExtensions.ProcessClientRequestIdExtension(codeModel);
             AzureExtensions.UpdateHeadMethods(codeModel);
             AzureExtensions.ParseODataExtension(codeModel);
-            SwaggerExtensions.FlattenModels(codeModel);
-            ParameterGroupExtensionHelper.AddParameterGroups(codeModel);
+            AzureExtensions.FlattenModels(codeModel);
+            //https://github.com/Azure/autorest/issues/2860
+            //ParameterGroupExtensionHelper.AddParameterGroups(codeModel);
             AddAzureProperties(codeModel);
             AzureExtensions.SetDefaultResponses(codeModel);
             CorrectFilterParameters(codeModel);

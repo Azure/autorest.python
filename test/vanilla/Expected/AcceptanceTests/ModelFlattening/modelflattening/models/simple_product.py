@@ -18,16 +18,18 @@ class SimpleProduct(BaseProduct):
     Variables are only populated by the server, and will be ignored when
     sending a request.
 
-    :param product_id: Unique identifier representing a specific product for a
-     given latitude & longitude. For example, uberX in San Francisco will have
-     a different product_id than uberX in Los Angeles.
+    All required parameters must be populated in order to send to Azure.
+
+    :param product_id: Required. Unique identifier representing a specific
+     product for a given latitude & longitude. For example, uberX in San
+     Francisco will have a different product_id than uberX in Los Angeles.
     :type product_id: str
     :param description: Description of product.
     :type description: str
-    :param max_product_display_name: Display name of product.
+    :param max_product_display_name: Required. Display name of product.
     :type max_product_display_name: str
-    :ivar capacity: Capacity of product. For example, 4 people. Default value:
-     "Large" .
+    :ivar capacity: Required. Capacity of product. For example, 4 people.
+     Default value: "Large" .
     :vartype capacity: str
     :param generic_value: Generic URL value.
     :type generic_value: str
@@ -52,8 +54,8 @@ class SimpleProduct(BaseProduct):
 
     capacity = "Large"
 
-    def __init__(self, product_id, max_product_display_name, description=None, generic_value=None, odatavalue=None):
-        super(SimpleProduct, self).__init__(product_id=product_id, description=description)
-        self.max_product_display_name = max_product_display_name
-        self.generic_value = generic_value
-        self.odatavalue = odatavalue
+    def __init__(self, **kwargs):
+        super(SimpleProduct, self).__init__(**kwargs)
+        self.max_product_display_name = kwargs.get('max_product_display_name', None)
+        self.generic_value = kwargs.get('generic_value', None)
+        self.odatavalue = kwargs.get('odatavalue', None)

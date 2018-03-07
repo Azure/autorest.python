@@ -2,27 +2,37 @@
 @using System.Linq
 @using AutoRest.Extensions.Azure
 @using AutoRest.Python
-@inherits AutoRest.Core.Template<AutoRest.Python.Azure.Model.CodeModelPya>
+@inherits AutoRest.Python.PythonTemplate<AutoRest.Python.Azure.Model.CodeModelPya>
 # coding=utf-8
 # --------------------------------------------------------------------------
 @Header("# ").TrimMultilineHeader()
 # --------------------------------------------------------------------------
 @EmptyLine
-@{
-  foreach (var modelType in Model.ModelTypes)
+try:
+@foreach (var modelType in Model.ModelTypes)
   {
     if (modelType.Extensions.ContainsKey(AzureExtensions.ExternalExtension) &&
       (bool)modelType.Extensions[AzureExtensions.ExternalExtension])
     {
       continue;
     }
-@:from .@(modelType.Name.ToPythonCase()) import @modelType.Name@Model.GetExceptionNameIfExist(modelType, false)
+@:    from .@(modelType.Name.ToPythonCase())_py3 import @modelType.Name@Model.GetExceptionNameIfExist(modelType, false)
   }
-  foreach (var pagedName in Model.PagedClasses)
+except (SyntaxError, ImportError):
+@foreach (var modelType in Model.ModelTypes)
+  {
+    if (modelType.Extensions.ContainsKey(AzureExtensions.ExternalExtension) &&
+      (bool)modelType.Extensions[AzureExtensions.ExternalExtension])
+    {
+      continue;
+    }
+@:    from .@(modelType.Name.ToPythonCase()) import @modelType.Name@Model.GetExceptionNameIfExist(modelType, false)
+  }
+@foreach (var pagedName in Model.PagedClasses)
   {
 @:from .@pagedName.ToPythonCase() import @pagedName
   }
-  if (Model.EnumTypes.Any())
+@if (Model.EnumTypes.Any())
   {
 @:from .@(Model.Name.ToPythonCase())_enums import (
     foreach (var enumType in @Model.EnumTypes)
@@ -32,8 +42,8 @@
 @:)
   }
 @EmptyLine
-@:__all__ = [
-  foreach (var modelType in Model.ModelTypes)
+__all__ = [
+@foreach (var modelType in Model.ModelTypes)
   {
     if (modelType.Extensions.ContainsKey(AzureExtensions.ExternalExtension) &&
       (bool)modelType.Extensions[AzureExtensions.ExternalExtension])
@@ -42,13 +52,12 @@
     }
 @:    '@modelType.Name'@Model.GetExceptionNameIfExist(modelType, true),
   }
-  foreach (var pagedName in Model.PagedClasses)
+@foreach (var pagedName in Model.PagedClasses)
   {
 @:    '@pagedName',
   }
-  foreach (var enumType in @Model.EnumTypes)
+@foreach (var enumType in @Model.EnumTypes)
   {
 @:    '@(enumType.Name)',
   }
-@:]
-}
+]

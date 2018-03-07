@@ -12,7 +12,7 @@
 from enum import Enum
 
 
-class GreyscaleColors(Enum):
+class GreyscaleColors(str, Enum):
 
     white = "White"
     black = "black"

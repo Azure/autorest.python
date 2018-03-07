@@ -15,13 +15,15 @@ from .salmon import Salmon
 class SmartSalmon(Salmon):
     """SmartSalmon.
 
+    All required parameters must be populated in order to send to Azure.
+
     :param species:
     :type species: str
-    :param length:
+    :param length: Required.
     :type length: float
     :param siblings:
     :type siblings: list[~bodycomplex.models.Fish]
-    :param fishtype: Constant filled by server.
+    :param fishtype: Required. Constant filled by server.
     :type fishtype: str
     :param location:
     :type location: str
@@ -50,8 +52,8 @@ class SmartSalmon(Salmon):
         'college_degree': {'key': 'college_degree', 'type': 'str'},
     }
 
-    def __init__(self, length, species=None, siblings=None, location=None, iswild=None, additional_properties=None, college_degree=None):
-        super(SmartSalmon, self).__init__(species=species, length=length, siblings=siblings, location=location, iswild=iswild)
-        self.additional_properties = additional_properties
-        self.college_degree = college_degree
+    def __init__(self, **kwargs):
+        super(SmartSalmon, self).__init__(**kwargs)
+        self.additional_properties = kwargs.get('additional_properties', None)
+        self.college_degree = kwargs.get('college_degree', None)
         self.fishtype = 'smart_salmon'

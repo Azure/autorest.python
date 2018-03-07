@@ -29,7 +29,7 @@ class CustomDomain(Model):
         'use_sub_domain': {'key': 'useSubDomain', 'type': 'bool'},
     }
 
-    def __init__(self, name=None, use_sub_domain=None):
-        super(CustomDomain, self).__init__()
-        self.name = name
-        self.use_sub_domain = use_sub_domain
+    def __init__(self, **kwargs):
+        super(CustomDomain, self).__init__(**kwargs)
+        self.name = kwargs.get('name', None)
+        self.use_sub_domain = kwargs.get('use_sub_domain', None)
