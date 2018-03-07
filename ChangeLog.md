@@ -1,8 +1,9 @@
-### 2018-XX-XX - 3.0.0
+### 2018-03-07 - 3.0.41
 
 **Breaking changes**
 
 - Model signatures are now using only keywords-arguments syntax. Every positional arguments are required to be rewritten as keywords-arguments.
+  To keep auto-completion in most cases, models are now generated for Python 2 and Python 3. Python 3 uses the "*" syntax for keyword-only arguments.
 - Enum type are now using the "str" mixin (`class AzureEnum(str, Enum)`) to improve experiences when unkown enum are met. This is not a breaking change,
   but documentation about mixin enum and some recommendations should be known:
   https://docs.python.org/3/library/enum.html#others
@@ -20,6 +21,10 @@
   - Adding "polling" parameters. Polling=True is the default and poll using ARM algorithm. Polling=False does not poll and return the initial call reponse.
   - Polling accept instances of subclasses of msrest.polling.PollingMethod.
   - `add_done_callback` now does not fail if poller is done, but execute the callback right away.
+
+### 2018-02-16 - 2.1.38
+
+- Externalize Url as a metadata property on operation
 
 ### 2018-02-06 - 2.1.35
 
