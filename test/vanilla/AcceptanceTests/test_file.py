@@ -45,17 +45,22 @@ from msrest.exceptions import DeserializationError
 from bodyfile import AutoRestSwaggerBATFileService
 from bodyfile.models import ErrorException
 
+import pytest
 
-class FileTests(unittest.TestCase):
+@pytest.fixture
+def client():
+    client = AutoRestSwaggerBATFileService(base_url="http://localhost:3000")
+    return client
 
-    def test_files(self):
-        client = AutoRestSwaggerBATFileService(base_url="http://localhost:3000")
+class TestFile(object):
+
+    def test_files(self, client):
         client.config.connection.data_block_size = 1000
 
         def test_callback(data, response, progress=[0]):
-            self.assertTrue(len(data) > 0)
-            self.assertIsNotNone(response)
-            self.assertFalse(response._content_consumed)
+            assert len(data) > 0
+            assert response is not None
+            assert not response._content_consumed
             total = float(response.headers['Content-Length'])
             if total < 4096:
                 progress[0] += len(data)
@@ -69,7 +74,7 @@ class FileTests(unittest.TestCase):
                 file_length += len(data)
                 file_handle.write(data)
 
-            self.assertNotEqual(file_length, 0)
+            assert file_length !=  0
 
             sample_file = realpath(
                 join(cwd, pardir, pardir, pardir, 
@@ -77,7 +82,7 @@ class FileTests(unittest.TestCase):
 
             with open(sample_file, 'rb') as data:
                 sample_data = hash(data.read())
-            self.assertEqual(sample_data, hash(file_handle.getvalue()))
+            assert sample_data ==  hash(file_handle.getvalue())
 
         client.config.connection.data_block_size = 4096
         file_length = 0
@@ -88,7 +93,7 @@ class FileTests(unittest.TestCase):
                 file_length += len(data)
                 file_handle.write(data)
 
-            self.assertEqual(file_length, 0)
+            assert file_length ==  0
 
         def add_headers(adapter, request, response, *args, **kwargs):
             response.headers['Content-Length'] = str(3000 * 1024 * 1024)
@@ -99,20 +104,18 @@ class FileTests(unittest.TestCase):
         #for data in stream:
         #    file_length += len(data)
 
-        #self.assertEqual(file_length, 3000 * 1024 * 1024)
+        #assert file_length ==  3000 * 1024 * 1024
 
-    def test_files_raw(self):
+    def test_files_raw(self, client):
 
         def test_callback(data, response, progress=[0]):
-            self.assertTrue(len(data) > 0)
-            self.assertIsNotNone(response)
-            self.assertFalse(response._content_consumed)
+            assert len(data) > 0
+            assert response is not None
+            assert not response._content_consumed
             total = float(response.headers.get('Content-Length', 0))
             if total:
                 progress[0] += len(data)
                 print("Downloading... {}%".format(int(progress[0]*100/total)))
-
-        client = AutoRestSwaggerBATFileService(base_url="http://localhost:3000")
 
         file_length = 0
         with io.BytesIO() as file_handle:
@@ -123,7 +126,7 @@ class FileTests(unittest.TestCase):
                 file_length += len(data)
                 file_handle.write(data)
 
-            self.assertNotEqual(file_length, 0)
+            assert file_length !=  0
 
             sample_file = realpath(
                 join(cwd, pardir, pardir, pardir, 
@@ -131,7 +134,7 @@ class FileTests(unittest.TestCase):
 
             with open(sample_file, 'rb') as data:
                 sample_data = hash(data.read())
-            self.assertEqual(sample_data, hash(file_handle.getvalue()))
+            assert sample_data ==  hash(file_handle.getvalue())
 
         file_length = 0
         with io.BytesIO() as file_handle:
@@ -142,7 +145,7 @@ class FileTests(unittest.TestCase):
                 file_length += len(data)
                 file_handle.write(data)
 
-            self.assertEqual(file_length, 0)
+            assert file_length ==  0
 
 if __name__ == '__main__':
     unittest.main()
