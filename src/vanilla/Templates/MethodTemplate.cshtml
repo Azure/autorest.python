@@ -40,7 +40,7 @@ if (AsyncMode) methodName += "_async";
         """
 @if (Model.Deprecated)
 {
-@:        @(string.Format("warnings.warn(\"Method {0} is deprecated\", DeprecationWarning)", methodName))
+@:        warnings.warn('Method @methodName is deprecated', DeprecationWarning)
 }
         @Model.BuildInputMappings()
 @if (Model.InputParameterTransformation.Any())
@@ -99,7 +99,7 @@ if (AsyncMode) methodName += "_async";
 else if (Model.IsFormData)
 {
         @:# Construct form data
-        @:form_data_content = {
+        @:body_content = {
   foreach (var parameter in Model.LocalParameters)
   {
     if (parameter.Location == ParameterLocation.FormData)
@@ -110,49 +110,40 @@ else if (Model.IsFormData)
         @:}
 @EmptyLine
 }
-        # Construct and send request
-        request = self._client.@(MethodPy.GetHttpFunction(Model.HttpMethod))(url, query_parameters)
-@{string streamParameter = "stream="+(Model.ReturnType.Body.IsPrimaryType(KnownPrimaryType.Stream)?"True":"False");}
-@{string sendCall = Model.GetSendCall(AsyncMode);}
-@if (Model.RequestBody != null)
-{
-        @:response = @(sendCall)(
-            @:request, header_parameters, body_content, @(streamParameter), **operation_config)
-}
-else if (Model.IsFormData)
-{
-        @:response = @(sendCall)(
-            @:request, header_parameters, form_data_content, @(streamParameter), **operation_config)
-}
 else
 {
-        @:response = @(sendCall)(request, header_parameters, @(streamParameter), **operation_config)
+        @:body_content = None
 }
+        # Construct and send request
+        request = self._client.@(MethodPy.GetHttpFunction(Model.HttpMethod))(url, query_parameters)
+@{string streamParameter = "stream="+(Model.IsStreamResponse?"True":"False");}
+@{string sendCall = Model.GetSendCall(AsyncMode);}
+        response = @(sendCall)(
+            request, header_parameters, body_content, @(streamParameter), **operation_config)
 @EmptyLine
         if @Model.FailureStatusCodePredicate:
             @Model.RaisedException
 @EmptyLine
 @if (Model.HasAnyResponse)
 {
-        @:deserialized = None
   if (Model.HasResponseHeader)
   {
         @:header_dict = {}
   }
-@EmptyLine
+if (Model.IsStreamResponse)
+{
+        @:deserialized = self._client.stream_download@(AsyncMode?"_async":"")(response, callback)        
+}
+else
+{
+        @:deserialized = None
   foreach (var responsePair in Model.Responses.Where(r => r.Value.Body != null))
   {
         @:if response.status_code == @MethodPy.GetStatusCodeReference(responsePair.Key):
-    if (responsePair.Value.Body.IsPrimaryType(KnownPrimaryType.Stream))
-    {
-            @:deserialized = self._client.stream_download(response, callback)
-    }
-    else
-    {
             @:deserialized = self._deserialize('@responsePair.Value.Body.ToPythonRuntimeTypeString()', response)
-    }
             @:@Model.AddIndividualResponseHeader(responsePair.Key)
   }
+}
 @EmptyLine
         @:if raw:
             @:client_raw_response = ClientRawResponse(deserialized, response)

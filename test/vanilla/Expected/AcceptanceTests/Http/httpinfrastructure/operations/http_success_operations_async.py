@@ -44,9 +44,11 @@ class HttpSuccessOperations(_HttpSuccessOperations):
         if custom_headers:
             header_parameters.update(custom_headers)
 
+        body_content = None
         # Construct and send request
         request = self._client.head(url, query_parameters)
-        response = await self._client.async_send(request, header_parameters, stream=False, **operation_config)
+        response = await self._client.async_send(
+            request, header_parameters, body_content, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -82,15 +84,16 @@ class HttpSuccessOperations(_HttpSuccessOperations):
         if custom_headers:
             header_parameters.update(custom_headers)
 
+        body_content = None
         # Construct and send request
         request = self._client.get(url, query_parameters)
-        response = await self._client.async_send(request, header_parameters, stream=False, **operation_config)
+        response = await self._client.async_send(
+            request, header_parameters, body_content, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('bool', response)
 
@@ -597,9 +600,11 @@ class HttpSuccessOperations(_HttpSuccessOperations):
         if custom_headers:
             header_parameters.update(custom_headers)
 
+        body_content = None
         # Construct and send request
         request = self._client.head(url, query_parameters)
-        response = await self._client.async_send(request, header_parameters, stream=False, **operation_config)
+        response = await self._client.async_send(
+            request, header_parameters, body_content, stream=False, **operation_config)
 
         if response.status_code not in [204]:
             raise models.ErrorException(self._deserialize, response)
@@ -823,9 +828,11 @@ class HttpSuccessOperations(_HttpSuccessOperations):
         if custom_headers:
             header_parameters.update(custom_headers)
 
+        body_content = None
         # Construct and send request
         request = self._client.head(url, query_parameters)
-        response = await self._client.async_send(request, header_parameters, stream=False, **operation_config)
+        response = await self._client.async_send(
+            request, header_parameters, body_content, stream=False, **operation_config)
 
         if response.status_code not in [204, 404]:
             raise models.ErrorException(self._deserialize, response)

@@ -63,17 +63,16 @@ class FilesOperations(object):
         if custom_headers:
             header_parameters.update(custom_headers)
 
+        body_content = None
         # Construct and send request
         request = self._client.get(url, query_parameters)
-        response = self._client.send(request, header_parameters, stream=True, **operation_config)
+        response = self._client.send(
+            request, header_parameters, body_content, stream=True, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        deserialized = None
-
-        if response.status_code == 200:
-            deserialized = self._client.stream_download(response, callback)
+        deserialized = self._client.stream_download(response, callback)
 
         if raw:
             client_raw_response = ClientRawResponse(deserialized, response)
@@ -112,17 +111,16 @@ class FilesOperations(object):
         if custom_headers:
             header_parameters.update(custom_headers)
 
+        body_content = None
         # Construct and send request
         request = self._client.get(url, query_parameters)
-        response = self._client.send(request, header_parameters, stream=True, **operation_config)
+        response = self._client.send(
+            request, header_parameters, body_content, stream=True, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        deserialized = None
-
-        if response.status_code == 200:
-            deserialized = self._client.stream_download(response, callback)
+        deserialized = self._client.stream_download(response, callback)
 
         if raw:
             client_raw_response = ClientRawResponse(deserialized, response)
@@ -161,17 +159,16 @@ class FilesOperations(object):
         if custom_headers:
             header_parameters.update(custom_headers)
 
+        body_content = None
         # Construct and send request
         request = self._client.get(url, query_parameters)
-        response = self._client.send(request, header_parameters, stream=True, **operation_config)
+        response = self._client.send(
+            request, header_parameters, body_content, stream=True, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        deserialized = None
-
-        if response.status_code == 200:
-            deserialized = self._client.stream_download(response, callback)
+        deserialized = self._client.stream_download(response, callback)
 
         if raw:
             client_raw_response = ClientRawResponse(deserialized, response)

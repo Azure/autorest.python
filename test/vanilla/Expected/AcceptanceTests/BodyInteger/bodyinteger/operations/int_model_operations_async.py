@@ -43,15 +43,16 @@ class IntModelOperations(_IntModelOperations):
         if custom_headers:
             header_parameters.update(custom_headers)
 
+        body_content = None
         # Construct and send request
         request = self._client.get(url, query_parameters)
-        response = await self._client.async_send(request, header_parameters, stream=False, **operation_config)
+        response = await self._client.async_send(
+            request, header_parameters, body_content, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('int', response)
 
@@ -87,15 +88,16 @@ class IntModelOperations(_IntModelOperations):
         if custom_headers:
             header_parameters.update(custom_headers)
 
+        body_content = None
         # Construct and send request
         request = self._client.get(url, query_parameters)
-        response = await self._client.async_send(request, header_parameters, stream=False, **operation_config)
+        response = await self._client.async_send(
+            request, header_parameters, body_content, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('int', response)
 
@@ -131,15 +133,16 @@ class IntModelOperations(_IntModelOperations):
         if custom_headers:
             header_parameters.update(custom_headers)
 
+        body_content = None
         # Construct and send request
         request = self._client.get(url, query_parameters)
-        response = await self._client.async_send(request, header_parameters, stream=False, **operation_config)
+        response = await self._client.async_send(
+            request, header_parameters, body_content, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('int', response)
 
@@ -175,15 +178,16 @@ class IntModelOperations(_IntModelOperations):
         if custom_headers:
             header_parameters.update(custom_headers)
 
+        body_content = None
         # Construct and send request
         request = self._client.get(url, query_parameters)
-        response = await self._client.async_send(request, header_parameters, stream=False, **operation_config)
+        response = await self._client.async_send(
+            request, header_parameters, body_content, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('int', response)
 
@@ -219,15 +223,16 @@ class IntModelOperations(_IntModelOperations):
         if custom_headers:
             header_parameters.update(custom_headers)
 
+        body_content = None
         # Construct and send request
         request = self._client.get(url, query_parameters)
-        response = await self._client.async_send(request, header_parameters, stream=False, **operation_config)
+        response = await self._client.async_send(
+            request, header_parameters, body_content, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('long', response)
 
@@ -263,15 +268,16 @@ class IntModelOperations(_IntModelOperations):
         if custom_headers:
             header_parameters.update(custom_headers)
 
+        body_content = None
         # Construct and send request
         request = self._client.get(url, query_parameters)
-        response = await self._client.async_send(request, header_parameters, stream=False, **operation_config)
+        response = await self._client.async_send(
+            request, header_parameters, body_content, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('long', response)
 
@@ -479,15 +485,16 @@ class IntModelOperations(_IntModelOperations):
         if custom_headers:
             header_parameters.update(custom_headers)
 
+        body_content = None
         # Construct and send request
         request = self._client.get(url, query_parameters)
-        response = await self._client.async_send(request, header_parameters, stream=False, **operation_config)
+        response = await self._client.async_send(
+            request, header_parameters, body_content, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('unix-time', response)
 
@@ -566,15 +573,16 @@ class IntModelOperations(_IntModelOperations):
         if custom_headers:
             header_parameters.update(custom_headers)
 
+        body_content = None
         # Construct and send request
         request = self._client.get(url, query_parameters)
-        response = await self._client.async_send(request, header_parameters, stream=False, **operation_config)
+        response = await self._client.async_send(
+            request, header_parameters, body_content, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('unix-time', response)
 
@@ -610,15 +618,16 @@ class IntModelOperations(_IntModelOperations):
         if custom_headers:
             header_parameters.update(custom_headers)
 
+        body_content = None
         # Construct and send request
         request = self._client.get(url, query_parameters)
-        response = await self._client.async_send(request, header_parameters, stream=False, **operation_config)
+        response = await self._client.async_send(
+            request, header_parameters, body_content, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('unix-time', response)
 

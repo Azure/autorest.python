@@ -54,7 +54,7 @@ class FormdataOperations(_FormdataOperations):
             header_parameters.update(custom_headers)
 
         # Construct form data
-        form_data_content = {
+        body_content = {
             'fileContent': file_content,
             'fileName': file_name,
         }
@@ -62,15 +62,12 @@ class FormdataOperations(_FormdataOperations):
         # Construct and send request
         request = self._client.post(url, query_parameters)
         response = await self._client.async_send_formdata(
-            request, header_parameters, form_data_content, stream=True, **operation_config)
+            request, header_parameters, body_content, stream=True, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        deserialized = None
-
-        if response.status_code == 200:
-            deserialized = self._client.stream_download(response, callback)
+        deserialized = self._client.stream_download_async(response, callback)
 
         if raw:
             client_raw_response = ClientRawResponse(deserialized, response)
@@ -122,10 +119,7 @@ class FormdataOperations(_FormdataOperations):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        deserialized = None
-
-        if response.status_code == 200:
-            deserialized = self._client.stream_download(response, callback)
+        deserialized = self._client.stream_download_async(response, callback)
 
         if raw:
             client_raw_response = ClientRawResponse(deserialized, response)

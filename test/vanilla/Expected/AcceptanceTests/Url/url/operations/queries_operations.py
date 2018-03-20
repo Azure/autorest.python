@@ -67,9 +67,11 @@ class QueriesOperations(object):
         if custom_headers:
             header_parameters.update(custom_headers)
 
+        body_content = None
         # Construct and send request
         request = self._client.get(url, query_parameters)
-        response = self._client.send(request, header_parameters, stream=False, **operation_config)
+        response = self._client.send(
+            request, header_parameters, body_content, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -107,9 +109,11 @@ class QueriesOperations(object):
         if custom_headers:
             header_parameters.update(custom_headers)
 
+        body_content = None
         # Construct and send request
         request = self._client.get(url, query_parameters)
-        response = self._client.send(request, header_parameters, stream=False, **operation_config)
+        response = self._client.send(
+            request, header_parameters, body_content, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -148,9 +152,11 @@ class QueriesOperations(object):
         if custom_headers:
             header_parameters.update(custom_headers)
 
+        body_content = None
         # Construct and send request
         request = self._client.get(url, query_parameters)
-        response = self._client.send(request, header_parameters, stream=False, **operation_config)
+        response = self._client.send(
+            request, header_parameters, body_content, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -188,9 +194,11 @@ class QueriesOperations(object):
         if custom_headers:
             header_parameters.update(custom_headers)
 
+        body_content = None
         # Construct and send request
         request = self._client.get(url, query_parameters)
-        response = self._client.send(request, header_parameters, stream=False, **operation_config)
+        response = self._client.send(
+            request, header_parameters, body_content, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -228,9 +236,11 @@ class QueriesOperations(object):
         if custom_headers:
             header_parameters.update(custom_headers)
 
+        body_content = None
         # Construct and send request
         request = self._client.get(url, query_parameters)
-        response = self._client.send(request, header_parameters, stream=False, **operation_config)
+        response = self._client.send(
+            request, header_parameters, body_content, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -269,9 +279,11 @@ class QueriesOperations(object):
         if custom_headers:
             header_parameters.update(custom_headers)
 
+        body_content = None
         # Construct and send request
         request = self._client.get(url, query_parameters)
-        response = self._client.send(request, header_parameters, stream=False, **operation_config)
+        response = self._client.send(
+            request, header_parameters, body_content, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -309,9 +321,11 @@ class QueriesOperations(object):
         if custom_headers:
             header_parameters.update(custom_headers)
 
+        body_content = None
         # Construct and send request
         request = self._client.get(url, query_parameters)
-        response = self._client.send(request, header_parameters, stream=False, **operation_config)
+        response = self._client.send(
+            request, header_parameters, body_content, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -349,9 +363,11 @@ class QueriesOperations(object):
         if custom_headers:
             header_parameters.update(custom_headers)
 
+        body_content = None
         # Construct and send request
         request = self._client.get(url, query_parameters)
-        response = self._client.send(request, header_parameters, stream=False, **operation_config)
+        response = self._client.send(
+            request, header_parameters, body_content, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -390,9 +406,11 @@ class QueriesOperations(object):
         if custom_headers:
             header_parameters.update(custom_headers)
 
+        body_content = None
         # Construct and send request
         request = self._client.get(url, query_parameters)
-        response = self._client.send(request, header_parameters, stream=False, **operation_config)
+        response = self._client.send(
+            request, header_parameters, body_content, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -430,9 +448,11 @@ class QueriesOperations(object):
         if custom_headers:
             header_parameters.update(custom_headers)
 
+        body_content = None
         # Construct and send request
         request = self._client.get(url, query_parameters)
-        response = self._client.send(request, header_parameters, stream=False, **operation_config)
+        response = self._client.send(
+            request, header_parameters, body_content, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -470,9 +490,11 @@ class QueriesOperations(object):
         if custom_headers:
             header_parameters.update(custom_headers)
 
+        body_content = None
         # Construct and send request
         request = self._client.get(url, query_parameters)
-        response = self._client.send(request, header_parameters, stream=False, **operation_config)
+        response = self._client.send(
+            request, header_parameters, body_content, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -511,9 +533,11 @@ class QueriesOperations(object):
         if custom_headers:
             header_parameters.update(custom_headers)
 
+        body_content = None
         # Construct and send request
         request = self._client.get(url, query_parameters)
-        response = self._client.send(request, header_parameters, stream=False, **operation_config)
+        response = self._client.send(
+            request, header_parameters, body_content, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -551,9 +575,11 @@ class QueriesOperations(object):
         if custom_headers:
             header_parameters.update(custom_headers)
 
+        body_content = None
         # Construct and send request
         request = self._client.get(url, query_parameters)
-        response = self._client.send(request, header_parameters, stream=False, **operation_config)
+        response = self._client.send(
+            request, header_parameters, body_content, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -591,9 +617,11 @@ class QueriesOperations(object):
         if custom_headers:
             header_parameters.update(custom_headers)
 
+        body_content = None
         # Construct and send request
         request = self._client.get(url, query_parameters)
-        response = self._client.send(request, header_parameters, stream=False, **operation_config)
+        response = self._client.send(
+            request, header_parameters, body_content, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -632,9 +660,11 @@ class QueriesOperations(object):
         if custom_headers:
             header_parameters.update(custom_headers)
 
+        body_content = None
         # Construct and send request
         request = self._client.get(url, query_parameters)
-        response = self._client.send(request, header_parameters, stream=False, **operation_config)
+        response = self._client.send(
+            request, header_parameters, body_content, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -672,9 +702,11 @@ class QueriesOperations(object):
         if custom_headers:
             header_parameters.update(custom_headers)
 
+        body_content = None
         # Construct and send request
         request = self._client.get(url, query_parameters)
-        response = self._client.send(request, header_parameters, stream=False, **operation_config)
+        response = self._client.send(
+            request, header_parameters, body_content, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -712,9 +744,11 @@ class QueriesOperations(object):
         if custom_headers:
             header_parameters.update(custom_headers)
 
+        body_content = None
         # Construct and send request
         request = self._client.get(url, query_parameters)
-        response = self._client.send(request, header_parameters, stream=False, **operation_config)
+        response = self._client.send(
+            request, header_parameters, body_content, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -752,9 +786,11 @@ class QueriesOperations(object):
         if custom_headers:
             header_parameters.update(custom_headers)
 
+        body_content = None
         # Construct and send request
         request = self._client.get(url, query_parameters)
-        response = self._client.send(request, header_parameters, stream=False, **operation_config)
+        response = self._client.send(
+            request, header_parameters, body_content, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -793,9 +829,11 @@ class QueriesOperations(object):
         if custom_headers:
             header_parameters.update(custom_headers)
 
+        body_content = None
         # Construct and send request
         request = self._client.get(url, query_parameters)
-        response = self._client.send(request, header_parameters, stream=False, **operation_config)
+        response = self._client.send(
+            request, header_parameters, body_content, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -835,9 +873,11 @@ class QueriesOperations(object):
         if custom_headers:
             header_parameters.update(custom_headers)
 
+        body_content = None
         # Construct and send request
         request = self._client.get(url, query_parameters)
-        response = self._client.send(request, header_parameters, stream=False, **operation_config)
+        response = self._client.send(
+            request, header_parameters, body_content, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -877,9 +917,11 @@ class QueriesOperations(object):
         if custom_headers:
             header_parameters.update(custom_headers)
 
+        body_content = None
         # Construct and send request
         request = self._client.get(url, query_parameters)
-        response = self._client.send(request, header_parameters, stream=False, **operation_config)
+        response = self._client.send(
+            request, header_parameters, body_content, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -919,9 +961,11 @@ class QueriesOperations(object):
         if custom_headers:
             header_parameters.update(custom_headers)
 
+        body_content = None
         # Construct and send request
         request = self._client.get(url, query_parameters)
-        response = self._client.send(request, header_parameters, stream=False, **operation_config)
+        response = self._client.send(
+            request, header_parameters, body_content, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -957,9 +1001,11 @@ class QueriesOperations(object):
         if custom_headers:
             header_parameters.update(custom_headers)
 
+        body_content = None
         # Construct and send request
         request = self._client.get(url, query_parameters)
-        response = self._client.send(request, header_parameters, stream=False, **operation_config)
+        response = self._client.send(
+            request, header_parameters, body_content, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -998,9 +1044,11 @@ class QueriesOperations(object):
         if custom_headers:
             header_parameters.update(custom_headers)
 
+        body_content = None
         # Construct and send request
         request = self._client.get(url, query_parameters)
-        response = self._client.send(request, header_parameters, stream=False, **operation_config)
+        response = self._client.send(
+            request, header_parameters, body_content, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -1036,9 +1084,11 @@ class QueriesOperations(object):
         if custom_headers:
             header_parameters.update(custom_headers)
 
+        body_content = None
         # Construct and send request
         request = self._client.get(url, query_parameters)
-        response = self._client.send(request, header_parameters, stream=False, **operation_config)
+        response = self._client.send(
+            request, header_parameters, body_content, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -1077,9 +1127,11 @@ class QueriesOperations(object):
         if custom_headers:
             header_parameters.update(custom_headers)
 
+        body_content = None
         # Construct and send request
         request = self._client.get(url, query_parameters)
-        response = self._client.send(request, header_parameters, stream=False, **operation_config)
+        response = self._client.send(
+            request, header_parameters, body_content, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -1115,9 +1167,11 @@ class QueriesOperations(object):
         if custom_headers:
             header_parameters.update(custom_headers)
 
+        body_content = None
         # Construct and send request
         request = self._client.get(url, query_parameters)
-        response = self._client.send(request, header_parameters, stream=False, **operation_config)
+        response = self._client.send(
+            request, header_parameters, body_content, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -1156,9 +1210,11 @@ class QueriesOperations(object):
         if custom_headers:
             header_parameters.update(custom_headers)
 
+        body_content = None
         # Construct and send request
         request = self._client.get(url, query_parameters)
-        response = self._client.send(request, header_parameters, stream=False, **operation_config)
+        response = self._client.send(
+            request, header_parameters, body_content, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -1199,9 +1255,11 @@ class QueriesOperations(object):
         if custom_headers:
             header_parameters.update(custom_headers)
 
+        body_content = None
         # Construct and send request
         request = self._client.get(url, query_parameters)
-        response = self._client.send(request, header_parameters, stream=False, **operation_config)
+        response = self._client.send(
+            request, header_parameters, body_content, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -1240,9 +1298,11 @@ class QueriesOperations(object):
         if custom_headers:
             header_parameters.update(custom_headers)
 
+        body_content = None
         # Construct and send request
         request = self._client.get(url, query_parameters)
-        response = self._client.send(request, header_parameters, stream=False, **operation_config)
+        response = self._client.send(
+            request, header_parameters, body_content, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -1282,9 +1342,11 @@ class QueriesOperations(object):
         if custom_headers:
             header_parameters.update(custom_headers)
 
+        body_content = None
         # Construct and send request
         request = self._client.get(url, query_parameters)
-        response = self._client.send(request, header_parameters, stream=False, **operation_config)
+        response = self._client.send(
+            request, header_parameters, body_content, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -1325,9 +1387,11 @@ class QueriesOperations(object):
         if custom_headers:
             header_parameters.update(custom_headers)
 
+        body_content = None
         # Construct and send request
         request = self._client.get(url, query_parameters)
-        response = self._client.send(request, header_parameters, stream=False, **operation_config)
+        response = self._client.send(
+            request, header_parameters, body_content, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -1368,9 +1432,11 @@ class QueriesOperations(object):
         if custom_headers:
             header_parameters.update(custom_headers)
 
+        body_content = None
         # Construct and send request
         request = self._client.get(url, query_parameters)
-        response = self._client.send(request, header_parameters, stream=False, **operation_config)
+        response = self._client.send(
+            request, header_parameters, body_content, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -1411,9 +1477,11 @@ class QueriesOperations(object):
         if custom_headers:
             header_parameters.update(custom_headers)
 
+        body_content = None
         # Construct and send request
         request = self._client.get(url, query_parameters)
-        response = self._client.send(request, header_parameters, stream=False, **operation_config)
+        response = self._client.send(
+            request, header_parameters, body_content, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)

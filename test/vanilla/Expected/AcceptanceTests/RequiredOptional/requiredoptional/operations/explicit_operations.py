@@ -258,9 +258,11 @@ class ExplicitOperations(object):
             header_parameters.update(custom_headers)
         header_parameters['headerParameter'] = self._serialize.header("header_parameter", header_parameter, 'int')
 
+        body_content = None
         # Construct and send request
         request = self._client.post(url, query_parameters)
-        response = self._client.send(request, header_parameters, stream=False, **operation_config)
+        response = self._client.send(
+            request, header_parameters, body_content, stream=False, **operation_config)
 
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
@@ -301,9 +303,11 @@ class ExplicitOperations(object):
         if header_parameter is not None:
             header_parameters['headerParameter'] = self._serialize.header("header_parameter", header_parameter, 'int')
 
+        body_content = None
         # Construct and send request
         request = self._client.post(url, query_parameters)
-        response = self._client.send(request, header_parameters, stream=False, **operation_config)
+        response = self._client.send(
+            request, header_parameters, body_content, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -538,9 +542,11 @@ class ExplicitOperations(object):
             header_parameters.update(custom_headers)
         header_parameters['headerParameter'] = self._serialize.header("header_parameter", header_parameter, 'str')
 
+        body_content = None
         # Construct and send request
         request = self._client.post(url, query_parameters)
-        response = self._client.send(request, header_parameters, stream=False, **operation_config)
+        response = self._client.send(
+            request, header_parameters, body_content, stream=False, **operation_config)
 
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
@@ -581,9 +587,11 @@ class ExplicitOperations(object):
         if body_parameter is not None:
             header_parameters['bodyParameter'] = self._serialize.header("body_parameter", body_parameter, 'str')
 
+        body_content = None
         # Construct and send request
         request = self._client.post(url, query_parameters)
-        response = self._client.send(request, header_parameters, stream=False, **operation_config)
+        response = self._client.send(
+            request, header_parameters, body_content, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -1012,9 +1020,11 @@ class ExplicitOperations(object):
             header_parameters.update(custom_headers)
         header_parameters['headerParameter'] = self._serialize.header("header_parameter", header_parameter, '[str]', div=',')
 
+        body_content = None
         # Construct and send request
         request = self._client.post(url, query_parameters)
-        response = self._client.send(request, header_parameters, stream=False, **operation_config)
+        response = self._client.send(
+            request, header_parameters, body_content, stream=False, **operation_config)
 
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
@@ -1055,9 +1065,11 @@ class ExplicitOperations(object):
         if header_parameter is not None:
             header_parameters['headerParameter'] = self._serialize.header("header_parameter", header_parameter, '[str]', div=',')
 
+        body_content = None
         # Construct and send request
         request = self._client.post(url, query_parameters)
-        response = self._client.send(request, header_parameters, stream=False, **operation_config)
+        response = self._client.send(
+            request, header_parameters, body_content, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
