@@ -44,7 +44,9 @@ from extensibleenumsswagger.models import (
     IntEnum,
 )
 
-class ExtensibleEnumsTest(unittest.TestCase):
+import pytest
+
+class TestExtensibleEnums(object):
 
     def test_ext_enums(self):
         client = PetStoreInc(base_url="http://localhost:3000")
@@ -52,18 +54,18 @@ class ExtensibleEnumsTest(unittest.TestCase):
         # Now enum return are always string (Autorest.Python 3.0)
 
         tommy = client.pet.get_by_pet_id('tommy')
-        self.assertEqual(tommy.days_of_week, "Monday") 
-        self.assertEqual(tommy.int_enum, "1")
+        assert tommy.days_of_week ==  "Monday" 
+        assert tommy.int_enum ==  "1"
 
         casper = client.pet.get_by_pet_id('casper')
-        self.assertEqual(casper.days_of_week, "Weekend") 
-        self.assertEqual(casper.int_enum, "2")
+        assert casper.days_of_week ==  "Weekend" 
+        assert casper.int_enum ==  "2"
 
         scooby = client.pet.get_by_pet_id('scooby')
-        self.assertEqual(scooby.days_of_week, "Thursday")
+        assert scooby.days_of_week ==  "Thursday"
         # https://github.com/Azure/autorest.csharp/blob/e5f871b7433e0f6ca6a17307fba4a2cfea4942b4/test/vanilla/AcceptanceTests.cs#L429
         # "allowedValues" of "x-ms-enum" is not supported in Python
-        self.assertEqual(scooby.int_enum, "2.1") # Might be "2" if one day Python is supposed to support "allowedValues"
+        assert scooby.int_enum ==  "2.1" # Might be "2" if one day Python is supposed to support "allowedValues"
 
         retriever = Pet(
             name="Retriever",
@@ -71,9 +73,9 @@ class ExtensibleEnumsTest(unittest.TestCase):
             days_of_week=DaysOfWeekExtensibleEnum.friday
         )
         returned_pet = client.pet.add_pet(retriever)
-        self.assertEqual(returned_pet.days_of_week, "Friday") 
-        self.assertEqual(returned_pet.int_enum, "3")
-        self.assertEqual(returned_pet.name, "Retriever")
+        assert returned_pet.days_of_week ==  "Friday" 
+        assert returned_pet.int_enum ==  "3"
+        assert returned_pet.name ==  "Retriever"
 
 
 if __name__ == '__main__':

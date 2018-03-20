@@ -45,8 +45,9 @@ from msrest.exceptions import DeserializationError
 
 from bodydate import AutoRestDateTestService
 
+import pytest
 
-class DateTests(unittest.TestCase):
+class TestDate(object):
 
     def test_date(self):
         client = AutoRestDateTestService(base_url="http://localhost:3000")
@@ -56,17 +57,17 @@ class DateTests(unittest.TestCase):
         client.date_model.put_max_date(max_date)
         client.date_model.put_min_date(min_date)
 
-        self.assertEqual(max_date, client.date_model.get_max_date())
-        self.assertEqual(min_date, client.date_model.get_min_date())
-        self.assertIsNone(client.date_model.get_null())
+        assert max_date ==  client.date_model.get_max_date()
+        assert min_date ==  client.date_model.get_min_date()
+        assert client.date_model.get_null() is None
 
-        with self.assertRaises(DeserializationError):
+        with pytest.raises(DeserializationError):
             client.date_model.get_invalid_date()
 
-        with self.assertRaises(DeserializationError):
+        with pytest.raises(DeserializationError):
             client.date_model.get_overflow_date()
 
-        with self.assertRaises(DeserializationError):
+        with pytest.raises(DeserializationError):
             client.date_model.get_underflow_date()
 
 if __name__ == '__main__':

@@ -45,8 +45,9 @@ from msrest.exceptions import DeserializationError
 
 from bodyinteger import AutoRestIntegerTestService
 
+import pytest
 
-class IntegerTests(unittest.TestCase):
+class TestInteger(object):
 
     def test_integer(self):
         client = AutoRestIntegerTestService(base_url="http://localhost:3000")
@@ -58,7 +59,7 @@ class IntegerTests(unittest.TestCase):
         client.int_model.put_min64(-9223372036854776000)
         client.int_model.get_null()
 
-        with self.assertRaises(DeserializationError):
+        with pytest.raises(DeserializationError):
             client.int_model.get_invalid()
 
         # Testserver excepts these to fail, but they won't in Python and it's ok.
@@ -69,10 +70,10 @@ class IntegerTests(unittest.TestCase):
 
         unix_date = datetime(year=2016, month=4, day=13)
         client.int_model.put_unix_time_date(unix_date)
-        self.assertEqual(unix_date.utctimetuple(), client.int_model.get_unix_time().utctimetuple())
-        self.assertIsNone(client.int_model.get_null_unix_time())
+        assert unix_date.utctimetuple() ==  client.int_model.get_unix_time().utctimetuple()
+        assert client.int_model.get_null_unix_time() is None
 
-        with self.assertRaises(DeserializationError):
+        with pytest.raises(DeserializationError):
             client.int_model.get_invalid_unix_time()
 
 

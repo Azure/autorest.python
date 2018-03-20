@@ -56,17 +56,18 @@ class UTC(tzinfo):
     def dst(self,dt):
         return timedelta(0)
 
+import pytest
 
-class ComplexTests(unittest.TestCase):
+class TestComplex(object):
 
     def test_complex(self):
         client = AutoRestComplexTestService(base_url="http://localhost:3000")
 
         # GET basic/valid
         basic_result = client.basic.get_valid()
-        self.assertEqual(2, basic_result.id)
-        self.assertEqual("abc", basic_result.name);
-        self.assertEqual(CMYKColors.yellow.value, basic_result.color);
+        assert 2 ==  basic_result.id
+        assert "abc" ==  basic_result.name;
+        assert CMYKColors.yellow.value ==  basic_result.color;
 
         # PUT basic/valid
         basic_result = Basic(id=2, name='abc', color="Magenta")
@@ -76,20 +77,20 @@ class ComplexTests(unittest.TestCase):
 
         # GET basic/empty
         basic_result = client.basic.get_empty()
-        self.assertIsNone(basic_result.id)
-        self.assertIsNone(basic_result.name)
+        assert basic_result.id is None
+        assert basic_result.name is None
 
         # GET basic/null
         basic_result = client.basic.get_null()
-        self.assertIsNone(basic_result.id)
-        self.assertIsNone(basic_result.name)
+        assert basic_result.id is None
+        assert basic_result.name is None
 
         # GET basic/notprovided
         basic_result = client.basic.get_not_provided()
-        self.assertIsNone(basic_result)
+        assert basic_result is None
 
         # GET basic/invalid
-        with self.assertRaises(DeserializationError):
+        with pytest.raises(DeserializationError):
             client.basic.get_invalid()
 
         """
@@ -97,8 +98,8 @@ class ComplexTests(unittest.TestCase):
         """
         # GET primitive/integer
         intResult = client.primitive.get_int();
-        self.assertEqual(-1, intResult.field1)
-        self.assertEqual(2, intResult.field2)
+        assert -1 ==  intResult.field1
+        assert 2 ==  intResult.field2
 
         # PUT primitive/integer
         intRequest = {'field1':-1, 'field2':2}
@@ -106,8 +107,8 @@ class ComplexTests(unittest.TestCase):
 
         # GET primitive/long
         longResult = client.primitive.get_long();
-        self.assertEqual(1099511627775, longResult.field1)
-        self.assertEqual(-999511627788, longResult.field2)
+        assert 1099511627775 ==  longResult.field1
+        assert -999511627788 ==  longResult.field2
 
         # PUT primitive/long
         longRequest = {'field1':1099511627775, 'field2':-999511627788}
@@ -115,8 +116,8 @@ class ComplexTests(unittest.TestCase):
 
         # GET primitive/float
         floatResult = client.primitive.get_float()
-        self.assertEqual(1.05, floatResult.field1)
-        self.assertEqual(-0.003, floatResult.field2)
+        assert 1.05 ==  floatResult.field1
+        assert -0.003 ==  floatResult.field2
 
         # PUT primitive/float
         floatRequest = FloatWrapper(field1=1.05, field2=-0.003)
@@ -124,8 +125,8 @@ class ComplexTests(unittest.TestCase):
 
         # GET primitive/double
         doubleResult = client.primitive.get_double()
-        self.assertEqual(3e-100, doubleResult.field1)
-        self.assertEqual(-5e-57, doubleResult.field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose)
+        assert 3e-100 ==  doubleResult.field1
+        assert -5e-57 ==  doubleResult.field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose
 
         # PUT primitive/double
         doubleRequest = {'field1':3e-100}
@@ -134,8 +135,8 @@ class ComplexTests(unittest.TestCase):
 
         # GET primitive/bool
         boolResult = client.primitive.get_bool()
-        self.assertTrue(boolResult.field_true)
-        self.assertFalse(boolResult.field_false)
+        assert boolResult.field_true
+        assert not boolResult.field_false
 
         # PUT primitive/bool
         boolRequest = BooleanWrapper(field_true=True, field_false=False)
@@ -143,9 +144,9 @@ class ComplexTests(unittest.TestCase):
 
         # GET primitive/string
         stringResult = client.primitive.get_string();
-        self.assertEqual("goodrequest", stringResult.field)
-        self.assertEqual("", stringResult.empty)
-        self.assertIsNone(stringResult.null)
+        assert "goodrequest" ==  stringResult.field
+        assert "" ==  stringResult.empty
+        assert stringResult.null is None
 
         # PUT primitive/string
         stringRequest = StringWrapper(null=None, empty="", field="goodrequest")
@@ -153,8 +154,8 @@ class ComplexTests(unittest.TestCase):
 
         # GET primitive/date
         dateResult = client.primitive.get_date()
-        self.assertEqual(isodate.parse_date("0001-01-01"), dateResult.field)
-        self.assertEqual(isodate.parse_date("2016-02-29"), dateResult.leap)
+        assert isodate.parse_date("0001-01-01") ==  dateResult.field
+        assert isodate.parse_date("2016-02-29") ==  dateResult.leap
 
         dateRequest = DateWrapper(
             field=isodate.parse_date('0001-01-01'),
@@ -165,7 +166,7 @@ class ComplexTests(unittest.TestCase):
         datetimeResult = client.primitive.get_date_time()
         min_date = datetime.min
         min_date = min_date.replace(tzinfo=UTC())
-        self.assertEqual(min_date, datetimeResult.field)
+        assert min_date ==  datetimeResult.field
 
         datetime_request = DatetimeWrapper(
             field=isodate.parse_datetime("0001-01-01T00:00:00Z"),
@@ -174,7 +175,7 @@ class ComplexTests(unittest.TestCase):
 
         # GET primitive/datetimerfc1123
         datetimeRfc1123Result = client.primitive.get_date_time_rfc1123()
-        self.assertEqual(min_date, datetimeRfc1123Result.field)
+        assert min_date ==  datetimeRfc1123Result.field
 
         datetime_request = Datetimerfc1123Wrapper(
             field=isodate.parse_datetime("0001-01-01T00:00:00Z"),
@@ -183,14 +184,14 @@ class ComplexTests(unittest.TestCase):
 
         # GET primitive/duration
         expected = timedelta(days=123, hours=22, minutes=14, seconds=12, milliseconds=11)
-        self.assertEqual(expected, client.primitive.get_duration().field)
+        assert expected ==  client.primitive.get_duration().field
 
         client.primitive.put_duration(expected)
 
         # GET primitive/byte
         byteResult = client.primitive.get_byte()
         valid_bytes = bytearray([0x0FF, 0x0FE, 0x0FD, 0x0FC, 0x000, 0x0FA, 0x0F9, 0x0F8, 0x0F7, 0x0F6])
-        self.assertEqual(valid_bytes, byteResult.field)
+        assert valid_bytes ==  byteResult.field
 
         # PUT primitive/byte
         client.primitive.put_byte(valid_bytes)
@@ -202,71 +203,71 @@ class ComplexTests(unittest.TestCase):
         valid_obj = ReadonlyObj(size=2)
         valid_obj.id = '1234'
         readonly_result = client.readonlyproperty.get_valid()
-        self.assertEqual(readonly_result, valid_obj)
+        assert readonly_result ==  valid_obj
 
         # PUT readonly/valid
         readonly_result = client.readonlyproperty.put_valid(2)
-        self.assertIsNone(readonly_result)
+        assert readonly_result is None
 
         """
         COMPLEX TYPE WITH ARRAY PROPERTIES
         """
         # GET array/valid
         array_result = client.array.get_valid()
-        self.assertEqual(5, len(array_result.array))
+        assert 5 ==  len(array_result.array)
 
         array_value = ["1, 2, 3, 4", "", None, "&S#$(*Y",
                        "The quick brown fox jumps over the lazy dog"]
-        self.assertEqual(array_result.array, array_value)
+        assert array_result.array ==  array_value
 
         # PUT array/valid
         client.array.put_valid(array_value)
 
         # GET array/empty
         array_result = client.array.get_empty()
-        self.assertEqual(0, len(array_result.array))
+        assert 0 ==  len(array_result.array)
 
         # PUT array/empty
         client.array.put_empty([])
 
         # Get array/notprovided
-        self.assertIsNone(client.array.get_not_provided().array)
+        assert client.array.get_not_provided().array is None
 
         """
         COMPLEX TYPE WITH DICTIONARY PROPERTIES
         """
         # GET dictionary/valid
         dict_result = client.dictionary.get_valid()
-        self.assertEqual(5, len(dict_result.default_program))
+        assert 5 ==  len(dict_result.default_program)
 
         dict_val = {'txt':'notepad', 'bmp':'mspaint', 'xls':'excel', 'exe':'', '':None}
-        self.assertEqual(dict_val, dict_result.default_program)
+        assert dict_val ==  dict_result.default_program
 
         # PUT dictionary/valid
         client.dictionary.put_valid(dict_val)
 
         # GET dictionary/empty
         dict_result = client.dictionary.get_empty()
-        self.assertEqual(0, len(dict_result.default_program))
+        assert 0 ==  len(dict_result.default_program)
 
         # PUT dictionary/empty
         client.dictionary.put_empty(default_program={})
 
         # GET dictionary/null
-        self.assertIsNone(client.dictionary.get_null().default_program)
+        assert client.dictionary.get_null().default_program is None
 
         # GET dictionary/notprovided
-        self.assertIsNone(client.dictionary.get_not_provided().default_program)
+        assert client.dictionary.get_not_provided().default_program is None
 
         """
         COMPLEX TYPES THAT INVOLVE INHERITANCE
         """
         # GET inheritance/valid
         inheritanceResult = client.inheritance.get_valid()
-        self.assertEqual(2, inheritanceResult.id)
-        self.assertEqual("Siameeee", inheritanceResult.name)
-        self.assertEqual(-1, inheritanceResult.hates[1].id)
-        self.assertEqual("Tomato", inheritanceResult.hates[1].name)
+        assert 2 ==  inheritanceResult.id
+        assert "Siameeee" ==  inheritanceResult.name
+        assert -1 ==  inheritanceResult.hates[1].id
+        assert "Tomato" ==  inheritanceResult.hates[1].name
 
         # PUT inheritance/valid
         request = {
@@ -284,15 +285,15 @@ class ComplexTests(unittest.TestCase):
         """
         # GET polymorphism/valid
         result = client.polymorphism.get_valid()
-        self.assertIsNotNone(result)
-        self.assertEqual(result.location, "alaska")
-        self.assertEqual(len(result.siblings), 3)
-        self.assertIsInstance(result.siblings[0], Shark)
-        self.assertIsInstance(result.siblings[1], Sawshark)
-        self.assertIsInstance(result.siblings[2], Goblinshark)
-        self.assertEqual(result.siblings[0].age, 6)
-        self.assertEqual(result.siblings[1].age, 105)
-        self.assertEqual(result.siblings[2].age, 1)
+        assert result is not None
+        assert result.location ==  "alaska"
+        assert len(result.siblings) ==  3
+        assert isinstance(result.siblings[0],  Shark)
+        assert isinstance(result.siblings[1],  Sawshark)
+        assert isinstance(result.siblings[2],  Goblinshark)
+        assert result.siblings[0].age ==  6
+        assert result.siblings[1].age ==  105
+        assert result.siblings[2].age ==  1
 
 
         # PUT polymorphism/valid
@@ -325,7 +326,7 @@ class ComplexTests(unittest.TestCase):
                          picture=bytearray([255, 255, 255, 255, 254]))]
             )
 
-        with self.assertRaises(ValidationError):
+        with pytest.raises(ValidationError):
             client.polymorphism.put_valid_missing_required(bad_request)
 
         """
@@ -334,10 +335,10 @@ class ComplexTests(unittest.TestCase):
 
         # GET polymorphicrecursive/valid
         result = client.polymorphicrecursive.get_valid()
-        self.assertIsInstance(result, Salmon)
-        self.assertIsInstance(result.siblings[0], Shark)
-        self.assertIsInstance(result.siblings[0].siblings[0], Salmon)
-        self.assertEqual(result.siblings[0].siblings[0].location, "atlantic")
+        assert isinstance(result,  Salmon)
+        assert isinstance(result.siblings[0],  Shark)
+        assert isinstance(result.siblings[0].siblings[0],  Salmon)
+        assert result.siblings[0].siblings[0].location ==  "atlantic"
 
         request = Salmon(
             iswild=True,

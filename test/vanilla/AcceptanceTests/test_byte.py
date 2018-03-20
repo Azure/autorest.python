@@ -45,20 +45,21 @@ from msrest.exceptions import DeserializationError
 
 from bodybyte import AutoRestSwaggerBATByteService
 
+import pytest
 
-class ByteTests(unittest.TestCase):
+class ByteTests(object):
 
     def test_byte(self):
         client = AutoRestSwaggerBATByteService(base_url="http://localhost:3000")
 
         test_bytes = bytearray([0x0FF, 0x0FE, 0x0FD, 0x0FC, 0x0FB, 0x0FA, 0x0F9, 0x0F8, 0x0F7, 0x0F6])
         client.byte.put_non_ascii(test_bytes)
-        self.assertEqual(test_bytes, client.byte.get_non_ascii())
+        assert test_bytes ==  client.byte.get_non_ascii()
 
-        self.assertIsNone(client.byte.get_null())
-        self.assertEqual(bytearray(), client.byte.get_empty())
+        assert client.byte.get_null() is None
+        assert bytearray() ==  client.byte.get_empty()
 
-        with self.assertRaises(DeserializationError):
+        with pytest.raises(DeserializationError):
             client.byte.get_invalid()
 
 if __name__ == '__main__':

@@ -354,7 +354,7 @@ class TestHttp(object):
         client.http_success.delete200(True)
 
         # TODO, 4042586: Support options operations in swagger modeler
-        #self.assertTrue(client.http_success.options200())
+        #assert client.http_success.options200()
 
         client.http_success.put201(True)
         client.http_success.post201(True)

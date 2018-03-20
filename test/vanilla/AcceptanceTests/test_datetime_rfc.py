@@ -45,21 +45,22 @@ from msrest.exceptions import DeserializationError
 
 from bodydatetimerfc1123 import AutoRestRFC1123DateTimeTestService
 
+import pytest
 
-class DateTimeRfcTests(unittest.TestCase):
+class TestDateTimeRfc(object):
 
     def test_datetime_rfc(self):
         client = AutoRestRFC1123DateTimeTestService(base_url="http://localhost:3000")
 
-        self.assertIsNone(client.datetimerfc1123.get_null())
+        assert client.datetimerfc1123.get_null() is None
 
-        with self.assertRaises(DeserializationError):
+        with pytest.raises(DeserializationError):
             client.datetimerfc1123.get_invalid()
 
-        with self.assertRaises(DeserializationError):
+        with pytest.raises(DeserializationError):
             client.datetimerfc1123.get_underflow()
 
-        with self.assertRaises(DeserializationError):
+        with pytest.raises(DeserializationError):
             client.datetimerfc1123.get_overflow()
 
         client.datetimerfc1123.get_utc_lowercase_max_date_time()

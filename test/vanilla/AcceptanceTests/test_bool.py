@@ -46,19 +46,21 @@ from msrest.exceptions import DeserializationError
 from bodyboolean import AutoRestBoolTestService
 from bodyboolean.models import ErrorException
 
-class BoolTests(unittest.TestCase):
+import pytest
+
+class TestBool(object):
 
     def test_bool(self):
         client = AutoRestBoolTestService(base_url="http://localhost:3000")
 
-        self.assertTrue(client.bool_model.get_true())
-        self.assertFalse(client.bool_model.get_false())
+        assert client.bool_model.get_true()
+        assert not client.bool_model.get_false()
 
         client.bool_model.get_null()
         client.bool_model.put_false()
         client.bool_model.put_true()
 
-        with self.assertRaises(DeserializationError):
+        with pytest.raises(DeserializationError):
             client.bool_model.get_invalid()
 
 if __name__ == '__main__':

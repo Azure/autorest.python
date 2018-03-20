@@ -46,125 +46,128 @@ from url import AutoRestUrlTestService
 from urlmulticollectionformat import AutoRestUrlMutliCollectionFormatTestService
 from url.models.auto_rest_url_test_service_enums import UriColor
 
+import pytest
 
-class UrlTests(unittest.TestCase):
+@pytest.fixture
+def client():
+    return AutoRestUrlTestService('', base_url="http://localhost:3000")
 
-    @classmethod
-    def setUpClass(cls):
-        cls.client = AutoRestUrlTestService('', base_url="http://localhost:3000")
-        cls.multi_client = AutoRestUrlMutliCollectionFormatTestService("http://localhost:3000")
-        return super(UrlTests, cls).setUpClass()
+@pytest.fixture
+def multi_client():
+    return AutoRestUrlMutliCollectionFormatTestService("http://localhost:3000")
 
-    def test_url_path(self):
+class TestUrl(object):
 
-        self.client.config.global_string_path = ''
+    def test_url_path(self, client):
 
-        self.client.paths.byte_empty(bytearray())
+        client.config.global_string_path = ''
 
-        with self.assertRaises(ValidationError):
-            self.client.paths.byte_null(None)
+        client.paths.byte_empty(bytearray())
+
+        with pytest.raises(ValidationError):
+            client.paths.byte_null(None)
 
         u_bytes = bytearray(u"\u554A\u9F44\u4E02\u72DB\u72DC\uF9F1\uF92C\uF9F1\uFA0C\uFA29", encoding='utf-8')
-        self.client.paths.byte_multi_byte(u_bytes)
+        client.paths.byte_multi_byte(u_bytes)
 
-        with self.assertRaises(ValidationError):
-            self.client.paths.date_null(None)
+        with pytest.raises(ValidationError):
+            client.paths.date_null(None)
 
-        with self.assertRaises(ValidationError):
-            self.client.paths.date_time_null(None)
+        with pytest.raises(ValidationError):
+            client.paths.date_time_null(None)
 
-        self.client.paths.date_time_valid()
-        self.client.paths.date_valid()
-        self.client.paths.unix_time_url(datetime(year=2016, month=4, day=13))
+        client.paths.date_time_valid()
+        client.paths.date_valid()
+        client.paths.unix_time_url(datetime(year=2016, month=4, day=13))
 
-        self.client.paths.double_decimal_negative()
-        self.client.paths.double_decimal_positive()
+        client.paths.double_decimal_negative()
+        client.paths.double_decimal_positive()
 
-        self.client.paths.float_scientific_negative()
-        self.client.paths.float_scientific_positive()
-        self.client.paths.get_boolean_false()
-        self.client.paths.get_boolean_true()
-        self.client.paths.get_int_negative_one_million()
-        self.client.paths.get_int_one_million()
-        self.client.paths.get_negative_ten_billion()
-        self.client.paths.get_ten_billion()
-        self.client.paths.string_empty()
+        client.paths.float_scientific_negative()
+        client.paths.float_scientific_positive()
+        client.paths.get_boolean_false()
+        client.paths.get_boolean_true()
+        client.paths.get_int_negative_one_million()
+        client.paths.get_int_one_million()
+        client.paths.get_negative_ten_billion()
+        client.paths.get_ten_billion()
+        client.paths.string_empty()
 
         test_array = ["ArrayPath1", r"begin!*'();:@ &=+$,/?#[]end", None, ""]
-        self.client.paths.array_csv_in_path(test_array)
+        client.paths.array_csv_in_path(test_array)
 
-        with self.assertRaises(ValidationError):
-            self.client.paths.string_null(None)
+        with pytest.raises(ValidationError):
+            client.paths.string_null(None)
 
-        self.client.paths.string_url_encoded()
-        self.client.paths.enum_valid(UriColor.greencolor)
+        client.paths.string_url_encoded()
+        client.paths.enum_valid(UriColor.greencolor)
 
-        with self.assertRaises(ValidationError):
-            self.client.paths.enum_null(None)
+        with pytest.raises(ValidationError):
+            client.paths.enum_null(None)
 
-        self.client.paths.base64_url("lorem".encode())
+        client.paths.base64_url("lorem".encode())
 
-    def test_url_query(self):
+    def test_url_query(self, client, multi_client):
 
-        self.client.config.global_string_path = ''
+        client.config.global_string_path = ''
 
-        self.client.queries.byte_empty(bytearray())
+        client.queries.byte_empty(bytearray())
         u_bytes = bytearray(u"\u554A\u9F44\u4E02\u72DB\u72DC\uF9F1\uF92C\uF9F1\uFA0C\uFA29", encoding='utf-8')
-        self.client.queries.byte_multi_byte(u_bytes)
-        self.client.queries.byte_null()
-        self.client.queries.date_null()
-        self.client.queries.date_time_null()
-        self.client.queries.date_time_valid()
-        self.client.queries.date_valid()
-        self.client.queries.double_null()
-        self.client.queries.double_decimal_negative()
-        self.client.queries.double_decimal_positive()
-        self.client.queries.float_scientific_negative()
-        self.client.queries.float_scientific_positive()
-        self.client.queries.float_null()
-        self.client.queries.get_boolean_false()
-        self.client.queries.get_boolean_true()
-        self.client.queries.get_boolean_null()
-        self.client.queries.get_int_negative_one_million()
-        self.client.queries.get_int_one_million()
-        self.client.queries.get_int_null()
-        self.client.queries.get_negative_ten_billion()
-        self.client.queries.get_ten_billion()
-        self.client.queries.get_long_null()
-        self.client.queries.string_empty()
-        self.client.queries.string_null()
-        self.client.queries.string_url_encoded()
-        self.client.queries.enum_valid(UriColor.greencolor)
-        self.client.queries.enum_null(None)
-        self.client.queries.array_string_csv_empty([])
-        self.client.queries.array_string_csv_null(None)
+        client.queries.byte_multi_byte(u_bytes)
+        client.queries.byte_null()
+        client.queries.date_null()
+        client.queries.date_time_null()
+        client.queries.date_time_valid()
+        client.queries.date_valid()
+        client.queries.double_null()
+        client.queries.double_decimal_negative()
+        client.queries.double_decimal_positive()
+        client.queries.float_scientific_negative()
+        client.queries.float_scientific_positive()
+        client.queries.float_null()
+        client.queries.get_boolean_false()
+        client.queries.get_boolean_true()
+        client.queries.get_boolean_null()
+        client.queries.get_int_negative_one_million()
+        client.queries.get_int_one_million()
+        client.queries.get_int_null()
+        client.queries.get_negative_ten_billion()
+        client.queries.get_ten_billion()
+        client.queries.get_long_null()
+        client.queries.string_empty()
+        client.queries.string_null()
+        client.queries.string_url_encoded()
+        client.queries.enum_valid(UriColor.greencolor)
+        client.queries.enum_null(None)
+        client.queries.array_string_csv_empty([])
+        client.queries.array_string_csv_null(None)
         test_array = ["ArrayQuery1", r"begin!*'();:@ &=+$,/?#[]end", None, ""]
-        self.client.queries.array_string_csv_valid(test_array)
-        self.client.queries.array_string_pipes_valid(test_array)
-        self.client.queries.array_string_ssv_valid(test_array)
-        self.client.queries.array_string_tsv_valid(test_array)
+        client.queries.array_string_csv_valid(test_array)
+        client.queries.array_string_pipes_valid(test_array)
+        client.queries.array_string_ssv_valid(test_array)
+        client.queries.array_string_tsv_valid(test_array)
 
-        self.multi_client.queries.array_string_multi_empty([])
-        self.multi_client.queries.array_string_multi_null()
-        self.multi_client.queries.array_string_multi_valid(test_array)
+        multi_client.queries.array_string_multi_empty([])
+        multi_client.queries.array_string_multi_null()
+        multi_client.queries.array_string_multi_valid(test_array)
 
-    def test_url_mixed(self):
+    def test_url_mixed(self, client):
 
-        self.client.config.global_string_path = "globalStringPath"
-        self.client.config.global_string_query = "globalStringQuery"
+        client.config.global_string_path = "globalStringPath"
+        client.config.global_string_query = "globalStringQuery"
 
-        self.client.path_items.get_all_with_values("localStringPath", "pathItemStringPath",
+        client.path_items.get_all_with_values("localStringPath", "pathItemStringPath",
                 "localStringQuery", "pathItemStringQuery")
 
-        self.client.config.global_string_query = None
-        self.client.path_items.get_global_and_local_query_null("localStringPath", "pathItemStringPath",
+        client.config.global_string_query = None
+        client.path_items.get_global_and_local_query_null("localStringPath", "pathItemStringPath",
                 None, "pathItemStringQuery")
 
-        self.client.path_items.get_global_query_null("localStringPath", "pathItemStringPath",
+        client.path_items.get_global_query_null("localStringPath", "pathItemStringPath",
                 "localStringQuery", "pathItemStringQuery")
 
-        self.client.config.global_string_query = "globalStringQuery"
-        self.client.path_items.get_local_path_item_query_null("localStringPath", "pathItemStringPath",
+        client.config.global_string_query = "globalStringQuery"
+        client.path_items.get_local_path_item_query_null("localStringPath", "pathItemStringPath",
                 None, None)
 
 if __name__ == '__main__':

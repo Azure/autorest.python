@@ -49,8 +49,9 @@ from validation.models import (
     ConstantProduct,
     ChildProduct)
 
+import pytest
 
-class ValidationTests(unittest.TestCase):
+class TestValidation(object):
 
     def test_constant_values(self):
         client = AutoRestValidationTest(
@@ -62,7 +63,7 @@ class ValidationTests(unittest.TestCase):
 
         body = Product(child=ChildProduct())
         product = client.post_with_constant_in_body(body=body)
-        self.assertIsNotNone(product)
+        assert product is not None
 
     def test_validation(self):
         client = AutoRestValidationTest(
@@ -73,60 +74,60 @@ class ValidationTests(unittest.TestCase):
         try:
             client.validation_of_method_parameters("1", 100)
         except ValidationError as err:
-            self.assertEqual(err.rule, "min_length")
-            self.assertEqual(err.target, "resource_group_name")
+            assert err.rule ==  "min_length"
+            assert err.target ==  "resource_group_name"
 
         try:
             client.validation_of_method_parameters("1234567890A", 100)
         except ValidationError as err:
-            self.assertEqual(err.rule, "max_length")
-            self.assertEqual(err.target, "resource_group_name")
+            assert err.rule ==  "max_length"
+            assert err.target ==  "resource_group_name"
 
         try:
             client.validation_of_method_parameters("!@#$", 100)
         except ValidationError as err:
-            self.assertEqual(err.rule, "pattern")
-            self.assertEqual(err.target, "resource_group_name")
+            assert err.rule ==  "pattern"
+            assert err.target ==  "resource_group_name"
 
         try:
             client.validation_of_method_parameters("123", 105)
         except ValidationError as err:
-            self.assertEqual(err.rule, "multiple")
-            self.assertEqual(err.target, "id")
+            assert err.rule ==  "multiple"
+            assert err.target ==  "id"
 
         try:
             client.validation_of_method_parameters("123", 0)
         except ValidationError as err:
-            self.assertEqual(err.rule, "minimum")
-            self.assertEqual(err.target, "id")
+            assert err.rule ==  "minimum"
+            assert err.target ==  "id"
 
         try:
             client.validation_of_method_parameters("123", 2000)
         except ValidationError as err:
-            self.assertEqual(err.rule, "maximum")
-            self.assertEqual(err.target, "id")
+            assert err.rule ==  "maximum"
+            assert err.target ==  "id"
 
         try:
             tempproduct=Product(child=ChildProduct(), capacity=0)
             client.validation_of_body("123", 150, tempproduct)
         except ValidationError as err:
-            self.assertEqual(err.rule, "minimum_ex")
-            self.assertIn("capacity", err.target)
+            assert err.rule ==  "minimum_ex"
+            assert "capacity" in  err.target
 
         try:
             tempproduct=Product(child=ChildProduct(), capacity=100)
             client.validation_of_body("123", 150, tempproduct)
         except ValidationError as err:
-            self.assertEqual(err.rule, "maximum_ex")
-            self.assertIn("capacity", err.target)
+            assert err.rule ==  "maximum_ex"
+            assert "capacity" in  err.target
 
         try:
             tempproduct=Product(child=ChildProduct(),
                 display_names=["item1","item2","item3","item4","item5","item6","item7"])
             client.validation_of_body("123", 150, tempproduct)
         except ValidationError as err:
-            self.assertEqual(err.rule, "max_items")
-            self.assertIn("display_names", err.target)
+            assert err.rule ==  "max_items"
+            assert "display_names" in  err.target
 
         client2 = AutoRestValidationTest(
             "abc123",
@@ -136,8 +137,8 @@ class ValidationTests(unittest.TestCase):
         try:
             client2.validation_of_method_parameters("123", 150)
         except ValidationError as err:
-            self.assertEqual(err.rule, "pattern")
-            self.assertEqual(err.target, "self.api_version")
+            assert err.rule ==  "pattern"
+            assert err.target ==  "self.api_version"
 
 
 if __name__ == '__main__':

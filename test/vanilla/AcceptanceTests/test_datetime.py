@@ -45,8 +45,9 @@ from msrest.exceptions import DeserializationError, SerializationError
 
 from bodydatetime import AutoRestDateTimeTestService
 
+import pytest
 
-class DatetimeTests(unittest.TestCase):
+class TestDatetime(object):
 
     def test_datetime(self):
         client = AutoRestDateTimeTestService(base_url="http://localhost:3000")
@@ -55,21 +56,21 @@ class DatetimeTests(unittest.TestCase):
         min_date = isodate.parse_datetime("0001-01-01T00:00:00Z")
 
         dt = client.datetime_model.get_utc_lowercase_max_date_time()
-        self.assertEqual(dt, max_date)
+        assert dt ==  max_date
         dt = client.datetime_model.get_utc_uppercase_max_date_time()
-        self.assertEqual(dt, max_date)
+        assert dt ==  max_date
         dt = client.datetime_model.get_utc_min_date_time()
-        self.assertEqual(dt, min_date)
+        assert dt ==  min_date
 
         client.datetime_model.get_local_negative_offset_min_date_time()
 
-        with self.assertRaises(DeserializationError):
+        with pytest.raises(DeserializationError):
             client.datetime_model.get_local_negative_offset_lowercase_max_date_time()
 
-        with self.assertRaises(DeserializationError):
+        with pytest.raises(DeserializationError):
             client.datetime_model.get_local_negative_offset_uppercase_max_date_time()
 
-        with self.assertRaises(DeserializationError):
+        with pytest.raises(DeserializationError):
             client.datetime_model.get_local_positive_offset_min_date_time()
 
         client.datetime_model.get_local_positive_offset_lowercase_max_date_time()
@@ -77,26 +78,26 @@ class DatetimeTests(unittest.TestCase):
 
         client.datetime_model.get_null()
 
-        with self.assertRaises(DeserializationError):
+        with pytest.raises(DeserializationError):
             client.datetime_model.get_overflow()
 
-        with self.assertRaises(DeserializationError):
+        with pytest.raises(DeserializationError):
             client.datetime_model.get_invalid()
 
-        with self.assertRaises(DeserializationError):
+        with pytest.raises(DeserializationError):
             client.datetime_model.get_underflow()
 
         client.datetime_model.put_utc_max_date_time(max_date)
         client.datetime_model.put_utc_min_date_time(min_date)
 
-        with self.assertRaises(SerializationError):
+        with pytest.raises(SerializationError):
             client.datetime_model.put_local_positive_offset_min_date_time(
                 isodate.parse_datetime("0001-01-01T00:00:00+14:00"))
 
         client.datetime_model.put_local_negative_offset_min_date_time(
             isodate.parse_datetime("0001-01-01T00:00:00-14:00"))
 
-        with self.assertRaises(SerializationError):
+        with pytest.raises(SerializationError):
             client.datetime_model.put_local_negative_offset_max_date_time(
                 isodate.parse_datetime("9999-12-31T23:59:59.999999-14:00"))
 

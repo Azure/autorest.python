@@ -49,8 +49,9 @@ from custombaseurl import AutoRestParameterizedHostTestClient
 from custombaseurl.models import Error, ErrorException
 from custombaseurlmoreoptions import AutoRestParameterizedCustomHostTestClient
 
+import pytest
 
-class CustomBaseUriTests(unittest.TestCase):
+class TestCustomBaseUri(object):
 
     def test_custom_base_uri_positive(self):
         client = AutoRestParameterizedHostTestClient("host:3000")
@@ -60,14 +61,14 @@ class CustomBaseUriTests(unittest.TestCase):
         client = AutoRestParameterizedHostTestClient("host:3000")
         client.config.retry_policy.retries = 0
 
-        with self.assertRaises(ClientRequestError):
+        with pytest.raises(ClientRequestError):
             client.paths.get_empty("bad")
 
-        with self.assertRaises(ValidationError):
+        with pytest.raises(ValidationError):
             client.paths.get_empty(None)
 
         client.config.host = "badhost:3000"
-        with self.assertRaises(ClientRequestError):
+        with pytest.raises(ClientRequestError):
             client.paths.get_empty("local")
 
     def test_custom_base_uri_more_optiopns(self):

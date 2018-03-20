@@ -46,8 +46,9 @@ from msrest.exceptions import DeserializationError
 
 from bodynumber import AutoRestNumberTestService
 
+import pytest
 
-class NumberTests(unittest.TestCase):
+class TestNumber(object):
 
     def test_numbers(self):
         client = AutoRestNumberTestService(base_url="http://localhost:3000")
@@ -63,24 +64,24 @@ class NumberTests(unittest.TestCase):
         # client.number.put_big_decimal_positive_decimal()
         # client.number.put_big_decimal_negative_decimal()
         client.number.get_null()
-        self.assertEqual(client.number.get_big_float(), 3.402823e+20)
-        self.assertEqual(client.number.get_small_float(), 3.402823e-20)
-        self.assertEqual(client.number.get_big_double(), 2.5976931e+101)
-        self.assertEqual(client.number.get_small_double(), 2.5976931e-101)
-        self.assertEqual(client.number.get_big_double_negative_decimal(), -99999999.99)
-        self.assertEqual(client.number.get_big_double_positive_decimal(), 99999999.99)
-        self.assertEqual(client.number.get_big_decimal(), 2.5976931e+101)
-        self.assertEqual(client.number.get_small_decimal(), 2.5976931e-101)
-        self.assertEqual(client.number.get_big_decimal_negative_decimal(), -99999999.99)
-        self.assertEqual(client.number.get_big_decimal_positive_decimal(), 99999999.99)
+        assert client.number.get_big_float() ==  3.402823e+20
+        assert client.number.get_small_float() ==  3.402823e-20
+        assert client.number.get_big_double() ==  2.5976931e+101
+        assert client.number.get_small_double() ==  2.5976931e-101
+        assert client.number.get_big_double_negative_decimal() ==  -99999999.99
+        assert client.number.get_big_double_positive_decimal() ==  99999999.99
+        assert client.number.get_big_decimal() ==  2.5976931e+101
+        assert client.number.get_small_decimal() ==  2.5976931e-101
+        assert client.number.get_big_decimal_negative_decimal() ==  -99999999.99
+        assert client.number.get_big_decimal_positive_decimal() ==  99999999.99
 
-        with self.assertRaises(DeserializationError):
+        with pytest.raises(DeserializationError):
             client.number.get_invalid_decimal()
 
-        with self.assertRaises(DeserializationError):
+        with pytest.raises(DeserializationError):
             client.number.get_invalid_double()
 
-        with self.assertRaises(DeserializationError):
+        with pytest.raises(DeserializationError):
             client.number.get_invalid_float()
 
 

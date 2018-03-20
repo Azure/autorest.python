@@ -42,7 +42,7 @@ sys.path.append(join(tests, "Report"))
 from report import AutoRestReportService
 
 
-class AcceptanceTests(unittest.TestCase):
+class TestAcceptance(object):
 
     def test_ensure_coverage(self):
         client = AutoRestReportService(base_url="http://localhost:3000")
@@ -70,7 +70,7 @@ class AcceptanceTests(unittest.TestCase):
         totalTests = len(report)
         print ("The test coverage is {0}/{1}.".format(totalTests - len(failed), totalTests))
 
-        # self.assertEqual(0, len(failed))
+        # assert 0 ==  len(failed)
 
 if __name__ == '__main__':
     unittest.main()
