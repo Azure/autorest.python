@@ -54,24 +54,26 @@ import pytest
 
 class TestHead(object):
 
-    def test_head(self):
+    @pytest.mark.asyncio
+    async def test_head(self):
 
         cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
         client = AutoRestHeadTestService(cred, base_url="http://localhost:3000")
 
-        assert client.http_success.head200()
-        assert client.http_success.head204()
-        assert not client.http_success.head404()
+        assert await client.http_success.head200_async()
+        assert await client.http_success.head204_async()
+        assert not await client.http_success.head404_async()
 
-    def test_head_exception(self):
+    @pytest.mark.asyncio
+    async def test_head_exception(self):
 
         cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
         client = AutoRestHeadExceptionTestService(cred, base_url="http://localhost:3000")
 
-        client.head_exception.head200()
-        client.head_exception.head204()
+        await client.head_exception.head200_async()
+        await client.head_exception.head204_async()
         with pytest.raises(CloudError):
-            client.head_exception.head404()
+            await client.head_exception.head404_async()
 
 
 if __name__ == '__main__':

@@ -39,39 +39,32 @@ cwd = dirname(realpath(__file__))
 log_level = int(os.environ.get('PythonLogLevel', 30))
 
 tests = realpath(join(cwd, pardir, "Expected", "AcceptanceTests"))
-sys.path.append(join(tests, "Head"))
-sys.path.append(join(tests, "HeadExceptions"))
+sys.path.append(join(tests, "AzureBodyDuration"))
 
 from msrest.serialization import Deserializer
-from msrest.exceptions import DeserializationError, HttpOperationError
+from msrest.exceptions import DeserializationError
 from msrest.authentication import BasicTokenAuthentication
-from msrestazure.azure_exceptions import CloudError, CloudErrorData
 
-from head import AutoRestHeadTestService
-from headexceptions import AutoRestHeadExceptionTestService
+from bodyduration import AutoRestDurationTestService
 
 import pytest
 
-class TestHead(object):
+class TestDuration(object):
 
-    def test_head(self):
-
-        cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
-        client = AutoRestHeadTestService(cred, base_url="http://localhost:3000")
-
-        assert client.http_success.head200()
-        assert client.http_success.head204()
-        assert not client.http_success.head404()
-
-    def test_head_exception(self):
+    @pytest.mark.asyncio
+    async def test_duration(self):
 
         cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
-        client = AutoRestHeadExceptionTestService(cred, base_url="http://localhost:3000")
+        client = AutoRestDurationTestService(cred, base_url="http://localhost:3000")
 
-        client.head_exception.head200()
-        client.head_exception.head204()
-        with pytest.raises(CloudError):
-            client.head_exception.head404()
+        assert await client.duration.get_null_async() is None
+
+        with pytest.raises(DeserializationError):
+            await client.duration.get_invalid_async()
+
+        await client.duration.get_positive_duration_async()
+        delta = timedelta(days=123, hours=22, minutes=14, seconds=12, milliseconds=11)
+        await client.duration.put_positive_duration_async(delta)
 
 
 if __name__ == '__main__':

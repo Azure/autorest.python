@@ -39,39 +39,30 @@ cwd = dirname(realpath(__file__))
 log_level = int(os.environ.get('PythonLogLevel', 30))
 
 tests = realpath(join(cwd, pardir, "Expected", "AcceptanceTests"))
-sys.path.append(join(tests, "Head"))
-sys.path.append(join(tests, "HeadExceptions"))
+sys.path.append(join(tests, "SubscriptionIdApiVersion"))
 
 from msrest.serialization import Deserializer
-from msrest.exceptions import DeserializationError, HttpOperationError
+from msrest.exceptions import DeserializationError
 from msrest.authentication import BasicTokenAuthentication
-from msrestazure.azure_exceptions import CloudError, CloudErrorData
 
-from head import AutoRestHeadTestService
-from headexceptions import AutoRestHeadExceptionTestService
+from subscriptionidapiversion import MicrosoftAzureTestUrl
+from subscriptionidapiversion.models import ErrorException, SampleResourceGroup
 
 import pytest
 
-class TestHead(object):
+class TestAzureUrl(object):
 
-    def test_head(self):
+    @pytest.mark.asyncio
+    async def test_azure_url(self):
 
-        cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
-        client = AutoRestHeadTestService(cred, base_url="http://localhost:3000")
-
-        assert client.http_success.head200()
-        assert client.http_success.head204()
-        assert not client.http_success.head404()
-
-    def test_head_exception(self):
+        sub_id = str(uuid4())
 
         cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
-        client = AutoRestHeadExceptionTestService(cred, base_url="http://localhost:3000")
+        client = MicrosoftAzureTestUrl(cred, sub_id, base_url="http://localhost:3000")
 
-        client.head_exception.head200()
-        client.head_exception.head204()
-        with pytest.raises(CloudError):
-            client.head_exception.head404()
+        group = await client.group.get_sample_resource_group_async("testgoup101")
+        assert group.name ==  "testgroup101"
+        assert group.location ==  "West US"
 
 
 if __name__ == '__main__':

@@ -31,48 +31,53 @@ import isodate
 import tempfile
 import json
 from uuid import uuid4
-from datetime import date, datetime, timedelta
 import os
 from os.path import dirname, pardir, join, realpath
 
 cwd = dirname(realpath(__file__))
 log_level = int(os.environ.get('PythonLogLevel', 30))
 
-tests = realpath(join(cwd, pardir, "Expected", "AcceptanceTests"))
-sys.path.append(join(tests, "Head"))
-sys.path.append(join(tests, "HeadExceptions"))
+tests = realpath(join(cwd, pardir, pardir, "Expected", "AcceptanceTests"))
+sys.path.append(join(tests, "CustomBaseUri"))
 
 from msrest.serialization import Deserializer
-from msrest.exceptions import DeserializationError, HttpOperationError
+from msrest.exceptions import (
+    DeserializationError,
+    SerializationError,
+    ClientRequestError,
+    ValidationError
+)
 from msrest.authentication import BasicTokenAuthentication
-from msrestazure.azure_exceptions import CloudError, CloudErrorData
 
-from head import AutoRestHeadTestService
-from headexceptions import AutoRestHeadExceptionTestService
+from custombaseurl import AutoRestParameterizedHostTestClient
+from custombaseurl.models import Error, ErrorException
 
 import pytest
 
-class TestHead(object):
+class TestCustomBaseUri(object):
 
-    def test_head(self):
-
+    @pytest.mark.asyncio
+    async def test_custom_base_uri_positive(self):
         cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
-        client = AutoRestHeadTestService(cred, base_url="http://localhost:3000")
+        client = AutoRestParameterizedHostTestClient(cred, host="host:3000")
+        await client.paths.get_empty_async("local")
 
-        assert client.http_success.head200()
-        assert client.http_success.head204()
-        assert not client.http_success.head404()
-
-    def test_head_exception(self):
-
+    @pytest.mark.asyncio
+    async def test_custom_base_uri_negative(self):
         cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
-        client = AutoRestHeadExceptionTestService(cred, base_url="http://localhost:3000")
+        client = AutoRestParameterizedHostTestClient(cred, host="host:3000")
+        client.config.retry_policy.retries = 0
+        with pytest.raises(ClientRequestError):
+            await client.paths.get_empty_async("bad")
 
-        client.head_exception.head200()
-        client.head_exception.head204()
-        with pytest.raises(CloudError):
-            client.head_exception.head404()
+        with pytest.raises(ValidationError):
+            await client.paths.get_empty_async(None)
 
+        client.config.host = "badhost:3000"
+        with pytest.raises(ClientRequestError):
+            await client.paths.get_empty_async("local")
 
 if __name__ == '__main__':
+
+
     unittest.main()

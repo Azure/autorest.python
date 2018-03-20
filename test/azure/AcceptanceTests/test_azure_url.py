@@ -53,7 +53,6 @@ class TestAzureUrl(object):
     def test_azure_url(self):
 
         sub_id = str(uuid4())
-        client_id = str(uuid4())
 
         cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
         client = MicrosoftAzureTestUrl(cred, sub_id, base_url="http://localhost:3000")
