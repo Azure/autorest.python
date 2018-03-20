@@ -58,8 +58,9 @@ from azureparametergrouping.models import (
     ParameterGroupingPostRequiredParameters,
     FirstParameterGroup)
 
+import pytest
 
-class ParameterTests(unittest.TestCase):
+class TestParameter(object):
 
     def test_parameter_grouping(self):
 
@@ -82,9 +83,9 @@ class ParameterTests(unittest.TestCase):
         #Required parameters object is not null, but a required property of the object is
         requiredParameters = ParameterGroupingPostRequiredParameters(body = None, path = pathParameter)
 
-        with self.assertRaises(ValidationError):
+        with pytest.raises(ValidationError):
             client.parameter_grouping.post_required(requiredParameters)
-        with self.assertRaises(ValidationError):
+        with pytest.raises(ValidationError):
             client.parameter_grouping.post_required(None)
 
         #Valid optional parameters
@@ -123,7 +124,7 @@ class ParameterTests(unittest.TestCase):
         client.subscription_in_method.post_method_local_valid(validSubscription)
         client.subscription_in_method.post_path_local_valid(validSubscription)
         client.subscription_in_method.post_swagger_local_valid(validSubscription)
-        with self.assertRaises(ValidationError):
+        with pytest.raises(ValidationError):
             client.subscription_in_method.post_method_local_null(None)
 
         client.api_version_default.get_method_global_not_provided_valid()

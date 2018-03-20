@@ -52,8 +52,9 @@ from msrest.authentication import BasicTokenAuthentication
 from custombaseurl import AutoRestParameterizedHostTestClient
 from custombaseurl.models import Error, ErrorException
 
+import pytest
 
-class CustomBaseUriTests(unittest.TestCase):
+class TestCustomBaseUri(object):
 
     def test_custom_base_uri_positive(self):
         cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
@@ -64,14 +65,14 @@ class CustomBaseUriTests(unittest.TestCase):
         cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
         client = AutoRestParameterizedHostTestClient(cred, host="host:3000")
         client.config.retry_policy.retries = 0
-        with self.assertRaises(ClientRequestError):
+        with pytest.raises(ClientRequestError):
             client.paths.get_empty("bad")
 
-        with self.assertRaises(ValidationError):
+        with pytest.raises(ValidationError):
             client.paths.get_empty(None)
 
         client.config.host = "badhost:3000"
-        with self.assertRaises(ClientRequestError):
+        with pytest.raises(ClientRequestError):
             client.paths.get_empty("local")
 
 if __name__ == '__main__':

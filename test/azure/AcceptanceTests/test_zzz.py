@@ -49,7 +49,7 @@ from msrest.exceptions import DeserializationError
 from azurereport import AutoRestReportServiceForAzure
 
 
-class AcceptanceTests(unittest.TestCase):
+class TestAcceptance(object):
 
 
     def test_ensure_coverage(self):
@@ -65,7 +65,7 @@ class AcceptanceTests(unittest.TestCase):
 
         totalTests = len(report)
         print("The test coverage is {0}/{1}.".format(totalTests - len(skipped), totalTests))
-        # self.assertEqual(0, len(skipped))
+        # assert 0 ==  len(skipped)
 
 if __name__ == '__main__':
     unittest.main()

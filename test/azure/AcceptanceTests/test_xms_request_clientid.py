@@ -50,7 +50,7 @@ from azurespecialproperties import AutoRestAzureSpecialParametersTestClient
 from azurespecialproperties import models
 
 
-class XmsRequestClientIdTests(unittest.TestCase):
+class TestXmsRequestClientId(object):
 
     def test_xms_request_client_id(self):
 
@@ -64,10 +64,10 @@ class XmsRequestClientIdTests(unittest.TestCase):
 
         result1 = client.xms_client_request_id.get(custom_headers = custom_headers, raw=True)
         #TODO: should we put the x-ms-request-id into response header of swagger spec?
-        self.assertEqual("123", result1.response.headers.get("x-ms-request-id"))
+        assert "123" ==  result1.response.headers.get("x-ms-request-id")
 
         result2 = client.xms_client_request_id.param_get(validClientId, raw=True)
-        self.assertEqual("123", result2.response.headers.get("x-ms-request-id"))
+        assert "123" ==  result2.response.headers.get("x-ms-request-id")
 
     def test_custom_named_request_id(self):
 
@@ -78,7 +78,7 @@ class XmsRequestClientIdTests(unittest.TestCase):
         client = AutoRestAzureSpecialParametersTestClient(cred, validSubscription, base_url="http://localhost:3000")
 
         response = client.header.custom_named_request_id(expectedRequestId, raw=True)
-        self.assertEqual("123", response.response.headers.get("foo-request-id"))
+        assert "123" ==  response.response.headers.get("foo-request-id")
 
     def test_custom_named_request_id_param_grouping(self):
 
@@ -90,7 +90,7 @@ class XmsRequestClientIdTests(unittest.TestCase):
 
         group = models.HeaderCustomNamedRequestIdParamGroupingParameters(foo_client_request_id=expectedRequestId)
         response = client.header.custom_named_request_id_param_grouping(group, raw=True)
-        self.assertEqual("123", response.response.headers.get("foo-request-id"))
+        assert "123" ==  response.response.headers.get("foo-request-id")
 
     def test_client_request_id_in_exception(self):
         validSubscription = '1234-5678-9012-3456'
@@ -104,7 +104,7 @@ class XmsRequestClientIdTests(unittest.TestCase):
             self.fail("CloudError wasn't raised as expected")
 
         except CloudError as err:
-            self.assertEqual("123", err.request_id)
+            assert "123" ==  err.request_id
 
     def test_xms_request_client_id_in_client(self):
         validSubscription = '1234-5678-9012-3456'

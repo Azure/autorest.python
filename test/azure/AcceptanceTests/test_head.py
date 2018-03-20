@@ -50,18 +50,18 @@ from msrestazure.azure_exceptions import CloudError, CloudErrorData
 from head import AutoRestHeadTestService
 from headexceptions import AutoRestHeadExceptionTestService
 
-class HeadTests(unittest.TestCase):
+import pytest
+
+class TestHead(unittest.TestCase):
 
     def test_head(self):
 
         cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
         client = AutoRestHeadTestService(cred, base_url="http://localhost:3000")
 
-        self.assertTrue(client.http_success.head200())
-        self.assertTrue(client.http_success.head204())
-        self.assertFalse(client.http_success.head404())
-
-class HeadExceptionTest(unittest.TestCase):
+        assert client.http_success.head200()
+        assert client.http_success.head204()
+        assert not client.http_success.head404()
 
     def test_head_exception(self):
 
@@ -70,7 +70,7 @@ class HeadExceptionTest(unittest.TestCase):
 
         client.head_exception.head200()
         client.head_exception.head204()
-        with self.assertRaises(CloudError):
+        with pytest.raises(CloudError):
             client.head_exception.head404()
 
 

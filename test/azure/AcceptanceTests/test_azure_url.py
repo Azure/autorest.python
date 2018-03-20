@@ -48,7 +48,7 @@ from msrest.authentication import BasicTokenAuthentication
 from subscriptionidapiversion import MicrosoftAzureTestUrl
 from subscriptionidapiversion.models import ErrorException, SampleResourceGroup
 
-class AzureUrlTests(unittest.TestCase):
+class TestAzureUrl(object):
 
     def test_azure_url(self):
 
@@ -59,8 +59,8 @@ class AzureUrlTests(unittest.TestCase):
         client = MicrosoftAzureTestUrl(cred, sub_id, base_url="http://localhost:3000")
 
         group = client.group.get_sample_resource_group("testgoup101")
-        self.assertEqual(group.name, "testgroup101")
-        self.assertEqual(group.location, "West US")
+        assert group.name ==  "testgroup101"
+        assert group.location ==  "West US"
 
 
 if __name__ == '__main__':

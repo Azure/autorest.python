@@ -47,17 +47,18 @@ from msrest.authentication import BasicTokenAuthentication
 
 from bodyduration import AutoRestDurationTestService
 
+import pytest
 
-class DurationTests(unittest.TestCase):
+class TestDuration(object):
 
     def test_duration(self):
 
         cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
         client = AutoRestDurationTestService(cred, base_url="http://localhost:3000")
 
-        self.assertIsNone(client.duration.get_null())
+        assert client.duration.get_null() is None
 
-        with self.assertRaises(DeserializationError):
+        with pytest.raises(DeserializationError):
             client.duration.get_invalid()
 
         client.duration.get_positive_duration()
