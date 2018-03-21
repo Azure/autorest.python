@@ -78,7 +78,7 @@ class FormDataTests(unittest.TestCase):
         def test_callback(data, response, progress = [0]):
             self.assertTrue(len(data) > 0)
             progress[0] += len(data)
-            total = float(response.headers['Content-Length'])
+            total = float(response.headers.get('Content-Length', 100))
             print("Progress... {}%".format(int(progress[0]*100/total)))
             self.assertIsNotNone(response)
 
@@ -119,7 +119,7 @@ class FormDataTests(unittest.TestCase):
         def test_callback(data, response, progress = [0]):
             self.assertTrue(len(data) > 0)
             progress[0] += len(data)
-            total = float(response.headers['Content-Length'])
+            total = float(response.headers.get('Content-Length', 100))
             print("Progress... {}%".format(int(progress[0]*100/total)))
             self.assertIsNotNone(response)
 
