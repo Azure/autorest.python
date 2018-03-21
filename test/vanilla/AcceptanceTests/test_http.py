@@ -52,7 +52,7 @@ import pytest
 
 
 @pytest.fixture()
-def client(test_server_credentials):
+def client():
     """Create a AutoRestHttpInfrastructureTestService client with test server credentials."""
     client = AutoRestHttpInfrastructureTestService(base_url="http://localhost:3000")
     return client

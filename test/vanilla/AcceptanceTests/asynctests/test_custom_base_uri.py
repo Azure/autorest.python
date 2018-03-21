@@ -28,47 +28,52 @@ import unittest
 import subprocess
 import sys
 import isodate
-import tempfile
-import json
-from datetime import date, datetime, timedelta
 import os
+from datetime import date, datetime, timedelta
 from os.path import dirname, pardir, join, realpath
 
 cwd = dirname(realpath(__file__))
 log_level = int(os.environ.get('PythonLogLevel', 30))
 
 tests = realpath(join(cwd, pardir, "Expected", "AcceptanceTests"))
-sys.path.append(join(tests, "BodyDateTimeRfc1123"))
+sys.path.append(join(tests, "CustomBaseUri"))
+sys.path.append(join(tests, "CustomBaseUriMoreOptions"))
 
-from msrest.serialization import Deserializer
-from msrest.exceptions import DeserializationError
+from msrest.exceptions import (
+    DeserializationError,
+    SerializationError,
+    ClientRequestError,
+    ValidationError)
 
-from bodydatetimerfc1123 import AutoRestRFC1123DateTimeTestService
+from custombaseurl import AutoRestParameterizedHostTestClient
+from custombaseurl.models import Error, ErrorException
+from custombaseurlmoreoptions import AutoRestParameterizedCustomHostTestClient
 
 import pytest
 
-class TestDateTimeRfc(object):
+class TestCustomBaseUri(object):
 
-    def test_datetime_rfc(self):
-        client = AutoRestRFC1123DateTimeTestService(base_url="http://localhost:3000")
+    @pytest.mark.asyncio
+    async def test_custom_base_uri_positive(self):
+        client = AutoRestParameterizedHostTestClient("host:3000")
+        await client.paths.get_empty_async("local")
 
-        assert client.datetimerfc1123.get_null() is None
+    @pytest.mark.asyncio
+    async def test_custom_base_uri_negative(self):
+        client = AutoRestParameterizedHostTestClient("host:3000")
+        client.config.retry_policy.retries = 0
 
-        with pytest.raises(DeserializationError):
-            client.datetimerfc1123.get_invalid()
+        with pytest.raises(ClientRequestError):
+            await client.paths.get_empty_async("bad")
 
-        with pytest.raises(DeserializationError):
-            client.datetimerfc1123.get_underflow()
+        with pytest.raises(ValidationError):
+            await client.paths.get_empty_async(None)
 
-        with pytest.raises(DeserializationError):
-            client.datetimerfc1123.get_overflow()
+        client.config.host = "badhost:3000"
+        with pytest.raises(ClientRequestError):
+            await client.paths.get_empty_async("local")
 
-        client.datetimerfc1123.get_utc_lowercase_max_date_time()
-        client.datetimerfc1123.get_utc_uppercase_max_date_time()
-        client.datetimerfc1123.get_utc_min_date_time()
-
-        max_date = isodate.parse_datetime("9999-12-31T23:59:59.999999Z")
-        client.datetimerfc1123.put_utc_max_date_time(max_date)
-
-        min_date = isodate.parse_datetime("0001-01-01T00:00:00Z")
-        client.datetimerfc1123.put_utc_min_date_time(min_date)
+    @pytest.mark.asyncio
+    async def test_custom_base_uri_more_optiopns(self):
+        client = AutoRestParameterizedCustomHostTestClient("test12", "host:3000")
+        await client.paths.get_empty_async("http://lo", "cal", "key1")

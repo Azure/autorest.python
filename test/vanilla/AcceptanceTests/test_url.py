@@ -62,7 +62,7 @@ class TestUrl(object):
 
         client.config.global_string_path = ''
 
-        client.paths.byte_empty(bytearray())
+        client.paths.byte_empty()
 
         with pytest.raises(ValidationError):
             client.paths.byte_null(None)
@@ -111,7 +111,7 @@ class TestUrl(object):
 
         client.config.global_string_path = ''
 
-        client.queries.byte_empty(bytearray())
+        client.queries.byte_empty()
         u_bytes = bytearray(u"\u554A\u9F44\u4E02\u72DB\u72DC\uF9F1\uF92C\uF9F1\uFA0C\uFA29", encoding='utf-8')
         client.queries.byte_multi_byte(u_bytes)
         client.queries.byte_null()

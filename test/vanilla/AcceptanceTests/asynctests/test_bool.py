@@ -38,37 +38,31 @@ cwd = dirname(realpath(__file__))
 log_level = int(os.environ.get('PythonLogLevel', 30))
 
 tests = realpath(join(cwd, pardir, "Expected", "AcceptanceTests"))
-sys.path.append(join(tests, "BodyDateTimeRfc1123"))
+sys.path.append(join(tests, "BodyBoolean"))
 
 from msrest.serialization import Deserializer
 from msrest.exceptions import DeserializationError
 
-from bodydatetimerfc1123 import AutoRestRFC1123DateTimeTestService
+from bodyboolean import AutoRestBoolTestService
+from bodyboolean.models import ErrorException
 
 import pytest
 
-class TestDateTimeRfc(object):
+class TestBool(object):
 
-    def test_datetime_rfc(self):
-        client = AutoRestRFC1123DateTimeTestService(base_url="http://localhost:3000")
+    @pytest.mark.asyncio
+    async def test_bool(self):
+        client = AutoRestBoolTestService(base_url="http://localhost:3000")
 
-        assert client.datetimerfc1123.get_null() is None
+        assert await client.bool_model.get_true_async()
+        assert not await client.bool_model.get_false_async()
+
+        await client.bool_model.get_null_async()
+        await client.bool_model.put_false_async()
+        await client.bool_model.put_true_async()
 
         with pytest.raises(DeserializationError):
-            client.datetimerfc1123.get_invalid()
+            await client.bool_model.get_invalid_async()
 
-        with pytest.raises(DeserializationError):
-            client.datetimerfc1123.get_underflow()
-
-        with pytest.raises(DeserializationError):
-            client.datetimerfc1123.get_overflow()
-
-        client.datetimerfc1123.get_utc_lowercase_max_date_time()
-        client.datetimerfc1123.get_utc_uppercase_max_date_time()
-        client.datetimerfc1123.get_utc_min_date_time()
-
-        max_date = isodate.parse_datetime("9999-12-31T23:59:59.999999Z")
-        client.datetimerfc1123.put_utc_max_date_time(max_date)
-
-        min_date = isodate.parse_datetime("0001-01-01T00:00:00Z")
-        client.datetimerfc1123.put_utc_min_date_time(min_date)
+if __name__ == '__main__':
+    unittest.main()

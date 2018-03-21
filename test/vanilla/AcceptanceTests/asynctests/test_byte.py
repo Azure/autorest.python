@@ -38,37 +38,30 @@ cwd = dirname(realpath(__file__))
 log_level = int(os.environ.get('PythonLogLevel', 30))
 
 tests = realpath(join(cwd, pardir, "Expected", "AcceptanceTests"))
-sys.path.append(join(tests, "BodyDateTimeRfc1123"))
+sys.path.append(join(tests, "BodyByte"))
 
 from msrest.serialization import Deserializer
 from msrest.exceptions import DeserializationError
 
-from bodydatetimerfc1123 import AutoRestRFC1123DateTimeTestService
+from bodybyte import AutoRestSwaggerBATByteService
 
 import pytest
 
-class TestDateTimeRfc(object):
+class TestByte(object):
 
-    def test_datetime_rfc(self):
-        client = AutoRestRFC1123DateTimeTestService(base_url="http://localhost:3000")
+    @pytest.mark.asyncio
+    async def test_byte(self):
+        client = AutoRestSwaggerBATByteService(base_url="http://localhost:3000")
 
-        assert client.datetimerfc1123.get_null() is None
+        test_bytes = bytearray([0x0FF, 0x0FE, 0x0FD, 0x0FC, 0x0FB, 0x0FA, 0x0F9, 0x0F8, 0x0F7, 0x0F6])
+        await client.byte.put_non_ascii_async(test_bytes)
+        assert test_bytes == await client.byte.get_non_ascii_async()
+
+        assert await client.byte.get_null_async() is None
+        assert bytearray() == await client.byte.get_empty_async()
 
         with pytest.raises(DeserializationError):
-            client.datetimerfc1123.get_invalid()
+            await client.byte.get_invalid_async()
 
-        with pytest.raises(DeserializationError):
-            client.datetimerfc1123.get_underflow()
-
-        with pytest.raises(DeserializationError):
-            client.datetimerfc1123.get_overflow()
-
-        client.datetimerfc1123.get_utc_lowercase_max_date_time()
-        client.datetimerfc1123.get_utc_uppercase_max_date_time()
-        client.datetimerfc1123.get_utc_min_date_time()
-
-        max_date = isodate.parse_datetime("9999-12-31T23:59:59.999999Z")
-        client.datetimerfc1123.put_utc_max_date_time(max_date)
-
-        min_date = isodate.parse_datetime("0001-01-01T00:00:00Z")
-        client.datetimerfc1123.put_utc_min_date_time(min_date)
+if __name__ == '__main__':
+    unittest.main()

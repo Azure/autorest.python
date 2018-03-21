@@ -30,7 +30,7 @@ import sys
 import isodate
 import tempfile
 import json
-from datetime import date, datetime, timedelta
+from datetime import date, datetime, timedelta, tzinfo
 import os
 from os.path import dirname, pardir, join, realpath
 
@@ -38,37 +38,41 @@ cwd = dirname(realpath(__file__))
 log_level = int(os.environ.get('PythonLogLevel', 30))
 
 tests = realpath(join(cwd, pardir, "Expected", "AcceptanceTests"))
-sys.path.append(join(tests, "BodyDateTimeRfc1123"))
+sys.path.append(join(tests, "BodyInteger"))
 
 from msrest.serialization import Deserializer
 from msrest.exceptions import DeserializationError
 
-from bodydatetimerfc1123 import AutoRestRFC1123DateTimeTestService
+from bodyinteger import AutoRestIntegerTestService
 
 import pytest
 
-class TestDateTimeRfc(object):
+class TestInteger(object):
 
-    def test_datetime_rfc(self):
-        client = AutoRestRFC1123DateTimeTestService(base_url="http://localhost:3000")
+    @pytest.mark.asyncio
+    async def test_integer(self):
+        client = AutoRestIntegerTestService(base_url="http://localhost:3000")
 
-        assert client.datetimerfc1123.get_null() is None
+        await client.int_model.put_max32_async(2147483647) # sys.maxint
+        await client.int_model.put_min32_async(-2147483648)
+
+        await client.int_model.put_max64_async(9223372036854776000)  # sys.maxsize
+        await client.int_model.put_min64_async(-9223372036854776000)
+        await client.int_model.get_null_async()
 
         with pytest.raises(DeserializationError):
-            client.datetimerfc1123.get_invalid()
+            await client.int_model.get_invalid_async()
+
+        # Testserver excepts these to fail, but they won't in Python and it's ok.
+        await client.int_model.get_overflow_int32_async()
+        await client.int_model.get_overflow_int64_async()
+        await client.int_model.get_underflow_int32_async()
+        await client.int_model.get_underflow_int64_async()
+
+        unix_date = datetime(year=2016, month=4, day=13)
+        await client.int_model.put_unix_time_date_async(unix_date)
+        assert unix_date.utctimetuple() == (await client.int_model.get_unix_time_async()).utctimetuple()
+        assert await client.int_model.get_null_unix_time_async() is None
 
         with pytest.raises(DeserializationError):
-            client.datetimerfc1123.get_underflow()
-
-        with pytest.raises(DeserializationError):
-            client.datetimerfc1123.get_overflow()
-
-        client.datetimerfc1123.get_utc_lowercase_max_date_time()
-        client.datetimerfc1123.get_utc_uppercase_max_date_time()
-        client.datetimerfc1123.get_utc_min_date_time()
-
-        max_date = isodate.parse_datetime("9999-12-31T23:59:59.999999Z")
-        client.datetimerfc1123.put_utc_max_date_time(max_date)
-
-        min_date = isodate.parse_datetime("0001-01-01T00:00:00Z")
-        client.datetimerfc1123.put_utc_min_date_time(min_date)
+            await client.int_model.get_invalid_unix_time_async()

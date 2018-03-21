@@ -38,37 +38,38 @@ cwd = dirname(realpath(__file__))
 log_level = int(os.environ.get('PythonLogLevel', 30))
 
 tests = realpath(join(cwd, pardir, "Expected", "AcceptanceTests"))
-sys.path.append(join(tests, "BodyDateTimeRfc1123"))
+sys.path.append(join(tests, "BodyDate"))
 
 from msrest.serialization import Deserializer
 from msrest.exceptions import DeserializationError
 
-from bodydatetimerfc1123 import AutoRestRFC1123DateTimeTestService
+from bodydate import AutoRestDateTestService
 
 import pytest
 
-class TestDateTimeRfc(object):
+class TestDate(object):
 
-    def test_datetime_rfc(self):
-        client = AutoRestRFC1123DateTimeTestService(base_url="http://localhost:3000")
+    @pytest.mark.asyncio
+    async def test_date(self):
+        client = AutoRestDateTestService(base_url="http://localhost:3000")
 
-        assert client.datetimerfc1123.get_null() is None
+        max_date = isodate.parse_date("9999-12-31T23:59:59.999999Z")
+        min_date = isodate.parse_date("0001-01-01T00:00:00Z")
+        await client.date_model.put_max_date_async(max_date)
+        await client.date_model.put_min_date_async(min_date)
+
+        assert max_date ==  await client.date_model.get_max_date_async()
+        assert min_date ==  await client.date_model.get_min_date_async()
+        assert await client.date_model.get_null_async() is None
 
         with pytest.raises(DeserializationError):
-            client.datetimerfc1123.get_invalid()
+            await client.date_model.get_invalid_date_async()
 
         with pytest.raises(DeserializationError):
-            client.datetimerfc1123.get_underflow()
+            await client.date_model.get_overflow_date_async()
 
         with pytest.raises(DeserializationError):
-            client.datetimerfc1123.get_overflow()
+            await client.date_model.get_underflow_date_async()
 
-        client.datetimerfc1123.get_utc_lowercase_max_date_time()
-        client.datetimerfc1123.get_utc_uppercase_max_date_time()
-        client.datetimerfc1123.get_utc_min_date_time()
-
-        max_date = isodate.parse_datetime("9999-12-31T23:59:59.999999Z")
-        client.datetimerfc1123.put_utc_max_date_time(max_date)
-
-        min_date = isodate.parse_datetime("0001-01-01T00:00:00Z")
-        client.datetimerfc1123.put_utc_min_date_time(min_date)
+if __name__ == '__main__':
+    unittest.main()

@@ -47,7 +47,7 @@ from bodybyte import AutoRestSwaggerBATByteService
 
 import pytest
 
-class ByteTests(object):
+class TestByte(object):
 
     def test_byte(self):
         client = AutoRestSwaggerBATByteService(base_url="http://localhost:3000")

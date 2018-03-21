@@ -51,72 +51,73 @@ def client():
 
 class TestDictionary(object):
 
-    def test_dictionary_primitive_types(self, client):
+    @pytest.mark.asyncio
+    async def test_dictionary_primitive_types(self, client):
 
         tfft = {"0":True, "1":False, "2":False, "3":True}
-        assert tfft ==  client.dictionary.get_boolean_tfft()
+        assert tfft ==  await client.dictionary.get_boolean_tfft_async()
 
-        client.dictionary.put_boolean_tfft(tfft)
+        await client.dictionary.put_boolean_tfft_async(tfft)
 
         invalid_null_dict = {"0":True, "1":None, "2":False}
-        assert invalid_null_dict ==  client.dictionary.get_boolean_invalid_null()
+        assert invalid_null_dict ==  await client.dictionary.get_boolean_invalid_null_async()
 
         with pytest.raises(DeserializationError):
-            client.dictionary.get_boolean_invalid_string()
+            await client.dictionary.get_boolean_invalid_string_async()
 
         int_valid = {"0":1, "1":-1, "2":3, "3":300}
-        assert int_valid ==  client.dictionary.get_integer_valid()
+        assert int_valid ==  await client.dictionary.get_integer_valid_async()
 
-        client.dictionary.put_integer_valid(int_valid)
+        await client.dictionary.put_integer_valid_async(int_valid)
 
         int_null_dict = {"0":1, "1":None, "2":0}
-        assert int_null_dict ==  client.dictionary.get_int_invalid_null()
+        assert int_null_dict ==  await client.dictionary.get_int_invalid_null_async()
 
         with pytest.raises(DeserializationError):
-            client.dictionary.get_int_invalid_string()
+            await client.dictionary.get_int_invalid_string_async()
 
         long_valid = {"0":1, "1":-1, "2":3, "3":300}
-        assert long_valid ==  client.dictionary.get_long_valid()
+        assert long_valid ==  await client.dictionary.get_long_valid_async()
 
-        client.dictionary.put_long_valid(long_valid)
+        await client.dictionary.put_long_valid_async(long_valid)
 
         long_null_dict = {"0":1, "1":None, "2":0}
-        assert long_null_dict ==  client.dictionary.get_long_invalid_null()
+        assert long_null_dict ==  await client.dictionary.get_long_invalid_null_async()
 
         with pytest.raises(DeserializationError):
-            client.dictionary.get_long_invalid_string()
+            await client.dictionary.get_long_invalid_string_async()
 
         float_valid = {"0":0, "1":-0.01, "2":-1.2e20}
-        assert float_valid ==  client.dictionary.get_float_valid()
+        assert float_valid ==  await client.dictionary.get_float_valid_async()
 
-        client.dictionary.put_float_valid(float_valid)
+        await client.dictionary.put_float_valid_async(float_valid)
 
         float_null_dict = {"0":0.0, "1":None, "2":-1.2e20}
-        assert float_null_dict ==  client.dictionary.get_float_invalid_null()
+        assert float_null_dict ==  await client.dictionary.get_float_invalid_null_async()
 
         with pytest.raises(DeserializationError):
-            client.dictionary.get_float_invalid_string()
+            await client.dictionary.get_float_invalid_string_async()
 
         double_valid = {"0":0, "1":-0.01, "2":-1.2e20}
-        assert double_valid ==  client.dictionary.get_double_valid()
+        assert double_valid ==  await client.dictionary.get_double_valid_async()
 
-        client.dictionary.put_double_valid(double_valid)
+        await client.dictionary.put_double_valid_async(double_valid)
 
         double_null_dict = {"0":0.0, "1":None, "2":-1.2e20}
-        assert double_null_dict ==  client.dictionary.get_double_invalid_null()
+        assert double_null_dict ==  await client.dictionary.get_double_invalid_null_async()
 
         with pytest.raises(DeserializationError):
-            client.dictionary.get_double_invalid_string()
+            await client.dictionary.get_double_invalid_string_async()
 
         string_valid = {"0":"foo1", "1":"foo2", "2":"foo3"}
-        assert string_valid ==  client.dictionary.get_string_valid()
+        assert string_valid ==  await client.dictionary.get_string_valid_async()
 
-        client.dictionary.put_string_valid(string_valid)
+        await client.dictionary.put_string_valid_async(string_valid)
 
         string_null_dict = {"0":"foo", "1":None, "2":"foo2"}
         string_invalid_dict = {"0":"foo", "1":"123", "2":"foo2"}
-        assert string_null_dict ==  client.dictionary.get_string_with_null()
-        assert string_invalid_dict ==  client.dictionary.get_string_with_invalid()
+        assert string_null_dict ==  await client.dictionary.get_string_with_null_async()
+        assert string_invalid_dict ==  await client.dictionary.get_string_with_invalid_async()
 
         date1 = isodate.parse_date("2000-12-01T00:00:00Z")
         date2 = isodate.parse_date("1980-01-02T00:00:00Z")
@@ -131,39 +132,39 @@ class TestDictionary(object):
         duration2 = timedelta(days=5, hours=1)
 
         valid_date_dict = {"0":date1, "1":date2, "2":date3}
-        date_dictionary = client.dictionary.get_date_valid()
+        date_dictionary = await client.dictionary.get_date_valid_async()
         assert date_dictionary ==  valid_date_dict
 
-        client.dictionary.put_date_valid(valid_date_dict)
+        await client.dictionary.put_date_valid_async(valid_date_dict)
 
         date_null_dict = {"0":isodate.parse_date("2012-01-01"),
                           "1":None,
                           "2":isodate.parse_date("1776-07-04")}
-        assert date_null_dict ==  client.dictionary.get_date_invalid_null()
+        assert date_null_dict ==  await client.dictionary.get_date_invalid_null_async()
 
         with pytest.raises(DeserializationError):
-            client.dictionary.get_date_invalid_chars()
+            await client.dictionary.get_date_invalid_chars_async()
 
         valid_datetime_dict = {"0":datetime1, "1":datetime2, "2":datetime3}
-        assert valid_datetime_dict ==  client.dictionary.get_date_time_valid()
+        assert valid_datetime_dict ==  await client.dictionary.get_date_time_valid_async()
 
-        client.dictionary.put_date_time_valid(valid_datetime_dict)
+        await client.dictionary.put_date_time_valid_async(valid_datetime_dict)
 
         datetime_null_dict = {"0":isodate.parse_datetime("2000-12-01T00:00:01Z"), "1":None}
-        assert datetime_null_dict ==  client.dictionary.get_date_time_invalid_null()
+        assert datetime_null_dict ==  await client.dictionary.get_date_time_invalid_null_async()
 
         with pytest.raises(DeserializationError):
-            client.dictionary.get_date_time_invalid_chars()
+            await client.dictionary.get_date_time_invalid_chars_async()
 
         valid_rfc_dict = {"0":rfc_datetime1, "1":rfc_datetime2, "2":rfc_datetime3}
-        assert valid_rfc_dict ==  client.dictionary.get_date_time_rfc1123_valid()
+        assert valid_rfc_dict ==  await client.dictionary.get_date_time_rfc1123_valid_async()
 
-        client.dictionary.put_date_time_rfc1123_valid(valid_rfc_dict)
+        await client.dictionary.put_date_time_rfc1123_valid_async(valid_rfc_dict)
 
         valid_duration_dict = {"0":duration1, "1":duration2}
-        assert valid_duration_dict ==  client.dictionary.get_duration_valid()
+        assert valid_duration_dict ==  await client.dictionary.get_duration_valid_async()
 
-        client.dictionary.put_duration_valid(valid_duration_dict)
+        await client.dictionary.put_duration_valid_async(valid_duration_dict)
 
         bytes1 = bytearray([0x0FF, 0x0FF, 0x0FF, 0x0FA])
         bytes2 = bytearray([0x01, 0x02, 0x03])
@@ -171,103 +172,101 @@ class TestDictionary(object):
         bytes4 = bytearray([0x0AB, 0x0AC, 0x0AD])
 
         bytes_valid = {"0":bytes1, "1":bytes2, "2":bytes3}
-        client.dictionary.put_byte_valid(bytes_valid)
+        await client.dictionary.put_byte_valid_async(bytes_valid)
 
-        bytes_result = client.dictionary.get_byte_valid()
+        bytes_result = await client.dictionary.get_byte_valid_async()
         assert bytes_valid ==  bytes_result
 
         bytes_null = {"0":bytes4, "1":None}
-        bytes_result = client.dictionary.get_byte_invalid_null()
+        bytes_result = await client.dictionary.get_byte_invalid_null_async()
         assert bytes_null ==  bytes_result
 
         test_dict = {'0': 'a string that gets encoded with base64url'.encode(),
                      '1': 'test string'.encode(),
                      '2': 'Lorem ipsum'.encode()}
-        assert client.dictionary.get_base64_url() ==  test_dict
+        assert await client.dictionary.get_base64_url_async() ==  test_dict
 
-    def test_basic_dictionary_parsing(self, client):
+    @pytest.mark.asyncio
+    async def test_basic_dictionary_parsing(self, client):
 
-        assert {} ==  client.dictionary.get_empty()
+        assert {} ==  await client.dictionary.get_empty_async()
 
-        client.dictionary.put_empty({})
+        await client.dictionary.put_empty_async({})
 
-        assert client.dictionary.get_null() is None
+        assert await client.dictionary.get_null_async() is None
 
         with pytest.raises(DeserializationError):
-            client.dictionary.get_invalid()
+            await client.dictionary.get_invalid_async()
 
         # {null:"val1"} is not standard JSON format. C# might work and expects this test to pass,
         # but we fail and we're happy with it.
         with pytest.raises(DeserializationError):
-            client.dictionary.get_null_key()
-        assert {"key1":None} ==  client.dictionary.get_null_value()
-        assert {"":"val1"} ==  client.dictionary.get_empty_string_key()
+            await client.dictionary.get_null_key_async()
+        assert {"key1":None} ==  await client.dictionary.get_null_value_async()
+        assert {"":"val1"} ==  await client.dictionary.get_empty_string_key_async()
 
-    def test_dictionary_composed_types(self, client):
+    @pytest.mark.asyncio
+    async def test_dictionary_composed_types(self, client):
 
         test_product1 = Widget(integer=1, string="2")
         test_product2 = Widget(integer=3, string="4")
         test_product3 = Widget(integer=5, string="6")
         test_dict = {"0":test_product1, "1":test_product2, "2":test_product3}
 
-        assert client.dictionary.get_complex_null() is None
-        assert {} ==  client.dictionary.get_complex_empty()
+        assert await client.dictionary.get_complex_null_async() is None
+        assert {} ==  await client.dictionary.get_complex_empty_async()
 
-        client.dictionary.put_complex_valid(test_dict)
-        complex_result = client.dictionary.get_complex_valid()
+        await client.dictionary.put_complex_valid_async(test_dict)
+        complex_result = await client.dictionary.get_complex_valid_async()
         assert test_dict ==  complex_result
 
         list_dict = {"0":["1","2","3"], "1":["4","5","6"], "2":["7","8","9"]}
-        client.dictionary.put_array_valid(list_dict)
+        await client.dictionary.put_array_valid_async(list_dict)
 
-        array_result = client.dictionary.get_array_valid()
+        array_result = await client.dictionary.get_array_valid_async()
         assert list_dict ==  array_result
 
         dict_dict = {"0":{"1":"one","2":"two","3":"three"},
                      "1":{"4":"four","5":"five","6":"six"},
                      "2":{"7":"seven","8":"eight","9":"nine"}}
-        client.dictionary.put_dictionary_valid(dict_dict)
+        await client.dictionary.put_dictionary_valid_async(dict_dict)
 
-        dict_result = client.dictionary.get_dictionary_valid()
+        dict_result = await client.dictionary.get_dictionary_valid_async()
         assert dict_dict ==  dict_result
 
-        assert client.dictionary.get_complex_null() is None
-        assert {} ==  client.dictionary.get_complex_empty()
+        assert await client.dictionary.get_complex_null_async() is None
+        assert {} ==  await client.dictionary.get_complex_empty_async()
 
         test_dict2 = {"0":test_product1, "1":None, "2":test_product3}
-        complex_result = client.dictionary.get_complex_item_null()
+        complex_result = await client.dictionary.get_complex_item_null_async()
         assert complex_result ==  test_dict2
 
         test_dict3 = {"0":test_product1, "1":Widget(), "2":test_product3}
-        complex_result = client.dictionary.get_complex_item_empty()
+        complex_result = await client.dictionary.get_complex_item_empty_async()
         assert complex_result ==  test_dict3
 
-        assert client.dictionary.get_array_null() is None
-        assert {} ==  client.dictionary.get_array_empty()
+        assert await client.dictionary.get_array_null_async() is None
+        assert {} ==  await client.dictionary.get_array_empty_async()
 
         list_dict = {"0":["1","2","3"], "1":None, "2":["7","8","9"]}
-        array_result = client.dictionary.get_array_item_null()
+        array_result = await client.dictionary.get_array_item_null_async()
         assert list_dict ==  array_result
 
         list_dict = {"0":["1","2","3"], "1":[], "2":["7","8","9"]}
-        array_result = client.dictionary.get_array_item_empty()
+        array_result = await client.dictionary.get_array_item_empty_async()
         assert list_dict ==  array_result
 
-        assert client.dictionary.get_dictionary_null() is None
-        assert {} ==  client.dictionary.get_dictionary_empty()
+        assert await client.dictionary.get_dictionary_null_async() is None
+        assert {} ==  await client.dictionary.get_dictionary_empty_async()
 
         dict_dict = {"0":{"1":"one","2":"two","3":"three"},
                      "1":None,
                      "2":{"7":"seven","8":"eight","9":"nine"}}
-        dict_result = client.dictionary.get_dictionary_item_null()
+        dict_result = await client.dictionary.get_dictionary_item_null_async()
         assert dict_dict ==  dict_result
 
         dict_dict = {"0":{"1":"one","2":"two","3":"three"},
                      "1":{},
                      "2":{"7":"seven","8":"eight","9":"nine"}}
-        dict_result = client.dictionary.get_dictionary_item_empty()
+        dict_result = await client.dictionary.get_dictionary_item_empty_async()
         assert dict_dict ==  dict_result
-
-
-if __name__ == '__main__':
-    unittest.main()

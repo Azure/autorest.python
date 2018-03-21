@@ -51,13 +51,14 @@ import pytest
 
 class TestString(object):
 
-    def test_string(self):
+    @pytest.mark.asyncio
+    async def test_string(self):
         client = AutoRestSwaggerBATService(base_url="http://localhost:3000")
 
-        assert client.string.get_null() is None
-        client.string.put_null(None)
-        assert "" ==  client.string.get_empty()
-        client.string.put_empty()
+        assert await client.string.get_null_async() is None
+        await client.string.put_null_async(None)
+        assert "" ==  await client.string.get_empty_async()
+        await client.string.put_empty_async()
 
         try:
             test_str = (
@@ -93,31 +94,27 @@ class TestString(object):
                 b"\xc9\xa1\xe3\x80\x87\xe3\x80\xbe\xe2\xbf\xbb\xe2\xba\x81"
                 b"\xee\xa1\x83\xe4\x9c\xa3\xee\xa1\xa4\xe2\x82\xac").decode('utf-8')
 
-        assert test_str ==  client.string.get_mbcs()
-        client.string.put_mbcs()
+        assert test_str ==  await client.string.get_mbcs_async()
+        await client.string.put_mbcs_async()
 
         test_str = "    Now is the time for all good men to come to the aid of their country    "
-        assert test_str ==  client.string.get_whitespace()
-        client.string.put_whitespace()
+        assert test_str ==  await client.string.get_whitespace_async()
+        await client.string.put_whitespace_async()
 
-        assert client.string.get_not_provided() is None
-        assert Colors.redcolor ==  client.enum.get_not_expandable()
-        client.enum.put_not_expandable('red color')
-        client.enum.put_not_expandable(Colors.redcolor)
+        assert await client.string.get_not_provided_async() is None
+        assert Colors.redcolor ==  await client.enum.get_not_expandable_async()
+        await client.enum.put_not_expandable_async('red color')
+        await client.enum.put_not_expandable_async(Colors.redcolor)
         with pytest.raises(SerializationError):
-            client.enum.put_not_expandable('not a colour')
+            await client.enum.put_not_expandable_async('not a colour')
 
-        assert client.string.get_base64_encoded() ==  'a string that gets encoded with base64'.encode()
-        assert client.string.get_base64_url_encoded() ==  'a string that gets encoded with base64url'.encode()
-        assert client.string.get_null_base64_url_encoded() is None
-        client.string.put_base64_url_encoded('a string that gets encoded with base64url'.encode())
+        assert await client.string.get_base64_encoded_async() ==  'a string that gets encoded with base64'.encode()
+        assert await client.string.get_base64_url_encoded_async() ==  'a string that gets encoded with base64url'.encode()
+        assert await client.string.get_null_base64_url_encoded_async() is None
+        await client.string.put_base64_url_encoded_async('a string that gets encoded with base64url'.encode())
 
-        client.enum.put_referenced(Colors.redcolor)
-        client.enum.put_referenced("red color")
-        client.enum.put_referenced_constant()
-        assert client.enum.get_referenced() ==  Colors.redcolor
-        assert client.enum.get_referenced_constant().color_constant ==  Colors.green_color.value
-
-
-if __name__ == '__main__':
-    unittest.main()
+        await client.enum.put_referenced_async(Colors.redcolor)
+        await client.enum.put_referenced_async("red color")
+        await client.enum.put_referenced_constant_async()
+        assert await client.enum.get_referenced_async() ==  Colors.redcolor
+        assert (await client.enum.get_referenced_constant_async()).color_constant ==  Colors.green_color.value

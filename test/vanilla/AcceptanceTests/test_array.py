@@ -83,7 +83,7 @@ class TestArray(object):
         client.array.put_uuid_valid(["6dcc7237-45fe-45c4-8a6b-3a8a3f625652", "d1399005-30f7-40d6-8da6-dd7c89ad34db",
                           "f42f6aa1-a5bc-4ddf-907e-5f915de43205"])
         #Handles invalid characters without error because of no guid class
-        assert ["6dcc7237-45fe-45c4-8a6b-3a8a3f625652", "foo"] ==  client.array.get_uuid_invalid_chars();                      
+        assert ["6dcc7237-45fe-45c4-8a6b-3a8a3f625652", "foo"] ==  client.array.get_uuid_invalid_chars()
 
         date1 = isodate.parse_date("2000-12-01")
         date2 = isodate.parse_date("1980-01-02")

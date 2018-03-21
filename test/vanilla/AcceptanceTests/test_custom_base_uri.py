@@ -74,8 +74,3 @@ class TestCustomBaseUri(object):
     def test_custom_base_uri_more_optiopns(self):
         client = AutoRestParameterizedCustomHostTestClient("test12", "host:3000")
         client.paths.get_empty("http://lo", "cal", "key1")
-
-if __name__ == '__main__':
-
-
-    unittest.main()

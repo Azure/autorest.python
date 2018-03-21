@@ -38,37 +38,29 @@ cwd = dirname(realpath(__file__))
 log_level = int(os.environ.get('PythonLogLevel', 30))
 
 tests = realpath(join(cwd, pardir, "Expected", "AcceptanceTests"))
-sys.path.append(join(tests, "BodyDateTimeRfc1123"))
+sys.path.append(join(tests, "BodyDuration"))
 
 from msrest.serialization import Deserializer
 from msrest.exceptions import DeserializationError
 
-from bodydatetimerfc1123 import AutoRestRFC1123DateTimeTestService
+from bodyduration import AutoRestDurationTestService
 
 import pytest
 
-class TestDateTimeRfc(object):
+class TestDuration(object):
 
-    def test_datetime_rfc(self):
-        client = AutoRestRFC1123DateTimeTestService(base_url="http://localhost:3000")
+    @pytest.mark.asyncio
+    async def test_duration(self):
+        client = AutoRestDurationTestService(base_url="http://localhost:3000")
 
-        assert client.datetimerfc1123.get_null() is None
-
-        with pytest.raises(DeserializationError):
-            client.datetimerfc1123.get_invalid()
+        assert await client.duration.get_null_async() is None
 
         with pytest.raises(DeserializationError):
-            client.datetimerfc1123.get_underflow()
+            await client.duration.get_invalid_async()
 
-        with pytest.raises(DeserializationError):
-            client.datetimerfc1123.get_overflow()
+        await client.duration.get_positive_duration_async()
+        await client.duration.put_positive_duration_async(timedelta(days=123, hours=22, minutes=14, seconds=12, milliseconds=11))
 
-        client.datetimerfc1123.get_utc_lowercase_max_date_time()
-        client.datetimerfc1123.get_utc_uppercase_max_date_time()
-        client.datetimerfc1123.get_utc_min_date_time()
 
-        max_date = isodate.parse_datetime("9999-12-31T23:59:59.999999Z")
-        client.datetimerfc1123.put_utc_max_date_time(max_date)
-
-        min_date = isodate.parse_datetime("0001-01-01T00:00:00Z")
-        client.datetimerfc1123.put_utc_min_date_time(min_date)
+if __name__ == '__main__':
+    unittest.main()
