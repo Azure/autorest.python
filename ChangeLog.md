@@ -1,3 +1,7 @@
+### 2018-03-27 - 3.0.43
+
+- Add documentation to enum #49
+
 ### 2018-03-07 - 3.0.41
 
 **Breaking changes**
