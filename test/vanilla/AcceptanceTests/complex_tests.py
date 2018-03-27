@@ -418,7 +418,7 @@ class ComplexTests(unittest.TestCase):
                 age=1,
                 species="scary",
                 jawsize=5,
-                color=None
+                color='pinkish-gray',
             )]
         )
         # Not raise is enough of a test
