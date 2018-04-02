@@ -419,7 +419,7 @@ class TestComplex(object):
                 age=1,
                 species="scary",
                 jawsize=5,
-                color='pinkish-gray',
+                color='pinkish-gray'
             )]
         )
         # Not raise is enough of a test
