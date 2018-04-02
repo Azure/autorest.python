@@ -1,2 +1,4 @@
 requests>=2.14.0
-msrest>=0.4.7
+pytest
+pytest-cov
+msrest
