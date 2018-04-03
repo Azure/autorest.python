@@ -14,7 +14,7 @@
 {
 @:import warnings
 }
-from msrest.service_client import ServiceClient
+from msrest.service_client import SDKClient
 from msrest import Configuration, Serializer, Deserializer
 from .version import VERSION
 @if (Model.MethodTemplateModels.Any( each => each.MethodGroup.IsCodeModelMethodGroup))
@@ -95,7 +95,7 @@ else
 }
 @EmptyLine
 @EmptyLine
-class @(Model.Name)(object):
+class @(Model.Name)(SDKClient):
     """@Model.ServiceDocument
 @EmptyLine
     :ivar config: Configuration for client.
@@ -126,7 +126,7 @@ class @(Model.Name)(object):
             self@(Model.RequiredConstructorParameters)@(Model.IsCustomBaseUri ? "" : ", base_url=None")):
 @EmptyLine
         self.config = @(Model.Name)Configuration(@(Model.ConfigConstructorParameters))
-        self._client = ServiceClient(@(Settings.AddCredentials? "self.config.credentials" : PythonConstants.None), self.config)
+        super(@(Model.Name), self).__init__(@(Settings.AddCredentials? "self.config.credentials" : PythonConstants.None), self.config)
 @EmptyLine
 @if (Model.ModelTemplateModels.Any())
 {
