@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.service_client import ServiceClient
+from msrest.service_client import SDKClient
 from msrest import Serializer, Deserializer
 from msrestazure import AzureConfiguration
 from .version import VERSION
@@ -43,7 +43,7 @@ class AutoRestHeadExceptionTestServiceConfiguration(AzureConfiguration):
         self.credentials = credentials
 
 
-class AutoRestHeadExceptionTestService(object):
+class AutoRestHeadExceptionTestService(SDKClient):
     """Test Infrastructure for AutoRest
 
     :ivar config: Configuration for client.
@@ -62,7 +62,7 @@ class AutoRestHeadExceptionTestService(object):
             self, credentials, base_url=None):
 
         self.config = AutoRestHeadExceptionTestServiceConfiguration(credentials, base_url)
-        self._client = ServiceClient(self.config.credentials, self.config)
+        super(AutoRestHeadExceptionTestService, self).__init__(self.config.credentials, self.config)
 
         client_models = {}
         self.api_version = '1.0.0'

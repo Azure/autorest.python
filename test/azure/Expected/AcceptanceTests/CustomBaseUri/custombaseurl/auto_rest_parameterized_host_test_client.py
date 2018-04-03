@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.service_client import ServiceClient
+from msrest.service_client import SDKClient
 from msrest import Serializer, Deserializer
 from msrestazure import AzureConfiguration
 from .version import VERSION
@@ -48,7 +48,7 @@ class AutoRestParameterizedHostTestClientConfiguration(AzureConfiguration):
         self.host = host
 
 
-class AutoRestParameterizedHostTestClient(object):
+class AutoRestParameterizedHostTestClient(SDKClient):
     """Test Infrastructure for AutoRest
 
     :ivar config: Configuration for client.
@@ -69,7 +69,7 @@ class AutoRestParameterizedHostTestClient(object):
             self, credentials, host):
 
         self.config = AutoRestParameterizedHostTestClientConfiguration(credentials, host)
-        self._client = ServiceClient(self.config.credentials, self.config)
+        super(AutoRestParameterizedHostTestClient, self).__init__(self.config.credentials, self.config)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '1.0.0'

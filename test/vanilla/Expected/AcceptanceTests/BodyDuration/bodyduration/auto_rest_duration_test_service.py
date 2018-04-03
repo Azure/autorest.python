@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.service_client import ServiceClient
+from msrest.service_client import SDKClient
 from msrest import Configuration, Serializer, Deserializer
 from .version import VERSION
 from .operations.duration_operations import DurationOperations
@@ -35,7 +35,7 @@ class AutoRestDurationTestServiceConfiguration(Configuration):
         self.add_user_agent('autorestdurationtestservice/{}'.format(VERSION))
 
 
-class AutoRestDurationTestService(object):
+class AutoRestDurationTestService(SDKClient):
     """Test Infrastructure for AutoRest
 
     :ivar config: Configuration for client.
@@ -51,7 +51,7 @@ class AutoRestDurationTestService(object):
             self, base_url=None):
 
         self.config = AutoRestDurationTestServiceConfiguration(base_url)
-        self._client = ServiceClient(None, self.config)
+        super(AutoRestDurationTestService, self).__init__(None, self.config)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '1.0.0'
