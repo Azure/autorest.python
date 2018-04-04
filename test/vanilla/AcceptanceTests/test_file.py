@@ -49,8 +49,8 @@ import pytest
 
 @pytest.fixture
 def client():
-    client = AutoRestSwaggerBATFileService(base_url="http://localhost:3000")
-    return client
+    with AutoRestSwaggerBATFileService(base_url="http://localhost:3000") as client:
+        yield client
 
 class TestFile(object):
 

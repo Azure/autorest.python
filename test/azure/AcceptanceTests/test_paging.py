@@ -54,8 +54,8 @@ import pytest
 @pytest.fixture
 def paging_client():
     cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
-    client = AutoRestPagingTestService(cred, base_url="http://localhost:3000")
-    return client
+    with AutoRestPagingTestService(cred, base_url="http://localhost:3000") as client:
+        yield client
 
 @pytest.fixture
 def special_paging_client(paging_client, test_server_credentials):
