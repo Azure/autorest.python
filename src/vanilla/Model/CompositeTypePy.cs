@@ -323,7 +323,8 @@ namespace AutoRest.Python.Model
             {
                 combinedDeclarations.Add(string.Format(CultureInfo.InvariantCulture, "{0}={0}", property.Name));
             }
-            return string.Join(", ", combinedDeclarations) + ", **kwargs";
+            combinedDeclarations.Add("**kwargs");
+            return string.Join(", ", combinedDeclarations);
         }
 
         /// <remarks>
