@@ -1,3 +1,7 @@
+### 2018-04-17 - 3.0.49
+
+- Fix some valid discriminator + flatten scenarios #2889
+
 ### 2018-04-16 - 3.0.48
 
 - Fix bad comma on py3 models if super class has no attributes
