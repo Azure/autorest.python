@@ -38,9 +38,22 @@ namespace AutoRest.Python
             TransformGroupApiVersionToLocal(codeModel);
             SwaggerExtensions.NormalizeClientModel(codeModel);
             PopulateAdditionalProperties(codeModel);
+            PopulateDiscriminator(codeModel);
             Flattening(codeModel);
             GenerateConstantProperties(codeModel);
             return codeModel;
+        }
+
+        private void PopulateDiscriminator(CodeModelPy codeModel)
+        {
+            foreach (var model in codeModel.ModelTypes)
+            {
+                var compositeTypePy = model as CompositeTypePy;
+                if (compositeTypePy != null)
+                {
+                    compositeTypePy.AddPolymorphicPropertyIfNecessary();
+                }
+            }
         }
 
         private void TransformGroupApiVersionToLocal(CodeModelPy codeModel)
