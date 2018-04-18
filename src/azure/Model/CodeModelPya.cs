@@ -73,7 +73,7 @@ namespace AutoRest.Python.Azure.Model
             }
         }
 
-        public override string SetupRequires => "\"msrestazure>=0.4.7\"";
+        public override string SetupRequires => "\"msrestazure>=0.4.27\"";
 
         public override bool NeedsExtraImport => true;
 
