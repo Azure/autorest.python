@@ -1,3 +1,7 @@
+### 2018-04-18 - 3.0.50
+
+- Add context manager to SDK client that keeps the same sessions across requests.
+
 ### 2018-04-17 - 3.0.49
 
 - Fix some valid discriminator + flatten scenarios #2889
