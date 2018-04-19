@@ -50,11 +50,13 @@ import pytest
 
 @pytest.fixture
 def client():
-    return AutoRestUrlTestService('', base_url="http://localhost:3000")
+    with AutoRestUrlTestService('', base_url="http://localhost:3000") as client:
+        yield client
 
 @pytest.fixture
 def multi_client():
-    return AutoRestUrlMutliCollectionFormatTestService("http://localhost:3000")
+    with AutoRestUrlMutliCollectionFormatTestService("http://localhost:3000") as client:
+        yield client
 
 class TestUrl(object):
 

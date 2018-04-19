@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.service_client import ServiceClient
+from msrest.service_client import SDKClient
 from msrest import Serializer, Deserializer
 from msrestazure import AzureConfiguration
 from .version import VERSION
@@ -49,7 +49,7 @@ class MicrosoftAzureTestUrlConfiguration(AzureConfiguration):
         self.subscription_id = subscription_id
 
 
-class MicrosoftAzureTestUrl(object):
+class MicrosoftAzureTestUrl(SDKClient):
     """Some cool documentation.
 
     :ivar config: Configuration for client.
@@ -70,7 +70,7 @@ class MicrosoftAzureTestUrl(object):
             self, credentials, subscription_id, base_url=None):
 
         self.config = MicrosoftAzureTestUrlConfiguration(credentials, subscription_id, base_url)
-        self._client = ServiceClient(self.config.credentials, self.config)
+        super(MicrosoftAzureTestUrl, self).__init__(self.config.credentials, self.config)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '2014-04-01-preview'

@@ -55,7 +55,8 @@ import pytest
 
 @pytest.fixture()
 def client():
-    return AutoRestResourceFlatteningTestService(base_url="http://localhost:3000")
+    with AutoRestResourceFlatteningTestService(base_url="http://localhost:3000") as client:
+        yield client
 
 class TestModelFlatteningTests(object):
 

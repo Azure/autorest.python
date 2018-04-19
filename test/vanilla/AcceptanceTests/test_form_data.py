@@ -54,11 +54,11 @@ def dummy_file():
 
 @pytest.fixture
 def client():
-    client = AutoRestSwaggerBATFormDataService(base_url="http://localhost:3000")
-    client.config.connection.data_block_size = 2
-    client.config.retry_policy.retries = 50  # Be agressive on this test, sometimes testserver DDOS :-p
-    client.config.retry_policy.backoff_factor = 1.6
-    return client    
+    with AutoRestSwaggerBATFormDataService(base_url="http://localhost:3000") as client:
+        client.config.connection.data_block_size = 2
+        client.config.retry_policy.retries = 50  # Be agressive on this test, sometimes testserver DDOS :-p
+        client.config.retry_policy.backoff_factor = 1.6
+        yield client    
 
 class TestFormData(object):
 

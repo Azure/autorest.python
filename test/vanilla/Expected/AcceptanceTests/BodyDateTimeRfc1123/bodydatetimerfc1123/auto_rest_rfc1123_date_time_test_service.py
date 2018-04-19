@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.service_client import ServiceClient
+from msrest.service_client import SDKClient
 from msrest import Configuration, Serializer, Deserializer
 from .version import VERSION
 from .operations.datetimerfc1123_operations import Datetimerfc1123Operations
@@ -35,7 +35,7 @@ class AutoRestRFC1123DateTimeTestServiceConfiguration(Configuration):
         self.add_user_agent('autorestrfc1123datetimetestservice/{}'.format(VERSION))
 
 
-class AutoRestRFC1123DateTimeTestService(object):
+class AutoRestRFC1123DateTimeTestService(SDKClient):
     """Test Infrastructure for AutoRest
 
     :ivar config: Configuration for client.
@@ -51,7 +51,7 @@ class AutoRestRFC1123DateTimeTestService(object):
             self, base_url=None):
 
         self.config = AutoRestRFC1123DateTimeTestServiceConfiguration(base_url)
-        self._client = ServiceClient(None, self.config)
+        super(AutoRestRFC1123DateTimeTestService, self).__init__(None, self.config)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '1.0.0'
