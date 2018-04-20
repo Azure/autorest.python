@@ -28,53 +28,38 @@ namespace AutoRest.Python.Model
             
         }
 
-        public override Property Add(Property item)
+        private IEnumerable<Property> removeDuplicateIfNeeded(IEnumerable<Property> originalEnumerable, IEnumerable<Property> potentialDuplicate)
         {
-            var result = base.Add(item);
-            if (result != null)
+            if(potentialDuplicate.Count() > 1)
             {
-                AddPolymorphicPropertyIfNecessary();
+                var potentialDuplicateAsList = potentialDuplicate.ToList();
+                var originalEnumerableAsList = originalEnumerable.ToList();
+                potentialDuplicateAsList.RemoveAt(0); // Remove randomly one of the list of stuff to remove
+                potentialDuplicateAsList.ForEach(delegate(Property prop) {
+                    originalEnumerableAsList.Remove(prop);
+                });
+                return originalEnumerableAsList;
             }
-            return result;
-        }
-
-        /// <summary>
-        /// Gets or sets the discriminator property for polymorphic types.
-        /// </summary>
-        public override string PolymorphicDiscriminator
-        {
-            get { return base.PolymorphicDiscriminator; }
-            set
-            {
-                base.PolymorphicDiscriminator = value;
-                AddPolymorphicPropertyIfNecessary();
-            }
+            return originalEnumerable;
         }
 
         public override IEnumerable<Property> ComposedProperties
         {
             get
             {
-                var originalComposed = base.ComposedProperties;
-                var addProps = originalComposed.Where(prop => IsAdditionalProperty(prop));
-                if (addProps.Count() > 1)
-                {
-                    // Remove duplicate additionalProperty
-                    var addPropAsList = addProps.ToList();
-                    var originalComposedAsList = originalComposed.ToList();
-                    addPropAsList.RemoveAt(0); // Remove randomly one
-                    addPropAsList.ForEach(delegate(Property prop) {
-                        originalComposedAsList.Remove(prop);
-                    });
-                    return originalComposedAsList;
-                }
-                return originalComposed;
+                var composed = base.ComposedProperties;
+
+                // Remove duplicate AdditionalProperties from base class
+                var addProps = composed.Where(prop => IsAdditionalProperty(prop));
+                composed = removeDuplicateIfNeeded(composed, addProps);
+
+                return composed;
             }
         }
         /// <summary>
         /// If PolymorphicDiscriminator is set, makes sure we have a PolymorphicDiscriminator property.
         /// </summary>
-        private void AddPolymorphicPropertyIfNecessary()
+        public void AddPolymorphicPropertyIfNecessary()
         {
             if (!string.IsNullOrEmpty(PolymorphicDiscriminator) && Properties.All(p => p.Name != PolymorphicDiscriminator))
             {
@@ -323,7 +308,8 @@ namespace AutoRest.Python.Model
             {
                 combinedDeclarations.Add(string.Format(CultureInfo.InvariantCulture, "{0}={0}", property.Name));
             }
-            return string.Join(", ", combinedDeclarations) + ", **kwargs";
+            combinedDeclarations.Add("**kwargs");
+            return string.Join(", ", combinedDeclarations);
         }
 
         /// <remarks>

@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.service_client import ServiceClient
+from msrest.service_client import SDKClient
 from msrest import Configuration, Serializer, Deserializer
 from .version import VERSION
 from .operations import PathsOperations
@@ -47,7 +47,7 @@ class AutoRestUrlTestServiceConfiguration(Configuration):
         self.global_string_query = global_string_query
 
 
-class AutoRestUrlTestService(object):
+class AutoRestUrlTestService(SDKClient):
     """Test Infrastructure for AutoRest
 
     :ivar config: Configuration for client.
@@ -72,7 +72,7 @@ class AutoRestUrlTestService(object):
             self, global_string_path, global_string_query=None, base_url=None):
 
         self.config = AutoRestUrlTestServiceConfiguration(global_string_path, global_string_query, base_url)
-        self._client = ServiceClient(None, self.config)
+        super(AutoRestUrlTestService, self).__init__(None, self.config)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '1.0.0'

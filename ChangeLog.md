@@ -1,3 +1,15 @@
+### 2018-04-18 - 3.0.50
+
+- Add context manager to SDK client that keeps the same sessions across requests.
+
+### 2018-04-17 - 3.0.49
+
+- Fix some valid discriminator + flatten scenarios #2889
+
+### 2018-04-16 - 3.0.48
+
+- Fix bad comma on py3 models if super class has no attributes
+
 ### 2018-03-27 - 3.0.43
 
 - Add documentation to enum #49

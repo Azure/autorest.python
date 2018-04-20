@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.service_client import ServiceClient
+from msrest.service_client import SDKClient
 from msrest import Configuration, Serializer, Deserializer
 from .version import VERSION
 from .operations import ImplicitOperations
@@ -50,7 +50,7 @@ class AutoRestRequiredOptionalTestServiceConfiguration(Configuration):
         self.optional_global_query = optional_global_query
 
 
-class AutoRestRequiredOptionalTestService(object):
+class AutoRestRequiredOptionalTestService(SDKClient):
     """Test Infrastructure for AutoRest
 
     :ivar config: Configuration for client.
@@ -74,7 +74,7 @@ class AutoRestRequiredOptionalTestService(object):
             self, required_global_path, required_global_query, optional_global_query=None, base_url=None):
 
         self.config = AutoRestRequiredOptionalTestServiceConfiguration(required_global_path, required_global_query, optional_global_query, base_url)
-        self._client = ServiceClient(None, self.config)
+        super(AutoRestRequiredOptionalTestService, self).__init__(None, self.config)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '1.0.0'

@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.service_client import ServiceClient
+from msrest.service_client import SDKClient
 from msrest import Serializer, Deserializer
 from msrestazure import AzureConfiguration
 from .version import VERSION
@@ -44,7 +44,7 @@ class AutoRestPagingTestServiceConfiguration(AzureConfiguration):
         self.credentials = credentials
 
 
-class AutoRestPagingTestService(object):
+class AutoRestPagingTestService(SDKClient):
     """Long-running Operation for AutoRest
 
     :ivar config: Configuration for client.
@@ -63,7 +63,7 @@ class AutoRestPagingTestService(object):
             self, credentials, base_url=None):
 
         self.config = AutoRestPagingTestServiceConfiguration(credentials, base_url)
-        self._client = ServiceClient(self.config.credentials, self.config)
+        super(AutoRestPagingTestService, self).__init__(self.config.credentials, self.config)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '1.0.0'

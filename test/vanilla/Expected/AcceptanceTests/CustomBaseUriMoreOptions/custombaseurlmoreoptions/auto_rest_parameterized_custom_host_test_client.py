@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.service_client import ServiceClient
+from msrest.service_client import SDKClient
 from msrest import Configuration, Serializer, Deserializer
 from .version import VERSION
 from .operations import PathsOperations
@@ -45,7 +45,7 @@ class AutoRestParameterizedCustomHostTestClientConfiguration(Configuration):
         self.dns_suffix = dns_suffix
 
 
-class AutoRestParameterizedCustomHostTestClient(object):
+class AutoRestParameterizedCustomHostTestClient(SDKClient):
     """Test Infrastructure for AutoRest
 
     :ivar config: Configuration for client.
@@ -65,7 +65,7 @@ class AutoRestParameterizedCustomHostTestClient(object):
             self, subscription_id, dns_suffix):
 
         self.config = AutoRestParameterizedCustomHostTestClientConfiguration(subscription_id, dns_suffix)
-        self._client = ServiceClient(None, self.config)
+        super(AutoRestParameterizedCustomHostTestClient, self).__init__(None, self.config)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '1.0.0'

@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.service_client import ServiceClient
+from msrest.service_client import SDKClient
 from msrest import Configuration, Serializer, Deserializer
 from .version import VERSION
 from msrest.exceptions import HttpOperationError
@@ -36,7 +36,7 @@ class PetStoreIncConfiguration(Configuration):
         self.add_user_agent('petstoreinc/{}'.format(VERSION))
 
 
-class PetStoreInc(object):
+class PetStoreInc(SDKClient):
     """PetStore
 
     :ivar config: Configuration for client.
@@ -52,7 +52,7 @@ class PetStoreInc(object):
             self, base_url=None):
 
         self.config = PetStoreIncConfiguration(base_url)
-        self._client = ServiceClient(None, self.config)
+        super(PetStoreInc, self).__init__(None, self.config)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '2016-07-07'

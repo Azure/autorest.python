@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.service_client import ServiceClient
+from msrest.service_client import SDKClient
 from msrest import Configuration, Serializer, Deserializer
 from .version import VERSION
 from msrest.exceptions import HttpOperationError
@@ -36,7 +36,7 @@ class AutoRestParameterFlatteningConfiguration(Configuration):
         self.add_user_agent('autorestparameterflattening/{}'.format(VERSION))
 
 
-class AutoRestParameterFlattening(object):
+class AutoRestParameterFlattening(SDKClient):
     """Resource Flattening for AutoRest
 
     :ivar config: Configuration for client.
@@ -52,7 +52,7 @@ class AutoRestParameterFlattening(object):
             self, base_url=None):
 
         self.config = AutoRestParameterFlatteningConfiguration(base_url)
-        self._client = ServiceClient(None, self.config)
+        super(AutoRestParameterFlattening, self).__init__(None, self.config)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '1.0.0'

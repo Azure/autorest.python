@@ -47,10 +47,11 @@ import pytest
 
 @pytest.fixture
 def client():
-    return AutoRestRequiredOptionalTestService(
+    with AutoRestRequiredOptionalTestService(
             "required_path",
             "required_query",
-            base_url="http://localhost:3000")
+            base_url="http://localhost:3000") as client:
+        yield client
 
 class TestRequiredOptional(object):
 

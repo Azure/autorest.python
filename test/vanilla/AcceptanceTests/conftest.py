@@ -156,8 +156,8 @@ class AdapterForTest(HTTPAdapter):
         self.max_retries.method_whitelist = {'HEAD', 'GET', 'PUT', 'DELETE', 'OPTIONS', 'TRACE', 'PATCH', 'POST'}
 
 class TestAuthentication(object):
-    def signed_session(self):
-        session = requests.Session()
+    def signed_session(self, session=None):
+        session = session or requests.Session()
         session.mount('http://localhost:3000/', AdapterForTest())
         return session
 

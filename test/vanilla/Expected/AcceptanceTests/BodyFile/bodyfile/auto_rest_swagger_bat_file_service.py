@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.service_client import ServiceClient
+from msrest.service_client import SDKClient
 from msrest import Configuration, Serializer, Deserializer
 from .version import VERSION
 from .operations import FilesOperations
@@ -35,7 +35,7 @@ class AutoRestSwaggerBATFileServiceConfiguration(Configuration):
         self.add_user_agent('autorestswaggerbatfileservice/{}'.format(VERSION))
 
 
-class AutoRestSwaggerBATFileService(object):
+class AutoRestSwaggerBATFileService(SDKClient):
     """Test Infrastructure for AutoRest Swagger BAT
 
     :ivar config: Configuration for client.
@@ -51,7 +51,7 @@ class AutoRestSwaggerBATFileService(object):
             self, base_url=None):
 
         self.config = AutoRestSwaggerBATFileServiceConfiguration(base_url)
-        self._client = ServiceClient(None, self.config)
+        super(AutoRestSwaggerBATFileService, self).__init__(None, self.config)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '1.0.0'

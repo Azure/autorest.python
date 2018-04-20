@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.service_client import ServiceClient
+from msrest.service_client import SDKClient
 from msrest import Configuration, Serializer, Deserializer
 from .version import VERSION
 from .operations import NumberOperations
@@ -35,7 +35,7 @@ class AutoRestNumberTestServiceConfiguration(Configuration):
         self.add_user_agent('autorestnumbertestservice/{}'.format(VERSION))
 
 
-class AutoRestNumberTestService(object):
+class AutoRestNumberTestService(SDKClient):
     """Test Infrastructure for AutoRest
 
     :ivar config: Configuration for client.
@@ -51,7 +51,7 @@ class AutoRestNumberTestService(object):
             self, base_url=None):
 
         self.config = AutoRestNumberTestServiceConfiguration(base_url)
-        self._client = ServiceClient(None, self.config)
+        super(AutoRestNumberTestService, self).__init__(None, self.config)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '1.0.0'

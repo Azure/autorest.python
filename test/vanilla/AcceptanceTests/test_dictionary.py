@@ -47,7 +47,8 @@ import pytest
 
 @pytest.fixture
 def client():
-    return AutoRestSwaggerBATdictionaryService(base_url="http://localhost:3000")
+    with AutoRestSwaggerBATdictionaryService(base_url="http://localhost:3000") as client:
+        yield client
 
 class TestDictionary(object):
 

@@ -40,6 +40,6 @@ class SubProduct(SubResource):
     }
 
     def __init__(self, *, provisioning_state: str=None, **kwargs) -> None:
-        super(SubProduct, self).__init__(, **kwargs)
+        super(SubProduct, self).__init__(**kwargs)
         self.provisioning_state = provisioning_state
         self.provisioning_state_values = None
