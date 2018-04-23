@@ -39,6 +39,15 @@ class Metrics(Model):
         'include_ap_is': {'key': 'IncludeAPIs', 'type': 'bool'},
         'retention_policy': {'key': 'RetentionPolicy', 'type': 'RetentionPolicy'},
     }
+    _xml_map = {
+        'name': 'Metrics'
+    }
+    _xml_attribute_map = {
+        'version': {'name': 'Version'},
+        'enabled': {'name': 'Enabled'},
+        'include_ap_is': {'name': 'IncludeAPIs'},
+        'retention_policy': {'name': 'RetentionPolicy'},
+    }
 
     def __init__(self, *, enabled: bool, version: str=None, include_ap_is: bool=None, retention_policy=None, **kwargs) -> None:
         super(Metrics, self).__init__(**kwargs)

@@ -28,6 +28,14 @@ class Slide(Model):
         'title': {'key': 'title', 'type': 'str'},
         'items': {'key': 'items', 'type': '[str]'},
     }
+    _xml_map = {
+        'name': 'Slide'
+    }
+    _xml_attribute_map = {
+        'type': {'name': 'type', 'attr': True},
+        'title': {'name': 'title'},
+        'items': {'name': 'items', 'wrappedName': 'item'},
+    }
 
     def __init__(self, **kwargs):
         super(Slide, self).__init__(**kwargs)

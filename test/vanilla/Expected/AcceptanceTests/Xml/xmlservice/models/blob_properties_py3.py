@@ -115,6 +115,39 @@ class BlobProperties(Model):
         'access_tier_inferred': {'key': 'AccessTierInferred', 'type': 'bool'},
         'archive_status': {'key': 'ArchiveStatus', 'type': 'str'},
     }
+    _xml_map = {
+        'name': 'BlobProperties'
+    }
+    _xml_attribute_map = {
+        'last_modified': {'name': 'Last-Modified'},
+        'etag': {'name': 'Etag'},
+        'content_length': {'name': 'Content-Length'},
+        'content_type': {'name': 'Content-Type'},
+        'content_encoding': {'name': 'Content-Encoding'},
+        'content_language': {'name': 'Content-Language'},
+        'content_md5': {'name': 'Content-MD5'},
+        'content_disposition': {'name': 'Content-Disposition'},
+        'cache_control': {'name': 'Cache-Control'},
+        'blob_sequence_number': {'name': 'x-ms-blob-sequence-number'},
+        'blob_type': {'name': 'BlobType'},
+        'lease_status': {'name': 'LeaseStatus'},
+        'lease_state': {'name': 'LeaseState'},
+        'lease_duration': {'name': 'LeaseDuration'},
+        'copy_id': {'name': 'CopyId'},
+        'copy_status': {'name': 'CopyStatus'},
+        'copy_source': {'name': 'CopySource'},
+        'copy_progress': {'name': 'CopyProgress'},
+        'copy_completion_time': {'name': 'CopyCompletionTime'},
+        'copy_status_description': {'name': 'CopyStatusDescription'},
+        'server_encrypted': {'name': 'ServerEncrypted'},
+        'incremental_copy': {'name': 'IncrementalCopy'},
+        'destination_snapshot': {'name': 'DestinationSnapshot'},
+        'deleted_time': {'name': 'DeletedTime'},
+        'remaining_retention_days': {'name': 'RemainingRetentionDays'},
+        'access_tier': {'name': 'AccessTier'},
+        'access_tier_inferred': {'name': 'AccessTierInferred'},
+        'archive_status': {'name': 'ArchiveStatus'},
+    }
 
     def __init__(self, *, last_modified, etag: str, content_length: int=None, content_type: str=None, content_encoding: str=None, content_language: str=None, content_md5: str=None, content_disposition: str=None, cache_control: str=None, blob_sequence_number: int=None, blob_type=None, lease_status=None, lease_state=None, lease_duration=None, copy_id: str=None, copy_status=None, copy_source: str=None, copy_progress: str=None, copy_completion_time=None, copy_status_description: str=None, server_encrypted: bool=None, incremental_copy: bool=None, destination_snapshot: str=None, deleted_time=None, remaining_retention_days: int=None, access_tier=None, access_tier_inferred: bool=None, archive_status=None, **kwargs) -> None:
         super(BlobProperties, self).__init__(**kwargs)

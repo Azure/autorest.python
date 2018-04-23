@@ -42,6 +42,17 @@ class StorageServiceProperties(Model):
         'default_service_version': {'key': 'DefaultServiceVersion', 'type': 'str'},
         'delete_retention_policy': {'key': 'DeleteRetentionPolicy', 'type': 'RetentionPolicy'},
     }
+    _xml_map = {
+        'name': 'StorageServiceProperties'
+    }
+    _xml_attribute_map = {
+        'logging': {'name': 'Logging'},
+        'hour_metrics': {'name': 'HourMetrics'},
+        'minute_metrics': {'name': 'MinuteMetrics'},
+        'cors': {'name': 'Cors', 'wrapped': True, 'wrappedName': 'CorsRule'},
+        'default_service_version': {'name': 'DefaultServiceVersion'},
+        'delete_retention_policy': {'name': 'DeleteRetentionPolicy'},
+    }
 
     def __init__(self, **kwargs):
         super(StorageServiceProperties, self).__init__(**kwargs)

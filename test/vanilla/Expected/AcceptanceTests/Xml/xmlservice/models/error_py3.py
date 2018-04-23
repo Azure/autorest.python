@@ -26,6 +26,13 @@ class Error(Model):
         'status': {'key': 'status', 'type': 'int'},
         'message': {'key': 'message', 'type': 'str'},
     }
+    _xml_map = {
+        'name': 'Error'
+    }
+    _xml_attribute_map = {
+        'status': {'name': 'status'},
+        'message': {'name': 'message'},
+    }
 
     def __init__(self, *, status: int=None, message: str=None, **kwargs) -> None:
         super(Error, self).__init__(**kwargs)

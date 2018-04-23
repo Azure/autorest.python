@@ -36,6 +36,14 @@ class AccessPolicy(Model):
         'expiry': {'key': 'Expiry', 'type': 'iso-8601'},
         'permission': {'key': 'Permission', 'type': 'str'},
     }
+    _xml_map = {
+        'name': 'AccessPolicy'
+    }
+    _xml_attribute_map = {
+        'start': {'name': 'Start'},
+        'expiry': {'name': 'Expiry'},
+        'permission': {'name': 'Permission'},
+    }
 
     def __init__(self, **kwargs):
         super(AccessPolicy, self).__init__(**kwargs)

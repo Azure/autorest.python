@@ -25,6 +25,13 @@ class Blobs(Model):
         'blob_prefix': {'key': 'BlobPrefix', 'type': '[BlobPrefix]'},
         'blob': {'key': 'Blob', 'type': '[Blob]'},
     }
+    _xml_map = {
+        'name': 'Blobs'
+    }
+    _xml_attribute_map = {
+        'blob_prefix': {'name': 'BlobPrefix', 'wrappedName': 'BlobPrefix'},
+        'blob': {'name': 'Blob', 'wrappedName': 'Blob'},
+    }
 
     def __init__(self, **kwargs):
         super(Blobs, self).__init__(**kwargs)

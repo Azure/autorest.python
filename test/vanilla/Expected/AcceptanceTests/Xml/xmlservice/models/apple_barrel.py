@@ -25,6 +25,13 @@ class AppleBarrel(Model):
         'good_apples': {'key': 'GoodApples', 'type': '[str]'},
         'bad_apples': {'key': 'BadApples', 'type': '[str]'},
     }
+    _xml_map = {
+        'name': 'AppleBarrel'
+    }
+    _xml_attribute_map = {
+        'good_apples': {'name': 'GoodApples', 'wrapped': True, 'wrappedName': 'Apple'},
+        'bad_apples': {'name': 'BadApples', 'wrapped': True, 'wrappedName': 'Apple'},
+    }
 
     def __init__(self, **kwargs):
         super(AppleBarrel, self).__init__(**kwargs)

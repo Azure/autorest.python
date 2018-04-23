@@ -58,6 +58,16 @@ class CorsRule(Model):
         'exposed_headers': {'key': 'ExposedHeaders', 'type': 'str'},
         'max_age_in_seconds': {'key': 'MaxAgeInSeconds', 'type': 'int'},
     }
+    _xml_map = {
+        'name': 'CorsRule'
+    }
+    _xml_attribute_map = {
+        'allowed_origins': {'name': 'AllowedOrigins'},
+        'allowed_methods': {'name': 'AllowedMethods'},
+        'allowed_headers': {'name': 'AllowedHeaders'},
+        'exposed_headers': {'name': 'ExposedHeaders'},
+        'max_age_in_seconds': {'name': 'MaxAgeInSeconds'},
+    }
 
     def __init__(self, **kwargs):
         super(CorsRule, self).__init__(**kwargs)

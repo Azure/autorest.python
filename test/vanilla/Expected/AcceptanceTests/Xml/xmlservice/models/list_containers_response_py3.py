@@ -46,6 +46,17 @@ class ListContainersResponse(Model):
         'containers': {'key': 'Containers', 'type': '[Container]'},
         'next_marker': {'key': 'NextMarker', 'type': 'str'},
     }
+    _xml_map = {
+        'name': 'EnumerationResults'
+    }
+    _xml_attribute_map = {
+        'service_endpoint': {'name': 'ServiceEndpoint', 'attr': True},
+        'prefix': {'name': 'Prefix'},
+        'marker': {'name': 'Marker'},
+        'max_results': {'name': 'MaxResults'},
+        'containers': {'name': 'Containers', 'wrapped': True, 'wrappedName': 'Container'},
+        'next_marker': {'name': 'NextMarker'},
+    }
 
     def __init__(self, *, service_endpoint: str, prefix: str, max_results: int, next_marker: str, marker: str=None, containers=None, **kwargs) -> None:
         super(ListContainersResponse, self).__init__(**kwargs)

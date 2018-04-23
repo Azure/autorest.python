@@ -43,6 +43,16 @@ class Blob(Model):
         'properties': {'key': 'Properties', 'type': 'BlobProperties'},
         'metadata': {'key': 'Metadata', 'type': '{str}'},
     }
+    _xml_map = {
+        'name': 'Blob'
+    }
+    _xml_attribute_map = {
+        'name': {'name': 'Name'},
+        'deleted': {'name': 'Deleted'},
+        'snapshot': {'name': 'Snapshot'},
+        'properties': {'name': 'Properties'},
+        'metadata': {'name': 'Metadata'},
+    }
 
     def __init__(self, **kwargs):
         super(Blob, self).__init__(**kwargs)

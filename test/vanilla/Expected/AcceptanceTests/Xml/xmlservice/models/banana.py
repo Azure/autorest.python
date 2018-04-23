@@ -29,6 +29,14 @@ class Banana(Model):
         'flavor': {'key': 'flavor', 'type': 'str'},
         'expiration': {'key': 'expiration', 'type': 'iso-8601'},
     }
+    _xml_map = {
+        'name': 'banana'
+    }
+    _xml_attribute_map = {
+        'name': {'name': 'name'},
+        'flavor': {'name': 'flavor'},
+        'expiration': {'name': 'expiration'},
+    }
 
     def __init__(self, **kwargs):
         super(Banana, self).__init__(**kwargs)

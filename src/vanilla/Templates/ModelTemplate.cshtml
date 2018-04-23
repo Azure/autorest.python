@@ -97,6 +97,21 @@ else
     }
     @:}
 }
+@if(Model.CodeModel.ShouldGenerateXmlSerialization)
+{
+    @:_xml_map = {
+        @:@(Model.InitializeXmlProperty())
+    @:}
+    @:_xml_attribute_map = {
+    if (mapAttrList.Count > 0)
+    {
+      for (int i = 0; i < mapAttrList.Count; i++) 
+      {
+        @:@(Model.InitializeXmlProperty(mapAttrList[i]))
+      }
+    }
+    @:}
+}
 @if (Model.SubModelTypes.Any())
 {
 <text>

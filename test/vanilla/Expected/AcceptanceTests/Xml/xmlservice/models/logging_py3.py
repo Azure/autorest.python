@@ -47,6 +47,16 @@ class Logging(Model):
         'write': {'key': 'Write', 'type': 'bool'},
         'retention_policy': {'key': 'RetentionPolicy', 'type': 'RetentionPolicy'},
     }
+    _xml_map = {
+        'name': 'Logging'
+    }
+    _xml_attribute_map = {
+        'version': {'name': 'Version'},
+        'delete': {'name': 'Delete'},
+        'read': {'name': 'Read'},
+        'write': {'name': 'Write'},
+        'retention_policy': {'name': 'RetentionPolicy'},
+    }
 
     def __init__(self, *, version: str, delete: bool, read: bool, write: bool, retention_policy, **kwargs) -> None:
         super(Logging, self).__init__(**kwargs)

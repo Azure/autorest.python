@@ -45,6 +45,17 @@ class ContainerProperties(Model):
         'lease_duration': {'key': 'LeaseDuration', 'type': 'LeaseDurationType'},
         'public_access': {'key': 'PublicAccess', 'type': 'str'},
     }
+    _xml_map = {
+        'name': 'ContainerProperties'
+    }
+    _xml_attribute_map = {
+        'last_modified': {'name': 'Last-Modified'},
+        'etag': {'name': 'Etag'},
+        'lease_status': {'name': 'LeaseStatus'},
+        'lease_state': {'name': 'LeaseState'},
+        'lease_duration': {'name': 'LeaseDuration'},
+        'public_access': {'name': 'PublicAccess'},
+    }
 
     def __init__(self, *, last_modified, etag: str, lease_status=None, lease_state=None, lease_duration=None, public_access=None, **kwargs) -> None:
         super(ContainerProperties, self).__init__(**kwargs)

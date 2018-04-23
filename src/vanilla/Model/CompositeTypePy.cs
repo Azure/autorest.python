@@ -392,10 +392,73 @@ namespace AutoRest.Python.Model
             //'id':{'key':'id', 'type':'str'},
             return string.Format(CultureInfo.InvariantCulture,
                 "'{0}': {{'key': '{1}', 'type': '{2}'}},",
-                modelProperty.Name, modelProperty.SerializedName,
+                modelProperty.Name,
+                modelProperty.SerializedName,
                 ClientModelExtensions.GetPythonSerializationType(modelProperty.ModelType));
         }
 
+        public virtual string InitializeXmlProperty()
+        {
+            List<string> combinedDeclarations = new List<string>();
+
+            if(!string.IsNullOrEmpty(XmlName))
+            {
+                combinedDeclarations.Add("'name': '"+XmlName+"'");
+            }
+            if(!string.IsNullOrEmpty(XmlPrefix))
+            {
+                combinedDeclarations.Add("'prefix': '"+XmlPrefix+"'");
+            }
+            if(!string.IsNullOrEmpty(XmlNamespace))
+            {
+                combinedDeclarations.Add("'ns': '"+XmlNamespace+"'");
+            }
+
+            return string.Join(", ", combinedDeclarations);
+        }
+
+        public virtual string InitializeXmlProperty(Property modelProperty)
+        {
+            if (modelProperty == null || modelProperty.ModelType == null)
+            {
+                throw new ArgumentNullException("modelProperty");
+            }
+
+            List<string> combinedDeclarations = new List<string>();
+
+            if(!string.IsNullOrEmpty(modelProperty.XmlName))
+            {
+                combinedDeclarations.Add("'name': '"+modelProperty.XmlName+"'");
+            }
+            if(modelProperty.XmlIsAttribute)
+            {
+                combinedDeclarations.Add("'attr': True");
+            }
+            if(modelProperty.XmlIsWrapped)
+            {
+                combinedDeclarations.Add("'wrapped': True");
+            }
+            if(!string.IsNullOrEmpty(modelProperty.XmlPrefix))
+            {
+                combinedDeclarations.Add("'prefix': '"+modelProperty.XmlPrefix+"'");
+            }
+            if(!string.IsNullOrEmpty(modelProperty.XmlNamespace))
+            {
+                combinedDeclarations.Add("'ns': '"+modelProperty.XmlNamespace+"'");
+            }
+
+            SequenceType sequenceType = modelProperty.ModelType as SequenceType;
+            if (sequenceType != null && !string.IsNullOrEmpty(sequenceType.ElementXmlName))
+            {
+                combinedDeclarations.Add("'wrappedName': '"+sequenceType.ElementXmlName+"'");
+            }
+
+            return string.Format(CultureInfo.InvariantCulture,
+                "'{0}': {{{1}}}",
+                modelProperty.Name,
+                string.Join(", ", combinedDeclarations)
+            ) + ",";
+        }
         public string InitializeProperty(string objectName, Property property, bool kwargsMode)
         {
             if (property == null || property.ModelType == null)

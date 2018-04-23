@@ -56,6 +56,19 @@ class ListBlobsResponse(Model):
         'blobs': {'key': 'Blobs', 'type': 'Blobs'},
         'next_marker': {'key': 'NextMarker', 'type': 'str'},
     }
+    _xml_map = {
+        'name': 'EnumerationResults'
+    }
+    _xml_attribute_map = {
+        'service_endpoint': {'name': 'ServiceEndpoint', 'attr': True},
+        'container_name': {'name': 'ContainerName', 'attr': True},
+        'prefix': {'name': 'Prefix'},
+        'marker': {'name': 'Marker'},
+        'max_results': {'name': 'MaxResults'},
+        'delimiter': {'name': 'Delimiter'},
+        'blobs': {'name': 'Blobs'},
+        'next_marker': {'name': 'NextMarker'},
+    }
 
     def __init__(self, *, service_endpoint: str, container_name: str, prefix: str, marker: str, max_results: int, delimiter: str, blobs, next_marker: str, **kwargs) -> None:
         super(ListBlobsResponse, self).__init__(**kwargs)

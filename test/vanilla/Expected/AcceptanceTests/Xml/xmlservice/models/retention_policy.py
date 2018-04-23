@@ -35,6 +35,13 @@ class RetentionPolicy(Model):
         'enabled': {'key': 'Enabled', 'type': 'bool'},
         'days': {'key': 'Days', 'type': 'int'},
     }
+    _xml_map = {
+        'name': 'RetentionPolicy'
+    }
+    _xml_attribute_map = {
+        'enabled': {'name': 'Enabled'},
+        'days': {'name': 'Days'},
+    }
 
     def __init__(self, **kwargs):
         super(RetentionPolicy, self).__init__(**kwargs)

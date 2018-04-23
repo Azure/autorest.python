@@ -115,6 +115,39 @@ class BlobProperties(Model):
         'access_tier_inferred': {'key': 'AccessTierInferred', 'type': 'bool'},
         'archive_status': {'key': 'ArchiveStatus', 'type': 'str'},
     }
+    _xml_map = {
+        'name': 'BlobProperties'
+    }
+    _xml_attribute_map = {
+        'last_modified': {'name': 'Last-Modified'},
+        'etag': {'name': 'Etag'},
+        'content_length': {'name': 'Content-Length'},
+        'content_type': {'name': 'Content-Type'},
+        'content_encoding': {'name': 'Content-Encoding'},
+        'content_language': {'name': 'Content-Language'},
+        'content_md5': {'name': 'Content-MD5'},
+        'content_disposition': {'name': 'Content-Disposition'},
+        'cache_control': {'name': 'Cache-Control'},
+        'blob_sequence_number': {'name': 'x-ms-blob-sequence-number'},
+        'blob_type': {'name': 'BlobType'},
+        'lease_status': {'name': 'LeaseStatus'},
+        'lease_state': {'name': 'LeaseState'},
+        'lease_duration': {'name': 'LeaseDuration'},
+        'copy_id': {'name': 'CopyId'},
+        'copy_status': {'name': 'CopyStatus'},
+        'copy_source': {'name': 'CopySource'},
+        'copy_progress': {'name': 'CopyProgress'},
+        'copy_completion_time': {'name': 'CopyCompletionTime'},
+        'copy_status_description': {'name': 'CopyStatusDescription'},
+        'server_encrypted': {'name': 'ServerEncrypted'},
+        'incremental_copy': {'name': 'IncrementalCopy'},
+        'destination_snapshot': {'name': 'DestinationSnapshot'},
+        'deleted_time': {'name': 'DeletedTime'},
+        'remaining_retention_days': {'name': 'RemainingRetentionDays'},
+        'access_tier': {'name': 'AccessTier'},
+        'access_tier_inferred': {'name': 'AccessTierInferred'},
+        'archive_status': {'name': 'ArchiveStatus'},
+    }
 
     def __init__(self, **kwargs):
         super(BlobProperties, self).__init__(**kwargs)

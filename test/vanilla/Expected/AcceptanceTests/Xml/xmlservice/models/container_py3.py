@@ -35,6 +35,14 @@ class Container(Model):
         'properties': {'key': 'Properties', 'type': 'ContainerProperties'},
         'metadata': {'key': 'Metadata', 'type': '{str}'},
     }
+    _xml_map = {
+        'name': 'Container'
+    }
+    _xml_attribute_map = {
+        'name': {'name': 'Name'},
+        'properties': {'name': 'Properties'},
+        'metadata': {'name': 'Metadata'},
+    }
 
     def __init__(self, *, name: str, properties, metadata=None, **kwargs) -> None:
         super(Container, self).__init__(**kwargs)
