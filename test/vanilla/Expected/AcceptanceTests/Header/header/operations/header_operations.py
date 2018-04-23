@@ -57,7 +57,6 @@ class HeaderOperations(object):
 
         # Construct headers
         header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if custom_headers:
             header_parameters.update(custom_headers)
         header_parameters['User-Agent'] = self._serialize.header("user_agent", user_agent, 'str')
@@ -95,7 +94,6 @@ class HeaderOperations(object):
 
         # Construct headers
         header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if custom_headers:
             header_parameters.update(custom_headers)
 
@@ -138,7 +136,6 @@ class HeaderOperations(object):
 
         # Construct headers
         header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if custom_headers:
             header_parameters.update(custom_headers)
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
@@ -176,7 +173,6 @@ class HeaderOperations(object):
 
         # Construct headers
         header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if custom_headers:
             header_parameters.update(custom_headers)
 
@@ -222,7 +218,6 @@ class HeaderOperations(object):
 
         # Construct headers
         header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if custom_headers:
             header_parameters.update(custom_headers)
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
@@ -264,7 +259,6 @@ class HeaderOperations(object):
 
         # Construct headers
         header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if custom_headers:
             header_parameters.update(custom_headers)
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
@@ -311,7 +305,6 @@ class HeaderOperations(object):
 
         # Construct headers
         header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if custom_headers:
             header_parameters.update(custom_headers)
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
@@ -353,7 +346,6 @@ class HeaderOperations(object):
 
         # Construct headers
         header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if custom_headers:
             header_parameters.update(custom_headers)
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
@@ -400,7 +392,6 @@ class HeaderOperations(object):
 
         # Construct headers
         header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if custom_headers:
             header_parameters.update(custom_headers)
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
@@ -442,7 +433,6 @@ class HeaderOperations(object):
 
         # Construct headers
         header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if custom_headers:
             header_parameters.update(custom_headers)
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
@@ -489,7 +479,6 @@ class HeaderOperations(object):
 
         # Construct headers
         header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if custom_headers:
             header_parameters.update(custom_headers)
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
@@ -531,7 +520,6 @@ class HeaderOperations(object):
 
         # Construct headers
         header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if custom_headers:
             header_parameters.update(custom_headers)
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
@@ -578,7 +566,6 @@ class HeaderOperations(object):
 
         # Construct headers
         header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if custom_headers:
             header_parameters.update(custom_headers)
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
@@ -620,7 +607,6 @@ class HeaderOperations(object):
 
         # Construct headers
         header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if custom_headers:
             header_parameters.update(custom_headers)
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
@@ -669,7 +655,6 @@ class HeaderOperations(object):
 
         # Construct headers
         header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if custom_headers:
             header_parameters.update(custom_headers)
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
@@ -713,7 +698,6 @@ class HeaderOperations(object):
 
         # Construct headers
         header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if custom_headers:
             header_parameters.update(custom_headers)
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
@@ -761,7 +745,6 @@ class HeaderOperations(object):
 
         # Construct headers
         header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if custom_headers:
             header_parameters.update(custom_headers)
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
@@ -803,7 +786,6 @@ class HeaderOperations(object):
 
         # Construct headers
         header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if custom_headers:
             header_parameters.update(custom_headers)
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
@@ -852,7 +834,6 @@ class HeaderOperations(object):
 
         # Construct headers
         header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if custom_headers:
             header_parameters.update(custom_headers)
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
@@ -895,7 +876,6 @@ class HeaderOperations(object):
 
         # Construct headers
         header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if custom_headers:
             header_parameters.update(custom_headers)
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
@@ -944,7 +924,6 @@ class HeaderOperations(object):
 
         # Construct headers
         header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if custom_headers:
             header_parameters.update(custom_headers)
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
@@ -988,7 +967,6 @@ class HeaderOperations(object):
 
         # Construct headers
         header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if custom_headers:
             header_parameters.update(custom_headers)
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
@@ -1036,7 +1014,6 @@ class HeaderOperations(object):
 
         # Construct headers
         header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if custom_headers:
             header_parameters.update(custom_headers)
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
@@ -1078,7 +1055,6 @@ class HeaderOperations(object):
 
         # Construct headers
         header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if custom_headers:
             header_parameters.update(custom_headers)
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
@@ -1125,7 +1101,6 @@ class HeaderOperations(object):
 
         # Construct headers
         header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if custom_headers:
             header_parameters.update(custom_headers)
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
@@ -1167,7 +1142,6 @@ class HeaderOperations(object):
 
         # Construct headers
         header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if custom_headers:
             header_parameters.update(custom_headers)
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
@@ -1215,7 +1189,6 @@ class HeaderOperations(object):
 
         # Construct headers
         header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if custom_headers:
             header_parameters.update(custom_headers)
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
@@ -1258,7 +1231,6 @@ class HeaderOperations(object):
 
         # Construct headers
         header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if custom_headers:
             header_parameters.update(custom_headers)
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
@@ -1300,7 +1272,6 @@ class HeaderOperations(object):
 
         # Construct headers
         header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if custom_headers:
             header_parameters.update(custom_headers)
 
