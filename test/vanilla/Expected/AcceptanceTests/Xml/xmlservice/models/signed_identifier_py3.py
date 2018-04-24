@@ -29,15 +29,11 @@ class SignedIdentifier(Model):
     }
 
     _attribute_map = {
-        'id': {'key': 'Id', 'type': 'str'},
-        'access_policy': {'key': 'AccessPolicy', 'type': 'AccessPolicy'},
+        'id': {'key': 'Id', 'type': 'str', 'xml': {'name': 'Id'}},
+        'access_policy': {'key': 'AccessPolicy', 'type': 'AccessPolicy', 'xml': {'name': 'AccessPolicy'}},
     }
     _xml_map = {
         'name': 'SignedIdentifier'
-    }
-    _xml_attribute_map = {
-        'id': {'name': 'Id'},
-        'access_policy': {'name': 'AccessPolicy'},
     }
 
     def __init__(self, *, id: str, access_policy, **kwargs) -> None:

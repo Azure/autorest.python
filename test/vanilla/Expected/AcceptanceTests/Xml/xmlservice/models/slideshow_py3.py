@@ -26,19 +26,13 @@ class Slideshow(Model):
     """
 
     _attribute_map = {
-        'title': {'key': 'title', 'type': 'str'},
-        'date_property': {'key': 'date', 'type': 'str'},
-        'author': {'key': 'author', 'type': 'str'},
-        'slides': {'key': 'slides', 'type': '[Slide]'},
+        'title': {'key': 'title', 'type': 'str', 'xml': {'name': 'title', 'attr': True}},
+        'date_property': {'key': 'date', 'type': 'str', 'xml': {'name': 'date', 'attr': True}},
+        'author': {'key': 'author', 'type': 'str', 'xml': {'name': 'author', 'attr': True}},
+        'slides': {'key': 'slides', 'type': '[Slide]', 'xml': {'name': 'slides', 'wrappedName': 'slide'}},
     }
     _xml_map = {
         'name': 'slideshow'
-    }
-    _xml_attribute_map = {
-        'title': {'name': 'title', 'attr': True},
-        'date_property': {'name': 'date', 'attr': True},
-        'author': {'name': 'author', 'attr': True},
-        'slides': {'name': 'slides', 'wrappedName': 'slide'},
     }
 
     def __init__(self, *, title: str=None, date_property: str=None, author: str=None, slides=None, **kwargs) -> None:

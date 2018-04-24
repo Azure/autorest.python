@@ -25,17 +25,12 @@ class Banana(Model):
     """
 
     _attribute_map = {
-        'name': {'key': 'name', 'type': 'str'},
-        'flavor': {'key': 'flavor', 'type': 'str'},
-        'expiration': {'key': 'expiration', 'type': 'iso-8601'},
+        'name': {'key': 'name', 'type': 'str', 'xml': {'name': 'name'}},
+        'flavor': {'key': 'flavor', 'type': 'str', 'xml': {'name': 'flavor'}},
+        'expiration': {'key': 'expiration', 'type': 'iso-8601', 'xml': {'name': 'expiration'}},
     }
     _xml_map = {
         'name': 'banana'
-    }
-    _xml_attribute_map = {
-        'name': {'name': 'name'},
-        'flavor': {'name': 'flavor'},
-        'expiration': {'name': 'expiration'},
     }
 
     def __init__(self, *, name: str=None, flavor: str=None, expiration=None, **kwargs) -> None:

@@ -31,17 +31,12 @@ class Container(Model):
     }
 
     _attribute_map = {
-        'name': {'key': 'Name', 'type': 'str'},
-        'properties': {'key': 'Properties', 'type': 'ContainerProperties'},
-        'metadata': {'key': 'Metadata', 'type': '{str}'},
+        'name': {'key': 'Name', 'type': 'str', 'xml': {'name': 'Name'}},
+        'properties': {'key': 'Properties', 'type': 'ContainerProperties', 'xml': {'name': 'Properties'}},
+        'metadata': {'key': 'Metadata', 'type': '{str}', 'xml': {'name': 'Metadata'}},
     }
     _xml_map = {
         'name': 'Container'
-    }
-    _xml_attribute_map = {
-        'name': {'name': 'Name'},
-        'properties': {'name': 'Properties'},
-        'metadata': {'name': 'Metadata'},
     }
 
     def __init__(self, *, name: str, properties, metadata=None, **kwargs) -> None:

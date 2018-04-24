@@ -41,21 +41,14 @@ class Logging(Model):
     }
 
     _attribute_map = {
-        'version': {'key': 'Version', 'type': 'str'},
-        'delete': {'key': 'Delete', 'type': 'bool'},
-        'read': {'key': 'Read', 'type': 'bool'},
-        'write': {'key': 'Write', 'type': 'bool'},
-        'retention_policy': {'key': 'RetentionPolicy', 'type': 'RetentionPolicy'},
+        'version': {'key': 'Version', 'type': 'str', 'xml': {'name': 'Version'}},
+        'delete': {'key': 'Delete', 'type': 'bool', 'xml': {'name': 'Delete'}},
+        'read': {'key': 'Read', 'type': 'bool', 'xml': {'name': 'Read'}},
+        'write': {'key': 'Write', 'type': 'bool', 'xml': {'name': 'Write'}},
+        'retention_policy': {'key': 'RetentionPolicy', 'type': 'RetentionPolicy', 'xml': {'name': 'RetentionPolicy'}},
     }
     _xml_map = {
         'name': 'Logging'
-    }
-    _xml_attribute_map = {
-        'version': {'name': 'Version'},
-        'delete': {'name': 'Delete'},
-        'read': {'name': 'Read'},
-        'write': {'name': 'Write'},
-        'retention_policy': {'name': 'RetentionPolicy'},
     }
 
     def __init__(self, *, version: str, delete: bool, read: bool, write: bool, retention_policy, **kwargs) -> None:

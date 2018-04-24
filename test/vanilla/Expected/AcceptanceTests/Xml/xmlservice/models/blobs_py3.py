@@ -22,15 +22,11 @@ class Blobs(Model):
     """
 
     _attribute_map = {
-        'blob_prefix': {'key': 'BlobPrefix', 'type': '[BlobPrefix]'},
-        'blob': {'key': 'Blob', 'type': '[Blob]'},
+        'blob_prefix': {'key': 'BlobPrefix', 'type': '[BlobPrefix]', 'xml': {'name': 'BlobPrefix', 'wrappedName': 'BlobPrefix'}},
+        'blob': {'key': 'Blob', 'type': '[Blob]', 'xml': {'name': 'Blob', 'wrappedName': 'Blob'}},
     }
     _xml_map = {
         'name': 'Blobs'
-    }
-    _xml_attribute_map = {
-        'blob_prefix': {'name': 'BlobPrefix', 'wrappedName': 'BlobPrefix'},
-        'blob': {'name': 'Blob', 'wrappedName': 'Blob'},
     }
 
     def __init__(self, *, blob_prefix=None, blob=None, **kwargs) -> None:

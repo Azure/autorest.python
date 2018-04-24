@@ -26,13 +26,10 @@ class BlobPrefix(Model):
     }
 
     _attribute_map = {
-        'name': {'key': 'Name', 'type': 'str'},
+        'name': {'key': 'Name', 'type': 'str', 'xml': {'name': 'Name'}},
     }
     _xml_map = {
         'name': 'BlobPrefix'
-    }
-    _xml_attribute_map = {
-        'name': {'name': 'Name'},
     }
 
     def __init__(self, **kwargs):

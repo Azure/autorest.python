@@ -34,19 +34,13 @@ class Metrics(Model):
     }
 
     _attribute_map = {
-        'version': {'key': 'Version', 'type': 'str'},
-        'enabled': {'key': 'Enabled', 'type': 'bool'},
-        'include_ap_is': {'key': 'IncludeAPIs', 'type': 'bool'},
-        'retention_policy': {'key': 'RetentionPolicy', 'type': 'RetentionPolicy'},
+        'version': {'key': 'Version', 'type': 'str', 'xml': {'name': 'Version'}},
+        'enabled': {'key': 'Enabled', 'type': 'bool', 'xml': {'name': 'Enabled'}},
+        'include_ap_is': {'key': 'IncludeAPIs', 'type': 'bool', 'xml': {'name': 'IncludeAPIs'}},
+        'retention_policy': {'key': 'RetentionPolicy', 'type': 'RetentionPolicy', 'xml': {'name': 'RetentionPolicy'}},
     }
     _xml_map = {
         'name': 'Metrics'
-    }
-    _xml_attribute_map = {
-        'version': {'name': 'Version'},
-        'enabled': {'name': 'Enabled'},
-        'include_ap_is': {'name': 'IncludeAPIs'},
-        'retention_policy': {'name': 'RetentionPolicy'},
     }
 
     def __init__(self, **kwargs):

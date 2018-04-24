@@ -35,23 +35,15 @@ class StorageServiceProperties(Model):
     """
 
     _attribute_map = {
-        'logging': {'key': 'Logging', 'type': 'Logging'},
-        'hour_metrics': {'key': 'HourMetrics', 'type': 'Metrics'},
-        'minute_metrics': {'key': 'MinuteMetrics', 'type': 'Metrics'},
-        'cors': {'key': 'Cors', 'type': '[CorsRule]'},
-        'default_service_version': {'key': 'DefaultServiceVersion', 'type': 'str'},
-        'delete_retention_policy': {'key': 'DeleteRetentionPolicy', 'type': 'RetentionPolicy'},
+        'logging': {'key': 'Logging', 'type': 'Logging', 'xml': {'name': 'Logging'}},
+        'hour_metrics': {'key': 'HourMetrics', 'type': 'Metrics', 'xml': {'name': 'HourMetrics'}},
+        'minute_metrics': {'key': 'MinuteMetrics', 'type': 'Metrics', 'xml': {'name': 'MinuteMetrics'}},
+        'cors': {'key': 'Cors', 'type': '[CorsRule]', 'xml': {'name': 'Cors', 'wrapped': True, 'wrappedName': 'CorsRule'}},
+        'default_service_version': {'key': 'DefaultServiceVersion', 'type': 'str', 'xml': {'name': 'DefaultServiceVersion'}},
+        'delete_retention_policy': {'key': 'DeleteRetentionPolicy', 'type': 'RetentionPolicy', 'xml': {'name': 'DeleteRetentionPolicy'}},
     }
     _xml_map = {
         'name': 'StorageServiceProperties'
-    }
-    _xml_attribute_map = {
-        'logging': {'name': 'Logging'},
-        'hour_metrics': {'name': 'HourMetrics'},
-        'minute_metrics': {'name': 'MinuteMetrics'},
-        'cors': {'name': 'Cors', 'wrapped': True, 'wrappedName': 'CorsRule'},
-        'default_service_version': {'name': 'DefaultServiceVersion'},
-        'delete_retention_policy': {'name': 'DeleteRetentionPolicy'},
     }
 
     def __init__(self, *, logging=None, hour_metrics=None, minute_metrics=None, cors=None, default_service_version: str=None, delete_retention_policy=None, **kwargs) -> None:

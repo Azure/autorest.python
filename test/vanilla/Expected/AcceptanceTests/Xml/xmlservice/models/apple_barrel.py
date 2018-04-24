@@ -22,15 +22,11 @@ class AppleBarrel(Model):
     """
 
     _attribute_map = {
-        'good_apples': {'key': 'GoodApples', 'type': '[str]'},
-        'bad_apples': {'key': 'BadApples', 'type': '[str]'},
+        'good_apples': {'key': 'GoodApples', 'type': '[str]', 'xml': {'name': 'GoodApples', 'wrapped': True, 'wrappedName': 'Apple'}},
+        'bad_apples': {'key': 'BadApples', 'type': '[str]', 'xml': {'name': 'BadApples', 'wrapped': True, 'wrappedName': 'Apple'}},
     }
     _xml_map = {
         'name': 'AppleBarrel'
-    }
-    _xml_attribute_map = {
-        'good_apples': {'name': 'GoodApples', 'wrapped': True, 'wrappedName': 'Apple'},
-        'bad_apples': {'name': 'BadApples', 'wrapped': True, 'wrappedName': 'Apple'},
     }
 
     def __init__(self, **kwargs):

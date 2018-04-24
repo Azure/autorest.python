@@ -37,21 +37,14 @@ class Blob(Model):
     }
 
     _attribute_map = {
-        'name': {'key': 'Name', 'type': 'str'},
-        'deleted': {'key': 'Deleted', 'type': 'bool'},
-        'snapshot': {'key': 'Snapshot', 'type': 'str'},
-        'properties': {'key': 'Properties', 'type': 'BlobProperties'},
-        'metadata': {'key': 'Metadata', 'type': '{str}'},
+        'name': {'key': 'Name', 'type': 'str', 'xml': {'name': 'Name'}},
+        'deleted': {'key': 'Deleted', 'type': 'bool', 'xml': {'name': 'Deleted'}},
+        'snapshot': {'key': 'Snapshot', 'type': 'str', 'xml': {'name': 'Snapshot'}},
+        'properties': {'key': 'Properties', 'type': 'BlobProperties', 'xml': {'name': 'Properties'}},
+        'metadata': {'key': 'Metadata', 'type': '{str}', 'xml': {'name': 'Metadata'}},
     }
     _xml_map = {
         'name': 'Blob'
-    }
-    _xml_attribute_map = {
-        'name': {'name': 'Name'},
-        'deleted': {'name': 'Deleted'},
-        'snapshot': {'name': 'Snapshot'},
-        'properties': {'name': 'Properties'},
-        'metadata': {'name': 'Metadata'},
     }
 
     def __init__(self, **kwargs):

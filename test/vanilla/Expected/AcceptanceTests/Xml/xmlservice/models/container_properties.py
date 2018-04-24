@@ -38,23 +38,15 @@ class ContainerProperties(Model):
     }
 
     _attribute_map = {
-        'last_modified': {'key': 'Last-Modified', 'type': 'rfc-1123'},
-        'etag': {'key': 'Etag', 'type': 'str'},
-        'lease_status': {'key': 'LeaseStatus', 'type': 'LeaseStatusType'},
-        'lease_state': {'key': 'LeaseState', 'type': 'LeaseStateType'},
-        'lease_duration': {'key': 'LeaseDuration', 'type': 'LeaseDurationType'},
-        'public_access': {'key': 'PublicAccess', 'type': 'str'},
+        'last_modified': {'key': 'Last-Modified', 'type': 'rfc-1123', 'xml': {'name': 'Last-Modified'}},
+        'etag': {'key': 'Etag', 'type': 'str', 'xml': {'name': 'Etag'}},
+        'lease_status': {'key': 'LeaseStatus', 'type': 'LeaseStatusType', 'xml': {'name': 'LeaseStatus'}},
+        'lease_state': {'key': 'LeaseState', 'type': 'LeaseStateType', 'xml': {'name': 'LeaseState'}},
+        'lease_duration': {'key': 'LeaseDuration', 'type': 'LeaseDurationType', 'xml': {'name': 'LeaseDuration'}},
+        'public_access': {'key': 'PublicAccess', 'type': 'str', 'xml': {'name': 'PublicAccess'}},
     }
     _xml_map = {
         'name': 'ContainerProperties'
-    }
-    _xml_attribute_map = {
-        'last_modified': {'name': 'Last-Modified'},
-        'etag': {'name': 'Etag'},
-        'lease_status': {'name': 'LeaseStatus'},
-        'lease_state': {'name': 'LeaseState'},
-        'lease_duration': {'name': 'LeaseDuration'},
-        'public_access': {'name': 'PublicAccess'},
     }
 
     def __init__(self, **kwargs):

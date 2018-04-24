@@ -39,23 +39,15 @@ class ListContainersResponse(Model):
     }
 
     _attribute_map = {
-        'service_endpoint': {'key': 'ServiceEndpoint', 'type': 'str'},
-        'prefix': {'key': 'Prefix', 'type': 'str'},
-        'marker': {'key': 'Marker', 'type': 'str'},
-        'max_results': {'key': 'MaxResults', 'type': 'int'},
-        'containers': {'key': 'Containers', 'type': '[Container]'},
-        'next_marker': {'key': 'NextMarker', 'type': 'str'},
+        'service_endpoint': {'key': 'ServiceEndpoint', 'type': 'str', 'xml': {'name': 'ServiceEndpoint', 'attr': True}},
+        'prefix': {'key': 'Prefix', 'type': 'str', 'xml': {'name': 'Prefix'}},
+        'marker': {'key': 'Marker', 'type': 'str', 'xml': {'name': 'Marker'}},
+        'max_results': {'key': 'MaxResults', 'type': 'int', 'xml': {'name': 'MaxResults'}},
+        'containers': {'key': 'Containers', 'type': '[Container]', 'xml': {'name': 'Containers', 'wrapped': True, 'wrappedName': 'Container'}},
+        'next_marker': {'key': 'NextMarker', 'type': 'str', 'xml': {'name': 'NextMarker'}},
     }
     _xml_map = {
         'name': 'EnumerationResults'
-    }
-    _xml_attribute_map = {
-        'service_endpoint': {'name': 'ServiceEndpoint', 'attr': True},
-        'prefix': {'name': 'Prefix'},
-        'marker': {'name': 'Marker'},
-        'max_results': {'name': 'MaxResults'},
-        'containers': {'name': 'Containers', 'wrapped': True, 'wrappedName': 'Container'},
-        'next_marker': {'name': 'NextMarker'},
     }
 
     def __init__(self, **kwargs):

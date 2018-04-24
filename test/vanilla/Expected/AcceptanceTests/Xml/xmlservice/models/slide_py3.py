@@ -24,17 +24,12 @@ class Slide(Model):
     """
 
     _attribute_map = {
-        'type': {'key': 'type', 'type': 'str'},
-        'title': {'key': 'title', 'type': 'str'},
-        'items': {'key': 'items', 'type': '[str]'},
+        'type': {'key': 'type', 'type': 'str', 'xml': {'name': 'type', 'attr': True}},
+        'title': {'key': 'title', 'type': 'str', 'xml': {'name': 'title'}},
+        'items': {'key': 'items', 'type': '[str]', 'xml': {'name': 'items', 'wrappedName': 'item'}},
     }
     _xml_map = {
         'name': 'Slide'
-    }
-    _xml_attribute_map = {
-        'type': {'name': 'type', 'attr': True},
-        'title': {'name': 'title'},
-        'items': {'name': 'items', 'wrappedName': 'item'},
     }
 
     def __init__(self, *, type: str=None, title: str=None, items=None, **kwargs) -> None:

@@ -23,15 +23,11 @@ class Error(Model):
     """
 
     _attribute_map = {
-        'status': {'key': 'status', 'type': 'int'},
-        'message': {'key': 'message', 'type': 'str'},
+        'status': {'key': 'status', 'type': 'int', 'xml': {'name': 'status'}},
+        'message': {'key': 'message', 'type': 'str', 'xml': {'name': 'message'}},
     }
     _xml_map = {
         'name': 'Error'
-    }
-    _xml_attribute_map = {
-        'status': {'name': 'status'},
-        'message': {'name': 'message'},
     }
 
     def __init__(self, *, status: int=None, message: str=None, **kwargs) -> None:

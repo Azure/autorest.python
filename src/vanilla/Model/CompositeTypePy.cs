@@ -389,12 +389,53 @@ namespace AutoRest.Python.Model
                 throw new ArgumentNullException("modelProperty");
             }
 
+            string xmlDeclarations = "";
+            if (CodeModel.ShouldGenerateXmlSerialization)
+            {
+                List<string> combinedXmlDeclarations = new List<string>();
+
+                if(!string.IsNullOrEmpty(modelProperty.XmlName))
+                {
+                    combinedXmlDeclarations.Add("'name': '"+modelProperty.XmlName+"'");
+                }
+                if(modelProperty.XmlIsAttribute)
+                {
+                    combinedXmlDeclarations.Add("'attr': True");
+                }
+                if(modelProperty.XmlIsWrapped)
+                {
+                    combinedXmlDeclarations.Add("'wrapped': True");
+                }
+                if(!string.IsNullOrEmpty(modelProperty.XmlPrefix))
+                {
+                    combinedXmlDeclarations.Add("'prefix': '"+modelProperty.XmlPrefix+"'");
+                }
+                if(!string.IsNullOrEmpty(modelProperty.XmlNamespace))
+                {
+                    combinedXmlDeclarations.Add("'ns': '"+modelProperty.XmlNamespace+"'");
+                }
+
+                SequenceType sequenceType = modelProperty.ModelType as SequenceType;
+                if (sequenceType != null && !string.IsNullOrEmpty(sequenceType.ElementXmlName))
+                {
+                    combinedXmlDeclarations.Add("'wrappedName': '"+sequenceType.ElementXmlName+"'");
+                }
+
+                xmlDeclarations = string.Format(CultureInfo.InvariantCulture,
+                    ", 'xml': {{{1}}}",
+                    modelProperty.Name,
+                    string.Join(", ", combinedXmlDeclarations)
+                );                
+            }
+
             //'id':{'key':'id', 'type':'str'},
             return string.Format(CultureInfo.InvariantCulture,
-                "'{0}': {{'key': '{1}', 'type': '{2}'}},",
+                "'{0}': {{'key': '{1}', 'type': '{2}'{3}}},",
                 modelProperty.Name,
                 modelProperty.SerializedName,
-                ClientModelExtensions.GetPythonSerializationType(modelProperty.ModelType));
+                ClientModelExtensions.GetPythonSerializationType(modelProperty.ModelType),
+                xmlDeclarations
+            );
         }
 
         public virtual string InitializeXmlProperty()
@@ -417,48 +458,6 @@ namespace AutoRest.Python.Model
             return string.Join(", ", combinedDeclarations);
         }
 
-        public virtual string InitializeXmlProperty(Property modelProperty)
-        {
-            if (modelProperty == null || modelProperty.ModelType == null)
-            {
-                throw new ArgumentNullException("modelProperty");
-            }
-
-            List<string> combinedDeclarations = new List<string>();
-
-            if(!string.IsNullOrEmpty(modelProperty.XmlName))
-            {
-                combinedDeclarations.Add("'name': '"+modelProperty.XmlName+"'");
-            }
-            if(modelProperty.XmlIsAttribute)
-            {
-                combinedDeclarations.Add("'attr': True");
-            }
-            if(modelProperty.XmlIsWrapped)
-            {
-                combinedDeclarations.Add("'wrapped': True");
-            }
-            if(!string.IsNullOrEmpty(modelProperty.XmlPrefix))
-            {
-                combinedDeclarations.Add("'prefix': '"+modelProperty.XmlPrefix+"'");
-            }
-            if(!string.IsNullOrEmpty(modelProperty.XmlNamespace))
-            {
-                combinedDeclarations.Add("'ns': '"+modelProperty.XmlNamespace+"'");
-            }
-
-            SequenceType sequenceType = modelProperty.ModelType as SequenceType;
-            if (sequenceType != null && !string.IsNullOrEmpty(sequenceType.ElementXmlName))
-            {
-                combinedDeclarations.Add("'wrappedName': '"+sequenceType.ElementXmlName+"'");
-            }
-
-            return string.Format(CultureInfo.InvariantCulture,
-                "'{0}': {{{1}}}",
-                modelProperty.Name,
-                string.Join(", ", combinedDeclarations)
-            ) + ",";
-        }
         public string InitializeProperty(string objectName, Property property, bool kwargsMode)
         {
             if (property == null || property.ModelType == null)

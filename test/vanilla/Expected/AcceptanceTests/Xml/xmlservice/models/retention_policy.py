@@ -32,15 +32,11 @@ class RetentionPolicy(Model):
     }
 
     _attribute_map = {
-        'enabled': {'key': 'Enabled', 'type': 'bool'},
-        'days': {'key': 'Days', 'type': 'int'},
+        'enabled': {'key': 'Enabled', 'type': 'bool', 'xml': {'name': 'Enabled'}},
+        'days': {'key': 'Days', 'type': 'int', 'xml': {'name': 'Days'}},
     }
     _xml_map = {
         'name': 'RetentionPolicy'
-    }
-    _xml_attribute_map = {
-        'enabled': {'name': 'Enabled'},
-        'days': {'name': 'Days'},
     }
 
     def __init__(self, **kwargs):

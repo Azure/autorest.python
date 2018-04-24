@@ -52,21 +52,14 @@ class CorsRule(Model):
     }
 
     _attribute_map = {
-        'allowed_origins': {'key': 'AllowedOrigins', 'type': 'str'},
-        'allowed_methods': {'key': 'AllowedMethods', 'type': 'str'},
-        'allowed_headers': {'key': 'AllowedHeaders', 'type': 'str'},
-        'exposed_headers': {'key': 'ExposedHeaders', 'type': 'str'},
-        'max_age_in_seconds': {'key': 'MaxAgeInSeconds', 'type': 'int'},
+        'allowed_origins': {'key': 'AllowedOrigins', 'type': 'str', 'xml': {'name': 'AllowedOrigins'}},
+        'allowed_methods': {'key': 'AllowedMethods', 'type': 'str', 'xml': {'name': 'AllowedMethods'}},
+        'allowed_headers': {'key': 'AllowedHeaders', 'type': 'str', 'xml': {'name': 'AllowedHeaders'}},
+        'exposed_headers': {'key': 'ExposedHeaders', 'type': 'str', 'xml': {'name': 'ExposedHeaders'}},
+        'max_age_in_seconds': {'key': 'MaxAgeInSeconds', 'type': 'int', 'xml': {'name': 'MaxAgeInSeconds'}},
     }
     _xml_map = {
         'name': 'CorsRule'
-    }
-    _xml_attribute_map = {
-        'allowed_origins': {'name': 'AllowedOrigins'},
-        'allowed_methods': {'name': 'AllowedMethods'},
-        'allowed_headers': {'name': 'AllowedHeaders'},
-        'exposed_headers': {'name': 'ExposedHeaders'},
-        'max_age_in_seconds': {'name': 'MaxAgeInSeconds'},
     }
 
     def __init__(self, **kwargs):

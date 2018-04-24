@@ -32,17 +32,12 @@ class AccessPolicy(Model):
     }
 
     _attribute_map = {
-        'start': {'key': 'Start', 'type': 'iso-8601'},
-        'expiry': {'key': 'Expiry', 'type': 'iso-8601'},
-        'permission': {'key': 'Permission', 'type': 'str'},
+        'start': {'key': 'Start', 'type': 'iso-8601', 'xml': {'name': 'Start'}},
+        'expiry': {'key': 'Expiry', 'type': 'iso-8601', 'xml': {'name': 'Expiry'}},
+        'permission': {'key': 'Permission', 'type': 'str', 'xml': {'name': 'Permission'}},
     }
     _xml_map = {
         'name': 'AccessPolicy'
-    }
-    _xml_attribute_map = {
-        'start': {'name': 'Start'},
-        'expiry': {'name': 'Expiry'},
-        'permission': {'name': 'Permission'},
     }
 
     def __init__(self, *, start, expiry, permission: str, **kwargs) -> None:
