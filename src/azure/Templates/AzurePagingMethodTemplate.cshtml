@@ -70,7 +70,10 @@ else
 @EmptyLine
             # Construct headers
             header_parameters = {}
-            header_parameters['Content-Type'] = '@(Model.RequestContentType)'
+@if (Model.RequestBody != null || Model.IsFormData)
+{            
+            @:header_parameters['Content-Type'] = '@(Model.RequestContentType)'
+}
             @(Model.SetDefaultHeaders)
             @(Model.BuildHeaders("header_parameters"))
 @EmptyLine
