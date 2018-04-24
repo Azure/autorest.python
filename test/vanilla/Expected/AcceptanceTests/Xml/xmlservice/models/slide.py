@@ -26,7 +26,7 @@ class Slide(Model):
     _attribute_map = {
         'type': {'key': 'type', 'type': 'str', 'xml': {'name': 'type', 'attr': True}},
         'title': {'key': 'title', 'type': 'str', 'xml': {'name': 'title'}},
-        'items': {'key': 'items', 'type': '[str]', 'xml': {'name': 'items', 'wrappedName': 'item'}},
+        'items': {'key': 'items', 'type': '[str]', 'xml': {'name': 'items', 'itemsName': 'item'}},
     }
     _xml_map = {
         'name': 'Slide'

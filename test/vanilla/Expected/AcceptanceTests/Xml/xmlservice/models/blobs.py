@@ -22,8 +22,8 @@ class Blobs(Model):
     """
 
     _attribute_map = {
-        'blob_prefix': {'key': 'BlobPrefix', 'type': '[BlobPrefix]', 'xml': {'name': 'BlobPrefix', 'wrappedName': 'BlobPrefix'}},
-        'blob': {'key': 'Blob', 'type': '[Blob]', 'xml': {'name': 'Blob', 'wrappedName': 'Blob'}},
+        'blob_prefix': {'key': 'BlobPrefix', 'type': '[BlobPrefix]', 'xml': {'name': 'BlobPrefix', 'itemsName': 'BlobPrefix'}},
+        'blob': {'key': 'Blob', 'type': '[Blob]', 'xml': {'name': 'Blob', 'itemsName': 'Blob'}},
     }
     _xml_map = {
         'name': 'Blobs'

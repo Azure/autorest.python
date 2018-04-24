@@ -418,7 +418,7 @@ namespace AutoRest.Python.Model
                 SequenceType sequenceType = modelProperty.ModelType as SequenceType;
                 if (sequenceType != null && !string.IsNullOrEmpty(sequenceType.ElementXmlName))
                 {
-                    combinedXmlDeclarations.Add("'wrappedName': '"+sequenceType.ElementXmlName+"'");
+                    combinedXmlDeclarations.Add("'itemsName': '"+sequenceType.ElementXmlName+"'");
                 }
 
                 xmlDeclarations = string.Format(CultureInfo.InvariantCulture,

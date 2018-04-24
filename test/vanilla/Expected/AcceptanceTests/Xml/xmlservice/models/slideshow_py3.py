@@ -29,7 +29,7 @@ class Slideshow(Model):
         'title': {'key': 'title', 'type': 'str', 'xml': {'name': 'title', 'attr': True}},
         'date_property': {'key': 'date', 'type': 'str', 'xml': {'name': 'date', 'attr': True}},
         'author': {'key': 'author', 'type': 'str', 'xml': {'name': 'author', 'attr': True}},
-        'slides': {'key': 'slides', 'type': '[Slide]', 'xml': {'name': 'slides', 'wrappedName': 'slide'}},
+        'slides': {'key': 'slides', 'type': '[Slide]', 'xml': {'name': 'slides', 'itemsName': 'slide'}},
     }
     _xml_map = {
         'name': 'slideshow'
