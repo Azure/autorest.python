@@ -29,7 +29,7 @@ class Slide(Model):
         'items': {'key': 'items', 'type': '[str]', 'xml': {'name': 'items', 'itemsName': 'item'}},
     }
     _xml_map = {
-        'name': 'Slide'
+        'name': 'slide'
     }
 
     def __init__(self, *, type: str=None, title: str=None, items=None, **kwargs) -> None:
