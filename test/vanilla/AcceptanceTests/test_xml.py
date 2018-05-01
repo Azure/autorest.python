@@ -23,7 +23,7 @@
 # IN THE SOFTWARE.
 #
 # --------------------------------------------------------------------------
-
+import logging
 import unittest
 import subprocess
 import sys
@@ -34,7 +34,6 @@ import os
 from os.path import dirname, pardir, join, realpath
 
 cwd = dirname(realpath(__file__))
-log_level = int(os.environ.get('PythonLogLevel', 30))
 
 tests = realpath(join(cwd, pardir, "Expected", "AcceptanceTests"))
 sys.path.append(join(tests, "Xml"))
@@ -43,14 +42,27 @@ from xmlservice import AutoRestSwaggerBATXMLService
 
 import pytest
 
+_LOGGER = logging.getLogger(__name__)
+
 @pytest.fixture
 def client():
     with AutoRestSwaggerBATXMLService(base_url="http://localhost:3000") as client:
+        client.config.enable_http_logger = True
         yield client
+
+def _assert_with_log(func, *args, **kwargs):
+    try:
+        http_response = func(*args, raw=True, **kwargs)
+    except Exception as err:
+        print(err.response.text)
+        pytest.fail()
+    http_response.response.raise_for_status()
 
 class TestXml(object):
 
-    def test_xmlservice(self, client):
+    def test_basic(self, client):
+
+        # Slideshow
 
         slideshow = client.xml.get_simple()
         assert slideshow.title == "Sample Slide Show"
@@ -69,12 +81,52 @@ class TestXml(object):
         assert slide2.title == "Overview"
         assert len(slide2.items) == 3
         assert slide2.items[0] == "Why WonderWidgets are great"
-        assert slide2.items[1] == None  # Empty node in XML is explicit None here
+        assert slide2.items[1] == ''
         assert slide2.items[2] == "Who buys WonderWidgets"
 
-        try:
-            http_response = client.xml.put_simple(slideshow, raw=True)
-        except Exception as err:
-            print(err.response.text)
-            pytest.fail()
-        assert http_response.response.status_code == 201
+        _assert_with_log(client.xml.put_simple, slideshow)
+
+        # Empty child element
+        banana = client.xml.get_empty_child_element()
+        assert banana.flavor == '' # That's the point of this test, it was an empty node.
+        _assert_with_log(client.xml.put_empty_child_element, banana)
+
+        # Empty root list
+        bananas = client.xml.get_empty_root_list()
+        assert bananas == []
+        _assert_with_log(client.xml.put_empty_root_list, bananas)
+
+        # Root list single item
+        bananas = client.xml.get_root_list_single_item()
+        _assert_with_log(client.xml.put_root_list_single_item, bananas)
+
+        # Root list
+        bananas = client.xml.get_root_list()
+        _assert_with_log(client.xml.put_root_list, bananas)
+
+        # Empty wrapped list
+        bananas = client.xml.get_empty_wrapped_lists()
+        _assert_with_log(client.xml.put_empty_wrapped_lists, bananas)
+
+        # Empty list
+        bananas = client.xml.get_empty_list()
+        _assert_with_log(client.xml.put_empty_list, bananas)
+
+        # Wrapped list
+        bananas = client.xml.get_wrapped_lists()
+        _assert_with_log(client.xml.put_wrapped_lists, bananas)
+
+    def test_storage(self, client):
+
+        containers = client.xml.list_containers()
+        assert len(containers.containers) == 3
+        blobs = client.xml.list_blobs()
+        assert len(blobs.blobs.blob) == 5
+
+        properties = client.xml.get_service_properties()
+        assert properties.hour_metrics is not None
+        assert properties.minute_metrics is not None
+        _assert_with_log(client.xml.put_service_properties, properties)
+
+        acls = client.xml.get_acls()
+        _assert_with_log(client.xml.put_acls, acls)
