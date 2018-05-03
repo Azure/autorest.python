@@ -6,6 +6,9 @@
 @using AutoRest.Python.Model
 @using AutoRest.Python.vanilla.Templates
 @inherits AutoRest.Python.PythonTemplate<AutoRest.Python.Model.MethodPy>
+@{
+string methodName = Model.Name.ToPythonCase();
+}
     def @(((string)Model.Name).ToPythonCase())(
             self, @(Model.MethodParameterDeclaration(Model.AddCustomHeader)), **operation_config):
         """@(WrapComment(string.Empty, Model.BuildSummaryAndDescriptionString()))
@@ -35,7 +38,7 @@
         """
 @if (Model.Deprecated)
 {
-@:        @(string.Format("warnings.warn(\"Method {0} is deprecated\", DeprecationWarning)", ((string)Model.Name).ToPythonCase()))
+@:        warnings.warn('Method @methodName is deprecated', DeprecationWarning)
 }
         @Model.BuildInputMappings()
 @if (Model.InputParameterTransformation.Any())
@@ -79,18 +82,32 @@
         @:body_content = self._client.stream_upload(@parameter.Name, callback)
         break;
       }
-    }   
-  }
-  else if (Model.RequestBody.IsRequired)
-  {
-        @:body_content = self._serialize.body(@Model.RequestBody.Name, '@(Model.RequestBody.ModelType.ToPythonRuntimeTypeString())')
+    }
   }
   else
   {
+        // Right now, just generate the serialization context if it's a sequence type. Could be smarter later
+        string serializationContext = "";
+        if(Model.CodeModel.ShouldGenerateXmlSerialization)
+        {
+                var serializationContextContent = Model.BuildSerializationContext();
+                if(!string.IsNullOrEmpty(serializationContextContent))
+                {
+                        serializationContext = ", serialization_ctxt=serialization_ctxt";
+        @:serialization_ctxt = @serializationContextContent
+                }
+        }
+        if (Model.RequestBody.IsRequired)
+        {
+        @:body_content = self._serialize.body(@Model.RequestBody.Name, '@(Model.RequestBody.ModelType.ToPythonRuntimeTypeString())'@serializationContext)
+        }
+        else
+        {
         @:if @Model.RequestBody.Name is not None:
-            @:body_content = self._serialize.body(@Model.RequestBody.Name, '@(Model.RequestBody.ModelType.ToPythonRuntimeTypeString())')
+            @:body_content = self._serialize.body(@Model.RequestBody.Name, '@(Model.RequestBody.ModelType.ToPythonRuntimeTypeString())'@serializationContext)
         @:else:
             @:body_content = None
+        }
   }
 @EmptyLine
 }

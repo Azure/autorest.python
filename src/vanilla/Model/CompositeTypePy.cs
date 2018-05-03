@@ -392,33 +392,12 @@ namespace AutoRest.Python.Model
             string xmlDeclarations = "";
             if (CodeModel.ShouldGenerateXmlSerialization)
             {
-                List<string> combinedXmlDeclarations = new List<string>();
+                List<string> combinedXmlDeclarations = GenericXmlCtxtSerializer.XmlSerializationPropertyCtxt(modelProperty);
 
-                if(!string.IsNullOrEmpty(modelProperty.XmlName))
-                {
-                    combinedXmlDeclarations.Add("'name': '"+modelProperty.XmlName+"'");
-                }
-                if(modelProperty.XmlIsAttribute)
-                {
-                    combinedXmlDeclarations.Add("'attr': True");
-                }
-                if(modelProperty.XmlIsWrapped)
-                {
-                    combinedXmlDeclarations.Add("'wrapped': True");
-                }
-                if(!string.IsNullOrEmpty(modelProperty.XmlPrefix))
-                {
-                    combinedXmlDeclarations.Add("'prefix': '"+modelProperty.XmlPrefix+"'");
-                }
-                if(!string.IsNullOrEmpty(modelProperty.XmlNamespace))
-                {
-                    combinedXmlDeclarations.Add("'ns': '"+modelProperty.XmlNamespace+"'");
-                }
-
-                SequenceType sequenceType = modelProperty.ModelType as SequenceType;
+                SequenceTypePy sequenceType = modelProperty.ModelType as SequenceTypePy;
                 if (sequenceType != null && !string.IsNullOrEmpty(sequenceType.ElementXmlName))
                 {
-                    combinedXmlDeclarations.Add("'itemsName': '"+sequenceType.ElementXmlName+"'");
+                    combinedXmlDeclarations.AddRange(sequenceType.ItemsSerializationContext());
                 }
 
                 xmlDeclarations = string.Format(CultureInfo.InvariantCulture,
@@ -440,23 +419,15 @@ namespace AutoRest.Python.Model
 
         public virtual string InitializeXmlProperty()
         {
-            List<string> combinedDeclarations = new List<string>();
-
-            if(!string.IsNullOrEmpty(XmlName))
-            {
-                combinedDeclarations.Add("'name': '"+XmlName+"'");
-            }
-            if(!string.IsNullOrEmpty(XmlPrefix))
-            {
-                combinedDeclarations.Add("'prefix': '"+XmlPrefix+"'");
-            }
-            if(!string.IsNullOrEmpty(XmlNamespace))
-            {
-                combinedDeclarations.Add("'ns': '"+XmlNamespace+"'");
-            }
-
-            return string.Join(", ", combinedDeclarations);
+            this.XmlSerializationCtxt();
+            List<string> combinedXmlDeclarations = GenericXmlCtxtSerializer.XmlSerializationModelTypeCtxt(this);
+            return string.Join(", ", combinedXmlDeclarations);
         }
+
+        public string XmlSerializationCtxt()
+        {
+            return null;  // CompositeType contains _xml_map, they don't need serialization context
+        }        
 
         public string InitializeProperty(string objectName, Property property, bool kwargsMode)
         {

@@ -4,6 +4,7 @@
 
 using System;
 using System.Diagnostics;
+using System.Collections.Generic;
 using AutoRest.Core.Model;
 
 namespace AutoRest.Python.Model
@@ -35,6 +36,15 @@ namespace AutoRest.Python.Model
                 }
                 return ImplementationName;
             }
+        }
+
+        public string XmlSerializationCtxt()
+        {
+            List<string> combinedXmlDeclarations = GenericXmlCtxtSerializer.XmlSerializationModelTypeCtxt(this);
+            return string.Format(
+                "{{{0}}}",
+                string.Join(", ", combinedXmlDeclarations)
+            );
         }
 
         public virtual string ImplementationName

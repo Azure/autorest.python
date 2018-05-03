@@ -759,5 +759,16 @@ namespace AutoRest.Python.Model
         {
             return CodeGeneratorPy.BuildSummaryAndDescriptionString(this.Summary, this.Description);
         }
+
+        public string BuildSerializationContext()
+        {
+            // Don't check the "as", MethodPy is not not supposed to receive a non-Python model
+            string serializationDict = (RequestBody.ModelType as IExtendedModelTypePy).XmlSerializationCtxt();
+            if (string.IsNullOrEmpty(serializationDict))
+            {
+                return null;
+            }
+            return string.Format("{{'xml': {0}}}", serializationDict);
+        }
     }
 }

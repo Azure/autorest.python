@@ -13,5 +13,14 @@ namespace AutoRest.Python.Model
         //ModelAsString ? 
         //"str" : 
         public string ReturnTypeDocumentation => ModelAsString || Parent == null ? "str" :  $"~{((CodeModelPy)CodeModel)?.Namespace}.models.{Name}";
+
+        public string XmlSerializationCtxt()
+        {
+            List<string> combinedXmlDeclarations = GenericXmlCtxtSerializer.XmlSerializationModelTypeCtxt(this);
+            return string.Format(
+                "{{{0}}}",
+                string.Join(", ", combinedXmlDeclarations)
+            );
+        }                
     }
 }
