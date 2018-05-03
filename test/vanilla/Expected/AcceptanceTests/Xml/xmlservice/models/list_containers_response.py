@@ -43,7 +43,7 @@ class ListContainersResponse(Model):
         'prefix': {'key': 'Prefix', 'type': 'str', 'xml': {'name': 'Prefix'}},
         'marker': {'key': 'Marker', 'type': 'str', 'xml': {'name': 'Marker'}},
         'max_results': {'key': 'MaxResults', 'type': 'int', 'xml': {'name': 'MaxResults'}},
-        'containers': {'key': 'Containers', 'type': '[Container]', 'xml': {'name': 'Containers', 'wrapped': True, 'itemsName': 'Container'}},
+        'containers': {'key': 'Containers', 'type': '[Container]', 'xml': {'name': 'Containers', 'itemsName': 'Container', 'wrapped': True}},
         'next_marker': {'key': 'NextMarker', 'type': 'str', 'xml': {'name': 'NextMarker'}},
     }
     _xml_map = {

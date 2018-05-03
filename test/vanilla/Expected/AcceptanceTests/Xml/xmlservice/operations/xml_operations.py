@@ -501,7 +501,8 @@ class XmlOperations(object):
             header_parameters.update(custom_headers)
 
         # Construct body
-        body_content = self._serialize.body(bananas, '[Banana]')
+        serialization_ctxt = {'xml': {'name': 'bananas', 'itemsName': 'banana', 'wrapped': True}}
+        body_content = self._serialize.body(bananas, '[Banana]', serialization_ctxt=serialization_ctxt)
 
         # Construct and send request
         request = self._client.put(url, query_parameters)
@@ -590,7 +591,8 @@ class XmlOperations(object):
             header_parameters.update(custom_headers)
 
         # Construct body
-        body_content = self._serialize.body(bananas, '[Banana]')
+        serialization_ctxt = {'xml': {'name': 'bananas', 'itemsName': 'banana', 'wrapped': True}}
+        body_content = self._serialize.body(bananas, '[Banana]', serialization_ctxt=serialization_ctxt)
 
         # Construct and send request
         request = self._client.put(url, query_parameters)
@@ -679,7 +681,8 @@ class XmlOperations(object):
             header_parameters.update(custom_headers)
 
         # Construct body
-        body_content = self._serialize.body(bananas, '[Banana]')
+        serialization_ctxt = {'xml': {'name': 'bananas', 'itemsName': 'banana', 'wrapped': True}}
+        body_content = self._serialize.body(bananas, '[Banana]', serialization_ctxt=serialization_ctxt)
 
         # Construct and send request
         request = self._client.put(url, query_parameters)
@@ -1014,7 +1017,8 @@ class XmlOperations(object):
             header_parameters.update(custom_headers)
 
         # Construct body
-        body_content = self._serialize.body(properties, '[SignedIdentifier]')
+        serialization_ctxt = {'xml': {'name': 'SignedIdentifiers', 'itemsName': 'SignedIdentifiers', 'wrapped': True}}
+        body_content = self._serialize.body(properties, '[SignedIdentifier]', serialization_ctxt=serialization_ctxt)
 
         # Construct and send request
         request = self._client.put(url, query_parameters)

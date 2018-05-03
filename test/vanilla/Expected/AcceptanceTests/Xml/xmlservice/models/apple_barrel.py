@@ -22,8 +22,8 @@ class AppleBarrel(Model):
     """
 
     _attribute_map = {
-        'good_apples': {'key': 'GoodApples', 'type': '[str]', 'xml': {'name': 'GoodApples', 'wrapped': True, 'itemsName': 'Apple'}},
-        'bad_apples': {'key': 'BadApples', 'type': '[str]', 'xml': {'name': 'BadApples', 'wrapped': True, 'itemsName': 'Apple'}},
+        'good_apples': {'key': 'GoodApples', 'type': '[str]', 'xml': {'name': 'GoodApples', 'itemsName': 'Apple', 'wrapped': True}},
+        'bad_apples': {'key': 'BadApples', 'type': '[str]', 'xml': {'name': 'BadApples', 'itemsName': 'Apple', 'wrapped': True}},
     }
     _xml_map = {
         'name': 'AppleBarrel'
