@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .a import A
+from .a_py3 import A
 
 
 class B(A):

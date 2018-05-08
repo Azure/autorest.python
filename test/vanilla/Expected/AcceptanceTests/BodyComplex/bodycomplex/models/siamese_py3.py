@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .cat import Cat
+from .cat_py3 import Cat
 
 
 class Siamese(Cat):
