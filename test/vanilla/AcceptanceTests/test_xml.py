@@ -98,22 +98,29 @@ class TestXml(object):
 
         # Root list single item
         bananas = client.xml.get_root_list_single_item()
+        assert len(bananas) == 1
+        assert bananas[0].name == "Cavendish"
         _assert_with_log(client.xml.put_root_list_single_item, bananas)
 
         # Root list
         bananas = client.xml.get_root_list()
+        assert len(bananas) == 2
         _assert_with_log(client.xml.put_root_list, bananas)
 
         # Empty wrapped list
         bananas = client.xml.get_empty_wrapped_lists()
+        assert bananas.good_apples == []
+        assert bananas.bad_apples == []
         _assert_with_log(client.xml.put_empty_wrapped_lists, bananas)
 
-        # Empty list
-        bananas = client.xml.get_empty_list()
-        _assert_with_log(client.xml.put_empty_list, bananas)
+        # Empty object
+        slideshow = client.xml.get_empty_list()
+        _assert_with_log(client.xml.put_empty_list, slideshow)
 
         # Wrapped list
         bananas = client.xml.get_wrapped_lists()
+        assert bananas.good_apples == ['Fuji', 'Gala']
+        assert bananas.bad_apples == ['Red Delicious']
         _assert_with_log(client.xml.put_wrapped_lists, bananas)
 
     def test_storage(self, client):
@@ -129,4 +136,6 @@ class TestXml(object):
         _assert_with_log(client.xml.put_service_properties, properties)
 
         acls = client.xml.get_acls()
+        assert len(acls) == 1
+        assert acls[0].id == 'MTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI='
         _assert_with_log(client.xml.put_acls, acls)
