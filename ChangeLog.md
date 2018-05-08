@@ -1,3 +1,7 @@
+### 2018-05-08 - 3.0.51
+
+- Py3 model files must inherit from Py3 files
+
 ### 2018-04-18 - 3.0.50
 
 - Add context manager to SDK client that keeps the same sessions across requests.
