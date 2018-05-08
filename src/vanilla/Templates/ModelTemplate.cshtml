@@ -17,7 +17,11 @@
 @:from .@property.Name.ToPythonCase() import @property.Name
     }
 }
-@if (Model.BaseModelType != null)
+@if (Model.BaseModelType != null && Python3Mode)
+{
+@:from .@Model.BaseModelType.Name.ToPythonCase()_py3 import @Model.BaseModelType.Name
+}
+else if(Model.BaseModelType != null && !Python3Mode)
 {
 @:from .@Model.BaseModelType.Name.ToPythonCase() import @Model.BaseModelType.Name
 }

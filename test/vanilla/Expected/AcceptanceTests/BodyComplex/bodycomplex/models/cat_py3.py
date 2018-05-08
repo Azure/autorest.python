@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .pet import Pet
+from .pet_py3 import Pet
 
 
 class Cat(Pet):
