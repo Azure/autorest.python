@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .fish import Fish
+from .fish_py3 import Fish
 
 
 class Shark(Fish):

@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .salmon import Salmon
+from .salmon_py3 import Salmon
 
 
 class SmartSalmon(Salmon):
