@@ -1,4 +1,4 @@
 requests>=2.14.0
 pytest
 pytest-cov
-git+https://github.com/Azure/msrest-for-python@xml
+git+https://github.com/Azure/msrest-for-python
