@@ -57,6 +57,7 @@ class BasicOperations(object):
 
         # Construct headers
         header_parameters = {}
+        header_parameters['Accept'] = 'application/json'
         if custom_headers:
             header_parameters.update(custom_headers)
 
@@ -145,6 +146,7 @@ class BasicOperations(object):
 
         # Construct headers
         header_parameters = {}
+        header_parameters['Accept'] = 'application/json'
         if custom_headers:
             header_parameters.update(custom_headers)
 
@@ -189,6 +191,7 @@ class BasicOperations(object):
 
         # Construct headers
         header_parameters = {}
+        header_parameters['Accept'] = 'application/json'
         if custom_headers:
             header_parameters.update(custom_headers)
 
@@ -233,6 +236,7 @@ class BasicOperations(object):
 
         # Construct headers
         header_parameters = {}
+        header_parameters['Accept'] = 'application/json'
         if custom_headers:
             header_parameters.update(custom_headers)
 
@@ -278,6 +282,7 @@ class BasicOperations(object):
 
         # Construct headers
         header_parameters = {}
+        header_parameters['Accept'] = 'application/json'
         if custom_headers:
             header_parameters.update(custom_headers)
 

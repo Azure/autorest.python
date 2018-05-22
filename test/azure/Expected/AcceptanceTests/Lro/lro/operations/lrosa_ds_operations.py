@@ -48,6 +48,7 @@ class LROSADsOperations(object):
 
         # Construct headers
         header_parameters = {}
+        header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if self.config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
@@ -140,6 +141,7 @@ class LROSADsOperations(object):
 
         # Construct headers
         header_parameters = {}
+        header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if self.config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
@@ -233,6 +235,7 @@ class LROSADsOperations(object):
 
         # Construct headers
         header_parameters = {}
+        header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if self.config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
@@ -326,6 +329,7 @@ class LROSADsOperations(object):
 
         # Construct headers
         header_parameters = {}
+        header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if self.config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
@@ -924,6 +928,7 @@ class LROSADsOperations(object):
 
         # Construct headers
         header_parameters = {}
+        header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if self.config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
@@ -1017,6 +1022,7 @@ class LROSADsOperations(object):
 
         # Construct headers
         header_parameters = {}
+        header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if self.config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
@@ -1123,6 +1129,7 @@ class LROSADsOperations(object):
 
         # Construct headers
         header_parameters = {}
+        header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if self.config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
@@ -1553,6 +1560,7 @@ class LROSADsOperations(object):
 
         # Construct headers
         header_parameters = {}
+        header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if self.config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
@@ -1644,6 +1652,7 @@ class LROSADsOperations(object):
 
         # Construct headers
         header_parameters = {}
+        header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if self.config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
@@ -1749,6 +1758,7 @@ class LROSADsOperations(object):
 
         # Construct headers
         header_parameters = {}
+        header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if self.config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())

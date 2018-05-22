@@ -32,6 +32,10 @@
 @EmptyLine
         # Construct headers
         header_parameters = {}
+@if (Model.HasAnyResponse)
+{
+        @:header_parameters['Accept'] = '@(Model.AcceptContentType)'
+}
 @if (Model.RequestBody != null || Model.IsFormData)
 {
         @:header_parameters['Content-Type'] = '@(Model.RequestContentType)'
@@ -151,7 +155,7 @@ else
 @foreach(var parameter in Model.DocumentationParameters)
 {
 @:            @parameter.Name=@parameter.Name,
-}                    
+}
             custom_headers=custom_headers,
             raw=True,
             **operation_config

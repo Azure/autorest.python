@@ -97,6 +97,7 @@ class AutoRestReportServiceForAzure(SDKClient):
 
         # Construct headers
         header_parameters = {}
+        header_parameters['Accept'] = 'application/json'
         if self.config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
         if custom_headers:

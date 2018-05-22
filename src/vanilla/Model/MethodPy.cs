@@ -40,8 +40,8 @@ namespace AutoRest.Python.Model
 
         public bool IsStreamResponse => this.ReturnType.Body.IsPrimaryType(KnownPrimaryType.Stream);
 
-        public bool IsStreamRequestBody => LocalParameters.Any(parameter => 
-            parameter.Location == ParameterLocation.Body && 
+        public bool IsStreamRequestBody => LocalParameters.Any(parameter =>
+            parameter.Location == ParameterLocation.Body &&
             parameter.ModelType.IsPrimaryType(KnownPrimaryType.Stream));
 
         public bool IsFormData => LocalParameters.Any(parameter => parameter.Location == ParameterLocation.FormData);
@@ -186,9 +186,9 @@ namespace AutoRest.Python.Model
         {
             string divChar = ClientModelExtensions.NeedsFormattedSeparator(parameter);
             string divParameter = string.Empty;
-            
+
             string parameterName = (MethodGroup as MethodGroupPy)?.ConstantProperties?.FirstOrDefault(each => each.Name.RawValue == parameter.Name.RawValue && each.DefaultValue.RawValue == parameter.DefaultValue.RawValue)?.Name.Else(parameter.Name) ?? parameter.Name;
-            
+
             if (!string.IsNullOrEmpty(divChar))
             {
                 divParameter = string.Format(CultureInfo.InvariantCulture, ", div='{0}'", divChar);
@@ -351,7 +351,7 @@ namespace AutoRest.Python.Model
                 {
                     builder.AppendLine("if {0} is not None:", headerParameter.Name)
                         .Indent()
-                        .AppendLine("{0}['{1}'] = {2}", 
+                        .AppendLine("{0}['{1}'] = {2}",
                             variableName,
                             headerParameter.SerializedName,
                             BuildSerializeDataCall(headerParameter, "header"))
@@ -380,6 +380,27 @@ namespace AutoRest.Python.Model
                     Outdent();
 
                 return builder.ToString();
+            }
+        }
+
+        public string AcceptContentType
+        {
+            get
+            {
+                if (this.ResponseContentTypes.Count() == 1)
+                {
+                    return this.ResponseContentTypes[0];
+                }
+                // If more type are supported, if JSON is supported, ask JSON only
+                foreach (string element in this.ResponseContentTypes)
+                {
+                    if(element.Contains("json"))
+                    {
+                        return element;
+                    }
+                }
+                // If no JSON, and still several content type, chain them
+                return string.Join(", ", this.ResponseContentTypes);
             }
         }
 
@@ -667,7 +688,7 @@ namespace AutoRest.Python.Model
         }
 
         /// <summary>
-        /// Gets the expression for default header setting. 
+        /// Gets the expression for default header setting.
         /// </summary>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "headerparameters"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Globalization", "CA1303:Do not pass literals as localized parameters", MessageId = "AutoRest.Core.Utilities.IndentedStringBuilder.AppendLine(System.String)"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "customheaders")]
         public virtual string SetDefaultHeaders
