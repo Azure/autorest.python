@@ -16,8 +16,8 @@ from .operations.queries_operations import QueriesOperations
 from . import models
 
 
-class AutoRestUrlMutliCollectionFormatTestServiceConfiguration(Configuration):
-    """Configuration for AutoRestUrlMutliCollectionFormatTestService
+class AutoRestUrlMultiCollectionFormatTestServiceConfiguration(Configuration):
+    """Configuration for AutoRestUrlMultiCollectionFormatTestService
     Note that all parameters used to create this instance are saved as instance
     attributes.
 
@@ -30,16 +30,16 @@ class AutoRestUrlMutliCollectionFormatTestServiceConfiguration(Configuration):
         if not base_url:
             base_url = 'http://localhost:3000'
 
-        super(AutoRestUrlMutliCollectionFormatTestServiceConfiguration, self).__init__(base_url)
+        super(AutoRestUrlMultiCollectionFormatTestServiceConfiguration, self).__init__(base_url)
 
-        self.add_user_agent('autoresturlmutlicollectionformattestservice/{}'.format(VERSION))
+        self.add_user_agent('autoresturlmulticollectionformattestservice/{}'.format(VERSION))
 
 
-class AutoRestUrlMutliCollectionFormatTestService(SDKClient):
+class AutoRestUrlMultiCollectionFormatTestService(SDKClient):
     """Test Infrastructure for AutoRest
 
     :ivar config: Configuration for client.
-    :vartype config: AutoRestUrlMutliCollectionFormatTestServiceConfiguration
+    :vartype config: AutoRestUrlMultiCollectionFormatTestServiceConfiguration
 
     :ivar queries: Queries operations
     :vartype queries: urlmulticollectionformat.operations.QueriesOperations
@@ -50,8 +50,8 @@ class AutoRestUrlMutliCollectionFormatTestService(SDKClient):
     def __init__(
             self, base_url=None):
 
-        self.config = AutoRestUrlMutliCollectionFormatTestServiceConfiguration(base_url)
-        super(AutoRestUrlMutliCollectionFormatTestService, self).__init__(None, self.config)
+        self.config = AutoRestUrlMultiCollectionFormatTestServiceConfiguration(base_url)
+        super(AutoRestUrlMultiCollectionFormatTestService, self).__init__(None, self.config)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '1.0.0'
