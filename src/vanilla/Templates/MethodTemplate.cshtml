@@ -130,21 +130,19 @@ else if (Model.IsFormData)
 @EmptyLine
 }
         # Construct and send request
-        request = self._client.@(MethodPy.GetHttpFunction(Model.HttpMethod))(url, query_parameters)
 @if (Model.RequestBody != null)
 {
-        @:response = self._client.send(
-            @:request, header_parameters, body_content, stream=@(Model.ReturnType.Body.IsPrimaryType(KnownPrimaryType.Stream)?"True":"False"), **operation_config)
+        @:request = self._client.@(MethodPy.GetHttpFunction(Model.HttpMethod))(url, query_parameters, header_parameters, body_content)
 }
 else if (Model.IsFormData)
 {
-        @:response = self._client.send_formdata(
-            @:request, header_parameters, form_data_content, stream=@(Model.ReturnType.Body.IsPrimaryType(KnownPrimaryType.Stream)?"True":"False"), **operation_config)
+        @:request = self._client.@(MethodPy.GetHttpFunction(Model.HttpMethod))(url, query_parameters, header_parameters, form_content=form_data_content)
 }
 else
 {
-        @:response = self._client.send(request, header_parameters, stream=@(Model.ReturnType.Body.IsPrimaryType(KnownPrimaryType.Stream)?"True":"False"), **operation_config)
+        @:request = self._client.@(MethodPy.GetHttpFunction(Model.HttpMethod))(url, query_parameters, header_parameters)
 }
+        response = self._client.send(request, stream=@(Model.ReturnType.Body.IsPrimaryType(KnownPrimaryType.Stream)?"True":"False"), **operation_config)
 @EmptyLine
         if @Model.FailureStatusCodePredicate:
             @Model.RaisedException
