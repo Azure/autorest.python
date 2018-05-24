@@ -56,8 +56,17 @@ namespace AutoRest.Python
             var serviceClientTemplate = new ServiceClientTemplate { Model = codeModel };
             await Write(serviceClientTemplate, Path.Combine(folderName, codeModel.Name.ToPythonCase() + ".py"));
 
-            var versionTemplate = new VersionTemplate { Model = codeModel };
-            await Write(versionTemplate, Path.Combine(folderName, "version.py"));
+            // do we need to write out the version template file?
+            var versionPath = Path.Combine(folderName, "version.py");
+
+            // protect the version file
+            await Settings.Instance.Host.ProtectFiles(versionPath);
+
+            if( true != await Settings.Instance.Host.GetValue<bool?>("--keep-version-file")  ||  string.IsNullOrEmpty(await Settings.Instance.Host.ReadFile(versionPath)) ) {
+                var versionTemplate = new VersionTemplate { Model = codeModel };
+                // if they didn't say to keep the old file (or it was not there/empty), write it out.
+                await Write(versionTemplate, versionPath);    
+            }
 
             //Models
             if (codeModel.ModelTypes.Any())
