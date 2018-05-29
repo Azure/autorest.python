@@ -43,7 +43,7 @@ sys.path.append(join(tests, "UrlMultiCollectionFormat"))
 from msrest.exceptions import DeserializationError, ValidationError
 
 from url import AutoRestUrlTestService
-from urlmulticollectionformat import AutoRestUrlMutliCollectionFormatTestService
+from urlmulticollectionformat import AutoRestUrlMultiCollectionFormatTestService
 from url.models.auto_rest_url_test_service_enums import UriColor
 
 import pytest
@@ -55,7 +55,7 @@ def client():
 
 @pytest.fixture
 def multi_client():
-    with AutoRestUrlMutliCollectionFormatTestService("http://localhost:3000") as client:
+    with AutoRestUrlMultiCollectionFormatTestService("http://localhost:3000") as client:
         yield client
 
 class TestUrl(object):

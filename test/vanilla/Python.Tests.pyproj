@@ -178,9 +178,9 @@
     <Folder Include="Expected\AcceptanceTests\RequiredOptional\auto_rest_required_optional_test_service\operations\" />
     <Folder Include="Expected\AcceptanceTests\RequiredOptional\fixtures\" />
     <Folder Include="Expected\AcceptanceTests\UrlMultiCollectionFormat\" />
-    <Folder Include="Expected\AcceptanceTests\UrlMultiCollectionFormat\auto_rest_url_mutli_collection_format_test_service\" />
-    <Folder Include="Expected\AcceptanceTests\UrlMultiCollectionFormat\auto_rest_url_mutli_collection_format_test_service\models\" />
-    <Folder Include="Expected\AcceptanceTests\UrlMultiCollectionFormat\auto_rest_url_mutli_collection_format_test_service\operations\" />
+    <Folder Include="Expected\AcceptanceTests\UrlMultiCollectionFormat\auto_rest_url_multi_collection_format_test_service\" />
+    <Folder Include="Expected\AcceptanceTests\UrlMultiCollectionFormat\auto_rest_url_multi_collection_format_test_service\models\" />
+    <Folder Include="Expected\AcceptanceTests\UrlMultiCollectionFormat\auto_rest_url_multi_collection_format_test_service\operations\" />
     <Folder Include="Expected\AcceptanceTests\UrlMultiCollectionFormat\fixtures\" />
     <Folder Include="Expected\AcceptanceTests\Url\" />
     <Folder Include="Expected\AcceptanceTests\Url\auto_rest_url_test_service\" />
