@@ -1,6 +1,6 @@
 
 ###############################################
-# LEGACY 
+# LEGACY
 # Instead: have bunch of configuration files sitting in a well-known spot, discover them, feed them to AutoRest, done.
 
 regenExpected = (opts,done) ->
@@ -11,7 +11,7 @@ regenExpected = (opts,done) ->
   for kkey in keys
     optsMappingsValue = opts.mappings[kkey]
     key = kkey.trim();
-    
+
     swaggerFiles = (if optsMappingsValue instanceof Array then optsMappingsValue[0] else optsMappingsValue).split(";")
     args = [
       "--#{opts.language}",
@@ -32,12 +32,15 @@ regenExpected = (opts,done) ->
 
     if (opts.fluent)
       args.push("--#{opts.language}.fluent=true")
-    
+
     if (opts.syncMethods)
       args.push("--#{opts.language}.sync-methods=#{opts.syncMethods}")
-    
+
     if (opts.flatteningThreshold)
       args.push("--#{opts.language}.payload-flattening-threshold=#{opts.flatteningThreshold}")
+
+    if (opts.keepVersion)
+      args.push("--#{opts.language}.keep-version-file=true")
 
     if (!!opts.nsPrefix)
       if (optsMappingsValue instanceof Array && optsMappingsValue[1] != undefined)
@@ -54,7 +57,7 @@ regenExpected = (opts,done) ->
 
     autorest args,() =>
       instances--
-      return done() if instances is 0 
+      return done() if instances is 0
 
 defaultMappings = {
   'AcceptanceTests/AdditionalProperties': 'additionalProperties.json',
@@ -101,7 +104,7 @@ defaultAzureMappings = {
 swaggerDir = "node_modules/@microsoft.azure/autorest.testserver/swagger"
 
 task 'regenerate-python', '', (done) ->
-  mappings = Object.assign({ 
+  mappings = Object.assign({
     'AcceptanceTests/UrlMultiCollectionFormat' : 'url-multi-collectionFormat.json'
   }, defaultMappings)
   regenExpected {
@@ -110,12 +113,13 @@ task 'regenerate-python', '', (done) ->
     'mappings': mappings,
     'outputDir': 'Expected',
     'language': 'python',
-    'flatteningThreshold': '1'
+    'flatteningThreshold': '1',
+    'keepVersion': true
   },done
   return null
 
 task 'regenerate-pythonazure', '', (done) ->
-  mappings = Object.assign({ 
+  mappings = Object.assign({
     'AcceptanceTests/AzureBodyDuration': 'body-duration.json',
     'AcceptanceTests/StorageManagementClient': 'storage.json'
   }, defaultAzureMappings)
