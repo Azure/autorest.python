@@ -92,4 +92,7 @@ help-content:
     - key: no-namespace-folders
       description: If used, does not generate the namespace folder hierarchy, but directly the client. Useful for update.
       type: bool
+    - key: keep-version-file
+      description: If used, do not replace the version.py if it already exists.
+      type: bool
 ```

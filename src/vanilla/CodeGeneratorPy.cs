@@ -62,10 +62,10 @@ namespace AutoRest.Python
             // protect the version file
             await Settings.Instance.Host.ProtectFiles(versionPath);
 
-            if( true != await Settings.Instance.Host.GetValue<bool?>("--keep-version-file")  ||  string.IsNullOrEmpty(await Settings.Instance.Host.ReadFile(versionPath)) ) {
+            if( true != await Settings.Instance.Host.GetValue<bool?>("keep-version-file")  ||  string.IsNullOrEmpty(await Settings.Instance.Host.ReadFile(versionPath)) ) {
                 var versionTemplate = new VersionTemplate { Model = codeModel };
                 // if they didn't say to keep the old file (or it was not there/empty), write it out.
-                await Write(versionTemplate, versionPath);    
+                await Write(versionTemplate, versionPath);
             }
 
             //Models
