@@ -26,6 +26,11 @@ task 'test', "", [], (done) ->
   await execute "tox", { cwd: './test/azure/' }, defer code, stderr, stdout
   done();
 
+task 'install_common',"", (done) ->
+  # global.verbose = true
+  execute "npm install",{cwd:"#{basefolder}/autorest.common", silent:false }, done
+      
+
 # CI job
 task 'testci', "more", [], (done) ->
   # install latest AutoRest
