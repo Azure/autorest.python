@@ -12,30 +12,36 @@
 try:
     from .product_properties_py3 import ProductProperties
     from .product_py3 import Product
+    from .product_result_py3 import ProductResult
     from .operation_result_py3 import OperationResult
     from .paging_get_multiple_pages_options_py3 import PagingGetMultiplePagesOptions
     from .paging_get_odata_multiple_pages_options_py3 import PagingGetOdataMultiplePagesOptions
     from .paging_get_multiple_pages_with_offset_options_py3 import PagingGetMultiplePagesWithOffsetOptions
     from .custom_parameter_group_py3 import CustomParameterGroup
+    from .paging_get_multiple_pages_lro_options_py3 import PagingGetMultiplePagesLroOptions
 except (SyntaxError, ImportError):
     from .product_properties import ProductProperties
     from .product import Product
+    from .product_result import ProductResult
     from .operation_result import OperationResult
     from .paging_get_multiple_pages_options import PagingGetMultiplePagesOptions
     from .paging_get_odata_multiple_pages_options import PagingGetOdataMultiplePagesOptions
     from .paging_get_multiple_pages_with_offset_options import PagingGetMultiplePagesWithOffsetOptions
     from .custom_parameter_group import CustomParameterGroup
+    from .paging_get_multiple_pages_lro_options import PagingGetMultiplePagesLroOptions
 from .product_paged import ProductPaged
 from .product_paged1 import ProductPaged1
 
 __all__ = [
     'ProductProperties',
     'Product',
+    'ProductResult',
     'OperationResult',
     'PagingGetMultiplePagesOptions',
     'PagingGetOdataMultiplePagesOptions',
     'PagingGetMultiplePagesWithOffsetOptions',
     'CustomParameterGroup',
+    'PagingGetMultiplePagesLroOptions',
     'ProductPaged',
     'ProductPaged1',
 ]
