@@ -82,7 +82,7 @@ namespace AutoRest.Python.Azure.Model
         }
 
         /// <summary>
-        /// Gets the expression for default header setting. 
+        /// Gets the expression for default header setting.
         /// </summary>
         public override string SetDefaultHeaders
         {
@@ -124,6 +124,32 @@ namespace AutoRest.Python.Azure.Model
                     return base.ReturnEmptyResponse;
                 }
             }
+        }
+
+        public string GetLROOptions()
+        {
+            // Do this only for POST with return type for now
+            if(HttpMethod != HttpMethod.Post || ReturnType == null)
+            {
+                return "";
+            }
+            string finalLroString = "";
+            switch (LongRunningFinalState)
+            {
+                case FinalStateVia.Location:
+                    finalLroString = "location";
+                    break;
+                case FinalStateVia.AzureAsyncOperation:
+                    finalLroString = "azure-async-operation";
+                    break;
+                default:
+                    break;
+            }
+            if(finalLroString != "")
+            {
+                return "{'final-state-via': '"+finalLroString+"'}";
+            }
+            return "";
         }
     }
 }
