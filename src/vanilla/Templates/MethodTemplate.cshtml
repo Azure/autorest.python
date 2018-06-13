@@ -6,6 +6,9 @@
 @using AutoRest.Python.Model
 @using AutoRest.Python.vanilla.Templates
 @inherits AutoRest.Python.PythonTemplate<AutoRest.Python.Model.MethodPy>
+@{
+string methodName = Model.Name.ToPythonCase();
+}
     def @(((string)Model.Name).ToPythonCase())(
             self, @(Model.MethodParameterDeclaration(Model.AddCustomHeader)), **operation_config):
         """@(WrapComment(string.Empty, Model.BuildSummaryAndDescriptionString()))
@@ -35,7 +38,7 @@
         """
 @if (Model.Deprecated)
 {
-@:        @(string.Format("warnings.warn(\"Method {0} is deprecated\", DeprecationWarning)", ((string)Model.Name).ToPythonCase()))
+@:        warnings.warn('Method @methodName is deprecated', DeprecationWarning)
 }
         @Model.BuildInputMappings()
 @if (Model.InputParameterTransformation.Any())
@@ -60,7 +63,14 @@
 @EmptyLine
         # Construct headers
         header_parameters = {}
-        header_parameters['Content-Type'] = '@(Model.RequestContentType)'
+@if (Model.HasAnyResponse)
+{
+        @:header_parameters['Accept'] = '@(Model.AcceptContentType)'
+}
+@if (Model.RequestBody != null || Model.IsFormData)
+{
+        @:header_parameters['Content-Type'] = '@(Model.RequestContentType)'
+}
         @(Model.SetDefaultHeaders)
         @(Model.BuildHeaders("header_parameters"))
 @EmptyLine
@@ -76,18 +86,32 @@
         @:body_content = self._client.stream_upload(@parameter.Name, callback)
         break;
       }
-    }   
-  }
-  else if (Model.RequestBody.IsRequired)
-  {
-        @:body_content = self._serialize.body(@Model.RequestBody.Name, '@(Model.RequestBody.ModelType.ToPythonRuntimeTypeString())')
+    }
   }
   else
   {
+        // Right now, just generate the serialization context if it's a sequence type. Could be smarter later
+        string serializationContext = "";
+        if(Model.CodeModel.ShouldGenerateXmlSerialization)
+        {
+                var serializationContextContent = Model.BuildSerializationContext();
+                if(!string.IsNullOrEmpty(serializationContextContent))
+                {
+                        serializationContext = ", serialization_ctxt=serialization_ctxt";
+        @:serialization_ctxt = @serializationContextContent
+                }
+        }
+        if (Model.RequestBody.IsRequired)
+        {
+        @:body_content = self._serialize.body(@Model.RequestBody.Name, '@(Model.RequestBody.ModelType.ToPythonRuntimeTypeString())'@serializationContext)
+        }
+        else
+        {
         @:if @Model.RequestBody.Name is not None:
-            @:body_content = self._serialize.body(@Model.RequestBody.Name, '@(Model.RequestBody.ModelType.ToPythonRuntimeTypeString())')
+            @:body_content = self._serialize.body(@Model.RequestBody.Name, '@(Model.RequestBody.ModelType.ToPythonRuntimeTypeString())'@serializationContext)
         @:else:
             @:body_content = None
+        }
   }
 @EmptyLine
 }
@@ -106,21 +130,19 @@ else if (Model.IsFormData)
 @EmptyLine
 }
         # Construct and send request
-        request = self._client.@(MethodPy.GetHttpFunction(Model.HttpMethod))(url, query_parameters)
 @if (Model.RequestBody != null)
 {
-        @:response = self._client.send(
-            @:request, header_parameters, body_content, stream=@(Model.ReturnType.Body.IsPrimaryType(KnownPrimaryType.Stream)?"True":"False"), **operation_config)
+        @:request = self._client.@(MethodPy.GetHttpFunction(Model.HttpMethod))(url, query_parameters, header_parameters, body_content)
 }
 else if (Model.IsFormData)
 {
-        @:response = self._client.send_formdata(
-            @:request, header_parameters, form_data_content, stream=@(Model.ReturnType.Body.IsPrimaryType(KnownPrimaryType.Stream)?"True":"False"), **operation_config)
+        @:request = self._client.@(MethodPy.GetHttpFunction(Model.HttpMethod))(url, query_parameters, header_parameters, form_content=form_data_content)
 }
 else
 {
-        @:response = self._client.send(request, header_parameters, stream=@(Model.ReturnType.Body.IsPrimaryType(KnownPrimaryType.Stream)?"True":"False"), **operation_config)
+        @:request = self._client.@(MethodPy.GetHttpFunction(Model.HttpMethod))(url, query_parameters, header_parameters)
 }
+        response = self._client.send(request, stream=@(Model.ReturnType.Body.IsPrimaryType(KnownPrimaryType.Stream)?"True":"False"), **operation_config)
 @EmptyLine
         if @Model.FailureStatusCodePredicate:
             @Model.RaisedException

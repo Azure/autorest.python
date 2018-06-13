@@ -101,6 +101,12 @@ else
     }
     @:}
 }
+@if(Model.CodeModel.ShouldGenerateXmlSerialization)
+{
+    @:_xml_map = {
+        @:@(Model.InitializeXmlProperty())
+    @:}
+}
 @if (Model.SubModelTypes.Any())
 {
 <text>

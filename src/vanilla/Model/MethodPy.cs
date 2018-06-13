@@ -383,6 +383,27 @@ namespace AutoRest.Python.Model
             }
         }
 
+        public string AcceptContentType
+        {
+            get
+            {
+                if (this.ResponseContentTypes.Count() == 1)
+                {
+                    return this.ResponseContentTypes[0];
+                }
+                // If more type are supported, if JSON is supported, ask JSON only
+                foreach (string element in this.ResponseContentTypes)
+                {
+                    if(element.Contains("json"))
+                    {
+                        return element;
+                    }
+                }
+                // If no JSON, and still several content type, chain them
+                return string.Join(", ", this.ResponseContentTypes);
+            }
+        }
+
         public bool HasResponseHeader
         {
             get
@@ -758,6 +779,17 @@ namespace AutoRest.Python.Model
         public string BuildSummaryAndDescriptionString()
         {
             return CodeGeneratorPy.BuildSummaryAndDescriptionString(this.Summary, this.Description);
+        }
+
+        public string BuildSerializationContext()
+        {
+            // Don't check the "as", MethodPy is not not supposed to receive a non-Python model
+            string serializationDict = (RequestBody.ModelType as IExtendedModelTypePy).XmlSerializationCtxt();
+            if (string.IsNullOrEmpty(serializationDict))
+            {
+                return null;
+            }
+            return string.Format("{{'xml': {0}}}", serializationDict);
         }
     }
 }

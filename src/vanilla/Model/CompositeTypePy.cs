@@ -389,12 +389,45 @@ namespace AutoRest.Python.Model
                 throw new ArgumentNullException("modelProperty");
             }
 
+            string xmlDeclarations = "";
+            if (CodeModel.ShouldGenerateXmlSerialization)
+            {
+                List<string> combinedXmlDeclarations = GenericXmlCtxtSerializer.XmlSerializationPropertyCtxt(modelProperty);
+
+                SequenceTypePy sequenceType = modelProperty.ModelType as SequenceTypePy;
+                if (sequenceType != null && !string.IsNullOrEmpty(sequenceType.ElementXmlName))
+                {
+                    combinedXmlDeclarations.AddRange(sequenceType.ItemsSerializationContext());
+                }
+
+                xmlDeclarations = string.Format(CultureInfo.InvariantCulture,
+                    ", 'xml': {{{1}}}",
+                    modelProperty.Name,
+                    string.Join(", ", combinedXmlDeclarations)
+                );                
+            }
+
             //'id':{'key':'id', 'type':'str'},
             return string.Format(CultureInfo.InvariantCulture,
-                "'{0}': {{'key': '{1}', 'type': '{2}'}},",
-                modelProperty.Name, modelProperty.SerializedName,
-                ClientModelExtensions.GetPythonSerializationType(modelProperty.ModelType));
+                "'{0}': {{'key': '{1}', 'type': '{2}'{3}}},",
+                modelProperty.Name,
+                modelProperty.SerializedName,
+                ClientModelExtensions.GetPythonSerializationType(modelProperty.ModelType),
+                xmlDeclarations
+            );
         }
+
+        public virtual string InitializeXmlProperty()
+        {
+            this.XmlSerializationCtxt();
+            List<string> combinedXmlDeclarations = GenericXmlCtxtSerializer.XmlSerializationModelTypeCtxt(this);
+            return string.Join(", ", combinedXmlDeclarations);
+        }
+
+        public string XmlSerializationCtxt()
+        {
+            return null;  // CompositeType contains _xml_map, they don't need serialization context
+        }        
 
         public string InitializeProperty(string objectName, Property property, bool kwargsMode)
         {

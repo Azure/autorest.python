@@ -6,5 +6,6 @@ namespace AutoRest.Python.Model {
     public interface IExtendedModelTypePy {
         string TypeDocumentation {get;}
         string ReturnTypeDocumentation { get; }
+        string XmlSerializationCtxt();
     }
 }
