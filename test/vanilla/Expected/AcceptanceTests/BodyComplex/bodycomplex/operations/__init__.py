@@ -17,6 +17,7 @@ from .inheritance_operations import InheritanceOperations
 from .polymorphism_operations import PolymorphismOperations
 from .polymorphicrecursive_operations import PolymorphicrecursiveOperations
 from .readonlyproperty_operations import ReadonlypropertyOperations
+from .flattencomplex_operations import FlattencomplexOperations
 
 __all__ = [
     'BasicOperations',
@@ -27,4 +28,5 @@ __all__ = [
     'PolymorphismOperations',
     'PolymorphicrecursiveOperations',
     'ReadonlypropertyOperations',
+    'FlattencomplexOperations',
 ]
