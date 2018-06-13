@@ -1,6 +1,6 @@
 ﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
-// 
+//
 
 using System.Collections.Generic;
 using System.Globalization;
@@ -31,7 +31,7 @@ namespace AutoRest.Python.Azure.Model
                     (bool) m.Extensions[AzureExtensions.LongRunningExtension]);
 
         public bool HasAnyCloudErrors =>
-            MethodTemplateModels.Any(item => 
+            MethodTemplateModels.Any(item =>
                 (item.DefaultResponse.Body == null) || (item.DefaultResponse.Body.Name == "CloudError"));
 
         public override string RequiredConstructorParameters
@@ -73,10 +73,10 @@ namespace AutoRest.Python.Azure.Model
             }
         }
 
-        public override string SetupRequires => "\"msrestazure>=0.4.27\"";
+        public override string SetupRequires => "\"msrestazure>=0.4.32\"";
 
         public override bool NeedsExtraImport => true;
 
-        
+
     }
 }
