@@ -1,3 +1,9 @@
+### 2018-06-13 - 3.0.54
+
+This version requires msrestazure 0.4.32
+
+- Add support for LRO options
+
 ### 2018-06-13 - 3.0.53
 
 This version requires msrest 0.5.0

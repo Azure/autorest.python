@@ -25,3 +25,8 @@ class GoblinSharkColor(str, Enum):
     pink = "pink"
     gray = "gray"
     brown = "brown"
+
+
+class MyKind(str, Enum):
+
+    kind1 = "Kind1"

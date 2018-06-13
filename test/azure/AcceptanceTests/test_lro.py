@@ -73,7 +73,7 @@ class AutorestTestARMPolling(ARMPolling):
         if host == 'localhost':
             return {'cookie': response.headers.get('set-cookie', '')}
         return {}
-    
+
     def request_status(self, status_link):
         request = self._client.get(status_link)
         # ARM requires to re-inject 'x-ms-client-request-id' while polling
@@ -116,6 +116,13 @@ class TestLro:
         if "polling" not in kwargs:
             kwargs["polling"] = AutorestTestARMPolling(0)
         return func(*args, **kwargs).result()
+
+    def test_lro_post_issue(self, client):
+        product = client.lr_os.post_double_headers_final_location_get().result()
+        assert product.id == "100"
+
+        product = client.lr_os.post_double_headers_final_azure_header_get().result()
+        assert product.id == "100"
 
     def test_lro_happy_paths(self, special_client):
         client = special_client
