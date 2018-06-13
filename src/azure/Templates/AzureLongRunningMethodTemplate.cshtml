@@ -32,7 +32,14 @@
 @EmptyLine
         # Construct headers
         header_parameters = {}
-        header_parameters['Content-Type'] = '@(Model.RequestContentType)'
+@if (Model.HasAnyResponse)
+{
+        @:header_parameters['Accept'] = '@(Model.AcceptContentType)'
+}
+@if (Model.RequestBody != null || Model.IsFormData)
+{
+        @:header_parameters['Content-Type'] = '@(Model.RequestContentType)'
+}
         @(Model.SetDefaultHeaders)
         @(Model.BuildHeaders("header_parameters"))
 @EmptyLine
@@ -64,16 +71,15 @@
 @EmptyLine
 }
         # Construct and send request
-        request = self._client.@(MethodPy.GetHttpFunction(Model.HttpMethod))(url, query_parameters)
 @if (Model.RequestBody != null)
 {
-        @:response = self._client.send(
-            @:request, header_parameters, body_content, stream=False, **operation_config)
+        @:request = self._client.@(MethodPy.GetHttpFunction(Model.HttpMethod))(url, query_parameters, header_parameters, body_content)
 }
 else
 {
-        @:response = self._client.send(request, header_parameters, stream=False, **operation_config)
+        @:request = self._client.@(MethodPy.GetHttpFunction(Model.HttpMethod))(url, query_parameters, header_parameters)
 }
+        response = self._client.send(request, stream=False, **operation_config)
 @EmptyLine
         if @Model.FailureStatusCodePredicate:
             @Model.RaisedException
@@ -148,7 +154,7 @@ else
 @foreach(var parameter in Model.DocumentationParameters)
 {
 @:            @parameter.Name=@parameter.Name,
-}                    
+}
             custom_headers=custom_headers,
             raw=True,
             **operation_config
