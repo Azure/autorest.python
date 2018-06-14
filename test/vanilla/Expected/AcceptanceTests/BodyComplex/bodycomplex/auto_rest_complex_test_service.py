@@ -12,6 +12,7 @@
 from msrest.service_client import SDKClient
 from msrest import Configuration, Serializer, Deserializer
 from .version import VERSION
+from msrest.exceptions import HttpOperationError
 from .operations import BasicOperations
 from .operations import PrimitiveOperations
 from .operations import ArrayOperations
@@ -20,6 +21,7 @@ from .operations import InheritanceOperations
 from .operations import PolymorphismOperations
 from .operations import PolymorphicrecursiveOperations
 from .operations import ReadonlypropertyOperations
+from .operations import FlattencomplexOperations
 from . import models
 
 
@@ -64,6 +66,8 @@ class AutoRestComplexTestService(SDKClient):
     :vartype polymorphicrecursive: bodycomplex.operations.PolymorphicrecursiveOperations
     :ivar readonlyproperty: Readonlyproperty operations
     :vartype readonlyproperty: bodycomplex.operations.ReadonlypropertyOperations
+    :ivar flattencomplex: Flattencomplex operations
+    :vartype flattencomplex: bodycomplex.operations.FlattencomplexOperations
 
     :param str base_url: Service URL
     """
@@ -94,4 +98,6 @@ class AutoRestComplexTestService(SDKClient):
         self.polymorphicrecursive = PolymorphicrecursiveOperations(
             self._client, self.config, self._serialize, self._deserialize)
         self.readonlyproperty = ReadonlypropertyOperations(
+            self._client, self.config, self._serialize, self._deserialize)
+        self.flattencomplex = FlattencomplexOperations(
             self._client, self.config, self._serialize, self._deserialize)

@@ -42,16 +42,13 @@ class HeaderOperations(_HeaderOperations):
 
         # Construct headers
         header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if custom_headers:
             header_parameters.update(custom_headers)
         header_parameters['User-Agent'] = self._serialize.header("user_agent", user_agent, 'str')
 
-        body_content = None
         # Construct and send request
-        request = self._client.post(url, query_parameters)
-        response = await self._client.async_send(
-            request, header_parameters, body_content, stream=False, **operation_config)
+        request = self._client.post(url, query_parameters, header_parameters)
+        response = await self._client.async_send(request, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -82,15 +79,12 @@ class HeaderOperations(_HeaderOperations):
 
         # Construct headers
         header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if custom_headers:
             header_parameters.update(custom_headers)
 
-        body_content = None
         # Construct and send request
-        request = self._client.post(url, query_parameters)
-        response = await self._client.async_send(
-            request, header_parameters, body_content, stream=False, **operation_config)
+        request = self._client.post(url, query_parameters, header_parameters)
+        response = await self._client.async_send(request, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -127,16 +121,13 @@ class HeaderOperations(_HeaderOperations):
 
         # Construct headers
         header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if custom_headers:
             header_parameters.update(custom_headers)
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        body_content = None
         # Construct and send request
-        request = self._client.post(url, query_parameters)
-        response = await self._client.async_send(
-            request, header_parameters, body_content, stream=False, **operation_config)
+        request = self._client.post(url, query_parameters, header_parameters)
+        response = await self._client.async_send(request, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -167,15 +158,12 @@ class HeaderOperations(_HeaderOperations):
 
         # Construct headers
         header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if custom_headers:
             header_parameters.update(custom_headers)
 
-        body_content = None
         # Construct and send request
-        request = self._client.post(url, query_parameters)
-        response = await self._client.async_send(
-            request, header_parameters, body_content, stream=False, **operation_config)
+        request = self._client.post(url, query_parameters, header_parameters)
+        response = await self._client.async_send(request, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -215,17 +203,14 @@ class HeaderOperations(_HeaderOperations):
 
         # Construct headers
         header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if custom_headers:
             header_parameters.update(custom_headers)
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
         header_parameters['value'] = self._serialize.header("value", value, 'int')
 
-        body_content = None
         # Construct and send request
-        request = self._client.post(url, query_parameters)
-        response = await self._client.async_send(
-            request, header_parameters, body_content, stream=False, **operation_config)
+        request = self._client.post(url, query_parameters, header_parameters)
+        response = await self._client.async_send(request, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -259,16 +244,13 @@ class HeaderOperations(_HeaderOperations):
 
         # Construct headers
         header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if custom_headers:
             header_parameters.update(custom_headers)
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
-        body_content = None
         # Construct and send request
-        request = self._client.post(url, query_parameters)
-        response = await self._client.async_send(
-            request, header_parameters, body_content, stream=False, **operation_config)
+        request = self._client.post(url, query_parameters, header_parameters)
+        response = await self._client.async_send(request, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -308,17 +290,14 @@ class HeaderOperations(_HeaderOperations):
 
         # Construct headers
         header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if custom_headers:
             header_parameters.update(custom_headers)
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
         header_parameters['value'] = self._serialize.header("value", value, 'long')
 
-        body_content = None
         # Construct and send request
-        request = self._client.post(url, query_parameters)
-        response = await self._client.async_send(
-            request, header_parameters, body_content, stream=False, **operation_config)
+        request = self._client.post(url, query_parameters, header_parameters)
+        response = await self._client.async_send(request, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -352,16 +331,13 @@ class HeaderOperations(_HeaderOperations):
 
         # Construct headers
         header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if custom_headers:
             header_parameters.update(custom_headers)
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
-        body_content = None
         # Construct and send request
-        request = self._client.post(url, query_parameters)
-        response = await self._client.async_send(
-            request, header_parameters, body_content, stream=False, **operation_config)
+        request = self._client.post(url, query_parameters, header_parameters)
+        response = await self._client.async_send(request, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -401,17 +377,14 @@ class HeaderOperations(_HeaderOperations):
 
         # Construct headers
         header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if custom_headers:
             header_parameters.update(custom_headers)
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
         header_parameters['value'] = self._serialize.header("value", value, 'float')
 
-        body_content = None
         # Construct and send request
-        request = self._client.post(url, query_parameters)
-        response = await self._client.async_send(
-            request, header_parameters, body_content, stream=False, **operation_config)
+        request = self._client.post(url, query_parameters, header_parameters)
+        response = await self._client.async_send(request, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -445,16 +418,13 @@ class HeaderOperations(_HeaderOperations):
 
         # Construct headers
         header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if custom_headers:
             header_parameters.update(custom_headers)
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
-        body_content = None
         # Construct and send request
-        request = self._client.post(url, query_parameters)
-        response = await self._client.async_send(
-            request, header_parameters, body_content, stream=False, **operation_config)
+        request = self._client.post(url, query_parameters, header_parameters)
+        response = await self._client.async_send(request, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -494,17 +464,14 @@ class HeaderOperations(_HeaderOperations):
 
         # Construct headers
         header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if custom_headers:
             header_parameters.update(custom_headers)
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
         header_parameters['value'] = self._serialize.header("value", value, 'float')
 
-        body_content = None
         # Construct and send request
-        request = self._client.post(url, query_parameters)
-        response = await self._client.async_send(
-            request, header_parameters, body_content, stream=False, **operation_config)
+        request = self._client.post(url, query_parameters, header_parameters)
+        response = await self._client.async_send(request, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -538,16 +505,13 @@ class HeaderOperations(_HeaderOperations):
 
         # Construct headers
         header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if custom_headers:
             header_parameters.update(custom_headers)
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
-        body_content = None
         # Construct and send request
-        request = self._client.post(url, query_parameters)
-        response = await self._client.async_send(
-            request, header_parameters, body_content, stream=False, **operation_config)
+        request = self._client.post(url, query_parameters, header_parameters)
+        response = await self._client.async_send(request, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -587,17 +551,14 @@ class HeaderOperations(_HeaderOperations):
 
         # Construct headers
         header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if custom_headers:
             header_parameters.update(custom_headers)
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
         header_parameters['value'] = self._serialize.header("value", value, 'bool')
 
-        body_content = None
         # Construct and send request
-        request = self._client.post(url, query_parameters)
-        response = await self._client.async_send(
-            request, header_parameters, body_content, stream=False, **operation_config)
+        request = self._client.post(url, query_parameters, header_parameters)
+        response = await self._client.async_send(request, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -631,16 +592,13 @@ class HeaderOperations(_HeaderOperations):
 
         # Construct headers
         header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if custom_headers:
             header_parameters.update(custom_headers)
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
-        body_content = None
         # Construct and send request
-        request = self._client.post(url, query_parameters)
-        response = await self._client.async_send(
-            request, header_parameters, body_content, stream=False, **operation_config)
+        request = self._client.post(url, query_parameters, header_parameters)
+        response = await self._client.async_send(request, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -682,18 +640,15 @@ class HeaderOperations(_HeaderOperations):
 
         # Construct headers
         header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if custom_headers:
             header_parameters.update(custom_headers)
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
         if value is not None:
             header_parameters['value'] = self._serialize.header("value", value, 'str')
 
-        body_content = None
         # Construct and send request
-        request = self._client.post(url, query_parameters)
-        response = await self._client.async_send(
-            request, header_parameters, body_content, stream=False, **operation_config)
+        request = self._client.post(url, query_parameters, header_parameters)
+        response = await self._client.async_send(request, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -728,16 +683,13 @@ class HeaderOperations(_HeaderOperations):
 
         # Construct headers
         header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if custom_headers:
             header_parameters.update(custom_headers)
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
-        body_content = None
         # Construct and send request
-        request = self._client.post(url, query_parameters)
-        response = await self._client.async_send(
-            request, header_parameters, body_content, stream=False, **operation_config)
+        request = self._client.post(url, query_parameters, header_parameters)
+        response = await self._client.async_send(request, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -778,17 +730,14 @@ class HeaderOperations(_HeaderOperations):
 
         # Construct headers
         header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if custom_headers:
             header_parameters.update(custom_headers)
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
         header_parameters['value'] = self._serialize.header("value", value, 'date')
 
-        body_content = None
         # Construct and send request
-        request = self._client.post(url, query_parameters)
-        response = await self._client.async_send(
-            request, header_parameters, body_content, stream=False, **operation_config)
+        request = self._client.post(url, query_parameters, header_parameters)
+        response = await self._client.async_send(request, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -822,16 +771,13 @@ class HeaderOperations(_HeaderOperations):
 
         # Construct headers
         header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if custom_headers:
             header_parameters.update(custom_headers)
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
-        body_content = None
         # Construct and send request
-        request = self._client.post(url, query_parameters)
-        response = await self._client.async_send(
-            request, header_parameters, body_content, stream=False, **operation_config)
+        request = self._client.post(url, query_parameters, header_parameters)
+        response = await self._client.async_send(request, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -873,17 +819,14 @@ class HeaderOperations(_HeaderOperations):
 
         # Construct headers
         header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if custom_headers:
             header_parameters.update(custom_headers)
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
         header_parameters['value'] = self._serialize.header("value", value, 'iso-8601')
 
-        body_content = None
         # Construct and send request
-        request = self._client.post(url, query_parameters)
-        response = await self._client.async_send(
-            request, header_parameters, body_content, stream=False, **operation_config)
+        request = self._client.post(url, query_parameters, header_parameters)
+        response = await self._client.async_send(request, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -918,16 +861,13 @@ class HeaderOperations(_HeaderOperations):
 
         # Construct headers
         header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if custom_headers:
             header_parameters.update(custom_headers)
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
-        body_content = None
         # Construct and send request
-        request = self._client.post(url, query_parameters)
-        response = await self._client.async_send(
-            request, header_parameters, body_content, stream=False, **operation_config)
+        request = self._client.post(url, query_parameters, header_parameters)
+        response = await self._client.async_send(request, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -969,18 +909,15 @@ class HeaderOperations(_HeaderOperations):
 
         # Construct headers
         header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if custom_headers:
             header_parameters.update(custom_headers)
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
         if value is not None:
             header_parameters['value'] = self._serialize.header("value", value, 'rfc-1123')
 
-        body_content = None
         # Construct and send request
-        request = self._client.post(url, query_parameters)
-        response = await self._client.async_send(
-            request, header_parameters, body_content, stream=False, **operation_config)
+        request = self._client.post(url, query_parameters, header_parameters)
+        response = await self._client.async_send(request, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -1015,16 +952,13 @@ class HeaderOperations(_HeaderOperations):
 
         # Construct headers
         header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if custom_headers:
             header_parameters.update(custom_headers)
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
-        body_content = None
         # Construct and send request
-        request = self._client.post(url, query_parameters)
-        response = await self._client.async_send(
-            request, header_parameters, body_content, stream=False, **operation_config)
+        request = self._client.post(url, query_parameters, header_parameters)
+        response = await self._client.async_send(request, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -1065,17 +999,14 @@ class HeaderOperations(_HeaderOperations):
 
         # Construct headers
         header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if custom_headers:
             header_parameters.update(custom_headers)
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
         header_parameters['value'] = self._serialize.header("value", value, 'duration')
 
-        body_content = None
         # Construct and send request
-        request = self._client.post(url, query_parameters)
-        response = await self._client.async_send(
-            request, header_parameters, body_content, stream=False, **operation_config)
+        request = self._client.post(url, query_parameters, header_parameters)
+        response = await self._client.async_send(request, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -1109,16 +1040,13 @@ class HeaderOperations(_HeaderOperations):
 
         # Construct headers
         header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if custom_headers:
             header_parameters.update(custom_headers)
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
-        body_content = None
         # Construct and send request
-        request = self._client.post(url, query_parameters)
-        response = await self._client.async_send(
-            request, header_parameters, body_content, stream=False, **operation_config)
+        request = self._client.post(url, query_parameters, header_parameters)
+        response = await self._client.async_send(request, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -1158,17 +1086,14 @@ class HeaderOperations(_HeaderOperations):
 
         # Construct headers
         header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if custom_headers:
             header_parameters.update(custom_headers)
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
         header_parameters['value'] = self._serialize.header("value", value, 'bytearray')
 
-        body_content = None
         # Construct and send request
-        request = self._client.post(url, query_parameters)
-        response = await self._client.async_send(
-            request, header_parameters, body_content, stream=False, **operation_config)
+        request = self._client.post(url, query_parameters, header_parameters)
+        response = await self._client.async_send(request, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -1202,16 +1127,13 @@ class HeaderOperations(_HeaderOperations):
 
         # Construct headers
         header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if custom_headers:
             header_parameters.update(custom_headers)
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
-        body_content = None
         # Construct and send request
-        request = self._client.post(url, query_parameters)
-        response = await self._client.async_send(
-            request, header_parameters, body_content, stream=False, **operation_config)
+        request = self._client.post(url, query_parameters, header_parameters)
+        response = await self._client.async_send(request, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -1252,18 +1174,15 @@ class HeaderOperations(_HeaderOperations):
 
         # Construct headers
         header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if custom_headers:
             header_parameters.update(custom_headers)
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
         if value is not None:
             header_parameters['value'] = self._serialize.header("value", value, 'GreyscaleColors')
 
-        body_content = None
         # Construct and send request
-        request = self._client.post(url, query_parameters)
-        response = await self._client.async_send(
-            request, header_parameters, body_content, stream=False, **operation_config)
+        request = self._client.post(url, query_parameters, header_parameters)
+        response = await self._client.async_send(request, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -1297,16 +1216,13 @@ class HeaderOperations(_HeaderOperations):
 
         # Construct headers
         header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if custom_headers:
             header_parameters.update(custom_headers)
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
-        body_content = None
         # Construct and send request
-        request = self._client.post(url, query_parameters)
-        response = await self._client.async_send(
-            request, header_parameters, body_content, stream=False, **operation_config)
+        request = self._client.post(url, query_parameters, header_parameters)
+        response = await self._client.async_send(request, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -1341,15 +1257,12 @@ class HeaderOperations(_HeaderOperations):
 
         # Construct headers
         header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if custom_headers:
             header_parameters.update(custom_headers)
 
-        body_content = None
         # Construct and send request
-        request = self._client.post(url, query_parameters)
-        response = await self._client.async_send(
-            request, header_parameters, body_content, stream=False, **operation_config)
+        request = self._client.post(url, query_parameters, header_parameters)
+        response = await self._client.async_send(request, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)

@@ -65,7 +65,14 @@ if (AsyncMode) methodName += "_async";
 @EmptyLine
         # Construct headers
         header_parameters = {}
-        header_parameters['Content-Type'] = '@(Model.RequestContentType)'
+@if (Model.HasAnyResponse)
+{
+        @:header_parameters['Accept'] = '@(Model.AcceptContentType)'
+}
+@if (Model.RequestBody != null || Model.IsFormData)
+{
+        @:header_parameters['Content-Type'] = '@(Model.RequestContentType)'
+}
         @(Model.SetDefaultHeaders)
         @(Model.BuildHeaders("header_parameters"))
 @EmptyLine
@@ -81,25 +88,39 @@ if (AsyncMode) methodName += "_async";
         @:body_content = self._client.stream_upload(@parameter.Name, callback)
         break;
       }
-    }   
-  }
-  else if (Model.RequestBody.IsRequired)
-  {
-        @:body_content = self._serialize.body(@Model.RequestBody.Name, '@(Model.RequestBody.ModelType.ToPythonRuntimeTypeString())')
+    }
   }
   else
   {
+        // Right now, just generate the serialization context if it's a sequence type. Could be smarter later
+        string serializationContext = "";
+        if(Model.CodeModel.ShouldGenerateXmlSerialization)
+        {
+                var serializationContextContent = Model.BuildSerializationContext();
+                if(!string.IsNullOrEmpty(serializationContextContent))
+                {
+                        serializationContext = ", serialization_ctxt=serialization_ctxt";
+        @:serialization_ctxt = @serializationContextContent
+                }
+        }
+        if (Model.RequestBody.IsRequired)
+        {
+        @:body_content = self._serialize.body(@Model.RequestBody.Name, '@(Model.RequestBody.ModelType.ToPythonRuntimeTypeString())'@serializationContext)
+        }
+        else
+        {
         @:if @Model.RequestBody.Name is not None:
-            @:body_content = self._serialize.body(@Model.RequestBody.Name, '@(Model.RequestBody.ModelType.ToPythonRuntimeTypeString())')
+            @:body_content = self._serialize.body(@Model.RequestBody.Name, '@(Model.RequestBody.ModelType.ToPythonRuntimeTypeString())'@serializationContext)
         @:else:
             @:body_content = None
+        }
   }
 @EmptyLine
 }
 else if (Model.IsFormData)
 {
         @:# Construct form data
-        @:body_content = {
+        @:form_data_content = {
   foreach (var parameter in Model.LocalParameters)
   {
     if (parameter.Location == ParameterLocation.FormData)
@@ -110,16 +131,22 @@ else if (Model.IsFormData)
         @:}
 @EmptyLine
 }
+        # Construct and send request
+@if (Model.RequestBody != null)
+{
+        @:request = self._client.@(MethodPy.GetHttpFunction(Model.HttpMethod))(url, query_parameters, header_parameters, body_content)
+}
+else if (Model.IsFormData)
+{
+        @:request = self._client.@(MethodPy.GetHttpFunction(Model.HttpMethod))(url, query_parameters, header_parameters, form_content=form_data_content)
+}
 else
 {
-        @:body_content = None
+        @:request = self._client.@(MethodPy.GetHttpFunction(Model.HttpMethod))(url, query_parameters, header_parameters)
 }
-        # Construct and send request
-        request = self._client.@(MethodPy.GetHttpFunction(Model.HttpMethod))(url, query_parameters)
 @{string streamParameter = "stream="+(Model.IsStreamResponse?"True":"False");}
 @{string sendCall = Model.GetSendCall(AsyncMode);}
-        response = @(sendCall)(
-            request, header_parameters, body_content, @(streamParameter), **operation_config)
+        response = @(sendCall)(request, @(streamParameter), **operation_config)
 @EmptyLine
         if @Model.FailureStatusCodePredicate:
             @Model.RaisedException
@@ -132,7 +159,7 @@ else
   }
 if (Model.IsStreamResponse)
 {
-        @:deserialized = self._client.stream_download@(AsyncMode?"_async":"")(response, callback)        
+        @:deserialized = self._client.stream_download@(AsyncMode?"_async":"")(response, callback)
 }
 else
 {

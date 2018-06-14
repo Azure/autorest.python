@@ -73,15 +73,13 @@ class AutorestTestARMPolling(AsyncARMPolling):
         if host == 'localhost':
             return {'cookie': response.headers.get('set-cookie', '')}
         return {}
-    
+
     async def request_status(self, status_link):
         request = self._client.get(status_link)
         # ARM requires to re-inject 'x-ms-client-request-id' while polling
-        header_parameters = {
-            'x-ms-client-request-id': self._operation.initial_response.request.headers['x-ms-client-request-id']
-        }
-        header_parameters.update(self._polling_cookie(self._response))
-        return await self._client.async_send(request, header_parameters)
+        request.headers['x-ms-client-request-id'] = self._operation.initial_response.request.headers['x-ms-client-request-id']
+        request.headers.update(self._polling_cookie(self._response))
+        return await self._client.async_send(request)
 
 
 @pytest.fixture()
@@ -116,6 +114,14 @@ class TestLro:
         if "polling" not in kwargs:
             kwargs["polling"] = AutorestTestARMPolling(0)
         return await func(*args, **kwargs)
+
+    @pytest.mark.asyncio
+    async def test_lro_post_issue(self, client):
+        product = await client.lr_os.post_double_headers_final_location_get_async()
+        assert product.id == "100"
+
+        product = await client.lr_os.post_double_headers_final_azure_header_get_async()
+        assert product.id == "100"
 
     @pytest.mark.asyncio
     async def test_lro_happy_paths(self, special_client):

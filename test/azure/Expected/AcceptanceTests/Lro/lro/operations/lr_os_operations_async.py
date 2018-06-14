@@ -32,6 +32,7 @@ class LROsOperations(_LROsOperations):
 
         # Construct headers
         header_parameters = {}
+        header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if self.config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
@@ -47,9 +48,8 @@ class LROsOperations(_LROsOperations):
             body_content = None
 
         # Construct and send request
-        request = self._client.put(url, query_parameters)
-        response = await self._client.async_send(
-            request, header_parameters, body_content, stream=False, **operation_config)
+        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        response = await self._client.async_send(request, stream=False, **operation_config)
 
         if response.status_code not in [200, 204]:
             exp = CloudError(response)
@@ -121,6 +121,7 @@ class LROsOperations(_LROsOperations):
 
         # Construct headers
         header_parameters = {}
+        header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if self.config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
@@ -136,9 +137,8 @@ class LROsOperations(_LROsOperations):
             body_content = None
 
         # Construct and send request
-        request = self._client.put(url, query_parameters)
-        response = await self._client.async_send(
-            request, header_parameters, body_content, stream=False, **operation_config)
+        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        response = await self._client.async_send(request, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             exp = CloudError(response)
@@ -210,6 +210,7 @@ class LROsOperations(_LROsOperations):
 
         # Construct headers
         header_parameters = {}
+        header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if self.config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
@@ -225,9 +226,8 @@ class LROsOperations(_LROsOperations):
             body_content = None
 
         # Construct and send request
-        request = self._client.put(url, query_parameters)
-        response = await self._client.async_send(
-            request, header_parameters, body_content, stream=False, **operation_config)
+        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        response = await self._client.async_send(request, stream=False, **operation_config)
 
         if response.status_code not in [202]:
             exp = CloudError(response)
@@ -300,6 +300,7 @@ class LROsOperations(_LROsOperations):
 
         # Construct headers
         header_parameters = {}
+        header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if self.config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
@@ -315,9 +316,8 @@ class LROsOperations(_LROsOperations):
             body_content = None
 
         # Construct and send request
-        request = self._client.put(url, query_parameters)
-        response = await self._client.async_send(
-            request, header_parameters, body_content, stream=False, **operation_config)
+        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        response = await self._client.async_send(request, stream=False, **operation_config)
 
         if response.status_code not in [200, 201]:
             exp = CloudError(response)
@@ -393,6 +393,7 @@ class LROsOperations(_LROsOperations):
 
         # Construct headers
         header_parameters = {}
+        header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if self.config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
@@ -408,9 +409,8 @@ class LROsOperations(_LROsOperations):
             body_content = None
 
         # Construct and send request
-        request = self._client.put(url, query_parameters)
-        response = await self._client.async_send(
-            request, header_parameters, body_content, stream=False, **operation_config)
+        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        response = await self._client.async_send(request, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             exp = CloudError(response)
@@ -484,6 +484,7 @@ class LROsOperations(_LROsOperations):
 
         # Construct headers
         header_parameters = {}
+        header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if self.config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
@@ -499,9 +500,8 @@ class LROsOperations(_LROsOperations):
             body_content = None
 
         # Construct and send request
-        request = self._client.put(url, query_parameters)
-        response = await self._client.async_send(
-            request, header_parameters, body_content, stream=False, **operation_config)
+        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        response = await self._client.async_send(request, stream=False, **operation_config)
 
         if response.status_code not in [200, 201]:
             exp = CloudError(response)
@@ -577,6 +577,7 @@ class LROsOperations(_LROsOperations):
 
         # Construct headers
         header_parameters = {}
+        header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if self.config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
@@ -592,9 +593,8 @@ class LROsOperations(_LROsOperations):
             body_content = None
 
         # Construct and send request
-        request = self._client.put(url, query_parameters)
-        response = await self._client.async_send(
-            request, header_parameters, body_content, stream=False, **operation_config)
+        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        response = await self._client.async_send(request, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             exp = CloudError(response)
@@ -668,6 +668,7 @@ class LROsOperations(_LROsOperations):
 
         # Construct headers
         header_parameters = {}
+        header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if self.config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
@@ -683,9 +684,8 @@ class LROsOperations(_LROsOperations):
             body_content = None
 
         # Construct and send request
-        request = self._client.put(url, query_parameters)
-        response = await self._client.async_send(
-            request, header_parameters, body_content, stream=False, **operation_config)
+        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        response = await self._client.async_send(request, stream=False, **operation_config)
 
         if response.status_code not in [202]:
             exp = CloudError(response)
@@ -767,6 +767,7 @@ class LROsOperations(_LROsOperations):
 
         # Construct headers
         header_parameters = {}
+        header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if self.config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
@@ -782,9 +783,8 @@ class LROsOperations(_LROsOperations):
             body_content = None
 
         # Construct and send request
-        request = self._client.put(url, query_parameters)
-        response = await self._client.async_send(
-            request, header_parameters, body_content, stream=False, **operation_config)
+        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        response = await self._client.async_send(request, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             exp = CloudError(response)
@@ -871,6 +871,7 @@ class LROsOperations(_LROsOperations):
 
         # Construct headers
         header_parameters = {}
+        header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if self.config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
@@ -886,9 +887,8 @@ class LROsOperations(_LROsOperations):
             body_content = None
 
         # Construct and send request
-        request = self._client.put(url, query_parameters)
-        response = await self._client.async_send(
-            request, header_parameters, body_content, stream=False, **operation_config)
+        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        response = await self._client.async_send(request, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             exp = CloudError(response)
@@ -973,6 +973,7 @@ class LROsOperations(_LROsOperations):
 
         # Construct headers
         header_parameters = {}
+        header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if self.config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
@@ -988,9 +989,8 @@ class LROsOperations(_LROsOperations):
             body_content = None
 
         # Construct and send request
-        request = self._client.put(url, query_parameters)
-        response = await self._client.async_send(
-            request, header_parameters, body_content, stream=False, **operation_config)
+        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        response = await self._client.async_send(request, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             exp = CloudError(response)
@@ -1077,6 +1077,7 @@ class LROsOperations(_LROsOperations):
 
         # Construct headers
         header_parameters = {}
+        header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if self.config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
@@ -1092,9 +1093,8 @@ class LROsOperations(_LROsOperations):
             body_content = None
 
         # Construct and send request
-        request = self._client.put(url, query_parameters)
-        response = await self._client.async_send(
-            request, header_parameters, body_content, stream=False, **operation_config)
+        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        response = await self._client.async_send(request, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             exp = CloudError(response)
@@ -1179,6 +1179,7 @@ class LROsOperations(_LROsOperations):
 
         # Construct headers
         header_parameters = {}
+        header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if self.config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
@@ -1194,9 +1195,8 @@ class LROsOperations(_LROsOperations):
             body_content = None
 
         # Construct and send request
-        request = self._client.put(url, query_parameters)
-        response = await self._client.async_send(
-            request, header_parameters, body_content, stream=False, **operation_config)
+        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        response = await self._client.async_send(request, stream=False, **operation_config)
 
         if response.status_code not in [201]:
             exp = CloudError(response)
@@ -1278,6 +1278,7 @@ class LROsOperations(_LROsOperations):
 
         # Construct headers
         header_parameters = {}
+        header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if self.config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
@@ -1293,9 +1294,8 @@ class LROsOperations(_LROsOperations):
             body_content = None
 
         # Construct and send request
-        request = self._client.put(url, query_parameters)
-        response = await self._client.async_send(
-            request, header_parameters, body_content, stream=False, **operation_config)
+        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        response = await self._client.async_send(request, stream=False, **operation_config)
 
         if response.status_code not in [202]:
             exp = CloudError(response)
@@ -1365,6 +1365,7 @@ class LROsOperations(_LROsOperations):
 
         # Construct headers
         header_parameters = {}
+        header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if self.config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
@@ -1380,9 +1381,8 @@ class LROsOperations(_LROsOperations):
             body_content = None
 
         # Construct and send request
-        request = self._client.put(url, query_parameters)
-        response = await self._client.async_send(
-            request, header_parameters, body_content, stream=False, **operation_config)
+        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        response = await self._client.async_send(request, stream=False, **operation_config)
 
         if response.status_code not in [202]:
             exp = CloudError(response)
@@ -1456,6 +1456,7 @@ class LROsOperations(_LROsOperations):
 
         # Construct headers
         header_parameters = {}
+        header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if self.config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
@@ -1471,9 +1472,8 @@ class LROsOperations(_LROsOperations):
             body_content = None
 
         # Construct and send request
-        request = self._client.put(url, query_parameters)
-        response = await self._client.async_send(
-            request, header_parameters, body_content, stream=False, **operation_config)
+        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        response = await self._client.async_send(request, stream=False, **operation_config)
 
         if response.status_code not in [202]:
             exp = CloudError(response)
@@ -1548,6 +1548,7 @@ class LROsOperations(_LROsOperations):
 
         # Construct headers
         header_parameters = {}
+        header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if self.config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
@@ -1563,9 +1564,8 @@ class LROsOperations(_LROsOperations):
             body_content = None
 
         # Construct and send request
-        request = self._client.put(url, query_parameters)
-        response = await self._client.async_send(
-            request, header_parameters, body_content, stream=False, **operation_config)
+        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        response = await self._client.async_send(request, stream=False, **operation_config)
 
         if response.status_code not in [202]:
             exp = CloudError(response)
@@ -1636,7 +1636,7 @@ class LROsOperations(_LROsOperations):
 
         # Construct headers
         header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
+        header_parameters['Accept'] = 'application/json'
         if self.config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
         if custom_headers:
@@ -1645,8 +1645,8 @@ class LROsOperations(_LROsOperations):
             header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
 
         # Construct and send request
-        request = self._client.delete(url, query_parameters)
-        response = await self._client.async_send(request, header_parameters, stream=False, **operation_config)
+        request = self._client.delete(url, query_parameters, header_parameters)
+        response = await self._client.async_send(request, stream=False, **operation_config)
 
         if response.status_code not in [200, 202]:
             exp = CloudError(response)
@@ -1734,7 +1734,7 @@ class LROsOperations(_LROsOperations):
 
         # Construct headers
         header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
+        header_parameters['Accept'] = 'application/json'
         if self.config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
         if custom_headers:
@@ -1743,8 +1743,8 @@ class LROsOperations(_LROsOperations):
             header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
 
         # Construct and send request
-        request = self._client.delete(url, query_parameters)
-        response = await self._client.async_send(request, header_parameters, stream=False, **operation_config)
+        request = self._client.delete(url, query_parameters, header_parameters)
+        response = await self._client.async_send(request, stream=False, **operation_config)
 
         if response.status_code not in [200, 202]:
             exp = CloudError(response)
@@ -1832,7 +1832,7 @@ class LROsOperations(_LROsOperations):
 
         # Construct headers
         header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
+        header_parameters['Accept'] = 'application/json'
         if self.config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
         if custom_headers:
@@ -1841,8 +1841,8 @@ class LROsOperations(_LROsOperations):
             header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
 
         # Construct and send request
-        request = self._client.delete(url, query_parameters)
-        response = await self._client.async_send(request, header_parameters, stream=False, **operation_config)
+        request = self._client.delete(url, query_parameters, header_parameters)
+        response = await self._client.async_send(request, stream=False, **operation_config)
 
         if response.status_code not in [200, 202]:
             exp = CloudError(response)
@@ -1930,7 +1930,6 @@ class LROsOperations(_LROsOperations):
 
         # Construct headers
         header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if self.config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
         if custom_headers:
@@ -1939,8 +1938,8 @@ class LROsOperations(_LROsOperations):
             header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
 
         # Construct and send request
-        request = self._client.delete(url, query_parameters)
-        response = await self._client.async_send(request, header_parameters, stream=False, **operation_config)
+        request = self._client.delete(url, query_parameters, header_parameters)
+        response = await self._client.async_send(request, stream=False, **operation_config)
 
         if response.status_code not in [204]:
             exp = CloudError(response)
@@ -1995,7 +1994,7 @@ class LROsOperations(_LROsOperations):
 
         # Construct headers
         header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
+        header_parameters['Accept'] = 'application/json'
         if self.config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
         if custom_headers:
@@ -2004,8 +2003,8 @@ class LROsOperations(_LROsOperations):
             header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
 
         # Construct and send request
-        request = self._client.delete(url, query_parameters)
-        response = await self._client.async_send(request, header_parameters, stream=False, **operation_config)
+        request = self._client.delete(url, query_parameters, header_parameters)
+        response = await self._client.async_send(request, stream=False, **operation_config)
 
         if response.status_code not in [200, 202]:
             exp = CloudError(response)
@@ -2086,7 +2085,7 @@ class LROsOperations(_LROsOperations):
 
         # Construct headers
         header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
+        header_parameters['Accept'] = 'application/json'
         if self.config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
         if custom_headers:
@@ -2095,8 +2094,8 @@ class LROsOperations(_LROsOperations):
             header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
 
         # Construct and send request
-        request = self._client.delete(url, query_parameters)
-        response = await self._client.async_send(request, header_parameters, stream=False, **operation_config)
+        request = self._client.delete(url, query_parameters, header_parameters)
+        response = await self._client.async_send(request, stream=False, **operation_config)
 
         if response.status_code not in [200, 202]:
             exp = CloudError(response)
@@ -2177,7 +2176,6 @@ class LROsOperations(_LROsOperations):
 
         # Construct headers
         header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if self.config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
         if custom_headers:
@@ -2186,8 +2184,8 @@ class LROsOperations(_LROsOperations):
             header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
 
         # Construct and send request
-        request = self._client.delete(url, query_parameters)
-        response = await self._client.async_send(request, header_parameters, stream=False, **operation_config)
+        request = self._client.delete(url, query_parameters, header_parameters)
+        response = await self._client.async_send(request, stream=False, **operation_config)
 
         if response.status_code not in [202, 204]:
             exp = CloudError(response)
@@ -2251,7 +2249,6 @@ class LROsOperations(_LROsOperations):
 
         # Construct headers
         header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if self.config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
         if custom_headers:
@@ -2260,8 +2257,8 @@ class LROsOperations(_LROsOperations):
             header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
 
         # Construct and send request
-        request = self._client.delete(url, query_parameters)
-        response = await self._client.async_send(request, header_parameters, stream=False, **operation_config)
+        request = self._client.delete(url, query_parameters, header_parameters)
+        response = await self._client.async_send(request, stream=False, **operation_config)
 
         if response.status_code not in [202, 204]:
             exp = CloudError(response)
@@ -2325,7 +2322,6 @@ class LROsOperations(_LROsOperations):
 
         # Construct headers
         header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if self.config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
         if custom_headers:
@@ -2334,8 +2330,8 @@ class LROsOperations(_LROsOperations):
             header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
 
         # Construct and send request
-        request = self._client.delete(url, query_parameters)
-        response = await self._client.async_send(request, header_parameters, stream=False, **operation_config)
+        request = self._client.delete(url, query_parameters, header_parameters)
+        response = await self._client.async_send(request, stream=False, **operation_config)
 
         if response.status_code not in [202]:
             exp = CloudError(response)
@@ -2403,7 +2399,6 @@ class LROsOperations(_LROsOperations):
 
         # Construct headers
         header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if self.config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
         if custom_headers:
@@ -2412,8 +2407,8 @@ class LROsOperations(_LROsOperations):
             header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
 
         # Construct and send request
-        request = self._client.delete(url, query_parameters)
-        response = await self._client.async_send(request, header_parameters, stream=False, **operation_config)
+        request = self._client.delete(url, query_parameters, header_parameters)
+        response = await self._client.async_send(request, stream=False, **operation_config)
 
         if response.status_code not in [202]:
             exp = CloudError(response)
@@ -2481,7 +2476,6 @@ class LROsOperations(_LROsOperations):
 
         # Construct headers
         header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if self.config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
         if custom_headers:
@@ -2490,8 +2484,8 @@ class LROsOperations(_LROsOperations):
             header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
 
         # Construct and send request
-        request = self._client.delete(url, query_parameters)
-        response = await self._client.async_send(request, header_parameters, stream=False, **operation_config)
+        request = self._client.delete(url, query_parameters, header_parameters)
+        response = await self._client.async_send(request, stream=False, **operation_config)
 
         if response.status_code not in [202]:
             exp = CloudError(response)
@@ -2559,7 +2553,6 @@ class LROsOperations(_LROsOperations):
 
         # Construct headers
         header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if self.config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
         if custom_headers:
@@ -2568,8 +2561,8 @@ class LROsOperations(_LROsOperations):
             header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
 
         # Construct and send request
-        request = self._client.delete(url, query_parameters)
-        response = await self._client.async_send(request, header_parameters, stream=False, **operation_config)
+        request = self._client.delete(url, query_parameters, header_parameters)
+        response = await self._client.async_send(request, stream=False, **operation_config)
 
         if response.status_code not in [202]:
             exp = CloudError(response)
@@ -2637,7 +2630,7 @@ class LROsOperations(_LROsOperations):
 
         # Construct headers
         header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
+        header_parameters['Accept'] = 'application/json'
         if self.config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
         if custom_headers:
@@ -2646,8 +2639,8 @@ class LROsOperations(_LROsOperations):
             header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
 
         # Construct and send request
-        request = self._client.post(url, query_parameters)
-        response = await self._client.async_send(request, header_parameters, stream=False, **operation_config)
+        request = self._client.post(url, query_parameters, header_parameters)
+        response = await self._client.async_send(request, stream=False, **operation_config)
 
         if response.status_code not in [200, 202]:
             exp = CloudError(response)
@@ -2701,7 +2694,7 @@ class LROsOperations(_LROsOperations):
         lro_delay = operation_config.get(
             'long_running_operation_timeout',
             self.config.long_running_operation_timeout)
-        if polling is True: polling_method = AsyncARMPolling(lro_delay, **operation_config)
+        if polling is True: polling_method = AsyncARMPolling(lro_delay, lro_options={'final-state-via': 'azure-async-operation'}, **operation_config)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
@@ -2733,9 +2726,8 @@ class LROsOperations(_LROsOperations):
             body_content = None
 
         # Construct and send request
-        request = self._client.post(url, query_parameters)
-        response = await self._client.async_send(
-            request, header_parameters, body_content, stream=False, **operation_config)
+        request = self._client.post(url, query_parameters, header_parameters, body_content)
+        response = await self._client.async_send(request, stream=False, **operation_config)
 
         if response.status_code not in [202]:
             exp = CloudError(response)
@@ -2787,7 +2779,7 @@ class LROsOperations(_LROsOperations):
         lro_delay = operation_config.get(
             'long_running_operation_timeout',
             self.config.long_running_operation_timeout)
-        if polling is True: polling_method = AsyncARMPolling(lro_delay, **operation_config)
+        if polling is True: polling_method = AsyncARMPolling(lro_delay, lro_options={'final-state-via': 'azure-async-operation'}, **operation_config)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
@@ -2804,6 +2796,7 @@ class LROsOperations(_LROsOperations):
 
         # Construct headers
         header_parameters = {}
+        header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if self.config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
@@ -2819,9 +2812,8 @@ class LROsOperations(_LROsOperations):
             body_content = None
 
         # Construct and send request
-        request = self._client.post(url, query_parameters)
-        response = await self._client.async_send(
-            request, header_parameters, body_content, stream=False, **operation_config)
+        request = self._client.post(url, query_parameters, header_parameters, body_content)
+        response = await self._client.async_send(request, stream=False, **operation_config)
 
         if response.status_code not in [202]:
             exp = CloudError(response)
@@ -2888,11 +2880,171 @@ class LROsOperations(_LROsOperations):
         lro_delay = operation_config.get(
             'long_running_operation_timeout',
             self.config.long_running_operation_timeout)
-        if polling is True: polling_method = AsyncARMPolling(lro_delay, **operation_config)
+        if polling is True: polling_method = AsyncARMPolling(lro_delay, lro_options={'final-state-via': 'azure-async-operation'}, **operation_config)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     post202_no_retry204_async.metadata = {'url': '/lro/post/202/noretry/204'}
+
+
+    async def _post_double_headers_final_location_get_initial_async(
+            self, *, custom_headers=None, raw=False, **operation_config):
+        # Construct URL
+        url = self.post_double_headers_final_location_get_async.metadata['url']
+
+        # Construct parameters
+        query_parameters = {}
+
+        # Construct headers
+        header_parameters = {}
+        header_parameters['Accept'] = 'application/json'
+        if self.config.generate_client_request_id:
+            header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
+        if custom_headers:
+            header_parameters.update(custom_headers)
+        if self.config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+
+        # Construct and send request
+        request = self._client.post(url, query_parameters, header_parameters)
+        response = await self._client.async_send(request, stream=False, **operation_config)
+
+        if response.status_code not in [202]:
+            exp = CloudError(response)
+            exp.request_id = response.headers.get('x-ms-request-id')
+            raise exp
+
+        deserialized = None
+
+        if response.status_code == 202:
+            deserialized = self._deserialize('Product', response)
+
+        if raw:
+            client_raw_response = ClientRawResponse(deserialized, response)
+            return client_raw_response
+
+        return deserialized
+
+    async def post_double_headers_final_location_get_async(
+            self, *, custom_headers=None, raw=False, polling=True, **operation_config):
+        """Long running post request, service returns a 202 to the initial request
+        with both Location and Azure-Async header. Poll Azure-Async and it's
+        success. Should poll Location to get the final object.
+
+        :param dict custom_headers: headers that will be added to the request
+        :param bool raw: The poller return type is ClientRawResponse, the
+         direct response alongside the deserialized response
+        :param polling: True for AsyncARMPolling, False for no polling, or a
+         polling object for personal polling strategy
+        :return: An instance of Product or ClientRawResponse<Product> if
+         raw==True
+        :rtype: ~~lro.models.Product or
+         ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
+        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
+        """
+        raw_result = await self._post_double_headers_final_location_get_initial_async(
+            custom_headers=custom_headers,
+            raw=True,
+            **operation_config
+        )
+
+        def get_long_running_output(response):
+            deserialized = self._deserialize('Product', response)
+
+            if raw:
+                client_raw_response = ClientRawResponse(deserialized, response)
+                return client_raw_response
+
+            return deserialized
+
+        lro_delay = operation_config.get(
+            'long_running_operation_timeout',
+            self.config.long_running_operation_timeout)
+        if polling is True: polling_method = AsyncARMPolling(lro_delay, lro_options={'final-state-via': 'location'}, **operation_config)
+        elif polling is False: polling_method = AsyncNoPolling()
+        else: polling_method = polling
+        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
+    post_double_headers_final_location_get_async.metadata = {'url': '/lro/LROPostDoubleHeadersFinalLocationGet'}
+
+
+    async def _post_double_headers_final_azure_header_get_initial_async(
+            self, *, custom_headers=None, raw=False, **operation_config):
+        # Construct URL
+        url = self.post_double_headers_final_azure_header_get_async.metadata['url']
+
+        # Construct parameters
+        query_parameters = {}
+
+        # Construct headers
+        header_parameters = {}
+        header_parameters['Accept'] = 'application/json'
+        if self.config.generate_client_request_id:
+            header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
+        if custom_headers:
+            header_parameters.update(custom_headers)
+        if self.config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+
+        # Construct and send request
+        request = self._client.post(url, query_parameters, header_parameters)
+        response = await self._client.async_send(request, stream=False, **operation_config)
+
+        if response.status_code not in [202]:
+            exp = CloudError(response)
+            exp.request_id = response.headers.get('x-ms-request-id')
+            raise exp
+
+        deserialized = None
+
+        if response.status_code == 202:
+            deserialized = self._deserialize('Product', response)
+
+        if raw:
+            client_raw_response = ClientRawResponse(deserialized, response)
+            return client_raw_response
+
+        return deserialized
+
+    async def post_double_headers_final_azure_header_get_async(
+            self, *, custom_headers=None, raw=False, polling=True, **operation_config):
+        """Long running post request, service returns a 202 to the initial request
+        with both Location and Azure-Async header. Poll Azure-Async and it's
+        success. Should NOT poll Location to get the final object.
+
+        :param dict custom_headers: headers that will be added to the request
+        :param bool raw: The poller return type is ClientRawResponse, the
+         direct response alongside the deserialized response
+        :param polling: True for AsyncARMPolling, False for no polling, or a
+         polling object for personal polling strategy
+        :return: An instance of Product or ClientRawResponse<Product> if
+         raw==True
+        :rtype: ~~lro.models.Product or
+         ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
+        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
+        """
+        raw_result = await self._post_double_headers_final_azure_header_get_initial_async(
+            custom_headers=custom_headers,
+            raw=True,
+            **operation_config
+        )
+
+        def get_long_running_output(response):
+            deserialized = self._deserialize('Product', response)
+
+            if raw:
+                client_raw_response = ClientRawResponse(deserialized, response)
+                return client_raw_response
+
+            return deserialized
+
+        lro_delay = operation_config.get(
+            'long_running_operation_timeout',
+            self.config.long_running_operation_timeout)
+        if polling is True: polling_method = AsyncARMPolling(lro_delay, lro_options={'final-state-via': 'azure-async-operation'}, **operation_config)
+        elif polling is False: polling_method = AsyncNoPolling()
+        else: polling_method = polling
+        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
+    post_double_headers_final_azure_header_get_async.metadata = {'url': '/lro/LROPostDoubleHeadersFinalAzureHeaderGet'}
 
 
     async def _post_async_retry_succeeded_initial_async(
@@ -2905,6 +3057,7 @@ class LROsOperations(_LROsOperations):
 
         # Construct headers
         header_parameters = {}
+        header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if self.config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
@@ -2920,9 +3073,8 @@ class LROsOperations(_LROsOperations):
             body_content = None
 
         # Construct and send request
-        request = self._client.post(url, query_parameters)
-        response = await self._client.async_send(
-            request, header_parameters, body_content, stream=False, **operation_config)
+        request = self._client.post(url, query_parameters, header_parameters, body_content)
+        response = await self._client.async_send(request, stream=False, **operation_config)
 
         if response.status_code not in [200, 202]:
             exp = CloudError(response)
@@ -2992,7 +3144,7 @@ class LROsOperations(_LROsOperations):
         lro_delay = operation_config.get(
             'long_running_operation_timeout',
             self.config.long_running_operation_timeout)
-        if polling is True: polling_method = AsyncARMPolling(lro_delay, **operation_config)
+        if polling is True: polling_method = AsyncARMPolling(lro_delay, lro_options={'final-state-via': 'azure-async-operation'}, **operation_config)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
@@ -3009,6 +3161,7 @@ class LROsOperations(_LROsOperations):
 
         # Construct headers
         header_parameters = {}
+        header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if self.config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
@@ -3024,9 +3177,8 @@ class LROsOperations(_LROsOperations):
             body_content = None
 
         # Construct and send request
-        request = self._client.post(url, query_parameters)
-        response = await self._client.async_send(
-            request, header_parameters, body_content, stream=False, **operation_config)
+        request = self._client.post(url, query_parameters, header_parameters, body_content)
+        response = await self._client.async_send(request, stream=False, **operation_config)
 
         if response.status_code not in [200, 202]:
             exp = CloudError(response)
@@ -3096,7 +3248,7 @@ class LROsOperations(_LROsOperations):
         lro_delay = operation_config.get(
             'long_running_operation_timeout',
             self.config.long_running_operation_timeout)
-        if polling is True: polling_method = AsyncARMPolling(lro_delay, **operation_config)
+        if polling is True: polling_method = AsyncARMPolling(lro_delay, lro_options={'final-state-via': 'azure-async-operation'}, **operation_config)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
@@ -3128,9 +3280,8 @@ class LROsOperations(_LROsOperations):
             body_content = None
 
         # Construct and send request
-        request = self._client.post(url, query_parameters)
-        response = await self._client.async_send(
-            request, header_parameters, body_content, stream=False, **operation_config)
+        request = self._client.post(url, query_parameters, header_parameters, body_content)
+        response = await self._client.async_send(request, stream=False, **operation_config)
 
         if response.status_code not in [202]:
             exp = CloudError(response)
@@ -3185,7 +3336,7 @@ class LROsOperations(_LROsOperations):
         lro_delay = operation_config.get(
             'long_running_operation_timeout',
             self.config.long_running_operation_timeout)
-        if polling is True: polling_method = AsyncARMPolling(lro_delay, **operation_config)
+        if polling is True: polling_method = AsyncARMPolling(lro_delay, lro_options={'final-state-via': 'azure-async-operation'}, **operation_config)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
@@ -3217,9 +3368,8 @@ class LROsOperations(_LROsOperations):
             body_content = None
 
         # Construct and send request
-        request = self._client.post(url, query_parameters)
-        response = await self._client.async_send(
-            request, header_parameters, body_content, stream=False, **operation_config)
+        request = self._client.post(url, query_parameters, header_parameters, body_content)
+        response = await self._client.async_send(request, stream=False, **operation_config)
 
         if response.status_code not in [202]:
             exp = CloudError(response)
@@ -3274,7 +3424,7 @@ class LROsOperations(_LROsOperations):
         lro_delay = operation_config.get(
             'long_running_operation_timeout',
             self.config.long_running_operation_timeout)
-        if polling is True: polling_method = AsyncARMPolling(lro_delay, **operation_config)
+        if polling is True: polling_method = AsyncARMPolling(lro_delay, lro_options={'final-state-via': 'azure-async-operation'}, **operation_config)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)

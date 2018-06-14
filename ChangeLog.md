@@ -1,3 +1,25 @@
+### 2018-06-13 - 3.0.54
+
+This version requires msrestazure 0.4.32
+
+- Add support for LRO options
+
+### 2018-06-13 - 3.0.53
+
+This version requires msrest 0.5.0
+
+- XML support
+- Big fix on headers (Accept/Content-Type) to better reflect consumes/produces of Swagger
+- Refactoring of "send" to better separate request creation and request sending
+
+### 2018-06-08 - 3.0.52
+
+- Beta version of --keep-version-file
+
+### 2018-05-08 - 3.0.51
+
+- Py3 model files must inherit from Py3 files
+
 ### 2018-04-18 - 3.0.50
 
 - Add context manager to SDK client that keeps the same sessions across requests.
@@ -32,7 +54,7 @@
 
   - Return type changes from msrestazure.azure_operation.AzureOperationPoller to msrest.polling.LROPoller. External API is the same.
   - Return type is now **always** a msrest.polling.LROPoller, whatever the optional parameters.
-  - raw=True changes behavior. Instead of not polling and returning the initial call as ClientRawResponse, now we return a LROPoller as well and the final 
+  - raw=True changes behavior. Instead of not polling and returning the initial call as ClientRawResponse, now we return a LROPoller as well and the final
     resource is returned as a ClientRawResponse.
   - Adding "polling" parameters. Polling=True is the default and poll using ARM algorithm. Polling=False does not poll and return the initial call reponse.
   - Polling accept instances of subclasses of msrest.polling.PollingMethod.

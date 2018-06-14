@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .shark import Shark
+from .shark_py3 import Shark
 
 
 class Cookiecuttershark(Shark):

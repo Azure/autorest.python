@@ -16,7 +16,7 @@ namespace AutoRest.Python.Azure
 {
     public class CodeGeneratorPya : CodeGeneratorPy
     {
-        private const string ClientRuntimePackage = "msrestazure version 0.4.20";
+        private const string ClientRuntimePackage = "msrestazure version 0.4.32";
 
         public override string UsageInstructions => $"The {ClientRuntimePackage} pip package is required to execute the generated code.";
 
@@ -27,7 +27,7 @@ namespace AutoRest.Python.Azure
         /// <returns></returns>
         public override async Task Generate(CodeModel cm)
         {
-            
+
             var codeModel = cm as CodeModelPya;
             if (codeModel == null)
             {
@@ -79,7 +79,7 @@ namespace AutoRest.Python.Azure
                     await Write(modelTemplate, Path.Combine(folderName, "models", modelType.Name.ToPythonCase() + ".py"));
                     // Rebuild the same in Python 3 mode
                     modelTemplate.Python3Mode = true;
-                    await Write(modelTemplate, Path.Combine(folderName, "models", modelType.Name.ToPythonCase() + "_py3.py"));                    
+                    await Write(modelTemplate, Path.Combine(folderName, "models", modelType.Name.ToPythonCase() + "_py3.py"));
                 }
             }
 

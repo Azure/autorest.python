@@ -64,20 +64,20 @@ class FormdataOperations(object):
 
         # Construct headers
         header_parameters = {}
+        header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'multipart/form-data'
         if custom_headers:
             header_parameters.update(custom_headers)
 
         # Construct form data
-        body_content = {
+        form_data_content = {
             'fileContent': file_content,
             'fileName': file_name,
         }
 
         # Construct and send request
-        request = self._client.post(url, query_parameters)
-        response = self._client.send_formdata(
-            request, header_parameters, body_content, stream=True, **operation_config)
+        request = self._client.post(url, query_parameters, header_parameters, form_content=form_data_content)
+        response = self._client.send(request, stream=True, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -119,6 +119,7 @@ class FormdataOperations(object):
 
         # Construct headers
         header_parameters = {}
+        header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/octet-stream'
         if custom_headers:
             header_parameters.update(custom_headers)
@@ -127,9 +128,8 @@ class FormdataOperations(object):
         body_content = self._client.stream_upload(file_content, callback)
 
         # Construct and send request
-        request = self._client.put(url, query_parameters)
-        response = self._client.send(
-            request, header_parameters, body_content, stream=True, **operation_config)
+        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        response = self._client.send(request, stream=True, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)

@@ -41,15 +41,13 @@ class EnumOperations(_EnumOperations):
 
         # Construct headers
         header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
+        header_parameters['Accept'] = 'application/json'
         if custom_headers:
             header_parameters.update(custom_headers)
 
-        body_content = None
         # Construct and send request
-        request = self._client.get(url, query_parameters)
-        response = await self._client.async_send(
-            request, header_parameters, body_content, stream=False, **operation_config)
+        request = self._client.get(url, query_parameters, header_parameters)
+        response = await self._client.async_send(request, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -98,9 +96,8 @@ class EnumOperations(_EnumOperations):
         body_content = self._serialize.body(string_body, 'Colors')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters)
-        response = await self._client.async_send(
-            request, header_parameters, body_content, stream=False, **operation_config)
+        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        response = await self._client.async_send(request, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -133,15 +130,13 @@ class EnumOperations(_EnumOperations):
 
         # Construct headers
         header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
+        header_parameters['Accept'] = 'application/json'
         if custom_headers:
             header_parameters.update(custom_headers)
 
-        body_content = None
         # Construct and send request
-        request = self._client.get(url, query_parameters)
-        response = await self._client.async_send(
-            request, header_parameters, body_content, stream=False, **operation_config)
+        request = self._client.get(url, query_parameters, header_parameters)
+        response = await self._client.async_send(request, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -190,9 +185,8 @@ class EnumOperations(_EnumOperations):
         body_content = self._serialize.body(enum_string_body, 'Colors')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters)
-        response = await self._client.async_send(
-            request, header_parameters, body_content, stream=False, **operation_config)
+        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        response = await self._client.async_send(request, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -224,15 +218,13 @@ class EnumOperations(_EnumOperations):
 
         # Construct headers
         header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
+        header_parameters['Accept'] = 'application/json'
         if custom_headers:
             header_parameters.update(custom_headers)
 
-        body_content = None
         # Construct and send request
-        request = self._client.get(url, query_parameters)
-        response = await self._client.async_send(
-            request, header_parameters, body_content, stream=False, **operation_config)
+        request = self._client.get(url, query_parameters, header_parameters)
+        response = await self._client.async_send(request, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -281,9 +273,8 @@ class EnumOperations(_EnumOperations):
         body_content = self._serialize.body(enum_string_body, 'RefColorConstant')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters)
-        response = await self._client.async_send(
-            request, header_parameters, body_content, stream=False, **operation_config)
+        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        response = await self._client.async_send(request, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)

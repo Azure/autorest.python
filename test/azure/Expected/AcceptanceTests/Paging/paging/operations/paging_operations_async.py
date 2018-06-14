@@ -12,6 +12,8 @@
 import uuid
 from msrest.pipeline import ClientRawResponse
 from msrestazure.azure_exceptions import CloudError
+from msrest.polling.async_poller import async_poller, AsyncNoPolling
+from msrestazure.polling.async_arm_polling import AsyncARMPolling
 
 from .. import models
 from .paging_operations import PagingOperations as _PagingOperations
@@ -46,7 +48,7 @@ class PagingOperations(_PagingOperations):
 
             # Construct headers
             header_parameters = {}
-            header_parameters['Content-Type'] = 'application/json; charset=utf-8'
+            header_parameters['Accept'] = 'application/json'
             if self.config.generate_client_request_id:
                 header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
             if custom_headers:
@@ -55,14 +57,13 @@ class PagingOperations(_PagingOperations):
                 header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
 
             # Construct and send request
-            request = self._client.get(url, query_parameters)
-            return request, header_parameters
+            request = self._client.get(url, query_parameters, header_parameters)
+            return request
 
         def internal_paging(next_link=None):
-            request, header_parameters = prepare_request(next_link)
+            request = prepare_request(next_link)
 
-            response = self._client.send(
-                request, header_parameters, stream=False, **operation_config)
+            response = self._client.send(request, stream=False, **operation_config)
 
             if response.status_code not in [200]:
                 exp = CloudError(response)
@@ -72,10 +73,9 @@ class PagingOperations(_PagingOperations):
             return response
 
         async def internal_paging_async(next_link=None):
-            request, header_parameters = prepare_request(next_link)
+            request = prepare_request(next_link)
 
-            response = await self._client.async_send(
-                request, header_parameters, stream=False, **operation_config)
+            response = await self._client.async_send(request, stream=False, **operation_config)
 
             if response.status_code not in [200]:
                 exp = CloudError(response)
@@ -134,7 +134,7 @@ class PagingOperations(_PagingOperations):
 
             # Construct headers
             header_parameters = {}
-            header_parameters['Content-Type'] = 'application/json; charset=utf-8'
+            header_parameters['Accept'] = 'application/json'
             if self.config.generate_client_request_id:
                 header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
             if custom_headers:
@@ -149,14 +149,13 @@ class PagingOperations(_PagingOperations):
                 header_parameters['timeout'] = self._serialize.header("timeout", timeout, 'int')
 
             # Construct and send request
-            request = self._client.get(url, query_parameters)
-            return request, header_parameters
+            request = self._client.get(url, query_parameters, header_parameters)
+            return request
 
         def internal_paging(next_link=None):
-            request, header_parameters = prepare_request(next_link)
+            request = prepare_request(next_link)
 
-            response = self._client.send(
-                request, header_parameters, stream=False, **operation_config)
+            response = self._client.send(request, stream=False, **operation_config)
 
             if response.status_code not in [200]:
                 exp = CloudError(response)
@@ -166,10 +165,9 @@ class PagingOperations(_PagingOperations):
             return response
 
         async def internal_paging_async(next_link=None):
-            request, header_parameters = prepare_request(next_link)
+            request = prepare_request(next_link)
 
-            response = await self._client.async_send(
-                request, header_parameters, stream=False, **operation_config)
+            response = await self._client.async_send(request, stream=False, **operation_config)
 
             if response.status_code not in [200]:
                 exp = CloudError(response)
@@ -229,7 +227,7 @@ class PagingOperations(_PagingOperations):
 
             # Construct headers
             header_parameters = {}
-            header_parameters['Content-Type'] = 'application/json; charset=utf-8'
+            header_parameters['Accept'] = 'application/json'
             if self.config.generate_client_request_id:
                 header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
             if custom_headers:
@@ -244,14 +242,13 @@ class PagingOperations(_PagingOperations):
                 header_parameters['timeout'] = self._serialize.header("timeout", timeout, 'int')
 
             # Construct and send request
-            request = self._client.get(url, query_parameters)
-            return request, header_parameters
+            request = self._client.get(url, query_parameters, header_parameters)
+            return request
 
         def internal_paging(next_link=None):
-            request, header_parameters = prepare_request(next_link)
+            request = prepare_request(next_link)
 
-            response = self._client.send(
-                request, header_parameters, stream=False, **operation_config)
+            response = self._client.send(request, stream=False, **operation_config)
 
             if response.status_code not in [200]:
                 exp = CloudError(response)
@@ -261,10 +258,9 @@ class PagingOperations(_PagingOperations):
             return response
 
         async def internal_paging_async(next_link=None):
-            request, header_parameters = prepare_request(next_link)
+            request = prepare_request(next_link)
 
-            response = await self._client.async_send(
-                request, header_parameters, stream=False, **operation_config)
+            response = await self._client.async_send(request, stream=False, **operation_config)
 
             if response.status_code not in [200]:
                 exp = CloudError(response)
@@ -330,7 +326,7 @@ class PagingOperations(_PagingOperations):
 
             # Construct headers
             header_parameters = {}
-            header_parameters['Content-Type'] = 'application/json; charset=utf-8'
+            header_parameters['Accept'] = 'application/json'
             if self.config.generate_client_request_id:
                 header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
             if custom_headers:
@@ -345,14 +341,13 @@ class PagingOperations(_PagingOperations):
                 header_parameters['timeout'] = self._serialize.header("timeout", timeout, 'int')
 
             # Construct and send request
-            request = self._client.get(url, query_parameters)
-            return request, header_parameters
+            request = self._client.get(url, query_parameters, header_parameters)
+            return request
 
         def internal_paging(next_link=None):
-            request, header_parameters = prepare_request(next_link)
+            request = prepare_request(next_link)
 
-            response = self._client.send(
-                request, header_parameters, stream=False, **operation_config)
+            response = self._client.send(request, stream=False, **operation_config)
 
             if response.status_code not in [200]:
                 exp = CloudError(response)
@@ -362,10 +357,9 @@ class PagingOperations(_PagingOperations):
             return response
 
         async def internal_paging_async(next_link=None):
-            request, header_parameters = prepare_request(next_link)
+            request = prepare_request(next_link)
 
-            response = await self._client.async_send(
-                request, header_parameters, stream=False, **operation_config)
+            response = await self._client.async_send(request, stream=False, **operation_config)
 
             if response.status_code not in [200]:
                 exp = CloudError(response)
@@ -412,7 +406,7 @@ class PagingOperations(_PagingOperations):
 
             # Construct headers
             header_parameters = {}
-            header_parameters['Content-Type'] = 'application/json; charset=utf-8'
+            header_parameters['Accept'] = 'application/json'
             if self.config.generate_client_request_id:
                 header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
             if custom_headers:
@@ -421,14 +415,13 @@ class PagingOperations(_PagingOperations):
                 header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
 
             # Construct and send request
-            request = self._client.get(url, query_parameters)
-            return request, header_parameters
+            request = self._client.get(url, query_parameters, header_parameters)
+            return request
 
         def internal_paging(next_link=None):
-            request, header_parameters = prepare_request(next_link)
+            request = prepare_request(next_link)
 
-            response = self._client.send(
-                request, header_parameters, stream=False, **operation_config)
+            response = self._client.send(request, stream=False, **operation_config)
 
             if response.status_code not in [200]:
                 exp = CloudError(response)
@@ -438,10 +431,9 @@ class PagingOperations(_PagingOperations):
             return response
 
         async def internal_paging_async(next_link=None):
-            request, header_parameters = prepare_request(next_link)
+            request = prepare_request(next_link)
 
-            response = await self._client.async_send(
-                request, header_parameters, stream=False, **operation_config)
+            response = await self._client.async_send(request, stream=False, **operation_config)
 
             if response.status_code not in [200]:
                 exp = CloudError(response)
@@ -489,7 +481,7 @@ class PagingOperations(_PagingOperations):
 
             # Construct headers
             header_parameters = {}
-            header_parameters['Content-Type'] = 'application/json; charset=utf-8'
+            header_parameters['Accept'] = 'application/json'
             if self.config.generate_client_request_id:
                 header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
             if custom_headers:
@@ -498,14 +490,13 @@ class PagingOperations(_PagingOperations):
                 header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
 
             # Construct and send request
-            request = self._client.get(url, query_parameters)
-            return request, header_parameters
+            request = self._client.get(url, query_parameters, header_parameters)
+            return request
 
         def internal_paging(next_link=None):
-            request, header_parameters = prepare_request(next_link)
+            request = prepare_request(next_link)
 
-            response = self._client.send(
-                request, header_parameters, stream=False, **operation_config)
+            response = self._client.send(request, stream=False, **operation_config)
 
             if response.status_code not in [200]:
                 exp = CloudError(response)
@@ -515,10 +506,9 @@ class PagingOperations(_PagingOperations):
             return response
 
         async def internal_paging_async(next_link=None):
-            request, header_parameters = prepare_request(next_link)
+            request = prepare_request(next_link)
 
-            response = await self._client.async_send(
-                request, header_parameters, stream=False, **operation_config)
+            response = await self._client.async_send(request, stream=False, **operation_config)
 
             if response.status_code not in [200]:
                 exp = CloudError(response)
@@ -564,7 +554,7 @@ class PagingOperations(_PagingOperations):
 
             # Construct headers
             header_parameters = {}
-            header_parameters['Content-Type'] = 'application/json; charset=utf-8'
+            header_parameters['Accept'] = 'application/json'
             if self.config.generate_client_request_id:
                 header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
             if custom_headers:
@@ -573,14 +563,13 @@ class PagingOperations(_PagingOperations):
                 header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
 
             # Construct and send request
-            request = self._client.get(url, query_parameters)
-            return request, header_parameters
+            request = self._client.get(url, query_parameters, header_parameters)
+            return request
 
         def internal_paging(next_link=None):
-            request, header_parameters = prepare_request(next_link)
+            request = prepare_request(next_link)
 
-            response = self._client.send(
-                request, header_parameters, stream=False, **operation_config)
+            response = self._client.send(request, stream=False, **operation_config)
 
             if response.status_code not in [200]:
                 exp = CloudError(response)
@@ -590,10 +579,9 @@ class PagingOperations(_PagingOperations):
             return response
 
         async def internal_paging_async(next_link=None):
-            request, header_parameters = prepare_request(next_link)
+            request = prepare_request(next_link)
 
-            response = await self._client.async_send(
-                request, header_parameters, stream=False, **operation_config)
+            response = await self._client.async_send(request, stream=False, **operation_config)
 
             if response.status_code not in [200]:
                 exp = CloudError(response)
@@ -639,7 +627,7 @@ class PagingOperations(_PagingOperations):
 
             # Construct headers
             header_parameters = {}
-            header_parameters['Content-Type'] = 'application/json; charset=utf-8'
+            header_parameters['Accept'] = 'application/json'
             if self.config.generate_client_request_id:
                 header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
             if custom_headers:
@@ -648,14 +636,13 @@ class PagingOperations(_PagingOperations):
                 header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
 
             # Construct and send request
-            request = self._client.get(url, query_parameters)
-            return request, header_parameters
+            request = self._client.get(url, query_parameters, header_parameters)
+            return request
 
         def internal_paging(next_link=None):
-            request, header_parameters = prepare_request(next_link)
+            request = prepare_request(next_link)
 
-            response = self._client.send(
-                request, header_parameters, stream=False, **operation_config)
+            response = self._client.send(request, stream=False, **operation_config)
 
             if response.status_code not in [200]:
                 exp = CloudError(response)
@@ -665,10 +652,9 @@ class PagingOperations(_PagingOperations):
             return response
 
         async def internal_paging_async(next_link=None):
-            request, header_parameters = prepare_request(next_link)
+            request = prepare_request(next_link)
 
-            response = await self._client.async_send(
-                request, header_parameters, stream=False, **operation_config)
+            response = await self._client.async_send(request, stream=False, **operation_config)
 
             if response.status_code not in [200]:
                 exp = CloudError(response)
@@ -714,7 +700,7 @@ class PagingOperations(_PagingOperations):
 
             # Construct headers
             header_parameters = {}
-            header_parameters['Content-Type'] = 'application/json; charset=utf-8'
+            header_parameters['Accept'] = 'application/json'
             if self.config.generate_client_request_id:
                 header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
             if custom_headers:
@@ -723,14 +709,13 @@ class PagingOperations(_PagingOperations):
                 header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
 
             # Construct and send request
-            request = self._client.get(url, query_parameters)
-            return request, header_parameters
+            request = self._client.get(url, query_parameters, header_parameters)
+            return request
 
         def internal_paging(next_link=None):
-            request, header_parameters = prepare_request(next_link)
+            request = prepare_request(next_link)
 
-            response = self._client.send(
-                request, header_parameters, stream=False, **operation_config)
+            response = self._client.send(request, stream=False, **operation_config)
 
             if response.status_code not in [200]:
                 exp = CloudError(response)
@@ -740,10 +725,9 @@ class PagingOperations(_PagingOperations):
             return response
 
         async def internal_paging_async(next_link=None):
-            request, header_parameters = prepare_request(next_link)
+            request = prepare_request(next_link)
 
-            response = await self._client.async_send(
-                request, header_parameters, stream=False, **operation_config)
+            response = await self._client.async_send(request, stream=False, **operation_config)
 
             if response.status_code not in [200]:
                 exp = CloudError(response)
@@ -804,7 +788,7 @@ class PagingOperations(_PagingOperations):
 
             # Construct headers
             header_parameters = {}
-            header_parameters['Content-Type'] = 'application/json; charset=utf-8'
+            header_parameters['Accept'] = 'application/json'
             if self.config.generate_client_request_id:
                 header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
             if custom_headers:
@@ -813,14 +797,13 @@ class PagingOperations(_PagingOperations):
                 header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
 
             # Construct and send request
-            request = self._client.get(url, query_parameters)
-            return request, header_parameters
+            request = self._client.get(url, query_parameters, header_parameters)
+            return request
 
         def internal_paging(next_link=None):
-            request, header_parameters = prepare_request(next_link)
+            request = prepare_request(next_link)
 
-            response = self._client.send(
-                request, header_parameters, stream=False, **operation_config)
+            response = self._client.send(request, stream=False, **operation_config)
 
             if response.status_code not in [200]:
                 exp = CloudError(response)
@@ -830,10 +813,9 @@ class PagingOperations(_PagingOperations):
             return response
 
         async def internal_paging_async(next_link=None):
-            request, header_parameters = prepare_request(next_link)
+            request = prepare_request(next_link)
 
-            response = await self._client.async_send(
-                request, header_parameters, stream=False, **operation_config)
+            response = await self._client.async_send(request, stream=False, **operation_config)
 
             if response.status_code not in [200]:
                 exp = CloudError(response)
@@ -900,7 +882,7 @@ class PagingOperations(_PagingOperations):
 
             # Construct headers
             header_parameters = {}
-            header_parameters['Content-Type'] = 'application/json; charset=utf-8'
+            header_parameters['Accept'] = 'application/json'
             if self.config.generate_client_request_id:
                 header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
             if custom_headers:
@@ -909,14 +891,13 @@ class PagingOperations(_PagingOperations):
                 header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
 
             # Construct and send request
-            request = self._client.get(url, query_parameters)
-            return request, header_parameters
+            request = self._client.get(url, query_parameters, header_parameters)
+            return request
 
         def internal_paging(next_link=None):
-            request, header_parameters = prepare_request(next_link)
+            request = prepare_request(next_link)
 
-            response = self._client.send(
-                request, header_parameters, stream=False, **operation_config)
+            response = self._client.send(request, stream=False, **operation_config)
 
             if response.status_code not in [200]:
                 exp = CloudError(response)
@@ -926,10 +907,9 @@ class PagingOperations(_PagingOperations):
             return response
 
         async def internal_paging_async(next_link=None):
-            request, header_parameters = prepare_request(next_link)
+            request = prepare_request(next_link)
 
-            response = await self._client.async_send(
-                request, header_parameters, stream=False, **operation_config)
+            response = await self._client.async_send(request, stream=False, **operation_config)
 
             if response.status_code not in [200]:
                 exp = CloudError(response)
@@ -947,3 +927,103 @@ class PagingOperations(_PagingOperations):
 
         return deserialized
     get_multiple_pages_fragment_with_grouping_next_link.metadata = {'url': '/paging/multiple/fragmentwithgrouping/{tenant}'}
+
+
+    async def _get_multiple_pages_lro_initial_async(
+            self, client_request_id=None, paging_get_multiple_pages_lro_options=None, *, custom_headers=None, raw=False, **operation_config):
+        maxresults = None
+        if paging_get_multiple_pages_lro_options is not None:
+            maxresults = paging_get_multiple_pages_lro_options.maxresults
+        timeout = None
+        if paging_get_multiple_pages_lro_options is not None:
+            timeout = paging_get_multiple_pages_lro_options.timeout
+
+        # Construct URL
+        url = self.get_multiple_pages_lro_async.metadata['url']
+
+        # Construct parameters
+        query_parameters = {}
+
+        # Construct headers
+        header_parameters = {}
+        header_parameters['Accept'] = 'application/json'
+        if self.config.generate_client_request_id:
+            header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
+        if custom_headers:
+            header_parameters.update(custom_headers)
+        if client_request_id is not None:
+            header_parameters['client-request-id'] = self._serialize.header("client_request_id", client_request_id, 'str')
+        if self.config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        if maxresults is not None:
+            header_parameters['maxresults'] = self._serialize.header("maxresults", maxresults, 'int')
+        if timeout is not None:
+            header_parameters['timeout'] = self._serialize.header("timeout", timeout, 'int')
+
+        # Construct and send request
+        request = self._client.post(url, query_parameters, header_parameters)
+        response = await self._client.async_send(request, stream=False, **operation_config)
+
+        if response.status_code not in [202]:
+            exp = CloudError(response)
+            exp.request_id = response.headers.get('x-ms-request-id')
+            raise exp
+
+        deserialized = None
+
+        if response.status_code == 202:
+            deserialized = self._deserialize('ProductResult', response)
+
+        if raw:
+            client_raw_response = ClientRawResponse(deserialized, response)
+            return client_raw_response
+
+        return deserialized
+
+    async def get_multiple_pages_lro_async(
+            self, client_request_id=None, paging_get_multiple_pages_lro_options=None, *, custom_headers=None, raw=False, polling=True, **operation_config):
+        """A long-running paging operation that includes a nextLink that has 10
+        pages.
+
+        :param client_request_id:
+        :type client_request_id: str
+        :param paging_get_multiple_pages_lro_options: Additional parameters
+         for the operation
+        :type paging_get_multiple_pages_lro_options:
+         ~paging.models.PagingGetMultiplePagesLroOptions
+        :param dict custom_headers: headers that will be added to the request
+        :param bool raw: The poller return type is ClientRawResponse, the
+         direct response alongside the deserialized response
+        :param polling: True for AsyncARMPolling, False for no polling, or a
+         polling object for personal polling strategy
+        :return: An instance of ProductResult or
+         ClientRawResponse<ProductResult> if raw==True
+        :rtype: ~~paging.models.ProductResult or
+         ~msrest.pipeline.ClientRawResponse[~paging.models.ProductResult]
+        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
+        """
+        raw_result = await self._get_multiple_pages_lro_initial_async(
+            client_request_id=client_request_id,
+            paging_get_multiple_pages_lro_options=paging_get_multiple_pages_lro_options,
+            custom_headers=custom_headers,
+            raw=True,
+            **operation_config
+        )
+
+        def get_long_running_output(response):
+            deserialized = self._deserialize('ProductResult', response)
+
+            if raw:
+                client_raw_response = ClientRawResponse(deserialized, response)
+                return client_raw_response
+
+            return deserialized
+
+        lro_delay = operation_config.get(
+            'long_running_operation_timeout',
+            self.config.long_running_operation_timeout)
+        if polling is True: polling_method = AsyncARMPolling(lro_delay, lro_options={'final-state-via': 'azure-async-operation'}, **operation_config)
+        elif polling is False: polling_method = AsyncNoPolling()
+        else: polling_method = polling
+        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
+    get_multiple_pages_lro_async.metadata = {'url': '/paging/multiple/lro'}

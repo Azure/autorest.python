@@ -39,7 +39,14 @@ if (AsyncMode) initialMethodName += "_async";
 @EmptyLine
         # Construct headers
         header_parameters = {}
-        header_parameters['Content-Type'] = '@(Model.RequestContentType)'
+@if (Model.HasAnyResponse)
+{
+        @:header_parameters['Accept'] = '@(Model.AcceptContentType)'
+}
+@if (Model.RequestBody != null || Model.IsFormData)
+{
+        @:header_parameters['Content-Type'] = '@(Model.RequestContentType)'
+}
         @(Model.SetDefaultHeaders)
         @(Model.BuildHeaders("header_parameters"))
 @EmptyLine
@@ -71,17 +78,16 @@ if (AsyncMode) initialMethodName += "_async";
 @EmptyLine
 }
         # Construct and send request
-        request = self._client.@(MethodPy.GetHttpFunction(Model.HttpMethod))(url, query_parameters)
-@{string sendCall = Model.GetSendCall(AsyncMode);}
 @if (Model.RequestBody != null)
 {
-        @:response = @(sendCall)(
-            @:request, header_parameters, body_content, stream=False, **operation_config)
+        @:request = self._client.@(MethodPy.GetHttpFunction(Model.HttpMethod))(url, query_parameters, header_parameters, body_content)
 }
 else
 {
-        @:response = @(sendCall)(request, header_parameters, stream=False, **operation_config)
+        @:request = self._client.@(MethodPy.GetHttpFunction(Model.HttpMethod))(url, query_parameters, header_parameters)
 }
+@{string sendCall = Model.GetSendCall(AsyncMode);}
+        response = @(sendCall)(request, stream=False, **operation_config)
 @EmptyLine
         if @Model.FailureStatusCodePredicate:
             @Model.RaisedException
@@ -172,7 +178,7 @@ else
 @foreach(var parameter in Model.DocumentationParameters)
 {
 @:            @parameter.Name=@parameter.Name,
-}                    
+}
             custom_headers=custom_headers,
             raw=True,
             **operation_config
@@ -202,16 +208,23 @@ else
         lro_delay = operation_config.get(
             'long_running_operation_timeout',
             self.config.long_running_operation_timeout)
+@{
+var lro_string = Model.GetLROOptions();
+if(lro_string != "")
+{
+        lro_string = ", lro_options="+lro_string;
+}
+}
 @if (AsyncMode)
 {
-@:        if polling is True: polling_method = AsyncARMPolling(lro_delay, **operation_config)
+@:        if polling is True: polling_method = AsyncARMPolling(lro_delay@(lro_string), **operation_config)
 @:        elif polling is False: polling_method = AsyncNoPolling()
 @:        else: polling_method = polling
 @:        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
 }
 else
 {
-@:        if polling is True: polling_method = ARMPolling(lro_delay, **operation_config)
+@:        if polling is True: polling_method = ARMPolling(lro_delay@(lro_string), **operation_config)
 @:        elif polling is False: polling_method = NoPolling()
 @:        else: polling_method = polling
 @:        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)

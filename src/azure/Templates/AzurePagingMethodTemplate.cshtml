@@ -72,7 +72,14 @@ else
 @EmptyLine
             # Construct headers
             header_parameters = {}
-            header_parameters['Content-Type'] = '@(Model.RequestContentType)'
+@if (Model.HasAnyResponse)
+{
+            @:header_parameters['Accept'] = '@(Model.AcceptContentType)'
+}
+@if (Model.RequestBody != null || Model.IsFormData)
+{
+            @:header_parameters['Content-Type'] = '@(Model.RequestContentType)'
+}
             @(Model.SetDefaultHeaders)
             @(Model.BuildHeaders("header_parameters"))
 @EmptyLine
@@ -93,21 +100,20 @@ else
 @EmptyLine
 }
             # Construct and send request
-            request = self._client.@(MethodPy.GetHttpFunction(Model.HttpMethod))(url, query_parameters)
-            return request, header_parameters
-@EmptyLine
-        def internal_paging(next_link=None):
-            request, header_parameters = prepare_request(next_link)
-@EmptyLine
-            response = self._client.send(
 @if (Model.RequestBody != null)
 {
-                @:request, header_parameters, body_content, stream=False, **operation_config)
+            @:request = self._client.@(MethodPy.GetHttpFunction(Model.HttpMethod))(url, query_parameters, header_parameters, body_content)
 }
 else
 {
-                @:request, header_parameters, stream=False, **operation_config)
+            @:request = self._client.@(MethodPy.GetHttpFunction(Model.HttpMethod))(url, query_parameters, header_parameters)
 }
+            return request
+@EmptyLine
+        def internal_paging(next_link=None):
+            request = prepare_request(next_link)
+@EmptyLine
+            response = self._client.send(request, stream=False, **operation_config)
 @EmptyLine
             if @Model.FailureStatusCodePredicate:
                 @Model.RaisedException
@@ -117,17 +123,9 @@ else
 @if(AsyncMode)
 {
 @:        async def internal_paging_async(next_link=None):
-@:            request, header_parameters = prepare_request(next_link)
+@:            request = prepare_request(next_link)
 @EmptyLine
-            @:response = await self._client.async_send(
-if (Model.RequestBody != null)
-{
-                @:request, header_parameters, body_content, stream=False, **operation_config)
-}
-else
-{
-                @:request, header_parameters, stream=False, **operation_config)
-}
+            @:response = await self._client.async_send(request, stream=False, **operation_config)
 @EmptyLine
 @:            if @Model.FailureStatusCodePredicate:
 @:                @Model.RaisedException

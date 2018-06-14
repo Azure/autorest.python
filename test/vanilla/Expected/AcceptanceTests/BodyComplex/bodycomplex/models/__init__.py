@@ -37,6 +37,8 @@ try:
     from .array_wrapper_py3 import ArrayWrapper
     from .dictionary_wrapper_py3 import DictionaryWrapper
     from .readonly_obj_py3 import ReadonlyObj
+    from .my_base_type_py3 import MyBaseType
+    from .my_derived_type_py3 import MyDerivedType
 except (SyntaxError, ImportError):
     from .error import Error, ErrorException
     from .basic import Basic
@@ -65,9 +67,12 @@ except (SyntaxError, ImportError):
     from .array_wrapper import ArrayWrapper
     from .dictionary_wrapper import DictionaryWrapper
     from .readonly_obj import ReadonlyObj
+    from .my_base_type import MyBaseType
+    from .my_derived_type import MyDerivedType
 from .auto_rest_complex_test_service_enums import (
     CMYKColors,
     GoblinSharkColor,
+    MyKind,
 )
 
 __all__ = [
@@ -98,6 +103,9 @@ __all__ = [
     'ArrayWrapper',
     'DictionaryWrapper',
     'ReadonlyObj',
+    'MyBaseType',
+    'MyDerivedType',
     'CMYKColors',
     'GoblinSharkColor',
+    'MyKind',
 ]

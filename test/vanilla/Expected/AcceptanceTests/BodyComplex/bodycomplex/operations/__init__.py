@@ -18,6 +18,7 @@ try:
     from .polymorphism_operations_async import PolymorphismOperations
     from .polymorphicrecursive_operations_async import PolymorphicrecursiveOperations
     from .readonlyproperty_operations_async import ReadonlypropertyOperations
+    from .flattencomplex_operations_async import FlattencomplexOperations
 except (SyntaxError, ImportError):
     from .basic_operations import BasicOperations
     from .primitive_operations import PrimitiveOperations
@@ -27,6 +28,7 @@ except (SyntaxError, ImportError):
     from .polymorphism_operations import PolymorphismOperations
     from .polymorphicrecursive_operations import PolymorphicrecursiveOperations
     from .readonlyproperty_operations import ReadonlypropertyOperations
+    from .flattencomplex_operations import FlattencomplexOperations
 
 __all__ = [
     'BasicOperations',
@@ -37,4 +39,5 @@ __all__ = [
     'PolymorphismOperations',
     'PolymorphicrecursiveOperations',
     'ReadonlypropertyOperations',
+    'FlattencomplexOperations',
 ]
