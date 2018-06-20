@@ -46,12 +46,14 @@ from urllib3.poolmanager import (
 import pytest
 
 
+cwd = dirname(realpath(__file__))
+
 #Ideally this would be in a common helper library shared between the tests
 def start_server_process():
-    cmd = "node ../../node_modules/@microsoft.azure/autorest.testserver"
+    cmd = "node {}/../../../node_modules/@microsoft.azure/autorest.testserver".format(cwd)
     if os.name == 'nt': #On windows, subprocess creation works without being in the shell
         return subprocess.Popen(cmd)
-    
+
     return subprocess.Popen(cmd, shell=True, preexec_fn=os.setsid) #On linux, have to set shell=True
 
 #Ideally this would be in a common helper library shared between the tests
