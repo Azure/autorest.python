@@ -647,13 +647,12 @@ namespace AutoRest.Python.Model
 
                     foreach (var mapping in transformation.ParameterMappings)
                     {
-                        // var mappedParams = composite.ComposedProperties.Where(x => x.Name.RawValue == mapping.InputParameter.Name.RawValue);
-                        var mappedParams = composite.ComposedProperties.Where(x => x.Name == mapping.InputParameter.Name);
+                        var mappedParams = composite.ComposedProperties.Where(x => x.SerializedName == mapping.InputParameter.SerializedName);
                         if (mappedParams.Any())
                         {
                             var param = mappedParams.First();
-                            combinedParams.Add(string.Format(CultureInfo.InvariantCulture, "{0}={0}", param.Name));
-                            paramCheck.Add(string.Format(CultureInfo.InvariantCulture, "{0} is not None", param.Name));
+                            combinedParams.Add(string.Format(CultureInfo.InvariantCulture, "{0}={1}", param.Name, mapping.InputParameter.Name));
+                            paramCheck.Add(string.Format(CultureInfo.InvariantCulture, "{0} is not None", mapping.InputParameter.Name));
                         }
                     }
 
