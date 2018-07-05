@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
-// 
+//
 
 using System;
 using System.Collections.Generic;
@@ -24,21 +24,32 @@ namespace AutoRest.Python.Azure
         {
             var codeModel = (CodeModelPya)cm;
             TransformPagingMethods(codeModel);
-            // Don't add pagable/longrunning method since we already handle ourself.
+
+            // We do most of "NormalizeAzureClientModel", but not everything
+            // since some is handled manually here
             Settings.Instance.AddCredentials = true;
+
+            // This extension from general extensions must be run prior to Azure specific extensions.
+            AzureExtensions.ProcessParameterizedHost(codeModel);
 
             AzureExtensions.ProcessClientRequestIdExtension(codeModel);
             AzureExtensions.UpdateHeadMethods(codeModel);
             AzureExtensions.ParseODataExtension(codeModel);
+            AzureExtensions.ProcessGlobalParameters(codeModel);
             AzureExtensions.FlattenModels(codeModel);
-            //https://github.com/Azure/autorest/issues/2860
-            //ParameterGroupExtensionHelper.AddParameterGroups(codeModel);
+            AzureExtensions.FlattenMethodParameters(codeModel);
+            ParameterGroupExtensionHelper.AddParameterGroups(codeModel);
+            // AzureExtensions.AddLongRunningOperations(codeModel); -- Replaced by Python version
             AddAzureProperties(codeModel);
             AzureExtensions.SetDefaultResponses(codeModel);
+            // AzureExtensions.AddPageableMethod(codeModel); -- Replaced by Python version
+
+            // End of mock "NormalizeAzureClientModel"
+
             CorrectFilterParameters(codeModel);
 
             Base.TransformCodeModel(codeModel);
-            
+
             NormalizePaginatedMethods(codeModel);
 
             return codeModel;
@@ -70,7 +81,7 @@ namespace AutoRest.Python.Azure
                             methodGroup.Methods.FirstOrDefault(m => operationName.EqualsIgnoreCase(m.SerializedName));
                         if (nextLinkMethod != null)
                         {
-                            // set the nextlink settings for the method 
+                            // set the nextlink settings for the method
                             method.PagingURL = nextLinkMethod.Url;
                             method.PagingParameters = nextLinkMethod.LogicalParameters;
 
@@ -199,7 +210,7 @@ namespace AutoRest.Python.Azure
                             codeModel.PageClasses[valueTypeName], method.SerializedName);
 
                         var pagedResult = New<CompositeType>(pagableTypeName);
-                        
+
                         // make sure the parent reference is set.
                         pagedResult.CodeModel = codeModel;
 
