@@ -1,3 +1,10 @@
+# Change Log
+
+### 2018-07-05 - 3.0.56
+
+- Differentiate Default and AzureAsyncOperation LRO options
+- Fix bug with operation flattenning if operation has a parameter called "foo" and model too disambiguiated as "foo1"
+
 ### 2018-06-13 - 3.0.54
 
 This version requires msrestazure 0.4.32
