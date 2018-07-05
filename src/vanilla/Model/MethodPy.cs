@@ -651,7 +651,7 @@ namespace AutoRest.Python.Model
                         if (mappedParams.Any())
                         {
                             var param = mappedParams.First();
-                            combinedParams.Add(string.Format(CultureInfo.InvariantCulture, "{0}={0}", mapping.InputParameter.Name));
+                            combinedParams.Add(string.Format(CultureInfo.InvariantCulture, "{0}={1}", param.Name, mapping.InputParameter.Name));
                             paramCheck.Add(string.Format(CultureInfo.InvariantCulture, "{0} is not None", mapping.InputParameter.Name));
                         }
                     }
