@@ -157,12 +157,9 @@ class AdapterForTest(HTTPAdapter):
         self.max_retries.status_forcelist.add(504)
         self.max_retries.method_whitelist = {'HEAD', 'GET', 'PUT', 'DELETE', 'OPTIONS', 'TRACE', 'PATCH', 'POST'}
 
-class TestAuthentication(object):
-    def signed_session(self, session=None):
-        session = session or requests.Session()
-        session.mount('http://localhost:3000/', AdapterForTest())
-        return session
-
 @pytest.fixture()
-def test_server_credentials():
-    return TestAuthentication()
+def test_session_callback():
+    def test_session_callback_internal(session, global_config, local_config, **kwargs):
+        session.mount('http://localhost:3000/', AdapterForTest())
+        return kwargs
+    return test_session_callback_internal
