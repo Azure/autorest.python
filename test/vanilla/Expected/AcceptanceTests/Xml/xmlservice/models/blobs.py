@@ -26,7 +26,6 @@ class Blobs(Model):
         'blob': {'key': 'Blob', 'type': '[Blob]', 'xml': {'name': 'Blob', 'itemsName': 'Blob'}},
     }
     _xml_map = {
-        'name': 'Blobs'
     }
 
     def __init__(self, **kwargs):

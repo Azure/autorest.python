@@ -36,7 +36,6 @@ class Container(Model):
         'metadata': {'key': 'Metadata', 'type': '{str}', 'xml': {'name': 'Metadata'}},
     }
     _xml_map = {
-        'name': 'Container'
     }
 
     def __init__(self, *, name: str, properties, metadata=None, **kwargs) -> None:

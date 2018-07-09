@@ -116,7 +116,6 @@ class BlobProperties(Model):
         'archive_status': {'key': 'ArchiveStatus', 'type': 'str', 'xml': {'name': 'ArchiveStatus'}},
     }
     _xml_map = {
-        'name': 'BlobProperties'
     }
 
     def __init__(self, **kwargs):

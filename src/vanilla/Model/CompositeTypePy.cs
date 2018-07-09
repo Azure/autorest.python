@@ -16,16 +16,16 @@ namespace AutoRest.Python.Model
     public class CompositeTypePy : CompositeType, IExtendedModelTypePy
     {
         private CompositeTypePy _parent => BaseModelType as CompositeTypePy;
-        
+
         private readonly IList<CompositeType> _subModelTypes = new List<CompositeType>();
-        
+
         protected CompositeTypePy()
         {
         }
 
         protected CompositeTypePy(string name) : base(name)
         {
-            
+
         }
 
         private IEnumerable<Property> removeDuplicateIfNeeded(IEnumerable<Property> originalEnumerable, IEnumerable<Property> potentialDuplicate)
@@ -201,7 +201,7 @@ namespace AutoRest.Python.Model
         /// Provides the modelProperty documentation string along with default value if any.
         /// </summary>
         /// <param name="property">Parameter to be documented</param>
-        /// <returns>Parameter documentation string along with default value if any 
+        /// <returns>Parameter documentation string along with default value if any
         /// in correct jsdoc notation</returns>
         public static string GetPropertyDocumentationString(Property property)
         {
@@ -404,7 +404,7 @@ namespace AutoRest.Python.Model
                     ", 'xml': {{{1}}}",
                     modelProperty.Name,
                     string.Join(", ", combinedXmlDeclarations)
-                );                
+                );
             }
 
             //'id':{'key':'id', 'type':'str'},
@@ -419,15 +419,17 @@ namespace AutoRest.Python.Model
 
         public virtual string InitializeXmlProperty()
         {
-            this.XmlSerializationCtxt();
-            List<string> combinedXmlDeclarations = GenericXmlCtxtSerializer.XmlSerializationModelTypeCtxt(this);
+            if(this.XmlProperties == null) {
+                return "";
+            }
+            List<string> combinedXmlDeclarations = GenericXmlCtxtSerializer.XmlSerializationXmlPropCtxt(this.XmlProperties);
             return string.Join(", ", combinedXmlDeclarations);
         }
 
         public string XmlSerializationCtxt()
         {
             return null;  // CompositeType contains _xml_map, they don't need serialization context
-        }        
+        }
 
         public string InitializeProperty(string objectName, Property property, bool kwargsMode)
         {
@@ -462,7 +464,7 @@ namespace AutoRest.Python.Model
             {
                 if (property.IsRequired && property.DefaultValue.RawValue.IsNullOrEmpty())
                 {
-                    return string.Format(CultureInfo.InvariantCulture, "{0}.{1} = kwargs.get('{1}', None)", objectName, property.Name);    
+                    return string.Format(CultureInfo.InvariantCulture, "{0}.{1} = kwargs.get('{1}', None)", objectName, property.Name);
                 }
                 return string.Format(CultureInfo.InvariantCulture, "{0}.{1} = kwargs.get('{1}', {2})", objectName, property.Name, property.DefaultValue);
             }

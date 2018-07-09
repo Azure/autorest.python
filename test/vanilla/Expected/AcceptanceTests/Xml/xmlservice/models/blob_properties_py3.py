@@ -116,7 +116,6 @@ class BlobProperties(Model):
         'archive_status': {'key': 'ArchiveStatus', 'type': 'str', 'xml': {'name': 'ArchiveStatus'}},
     }
     _xml_map = {
-        'name': 'BlobProperties'
     }
 
     def __init__(self, *, last_modified, etag: str, content_length: int=None, content_type: str=None, content_encoding: str=None, content_language: str=None, content_md5: str=None, content_disposition: str=None, cache_control: str=None, blob_sequence_number: int=None, blob_type=None, lease_status=None, lease_state=None, lease_duration=None, copy_id: str=None, copy_status=None, copy_source: str=None, copy_progress: str=None, copy_completion_time=None, copy_status_description: str=None, server_encrypted: bool=None, incremental_copy: bool=None, destination_snapshot: str=None, deleted_time=None, remaining_retention_days: int=None, access_tier=None, access_tier_inferred: bool=None, archive_status=None, **kwargs) -> None:

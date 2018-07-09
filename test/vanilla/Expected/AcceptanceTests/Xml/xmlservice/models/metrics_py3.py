@@ -40,7 +40,6 @@ class Metrics(Model):
         'retention_policy': {'key': 'RetentionPolicy', 'type': 'RetentionPolicy', 'xml': {'name': 'RetentionPolicy'}},
     }
     _xml_map = {
-        'name': 'Metrics'
     }
 
     def __init__(self, *, enabled: bool, version: str=None, include_ap_is: bool=None, retention_policy=None, **kwargs) -> None:
