@@ -36,7 +36,7 @@ namespace AutoRest.Python.Model
 
         [JsonIgnore]
         public virtual IEnumerable<MethodGroupPy> MethodGroupModels => Operations.Cast<MethodGroupPy>().Where( each => !each.IsCodeModelMethodGroup);
-        
+
 
         public string PolymorphicDictionary
         {
@@ -47,21 +47,21 @@ namespace AutoRest.Python.Model
 
                 for (int i = 0; i < polymorphicTypes.Count(); i++ )
                 {
-                    builder.Append(string.Format(CultureInfo.InvariantCulture, 
+                    builder.Append(string.Format(CultureInfo.InvariantCulture,
                         "'{0}' : exports.{1}",
-                            polymorphicTypes.ElementAt(i).SerializedName, 
+                            polymorphicTypes.ElementAt(i).SerializedName,
                             polymorphicTypes.ElementAt(i).Name));
 
                     if(i == polymorphicTypes.Count() -1)
                     {
                         builder.AppendLine();
                     }
-                    else 
+                    else
                     {
                         builder.AppendLine(",");
                     }
                 }
-                
+
                 return builder.ToString();
             }
         }
@@ -142,8 +142,8 @@ namespace AutoRest.Python.Model
 
         public virtual string UserAgent => PackageName;
 
-        public virtual string SetupRequires => @"""msrest>=0.5.0""";
-        
+        public virtual string SetupRequires => @"""msrest>=0.5.2""";
+
 
         public string Version => Settings.Instance.PackageVersion.Else(ApiVersion);
 
@@ -193,7 +193,7 @@ namespace AutoRest.Python.Model
         /// Provides the modelProperty documentation string along with default value if any.
         /// </summary>
         /// <param name="property">Parameter to be documented</param>
-        /// <returns>Parameter documentation string along with default value if any 
+        /// <returns>Parameter documentation string along with default value if any
         /// in correct jsdoc notation</returns>
         public static string GetPropertyDocumentationString(Property property)
         {

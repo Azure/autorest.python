@@ -1,5 +1,9 @@
 # Change Log
 
+### 2018-07-09 - 3.0.58
+
+- Fix some complex XML parsing issues. Requires msrest 0.5.2
+
 ### 2018-07-05 - 3.0.56
 
 - Differentiate Default and AzureAsyncOperation LRO options
