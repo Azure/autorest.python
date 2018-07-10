@@ -48,7 +48,6 @@ class Logging(Model):
         'retention_policy': {'key': 'RetentionPolicy', 'type': 'RetentionPolicy', 'xml': {'name': 'RetentionPolicy'}},
     }
     _xml_map = {
-        'name': 'Logging'
     }
 
     def __init__(self, **kwargs):

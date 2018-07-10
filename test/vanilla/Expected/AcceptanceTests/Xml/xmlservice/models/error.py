@@ -27,7 +27,6 @@ class Error(Model):
         'message': {'key': 'message', 'type': 'str', 'xml': {'name': 'message'}},
     }
     _xml_map = {
-        'name': 'Error'
     }
 
     def __init__(self, **kwargs):

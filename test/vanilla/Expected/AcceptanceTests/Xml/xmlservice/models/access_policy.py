@@ -37,7 +37,6 @@ class AccessPolicy(Model):
         'permission': {'key': 'Permission', 'type': 'str', 'xml': {'name': 'Permission'}},
     }
     _xml_map = {
-        'name': 'AccessPolicy'
     }
 
     def __init__(self, **kwargs):

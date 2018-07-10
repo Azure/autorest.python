@@ -26,7 +26,6 @@ class AppleBarrel(Model):
         'bad_apples': {'key': 'BadApples', 'type': '[str]', 'xml': {'name': 'BadApples', 'itemsName': 'Apple', 'wrapped': True}},
     }
     _xml_map = {
-        'name': 'AppleBarrel'
     }
 
     def __init__(self, *, good_apples=None, bad_apples=None, **kwargs) -> None:
