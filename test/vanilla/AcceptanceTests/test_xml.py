@@ -123,6 +123,15 @@ class TestXml(object):
         assert bananas.bad_apples == ['Red Delicious']
         _assert_with_log(client.xml.put_wrapped_lists, bananas)
 
+    def test_complex_types(self, client):
+        root = client.xml.get_complex_type_ref_no_meta()
+        assert root.ref_to_model.id == "myid"
+        client.xml.put_complex_type_ref_no_meta(root)
+
+        root = client.xml.get_complex_type_ref_with_meta()
+        assert root.ref_to_model.id == "myid"
+        client.xml.put_complex_type_ref_with_meta(root)
+
     def test_storage(self, client):
 
         containers = client.xml.list_containers()
