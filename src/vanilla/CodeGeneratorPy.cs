@@ -18,7 +18,7 @@ namespace AutoRest.Python
 {
     public class CodeGeneratorPy : CodeGenerator
     {
-        private const string ClientRuntimePackage = "msrest version 0.4.0";
+        private const string ClientRuntimePackage = "msrest version 0.5.2";
 
         public CodeGeneratorPy()
         {

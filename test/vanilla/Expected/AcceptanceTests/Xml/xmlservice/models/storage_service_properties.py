@@ -43,7 +43,6 @@ class StorageServiceProperties(Model):
         'delete_retention_policy': {'key': 'DeleteRetentionPolicy', 'type': 'RetentionPolicy', 'xml': {'name': 'DeleteRetentionPolicy'}},
     }
     _xml_map = {
-        'name': 'StorageServiceProperties'
     }
 
     def __init__(self, **kwargs):

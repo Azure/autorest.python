@@ -12,25 +12,20 @@
 from msrest.serialization import Model
 
 
-class BlobPrefix(Model):
-    """BlobPrefix.
+class ComplexTypeWithMeta(Model):
+    """I am a complex type with XML node.
 
-    All required parameters must be populated in order to send to Azure.
-
-    :param name: Required.
-    :type name: str
+    :param id: The id of the res
+    :type id: str
     """
 
-    _validation = {
-        'name': {'required': True},
-    }
-
     _attribute_map = {
-        'name': {'key': 'Name', 'type': 'str', 'xml': {'name': 'Name'}},
+        'id': {'key': 'ID', 'type': 'str', 'xml': {'name': 'ID'}},
     }
     _xml_map = {
+        'name': 'XMLComplexTypeWithMeta'
     }
 
-    def __init__(self, **kwargs):
-        super(BlobPrefix, self).__init__(**kwargs)
-        self.name = kwargs.get('name', None)
+    def __init__(self, *, id: str=None, **kwargs) -> None:
+        super(ComplexTypeWithMeta, self).__init__(**kwargs)
+        self.id = id

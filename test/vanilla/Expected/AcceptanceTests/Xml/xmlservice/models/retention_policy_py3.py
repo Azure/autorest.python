@@ -36,7 +36,6 @@ class RetentionPolicy(Model):
         'days': {'key': 'Days', 'type': 'int', 'xml': {'name': 'Days'}},
     }
     _xml_map = {
-        'name': 'RetentionPolicy'
     }
 
     def __init__(self, *, enabled: bool, days: int=None, **kwargs) -> None:

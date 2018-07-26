@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
-// 
+//
 using System.Collections.Generic;
 using AutoRest.Core.Model;
 
@@ -11,7 +11,30 @@ namespace AutoRest.Python.Model
     /// So declaring twice the same method. We should have an interface to avoid that.
     /// </remarks>
     public static class GenericXmlCtxtSerializer
-    { 
+    {
+        public static List<string> XmlSerializationXmlPropCtxt(XmlProperties xmlProperty)
+        {
+            List<string> combinedXmlDeclarations = new List<string>();
+
+            if(!string.IsNullOrEmpty(xmlProperty.Name))
+            {
+                combinedXmlDeclarations.Add("'name': '"+xmlProperty.Name+"'");
+            }
+            if(xmlProperty.Attribute)
+            {
+                combinedXmlDeclarations.Add("'attr': True");
+            }
+            if(!string.IsNullOrEmpty(xmlProperty.Prefix))
+            {
+                combinedXmlDeclarations.Add("'prefix': '"+xmlProperty.Prefix+"'");
+            }
+            if(!string.IsNullOrEmpty(xmlProperty.Namespace))
+            {
+                combinedXmlDeclarations.Add("'ns': '"+xmlProperty.Namespace+"'");
+            }
+            return combinedXmlDeclarations;
+        }
+
         public static List<string> XmlSerializationModelTypeCtxt(IModelType modelProperty)
         {
             List<string> combinedXmlDeclarations = new List<string>();
@@ -32,7 +55,7 @@ namespace AutoRest.Python.Model
             {
                 combinedXmlDeclarations.Add("'ns': '"+modelProperty.XmlNamespace+"'");
             }
-            return combinedXmlDeclarations;            
+            return combinedXmlDeclarations;
         }
 
         public static List<string> XmlSerializationPropertyCtxt(Property modelProperty)
@@ -55,7 +78,7 @@ namespace AutoRest.Python.Model
             {
                 combinedXmlDeclarations.Add("'ns': '"+modelProperty.XmlNamespace+"'");
             }
-            return combinedXmlDeclarations;            
+            return combinedXmlDeclarations;
         }
     }
 }

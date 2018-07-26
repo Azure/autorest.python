@@ -12,23 +12,19 @@
 from msrest.serialization import Model
 
 
-class Blobs(Model):
-    """Blobs.
+class ComplexTypeNoMeta(Model):
+    """I am a complex type with no XML node.
 
-    :param blob_prefix:
-    :type blob_prefix: list[~xmlservice.models.BlobPrefix]
-    :param blob:
-    :type blob: list[~xmlservice.models.Blob]
+    :param id: The id of the res
+    :type id: str
     """
 
     _attribute_map = {
-        'blob_prefix': {'key': 'BlobPrefix', 'type': '[BlobPrefix]', 'xml': {'name': 'BlobPrefix', 'itemsName': 'BlobPrefix'}},
-        'blob': {'key': 'Blob', 'type': '[Blob]', 'xml': {'name': 'Blob', 'itemsName': 'Blob'}},
+        'id': {'key': 'ID', 'type': 'str', 'xml': {'name': 'ID'}},
     }
     _xml_map = {
     }
 
     def __init__(self, **kwargs):
-        super(Blobs, self).__init__(**kwargs)
-        self.blob_prefix = kwargs.get('blob_prefix', None)
-        self.blob = kwargs.get('blob', None)
+        super(ComplexTypeNoMeta, self).__init__(**kwargs)
+        self.id = kwargs.get('id', None)

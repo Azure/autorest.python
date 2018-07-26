@@ -30,6 +30,10 @@ try:
     from .access_policy_py3 import AccessPolicy
     from .signed_identifier_py3 import SignedIdentifier
     from .storage_service_properties_py3 import StorageServiceProperties
+    from .complex_type_no_meta_py3 import ComplexTypeNoMeta
+    from .complex_type_with_meta_py3 import ComplexTypeWithMeta
+    from .root_with_ref_and_no_meta_py3 import RootWithRefAndNoMeta
+    from .root_with_ref_and_meta_py3 import RootWithRefAndMeta
 except (SyntaxError, ImportError):
     from .error import Error, ErrorException
     from .slide import Slide
@@ -51,6 +55,10 @@ except (SyntaxError, ImportError):
     from .access_policy import AccessPolicy
     from .signed_identifier import SignedIdentifier
     from .storage_service_properties import StorageServiceProperties
+    from .complex_type_no_meta import ComplexTypeNoMeta
+    from .complex_type_with_meta import ComplexTypeWithMeta
+    from .root_with_ref_and_no_meta import RootWithRefAndNoMeta
+    from .root_with_ref_and_meta import RootWithRefAndMeta
 from .auto_rest_swagger_batxml_service_enums import (
     LeaseStatusType,
     LeaseStateType,
@@ -83,6 +91,10 @@ __all__ = [
     'AccessPolicy',
     'SignedIdentifier',
     'StorageServiceProperties',
+    'ComplexTypeNoMeta',
+    'ComplexTypeWithMeta',
+    'RootWithRefAndNoMeta',
+    'RootWithRefAndMeta',
     'LeaseStatusType',
     'LeaseStateType',
     'LeaseDurationType',

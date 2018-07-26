@@ -39,6 +39,7 @@ tests = realpath(join(cwd, pardir, "Expected", "AcceptanceTests"))
 sys.path.append(join(tests, "Xml"))
 
 from xmlservice import AutoRestSwaggerBATXMLService
+from xmlservice.models import BlobType
 
 import pytest
 
@@ -123,6 +124,15 @@ class TestXml(object):
         assert bananas.bad_apples == ['Red Delicious']
         _assert_with_log(client.xml.put_wrapped_lists, bananas)
 
+    def test_complex_types(self, client):
+        root = client.xml.get_complex_type_ref_no_meta()
+        assert root.ref_to_model.id == "myid"
+        client.xml.put_complex_type_ref_no_meta(root)
+
+        root = client.xml.get_complex_type_ref_with_meta()
+        assert root.ref_to_model.id == "myid"
+        client.xml.put_complex_type_ref_with_meta(root)
+
     def test_storage(self, client):
 
         containers = client.xml.list_containers()
@@ -139,3 +149,25 @@ class TestXml(object):
         assert len(acls) == 1
         assert acls[0].id == 'MTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI='
         _assert_with_log(client.xml.put_acls, acls)
+
+        blobs = client.xml.list_blobs()
+        assert not blobs.blobs.blob_prefix
+        assert len(blobs.blobs.blob) == 5
+        blob = blobs.blobs.blob[0]
+        assert blob.name == "blob1.txt"
+        assert blob.properties.last_modified.date() == date(2009, 9, 9)
+        assert blob.properties.etag == "0x8CBFF45D8A29A19"
+        assert blob.properties.content_length == 100
+        assert blob.properties.content_type == "text/html"
+        # Check that an empty field in the XML is empty string
+        assert blob.properties.content_encoding == ''
+        assert blob.properties.content_language == "en-US"
+        assert blob.properties.content_md5 == ''
+        assert blob.properties.cache_control == "no-cache"
+        assert blob.properties.blob_type == BlobType.block_blob
+        # Check that a field NOT in the XML is None
+        assert blob.properties.destination_snapshot is None
+        assert len(blob.metadata) == 3
+        assert blob.metadata["Color"] == "blue"
+        assert blob.metadata["BlobNumber"] == "01"
+        assert blob.metadata["SomeMetadataName"] == "SomeMetadataValue"

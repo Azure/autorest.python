@@ -19,6 +19,182 @@ from .xml_operations import XmlOperations as _XmlOperations
 class XmlOperations(_XmlOperations):
     """XmlOperations operations."""
 
+    async def get_complex_type_ref_no_meta_async(
+            self, *, custom_headers=None, raw=False, **operation_config):
+        """Get a complex type that has a ref to a complex type with no XML node.
+
+        :param dict custom_headers: headers that will be added to the request
+        :param bool raw: returns the direct response alongside the
+         deserialized response
+        :param operation_config: :ref:`Operation configuration
+         overrides<msrest:optionsforoperations>`.
+        :return: RootWithRefAndNoMeta or ClientRawResponse if raw=true
+        :rtype: ~xmlservice.models.RootWithRefAndNoMeta or
+         ~msrest.pipeline.ClientRawResponse
+        :raises:
+         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+        """
+        # Construct URL
+        url = self.get_complex_type_ref_no_meta_async.metadata['url']
+
+        # Construct parameters
+        query_parameters = {}
+
+        # Construct headers
+        header_parameters = {}
+        header_parameters['Accept'] = 'application/xml'
+        if custom_headers:
+            header_parameters.update(custom_headers)
+
+        # Construct and send request
+        request = self._client.get(url, query_parameters, header_parameters)
+        response = await self._client.async_send(request, stream=False, **operation_config)
+
+        if response.status_code not in [200]:
+            raise HttpOperationError(self._deserialize, response)
+
+        deserialized = None
+        if response.status_code == 200:
+            deserialized = self._deserialize('RootWithRefAndNoMeta', response)
+
+        if raw:
+            client_raw_response = ClientRawResponse(deserialized, response)
+            return client_raw_response
+
+        return deserialized
+    get_complex_type_ref_no_meta_async.metadata = {'url': '/xml/complex-type-ref-no-meta'}
+
+    async def put_complex_type_ref_no_meta_async(
+            self, model, *, custom_headers=None, raw=False, **operation_config):
+        """Puts a complex type that has a ref to a complex type with no XML node.
+
+        :param model:
+        :type model: ~xmlservice.models.RootWithRefAndNoMeta
+        :param dict custom_headers: headers that will be added to the request
+        :param bool raw: returns the direct response alongside the
+         deserialized response
+        :param operation_config: :ref:`Operation configuration
+         overrides<msrest:optionsforoperations>`.
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :raises:
+         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+        """
+        # Construct URL
+        url = self.put_complex_type_ref_no_meta_async.metadata['url']
+
+        # Construct parameters
+        query_parameters = {}
+
+        # Construct headers
+        header_parameters = {}
+        header_parameters['Content-Type'] = 'application/xml; charset=utf-8'
+        if custom_headers:
+            header_parameters.update(custom_headers)
+
+        # Construct body
+        body_content = self._serialize.body(model, 'RootWithRefAndNoMeta')
+
+        # Construct and send request
+        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        response = await self._client.async_send(request, stream=False, **operation_config)
+
+        if response.status_code not in [201]:
+            raise HttpOperationError(self._deserialize, response)
+
+        if raw:
+            client_raw_response = ClientRawResponse(None, response)
+            return client_raw_response
+    put_complex_type_ref_no_meta_async.metadata = {'url': '/xml/complex-type-ref-no-meta'}
+
+    async def get_complex_type_ref_with_meta_async(
+            self, *, custom_headers=None, raw=False, **operation_config):
+        """Get a complex type that has a ref to a complex type with XML node.
+
+        :param dict custom_headers: headers that will be added to the request
+        :param bool raw: returns the direct response alongside the
+         deserialized response
+        :param operation_config: :ref:`Operation configuration
+         overrides<msrest:optionsforoperations>`.
+        :return: RootWithRefAndMeta or ClientRawResponse if raw=true
+        :rtype: ~xmlservice.models.RootWithRefAndMeta or
+         ~msrest.pipeline.ClientRawResponse
+        :raises:
+         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+        """
+        # Construct URL
+        url = self.get_complex_type_ref_with_meta_async.metadata['url']
+
+        # Construct parameters
+        query_parameters = {}
+
+        # Construct headers
+        header_parameters = {}
+        header_parameters['Accept'] = 'application/xml'
+        if custom_headers:
+            header_parameters.update(custom_headers)
+
+        # Construct and send request
+        request = self._client.get(url, query_parameters, header_parameters)
+        response = await self._client.async_send(request, stream=False, **operation_config)
+
+        if response.status_code not in [200]:
+            raise HttpOperationError(self._deserialize, response)
+
+        deserialized = None
+        if response.status_code == 200:
+            deserialized = self._deserialize('RootWithRefAndMeta', response)
+
+        if raw:
+            client_raw_response = ClientRawResponse(deserialized, response)
+            return client_raw_response
+
+        return deserialized
+    get_complex_type_ref_with_meta_async.metadata = {'url': '/xml/complex-type-ref-with-meta'}
+
+    async def put_complex_type_ref_with_meta_async(
+            self, model, *, custom_headers=None, raw=False, **operation_config):
+        """Puts a complex type that has a ref to a complex type with XML node.
+
+        :param model:
+        :type model: ~xmlservice.models.RootWithRefAndMeta
+        :param dict custom_headers: headers that will be added to the request
+        :param bool raw: returns the direct response alongside the
+         deserialized response
+        :param operation_config: :ref:`Operation configuration
+         overrides<msrest:optionsforoperations>`.
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :raises:
+         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+        """
+        # Construct URL
+        url = self.put_complex_type_ref_with_meta_async.metadata['url']
+
+        # Construct parameters
+        query_parameters = {}
+
+        # Construct headers
+        header_parameters = {}
+        header_parameters['Content-Type'] = 'application/xml; charset=utf-8'
+        if custom_headers:
+            header_parameters.update(custom_headers)
+
+        # Construct body
+        body_content = self._serialize.body(model, 'RootWithRefAndMeta')
+
+        # Construct and send request
+        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        response = await self._client.async_send(request, stream=False, **operation_config)
+
+        if response.status_code not in [201]:
+            raise HttpOperationError(self._deserialize, response)
+
+        if raw:
+            client_raw_response = ClientRawResponse(None, response)
+            return client_raw_response
+    put_complex_type_ref_with_meta_async.metadata = {'url': '/xml/complex-type-ref-with-meta'}
+
     async def get_simple_async(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get a simple XML document.

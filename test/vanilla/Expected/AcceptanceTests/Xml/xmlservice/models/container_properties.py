@@ -46,7 +46,6 @@ class ContainerProperties(Model):
         'public_access': {'key': 'PublicAccess', 'type': 'str', 'xml': {'name': 'PublicAccess'}},
     }
     _xml_map = {
-        'name': 'ContainerProperties'
     }
 
     def __init__(self, **kwargs):
