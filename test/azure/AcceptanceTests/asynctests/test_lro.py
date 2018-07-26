@@ -83,7 +83,7 @@ class AutorestTestARMPolling(AsyncARMPolling):
 
 
 @pytest.fixture()
-def client(test_server_credentials):
+def client():
     """Create a AutoRestLongRunningOperationTestService client with test server credentials."""
     cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
     client = AutoRestLongRunningOperationTestService(cred, base_url="http://localhost:3000")
@@ -91,8 +91,8 @@ def client(test_server_credentials):
     return client
 
 @pytest.fixture()
-def special_client(client, test_server_credentials):
-    client._client.creds = test_server_credentials
+def special_client(client, test_session_callback):
+    client.config.session_configuration_callback = test_session_callback
     return client
 
 class TestLro:

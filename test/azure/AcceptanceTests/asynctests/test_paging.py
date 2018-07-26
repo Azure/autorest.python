@@ -57,9 +57,9 @@ def paging_client():
     client = AutoRestPagingTestService(cred, base_url="http://localhost:3000")
     return client
 
-@pytest.fixture
-def special_paging_client(paging_client, test_server_credentials):
-    paging_client._client.creds = test_server_credentials
+@pytest.fixture()
+def special_paging_client(paging_client, test_session_callback):
+    paging_client.config.session_configuration_callback = test_session_callback
     return paging_client
 
 

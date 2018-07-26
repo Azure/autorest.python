@@ -58,8 +58,8 @@ def client():
     return client
 
 @pytest.fixture()
-def special_client(client, test_server_credentials):
-    client._client.creds = test_server_credentials
+def special_client(client, test_session_callback):
+    client.config.session_configuration_callback = test_session_callback
     return client
 
 class TestHttp(object):
