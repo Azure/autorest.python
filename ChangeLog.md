@@ -1,5 +1,7 @@
 # Change Log
 
+### The next new fun release
+
 ### 2018-07-09 - 3.0.58
 
 - Fix some complex XML parsing issues. Requires msrest 0.5.2
