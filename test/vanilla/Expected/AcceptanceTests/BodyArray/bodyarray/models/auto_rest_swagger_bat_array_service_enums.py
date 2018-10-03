@@ -9,18 +9,11 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-try:
-    from .product_py3 import Product
-    from .error_py3 import Error, ErrorException
-except (SyntaxError, ImportError):
-    from .product import Product
-    from .error import Error, ErrorException
-from .auto_rest_swagger_bat_array_service_enums import (
-    FooEnum,
-)
+from enum import Enum
 
-__all__ = [
-    'Product',
-    'Error', 'ErrorException',
-    'FooEnum',
-]
+
+class FooEnum(str, Enum):
+
+    foo1 = "foo1"
+    foo2 = "foo2"
+    foo3 = "foo3"
