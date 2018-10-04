@@ -41,7 +41,7 @@ namespace AutoRest.Python
             try
             {
                 return (T)Convert.ChangeType(
-                    codeModel.CodeGenExtensions[name], 
+                    codeModel.CodeGenExtensions[name],
                     typeof(T).GenericTypeArguments.Length == 0 ? typeof(T) : typeof(T).GenericTypeArguments[0] // un-nullable
                 );
             }
@@ -63,7 +63,7 @@ namespace AutoRest.Python
 
             // build settings
             var altNamespace = (await GetValue<string[]>("input-file") ?? new[] { "" }).FirstOrDefault()?.Split('/').Last().Split('\\').Last().Split('.').First();
-            
+
             new Settings
             {
                 Namespace = await GetValue("namespace"),
@@ -83,6 +83,7 @@ namespace AutoRest.Python
             Settings.Instance.CustomSettings["ClientSideValidation"] = await GetValue<bool?>("client-side-validation") ?? false;
             Settings.Instance.CustomSettings["BasicSetupPy"] = await GetValue<bool?>("basic-setup-py") ?? false;
             Settings.Instance.CustomSettings["NoNamespaceFolders"] = await GetValue<bool?>("no-namespace-folders") ?? false;
+            Settings.Instance.CustomSettings["UseAPIKey"] = await GetValue<bool?>("use-api-key") ?? false;
             Settings.Instance.MaximumCommentColumns = await GetValue<int?>("max-comment-columns") ?? Settings.DefaultMaximumCommentColumns;
             Settings.Instance.OutputFileName = await GetValue<string>("output-file");
 
@@ -99,7 +100,7 @@ namespace AutoRest.Python
                 ? (IAnyPlugin)new AutoRest.Python.Azure.PluginPya()
                 : (IAnyPlugin)new AutoRest.Python.PluginPy();
             Settings.PopulateSettings(plugin.Settings, Settings.Instance.CustomSettings);
-            
+
             using (plugin.Activate())
             {
                 Settings.Instance.Namespace = Settings.Instance.Namespace ?? CodeNamer.Instance.GetNamespaceName(altNamespace);

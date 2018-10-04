@@ -14,6 +14,12 @@
 {
 @:import warnings
 }
+@if (Settings.AddCredentials && (bool)Settings.CustomSettings["UseAPIKey"])
+{
+<text>
+from msrest.authentication import ApiKeyCredentials
+</text>
+}
 from msrest.service_client import SDKClient
 from msrest import Configuration, Serializer, Deserializer
 from .version import VERSION
@@ -57,7 +63,7 @@ class @(Model.Name)Configuration(Configuration):
 }
 
 @if (!Model.IsCustomBaseUri)
-{ 
+{
 @:    :param str base_url: Service URL
 }
     """
@@ -126,7 +132,15 @@ class @(Model.Name)(SDKClient):
             self@(Model.RequiredConstructorParameters)@(Model.IsCustomBaseUri ? "" : ", base_url=None")):
 @EmptyLine
         self.config = @(Model.Name)Configuration(@(Model.ConfigConstructorParameters))
-        super(@(Model.Name), self).__init__(@(Settings.AddCredentials? "self.config.credentials" : PythonConstants.None), self.config)
+        @if (Settings.AddCredentials && (bool)Settings.CustomSettings["UseAPIKey"])
+        {
+        <text>
+        self.config.credentials = ApiKeyCredentials(in_headers={
+            'Api-Key': api_key,
+        })
+        </text>
+        }
+super(@(Model.Name), self).__init__(@(Settings.AddCredentials? "self.config.credentials" : PythonConstants.None), self.config)
 @EmptyLine
 @if (Model.ModelTemplateModels.Any())
 {

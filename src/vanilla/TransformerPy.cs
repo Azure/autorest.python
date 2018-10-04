@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
-// 
+//
 
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -76,7 +76,7 @@ namespace AutoRest.Python
 
         protected void Flattening(CodeModelPy codeModel)
         {
-            foreach( var method in codeModel.Methods) { 
+            foreach( var method in codeModel.Methods) {
             foreach (var parameterTransformation in method.InputParameterTransformation)
             {
                 parameterTransformation.OutputParameter.Name = method.GetUniqueName(CodeNamer.Instance.GetParameterName(parameterTransformation.OutputParameter.GetClientName()));
@@ -85,7 +85,7 @@ namespace AutoRest.Python
 
                 foreach (var parameterMapping in parameterTransformation.ParameterMappings)
                 {
-                    
+
                     if (parameterMapping.InputParameterProperty != null)
                     {
                         parameterMapping.InputParameterProperty = CodeNamer.Instance.GetPropertyName(parameterMapping.InputParameterProperty);
@@ -118,7 +118,7 @@ namespace AutoRest.Python
 
                     if (constantProperties.All(each => each.Name.RawValue != parameter.Name.RawValue))
                     {
-                        
+
                         constantProperties.Add(New<PropertyPy>(new
                         {
                             Name = parameter.Name.RawValue,
@@ -143,14 +143,27 @@ namespace AutoRest.Python
             {
                 if (!codeModel.Properties.Any(p => Core.Utilities.Extensions.IsPrimaryType(p.ModelType, KnownPrimaryType.Credentials)))
                 {
-                    codeModel.Add(New<Property>(new
+                    if (codeModel.UseAPIKey)
                     {
-                        Name = "credentials",
-                        SerializedName = "credentials",
-                        Type = New<PrimaryType>(KnownPrimaryType.Credentials),
-                        IsRequired = true,
-                        Documentation = "Subscription credentials which uniquely identify client subscription."
-                    }));
+                        codeModel.Add(New<Property>(new
+                        {
+                            Name = "api_key",
+                            SerializedName = "api_key",
+                            IsRequired = true,
+                            Documentation = "API key to be used for authentication."
+                        }));
+                    }
+                    else
+                    {
+                        codeModel.Add(New<Property>(new
+                        {
+                            Name = "credentials",
+                            SerializedName = "credentials",
+                            Type = New<PrimaryType>(KnownPrimaryType.Credentials),
+                            IsRequired = true,
+                            Documentation = "Subscription credentials which uniquely identify client subscription."
+                        }));
+                    }
                 }
             }
         }

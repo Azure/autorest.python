@@ -157,6 +157,8 @@ namespace AutoRest.Python.Model
 
         public bool NoNamespaceFolders => (bool)Settings.Instance.CustomSettings["NoNamespaceFolders"];
 
+        public bool UseAPIKey => (bool)Settings.Instance.CustomSettings["UseAPIKey"];
+
         private string _namespace;
         public override string Namespace
         {
