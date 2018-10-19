@@ -61,10 +61,13 @@ class TestFile(object):
             assert len(data) > 0
             assert response is not None
             assert not response._content_consumed
-            total = float(response.headers['Content-Length'])
-            if total < 4096:
-                progress[0] += len(data)
-                print("Downloading... {}%".format(int(progress[0]*100/total)))
+            try:
+                total = float(response.headers['Content-Length'])
+                if total < 4096:
+                    progress[0] += len(data)
+                    print("Downloading... {}%".format(int(progress[0]*100/total)))
+            except KeyError:
+                print("Content-Length no available for download progress bar")
 
         file_length = 0
         with io.BytesIO() as file_handle:
@@ -77,7 +80,7 @@ class TestFile(object):
             assert file_length !=  0
 
             sample_file = realpath(
-                join(cwd, pardir, pardir, pardir, 
+                join(cwd, pardir, pardir, pardir,
                      "node_modules", "@microsoft.azure", "autorest.testserver", "routes", "sample.png"))
 
             with open(sample_file, 'rb') as data:
@@ -129,7 +132,7 @@ class TestFile(object):
             assert file_length !=  0
 
             sample_file = realpath(
-                join(cwd, pardir, pardir, pardir, 
+                join(cwd, pardir, pardir, pardir,
                      "node_modules", "@microsoft.azure", "autorest.testserver", "routes", "sample.png"))
 
             with open(sample_file, 'rb') as data:

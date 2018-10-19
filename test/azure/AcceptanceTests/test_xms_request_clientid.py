@@ -49,6 +49,7 @@ from msrestazure.azure_exceptions import CloudError, CloudErrorData
 from azurespecialproperties import AutoRestAzureSpecialParametersTestClient
 from azurespecialproperties import models
 
+import pytest
 
 class TestXmsRequestClientId(object):
 
@@ -101,7 +102,7 @@ class TestXmsRequestClientId(object):
 
         try:
             client.xms_client_request_id.get()
-            self.fail("CloudError wasn't raised as expected")
+            pytest.fail("CloudError wasn't raised as expected")
 
         except CloudError as err:
             assert "123" ==  err.request_id

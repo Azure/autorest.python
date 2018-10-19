@@ -124,15 +124,6 @@ def test_paging_happy_path(special_paging_client):
     assert len(items) == 10
     assert items[-1].properties.id == 110
 
-    pages = paging_client.paging.get_multiple_pages_retry_first(raw=True)
-    assert pages.next_link is not None
-    items = [i for i in pages]
-    assert len(items) == 10
-
-    pages = paging_client.paging.get_multiple_pages_retry_second(raw=True)
-    assert pages.next_link is not None
-    items = [i for i in pages]
-    assert len(items) == 10
 
 def test_paging_sad_path(paging_client):
 
