@@ -84,6 +84,58 @@ class PetsOperations(object):
         return deserialized
     create_ap_true.metadata = {'url': '/additionalProperties/true'}
 
+    def create_cat_ap_true(
+            self, create_parameters, custom_headers=None, raw=False, **operation_config):
+        """Create a CatAPTrue which contains more properties than what is defined.
+
+        :param create_parameters:
+        :type create_parameters: ~additionalproperties.models.CatAPTrue
+        :param dict custom_headers: headers that will be added to the request
+        :param bool raw: returns the direct response alongside the
+         deserialized response
+        :param operation_config: :ref:`Operation configuration
+         overrides<msrest:optionsforoperations>`.
+        :return: CatAPTrue or ClientRawResponse if raw=true
+        :rtype: ~additionalproperties.models.CatAPTrue or
+         ~msrest.pipeline.ClientRawResponse
+        :raises:
+         :class:`ErrorException<additionalproperties.models.ErrorException>`
+        """
+        # Construct URL
+        url = self.create_cat_ap_true.metadata['url']
+
+        # Construct parameters
+        query_parameters = {}
+
+        # Construct headers
+        header_parameters = {}
+        header_parameters['Accept'] = 'application/json'
+        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
+        if custom_headers:
+            header_parameters.update(custom_headers)
+
+        # Construct body
+        body_content = self._serialize.body(create_parameters, 'CatAPTrue')
+
+        # Construct and send request
+        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        response = self._client.send(request, stream=False, **operation_config)
+
+        if response.status_code not in [200]:
+            raise models.ErrorException(self._deserialize, response)
+
+        deserialized = None
+
+        if response.status_code == 200:
+            deserialized = self._deserialize('CatAPTrue', response)
+
+        if raw:
+            client_raw_response = ClientRawResponse(deserialized, response)
+            return client_raw_response
+
+        return deserialized
+    create_cat_ap_true.metadata = {'url': '/additionalProperties/true-subclass'}
+
     def create_ap_object(
             self, create_parameters, custom_headers=None, raw=False, **operation_config):
         """Create a Pet which contains more properties than what is defined.

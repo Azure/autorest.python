@@ -673,7 +673,7 @@ class XmlOperations(object):
             header_parameters.update(custom_headers)
 
         # Construct body
-        serialization_ctxt = {'xml': {'name': 'bananas', 'itemsName': 'banana', 'wrapped': True}}
+        serialization_ctxt = {'xml': {'name': 'bananas', 'itemsName': 'bananas', 'wrapped': True}}
         body_content = self._serialize.body(bananas, '[Banana]', serialization_ctxt=serialization_ctxt)
 
         # Construct and send request
@@ -762,7 +762,7 @@ class XmlOperations(object):
             header_parameters.update(custom_headers)
 
         # Construct body
-        serialization_ctxt = {'xml': {'name': 'bananas', 'itemsName': 'banana', 'wrapped': True}}
+        serialization_ctxt = {'xml': {'name': 'bananas', 'itemsName': 'bananas', 'wrapped': True}}
         body_content = self._serialize.body(bananas, '[Banana]', serialization_ctxt=serialization_ctxt)
 
         # Construct and send request
@@ -851,7 +851,7 @@ class XmlOperations(object):
             header_parameters.update(custom_headers)
 
         # Construct body
-        serialization_ctxt = {'xml': {'name': 'bananas', 'itemsName': 'banana', 'wrapped': True}}
+        serialization_ctxt = {'xml': {'name': 'bananas', 'itemsName': 'bananas', 'wrapped': True}}
         body_content = self._serialize.body(bananas, '[Banana]', serialization_ctxt=serialization_ctxt)
 
         # Construct and send request

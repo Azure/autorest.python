@@ -12,6 +12,7 @@
 try:
     from .error_py3 import Error, ErrorException
     from .pet_ap_true_py3 import PetAPTrue
+    from .cat_ap_true_py3 import CatAPTrue
     from .pet_ap_object_py3 import PetAPObject
     from .pet_ap_string_py3 import PetAPString
     from .pet_ap_in_properties_py3 import PetAPInProperties
@@ -19,6 +20,7 @@ try:
 except (SyntaxError, ImportError):
     from .error import Error, ErrorException
     from .pet_ap_true import PetAPTrue
+    from .cat_ap_true import CatAPTrue
     from .pet_ap_object import PetAPObject
     from .pet_ap_string import PetAPString
     from .pet_ap_in_properties import PetAPInProperties
@@ -27,6 +29,7 @@ except (SyntaxError, ImportError):
 __all__ = [
     'Error', 'ErrorException',
     'PetAPTrue',
+    'CatAPTrue',
     'PetAPObject',
     'PetAPString',
     'PetAPInProperties',
