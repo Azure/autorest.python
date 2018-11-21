@@ -1178,7 +1178,6 @@ class ArrayOperations(object):
             raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('[FooEnum]', response)
 
@@ -1264,7 +1263,6 @@ class ArrayOperations(object):
             raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('[str]', response)
 

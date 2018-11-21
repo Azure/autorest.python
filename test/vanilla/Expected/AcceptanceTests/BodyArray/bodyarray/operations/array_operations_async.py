@@ -1129,6 +1129,177 @@ class ArrayOperations(_ArrayOperations):
             return client_raw_response
     put_string_valid_async.metadata = {'url': '/array/prim/string/foo1.foo2.foo3'}
 
+    async def get_enum_valid_async(
+            self, *, custom_headers=None, raw=False, **operation_config):
+        """Get enum array value ['foo1', 'foo2', 'foo3'].
+
+        :param dict custom_headers: headers that will be added to the request
+        :param bool raw: returns the direct response alongside the
+         deserialized response
+        :param operation_config: :ref:`Operation configuration
+         overrides<msrest:optionsforoperations>`.
+        :return: list or ClientRawResponse if raw=true
+        :rtype: list[str or ~bodyarray.models.FooEnum] or
+         ~msrest.pipeline.ClientRawResponse
+        :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
+        """
+        # Construct URL
+        url = self.get_enum_valid_async.metadata['url']
+
+        # Construct parameters
+        query_parameters = {}
+
+        # Construct headers
+        header_parameters = {}
+        header_parameters['Accept'] = 'application/json'
+        if custom_headers:
+            header_parameters.update(custom_headers)
+
+        # Construct and send request
+        request = self._client.get(url, query_parameters, header_parameters)
+        response = await self._client.async_send(request, stream=False, **operation_config)
+
+        if response.status_code not in [200]:
+            raise models.ErrorException(self._deserialize, response)
+
+        deserialized = None
+        if response.status_code == 200:
+            deserialized = self._deserialize('[FooEnum]', response)
+
+        if raw:
+            client_raw_response = ClientRawResponse(deserialized, response)
+            return client_raw_response
+
+        return deserialized
+    get_enum_valid_async.metadata = {'url': '/array/prim/enum/foo1.foo2.foo3'}
+
+    async def put_enum_valid_async(
+            self, array_body, *, custom_headers=None, raw=False, **operation_config):
+        """Set array value ['foo1', 'foo2', 'foo3'].
+
+        :param array_body:
+        :type array_body: list[str or ~bodyarray.models.FooEnum]
+        :param dict custom_headers: headers that will be added to the request
+        :param bool raw: returns the direct response alongside the
+         deserialized response
+        :param operation_config: :ref:`Operation configuration
+         overrides<msrest:optionsforoperations>`.
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
+        """
+        # Construct URL
+        url = self.put_enum_valid_async.metadata['url']
+
+        # Construct parameters
+        query_parameters = {}
+
+        # Construct headers
+        header_parameters = {}
+        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
+        if custom_headers:
+            header_parameters.update(custom_headers)
+
+        # Construct body
+        body_content = self._serialize.body(array_body, '[FooEnum]')
+
+        # Construct and send request
+        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        response = await self._client.async_send(request, stream=False, **operation_config)
+
+        if response.status_code not in [200]:
+            raise models.ErrorException(self._deserialize, response)
+
+        if raw:
+            client_raw_response = ClientRawResponse(None, response)
+            return client_raw_response
+    put_enum_valid_async.metadata = {'url': '/array/prim/enum/foo1.foo2.foo3'}
+
+    async def get_string_enum_valid_async(
+            self, *, custom_headers=None, raw=False, **operation_config):
+        """Get enum array value ['foo1', 'foo2', 'foo3'].
+
+        :param dict custom_headers: headers that will be added to the request
+        :param bool raw: returns the direct response alongside the
+         deserialized response
+        :param operation_config: :ref:`Operation configuration
+         overrides<msrest:optionsforoperations>`.
+        :return: list or ClientRawResponse if raw=true
+        :rtype: list[str] or ~msrest.pipeline.ClientRawResponse
+        :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
+        """
+        # Construct URL
+        url = self.get_string_enum_valid_async.metadata['url']
+
+        # Construct parameters
+        query_parameters = {}
+
+        # Construct headers
+        header_parameters = {}
+        header_parameters['Accept'] = 'application/json'
+        if custom_headers:
+            header_parameters.update(custom_headers)
+
+        # Construct and send request
+        request = self._client.get(url, query_parameters, header_parameters)
+        response = await self._client.async_send(request, stream=False, **operation_config)
+
+        if response.status_code not in [200]:
+            raise models.ErrorException(self._deserialize, response)
+
+        deserialized = None
+        if response.status_code == 200:
+            deserialized = self._deserialize('[str]', response)
+
+        if raw:
+            client_raw_response = ClientRawResponse(deserialized, response)
+            return client_raw_response
+
+        return deserialized
+    get_string_enum_valid_async.metadata = {'url': '/array/prim/string-enum/foo1.foo2.foo3'}
+
+    async def put_string_enum_valid_async(
+            self, array_body, *, custom_headers=None, raw=False, **operation_config):
+        """Set array value ['foo1', 'foo2', 'foo3'].
+
+        :param array_body:
+        :type array_body: list[str]
+        :param dict custom_headers: headers that will be added to the request
+        :param bool raw: returns the direct response alongside the
+         deserialized response
+        :param operation_config: :ref:`Operation configuration
+         overrides<msrest:optionsforoperations>`.
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
+        """
+        # Construct URL
+        url = self.put_string_enum_valid_async.metadata['url']
+
+        # Construct parameters
+        query_parameters = {}
+
+        # Construct headers
+        header_parameters = {}
+        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
+        if custom_headers:
+            header_parameters.update(custom_headers)
+
+        # Construct body
+        body_content = self._serialize.body(array_body, '[str]')
+
+        # Construct and send request
+        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        response = await self._client.async_send(request, stream=False, **operation_config)
+
+        if response.status_code not in [200]:
+            raise models.ErrorException(self._deserialize, response)
+
+        if raw:
+            client_raw_response = ClientRawResponse(None, response)
+            return client_raw_response
+    put_string_enum_valid_async.metadata = {'url': '/array/prim/string-enum/foo1.foo2.foo3'}
+
     async def get_string_with_null_async(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get string array value ['foo', null, 'foo2'].
