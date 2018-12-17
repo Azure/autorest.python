@@ -22,7 +22,7 @@ VERSION = "2015-07-01-preview"
 # prerequisite: setuptools
 # http://pypi.python.org/pypi/setuptools
 
-REQUIRES = ["msrestazure>=0.4.32"]
+REQUIRES = ["msrestazure>=0.6.0"]
 
 setup(
     name=NAME,
