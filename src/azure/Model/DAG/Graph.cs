@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace AutoRest.Core.Model {
     public class Graph<DataT, NodeT> where NodeT : Node<DataT, NodeT> {
         // The nodes in the graph.
-        protected SortedDictionary<string, NodeT> _nodeTable;
+        public SortedDictionary<string, NodeT> nodeTable;
 
         // To track the already visited node while performing DFS.
         private HashSet<string> _visited;
@@ -26,57 +26,10 @@ namespace AutoRest.Core.Model {
         private HashSet<string> _processed;
 
         /**
-         * The edge types in a graph.
-         */
-        public enum EdgeType {
-            /**
-            * An edge (u, v) is a tree edge if v is visited the first time.
-            */
-            TREE,
-            /**
-            * An edge (u, v) is a forward edge if v is descendant of u.
-            */
-            FORWARD,
-            /**
-            * An edge (u, v) is a back edge if v is ancestor of u.
-            */
-            BACK,
-            /**
-            * An edge (u, v) is a cross edge if v is neither ancestor or descendant of u.
-            */
-            CROSS
-        }
-
-        /**
-        * Represents a visitor to be implemented by the consumer who want to visit the
-        * graph's nodes in DFS order by calling visit method.
-        *
-        * @param <U> the type of the node
-        */
-        public interface IVisitor<U> where U : Node<DataT, NodeT> {
-            /**
-             * visit a node.
-             *
-             * @param node the node to be visited
-             */
-            void visitNode(U node);
-
-            /**
-             * Visit an edge.
-             *
-             * @param fromKey key of the from node
-             * @param toKey key of the to node
-             * edgeType the edge type
-             */
-            void visitEdge(string fromKey, string toKey, EdgeType edgeType);
-
-        }
-
-        /**
          * Creates a directed graph.
          */
         public Graph() {
-            this._nodeTable = new SortedDictionary<string, NodeT>();
+            this.nodeTable = new SortedDictionary<string, NodeT>();
             this._visited = new HashSet<string>();
             this._time = 0;
             this._entryTime = new Dictionary<string, int>();
@@ -88,7 +41,7 @@ namespace AutoRest.Core.Model {
         /**
          * @return all nodes in the graph.
          */
-        public SortedDictionary<string, NodeT>.ValueCollection getNodes() { return this._nodeTable.Values; }
+        public SortedDictionary<string, NodeT>.ValueCollection getNodes() { return this.nodeTable.Values; }
 
         /**
          * Adds a node to this graph.
@@ -97,7 +50,7 @@ namespace AutoRest.Core.Model {
          */
         public void addNode(NodeT node) {
             node.setOwner(this);
-            _nodeTable.Add(node.Key, node);
+            this.nodeTable.Add(node.Key, node);
         }
 
         /**
@@ -108,8 +61,8 @@ namespace AutoRest.Core.Model {
         *
         * @param visitor the graph visitor
         */
-        public void visit(IVisitor<Node<DataT, NodeT>> visitor) {
-            foreach (KeyValuePair<string, NodeT> item in _nodeTable) {
+        public void visit(IVisitor<DataT, NodeT> visitor) {
+            foreach (KeyValuePair<string, NodeT> item in nodeTable) {
                 if (!_visited.Contains(item.Key)) {
                     this.dfs(visitor, item.Value);
                 }
@@ -122,7 +75,7 @@ namespace AutoRest.Core.Model {
             this._processed.Clear();
         }
 
-        private void dfs(IVisitor<Node<DataT, NodeT>> visitor, Node<DataT, NodeT> node) {
+        private void dfs(IVisitor<DataT, NodeT> visitor, Node<DataT, NodeT> node) {
             visitor.visitNode(node);
 
             string fromKey = node.Key;
@@ -133,7 +86,7 @@ namespace AutoRest.Core.Model {
                 if (!this._visited.Contains(toKey)) {
                     this._parent.Add(toKey, fromKey);
                     visitor.visitEdge(fromKey, toKey, edgeType(fromKey, toKey));
-                    this.dfs(visitor, this._nodeTable[toKey]);
+                    this.dfs(visitor, this.nodeTable[toKey]);
                 } else {
                     visitor.visitEdge(fromKey, toKey, edgeType(fromKey, toKey));
                 }

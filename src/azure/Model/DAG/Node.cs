@@ -28,7 +28,7 @@ namespace AutoRest.Core.Model {
         /**
          * @return whether this node has children
          */
-        public Boolean hasChildren() { return this._children.Count != 0; }
+        public bool hasChildren() { return this._children.Count != 0; }
 
         /**
          * @return children (neighbours) of this node

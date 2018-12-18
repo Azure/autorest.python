@@ -26,7 +26,7 @@ namespace AutoRest.Core.Model {
             /**
              * Indicates this node is the preparer or not.
              */
-            private Boolean _isPreparer;
+            private bool _isPreparer;
 
              /**
               * Creates a DAG node.
@@ -73,39 +73,39 @@ namespace AutoRest.Core.Model {
             /**
              * @return true if this node has any dependency
              */
-            public Boolean hasDependencies() { return this.hasChildren(); }
+            public bool hasDependencies() { return this.hasChildren(); }
 
             /**
              * Mark or un-mark this node as preparer.
              *
              * @param isPreparer true if this node needs to be marked as preparer, false otherwise.
              */
-            public void setPreparer(Boolean isPreparer) { this._isPreparer = isPreparer; }
+            public void setPreparer(bool isPreparer) { this._isPreparer = isPreparer; }
 
             /**
              * @return true if this node is marked as preparer
              */
-            public Boolean isPreparer() { return this._isPreparer; }
+            public bool isPreparer() { return this._isPreparer; }
 
             /**
              * Initialize the node so that traversal can be performed on the parent DAG.
              */
             public void initialize() {
-                this._toBeResolved = this._dependentKeys.Count;
+                this._toBeResolved = this.dependencyKeys().Count;
                 this._dependentKeys.Clear();
             }
 
             /**
              * @return true if all dependencies of this node are resolved
              */
-            Boolean hasAllResolved() { return this._toBeResolved == 0; }
+            public bool hasAllResolved() { return this._toBeResolved == 0; }
 
             /**
              * Reports a dependency of this node has been successfully resolved.
              *
              * @param dependencyKey the id of the dependency node
              */
-            protected void onSuccessfulResolution(string dependencyKey) {
+            public void onSuccessfulResolution(string dependencyKey) {
                 if (this._toBeResolved == 0) {
                     throw new SystemException("invalid state - " + this.Key + ": The dependency '" + dependencyKey + "' is already reported or there is no such dependencyKey");
                 }
@@ -118,7 +118,7 @@ namespace AutoRest.Core.Model {
              * @param dependencyKey the id of the dependency node
              * @param exception the reason for unsuccessful resolution
              */
-            protected void onFaultedResolution(string dependencyKey, Exception exception) {
+            public void onFaultedResolution(string dependencyKey, Exception exception) {
                 if (this._toBeResolved == 0) {
                     throw new SystemException("invalid state - " + this.Key + ": The dependency '" + dependencyKey + "' is already reported or there is no such dependencyKey");
                 }
