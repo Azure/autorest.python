@@ -81,7 +81,7 @@ class AutorestTestARMPolling(ARMPolling):
             'x-ms-client-request-id': self._operation.initial_response.request.headers['x-ms-client-request-id']
         }
         header_parameters.update(self._polling_cookie(self._response))
-        return self._client.send(request, header_parameters)
+        return self._client.send(request, header_parameters, stream=False)
 
 @pytest.fixture()
 def client():

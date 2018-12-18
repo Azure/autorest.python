@@ -16,7 +16,7 @@ namespace AutoRest.Python.Azure
 {
     public class CodeGeneratorPya : CodeGeneratorPy
     {
-        private const string ClientRuntimePackage = "msrestazure version 0.4.32";
+        private const string ClientRuntimePackage = "msrestazure version 0.6.0";
 
         public override string UsageInstructions => $"The {ClientRuntimePackage} pip package is required to execute the generated code.";
 
@@ -50,6 +50,16 @@ namespace AutoRest.Python.Azure
             var serviceClientTemplate = new AzureServiceClientTemplate { Model = codeModel, };
             await Write(serviceClientTemplate, Path.Combine(folderName, codeModel.Name.ToPythonCase() + ".py"));
 
+            // If async method at the client level, create another file
+            if(codeModel.MethodTemplateModels.Any( each => each.MethodGroup.IsCodeModelMethodGroup))
+            {
+                var serviceClientTemplateOp = new AzureServiceClientOperationsTemplate { Model = codeModel };
+                await Write(serviceClientTemplateOp, Path.Combine(folderName, "operations", codeModel.Name.ToPythonCase() + "_operations.py"));
+
+                var serviceClientTemplateOpAsync = new AzureServiceClientOperationsTemplateAsync { Model = codeModel };
+                await Write(serviceClientTemplateOpAsync, Path.Combine(folderName, "operations", codeModel.Name.ToPythonCase() + "_operations_async.py"));
+            }
+
             var versionTemplate = new VersionTemplate { Model = codeModel, };
             await Write(versionTemplate, Path.Combine(folderName, "version.py"));
 
@@ -74,7 +84,7 @@ namespace AutoRest.Python.Azure
             }
 
             //MethodGroups
-            if (codeModel.MethodGroupModels.Any())
+            if (codeModel.MethodGroupModels.Any() || codeModel.MethodTemplateModels.Any( each => each.MethodGroup.IsCodeModelMethodGroup))
             {
                 var methodGroupIndexTemplate = new MethodGroupInitTemplate
                 {
@@ -89,6 +99,12 @@ namespace AutoRest.Python.Azure
                         Model = methodGroupModel as MethodGroupPya
                     };
                     await Write(methodGroupTemplate, Path.Combine(folderName, "operations", ((string) methodGroupModel.TypeName).ToPythonCase() + ".py"));
+                    // Build a Py3 version that import the Py2 one
+                    var methodGroupTemplatePy3 = new AzureMethodGroupTemplateAsync
+                    {
+                        Model = methodGroupModel as MethodGroupPya
+                    };
+                    await Write(methodGroupTemplatePy3, Path.Combine(folderName, "operations", ((string) methodGroupModel.TypeName).ToPythonCase() + "_async.py"));
                 }
             }
 

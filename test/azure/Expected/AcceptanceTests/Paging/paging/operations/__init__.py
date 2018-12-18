@@ -9,7 +9,10 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .paging_operations import PagingOperations
+try:
+    from .paging_operations_async import PagingOperations
+except (SyntaxError, ImportError):
+    from .paging_operations import PagingOperations
 
 __all__ = [
     'PagingOperations',

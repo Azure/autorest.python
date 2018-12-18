@@ -9,13 +9,22 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .http_failure_operations import HttpFailureOperations
-from .http_success_operations import HttpSuccessOperations
-from .http_redirects_operations import HttpRedirectsOperations
-from .http_client_failure_operations import HttpClientFailureOperations
-from .http_server_failure_operations import HttpServerFailureOperations
-from .http_retry_operations import HttpRetryOperations
-from .multiple_responses_operations import MultipleResponsesOperations
+try:
+    from .http_failure_operations_async import HttpFailureOperations
+    from .http_success_operations_async import HttpSuccessOperations
+    from .http_redirects_operations_async import HttpRedirectsOperations
+    from .http_client_failure_operations_async import HttpClientFailureOperations
+    from .http_server_failure_operations_async import HttpServerFailureOperations
+    from .http_retry_operations_async import HttpRetryOperations
+    from .multiple_responses_operations_async import MultipleResponsesOperations
+except (SyntaxError, ImportError):
+    from .http_failure_operations import HttpFailureOperations
+    from .http_success_operations import HttpSuccessOperations
+    from .http_redirects_operations import HttpRedirectsOperations
+    from .http_client_failure_operations import HttpClientFailureOperations
+    from .http_server_failure_operations import HttpServerFailureOperations
+    from .http_retry_operations import HttpRetryOperations
+    from .multiple_responses_operations import MultipleResponsesOperations
 
 __all__ = [
     'HttpFailureOperations',

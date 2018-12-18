@@ -1,0 +1,33 @@
+﻿@using AutoRest.Python.vanilla.Templates
+@using System.Linq;
+@using AutoRest.Python
+@inherits AutoRest.Python.PythonTemplate<AutoRest.Python.Model.MethodGroupPy>
+# coding=utf-8
+# --------------------------------------------------------------------------
+@Header("# ").TrimMultilineHeader()
+# --------------------------------------------------------------------------
+@EmptyLine
+@if (Model.HasAnyDeprecated)
+{
+@:import warnings
+}
+from msrest.pipeline import ClientRawResponse
+@if (Model.HasAnyDefaultExceptions)
+{
+@:from msrest.exceptions import HttpOperationError
+}
+@if (Model.HasAnyModel)
+{
+@EmptyLine
+@:from .. import models
+}
+from .@( Model.TypeName.ToPythonCase()) import @Model.TypeName as _@Model.TypeName
+@EmptyLine
+@EmptyLine
+class @((string) Model.TypeName)(_@Model.TypeName):
+    """@((string) Model.TypeName) operations."""
+@foreach (var method in Model.MethodTemplateModels)
+{
+@EmptyLine
+@:@(Include(new MethodTemplate() {AsyncMode = true, Python3Mode = true}, method))
+}

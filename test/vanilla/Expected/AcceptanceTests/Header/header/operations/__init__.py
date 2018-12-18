@@ -9,7 +9,10 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .header_operations import HeaderOperations
+try:
+    from .header_operations_async import HeaderOperations
+except (SyntaxError, ImportError):
+    from .header_operations import HeaderOperations
 
 __all__ = [
     'HeaderOperations',

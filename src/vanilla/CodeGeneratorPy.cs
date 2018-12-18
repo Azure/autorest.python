@@ -18,7 +18,7 @@ namespace AutoRest.Python
 {
     public class CodeGeneratorPy : CodeGenerator
     {
-        private const string ClientRuntimePackage = "msrest version 0.5.2";
+        private const string ClientRuntimePackage = "msrest version 0.6.0";
 
         public CodeGeneratorPy()
         {
@@ -56,6 +56,16 @@ namespace AutoRest.Python
             var serviceClientTemplate = new ServiceClientTemplate { Model = codeModel };
             await Write(serviceClientTemplate, Path.Combine(folderName, codeModel.Name.ToPythonCase() + ".py"));
 
+            // If async method at the client level, create another file
+            if(codeModel.MethodTemplateModels.Any( each => each.MethodGroup.IsCodeModelMethodGroup))
+            {
+                var serviceClientOpTemplate = new ServiceClientOperationsTemplate { Model = codeModel };
+                await Write(serviceClientOpTemplate, Path.Combine(folderName, "operations", codeModel.Name.ToPythonCase() + "_operations.py"));
+
+                var serviceClientOpTemplateAsync = new ServiceClientOperationsTemplateAsync { Model = codeModel };
+                await Write(serviceClientOpTemplateAsync, Path.Combine(folderName, "operations", codeModel.Name.ToPythonCase() + "_operations_async.py"));
+            }
+
             // do we need to write out the version template file?
             var versionPath = Path.Combine(folderName, "version.py");
 
@@ -88,7 +98,7 @@ namespace AutoRest.Python
             }
 
             //MethodGroups
-            if (codeModel.MethodGroupModels.Any())
+            if (codeModel.MethodGroupModels.Any() || codeModel.MethodTemplateModels.Any( each => each.MethodGroup.IsCodeModelMethodGroup))
             {
                 var methodGroupIndexTemplate = new MethodGroupInitTemplate
                 {
@@ -103,6 +113,12 @@ namespace AutoRest.Python
                         Model = methodGroupModel
                     };
                     await Write(methodGroupTemplate, Path.Combine(folderName, "operations", ((string) methodGroupModel.TypeName).ToPythonCase() + ".py"));
+                    // Build a Py3 version that import the Py2 one
+                    var methodGroupTemplatePy3 = new MethodGroupTemplateAsync
+                    {
+                        Model = methodGroupModel
+                    };
+                    await Write(methodGroupTemplatePy3, Path.Combine(folderName, "operations", ((string) methodGroupModel.TypeName).ToPythonCase() + "_async.py"));
                 }
             }
 

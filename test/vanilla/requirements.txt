@@ -1,4 +1,5 @@
 requests>=2.14.0
 pytest
 pytest-cov
-msrest>=0.5.0
+pytest-asyncio;python_full_version>="3.5.2"
+msrest>=0.6.0

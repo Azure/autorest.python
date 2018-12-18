@@ -13,7 +13,7 @@ from msrest.service_client import SDKClient
 from msrest import Configuration, Serializer, Deserializer
 from .version import VERSION
 from msrest.exceptions import HttpOperationError
-from .operations.xml_operations import XmlOperations
+from .operations import XmlOperations
 from . import models
 
 

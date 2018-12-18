@@ -69,7 +69,6 @@ class MultipleResponsesOperations(object):
             raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('A', response)
 
@@ -115,7 +114,6 @@ class MultipleResponsesOperations(object):
             raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('A', response)
 
@@ -161,7 +159,6 @@ class MultipleResponsesOperations(object):
             raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('A', response)
 
@@ -207,7 +204,6 @@ class MultipleResponsesOperations(object):
             raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('A', response)
 
@@ -254,7 +250,6 @@ class MultipleResponsesOperations(object):
             raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('A', response)
 
@@ -300,7 +295,6 @@ class MultipleResponsesOperations(object):
             raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('A', response)
         if response.status_code == 201:
@@ -349,7 +343,6 @@ class MultipleResponsesOperations(object):
             raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('A', response)
         if response.status_code == 201:
@@ -398,7 +391,6 @@ class MultipleResponsesOperations(object):
             raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('A', response)
         if response.status_code == 201:
@@ -445,7 +437,6 @@ class MultipleResponsesOperations(object):
             raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('A', response)
         if response.status_code == 201:
@@ -494,7 +485,6 @@ class MultipleResponsesOperations(object):
             raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('A', response)
         if response.status_code == 201:
@@ -543,7 +533,6 @@ class MultipleResponsesOperations(object):
             raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('A', response)
         if response.status_code == 201:
@@ -593,7 +582,6 @@ class MultipleResponsesOperations(object):
             raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('A', response)
         if response.status_code == 201:
@@ -1200,7 +1188,6 @@ class MultipleResponsesOperations(object):
             raise HttpOperationError(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('A', response)
 
@@ -1246,7 +1233,6 @@ class MultipleResponsesOperations(object):
             raise HttpOperationError(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('A', response)
 
@@ -1292,7 +1278,6 @@ class MultipleResponsesOperations(object):
             raise HttpOperationError(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('A', response)
 
@@ -1339,7 +1324,6 @@ class MultipleResponsesOperations(object):
             raise HttpOperationError(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('A', response)
 
@@ -1385,7 +1369,6 @@ class MultipleResponsesOperations(object):
             raise HttpOperationError(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('A', response)
 
@@ -1431,7 +1414,6 @@ class MultipleResponsesOperations(object):
             raise HttpOperationError(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('A', response)
 
@@ -1477,7 +1459,6 @@ class MultipleResponsesOperations(object):
             raise HttpOperationError(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('A', response)
 

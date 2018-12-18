@@ -66,7 +66,6 @@ class DatetimeModelOperations(object):
             raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('iso-8601', response)
 
@@ -110,7 +109,6 @@ class DatetimeModelOperations(object):
             raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('iso-8601', response)
 
@@ -154,7 +152,6 @@ class DatetimeModelOperations(object):
             raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('iso-8601', response)
 
@@ -198,7 +195,6 @@ class DatetimeModelOperations(object):
             raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('iso-8601', response)
 
@@ -284,7 +280,6 @@ class DatetimeModelOperations(object):
             raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('iso-8601', response)
 
@@ -328,7 +323,6 @@ class DatetimeModelOperations(object):
             raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('iso-8601', response)
 
@@ -416,7 +410,6 @@ class DatetimeModelOperations(object):
             raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('iso-8601', response)
 
@@ -461,7 +454,6 @@ class DatetimeModelOperations(object):
             raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('iso-8601', response)
 
@@ -549,7 +541,6 @@ class DatetimeModelOperations(object):
             raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('iso-8601', response)
 
@@ -594,7 +585,6 @@ class DatetimeModelOperations(object):
             raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('iso-8601', response)
 
@@ -680,7 +670,6 @@ class DatetimeModelOperations(object):
             raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('iso-8601', response)
 
@@ -766,7 +755,6 @@ class DatetimeModelOperations(object):
             raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('iso-8601', response)
 
@@ -852,7 +840,6 @@ class DatetimeModelOperations(object):
             raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('iso-8601', response)
 

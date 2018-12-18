@@ -66,7 +66,6 @@ class NumberOperations(object):
             raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('float', response)
 
@@ -110,7 +109,6 @@ class NumberOperations(object):
             raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('float', response)
 
@@ -154,7 +152,6 @@ class NumberOperations(object):
             raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('float', response)
 
@@ -198,7 +195,6 @@ class NumberOperations(object):
             raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('decimal', response)
 
@@ -284,7 +280,6 @@ class NumberOperations(object):
             raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('float', response)
 
@@ -370,7 +365,6 @@ class NumberOperations(object):
             raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('float', response)
 
@@ -456,7 +450,6 @@ class NumberOperations(object):
             raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('float', response)
 
@@ -542,7 +535,6 @@ class NumberOperations(object):
             raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('float', response)
 
@@ -628,7 +620,6 @@ class NumberOperations(object):
             raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('decimal', response)
 
@@ -714,7 +705,6 @@ class NumberOperations(object):
             raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('decimal', response)
 
@@ -800,7 +790,6 @@ class NumberOperations(object):
             raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('decimal', response)
 
@@ -886,7 +875,6 @@ class NumberOperations(object):
             raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('float', response)
 
@@ -972,7 +960,6 @@ class NumberOperations(object):
             raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('float', response)
 
@@ -1058,7 +1045,6 @@ class NumberOperations(object):
             raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('decimal', response)
 

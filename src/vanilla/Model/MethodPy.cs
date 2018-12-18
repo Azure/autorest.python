@@ -141,7 +141,7 @@ namespace AutoRest.Python.Model
         /// </summary>
         /// <param name="addCustomHeaderParameters">If true add the customHeader to the parameters</param>
         /// <returns>Generated string of parameters</returns>
-        public virtual string MethodParameterDeclaration(bool addCustomHeaderParameters)
+        public virtual string MethodParameterDeclaration(bool addCustomHeaderParameters, bool python3Mode)
         {
             List<string> declarations = new List<string>();
             List<string> requiredDeclarations = new List<string>();
@@ -161,6 +161,11 @@ namespace AutoRest.Python.Model
                         parameter.Name,
                         parameter.DefaultValue));
                 }
+            }
+
+            if (python3Mode)
+            {
+                declarations.Add("*");
             }
 
             if (addCustomHeaderParameters)
@@ -704,6 +709,16 @@ namespace AutoRest.Python.Model
                 {
                     return string.Empty;
                 }
+            }
+        }
+
+        public string GetSendCall(bool asyncMode)
+        {
+            if(asyncMode) {
+                return "await self._client.async_send";
+            }
+            else {
+                return "self._client.send";
             }
         }
 

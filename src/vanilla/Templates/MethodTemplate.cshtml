@@ -8,9 +8,11 @@
 @inherits AutoRest.Python.PythonTemplate<AutoRest.Python.Model.MethodPy>
 @{
 string methodName = Model.Name.ToPythonCase();
+string defKeyword = AsyncMode? "async def" : "def";
+if (AsyncMode) methodName += "_async";
 }
-    def @(((string)Model.Name).ToPythonCase())(
-            self, @(Model.MethodParameterDeclaration(Model.AddCustomHeader)), **operation_config):
+    @(defKeyword) @(methodName)(
+            self, @(Model.MethodParameterDeclaration(Model.AddCustomHeader, Python3Mode)), **operation_config):
         """@(WrapComment(string.Empty, Model.BuildSummaryAndDescriptionString()))
 @EmptyLine
 @if (Model.Deprecated)
@@ -54,7 +56,7 @@ string methodName = Model.Name.ToPythonCase();
 @EmptyLine
 }
         # Construct URL
-        url = self.@(((string)Model.Name).ToPythonCase()).metadata['url']
+        url = self.@(methodName).metadata['url']
         @(Model.BuildUrlPath("url", Model.LogicalParameters))
 @EmptyLine
         # Construct parameters
@@ -142,32 +144,33 @@ else
 {
         @:request = self._client.@(MethodPy.GetHttpFunction(Model.HttpMethod))(url, query_parameters, header_parameters)
 }
-        response = self._client.send(request, stream=@(Model.ReturnType.Body.IsPrimaryType(KnownPrimaryType.Stream)?"True":"False"), **operation_config)
+@{string streamParameter = "stream="+(Model.IsStreamResponse?"True":"False");}
+@{string sendCall = Model.GetSendCall(AsyncMode);}
+        response = @(sendCall)(request, @(streamParameter), **operation_config)
 @EmptyLine
         if @Model.FailureStatusCodePredicate:
             @Model.RaisedException
 @EmptyLine
 @if (Model.HasAnyResponse)
 {
-        @:deserialized = None
   if (Model.HasResponseHeader)
   {
         @:header_dict = {}
   }
-@EmptyLine
+if (Model.IsStreamResponse)
+{
+        @:deserialized = self._client.stream_download@(AsyncMode?"_async":"")(response, callback)
+}
+else
+{
+        @:deserialized = None
   foreach (var responsePair in Model.Responses.Where(r => r.Value.Body != null))
   {
         @:if response.status_code == @MethodPy.GetStatusCodeReference(responsePair.Key):
-    if (responsePair.Value.Body.IsPrimaryType(KnownPrimaryType.Stream))
-    {
-            @:deserialized = self._client.stream_download(response, callback)
-    }
-    else
-    {
             @:deserialized = self._deserialize('@responsePair.Value.Body.ToPythonRuntimeTypeString()', response)
-    }
             @:@Model.AddIndividualResponseHeader(responsePair.Key)
   }
+}
 @EmptyLine
         @:if raw:
             @:client_raw_response = ClientRawResponse(deserialized, response)
@@ -180,4 +183,4 @@ else
 {
         @:@Model.ReturnEmptyResponse
 }
-    @(((string)Model.Name).ToPythonCase()).metadata = {'url': '@(Model.Url)'}
+    @(methodName).metadata = {'url': '@(Model.Url)'}

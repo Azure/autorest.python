@@ -9,7 +9,10 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .duration_operations import DurationOperations
+try:
+    from .duration_operations_async import DurationOperations
+except (SyntaxError, ImportError):
+    from .duration_operations import DurationOperations
 
 __all__ = [
     'DurationOperations',

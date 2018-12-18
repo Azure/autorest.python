@@ -13,15 +13,15 @@ from msrest.service_client import SDKClient
 from msrest import Configuration, Serializer, Deserializer
 from .version import VERSION
 from msrest.exceptions import HttpOperationError
-from .operations.basic_operations import BasicOperations
-from .operations.primitive_operations import PrimitiveOperations
-from .operations.array_operations import ArrayOperations
-from .operations.dictionary_operations import DictionaryOperations
-from .operations.inheritance_operations import InheritanceOperations
-from .operations.polymorphism_operations import PolymorphismOperations
-from .operations.polymorphicrecursive_operations import PolymorphicrecursiveOperations
-from .operations.readonlyproperty_operations import ReadonlypropertyOperations
-from .operations.flattencomplex_operations import FlattencomplexOperations
+from .operations import BasicOperations
+from .operations import PrimitiveOperations
+from .operations import ArrayOperations
+from .operations import DictionaryOperations
+from .operations import InheritanceOperations
+from .operations import PolymorphismOperations
+from .operations import PolymorphicrecursiveOperations
+from .operations import ReadonlypropertyOperations
+from .operations import FlattencomplexOperations
 from . import models
 
 

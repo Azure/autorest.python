@@ -106,9 +106,8 @@ class HttpRedirectsOperations(object):
         if response.status_code not in [200, 300]:
             raise models.ErrorException(self._deserialize, response)
 
-        deserialized = None
         header_dict = {}
-
+        deserialized = None
         if response.status_code == 300:
             deserialized = self._deserialize('[str]', response)
             header_dict = {

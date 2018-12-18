@@ -69,7 +69,6 @@ class XmlOperations(object):
             raise HttpOperationError(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('RootWithRefAndNoMeta', response)
 
@@ -158,7 +157,6 @@ class XmlOperations(object):
             raise HttpOperationError(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('RootWithRefAndMeta', response)
 
@@ -246,7 +244,6 @@ class XmlOperations(object):
             raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('Slideshow', response)
 
@@ -334,7 +331,6 @@ class XmlOperations(object):
             raise HttpOperationError(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('AppleBarrel', response)
 
@@ -462,7 +458,6 @@ class XmlOperations(object):
             raise HttpOperationError(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('Slideshow', response)
 
@@ -551,7 +546,6 @@ class XmlOperations(object):
             raise HttpOperationError(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('AppleBarrel', response)
 
@@ -640,7 +634,6 @@ class XmlOperations(object):
             raise HttpOperationError(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('[Banana]', response)
 
@@ -730,7 +723,6 @@ class XmlOperations(object):
             raise HttpOperationError(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('[Banana]', response)
 
@@ -820,7 +812,6 @@ class XmlOperations(object):
             raise HttpOperationError(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('[Banana]', response)
 
@@ -910,7 +901,6 @@ class XmlOperations(object):
             raise HttpOperationError(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('Banana', response)
 
@@ -1002,7 +992,6 @@ class XmlOperations(object):
             raise HttpOperationError(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('ListContainersResponse', response)
 
@@ -1053,7 +1042,6 @@ class XmlOperations(object):
             raise HttpOperationError(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('StorageServiceProperties', response)
 
@@ -1152,7 +1140,6 @@ class XmlOperations(object):
             raise HttpOperationError(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('[SignedIdentifier]', response)
 
@@ -1252,7 +1239,6 @@ class XmlOperations(object):
             raise HttpOperationError(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('ListBlobsResponse', response)
 

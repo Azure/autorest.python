@@ -71,7 +71,6 @@ class DurationOperations(object):
             raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('duration', response)
 
@@ -165,7 +164,6 @@ class DurationOperations(object):
             raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('duration', response)
 
@@ -213,7 +211,6 @@ class DurationOperations(object):
             raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('duration', response)
 

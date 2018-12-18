@@ -13,7 +13,7 @@ from msrest.service_client import SDKClient
 from msrest import Serializer, Deserializer
 from msrestazure import AzureConfiguration
 from .version import VERSION
-from .operations.duration_operations import DurationOperations
+from .operations import DurationOperations
 from . import models
 
 
