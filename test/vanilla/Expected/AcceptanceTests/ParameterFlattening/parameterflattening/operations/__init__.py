@@ -9,7 +9,10 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .availability_sets_operations import AvailabilitySetsOperations
+try:
+    from .availability_sets_operations_async import AvailabilitySetsOperations
+except (SyntaxError, ImportError):
+    from .availability_sets_operations import AvailabilitySetsOperations
 
 __all__ = [
     'AvailabilitySetsOperations',

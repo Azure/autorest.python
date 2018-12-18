@@ -7,8 +7,15 @@
 @using AutoRest.Python.vanilla.Templates
 @inherits AutoRest.Python.PythonTemplate<AutoRest.Python.Azure.Model.MethodPya>
 @EmptyLine
-    def _@(Model.Name.ToPythonCase())_initial(
-            self, @(Model.MethodParameterDeclaration(Model.AddCustomHeader)), **operation_config):
+@{
+string defKeyword = AsyncMode? "async def" : "def";
+string methodName = Model.Name.ToPythonCase();
+string initialMethodName = "_" + methodName + "_initial";
+if (AsyncMode) methodName += "_async";
+if (AsyncMode) initialMethodName += "_async";
+}
+    @(defKeyword) @(initialMethodName)(
+            self, @(Model.MethodParameterDeclaration(Model.AddCustomHeader, Python3Mode)), **operation_config):
         @Model.BuildInputMappings()
 @if (Model.InputParameterTransformation.Any())
 {
@@ -23,7 +30,7 @@
 @EmptyLine
 }
         # Construct URL
-        url = self.@(((string)Model.Name).ToPythonCase()).metadata['url']
+        url = self.@(methodName).metadata['url']
         @(Model.BuildUrlPath("url", Model.LogicalParameters))
 @EmptyLine
         # Construct parameters
@@ -79,7 +86,8 @@ else
 {
         @:request = self._client.@(MethodPy.GetHttpFunction(Model.HttpMethod))(url, query_parameters, header_parameters)
 }
-        response = self._client.send(request, stream=False, **operation_config)
+@{string sendCall = Model.GetSendCall(AsyncMode);}
+        response = @(sendCall)(request, stream=False, **operation_config)
 @EmptyLine
         if @Model.FailureStatusCodePredicate:
             @Model.RaisedException
@@ -122,8 +130,8 @@ else
             @:return client_raw_response
 }
 @EmptyLine
-    def @(Model.Name.ToPythonCase())(
-            self, @(Model.MethodParameterDeclaration(Model.AddCustomHeader)), polling=True, **operation_config):
+    @(defKeyword) @(methodName)(
+            self, @(Model.MethodParameterDeclaration(Model.AddCustomHeader, Python3Mode)), polling=True, **operation_config):
         """@(WrapComment(string.Empty, Model.BuildSummaryAndDescriptionString()))
 @*need to fix comment here for long running function*@
 @EmptyLine
@@ -136,21 +144,37 @@ else
 
 @foreach(var parameter in Model.DocumentationParameters)
 {
-@:        @ParameterWrapComment(string.Empty, MethodPy.GetParameterDocumentationString(parameter))
-@:        @ParameterWrapComment(string.Empty, ":type " + parameter.Name + ": " + Model.GetDocumentationType(parameter.ModelType))
+@:        @ParameterWrapComment(MethodPy.GetParameterDocumentationString(parameter))
+@:        @ParameterWrapComment(":type " + parameter.Name + ": " + Model.GetDocumentationType(parameter.ModelType))
 }
-        @ParameterWrapComment(string.Empty, ":param dict custom_headers: headers that will be added to the request")
-        @ParameterWrapComment(string.Empty, ":param bool raw: The poller return type is ClientRawResponse, the direct response alongside the deserialized response")
-        @ParameterWrapComment(string.Empty, ":param polling: True for ARMPolling, False for no polling, or a polling object for personal polling strategy")
-        @ParameterWrapComment(string.Empty, ":return: An instance of LROPoller that returns " + Model.GetDocumentationTypeName(Model.ReturnType.Body) + " or ClientRawResponse<" + Model.GetDocumentationTypeName(Model.ReturnType.Body) + "> if raw==True")
-        @ParameterWrapComment(string.Empty, string.Format(":rtype: ~msrestazure.azure_operation.AzureOperationPoller[{0}] or ~msrestazure.azure_operation.AzureOperationPoller[~msrest.pipeline.ClientRawResponse[{0}]]", Model.GetReturnTypeDocumentation(Model.ReturnType.Body)))
-        @ParameterWrapComment(string.Empty, string.Format(":raises: {0}", Model.ExceptionDocumentation))
+        @ParameterWrapComment(":param dict custom_headers: headers that will be added to the request")
+        @ParameterWrapComment(":param bool raw: The poller return type is ClientRawResponse, the direct response alongside the deserialized response")
+@if (AsyncMode)
+{
+@:        @ParameterWrapComment(":param polling: True for AsyncARMPolling, False for no polling, or a polling object for personal polling strategy")
+@:        @ParameterWrapComment(":return: An instance of " + Model.GetDocumentationTypeName(Model.ReturnType.Body) + " or ClientRawResponse<" + Model.GetDocumentationTypeName(Model.ReturnType.Body) + "> if raw==True")
+@:        @ParameterWrapComment(string.Format(":rtype: ~{0} or ~msrest.pipeline.ClientRawResponse[{0}]", Model.GetReturnTypeDocumentation(Model.ReturnType.Body)))
+}
+else
+{
+@:        @ParameterWrapComment(":param polling: True for ARMPolling, False for no polling, or a polling object for personal polling strategy")
+@:        @ParameterWrapComment(":return: An instance of LROPoller that returns " + Model.GetDocumentationTypeName(Model.ReturnType.Body) + " or ClientRawResponse<" + Model.GetDocumentationTypeName(Model.ReturnType.Body) + "> if raw==True")
+@:        @ParameterWrapComment(string.Format(":rtype: ~msrestazure.azure_operation.AzureOperationPoller[{0}] or ~msrestazure.azure_operation.AzureOperationPoller[~msrest.pipeline.ClientRawResponse[{0}]]", Model.GetReturnTypeDocumentation(Model.ReturnType.Body)))
+}
+        @ParameterWrapComment(string.Format(":raises: {0}", Model.ExceptionDocumentation))
         """
 @if (Model.Deprecated)
 {
-@:        @(string.Format("warnings.warn(\"Method {0} is deprecated\", DeprecationWarning)", ((string)Model.Name).ToPythonCase()))
+@:        warnings.warn('Method @methodName is deprecated', DeprecationWarning)
 }
-        raw_result = self._@(Model.Name.ToPythonCase())_initial(
+@if (AsyncMode)
+{
+@:        raw_result = await self.@(initialMethodName)(
+}
+else
+{
+@:        raw_result = self.@(initialMethodName)(
+}
 @foreach(var parameter in Model.DocumentationParameters)
 {
 @:            @parameter.Name=@parameter.Name,
@@ -191,8 +215,18 @@ if(lro_string != "")
         lro_string = ", lro_options="+lro_string;
 }
 }
-        if polling is True: polling_method = ARMPolling(lro_delay@(lro_string), **operation_config)
-        elif polling is False: polling_method = NoPolling()
-        else: polling_method = polling
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-    @(((string)Model.Name).ToPythonCase()).metadata = {'url': '@(Model.Url)'}
+@if (AsyncMode)
+{
+@:        if polling is True: polling_method = AsyncARMPolling(lro_delay@(lro_string), **operation_config)
+@:        elif polling is False: polling_method = AsyncNoPolling()
+@:        else: polling_method = polling
+@:        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
+}
+else
+{
+@:        if polling is True: polling_method = ARMPolling(lro_delay@(lro_string), **operation_config)
+@:        elif polling is False: polling_method = NoPolling()
+@:        else: polling_method = polling
+@:        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+}
+    @(methodName).metadata = {'url': '@(Model.Url)'}

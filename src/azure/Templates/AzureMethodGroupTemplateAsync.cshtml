@@ -1,0 +1,40 @@
+﻿@using AutoRest.Python.vanilla.Templates
+@using System.Linq;
+@using AutoRest.Python
+@using AutoRest.Python.Azure.Model
+@using AutoRest.Python.azure.Templates
+@inherits AutoRest.Python.PythonTemplate<AutoRest.Python.Azure.Model.MethodGroupPya>
+# coding=utf-8
+# --------------------------------------------------------------------------
+@Header("# ").TrimMultilineHeader()
+# --------------------------------------------------------------------------
+@EmptyLine
+import uuid
+@if (Model.HasAnyDeprecated)
+{
+@:import warnings
+}
+from msrest.pipeline import ClientRawResponse
+@if (Model.HasAnyCloudErrors)
+{
+@:from msrestazure.azure_exceptions import CloudError
+}
+@if (Model.HasAnyLongRunOperation)
+{
+@:from msrest.polling.async_poller import async_poller, AsyncNoPolling
+@:from msrestazure.polling.async_arm_polling import AsyncARMPolling
+}
+@if (Model.HasAnyModel)
+{
+@EmptyLine
+@:from .. import models
+}
+from .@( Model.TypeName.ToPythonCase()) import @Model.TypeName as _@Model.TypeName
+@EmptyLine
+@EmptyLine
+class @((string) Model.TypeName)(_@Model.TypeName):
+@foreach (var method in Model.MethodTemplateModels)
+{
+@EmptyLine
+@:@(Include(new AzureMethodTemplate() {AsyncMode = true, Python3Mode = true}, (MethodPya)method))
+}

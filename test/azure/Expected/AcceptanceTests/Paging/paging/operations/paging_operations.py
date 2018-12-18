@@ -50,8 +50,7 @@ class PagingOperations(object):
         :rtype: ~paging.models.ProductPaged[~paging.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        def internal_paging(next_link=None, raw=False):
-
+        def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
                 url = self.get_single_pages.metadata['url']
@@ -75,6 +74,11 @@ class PagingOperations(object):
 
             # Construct and send request
             request = self._client.get(url, query_parameters, header_parameters)
+            return request
+
+        def internal_paging(next_link=None):
+            request = prepare_request(next_link)
+
             response = self._client.send(request, stream=False, **operation_config)
 
             if response.status_code not in [200]:
@@ -85,12 +89,10 @@ class PagingOperations(object):
             return response
 
         # Deserialize response
-        deserialized = models.ProductPaged(internal_paging, self._deserialize.dependencies)
-
+        header_dict = None
         if raw:
             header_dict = {}
-            client_raw_response = models.ProductPaged(internal_paging, self._deserialize.dependencies, header_dict)
-            return client_raw_response
+        deserialized = models.ProductPaged(internal_paging, self._deserialize.dependencies, header_dict)
 
         return deserialized
     get_single_pages.metadata = {'url': '/paging/single'}
@@ -121,8 +123,7 @@ class PagingOperations(object):
         if paging_get_multiple_pages_options is not None:
             timeout = paging_get_multiple_pages_options.timeout
 
-        def internal_paging(next_link=None, raw=False):
-
+        def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
                 url = self.get_multiple_pages.metadata['url']
@@ -152,6 +153,11 @@ class PagingOperations(object):
 
             # Construct and send request
             request = self._client.get(url, query_parameters, header_parameters)
+            return request
+
+        def internal_paging(next_link=None):
+            request = prepare_request(next_link)
+
             response = self._client.send(request, stream=False, **operation_config)
 
             if response.status_code not in [200]:
@@ -162,12 +168,10 @@ class PagingOperations(object):
             return response
 
         # Deserialize response
-        deserialized = models.ProductPaged(internal_paging, self._deserialize.dependencies)
-
+        header_dict = None
         if raw:
             header_dict = {}
-            client_raw_response = models.ProductPaged(internal_paging, self._deserialize.dependencies, header_dict)
-            return client_raw_response
+        deserialized = models.ProductPaged(internal_paging, self._deserialize.dependencies, header_dict)
 
         return deserialized
     get_multiple_pages.metadata = {'url': '/paging/multiple'}
@@ -199,8 +203,7 @@ class PagingOperations(object):
         if paging_get_odata_multiple_pages_options is not None:
             timeout = paging_get_odata_multiple_pages_options.timeout
 
-        def internal_paging(next_link=None, raw=False):
-
+        def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
                 url = self.get_odata_multiple_pages.metadata['url']
@@ -230,6 +233,11 @@ class PagingOperations(object):
 
             # Construct and send request
             request = self._client.get(url, query_parameters, header_parameters)
+            return request
+
+        def internal_paging(next_link=None):
+            request = prepare_request(next_link)
+
             response = self._client.send(request, stream=False, **operation_config)
 
             if response.status_code not in [200]:
@@ -240,12 +248,10 @@ class PagingOperations(object):
             return response
 
         # Deserialize response
-        deserialized = models.ProductPaged1(internal_paging, self._deserialize.dependencies)
-
+        header_dict = None
         if raw:
             header_dict = {}
-            client_raw_response = models.ProductPaged1(internal_paging, self._deserialize.dependencies, header_dict)
-            return client_raw_response
+        deserialized = models.ProductPaged1(internal_paging, self._deserialize.dependencies, header_dict)
 
         return deserialized
     get_odata_multiple_pages.metadata = {'url': '/paging/multiple/odata'}
@@ -279,8 +285,7 @@ class PagingOperations(object):
         if paging_get_multiple_pages_with_offset_options is not None:
             timeout = paging_get_multiple_pages_with_offset_options.timeout
 
-        def internal_paging(next_link=None, raw=False):
-
+        def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
                 url = self.get_multiple_pages_with_offset.metadata['url']
@@ -314,6 +319,11 @@ class PagingOperations(object):
 
             # Construct and send request
             request = self._client.get(url, query_parameters, header_parameters)
+            return request
+
+        def internal_paging(next_link=None):
+            request = prepare_request(next_link)
+
             response = self._client.send(request, stream=False, **operation_config)
 
             if response.status_code not in [200]:
@@ -324,12 +334,10 @@ class PagingOperations(object):
             return response
 
         # Deserialize response
-        deserialized = models.ProductPaged(internal_paging, self._deserialize.dependencies)
-
+        header_dict = None
         if raw:
             header_dict = {}
-            client_raw_response = models.ProductPaged(internal_paging, self._deserialize.dependencies, header_dict)
-            return client_raw_response
+        deserialized = models.ProductPaged(internal_paging, self._deserialize.dependencies, header_dict)
 
         return deserialized
     get_multiple_pages_with_offset.metadata = {'url': '/paging/multiple/withpath/{offset}'}
@@ -348,8 +356,7 @@ class PagingOperations(object):
         :rtype: ~paging.models.ProductPaged[~paging.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        def internal_paging(next_link=None, raw=False):
-
+        def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
                 url = self.get_multiple_pages_retry_first.metadata['url']
@@ -373,6 +380,11 @@ class PagingOperations(object):
 
             # Construct and send request
             request = self._client.get(url, query_parameters, header_parameters)
+            return request
+
+        def internal_paging(next_link=None):
+            request = prepare_request(next_link)
+
             response = self._client.send(request, stream=False, **operation_config)
 
             if response.status_code not in [200]:
@@ -383,12 +395,10 @@ class PagingOperations(object):
             return response
 
         # Deserialize response
-        deserialized = models.ProductPaged(internal_paging, self._deserialize.dependencies)
-
+        header_dict = None
         if raw:
             header_dict = {}
-            client_raw_response = models.ProductPaged(internal_paging, self._deserialize.dependencies, header_dict)
-            return client_raw_response
+        deserialized = models.ProductPaged(internal_paging, self._deserialize.dependencies, header_dict)
 
         return deserialized
     get_multiple_pages_retry_first.metadata = {'url': '/paging/multiple/retryfirst'}
@@ -408,8 +418,7 @@ class PagingOperations(object):
         :rtype: ~paging.models.ProductPaged[~paging.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        def internal_paging(next_link=None, raw=False):
-
+        def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
                 url = self.get_multiple_pages_retry_second.metadata['url']
@@ -433,6 +442,11 @@ class PagingOperations(object):
 
             # Construct and send request
             request = self._client.get(url, query_parameters, header_parameters)
+            return request
+
+        def internal_paging(next_link=None):
+            request = prepare_request(next_link)
+
             response = self._client.send(request, stream=False, **operation_config)
 
             if response.status_code not in [200]:
@@ -443,12 +457,10 @@ class PagingOperations(object):
             return response
 
         # Deserialize response
-        deserialized = models.ProductPaged(internal_paging, self._deserialize.dependencies)
-
+        header_dict = None
         if raw:
             header_dict = {}
-            client_raw_response = models.ProductPaged(internal_paging, self._deserialize.dependencies, header_dict)
-            return client_raw_response
+        deserialized = models.ProductPaged(internal_paging, self._deserialize.dependencies, header_dict)
 
         return deserialized
     get_multiple_pages_retry_second.metadata = {'url': '/paging/multiple/retrysecond'}
@@ -466,8 +478,7 @@ class PagingOperations(object):
         :rtype: ~paging.models.ProductPaged[~paging.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        def internal_paging(next_link=None, raw=False):
-
+        def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
                 url = self.get_single_pages_failure.metadata['url']
@@ -491,6 +502,11 @@ class PagingOperations(object):
 
             # Construct and send request
             request = self._client.get(url, query_parameters, header_parameters)
+            return request
+
+        def internal_paging(next_link=None):
+            request = prepare_request(next_link)
+
             response = self._client.send(request, stream=False, **operation_config)
 
             if response.status_code not in [200]:
@@ -501,12 +517,10 @@ class PagingOperations(object):
             return response
 
         # Deserialize response
-        deserialized = models.ProductPaged(internal_paging, self._deserialize.dependencies)
-
+        header_dict = None
         if raw:
             header_dict = {}
-            client_raw_response = models.ProductPaged(internal_paging, self._deserialize.dependencies, header_dict)
-            return client_raw_response
+        deserialized = models.ProductPaged(internal_paging, self._deserialize.dependencies, header_dict)
 
         return deserialized
     get_single_pages_failure.metadata = {'url': '/paging/single/failure'}
@@ -524,8 +538,7 @@ class PagingOperations(object):
         :rtype: ~paging.models.ProductPaged[~paging.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        def internal_paging(next_link=None, raw=False):
-
+        def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
                 url = self.get_multiple_pages_failure.metadata['url']
@@ -549,6 +562,11 @@ class PagingOperations(object):
 
             # Construct and send request
             request = self._client.get(url, query_parameters, header_parameters)
+            return request
+
+        def internal_paging(next_link=None):
+            request = prepare_request(next_link)
+
             response = self._client.send(request, stream=False, **operation_config)
 
             if response.status_code not in [200]:
@@ -559,12 +577,10 @@ class PagingOperations(object):
             return response
 
         # Deserialize response
-        deserialized = models.ProductPaged(internal_paging, self._deserialize.dependencies)
-
+        header_dict = None
         if raw:
             header_dict = {}
-            client_raw_response = models.ProductPaged(internal_paging, self._deserialize.dependencies, header_dict)
-            return client_raw_response
+        deserialized = models.ProductPaged(internal_paging, self._deserialize.dependencies, header_dict)
 
         return deserialized
     get_multiple_pages_failure.metadata = {'url': '/paging/multiple/failure'}
@@ -582,8 +598,7 @@ class PagingOperations(object):
         :rtype: ~paging.models.ProductPaged[~paging.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        def internal_paging(next_link=None, raw=False):
-
+        def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
                 url = self.get_multiple_pages_failure_uri.metadata['url']
@@ -607,6 +622,11 @@ class PagingOperations(object):
 
             # Construct and send request
             request = self._client.get(url, query_parameters, header_parameters)
+            return request
+
+        def internal_paging(next_link=None):
+            request = prepare_request(next_link)
+
             response = self._client.send(request, stream=False, **operation_config)
 
             if response.status_code not in [200]:
@@ -617,12 +637,10 @@ class PagingOperations(object):
             return response
 
         # Deserialize response
-        deserialized = models.ProductPaged(internal_paging, self._deserialize.dependencies)
-
+        header_dict = None
         if raw:
             header_dict = {}
-            client_raw_response = models.ProductPaged(internal_paging, self._deserialize.dependencies, header_dict)
-            return client_raw_response
+        deserialized = models.ProductPaged(internal_paging, self._deserialize.dependencies, header_dict)
 
         return deserialized
     get_multiple_pages_failure_uri.metadata = {'url': '/paging/multiple/failureuri'}
@@ -644,8 +662,7 @@ class PagingOperations(object):
         :rtype: ~paging.models.ProductPaged1[~paging.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        def internal_paging(next_link=None, raw=False):
-
+        def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
                 url = self.get_multiple_pages_fragment_next_link.metadata['url']
@@ -680,6 +697,11 @@ class PagingOperations(object):
 
             # Construct and send request
             request = self._client.get(url, query_parameters, header_parameters)
+            return request
+
+        def internal_paging(next_link=None):
+            request = prepare_request(next_link)
+
             response = self._client.send(request, stream=False, **operation_config)
 
             if response.status_code not in [200]:
@@ -690,12 +712,10 @@ class PagingOperations(object):
             return response
 
         # Deserialize response
-        deserialized = models.ProductPaged1(internal_paging, self._deserialize.dependencies)
-
+        header_dict = None
         if raw:
             header_dict = {}
-            client_raw_response = models.ProductPaged1(internal_paging, self._deserialize.dependencies, header_dict)
-            return client_raw_response
+        deserialized = models.ProductPaged1(internal_paging, self._deserialize.dependencies, header_dict)
 
         return deserialized
     get_multiple_pages_fragment_next_link.metadata = {'url': '/paging/multiple/fragment/{tenant}'}
@@ -723,8 +743,7 @@ class PagingOperations(object):
         if custom_parameter_group is not None:
             tenant = custom_parameter_group.tenant
 
-        def internal_paging(next_link=None, raw=False):
-
+        def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
                 url = self.get_multiple_pages_fragment_with_grouping_next_link.metadata['url']
@@ -759,6 +778,11 @@ class PagingOperations(object):
 
             # Construct and send request
             request = self._client.get(url, query_parameters, header_parameters)
+            return request
+
+        def internal_paging(next_link=None):
+            request = prepare_request(next_link)
+
             response = self._client.send(request, stream=False, **operation_config)
 
             if response.status_code not in [200]:
@@ -769,12 +793,10 @@ class PagingOperations(object):
             return response
 
         # Deserialize response
-        deserialized = models.ProductPaged1(internal_paging, self._deserialize.dependencies)
-
+        header_dict = None
         if raw:
             header_dict = {}
-            client_raw_response = models.ProductPaged1(internal_paging, self._deserialize.dependencies, header_dict)
-            return client_raw_response
+        deserialized = models.ProductPaged1(internal_paging, self._deserialize.dependencies, header_dict)
 
         return deserialized
     get_multiple_pages_fragment_with_grouping_next_link.metadata = {'url': '/paging/multiple/fragmentwithgrouping/{tenant}'}

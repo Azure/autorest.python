@@ -66,7 +66,6 @@ class IntModelOperations(object):
             raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('int', response)
 
@@ -110,7 +109,6 @@ class IntModelOperations(object):
             raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('int', response)
 
@@ -154,7 +152,6 @@ class IntModelOperations(object):
             raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('int', response)
 
@@ -198,7 +195,6 @@ class IntModelOperations(object):
             raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('int', response)
 
@@ -242,7 +238,6 @@ class IntModelOperations(object):
             raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('long', response)
 
@@ -286,7 +281,6 @@ class IntModelOperations(object):
             raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('long', response)
 
@@ -498,7 +492,6 @@ class IntModelOperations(object):
             raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('unix-time', response)
 
@@ -584,7 +577,6 @@ class IntModelOperations(object):
             raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('unix-time', response)
 
@@ -628,7 +620,6 @@ class IntModelOperations(object):
             raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('unix-time', response)
 

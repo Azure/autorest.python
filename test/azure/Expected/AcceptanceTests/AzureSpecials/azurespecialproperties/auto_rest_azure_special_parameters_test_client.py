@@ -13,14 +13,14 @@ from msrest.service_client import SDKClient
 from msrest import Serializer, Deserializer
 from msrestazure import AzureConfiguration
 from .version import VERSION
-from .operations.xms_client_request_id_operations import XMsClientRequestIdOperations
-from .operations.subscription_in_credentials_operations import SubscriptionInCredentialsOperations
-from .operations.subscription_in_method_operations import SubscriptionInMethodOperations
-from .operations.api_version_default_operations import ApiVersionDefaultOperations
-from .operations.api_version_local_operations import ApiVersionLocalOperations
-from .operations.skip_url_encoding_operations import SkipUrlEncodingOperations
-from .operations.odata_operations import OdataOperations
-from .operations.header_operations import HeaderOperations
+from .operations import XMsClientRequestIdOperations
+from .operations import SubscriptionInCredentialsOperations
+from .operations import SubscriptionInMethodOperations
+from .operations import ApiVersionDefaultOperations
+from .operations import ApiVersionLocalOperations
+from .operations import SkipUrlEncodingOperations
+from .operations import OdataOperations
+from .operations import HeaderOperations
 from . import models
 
 

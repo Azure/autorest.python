@@ -69,7 +69,6 @@ class FlattencomplexOperations(object):
             raise HttpOperationError(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('MyBaseType', response)
 

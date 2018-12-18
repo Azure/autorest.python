@@ -6,20 +6,36 @@
 # --------------------------------------------------------------------------
 @Header("# ").TrimMultilineHeader()
 # --------------------------------------------------------------------------
-@EmptyLine
 @{
-  if (Model.MethodGroupModels.Any())
-  {
-    foreach (var modelGroupType in Model.MethodGroupModels)
-    {
-@:from .@( modelGroupType.TypeName.ToPythonCase()) import @modelGroupType.TypeName
-    }
+bool hasClientLevelMethods = Model.MethodTemplateModels.Any( each => each.MethodGroup.IsCodeModelMethodGroup);
+}
 @EmptyLine
-@:__all__ = [
-    foreach (var modelGroupType in Model.MethodGroupModels)
+try:
+@foreach (var modelGroupType in Model.MethodGroupModels)
+    {
+@:    from .@( modelGroupType.TypeName.ToPythonCase())_async import @modelGroupType.TypeName
+    }
+@if(hasClientLevelMethods)
+{
+@:    from .@(Model.Name.ToPythonCase())_operations_async import @(Model.Name)OperationsMixin
+}
+except (SyntaxError, ImportError):
+@foreach (var modelGroupType in Model.MethodGroupModels)
+    {
+@:    from .@( modelGroupType.TypeName.ToPythonCase()) import @modelGroupType.TypeName
+    }
+@if(hasClientLevelMethods)
+{
+@:    from .@(Model.Name.ToPythonCase())_operations import @(Model.Name)OperationsMixin
+}
+@EmptyLine
+__all__ = [
+@foreach (var modelGroupType in Model.MethodGroupModels)
     {
 @:    '@modelGroupType.TypeName.Value',
     }
-@:]
-  }
+@if(hasClientLevelMethods)
+{
+@:    '@(Model.Name)OperationsMixin',
 }
+]

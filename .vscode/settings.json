@@ -18,5 +18,17 @@
   },
   "files.associations": {
     "*.iced": "coffeescript"
+  },
+  "python.unitTest.pyTestArgs": [
+    "test"
+  ],
+  "python.unitTest.pyTestEnabled": true,
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/*.pyc": true
   }
 }

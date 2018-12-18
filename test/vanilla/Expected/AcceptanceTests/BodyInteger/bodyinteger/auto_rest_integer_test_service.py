@@ -12,7 +12,7 @@
 from msrest.service_client import SDKClient
 from msrest import Configuration, Serializer, Deserializer
 from .version import VERSION
-from .operations.int_model_operations import IntModelOperations
+from .operations import IntModelOperations
 from . import models
 
 

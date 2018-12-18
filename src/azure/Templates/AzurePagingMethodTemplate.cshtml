@@ -4,8 +4,11 @@
 @using AutoRest.Python.Model
 @using AutoRest.Python.vanilla.Templates
 @inherits AutoRest.Python.PythonTemplate<AutoRest.Python.Azure.Model.MethodPya>
-    def @(Model.Name.ToPythonCase())(
-            self, @(Model.MethodParameterDeclaration(true)), **operation_config):
+@{
+string methodName = Model.Name.ToPythonCase();
+}
+    def @(methodName)(
+            self, @(Model.MethodParameterDeclaration(true, Python3Mode)), **operation_config):
         """@(WrapComment(string.Empty, Model.BuildSummaryAndDescriptionString()))
 @EmptyLine
 @if (Model.Deprecated)
@@ -29,7 +32,7 @@
         """
 @if (Model.Deprecated)
 {
-@:        @(string.Format("warnings.warn(\"Method {0} is deprecated\", DeprecationWarning)", ((string)Model.Name).ToPythonCase()))
+@:        warnings.warn('Method @methodName is deprecated', DeprecationWarning)
 }
         @Model.BuildInputMappings()
 @if (Model.InputParameterTransformation.Any())
@@ -44,8 +47,7 @@
 	}
 @EmptyLine
 }
-        def internal_paging(next_link=None, raw=False):
-@EmptyLine
+        def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
                 url = self.@(((string)Model.Name).ToPythonCase()).metadata['url']
@@ -106,6 +108,11 @@ else
 {
             @:request = self._client.@(MethodPy.GetHttpFunction(Model.HttpMethod))(url, query_parameters, header_parameters)
 }
+            return request
+@EmptyLine
+        def internal_paging(next_link=None):
+            request = prepare_request(next_link)
+@EmptyLine
             response = self._client.send(request, stream=False, **operation_config)
 @EmptyLine
             if @Model.FailureStatusCodePredicate:
@@ -113,13 +120,32 @@ else
 @EmptyLine
             return response
 @EmptyLine
-        # Deserialize response
-        deserialized = models.@(Model.PagedResponseClass.Name)(internal_paging, self._deserialize.dependencies)
+@if(AsyncMode)
+{
+@:        async def internal_paging_async(next_link=None):
+@:            request = prepare_request(next_link)
 @EmptyLine
+            @:response = await self._client.async_send(request, stream=False, **operation_config)
+@EmptyLine
+@:            if @Model.FailureStatusCodePredicate:
+@:                @Model.RaisedException
+@EmptyLine
+@:            return response
+@EmptyLine
+}
+        # Deserialize response
+        header_dict = None
         if raw:
             @Model.AddIndividualResponseHeader(null)
-            client_raw_response = models.@(Model.PagedResponseClass.Name)(internal_paging, self._deserialize.dependencies, header_dict)
-            return client_raw_response
+@if(AsyncMode)
+{
+        @:deserialized = models.@(Model.PagedResponseClass.Name)(
+            @:internal_paging, self._deserialize.dependencies, header_dict, async_command=internal_paging_async)
+}
+else
+{
+        @:deserialized = models.@(Model.PagedResponseClass.Name)(internal_paging, self._deserialize.dependencies, header_dict)
+}
 @EmptyLine
         return deserialized
-    @(((string)Model.Name).ToPythonCase()).metadata = {'url': '@(Model.Url)'}
+    @(methodName).metadata = {'url': '@(Model.Url)'}

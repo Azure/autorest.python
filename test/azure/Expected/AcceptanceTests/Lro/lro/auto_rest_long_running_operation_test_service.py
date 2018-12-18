@@ -13,10 +13,10 @@ from msrest.service_client import SDKClient
 from msrest import Serializer, Deserializer
 from msrestazure import AzureConfiguration
 from .version import VERSION
-from .operations.lr_os_operations import LROsOperations
-from .operations.lro_retrys_operations import LRORetrysOperations
-from .operations.lrosa_ds_operations import LROSADsOperations
-from .operations.lr_os_custom_header_operations import LROsCustomHeaderOperations
+from .operations import LROsOperations
+from .operations import LRORetrysOperations
+from .operations import LROSADsOperations
+from .operations import LROsCustomHeaderOperations
 from . import models
 
 

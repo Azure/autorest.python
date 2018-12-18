@@ -21,27 +21,18 @@ from msrest.service_client import SDKClient
 from msrest import Serializer, Deserializer
 from msrestazure import AzureConfiguration
 from .version import VERSION
-@if (Model.MethodTemplateModels.Any( each => each.MethodGroup.IsCodeModelMethodGroup))
-{
-<text>
-from msrest.pipeline import ClientRawResponse
-@if(Model.HasAnyCloudErrors)
-{
-@:from msrestazure.azure_exceptions import CloudError
+@{
+bool hasClientLevelMethods = Model.MethodTemplateModels.Any( each => each.MethodGroup.IsCodeModelMethodGroup);
 }
-@if (Model.HasAnyLongRunOperation)
+@if (hasClientLevelMethods)
 {
-@:from msrest.polling import LROPoller, NoPolling
-@:from msrestazure.polling.arm_polling import ARMPolling
-}
-import uuid
-</text>
+@:from .operations import @(Model.Name)OperationsMixin
 }
 @if (Model.MethodGroupModels.Any())
 {
   foreach (var modelGroupType in Model.MethodGroupModels)
   {
-@:from .operations.@(((string) modelGroupType.TypeName).ToPythonCase()) import @((string) modelGroupType.TypeName)
+@:from .operations import @((string) modelGroupType.TypeName)
   }
 }
 @if (Model.HasAnyModel)
@@ -90,7 +81,7 @@ else
 @EmptyLine
         super(@(Model.Name)Configuration, self).__init__(base_url)
 @EmptyLine
-        self.add_user_agent('@Model.UserAgent/{}'.format(VERSION))
+        self.add_user_agent('@(Model.UserAgent)/{}'.format(VERSION))
         self.add_user_agent('Azure-SDK-For-Python')
 @if (Model.Properties.Any())
 {
@@ -106,7 +97,14 @@ else
 }
 @EmptyLine
 @EmptyLine
-class @(Model.Name)(SDKClient):
+@if (hasClientLevelMethods)
+{
+@:class @(Model.Name)(@(Model.Name)OperationsMixin, SDKClient):
+}
+else
+{
+@:class @(Model.Name)(SDKClient):
+}
     """@Model.ServiceDocument
     @EmptyLine
     :ivar config: Configuration for client.
@@ -158,9 +156,4 @@ else
 {
         @:self.@(((string) methodGroup.Name).ToPythonCase()) = @((string) methodGroup.TypeName)(
             @:self._client, self.config, self._serialize, self._deserialize)
-}
-@foreach (var method in Model.MethodTemplateModels.Where(each => each.MethodGroup.IsCodeModelMethodGroup))
-{
-@EmptyLine
-@(Include(new AzureMethodTemplate(), (MethodPya)method))
 }

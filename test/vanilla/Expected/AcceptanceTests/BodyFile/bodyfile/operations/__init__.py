@@ -9,7 +9,10 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .files_operations import FilesOperations
+try:
+    from .files_operations_async import FilesOperations
+except (SyntaxError, ImportError):
+    from .files_operations import FilesOperations
 
 __all__ = [
     'FilesOperations',

@@ -9,7 +9,10 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .group_operations import GroupOperations
+try:
+    from .group_operations_async import GroupOperations
+except (SyntaxError, ImportError):
+    from .group_operations import GroupOperations
 
 __all__ = [
     'GroupOperations',

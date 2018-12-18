@@ -67,7 +67,6 @@ class PrimitiveOperations(object):
             raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('IntWrapper', response)
 
@@ -154,7 +153,6 @@ class PrimitiveOperations(object):
             raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('LongWrapper', response)
 
@@ -241,7 +239,6 @@ class PrimitiveOperations(object):
             raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('FloatWrapper', response)
 
@@ -328,7 +325,6 @@ class PrimitiveOperations(object):
             raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('DoubleWrapper', response)
 
@@ -416,7 +412,6 @@ class PrimitiveOperations(object):
             raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('BooleanWrapper', response)
 
@@ -503,7 +498,6 @@ class PrimitiveOperations(object):
             raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('StringWrapper', response)
 
@@ -590,7 +584,6 @@ class PrimitiveOperations(object):
             raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('DateWrapper', response)
 
@@ -677,7 +670,6 @@ class PrimitiveOperations(object):
             raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('DatetimeWrapper', response)
 
@@ -765,7 +757,6 @@ class PrimitiveOperations(object):
             raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('Datetimerfc1123Wrapper', response)
 
@@ -853,7 +844,6 @@ class PrimitiveOperations(object):
             raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('DurationWrapper', response)
 
@@ -942,7 +932,6 @@ class PrimitiveOperations(object):
             raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('ByteWrapper', response)
 

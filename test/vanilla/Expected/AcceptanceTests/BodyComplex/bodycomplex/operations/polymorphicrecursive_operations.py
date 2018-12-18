@@ -66,7 +66,6 @@ class PolymorphicrecursiveOperations(object):
             raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
-
         if response.status_code == 200:
             deserialized = self._deserialize('Fish', response)
 
