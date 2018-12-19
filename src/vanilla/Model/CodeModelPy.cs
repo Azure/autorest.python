@@ -35,8 +35,9 @@ namespace AutoRest.Python.Model
         public IEnumerable<CompositeTypePy> ModelTemplateModels => ModelTypes.Cast<CompositeTypePy>();
 
         [JsonIgnore]
-        public virtual IEnumerable<MethodGroupPy> MethodGroupModels => Operations.Cast<MethodGroupPy>().Where( each => !each.IsCodeModelMethodGroup);
+        public virtual IEnumerable<MethodGroupPy> MethodGroupModels => Operations.Cast<MethodGroupPy>().Where(each => !each.IsCodeModelMethodGroup);
 
+        public DAGraph<CompositeTypePy, ItemHolder> ModelDAGraph { get; private set;  }
 
         public string PolymorphicDictionary
         {
@@ -245,7 +246,7 @@ namespace AutoRest.Python.Model
 
         public virtual string GetExceptionNameIfExist(IModelType type, bool needsQuote)
         {
-            CompositeType compType = type as CompositeType;
+            Core.Model.CompositeType compType = type as Core.Model.CompositeType;
             if (compType != null)
             {
                 if (ErrorTypes.Contains(compType))

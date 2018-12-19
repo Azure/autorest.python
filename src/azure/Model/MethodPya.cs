@@ -110,7 +110,7 @@ namespace AutoRest.Python.Azure.Model
                     if (this.Responses[code].Headers != null)
                     {
                         builder.AppendLine("client_raw_response.add_headers({").Indent();
-                        AddHeaderDictionary(builder, (CompositeType)this.Responses[code].Headers);
+                        AddHeaderDictionary(builder, (Core.Model.CompositeTypePy)this.Responses[code].Headers);
                         builder.AppendLine("})").Outdent();
                     }
                     builder.AppendLine("return client_raw_response").

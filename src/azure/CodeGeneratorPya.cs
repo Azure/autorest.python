@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoRest.Core.Model;
 using AutoRest.Extensions.Azure;
+using AutoRest.Python.Model;
 using AutoRest.Python.Azure.Model;
 using AutoRest.Python.azure.Templates;
 using AutoRest.Python.vanilla.Templates;
@@ -73,9 +74,13 @@ namespace AutoRest.Python.Azure
                 };
                 await Write(modelInitTemplate, Path.Combine(folderName, "models", "__init__.py"));
 
+                DAGraph<CompositeTypePy, ItemHolder> dAGraph;
+
                 foreach (var modelType in models)
                 {
-                    var modelTemplate = new ModelTemplate { Model = modelType };
+                    ItemHolder dAGNode = new ItemHolder(modelType.Name, modelType);
+                    dAGraph = new DAGraph<CompositeTypePy, ItemHolder>(dAGNode);
+                    var modelTemplate = new ModelTemplate { Model = dAGraph };
                     await Write(modelTemplate, Path.Combine(folderName, "models", modelType.Name.ToPythonCase() + ".py"));
                     // Rebuild the same in Python 3 mode
                     modelTemplate.Python3Mode = true;

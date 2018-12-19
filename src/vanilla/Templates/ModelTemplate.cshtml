@@ -4,13 +4,13 @@
 @using AutoRest.Core.Model
 @using AutoRest.Python
 @using AutoRest.Python.Model
-@inherits AutoRest.Python.PythonTemplate<AutoRest.Python.Model.CompositeTypePy>
+@inherits AutoRest.Python.PythonTemplate<AutoRest.Core.Model.DAGraph<AutoRest.Python.Model.CompositeTypePy, ItemHolder>>
 # coding=utf-8
 # --------------------------------------------------------------------------
 @Header("# ").TrimMultilineHeader()
 # --------------------------------------------------------------------------
 @EmptyLine
-@if(Model.ComplexConstants.Any())
+@if(nextNode.ComplexConstants.Any())
 {
     foreach(var property in Model.ComplexConstants.Values)
     {
@@ -94,10 +94,10 @@ else
     @:_attribute_map = {
     if (mapAttrList.Count > 0)
     {
-      for (int i = 0; i < mapAttrList.Count; i++) 
-      {
+    for (int i = 0; i < mapAttrList.Count; i++) 
+    {
         @:@(Model.InitializeProperty(mapAttrList[i]))
-      }
+    }
     }
     @:}
 }
@@ -153,8 +153,8 @@ else
             {
         @:@(Model.InitializeProperty("self", propertyList[i], !Python3Mode))
             }
-	    }
-	}
+        }
+    }
     if (Model.NeedsPolymorphicConverter)
     {
         @:self.@Model.PolymorphicDiscriminatorProperty.Name = '@Model.SerializedName'
@@ -175,4 +175,3 @@ else
 @EmptyLine
         @:super(@(Model.ExceptionTypeDefinitionName), self).__init__(deserialize, response, '@(Model.Name)', *args)
 }
-

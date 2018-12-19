@@ -86,6 +86,7 @@ namespace AutoRest.Python
 
                 foreach (var modelType in codeModel.ModelTemplateModels)
                 {
+                    DAGNode<string, CompositeTypePy> currNode = new DAGNode<string, CompositeTypePy>(modelType.ClassName, modelType);
                     var modelTemplate = new ModelTemplate
                     {
                         Model = modelType

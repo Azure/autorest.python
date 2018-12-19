@@ -24,7 +24,7 @@ namespace AutoRest.Python.Azure
                 // set code model implementations our own implementations 
                 new Factory<CodeModel, CodeModelPya>(),
                 new Factory<Method, MethodPya>(),
-                new Factory<CompositeType, CompositeTypePy>(),
+                new Factory<Core.Model.CompositeTypePy, Python.Model.CompositeTypePy>(),
                 new Factory<Property, PropertyPya>(),
                 new Factory<Parameter, ParameterPy>(),
                 new Factory<DictionaryType, DictionaryTypePy>(),

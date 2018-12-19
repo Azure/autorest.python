@@ -13,11 +13,11 @@ using static AutoRest.Core.Utilities.DependencyInjection;
 
 namespace AutoRest.Python.Model
 {
-    public class CompositeTypePy : CompositeType, IExtendedModelTypePy
+    public class CompositeTypePy : Core.Model.CompositeType, IExtendedModelTypePy
     {
         private CompositeTypePy _parent => BaseModelType as CompositeTypePy;
 
-        private readonly IList<CompositeType> _subModelTypes = new List<CompositeType>();
+        private readonly IList<Core.Model.CompositeType> _subModelTypes = new List<Core.Model.CompositeType>();
 
         protected CompositeTypePy()
         {
@@ -25,7 +25,6 @@ namespace AutoRest.Python.Model
 
         protected CompositeTypePy(string name) : base(name)
         {
-
         }
 
         private IEnumerable<Property> removeDuplicateIfNeeded(IEnumerable<Property> originalEnumerable, IEnumerable<Property> potentialDuplicate)
@@ -74,7 +73,7 @@ namespace AutoRest.Python.Model
             }
         }
 
-        public IEnumerable<CompositeType> SubModelTypes => BaseIsPolymorphic?  CodeModel.ModelTypes.Where(each => ReferenceEquals(this, each.BaseModelType) ) : Enumerable.Empty<CompositeType>();
+        public IEnumerable<Core.Model.CompositeType> SubModelTypes => BaseIsPolymorphic ? CodeModel.ModelTypes.Where(each => ReferenceEquals(this, each.BaseModelType) ) : Enumerable.Empty<Core.Model.CompositeType>();
 
         public string SubModelTypeAsString => string.Join(", ", SubModelTypes.Select(x => x.Name));
 
@@ -286,7 +285,7 @@ namespace AutoRest.Python.Model
                 {
                     if (property.IsConstant)
                     {
-                        CompositeType compType = property.ModelType as CompositeType;
+                        Core.Model.CompositeType compType = property.ModelType as Core.Model.CompositeType;
                         if (compType != null)
                         {
                             complexConstant[property.Name] = compType;
