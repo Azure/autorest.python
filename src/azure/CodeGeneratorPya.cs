@@ -74,13 +74,10 @@ namespace AutoRest.Python.Azure
                 };
                 await Write(modelInitTemplate, Path.Combine(folderName, "models", "__init__.py"));
 
-                DAGraph<CompositeTypePy, ItemHolder> dAGraph;
 
                 foreach (var modelType in models)
                 {
-                    ItemHolder dAGNode = new ItemHolder(modelType.Name, modelType);
-                    dAGraph = new DAGraph<CompositeTypePy, ItemHolder>(dAGNode);
-                    var modelTemplate = new ModelTemplate { Model = dAGraph };
+                    var modelTemplate = new ModelTemplate { Model = modelType };
                     await Write(modelTemplate, Path.Combine(folderName, "models", modelType.Name.ToPythonCase() + ".py"));
                     // Rebuild the same in Python 3 mode
                     modelTemplate.Python3Mode = true;

@@ -84,18 +84,21 @@ namespace AutoRest.Python
                 var modelInitTemplate = new ModelInitTemplate { Model = codeModel };
                 await Write(modelInitTemplate, Path.Combine(folderName, "models", "__init__.py"));
 
-                foreach (var modelType in codeModel.ModelTemplateModels)
+                //foreach (var modelType in codeModel.ModelTemplateModels)
+                //{
+                //    var modelTemplate = new ModelTemplate
+                //    {
+                //        Model = modelType
+                //    };
+                //    await Write(modelTemplate, Path.Combine(folderName, "models", ((string)modelType.Name).ToPythonCase() + ".py"));
+                //    // Rebuild the same in Python 3 mode
+                //    modelTemplate.Python3Mode = true;
+                //    await Write(modelTemplate, Path.Combine(folderName, "models", ((string)modelType.Name).ToPythonCase() + "_py3.py"));
+                //}
+                var modelTemplate = new ModelTemplate
                 {
-                    DAGNode<string, CompositeTypePy> currNode = new DAGNode<string, CompositeTypePy>(modelType.ClassName, modelType);
-                    var modelTemplate = new ModelTemplate
-                    {
-                        Model = modelType
-                    };
-                    await Write(modelTemplate, Path.Combine(folderName, "models", ((string)modelType.Name).ToPythonCase() + ".py"));
-                    // Rebuild the same in Python 3 mode
-                    modelTemplate.Python3Mode = true;
-                    await Write(modelTemplate, Path.Combine(folderName, "models", ((string)modelType.Name).ToPythonCase() + "_py3.py"));
-                }
+                    Model = codeModel.ModelDAGraph
+                };
             }
 
             //MethodGroups

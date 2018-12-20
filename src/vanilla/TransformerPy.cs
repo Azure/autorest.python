@@ -41,6 +41,17 @@ namespace AutoRest.Python
             PopulateDiscriminator(codeModel);
             Flattening(codeModel);
             GenerateConstantProperties(codeModel);
+
+            bool foundRootNode = false;
+            foreach (var modelType in codeModel.ModelTemplateModels)
+            {
+                if (!modelType.HasParent)
+                {
+                    DAGNode<CompositeType> dAGNode = new DAGNode<CompositeType>(modelType.Name, modelType);
+                    //codeModel.ModelDAGraph = new DAGraph<CompositeType>(dAGNode);
+                    break;
+                }
+            }
             return codeModel;
         }
 

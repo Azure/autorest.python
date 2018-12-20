@@ -98,7 +98,7 @@ namespace AutoRest.Python.Model
                     var modelNamespace = CodeModel.Name.ToPythonCase();
                     if (!CodeModel.Namespace.IsNullOrEmpty())
                         modelNamespace = CodeModel.Namespace;
-                    Core.Model.CompositeTypePy compType = body as Core.Model.CompositeTypePy;
+                    Core.Model.CompositeType compType = body as Core.Model.CompositeType;
                     if (compType != null)
                     {
                         return string.Format(CultureInfo.InvariantCulture, ":class:`{0}<{1}.models.{0}>`", compType.GetExceptionDefineType(), modelNamespace.ToLower());
@@ -123,7 +123,7 @@ namespace AutoRest.Python.Model
                 }
                 else
                 {
-                    Core.Model.CompositeTypePy compType = body as Core.Model.CompositeTypePy;
+                    Core.Model.CompositeType compType = body as Core.Model.CompositeType;
                     if (compType != null)
                     {
                         return string.Format(CultureInfo.InvariantCulture, "raise models.{0}(self._deserialize, response)", compType.GetExceptionDefineType());
@@ -378,7 +378,7 @@ namespace AutoRest.Python.Model
                 if (this.ReturnType.Headers != null)
                 {
                     builder.AppendLine("client_raw_response.add_headers({").Indent();
-                    AddHeaderDictionary(builder, (Core.Model.CompositeTypePy)ReturnType.Headers);
+                    AddHeaderDictionary(builder, (Core.Model.CompositeType)ReturnType.Headers);
                     builder.Outdent().AppendLine("})");
                 }
                 builder.AppendLine("return client_raw_response").
@@ -440,7 +440,7 @@ namespace AutoRest.Python.Model
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Globalization", "CA1303:Do not pass literals as localized parameters", MessageId = "AutoRest.Core.Utilities.IndentedStringBuilder.AppendLine(System.String)")]
-        protected void AddHeaderDictionary(IndentedStringBuilder builder, Core.Model.CompositeTypePy headersType)
+        protected void AddHeaderDictionary(IndentedStringBuilder builder, Core.Model.CompositeType headersType)
         {
             if (builder == null)
             {
@@ -497,7 +497,7 @@ namespace AutoRest.Python.Model
             else
             {
                 builder.AppendLine("header_dict = {").Indent();
-                AddHeaderDictionary(builder, (Core.Model.CompositeTypePy)headersType);
+                AddHeaderDictionary(builder, (Core.Model.CompositeType)headersType);
                 builder.Outdent().AppendLine("}");
             }
             return builder.ToString();
@@ -642,7 +642,7 @@ namespace AutoRest.Python.Model
             foreach (var transformation in InputParameterTransformation)
             {
                 if (transformation.ParameterMappings.Any(m => !string.IsNullOrEmpty(m.OutputParameterProperty)) &&
-                    transformation.OutputParameter.ModelType is Core.Model.CompositeTypePy)
+                    transformation.OutputParameter.ModelType is Core.Model.CompositeType)
                 {
                     var comps = CodeModel.ModelTypes.Where(x => x.Name == transformation.OutputParameter.ModelTypeName);
                     var composite = comps.First();
@@ -780,7 +780,7 @@ namespace AutoRest.Python.Model
                     result = string.Format(CultureInfo.InvariantCulture,
                         "Possible values for result are - {0}.", enumValues);
                 }
-                else if (body is Core.Model.CompositeTypePy)
+                else if (body is Core.Model.CompositeType)
                 {
                     result = string.Format(CultureInfo.InvariantCulture,
                         "See {{@link {0}}} for more information.", ReturnTypeString);

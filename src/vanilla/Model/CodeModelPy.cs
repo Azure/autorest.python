@@ -37,7 +37,7 @@ namespace AutoRest.Python.Model
         [JsonIgnore]
         public virtual IEnumerable<MethodGroupPy> MethodGroupModels => Operations.Cast<MethodGroupPy>().Where(each => !each.IsCodeModelMethodGroup);
 
-        public DAGraph<CompositeTypePy, ItemHolder> ModelDAGraph { get; private set;  }
+        public DAGraph<CompositeType> ModelDAGraph { get; set;  }
 
         public string PolymorphicDictionary
         {

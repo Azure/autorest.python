@@ -1,8 +1,7 @@
-using AutoRest.Core.Model;
-namespace AutoRest.Python.Azure.Tests
+namespace AutoRest.Core.Model
 {
-    class ItemHolder : DAGNode<string, ItemHolder> {
-        public ItemHolder(string taskId, string taskItem) : base(taskId, taskItem) {
+    public class ItemHolder : DAGNode<ItemHolder> {
+        public ItemHolder(string taskId, string taskItem) : base(taskId, new ItemHolder("a", "b")) {
 
         }
     }

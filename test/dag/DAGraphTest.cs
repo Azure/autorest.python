@@ -53,7 +53,7 @@ namespace AutoRest.Python.Azure.Tests {
             nodeF.addDependency(nodeE.Key);
             nodeF.addDependency(nodeH.Key);
 
-            DAGraph<string, ItemHolder> dag = new DAGraph<string, ItemHolder>(nodeF);
+            DAGraph<ItemHolder> dag = new DAGraph<ItemHolder>(nodeF);
             dag.addNode(nodeA);
             dag.addNode(nodeB);
             dag.addNode(nodeC);
@@ -95,34 +95,34 @@ namespace AutoRest.Python.Azure.Tests {
             expectedOrder.Add("E");
             expectedOrder.Add("F");
 
-            DAGraph<string, ItemHolder> graphA = createGraph("A");
-            DAGraph<string, ItemHolder> graphI = createGraph("I");
+            DAGraph<ItemHolder> graphA = createGraph("A");
+            DAGraph<ItemHolder> graphI = createGraph("I");
 
-            DAGraph<string, ItemHolder> graphB = createGraph("B");
+            DAGraph<ItemHolder> graphB = createGraph("B");
             graphA.addDependentGraph(graphB);
 
-            DAGraph<string, ItemHolder> graphC = createGraph("C");
+            DAGraph<ItemHolder> graphC = createGraph("C");
             graphA.addDependentGraph(graphC);
 
-            DAGraph<string, ItemHolder> graphH = createGraph("H");
+            DAGraph<ItemHolder> graphH = createGraph("H");
             graphI.addDependentGraph(graphH);
 
-            DAGraph<string, ItemHolder> graphG = createGraph("G");
+            DAGraph<ItemHolder> graphG = createGraph("G");
             graphC.addDependentGraph(graphG);
 
-            DAGraph<string, ItemHolder> graphE = createGraph("E");
+            DAGraph<ItemHolder> graphE = createGraph("E");
             graphB.addDependentGraph(graphE);
             graphG.addDependentGraph(graphE);
 
-            DAGraph<string, ItemHolder> graphD = createGraph("D");
+            DAGraph<ItemHolder> graphD = createGraph("D");
             graphB.addDependentGraph(graphD);
 
-            DAGraph<string, ItemHolder> graphF = createGraph("F");
+            DAGraph<ItemHolder> graphF = createGraph("F");
             graphD.addDependentGraph(graphF);
             graphE.addDependentGraph(graphF);
             graphH.addDependentGraph(graphF);
 
-            DAGraph<string, ItemHolder> dag = graphF;
+            DAGraph<ItemHolder> dag = graphF;
             dag.prepareForEnumeration();
 
             ItemHolder nextNode = dag.getNext();
@@ -137,9 +137,9 @@ namespace AutoRest.Python.Azure.Tests {
             Console.WriteLine("Done with testGraphMerge");
         }
 
-        private DAGraph<string, ItemHolder> createGraph(string resourceName) {
+        private DAGraph<ItemHolder> createGraph(string resourceName) {
             ItemHolder node = new ItemHolder(resourceName, "data" + resourceName);
-            DAGraph<string, ItemHolder> graph = new DAGraph<string, ItemHolder>(node);
+            DAGraph<ItemHolder> graph = new DAGraph<ItemHolder>(node);
             return graph;
         }
     }

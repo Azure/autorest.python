@@ -94,7 +94,7 @@ namespace AutoRest.Python.Azure
         }
 
         [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "nextLink")]
-        private string GetPagingSetting(CodeModelPya codeModel, CompositeTypePy body, Dictionary<string, object> extensions, IModelType valueType,
+        private string GetPagingSetting(CodeModelPya codeModel, CompositeType body, Dictionary<string, object> extensions, IModelType valueType,
             IDictionary<int, string> typePageClasses, string methodName)
         {
             string valueTypeName = valueType.Name;
@@ -192,9 +192,9 @@ namespace AutoRest.Python.Azure
 
             foreach (MethodPya method in codeModel.Methods.Where(m => m is MethodPya && m.Extensions.ContainsKey(AzureExtensions.PageableExtension)))
             {
-                foreach (var responseStatus in method.Responses.Where(r => r.Value.Body is CompositeTypePy).Select(s => s.Key))
+                foreach (var responseStatus in method.Responses.Where(r => r.Value.Body is CompositeType).Select(s => s.Key))
                 {
-                    var compositType = (CompositeTypePy) method.Responses[responseStatus].Body;
+                    var compositType = (CompositeType) method.Responses[responseStatus].Body;
                     var sequenceType = compositType.Properties.Select(p => p.ModelType).FirstOrDefault(t => t is SequenceType) as SequenceType;
 
                     // if the type is a wrapper over page-able response
@@ -209,7 +209,7 @@ namespace AutoRest.Python.Azure
                         var pagableTypeName = GetPagingSetting(codeModel, compositType, method.Extensions, valueType,
                             codeModel.PageClasses[valueTypeName], method.SerializedName);
 
-                        var pagedResult = New<CompositeTypePy>(pagableTypeName);
+                        var pagedResult = New<CompositeType>(pagableTypeName);
 
                         // make sure the parent reference is set.
                         pagedResult.CodeModel = codeModel;
@@ -228,7 +228,7 @@ namespace AutoRest.Python.Azure
                 }
             }
 
-            SwaggerExtensions.RemoveUnreferencedTypes(codeModel, new HashSet<string>(convertedTypes.Keys.Cast<CompositeTypePy>().Select(t => t.Name.Value)));
+            SwaggerExtensions.RemoveUnreferencedTypes(codeModel, new HashSet<string>(convertedTypes.Keys.Cast<CompositeType>().Select(t => t.Name.Value)));
         }
 
         /// <summary>
@@ -251,7 +251,7 @@ namespace AutoRest.Python.Azure
                 var filterParameter = method.Parameters.FirstOrDefault(p =>
                     p.SerializedName.EqualsIgnoreCase("$filter") &&
                     (p.Location == ParameterLocation.Query) &&
-                    p.ModelType is CompositeTypePy);
+                    p.ModelType is CompositeType);
 
                 if (filterParameter != null)
                 {
