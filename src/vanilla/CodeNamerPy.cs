@@ -178,7 +178,7 @@ namespace AutoRest.Python
         public override bool IsSpecialCase(IIdentifier whoIsAsking, IIdentifier reservedName)
         {
             // special case: properties can actually have the same name as a composite type 
-            if (whoIsAsking is Property && reservedName is CompositeTypePy)
+            if (whoIsAsking is Property && reservedName is CompositeType)
             {
                 return true;
             }

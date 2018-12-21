@@ -95,10 +95,10 @@ namespace AutoRest.Python
                 //    modelTemplate.Python3Mode = true;
                 //    await Write(modelTemplate, Path.Combine(folderName, "models", ((string)modelType.Name).ToPythonCase() + "_py3.py"));
                 //}
-                var modelTemplate = new ModelTemplate
-                {
-                    Model = codeModel.ModelDAGraph
-                };
+                //var modelTemplate = new ModelTemplate
+                //{
+                //    Model = codeModel.ModelDAGraph
+                //};
             }
 
             //MethodGroups

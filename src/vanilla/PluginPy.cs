@@ -23,7 +23,7 @@ namespace AutoRest.Python
                 // set code model implementations our own implementations 
                 new Factory<CodeModel, CodeModelPy>(),
                 new Factory<Method, MethodPy>(),
-                new Factory<Core.Model.CompositeTypePy, Model.CompositeTypePy>(),
+                new Factory<Core.Model.CompositeType, Model.CompositeTypePy>(),
                 new Factory<Property, PropertyPy>(),
                 new Factory<Parameter, ParameterPy>(),
                 new Factory<DictionaryType, DictionaryTypePy>(),

@@ -47,7 +47,7 @@ namespace AutoRest.Python
             {
                 if (!modelType.HasParent)
                 {
-                    DAGNode<CompositeType> dAGNode = new DAGNode<CompositeType>(modelType.Name, modelType);
+                    DAGNode<CompositeType> dAGNode = new DAGNode<CompositeType>(modelType.Name);
                     //codeModel.ModelDAGraph = new DAGraph<CompositeType>(dAGNode);
                     break;
                 }
