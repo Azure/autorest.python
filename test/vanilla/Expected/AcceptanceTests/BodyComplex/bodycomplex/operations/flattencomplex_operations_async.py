@@ -13,13 +13,28 @@ from msrest.pipeline import ClientRawResponse
 from msrest.exceptions import HttpOperationError
 
 from .. import models
-from .flattencomplex_operations import FlattencomplexOperations as _FlattencomplexOperations
 
 
-class FlattencomplexOperations(_FlattencomplexOperations):
-    """FlattencomplexOperations operations."""
+class FlattencomplexOperations:
+    """FlattencomplexOperations operations.
 
-    async def get_valid_async(
+    :param client: Client for service requests.
+    :param config: Configuration of service client.
+    :param serializer: An object model serializer.
+    :param deserializer: An object model deserializer.
+    """
+
+    models = models
+
+    def __init__(self, client, config, serializer, deserializer) -> None:
+
+        self._client = client
+        self._serialize = serializer
+        self._deserialize = deserializer
+
+        self.config = config
+
+    async def get_valid(
             self, *, custom_headers=None, raw=False, **operation_config):
         """
 
@@ -35,7 +50,7 @@ class FlattencomplexOperations(_FlattencomplexOperations):
          :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
         """
         # Construct URL
-        url = self.get_valid_async.metadata['url']
+        url = self.get_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -62,4 +77,4 @@ class FlattencomplexOperations(_FlattencomplexOperations):
             return client_raw_response
 
         return deserialized
-    get_valid_async.metadata = {'url': '/complex/flatten/valid'}
+    get_valid.metadata = {'url': '/complex/flatten/valid'}

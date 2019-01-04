@@ -13,12 +13,28 @@ import uuid
 from msrest.pipeline import ClientRawResponse
 
 from .. import models
-from .header_operations import HeaderOperations as _HeaderOperations
 
 
-class HeaderOperations(_HeaderOperations):
+class HeaderOperations:
+    """HeaderOperations operations.
 
-    async def custom_named_request_id_async(
+    :param client: Client for service requests.
+    :param config: Configuration of service client.
+    :param serializer: An object model serializer.
+    :param deserializer: An object model deserializer.
+    """
+
+    models = models
+
+    def __init__(self, client, config, serializer, deserializer) -> None:
+
+        self._client = client
+        self._serialize = serializer
+        self._deserialize = deserializer
+
+        self.config = config
+
+    async def custom_named_request_id(
             self, foo_client_request_id, *, custom_headers=None, raw=False, **operation_config):
         """Send foo-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in
         the header of the request.
@@ -36,7 +52,7 @@ class HeaderOperations(_HeaderOperations):
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
         """
         # Construct URL
-        url = self.custom_named_request_id_async.metadata['url']
+        url = self.custom_named_request_id.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -64,9 +80,9 @@ class HeaderOperations(_HeaderOperations):
                 'foo-request-id': 'str',
             })
             return client_raw_response
-    custom_named_request_id_async.metadata = {'url': '/azurespecials/customNamedRequestId'}
+    custom_named_request_id.metadata = {'url': '/azurespecials/customNamedRequestId'}
 
-    async def custom_named_request_id_param_grouping_async(
+    async def custom_named_request_id_param_grouping(
             self, header_custom_named_request_id_param_grouping_parameters, *, custom_headers=None, raw=False, **operation_config):
         """Send foo-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in
         the header of the request, via a parameter group.
@@ -90,7 +106,7 @@ class HeaderOperations(_HeaderOperations):
             foo_client_request_id = header_custom_named_request_id_param_grouping_parameters.foo_client_request_id
 
         # Construct URL
-        url = self.custom_named_request_id_param_grouping_async.metadata['url']
+        url = self.custom_named_request_id_param_grouping.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -118,9 +134,9 @@ class HeaderOperations(_HeaderOperations):
                 'foo-request-id': 'str',
             })
             return client_raw_response
-    custom_named_request_id_param_grouping_async.metadata = {'url': '/azurespecials/customNamedRequestIdParamGrouping'}
+    custom_named_request_id_param_grouping.metadata = {'url': '/azurespecials/customNamedRequestIdParamGrouping'}
 
-    async def custom_named_request_id_head_async(
+    async def custom_named_request_id_head(
             self, foo_client_request_id, *, custom_headers=None, raw=False, **operation_config):
         """Send foo-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in
         the header of the request.
@@ -138,7 +154,7 @@ class HeaderOperations(_HeaderOperations):
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
         """
         # Construct URL
-        url = self.custom_named_request_id_head_async.metadata['url']
+        url = self.custom_named_request_id_head.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -168,4 +184,4 @@ class HeaderOperations(_HeaderOperations):
                 })
             return client_raw_response
         return deserialized
-    custom_named_request_id_head_async.metadata = {'url': '/azurespecials/customNamedRequestIdHead'}
+    custom_named_request_id_head.metadata = {'url': '/azurespecials/customNamedRequestIdHead'}

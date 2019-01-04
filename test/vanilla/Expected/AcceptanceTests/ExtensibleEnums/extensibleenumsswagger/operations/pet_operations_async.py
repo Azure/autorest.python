@@ -13,13 +13,28 @@ from msrest.pipeline import ClientRawResponse
 from msrest.exceptions import HttpOperationError
 
 from .. import models
-from .pet_operations import PetOperations as _PetOperations
 
 
-class PetOperations(_PetOperations):
-    """PetOperations operations."""
+class PetOperations:
+    """PetOperations operations.
 
-    async def get_by_pet_id_async(
+    :param client: Client for service requests.
+    :param config: Configuration of service client.
+    :param serializer: An object model serializer.
+    :param deserializer: An object model deserializer.
+    """
+
+    models = models
+
+    def __init__(self, client, config, serializer, deserializer) -> None:
+
+        self._client = client
+        self._serialize = serializer
+        self._deserialize = deserializer
+
+        self.config = config
+
+    async def get_by_pet_id(
             self, pet_id, *, custom_headers=None, raw=False, **operation_config):
         """
 
@@ -37,7 +52,7 @@ class PetOperations(_PetOperations):
          :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
         """
         # Construct URL
-        url = self.get_by_pet_id_async.metadata['url']
+        url = self.get_by_pet_id.metadata['url']
         path_format_arguments = {
             'petId': self._serialize.url("pet_id", pet_id, 'str')
         }
@@ -68,9 +83,9 @@ class PetOperations(_PetOperations):
             return client_raw_response
 
         return deserialized
-    get_by_pet_id_async.metadata = {'url': '/extensibleenums/pet/{petId}'}
+    get_by_pet_id.metadata = {'url': '/extensibleenums/pet/{petId}'}
 
-    async def add_pet_async(
+    async def add_pet(
             self, pet_param=None, *, custom_headers=None, raw=False, **operation_config):
         """
 
@@ -88,7 +103,7 @@ class PetOperations(_PetOperations):
          :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
         """
         # Construct URL
-        url = self.add_pet_async.metadata['url']
+        url = self.add_pet.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -122,4 +137,4 @@ class PetOperations(_PetOperations):
             return client_raw_response
 
         return deserialized
-    add_pet_async.metadata = {'url': '/extensibleenums/pet/addPet'}
+    add_pet.metadata = {'url': '/extensibleenums/pet/addPet'}

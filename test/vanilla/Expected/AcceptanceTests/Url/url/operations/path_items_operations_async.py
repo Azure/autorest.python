@@ -12,13 +12,28 @@
 from msrest.pipeline import ClientRawResponse
 
 from .. import models
-from .path_items_operations import PathItemsOperations as _PathItemsOperations
 
 
-class PathItemsOperations(_PathItemsOperations):
-    """PathItemsOperations operations."""
+class PathItemsOperations:
+    """PathItemsOperations operations.
 
-    async def get_all_with_values_async(
+    :param client: Client for service requests.
+    :param config: Configuration of service client.
+    :param serializer: An object model serializer.
+    :param deserializer: An object model deserializer.
+    """
+
+    models = models
+
+    def __init__(self, client, config, serializer, deserializer) -> None:
+
+        self._client = client
+        self._serialize = serializer
+        self._deserialize = deserializer
+
+        self.config = config
+
+    async def get_all_with_values(
             self, local_string_path, path_item_string_path, local_string_query=None, path_item_string_query=None, *, custom_headers=None, raw=False, **operation_config):
         """send globalStringPath='globalStringPath',
         pathItemStringPath='pathItemStringPath',
@@ -47,7 +62,7 @@ class PathItemsOperations(_PathItemsOperations):
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_all_with_values_async.metadata['url']
+        url = self.get_all_with_values.metadata['url']
         path_format_arguments = {
             'localStringPath': self._serialize.url("local_string_path", local_string_path, 'str'),
             'pathItemStringPath': self._serialize.url("path_item_string_path", path_item_string_path, 'str'),
@@ -79,9 +94,9 @@ class PathItemsOperations(_PathItemsOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    get_all_with_values_async.metadata = {'url': '/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/pathItemStringQuery/localStringQuery'}
+    get_all_with_values.metadata = {'url': '/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/pathItemStringQuery/localStringQuery'}
 
-    async def get_global_query_null_async(
+    async def get_global_query_null(
             self, local_string_path, path_item_string_path, local_string_query=None, path_item_string_query=None, *, custom_headers=None, raw=False, **operation_config):
         """send globalStringPath='globalStringPath',
         pathItemStringPath='pathItemStringPath',
@@ -109,7 +124,7 @@ class PathItemsOperations(_PathItemsOperations):
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_global_query_null_async.metadata['url']
+        url = self.get_global_query_null.metadata['url']
         path_format_arguments = {
             'localStringPath': self._serialize.url("local_string_path", local_string_path, 'str'),
             'pathItemStringPath': self._serialize.url("path_item_string_path", path_item_string_path, 'str'),
@@ -141,9 +156,9 @@ class PathItemsOperations(_PathItemsOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    get_global_query_null_async.metadata = {'url': '/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/localStringQuery'}
+    get_global_query_null.metadata = {'url': '/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/localStringQuery'}
 
-    async def get_global_and_local_query_null_async(
+    async def get_global_and_local_query_null(
             self, local_string_path, path_item_string_path, local_string_query=None, path_item_string_query=None, *, custom_headers=None, raw=False, **operation_config):
         """send globalStringPath=globalStringPath,
         pathItemStringPath='pathItemStringPath',
@@ -170,7 +185,7 @@ class PathItemsOperations(_PathItemsOperations):
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_global_and_local_query_null_async.metadata['url']
+        url = self.get_global_and_local_query_null.metadata['url']
         path_format_arguments = {
             'localStringPath': self._serialize.url("local_string_path", local_string_path, 'str'),
             'pathItemStringPath': self._serialize.url("path_item_string_path", path_item_string_path, 'str'),
@@ -202,9 +217,9 @@ class PathItemsOperations(_PathItemsOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    get_global_and_local_query_null_async.metadata = {'url': '/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/null'}
+    get_global_and_local_query_null.metadata = {'url': '/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/null'}
 
-    async def get_local_path_item_query_null_async(
+    async def get_local_path_item_query_null(
             self, local_string_path, path_item_string_path, local_string_query=None, path_item_string_query=None, *, custom_headers=None, raw=False, **operation_config):
         """send globalStringPath='globalStringPath',
         pathItemStringPath='pathItemStringPath',
@@ -231,7 +246,7 @@ class PathItemsOperations(_PathItemsOperations):
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_local_path_item_query_null_async.metadata['url']
+        url = self.get_local_path_item_query_null.metadata['url']
         path_format_arguments = {
             'localStringPath': self._serialize.url("local_string_path", local_string_path, 'str'),
             'pathItemStringPath': self._serialize.url("path_item_string_path", path_item_string_path, 'str'),
@@ -263,4 +278,4 @@ class PathItemsOperations(_PathItemsOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    get_local_path_item_query_null_async.metadata = {'url': '/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/null/null'}
+    get_local_path_item_query_null.metadata = {'url': '/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/null/null'}

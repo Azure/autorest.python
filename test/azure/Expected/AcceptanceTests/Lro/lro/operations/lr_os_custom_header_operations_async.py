@@ -16,16 +16,32 @@ from msrest.polling.async_poller import async_poller, AsyncNoPolling
 from msrestazure.polling.async_arm_polling import AsyncARMPolling
 
 from .. import models
-from .lr_os_custom_header_operations import LROsCustomHeaderOperations as _LROsCustomHeaderOperations
 
 
-class LROsCustomHeaderOperations(_LROsCustomHeaderOperations):
+class LROsCustomHeaderOperations:
+    """LROsCustomHeaderOperations operations.
+
+    :param client: Client for service requests.
+    :param config: Configuration of service client.
+    :param serializer: An object model serializer.
+    :param deserializer: An object model deserializer.
+    """
+
+    models = models
+
+    def __init__(self, client, config, serializer, deserializer) -> None:
+
+        self._client = client
+        self._serialize = serializer
+        self._deserialize = deserializer
+
+        self.config = config
 
 
-    async def _put_async_retry_succeeded_initial_async(
+    async def _put_async_retry_succeeded_initial(
             self, product=None, *, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = self.put_async_retry_succeeded_async.metadata['url']
+        url = self.put_async_retry_succeeded.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -74,7 +90,7 @@ class LROsCustomHeaderOperations(_LROsCustomHeaderOperations):
 
         return deserialized
 
-    async def put_async_retry_succeeded_async(
+    async def put_async_retry_succeeded(
             self, product=None, *, custom_headers=None, raw=False, polling=True, **operation_config):
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is
         required message header for all requests. Long running put request,
@@ -95,7 +111,7 @@ class LROsCustomHeaderOperations(_LROsCustomHeaderOperations):
          ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._put_async_retry_succeeded_initial_async(
+        raw_result = await self._put_async_retry_succeeded_initial(
             product=product,
             custom_headers=custom_headers,
             raw=True,
@@ -124,13 +140,13 @@ class LROsCustomHeaderOperations(_LROsCustomHeaderOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    put_async_retry_succeeded_async.metadata = {'url': '/lro/customheader/putasync/retry/succeeded'}
+    put_async_retry_succeeded.metadata = {'url': '/lro/customheader/putasync/retry/succeeded'}
 
 
-    async def _put201_creating_succeeded200_initial_async(
+    async def _put201_creating_succeeded200_initial(
             self, product=None, *, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = self.put201_creating_succeeded200_async.metadata['url']
+        url = self.put201_creating_succeeded200.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -174,7 +190,7 @@ class LROsCustomHeaderOperations(_LROsCustomHeaderOperations):
 
         return deserialized
 
-    async def put201_creating_succeeded200_async(
+    async def put201_creating_succeeded200(
             self, product=None, *, custom_headers=None, raw=False, polling=True, **operation_config):
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is
         required message header for all requests. Long running put request,
@@ -195,7 +211,7 @@ class LROsCustomHeaderOperations(_LROsCustomHeaderOperations):
          ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._put201_creating_succeeded200_initial_async(
+        raw_result = await self._put201_creating_succeeded200_initial(
             product=product,
             custom_headers=custom_headers,
             raw=True,
@@ -218,13 +234,13 @@ class LROsCustomHeaderOperations(_LROsCustomHeaderOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    put201_creating_succeeded200_async.metadata = {'url': '/lro/customheader/put/201/creating/succeeded/200'}
+    put201_creating_succeeded200.metadata = {'url': '/lro/customheader/put/201/creating/succeeded/200'}
 
 
-    async def _post202_retry200_initial_async(
+    async def _post202_retry200_initial(
             self, product=None, *, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = self.post202_retry200_async.metadata['url']
+        url = self.post202_retry200.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -263,7 +279,7 @@ class LROsCustomHeaderOperations(_LROsCustomHeaderOperations):
             client_raw_response.add_headers(header_dict)
             return client_raw_response
 
-    async def post202_retry200_async(
+    async def post202_retry200(
             self, product=None, *, custom_headers=None, raw=False, polling=True, **operation_config):
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is
         required message header for all requests. Long running post request,
@@ -282,7 +298,7 @@ class LROsCustomHeaderOperations(_LROsCustomHeaderOperations):
         :rtype: ~None or ~msrest.pipeline.ClientRawResponse[None]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._post202_retry200_initial_async(
+        raw_result = await self._post202_retry200_initial(
             product=product,
             custom_headers=custom_headers,
             raw=True,
@@ -305,13 +321,13 @@ class LROsCustomHeaderOperations(_LROsCustomHeaderOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    post202_retry200_async.metadata = {'url': '/lro/customheader/post/202/retry/200'}
+    post202_retry200.metadata = {'url': '/lro/customheader/post/202/retry/200'}
 
 
-    async def _post_async_retry_succeeded_initial_async(
+    async def _post_async_retry_succeeded_initial(
             self, product=None, *, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = self.post_async_retry_succeeded_async.metadata['url']
+        url = self.post_async_retry_succeeded.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -351,7 +367,7 @@ class LROsCustomHeaderOperations(_LROsCustomHeaderOperations):
             client_raw_response.add_headers(header_dict)
             return client_raw_response
 
-    async def post_async_retry_succeeded_async(
+    async def post_async_retry_succeeded(
             self, product=None, *, custom_headers=None, raw=False, polling=True, **operation_config):
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is
         required message header for all requests. Long running post request,
@@ -370,7 +386,7 @@ class LROsCustomHeaderOperations(_LROsCustomHeaderOperations):
         :rtype: ~None or ~msrest.pipeline.ClientRawResponse[None]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._post_async_retry_succeeded_initial_async(
+        raw_result = await self._post_async_retry_succeeded_initial(
             product=product,
             custom_headers=custom_headers,
             raw=True,
@@ -394,4 +410,4 @@ class LROsCustomHeaderOperations(_LROsCustomHeaderOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    post_async_retry_succeeded_async.metadata = {'url': '/lro/customheader/postasync/retry/succeeded'}
+    post_async_retry_succeeded.metadata = {'url': '/lro/customheader/postasync/retry/succeeded'}

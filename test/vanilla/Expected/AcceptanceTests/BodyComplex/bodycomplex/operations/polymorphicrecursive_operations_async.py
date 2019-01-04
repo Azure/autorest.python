@@ -12,13 +12,28 @@
 from msrest.pipeline import ClientRawResponse
 
 from .. import models
-from .polymorphicrecursive_operations import PolymorphicrecursiveOperations as _PolymorphicrecursiveOperations
 
 
-class PolymorphicrecursiveOperations(_PolymorphicrecursiveOperations):
-    """PolymorphicrecursiveOperations operations."""
+class PolymorphicrecursiveOperations:
+    """PolymorphicrecursiveOperations operations.
 
-    async def get_valid_async(
+    :param client: Client for service requests.
+    :param config: Configuration of service client.
+    :param serializer: An object model serializer.
+    :param deserializer: An object model deserializer.
+    """
+
+    models = models
+
+    def __init__(self, client, config, serializer, deserializer) -> None:
+
+        self._client = client
+        self._serialize = serializer
+        self._deserialize = deserializer
+
+        self.config = config
+
+    async def get_valid(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get complex types that are polymorphic and have recursive references.
 
@@ -32,7 +47,7 @@ class PolymorphicrecursiveOperations(_PolymorphicrecursiveOperations):
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_valid_async.metadata['url']
+        url = self.get_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -59,9 +74,9 @@ class PolymorphicrecursiveOperations(_PolymorphicrecursiveOperations):
             return client_raw_response
 
         return deserialized
-    get_valid_async.metadata = {'url': '/complex/polymorphicrecursive/valid'}
+    get_valid.metadata = {'url': '/complex/polymorphicrecursive/valid'}
 
-    async def put_valid_async(
+    async def put_valid(
             self, complex_body, *, custom_headers=None, raw=False, **operation_config):
         """Put complex types that are polymorphic and have recursive references.
 
@@ -129,7 +144,7 @@ class PolymorphicrecursiveOperations(_PolymorphicrecursiveOperations):
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
-        url = self.put_valid_async.metadata['url']
+        url = self.put_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -153,4 +168,4 @@ class PolymorphicrecursiveOperations(_PolymorphicrecursiveOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_valid_async.metadata = {'url': '/complex/polymorphicrecursive/valid'}
+    put_valid.metadata = {'url': '/complex/polymorphicrecursive/valid'}

@@ -12,13 +12,28 @@
 from msrest.pipeline import ClientRawResponse
 
 from .. import models
-from .enum_operations import EnumOperations as _EnumOperations
 
 
-class EnumOperations(_EnumOperations):
-    """EnumOperations operations."""
+class EnumOperations:
+    """EnumOperations operations.
 
-    async def get_not_expandable_async(
+    :param client: Client for service requests.
+    :param config: Configuration of service client.
+    :param serializer: An object model serializer.
+    :param deserializer: An object model deserializer.
+    """
+
+    models = models
+
+    def __init__(self, client, config, serializer, deserializer) -> None:
+
+        self._client = client
+        self._serialize = serializer
+        self._deserialize = deserializer
+
+        self.config = config
+
+    async def get_not_expandable(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get enum value 'red color' from enumeration of 'red color',
         'green-color', 'blue_color'.
@@ -34,7 +49,7 @@ class EnumOperations(_EnumOperations):
         :raises: :class:`ErrorException<bodystring.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_not_expandable_async.metadata['url']
+        url = self.get_not_expandable.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -61,9 +76,9 @@ class EnumOperations(_EnumOperations):
             return client_raw_response
 
         return deserialized
-    get_not_expandable_async.metadata = {'url': '/string/enum/notExpandable'}
+    get_not_expandable.metadata = {'url': '/string/enum/notExpandable'}
 
-    async def put_not_expandable_async(
+    async def put_not_expandable(
             self, string_body, *, custom_headers=None, raw=False, **operation_config):
         """Sends value 'red color' from enumeration of 'red color', 'green-color',
         'blue_color'.
@@ -81,7 +96,7 @@ class EnumOperations(_EnumOperations):
         :raises: :class:`ErrorException<bodystring.models.ErrorException>`
         """
         # Construct URL
-        url = self.put_not_expandable_async.metadata['url']
+        url = self.put_not_expandable.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -105,9 +120,9 @@ class EnumOperations(_EnumOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_not_expandable_async.metadata = {'url': '/string/enum/notExpandable'}
+    put_not_expandable.metadata = {'url': '/string/enum/notExpandable'}
 
-    async def get_referenced_async(
+    async def get_referenced(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get enum value 'red color' from enumeration of 'red color',
         'green-color', 'blue_color'.
@@ -123,7 +138,7 @@ class EnumOperations(_EnumOperations):
         :raises: :class:`ErrorException<bodystring.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_referenced_async.metadata['url']
+        url = self.get_referenced.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -150,9 +165,9 @@ class EnumOperations(_EnumOperations):
             return client_raw_response
 
         return deserialized
-    get_referenced_async.metadata = {'url': '/string/enum/Referenced'}
+    get_referenced.metadata = {'url': '/string/enum/Referenced'}
 
-    async def put_referenced_async(
+    async def put_referenced(
             self, enum_string_body, *, custom_headers=None, raw=False, **operation_config):
         """Sends value 'red color' from enumeration of 'red color', 'green-color',
         'blue_color'.
@@ -170,7 +185,7 @@ class EnumOperations(_EnumOperations):
         :raises: :class:`ErrorException<bodystring.models.ErrorException>`
         """
         # Construct URL
-        url = self.put_referenced_async.metadata['url']
+        url = self.put_referenced.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -194,9 +209,9 @@ class EnumOperations(_EnumOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_referenced_async.metadata = {'url': '/string/enum/Referenced'}
+    put_referenced.metadata = {'url': '/string/enum/Referenced'}
 
-    async def get_referenced_constant_async(
+    async def get_referenced_constant(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get value 'green-color' from the constant.
 
@@ -211,7 +226,7 @@ class EnumOperations(_EnumOperations):
         :raises: :class:`ErrorException<bodystring.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_referenced_constant_async.metadata['url']
+        url = self.get_referenced_constant.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -238,9 +253,9 @@ class EnumOperations(_EnumOperations):
             return client_raw_response
 
         return deserialized
-    get_referenced_constant_async.metadata = {'url': '/string/enum/ReferencedConstant'}
+    get_referenced_constant.metadata = {'url': '/string/enum/ReferencedConstant'}
 
-    async def put_referenced_constant_async(
+    async def put_referenced_constant(
             self, field1=None, *, custom_headers=None, raw=False, **operation_config):
         """Sends value 'green-color' from a constant.
 
@@ -258,7 +273,7 @@ class EnumOperations(_EnumOperations):
         enum_string_body = models.RefColorConstant(field1=field1)
 
         # Construct URL
-        url = self.put_referenced_constant_async.metadata['url']
+        url = self.put_referenced_constant.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -282,4 +297,4 @@ class EnumOperations(_EnumOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_referenced_constant_async.metadata = {'url': '/string/enum/ReferencedConstant'}
+    put_referenced_constant.metadata = {'url': '/string/enum/ReferencedConstant'}

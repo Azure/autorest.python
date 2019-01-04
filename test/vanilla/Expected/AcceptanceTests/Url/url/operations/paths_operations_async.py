@@ -12,13 +12,34 @@
 from msrest.pipeline import ClientRawResponse
 
 from .. import models
-from .paths_operations import PathsOperations as _PathsOperations
 
 
-class PathsOperations(_PathsOperations):
-    """PathsOperations operations."""
+class PathsOperations:
+    """PathsOperations operations.
 
-    async def get_boolean_true_async(
+    :param client: Client for service requests.
+    :param config: Configuration of service client.
+    :param serializer: An object model serializer.
+    :param deserializer: An object model deserializer.
+    :ivar byte_path: '' as byte array
+    :ivar date_path: '2012-01-01' as date. Constant value: "2012-01-01".
+    :ivar date_time_path: '2012-01-01T01:01:01Z' as date-time. Constant value: "2012-01-01T01:01:01Z".
+    """
+
+    models = models
+
+    def __init__(self, client, config, serializer, deserializer) -> None:
+
+        self._client = client
+        self._serialize = serializer
+        self._deserialize = deserializer
+
+        self.config = config
+        self.byte_path = bytearray("", encoding="utf-8")
+        self.date_path = "2012-01-01"
+        self.date_time_path = "2012-01-01T01:01:01Z"
+
+    async def get_boolean_true(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get true Boolean value on path.
 
@@ -34,7 +55,7 @@ class PathsOperations(_PathsOperations):
         bool_path = True
 
         # Construct URL
-        url = self.get_boolean_true_async.metadata['url']
+        url = self.get_boolean_true.metadata['url']
         path_format_arguments = {
             'boolPath': self._serialize.url("bool_path", bool_path, 'bool')
         }
@@ -58,9 +79,9 @@ class PathsOperations(_PathsOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    get_boolean_true_async.metadata = {'url': '/paths/bool/true/{boolPath}'}
+    get_boolean_true.metadata = {'url': '/paths/bool/true/{boolPath}'}
 
-    async def get_boolean_false_async(
+    async def get_boolean_false(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get false Boolean value on path.
 
@@ -76,7 +97,7 @@ class PathsOperations(_PathsOperations):
         bool_path = False
 
         # Construct URL
-        url = self.get_boolean_false_async.metadata['url']
+        url = self.get_boolean_false.metadata['url']
         path_format_arguments = {
             'boolPath': self._serialize.url("bool_path", bool_path, 'bool')
         }
@@ -100,9 +121,9 @@ class PathsOperations(_PathsOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    get_boolean_false_async.metadata = {'url': '/paths/bool/false/{boolPath}'}
+    get_boolean_false.metadata = {'url': '/paths/bool/false/{boolPath}'}
 
-    async def get_int_one_million_async(
+    async def get_int_one_million(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get '1000000' integer value.
 
@@ -118,7 +139,7 @@ class PathsOperations(_PathsOperations):
         int_path = 1000000
 
         # Construct URL
-        url = self.get_int_one_million_async.metadata['url']
+        url = self.get_int_one_million.metadata['url']
         path_format_arguments = {
             'intPath': self._serialize.url("int_path", int_path, 'int')
         }
@@ -142,9 +163,9 @@ class PathsOperations(_PathsOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    get_int_one_million_async.metadata = {'url': '/paths/int/1000000/{intPath}'}
+    get_int_one_million.metadata = {'url': '/paths/int/1000000/{intPath}'}
 
-    async def get_int_negative_one_million_async(
+    async def get_int_negative_one_million(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get '-1000000' integer value.
 
@@ -160,7 +181,7 @@ class PathsOperations(_PathsOperations):
         int_path = -1000000
 
         # Construct URL
-        url = self.get_int_negative_one_million_async.metadata['url']
+        url = self.get_int_negative_one_million.metadata['url']
         path_format_arguments = {
             'intPath': self._serialize.url("int_path", int_path, 'int')
         }
@@ -184,9 +205,9 @@ class PathsOperations(_PathsOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    get_int_negative_one_million_async.metadata = {'url': '/paths/int/-1000000/{intPath}'}
+    get_int_negative_one_million.metadata = {'url': '/paths/int/-1000000/{intPath}'}
 
-    async def get_ten_billion_async(
+    async def get_ten_billion(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get '10000000000' 64 bit integer value.
 
@@ -202,7 +223,7 @@ class PathsOperations(_PathsOperations):
         long_path = 10000000000
 
         # Construct URL
-        url = self.get_ten_billion_async.metadata['url']
+        url = self.get_ten_billion.metadata['url']
         path_format_arguments = {
             'longPath': self._serialize.url("long_path", long_path, 'long')
         }
@@ -226,9 +247,9 @@ class PathsOperations(_PathsOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    get_ten_billion_async.metadata = {'url': '/paths/long/10000000000/{longPath}'}
+    get_ten_billion.metadata = {'url': '/paths/long/10000000000/{longPath}'}
 
-    async def get_negative_ten_billion_async(
+    async def get_negative_ten_billion(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get '-10000000000' 64 bit integer value.
 
@@ -244,7 +265,7 @@ class PathsOperations(_PathsOperations):
         long_path = -10000000000
 
         # Construct URL
-        url = self.get_negative_ten_billion_async.metadata['url']
+        url = self.get_negative_ten_billion.metadata['url']
         path_format_arguments = {
             'longPath': self._serialize.url("long_path", long_path, 'long')
         }
@@ -268,9 +289,9 @@ class PathsOperations(_PathsOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    get_negative_ten_billion_async.metadata = {'url': '/paths/long/-10000000000/{longPath}'}
+    get_negative_ten_billion.metadata = {'url': '/paths/long/-10000000000/{longPath}'}
 
-    async def float_scientific_positive_async(
+    async def float_scientific_positive(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get '1.034E+20' numeric value.
 
@@ -286,7 +307,7 @@ class PathsOperations(_PathsOperations):
         float_path = 1.034E+20
 
         # Construct URL
-        url = self.float_scientific_positive_async.metadata['url']
+        url = self.float_scientific_positive.metadata['url']
         path_format_arguments = {
             'floatPath': self._serialize.url("float_path", float_path, 'float')
         }
@@ -310,9 +331,9 @@ class PathsOperations(_PathsOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    float_scientific_positive_async.metadata = {'url': '/paths/float/1.034E+20/{floatPath}'}
+    float_scientific_positive.metadata = {'url': '/paths/float/1.034E+20/{floatPath}'}
 
-    async def float_scientific_negative_async(
+    async def float_scientific_negative(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get '-1.034E-20' numeric value.
 
@@ -328,7 +349,7 @@ class PathsOperations(_PathsOperations):
         float_path = -1.034E-20
 
         # Construct URL
-        url = self.float_scientific_negative_async.metadata['url']
+        url = self.float_scientific_negative.metadata['url']
         path_format_arguments = {
             'floatPath': self._serialize.url("float_path", float_path, 'float')
         }
@@ -352,9 +373,9 @@ class PathsOperations(_PathsOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    float_scientific_negative_async.metadata = {'url': '/paths/float/-1.034E-20/{floatPath}'}
+    float_scientific_negative.metadata = {'url': '/paths/float/-1.034E-20/{floatPath}'}
 
-    async def double_decimal_positive_async(
+    async def double_decimal_positive(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get '9999999.999' numeric value.
 
@@ -370,7 +391,7 @@ class PathsOperations(_PathsOperations):
         double_path = 9999999.999
 
         # Construct URL
-        url = self.double_decimal_positive_async.metadata['url']
+        url = self.double_decimal_positive.metadata['url']
         path_format_arguments = {
             'doublePath': self._serialize.url("double_path", double_path, 'float')
         }
@@ -394,9 +415,9 @@ class PathsOperations(_PathsOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    double_decimal_positive_async.metadata = {'url': '/paths/double/9999999.999/{doublePath}'}
+    double_decimal_positive.metadata = {'url': '/paths/double/9999999.999/{doublePath}'}
 
-    async def double_decimal_negative_async(
+    async def double_decimal_negative(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get '-9999999.999' numeric value.
 
@@ -412,7 +433,7 @@ class PathsOperations(_PathsOperations):
         double_path = -9999999.999
 
         # Construct URL
-        url = self.double_decimal_negative_async.metadata['url']
+        url = self.double_decimal_negative.metadata['url']
         path_format_arguments = {
             'doublePath': self._serialize.url("double_path", double_path, 'float')
         }
@@ -436,9 +457,9 @@ class PathsOperations(_PathsOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    double_decimal_negative_async.metadata = {'url': '/paths/double/-9999999.999/{doublePath}'}
+    double_decimal_negative.metadata = {'url': '/paths/double/-9999999.999/{doublePath}'}
 
-    async def string_unicode_async(
+    async def string_unicode(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value.
 
@@ -454,7 +475,7 @@ class PathsOperations(_PathsOperations):
         string_path = "啊齄丂狛狜隣郎隣兀﨩"
 
         # Construct URL
-        url = self.string_unicode_async.metadata['url']
+        url = self.string_unicode.metadata['url']
         path_format_arguments = {
             'stringPath': self._serialize.url("string_path", string_path, 'str')
         }
@@ -478,9 +499,9 @@ class PathsOperations(_PathsOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    string_unicode_async.metadata = {'url': '/paths/string/unicode/{stringPath}'}
+    string_unicode.metadata = {'url': '/paths/string/unicode/{stringPath}'}
 
-    async def string_url_encoded_async(
+    async def string_url_encoded(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get 'begin!*'();:@ &=+$,/?#[]end.
 
@@ -496,7 +517,7 @@ class PathsOperations(_PathsOperations):
         string_path = "begin!*'();:@ &=+$,/?#[]end"
 
         # Construct URL
-        url = self.string_url_encoded_async.metadata['url']
+        url = self.string_url_encoded.metadata['url']
         path_format_arguments = {
             'stringPath': self._serialize.url("string_path", string_path, 'str')
         }
@@ -520,9 +541,9 @@ class PathsOperations(_PathsOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    string_url_encoded_async.metadata = {'url': '/paths/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend/{stringPath}'}
+    string_url_encoded.metadata = {'url': '/paths/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend/{stringPath}'}
 
-    async def string_empty_async(
+    async def string_empty(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get ''.
 
@@ -538,7 +559,7 @@ class PathsOperations(_PathsOperations):
         string_path = ""
 
         # Construct URL
-        url = self.string_empty_async.metadata['url']
+        url = self.string_empty.metadata['url']
         path_format_arguments = {
             'stringPath': self._serialize.url("string_path", string_path, 'str')
         }
@@ -562,9 +583,9 @@ class PathsOperations(_PathsOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    string_empty_async.metadata = {'url': '/paths/string/empty/{stringPath}'}
+    string_empty.metadata = {'url': '/paths/string/empty/{stringPath}'}
 
-    async def string_null_async(
+    async def string_null(
             self, string_path, *, custom_headers=None, raw=False, **operation_config):
         """Get null (should throw).
 
@@ -580,7 +601,7 @@ class PathsOperations(_PathsOperations):
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
-        url = self.string_null_async.metadata['url']
+        url = self.string_null.metadata['url']
         path_format_arguments = {
             'stringPath': self._serialize.url("string_path", string_path, 'str')
         }
@@ -604,9 +625,9 @@ class PathsOperations(_PathsOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    string_null_async.metadata = {'url': '/paths/string/null/{stringPath}'}
+    string_null.metadata = {'url': '/paths/string/null/{stringPath}'}
 
-    async def enum_valid_async(
+    async def enum_valid(
             self, enum_path, *, custom_headers=None, raw=False, **operation_config):
         """Get using uri with 'green color' in path parameter.
 
@@ -623,7 +644,7 @@ class PathsOperations(_PathsOperations):
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
-        url = self.enum_valid_async.metadata['url']
+        url = self.enum_valid.metadata['url']
         path_format_arguments = {
             'enumPath': self._serialize.url("enum_path", enum_path, 'UriColor')
         }
@@ -647,9 +668,9 @@ class PathsOperations(_PathsOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    enum_valid_async.metadata = {'url': '/paths/enum/green%20color/{enumPath}'}
+    enum_valid.metadata = {'url': '/paths/enum/green%20color/{enumPath}'}
 
-    async def enum_null_async(
+    async def enum_null(
             self, enum_path, *, custom_headers=None, raw=False, **operation_config):
         """Get null (should throw on the client before the request is sent on
         wire).
@@ -667,7 +688,7 @@ class PathsOperations(_PathsOperations):
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
-        url = self.enum_null_async.metadata['url']
+        url = self.enum_null.metadata['url']
         path_format_arguments = {
             'enumPath': self._serialize.url("enum_path", enum_path, 'UriColor')
         }
@@ -691,9 +712,9 @@ class PathsOperations(_PathsOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    enum_null_async.metadata = {'url': '/paths/string/null/{enumPath}'}
+    enum_null.metadata = {'url': '/paths/string/null/{enumPath}'}
 
-    async def byte_multi_byte_async(
+    async def byte_multi_byte(
             self, byte_path, *, custom_headers=None, raw=False, **operation_config):
         """Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
 
@@ -710,7 +731,7 @@ class PathsOperations(_PathsOperations):
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
-        url = self.byte_multi_byte_async.metadata['url']
+        url = self.byte_multi_byte.metadata['url']
         path_format_arguments = {
             'bytePath': self._serialize.url("byte_path", byte_path, 'bytearray')
         }
@@ -734,9 +755,9 @@ class PathsOperations(_PathsOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    byte_multi_byte_async.metadata = {'url': '/paths/byte/multibyte/{bytePath}'}
+    byte_multi_byte.metadata = {'url': '/paths/byte/multibyte/{bytePath}'}
 
-    async def byte_empty_async(
+    async def byte_empty(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get '' as byte array.
 
@@ -750,7 +771,7 @@ class PathsOperations(_PathsOperations):
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
-        url = self.byte_empty_async.metadata['url']
+        url = self.byte_empty.metadata['url']
         path_format_arguments = {
             'bytePath': self._serialize.url("self.byte_path", self.byte_path, 'bytearray')
         }
@@ -774,9 +795,9 @@ class PathsOperations(_PathsOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    byte_empty_async.metadata = {'url': '/paths/byte/empty/{bytePath}'}
+    byte_empty.metadata = {'url': '/paths/byte/empty/{bytePath}'}
 
-    async def byte_null_async(
+    async def byte_null(
             self, byte_path, *, custom_headers=None, raw=False, **operation_config):
         """Get null as byte array (should throw).
 
@@ -792,7 +813,7 @@ class PathsOperations(_PathsOperations):
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
-        url = self.byte_null_async.metadata['url']
+        url = self.byte_null.metadata['url']
         path_format_arguments = {
             'bytePath': self._serialize.url("byte_path", byte_path, 'bytearray')
         }
@@ -816,9 +837,9 @@ class PathsOperations(_PathsOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    byte_null_async.metadata = {'url': '/paths/byte/null/{bytePath}'}
+    byte_null.metadata = {'url': '/paths/byte/null/{bytePath}'}
 
-    async def date_valid_async(
+    async def date_valid(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get '2012-01-01' as date.
 
@@ -832,7 +853,7 @@ class PathsOperations(_PathsOperations):
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
-        url = self.date_valid_async.metadata['url']
+        url = self.date_valid.metadata['url']
         path_format_arguments = {
             'datePath': self._serialize.url("self.date_path", self.date_path, 'date')
         }
@@ -856,9 +877,9 @@ class PathsOperations(_PathsOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    date_valid_async.metadata = {'url': '/paths/date/2012-01-01/{datePath}'}
+    date_valid.metadata = {'url': '/paths/date/2012-01-01/{datePath}'}
 
-    async def date_null_async(
+    async def date_null(
             self, date_path, *, custom_headers=None, raw=False, **operation_config):
         """Get null as date - this should throw or be unusable on the client side,
         depending on date representation.
@@ -875,7 +896,7 @@ class PathsOperations(_PathsOperations):
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
-        url = self.date_null_async.metadata['url']
+        url = self.date_null.metadata['url']
         path_format_arguments = {
             'datePath': self._serialize.url("date_path", date_path, 'date')
         }
@@ -899,9 +920,9 @@ class PathsOperations(_PathsOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    date_null_async.metadata = {'url': '/paths/date/null/{datePath}'}
+    date_null.metadata = {'url': '/paths/date/null/{datePath}'}
 
-    async def date_time_valid_async(
+    async def date_time_valid(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get '2012-01-01T01:01:01Z' as date-time.
 
@@ -915,7 +936,7 @@ class PathsOperations(_PathsOperations):
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
-        url = self.date_time_valid_async.metadata['url']
+        url = self.date_time_valid.metadata['url']
         path_format_arguments = {
             'dateTimePath': self._serialize.url("self.date_time_path", self.date_time_path, 'iso-8601')
         }
@@ -939,9 +960,9 @@ class PathsOperations(_PathsOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    date_time_valid_async.metadata = {'url': '/paths/datetime/2012-01-01T01%3A01%3A01Z/{dateTimePath}'}
+    date_time_valid.metadata = {'url': '/paths/datetime/2012-01-01T01%3A01%3A01Z/{dateTimePath}'}
 
-    async def date_time_null_async(
+    async def date_time_null(
             self, date_time_path, *, custom_headers=None, raw=False, **operation_config):
         """Get null as date-time, should be disallowed or throw depending on
         representation of date-time.
@@ -958,7 +979,7 @@ class PathsOperations(_PathsOperations):
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
-        url = self.date_time_null_async.metadata['url']
+        url = self.date_time_null.metadata['url']
         path_format_arguments = {
             'dateTimePath': self._serialize.url("date_time_path", date_time_path, 'iso-8601')
         }
@@ -982,9 +1003,9 @@ class PathsOperations(_PathsOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    date_time_null_async.metadata = {'url': '/paths/datetime/null/{dateTimePath}'}
+    date_time_null.metadata = {'url': '/paths/datetime/null/{dateTimePath}'}
 
-    async def base64_url_async(
+    async def base64_url(
             self, base64_url_path, *, custom_headers=None, raw=False, **operation_config):
         """Get 'lorem' encoded value as 'bG9yZW0' (base64url).
 
@@ -1000,7 +1021,7 @@ class PathsOperations(_PathsOperations):
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
-        url = self.base64_url_async.metadata['url']
+        url = self.base64_url.metadata['url']
         path_format_arguments = {
             'base64UrlPath': self._serialize.url("base64_url_path", base64_url_path, 'base64')
         }
@@ -1024,9 +1045,9 @@ class PathsOperations(_PathsOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    base64_url_async.metadata = {'url': '/paths/string/bG9yZW0/{base64UrlPath}'}
+    base64_url.metadata = {'url': '/paths/string/bG9yZW0/{base64UrlPath}'}
 
-    async def array_csv_in_path_async(
+    async def array_csv_in_path(
             self, array_path, *, custom_headers=None, raw=False, **operation_config):
         """Get an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' ,
         null, ''] using the csv-array format.
@@ -1044,7 +1065,7 @@ class PathsOperations(_PathsOperations):
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
-        url = self.array_csv_in_path_async.metadata['url']
+        url = self.array_csv_in_path.metadata['url']
         path_format_arguments = {
             'arrayPath': self._serialize.url("array_path", array_path, '[str]', div=',')
         }
@@ -1068,9 +1089,9 @@ class PathsOperations(_PathsOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    array_csv_in_path_async.metadata = {'url': '/paths/array/ArrayPath1%2cbegin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend%2c%2c/{arrayPath}'}
+    array_csv_in_path.metadata = {'url': '/paths/array/ArrayPath1%2cbegin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend%2c%2c/{arrayPath}'}
 
-    async def unix_time_url_async(
+    async def unix_time_url(
             self, unix_time_url_path, *, custom_headers=None, raw=False, **operation_config):
         """Get the date 2016-04-13 encoded value as '1460505600' (Unix time).
 
@@ -1086,7 +1107,7 @@ class PathsOperations(_PathsOperations):
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
-        url = self.unix_time_url_async.metadata['url']
+        url = self.unix_time_url.metadata['url']
         path_format_arguments = {
             'unixTimeUrlPath': self._serialize.url("unix_time_url_path", unix_time_url_path, 'unix-time')
         }
@@ -1110,4 +1131,4 @@ class PathsOperations(_PathsOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    unix_time_url_async.metadata = {'url': '/paths/int/1460505600/{unixTimeUrlPath}'}
+    unix_time_url.metadata = {'url': '/paths/int/1460505600/{unixTimeUrlPath}'}

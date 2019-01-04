@@ -14,12 +14,28 @@ from msrest.pipeline import ClientRawResponse
 from msrestazure.azure_exceptions import CloudError
 
 from .. import models
-from .xms_client_request_id_operations import XMsClientRequestIdOperations as _XMsClientRequestIdOperations
 
 
-class XMsClientRequestIdOperations(_XMsClientRequestIdOperations):
+class XMsClientRequestIdOperations:
+    """XMsClientRequestIdOperations operations.
 
-    async def get_async(
+    :param client: Client for service requests.
+    :param config: Configuration of service client.
+    :param serializer: An object model serializer.
+    :param deserializer: An object model deserializer.
+    """
+
+    models = models
+
+    def __init__(self, client, config, serializer, deserializer) -> None:
+
+        self._client = client
+        self._serialize = serializer
+        self._deserialize = deserializer
+
+        self.config = config
+
+    async def get(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get method that overwrites x-ms-client-request header with value
         9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
@@ -34,7 +50,7 @@ class XMsClientRequestIdOperations(_XMsClientRequestIdOperations):
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
         # Construct URL
-        url = self.get_async.metadata['url']
+        url = self.get.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -60,9 +76,9 @@ class XMsClientRequestIdOperations(_XMsClientRequestIdOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    get_async.metadata = {'url': '/azurespecials/overwrite/x-ms-client-request-id/method/'}
+    get.metadata = {'url': '/azurespecials/overwrite/x-ms-client-request-id/method/'}
 
-    async def param_get_async(
+    async def param_get(
             self, x_ms_client_request_id, *, custom_headers=None, raw=False, **operation_config):
         """Get method that overwrites x-ms-client-request header with value
         9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
@@ -81,7 +97,7 @@ class XMsClientRequestIdOperations(_XMsClientRequestIdOperations):
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
         """
         # Construct URL
-        url = self.param_get_async.metadata['url']
+        url = self.param_get.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -106,4 +122,4 @@ class XMsClientRequestIdOperations(_XMsClientRequestIdOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    param_get_async.metadata = {'url': '/azurespecials/overwrite/x-ms-client-request-id/via-param/method/'}
+    param_get.metadata = {'url': '/azurespecials/overwrite/x-ms-client-request-id/via-param/method/'}

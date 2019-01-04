@@ -12,12 +12,26 @@
 import uuid
 from msrest.pipeline import ClientRawResponse
 from msrestazure.azure_exceptions import CloudError
-from .head_exception_operations import HeadExceptionOperations as _HeadExceptionOperations
 
 
-class HeadExceptionOperations(_HeadExceptionOperations):
+class HeadExceptionOperations:
+    """HeadExceptionOperations operations.
 
-    async def head200_async(
+    :param client: Client for service requests.
+    :param config: Configuration of service client.
+    :param serializer: An object model serializer.
+    :param deserializer: An object model deserializer.
+    """
+
+    def __init__(self, client, config, serializer, deserializer) -> None:
+
+        self._client = client
+        self._serialize = serializer
+        self._deserialize = deserializer
+
+        self.config = config
+
+    async def head200(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Return 200 status code if successful.
 
@@ -31,7 +45,7 @@ class HeadExceptionOperations(_HeadExceptionOperations):
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
         # Construct URL
-        url = self.head200_async.metadata['url']
+        url = self.head200.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -57,9 +71,9 @@ class HeadExceptionOperations(_HeadExceptionOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    head200_async.metadata = {'url': '/http/success/200'}
+    head200.metadata = {'url': '/http/success/200'}
 
-    async def head204_async(
+    async def head204(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Return 204 status code if successful.
 
@@ -73,7 +87,7 @@ class HeadExceptionOperations(_HeadExceptionOperations):
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
         # Construct URL
-        url = self.head204_async.metadata['url']
+        url = self.head204.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -99,9 +113,9 @@ class HeadExceptionOperations(_HeadExceptionOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    head204_async.metadata = {'url': '/http/success/204'}
+    head204.metadata = {'url': '/http/success/204'}
 
-    async def head404_async(
+    async def head404(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Return 404 status code if successful.
 
@@ -115,7 +129,7 @@ class HeadExceptionOperations(_HeadExceptionOperations):
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
         # Construct URL
-        url = self.head404_async.metadata['url']
+        url = self.head404.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -141,4 +155,4 @@ class HeadExceptionOperations(_HeadExceptionOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    head404_async.metadata = {'url': '/http/success/404'}
+    head404.metadata = {'url': '/http/success/404'}

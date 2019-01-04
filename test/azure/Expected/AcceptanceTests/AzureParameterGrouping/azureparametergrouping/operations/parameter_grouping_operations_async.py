@@ -13,12 +13,28 @@ import uuid
 from msrest.pipeline import ClientRawResponse
 
 from .. import models
-from .parameter_grouping_operations import ParameterGroupingOperations as _ParameterGroupingOperations
 
 
-class ParameterGroupingOperations(_ParameterGroupingOperations):
+class ParameterGroupingOperations:
+    """ParameterGroupingOperations operations.
 
-    async def post_required_async(
+    :param client: Client for service requests.
+    :param config: Configuration of service client.
+    :param serializer: An object model serializer.
+    :param deserializer: An object model deserializer.
+    """
+
+    models = models
+
+    def __init__(self, client, config, serializer, deserializer) -> None:
+
+        self._client = client
+        self._serialize = serializer
+        self._deserialize = deserializer
+
+        self.config = config
+
+    async def post_required(
             self, parameter_grouping_post_required_parameters, *, custom_headers=None, raw=False, **operation_config):
         """Post a bunch of required parameters grouped.
 
@@ -50,7 +66,7 @@ class ParameterGroupingOperations(_ParameterGroupingOperations):
             path = parameter_grouping_post_required_parameters.path
 
         # Construct URL
-        url = self.post_required_async.metadata['url']
+        url = self.post_required.metadata['url']
         path_format_arguments = {
             'path': self._serialize.url("path", path, 'str')
         }
@@ -86,9 +102,9 @@ class ParameterGroupingOperations(_ParameterGroupingOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    post_required_async.metadata = {'url': '/parameterGrouping/postRequired/{path}'}
+    post_required.metadata = {'url': '/parameterGrouping/postRequired/{path}'}
 
-    async def post_optional_async(
+    async def post_optional(
             self, parameter_grouping_post_optional_parameters=None, *, custom_headers=None, raw=False, **operation_config):
         """Post a bunch of optional parameters grouped.
 
@@ -114,7 +130,7 @@ class ParameterGroupingOperations(_ParameterGroupingOperations):
             query = parameter_grouping_post_optional_parameters.query
 
         # Construct URL
-        url = self.post_optional_async.metadata['url']
+        url = self.post_optional.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -142,9 +158,9 @@ class ParameterGroupingOperations(_ParameterGroupingOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    post_optional_async.metadata = {'url': '/parameterGrouping/postOptional'}
+    post_optional.metadata = {'url': '/parameterGrouping/postOptional'}
 
-    async def post_multi_param_groups_async(
+    async def post_multi_param_groups(
             self, first_parameter_group=None, parameter_grouping_post_multi_param_groups_second_param_group=None, *, custom_headers=None, raw=False, **operation_config):
         """Post parameters from multiple different parameter groups.
 
@@ -179,7 +195,7 @@ class ParameterGroupingOperations(_ParameterGroupingOperations):
             query_two = parameter_grouping_post_multi_param_groups_second_param_group.query_two
 
         # Construct URL
-        url = self.post_multi_param_groups_async.metadata['url']
+        url = self.post_multi_param_groups.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -211,9 +227,9 @@ class ParameterGroupingOperations(_ParameterGroupingOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    post_multi_param_groups_async.metadata = {'url': '/parameterGrouping/postMultipleParameterGroups'}
+    post_multi_param_groups.metadata = {'url': '/parameterGrouping/postMultipleParameterGroups'}
 
-    async def post_shared_parameter_group_object_async(
+    async def post_shared_parameter_group_object(
             self, first_parameter_group=None, *, custom_headers=None, raw=False, **operation_config):
         """Post parameters with a shared parameter group object.
 
@@ -238,7 +254,7 @@ class ParameterGroupingOperations(_ParameterGroupingOperations):
             query_one = first_parameter_group.query_one
 
         # Construct URL
-        url = self.post_shared_parameter_group_object_async.metadata['url']
+        url = self.post_shared_parameter_group_object.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -266,4 +282,4 @@ class ParameterGroupingOperations(_ParameterGroupingOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    post_shared_parameter_group_object_async.metadata = {'url': '/parameterGrouping/sharedParameterGroupObject'}
+    post_shared_parameter_group_object.metadata = {'url': '/parameterGrouping/sharedParameterGroupObject'}

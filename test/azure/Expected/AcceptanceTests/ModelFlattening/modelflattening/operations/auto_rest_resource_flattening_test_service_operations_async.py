@@ -17,7 +17,7 @@ from .auto_rest_resource_flattening_test_service_operations import AutoRestResou
 
 class AutoRestResourceFlatteningTestServiceOperationsMixin(_AutoRestResourceFlatteningTestServiceOperationsMixin):
 
-    async def put_array_async(
+    async def put_array(
             self, resource_array=None, *, custom_headers=None, raw=False, **operation_config):
         """Put External Resource as an Array.
 
@@ -34,7 +34,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(_AutoRestResourceFlat
          :class:`ErrorException<modelflattening.models.ErrorException>`
         """
         # Construct URL
-        url = self.put_array_async.metadata['url']
+        url = self.put_array.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -65,9 +65,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(_AutoRestResourceFlat
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_array_async.metadata = {'url': '/model-flatten/array'}
+    put_array.metadata = {'url': '/model-flatten/array'}
 
-    async def get_array_async(
+    async def get_array(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get External Resource as an Array.
 
@@ -83,7 +83,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(_AutoRestResourceFlat
          :class:`ErrorException<modelflattening.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_array_async.metadata['url']
+        url = self.get_array.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -114,9 +114,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(_AutoRestResourceFlat
             return client_raw_response
 
         return deserialized
-    get_array_async.metadata = {'url': '/model-flatten/array'}
+    get_array.metadata = {'url': '/model-flatten/array'}
 
-    async def put_wrapped_array_async(
+    async def put_wrapped_array(
             self, resource_array=None, *, custom_headers=None, raw=False, **operation_config):
         """No need to have a route in Express server for this operation. Used to
         verify the type flattened is not removed if it's referenced in an
@@ -135,7 +135,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(_AutoRestResourceFlat
          :class:`ErrorException<modelflattening.models.ErrorException>`
         """
         # Construct URL
-        url = self.put_wrapped_array_async.metadata['url']
+        url = self.put_wrapped_array.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -166,9 +166,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(_AutoRestResourceFlat
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_wrapped_array_async.metadata = {'url': '/model-flatten/wrappedarray'}
+    put_wrapped_array.metadata = {'url': '/model-flatten/wrappedarray'}
 
-    async def get_wrapped_array_async(
+    async def get_wrapped_array(
             self, *, custom_headers=None, raw=False, **operation_config):
         """No need to have a route in Express server for this operation. Used to
         verify the type flattened is not removed if it's referenced in an
@@ -186,7 +186,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(_AutoRestResourceFlat
          :class:`ErrorException<modelflattening.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_wrapped_array_async.metadata['url']
+        url = self.get_wrapped_array.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -217,9 +217,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(_AutoRestResourceFlat
             return client_raw_response
 
         return deserialized
-    get_wrapped_array_async.metadata = {'url': '/model-flatten/wrappedarray'}
+    get_wrapped_array.metadata = {'url': '/model-flatten/wrappedarray'}
 
-    async def put_dictionary_async(
+    async def put_dictionary(
             self, resource_dictionary=None, *, custom_headers=None, raw=False, **operation_config):
         """Put External Resource as a Dictionary.
 
@@ -237,7 +237,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(_AutoRestResourceFlat
          :class:`ErrorException<modelflattening.models.ErrorException>`
         """
         # Construct URL
-        url = self.put_dictionary_async.metadata['url']
+        url = self.put_dictionary.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -268,9 +268,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(_AutoRestResourceFlat
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_dictionary_async.metadata = {'url': '/model-flatten/dictionary'}
+    put_dictionary.metadata = {'url': '/model-flatten/dictionary'}
 
-    async def get_dictionary_async(
+    async def get_dictionary(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get External Resource as a Dictionary.
 
@@ -286,7 +286,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(_AutoRestResourceFlat
          :class:`ErrorException<modelflattening.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_dictionary_async.metadata['url']
+        url = self.get_dictionary.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -317,9 +317,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(_AutoRestResourceFlat
             return client_raw_response
 
         return deserialized
-    get_dictionary_async.metadata = {'url': '/model-flatten/dictionary'}
+    get_dictionary.metadata = {'url': '/model-flatten/dictionary'}
 
-    async def put_resource_collection_async(
+    async def put_resource_collection(
             self, resource_complex_object=None, *, custom_headers=None, raw=False, **operation_config):
         """Put External Resource as a ResourceCollection.
 
@@ -338,7 +338,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(_AutoRestResourceFlat
          :class:`ErrorException<modelflattening.models.ErrorException>`
         """
         # Construct URL
-        url = self.put_resource_collection_async.metadata['url']
+        url = self.put_resource_collection.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -369,9 +369,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(_AutoRestResourceFlat
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_resource_collection_async.metadata = {'url': '/model-flatten/resourcecollection'}
+    put_resource_collection.metadata = {'url': '/model-flatten/resourcecollection'}
 
-    async def get_resource_collection_async(
+    async def get_resource_collection(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get External Resource as a ResourceCollection.
 
@@ -387,7 +387,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(_AutoRestResourceFlat
          :class:`ErrorException<modelflattening.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_resource_collection_async.metadata['url']
+        url = self.get_resource_collection.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -418,9 +418,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(_AutoRestResourceFlat
             return client_raw_response
 
         return deserialized
-    get_resource_collection_async.metadata = {'url': '/model-flatten/resourcecollection'}
+    get_resource_collection.metadata = {'url': '/model-flatten/resourcecollection'}
 
-    async def put_simple_product_async(
+    async def put_simple_product(
             self, simple_body_product=None, *, custom_headers=None, raw=False, **operation_config):
         """Put Simple Product with client flattening true on the model.
 
@@ -438,7 +438,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(_AutoRestResourceFlat
          :class:`ErrorException<modelflattening.models.ErrorException>`
         """
         # Construct URL
-        url = self.put_simple_product_async.metadata['url']
+        url = self.put_simple_product.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -476,9 +476,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(_AutoRestResourceFlat
             return client_raw_response
 
         return deserialized
-    put_simple_product_async.metadata = {'url': '/model-flatten/customFlattening'}
+    put_simple_product.metadata = {'url': '/model-flatten/customFlattening'}
 
-    async def post_flattened_simple_product_async(
+    async def post_flattened_simple_product(
             self, product_id, max_product_display_name, description=None, generic_value=None, odatavalue=None, *, custom_headers=None, raw=False, **operation_config):
         """Put Flattened Simple Product with client flattening true on the
         parameter.
@@ -511,7 +511,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(_AutoRestResourceFlat
             simple_body_product = models.SimpleProduct(product_id=product_id, description=description, max_product_display_name=max_product_display_name, generic_value=generic_value, odatavalue=odatavalue)
 
         # Construct URL
-        url = self.post_flattened_simple_product_async.metadata['url']
+        url = self.post_flattened_simple_product.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -549,9 +549,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(_AutoRestResourceFlat
             return client_raw_response
 
         return deserialized
-    post_flattened_simple_product_async.metadata = {'url': '/model-flatten/customFlattening'}
+    post_flattened_simple_product.metadata = {'url': '/model-flatten/customFlattening'}
 
-    async def put_simple_product_with_grouping_async(
+    async def put_simple_product_with_grouping(
             self, flatten_parameter_group, *, custom_headers=None, raw=False, **operation_config):
         """Put Simple Product with client flattening true on the model.
 
@@ -593,7 +593,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(_AutoRestResourceFlat
             simple_body_product = models.SimpleProduct(product_id=product_id, description=description, max_product_display_name=max_product_display_name, generic_value=generic_value, odatavalue=odatavalue)
 
         # Construct URL
-        url = self.put_simple_product_with_grouping_async.metadata['url']
+        url = self.put_simple_product_with_grouping.metadata['url']
         path_format_arguments = {
             'name': self._serialize.url("name", name, 'str')
         }
@@ -635,4 +635,4 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(_AutoRestResourceFlat
             return client_raw_response
 
         return deserialized
-    put_simple_product_with_grouping_async.metadata = {'url': '/model-flatten/customFlattening/parametergrouping/{name}/'}
+    put_simple_product_with_grouping.metadata = {'url': '/model-flatten/customFlattening/parametergrouping/{name}/'}

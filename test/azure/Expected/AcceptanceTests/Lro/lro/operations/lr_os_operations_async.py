@@ -16,16 +16,32 @@ from msrest.polling.async_poller import async_poller, AsyncNoPolling
 from msrestazure.polling.async_arm_polling import AsyncARMPolling
 
 from .. import models
-from .lr_os_operations import LROsOperations as _LROsOperations
 
 
-class LROsOperations(_LROsOperations):
+class LROsOperations:
+    """LROsOperations operations.
+
+    :param client: Client for service requests.
+    :param config: Configuration of service client.
+    :param serializer: An object model serializer.
+    :param deserializer: An object model deserializer.
+    """
+
+    models = models
+
+    def __init__(self, client, config, serializer, deserializer) -> None:
+
+        self._client = client
+        self._serialize = serializer
+        self._deserialize = deserializer
+
+        self.config = config
 
 
-    async def _put200_succeeded_initial_async(
+    async def _put200_succeeded_initial(
             self, product=None, *, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = self.put200_succeeded_async.metadata['url']
+        url = self.put200_succeeded.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -67,7 +83,7 @@ class LROsOperations(_LROsOperations):
 
         return deserialized
 
-    async def put200_succeeded_async(
+    async def put200_succeeded(
             self, product=None, *, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running put request, service returns a 200 to the initial request,
         with an entity that contains ProvisioningState=’Succeeded’.
@@ -85,7 +101,7 @@ class LROsOperations(_LROsOperations):
          ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._put200_succeeded_initial_async(
+        raw_result = await self._put200_succeeded_initial(
             product=product,
             custom_headers=custom_headers,
             raw=True,
@@ -108,13 +124,13 @@ class LROsOperations(_LROsOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    put200_succeeded_async.metadata = {'url': '/lro/put/200/succeeded'}
+    put200_succeeded.metadata = {'url': '/lro/put/200/succeeded'}
 
 
-    async def _put200_succeeded_no_state_initial_async(
+    async def _put200_succeeded_no_state_initial(
             self, product=None, *, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = self.put200_succeeded_no_state_async.metadata['url']
+        url = self.put200_succeeded_no_state.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -156,7 +172,7 @@ class LROsOperations(_LROsOperations):
 
         return deserialized
 
-    async def put200_succeeded_no_state_async(
+    async def put200_succeeded_no_state(
             self, product=None, *, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running put request, service returns a 200 to the initial request,
         with an entity that does not contain ProvisioningState=’Succeeded’.
@@ -174,7 +190,7 @@ class LROsOperations(_LROsOperations):
          ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._put200_succeeded_no_state_initial_async(
+        raw_result = await self._put200_succeeded_no_state_initial(
             product=product,
             custom_headers=custom_headers,
             raw=True,
@@ -197,13 +213,13 @@ class LROsOperations(_LROsOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    put200_succeeded_no_state_async.metadata = {'url': '/lro/put/200/succeeded/nostate'}
+    put200_succeeded_no_state.metadata = {'url': '/lro/put/200/succeeded/nostate'}
 
 
-    async def _put202_retry200_initial_async(
+    async def _put202_retry200_initial(
             self, product=None, *, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = self.put202_retry200_async.metadata['url']
+        url = self.put202_retry200.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -245,7 +261,7 @@ class LROsOperations(_LROsOperations):
 
         return deserialized
 
-    async def put202_retry200_async(
+    async def put202_retry200(
             self, product=None, *, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running put request, service returns a 202 to the initial request,
         with a location header that points to a polling URL that returns a 200
@@ -264,7 +280,7 @@ class LROsOperations(_LROsOperations):
          ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._put202_retry200_initial_async(
+        raw_result = await self._put202_retry200_initial(
             product=product,
             custom_headers=custom_headers,
             raw=True,
@@ -287,13 +303,13 @@ class LROsOperations(_LROsOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    put202_retry200_async.metadata = {'url': '/lro/put/202/retry/200'}
+    put202_retry200.metadata = {'url': '/lro/put/202/retry/200'}
 
 
-    async def _put201_creating_succeeded200_initial_async(
+    async def _put201_creating_succeeded200_initial(
             self, product=None, *, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = self.put201_creating_succeeded200_async.metadata['url']
+        url = self.put201_creating_succeeded200.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -337,7 +353,7 @@ class LROsOperations(_LROsOperations):
 
         return deserialized
 
-    async def put201_creating_succeeded200_async(
+    async def put201_creating_succeeded200(
             self, product=None, *, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running put request, service returns a 201 to the initial request,
         with an entity that contains ProvisioningState=’Creating’.  Polls
@@ -357,7 +373,7 @@ class LROsOperations(_LROsOperations):
          ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._put201_creating_succeeded200_initial_async(
+        raw_result = await self._put201_creating_succeeded200_initial(
             product=product,
             custom_headers=custom_headers,
             raw=True,
@@ -380,13 +396,13 @@ class LROsOperations(_LROsOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    put201_creating_succeeded200_async.metadata = {'url': '/lro/put/201/creating/succeeded/200'}
+    put201_creating_succeeded200.metadata = {'url': '/lro/put/201/creating/succeeded/200'}
 
 
-    async def _put200_updating_succeeded204_initial_async(
+    async def _put200_updating_succeeded204_initial(
             self, product=None, *, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = self.put200_updating_succeeded204_async.metadata['url']
+        url = self.put200_updating_succeeded204.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -428,7 +444,7 @@ class LROsOperations(_LROsOperations):
 
         return deserialized
 
-    async def put200_updating_succeeded204_async(
+    async def put200_updating_succeeded204(
             self, product=None, *, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running put request, service returns a 201 to the initial request,
         with an entity that contains ProvisioningState=’Updating’.  Polls
@@ -448,7 +464,7 @@ class LROsOperations(_LROsOperations):
          ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._put200_updating_succeeded204_initial_async(
+        raw_result = await self._put200_updating_succeeded204_initial(
             product=product,
             custom_headers=custom_headers,
             raw=True,
@@ -471,13 +487,13 @@ class LROsOperations(_LROsOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    put200_updating_succeeded204_async.metadata = {'url': '/lro/put/200/updating/succeeded/200'}
+    put200_updating_succeeded204.metadata = {'url': '/lro/put/200/updating/succeeded/200'}
 
 
-    async def _put201_creating_failed200_initial_async(
+    async def _put201_creating_failed200_initial(
             self, product=None, *, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = self.put201_creating_failed200_async.metadata['url']
+        url = self.put201_creating_failed200.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -521,7 +537,7 @@ class LROsOperations(_LROsOperations):
 
         return deserialized
 
-    async def put201_creating_failed200_async(
+    async def put201_creating_failed200(
             self, product=None, *, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running put request, service returns a 201 to the initial request,
         with an entity that contains ProvisioningState=’Created’.  Polls return
@@ -541,7 +557,7 @@ class LROsOperations(_LROsOperations):
          ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._put201_creating_failed200_initial_async(
+        raw_result = await self._put201_creating_failed200_initial(
             product=product,
             custom_headers=custom_headers,
             raw=True,
@@ -564,13 +580,13 @@ class LROsOperations(_LROsOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    put201_creating_failed200_async.metadata = {'url': '/lro/put/201/created/failed/200'}
+    put201_creating_failed200.metadata = {'url': '/lro/put/201/created/failed/200'}
 
 
-    async def _put200_acceptedcanceled200_initial_async(
+    async def _put200_acceptedcanceled200_initial(
             self, product=None, *, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = self.put200_acceptedcanceled200_async.metadata['url']
+        url = self.put200_acceptedcanceled200.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -612,7 +628,7 @@ class LROsOperations(_LROsOperations):
 
         return deserialized
 
-    async def put200_acceptedcanceled200_async(
+    async def put200_acceptedcanceled200(
             self, product=None, *, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running put request, service returns a 201 to the initial request,
         with an entity that contains ProvisioningState=’Creating’.  Polls
@@ -632,7 +648,7 @@ class LROsOperations(_LROsOperations):
          ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._put200_acceptedcanceled200_initial_async(
+        raw_result = await self._put200_acceptedcanceled200_initial(
             product=product,
             custom_headers=custom_headers,
             raw=True,
@@ -655,13 +671,13 @@ class LROsOperations(_LROsOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    put200_acceptedcanceled200_async.metadata = {'url': '/lro/put/200/accepted/canceled/200'}
+    put200_acceptedcanceled200.metadata = {'url': '/lro/put/200/accepted/canceled/200'}
 
 
-    async def _put_no_header_in_retry_initial_async(
+    async def _put_no_header_in_retry_initial(
             self, product=None, *, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = self.put_no_header_in_retry_async.metadata['url']
+        url = self.put_no_header_in_retry.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -708,7 +724,7 @@ class LROsOperations(_LROsOperations):
 
         return deserialized
 
-    async def put_no_header_in_retry_async(
+    async def put_no_header_in_retry(
             self, product=None, *, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running put request, service returns a 202 to the initial request
         with location header. Subsequent calls to operation status do not
@@ -727,7 +743,7 @@ class LROsOperations(_LROsOperations):
          ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._put_no_header_in_retry_initial_async(
+        raw_result = await self._put_no_header_in_retry_initial(
             product=product,
             custom_headers=custom_headers,
             raw=True,
@@ -754,13 +770,13 @@ class LROsOperations(_LROsOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    put_no_header_in_retry_async.metadata = {'url': '/lro/put/noheader/202/200'}
+    put_no_header_in_retry.metadata = {'url': '/lro/put/noheader/202/200'}
 
 
-    async def _put_async_retry_succeeded_initial_async(
+    async def _put_async_retry_succeeded_initial(
             self, product=None, *, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = self.put_async_retry_succeeded_async.metadata['url']
+        url = self.put_async_retry_succeeded.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -809,7 +825,7 @@ class LROsOperations(_LROsOperations):
 
         return deserialized
 
-    async def put_async_retry_succeeded_async(
+    async def put_async_retry_succeeded(
             self, product=None, *, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running put request, service returns a 200 to the initial request,
         with an entity that contains ProvisioningState=’Creating’. Poll the
@@ -829,7 +845,7 @@ class LROsOperations(_LROsOperations):
          ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._put_async_retry_succeeded_initial_async(
+        raw_result = await self._put_async_retry_succeeded_initial(
             product=product,
             custom_headers=custom_headers,
             raw=True,
@@ -858,13 +874,13 @@ class LROsOperations(_LROsOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    put_async_retry_succeeded_async.metadata = {'url': '/lro/putasync/retry/succeeded'}
+    put_async_retry_succeeded.metadata = {'url': '/lro/putasync/retry/succeeded'}
 
 
-    async def _put_async_no_retry_succeeded_initial_async(
+    async def _put_async_no_retry_succeeded_initial(
             self, product=None, *, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = self.put_async_no_retry_succeeded_async.metadata['url']
+        url = self.put_async_no_retry_succeeded.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -912,7 +928,7 @@ class LROsOperations(_LROsOperations):
 
         return deserialized
 
-    async def put_async_no_retry_succeeded_async(
+    async def put_async_no_retry_succeeded(
             self, product=None, *, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running put request, service returns a 200 to the initial request,
         with an entity that contains ProvisioningState=’Creating’. Poll the
@@ -932,7 +948,7 @@ class LROsOperations(_LROsOperations):
          ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._put_async_no_retry_succeeded_initial_async(
+        raw_result = await self._put_async_no_retry_succeeded_initial(
             product=product,
             custom_headers=custom_headers,
             raw=True,
@@ -960,13 +976,13 @@ class LROsOperations(_LROsOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    put_async_no_retry_succeeded_async.metadata = {'url': '/lro/putasync/noretry/succeeded'}
+    put_async_no_retry_succeeded.metadata = {'url': '/lro/putasync/noretry/succeeded'}
 
 
-    async def _put_async_retry_failed_initial_async(
+    async def _put_async_retry_failed_initial(
             self, product=None, *, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = self.put_async_retry_failed_async.metadata['url']
+        url = self.put_async_retry_failed.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1015,7 +1031,7 @@ class LROsOperations(_LROsOperations):
 
         return deserialized
 
-    async def put_async_retry_failed_async(
+    async def put_async_retry_failed(
             self, product=None, *, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running put request, service returns a 200 to the initial request,
         with an entity that contains ProvisioningState=’Creating’. Poll the
@@ -1035,7 +1051,7 @@ class LROsOperations(_LROsOperations):
          ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._put_async_retry_failed_initial_async(
+        raw_result = await self._put_async_retry_failed_initial(
             product=product,
             custom_headers=custom_headers,
             raw=True,
@@ -1064,13 +1080,13 @@ class LROsOperations(_LROsOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    put_async_retry_failed_async.metadata = {'url': '/lro/putasync/retry/failed'}
+    put_async_retry_failed.metadata = {'url': '/lro/putasync/retry/failed'}
 
 
-    async def _put_async_no_retrycanceled_initial_async(
+    async def _put_async_no_retrycanceled_initial(
             self, product=None, *, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = self.put_async_no_retrycanceled_async.metadata['url']
+        url = self.put_async_no_retrycanceled.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1118,7 +1134,7 @@ class LROsOperations(_LROsOperations):
 
         return deserialized
 
-    async def put_async_no_retrycanceled_async(
+    async def put_async_no_retrycanceled(
             self, product=None, *, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running put request, service returns a 200 to the initial request,
         with an entity that contains ProvisioningState=’Creating’. Poll the
@@ -1138,7 +1154,7 @@ class LROsOperations(_LROsOperations):
          ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._put_async_no_retrycanceled_initial_async(
+        raw_result = await self._put_async_no_retrycanceled_initial(
             product=product,
             custom_headers=custom_headers,
             raw=True,
@@ -1166,13 +1182,13 @@ class LROsOperations(_LROsOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    put_async_no_retrycanceled_async.metadata = {'url': '/lro/putasync/noretry/canceled'}
+    put_async_no_retrycanceled.metadata = {'url': '/lro/putasync/noretry/canceled'}
 
 
-    async def _put_async_no_header_in_retry_initial_async(
+    async def _put_async_no_header_in_retry_initial(
             self, product=None, *, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = self.put_async_no_header_in_retry_async.metadata['url']
+        url = self.put_async_no_header_in_retry.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1219,7 +1235,7 @@ class LROsOperations(_LROsOperations):
 
         return deserialized
 
-    async def put_async_no_header_in_retry_async(
+    async def put_async_no_header_in_retry(
             self, product=None, *, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running put request, service returns a 202 to the initial request
         with Azure-AsyncOperation header. Subsequent calls to operation status
@@ -1238,7 +1254,7 @@ class LROsOperations(_LROsOperations):
          ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._put_async_no_header_in_retry_initial_async(
+        raw_result = await self._put_async_no_header_in_retry_initial(
             product=product,
             custom_headers=custom_headers,
             raw=True,
@@ -1265,13 +1281,13 @@ class LROsOperations(_LROsOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    put_async_no_header_in_retry_async.metadata = {'url': '/lro/putasync/noheader/201/200'}
+    put_async_no_header_in_retry.metadata = {'url': '/lro/putasync/noheader/201/200'}
 
 
-    async def _put_non_resource_initial_async(
+    async def _put_non_resource_initial(
             self, sku=None, *, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = self.put_non_resource_async.metadata['url']
+        url = self.put_non_resource.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1313,7 +1329,7 @@ class LROsOperations(_LROsOperations):
 
         return deserialized
 
-    async def put_non_resource_async(
+    async def put_non_resource(
             self, sku=None, *, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running put request with non resource.
 
@@ -1329,7 +1345,7 @@ class LROsOperations(_LROsOperations):
          ~msrest.pipeline.ClientRawResponse[~lro.models.Sku]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._put_non_resource_initial_async(
+        raw_result = await self._put_non_resource_initial(
             sku=sku,
             custom_headers=custom_headers,
             raw=True,
@@ -1352,13 +1368,13 @@ class LROsOperations(_LROsOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    put_non_resource_async.metadata = {'url': '/lro/putnonresource/202/200'}
+    put_non_resource.metadata = {'url': '/lro/putnonresource/202/200'}
 
 
-    async def _put_async_non_resource_initial_async(
+    async def _put_async_non_resource_initial(
             self, sku=None, *, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = self.put_async_non_resource_async.metadata['url']
+        url = self.put_async_non_resource.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1400,7 +1416,7 @@ class LROsOperations(_LROsOperations):
 
         return deserialized
 
-    async def put_async_non_resource_async(
+    async def put_async_non_resource(
             self, sku=None, *, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running put request with non resource.
 
@@ -1416,7 +1432,7 @@ class LROsOperations(_LROsOperations):
          ~msrest.pipeline.ClientRawResponse[~lro.models.Sku]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._put_async_non_resource_initial_async(
+        raw_result = await self._put_async_non_resource_initial(
             sku=sku,
             custom_headers=custom_headers,
             raw=True,
@@ -1439,17 +1455,17 @@ class LROsOperations(_LROsOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    put_async_non_resource_async.metadata = {'url': '/lro/putnonresourceasync/202/200'}
+    put_async_non_resource.metadata = {'url': '/lro/putnonresourceasync/202/200'}
 
 
-    async def _put_sub_resource_initial_async(
+    async def _put_sub_resource_initial(
             self, provisioning_state=None, *, custom_headers=None, raw=False, **operation_config):
         product = None
         if provisioning_state is not None:
             product = models.SubProduct(provisioning_state=provisioning_state)
 
         # Construct URL
-        url = self.put_sub_resource_async.metadata['url']
+        url = self.put_sub_resource.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1491,7 +1507,7 @@ class LROsOperations(_LROsOperations):
 
         return deserialized
 
-    async def put_sub_resource_async(
+    async def put_sub_resource(
             self, provisioning_state=None, *, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running put request with sub resource.
 
@@ -1508,7 +1524,7 @@ class LROsOperations(_LROsOperations):
          ~msrest.pipeline.ClientRawResponse[~lro.models.SubProduct]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._put_sub_resource_initial_async(
+        raw_result = await self._put_sub_resource_initial(
             provisioning_state=provisioning_state,
             custom_headers=custom_headers,
             raw=True,
@@ -1531,17 +1547,17 @@ class LROsOperations(_LROsOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    put_sub_resource_async.metadata = {'url': '/lro/putsubresource/202/200'}
+    put_sub_resource.metadata = {'url': '/lro/putsubresource/202/200'}
 
 
-    async def _put_async_sub_resource_initial_async(
+    async def _put_async_sub_resource_initial(
             self, provisioning_state=None, *, custom_headers=None, raw=False, **operation_config):
         product = None
         if provisioning_state is not None:
             product = models.SubProduct(provisioning_state=provisioning_state)
 
         # Construct URL
-        url = self.put_async_sub_resource_async.metadata['url']
+        url = self.put_async_sub_resource.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1583,7 +1599,7 @@ class LROsOperations(_LROsOperations):
 
         return deserialized
 
-    async def put_async_sub_resource_async(
+    async def put_async_sub_resource(
             self, provisioning_state=None, *, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running put request with sub resource.
 
@@ -1600,7 +1616,7 @@ class LROsOperations(_LROsOperations):
          ~msrest.pipeline.ClientRawResponse[~lro.models.SubProduct]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._put_async_sub_resource_initial_async(
+        raw_result = await self._put_async_sub_resource_initial(
             provisioning_state=provisioning_state,
             custom_headers=custom_headers,
             raw=True,
@@ -1623,13 +1639,13 @@ class LROsOperations(_LROsOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    put_async_sub_resource_async.metadata = {'url': '/lro/putsubresourceasync/202/200'}
+    put_async_sub_resource.metadata = {'url': '/lro/putsubresourceasync/202/200'}
 
 
-    async def _delete_provisioning202_accepted200_succeeded_initial_async(
+    async def _delete_provisioning202_accepted200_succeeded_initial(
             self, *, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = self.delete_provisioning202_accepted200_succeeded_async.metadata['url']
+        url = self.delete_provisioning202_accepted200_succeeded.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1676,7 +1692,7 @@ class LROsOperations(_LROsOperations):
 
         return deserialized
 
-    async def delete_provisioning202_accepted200_succeeded_async(
+    async def delete_provisioning202_accepted200_succeeded(
             self, *, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running delete request, service returns a 202 to the initial
         request, with an entity that contains ProvisioningState=’Accepted’.
@@ -1694,7 +1710,7 @@ class LROsOperations(_LROsOperations):
          ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._delete_provisioning202_accepted200_succeeded_initial_async(
+        raw_result = await self._delete_provisioning202_accepted200_succeeded_initial(
             custom_headers=custom_headers,
             raw=True,
             **operation_config
@@ -1721,13 +1737,13 @@ class LROsOperations(_LROsOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    delete_provisioning202_accepted200_succeeded_async.metadata = {'url': '/lro/delete/provisioning/202/accepted/200/succeeded'}
+    delete_provisioning202_accepted200_succeeded.metadata = {'url': '/lro/delete/provisioning/202/accepted/200/succeeded'}
 
 
-    async def _delete_provisioning202_deleting_failed200_initial_async(
+    async def _delete_provisioning202_deleting_failed200_initial(
             self, *, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = self.delete_provisioning202_deleting_failed200_async.metadata['url']
+        url = self.delete_provisioning202_deleting_failed200.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1774,7 +1790,7 @@ class LROsOperations(_LROsOperations):
 
         return deserialized
 
-    async def delete_provisioning202_deleting_failed200_async(
+    async def delete_provisioning202_deleting_failed200(
             self, *, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running delete request, service returns a 202 to the initial
         request, with an entity that contains ProvisioningState=’Creating’.
@@ -1792,7 +1808,7 @@ class LROsOperations(_LROsOperations):
          ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._delete_provisioning202_deleting_failed200_initial_async(
+        raw_result = await self._delete_provisioning202_deleting_failed200_initial(
             custom_headers=custom_headers,
             raw=True,
             **operation_config
@@ -1819,13 +1835,13 @@ class LROsOperations(_LROsOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    delete_provisioning202_deleting_failed200_async.metadata = {'url': '/lro/delete/provisioning/202/deleting/200/failed'}
+    delete_provisioning202_deleting_failed200.metadata = {'url': '/lro/delete/provisioning/202/deleting/200/failed'}
 
 
-    async def _delete_provisioning202_deletingcanceled200_initial_async(
+    async def _delete_provisioning202_deletingcanceled200_initial(
             self, *, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = self.delete_provisioning202_deletingcanceled200_async.metadata['url']
+        url = self.delete_provisioning202_deletingcanceled200.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1872,7 +1888,7 @@ class LROsOperations(_LROsOperations):
 
         return deserialized
 
-    async def delete_provisioning202_deletingcanceled200_async(
+    async def delete_provisioning202_deletingcanceled200(
             self, *, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running delete request, service returns a 202 to the initial
         request, with an entity that contains ProvisioningState=’Creating’.
@@ -1890,7 +1906,7 @@ class LROsOperations(_LROsOperations):
          ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._delete_provisioning202_deletingcanceled200_initial_async(
+        raw_result = await self._delete_provisioning202_deletingcanceled200_initial(
             custom_headers=custom_headers,
             raw=True,
             **operation_config
@@ -1917,13 +1933,13 @@ class LROsOperations(_LROsOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    delete_provisioning202_deletingcanceled200_async.metadata = {'url': '/lro/delete/provisioning/202/deleting/200/canceled'}
+    delete_provisioning202_deletingcanceled200.metadata = {'url': '/lro/delete/provisioning/202/deleting/200/canceled'}
 
 
-    async def _delete204_succeeded_initial_async(
+    async def _delete204_succeeded_initial(
             self, *, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = self.delete204_succeeded_async.metadata['url']
+        url = self.delete204_succeeded.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1950,7 +1966,7 @@ class LROsOperations(_LROsOperations):
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
 
-    async def delete204_succeeded_async(
+    async def delete204_succeeded(
             self, *, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running delete succeeds and returns right away.
 
@@ -1963,7 +1979,7 @@ class LROsOperations(_LROsOperations):
         :rtype: ~None or ~msrest.pipeline.ClientRawResponse[None]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._delete204_succeeded_initial_async(
+        raw_result = await self._delete204_succeeded_initial(
             custom_headers=custom_headers,
             raw=True,
             **operation_config
@@ -1981,13 +1997,13 @@ class LROsOperations(_LROsOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    delete204_succeeded_async.metadata = {'url': '/lro/delete/204/succeeded'}
+    delete204_succeeded.metadata = {'url': '/lro/delete/204/succeeded'}
 
 
-    async def _delete202_retry200_initial_async(
+    async def _delete202_retry200_initial(
             self, *, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = self.delete202_retry200_async.metadata['url']
+        url = self.delete202_retry200.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -2028,7 +2044,7 @@ class LROsOperations(_LROsOperations):
 
         return deserialized
 
-    async def delete202_retry200_async(
+    async def delete202_retry200(
             self, *, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running delete request, service returns a 202 to the initial
         request. Polls return this value until the last poll returns a ‘200’
@@ -2045,7 +2061,7 @@ class LROsOperations(_LROsOperations):
          ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._delete202_retry200_initial_async(
+        raw_result = await self._delete202_retry200_initial(
             custom_headers=custom_headers,
             raw=True,
             **operation_config
@@ -2072,13 +2088,13 @@ class LROsOperations(_LROsOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    delete202_retry200_async.metadata = {'url': '/lro/delete/202/retry/200'}
+    delete202_retry200.metadata = {'url': '/lro/delete/202/retry/200'}
 
 
-    async def _delete202_no_retry204_initial_async(
+    async def _delete202_no_retry204_initial(
             self, *, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = self.delete202_no_retry204_async.metadata['url']
+        url = self.delete202_no_retry204.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -2119,7 +2135,7 @@ class LROsOperations(_LROsOperations):
 
         return deserialized
 
-    async def delete202_no_retry204_async(
+    async def delete202_no_retry204(
             self, *, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running delete request, service returns a 202 to the initial
         request. Polls return this value until the last poll returns a ‘200’
@@ -2136,7 +2152,7 @@ class LROsOperations(_LROsOperations):
          ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._delete202_no_retry204_initial_async(
+        raw_result = await self._delete202_no_retry204_initial(
             custom_headers=custom_headers,
             raw=True,
             **operation_config
@@ -2163,13 +2179,13 @@ class LROsOperations(_LROsOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    delete202_no_retry204_async.metadata = {'url': '/lro/delete/202/noretry/204'}
+    delete202_no_retry204.metadata = {'url': '/lro/delete/202/noretry/204'}
 
 
-    async def _delete_no_header_in_retry_initial_async(
+    async def _delete_no_header_in_retry_initial(
             self, *, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = self.delete_no_header_in_retry_async.metadata['url']
+        url = self.delete_no_header_in_retry.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -2200,7 +2216,7 @@ class LROsOperations(_LROsOperations):
             client_raw_response.add_headers(header_dict)
             return client_raw_response
 
-    async def delete_no_header_in_retry_async(
+    async def delete_no_header_in_retry(
             self, *, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running delete request, service returns a location header in the
         initial request. Subsequent calls to operation status do not contain
@@ -2215,7 +2231,7 @@ class LROsOperations(_LROsOperations):
         :rtype: ~None or ~msrest.pipeline.ClientRawResponse[None]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._delete_no_header_in_retry_initial_async(
+        raw_result = await self._delete_no_header_in_retry_initial(
             custom_headers=custom_headers,
             raw=True,
             **operation_config
@@ -2236,13 +2252,13 @@ class LROsOperations(_LROsOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    delete_no_header_in_retry_async.metadata = {'url': '/lro/delete/noheader'}
+    delete_no_header_in_retry.metadata = {'url': '/lro/delete/noheader'}
 
 
-    async def _delete_async_no_header_in_retry_initial_async(
+    async def _delete_async_no_header_in_retry_initial(
             self, *, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = self.delete_async_no_header_in_retry_async.metadata['url']
+        url = self.delete_async_no_header_in_retry.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -2273,7 +2289,7 @@ class LROsOperations(_LROsOperations):
             client_raw_response.add_headers(header_dict)
             return client_raw_response
 
-    async def delete_async_no_header_in_retry_async(
+    async def delete_async_no_header_in_retry(
             self, *, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running delete request, service returns an Azure-AsyncOperation
         header in the initial request. Subsequent calls to operation status do
@@ -2288,7 +2304,7 @@ class LROsOperations(_LROsOperations):
         :rtype: ~None or ~msrest.pipeline.ClientRawResponse[None]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._delete_async_no_header_in_retry_initial_async(
+        raw_result = await self._delete_async_no_header_in_retry_initial(
             custom_headers=custom_headers,
             raw=True,
             **operation_config
@@ -2309,13 +2325,13 @@ class LROsOperations(_LROsOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    delete_async_no_header_in_retry_async.metadata = {'url': '/lro/deleteasync/noheader/202/204'}
+    delete_async_no_header_in_retry.metadata = {'url': '/lro/deleteasync/noheader/202/204'}
 
 
-    async def _delete_async_retry_succeeded_initial_async(
+    async def _delete_async_retry_succeeded_initial(
             self, *, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = self.delete_async_retry_succeeded_async.metadata['url']
+        url = self.delete_async_retry_succeeded.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -2348,7 +2364,7 @@ class LROsOperations(_LROsOperations):
             client_raw_response.add_headers(header_dict)
             return client_raw_response
 
-    async def delete_async_retry_succeeded_async(
+    async def delete_async_retry_succeeded(
             self, *, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running delete request, service returns a 202 to the initial
         request. Poll the endpoint indicated in the Azure-AsyncOperation header
@@ -2363,7 +2379,7 @@ class LROsOperations(_LROsOperations):
         :rtype: ~None or ~msrest.pipeline.ClientRawResponse[None]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._delete_async_retry_succeeded_initial_async(
+        raw_result = await self._delete_async_retry_succeeded_initial(
             custom_headers=custom_headers,
             raw=True,
             **operation_config
@@ -2386,13 +2402,13 @@ class LROsOperations(_LROsOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    delete_async_retry_succeeded_async.metadata = {'url': '/lro/deleteasync/retry/succeeded'}
+    delete_async_retry_succeeded.metadata = {'url': '/lro/deleteasync/retry/succeeded'}
 
 
-    async def _delete_async_no_retry_succeeded_initial_async(
+    async def _delete_async_no_retry_succeeded_initial(
             self, *, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = self.delete_async_no_retry_succeeded_async.metadata['url']
+        url = self.delete_async_no_retry_succeeded.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -2425,7 +2441,7 @@ class LROsOperations(_LROsOperations):
             client_raw_response.add_headers(header_dict)
             return client_raw_response
 
-    async def delete_async_no_retry_succeeded_async(
+    async def delete_async_no_retry_succeeded(
             self, *, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running delete request, service returns a 202 to the initial
         request. Poll the endpoint indicated in the Azure-AsyncOperation header
@@ -2440,7 +2456,7 @@ class LROsOperations(_LROsOperations):
         :rtype: ~None or ~msrest.pipeline.ClientRawResponse[None]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._delete_async_no_retry_succeeded_initial_async(
+        raw_result = await self._delete_async_no_retry_succeeded_initial(
             custom_headers=custom_headers,
             raw=True,
             **operation_config
@@ -2463,13 +2479,13 @@ class LROsOperations(_LROsOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    delete_async_no_retry_succeeded_async.metadata = {'url': '/lro/deleteasync/noretry/succeeded'}
+    delete_async_no_retry_succeeded.metadata = {'url': '/lro/deleteasync/noretry/succeeded'}
 
 
-    async def _delete_async_retry_failed_initial_async(
+    async def _delete_async_retry_failed_initial(
             self, *, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = self.delete_async_retry_failed_async.metadata['url']
+        url = self.delete_async_retry_failed.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -2502,7 +2518,7 @@ class LROsOperations(_LROsOperations):
             client_raw_response.add_headers(header_dict)
             return client_raw_response
 
-    async def delete_async_retry_failed_async(
+    async def delete_async_retry_failed(
             self, *, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running delete request, service returns a 202 to the initial
         request. Poll the endpoint indicated in the Azure-AsyncOperation header
@@ -2517,7 +2533,7 @@ class LROsOperations(_LROsOperations):
         :rtype: ~None or ~msrest.pipeline.ClientRawResponse[None]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._delete_async_retry_failed_initial_async(
+        raw_result = await self._delete_async_retry_failed_initial(
             custom_headers=custom_headers,
             raw=True,
             **operation_config
@@ -2540,13 +2556,13 @@ class LROsOperations(_LROsOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    delete_async_retry_failed_async.metadata = {'url': '/lro/deleteasync/retry/failed'}
+    delete_async_retry_failed.metadata = {'url': '/lro/deleteasync/retry/failed'}
 
 
-    async def _delete_async_retrycanceled_initial_async(
+    async def _delete_async_retrycanceled_initial(
             self, *, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = self.delete_async_retrycanceled_async.metadata['url']
+        url = self.delete_async_retrycanceled.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -2579,7 +2595,7 @@ class LROsOperations(_LROsOperations):
             client_raw_response.add_headers(header_dict)
             return client_raw_response
 
-    async def delete_async_retrycanceled_async(
+    async def delete_async_retrycanceled(
             self, *, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running delete request, service returns a 202 to the initial
         request. Poll the endpoint indicated in the Azure-AsyncOperation header
@@ -2594,7 +2610,7 @@ class LROsOperations(_LROsOperations):
         :rtype: ~None or ~msrest.pipeline.ClientRawResponse[None]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._delete_async_retrycanceled_initial_async(
+        raw_result = await self._delete_async_retrycanceled_initial(
             custom_headers=custom_headers,
             raw=True,
             **operation_config
@@ -2617,13 +2633,13 @@ class LROsOperations(_LROsOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    delete_async_retrycanceled_async.metadata = {'url': '/lro/deleteasync/retry/canceled'}
+    delete_async_retrycanceled.metadata = {'url': '/lro/deleteasync/retry/canceled'}
 
 
-    async def _post200_with_payload_initial_async(
+    async def _post200_with_payload_initial(
             self, *, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = self.post200_with_payload_async.metadata['url']
+        url = self.post200_with_payload.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -2660,7 +2676,7 @@ class LROsOperations(_LROsOperations):
 
         return deserialized
 
-    async def post200_with_payload_async(
+    async def post200_with_payload(
             self, *, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running post request, service returns a 202 to the initial
         request, with 'Location' header. Poll returns a 200 with a response
@@ -2676,7 +2692,7 @@ class LROsOperations(_LROsOperations):
          ~msrest.pipeline.ClientRawResponse[~lro.models.Sku]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._post200_with_payload_initial_async(
+        raw_result = await self._post200_with_payload_initial(
             custom_headers=custom_headers,
             raw=True,
             **operation_config
@@ -2698,13 +2714,13 @@ class LROsOperations(_LROsOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    post200_with_payload_async.metadata = {'url': '/lro/post/payload/200'}
+    post200_with_payload.metadata = {'url': '/lro/post/payload/200'}
 
 
-    async def _post202_retry200_initial_async(
+    async def _post202_retry200_initial(
             self, product=None, *, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = self.post202_retry200_async.metadata['url']
+        url = self.post202_retry200.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -2743,7 +2759,7 @@ class LROsOperations(_LROsOperations):
             client_raw_response.add_headers(header_dict)
             return client_raw_response
 
-    async def post202_retry200_async(
+    async def post202_retry200(
             self, product=None, *, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running post request, service returns a 202 to the initial
         request, with 'Location' and 'Retry-After' headers, Polls return a 200
@@ -2760,7 +2776,7 @@ class LROsOperations(_LROsOperations):
         :rtype: ~None or ~msrest.pipeline.ClientRawResponse[None]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._post202_retry200_initial_async(
+        raw_result = await self._post202_retry200_initial(
             product=product,
             custom_headers=custom_headers,
             raw=True,
@@ -2783,13 +2799,13 @@ class LROsOperations(_LROsOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    post202_retry200_async.metadata = {'url': '/lro/post/202/retry/200'}
+    post202_retry200.metadata = {'url': '/lro/post/202/retry/200'}
 
 
-    async def _post202_no_retry204_initial_async(
+    async def _post202_no_retry204_initial(
             self, product=None, *, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = self.post202_no_retry204_async.metadata['url']
+        url = self.post202_no_retry204.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -2837,7 +2853,7 @@ class LROsOperations(_LROsOperations):
 
         return deserialized
 
-    async def post202_no_retry204_async(
+    async def post202_no_retry204(
             self, product=None, *, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running post request, service returns a 202 to the initial
         request, with 'Location' header, 204 with noresponse body after
@@ -2856,7 +2872,7 @@ class LROsOperations(_LROsOperations):
          ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._post202_no_retry204_initial_async(
+        raw_result = await self._post202_no_retry204_initial(
             product=product,
             custom_headers=custom_headers,
             raw=True,
@@ -2884,13 +2900,13 @@ class LROsOperations(_LROsOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    post202_no_retry204_async.metadata = {'url': '/lro/post/202/noretry/204'}
+    post202_no_retry204.metadata = {'url': '/lro/post/202/noretry/204'}
 
 
-    async def _post_double_headers_final_location_get_initial_async(
+    async def _post_double_headers_final_location_get_initial(
             self, *, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = self.post_double_headers_final_location_get_async.metadata['url']
+        url = self.post_double_headers_final_location_get.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -2925,7 +2941,7 @@ class LROsOperations(_LROsOperations):
 
         return deserialized
 
-    async def post_double_headers_final_location_get_async(
+    async def post_double_headers_final_location_get(
             self, *, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running post request, service returns a 202 to the initial request
         with both Location and Azure-Async header. Poll Azure-Async and it's
@@ -2942,7 +2958,7 @@ class LROsOperations(_LROsOperations):
          ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._post_double_headers_final_location_get_initial_async(
+        raw_result = await self._post_double_headers_final_location_get_initial(
             custom_headers=custom_headers,
             raw=True,
             **operation_config
@@ -2964,13 +2980,13 @@ class LROsOperations(_LROsOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    post_double_headers_final_location_get_async.metadata = {'url': '/lro/LROPostDoubleHeadersFinalLocationGet'}
+    post_double_headers_final_location_get.metadata = {'url': '/lro/LROPostDoubleHeadersFinalLocationGet'}
 
 
-    async def _post_double_headers_final_azure_header_get_initial_async(
+    async def _post_double_headers_final_azure_header_get_initial(
             self, *, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = self.post_double_headers_final_azure_header_get_async.metadata['url']
+        url = self.post_double_headers_final_azure_header_get.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -3005,7 +3021,7 @@ class LROsOperations(_LROsOperations):
 
         return deserialized
 
-    async def post_double_headers_final_azure_header_get_async(
+    async def post_double_headers_final_azure_header_get(
             self, *, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running post request, service returns a 202 to the initial request
         with both Location and Azure-Async header. Poll Azure-Async and it's
@@ -3022,7 +3038,7 @@ class LROsOperations(_LROsOperations):
          ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._post_double_headers_final_azure_header_get_initial_async(
+        raw_result = await self._post_double_headers_final_azure_header_get_initial(
             custom_headers=custom_headers,
             raw=True,
             **operation_config
@@ -3044,13 +3060,13 @@ class LROsOperations(_LROsOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    post_double_headers_final_azure_header_get_async.metadata = {'url': '/lro/LROPostDoubleHeadersFinalAzureHeaderGet'}
+    post_double_headers_final_azure_header_get.metadata = {'url': '/lro/LROPostDoubleHeadersFinalAzureHeaderGet'}
 
 
-    async def _post_double_headers_final_azure_header_get_default_initial_async(
+    async def _post_double_headers_final_azure_header_get_default_initial(
             self, *, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = self.post_double_headers_final_azure_header_get_default_async.metadata['url']
+        url = self.post_double_headers_final_azure_header_get_default.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -3085,7 +3101,7 @@ class LROsOperations(_LROsOperations):
 
         return deserialized
 
-    async def post_double_headers_final_azure_header_get_default_async(
+    async def post_double_headers_final_azure_header_get_default(
             self, *, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running post request, service returns a 202 to the initial request
         with both Location and Azure-Async header. Poll Azure-Async and it's
@@ -3103,7 +3119,7 @@ class LROsOperations(_LROsOperations):
          ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._post_double_headers_final_azure_header_get_default_initial_async(
+        raw_result = await self._post_double_headers_final_azure_header_get_default_initial(
             custom_headers=custom_headers,
             raw=True,
             **operation_config
@@ -3125,13 +3141,13 @@ class LROsOperations(_LROsOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    post_double_headers_final_azure_header_get_default_async.metadata = {'url': '/lro/LROPostDoubleHeadersFinalAzureHeaderGetDefault'}
+    post_double_headers_final_azure_header_get_default.metadata = {'url': '/lro/LROPostDoubleHeadersFinalAzureHeaderGetDefault'}
 
 
-    async def _post_async_retry_succeeded_initial_async(
+    async def _post_async_retry_succeeded_initial(
             self, product=None, *, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = self.post_async_retry_succeeded_async.metadata['url']
+        url = self.post_async_retry_succeeded.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -3180,7 +3196,7 @@ class LROsOperations(_LROsOperations):
 
         return deserialized
 
-    async def post_async_retry_succeeded_async(
+    async def post_async_retry_succeeded(
             self, product=None, *, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running post request, service returns a 202 to the initial
         request, with an entity that contains ProvisioningState=’Creating’.
@@ -3200,7 +3216,7 @@ class LROsOperations(_LROsOperations):
          ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._post_async_retry_succeeded_initial_async(
+        raw_result = await self._post_async_retry_succeeded_initial(
             product=product,
             custom_headers=custom_headers,
             raw=True,
@@ -3229,13 +3245,13 @@ class LROsOperations(_LROsOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    post_async_retry_succeeded_async.metadata = {'url': '/lro/postasync/retry/succeeded'}
+    post_async_retry_succeeded.metadata = {'url': '/lro/postasync/retry/succeeded'}
 
 
-    async def _post_async_no_retry_succeeded_initial_async(
+    async def _post_async_no_retry_succeeded_initial(
             self, product=None, *, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = self.post_async_no_retry_succeeded_async.metadata['url']
+        url = self.post_async_no_retry_succeeded.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -3284,7 +3300,7 @@ class LROsOperations(_LROsOperations):
 
         return deserialized
 
-    async def post_async_no_retry_succeeded_async(
+    async def post_async_no_retry_succeeded(
             self, product=None, *, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running post request, service returns a 202 to the initial
         request, with an entity that contains ProvisioningState=’Creating’.
@@ -3304,7 +3320,7 @@ class LROsOperations(_LROsOperations):
          ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._post_async_no_retry_succeeded_initial_async(
+        raw_result = await self._post_async_no_retry_succeeded_initial(
             product=product,
             custom_headers=custom_headers,
             raw=True,
@@ -3333,13 +3349,13 @@ class LROsOperations(_LROsOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    post_async_no_retry_succeeded_async.metadata = {'url': '/lro/postasync/noretry/succeeded'}
+    post_async_no_retry_succeeded.metadata = {'url': '/lro/postasync/noretry/succeeded'}
 
 
-    async def _post_async_retry_failed_initial_async(
+    async def _post_async_retry_failed_initial(
             self, product=None, *, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = self.post_async_retry_failed_async.metadata['url']
+        url = self.post_async_retry_failed.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -3379,7 +3395,7 @@ class LROsOperations(_LROsOperations):
             client_raw_response.add_headers(header_dict)
             return client_raw_response
 
-    async def post_async_retry_failed_async(
+    async def post_async_retry_failed(
             self, product=None, *, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running post request, service returns a 202 to the initial
         request, with an entity that contains ProvisioningState=’Creating’.
@@ -3397,7 +3413,7 @@ class LROsOperations(_LROsOperations):
         :rtype: ~None or ~msrest.pipeline.ClientRawResponse[None]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._post_async_retry_failed_initial_async(
+        raw_result = await self._post_async_retry_failed_initial(
             product=product,
             custom_headers=custom_headers,
             raw=True,
@@ -3421,13 +3437,13 @@ class LROsOperations(_LROsOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    post_async_retry_failed_async.metadata = {'url': '/lro/postasync/retry/failed'}
+    post_async_retry_failed.metadata = {'url': '/lro/postasync/retry/failed'}
 
 
-    async def _post_async_retrycanceled_initial_async(
+    async def _post_async_retrycanceled_initial(
             self, product=None, *, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = self.post_async_retrycanceled_async.metadata['url']
+        url = self.post_async_retrycanceled.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -3467,7 +3483,7 @@ class LROsOperations(_LROsOperations):
             client_raw_response.add_headers(header_dict)
             return client_raw_response
 
-    async def post_async_retrycanceled_async(
+    async def post_async_retrycanceled(
             self, product=None, *, custom_headers=None, raw=False, polling=True, **operation_config):
         """Long running post request, service returns a 202 to the initial
         request, with an entity that contains ProvisioningState=’Creating’.
@@ -3485,7 +3501,7 @@ class LROsOperations(_LROsOperations):
         :rtype: ~None or ~msrest.pipeline.ClientRawResponse[None]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._post_async_retrycanceled_initial_async(
+        raw_result = await self._post_async_retrycanceled_initial(
             product=product,
             custom_headers=custom_headers,
             raw=True,
@@ -3509,4 +3525,4 @@ class LROsOperations(_LROsOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    post_async_retrycanceled_async.metadata = {'url': '/lro/postasync/retry/canceled'}
+    post_async_retrycanceled.metadata = {'url': '/lro/postasync/retry/canceled'}

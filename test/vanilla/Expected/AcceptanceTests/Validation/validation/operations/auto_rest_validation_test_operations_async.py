@@ -12,12 +12,11 @@
 from msrest.pipeline import ClientRawResponse
 from msrest.exceptions import HttpOperationError
 from .. import models
-from .auto_rest_validation_test_operations import AutoRestValidationTestOperationsMixin as _AutoRestValidationTestOperationsMixin
 
 
-class AutoRestValidationTestOperationsMixin(_AutoRestValidationTestOperationsMixin):
+class AutoRestValidationTestOperationsMixin:
 
-    async def validation_of_method_parameters_async(
+    async def validation_of_method_parameters(
             self, resource_group_name, id, *, custom_headers=None, raw=False, **operation_config):
         """Validates input parameters on the method. See swagger for details.
 
@@ -37,7 +36,7 @@ class AutoRestValidationTestOperationsMixin(_AutoRestValidationTestOperationsMix
         :raises: :class:`ErrorException<validation.models.ErrorException>`
         """
         # Construct URL
-        url = self.validation_of_method_parameters_async.metadata['url']
+        url = self.validation_of_method_parameters.metadata['url']
         path_format_arguments = {
             'subscriptionId': self._serialize.url("self.config.subscription_id", self.config.subscription_id, 'str'),
             'resourceGroupName': self._serialize.url("resource_group_name", resource_group_name, 'str', max_length=10, min_length=3, pattern=r'[a-zA-Z0-9]+'),
@@ -71,9 +70,9 @@ class AutoRestValidationTestOperationsMixin(_AutoRestValidationTestOperationsMix
             return client_raw_response
 
         return deserialized
-    validation_of_method_parameters_async.metadata = {'url': '/fakepath/{subscriptionId}/{resourceGroupName}/{id}'}
+    validation_of_method_parameters.metadata = {'url': '/fakepath/{subscriptionId}/{resourceGroupName}/{id}'}
 
-    async def validation_of_body_async(
+    async def validation_of_body(
             self, resource_group_name, id, body=None, *, custom_headers=None, raw=False, **operation_config):
         """Validates body parameters on the method. See swagger for details.
 
@@ -95,7 +94,7 @@ class AutoRestValidationTestOperationsMixin(_AutoRestValidationTestOperationsMix
         :raises: :class:`ErrorException<validation.models.ErrorException>`
         """
         # Construct URL
-        url = self.validation_of_body_async.metadata['url']
+        url = self.validation_of_body.metadata['url']
         path_format_arguments = {
             'subscriptionId': self._serialize.url("self.config.subscription_id", self.config.subscription_id, 'str'),
             'resourceGroupName': self._serialize.url("resource_group_name", resource_group_name, 'str', max_length=10, min_length=3, pattern=r'[a-zA-Z0-9]+'),
@@ -136,9 +135,9 @@ class AutoRestValidationTestOperationsMixin(_AutoRestValidationTestOperationsMix
             return client_raw_response
 
         return deserialized
-    validation_of_body_async.metadata = {'url': '/fakepath/{subscriptionId}/{resourceGroupName}/{id}'}
+    validation_of_body.metadata = {'url': '/fakepath/{subscriptionId}/{resourceGroupName}/{id}'}
 
-    async def get_with_constant_in_path_async(
+    async def get_with_constant_in_path(
             self, *, custom_headers=None, raw=False, **operation_config):
         """
 
@@ -155,7 +154,7 @@ class AutoRestValidationTestOperationsMixin(_AutoRestValidationTestOperationsMix
         constant_param = "constant"
 
         # Construct URL
-        url = self.get_with_constant_in_path_async.metadata['url']
+        url = self.get_with_constant_in_path.metadata['url']
         path_format_arguments = {
             'constantParam': self._serialize.url("constant_param", constant_param, 'str')
         }
@@ -179,9 +178,9 @@ class AutoRestValidationTestOperationsMixin(_AutoRestValidationTestOperationsMix
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    get_with_constant_in_path_async.metadata = {'url': '/validation/constantsInPath/{constantParam}/value'}
+    get_with_constant_in_path.metadata = {'url': '/validation/constantsInPath/{constantParam}/value'}
 
-    async def post_with_constant_in_body_async(
+    async def post_with_constant_in_body(
             self, body=None, *, custom_headers=None, raw=False, **operation_config):
         """
 
@@ -201,7 +200,7 @@ class AutoRestValidationTestOperationsMixin(_AutoRestValidationTestOperationsMix
         constant_param = "constant"
 
         # Construct URL
-        url = self.post_with_constant_in_body_async.metadata['url']
+        url = self.post_with_constant_in_body.metadata['url']
         path_format_arguments = {
             'constantParam': self._serialize.url("constant_param", constant_param, 'str')
         }
@@ -239,4 +238,4 @@ class AutoRestValidationTestOperationsMixin(_AutoRestValidationTestOperationsMix
             return client_raw_response
 
         return deserialized
-    post_with_constant_in_body_async.metadata = {'url': '/validation/constantsInPath/{constantParam}/value'}
+    post_with_constant_in_body.metadata = {'url': '/validation/constantsInPath/{constantParam}/value'}

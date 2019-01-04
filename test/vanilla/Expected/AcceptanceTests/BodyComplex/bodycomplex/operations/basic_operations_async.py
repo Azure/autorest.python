@@ -12,13 +12,30 @@
 from msrest.pipeline import ClientRawResponse
 
 from .. import models
-from .basic_operations import BasicOperations as _BasicOperations
 
 
-class BasicOperations(_BasicOperations):
-    """BasicOperations operations."""
+class BasicOperations:
+    """BasicOperations operations.
 
-    async def get_valid_async(
+    :param client: Client for service requests.
+    :param config: Configuration of service client.
+    :param serializer: An object model serializer.
+    :param deserializer: An object model deserializer.
+    :ivar api_version: API ID. Constant value: "2016-02-29".
+    """
+
+    models = models
+
+    def __init__(self, client, config, serializer, deserializer) -> None:
+
+        self._client = client
+        self._serialize = serializer
+        self._deserialize = deserializer
+
+        self.config = config
+        self.api_version = "2016-02-29"
+
+    async def get_valid(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get complex type {id: 2, name: 'abc', color: 'YELLOW'}.
 
@@ -33,7 +50,7 @@ class BasicOperations(_BasicOperations):
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_valid_async.metadata['url']
+        url = self.get_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -60,9 +77,9 @@ class BasicOperations(_BasicOperations):
             return client_raw_response
 
         return deserialized
-    get_valid_async.metadata = {'url': '/complex/basic/valid'}
+    get_valid.metadata = {'url': '/complex/basic/valid'}
 
-    async def put_valid_async(
+    async def put_valid(
             self, complex_body, *, custom_headers=None, raw=False, **operation_config):
         """Please put {id: 2, name: 'abc', color: 'Magenta'}.
 
@@ -78,7 +95,7 @@ class BasicOperations(_BasicOperations):
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
-        url = self.put_valid_async.metadata['url']
+        url = self.put_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -103,9 +120,9 @@ class BasicOperations(_BasicOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_valid_async.metadata = {'url': '/complex/basic/valid'}
+    put_valid.metadata = {'url': '/complex/basic/valid'}
 
-    async def get_invalid_async(
+    async def get_invalid(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get a basic complex type that is invalid for the local strong type.
 
@@ -120,7 +137,7 @@ class BasicOperations(_BasicOperations):
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_invalid_async.metadata['url']
+        url = self.get_invalid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -147,9 +164,9 @@ class BasicOperations(_BasicOperations):
             return client_raw_response
 
         return deserialized
-    get_invalid_async.metadata = {'url': '/complex/basic/invalid'}
+    get_invalid.metadata = {'url': '/complex/basic/invalid'}
 
-    async def get_empty_async(
+    async def get_empty(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get a basic complex type that is empty.
 
@@ -164,7 +181,7 @@ class BasicOperations(_BasicOperations):
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_empty_async.metadata['url']
+        url = self.get_empty.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -191,9 +208,9 @@ class BasicOperations(_BasicOperations):
             return client_raw_response
 
         return deserialized
-    get_empty_async.metadata = {'url': '/complex/basic/empty'}
+    get_empty.metadata = {'url': '/complex/basic/empty'}
 
-    async def get_null_async(
+    async def get_null(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get a basic complex type whose properties are null.
 
@@ -208,7 +225,7 @@ class BasicOperations(_BasicOperations):
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_null_async.metadata['url']
+        url = self.get_null.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -235,9 +252,9 @@ class BasicOperations(_BasicOperations):
             return client_raw_response
 
         return deserialized
-    get_null_async.metadata = {'url': '/complex/basic/null'}
+    get_null.metadata = {'url': '/complex/basic/null'}
 
-    async def get_not_provided_async(
+    async def get_not_provided(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get a basic complex type while the server doesn't provide a response
         payload.
@@ -253,7 +270,7 @@ class BasicOperations(_BasicOperations):
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_not_provided_async.metadata['url']
+        url = self.get_not_provided.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -280,4 +297,4 @@ class BasicOperations(_BasicOperations):
             return client_raw_response
 
         return deserialized
-    get_not_provided_async.metadata = {'url': '/complex/basic/notprovided'}
+    get_not_provided.metadata = {'url': '/complex/basic/notprovided'}

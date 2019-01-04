@@ -12,13 +12,28 @@
 from msrest.pipeline import ClientRawResponse
 
 from .. import models
-from .date_model_operations import DateModelOperations as _DateModelOperations
 
 
-class DateModelOperations(_DateModelOperations):
-    """DateModelOperations operations."""
+class DateModelOperations:
+    """DateModelOperations operations.
 
-    async def get_null_async(
+    :param client: Client for service requests.
+    :param config: Configuration of service client.
+    :param serializer: An object model serializer.
+    :param deserializer: An object model deserializer.
+    """
+
+    models = models
+
+    def __init__(self, client, config, serializer, deserializer) -> None:
+
+        self._client = client
+        self._serialize = serializer
+        self._deserialize = deserializer
+
+        self.config = config
+
+    async def get_null(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get null date value.
 
@@ -32,7 +47,7 @@ class DateModelOperations(_DateModelOperations):
         :raises: :class:`ErrorException<bodydate.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_null_async.metadata['url']
+        url = self.get_null.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -59,9 +74,9 @@ class DateModelOperations(_DateModelOperations):
             return client_raw_response
 
         return deserialized
-    get_null_async.metadata = {'url': '/date/null'}
+    get_null.metadata = {'url': '/date/null'}
 
-    async def get_invalid_date_async(
+    async def get_invalid_date(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get invalid date value.
 
@@ -75,7 +90,7 @@ class DateModelOperations(_DateModelOperations):
         :raises: :class:`ErrorException<bodydate.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_invalid_date_async.metadata['url']
+        url = self.get_invalid_date.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -102,9 +117,9 @@ class DateModelOperations(_DateModelOperations):
             return client_raw_response
 
         return deserialized
-    get_invalid_date_async.metadata = {'url': '/date/invaliddate'}
+    get_invalid_date.metadata = {'url': '/date/invaliddate'}
 
-    async def get_overflow_date_async(
+    async def get_overflow_date(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get overflow date value.
 
@@ -118,7 +133,7 @@ class DateModelOperations(_DateModelOperations):
         :raises: :class:`ErrorException<bodydate.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_overflow_date_async.metadata['url']
+        url = self.get_overflow_date.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -145,9 +160,9 @@ class DateModelOperations(_DateModelOperations):
             return client_raw_response
 
         return deserialized
-    get_overflow_date_async.metadata = {'url': '/date/overflowdate'}
+    get_overflow_date.metadata = {'url': '/date/overflowdate'}
 
-    async def get_underflow_date_async(
+    async def get_underflow_date(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get underflow date value.
 
@@ -161,7 +176,7 @@ class DateModelOperations(_DateModelOperations):
         :raises: :class:`ErrorException<bodydate.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_underflow_date_async.metadata['url']
+        url = self.get_underflow_date.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -188,9 +203,9 @@ class DateModelOperations(_DateModelOperations):
             return client_raw_response
 
         return deserialized
-    get_underflow_date_async.metadata = {'url': '/date/underflowdate'}
+    get_underflow_date.metadata = {'url': '/date/underflowdate'}
 
-    async def put_max_date_async(
+    async def put_max_date(
             self, date_body, *, custom_headers=None, raw=False, **operation_config):
         """Put max date value 9999-12-31.
 
@@ -206,7 +221,7 @@ class DateModelOperations(_DateModelOperations):
         :raises: :class:`ErrorException<bodydate.models.ErrorException>`
         """
         # Construct URL
-        url = self.put_max_date_async.metadata['url']
+        url = self.put_max_date.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -230,9 +245,9 @@ class DateModelOperations(_DateModelOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_max_date_async.metadata = {'url': '/date/max'}
+    put_max_date.metadata = {'url': '/date/max'}
 
-    async def get_max_date_async(
+    async def get_max_date(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get max date value 9999-12-31.
 
@@ -246,7 +261,7 @@ class DateModelOperations(_DateModelOperations):
         :raises: :class:`ErrorException<bodydate.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_max_date_async.metadata['url']
+        url = self.get_max_date.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -273,9 +288,9 @@ class DateModelOperations(_DateModelOperations):
             return client_raw_response
 
         return deserialized
-    get_max_date_async.metadata = {'url': '/date/max'}
+    get_max_date.metadata = {'url': '/date/max'}
 
-    async def put_min_date_async(
+    async def put_min_date(
             self, date_body, *, custom_headers=None, raw=False, **operation_config):
         """Put min date value 0000-01-01.
 
@@ -291,7 +306,7 @@ class DateModelOperations(_DateModelOperations):
         :raises: :class:`ErrorException<bodydate.models.ErrorException>`
         """
         # Construct URL
-        url = self.put_min_date_async.metadata['url']
+        url = self.put_min_date.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -315,9 +330,9 @@ class DateModelOperations(_DateModelOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_min_date_async.metadata = {'url': '/date/min'}
+    put_min_date.metadata = {'url': '/date/min'}
 
-    async def get_min_date_async(
+    async def get_min_date(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get min date value 0000-01-01.
 
@@ -331,7 +346,7 @@ class DateModelOperations(_DateModelOperations):
         :raises: :class:`ErrorException<bodydate.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_min_date_async.metadata['url']
+        url = self.get_min_date.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -358,4 +373,4 @@ class DateModelOperations(_DateModelOperations):
             return client_raw_response
 
         return deserialized
-    get_min_date_async.metadata = {'url': '/date/min'}
+    get_min_date.metadata = {'url': '/date/min'}

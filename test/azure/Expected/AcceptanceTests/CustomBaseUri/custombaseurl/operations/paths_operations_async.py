@@ -13,12 +13,28 @@ import uuid
 from msrest.pipeline import ClientRawResponse
 
 from .. import models
-from .paths_operations import PathsOperations as _PathsOperations
 
 
-class PathsOperations(_PathsOperations):
+class PathsOperations:
+    """PathsOperations operations.
 
-    async def get_empty_async(
+    :param client: Client for service requests.
+    :param config: Configuration of service client.
+    :param serializer: An object model serializer.
+    :param deserializer: An object model deserializer.
+    """
+
+    models = models
+
+    def __init__(self, client, config, serializer, deserializer) -> None:
+
+        self._client = client
+        self._serialize = serializer
+        self._deserialize = deserializer
+
+        self.config = config
+
+    async def get_empty(
             self, account_name, *, custom_headers=None, raw=False, **operation_config):
         """Get a 200 to test a valid base uri.
 
@@ -34,7 +50,7 @@ class PathsOperations(_PathsOperations):
         :raises: :class:`ErrorException<custombaseurl.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_empty_async.metadata['url']
+        url = self.get_empty.metadata['url']
         path_format_arguments = {
             'accountName': self._serialize.url("account_name", account_name, 'str', skip_quote=True),
             'host': self._serialize.url("self.config.host", self.config.host, 'str', skip_quote=True)
@@ -63,4 +79,4 @@ class PathsOperations(_PathsOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    get_empty_async.metadata = {'url': '/customuri'}
+    get_empty.metadata = {'url': '/customuri'}

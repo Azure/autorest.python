@@ -12,13 +12,28 @@
 from msrest.pipeline import ClientRawResponse
 
 from .. import models
-from .readonlyproperty_operations import ReadonlypropertyOperations as _ReadonlypropertyOperations
 
 
-class ReadonlypropertyOperations(_ReadonlypropertyOperations):
-    """ReadonlypropertyOperations operations."""
+class ReadonlypropertyOperations:
+    """ReadonlypropertyOperations operations.
 
-    async def get_valid_async(
+    :param client: Client for service requests.
+    :param config: Configuration of service client.
+    :param serializer: An object model serializer.
+    :param deserializer: An object model deserializer.
+    """
+
+    models = models
+
+    def __init__(self, client, config, serializer, deserializer) -> None:
+
+        self._client = client
+        self._serialize = serializer
+        self._deserialize = deserializer
+
+        self.config = config
+
+    async def get_valid(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get complex types that have readonly properties.
 
@@ -33,7 +48,7 @@ class ReadonlypropertyOperations(_ReadonlypropertyOperations):
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_valid_async.metadata['url']
+        url = self.get_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -60,9 +75,9 @@ class ReadonlypropertyOperations(_ReadonlypropertyOperations):
             return client_raw_response
 
         return deserialized
-    get_valid_async.metadata = {'url': '/complex/readonlyproperty/valid'}
+    get_valid.metadata = {'url': '/complex/readonlyproperty/valid'}
 
-    async def put_valid_async(
+    async def put_valid(
             self, size=None, *, custom_headers=None, raw=False, **operation_config):
         """Put complex types that have readonly properties.
 
@@ -80,7 +95,7 @@ class ReadonlypropertyOperations(_ReadonlypropertyOperations):
         complex_body = models.ReadonlyObj(size=size)
 
         # Construct URL
-        url = self.put_valid_async.metadata['url']
+        url = self.put_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -104,4 +119,4 @@ class ReadonlypropertyOperations(_ReadonlypropertyOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_valid_async.metadata = {'url': '/complex/readonlyproperty/valid'}
+    put_valid.metadata = {'url': '/complex/readonlyproperty/valid'}

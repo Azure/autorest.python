@@ -12,13 +12,34 @@
 from msrest.pipeline import ClientRawResponse
 
 from .. import models
-from .queries_operations import QueriesOperations as _QueriesOperations
 
 
-class QueriesOperations(_QueriesOperations):
-    """QueriesOperations operations."""
+class QueriesOperations:
+    """QueriesOperations operations.
 
-    async def get_boolean_true_async(
+    :param client: Client for service requests.
+    :param config: Configuration of service client.
+    :param serializer: An object model serializer.
+    :param deserializer: An object model deserializer.
+    :ivar byte_query: '' as byte array
+    :ivar date_query: '2012-01-01' as date. Constant value: "2012-01-01".
+    :ivar date_time_query: '2012-01-01T01:01:01Z' as date-time. Constant value: "2012-01-01T01:01:01Z".
+    """
+
+    models = models
+
+    def __init__(self, client, config, serializer, deserializer) -> None:
+
+        self._client = client
+        self._serialize = serializer
+        self._deserialize = deserializer
+
+        self.config = config
+        self.byte_query = bytearray("", encoding="utf-8")
+        self.date_query = "2012-01-01"
+        self.date_time_query = "2012-01-01T01:01:01Z"
+
+    async def get_boolean_true(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get true Boolean value on path.
 
@@ -34,7 +55,7 @@ class QueriesOperations(_QueriesOperations):
         bool_query = True
 
         # Construct URL
-        url = self.get_boolean_true_async.metadata['url']
+        url = self.get_boolean_true.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -55,9 +76,9 @@ class QueriesOperations(_QueriesOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    get_boolean_true_async.metadata = {'url': '/queries/bool/true'}
+    get_boolean_true.metadata = {'url': '/queries/bool/true'}
 
-    async def get_boolean_false_async(
+    async def get_boolean_false(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get false Boolean value on path.
 
@@ -73,7 +94,7 @@ class QueriesOperations(_QueriesOperations):
         bool_query = False
 
         # Construct URL
-        url = self.get_boolean_false_async.metadata['url']
+        url = self.get_boolean_false.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -94,9 +115,9 @@ class QueriesOperations(_QueriesOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    get_boolean_false_async.metadata = {'url': '/queries/bool/false'}
+    get_boolean_false.metadata = {'url': '/queries/bool/false'}
 
-    async def get_boolean_null_async(
+    async def get_boolean_null(
             self, bool_query=None, *, custom_headers=None, raw=False, **operation_config):
         """Get null Boolean value on query (query string should be absent).
 
@@ -112,7 +133,7 @@ class QueriesOperations(_QueriesOperations):
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_boolean_null_async.metadata['url']
+        url = self.get_boolean_null.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -134,9 +155,9 @@ class QueriesOperations(_QueriesOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    get_boolean_null_async.metadata = {'url': '/queries/bool/null'}
+    get_boolean_null.metadata = {'url': '/queries/bool/null'}
 
-    async def get_int_one_million_async(
+    async def get_int_one_million(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get '1000000' integer value.
 
@@ -152,7 +173,7 @@ class QueriesOperations(_QueriesOperations):
         int_query = 1000000
 
         # Construct URL
-        url = self.get_int_one_million_async.metadata['url']
+        url = self.get_int_one_million.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -173,9 +194,9 @@ class QueriesOperations(_QueriesOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    get_int_one_million_async.metadata = {'url': '/queries/int/1000000'}
+    get_int_one_million.metadata = {'url': '/queries/int/1000000'}
 
-    async def get_int_negative_one_million_async(
+    async def get_int_negative_one_million(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get '-1000000' integer value.
 
@@ -191,7 +212,7 @@ class QueriesOperations(_QueriesOperations):
         int_query = -1000000
 
         # Construct URL
-        url = self.get_int_negative_one_million_async.metadata['url']
+        url = self.get_int_negative_one_million.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -212,9 +233,9 @@ class QueriesOperations(_QueriesOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    get_int_negative_one_million_async.metadata = {'url': '/queries/int/-1000000'}
+    get_int_negative_one_million.metadata = {'url': '/queries/int/-1000000'}
 
-    async def get_int_null_async(
+    async def get_int_null(
             self, int_query=None, *, custom_headers=None, raw=False, **operation_config):
         """Get null integer value (no query parameter).
 
@@ -230,7 +251,7 @@ class QueriesOperations(_QueriesOperations):
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_int_null_async.metadata['url']
+        url = self.get_int_null.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -252,9 +273,9 @@ class QueriesOperations(_QueriesOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    get_int_null_async.metadata = {'url': '/queries/int/null'}
+    get_int_null.metadata = {'url': '/queries/int/null'}
 
-    async def get_ten_billion_async(
+    async def get_ten_billion(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get '10000000000' 64 bit integer value.
 
@@ -270,7 +291,7 @@ class QueriesOperations(_QueriesOperations):
         long_query = 10000000000
 
         # Construct URL
-        url = self.get_ten_billion_async.metadata['url']
+        url = self.get_ten_billion.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -291,9 +312,9 @@ class QueriesOperations(_QueriesOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    get_ten_billion_async.metadata = {'url': '/queries/long/10000000000'}
+    get_ten_billion.metadata = {'url': '/queries/long/10000000000'}
 
-    async def get_negative_ten_billion_async(
+    async def get_negative_ten_billion(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get '-10000000000' 64 bit integer value.
 
@@ -309,7 +330,7 @@ class QueriesOperations(_QueriesOperations):
         long_query = -10000000000
 
         # Construct URL
-        url = self.get_negative_ten_billion_async.metadata['url']
+        url = self.get_negative_ten_billion.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -330,9 +351,9 @@ class QueriesOperations(_QueriesOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    get_negative_ten_billion_async.metadata = {'url': '/queries/long/-10000000000'}
+    get_negative_ten_billion.metadata = {'url': '/queries/long/-10000000000'}
 
-    async def get_long_null_async(
+    async def get_long_null(
             self, long_query=None, *, custom_headers=None, raw=False, **operation_config):
         """Get 'null 64 bit integer value (no query param in uri).
 
@@ -348,7 +369,7 @@ class QueriesOperations(_QueriesOperations):
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_long_null_async.metadata['url']
+        url = self.get_long_null.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -370,9 +391,9 @@ class QueriesOperations(_QueriesOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    get_long_null_async.metadata = {'url': '/queries/long/null'}
+    get_long_null.metadata = {'url': '/queries/long/null'}
 
-    async def float_scientific_positive_async(
+    async def float_scientific_positive(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get '1.034E+20' numeric value.
 
@@ -388,7 +409,7 @@ class QueriesOperations(_QueriesOperations):
         float_query = 1.034E+20
 
         # Construct URL
-        url = self.float_scientific_positive_async.metadata['url']
+        url = self.float_scientific_positive.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -409,9 +430,9 @@ class QueriesOperations(_QueriesOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    float_scientific_positive_async.metadata = {'url': '/queries/float/1.034E+20'}
+    float_scientific_positive.metadata = {'url': '/queries/float/1.034E+20'}
 
-    async def float_scientific_negative_async(
+    async def float_scientific_negative(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get '-1.034E-20' numeric value.
 
@@ -427,7 +448,7 @@ class QueriesOperations(_QueriesOperations):
         float_query = -1.034E-20
 
         # Construct URL
-        url = self.float_scientific_negative_async.metadata['url']
+        url = self.float_scientific_negative.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -448,9 +469,9 @@ class QueriesOperations(_QueriesOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    float_scientific_negative_async.metadata = {'url': '/queries/float/-1.034E-20'}
+    float_scientific_negative.metadata = {'url': '/queries/float/-1.034E-20'}
 
-    async def float_null_async(
+    async def float_null(
             self, float_query=None, *, custom_headers=None, raw=False, **operation_config):
         """Get null numeric value (no query parameter).
 
@@ -466,7 +487,7 @@ class QueriesOperations(_QueriesOperations):
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
-        url = self.float_null_async.metadata['url']
+        url = self.float_null.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -488,9 +509,9 @@ class QueriesOperations(_QueriesOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    float_null_async.metadata = {'url': '/queries/float/null'}
+    float_null.metadata = {'url': '/queries/float/null'}
 
-    async def double_decimal_positive_async(
+    async def double_decimal_positive(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get '9999999.999' numeric value.
 
@@ -506,7 +527,7 @@ class QueriesOperations(_QueriesOperations):
         double_query = 9999999.999
 
         # Construct URL
-        url = self.double_decimal_positive_async.metadata['url']
+        url = self.double_decimal_positive.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -527,9 +548,9 @@ class QueriesOperations(_QueriesOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    double_decimal_positive_async.metadata = {'url': '/queries/double/9999999.999'}
+    double_decimal_positive.metadata = {'url': '/queries/double/9999999.999'}
 
-    async def double_decimal_negative_async(
+    async def double_decimal_negative(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get '-9999999.999' numeric value.
 
@@ -545,7 +566,7 @@ class QueriesOperations(_QueriesOperations):
         double_query = -9999999.999
 
         # Construct URL
-        url = self.double_decimal_negative_async.metadata['url']
+        url = self.double_decimal_negative.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -566,9 +587,9 @@ class QueriesOperations(_QueriesOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    double_decimal_negative_async.metadata = {'url': '/queries/double/-9999999.999'}
+    double_decimal_negative.metadata = {'url': '/queries/double/-9999999.999'}
 
-    async def double_null_async(
+    async def double_null(
             self, double_query=None, *, custom_headers=None, raw=False, **operation_config):
         """Get null numeric value (no query parameter).
 
@@ -584,7 +605,7 @@ class QueriesOperations(_QueriesOperations):
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
-        url = self.double_null_async.metadata['url']
+        url = self.double_null.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -606,9 +627,9 @@ class QueriesOperations(_QueriesOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    double_null_async.metadata = {'url': '/queries/double/null'}
+    double_null.metadata = {'url': '/queries/double/null'}
 
-    async def string_unicode_async(
+    async def string_unicode(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value.
 
@@ -624,7 +645,7 @@ class QueriesOperations(_QueriesOperations):
         string_query = "啊齄丂狛狜隣郎隣兀﨩"
 
         # Construct URL
-        url = self.string_unicode_async.metadata['url']
+        url = self.string_unicode.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -645,9 +666,9 @@ class QueriesOperations(_QueriesOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    string_unicode_async.metadata = {'url': '/queries/string/unicode/'}
+    string_unicode.metadata = {'url': '/queries/string/unicode/'}
 
-    async def string_url_encoded_async(
+    async def string_url_encoded(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get 'begin!*'();:@ &=+$,/?#[]end.
 
@@ -663,7 +684,7 @@ class QueriesOperations(_QueriesOperations):
         string_query = "begin!*'();:@ &=+$,/?#[]end"
 
         # Construct URL
-        url = self.string_url_encoded_async.metadata['url']
+        url = self.string_url_encoded.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -684,9 +705,9 @@ class QueriesOperations(_QueriesOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    string_url_encoded_async.metadata = {'url': '/queries/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend'}
+    string_url_encoded.metadata = {'url': '/queries/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend'}
 
-    async def string_empty_async(
+    async def string_empty(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get ''.
 
@@ -702,7 +723,7 @@ class QueriesOperations(_QueriesOperations):
         string_query = ""
 
         # Construct URL
-        url = self.string_empty_async.metadata['url']
+        url = self.string_empty.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -723,9 +744,9 @@ class QueriesOperations(_QueriesOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    string_empty_async.metadata = {'url': '/queries/string/empty'}
+    string_empty.metadata = {'url': '/queries/string/empty'}
 
-    async def string_null_async(
+    async def string_null(
             self, string_query=None, *, custom_headers=None, raw=False, **operation_config):
         """Get null (no query parameter in url).
 
@@ -741,7 +762,7 @@ class QueriesOperations(_QueriesOperations):
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
-        url = self.string_null_async.metadata['url']
+        url = self.string_null.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -763,9 +784,9 @@ class QueriesOperations(_QueriesOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    string_null_async.metadata = {'url': '/queries/string/null'}
+    string_null.metadata = {'url': '/queries/string/null'}
 
-    async def enum_valid_async(
+    async def enum_valid(
             self, enum_query=None, *, custom_headers=None, raw=False, **operation_config):
         """Get using uri with query parameter 'green color'.
 
@@ -782,7 +803,7 @@ class QueriesOperations(_QueriesOperations):
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
-        url = self.enum_valid_async.metadata['url']
+        url = self.enum_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -804,9 +825,9 @@ class QueriesOperations(_QueriesOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    enum_valid_async.metadata = {'url': '/queries/enum/green%20color'}
+    enum_valid.metadata = {'url': '/queries/enum/green%20color'}
 
-    async def enum_null_async(
+    async def enum_null(
             self, enum_query=None, *, custom_headers=None, raw=False, **operation_config):
         """Get null (no query parameter in url).
 
@@ -823,7 +844,7 @@ class QueriesOperations(_QueriesOperations):
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
-        url = self.enum_null_async.metadata['url']
+        url = self.enum_null.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -845,9 +866,9 @@ class QueriesOperations(_QueriesOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    enum_null_async.metadata = {'url': '/queries/enum/null'}
+    enum_null.metadata = {'url': '/queries/enum/null'}
 
-    async def byte_multi_byte_async(
+    async def byte_multi_byte(
             self, byte_query=None, *, custom_headers=None, raw=False, **operation_config):
         """Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
 
@@ -864,7 +885,7 @@ class QueriesOperations(_QueriesOperations):
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
-        url = self.byte_multi_byte_async.metadata['url']
+        url = self.byte_multi_byte.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -886,9 +907,9 @@ class QueriesOperations(_QueriesOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    byte_multi_byte_async.metadata = {'url': '/queries/byte/multibyte'}
+    byte_multi_byte.metadata = {'url': '/queries/byte/multibyte'}
 
-    async def byte_empty_async(
+    async def byte_empty(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get '' as byte array.
 
@@ -902,7 +923,7 @@ class QueriesOperations(_QueriesOperations):
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
-        url = self.byte_empty_async.metadata['url']
+        url = self.byte_empty.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -923,9 +944,9 @@ class QueriesOperations(_QueriesOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    byte_empty_async.metadata = {'url': '/queries/byte/empty'}
+    byte_empty.metadata = {'url': '/queries/byte/empty'}
 
-    async def byte_null_async(
+    async def byte_null(
             self, byte_query=None, *, custom_headers=None, raw=False, **operation_config):
         """Get null as byte array (no query parameters in uri).
 
@@ -941,7 +962,7 @@ class QueriesOperations(_QueriesOperations):
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
-        url = self.byte_null_async.metadata['url']
+        url = self.byte_null.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -963,9 +984,9 @@ class QueriesOperations(_QueriesOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    byte_null_async.metadata = {'url': '/queries/byte/null'}
+    byte_null.metadata = {'url': '/queries/byte/null'}
 
-    async def date_valid_async(
+    async def date_valid(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get '2012-01-01' as date.
 
@@ -979,7 +1000,7 @@ class QueriesOperations(_QueriesOperations):
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
-        url = self.date_valid_async.metadata['url']
+        url = self.date_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1000,9 +1021,9 @@ class QueriesOperations(_QueriesOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    date_valid_async.metadata = {'url': '/queries/date/2012-01-01'}
+    date_valid.metadata = {'url': '/queries/date/2012-01-01'}
 
-    async def date_null_async(
+    async def date_null(
             self, date_query=None, *, custom_headers=None, raw=False, **operation_config):
         """Get null as date - this should result in no query parameters in uri.
 
@@ -1018,7 +1039,7 @@ class QueriesOperations(_QueriesOperations):
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
-        url = self.date_null_async.metadata['url']
+        url = self.date_null.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1040,9 +1061,9 @@ class QueriesOperations(_QueriesOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    date_null_async.metadata = {'url': '/queries/date/null'}
+    date_null.metadata = {'url': '/queries/date/null'}
 
-    async def date_time_valid_async(
+    async def date_time_valid(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get '2012-01-01T01:01:01Z' as date-time.
 
@@ -1056,7 +1077,7 @@ class QueriesOperations(_QueriesOperations):
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
-        url = self.date_time_valid_async.metadata['url']
+        url = self.date_time_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1077,9 +1098,9 @@ class QueriesOperations(_QueriesOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    date_time_valid_async.metadata = {'url': '/queries/datetime/2012-01-01T01%3A01%3A01Z'}
+    date_time_valid.metadata = {'url': '/queries/datetime/2012-01-01T01%3A01%3A01Z'}
 
-    async def date_time_null_async(
+    async def date_time_null(
             self, date_time_query=None, *, custom_headers=None, raw=False, **operation_config):
         """Get null as date-time, should result in no query parameters in uri.
 
@@ -1095,7 +1116,7 @@ class QueriesOperations(_QueriesOperations):
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
-        url = self.date_time_null_async.metadata['url']
+        url = self.date_time_null.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1117,9 +1138,9 @@ class QueriesOperations(_QueriesOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    date_time_null_async.metadata = {'url': '/queries/datetime/null'}
+    date_time_null.metadata = {'url': '/queries/datetime/null'}
 
-    async def array_string_csv_valid_async(
+    async def array_string_csv_valid(
             self, array_query=None, *, custom_headers=None, raw=False, **operation_config):
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' ,
         null, ''] using the csv-array format.
@@ -1137,7 +1158,7 @@ class QueriesOperations(_QueriesOperations):
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
-        url = self.array_string_csv_valid_async.metadata['url']
+        url = self.array_string_csv_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1159,9 +1180,9 @@ class QueriesOperations(_QueriesOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    array_string_csv_valid_async.metadata = {'url': '/queries/array/csv/string/valid'}
+    array_string_csv_valid.metadata = {'url': '/queries/array/csv/string/valid'}
 
-    async def array_string_csv_null_async(
+    async def array_string_csv_null(
             self, array_query=None, *, custom_headers=None, raw=False, **operation_config):
         """Get a null array of string using the csv-array format.
 
@@ -1177,7 +1198,7 @@ class QueriesOperations(_QueriesOperations):
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
-        url = self.array_string_csv_null_async.metadata['url']
+        url = self.array_string_csv_null.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1199,9 +1220,9 @@ class QueriesOperations(_QueriesOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    array_string_csv_null_async.metadata = {'url': '/queries/array/csv/string/null'}
+    array_string_csv_null.metadata = {'url': '/queries/array/csv/string/null'}
 
-    async def array_string_csv_empty_async(
+    async def array_string_csv_empty(
             self, array_query=None, *, custom_headers=None, raw=False, **operation_config):
         """Get an empty array [] of string using the csv-array format.
 
@@ -1218,7 +1239,7 @@ class QueriesOperations(_QueriesOperations):
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
-        url = self.array_string_csv_empty_async.metadata['url']
+        url = self.array_string_csv_empty.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1240,9 +1261,9 @@ class QueriesOperations(_QueriesOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    array_string_csv_empty_async.metadata = {'url': '/queries/array/csv/string/empty'}
+    array_string_csv_empty.metadata = {'url': '/queries/array/csv/string/empty'}
 
-    async def array_string_ssv_valid_async(
+    async def array_string_ssv_valid(
             self, array_query=None, *, custom_headers=None, raw=False, **operation_config):
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' ,
         null, ''] using the ssv-array format.
@@ -1260,7 +1281,7 @@ class QueriesOperations(_QueriesOperations):
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
-        url = self.array_string_ssv_valid_async.metadata['url']
+        url = self.array_string_ssv_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1282,9 +1303,9 @@ class QueriesOperations(_QueriesOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    array_string_ssv_valid_async.metadata = {'url': '/queries/array/ssv/string/valid'}
+    array_string_ssv_valid.metadata = {'url': '/queries/array/ssv/string/valid'}
 
-    async def array_string_tsv_valid_async(
+    async def array_string_tsv_valid(
             self, array_query=None, *, custom_headers=None, raw=False, **operation_config):
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' ,
         null, ''] using the tsv-array format.
@@ -1302,7 +1323,7 @@ class QueriesOperations(_QueriesOperations):
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
-        url = self.array_string_tsv_valid_async.metadata['url']
+        url = self.array_string_tsv_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1324,9 +1345,9 @@ class QueriesOperations(_QueriesOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    array_string_tsv_valid_async.metadata = {'url': '/queries/array/tsv/string/valid'}
+    array_string_tsv_valid.metadata = {'url': '/queries/array/tsv/string/valid'}
 
-    async def array_string_pipes_valid_async(
+    async def array_string_pipes_valid(
             self, array_query=None, *, custom_headers=None, raw=False, **operation_config):
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' ,
         null, ''] using the pipes-array format.
@@ -1344,7 +1365,7 @@ class QueriesOperations(_QueriesOperations):
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
-        url = self.array_string_pipes_valid_async.metadata['url']
+        url = self.array_string_pipes_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1366,4 +1387,4 @@ class QueriesOperations(_QueriesOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    array_string_pipes_valid_async.metadata = {'url': '/queries/array/pipes/string/valid'}
+    array_string_pipes_valid.metadata = {'url': '/queries/array/pipes/string/valid'}

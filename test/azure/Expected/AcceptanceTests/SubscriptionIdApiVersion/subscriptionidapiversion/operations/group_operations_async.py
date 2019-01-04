@@ -13,12 +13,30 @@ import uuid
 from msrest.pipeline import ClientRawResponse
 
 from .. import models
-from .group_operations import GroupOperations as _GroupOperations
 
 
-class GroupOperations(_GroupOperations):
+class GroupOperations:
+    """GroupOperations operations.
 
-    async def get_sample_resource_group_async(
+    :param client: Client for service requests.
+    :param config: Configuration of service client.
+    :param serializer: An object model serializer.
+    :param deserializer: An object model deserializer.
+    :ivar api_version: API Version with value '2014-04-01-preview'. Constant value: "2014-04-01-preview".
+    """
+
+    models = models
+
+    def __init__(self, client, config, serializer, deserializer) -> None:
+
+        self._client = client
+        self._serialize = serializer
+        self._deserialize = deserializer
+        self.api_version = "2014-04-01-preview"
+
+        self.config = config
+
+    async def get_sample_resource_group(
             self, resource_group_name, *, custom_headers=None, raw=False, **operation_config):
         """Provides a resouce group with name 'testgroup101' and location 'West
         US'.
@@ -37,7 +55,7 @@ class GroupOperations(_GroupOperations):
          :class:`ErrorException<subscriptionidapiversion.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_sample_resource_group_async.metadata['url']
+        url = self.get_sample_resource_group.metadata['url']
         path_format_arguments = {
             'subscriptionId': self._serialize.url("self.config.subscription_id", self.config.subscription_id, 'str'),
             'resourceGroupName': self._serialize.url("resource_group_name", resource_group_name, 'str')
@@ -74,4 +92,4 @@ class GroupOperations(_GroupOperations):
             return client_raw_response
 
         return deserialized
-    get_sample_resource_group_async.metadata = {'url': '/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}'}
+    get_sample_resource_group.metadata = {'url': '/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}'}

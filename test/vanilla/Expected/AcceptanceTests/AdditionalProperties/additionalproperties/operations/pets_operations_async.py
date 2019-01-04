@@ -12,13 +12,28 @@
 from msrest.pipeline import ClientRawResponse
 
 from .. import models
-from .pets_operations import PetsOperations as _PetsOperations
 
 
-class PetsOperations(_PetsOperations):
-    """PetsOperations operations."""
+class PetsOperations:
+    """PetsOperations operations.
 
-    async def create_ap_true_async(
+    :param client: Client for service requests.
+    :param config: Configuration of service client.
+    :param serializer: An object model serializer.
+    :param deserializer: An object model deserializer.
+    """
+
+    models = models
+
+    def __init__(self, client, config, serializer, deserializer) -> None:
+
+        self._client = client
+        self._serialize = serializer
+        self._deserialize = deserializer
+
+        self.config = config
+
+    async def create_ap_true(
             self, create_parameters, *, custom_headers=None, raw=False, **operation_config):
         """Create a Pet which contains more properties than what is defined.
 
@@ -36,7 +51,7 @@ class PetsOperations(_PetsOperations):
          :class:`ErrorException<additionalproperties.models.ErrorException>`
         """
         # Construct URL
-        url = self.create_ap_true_async.metadata['url']
+        url = self.create_ap_true.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -67,9 +82,9 @@ class PetsOperations(_PetsOperations):
             return client_raw_response
 
         return deserialized
-    create_ap_true_async.metadata = {'url': '/additionalProperties/true'}
+    create_ap_true.metadata = {'url': '/additionalProperties/true'}
 
-    async def create_cat_ap_true_async(
+    async def create_cat_ap_true(
             self, create_parameters, *, custom_headers=None, raw=False, **operation_config):
         """Create a CatAPTrue which contains more properties than what is defined.
 
@@ -87,7 +102,7 @@ class PetsOperations(_PetsOperations):
          :class:`ErrorException<additionalproperties.models.ErrorException>`
         """
         # Construct URL
-        url = self.create_cat_ap_true_async.metadata['url']
+        url = self.create_cat_ap_true.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -118,9 +133,9 @@ class PetsOperations(_PetsOperations):
             return client_raw_response
 
         return deserialized
-    create_cat_ap_true_async.metadata = {'url': '/additionalProperties/true-subclass'}
+    create_cat_ap_true.metadata = {'url': '/additionalProperties/true-subclass'}
 
-    async def create_ap_object_async(
+    async def create_ap_object(
             self, create_parameters, *, custom_headers=None, raw=False, **operation_config):
         """Create a Pet which contains more properties than what is defined.
 
@@ -138,7 +153,7 @@ class PetsOperations(_PetsOperations):
          :class:`ErrorException<additionalproperties.models.ErrorException>`
         """
         # Construct URL
-        url = self.create_ap_object_async.metadata['url']
+        url = self.create_ap_object.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -169,9 +184,9 @@ class PetsOperations(_PetsOperations):
             return client_raw_response
 
         return deserialized
-    create_ap_object_async.metadata = {'url': '/additionalProperties/type/object'}
+    create_ap_object.metadata = {'url': '/additionalProperties/type/object'}
 
-    async def create_ap_string_async(
+    async def create_ap_string(
             self, create_parameters, *, custom_headers=None, raw=False, **operation_config):
         """Create a Pet which contains more properties than what is defined.
 
@@ -189,7 +204,7 @@ class PetsOperations(_PetsOperations):
          :class:`ErrorException<additionalproperties.models.ErrorException>`
         """
         # Construct URL
-        url = self.create_ap_string_async.metadata['url']
+        url = self.create_ap_string.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -220,9 +235,9 @@ class PetsOperations(_PetsOperations):
             return client_raw_response
 
         return deserialized
-    create_ap_string_async.metadata = {'url': '/additionalProperties/type/string'}
+    create_ap_string.metadata = {'url': '/additionalProperties/type/string'}
 
-    async def create_ap_in_properties_async(
+    async def create_ap_in_properties(
             self, create_parameters, *, custom_headers=None, raw=False, **operation_config):
         """Create a Pet which contains more properties than what is defined.
 
@@ -241,7 +256,7 @@ class PetsOperations(_PetsOperations):
          :class:`ErrorException<additionalproperties.models.ErrorException>`
         """
         # Construct URL
-        url = self.create_ap_in_properties_async.metadata['url']
+        url = self.create_ap_in_properties.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -272,9 +287,9 @@ class PetsOperations(_PetsOperations):
             return client_raw_response
 
         return deserialized
-    create_ap_in_properties_async.metadata = {'url': '/additionalProperties/in/properties'}
+    create_ap_in_properties.metadata = {'url': '/additionalProperties/in/properties'}
 
-    async def create_ap_in_properties_with_ap_string_async(
+    async def create_ap_in_properties_with_ap_string(
             self, create_parameters, *, custom_headers=None, raw=False, **operation_config):
         """Create a Pet which contains more properties than what is defined.
 
@@ -294,7 +309,7 @@ class PetsOperations(_PetsOperations):
          :class:`ErrorException<additionalproperties.models.ErrorException>`
         """
         # Construct URL
-        url = self.create_ap_in_properties_with_ap_string_async.metadata['url']
+        url = self.create_ap_in_properties_with_ap_string.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -325,4 +340,4 @@ class PetsOperations(_PetsOperations):
             return client_raw_response
 
         return deserialized
-    create_ap_in_properties_with_ap_string_async.metadata = {'url': '/additionalProperties/in/properties/with/additionalProperties/string'}
+    create_ap_in_properties_with_ap_string.metadata = {'url': '/additionalProperties/in/properties/with/additionalProperties/string'}

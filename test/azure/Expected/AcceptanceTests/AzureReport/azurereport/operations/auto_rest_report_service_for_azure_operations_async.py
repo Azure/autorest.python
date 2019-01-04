@@ -17,7 +17,7 @@ from .auto_rest_report_service_for_azure_operations import AutoRestReportService
 
 class AutoRestReportServiceForAzureOperationsMixin(_AutoRestReportServiceForAzureOperationsMixin):
 
-    async def get_report_async(
+    async def get_report(
             self, qualifier=None, *, custom_headers=None, raw=False, **operation_config):
         """Get test coverage report.
 
@@ -36,7 +36,7 @@ class AutoRestReportServiceForAzureOperationsMixin(_AutoRestReportServiceForAzur
         :raises: :class:`ErrorException<azurereport.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_report_async.metadata['url']
+        url = self.get_report.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -69,4 +69,4 @@ class AutoRestReportServiceForAzureOperationsMixin(_AutoRestReportServiceForAzur
             return client_raw_response
 
         return deserialized
-    get_report_async.metadata = {'url': '/report/azure'}
+    get_report.metadata = {'url': '/report/azure'}

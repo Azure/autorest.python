@@ -12,13 +12,28 @@
 from msrest.pipeline import ClientRawResponse
 
 from .. import models
-from .array_operations import ArrayOperations as _ArrayOperations
 
 
-class ArrayOperations(_ArrayOperations):
-    """ArrayOperations operations."""
+class ArrayOperations:
+    """ArrayOperations operations.
 
-    async def get_valid_async(
+    :param client: Client for service requests.
+    :param config: Configuration of service client.
+    :param serializer: An object model serializer.
+    :param deserializer: An object model deserializer.
+    """
+
+    models = models
+
+    def __init__(self, client, config, serializer, deserializer) -> None:
+
+        self._client = client
+        self._serialize = serializer
+        self._deserialize = deserializer
+
+        self.config = config
+
+    async def get_valid(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get complex types with array property.
 
@@ -33,7 +48,7 @@ class ArrayOperations(_ArrayOperations):
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_valid_async.metadata['url']
+        url = self.get_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -60,9 +75,9 @@ class ArrayOperations(_ArrayOperations):
             return client_raw_response
 
         return deserialized
-    get_valid_async.metadata = {'url': '/complex/array/valid'}
+    get_valid.metadata = {'url': '/complex/array/valid'}
 
-    async def put_valid_async(
+    async def put_valid(
             self, array=None, *, custom_headers=None, raw=False, **operation_config):
         """Put complex types with array property.
 
@@ -80,7 +95,7 @@ class ArrayOperations(_ArrayOperations):
         complex_body = models.ArrayWrapper(array=array)
 
         # Construct URL
-        url = self.put_valid_async.metadata['url']
+        url = self.put_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -104,9 +119,9 @@ class ArrayOperations(_ArrayOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_valid_async.metadata = {'url': '/complex/array/valid'}
+    put_valid.metadata = {'url': '/complex/array/valid'}
 
-    async def get_empty_async(
+    async def get_empty(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get complex types with array property which is empty.
 
@@ -121,7 +136,7 @@ class ArrayOperations(_ArrayOperations):
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_empty_async.metadata['url']
+        url = self.get_empty.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -148,9 +163,9 @@ class ArrayOperations(_ArrayOperations):
             return client_raw_response
 
         return deserialized
-    get_empty_async.metadata = {'url': '/complex/array/empty'}
+    get_empty.metadata = {'url': '/complex/array/empty'}
 
-    async def put_empty_async(
+    async def put_empty(
             self, array=None, *, custom_headers=None, raw=False, **operation_config):
         """Put complex types with array property which is empty.
 
@@ -168,7 +183,7 @@ class ArrayOperations(_ArrayOperations):
         complex_body = models.ArrayWrapper(array=array)
 
         # Construct URL
-        url = self.put_empty_async.metadata['url']
+        url = self.put_empty.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -192,9 +207,9 @@ class ArrayOperations(_ArrayOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_empty_async.metadata = {'url': '/complex/array/empty'}
+    put_empty.metadata = {'url': '/complex/array/empty'}
 
-    async def get_not_provided_async(
+    async def get_not_provided(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get complex types with array property while server doesn't provide a
         response payload.
@@ -210,7 +225,7 @@ class ArrayOperations(_ArrayOperations):
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_not_provided_async.metadata['url']
+        url = self.get_not_provided.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -237,4 +252,4 @@ class ArrayOperations(_ArrayOperations):
             return client_raw_response
 
         return deserialized
-    get_not_provided_async.metadata = {'url': '/complex/array/notprovided'}
+    get_not_provided.metadata = {'url': '/complex/array/notprovided'}

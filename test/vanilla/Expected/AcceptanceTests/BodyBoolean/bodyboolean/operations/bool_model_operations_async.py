@@ -12,13 +12,28 @@
 from msrest.pipeline import ClientRawResponse
 
 from .. import models
-from .bool_model_operations import BoolModelOperations as _BoolModelOperations
 
 
-class BoolModelOperations(_BoolModelOperations):
-    """BoolModelOperations operations."""
+class BoolModelOperations:
+    """BoolModelOperations operations.
 
-    async def get_true_async(
+    :param client: Client for service requests.
+    :param config: Configuration of service client.
+    :param serializer: An object model serializer.
+    :param deserializer: An object model deserializer.
+    """
+
+    models = models
+
+    def __init__(self, client, config, serializer, deserializer) -> None:
+
+        self._client = client
+        self._serialize = serializer
+        self._deserialize = deserializer
+
+        self.config = config
+
+    async def get_true(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get true Boolean value.
 
@@ -32,7 +47,7 @@ class BoolModelOperations(_BoolModelOperations):
         :raises: :class:`ErrorException<bodyboolean.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_true_async.metadata['url']
+        url = self.get_true.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -59,9 +74,9 @@ class BoolModelOperations(_BoolModelOperations):
             return client_raw_response
 
         return deserialized
-    get_true_async.metadata = {'url': '/bool/true'}
+    get_true.metadata = {'url': '/bool/true'}
 
-    async def put_true_async(
+    async def put_true(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Set Boolean value true.
 
@@ -77,7 +92,7 @@ class BoolModelOperations(_BoolModelOperations):
         bool_body = True
 
         # Construct URL
-        url = self.put_true_async.metadata['url']
+        url = self.put_true.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -101,9 +116,9 @@ class BoolModelOperations(_BoolModelOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_true_async.metadata = {'url': '/bool/true'}
+    put_true.metadata = {'url': '/bool/true'}
 
-    async def get_false_async(
+    async def get_false(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get false Boolean value.
 
@@ -117,7 +132,7 @@ class BoolModelOperations(_BoolModelOperations):
         :raises: :class:`ErrorException<bodyboolean.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_false_async.metadata['url']
+        url = self.get_false.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -144,9 +159,9 @@ class BoolModelOperations(_BoolModelOperations):
             return client_raw_response
 
         return deserialized
-    get_false_async.metadata = {'url': '/bool/false'}
+    get_false.metadata = {'url': '/bool/false'}
 
-    async def put_false_async(
+    async def put_false(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Set Boolean value false.
 
@@ -162,7 +177,7 @@ class BoolModelOperations(_BoolModelOperations):
         bool_body = False
 
         # Construct URL
-        url = self.put_false_async.metadata['url']
+        url = self.put_false.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -186,9 +201,9 @@ class BoolModelOperations(_BoolModelOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_false_async.metadata = {'url': '/bool/false'}
+    put_false.metadata = {'url': '/bool/false'}
 
-    async def get_null_async(
+    async def get_null(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get null Boolean value.
 
@@ -202,7 +217,7 @@ class BoolModelOperations(_BoolModelOperations):
         :raises: :class:`ErrorException<bodyboolean.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_null_async.metadata['url']
+        url = self.get_null.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -229,9 +244,9 @@ class BoolModelOperations(_BoolModelOperations):
             return client_raw_response
 
         return deserialized
-    get_null_async.metadata = {'url': '/bool/null'}
+    get_null.metadata = {'url': '/bool/null'}
 
-    async def get_invalid_async(
+    async def get_invalid(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get invalid Boolean value.
 
@@ -245,7 +260,7 @@ class BoolModelOperations(_BoolModelOperations):
         :raises: :class:`ErrorException<bodyboolean.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_invalid_async.metadata['url']
+        url = self.get_invalid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -272,4 +287,4 @@ class BoolModelOperations(_BoolModelOperations):
             return client_raw_response
 
         return deserialized
-    get_invalid_async.metadata = {'url': '/bool/invalid'}
+    get_invalid.metadata = {'url': '/bool/invalid'}

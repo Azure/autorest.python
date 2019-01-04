@@ -11,8 +11,6 @@
 string defKeyword = AsyncMode? "async def" : "def";
 string methodName = Model.Name.ToPythonCase();
 string initialMethodName = "_" + methodName + "_initial";
-if (AsyncMode) methodName += "_async";
-if (AsyncMode) initialMethodName += "_async";
 }
     @(defKeyword) @(initialMethodName)(
             self, @(Model.MethodParameterDeclaration(Model.AddCustomHeader, Python3Mode)), **operation_config):

@@ -13,13 +13,28 @@ from msrest.pipeline import ClientRawResponse
 from msrest.exceptions import HttpOperationError
 
 from .. import models
-from .availability_sets_operations import AvailabilitySetsOperations as _AvailabilitySetsOperations
 
 
-class AvailabilitySetsOperations(_AvailabilitySetsOperations):
-    """AvailabilitySetsOperations operations."""
+class AvailabilitySetsOperations:
+    """AvailabilitySetsOperations operations.
 
-    async def update_async(
+    :param client: Client for service requests.
+    :param config: Configuration of service client.
+    :param serializer: An object model serializer.
+    :param deserializer: An object model deserializer.
+    """
+
+    models = models
+
+    def __init__(self, client, config, serializer, deserializer) -> None:
+
+        self._client = client
+        self._serialize = serializer
+        self._deserialize = deserializer
+
+        self.config = config
+
+    async def update(
             self, resource_group_name, avset, tags, *, custom_headers=None, raw=False, **operation_config):
         """Updates the tags for an availability set.
 
@@ -42,7 +57,7 @@ class AvailabilitySetsOperations(_AvailabilitySetsOperations):
         tags1 = models.AvailabilitySetUpdateParameters(tags=tags)
 
         # Construct URL
-        url = self.update_async.metadata['url']
+        url = self.update.metadata['url']
         path_format_arguments = {
             'resourceGroupName': self._serialize.url("resource_group_name", resource_group_name, 'str'),
             'availabilitySetName': self._serialize.url("avset", avset, 'str', max_length=80)
@@ -71,4 +86,4 @@ class AvailabilitySetsOperations(_AvailabilitySetsOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    update_async.metadata = {'url': '/parameterFlattening/{resourceGroupName}/{availabilitySetName}'}
+    update.metadata = {'url': '/parameterFlattening/{resourceGroupName}/{availabilitySetName}'}

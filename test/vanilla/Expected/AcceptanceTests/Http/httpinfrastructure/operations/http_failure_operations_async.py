@@ -13,13 +13,28 @@ from msrest.pipeline import ClientRawResponse
 from msrest.exceptions import HttpOperationError
 
 from .. import models
-from .http_failure_operations import HttpFailureOperations as _HttpFailureOperations
 
 
-class HttpFailureOperations(_HttpFailureOperations):
-    """HttpFailureOperations operations."""
+class HttpFailureOperations:
+    """HttpFailureOperations operations.
 
-    async def get_empty_error_async(
+    :param client: Client for service requests.
+    :param config: Configuration of service client.
+    :param serializer: An object model serializer.
+    :param deserializer: An object model deserializer.
+    """
+
+    models = models
+
+    def __init__(self, client, config, serializer, deserializer) -> None:
+
+        self._client = client
+        self._serialize = serializer
+        self._deserialize = deserializer
+
+        self.config = config
+
+    async def get_empty_error(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get empty error form server.
 
@@ -34,7 +49,7 @@ class HttpFailureOperations(_HttpFailureOperations):
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_empty_error_async.metadata['url']
+        url = self.get_empty_error.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -61,9 +76,9 @@ class HttpFailureOperations(_HttpFailureOperations):
             return client_raw_response
 
         return deserialized
-    get_empty_error_async.metadata = {'url': '/http/failure/emptybody/error'}
+    get_empty_error.metadata = {'url': '/http/failure/emptybody/error'}
 
-    async def get_no_model_error_async(
+    async def get_no_model_error(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get empty error form server.
 
@@ -78,7 +93,7 @@ class HttpFailureOperations(_HttpFailureOperations):
          :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
         """
         # Construct URL
-        url = self.get_no_model_error_async.metadata['url']
+        url = self.get_no_model_error.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -105,9 +120,9 @@ class HttpFailureOperations(_HttpFailureOperations):
             return client_raw_response
 
         return deserialized
-    get_no_model_error_async.metadata = {'url': '/http/failure/nomodel/error'}
+    get_no_model_error.metadata = {'url': '/http/failure/nomodel/error'}
 
-    async def get_no_model_empty_async(
+    async def get_no_model_empty(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get empty response from server.
 
@@ -122,7 +137,7 @@ class HttpFailureOperations(_HttpFailureOperations):
          :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
         """
         # Construct URL
-        url = self.get_no_model_empty_async.metadata['url']
+        url = self.get_no_model_empty.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -149,4 +164,4 @@ class HttpFailureOperations(_HttpFailureOperations):
             return client_raw_response
 
         return deserialized
-    get_no_model_empty_async.metadata = {'url': '/http/failure/nomodel/empty'}
+    get_no_model_empty.metadata = {'url': '/http/failure/nomodel/empty'}

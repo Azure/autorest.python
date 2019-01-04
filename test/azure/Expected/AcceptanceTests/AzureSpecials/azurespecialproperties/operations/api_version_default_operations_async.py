@@ -13,12 +13,30 @@ import uuid
 from msrest.pipeline import ClientRawResponse
 
 from .. import models
-from .api_version_default_operations import ApiVersionDefaultOperations as _ApiVersionDefaultOperations
 
 
-class ApiVersionDefaultOperations(_ApiVersionDefaultOperations):
+class ApiVersionDefaultOperations:
+    """ApiVersionDefaultOperations operations.
 
-    async def get_method_global_valid_async(
+    :param client: Client for service requests.
+    :param config: Configuration of service client.
+    :param serializer: An object model serializer.
+    :param deserializer: An object model deserializer.
+    :ivar api_version: The api version, which appears in the query, the value is always '2015-07-01-preview'. Constant value: "2015-07-01-preview".
+    """
+
+    models = models
+
+    def __init__(self, client, config, serializer, deserializer) -> None:
+
+        self._client = client
+        self._serialize = serializer
+        self._deserialize = deserializer
+        self.api_version = "2015-07-01-preview"
+
+        self.config = config
+
+    async def get_method_global_valid(
             self, *, custom_headers=None, raw=False, **operation_config):
         """GET method with api-version modeled in global settings.
 
@@ -33,7 +51,7 @@ class ApiVersionDefaultOperations(_ApiVersionDefaultOperations):
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_method_global_valid_async.metadata['url']
+        url = self.get_method_global_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -58,9 +76,9 @@ class ApiVersionDefaultOperations(_ApiVersionDefaultOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    get_method_global_valid_async.metadata = {'url': '/azurespecials/apiVersion/method/string/none/query/global/2015-07-01-preview'}
+    get_method_global_valid.metadata = {'url': '/azurespecials/apiVersion/method/string/none/query/global/2015-07-01-preview'}
 
-    async def get_method_global_not_provided_valid_async(
+    async def get_method_global_not_provided_valid(
             self, *, custom_headers=None, raw=False, **operation_config):
         """GET method with api-version modeled in global settings.
 
@@ -75,7 +93,7 @@ class ApiVersionDefaultOperations(_ApiVersionDefaultOperations):
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_method_global_not_provided_valid_async.metadata['url']
+        url = self.get_method_global_not_provided_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -100,9 +118,9 @@ class ApiVersionDefaultOperations(_ApiVersionDefaultOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    get_method_global_not_provided_valid_async.metadata = {'url': '/azurespecials/apiVersion/method/string/none/query/globalNotProvided/2015-07-01-preview'}
+    get_method_global_not_provided_valid.metadata = {'url': '/azurespecials/apiVersion/method/string/none/query/globalNotProvided/2015-07-01-preview'}
 
-    async def get_path_global_valid_async(
+    async def get_path_global_valid(
             self, *, custom_headers=None, raw=False, **operation_config):
         """GET method with api-version modeled in global settings.
 
@@ -117,7 +135,7 @@ class ApiVersionDefaultOperations(_ApiVersionDefaultOperations):
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_path_global_valid_async.metadata['url']
+        url = self.get_path_global_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -142,9 +160,9 @@ class ApiVersionDefaultOperations(_ApiVersionDefaultOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    get_path_global_valid_async.metadata = {'url': '/azurespecials/apiVersion/path/string/none/query/global/2015-07-01-preview'}
+    get_path_global_valid.metadata = {'url': '/azurespecials/apiVersion/path/string/none/query/global/2015-07-01-preview'}
 
-    async def get_swagger_global_valid_async(
+    async def get_swagger_global_valid(
             self, *, custom_headers=None, raw=False, **operation_config):
         """GET method with api-version modeled in global settings.
 
@@ -159,7 +177,7 @@ class ApiVersionDefaultOperations(_ApiVersionDefaultOperations):
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_swagger_global_valid_async.metadata['url']
+        url = self.get_swagger_global_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -184,4 +202,4 @@ class ApiVersionDefaultOperations(_ApiVersionDefaultOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    get_swagger_global_valid_async.metadata = {'url': '/azurespecials/apiVersion/swagger/string/none/query/global/2015-07-01-preview'}
+    get_swagger_global_valid.metadata = {'url': '/azurespecials/apiVersion/swagger/string/none/query/global/2015-07-01-preview'}

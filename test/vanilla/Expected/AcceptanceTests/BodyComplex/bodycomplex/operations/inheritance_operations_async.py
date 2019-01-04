@@ -12,13 +12,28 @@
 from msrest.pipeline import ClientRawResponse
 
 from .. import models
-from .inheritance_operations import InheritanceOperations as _InheritanceOperations
 
 
-class InheritanceOperations(_InheritanceOperations):
-    """InheritanceOperations operations."""
+class InheritanceOperations:
+    """InheritanceOperations operations.
 
-    async def get_valid_async(
+    :param client: Client for service requests.
+    :param config: Configuration of service client.
+    :param serializer: An object model serializer.
+    :param deserializer: An object model deserializer.
+    """
+
+    models = models
+
+    def __init__(self, client, config, serializer, deserializer) -> None:
+
+        self._client = client
+        self._serialize = serializer
+        self._deserialize = deserializer
+
+        self.config = config
+
+    async def get_valid(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get complex types that extend others.
 
@@ -33,7 +48,7 @@ class InheritanceOperations(_InheritanceOperations):
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_valid_async.metadata['url']
+        url = self.get_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -60,9 +75,9 @@ class InheritanceOperations(_InheritanceOperations):
             return client_raw_response
 
         return deserialized
-    get_valid_async.metadata = {'url': '/complex/inheritance/valid'}
+    get_valid.metadata = {'url': '/complex/inheritance/valid'}
 
-    async def put_valid_async(
+    async def put_valid(
             self, complex_body, *, custom_headers=None, raw=False, **operation_config):
         """Put complex types that extend others.
 
@@ -81,7 +96,7 @@ class InheritanceOperations(_InheritanceOperations):
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
-        url = self.put_valid_async.metadata['url']
+        url = self.put_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -105,4 +120,4 @@ class InheritanceOperations(_InheritanceOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_valid_async.metadata = {'url': '/complex/inheritance/valid'}
+    put_valid.metadata = {'url': '/complex/inheritance/valid'}

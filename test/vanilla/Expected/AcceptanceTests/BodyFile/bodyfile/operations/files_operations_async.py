@@ -12,13 +12,28 @@
 from msrest.pipeline import ClientRawResponse
 
 from .. import models
-from .files_operations import FilesOperations as _FilesOperations
 
 
-class FilesOperations(_FilesOperations):
-    """FilesOperations operations."""
+class FilesOperations:
+    """FilesOperations operations.
 
-    async def get_file_async(
+    :param client: Client for service requests.
+    :param config: Configuration of service client.
+    :param serializer: An object model serializer.
+    :param deserializer: An object model deserializer.
+    """
+
+    models = models
+
+    def __init__(self, client, config, serializer, deserializer) -> None:
+
+        self._client = client
+        self._serialize = serializer
+        self._deserialize = deserializer
+
+        self.config = config
+
+    async def get_file(
             self, *, custom_headers=None, raw=False, callback=None, **operation_config):
         """Get file.
 
@@ -37,7 +52,7 @@ class FilesOperations(_FilesOperations):
         :raises: :class:`ErrorException<bodyfile.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_file_async.metadata['url']
+        url = self.get_file.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -62,9 +77,9 @@ class FilesOperations(_FilesOperations):
             return client_raw_response
 
         return deserialized
-    get_file_async.metadata = {'url': '/files/stream/nonempty'}
+    get_file.metadata = {'url': '/files/stream/nonempty'}
 
-    async def get_file_large_async(
+    async def get_file_large(
             self, *, custom_headers=None, raw=False, callback=None, **operation_config):
         """Get a large file.
 
@@ -83,7 +98,7 @@ class FilesOperations(_FilesOperations):
         :raises: :class:`ErrorException<bodyfile.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_file_large_async.metadata['url']
+        url = self.get_file_large.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -108,9 +123,9 @@ class FilesOperations(_FilesOperations):
             return client_raw_response
 
         return deserialized
-    get_file_large_async.metadata = {'url': '/files/stream/verylarge'}
+    get_file_large.metadata = {'url': '/files/stream/verylarge'}
 
-    async def get_empty_file_async(
+    async def get_empty_file(
             self, *, custom_headers=None, raw=False, callback=None, **operation_config):
         """Get empty file.
 
@@ -129,7 +144,7 @@ class FilesOperations(_FilesOperations):
         :raises: :class:`ErrorException<bodyfile.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_empty_file_async.metadata['url']
+        url = self.get_empty_file.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -154,4 +169,4 @@ class FilesOperations(_FilesOperations):
             return client_raw_response
 
         return deserialized
-    get_empty_file_async.metadata = {'url': '/files/stream/empty'}
+    get_empty_file.metadata = {'url': '/files/stream/empty'}

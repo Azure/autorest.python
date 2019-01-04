@@ -16,10 +16,26 @@ from msrest.polling.async_poller import async_poller, AsyncNoPolling
 from msrestazure.polling.async_arm_polling import AsyncARMPolling
 
 from .. import models
-from .paging_operations import PagingOperations as _PagingOperations
 
 
-class PagingOperations(_PagingOperations):
+class PagingOperations:
+    """PagingOperations operations.
+
+    :param client: Client for service requests.
+    :param config: Configuration of service client.
+    :param serializer: An object model serializer.
+    :param deserializer: An object model deserializer.
+    """
+
+    models = models
+
+    def __init__(self, client, config, serializer, deserializer) -> None:
+
+        self._client = client
+        self._serialize = serializer
+        self._deserialize = deserializer
+
+        self.config = config
 
     def get_single_pages(
             self, *, custom_headers=None, raw=False, **operation_config):
@@ -929,7 +945,7 @@ class PagingOperations(_PagingOperations):
     get_multiple_pages_fragment_with_grouping_next_link.metadata = {'url': '/paging/multiple/fragmentwithgrouping/{tenant}'}
 
 
-    async def _get_multiple_pages_lro_initial_async(
+    async def _get_multiple_pages_lro_initial(
             self, client_request_id=None, paging_get_multiple_pages_lro_options=None, *, custom_headers=None, raw=False, **operation_config):
         maxresults = None
         if paging_get_multiple_pages_lro_options is not None:
@@ -939,7 +955,7 @@ class PagingOperations(_PagingOperations):
             timeout = paging_get_multiple_pages_lro_options.timeout
 
         # Construct URL
-        url = self.get_multiple_pages_lro_async.metadata['url']
+        url = self.get_multiple_pages_lro.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -980,7 +996,7 @@ class PagingOperations(_PagingOperations):
 
         return deserialized
 
-    async def get_multiple_pages_lro_async(
+    async def get_multiple_pages_lro(
             self, client_request_id=None, paging_get_multiple_pages_lro_options=None, *, custom_headers=None, raw=False, polling=True, **operation_config):
         """A long-running paging operation that includes a nextLink that has 10
         pages.
@@ -1002,7 +1018,7 @@ class PagingOperations(_PagingOperations):
          ~msrest.pipeline.ClientRawResponse[~paging.models.ProductResult]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._get_multiple_pages_lro_initial_async(
+        raw_result = await self._get_multiple_pages_lro_initial(
             client_request_id=client_request_id,
             paging_get_multiple_pages_lro_options=paging_get_multiple_pages_lro_options,
             custom_headers=custom_headers,
@@ -1026,4 +1042,4 @@ class PagingOperations(_PagingOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    get_multiple_pages_lro_async.metadata = {'url': '/paging/multiple/lro'}
+    get_multiple_pages_lro.metadata = {'url': '/paging/multiple/lro'}

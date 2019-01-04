@@ -16,12 +16,30 @@ from msrest.polling.async_poller import async_poller, AsyncNoPolling
 from msrestazure.polling.async_arm_polling import AsyncARMPolling
 
 from .. import models
-from .storage_accounts_operations import StorageAccountsOperations as _StorageAccountsOperations
 
 
-class StorageAccountsOperations(_StorageAccountsOperations):
+class StorageAccountsOperations:
+    """StorageAccountsOperations operations.
 
-    async def check_name_availability_async(
+    :param client: Client for service requests.
+    :param config: Configuration of service client.
+    :param serializer: An object model serializer.
+    :param deserializer: An object model deserializer.
+    :ivar api_version: Client Api Version. Constant value: "2015-05-01-preview".
+    """
+
+    models = models
+
+    def __init__(self, client, config, serializer, deserializer) -> None:
+
+        self._client = client
+        self._serialize = serializer
+        self._deserialize = deserializer
+        self.api_version = "2015-05-01-preview"
+
+        self.config = config
+
+    async def check_name_availability(
             self, account_name, *, custom_headers=None, raw=False, **operation_config):
         """Checks that account name is valid and is not in use.
 
@@ -41,7 +59,7 @@ class StorageAccountsOperations(_StorageAccountsOperations):
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
         # Construct URL
-        url = self.check_name_availability_async.metadata['url']
+        url = self.check_name_availability.metadata['url']
         path_format_arguments = {
             'subscriptionId': self._serialize.url("self.config.subscription_id", self.config.subscription_id, 'str')
         }
@@ -83,13 +101,13 @@ class StorageAccountsOperations(_StorageAccountsOperations):
             return client_raw_response
 
         return deserialized
-    check_name_availability_async.metadata = {'url': '/subscriptions/{subscriptionId}/providers/Microsoft.Storage/checkNameAvailability'}
+    check_name_availability.metadata = {'url': '/subscriptions/{subscriptionId}/providers/Microsoft.Storage/checkNameAvailability'}
 
 
-    async def _create_initial_async(
+    async def _create_initial(
             self, resource_group_name, account_name, parameters, *, custom_headers=None, raw=False, **operation_config):
         # Construct URL
-        url = self.create_async.metadata['url']
+        url = self.create.metadata['url']
         path_format_arguments = {
             'resourceGroupName': self._serialize.url("resource_group_name", resource_group_name, 'str'),
             'accountName': self._serialize.url("account_name", account_name, 'str'),
@@ -135,7 +153,7 @@ class StorageAccountsOperations(_StorageAccountsOperations):
 
         return deserialized
 
-    async def create_async(
+    async def create(
             self, resource_group_name, account_name, parameters, *, custom_headers=None, raw=False, polling=True, **operation_config):
         """Asynchronously creates a new storage account with the specified
         parameters. Existing accounts cannot be updated with this API and
@@ -163,7 +181,7 @@ class StorageAccountsOperations(_StorageAccountsOperations):
          ~msrest.pipeline.ClientRawResponse[~storage.models.StorageAccount]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
-        raw_result = await self._create_initial_async(
+        raw_result = await self._create_initial(
             resource_group_name=resource_group_name,
             account_name=account_name,
             parameters=parameters,
@@ -188,9 +206,9 @@ class StorageAccountsOperations(_StorageAccountsOperations):
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    create_async.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}'}
+    create.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}'}
 
-    async def delete_async(
+    async def delete(
             self, resource_group_name, account_name, *, custom_headers=None, raw=False, **operation_config):
         """Deletes a storage account in Microsoft Azure.
 
@@ -211,7 +229,7 @@ class StorageAccountsOperations(_StorageAccountsOperations):
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
         # Construct URL
-        url = self.delete_async.metadata['url']
+        url = self.delete.metadata['url']
         path_format_arguments = {
             'resourceGroupName': self._serialize.url("resource_group_name", resource_group_name, 'str'),
             'accountName': self._serialize.url("account_name", account_name, 'str'),
@@ -244,9 +262,9 @@ class StorageAccountsOperations(_StorageAccountsOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    delete_async.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}'}
+    delete.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}'}
 
-    async def get_properties_async(
+    async def get_properties(
             self, resource_group_name, account_name, *, custom_headers=None, raw=False, **operation_config):
         """Returns the properties for the specified storage account including but
         not limited to name, account type, location, and account status. The
@@ -270,7 +288,7 @@ class StorageAccountsOperations(_StorageAccountsOperations):
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
         # Construct URL
-        url = self.get_properties_async.metadata['url']
+        url = self.get_properties.metadata['url']
         path_format_arguments = {
             'resourceGroupName': self._serialize.url("resource_group_name", resource_group_name, 'str'),
             'accountName': self._serialize.url("account_name", account_name, 'str'),
@@ -310,9 +328,9 @@ class StorageAccountsOperations(_StorageAccountsOperations):
             return client_raw_response
 
         return deserialized
-    get_properties_async.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}'}
+    get_properties.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}'}
 
-    async def update_async(
+    async def update(
             self, resource_group_name, account_name, parameters, *, custom_headers=None, raw=False, **operation_config):
         """Updates the account type or tags for a storage account. It can also be
         used to add a custom domain (note that custom domains cannot be added
@@ -346,7 +364,7 @@ class StorageAccountsOperations(_StorageAccountsOperations):
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
         # Construct URL
-        url = self.update_async.metadata['url']
+        url = self.update.metadata['url']
         path_format_arguments = {
             'resourceGroupName': self._serialize.url("resource_group_name", resource_group_name, 'str'),
             'accountName': self._serialize.url("account_name", account_name, 'str'),
@@ -390,9 +408,9 @@ class StorageAccountsOperations(_StorageAccountsOperations):
             return client_raw_response
 
         return deserialized
-    update_async.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}'}
+    update.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}'}
 
-    async def list_keys_async(
+    async def list_keys(
             self, resource_group_name, account_name, *, custom_headers=None, raw=False, **operation_config):
         """Lists the access keys for the specified storage account.
 
@@ -412,7 +430,7 @@ class StorageAccountsOperations(_StorageAccountsOperations):
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
         # Construct URL
-        url = self.list_keys_async.metadata['url']
+        url = self.list_keys.metadata['url']
         path_format_arguments = {
             'resourceGroupName': self._serialize.url("resource_group_name", resource_group_name, 'str'),
             'accountName': self._serialize.url("account_name", account_name, 'str'),
@@ -452,7 +470,7 @@ class StorageAccountsOperations(_StorageAccountsOperations):
             return client_raw_response
 
         return deserialized
-    list_keys_async.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/listKeys'}
+    list_keys.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/listKeys'}
 
     def list(
             self, *, custom_headers=None, raw=False, **operation_config):
@@ -620,7 +638,7 @@ class StorageAccountsOperations(_StorageAccountsOperations):
         return deserialized
     list_by_resource_group.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts'}
 
-    async def regenerate_key_async(
+    async def regenerate_key(
             self, resource_group_name, account_name, key_name=None, *, custom_headers=None, raw=False, **operation_config):
         """Regenerates the access keys for the specified storage account.
 
@@ -646,7 +664,7 @@ class StorageAccountsOperations(_StorageAccountsOperations):
         regenerate_key1 = models.StorageAccountRegenerateKeyParameters(key_name=key_name)
 
         # Construct URL
-        url = self.regenerate_key_async.metadata['url']
+        url = self.regenerate_key.metadata['url']
         path_format_arguments = {
             'resourceGroupName': self._serialize.url("resource_group_name", resource_group_name, 'str'),
             'accountName': self._serialize.url("account_name", account_name, 'str'),
@@ -690,4 +708,4 @@ class StorageAccountsOperations(_StorageAccountsOperations):
             return client_raw_response
 
         return deserialized
-    regenerate_key_async.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/regenerateKey'}
+    regenerate_key.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/regenerateKey'}

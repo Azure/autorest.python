@@ -11,12 +11,11 @@
 
 from msrest.pipeline import ClientRawResponse
 from .. import models
-from .auto_rest_report_service_operations import AutoRestReportServiceOperationsMixin as _AutoRestReportServiceOperationsMixin
 
 
-class AutoRestReportServiceOperationsMixin(_AutoRestReportServiceOperationsMixin):
+class AutoRestReportServiceOperationsMixin:
 
-    async def get_report_async(
+    async def get_report(
             self, qualifier=None, *, custom_headers=None, raw=False, **operation_config):
         """Get test coverage report.
 
@@ -35,7 +34,7 @@ class AutoRestReportServiceOperationsMixin(_AutoRestReportServiceOperationsMixin
         :raises: :class:`ErrorException<report.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_report_async.metadata['url']
+        url = self.get_report.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -64,4 +63,4 @@ class AutoRestReportServiceOperationsMixin(_AutoRestReportServiceOperationsMixin
             return client_raw_response
 
         return deserialized
-    get_report_async.metadata = {'url': '/report'}
+    get_report.metadata = {'url': '/report'}

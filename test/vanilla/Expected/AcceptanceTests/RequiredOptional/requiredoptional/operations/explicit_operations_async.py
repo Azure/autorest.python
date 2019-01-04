@@ -12,13 +12,28 @@
 from msrest.pipeline import ClientRawResponse
 
 from .. import models
-from .explicit_operations import ExplicitOperations as _ExplicitOperations
 
 
-class ExplicitOperations(_ExplicitOperations):
-    """ExplicitOperations operations."""
+class ExplicitOperations:
+    """ExplicitOperations operations.
 
-    async def post_required_integer_parameter_async(
+    :param client: Client for service requests.
+    :param config: Configuration of service client.
+    :param serializer: An object model serializer.
+    :param deserializer: An object model deserializer.
+    """
+
+    models = models
+
+    def __init__(self, client, config, serializer, deserializer) -> None:
+
+        self._client = client
+        self._serialize = serializer
+        self._deserialize = deserializer
+
+        self.config = config
+
+    async def post_required_integer_parameter(
             self, body_parameter, *, custom_headers=None, raw=False, **operation_config):
         """Test explicitly required integer. Please put null and the client
         library should throw before the request is sent.
@@ -37,7 +52,7 @@ class ExplicitOperations(_ExplicitOperations):
          :class:`ErrorException<requiredoptional.models.ErrorException>`
         """
         # Construct URL
-        url = self.post_required_integer_parameter_async.metadata['url']
+        url = self.post_required_integer_parameter.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -61,9 +76,9 @@ class ExplicitOperations(_ExplicitOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    post_required_integer_parameter_async.metadata = {'url': '/reqopt/requied/integer/parameter'}
+    post_required_integer_parameter.metadata = {'url': '/reqopt/requied/integer/parameter'}
 
-    async def post_optional_integer_parameter_async(
+    async def post_optional_integer_parameter(
             self, body_parameter=None, *, custom_headers=None, raw=False, **operation_config):
         """Test explicitly optional integer. Please put null.
 
@@ -80,7 +95,7 @@ class ExplicitOperations(_ExplicitOperations):
          :class:`ErrorException<requiredoptional.models.ErrorException>`
         """
         # Construct URL
-        url = self.post_optional_integer_parameter_async.metadata['url']
+        url = self.post_optional_integer_parameter.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -107,9 +122,9 @@ class ExplicitOperations(_ExplicitOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    post_optional_integer_parameter_async.metadata = {'url': '/reqopt/optional/integer/parameter'}
+    post_optional_integer_parameter.metadata = {'url': '/reqopt/optional/integer/parameter'}
 
-    async def post_required_integer_property_async(
+    async def post_required_integer_property(
             self, value, *, custom_headers=None, raw=False, **operation_config):
         """Test explicitly required integer. Please put a valid int-wrapper with
         'value' = null and the client library should throw before the request
@@ -131,7 +146,7 @@ class ExplicitOperations(_ExplicitOperations):
         body_parameter = models.IntWrapper(value=value)
 
         # Construct URL
-        url = self.post_required_integer_property_async.metadata['url']
+        url = self.post_required_integer_property.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -155,9 +170,9 @@ class ExplicitOperations(_ExplicitOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    post_required_integer_property_async.metadata = {'url': '/reqopt/requied/integer/property'}
+    post_required_integer_property.metadata = {'url': '/reqopt/requied/integer/property'}
 
-    async def post_optional_integer_property_async(
+    async def post_optional_integer_property(
             self, value=None, *, custom_headers=None, raw=False, **operation_config):
         """Test explicitly optional integer. Please put a valid int-wrapper with
         'value' = null.
@@ -179,7 +194,7 @@ class ExplicitOperations(_ExplicitOperations):
             body_parameter = models.IntOptionalWrapper(value=value)
 
         # Construct URL
-        url = self.post_optional_integer_property_async.metadata['url']
+        url = self.post_optional_integer_property.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -206,9 +221,9 @@ class ExplicitOperations(_ExplicitOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    post_optional_integer_property_async.metadata = {'url': '/reqopt/optional/integer/property'}
+    post_optional_integer_property.metadata = {'url': '/reqopt/optional/integer/property'}
 
-    async def post_required_integer_header_async(
+    async def post_required_integer_header(
             self, header_parameter, *, custom_headers=None, raw=False, **operation_config):
         """Test explicitly required integer. Please put a header 'headerParameter'
         => null and the client library should throw before the request is sent.
@@ -227,7 +242,7 @@ class ExplicitOperations(_ExplicitOperations):
          :class:`ErrorException<requiredoptional.models.ErrorException>`
         """
         # Construct URL
-        url = self.post_required_integer_header_async.metadata['url']
+        url = self.post_required_integer_header.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -248,9 +263,9 @@ class ExplicitOperations(_ExplicitOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    post_required_integer_header_async.metadata = {'url': '/reqopt/requied/integer/header'}
+    post_required_integer_header.metadata = {'url': '/reqopt/requied/integer/header'}
 
-    async def post_optional_integer_header_async(
+    async def post_optional_integer_header(
             self, header_parameter=None, *, custom_headers=None, raw=False, **operation_config):
         """Test explicitly optional integer. Please put a header 'headerParameter'
         => null.
@@ -268,7 +283,7 @@ class ExplicitOperations(_ExplicitOperations):
          :class:`ErrorException<requiredoptional.models.ErrorException>`
         """
         # Construct URL
-        url = self.post_optional_integer_header_async.metadata['url']
+        url = self.post_optional_integer_header.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -290,9 +305,9 @@ class ExplicitOperations(_ExplicitOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    post_optional_integer_header_async.metadata = {'url': '/reqopt/optional/integer/header'}
+    post_optional_integer_header.metadata = {'url': '/reqopt/optional/integer/header'}
 
-    async def post_required_string_parameter_async(
+    async def post_required_string_parameter(
             self, body_parameter, *, custom_headers=None, raw=False, **operation_config):
         """Test explicitly required string. Please put null and the client library
         should throw before the request is sent.
@@ -311,7 +326,7 @@ class ExplicitOperations(_ExplicitOperations):
          :class:`ErrorException<requiredoptional.models.ErrorException>`
         """
         # Construct URL
-        url = self.post_required_string_parameter_async.metadata['url']
+        url = self.post_required_string_parameter.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -335,9 +350,9 @@ class ExplicitOperations(_ExplicitOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    post_required_string_parameter_async.metadata = {'url': '/reqopt/requied/string/parameter'}
+    post_required_string_parameter.metadata = {'url': '/reqopt/requied/string/parameter'}
 
-    async def post_optional_string_parameter_async(
+    async def post_optional_string_parameter(
             self, body_parameter=None, *, custom_headers=None, raw=False, **operation_config):
         """Test explicitly optional string. Please put null.
 
@@ -354,7 +369,7 @@ class ExplicitOperations(_ExplicitOperations):
          :class:`ErrorException<requiredoptional.models.ErrorException>`
         """
         # Construct URL
-        url = self.post_optional_string_parameter_async.metadata['url']
+        url = self.post_optional_string_parameter.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -381,9 +396,9 @@ class ExplicitOperations(_ExplicitOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    post_optional_string_parameter_async.metadata = {'url': '/reqopt/optional/string/parameter'}
+    post_optional_string_parameter.metadata = {'url': '/reqopt/optional/string/parameter'}
 
-    async def post_required_string_property_async(
+    async def post_required_string_property(
             self, value, *, custom_headers=None, raw=False, **operation_config):
         """Test explicitly required string. Please put a valid string-wrapper with
         'value' = null and the client library should throw before the request
@@ -405,7 +420,7 @@ class ExplicitOperations(_ExplicitOperations):
         body_parameter = models.StringWrapper(value=value)
 
         # Construct URL
-        url = self.post_required_string_property_async.metadata['url']
+        url = self.post_required_string_property.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -429,9 +444,9 @@ class ExplicitOperations(_ExplicitOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    post_required_string_property_async.metadata = {'url': '/reqopt/requied/string/property'}
+    post_required_string_property.metadata = {'url': '/reqopt/requied/string/property'}
 
-    async def post_optional_string_property_async(
+    async def post_optional_string_property(
             self, value=None, *, custom_headers=None, raw=False, **operation_config):
         """Test explicitly optional integer. Please put a valid string-wrapper
         with 'value' = null.
@@ -453,7 +468,7 @@ class ExplicitOperations(_ExplicitOperations):
             body_parameter = models.StringOptionalWrapper(value=value)
 
         # Construct URL
-        url = self.post_optional_string_property_async.metadata['url']
+        url = self.post_optional_string_property.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -480,9 +495,9 @@ class ExplicitOperations(_ExplicitOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    post_optional_string_property_async.metadata = {'url': '/reqopt/optional/string/property'}
+    post_optional_string_property.metadata = {'url': '/reqopt/optional/string/property'}
 
-    async def post_required_string_header_async(
+    async def post_required_string_header(
             self, header_parameter, *, custom_headers=None, raw=False, **operation_config):
         """Test explicitly required string. Please put a header 'headerParameter'
         => null and the client library should throw before the request is sent.
@@ -501,7 +516,7 @@ class ExplicitOperations(_ExplicitOperations):
          :class:`ErrorException<requiredoptional.models.ErrorException>`
         """
         # Construct URL
-        url = self.post_required_string_header_async.metadata['url']
+        url = self.post_required_string_header.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -522,9 +537,9 @@ class ExplicitOperations(_ExplicitOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    post_required_string_header_async.metadata = {'url': '/reqopt/requied/string/header'}
+    post_required_string_header.metadata = {'url': '/reqopt/requied/string/header'}
 
-    async def post_optional_string_header_async(
+    async def post_optional_string_header(
             self, body_parameter=None, *, custom_headers=None, raw=False, **operation_config):
         """Test explicitly optional string. Please put a header 'headerParameter'
         => null.
@@ -542,7 +557,7 @@ class ExplicitOperations(_ExplicitOperations):
          :class:`ErrorException<requiredoptional.models.ErrorException>`
         """
         # Construct URL
-        url = self.post_optional_string_header_async.metadata['url']
+        url = self.post_optional_string_header.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -564,9 +579,9 @@ class ExplicitOperations(_ExplicitOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    post_optional_string_header_async.metadata = {'url': '/reqopt/optional/string/header'}
+    post_optional_string_header.metadata = {'url': '/reqopt/optional/string/header'}
 
-    async def post_required_class_parameter_async(
+    async def post_required_class_parameter(
             self, body_parameter, *, custom_headers=None, raw=False, **operation_config):
         """Test explicitly required complex object. Please put null and the client
         library should throw before the request is sent.
@@ -585,7 +600,7 @@ class ExplicitOperations(_ExplicitOperations):
          :class:`ErrorException<requiredoptional.models.ErrorException>`
         """
         # Construct URL
-        url = self.post_required_class_parameter_async.metadata['url']
+        url = self.post_required_class_parameter.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -609,9 +624,9 @@ class ExplicitOperations(_ExplicitOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    post_required_class_parameter_async.metadata = {'url': '/reqopt/requied/class/parameter'}
+    post_required_class_parameter.metadata = {'url': '/reqopt/requied/class/parameter'}
 
-    async def post_optional_class_parameter_async(
+    async def post_optional_class_parameter(
             self, body_parameter=None, *, custom_headers=None, raw=False, **operation_config):
         """Test explicitly optional complex object. Please put null.
 
@@ -628,7 +643,7 @@ class ExplicitOperations(_ExplicitOperations):
          :class:`ErrorException<requiredoptional.models.ErrorException>`
         """
         # Construct URL
-        url = self.post_optional_class_parameter_async.metadata['url']
+        url = self.post_optional_class_parameter.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -655,9 +670,9 @@ class ExplicitOperations(_ExplicitOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    post_optional_class_parameter_async.metadata = {'url': '/reqopt/optional/class/parameter'}
+    post_optional_class_parameter.metadata = {'url': '/reqopt/optional/class/parameter'}
 
-    async def post_required_class_property_async(
+    async def post_required_class_property(
             self, value, *, custom_headers=None, raw=False, **operation_config):
         """Test explicitly required complex object. Please put a valid
         class-wrapper with 'value' = null and the client library should throw
@@ -679,7 +694,7 @@ class ExplicitOperations(_ExplicitOperations):
         body_parameter = models.ClassWrapper(value=value)
 
         # Construct URL
-        url = self.post_required_class_property_async.metadata['url']
+        url = self.post_required_class_property.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -703,9 +718,9 @@ class ExplicitOperations(_ExplicitOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    post_required_class_property_async.metadata = {'url': '/reqopt/requied/class/property'}
+    post_required_class_property.metadata = {'url': '/reqopt/requied/class/property'}
 
-    async def post_optional_class_property_async(
+    async def post_optional_class_property(
             self, value=None, *, custom_headers=None, raw=False, **operation_config):
         """Test explicitly optional complex object. Please put a valid
         class-wrapper with 'value' = null.
@@ -727,7 +742,7 @@ class ExplicitOperations(_ExplicitOperations):
             body_parameter = models.ClassOptionalWrapper(value=value)
 
         # Construct URL
-        url = self.post_optional_class_property_async.metadata['url']
+        url = self.post_optional_class_property.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -754,9 +769,9 @@ class ExplicitOperations(_ExplicitOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    post_optional_class_property_async.metadata = {'url': '/reqopt/optional/class/property'}
+    post_optional_class_property.metadata = {'url': '/reqopt/optional/class/property'}
 
-    async def post_required_array_parameter_async(
+    async def post_required_array_parameter(
             self, body_parameter, *, custom_headers=None, raw=False, **operation_config):
         """Test explicitly required array. Please put null and the client library
         should throw before the request is sent.
@@ -775,7 +790,7 @@ class ExplicitOperations(_ExplicitOperations):
          :class:`ErrorException<requiredoptional.models.ErrorException>`
         """
         # Construct URL
-        url = self.post_required_array_parameter_async.metadata['url']
+        url = self.post_required_array_parameter.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -799,9 +814,9 @@ class ExplicitOperations(_ExplicitOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    post_required_array_parameter_async.metadata = {'url': '/reqopt/requied/array/parameter'}
+    post_required_array_parameter.metadata = {'url': '/reqopt/requied/array/parameter'}
 
-    async def post_optional_array_parameter_async(
+    async def post_optional_array_parameter(
             self, body_parameter=None, *, custom_headers=None, raw=False, **operation_config):
         """Test explicitly optional array. Please put null.
 
@@ -818,7 +833,7 @@ class ExplicitOperations(_ExplicitOperations):
          :class:`ErrorException<requiredoptional.models.ErrorException>`
         """
         # Construct URL
-        url = self.post_optional_array_parameter_async.metadata['url']
+        url = self.post_optional_array_parameter.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -845,9 +860,9 @@ class ExplicitOperations(_ExplicitOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    post_optional_array_parameter_async.metadata = {'url': '/reqopt/optional/array/parameter'}
+    post_optional_array_parameter.metadata = {'url': '/reqopt/optional/array/parameter'}
 
-    async def post_required_array_property_async(
+    async def post_required_array_property(
             self, value, *, custom_headers=None, raw=False, **operation_config):
         """Test explicitly required array. Please put a valid array-wrapper with
         'value' = null and the client library should throw before the request
@@ -869,7 +884,7 @@ class ExplicitOperations(_ExplicitOperations):
         body_parameter = models.ArrayWrapper(value=value)
 
         # Construct URL
-        url = self.post_required_array_property_async.metadata['url']
+        url = self.post_required_array_property.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -893,9 +908,9 @@ class ExplicitOperations(_ExplicitOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    post_required_array_property_async.metadata = {'url': '/reqopt/requied/array/property'}
+    post_required_array_property.metadata = {'url': '/reqopt/requied/array/property'}
 
-    async def post_optional_array_property_async(
+    async def post_optional_array_property(
             self, value=None, *, custom_headers=None, raw=False, **operation_config):
         """Test explicitly optional array. Please put a valid array-wrapper with
         'value' = null.
@@ -917,7 +932,7 @@ class ExplicitOperations(_ExplicitOperations):
             body_parameter = models.ArrayOptionalWrapper(value=value)
 
         # Construct URL
-        url = self.post_optional_array_property_async.metadata['url']
+        url = self.post_optional_array_property.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -944,9 +959,9 @@ class ExplicitOperations(_ExplicitOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    post_optional_array_property_async.metadata = {'url': '/reqopt/optional/array/property'}
+    post_optional_array_property.metadata = {'url': '/reqopt/optional/array/property'}
 
-    async def post_required_array_header_async(
+    async def post_required_array_header(
             self, header_parameter, *, custom_headers=None, raw=False, **operation_config):
         """Test explicitly required array. Please put a header 'headerParameter'
         => null and the client library should throw before the request is sent.
@@ -965,7 +980,7 @@ class ExplicitOperations(_ExplicitOperations):
          :class:`ErrorException<requiredoptional.models.ErrorException>`
         """
         # Construct URL
-        url = self.post_required_array_header_async.metadata['url']
+        url = self.post_required_array_header.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -986,9 +1001,9 @@ class ExplicitOperations(_ExplicitOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    post_required_array_header_async.metadata = {'url': '/reqopt/requied/array/header'}
+    post_required_array_header.metadata = {'url': '/reqopt/requied/array/header'}
 
-    async def post_optional_array_header_async(
+    async def post_optional_array_header(
             self, header_parameter=None, *, custom_headers=None, raw=False, **operation_config):
         """Test explicitly optional integer. Please put a header 'headerParameter'
         => null.
@@ -1006,7 +1021,7 @@ class ExplicitOperations(_ExplicitOperations):
          :class:`ErrorException<requiredoptional.models.ErrorException>`
         """
         # Construct URL
-        url = self.post_optional_array_header_async.metadata['url']
+        url = self.post_optional_array_header.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1028,4 +1043,4 @@ class ExplicitOperations(_ExplicitOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    post_optional_array_header_async.metadata = {'url': '/reqopt/optional/array/header'}
+    post_optional_array_header.metadata = {'url': '/reqopt/optional/array/header'}

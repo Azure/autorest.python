@@ -13,12 +13,28 @@ import uuid
 from msrest.pipeline import ClientRawResponse
 
 from .. import models
-from .odata_operations import OdataOperations as _OdataOperations
 
 
-class OdataOperations(_OdataOperations):
+class OdataOperations:
+    """OdataOperations operations.
 
-    async def get_with_filter_async(
+    :param client: Client for service requests.
+    :param config: Configuration of service client.
+    :param serializer: An object model serializer.
+    :param deserializer: An object model deserializer.
+    """
+
+    models = models
+
+    def __init__(self, client, config, serializer, deserializer) -> None:
+
+        self._client = client
+        self._serialize = serializer
+        self._deserialize = deserializer
+
+        self.config = config
+
+    async def get_with_filter(
             self, filter=None, top=None, orderby=None, *, custom_headers=None, raw=False, **operation_config):
         """Specify filter parameter with value '$filter=id gt 5 and name eq
         'foo'&$orderby=id&$top=10'.
@@ -41,7 +57,7 @@ class OdataOperations(_OdataOperations):
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_with_filter_async.metadata['url']
+        url = self.get_with_filter.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -71,4 +87,4 @@ class OdataOperations(_OdataOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    get_with_filter_async.metadata = {'url': '/azurespecials/odata/filter'}
+    get_with_filter.metadata = {'url': '/azurespecials/odata/filter'}

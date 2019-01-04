@@ -12,13 +12,28 @@
 from msrest.pipeline import ClientRawResponse
 
 from .. import models
-from .duration_operations import DurationOperations as _DurationOperations
 
 
-class DurationOperations(_DurationOperations):
-    """DurationOperations operations."""
+class DurationOperations:
+    """DurationOperations operations.
 
-    async def get_null_async(
+    :param client: Client for service requests.
+    :param config: Configuration of service client.
+    :param serializer: An object model serializer.
+    :param deserializer: An object model deserializer.
+    """
+
+    models = models
+
+    def __init__(self, client, config, serializer, deserializer) -> None:
+
+        self._client = client
+        self._serialize = serializer
+        self._deserialize = deserializer
+
+        self.config = config
+
+    async def get_null(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get null duration value.
 
@@ -32,7 +47,7 @@ class DurationOperations(_DurationOperations):
         :raises: :class:`ErrorException<bodyduration.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_null_async.metadata['url']
+        url = self.get_null.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -59,9 +74,9 @@ class DurationOperations(_DurationOperations):
             return client_raw_response
 
         return deserialized
-    get_null_async.metadata = {'url': '/duration/null'}
+    get_null.metadata = {'url': '/duration/null'}
 
-    async def put_positive_duration_async(
+    async def put_positive_duration(
             self, duration_body, *, custom_headers=None, raw=False, **operation_config):
         """Put a positive duration value.
 
@@ -77,7 +92,7 @@ class DurationOperations(_DurationOperations):
         :raises: :class:`ErrorException<bodyduration.models.ErrorException>`
         """
         # Construct URL
-        url = self.put_positive_duration_async.metadata['url']
+        url = self.put_positive_duration.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -101,9 +116,9 @@ class DurationOperations(_DurationOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_positive_duration_async.metadata = {'url': '/duration/positiveduration'}
+    put_positive_duration.metadata = {'url': '/duration/positiveduration'}
 
-    async def get_positive_duration_async(
+    async def get_positive_duration(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get a positive duration value.
 
@@ -117,7 +132,7 @@ class DurationOperations(_DurationOperations):
         :raises: :class:`ErrorException<bodyduration.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_positive_duration_async.metadata['url']
+        url = self.get_positive_duration.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -144,9 +159,9 @@ class DurationOperations(_DurationOperations):
             return client_raw_response
 
         return deserialized
-    get_positive_duration_async.metadata = {'url': '/duration/positiveduration'}
+    get_positive_duration.metadata = {'url': '/duration/positiveduration'}
 
-    async def get_invalid_async(
+    async def get_invalid(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get an invalid duration value.
 
@@ -160,7 +175,7 @@ class DurationOperations(_DurationOperations):
         :raises: :class:`ErrorException<bodyduration.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_invalid_async.metadata['url']
+        url = self.get_invalid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -187,4 +202,4 @@ class DurationOperations(_DurationOperations):
             return client_raw_response
 
         return deserialized
-    get_invalid_async.metadata = {'url': '/duration/invalid'}
+    get_invalid.metadata = {'url': '/duration/invalid'}

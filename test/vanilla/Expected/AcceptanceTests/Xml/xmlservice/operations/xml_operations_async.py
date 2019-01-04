@@ -13,13 +13,28 @@ from msrest.pipeline import ClientRawResponse
 from msrest.exceptions import HttpOperationError
 
 from .. import models
-from .xml_operations import XmlOperations as _XmlOperations
 
 
-class XmlOperations(_XmlOperations):
-    """XmlOperations operations."""
+class XmlOperations:
+    """XmlOperations operations.
 
-    async def get_complex_type_ref_no_meta_async(
+    :param client: Client for service requests.
+    :param config: Configuration of service client.
+    :param serializer: An object model serializer.
+    :param deserializer: An object model deserializer.
+    """
+
+    models = models
+
+    def __init__(self, client, config, serializer, deserializer) -> None:
+
+        self._client = client
+        self._serialize = serializer
+        self._deserialize = deserializer
+
+        self.config = config
+
+    async def get_complex_type_ref_no_meta(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get a complex type that has a ref to a complex type with no XML node.
 
@@ -35,7 +50,7 @@ class XmlOperations(_XmlOperations):
          :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
         """
         # Construct URL
-        url = self.get_complex_type_ref_no_meta_async.metadata['url']
+        url = self.get_complex_type_ref_no_meta.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -62,9 +77,9 @@ class XmlOperations(_XmlOperations):
             return client_raw_response
 
         return deserialized
-    get_complex_type_ref_no_meta_async.metadata = {'url': '/xml/complex-type-ref-no-meta'}
+    get_complex_type_ref_no_meta.metadata = {'url': '/xml/complex-type-ref-no-meta'}
 
-    async def put_complex_type_ref_no_meta_async(
+    async def put_complex_type_ref_no_meta(
             self, model, *, custom_headers=None, raw=False, **operation_config):
         """Puts a complex type that has a ref to a complex type with no XML node.
 
@@ -81,7 +96,7 @@ class XmlOperations(_XmlOperations):
          :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
         """
         # Construct URL
-        url = self.put_complex_type_ref_no_meta_async.metadata['url']
+        url = self.put_complex_type_ref_no_meta.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -105,9 +120,9 @@ class XmlOperations(_XmlOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_complex_type_ref_no_meta_async.metadata = {'url': '/xml/complex-type-ref-no-meta'}
+    put_complex_type_ref_no_meta.metadata = {'url': '/xml/complex-type-ref-no-meta'}
 
-    async def get_complex_type_ref_with_meta_async(
+    async def get_complex_type_ref_with_meta(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get a complex type that has a ref to a complex type with XML node.
 
@@ -123,7 +138,7 @@ class XmlOperations(_XmlOperations):
          :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
         """
         # Construct URL
-        url = self.get_complex_type_ref_with_meta_async.metadata['url']
+        url = self.get_complex_type_ref_with_meta.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -150,9 +165,9 @@ class XmlOperations(_XmlOperations):
             return client_raw_response
 
         return deserialized
-    get_complex_type_ref_with_meta_async.metadata = {'url': '/xml/complex-type-ref-with-meta'}
+    get_complex_type_ref_with_meta.metadata = {'url': '/xml/complex-type-ref-with-meta'}
 
-    async def put_complex_type_ref_with_meta_async(
+    async def put_complex_type_ref_with_meta(
             self, model, *, custom_headers=None, raw=False, **operation_config):
         """Puts a complex type that has a ref to a complex type with XML node.
 
@@ -169,7 +184,7 @@ class XmlOperations(_XmlOperations):
          :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
         """
         # Construct URL
-        url = self.put_complex_type_ref_with_meta_async.metadata['url']
+        url = self.put_complex_type_ref_with_meta.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -193,9 +208,9 @@ class XmlOperations(_XmlOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_complex_type_ref_with_meta_async.metadata = {'url': '/xml/complex-type-ref-with-meta'}
+    put_complex_type_ref_with_meta.metadata = {'url': '/xml/complex-type-ref-with-meta'}
 
-    async def get_simple_async(
+    async def get_simple(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get a simple XML document.
 
@@ -210,7 +225,7 @@ class XmlOperations(_XmlOperations):
         :raises: :class:`ErrorException<xmlservice.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_simple_async.metadata['url']
+        url = self.get_simple.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -237,9 +252,9 @@ class XmlOperations(_XmlOperations):
             return client_raw_response
 
         return deserialized
-    get_simple_async.metadata = {'url': '/xml/simple'}
+    get_simple.metadata = {'url': '/xml/simple'}
 
-    async def put_simple_async(
+    async def put_simple(
             self, slideshow, *, custom_headers=None, raw=False, **operation_config):
         """Put a simple XML document.
 
@@ -255,7 +270,7 @@ class XmlOperations(_XmlOperations):
         :raises: :class:`ErrorException<xmlservice.models.ErrorException>`
         """
         # Construct URL
-        url = self.put_simple_async.metadata['url']
+        url = self.put_simple.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -279,9 +294,9 @@ class XmlOperations(_XmlOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_simple_async.metadata = {'url': '/xml/simple'}
+    put_simple.metadata = {'url': '/xml/simple'}
 
-    async def get_wrapped_lists_async(
+    async def get_wrapped_lists(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get an XML document with multiple wrapped lists.
 
@@ -297,7 +312,7 @@ class XmlOperations(_XmlOperations):
          :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
         """
         # Construct URL
-        url = self.get_wrapped_lists_async.metadata['url']
+        url = self.get_wrapped_lists.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -324,9 +339,9 @@ class XmlOperations(_XmlOperations):
             return client_raw_response
 
         return deserialized
-    get_wrapped_lists_async.metadata = {'url': '/xml/wrapped-lists'}
+    get_wrapped_lists.metadata = {'url': '/xml/wrapped-lists'}
 
-    async def put_wrapped_lists_async(
+    async def put_wrapped_lists(
             self, wrapped_lists, *, custom_headers=None, raw=False, **operation_config):
         """Put an XML document with multiple wrapped lists.
 
@@ -342,7 +357,7 @@ class XmlOperations(_XmlOperations):
         :raises: :class:`ErrorException<xmlservice.models.ErrorException>`
         """
         # Construct URL
-        url = self.put_wrapped_lists_async.metadata['url']
+        url = self.put_wrapped_lists.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -366,9 +381,9 @@ class XmlOperations(_XmlOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_wrapped_lists_async.metadata = {'url': '/xml/wrapped-lists'}
+    put_wrapped_lists.metadata = {'url': '/xml/wrapped-lists'}
 
-    async def get_headers_async(
+    async def get_headers(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get strongly-typed response headers.
 
@@ -383,7 +398,7 @@ class XmlOperations(_XmlOperations):
          :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
         """
         # Construct URL
-        url = self.get_headers_async.metadata['url']
+        url = self.get_headers.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -406,9 +421,9 @@ class XmlOperations(_XmlOperations):
                 'Custom-Header': 'str',
             })
             return client_raw_response
-    get_headers_async.metadata = {'url': '/xml/headers'}
+    get_headers.metadata = {'url': '/xml/headers'}
 
-    async def get_empty_list_async(
+    async def get_empty_list(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get an empty list.
 
@@ -424,7 +439,7 @@ class XmlOperations(_XmlOperations):
          :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
         """
         # Construct URL
-        url = self.get_empty_list_async.metadata['url']
+        url = self.get_empty_list.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -451,9 +466,9 @@ class XmlOperations(_XmlOperations):
             return client_raw_response
 
         return deserialized
-    get_empty_list_async.metadata = {'url': '/xml/empty-list'}
+    get_empty_list.metadata = {'url': '/xml/empty-list'}
 
-    async def put_empty_list_async(
+    async def put_empty_list(
             self, slideshow, *, custom_headers=None, raw=False, **operation_config):
         """Puts an empty list.
 
@@ -470,7 +485,7 @@ class XmlOperations(_XmlOperations):
          :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
         """
         # Construct URL
-        url = self.put_empty_list_async.metadata['url']
+        url = self.put_empty_list.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -494,9 +509,9 @@ class XmlOperations(_XmlOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_empty_list_async.metadata = {'url': '/xml/empty-list'}
+    put_empty_list.metadata = {'url': '/xml/empty-list'}
 
-    async def get_empty_wrapped_lists_async(
+    async def get_empty_wrapped_lists(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Gets some empty wrapped lists.
 
@@ -512,7 +527,7 @@ class XmlOperations(_XmlOperations):
          :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
         """
         # Construct URL
-        url = self.get_empty_wrapped_lists_async.metadata['url']
+        url = self.get_empty_wrapped_lists.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -539,9 +554,9 @@ class XmlOperations(_XmlOperations):
             return client_raw_response
 
         return deserialized
-    get_empty_wrapped_lists_async.metadata = {'url': '/xml/empty-wrapped-lists'}
+    get_empty_wrapped_lists.metadata = {'url': '/xml/empty-wrapped-lists'}
 
-    async def put_empty_wrapped_lists_async(
+    async def put_empty_wrapped_lists(
             self, apple_barrel, *, custom_headers=None, raw=False, **operation_config):
         """Puts some empty wrapped lists.
 
@@ -558,7 +573,7 @@ class XmlOperations(_XmlOperations):
          :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
         """
         # Construct URL
-        url = self.put_empty_wrapped_lists_async.metadata['url']
+        url = self.put_empty_wrapped_lists.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -582,9 +597,9 @@ class XmlOperations(_XmlOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_empty_wrapped_lists_async.metadata = {'url': '/xml/empty-wrapped-lists'}
+    put_empty_wrapped_lists.metadata = {'url': '/xml/empty-wrapped-lists'}
 
-    async def get_root_list_async(
+    async def get_root_list(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Gets a list as the root element.
 
@@ -600,7 +615,7 @@ class XmlOperations(_XmlOperations):
          :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
         """
         # Construct URL
-        url = self.get_root_list_async.metadata['url']
+        url = self.get_root_list.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -627,9 +642,9 @@ class XmlOperations(_XmlOperations):
             return client_raw_response
 
         return deserialized
-    get_root_list_async.metadata = {'url': '/xml/root-list'}
+    get_root_list.metadata = {'url': '/xml/root-list'}
 
-    async def put_root_list_async(
+    async def put_root_list(
             self, bananas, *, custom_headers=None, raw=False, **operation_config):
         """Puts a list as the root element.
 
@@ -646,7 +661,7 @@ class XmlOperations(_XmlOperations):
          :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
         """
         # Construct URL
-        url = self.put_root_list_async.metadata['url']
+        url = self.put_root_list.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -671,9 +686,9 @@ class XmlOperations(_XmlOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_root_list_async.metadata = {'url': '/xml/root-list'}
+    put_root_list.metadata = {'url': '/xml/root-list'}
 
-    async def get_root_list_single_item_async(
+    async def get_root_list_single_item(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Gets a list with a single item.
 
@@ -689,7 +704,7 @@ class XmlOperations(_XmlOperations):
          :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
         """
         # Construct URL
-        url = self.get_root_list_single_item_async.metadata['url']
+        url = self.get_root_list_single_item.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -716,9 +731,9 @@ class XmlOperations(_XmlOperations):
             return client_raw_response
 
         return deserialized
-    get_root_list_single_item_async.metadata = {'url': '/xml/root-list-single-item'}
+    get_root_list_single_item.metadata = {'url': '/xml/root-list-single-item'}
 
-    async def put_root_list_single_item_async(
+    async def put_root_list_single_item(
             self, bananas, *, custom_headers=None, raw=False, **operation_config):
         """Puts a list with a single item.
 
@@ -735,7 +750,7 @@ class XmlOperations(_XmlOperations):
          :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
         """
         # Construct URL
-        url = self.put_root_list_single_item_async.metadata['url']
+        url = self.put_root_list_single_item.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -760,9 +775,9 @@ class XmlOperations(_XmlOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_root_list_single_item_async.metadata = {'url': '/xml/root-list-single-item'}
+    put_root_list_single_item.metadata = {'url': '/xml/root-list-single-item'}
 
-    async def get_empty_root_list_async(
+    async def get_empty_root_list(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Gets an empty list as the root element.
 
@@ -778,7 +793,7 @@ class XmlOperations(_XmlOperations):
          :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
         """
         # Construct URL
-        url = self.get_empty_root_list_async.metadata['url']
+        url = self.get_empty_root_list.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -805,9 +820,9 @@ class XmlOperations(_XmlOperations):
             return client_raw_response
 
         return deserialized
-    get_empty_root_list_async.metadata = {'url': '/xml/empty-root-list'}
+    get_empty_root_list.metadata = {'url': '/xml/empty-root-list'}
 
-    async def put_empty_root_list_async(
+    async def put_empty_root_list(
             self, bananas, *, custom_headers=None, raw=False, **operation_config):
         """Puts an empty list as the root element.
 
@@ -824,7 +839,7 @@ class XmlOperations(_XmlOperations):
          :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
         """
         # Construct URL
-        url = self.put_empty_root_list_async.metadata['url']
+        url = self.put_empty_root_list.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -849,9 +864,9 @@ class XmlOperations(_XmlOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_empty_root_list_async.metadata = {'url': '/xml/empty-root-list'}
+    put_empty_root_list.metadata = {'url': '/xml/empty-root-list'}
 
-    async def get_empty_child_element_async(
+    async def get_empty_child_element(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Gets an XML document with an empty child element.
 
@@ -867,7 +882,7 @@ class XmlOperations(_XmlOperations):
          :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
         """
         # Construct URL
-        url = self.get_empty_child_element_async.metadata['url']
+        url = self.get_empty_child_element.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -894,9 +909,9 @@ class XmlOperations(_XmlOperations):
             return client_raw_response
 
         return deserialized
-    get_empty_child_element_async.metadata = {'url': '/xml/empty-child-element'}
+    get_empty_child_element.metadata = {'url': '/xml/empty-child-element'}
 
-    async def put_empty_child_element_async(
+    async def put_empty_child_element(
             self, banana, *, custom_headers=None, raw=False, **operation_config):
         """Puts a value with an empty child element.
 
@@ -913,7 +928,7 @@ class XmlOperations(_XmlOperations):
          :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
         """
         # Construct URL
-        url = self.put_empty_child_element_async.metadata['url']
+        url = self.put_empty_child_element.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -937,9 +952,9 @@ class XmlOperations(_XmlOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_empty_child_element_async.metadata = {'url': '/xml/empty-child-element'}
+    put_empty_child_element.metadata = {'url': '/xml/empty-child-element'}
 
-    async def list_containers_async(
+    async def list_containers(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Lists containers in a storage account.
 
@@ -957,7 +972,7 @@ class XmlOperations(_XmlOperations):
         comp = "list"
 
         # Construct URL
-        url = self.list_containers_async.metadata['url']
+        url = self.list_containers.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -985,9 +1000,9 @@ class XmlOperations(_XmlOperations):
             return client_raw_response
 
         return deserialized
-    list_containers_async.metadata = {'url': '/xml/'}
+    list_containers.metadata = {'url': '/xml/'}
 
-    async def get_service_properties_async(
+    async def get_service_properties(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Gets storage service properties.
 
@@ -1006,7 +1021,7 @@ class XmlOperations(_XmlOperations):
         restype = "service"
 
         # Construct URL
-        url = self.get_service_properties_async.metadata['url']
+        url = self.get_service_properties.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1035,9 +1050,9 @@ class XmlOperations(_XmlOperations):
             return client_raw_response
 
         return deserialized
-    get_service_properties_async.metadata = {'url': '/xml/'}
+    get_service_properties.metadata = {'url': '/xml/'}
 
-    async def put_service_properties_async(
+    async def put_service_properties(
             self, properties, *, custom_headers=None, raw=False, **operation_config):
         """Puts storage service properties.
 
@@ -1057,7 +1072,7 @@ class XmlOperations(_XmlOperations):
         restype = "service"
 
         # Construct URL
-        url = self.put_service_properties_async.metadata['url']
+        url = self.put_service_properties.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1083,9 +1098,9 @@ class XmlOperations(_XmlOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_service_properties_async.metadata = {'url': '/xml/'}
+    put_service_properties.metadata = {'url': '/xml/'}
 
-    async def get_acls_async(
+    async def get_acls(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Gets storage ACLs for a container.
 
@@ -1104,7 +1119,7 @@ class XmlOperations(_XmlOperations):
         restype = "container"
 
         # Construct URL
-        url = self.get_acls_async.metadata['url']
+        url = self.get_acls.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1133,9 +1148,9 @@ class XmlOperations(_XmlOperations):
             return client_raw_response
 
         return deserialized
-    get_acls_async.metadata = {'url': '/xml/mycontainer'}
+    get_acls.metadata = {'url': '/xml/mycontainer'}
 
-    async def put_acls_async(
+    async def put_acls(
             self, properties, *, custom_headers=None, raw=False, **operation_config):
         """Puts storage ACLs for a container.
 
@@ -1155,7 +1170,7 @@ class XmlOperations(_XmlOperations):
         restype = "container"
 
         # Construct URL
-        url = self.put_acls_async.metadata['url']
+        url = self.put_acls.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1182,9 +1197,9 @@ class XmlOperations(_XmlOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_acls_async.metadata = {'url': '/xml/mycontainer'}
+    put_acls.metadata = {'url': '/xml/mycontainer'}
 
-    async def list_blobs_async(
+    async def list_blobs(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Lists blobs in a storage container.
 
@@ -1203,7 +1218,7 @@ class XmlOperations(_XmlOperations):
         restype = "container"
 
         # Construct URL
-        url = self.list_blobs_async.metadata['url']
+        url = self.list_blobs.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1232,4 +1247,4 @@ class XmlOperations(_XmlOperations):
             return client_raw_response
 
         return deserialized
-    list_blobs_async.metadata = {'url': '/xml/mycontainer'}
+    list_blobs.metadata = {'url': '/xml/mycontainer'}

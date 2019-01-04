@@ -12,13 +12,28 @@
 from msrest.pipeline import ClientRawResponse
 
 from .. import models
-from .dictionary_operations import DictionaryOperations as _DictionaryOperations
 
 
-class DictionaryOperations(_DictionaryOperations):
-    """DictionaryOperations operations."""
+class DictionaryOperations:
+    """DictionaryOperations operations.
 
-    async def get_valid_async(
+    :param client: Client for service requests.
+    :param config: Configuration of service client.
+    :param serializer: An object model serializer.
+    :param deserializer: An object model deserializer.
+    """
+
+    models = models
+
+    def __init__(self, client, config, serializer, deserializer) -> None:
+
+        self._client = client
+        self._serialize = serializer
+        self._deserialize = deserializer
+
+        self.config = config
+
+    async def get_valid(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get complex types with dictionary property.
 
@@ -33,7 +48,7 @@ class DictionaryOperations(_DictionaryOperations):
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_valid_async.metadata['url']
+        url = self.get_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -60,9 +75,9 @@ class DictionaryOperations(_DictionaryOperations):
             return client_raw_response
 
         return deserialized
-    get_valid_async.metadata = {'url': '/complex/dictionary/typed/valid'}
+    get_valid.metadata = {'url': '/complex/dictionary/typed/valid'}
 
-    async def put_valid_async(
+    async def put_valid(
             self, default_program=None, *, custom_headers=None, raw=False, **operation_config):
         """Put complex types with dictionary property.
 
@@ -80,7 +95,7 @@ class DictionaryOperations(_DictionaryOperations):
         complex_body = models.DictionaryWrapper(default_program=default_program)
 
         # Construct URL
-        url = self.put_valid_async.metadata['url']
+        url = self.put_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -104,9 +119,9 @@ class DictionaryOperations(_DictionaryOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_valid_async.metadata = {'url': '/complex/dictionary/typed/valid'}
+    put_valid.metadata = {'url': '/complex/dictionary/typed/valid'}
 
-    async def get_empty_async(
+    async def get_empty(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get complex types with dictionary property which is empty.
 
@@ -121,7 +136,7 @@ class DictionaryOperations(_DictionaryOperations):
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_empty_async.metadata['url']
+        url = self.get_empty.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -148,9 +163,9 @@ class DictionaryOperations(_DictionaryOperations):
             return client_raw_response
 
         return deserialized
-    get_empty_async.metadata = {'url': '/complex/dictionary/typed/empty'}
+    get_empty.metadata = {'url': '/complex/dictionary/typed/empty'}
 
-    async def put_empty_async(
+    async def put_empty(
             self, default_program=None, *, custom_headers=None, raw=False, **operation_config):
         """Put complex types with dictionary property which is empty.
 
@@ -168,7 +183,7 @@ class DictionaryOperations(_DictionaryOperations):
         complex_body = models.DictionaryWrapper(default_program=default_program)
 
         # Construct URL
-        url = self.put_empty_async.metadata['url']
+        url = self.put_empty.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -192,9 +207,9 @@ class DictionaryOperations(_DictionaryOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    put_empty_async.metadata = {'url': '/complex/dictionary/typed/empty'}
+    put_empty.metadata = {'url': '/complex/dictionary/typed/empty'}
 
-    async def get_null_async(
+    async def get_null(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get complex types with dictionary property which is null.
 
@@ -209,7 +224,7 @@ class DictionaryOperations(_DictionaryOperations):
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_null_async.metadata['url']
+        url = self.get_null.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -236,9 +251,9 @@ class DictionaryOperations(_DictionaryOperations):
             return client_raw_response
 
         return deserialized
-    get_null_async.metadata = {'url': '/complex/dictionary/typed/null'}
+    get_null.metadata = {'url': '/complex/dictionary/typed/null'}
 
-    async def get_not_provided_async(
+    async def get_not_provided(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get complex types with dictionary property while server doesn't provide
         a response payload.
@@ -254,7 +269,7 @@ class DictionaryOperations(_DictionaryOperations):
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_not_provided_async.metadata['url']
+        url = self.get_not_provided.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -281,4 +296,4 @@ class DictionaryOperations(_DictionaryOperations):
             return client_raw_response
 
         return deserialized
-    get_not_provided_async.metadata = {'url': '/complex/dictionary/typed/notprovided'}
+    get_not_provided.metadata = {'url': '/complex/dictionary/typed/notprovided'}

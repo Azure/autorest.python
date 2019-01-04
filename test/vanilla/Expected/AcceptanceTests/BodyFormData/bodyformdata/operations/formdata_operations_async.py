@@ -12,13 +12,28 @@
 from msrest.pipeline import ClientRawResponse
 
 from .. import models
-from .formdata_operations import FormdataOperations as _FormdataOperations
 
 
-class FormdataOperations(_FormdataOperations):
-    """FormdataOperations operations."""
+class FormdataOperations:
+    """FormdataOperations operations.
 
-    async def upload_file_async(
+    :param client: Client for service requests.
+    :param config: Configuration of service client.
+    :param serializer: An object model serializer.
+    :param deserializer: An object model deserializer.
+    """
+
+    models = models
+
+    def __init__(self, client, config, serializer, deserializer) -> None:
+
+        self._client = client
+        self._serialize = serializer
+        self._deserialize = deserializer
+
+        self.config = config
+
+    async def upload_file(
             self, file_content, file_name, *, custom_headers=None, raw=False, callback=None, **operation_config):
         """Upload file.
 
@@ -42,7 +57,7 @@ class FormdataOperations(_FormdataOperations):
         :raises: :class:`ErrorException<bodyformdata.models.ErrorException>`
         """
         # Construct URL
-        url = self.upload_file_async.metadata['url']
+        url = self.upload_file.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -74,9 +89,9 @@ class FormdataOperations(_FormdataOperations):
             return client_raw_response
 
         return deserialized
-    upload_file_async.metadata = {'url': '/formdata/stream/uploadfile'}
+    upload_file.metadata = {'url': '/formdata/stream/uploadfile'}
 
-    async def upload_file_via_body_async(
+    async def upload_file_via_body(
             self, file_content, *, custom_headers=None, raw=False, callback=None, **operation_config):
         """Upload file.
 
@@ -97,7 +112,7 @@ class FormdataOperations(_FormdataOperations):
         :raises: :class:`ErrorException<bodyformdata.models.ErrorException>`
         """
         # Construct URL
-        url = self.upload_file_via_body_async.metadata['url']
+        url = self.upload_file_via_body.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -126,4 +141,4 @@ class FormdataOperations(_FormdataOperations):
             return client_raw_response
 
         return deserialized
-    upload_file_via_body_async.metadata = {'url': '/formdata/stream/uploadfile'}
+    upload_file_via_body.metadata = {'url': '/formdata/stream/uploadfile'}

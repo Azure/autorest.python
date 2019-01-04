@@ -12,13 +12,28 @@
 from msrest.pipeline import ClientRawResponse
 
 from .. import models
-from .queries_operations import QueriesOperations as _QueriesOperations
 
 
-class QueriesOperations(_QueriesOperations):
-    """QueriesOperations operations."""
+class QueriesOperations:
+    """QueriesOperations operations.
 
-    async def array_string_multi_null_async(
+    :param client: Client for service requests.
+    :param config: Configuration of service client.
+    :param serializer: An object model serializer.
+    :param deserializer: An object model deserializer.
+    """
+
+    models = models
+
+    def __init__(self, client, config, serializer, deserializer) -> None:
+
+        self._client = client
+        self._serialize = serializer
+        self._deserialize = deserializer
+
+        self.config = config
+
+    async def array_string_multi_null(
             self, array_query=None, *, custom_headers=None, raw=False, **operation_config):
         """Get a null array of string using the multi-array format.
 
@@ -36,7 +51,7 @@ class QueriesOperations(_QueriesOperations):
          :class:`ErrorException<urlmulticollectionformat.models.ErrorException>`
         """
         # Construct URL
-        url = self.array_string_multi_null_async.metadata['url']
+        url = self.array_string_multi_null.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -58,9 +73,9 @@ class QueriesOperations(_QueriesOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    array_string_multi_null_async.metadata = {'url': '/queries/array/multi/string/null'}
+    array_string_multi_null.metadata = {'url': '/queries/array/multi/string/null'}
 
-    async def array_string_multi_empty_async(
+    async def array_string_multi_empty(
             self, array_query=None, *, custom_headers=None, raw=False, **operation_config):
         """Get an empty array [] of string using the multi-array format.
 
@@ -78,7 +93,7 @@ class QueriesOperations(_QueriesOperations):
          :class:`ErrorException<urlmulticollectionformat.models.ErrorException>`
         """
         # Construct URL
-        url = self.array_string_multi_empty_async.metadata['url']
+        url = self.array_string_multi_empty.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -100,9 +115,9 @@ class QueriesOperations(_QueriesOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    array_string_multi_empty_async.metadata = {'url': '/queries/array/multi/string/empty'}
+    array_string_multi_empty.metadata = {'url': '/queries/array/multi/string/empty'}
 
-    async def array_string_multi_valid_async(
+    async def array_string_multi_valid(
             self, array_query=None, *, custom_headers=None, raw=False, **operation_config):
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' ,
         null, ''] using the mult-array format.
@@ -121,7 +136,7 @@ class QueriesOperations(_QueriesOperations):
          :class:`ErrorException<urlmulticollectionformat.models.ErrorException>`
         """
         # Construct URL
-        url = self.array_string_multi_valid_async.metadata['url']
+        url = self.array_string_multi_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -143,4 +158,4 @@ class QueriesOperations(_QueriesOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    array_string_multi_valid_async.metadata = {'url': '/queries/array/multi/string/valid'}
+    array_string_multi_valid.metadata = {'url': '/queries/array/multi/string/valid'}

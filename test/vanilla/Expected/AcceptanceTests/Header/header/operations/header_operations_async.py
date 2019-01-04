@@ -12,13 +12,28 @@
 from msrest.pipeline import ClientRawResponse
 
 from .. import models
-from .header_operations import HeaderOperations as _HeaderOperations
 
 
-class HeaderOperations(_HeaderOperations):
-    """HeaderOperations operations."""
+class HeaderOperations:
+    """HeaderOperations operations.
 
-    async def param_existing_key_async(
+    :param client: Client for service requests.
+    :param config: Configuration of service client.
+    :param serializer: An object model serializer.
+    :param deserializer: An object model deserializer.
+    """
+
+    models = models
+
+    def __init__(self, client, config, serializer, deserializer) -> None:
+
+        self._client = client
+        self._serialize = serializer
+        self._deserialize = deserializer
+
+        self.config = config
+
+    async def param_existing_key(
             self, user_agent, *, custom_headers=None, raw=False, **operation_config):
         """Send a post request with header value "User-Agent": "overwrite".
 
@@ -35,7 +50,7 @@ class HeaderOperations(_HeaderOperations):
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
-        url = self.param_existing_key_async.metadata['url']
+        url = self.param_existing_key.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -56,9 +71,9 @@ class HeaderOperations(_HeaderOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    param_existing_key_async.metadata = {'url': '/header/param/existingkey'}
+    param_existing_key.metadata = {'url': '/header/param/existingkey'}
 
-    async def response_existing_key_async(
+    async def response_existing_key(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get a response with header value "User-Agent": "overwrite".
 
@@ -72,7 +87,7 @@ class HeaderOperations(_HeaderOperations):
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
-        url = self.response_existing_key_async.metadata['url']
+        url = self.response_existing_key.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -95,9 +110,9 @@ class HeaderOperations(_HeaderOperations):
                 'User-Agent': 'str',
             })
             return client_raw_response
-    response_existing_key_async.metadata = {'url': '/header/response/existingkey'}
+    response_existing_key.metadata = {'url': '/header/response/existingkey'}
 
-    async def param_protected_key_async(
+    async def param_protected_key(
             self, content_type, *, custom_headers=None, raw=False, **operation_config):
         """Send a post request with header value "Content-Type": "text/html".
 
@@ -114,7 +129,7 @@ class HeaderOperations(_HeaderOperations):
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
-        url = self.param_protected_key_async.metadata['url']
+        url = self.param_protected_key.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -135,9 +150,9 @@ class HeaderOperations(_HeaderOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    param_protected_key_async.metadata = {'url': '/header/param/protectedkey'}
+    param_protected_key.metadata = {'url': '/header/param/protectedkey'}
 
-    async def response_protected_key_async(
+    async def response_protected_key(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get a response with header value "Content-Type": "text/html".
 
@@ -151,7 +166,7 @@ class HeaderOperations(_HeaderOperations):
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
-        url = self.response_protected_key_async.metadata['url']
+        url = self.response_protected_key.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -174,9 +189,9 @@ class HeaderOperations(_HeaderOperations):
                 'Content-Type': 'str',
             })
             return client_raw_response
-    response_protected_key_async.metadata = {'url': '/header/response/protectedkey'}
+    response_protected_key.metadata = {'url': '/header/response/protectedkey'}
 
-    async def param_integer_async(
+    async def param_integer(
             self, scenario, value, *, custom_headers=None, raw=False, **operation_config):
         """Send a post request with header values "scenario": "positive", "value":
         1 or "scenario": "negative", "value": -2 .
@@ -196,7 +211,7 @@ class HeaderOperations(_HeaderOperations):
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
-        url = self.param_integer_async.metadata['url']
+        url = self.param_integer.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -218,9 +233,9 @@ class HeaderOperations(_HeaderOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    param_integer_async.metadata = {'url': '/header/param/prim/integer'}
+    param_integer.metadata = {'url': '/header/param/prim/integer'}
 
-    async def response_integer_async(
+    async def response_integer(
             self, scenario, *, custom_headers=None, raw=False, **operation_config):
         """Get a response with header value "value": 1 or -2.
 
@@ -237,7 +252,7 @@ class HeaderOperations(_HeaderOperations):
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
-        url = self.response_integer_async.metadata['url']
+        url = self.response_integer.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -261,9 +276,9 @@ class HeaderOperations(_HeaderOperations):
                 'value': 'int',
             })
             return client_raw_response
-    response_integer_async.metadata = {'url': '/header/response/prim/integer'}
+    response_integer.metadata = {'url': '/header/response/prim/integer'}
 
-    async def param_long_async(
+    async def param_long(
             self, scenario, value, *, custom_headers=None, raw=False, **operation_config):
         """Send a post request with header values "scenario": "positive", "value":
         105 or "scenario": "negative", "value": -2 .
@@ -283,7 +298,7 @@ class HeaderOperations(_HeaderOperations):
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
-        url = self.param_long_async.metadata['url']
+        url = self.param_long.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -305,9 +320,9 @@ class HeaderOperations(_HeaderOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    param_long_async.metadata = {'url': '/header/param/prim/long'}
+    param_long.metadata = {'url': '/header/param/prim/long'}
 
-    async def response_long_async(
+    async def response_long(
             self, scenario, *, custom_headers=None, raw=False, **operation_config):
         """Get a response with header value "value": 105 or -2.
 
@@ -324,7 +339,7 @@ class HeaderOperations(_HeaderOperations):
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
-        url = self.response_long_async.metadata['url']
+        url = self.response_long.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -348,9 +363,9 @@ class HeaderOperations(_HeaderOperations):
                 'value': 'long',
             })
             return client_raw_response
-    response_long_async.metadata = {'url': '/header/response/prim/long'}
+    response_long.metadata = {'url': '/header/response/prim/long'}
 
-    async def param_float_async(
+    async def param_float(
             self, scenario, value, *, custom_headers=None, raw=False, **operation_config):
         """Send a post request with header values "scenario": "positive", "value":
         0.07 or "scenario": "negative", "value": -3.0.
@@ -370,7 +385,7 @@ class HeaderOperations(_HeaderOperations):
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
-        url = self.param_float_async.metadata['url']
+        url = self.param_float.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -392,9 +407,9 @@ class HeaderOperations(_HeaderOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    param_float_async.metadata = {'url': '/header/param/prim/float'}
+    param_float.metadata = {'url': '/header/param/prim/float'}
 
-    async def response_float_async(
+    async def response_float(
             self, scenario, *, custom_headers=None, raw=False, **operation_config):
         """Get a response with header value "value": 0.07 or -3.0.
 
@@ -411,7 +426,7 @@ class HeaderOperations(_HeaderOperations):
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
-        url = self.response_float_async.metadata['url']
+        url = self.response_float.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -435,9 +450,9 @@ class HeaderOperations(_HeaderOperations):
                 'value': 'float',
             })
             return client_raw_response
-    response_float_async.metadata = {'url': '/header/response/prim/float'}
+    response_float.metadata = {'url': '/header/response/prim/float'}
 
-    async def param_double_async(
+    async def param_double(
             self, scenario, value, *, custom_headers=None, raw=False, **operation_config):
         """Send a post request with header values "scenario": "positive", "value":
         7e120 or "scenario": "negative", "value": -3.0.
@@ -457,7 +472,7 @@ class HeaderOperations(_HeaderOperations):
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
-        url = self.param_double_async.metadata['url']
+        url = self.param_double.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -479,9 +494,9 @@ class HeaderOperations(_HeaderOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    param_double_async.metadata = {'url': '/header/param/prim/double'}
+    param_double.metadata = {'url': '/header/param/prim/double'}
 
-    async def response_double_async(
+    async def response_double(
             self, scenario, *, custom_headers=None, raw=False, **operation_config):
         """Get a response with header value "value": 7e120 or -3.0.
 
@@ -498,7 +513,7 @@ class HeaderOperations(_HeaderOperations):
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
-        url = self.response_double_async.metadata['url']
+        url = self.response_double.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -522,9 +537,9 @@ class HeaderOperations(_HeaderOperations):
                 'value': 'float',
             })
             return client_raw_response
-    response_double_async.metadata = {'url': '/header/response/prim/double'}
+    response_double.metadata = {'url': '/header/response/prim/double'}
 
-    async def param_bool_async(
+    async def param_bool(
             self, scenario, value, *, custom_headers=None, raw=False, **operation_config):
         """Send a post request with header values "scenario": "true", "value":
         true or "scenario": "false", "value": false.
@@ -544,7 +559,7 @@ class HeaderOperations(_HeaderOperations):
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
-        url = self.param_bool_async.metadata['url']
+        url = self.param_bool.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -566,9 +581,9 @@ class HeaderOperations(_HeaderOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    param_bool_async.metadata = {'url': '/header/param/prim/bool'}
+    param_bool.metadata = {'url': '/header/param/prim/bool'}
 
-    async def response_bool_async(
+    async def response_bool(
             self, scenario, *, custom_headers=None, raw=False, **operation_config):
         """Get a response with header value "value": true or false.
 
@@ -585,7 +600,7 @@ class HeaderOperations(_HeaderOperations):
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
-        url = self.response_bool_async.metadata['url']
+        url = self.response_bool.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -609,9 +624,9 @@ class HeaderOperations(_HeaderOperations):
                 'value': 'bool',
             })
             return client_raw_response
-    response_bool_async.metadata = {'url': '/header/response/prim/bool'}
+    response_bool.metadata = {'url': '/header/response/prim/bool'}
 
-    async def param_string_async(
+    async def param_string(
             self, scenario, value=None, *, custom_headers=None, raw=False, **operation_config):
         """Send a post request with header values "scenario": "valid", "value":
         "The quick brown fox jumps over the lazy dog" or "scenario": "null",
@@ -633,7 +648,7 @@ class HeaderOperations(_HeaderOperations):
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
-        url = self.param_string_async.metadata['url']
+        url = self.param_string.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -656,9 +671,9 @@ class HeaderOperations(_HeaderOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    param_string_async.metadata = {'url': '/header/param/prim/string'}
+    param_string.metadata = {'url': '/header/param/prim/string'}
 
-    async def response_string_async(
+    async def response_string(
             self, scenario, *, custom_headers=None, raw=False, **operation_config):
         """Get a response with header values "The quick brown fox jumps over the
         lazy dog" or null or "".
@@ -676,7 +691,7 @@ class HeaderOperations(_HeaderOperations):
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
-        url = self.response_string_async.metadata['url']
+        url = self.response_string.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -700,9 +715,9 @@ class HeaderOperations(_HeaderOperations):
                 'value': 'str',
             })
             return client_raw_response
-    response_string_async.metadata = {'url': '/header/response/prim/string'}
+    response_string.metadata = {'url': '/header/response/prim/string'}
 
-    async def param_date_async(
+    async def param_date(
             self, scenario, value, *, custom_headers=None, raw=False, **operation_config):
         """Send a post request with header values "scenario": "valid", "value":
         "2010-01-01" or "scenario": "min", "value": "0001-01-01".
@@ -723,7 +738,7 @@ class HeaderOperations(_HeaderOperations):
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
-        url = self.param_date_async.metadata['url']
+        url = self.param_date.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -745,9 +760,9 @@ class HeaderOperations(_HeaderOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    param_date_async.metadata = {'url': '/header/param/prim/date'}
+    param_date.metadata = {'url': '/header/param/prim/date'}
 
-    async def response_date_async(
+    async def response_date(
             self, scenario, *, custom_headers=None, raw=False, **operation_config):
         """Get a response with header values "2010-01-01" or "0001-01-01".
 
@@ -764,7 +779,7 @@ class HeaderOperations(_HeaderOperations):
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
-        url = self.response_date_async.metadata['url']
+        url = self.response_date.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -788,9 +803,9 @@ class HeaderOperations(_HeaderOperations):
                 'value': 'date',
             })
             return client_raw_response
-    response_date_async.metadata = {'url': '/header/response/prim/date'}
+    response_date.metadata = {'url': '/header/response/prim/date'}
 
-    async def param_datetime_async(
+    async def param_datetime(
             self, scenario, value, *, custom_headers=None, raw=False, **operation_config):
         """Send a post request with header values "scenario": "valid", "value":
         "2010-01-01T12:34:56Z" or "scenario": "min", "value":
@@ -812,7 +827,7 @@ class HeaderOperations(_HeaderOperations):
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
-        url = self.param_datetime_async.metadata['url']
+        url = self.param_datetime.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -834,9 +849,9 @@ class HeaderOperations(_HeaderOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    param_datetime_async.metadata = {'url': '/header/param/prim/datetime'}
+    param_datetime.metadata = {'url': '/header/param/prim/datetime'}
 
-    async def response_datetime_async(
+    async def response_datetime(
             self, scenario, *, custom_headers=None, raw=False, **operation_config):
         """Get a response with header values "2010-01-01T12:34:56Z" or
         "0001-01-01T00:00:00Z".
@@ -854,7 +869,7 @@ class HeaderOperations(_HeaderOperations):
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
-        url = self.response_datetime_async.metadata['url']
+        url = self.response_datetime.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -878,9 +893,9 @@ class HeaderOperations(_HeaderOperations):
                 'value': 'iso-8601',
             })
             return client_raw_response
-    response_datetime_async.metadata = {'url': '/header/response/prim/datetime'}
+    response_datetime.metadata = {'url': '/header/response/prim/datetime'}
 
-    async def param_datetime_rfc1123_async(
+    async def param_datetime_rfc1123(
             self, scenario, value=None, *, custom_headers=None, raw=False, **operation_config):
         """Send a post request with header values "scenario": "valid", "value":
         "Wed, 01 Jan 2010 12:34:56 GMT" or "scenario": "min", "value": "Mon, 01
@@ -902,7 +917,7 @@ class HeaderOperations(_HeaderOperations):
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
-        url = self.param_datetime_rfc1123_async.metadata['url']
+        url = self.param_datetime_rfc1123.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -925,9 +940,9 @@ class HeaderOperations(_HeaderOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    param_datetime_rfc1123_async.metadata = {'url': '/header/param/prim/datetimerfc1123'}
+    param_datetime_rfc1123.metadata = {'url': '/header/param/prim/datetimerfc1123'}
 
-    async def response_datetime_rfc1123_async(
+    async def response_datetime_rfc1123(
             self, scenario, *, custom_headers=None, raw=False, **operation_config):
         """Get a response with header values "Wed, 01 Jan 2010 12:34:56 GMT" or
         "Mon, 01 Jan 0001 00:00:00 GMT".
@@ -945,7 +960,7 @@ class HeaderOperations(_HeaderOperations):
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
-        url = self.response_datetime_rfc1123_async.metadata['url']
+        url = self.response_datetime_rfc1123.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -969,9 +984,9 @@ class HeaderOperations(_HeaderOperations):
                 'value': 'rfc-1123',
             })
             return client_raw_response
-    response_datetime_rfc1123_async.metadata = {'url': '/header/response/prim/datetimerfc1123'}
+    response_datetime_rfc1123.metadata = {'url': '/header/response/prim/datetimerfc1123'}
 
-    async def param_duration_async(
+    async def param_duration(
             self, scenario, value, *, custom_headers=None, raw=False, **operation_config):
         """Send a post request with header values "scenario": "valid", "value":
         "P123DT22H14M12.011S".
@@ -992,7 +1007,7 @@ class HeaderOperations(_HeaderOperations):
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
-        url = self.param_duration_async.metadata['url']
+        url = self.param_duration.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1014,9 +1029,9 @@ class HeaderOperations(_HeaderOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    param_duration_async.metadata = {'url': '/header/param/prim/duration'}
+    param_duration.metadata = {'url': '/header/param/prim/duration'}
 
-    async def response_duration_async(
+    async def response_duration(
             self, scenario, *, custom_headers=None, raw=False, **operation_config):
         """Get a response with header values "P123DT22H14M12.011S".
 
@@ -1033,7 +1048,7 @@ class HeaderOperations(_HeaderOperations):
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
-        url = self.response_duration_async.metadata['url']
+        url = self.response_duration.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1057,9 +1072,9 @@ class HeaderOperations(_HeaderOperations):
                 'value': 'duration',
             })
             return client_raw_response
-    response_duration_async.metadata = {'url': '/header/response/prim/duration'}
+    response_duration.metadata = {'url': '/header/response/prim/duration'}
 
-    async def param_byte_async(
+    async def param_byte(
             self, scenario, value, *, custom_headers=None, raw=False, **operation_config):
         """Send a post request with header values "scenario": "valid", "value":
         "啊齄丂狛狜隣郎隣兀﨩".
@@ -1079,7 +1094,7 @@ class HeaderOperations(_HeaderOperations):
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
-        url = self.param_byte_async.metadata['url']
+        url = self.param_byte.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1101,9 +1116,9 @@ class HeaderOperations(_HeaderOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    param_byte_async.metadata = {'url': '/header/param/prim/byte'}
+    param_byte.metadata = {'url': '/header/param/prim/byte'}
 
-    async def response_byte_async(
+    async def response_byte(
             self, scenario, *, custom_headers=None, raw=False, **operation_config):
         """Get a response with header values "啊齄丂狛狜隣郎隣兀﨩".
 
@@ -1120,7 +1135,7 @@ class HeaderOperations(_HeaderOperations):
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
-        url = self.response_byte_async.metadata['url']
+        url = self.response_byte.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1144,9 +1159,9 @@ class HeaderOperations(_HeaderOperations):
                 'value': 'bytearray',
             })
             return client_raw_response
-    response_byte_async.metadata = {'url': '/header/response/prim/byte'}
+    response_byte.metadata = {'url': '/header/response/prim/byte'}
 
-    async def param_enum_async(
+    async def param_enum(
             self, scenario, value=None, *, custom_headers=None, raw=False, **operation_config):
         """Send a post request with header values "scenario": "valid", "value":
         "GREY" or "scenario": "null", "value": null.
@@ -1167,7 +1182,7 @@ class HeaderOperations(_HeaderOperations):
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
-        url = self.param_enum_async.metadata['url']
+        url = self.param_enum.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1190,9 +1205,9 @@ class HeaderOperations(_HeaderOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    param_enum_async.metadata = {'url': '/header/param/prim/enum'}
+    param_enum.metadata = {'url': '/header/param/prim/enum'}
 
-    async def response_enum_async(
+    async def response_enum(
             self, scenario, *, custom_headers=None, raw=False, **operation_config):
         """Get a response with header values "GREY" or null.
 
@@ -1209,7 +1224,7 @@ class HeaderOperations(_HeaderOperations):
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
-        url = self.response_enum_async.metadata['url']
+        url = self.response_enum.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1233,9 +1248,9 @@ class HeaderOperations(_HeaderOperations):
                 'value': models.GreyscaleColors,
             })
             return client_raw_response
-    response_enum_async.metadata = {'url': '/header/response/prim/enum'}
+    response_enum.metadata = {'url': '/header/response/prim/enum'}
 
-    async def custom_request_id_async(
+    async def custom_request_id(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Send x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in
         the header of the request.
@@ -1250,7 +1265,7 @@ class HeaderOperations(_HeaderOperations):
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
-        url = self.custom_request_id_async.metadata['url']
+        url = self.custom_request_id.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -1270,4 +1285,4 @@ class HeaderOperations(_HeaderOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    custom_request_id_async.metadata = {'url': '/header/custom/x-ms-client-request-id/9C4D50EE-2D56-4CD3-8152-34347DC9F2B0'}
+    custom_request_id.metadata = {'url': '/header/custom/x-ms-client-request-id/9C4D50EE-2D56-4CD3-8152-34347DC9F2B0'}

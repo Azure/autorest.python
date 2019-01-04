@@ -21,11 +21,37 @@ from msrest.pipeline import ClientRawResponse
 @EmptyLine
 @:from .. import models
 }
-from .@( Model.TypeName.ToPythonCase()) import @Model.TypeName as _@Model.TypeName
 @EmptyLine
 @EmptyLine
-class @((string) Model.TypeName)(_@Model.TypeName):
-    """@((string) Model.TypeName) operations."""
+class @((string) Model.TypeName):
+    """@((string) Model.TypeName) operations.
+@EmptyLine
+    :param client: Client for service requests.
+    :param config: Configuration of service client.
+    :param serializer: An object model serializer.
+    :param deserializer: An object model deserializer.
+@foreach(var property in Model.ConstantProperties)
+{
+    @:@Model.GetPropertyDocumentationString(property)
+}
+    """
+@if (Model.HasAnyModel)
+{
+@EmptyLine
+@:    models = models
+}
+@EmptyLine
+    def __init__(self, client, config, serializer, deserializer) -> None:
+@EmptyLine
+        self._client = client
+        self._serialize = serializer
+        self._deserialize = deserializer
+@EmptyLine
+        self.config = config
+@foreach(var property in Model.ConstantProperties)
+{
+        @:@property.Name = @property.DefaultValue
+}
 @foreach (var method in Model.MethodTemplateModels)
 {
 @EmptyLine

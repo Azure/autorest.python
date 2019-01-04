@@ -13,12 +13,30 @@ import uuid
 from msrest.pipeline import ClientRawResponse
 
 from .. import models
-from .api_version_local_operations import ApiVersionLocalOperations as _ApiVersionLocalOperations
 
 
-class ApiVersionLocalOperations(_ApiVersionLocalOperations):
+class ApiVersionLocalOperations:
+    """ApiVersionLocalOperations operations.
 
-    async def get_method_local_valid_async(
+    :param client: Client for service requests.
+    :param config: Configuration of service client.
+    :param serializer: An object model serializer.
+    :param deserializer: An object model deserializer.
+    :ivar api_version: This should appear as a method parameter, use value '2.0'. Constant value: "2.0".
+    """
+
+    models = models
+
+    def __init__(self, client, config, serializer, deserializer) -> None:
+
+        self._client = client
+        self._serialize = serializer
+        self._deserialize = deserializer
+        self.api_version = "2.0"
+
+        self.config = config
+
+    async def get_method_local_valid(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get method with api-version modeled in the method.  pass in api-version
         = '2.0' to succeed.
@@ -34,7 +52,7 @@ class ApiVersionLocalOperations(_ApiVersionLocalOperations):
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_method_local_valid_async.metadata['url']
+        url = self.get_method_local_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -59,9 +77,9 @@ class ApiVersionLocalOperations(_ApiVersionLocalOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    get_method_local_valid_async.metadata = {'url': '/azurespecials/apiVersion/method/string/none/query/local/2.0'}
+    get_method_local_valid.metadata = {'url': '/azurespecials/apiVersion/method/string/none/query/local/2.0'}
 
-    async def get_method_local_null_async(
+    async def get_method_local_null(
             self, api_version=None, *, custom_headers=None, raw=False, **operation_config):
         """Get method with api-version modeled in the method.  pass in api-version
         = null to succeed.
@@ -80,7 +98,7 @@ class ApiVersionLocalOperations(_ApiVersionLocalOperations):
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_method_local_null_async.metadata['url']
+        url = self.get_method_local_null.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -106,9 +124,9 @@ class ApiVersionLocalOperations(_ApiVersionLocalOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    get_method_local_null_async.metadata = {'url': '/azurespecials/apiVersion/method/string/none/query/local/null'}
+    get_method_local_null.metadata = {'url': '/azurespecials/apiVersion/method/string/none/query/local/null'}
 
-    async def get_path_local_valid_async(
+    async def get_path_local_valid(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get method with api-version modeled in the method.  pass in api-version
         = '2.0' to succeed.
@@ -124,7 +142,7 @@ class ApiVersionLocalOperations(_ApiVersionLocalOperations):
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_path_local_valid_async.metadata['url']
+        url = self.get_path_local_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -149,9 +167,9 @@ class ApiVersionLocalOperations(_ApiVersionLocalOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    get_path_local_valid_async.metadata = {'url': '/azurespecials/apiVersion/path/string/none/query/local/2.0'}
+    get_path_local_valid.metadata = {'url': '/azurespecials/apiVersion/path/string/none/query/local/2.0'}
 
-    async def get_swagger_local_valid_async(
+    async def get_swagger_local_valid(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get method with api-version modeled in the method.  pass in api-version
         = '2.0' to succeed.
@@ -167,7 +185,7 @@ class ApiVersionLocalOperations(_ApiVersionLocalOperations):
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_swagger_local_valid_async.metadata['url']
+        url = self.get_swagger_local_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -192,4 +210,4 @@ class ApiVersionLocalOperations(_ApiVersionLocalOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    get_swagger_local_valid_async.metadata = {'url': '/azurespecials/apiVersion/swagger/string/none/query/local/2.0'}
+    get_swagger_local_valid.metadata = {'url': '/azurespecials/apiVersion/swagger/string/none/query/local/2.0'}

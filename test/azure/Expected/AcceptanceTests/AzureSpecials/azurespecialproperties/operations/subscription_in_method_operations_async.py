@@ -13,12 +13,28 @@ import uuid
 from msrest.pipeline import ClientRawResponse
 
 from .. import models
-from .subscription_in_method_operations import SubscriptionInMethodOperations as _SubscriptionInMethodOperations
 
 
-class SubscriptionInMethodOperations(_SubscriptionInMethodOperations):
+class SubscriptionInMethodOperations:
+    """SubscriptionInMethodOperations operations.
 
-    async def post_method_local_valid_async(
+    :param client: Client for service requests.
+    :param config: Configuration of service client.
+    :param serializer: An object model serializer.
+    :param deserializer: An object model deserializer.
+    """
+
+    models = models
+
+    def __init__(self, client, config, serializer, deserializer) -> None:
+
+        self._client = client
+        self._serialize = serializer
+        self._deserialize = deserializer
+
+        self.config = config
+
+    async def post_method_local_valid(
             self, subscription_id, *, custom_headers=None, raw=False, **operation_config):
         """POST method with subscriptionId modeled in the method.  pass in
         subscription id = '1234-5678-9012-3456' to succeed.
@@ -37,7 +53,7 @@ class SubscriptionInMethodOperations(_SubscriptionInMethodOperations):
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
         """
         # Construct URL
-        url = self.post_method_local_valid_async.metadata['url']
+        url = self.post_method_local_valid.metadata['url']
         path_format_arguments = {
             'subscriptionId': self._serialize.url("subscription_id", subscription_id, 'str')
         }
@@ -65,9 +81,9 @@ class SubscriptionInMethodOperations(_SubscriptionInMethodOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    post_method_local_valid_async.metadata = {'url': '/azurespecials/subscriptionId/method/string/none/path/local/1234-5678-9012-3456/{subscriptionId}'}
+    post_method_local_valid.metadata = {'url': '/azurespecials/subscriptionId/method/string/none/path/local/1234-5678-9012-3456/{subscriptionId}'}
 
-    async def post_method_local_null_async(
+    async def post_method_local_null(
             self, subscription_id, *, custom_headers=None, raw=False, **operation_config):
         """POST method with subscriptionId modeled in the method.  pass in
         subscription id = null, client-side validation should prevent you from
@@ -87,7 +103,7 @@ class SubscriptionInMethodOperations(_SubscriptionInMethodOperations):
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
         """
         # Construct URL
-        url = self.post_method_local_null_async.metadata['url']
+        url = self.post_method_local_null.metadata['url']
         path_format_arguments = {
             'subscriptionId': self._serialize.url("subscription_id", subscription_id, 'str')
         }
@@ -115,9 +131,9 @@ class SubscriptionInMethodOperations(_SubscriptionInMethodOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    post_method_local_null_async.metadata = {'url': '/azurespecials/subscriptionId/method/string/none/path/local/null/{subscriptionId}'}
+    post_method_local_null.metadata = {'url': '/azurespecials/subscriptionId/method/string/none/path/local/null/{subscriptionId}'}
 
-    async def post_path_local_valid_async(
+    async def post_path_local_valid(
             self, subscription_id, *, custom_headers=None, raw=False, **operation_config):
         """POST method with subscriptionId modeled in the method.  pass in
         subscription id = '1234-5678-9012-3456' to succeed.
@@ -136,7 +152,7 @@ class SubscriptionInMethodOperations(_SubscriptionInMethodOperations):
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
         """
         # Construct URL
-        url = self.post_path_local_valid_async.metadata['url']
+        url = self.post_path_local_valid.metadata['url']
         path_format_arguments = {
             'subscriptionId': self._serialize.url("subscription_id", subscription_id, 'str')
         }
@@ -164,9 +180,9 @@ class SubscriptionInMethodOperations(_SubscriptionInMethodOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    post_path_local_valid_async.metadata = {'url': '/azurespecials/subscriptionId/path/string/none/path/local/1234-5678-9012-3456/{subscriptionId}'}
+    post_path_local_valid.metadata = {'url': '/azurespecials/subscriptionId/path/string/none/path/local/1234-5678-9012-3456/{subscriptionId}'}
 
-    async def post_swagger_local_valid_async(
+    async def post_swagger_local_valid(
             self, subscription_id, *, custom_headers=None, raw=False, **operation_config):
         """POST method with subscriptionId modeled in the method.  pass in
         subscription id = '1234-5678-9012-3456' to succeed.
@@ -185,7 +201,7 @@ class SubscriptionInMethodOperations(_SubscriptionInMethodOperations):
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
         """
         # Construct URL
-        url = self.post_swagger_local_valid_async.metadata['url']
+        url = self.post_swagger_local_valid.metadata['url']
         path_format_arguments = {
             'subscriptionId': self._serialize.url("subscription_id", subscription_id, 'str')
         }
@@ -213,4 +229,4 @@ class SubscriptionInMethodOperations(_SubscriptionInMethodOperations):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
-    post_swagger_local_valid_async.metadata = {'url': '/azurespecials/subscriptionId/swagger/string/none/path/local/1234-5678-9012-3456/{subscriptionId}'}
+    post_swagger_local_valid.metadata = {'url': '/azurespecials/subscriptionId/swagger/string/none/path/local/1234-5678-9012-3456/{subscriptionId}'}
