@@ -43,7 +43,7 @@ sys.path.append(join(tests, "Validation"))
 from msrest.serialization import Deserializer
 from msrest.exceptions import DeserializationError, ValidationError
 
-from validation import AutoRestValidationTest
+from validation import AutoRestValidationTestAsync
 from validation.models import (
     Product,
     ConstantProduct,
@@ -55,70 +55,70 @@ class TestValidation(object):
 
     @pytest.mark.asyncio
     async def test_constant_values(self):
-        client = AutoRestValidationTest(
+        client = AutoRestValidationTestAsync(
             "abc123",
             base_url="http://localhost:3000")
         client.api_version = "12-34-5678"
 
-        client.get_with_constant_in_path()
+        await client.get_with_constant_in_path()
 
         body = Product(child=ChildProduct())
-        product = client.post_with_constant_in_body(body=body)
+        product = await client.post_with_constant_in_body(body=body)
         assert product is not None
 
     @pytest.mark.asyncio
     async def test_validation(self):
-        client = AutoRestValidationTest(
+        client = AutoRestValidationTestAsync(
             "abc123",
             base_url="http://localhost:3000")
         client.api_version = "12-34-5678"
 
         try:
-            client.validation_of_method_parameters("1", 100)
+            await client.validation_of_method_parameters("1", 100)
         except ValidationError as err:
             assert err.rule ==  "min_length"
             assert err.target ==  "resource_group_name"
 
         try:
-            client.validation_of_method_parameters("1234567890A", 100)
+            await client.validation_of_method_parameters("1234567890A", 100)
         except ValidationError as err:
             assert err.rule ==  "max_length"
             assert err.target ==  "resource_group_name"
 
         try:
-            client.validation_of_method_parameters("!@#$", 100)
+            await client.validation_of_method_parameters("!@#$", 100)
         except ValidationError as err:
             assert err.rule ==  "pattern"
             assert err.target ==  "resource_group_name"
 
         try:
-            client.validation_of_method_parameters("123", 105)
+            await client.validation_of_method_parameters("123", 105)
         except ValidationError as err:
             assert err.rule ==  "multiple"
             assert err.target ==  "id"
 
         try:
-            client.validation_of_method_parameters("123", 0)
+            await client.validation_of_method_parameters("123", 0)
         except ValidationError as err:
             assert err.rule ==  "minimum"
             assert err.target ==  "id"
 
         try:
-            client.validation_of_method_parameters("123", 2000)
+            await client.validation_of_method_parameters("123", 2000)
         except ValidationError as err:
             assert err.rule ==  "maximum"
             assert err.target ==  "id"
 
         try:
             tempproduct=Product(child=ChildProduct(), capacity=0)
-            client.validation_of_body("123", 150, tempproduct)
+            await client.validation_of_body("123", 150, tempproduct)
         except ValidationError as err:
             assert err.rule ==  "minimum_ex"
             assert "capacity" in  err.target
 
         try:
             tempproduct=Product(child=ChildProduct(), capacity=100)
-            client.validation_of_body("123", 150, tempproduct)
+            await client.validation_of_body("123", 150, tempproduct)
         except ValidationError as err:
             assert err.rule ==  "maximum_ex"
             assert "capacity" in  err.target
@@ -126,18 +126,18 @@ class TestValidation(object):
         try:
             tempproduct=Product(child=ChildProduct(),
                 display_names=["item1","item2","item3","item4","item5","item6","item7"])
-            client.validation_of_body("123", 150, tempproduct)
+            await client.validation_of_body("123", 150, tempproduct)
         except ValidationError as err:
             assert err.rule ==  "max_items"
             assert "display_names" in  err.target
 
-        client2 = AutoRestValidationTest(
+        client2 = AutoRestValidationTestAsync(
             "abc123",
             base_url="http://localhost:3000")
         client2.api_version = "abc"
 
         try:
-            client2.validation_of_method_parameters("123", 150)
+            await client2.validation_of_method_parameters("123", 150)
         except ValidationError as err:
-            assert err.rule ==  "pattern"
-            assert err.target ==  "self.api_version"
+            assert err.rule == "pattern"
+            assert err.target == "self.api_version"

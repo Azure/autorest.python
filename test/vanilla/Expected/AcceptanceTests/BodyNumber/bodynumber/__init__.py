@@ -9,10 +9,16 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .auto_rest_number_test_service import AutoRestNumberTestService
-from .version import VERSION
+from .auto_rest_number_test_service import AutoRestNumberTestService, AutoRestNumberTestServiceConfiguration
+__all__ = ['AutoRestNumberTestService', 'AutoRestNumberTestServiceConfiguration']
 
-__all__ = ['AutoRestNumberTestService']
+try:
+    from .auto_rest_number_test_service_async import AutoRestNumberTestServiceAsync
+    __all__ += ['AutoRestNumberTestServiceAsync']
+except (SyntaxError, ImportError):  # Python 2
+    pass
+
+from .version import VERSION
 
 __version__ = VERSION
 

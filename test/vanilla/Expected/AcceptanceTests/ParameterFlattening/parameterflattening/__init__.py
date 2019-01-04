@@ -9,10 +9,16 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .auto_rest_parameter_flattening import AutoRestParameterFlattening
-from .version import VERSION
+from .auto_rest_parameter_flattening import AutoRestParameterFlattening, AutoRestParameterFlatteningConfiguration
+__all__ = ['AutoRestParameterFlattening', 'AutoRestParameterFlatteningConfiguration']
 
-__all__ = ['AutoRestParameterFlattening']
+try:
+    from .auto_rest_parameter_flattening_async import AutoRestParameterFlatteningAsync
+    __all__ += ['AutoRestParameterFlatteningAsync']
+except (SyntaxError, ImportError):  # Python 2
+    pass
+
+from .version import VERSION
 
 __version__ = VERSION
 

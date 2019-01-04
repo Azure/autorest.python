@@ -9,10 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-try:
-    from .datetimerfc1123_operations_async import Datetimerfc1123Operations
-except (SyntaxError, ImportError):
-    from .datetimerfc1123_operations import Datetimerfc1123Operations
+from ._datetimerfc1123_operations import Datetimerfc1123Operations
 
 __all__ = [
     'Datetimerfc1123Operations',

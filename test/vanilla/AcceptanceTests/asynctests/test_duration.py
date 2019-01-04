@@ -43,7 +43,7 @@ sys.path.append(join(tests, "BodyDuration"))
 from msrest.serialization import Deserializer
 from msrest.exceptions import DeserializationError
 
-from bodyduration import AutoRestDurationTestService
+from bodyduration import AutoRestDurationTestServiceAsync
 
 import pytest
 
@@ -51,15 +51,15 @@ class TestDuration(object):
 
     @pytest.mark.asyncio
     async def test_duration(self):
-        client = AutoRestDurationTestService(base_url="http://localhost:3000")
+        client = AutoRestDurationTestServiceAsync(base_url="http://localhost:3000")
 
-        assert await client.duration.get_null_async() is None
+        assert await client.duration.get_null() is None
 
         with pytest.raises(DeserializationError):
-            await client.duration.get_invalid_async()
+            await client.duration.get_invalid()
 
-        await client.duration.get_positive_duration_async()
-        await client.duration.put_positive_duration_async(timedelta(days=123, hours=22, minutes=14, seconds=12, milliseconds=11))
+        await client.duration.get_positive_duration()
+        await client.duration.put_positive_duration(timedelta(days=123, hours=22, minutes=14, seconds=12, milliseconds=11))
 
 
 if __name__ == '__main__':

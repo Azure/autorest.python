@@ -9,10 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-try:
-    from .auto_rest_validation_test_operations_async import AutoRestValidationTestOperationsMixin
-except (SyntaxError, ImportError):
-    from .auto_rest_validation_test_operations import AutoRestValidationTestOperationsMixin
+from ._auto_rest_validation_test_operations import AutoRestValidationTestOperationsMixin
 
 __all__ = [
     'AutoRestValidationTestOperationsMixin',

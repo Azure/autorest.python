@@ -45,9 +45,9 @@ from msrest.exceptions import (
     ClientRequestError,
     ValidationError)
 
-from custombaseurl import AutoRestParameterizedHostTestClient
+from custombaseurl import AutoRestParameterizedHostTestClientAsync
 from custombaseurl.models import Error, ErrorException
-from custombaseurlmoreoptions import AutoRestParameterizedCustomHostTestClient
+from custombaseurlmoreoptions import AutoRestParameterizedCustomHostTestClientAsync
 
 import pytest
 
@@ -55,25 +55,25 @@ class TestCustomBaseUri(object):
 
     @pytest.mark.asyncio
     async def test_custom_base_uri_positive(self):
-        client = AutoRestParameterizedHostTestClient("host:3000")
-        await client.paths.get_empty_async("local")
+        client = AutoRestParameterizedHostTestClientAsync("host:3000")
+        await client.paths.get_empty("local")
 
     @pytest.mark.asyncio
     async def test_custom_base_uri_negative(self):
-        client = AutoRestParameterizedHostTestClient("host:3000")
+        client = AutoRestParameterizedHostTestClientAsync("host:3000")
         client.config.retry_policy.retries = 0
 
         with pytest.raises(ClientRequestError):
-            await client.paths.get_empty_async("bad")
+            await client.paths.get_empty("bad")
 
         with pytest.raises(ValidationError):
-            await client.paths.get_empty_async(None)
+            await client.paths.get_empty(None)
 
         client.config.host = "badhost:3000"
         with pytest.raises(ClientRequestError):
-            await client.paths.get_empty_async("local")
+            await client.paths.get_empty("local")
 
     @pytest.mark.asyncio
     async def test_custom_base_uri_more_optiopns(self):
-        client = AutoRestParameterizedCustomHostTestClient("test12", "host:3000")
-        await client.paths.get_empty_async("http://lo", "cal", "key1")
+        client = AutoRestParameterizedCustomHostTestClientAsync("test12", "host:3000")
+        await client.paths.get_empty("http://lo", "cal", "key1")

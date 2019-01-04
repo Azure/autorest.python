@@ -9,10 +9,16 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .auto_rest_report_service import AutoRestReportService
-from .version import VERSION
+from .auto_rest_report_service import AutoRestReportService, AutoRestReportServiceConfiguration
+__all__ = ['AutoRestReportService', 'AutoRestReportServiceConfiguration']
 
-__all__ = ['AutoRestReportService']
+try:
+    from .auto_rest_report_service_async import AutoRestReportServiceAsync
+    __all__ += ['AutoRestReportServiceAsync']
+except (SyntaxError, ImportError):  # Python 2
+    pass
+
+from .version import VERSION
 
 __version__ = VERSION
 

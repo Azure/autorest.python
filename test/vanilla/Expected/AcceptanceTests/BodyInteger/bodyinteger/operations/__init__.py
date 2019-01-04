@@ -9,10 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-try:
-    from .int_model_operations_async import IntModelOperations
-except (SyntaxError, ImportError):
-    from .int_model_operations import IntModelOperations
+from ._int_model_operations import IntModelOperations
 
 __all__ = [
     'IntModelOperations',

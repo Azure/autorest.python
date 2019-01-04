@@ -42,14 +42,14 @@ sys.path.append(join(tests, "BodyFile"))
 
 from msrest.exceptions import DeserializationError
 
-from bodyfile import AutoRestSwaggerBATFileService
+from bodyfile import AutoRestSwaggerBATFileServiceAsync
 from bodyfile.models import ErrorException
 
 import pytest
 
 @pytest.fixture
 def client():
-    client = AutoRestSwaggerBATFileService(base_url="http://localhost:3000")
+    client = AutoRestSwaggerBATFileServiceAsync(base_url="http://localhost:3000")
     return client
 
 class TestFile(object):
@@ -69,7 +69,7 @@ class TestFile(object):
 
         file_length = 0
         with io.BytesIO() as file_handle:
-            stream = await client.files.get_file_async(callback=test_callback)
+            stream = await client.files.get_file(callback=test_callback)
 
             async for data in stream:
                 file_length += len(data)
@@ -88,7 +88,7 @@ class TestFile(object):
         client.config.connection.data_block_size = 4096
         file_length = 0
         with io.BytesIO() as file_handle:
-            stream = await client.files.get_empty_file_async(callback=test_callback)
+            stream = await client.files.get_empty_file(callback=test_callback)
 
             async for data in stream:
                 file_length += len(data)
@@ -101,7 +101,7 @@ class TestFile(object):
 
         file_length = 0
         # client._client.add_hook('response', add_headers)
-        stream = await client.files.get_file_large_async(callback=test_callback)
+        stream = await client.files.get_file_large(callback=test_callback)
         #for data in stream:
         #    file_length += len(data)
 
@@ -121,7 +121,7 @@ class TestFile(object):
 
         file_length = 0
         with io.BytesIO() as file_handle:
-            response = await client.files.get_file_async(raw=True, callback=test_callback)
+            response = await client.files.get_file(raw=True, callback=test_callback)
             stream = response.output
 
             async for data in stream:
@@ -140,7 +140,7 @@ class TestFile(object):
 
         file_length = 0
         with io.BytesIO() as file_handle:
-            response = await client.files.get_empty_file_async(raw=True, callback=test_callback)
+            response = await client.files.get_empty_file(raw=True, callback=test_callback)
             stream = response.output
 
             async for data in stream:

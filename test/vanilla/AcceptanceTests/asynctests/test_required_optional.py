@@ -40,14 +40,14 @@ sys.path.append(join(tests, "RequiredOptional"))
 
 from msrest.exceptions import DeserializationError, SerializationError, ValidationError
 
-from requiredoptional import AutoRestRequiredOptionalTestService
+from requiredoptional import AutoRestRequiredOptionalTestServiceAsync
 from requiredoptional.models import StringWrapper, ArrayWrapper, ClassWrapper
 
 import pytest
 
 @pytest.fixture
 def client():
-    return AutoRestRequiredOptionalTestService(
+    return AutoRestRequiredOptionalTestServiceAsync(
             "required_path",
             "required_query",
             base_url="http://localhost:3000")
@@ -60,26 +60,26 @@ class TestRequiredOptional(object):
         client.config.required_global_path = "required_path"
         client.config.required_global_query = "required_query"
 
-        await client.implicit.put_optional_query_async(None)
-        await client.implicit.put_optional_body_async(None)
-        await client.implicit.put_optional_header_async(None)
+        await client.implicit.put_optional_query(None)
+        await client.implicit.put_optional_body(None)
+        await client.implicit.put_optional_header(None)
 
-        await client.implicit.get_optional_global_query_async(custom_headers=None)
+        await client.implicit.get_optional_global_query(custom_headers=None)
 
-        await client.explicit.post_optional_integer_parameter_async(None)
-        await client.explicit.post_optional_integer_property_async(None)
-        await client.explicit.post_optional_integer_header_async(None)
+        await client.explicit.post_optional_integer_parameter(None)
+        await client.explicit.post_optional_integer_property(None)
+        await client.explicit.post_optional_integer_header(None)
 
-        await client.explicit.post_optional_string_parameter_async(None)
-        await client.explicit.post_optional_string_property_async(None)
-        await client.explicit.post_optional_string_header_async(None)
+        await client.explicit.post_optional_string_parameter(None)
+        await client.explicit.post_optional_string_property(None)
+        await client.explicit.post_optional_string_header(None)
 
-        await client.explicit.post_optional_class_parameter_async(None)
-        await client.explicit.post_optional_class_property_async(None)
+        await client.explicit.post_optional_class_parameter(None)
+        await client.explicit.post_optional_class_property(None)
 
-        await client.explicit.post_optional_array_parameter_async(None)
-        await client.explicit.post_optional_array_property_async(None)
-        await client.explicit.post_optional_array_header_async(None)
+        await client.explicit.post_optional_array_parameter(None)
+        await client.explicit.post_optional_array_property(None)
+        await client.explicit.post_optional_array_header(None)
 
     @pytest.mark.asyncio
     async def test_required_optional_negative(self, client):
@@ -88,37 +88,37 @@ class TestRequiredOptional(object):
         client.config.required_global_query = None
 
         with pytest.raises(ValidationError):
-            await client.implicit.get_required_path_async(None)
+            await client.implicit.get_required_path(None)
 
         with pytest.raises(ValidationError):
-            await client.explicit.post_required_string_header_async(None)
+            await client.explicit.post_required_string_header(None)
 
         with pytest.raises(ValidationError):
-            await client.explicit.post_required_string_parameter_async(None)
+            await client.explicit.post_required_string_parameter(None)
 
         with pytest.raises(ValidationError):
-            await client.explicit.post_required_string_property_async(None)
+            await client.explicit.post_required_string_property(None)
 
         with pytest.raises(ValidationError):
-            await client.explicit.post_required_array_header_async(None)
+            await client.explicit.post_required_array_header(None)
 
         with pytest.raises(ValidationError):
-            await client.explicit.post_required_array_parameter_async(None)
+            await client.explicit.post_required_array_parameter(None)
 
         with pytest.raises(ValidationError):
-            await client.explicit.post_required_array_property_async(None)
+            await client.explicit.post_required_array_property(None)
 
         with pytest.raises(ValidationError):
-            await client.explicit.post_required_class_parameter_async(None)
+            await client.explicit.post_required_class_parameter(None)
 
         with pytest.raises(ValidationError):
-            await client.explicit.post_required_class_property_async(None)
+            await client.explicit.post_required_class_property(None)
 
         with pytest.raises(ValidationError):
-            await client.implicit.get_required_global_path_async()
+            await client.implicit.get_required_global_path()
 
         with pytest.raises(ValidationError):
-            await client.implicit.get_required_global_query_async()
+            await client.implicit.get_required_global_query()
 
 
 if __name__ == '__main__':

@@ -9,10 +9,16 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .additional_properties_client import AdditionalPropertiesClient
-from .version import VERSION
+from .additional_properties_client import AdditionalPropertiesClient, AdditionalPropertiesClientConfiguration
+__all__ = ['AdditionalPropertiesClient', 'AdditionalPropertiesClientConfiguration']
 
-__all__ = ['AdditionalPropertiesClient']
+try:
+    from .additional_properties_client_async import AdditionalPropertiesClientAsync
+    __all__ += ['AdditionalPropertiesClientAsync']
+except (SyntaxError, ImportError):  # Python 2
+    pass
+
+from .version import VERSION
 
 __version__ = VERSION
 

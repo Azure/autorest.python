@@ -43,7 +43,7 @@ sys.path.append(join(tests, "BodyComplex"))
 from msrest.serialization import Deserializer
 from msrest.exceptions import DeserializationError, SerializationError, ValidationError
 
-from bodycomplex import AutoRestComplexTestService
+from bodycomplex import AutoRestComplexTestServiceAsync
 from bodycomplex.models import *
 
 class UTC(tzinfo):
@@ -62,109 +62,109 @@ class TestComplex(object):
 
     @pytest.mark.asyncio
     async def test_complex(self):
-        client = AutoRestComplexTestService(base_url="http://localhost:3000")
+        client = AutoRestComplexTestServiceAsync(base_url="http://localhost:3000")
 
         # GET basic/valid
-        basic_result = await client.basic.get_valid_async()
+        basic_result = await client.basic.get_valid()
         assert 2 ==  basic_result.id
         assert "abc" ==  basic_result.name
         assert CMYKColors.yellow.value ==  basic_result.color
 
         # PUT basic/valid
         basic_result = Basic(id=2, name='abc', color="Magenta")
-        await client.basic.put_valid_async(basic_result)
+        await client.basic.put_valid(basic_result)
         basic_result = Basic(id=2, name='abc', color=CMYKColors.magenta)
-        await client.basic.put_valid_async(basic_result)
+        await client.basic.put_valid(basic_result)
 
         # GET basic/empty
-        basic_result = await client.basic.get_empty_async()
+        basic_result = await client.basic.get_empty()
         assert basic_result.id is None
         assert basic_result.name is None
 
         # GET basic/null
-        basic_result = await client.basic.get_null_async()
+        basic_result = await client.basic.get_null()
         assert basic_result.id is None
         assert basic_result.name is None
 
         # GET basic/notprovided
-        basic_result = await client.basic.get_not_provided_async()
+        basic_result = await client.basic.get_not_provided()
         assert basic_result is None
 
         # GET basic/invalid
         with pytest.raises(DeserializationError):
-            await client.basic.get_invalid_async()
+            await client.basic.get_invalid()
 
         """
         COMPLEX TYPE WITH PRIMITIVE PROPERTIES
         """
         # GET primitive/integer
-        intResult = await client.primitive.get_int_async()
+        intResult = await client.primitive.get_int()
         assert -1 ==  intResult.field1
         assert 2 ==  intResult.field2
 
         # PUT primitive/integer
         intRequest = {'field1':-1, 'field2':2}
-        await client.primitive.put_int_async(intRequest)
+        await client.primitive.put_int(intRequest)
 
         # GET primitive/long
-        longResult = await client.primitive.get_long_async()
+        longResult = await client.primitive.get_long()
         assert 1099511627775 ==  longResult.field1
         assert -999511627788 ==  longResult.field2
 
         # PUT primitive/long
         longRequest = {'field1':1099511627775, 'field2':-999511627788}
-        await client.primitive.put_long_async(longRequest)
+        await client.primitive.put_long(longRequest)
 
         # GET primitive/float
-        floatResult = await client.primitive.get_float_async()
+        floatResult = await client.primitive.get_float()
         assert 1.05 ==  floatResult.field1
         assert -0.003 ==  floatResult.field2
 
         # PUT primitive/float
         floatRequest = FloatWrapper(field1=1.05, field2=-0.003)
-        await client.primitive.put_float_async(floatRequest)
+        await client.primitive.put_float(floatRequest)
 
         # GET primitive/double
-        doubleResult = await client.primitive.get_double_async()
+        doubleResult = await client.primitive.get_double()
         assert 3e-100 ==  doubleResult.field1
         assert -5e-57 ==  doubleResult.field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose
 
         # PUT primitive/double
         doubleRequest = {'field1':3e-100}
         doubleRequest['field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose'] = -5e-57
-        await client.primitive.put_double_async(doubleRequest)
+        await client.primitive.put_double(doubleRequest)
 
         # GET primitive/bool
-        boolResult = await client.primitive.get_bool_async()
+        boolResult = await client.primitive.get_bool()
         assert boolResult.field_true
         assert not boolResult.field_false
 
         # PUT primitive/bool
         boolRequest = BooleanWrapper(field_true=True, field_false=False)
-        await client.primitive.put_bool_async(boolRequest)
+        await client.primitive.put_bool(boolRequest)
 
         # GET primitive/string
-        stringResult = await client.primitive.get_string_async()
+        stringResult = await client.primitive.get_string()
         assert "goodrequest" ==  stringResult.field
         assert "" ==  stringResult.empty
         assert stringResult.null is None
 
         # PUT primitive/string
         stringRequest = StringWrapper(null=None, empty="", field="goodrequest")
-        await client.primitive.put_string_async(stringRequest)
+        await client.primitive.put_string(stringRequest)
 
         # GET primitive/date
-        dateResult = await client.primitive.get_date_async()
+        dateResult = await client.primitive.get_date()
         assert isodate.parse_date("0001-01-01") ==  dateResult.field
         assert isodate.parse_date("2016-02-29") ==  dateResult.leap
 
         dateRequest = DateWrapper(
             field=isodate.parse_date('0001-01-01'),
             leap=isodate.parse_date('2016-02-29'))
-        await client.primitive.put_date_async(dateRequest)
+        await client.primitive.put_date(dateRequest)
 
         # GET primitive/datetime
-        datetimeResult = await client.primitive.get_date_time_async()
+        datetimeResult = await client.primitive.get_date_time()
         min_date = datetime.min
         min_date = min_date.replace(tzinfo=UTC())
         assert min_date ==  datetimeResult.field
@@ -172,30 +172,30 @@ class TestComplex(object):
         datetime_request = DatetimeWrapper(
             field=isodate.parse_datetime("0001-01-01T00:00:00Z"),
             now=isodate.parse_datetime("2015-05-18T18:38:00Z"))
-        await client.primitive.put_date_time_async(datetime_request)
+        await client.primitive.put_date_time(datetime_request)
 
         # GET primitive/datetimerfc1123
-        datetimeRfc1123Result = await client.primitive.get_date_time_rfc1123_async()
+        datetimeRfc1123Result = await client.primitive.get_date_time_rfc1123()
         assert min_date ==  datetimeRfc1123Result.field
 
         datetime_request = Datetimerfc1123Wrapper(
             field=isodate.parse_datetime("0001-01-01T00:00:00Z"),
             now=isodate.parse_datetime("2015-05-18T11:38:00Z"))
-        await client.primitive.put_date_time_rfc1123_async(datetime_request)
+        await client.primitive.put_date_time_rfc1123(datetime_request)
 
         # GET primitive/duration
         expected = timedelta(days=123, hours=22, minutes=14, seconds=12, milliseconds=11)
-        assert expected ==  (await client.primitive.get_duration_async()).field
+        assert expected ==  (await client.primitive.get_duration()).field
 
-        await client.primitive.put_duration_async(expected)
+        await client.primitive.put_duration(expected)
 
         # GET primitive/byte
-        byteResult = await client.primitive.get_byte_async()
+        byteResult = await client.primitive.get_byte()
         valid_bytes = bytearray([0x0FF, 0x0FE, 0x0FD, 0x0FC, 0x000, 0x0FA, 0x0F9, 0x0F8, 0x0F7, 0x0F6])
         assert valid_bytes ==  byteResult.field
 
         # PUT primitive/byte
-        await client.primitive.put_byte_async(valid_bytes)
+        await client.primitive.put_byte(valid_bytes)
 
         """
         COMPLEX TYPE WITH READ ONLY PROPERTIES
@@ -203,18 +203,18 @@ class TestComplex(object):
         # GET readonly/valid
         valid_obj = ReadonlyObj(size=2)
         valid_obj.id = '1234'
-        readonly_result = await client.readonlyproperty.get_valid_async()
+        readonly_result = await client.readonlyproperty.get_valid()
         assert readonly_result ==  valid_obj
 
         # PUT readonly/valid
-        readonly_result = await client.readonlyproperty.put_valid_async(2)
+        readonly_result = await client.readonlyproperty.put_valid(2)
         assert readonly_result is None
 
         """
         COMPLEX TYPE WITH ARRAY PROPERTIES
         """
         # GET array/valid
-        array_result = await client.array.get_valid_async()
+        array_result = await client.array.get_valid()
         assert 5 ==  len(array_result.array)
 
         array_value = ["1, 2, 3, 4", "", None, "&S#$(*Y",
@@ -222,49 +222,49 @@ class TestComplex(object):
         assert array_result.array ==  array_value
 
         # PUT array/valid
-        await client.array.put_valid_async(array_value)
+        await client.array.put_valid(array_value)
 
         # GET array/empty
-        array_result = await client.array.get_empty_async()
+        array_result = await client.array.get_empty()
         assert 0 ==  len(array_result.array)
 
         # PUT array/empty
-        await client.array.put_empty_async([])
+        await client.array.put_empty([])
 
         # Get array/notprovided
-        assert (await client.array.get_not_provided_async()).array is None
+        assert (await client.array.get_not_provided()).array is None
 
         """
         COMPLEX TYPE WITH DICTIONARY PROPERTIES
         """
         # GET dictionary/valid
-        dict_result = await client.dictionary.get_valid_async()
+        dict_result = await client.dictionary.get_valid()
         assert 5 ==  len(dict_result.default_program)
 
         dict_val = {'txt':'notepad', 'bmp':'mspaint', 'xls':'excel', 'exe':'', '':None}
         assert dict_val ==  dict_result.default_program
 
         # PUT dictionary/valid
-        await client.dictionary.put_valid_async(dict_val)
+        await client.dictionary.put_valid(dict_val)
 
         # GET dictionary/empty
-        dict_result = await client.dictionary.get_empty_async()
+        dict_result = await client.dictionary.get_empty()
         assert 0 ==  len(dict_result.default_program)
 
         # PUT dictionary/empty
-        await client.dictionary.put_empty_async(default_program={})
+        await client.dictionary.put_empty(default_program={})
 
         # GET dictionary/null
-        assert (await client.dictionary.get_null_async()).default_program is None
+        assert (await client.dictionary.get_null()).default_program is None
 
         # GET dictionary/notprovided
-        assert (await client.dictionary.get_not_provided_async()).default_program is None
+        assert (await client.dictionary.get_not_provided()).default_program is None
 
         """
         COMPLEX TYPES THAT INVOLVE INHERITANCE
         """
         # GET inheritance/valid
-        inheritanceResult = await client.inheritance.get_valid_async()
+        inheritanceResult = await client.inheritance.get_valid()
         assert 2 ==  inheritanceResult.id
         assert "Siameeee" ==  inheritanceResult.name
         assert -1 ==  inheritanceResult.hates[1].id
@@ -279,13 +279,13 @@ class TestComplex(object):
             'hates': [Dog(id=1, name="Potato", food="tomato"),
                    Dog(id=-1, name="Tomato", food="french fries")]
             }
-        await client.inheritance.put_valid_async(request)
+        await client.inheritance.put_valid(request)
 
         """
         COMPLEX TYPES THAT INVOLVE POLYMORPHISM
         """
         # GET polymorphism/valid
-        result = await client.polymorphism.get_valid_async()
+        result = await client.polymorphism.get_valid()
         assert result is not None
         assert result.location ==  "alaska"
         assert len(result.siblings) ==  3
@@ -313,7 +313,7 @@ class TestComplex(object):
                                     birthday=isodate.parse_datetime("2015-08-08T00:00:00Z"),
                                     age=1, species="scary", jawsize=5, color='pinkish-gray')]
             )
-        await client.polymorphism.put_valid_async(request)
+        await client.polymorphism.put_valid(request)
 
         bad_request = Salmon(length=1,
             iswild=True,
@@ -328,14 +328,14 @@ class TestComplex(object):
             )
 
         with pytest.raises(ValidationError):
-            await client.polymorphism.put_valid_missing_required_async(bad_request)
+            await client.polymorphism.put_valid_missing_required(bad_request)
 
         """
         COMPLEX TYPES THAT INVOLVE RECURSIVE REFERENCE
         """
 
         # GET polymorphicrecursive/valid
-        result = await client.polymorphicrecursive.get_valid_async()
+        result = await client.polymorphicrecursive.get_valid()
         assert isinstance(result,  Salmon)
         assert isinstance(result.siblings[0],  Shark)
         assert isinstance(result.siblings[0].siblings[0],  Salmon)
@@ -386,14 +386,14 @@ class TestComplex(object):
                     picture=bytearray([255, 255, 255, 255, 254]))])
 
         # PUT polymorphicrecursive/valid
-        await client.polymorphicrecursive.put_valid_async(request)
+        await client.polymorphicrecursive.put_valid(request)
 
 
         """
         Complex types that uses additional properties and polymorphism
         """
-        smart_salmon = await client.polymorphism.get_complicated_async()
-        await client.polymorphism.put_complicated_async(smart_salmon)
+        smart_salmon = await client.polymorphism.get_complicated()
+        await client.polymorphism.put_complicated(smart_salmon)
 
         """
         Complex types that uses missing discriminator
@@ -424,4 +424,4 @@ class TestComplex(object):
             )]
         )
         # Not raise is enough of a test
-        await client.polymorphism.put_missing_discriminator_async(regular_salmon)
+        await client.polymorphism.put_missing_discriminator(regular_salmon)

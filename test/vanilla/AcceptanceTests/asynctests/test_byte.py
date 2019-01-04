@@ -43,7 +43,7 @@ sys.path.append(join(tests, "BodyByte"))
 from msrest.serialization import Deserializer
 from msrest.exceptions import DeserializationError
 
-from bodybyte import AutoRestSwaggerBATByteService
+from bodybyte import AutoRestSwaggerBATByteServiceAsync
 
 import pytest
 
@@ -51,17 +51,17 @@ class TestByte(object):
 
     @pytest.mark.asyncio
     async def test_byte(self):
-        client = AutoRestSwaggerBATByteService(base_url="http://localhost:3000")
+        client = AutoRestSwaggerBATByteServiceAsync(base_url="http://localhost:3000")
 
         test_bytes = bytearray([0x0FF, 0x0FE, 0x0FD, 0x0FC, 0x0FB, 0x0FA, 0x0F9, 0x0F8, 0x0F7, 0x0F6])
-        await client.byte.put_non_ascii_async(test_bytes)
-        assert test_bytes == await client.byte.get_non_ascii_async()
+        await client.byte.put_non_ascii(test_bytes)
+        assert test_bytes == await client.byte.get_non_ascii()
 
-        assert await client.byte.get_null_async() is None
-        assert bytearray() == await client.byte.get_empty_async()
+        assert await client.byte.get_null() is None
+        assert bytearray() == await client.byte.get_empty()
 
         with pytest.raises(DeserializationError):
-            await client.byte.get_invalid_async()
+            await client.byte.get_invalid()
 
 if __name__ == '__main__':
     unittest.main()

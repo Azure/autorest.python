@@ -9,10 +9,16 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .pet_store_inc import PetStoreInc
-from .version import VERSION
+from .pet_store_inc import PetStoreInc, PetStoreIncConfiguration
+__all__ = ['PetStoreInc', 'PetStoreIncConfiguration']
 
-__all__ = ['PetStoreInc']
+try:
+    from .pet_store_inc_async import PetStoreIncAsync
+    __all__ += ['PetStoreIncAsync']
+except (SyntaxError, ImportError):  # Python 2
+    pass
+
+from .version import VERSION
 
 __version__ = VERSION
 

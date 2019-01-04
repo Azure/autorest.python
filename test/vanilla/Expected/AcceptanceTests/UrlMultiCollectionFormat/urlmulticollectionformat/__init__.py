@@ -9,10 +9,16 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .auto_rest_url_mutli_collection_format_test_service import AutoRestUrlMutliCollectionFormatTestService
-from .version import VERSION
+from .auto_rest_url_mutli_collection_format_test_service import AutoRestUrlMutliCollectionFormatTestService, AutoRestUrlMutliCollectionFormatTestServiceConfiguration
+__all__ = ['AutoRestUrlMutliCollectionFormatTestService', 'AutoRestUrlMutliCollectionFormatTestServiceConfiguration']
 
-__all__ = ['AutoRestUrlMutliCollectionFormatTestService']
+try:
+    from .auto_rest_url_mutli_collection_format_test_service_async import AutoRestUrlMutliCollectionFormatTestServiceAsync
+    __all__ += ['AutoRestUrlMutliCollectionFormatTestServiceAsync']
+except (SyntaxError, ImportError):  # Python 2
+    pass
+
+from .version import VERSION
 
 __version__ = VERSION
 

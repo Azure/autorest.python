@@ -9,10 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-try:
-    from .byte_operations_async import ByteOperations
-except (SyntaxError, ImportError):
-    from .byte_operations import ByteOperations
+from ._byte_operations import ByteOperations
 
 __all__ = [
     'ByteOperations',

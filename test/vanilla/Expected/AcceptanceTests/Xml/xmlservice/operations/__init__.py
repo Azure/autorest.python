@@ -9,10 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-try:
-    from .xml_operations_async import XmlOperations
-except (SyntaxError, ImportError):
-    from .xml_operations import XmlOperations
+from ._xml_operations import XmlOperations
 
 __all__ = [
     'XmlOperations',

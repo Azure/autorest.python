@@ -7,10 +7,16 @@
 @Header("# ").TrimMultilineHeader()
 # --------------------------------------------------------------------------
 @EmptyLine
-from .@(Model.Name.ToPythonCase()) import @(Model.Name)
-from .version import VERSION
+from .@(Model.Name.ToPythonCase()) import @(Model.Name), @(Model.Name)Configuration
+__all__ = ['@(Model.Name)', '@(Model.Name)Configuration']
 @EmptyLine
-__all__ = ['@(Model.Name)']
+try:
+    from .@(Model.Name.ToPythonCase())_async import @(Model.Name)Async
+    __all__ += ['@(Model.Name)Async']
+except (SyntaxError, ImportError):  # Python 2
+    pass
+@EmptyLine
+from .version import VERSION
 @EmptyLine
 __version__ = VERSION
 @EmptyLine

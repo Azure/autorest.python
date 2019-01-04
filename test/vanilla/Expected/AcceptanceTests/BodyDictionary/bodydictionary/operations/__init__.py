@@ -9,10 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-try:
-    from .dictionary_operations_async import DictionaryOperations
-except (SyntaxError, ImportError):
-    from .dictionary_operations import DictionaryOperations
+from ._dictionary_operations import DictionaryOperations
 
 __all__ = [
     'DictionaryOperations',
