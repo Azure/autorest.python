@@ -19,7 +19,9 @@ from .. import models
 
 
 class StorageAccountsOperations:
-    """StorageAccountsOperations operations.
+    """StorageAccountsOperations async operations.
+
+    You should not instantiate directly this class, but create a Client instance that will create it for you and attach it as attribute.
 
     :param client: Client for service requests.
     :param config: Configuration of service client.

@@ -17,6 +17,8 @@ from msrestazure.azure_exceptions import CloudError
 class HeadExceptionOperations(object):
     """HeadExceptionOperations operations.
 
+    You should not instantiate directly this class, but create a Client instance that will create it for you and attach it as attribute.
+
     :param client: Client for service requests.
     :param config: Configuration of service client.
     :param serializer: An object model serializer.
