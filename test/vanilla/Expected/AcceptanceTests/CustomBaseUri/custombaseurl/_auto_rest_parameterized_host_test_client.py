@@ -10,34 +10,11 @@
 # --------------------------------------------------------------------------
 
 from msrest.service_client import SDKClient
-from msrest import Configuration, Serializer, Deserializer
-from .version import VERSION
+from msrest import Serializer, Deserializer
+
+from ._configuration import AutoRestParameterizedHostTestClientConfiguration
 from .operations import PathsOperations
 from . import models
-
-
-class AutoRestParameterizedHostTestClientConfiguration(Configuration):
-    """Configuration for AutoRestParameterizedHostTestClient
-    Note that all parameters used to create this instance are saved as instance
-    attributes.
-
-    :param host: A string value that is used as a global part of the
-     parameterized host
-    :type host: str
-    """
-
-    def __init__(
-            self, host):
-
-        if host is None:
-            raise ValueError("Parameter 'host' must not be None.")
-        base_url = 'http://{accountName}{host}'
-
-        super(AutoRestParameterizedHostTestClientConfiguration, self).__init__(base_url)
-
-        self.add_user_agent('autorestparameterizedhosttestclient/{}'.format(VERSION))
-
-        self.host = host
 
 
 class AutoRestParameterizedHostTestClient(SDKClient):

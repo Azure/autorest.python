@@ -10,39 +10,11 @@
 # --------------------------------------------------------------------------
 
 from msrest.service_client import SDKClient
-from msrest import Configuration, Serializer, Deserializer
-from .version import VERSION
+from msrest import Serializer, Deserializer
+
+from ._configuration import AutoRestParameterizedCustomHostTestClientConfiguration
 from .operations import PathsOperations
 from . import models
-
-
-class AutoRestParameterizedCustomHostTestClientConfiguration(Configuration):
-    """Configuration for AutoRestParameterizedCustomHostTestClient
-    Note that all parameters used to create this instance are saved as instance
-    attributes.
-
-    :param subscription_id: The subscription id with value 'test12'.
-    :type subscription_id: str
-    :param dns_suffix: A string value that is used as a global part of the
-     parameterized host. Default value 'host'.
-    :type dns_suffix: str
-    """
-
-    def __init__(
-            self, subscription_id, dns_suffix):
-
-        if subscription_id is None:
-            raise ValueError("Parameter 'subscription_id' must not be None.")
-        if dns_suffix is None:
-            raise ValueError("Parameter 'dns_suffix' must not be None.")
-        base_url = '{vault}{secret}{dnsSuffix}'
-
-        super(AutoRestParameterizedCustomHostTestClientConfiguration, self).__init__(base_url)
-
-        self.add_user_agent('autorestparameterizedcustomhosttestclient/{}'.format(VERSION))
-
-        self.subscription_id = subscription_id
-        self.dns_suffix = dns_suffix
 
 
 class AutoRestParameterizedCustomHostTestClient(SDKClient):

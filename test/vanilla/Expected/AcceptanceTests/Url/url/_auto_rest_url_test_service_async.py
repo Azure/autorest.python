@@ -10,41 +10,13 @@
 # --------------------------------------------------------------------------
 
 from msrest.async_client import SDKClientAsync
-from msrest import Configuration, Serializer, Deserializer
-from .version import VERSION
+from msrest import Serializer, Deserializer
+
+from ._configuration import AutoRestUrlTestServiceConfiguration
 from .operations_async import PathsOperations
 from .operations_async import QueriesOperations
 from .operations_async import PathItemsOperations
 from . import models
-
-
-class AutoRestUrlTestServiceConfiguration(Configuration):
-    """Configuration for AutoRestUrlTestService
-    Note that all parameters used to create this instance are saved as instance
-    attributes.
-
-    :param global_string_path: A string value 'globalItemStringPath' that
-     appears in the path
-    :type global_string_path: str
-    :param global_string_query: should contain value null
-    :type global_string_query: str
-    :param str base_url: Service URL
-    """
-
-    def __init__(
-            self, global_string_path, global_string_query=None, base_url=None):
-
-        if global_string_path is None:
-            raise ValueError("Parameter 'global_string_path' must not be None.")
-        if not base_url:
-            base_url = 'http://localhost:3000'
-
-        super(AutoRestUrlTestServiceConfiguration, self).__init__(base_url)
-
-        self.add_user_agent('autoresturltestservice/{}'.format(VERSION))
-
-        self.global_string_path = global_string_path
-        self.global_string_query = global_string_query
 
 
 class AutoRestUrlTestServiceAsync(SDKClientAsync):

@@ -9,7 +9,8 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from ._auto_rest_swagger_bat_header_service import AutoRestSwaggerBATHeaderService, AutoRestSwaggerBATHeaderServiceConfiguration
+from ._configuration import AutoRestSwaggerBATHeaderServiceConfiguration
+from ._auto_rest_swagger_bat_header_service import AutoRestSwaggerBATHeaderService
 __all__ = ['AutoRestSwaggerBATHeaderService', 'AutoRestSwaggerBATHeaderServiceConfiguration']
 
 try:

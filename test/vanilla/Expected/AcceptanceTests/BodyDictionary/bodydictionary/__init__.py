@@ -9,7 +9,8 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from ._auto_rest_swagger_ba_tdictionary_service import AutoRestSwaggerBATdictionaryService, AutoRestSwaggerBATdictionaryServiceConfiguration
+from ._configuration import AutoRestSwaggerBATdictionaryServiceConfiguration
+from ._auto_rest_swagger_ba_tdictionary_service import AutoRestSwaggerBATdictionaryService
 __all__ = ['AutoRestSwaggerBATdictionaryService', 'AutoRestSwaggerBATdictionaryServiceConfiguration']
 
 try:

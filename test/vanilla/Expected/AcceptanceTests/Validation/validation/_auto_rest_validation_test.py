@@ -10,36 +10,12 @@
 # --------------------------------------------------------------------------
 
 from msrest.service_client import SDKClient
-from msrest import Configuration, Serializer, Deserializer
-from .version import VERSION
+from msrest import Serializer, Deserializer
+
+from ._configuration import AutoRestValidationTestConfiguration
 from .operations import AutoRestValidationTestOperationsMixin
 from msrest.exceptions import HttpOperationError
 from . import models
-
-
-class AutoRestValidationTestConfiguration(Configuration):
-    """Configuration for AutoRestValidationTest
-    Note that all parameters used to create this instance are saved as instance
-    attributes.
-
-    :param subscription_id: Subscription ID.
-    :type subscription_id: str
-    :param str base_url: Service URL
-    """
-
-    def __init__(
-            self, subscription_id, base_url=None):
-
-        if subscription_id is None:
-            raise ValueError("Parameter 'subscription_id' must not be None.")
-        if not base_url:
-            base_url = 'http://localhost:3000'
-
-        super(AutoRestValidationTestConfiguration, self).__init__(base_url)
-
-        self.add_user_agent('autorestvalidationtest/{}'.format(VERSION))
-
-        self.subscription_id = subscription_id
 
 
 class AutoRestValidationTest(AutoRestValidationTestOperationsMixin, SDKClient):

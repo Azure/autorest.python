@@ -9,7 +9,8 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from ._auto_rest_required_optional_test_service import AutoRestRequiredOptionalTestService, AutoRestRequiredOptionalTestServiceConfiguration
+from ._configuration import AutoRestRequiredOptionalTestServiceConfiguration
+from ._auto_rest_required_optional_test_service import AutoRestRequiredOptionalTestService
 __all__ = ['AutoRestRequiredOptionalTestService', 'AutoRestRequiredOptionalTestServiceConfiguration']
 
 try:

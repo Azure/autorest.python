@@ -9,7 +9,8 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from ._pet_store_inc import PetStoreInc, PetStoreIncConfiguration
+from ._configuration import PetStoreIncConfiguration
+from ._pet_store_inc import PetStoreInc
 __all__ = ['PetStoreInc', 'PetStoreIncConfiguration']
 
 try:

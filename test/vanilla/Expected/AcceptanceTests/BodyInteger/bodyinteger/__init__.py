@@ -9,7 +9,8 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from ._auto_rest_integer_test_service import AutoRestIntegerTestService, AutoRestIntegerTestServiceConfiguration
+from ._configuration import AutoRestIntegerTestServiceConfiguration
+from ._auto_rest_integer_test_service import AutoRestIntegerTestService
 __all__ = ['AutoRestIntegerTestService', 'AutoRestIntegerTestServiceConfiguration']
 
 try:

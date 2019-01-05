@@ -9,7 +9,8 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from ._auto_rest_swagger_bat_form_data_service import AutoRestSwaggerBATFormDataService, AutoRestSwaggerBATFormDataServiceConfiguration
+from ._configuration import AutoRestSwaggerBATFormDataServiceConfiguration
+from ._auto_rest_swagger_bat_form_data_service import AutoRestSwaggerBATFormDataService
 __all__ = ['AutoRestSwaggerBATFormDataService', 'AutoRestSwaggerBATFormDataServiceConfiguration']
 
 try:

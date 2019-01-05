@@ -9,7 +9,8 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from ._auto_rest_paging_test_service import AutoRestPagingTestService, AutoRestPagingTestServiceConfiguration
+from ._configuration import AutoRestPagingTestServiceConfiguration
+from ._auto_rest_paging_test_service import AutoRestPagingTestService
 __all__ = ['AutoRestPagingTestService', 'AutoRestPagingTestServiceConfiguration']
 
 try:

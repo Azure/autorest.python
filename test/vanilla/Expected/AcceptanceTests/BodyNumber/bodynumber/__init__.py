@@ -9,7 +9,8 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from ._auto_rest_number_test_service import AutoRestNumberTestService, AutoRestNumberTestServiceConfiguration
+from ._configuration import AutoRestNumberTestServiceConfiguration
+from ._auto_rest_number_test_service import AutoRestNumberTestService
 __all__ = ['AutoRestNumberTestService', 'AutoRestNumberTestServiceConfiguration']
 
 try:

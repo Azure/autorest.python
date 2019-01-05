@@ -10,29 +10,11 @@
 # --------------------------------------------------------------------------
 
 from msrest.async_client import SDKClientAsync
-from msrest import Configuration, Serializer, Deserializer
-from .version import VERSION
+from msrest import Serializer, Deserializer
+
+from ._configuration import AutoRestSwaggerBATFormDataServiceConfiguration
 from .operations_async import FormdataOperations
 from . import models
-
-
-class AutoRestSwaggerBATFormDataServiceConfiguration(Configuration):
-    """Configuration for AutoRestSwaggerBATFormDataService
-    Note that all parameters used to create this instance are saved as instance
-    attributes.
-
-    :param str base_url: Service URL
-    """
-
-    def __init__(
-            self, base_url=None):
-
-        if not base_url:
-            base_url = 'http://localhost:3000'
-
-        super(AutoRestSwaggerBATFormDataServiceConfiguration, self).__init__(base_url)
-
-        self.add_user_agent('autorestswaggerbatformdataservice/{}'.format(VERSION))
 
 
 class AutoRestSwaggerBATFormDataServiceAsync(SDKClientAsync):

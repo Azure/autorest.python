@@ -10,29 +10,11 @@
 # --------------------------------------------------------------------------
 
 from msrest.service_client import SDKClient
-from msrest import Configuration, Serializer, Deserializer
-from .version import VERSION
+from msrest import Serializer, Deserializer
+
+from ._configuration import AutoRestUrlMutliCollectionFormatTestServiceConfiguration
 from .operations import QueriesOperations
 from . import models
-
-
-class AutoRestUrlMutliCollectionFormatTestServiceConfiguration(Configuration):
-    """Configuration for AutoRestUrlMutliCollectionFormatTestService
-    Note that all parameters used to create this instance are saved as instance
-    attributes.
-
-    :param str base_url: Service URL
-    """
-
-    def __init__(
-            self, base_url=None):
-
-        if not base_url:
-            base_url = 'http://localhost:3000'
-
-        super(AutoRestUrlMutliCollectionFormatTestServiceConfiguration, self).__init__(base_url)
-
-        self.add_user_agent('autoresturlmutlicollectionformattestservice/{}'.format(VERSION))
 
 
 class AutoRestUrlMutliCollectionFormatTestService(SDKClient):

@@ -9,7 +9,8 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from ._auto_rest_resource_flattening_test_service import AutoRestResourceFlatteningTestService, AutoRestResourceFlatteningTestServiceConfiguration
+from ._configuration import AutoRestResourceFlatteningTestServiceConfiguration
+from ._auto_rest_resource_flattening_test_service import AutoRestResourceFlatteningTestService
 __all__ = ['AutoRestResourceFlatteningTestService', 'AutoRestResourceFlatteningTestServiceConfiguration']
 
 try:

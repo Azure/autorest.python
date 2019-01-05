@@ -9,7 +9,8 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from ._microsoft_azure_test_url import MicrosoftAzureTestUrl, MicrosoftAzureTestUrlConfiguration
+from ._configuration import MicrosoftAzureTestUrlConfiguration
+from ._microsoft_azure_test_url import MicrosoftAzureTestUrl
 __all__ = ['MicrosoftAzureTestUrl', 'MicrosoftAzureTestUrlConfiguration']
 
 try:

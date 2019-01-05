@@ -11,37 +11,10 @@
 
 from msrest.service_client import SDKClient
 from msrest import Serializer, Deserializer
-from msrestazure import AzureConfiguration
-from .version import VERSION
+
+from ._configuration import AutoRestReportServiceForAzureConfiguration
 from .operations import AutoRestReportServiceForAzureOperationsMixin
 from . import models
-
-
-class AutoRestReportServiceForAzureConfiguration(AzureConfiguration):
-    """Configuration for AutoRestReportServiceForAzure
-    Note that all parameters used to create this instance are saved as instance
-    attributes.
-
-    :param credentials: Credentials needed for the client to connect to Azure.
-    :type credentials: :mod:`A msrestazure Credentials
-     object<msrestazure.azure_active_directory>`
-    :param str base_url: Service URL
-    """
-
-    def __init__(
-            self, credentials, base_url=None):
-
-        if credentials is None:
-            raise ValueError("Parameter 'credentials' must not be None.")
-        if not base_url:
-            base_url = 'http://localhost:3000'
-
-        super(AutoRestReportServiceForAzureConfiguration, self).__init__(base_url)
-
-        self.add_user_agent('autorestreportserviceforazure/{}'.format(VERSION))
-        self.add_user_agent('Azure-SDK-For-Python')
-
-        self.credentials = credentials
 
 
 class AutoRestReportServiceForAzure(AutoRestReportServiceForAzureOperationsMixin, SDKClient):

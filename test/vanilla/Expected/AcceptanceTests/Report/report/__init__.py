@@ -9,7 +9,8 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from ._auto_rest_report_service import AutoRestReportService, AutoRestReportServiceConfiguration
+from ._configuration import AutoRestReportServiceConfiguration
+from ._auto_rest_report_service import AutoRestReportService
 __all__ = ['AutoRestReportService', 'AutoRestReportServiceConfiguration']
 
 try:

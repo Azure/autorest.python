@@ -9,7 +9,8 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from ._additional_properties_client import AdditionalPropertiesClient, AdditionalPropertiesClientConfiguration
+from ._configuration import AdditionalPropertiesClientConfiguration
+from ._additional_properties_client import AdditionalPropertiesClient
 __all__ = ['AdditionalPropertiesClient', 'AdditionalPropertiesClientConfiguration']
 
 try:

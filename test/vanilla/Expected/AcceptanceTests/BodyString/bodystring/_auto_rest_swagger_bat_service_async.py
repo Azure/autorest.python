@@ -10,30 +10,12 @@
 # --------------------------------------------------------------------------
 
 from msrest.async_client import SDKClientAsync
-from msrest import Configuration, Serializer, Deserializer
-from .version import VERSION
+from msrest import Serializer, Deserializer
+
+from ._configuration import AutoRestSwaggerBATServiceConfiguration
 from .operations_async import StringOperations
 from .operations_async import EnumOperations
 from . import models
-
-
-class AutoRestSwaggerBATServiceConfiguration(Configuration):
-    """Configuration for AutoRestSwaggerBATService
-    Note that all parameters used to create this instance are saved as instance
-    attributes.
-
-    :param str base_url: Service URL
-    """
-
-    def __init__(
-            self, base_url=None):
-
-        if not base_url:
-            base_url = 'http://localhost:3000'
-
-        super(AutoRestSwaggerBATServiceConfiguration, self).__init__(base_url)
-
-        self.add_user_agent('autorestswaggerbatservice/{}'.format(VERSION))
 
 
 class AutoRestSwaggerBATServiceAsync(SDKClientAsync):

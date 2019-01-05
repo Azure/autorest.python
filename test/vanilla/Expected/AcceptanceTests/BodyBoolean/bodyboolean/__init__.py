@@ -9,7 +9,8 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from ._auto_rest_bool_test_service import AutoRestBoolTestService, AutoRestBoolTestServiceConfiguration
+from ._configuration import AutoRestBoolTestServiceConfiguration
+from ._auto_rest_bool_test_service import AutoRestBoolTestService
 __all__ = ['AutoRestBoolTestService', 'AutoRestBoolTestServiceConfiguration']
 
 try:

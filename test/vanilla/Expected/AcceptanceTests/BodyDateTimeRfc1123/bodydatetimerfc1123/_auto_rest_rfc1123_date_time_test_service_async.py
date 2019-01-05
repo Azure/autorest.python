@@ -10,29 +10,11 @@
 # --------------------------------------------------------------------------
 
 from msrest.async_client import SDKClientAsync
-from msrest import Configuration, Serializer, Deserializer
-from .version import VERSION
+from msrest import Serializer, Deserializer
+
+from ._configuration import AutoRestRFC1123DateTimeTestServiceConfiguration
 from .operations_async import Datetimerfc1123Operations
 from . import models
-
-
-class AutoRestRFC1123DateTimeTestServiceConfiguration(Configuration):
-    """Configuration for AutoRestRFC1123DateTimeTestService
-    Note that all parameters used to create this instance are saved as instance
-    attributes.
-
-    :param str base_url: Service URL
-    """
-
-    def __init__(
-            self, base_url=None):
-
-        if not base_url:
-            base_url = 'http://localhost:3000'
-
-        super(AutoRestRFC1123DateTimeTestServiceConfiguration, self).__init__(base_url)
-
-        self.add_user_agent('autorestrfc1123datetimetestservice/{}'.format(VERSION))
 
 
 class AutoRestRFC1123DateTimeTestServiceAsync(SDKClientAsync):

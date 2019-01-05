@@ -10,29 +10,11 @@
 # --------------------------------------------------------------------------
 
 from msrest.service_client import SDKClient
-from msrest import Configuration, Serializer, Deserializer
-from .version import VERSION
+from msrest import Serializer, Deserializer
+
+from ._configuration import AutoRestSwaggerBATdictionaryServiceConfiguration
 from .operations import DictionaryOperations
 from . import models
-
-
-class AutoRestSwaggerBATdictionaryServiceConfiguration(Configuration):
-    """Configuration for AutoRestSwaggerBATdictionaryService
-    Note that all parameters used to create this instance are saved as instance
-    attributes.
-
-    :param str base_url: Service URL
-    """
-
-    def __init__(
-            self, base_url=None):
-
-        if not base_url:
-            base_url = 'http://localhost:3000'
-
-        super(AutoRestSwaggerBATdictionaryServiceConfiguration, self).__init__(base_url)
-
-        self.add_user_agent('autorestswaggerbatdictionaryservice/{}'.format(VERSION))
 
 
 class AutoRestSwaggerBATdictionaryService(SDKClient):

@@ -9,7 +9,8 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from ._auto_rest_parameterized_host_test_client import AutoRestParameterizedHostTestClient, AutoRestParameterizedHostTestClientConfiguration
+from ._configuration import AutoRestParameterizedHostTestClientConfiguration
+from ._auto_rest_parameterized_host_test_client import AutoRestParameterizedHostTestClient
 __all__ = ['AutoRestParameterizedHostTestClient', 'AutoRestParameterizedHostTestClientConfiguration']
 
 try:

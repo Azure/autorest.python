@@ -9,7 +9,8 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from ._auto_rest_http_infrastructure_test_service import AutoRestHttpInfrastructureTestService, AutoRestHttpInfrastructureTestServiceConfiguration
+from ._configuration import AutoRestHttpInfrastructureTestServiceConfiguration
+from ._auto_rest_http_infrastructure_test_service import AutoRestHttpInfrastructureTestService
 __all__ = ['AutoRestHttpInfrastructureTestService', 'AutoRestHttpInfrastructureTestServiceConfiguration']
 
 try:

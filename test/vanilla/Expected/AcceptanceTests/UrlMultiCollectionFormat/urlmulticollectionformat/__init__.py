@@ -9,7 +9,8 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from ._auto_rest_url_mutli_collection_format_test_service import AutoRestUrlMutliCollectionFormatTestService, AutoRestUrlMutliCollectionFormatTestServiceConfiguration
+from ._configuration import AutoRestUrlMutliCollectionFormatTestServiceConfiguration
+from ._auto_rest_url_mutli_collection_format_test_service import AutoRestUrlMutliCollectionFormatTestService
 __all__ = ['AutoRestUrlMutliCollectionFormatTestService', 'AutoRestUrlMutliCollectionFormatTestServiceConfiguration']
 
 try:

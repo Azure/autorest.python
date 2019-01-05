@@ -11,36 +11,9 @@
 
 from msrest.async_client import SDKClientAsync
 from msrest import Serializer, Deserializer
-from msrestazure import AzureConfiguration
-from .version import VERSION
+
+from ._configuration import AutoRestHeadExceptionTestServiceConfiguration
 from .operations_async import HeadExceptionOperations
-
-
-class AutoRestHeadExceptionTestServiceConfiguration(AzureConfiguration):
-    """Configuration for AutoRestHeadExceptionTestService
-    Note that all parameters used to create this instance are saved as instance
-    attributes.
-
-    :param credentials: Credentials needed for the client to connect to Azure.
-    :type credentials: :mod:`A msrestazure Credentials
-     object<msrestazure.azure_active_directory>`
-    :param str base_url: Service URL
-    """
-
-    def __init__(
-            self, credentials, base_url=None):
-
-        if credentials is None:
-            raise ValueError("Parameter 'credentials' must not be None.")
-        if not base_url:
-            base_url = 'http://localhost:3000'
-
-        super(AutoRestHeadExceptionTestServiceConfiguration, self).__init__(base_url)
-
-        self.add_user_agent('autorestheadexceptiontestservice/{}'.format(VERSION))
-        self.add_user_agent('Azure-SDK-For-Python')
-
-        self.credentials = credentials
 
 
 class AutoRestHeadExceptionTestServiceAsync(SDKClientAsync):

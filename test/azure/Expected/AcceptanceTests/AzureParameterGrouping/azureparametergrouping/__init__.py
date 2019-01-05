@@ -9,7 +9,8 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from ._auto_rest_parameter_grouping_test_service import AutoRestParameterGroupingTestService, AutoRestParameterGroupingTestServiceConfiguration
+from ._configuration import AutoRestParameterGroupingTestServiceConfiguration
+from ._auto_rest_parameter_grouping_test_service import AutoRestParameterGroupingTestService
 __all__ = ['AutoRestParameterGroupingTestService', 'AutoRestParameterGroupingTestServiceConfiguration']
 
 try:
