@@ -45,7 +45,7 @@ from msrest.serialization import Deserializer
 from msrest.exceptions import DeserializationError
 from msrest.authentication import BasicTokenAuthentication
 
-from bodyduration import AutoRestDurationTestService
+from bodyduration import AutoRestDurationTestServiceAsync
 
 import pytest
 
@@ -55,16 +55,16 @@ class TestDuration(object):
     async def test_duration(self):
 
         cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
-        client = AutoRestDurationTestService(cred, base_url="http://localhost:3000")
+        client = AutoRestDurationTestServiceAsync(cred, base_url="http://localhost:3000")
 
-        assert await client.duration.get_null_async() is None
+        assert await client.duration.get_null() is None
 
         with pytest.raises(DeserializationError):
-            await client.duration.get_invalid_async()
+            await client.duration.get_invalid()
 
-        await client.duration.get_positive_duration_async()
+        await client.duration.get_positive_duration()
         delta = timedelta(days=123, hours=22, minutes=14, seconds=12, milliseconds=11)
-        await client.duration.put_positive_duration_async(delta)
+        await client.duration.put_positive_duration(delta)
 
 
 if __name__ == '__main__':

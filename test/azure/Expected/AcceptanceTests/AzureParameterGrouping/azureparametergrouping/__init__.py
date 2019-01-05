@@ -9,10 +9,16 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .auto_rest_parameter_grouping_test_service import AutoRestParameterGroupingTestService
-from .version import VERSION
+from .auto_rest_parameter_grouping_test_service import AutoRestParameterGroupingTestService, AutoRestParameterGroupingTestServiceConfiguration
+__all__ = ['AutoRestParameterGroupingTestService', 'AutoRestParameterGroupingTestServiceConfiguration']
 
-__all__ = ['AutoRestParameterGroupingTestService']
+try:
+    from .auto_rest_parameter_grouping_test_service_async import AutoRestParameterGroupingTestServiceAsync
+    __all__ += ['AutoRestParameterGroupingTestServiceAsync']
+except (SyntaxError, ImportError):  # Python 2
+    pass
+
+from .version import VERSION
 
 __version__ = VERSION
 

@@ -9,10 +9,16 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .auto_rest_paging_test_service import AutoRestPagingTestService
-from .version import VERSION
+from .auto_rest_paging_test_service import AutoRestPagingTestService, AutoRestPagingTestServiceConfiguration
+__all__ = ['AutoRestPagingTestService', 'AutoRestPagingTestServiceConfiguration']
 
-__all__ = ['AutoRestPagingTestService']
+try:
+    from .auto_rest_paging_test_service_async import AutoRestPagingTestServiceAsync
+    __all__ += ['AutoRestPagingTestServiceAsync']
+except (SyntaxError, ImportError):  # Python 2
+    pass
+
+from .version import VERSION
 
 __version__ = VERSION
 

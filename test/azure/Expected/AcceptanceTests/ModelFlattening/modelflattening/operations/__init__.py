@@ -9,10 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-try:
-    from .auto_rest_resource_flattening_test_service_operations_async import AutoRestResourceFlatteningTestServiceOperationsMixin
-except (SyntaxError, ImportError):
-    from .auto_rest_resource_flattening_test_service_operations import AutoRestResourceFlatteningTestServiceOperationsMixin
+from ._auto_rest_resource_flattening_test_service_operations import AutoRestResourceFlatteningTestServiceOperationsMixin
 
 __all__ = [
     'AutoRestResourceFlatteningTestServiceOperationsMixin',

@@ -46,7 +46,7 @@ from msrest.exceptions import DeserializationError
 from msrestazure.azure_exceptions import CloudError
 from msrest.authentication import BasicTokenAuthentication
 
-from paging import AutoRestPagingTestService
+from paging import AutoRestPagingTestServiceAsync
 from paging.models import PagingGetMultiplePagesWithOffsetOptions
 
 import pytest
@@ -54,7 +54,7 @@ import pytest
 @pytest.fixture
 def paging_client():
     cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
-    client = AutoRestPagingTestService(cred, base_url="http://localhost:3000")
+    client = AutoRestPagingTestServiceAsync(cred, base_url="http://localhost:3000")
     return client
 
 @pytest.fixture()

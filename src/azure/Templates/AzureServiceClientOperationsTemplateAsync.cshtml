@@ -32,10 +32,9 @@ from msrest.pipeline import ClientRawResponse
 @:from .. import models
 }
 import uuid
-from .@( Model.Name.ToPythonCase())_operations import @(Model.Name)OperationsMixin as _@(Model.Name)OperationsMixin
 @EmptyLine
 @EmptyLine
-class @(Model.Name)OperationsMixin(_@(Model.Name)OperationsMixin):
+class @(Model.Name)OperationsMixin:
 @foreach (var method in Model.MethodTemplateModels.Where(each => each.MethodGroup.IsCodeModelMethodGroup))
 {
 @EmptyLine

@@ -50,14 +50,17 @@ namespace AutoRest.Python.Azure
             var serviceClientTemplate = new AzureServiceClientTemplate { Model = codeModel, };
             await Write(serviceClientTemplate, Path.Combine(folderName, codeModel.Name.ToPythonCase() + ".py"));
 
+            var serviceClientAsyncTemplate = new AzureServiceClientTemplateAsync { Model = codeModel, };
+            await Write(serviceClientAsyncTemplate, Path.Combine(folderName, codeModel.Name.ToPythonCase() + "_async.py"));
+
             // If async method at the client level, create another file
             if(codeModel.MethodTemplateModels.Any( each => each.MethodGroup.IsCodeModelMethodGroup))
             {
                 var serviceClientTemplateOp = new AzureServiceClientOperationsTemplate { Model = codeModel };
-                await Write(serviceClientTemplateOp, Path.Combine(folderName, "operations", codeModel.Name.ToPythonCase() + "_operations.py"));
+                await Write(serviceClientTemplateOp, Path.Combine(folderName, "operations", "_" + codeModel.Name.ToPythonCase() + "_operations.py"));
 
                 var serviceClientTemplateOpAsync = new AzureServiceClientOperationsTemplateAsync { Model = codeModel };
-                await Write(serviceClientTemplateOpAsync, Path.Combine(folderName, "operations", codeModel.Name.ToPythonCase() + "_operations_async.py"));
+                await Write(serviceClientTemplateOpAsync, Path.Combine(folderName, "operations_async", "_" + codeModel.Name.ToPythonCase() + "_operations_async.py"));
             }
 
             var versionTemplate = new VersionTemplate { Model = codeModel, };
@@ -92,19 +95,26 @@ namespace AutoRest.Python.Azure
                 };
                 await Write(methodGroupIndexTemplate, Path.Combine(folderName, "operations", "__init__.py"));
 
+                var methodGroupIndexTemplateAsync = new MethodGroupInitTemplate
+                {
+                    Model = codeModel,
+                    AsyncMode = true
+                };
+                await Write(methodGroupIndexTemplateAsync, Path.Combine(folderName, "operations_async", "__init__.py"));
+
                 foreach (var methodGroupModel in codeModel.MethodGroupModels)
                 {
                     var methodGroupTemplate = new AzureMethodGroupTemplate
                     {
                         Model = methodGroupModel as MethodGroupPya
                     };
-                    await Write(methodGroupTemplate, Path.Combine(folderName, "operations", ((string) methodGroupModel.TypeName).ToPythonCase() + ".py"));
+                    await Write(methodGroupTemplate, Path.Combine(folderName, "operations", "_" + ((string) methodGroupModel.TypeName).ToPythonCase() + ".py"));
                     // Build a Py3 version that import the Py2 one
                     var methodGroupTemplatePy3 = new AzureMethodGroupTemplateAsync
                     {
                         Model = methodGroupModel as MethodGroupPya
                     };
-                    await Write(methodGroupTemplatePy3, Path.Combine(folderName, "operations", ((string) methodGroupModel.TypeName).ToPythonCase() + "_async.py"));
+                    await Write(methodGroupTemplatePy3, Path.Combine(folderName, "operations_async", "_" + ((string) methodGroupModel.TypeName).ToPythonCase() + "_async.py"));
                 }
             }
 
