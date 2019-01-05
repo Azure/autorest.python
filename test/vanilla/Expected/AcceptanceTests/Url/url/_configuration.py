@@ -37,6 +37,9 @@ class AutoRestUrlTestServiceConfiguration(Configuration):
 
         super(AutoRestUrlTestServiceConfiguration, self).__init__(base_url)
 
+        # Starting Autorest.Python 4.0.64, make connection pool activated by default
+        self.keep_alive = True
+
         self.add_user_agent('autoresturltestservice/{}'.format(VERSION))
 
         self.global_string_path = global_string_path

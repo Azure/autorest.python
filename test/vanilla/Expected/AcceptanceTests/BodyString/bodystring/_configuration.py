@@ -30,4 +30,7 @@ class AutoRestSwaggerBATServiceConfiguration(Configuration):
 
         super(AutoRestSwaggerBATServiceConfiguration, self).__init__(base_url)
 
+        # Starting Autorest.Python 4.0.64, make connection pool activated by default
+        self.keep_alive = True
+
         self.add_user_agent('autorestswaggerbatservice/{}'.format(VERSION))

@@ -57,6 +57,9 @@ else
 @EmptyLine
         super(@(Model.Name)Configuration, self).__init__(base_url)
 @EmptyLine
+        # Starting Autorest.Python 4.0.64, make connection pool activated by default
+        self.keep_alive = True
+@EmptyLine
         self.add_user_agent('@(Model.UserAgent)/{}'.format(VERSION))
         self.add_user_agent('Azure-SDK-For-Python')
 @if (Model.Properties.Any())

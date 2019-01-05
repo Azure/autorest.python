@@ -40,6 +40,9 @@ class AutoRestRequiredOptionalTestServiceConfiguration(Configuration):
 
         super(AutoRestRequiredOptionalTestServiceConfiguration, self).__init__(base_url)
 
+        # Starting Autorest.Python 4.0.64, make connection pool activated by default
+        self.keep_alive = True
+
         self.add_user_agent('autorestrequiredoptionaltestservice/{}'.format(VERSION))
 
         self.required_global_path = required_global_path
