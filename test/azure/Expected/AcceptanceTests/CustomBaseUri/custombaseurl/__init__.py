@@ -9,11 +9,11 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .auto_rest_parameterized_host_test_client import AutoRestParameterizedHostTestClient, AutoRestParameterizedHostTestClientConfiguration
+from ._auto_rest_parameterized_host_test_client import AutoRestParameterizedHostTestClient, AutoRestParameterizedHostTestClientConfiguration
 __all__ = ['AutoRestParameterizedHostTestClient', 'AutoRestParameterizedHostTestClientConfiguration']
 
 try:
-    from .auto_rest_parameterized_host_test_client_async import AutoRestParameterizedHostTestClientAsync
+    from ._auto_rest_parameterized_host_test_client_async import AutoRestParameterizedHostTestClientAsync
     __all__ += ['AutoRestParameterizedHostTestClientAsync']
 except (SyntaxError, ImportError):  # Python 2
     pass

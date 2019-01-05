@@ -9,11 +9,11 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .auto_rest_bool_test_service import AutoRestBoolTestService, AutoRestBoolTestServiceConfiguration
+from ._auto_rest_bool_test_service import AutoRestBoolTestService, AutoRestBoolTestServiceConfiguration
 __all__ = ['AutoRestBoolTestService', 'AutoRestBoolTestServiceConfiguration']
 
 try:
-    from .auto_rest_bool_test_service_async import AutoRestBoolTestServiceAsync
+    from ._auto_rest_bool_test_service_async import AutoRestBoolTestServiceAsync
     __all__ += ['AutoRestBoolTestServiceAsync']
 except (SyntaxError, ImportError):  # Python 2
     pass

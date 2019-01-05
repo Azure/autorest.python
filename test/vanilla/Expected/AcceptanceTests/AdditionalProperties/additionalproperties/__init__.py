@@ -9,11 +9,11 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .additional_properties_client import AdditionalPropertiesClient, AdditionalPropertiesClientConfiguration
+from ._additional_properties_client import AdditionalPropertiesClient, AdditionalPropertiesClientConfiguration
 __all__ = ['AdditionalPropertiesClient', 'AdditionalPropertiesClientConfiguration']
 
 try:
-    from .additional_properties_client_async import AdditionalPropertiesClientAsync
+    from ._additional_properties_client_async import AdditionalPropertiesClientAsync
     __all__ += ['AdditionalPropertiesClientAsync']
 except (SyntaxError, ImportError):  # Python 2
     pass

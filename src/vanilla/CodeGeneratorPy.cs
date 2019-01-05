@@ -54,10 +54,10 @@ namespace AutoRest.Python
             await Write(serviceClientInitTemplate, Path.Combine(folderName, "__init__.py"));
 
             var serviceClientTemplate = new ServiceClientTemplate { Model = codeModel };
-            await Write(serviceClientTemplate, Path.Combine(folderName, codeModel.Name.ToPythonCase() + ".py"));
+            await Write(serviceClientTemplate, Path.Combine(folderName, "_" + codeModel.Name.ToPythonCase() + ".py"));
 
             var serviceClientAsyncTemplate = new ServiceClientTemplateAsync { Model = codeModel };
-            await Write(serviceClientAsyncTemplate, Path.Combine(folderName, codeModel.Name.ToPythonCase() + "_async.py"));
+            await Write(serviceClientAsyncTemplate, Path.Combine(folderName, "_" + codeModel.Name.ToPythonCase() + "_async.py"));
 
             // If async method at the client level, create another file
             if(codeModel.MethodTemplateModels.Any( each => each.MethodGroup.IsCodeModelMethodGroup))

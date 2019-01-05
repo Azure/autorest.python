@@ -9,11 +9,11 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .auto_rest_report_service_for_azure import AutoRestReportServiceForAzure, AutoRestReportServiceForAzureConfiguration
+from ._auto_rest_report_service_for_azure import AutoRestReportServiceForAzure, AutoRestReportServiceForAzureConfiguration
 __all__ = ['AutoRestReportServiceForAzure', 'AutoRestReportServiceForAzureConfiguration']
 
 try:
-    from .auto_rest_report_service_for_azure_async import AutoRestReportServiceForAzureAsync
+    from ._auto_rest_report_service_for_azure_async import AutoRestReportServiceForAzureAsync
     __all__ += ['AutoRestReportServiceForAzureAsync']
 except (SyntaxError, ImportError):  # Python 2
     pass

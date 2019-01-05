@@ -9,11 +9,11 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .pet_store_inc import PetStoreInc, PetStoreIncConfiguration
+from ._pet_store_inc import PetStoreInc, PetStoreIncConfiguration
 __all__ = ['PetStoreInc', 'PetStoreIncConfiguration']
 
 try:
-    from .pet_store_inc_async import PetStoreIncAsync
+    from ._pet_store_inc_async import PetStoreIncAsync
     __all__ += ['PetStoreIncAsync']
 except (SyntaxError, ImportError):  # Python 2
     pass

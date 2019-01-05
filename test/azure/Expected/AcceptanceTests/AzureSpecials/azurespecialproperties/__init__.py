@@ -9,11 +9,11 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .auto_rest_azure_special_parameters_test_client import AutoRestAzureSpecialParametersTestClient, AutoRestAzureSpecialParametersTestClientConfiguration
+from ._auto_rest_azure_special_parameters_test_client import AutoRestAzureSpecialParametersTestClient, AutoRestAzureSpecialParametersTestClientConfiguration
 __all__ = ['AutoRestAzureSpecialParametersTestClient', 'AutoRestAzureSpecialParametersTestClientConfiguration']
 
 try:
-    from .auto_rest_azure_special_parameters_test_client_async import AutoRestAzureSpecialParametersTestClientAsync
+    from ._auto_rest_azure_special_parameters_test_client_async import AutoRestAzureSpecialParametersTestClientAsync
     __all__ += ['AutoRestAzureSpecialParametersTestClientAsync']
 except (SyntaxError, ImportError):  # Python 2
     pass

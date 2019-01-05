@@ -9,11 +9,11 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .auto_rest_swagger_batxml_service import AutoRestSwaggerBATXMLService, AutoRestSwaggerBATXMLServiceConfiguration
+from ._auto_rest_swagger_batxml_service import AutoRestSwaggerBATXMLService, AutoRestSwaggerBATXMLServiceConfiguration
 __all__ = ['AutoRestSwaggerBATXMLService', 'AutoRestSwaggerBATXMLServiceConfiguration']
 
 try:
-    from .auto_rest_swagger_batxml_service_async import AutoRestSwaggerBATXMLServiceAsync
+    from ._auto_rest_swagger_batxml_service_async import AutoRestSwaggerBATXMLServiceAsync
     __all__ += ['AutoRestSwaggerBATXMLServiceAsync']
 except (SyntaxError, ImportError):  # Python 2
     pass

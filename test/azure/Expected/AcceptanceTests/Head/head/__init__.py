@@ -9,11 +9,11 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .auto_rest_head_test_service import AutoRestHeadTestService, AutoRestHeadTestServiceConfiguration
+from ._auto_rest_head_test_service import AutoRestHeadTestService, AutoRestHeadTestServiceConfiguration
 __all__ = ['AutoRestHeadTestService', 'AutoRestHeadTestServiceConfiguration']
 
 try:
-    from .auto_rest_head_test_service_async import AutoRestHeadTestServiceAsync
+    from ._auto_rest_head_test_service_async import AutoRestHeadTestServiceAsync
     __all__ += ['AutoRestHeadTestServiceAsync']
 except (SyntaxError, ImportError):  # Python 2
     pass

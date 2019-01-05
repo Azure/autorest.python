@@ -9,11 +9,11 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .auto_rest_validation_test import AutoRestValidationTest, AutoRestValidationTestConfiguration
+from ._auto_rest_validation_test import AutoRestValidationTest, AutoRestValidationTestConfiguration
 __all__ = ['AutoRestValidationTest', 'AutoRestValidationTestConfiguration']
 
 try:
-    from .auto_rest_validation_test_async import AutoRestValidationTestAsync
+    from ._auto_rest_validation_test_async import AutoRestValidationTestAsync
     __all__ += ['AutoRestValidationTestAsync']
 except (SyntaxError, ImportError):  # Python 2
     pass

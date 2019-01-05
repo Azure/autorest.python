@@ -9,11 +9,11 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .storage_management_client import StorageManagementClient, StorageManagementClientConfiguration
+from ._storage_management_client import StorageManagementClient, StorageManagementClientConfiguration
 __all__ = ['StorageManagementClient', 'StorageManagementClientConfiguration']
 
 try:
-    from .storage_management_client_async import StorageManagementClientAsync
+    from ._storage_management_client_async import StorageManagementClientAsync
     __all__ += ['StorageManagementClientAsync']
 except (SyntaxError, ImportError):  # Python 2
     pass

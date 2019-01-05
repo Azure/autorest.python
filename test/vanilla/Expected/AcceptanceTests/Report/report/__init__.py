@@ -9,11 +9,11 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .auto_rest_report_service import AutoRestReportService, AutoRestReportServiceConfiguration
+from ._auto_rest_report_service import AutoRestReportService, AutoRestReportServiceConfiguration
 __all__ = ['AutoRestReportService', 'AutoRestReportServiceConfiguration']
 
 try:
-    from .auto_rest_report_service_async import AutoRestReportServiceAsync
+    from ._auto_rest_report_service_async import AutoRestReportServiceAsync
     __all__ += ['AutoRestReportServiceAsync']
 except (SyntaxError, ImportError):  # Python 2
     pass

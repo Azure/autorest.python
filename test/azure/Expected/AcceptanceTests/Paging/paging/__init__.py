@@ -9,11 +9,11 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .auto_rest_paging_test_service import AutoRestPagingTestService, AutoRestPagingTestServiceConfiguration
+from ._auto_rest_paging_test_service import AutoRestPagingTestService, AutoRestPagingTestServiceConfiguration
 __all__ = ['AutoRestPagingTestService', 'AutoRestPagingTestServiceConfiguration']
 
 try:
-    from .auto_rest_paging_test_service_async import AutoRestPagingTestServiceAsync
+    from ._auto_rest_paging_test_service_async import AutoRestPagingTestServiceAsync
     __all__ += ['AutoRestPagingTestServiceAsync']
 except (SyntaxError, ImportError):  # Python 2
     pass

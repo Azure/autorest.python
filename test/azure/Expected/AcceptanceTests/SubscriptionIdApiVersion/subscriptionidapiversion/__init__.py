@@ -9,11 +9,11 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .microsoft_azure_test_url import MicrosoftAzureTestUrl, MicrosoftAzureTestUrlConfiguration
+from ._microsoft_azure_test_url import MicrosoftAzureTestUrl, MicrosoftAzureTestUrlConfiguration
 __all__ = ['MicrosoftAzureTestUrl', 'MicrosoftAzureTestUrlConfiguration']
 
 try:
-    from .microsoft_azure_test_url_async import MicrosoftAzureTestUrlAsync
+    from ._microsoft_azure_test_url_async import MicrosoftAzureTestUrlAsync
     __all__ += ['MicrosoftAzureTestUrlAsync']
 except (SyntaxError, ImportError):  # Python 2
     pass

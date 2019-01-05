@@ -9,11 +9,11 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .auto_rest_swagger_bat_form_data_service import AutoRestSwaggerBATFormDataService, AutoRestSwaggerBATFormDataServiceConfiguration
+from ._auto_rest_swagger_bat_form_data_service import AutoRestSwaggerBATFormDataService, AutoRestSwaggerBATFormDataServiceConfiguration
 __all__ = ['AutoRestSwaggerBATFormDataService', 'AutoRestSwaggerBATFormDataServiceConfiguration']
 
 try:
-    from .auto_rest_swagger_bat_form_data_service_async import AutoRestSwaggerBATFormDataServiceAsync
+    from ._auto_rest_swagger_bat_form_data_service_async import AutoRestSwaggerBATFormDataServiceAsync
     __all__ += ['AutoRestSwaggerBATFormDataServiceAsync']
 except (SyntaxError, ImportError):  # Python 2
     pass
