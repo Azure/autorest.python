@@ -9,10 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-try:
-    from .http_success_operations_async import HttpSuccessOperations
-except (SyntaxError, ImportError):
-    from .http_success_operations import HttpSuccessOperations
+from ._http_success_operations import HttpSuccessOperations
 
 __all__ = [
     'HttpSuccessOperations',

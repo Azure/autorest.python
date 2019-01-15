@@ -1,5 +1,15 @@
 # Change Log
 
+### 2019-01-08 - 4.0.64
+
+- New version of async generation. Requires msrest 0.6.3 and msrestazure 0.6.0.
+
+### 2018-12-17 - 4.0.63
+
+- Autorest now generates async code.
+
+**This version requires EXACTLY msrest 0.6.0 to 0.6.2 and is considered deprecated. Do NOT generate with it.**
+
 ### 2018-07-09 - 3.0.58
 
 - Fix some complex XML parsing issues. Requires msrest 0.5.2

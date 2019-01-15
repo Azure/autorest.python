@@ -1,0 +1,73 @@
+﻿@using AutoRest.Python.vanilla.Templates
+@using System.Linq
+@using AutoRest.Core.Model
+@using AutoRest.Core.Utilities
+@using AutoRest.Python
+@using AutoRest.Python.Model
+@inherits AutoRest.Python.PythonTemplate<AutoRest.Python.Model.CodeModelPy>
+# coding=utf-8
+# --------------------------------------------------------------------------
+@Header("# ").TrimMultilineHeader()
+# --------------------------------------------------------------------------
+@EmptyLine
+from msrest import Configuration
+@EmptyLine
+from .version import VERSION
+@EmptyLine
+@EmptyLine
+class @(Model.Name)Configuration(Configuration):
+    """Configuration for @(Model.Name)
+    Note that all parameters used to create this instance are saved as instance
+    attributes.
+@EmptyLine
+@foreach(var property in Model.Properties.Where( each => !each.IsConstant))
+{
+@:    @ParameterWrapComment(string.Empty, CodeModelPy.GetPropertyDocumentationString(property))
+@:    @ParameterWrapComment(string.Empty, ":type " + property.Name + ": " + Model.GetPropertyDocumentationType(property.ModelType))
+}
+@foreach(var property in Model.ConstantProperties)
+{
+@:    @ParameterWrapComment(string.Empty, CodeModelPy.GetPropertyDocumentationString(property))
+@:    @ParameterWrapComment(string.Empty, ":type " + property.Name + ": " + Model.GetPropertyDocumentationType(property.ModelType))
+}
+
+@if (!Model.IsCustomBaseUri)
+{
+@:    :param str base_url: Service URL
+}
+    """
+@EmptyLine
+    def __init__(
+            self@(Model.RequiredConstructorParameters)@(Model.IsCustomBaseUri ? "" : ", base_url=None")):
+@EmptyLine
+        @Model.ValidateRequiredParameters
+
+@if (Model.IsCustomBaseUri)
+{
+@:        base_url = '@Model.BaseUrl'
+}
+else
+{
+@:        if not base_url:
+@:            base_url = '@Model.BaseUrl'
+}
+
+@EmptyLine
+        super(@(Model.Name)Configuration, self).__init__(base_url)
+@EmptyLine
+        # Starting Autorest.Python 4.0.64, make connection pool activated by default
+        self.keep_alive = True
+@EmptyLine
+        self.add_user_agent('@(Model.UserAgent)/{}'.format(VERSION))
+@if (Model.Properties.Any() || Model.ConstantProperties.Any())
+{
+    @EmptyLine
+    foreach (var property in Model.Properties.Where( each => !each.IsConstant))
+    {
+        @:self.@(property.Name) = @(property.Name)
+    }
+    foreach (var property in Model.ConstantProperties)
+    {
+        @:self.@(property.Name) = @(property.DefaultValue)
+    }
+}

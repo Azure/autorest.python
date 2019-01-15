@@ -9,10 +9,17 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .auto_rest_head_exception_test_service import AutoRestHeadExceptionTestService
-from .version import VERSION
+from ._configuration import AutoRestHeadExceptionTestServiceConfiguration
+from ._auto_rest_head_exception_test_service import AutoRestHeadExceptionTestService
+__all__ = ['AutoRestHeadExceptionTestService', 'AutoRestHeadExceptionTestServiceConfiguration']
 
-__all__ = ['AutoRestHeadExceptionTestService']
+try:
+    from ._auto_rest_head_exception_test_service_async import AutoRestHeadExceptionTestServiceAsync
+    __all__ += ['AutoRestHeadExceptionTestServiceAsync']
+except (SyntaxError, ImportError):  # Python 2
+    pass
+
+from .version import VERSION
 
 __version__ = VERSION
 

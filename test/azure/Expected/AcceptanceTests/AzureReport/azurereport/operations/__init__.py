@@ -9,10 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-try:
-    from .auto_rest_report_service_for_azure_operations_async import AutoRestReportServiceForAzureOperationsMixin
-except (SyntaxError, ImportError):
-    from .auto_rest_report_service_for_azure_operations import AutoRestReportServiceForAzureOperationsMixin
+from ._auto_rest_report_service_for_azure_operations import AutoRestReportServiceForAzureOperationsMixin
 
 __all__ = [
     'AutoRestReportServiceForAzureOperationsMixin',

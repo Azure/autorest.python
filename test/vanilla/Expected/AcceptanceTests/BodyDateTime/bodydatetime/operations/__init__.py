@@ -9,10 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-try:
-    from .datetime_model_operations_async import DatetimeModelOperations
-except (SyntaxError, ImportError):
-    from .datetime_model_operations import DatetimeModelOperations
+from ._datetime_model_operations import DatetimeModelOperations
 
 __all__ = [
     'DatetimeModelOperations',

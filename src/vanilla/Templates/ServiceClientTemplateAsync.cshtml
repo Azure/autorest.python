@@ -1,0 +1,112 @@
+﻿@using AutoRest.Python.vanilla.Templates
+@using System.Linq
+@using AutoRest.Core.Model
+@using AutoRest.Core.Utilities
+@using AutoRest.Python
+@using AutoRest.Python.Model
+@inherits AutoRest.Python.PythonTemplate<AutoRest.Python.Model.CodeModelPy>
+# coding=utf-8
+# --------------------------------------------------------------------------
+@Header("# ").TrimMultilineHeader()
+# --------------------------------------------------------------------------
+@{
+string clientName = Model.Name + "Async";
+}
+
+@EmptyLine
+@if (Model.HasAnyDeprecated)
+{
+@:import warnings
+}
+from msrest.async_client import SDKClientAsync
+from msrest import Serializer, Deserializer
+@EmptyLine
+from ._configuration import @(Model.Name)Configuration
+@{
+bool hasClientLevelMethods = Model.MethodTemplateModels.Any( each => each.MethodGroup.IsCodeModelMethodGroup);
+}
+@if (hasClientLevelMethods)
+{
+@:from .operations_async import @(Model.Name)OperationsMixin
+}
+@if (Model.HasAnyDefaultExceptions)
+{
+@:from msrest.exceptions import HttpOperationError
+}
+@if (Model.MethodGroupModels.Any())
+{
+  foreach (var modelGroupType in Model.MethodGroupModels)
+  {
+@:from .operations_async import @((string) modelGroupType.TypeName)
+  }
+}
+@if (Model.HasAnyModel)
+{
+@:from . import models
+}
+@EmptyLine
+@EmptyLine
+@if (hasClientLevelMethods)
+{
+@:class @(clientName)(@(Model.Name)OperationsMixin, SDKClientAsync):
+}
+else
+{
+@:class @(clientName)(SDKClientAsync):
+}
+    """@Model.ServiceDocument
+@EmptyLine
+    :ivar config: Configuration for client.
+    :vartype config: @(Model.Name)Configuration
+@if (Model.MethodGroupModels.Any())
+{
+@EmptyLine
+  foreach (var methodGroup in Model.MethodGroupModels)
+  {
+@:    :ivar @(((string) methodGroup.Name).ToPythonCase()): @((string) methodGroup.Name) operations
+@:    :vartype @(((string) methodGroup.Name).ToPythonCase()): @(Model.Namespace).operations.@((string) methodGroup.TypeName)
+  }
+}
+@EmptyLine
+@foreach (var property in Model.Properties.Where(each => !each.IsConstant))
+{
+@:    @ParameterWrapComment(string.Empty, CodeModelPy.GetPropertyDocumentationString(property))
+@:    @ParameterWrapComment(string.Empty, ":type " + property.Name + ": " + Model.GetPropertyDocumentationType(property.ModelType))
+}
+
+@if (!Model.IsCustomBaseUri)
+{
+@:    :param str base_url: Service URL
+}
+    """
+@EmptyLine
+    def __init__(
+            self@(Model.RequiredConstructorParameters)@(Model.IsCustomBaseUri ? "" : ", base_url=None")):
+@EmptyLine
+        self.config = @(Model.Name)Configuration(@(Model.ConfigConstructorParameters))
+        super(@(clientName), self).__init__(self.config)
+@EmptyLine
+@if (Model.ModelTemplateModels.Any())
+{
+        @:client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
+}
+else
+{
+        @:client_models = {}
+}
+@if (Model.ApiVersion != null)
+{
+        @:self.api_version = '@(Model.ApiVersion)'
+}
+        self._serialize = Serializer(client_models)
+@if (! Model.ClientSideValidationEnabled)
+{
+        @:self._serialize.client_side_validation = False
+}
+        self._deserialize = Deserializer(client_models)
+@EmptyLine
+@foreach (var methodGroup in Model.MethodGroupModels)
+{
+        @:self.@(((string) methodGroup.Name).ToPythonCase()) = @((string) methodGroup.TypeName)(
+            @:self._client, self.config, self._serialize, self._deserialize)
+}

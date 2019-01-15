@@ -43,7 +43,7 @@ sys.path.append(join(tests, "BodyDate"))
 from msrest.serialization import Deserializer
 from msrest.exceptions import DeserializationError
 
-from bodydate import AutoRestDateTestService
+from bodydate import AutoRestDateTestServiceAsync
 
 import pytest
 
@@ -51,25 +51,25 @@ class TestDate(object):
 
     @pytest.mark.asyncio
     async def test_date(self):
-        client = AutoRestDateTestService(base_url="http://localhost:3000")
+        client = AutoRestDateTestServiceAsync(base_url="http://localhost:3000")
 
         max_date = isodate.parse_date("9999-12-31T23:59:59.999999Z")
         min_date = isodate.parse_date("0001-01-01T00:00:00Z")
-        await client.date_model.put_max_date_async(max_date)
-        await client.date_model.put_min_date_async(min_date)
+        await client.date_model.put_max_date(max_date)
+        await client.date_model.put_min_date(min_date)
 
-        assert max_date ==  await client.date_model.get_max_date_async()
-        assert min_date ==  await client.date_model.get_min_date_async()
-        assert await client.date_model.get_null_async() is None
-
-        with pytest.raises(DeserializationError):
-            await client.date_model.get_invalid_date_async()
+        assert max_date ==  await client.date_model.get_max_date()
+        assert min_date ==  await client.date_model.get_min_date()
+        assert await client.date_model.get_null() is None
 
         with pytest.raises(DeserializationError):
-            await client.date_model.get_overflow_date_async()
+            await client.date_model.get_invalid_date()
 
         with pytest.raises(DeserializationError):
-            await client.date_model.get_underflow_date_async()
+            await client.date_model.get_overflow_date()
+
+        with pytest.raises(DeserializationError):
+            await client.date_model.get_underflow_date()
 
 if __name__ == '__main__':
     unittest.main()

@@ -43,7 +43,7 @@ sys.path.append(join(tests, "BodyBoolean"))
 from msrest.serialization import Deserializer
 from msrest.exceptions import DeserializationError
 
-from bodyboolean import AutoRestBoolTestService
+from bodyboolean import AutoRestBoolTestServiceAsync
 from bodyboolean.models import ErrorException
 
 import pytest
@@ -52,17 +52,17 @@ class TestBool(object):
 
     @pytest.mark.asyncio
     async def test_bool(self):
-        client = AutoRestBoolTestService(base_url="http://localhost:3000")
+        client = AutoRestBoolTestServiceAsync(base_url="http://localhost:3000")
 
-        assert await client.bool_model.get_true_async()
-        assert not await client.bool_model.get_false_async()
+        assert await client.bool_model.get_true()
+        assert not await client.bool_model.get_false()
 
-        await client.bool_model.get_null_async()
-        await client.bool_model.put_false_async()
-        await client.bool_model.put_true_async()
+        await client.bool_model.get_null()
+        await client.bool_model.put_false()
+        await client.bool_model.put_true()
 
         with pytest.raises(DeserializationError):
-            await client.bool_model.get_invalid_async()
+            await client.bool_model.get_invalid()
 
 if __name__ == '__main__':
     unittest.main()

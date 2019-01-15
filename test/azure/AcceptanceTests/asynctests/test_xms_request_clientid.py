@@ -46,7 +46,7 @@ from msrest.exceptions import DeserializationError
 from msrest.authentication import BasicTokenAuthentication
 from msrestazure.azure_exceptions import CloudError, CloudErrorData
 
-from azurespecialproperties import AutoRestAzureSpecialParametersTestClient
+from azurespecialproperties import AutoRestAzureSpecialParametersTestClientAsync
 from azurespecialproperties import models
 
 import pytest
@@ -60,15 +60,15 @@ class TestXmsRequestClientId(object):
         validClientId = '9C4D50EE-2D56-4CD3-8152-34347DC9F2B0'
 
         cred = BasicTokenAuthentication({"access_token":123})
-        client = AutoRestAzureSpecialParametersTestClient(cred, validSubscription, base_url="http://localhost:3000")
+        client = AutoRestAzureSpecialParametersTestClientAsync(cred, validSubscription, base_url="http://localhost:3000")
 
         custom_headers = {"x-ms-client-request-id": validClientId }
 
-        result1 = await client.xms_client_request_id.get_async(custom_headers = custom_headers, raw=True)
+        result1 = await client.xms_client_request_id.get(custom_headers = custom_headers, raw=True)
         #TODO: should we put the x-ms-request-id into response header of swagger spec?
         assert "123" ==  result1.response.headers.get("x-ms-request-id")
 
-        result2 = await client.xms_client_request_id.param_get_async(validClientId, raw=True)
+        result2 = await client.xms_client_request_id.param_get(validClientId, raw=True)
         assert "123" ==  result2.response.headers.get("x-ms-request-id")
 
     @pytest.mark.asyncio
@@ -78,9 +78,9 @@ class TestXmsRequestClientId(object):
         expectedRequestId = '9C4D50EE-2D56-4CD3-8152-34347DC9F2B0'
 
         cred = BasicTokenAuthentication({"access_token":123})
-        client = AutoRestAzureSpecialParametersTestClient(cred, validSubscription, base_url="http://localhost:3000")
+        client = AutoRestAzureSpecialParametersTestClientAsync(cred, validSubscription, base_url="http://localhost:3000")
 
-        response = await client.header.custom_named_request_id_async(expectedRequestId, raw=True)
+        response = await client.header.custom_named_request_id(expectedRequestId, raw=True)
         assert "123" ==  response.response.headers.get("foo-request-id")
 
     @pytest.mark.asyncio
@@ -90,10 +90,10 @@ class TestXmsRequestClientId(object):
         expectedRequestId = '9C4D50EE-2D56-4CD3-8152-34347DC9F2B0'
 
         cred = BasicTokenAuthentication({"access_token":123})
-        client = AutoRestAzureSpecialParametersTestClient(cred, validSubscription, base_url="http://localhost:3000")
+        client = AutoRestAzureSpecialParametersTestClientAsync(cred, validSubscription, base_url="http://localhost:3000")
 
         group = models.HeaderCustomNamedRequestIdParamGroupingParameters(foo_client_request_id=expectedRequestId)
-        response = await client.header.custom_named_request_id_param_grouping_async(group, raw=True)
+        response = await client.header.custom_named_request_id_param_grouping(group, raw=True)
         assert "123" ==  response.response.headers.get("foo-request-id")
 
     @pytest.mark.asyncio
@@ -102,10 +102,10 @@ class TestXmsRequestClientId(object):
         expectedRequestId = '9C4D50EE-2D56-4CD3-8152-34347DC9F2B0'
 
         cred = BasicTokenAuthentication({"access_token":123})
-        client = AutoRestAzureSpecialParametersTestClient(cred, validSubscription, base_url="http://localhost:3000")
+        client = AutoRestAzureSpecialParametersTestClientAsync(cred, validSubscription, base_url="http://localhost:3000")
 
         try:
-            await client.xms_client_request_id.get_async()
+            await client.xms_client_request_id.get()
             self.fail("CloudError wasn't raised as expected")
 
         except CloudError as err:
@@ -117,9 +117,9 @@ class TestXmsRequestClientId(object):
         expectedRequestId = '9C4D50EE-2D56-4CD3-8152-34347DC9F2B0'
 
         cred = BasicTokenAuthentication({"access_token":123})
-        client = AutoRestAzureSpecialParametersTestClient(cred, validSubscription, base_url="http://localhost:3000")
+        client = AutoRestAzureSpecialParametersTestClientAsync(cred, validSubscription, base_url="http://localhost:3000")
         client.config.generate_client_request_id = False
-        await client.xms_client_request_id.get_async()
+        await client.xms_client_request_id.get()
 
 
 if __name__ == '__main__':

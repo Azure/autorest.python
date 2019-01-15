@@ -9,10 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-try:
-    from .array_operations_async import ArrayOperations
-except (SyntaxError, ImportError):
-    from .array_operations import ArrayOperations
+from ._array_operations import ArrayOperations
 
 __all__ = [
     'ArrayOperations',

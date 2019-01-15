@@ -9,12 +9,8 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-try:
-    from .storage_accounts_operations_async import StorageAccountsOperations
-    from .usage_operations_async import UsageOperations
-except (SyntaxError, ImportError):
-    from .storage_accounts_operations import StorageAccountsOperations
-    from .usage_operations import UsageOperations
+from ._storage_accounts_operations import StorageAccountsOperations
+from ._usage_operations import UsageOperations
 
 __all__ = [
     'StorageAccountsOperations',

@@ -9,10 +9,17 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .storage_management_client import StorageManagementClient
-from .version import VERSION
+from ._configuration import StorageManagementClientConfiguration
+from ._storage_management_client import StorageManagementClient
+__all__ = ['StorageManagementClient', 'StorageManagementClientConfiguration']
 
-__all__ = ['StorageManagementClient']
+try:
+    from ._storage_management_client_async import StorageManagementClientAsync
+    __all__ += ['StorageManagementClientAsync']
+except (SyntaxError, ImportError):  # Python 2
+    pass
+
+from .version import VERSION
 
 __version__ = VERSION
 

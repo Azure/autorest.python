@@ -49,7 +49,7 @@ from msrest.exceptions import (
 )
 from msrest.authentication import BasicTokenAuthentication
 
-from custombaseurl import AutoRestParameterizedHostTestClient
+from custombaseurl import AutoRestParameterizedHostTestClientAsync
 from custombaseurl.models import Error, ErrorException
 
 import pytest
@@ -59,23 +59,23 @@ class TestCustomBaseUri(object):
     @pytest.mark.asyncio
     async def test_custom_base_uri_positive(self):
         cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
-        client = AutoRestParameterizedHostTestClient(cred, host="host:3000")
-        await client.paths.get_empty_async("local")
+        client = AutoRestParameterizedHostTestClientAsync(cred, host="host:3000")
+        await client.paths.get_empty("local")
 
     @pytest.mark.asyncio
     async def test_custom_base_uri_negative(self):
         cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
-        client = AutoRestParameterizedHostTestClient(cred, host="host:3000")
+        client = AutoRestParameterizedHostTestClientAsync(cred, host="host:3000")
         client.config.retry_policy.retries = 0
         with pytest.raises(ClientRequestError):
-            await client.paths.get_empty_async("bad")
+            await client.paths.get_empty("bad")
 
         with pytest.raises(ValidationError):
-            await client.paths.get_empty_async(None)
+            await client.paths.get_empty(None)
 
         client.config.host = "badhost:3000"
         with pytest.raises(ClientRequestError):
-            await client.paths.get_empty_async("local")
+            await client.paths.get_empty("local")
 
 if __name__ == '__main__':
 

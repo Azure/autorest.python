@@ -40,7 +40,7 @@ sys.path.append(join(tests, "BodyFormData"))
 
 from msrest.exceptions import DeserializationError
 
-from bodyformdata import AutoRestSwaggerBATFormDataService
+from bodyformdata import AutoRestSwaggerBATFormDataServiceAsync
 
 import pytest
 
@@ -54,11 +54,11 @@ def dummy_file():
 
 @pytest.fixture
 def client():
-    client = AutoRestSwaggerBATFormDataService(base_url="http://localhost:3000")
+    client = AutoRestSwaggerBATFormDataServiceAsync(base_url="http://localhost:3000")
     client.config.connection.data_block_size = 2
     client.config.retry_policy.retries = 50  # Be agressive on this test, sometimes testserver DDOS :-p
     client.config.retry_policy.backoff_factor = 1.6
-    return client    
+    return client
 
 class TestFormData(object):
 
@@ -77,7 +77,7 @@ class TestFormData(object):
         test_bytes = bytearray(test_string, encoding='utf-8')
         result = io.BytesIO()
         with io.BytesIO(test_bytes) as stream_data:
-            resp = await client.formdata.upload_file_async(stream_data, "UploadFile.txt", callback=test_callback)
+            resp = await client.formdata.upload_file(stream_data, "UploadFile.txt", callback=test_callback)
             async for r in resp:
                 result.write(r)
             assert result.getvalue().decode() ==  test_string
@@ -96,7 +96,7 @@ class TestFormData(object):
         test_bytes = bytearray(test_string, encoding='utf-8')
         result = io.BytesIO()
         with io.BytesIO(test_bytes) as stream_data:
-            resp = await client.formdata.upload_file_async(stream_data, "UploadFile.txt", raw=True)
+            resp = await client.formdata.upload_file(stream_data, "UploadFile.txt", raw=True)
             async for r in resp.output:
                 result.write(r)
             assert result.getvalue().decode() ==  test_string
@@ -114,7 +114,7 @@ class TestFormData(object):
         name = os.path.basename(dummy_file)
         result = io.BytesIO()
         with open(dummy_file, 'rb') as upload_data:
-            resp = await client.formdata.upload_file_async(upload_data, name, callback=test_callback)
+            resp = await client.formdata.upload_file(upload_data, name, callback=test_callback)
             async for r in resp:
                 result.write(r)
             assert result.getvalue().decode() ==  "Test file"
@@ -132,7 +132,7 @@ class TestFormData(object):
         name = os.path.basename(dummy_file)
         result = io.BytesIO()
         with open(dummy_file, 'rb') as upload_data:
-            resp = await client.formdata.upload_file_async(upload_data, name, raw=True, callback=test_callback)
+            resp = await client.formdata.upload_file(upload_data, name, raw=True, callback=test_callback)
             async for r in resp.output:
                 result.write(r)
             assert result.getvalue().decode() ==  "Test file"
@@ -154,14 +154,14 @@ class TestFormData(object):
 
         result = io.BytesIO()
         with io.BytesIO(test_bytes) as stream_data:
-            resp = await client.formdata.upload_file_via_body_async(stream_data, callback=test_callback)
+            resp = await client.formdata.upload_file_via_body(stream_data, callback=test_callback)
             async for r in resp:
                 result.write(r)
             assert result.getvalue().decode() ==  test_string
 
         result = io.BytesIO()
         with open(dummy_file, 'rb') as upload_data:
-            resp = await client.formdata.upload_file_via_body_async(upload_data, callback=test_callback)
+            resp = await client.formdata.upload_file_via_body(upload_data, callback=test_callback)
             async for r in resp:
                 result.write(r)
             assert result.getvalue().decode() ==  "Test file"
@@ -173,14 +173,14 @@ class TestFormData(object):
         test_bytes = bytearray(test_string, encoding='utf-8')
         result = io.BytesIO()
         with io.BytesIO(test_bytes) as stream_data:
-            resp = await client.formdata.upload_file_via_body_async(stream_data)
+            resp = await client.formdata.upload_file_via_body(stream_data)
             async for r in resp:
                 result.write(r)
             assert result.getvalue().decode() ==  test_string
 
         result = io.BytesIO()
         with open(dummy_file, 'rb') as upload_data:
-            resp = await client.formdata.upload_file_via_body_async(upload_data, raw=True)
+            resp = await client.formdata.upload_file_via_body(upload_data, raw=True)
             async for r in resp.output:
                 result.write(r)
             assert result.getvalue().decode() == "Test file"

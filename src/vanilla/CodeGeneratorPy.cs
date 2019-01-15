@@ -53,17 +53,23 @@ namespace AutoRest.Python
             var serviceClientInitTemplate = new ServiceClientInitTemplate { Model = codeModel };
             await Write(serviceClientInitTemplate, Path.Combine(folderName, "__init__.py"));
 
+            var configurationTemplate = new ConfigurationTemplate { Model = codeModel };
+            await Write(configurationTemplate, Path.Combine(folderName, "_configuration.py"));
+
             var serviceClientTemplate = new ServiceClientTemplate { Model = codeModel };
-            await Write(serviceClientTemplate, Path.Combine(folderName, codeModel.Name.ToPythonCase() + ".py"));
+            await Write(serviceClientTemplate, Path.Combine(folderName, "_" + codeModel.Name.ToPythonCase() + ".py"));
+
+            var serviceClientAsyncTemplate = new ServiceClientTemplateAsync { Model = codeModel };
+            await Write(serviceClientAsyncTemplate, Path.Combine(folderName, "_" + codeModel.Name.ToPythonCase() + "_async.py"));
 
             // If async method at the client level, create another file
             if(codeModel.MethodTemplateModels.Any( each => each.MethodGroup.IsCodeModelMethodGroup))
             {
                 var serviceClientOpTemplate = new ServiceClientOperationsTemplate { Model = codeModel };
-                await Write(serviceClientOpTemplate, Path.Combine(folderName, "operations", codeModel.Name.ToPythonCase() + "_operations.py"));
+                await Write(serviceClientOpTemplate, Path.Combine(folderName, "operations", "_" + codeModel.Name.ToPythonCase() + "_operations.py"));
 
                 var serviceClientOpTemplateAsync = new ServiceClientOperationsTemplateAsync { Model = codeModel };
-                await Write(serviceClientOpTemplateAsync, Path.Combine(folderName, "operations", codeModel.Name.ToPythonCase() + "_operations_async.py"));
+                await Write(serviceClientOpTemplateAsync, Path.Combine(folderName, "operations_async", "_" + codeModel.Name.ToPythonCase() + "_operations_async.py"));
             }
 
             // do we need to write out the version template file?
@@ -106,19 +112,26 @@ namespace AutoRest.Python
                 };
                 await Write(methodGroupIndexTemplate, Path.Combine(folderName, "operations", "__init__.py"));
 
+                var methodGroupIndexTemplateAsync = new MethodGroupInitTemplate
+                {
+                    Model = codeModel,
+                    AsyncMode = true
+                };
+                await Write(methodGroupIndexTemplateAsync, Path.Combine(folderName, "operations_async", "__init__.py"));
+
                 foreach (var methodGroupModel in codeModel.MethodGroupModels)
                 {
                     var methodGroupTemplate = new MethodGroupTemplate
                     {
                         Model = methodGroupModel
                     };
-                    await Write(methodGroupTemplate, Path.Combine(folderName, "operations", ((string) methodGroupModel.TypeName).ToPythonCase() + ".py"));
+                    await Write(methodGroupTemplate, Path.Combine(folderName, "operations", "_" + ((string) methodGroupModel.TypeName).ToPythonCase() + ".py"));
                     // Build a Py3 version that import the Py2 one
                     var methodGroupTemplatePy3 = new MethodGroupTemplateAsync
                     {
                         Model = methodGroupModel
                     };
-                    await Write(methodGroupTemplatePy3, Path.Combine(folderName, "operations", ((string) methodGroupModel.TypeName).ToPythonCase() + "_async.py"));
+                    await Write(methodGroupTemplatePy3, Path.Combine(folderName, "operations_async", "_" + ((string) methodGroupModel.TypeName).ToPythonCase() + "_async.py"));
                 }
             }
 

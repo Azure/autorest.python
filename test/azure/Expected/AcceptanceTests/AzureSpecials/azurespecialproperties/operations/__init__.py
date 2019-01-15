@@ -9,24 +9,14 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-try:
-    from .xms_client_request_id_operations_async import XMsClientRequestIdOperations
-    from .subscription_in_credentials_operations_async import SubscriptionInCredentialsOperations
-    from .subscription_in_method_operations_async import SubscriptionInMethodOperations
-    from .api_version_default_operations_async import ApiVersionDefaultOperations
-    from .api_version_local_operations_async import ApiVersionLocalOperations
-    from .skip_url_encoding_operations_async import SkipUrlEncodingOperations
-    from .odata_operations_async import OdataOperations
-    from .header_operations_async import HeaderOperations
-except (SyntaxError, ImportError):
-    from .xms_client_request_id_operations import XMsClientRequestIdOperations
-    from .subscription_in_credentials_operations import SubscriptionInCredentialsOperations
-    from .subscription_in_method_operations import SubscriptionInMethodOperations
-    from .api_version_default_operations import ApiVersionDefaultOperations
-    from .api_version_local_operations import ApiVersionLocalOperations
-    from .skip_url_encoding_operations import SkipUrlEncodingOperations
-    from .odata_operations import OdataOperations
-    from .header_operations import HeaderOperations
+from ._xms_client_request_id_operations import XMsClientRequestIdOperations
+from ._subscription_in_credentials_operations import SubscriptionInCredentialsOperations
+from ._subscription_in_method_operations import SubscriptionInMethodOperations
+from ._api_version_default_operations import ApiVersionDefaultOperations
+from ._api_version_local_operations import ApiVersionLocalOperations
+from ._skip_url_encoding_operations import SkipUrlEncodingOperations
+from ._odata_operations import OdataOperations
+from ._header_operations import HeaderOperations
 
 __all__ = [
     'XMsClientRequestIdOperations',

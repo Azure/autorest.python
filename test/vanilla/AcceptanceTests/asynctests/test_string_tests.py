@@ -44,7 +44,7 @@ sys.path.append(join(tests, "BodyString"))
 from msrest.serialization import Deserializer
 from msrest.exceptions import DeserializationError, SerializationError
 
-from bodystring import AutoRestSwaggerBATService
+from bodystring import AutoRestSwaggerBATServiceAsync
 from bodystring.models.auto_rest_swagger_bat_service_enums import *
 
 import pytest
@@ -53,12 +53,12 @@ class TestString(object):
 
     @pytest.mark.asyncio
     async def test_string(self):
-        client = AutoRestSwaggerBATService(base_url="http://localhost:3000")
+        client = AutoRestSwaggerBATServiceAsync(base_url="http://localhost:3000")
 
-        assert await client.string.get_null_async() is None
-        await client.string.put_null_async(None)
-        assert "" ==  await client.string.get_empty_async()
-        await client.string.put_empty_async()
+        assert await client.string.get_null() is None
+        await client.string.put_null(None)
+        assert "" ==  await client.string.get_empty()
+        await client.string.put_empty()
 
         try:
             test_str = (
@@ -94,27 +94,27 @@ class TestString(object):
                 b"\xc9\xa1\xe3\x80\x87\xe3\x80\xbe\xe2\xbf\xbb\xe2\xba\x81"
                 b"\xee\xa1\x83\xe4\x9c\xa3\xee\xa1\xa4\xe2\x82\xac").decode('utf-8')
 
-        assert test_str ==  await client.string.get_mbcs_async()
-        await client.string.put_mbcs_async()
+        assert test_str ==  await client.string.get_mbcs()
+        await client.string.put_mbcs()
 
         test_str = "    Now is the time for all good men to come to the aid of their country    "
-        assert test_str ==  await client.string.get_whitespace_async()
-        await client.string.put_whitespace_async()
+        assert test_str ==  await client.string.get_whitespace()
+        await client.string.put_whitespace()
 
-        assert await client.string.get_not_provided_async() is None
-        assert Colors.redcolor ==  await client.enum.get_not_expandable_async()
-        await client.enum.put_not_expandable_async('red color')
-        await client.enum.put_not_expandable_async(Colors.redcolor)
+        assert await client.string.get_not_provided() is None
+        assert Colors.redcolor ==  await client.enum.get_not_expandable()
+        await client.enum.put_not_expandable('red color')
+        await client.enum.put_not_expandable(Colors.redcolor)
         with pytest.raises(SerializationError):
-            await client.enum.put_not_expandable_async('not a colour')
+            await client.enum.put_not_expandable('not a colour')
 
-        assert await client.string.get_base64_encoded_async() ==  'a string that gets encoded with base64'.encode()
-        assert await client.string.get_base64_url_encoded_async() ==  'a string that gets encoded with base64url'.encode()
-        assert await client.string.get_null_base64_url_encoded_async() is None
-        await client.string.put_base64_url_encoded_async('a string that gets encoded with base64url'.encode())
+        assert await client.string.get_base64_encoded() ==  'a string that gets encoded with base64'.encode()
+        assert await client.string.get_base64_url_encoded() ==  'a string that gets encoded with base64url'.encode()
+        assert await client.string.get_null_base64_url_encoded() is None
+        await client.string.put_base64_url_encoded('a string that gets encoded with base64url'.encode())
 
-        await client.enum.put_referenced_async(Colors.redcolor)
-        await client.enum.put_referenced_async("red color")
-        await client.enum.put_referenced_constant_async()
-        assert await client.enum.get_referenced_async() ==  Colors.redcolor
-        assert (await client.enum.get_referenced_constant_async()).color_constant ==  Colors.green_color.value
+        await client.enum.put_referenced(Colors.redcolor)
+        await client.enum.put_referenced("red color")
+        await client.enum.put_referenced_constant()
+        assert await client.enum.get_referenced() ==  Colors.redcolor
+        assert (await client.enum.get_referenced_constant()).color_constant ==  Colors.green_color.value

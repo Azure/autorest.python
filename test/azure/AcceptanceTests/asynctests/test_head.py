@@ -47,8 +47,8 @@ from msrest.exceptions import DeserializationError, HttpOperationError
 from msrest.authentication import BasicTokenAuthentication
 from msrestazure.azure_exceptions import CloudError, CloudErrorData
 
-from head import AutoRestHeadTestService
-from headexceptions import AutoRestHeadExceptionTestService
+from head import AutoRestHeadTestServiceAsync
+from headexceptions import AutoRestHeadExceptionTestServiceAsync
 
 import pytest
 
@@ -58,22 +58,22 @@ class TestHead(object):
     async def test_head(self):
 
         cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
-        client = AutoRestHeadTestService(cred, base_url="http://localhost:3000")
+        client = AutoRestHeadTestServiceAsync(cred, base_url="http://localhost:3000")
 
-        assert await client.http_success.head200_async()
-        assert await client.http_success.head204_async()
-        assert not await client.http_success.head404_async()
+        assert await client.http_success.head200()
+        assert await client.http_success.head204()
+        assert not await client.http_success.head404()
 
     @pytest.mark.asyncio
     async def test_head_exception(self):
 
         cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
-        client = AutoRestHeadExceptionTestService(cred, base_url="http://localhost:3000")
+        client = AutoRestHeadExceptionTestServiceAsync(cred, base_url="http://localhost:3000")
 
-        await client.head_exception.head200_async()
-        await client.head_exception.head204_async()
+        await client.head_exception.head200()
+        await client.head_exception.head204()
         with pytest.raises(CloudError):
-            await client.head_exception.head404_async()
+            await client.head_exception.head404()
 
 
 if __name__ == '__main__':

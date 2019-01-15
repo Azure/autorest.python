@@ -44,7 +44,7 @@ sys.path.append(join(tests, "BodyNumber"))
 from msrest.serialization import Deserializer
 from msrest.exceptions import DeserializationError
 
-from bodynumber import AutoRestNumberTestService
+from bodynumber import AutoRestNumberTestServiceAsync
 
 import pytest
 
@@ -52,35 +52,35 @@ class TestNumber(object):
 
     @pytest.mark.asyncio
     async def test_numbers(self):
-        client = AutoRestNumberTestService(base_url="http://localhost:3000")
+        client = AutoRestNumberTestServiceAsync(base_url="http://localhost:3000")
 
-        await client.number.put_big_float_async(3.402823e+20)
-        await client.number.put_small_float_async(3.402823e-20)
-        await client.number.put_big_double_async(2.5976931e+101)
-        await client.number.put_small_double_async(2.5976931e-101)
-        await client.number.put_big_double_negative_decimal_async()
-        await client.number.put_big_double_positive_decimal_async()
-        await client.number.put_big_decimal_async(Decimal(2.5976931e+101))
-        await client.number.put_small_decimal_async(Decimal(2.5976931e-101))
-        # await client.number.put_big_decimal_positive_decimal_async()
-        # await client.number.put_big_decimal_negative_decimal_async()
-        await client.number.get_null_async()
-        assert await client.number.get_big_float_async() ==  3.402823e+20
-        assert await client.number.get_small_float_async() ==  3.402823e-20
-        assert await client.number.get_big_double_async() ==  2.5976931e+101
-        assert await client.number.get_small_double_async() ==  2.5976931e-101
-        assert await client.number.get_big_double_negative_decimal_async() ==  -99999999.99
-        assert await client.number.get_big_double_positive_decimal_async() ==  99999999.99
-        assert await client.number.get_big_decimal_async() ==  2.5976931e+101
-        assert await client.number.get_small_decimal_async() ==  2.5976931e-101
-        assert await client.number.get_big_decimal_negative_decimal_async() ==  -99999999.99
-        assert await client.number.get_big_decimal_positive_decimal_async() ==  99999999.99
-
-        with pytest.raises(DeserializationError):
-            await client.number.get_invalid_decimal_async()
+        await client.number.put_big_float(3.402823e+20)
+        await client.number.put_small_float(3.402823e-20)
+        await client.number.put_big_double(2.5976931e+101)
+        await client.number.put_small_double(2.5976931e-101)
+        await client.number.put_big_double_negative_decimal()
+        await client.number.put_big_double_positive_decimal()
+        await client.number.put_big_decimal(Decimal(2.5976931e+101))
+        await client.number.put_small_decimal(Decimal(2.5976931e-101))
+        # await client.number.put_big_decimal_positive_decimal()
+        # await client.number.put_big_decimal_negative_decimal()
+        await client.number.get_null()
+        assert await client.number.get_big_float() ==  3.402823e+20
+        assert await client.number.get_small_float() ==  3.402823e-20
+        assert await client.number.get_big_double() ==  2.5976931e+101
+        assert await client.number.get_small_double() ==  2.5976931e-101
+        assert await client.number.get_big_double_negative_decimal() ==  -99999999.99
+        assert await client.number.get_big_double_positive_decimal() ==  99999999.99
+        assert await client.number.get_big_decimal() ==  2.5976931e+101
+        assert await client.number.get_small_decimal() ==  2.5976931e-101
+        assert await client.number.get_big_decimal_negative_decimal() ==  -99999999.99
+        assert await client.number.get_big_decimal_positive_decimal() ==  99999999.99
 
         with pytest.raises(DeserializationError):
-            await client.number.get_invalid_double_async()
+            await client.number.get_invalid_decimal()
 
         with pytest.raises(DeserializationError):
-            await client.number.get_invalid_float_async()
+            await client.number.get_invalid_double()
+
+        with pytest.raises(DeserializationError):
+            await client.number.get_invalid_float()
