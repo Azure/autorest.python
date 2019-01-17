@@ -42,17 +42,58 @@ namespace AutoRest.Python
             Flattening(codeModel);
             GenerateConstantProperties(codeModel);
 
-            bool foundRootNode = false;
+            HashSet<string> touchedNodes = new HashSet<string>();
+            List<CompositeType> modelTypeList = new List<CompositeType>();
+            
             foreach (var modelType in codeModel.ModelTemplateModels)
             {
-                if (!modelType.HasParent)
+                if (!touchedNodes.Contains(modelType.Name) && !string.IsNullOrEmpty(modelType.Name))
                 {
-                    DAGNode<CompositeType> dAGNode = new DAGNode<CompositeType>(modelType.Name);
-                    //codeModel.ModelDAGraph = new DAGraph<CompositeType>(dAGNode);
+                    buildUpDAGNodes(modelType, ref touchedNodes, ref modelTypeList);
+                }
+            }
+
+
+            CompositeType rootNode = null;
+            DAGraph<CompositeType> dAGraph = null;
+
+            foreach (var modelType in modelTypeList) {
+                if (!modelType.hasDependencies() && !string.IsNullOrEmpty(modelType.Name)) {
+                    rootNode = modelType;
+                    dAGraph = new DAGraph<CompositeType>(rootNode);
                     break;
                 }
             }
+
+            foreach (var modelType in modelTypeList)
+            {
+                if (!modelType.Equals(rootNode))
+                {
+                    dAGraph.addNode(modelType);
+                }
+            }
+            dAGraph.prepareForEnumeration();
+            codeModel.ModelDAGraph = dAGraph;
             return codeModel;
+        }
+
+        private CompositeType buildUpDAGNodes(CompositeTypePy modelType, ref HashSet<string> touchedModelTypes, ref List<CompositeType> modelTypeList)
+        {
+            if (!modelType.HasParent && !string.IsNullOrEmpty(modelType.Name))
+            {
+                //DAGNode<CompositeType> baseNode = new DAGNode<CompositeType>(modelType.Name);
+                modelTypeList.Add(modelType);
+                touchedModelTypes.Add(modelType.Name);
+                return modelType;
+            }
+            //DAGNode<CompositeType> curr = new DAGNode<CompositeType>(modelType.Name);
+            if (!touchedModelTypes.Contains(modelType.Name) && !string.IsNullOrEmpty(modelType.Name))
+            {
+                touchedModelTypes.Add(modelType.Name);
+                modelType.addDependency(buildUpDAGNodes(modelType.BaseModelType as CompositeTypePy, ref touchedModelTypes, ref modelTypeList).Key);
+                modelTypeList.Add(modelType);
+            }
+            return modelType;
         }
 
         private void PopulateDiscriminator(CodeModelPy codeModel)

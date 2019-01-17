@@ -81,8 +81,13 @@ namespace AutoRest.Python
             //Models
             if (codeModel.ModelTypes.Any())
             {
+                Console.WriteLine("in vanilla model types");
                 var modelInitTemplate = new ModelInitTemplate { Model = codeModel };
                 await Write(modelInitTemplate, Path.Combine(folderName, "models", "__init__.py"));
+                var modelTemplate = new ModelTemplate { Model = codeModel.ModelDAGraph };
+                await Write(modelTemplate, Path.Combine(folderName, "models", ("testingOutput").ToPythonCase() + ".py"));
+                modelTemplate.Python3Mode = true;
+                await Write(modelTemplate, Path.Combine(folderName, "models", ("testingOutput").ToPythonCase() + "_py3.py"));
 
                 //foreach (var modelType in codeModel.ModelTemplateModels)
                 //{

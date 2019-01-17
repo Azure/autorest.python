@@ -13,6 +13,7 @@ using AutoRest.Core.Utilities;
 using AutoRest.Extensions;
 using AutoRest.Extensions.Azure;
 using AutoRest.Python.Azure.Model;
+using AutoRest.Python.Model;
 using Newtonsoft.Json.Linq;
 using static AutoRest.Core.Utilities.DependencyInjection;
 
@@ -52,7 +53,50 @@ namespace AutoRest.Python.Azure
 
             NormalizePaginatedMethods(codeModel);
 
+            HashSet<string> touchedNodes = new HashSet<string>();
+            List<CompositeType> modelTypeList = new List<CompositeType>();
+            
+            foreach (var modelType in codeModel.ModelTemplateModels)
+            {
+                if (!touchedNodes.Contains(modelType.Name))
+                {
+                    buildUpDAGNodes(modelType, ref touchedNodes, ref modelTypeList);
+                }
+            }
+
+            CompositeType rootNode = modelTypeList[0];
+            DAGraph<CompositeType> dAGraph = new DAGraph<CompositeType>(rootNode);
+
+            foreach (var modelType in modelTypeList)
+            {
+                if (!modelType.Equals(rootNode))
+                {
+                    dAGraph.addNode(modelType);
+                }
+            }
+            dAGraph.prepareForEnumeration();
+            codeModel.ModelDAGraph = dAGraph;
+
             return codeModel;
+        }
+
+        private CompositeType buildUpDAGNodes(CompositeTypePy modelType, ref HashSet<string> touchedModelTypes, ref List<CompositeType> modelTypeList)
+        {
+            if (!modelType.HasParent)
+            {
+                //DAGNode<CompositeType> baseNode = new DAGNode<CompositeType>(modelType.Name);
+                modelTypeList.Add(modelType);
+                touchedModelTypes.Add(modelType.Name);
+                return modelType;
+            }
+            //DAGNode<CompositeType> curr = new DAGNode<CompositeType>(modelType.Name);
+            if (!touchedModelTypes.Contains(modelType.Name))
+            {
+                touchedModelTypes.Add(modelType.Name);
+                modelType.addDependency(buildUpDAGNodes(modelType.BaseModelType as CompositeTypePy, ref touchedModelTypes, ref modelTypeList).Key);
+                modelTypeList.Add(modelType);
+            }
+            return modelType;
         }
 
         private void TransformPagingMethods(CodeModelPya codeModel)

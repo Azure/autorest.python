@@ -19,7 +19,7 @@ namespace AutoRest.Python.Model
 
         private readonly IList<Core.Model.CompositeType> _subModelTypes = new List<Core.Model.CompositeType>();
 
-        protected CompositeTypePy()
+        protected CompositeTypePy() : base()
         {
         }
 

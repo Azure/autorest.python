@@ -63,6 +63,7 @@ namespace AutoRest.Python.Azure.Tests
             dag.addNode(nodeG);
             dag.addNode(nodeH);
             dag.addNode(nodeI);
+            
 
             dag.prepareForEnumeration();
             ItemHolder nextNode = dag.getNext();

@@ -4,84 +4,87 @@
 @using AutoRest.Core.Model
 @using AutoRest.Python
 @using AutoRest.Python.Model
-@inherits AutoRest.Python.PythonTemplate<AutoRest.Python.Model.CompositeTypePy>
+@inherits AutoRest.Python.PythonTemplate<AutoRest.Core.Model.DAGraph<AutoRest.Core.Model.CompositeType>>
 # coding=utf-8
 # --------------------------------------------------------------------------
 @Header("# ").TrimMultilineHeader()
 # --------------------------------------------------------------------------
 @EmptyLine
-@if (Model.ComplexConstants.Any())
-{
-    foreach (var property in Model.ComplexConstants.Values)
+@{ CompositeTypePy nextNode = Model.getNext() as CompositeTypePy; }
+@while (nextNode != null) {
+<text>    
+    @if (nextNode.ComplexConstants.Any())
     {
-        @:from .@property.Name.ToPythonCase() import @property.Name
+        foreach (var property in nextNode.ComplexConstants.Values)
+        {
+            @:from .@property.Name.ToPythonCase() import @property.Name
+        }
     }
-}
-@if (Model.BaseModelType != null && Python3Mode)
-{
-    @:from .@Model.BaseModelType.Name.ToPythonCase()_py3 import @Model.BaseModelType.Name
-}
-else if (Model.BaseModelType != null && !Python3Mode)
-{
-    @:from .@Model.BaseModelType.Name.ToPythonCase() import @Model.BaseModelType.Name
-}
-else
-{
-    @:from msrest.serialization import Model
-}
-@if (Model.IsException)
-{
-    @:from msrest.exceptions import HttpOperationError
-}
-@EmptyLine
-@EmptyLine
-@if (Model.BaseModelType != null)
-{
-    @:class @(Model.Name)(@Model.BaseModelType.Name):
-}
-else
-{
-    @:class @(Model.Name)(Model):
-}
-    """@(WrapComment(string.Empty, Model.BuildSummaryAndDescriptionString()))
-    @if (Model.SubModelTypes.Any())
+    @if (nextNode.BaseModelType != null && Python3Mode)
+    {
+        @:from .@nextNode.BaseModelType.Name.ToPythonCase()_py3 import @nextNode.BaseModelType.Name
+    }
+    else if (nextNode.BaseModelType != null && !Python3Mode)
+    {
+        @:from .@nextNode.BaseModelType.Name.ToPythonCase() import @nextNode.BaseModelType.Name
+    }
+    else
+    {
+        @:from msrest.serialization import nextNode
+    }
+    @if (nextNode.IsException)
+    {
+        @:from msrest.exceptions import HttpOperationError
+    }
+    @EmptyLine
+    @EmptyLine
+    @if (nextNode.BaseModelType != null)
+    {
+        @:class @(nextNode.Name)(@nextNode.BaseModelType.Name):
+    }
+    else
+    {
+        @:class @(nextNode.Name)(nextNode):
+    }
+        """@(WrapComment(string.Empty, nextNode.BuildSummaryAndDescriptionString()))
+    @if (nextNode.SubModelTypes.Any())
     {
         @EmptyLine
-        @:    @WrapComment(string.Empty, "You probably want to use the sub-classes and not this class directly. Known sub-classes are: " + Model.SubModelTypeAsString)
+        @:    @WrapComment(string.Empty, "You probably want to use the sub-classes and not this class directly. Known sub-classes are: " + nextNode.SubModelTypeAsString)
     }
-    @if (Model.ReadOnlyAttributes.Any())
+    @if (nextNode.ReadOnlyAttributes.Any())
     {
         @EmptyLine
         @:    @WrapComment(string.Empty, "Variables are only populated by the server, and will be ignored when sending a request.")
     }
-    @if (Model.RequiredFieldsList.Any())
+    @if (nextNode.RequiredFieldsList.Any())
     {
         @EmptyLine
         @:    @WrapComment(string.Empty, "All required parameters must be populated in order to send to Azure.")
     }
-    @if (Model.ComposedProperties.Any())
+    @if (nextNode.ComposedProperties.Any())
     {
         @EmptyLine
-        foreach (var property in Model.ComposedProperties)
+        foreach (var property in nextNode.ComposedProperties)
         {
             @:    @ParameterWrapComment(string.Empty, CompositeTypePy.GetPropertyDocumentationString(property))
             if (property.IsConstant || property.IsReadOnly)
             {
-                @:    @ParameterWrapComment(string.Empty, ":vartype " + property.Name + ": " + Model.GetPropertyDocumentationType(property.ModelType))
+                @:    @ParameterWrapComment(string.Empty, ":vartype " + property.Name + ": " + nextNode.GetPropertyDocumentationType(property.ModelType))
             }
             else
             {
-                @:    @ParameterWrapComment(string.Empty, ":type " + property.Name + ": " + Model.GetPropertyDocumentationType(property.ModelType))
+                @:    @ParameterWrapComment(string.Empty, ":type " + property.Name + ": " + nextNode.GetPropertyDocumentationType(property.ModelType))
             }
         }
     }
-    """
-    @if (Model.Validators.Any() || Model.RequiredFieldsList.Any())
+        """
+    @if (nextNode.Validators.Any() || nextNode.RequiredFieldsList.Any())
     {
         <text>
             @EmptyLine
             _validation = {
-            @foreach (var validator in Model.Validators)
+            @foreach (var validator in nextNode.Validators)
             {
                 @:@(validator)
             }
@@ -89,83 +92,83 @@ else
         </text>
     }
     @{
-        var mapAttrList = new List<Property>(Model.ComposedProperties);
+        var mapAttrList = new List<Property>(nextNode.ComposedProperties);
         @EmptyLine
         @:_attribute_map = {
         if (mapAttrList.Count > 0)
         {
             for (int i = 0; i < mapAttrList.Count; i++)
             {
-                @:@(Model.InitializeProperty(mapAttrList[i]))
+                @:@(nextNode.InitializeProperty(mapAttrList[i]))
             }
         }
         @:}
     }
-    @if (Model.CodeModel.ShouldGenerateXmlSerialization)
+    @if (nextNode.CodeModel.ShouldGenerateXmlSerialization)
     {
         @:_xml_map = {
-        @:@(Model.InitializeXmlProperty())
+        @:@(nextNode.InitializeXmlProperty())
         @:}
     }
-    @if (Model.SubModelTypes.Any())
+    @if (nextNode.SubModelTypes.Any())
     {
         <text>
             @EmptyLine
             _subtype_map = {
-            '@Model.PolymorphicDiscriminatorProperty.Name': {@Model.SubModelTypeList}
+            '@nextNode.PolymorphicDiscriminatorProperty.Name': {@nextNode.SubModelTypeList}
             }
         </text>
     }
-    @foreach (var property in Model.Properties)
+    @foreach (var property in nextNode.Properties)
     {
         if (property.IsConstant)
         {
             @EmptyLine
-            @:@(Model.InitializeProperty(String.Empty, property, false))
+            @:@(nextNode.InitializeProperty(String.Empty, property, false))
         }
     }
-    @if (Model.NeedsConstructor)
+    @if (nextNode.NeedsConstructor)
     {
         @EmptyLine
         @if (Python3Mode)
         {
-            @:def __init__(self@(Model.ModelParameterDeclaration())) -> None:
-            if (Model.HasParent)
+            @:def __init__(self@(nextNode.ModelParameterDeclaration())) -> None:
+            if (nextNode.HasParent)
             {
-                @:super(@(Model.Name), self).__init__(@(Model.SuperParameterDeclaration()))
+                @:super(@(nextNode.Name), self).__init__(@(nextNode.SuperParameterDeclaration()))
             }
             else
             {
-                @:super(@(Model.Name), self).__init__(**kwargs)
+                @:super(@(nextNode.Name), self).__init__(**kwargs)
             }
         }
         else
         {
             @:def __init__(self, **kwargs):
-            @:    super(@(Model.Name), self).__init__(**kwargs)
+            @:    super(@(nextNode.Name), self).__init__(**kwargs)
         }
-        var propertyList = new List<Property>(Model.Properties);
+        var propertyList = new List<Property>(nextNode.Properties);
         if (propertyList.Count > 0)
         {
             for (int i = 0; i < propertyList.Count; i++)
             {
                 if (!propertyList[i].IsConstant)
                 {
-                    @:@(Model.InitializeProperty("self", propertyList[i], !Python3Mode))
+                    @:@(nextNode.InitializeProperty("self", propertyList[i], !Python3Mode))
                 }
             }
         }
-        if (Model.NeedsPolymorphicConverter)
+        if (nextNode.NeedsPolymorphicConverter)
         {
-            @:self.@Model.PolymorphicDiscriminatorProperty.Name = '@Model.SerializedName'
+            @:self.@nextNode.PolymorphicDiscriminatorProperty.Name = '@nextNode.SerializedName'
         }
     }
-    @if (Model.IsException)
+    @if (nextNode.IsException)
     {
         @EmptyLine
         @EmptyLine
-        @:class @(Model.ExceptionTypeDefinitionName)(HttpOperationError):
-        @:    """Server responsed with exception of type: '@(Model.Name)'.
+        @:class @(nextNode.ExceptionTypeDefinitionName)(HttpOperationError):
+        @:    """Server responsed with exception of type: '@(nextNode.Name)'.
         @EmptyLine
         @:    :param deserialize: A deserializer
         @:    :param response: Server response to be deserialized.
@@ -173,5 +176,12 @@ else
         @EmptyLine
         @:def __init__(self, deserialize, response, *args):
         @EmptyLine
-        @:super(@(Model.ExceptionTypeDefinitionName), self).__init__(deserialize, response, '@(Model.Name)', *args)
+        @:super(@(nextNode.ExceptionTypeDefinitionName), self).__init__(deserialize, response, '@(nextNode.Name)', *args)
     }
+    @{
+        Model.reportCompletion(nextNode);
+        nextNode = Model.getNext() as CompositeTypePy;
+    }
+</text>
+} 
+

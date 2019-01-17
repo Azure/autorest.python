@@ -25,33 +25,73 @@ namespace AutoRest.Python.Azure.Tests {
             expectedOrder.Add("E");
             expectedOrder.Add("F");
 
+            List<ItemHolder> nodes = new List<ItemHolder>();
             ItemHolder nodeA = new ItemHolder("A", "dataA");
+            nodes.Add(nodeA);
             ItemHolder nodeI = new ItemHolder("I", "dataI");
+            nodes.Add(nodeI);
 
             ItemHolder nodeB = new ItemHolder("B", "dataB");
             nodeB.addDependency(nodeA.Key);
+            nodes.Add(nodeB);
 
             ItemHolder nodeC = new ItemHolder("C", "dataC");
             nodeC.addDependency(nodeA.Key);
+            nodes.Add(nodeC);
 
             ItemHolder nodeH = new ItemHolder("H", "dataH");
             nodeH.addDependency(nodeI.Key);
+            nodes.Add(nodeI);
 
             ItemHolder nodeG = new ItemHolder("G", "dataG");
             nodeG.addDependency(nodeC.Key);
+            nodes.Add(nodeC);
 
             ItemHolder nodeE = new ItemHolder("E", "dataE");
             nodeE.addDependency(nodeB.Key);
             nodeE.addDependency(nodeG.Key);
+            nodes.Add(nodeG);
 
             ItemHolder nodeD = new ItemHolder("D", "dataD");
             nodeD.addDependency(nodeB.Key);
+            nodes.Add(nodeD);
 
 
             ItemHolder nodeF = new ItemHolder("F", "dataF");
             nodeF.addDependency(nodeD.Key);
             nodeF.addDependency(nodeE.Key);
             nodeF.addDependency(nodeH.Key);
+            nodes.Add(nodeF);
+
+            // HashSet<string> touchedNodes = new HashSet<string>();
+            // List<ItemHolder> dagNodes = new List<ItemHolder>();
+            
+            // foreach (var node in nodes)
+            // {
+            //     if (!touchedNodes.Contains(node.Key))
+            //     {
+            //         buildUpDAGNodes(node, ref touchedNodes, ref dagNodes);
+            //     }
+            // }
+
+            // DAGraph<CompositeType> dAGraph = null;
+            // CompositeType rootNode = null;
+            // foreach (var modelType in modelTypeList)
+            // {
+            //     if (modelType.dependencyKeys().Count == 0)
+            //     {
+            //         rootNode = modelType;
+            //         dAGraph = new DAGraph<CompositeType>(rootNode);
+            //     }
+            // }
+
+            // foreach (var modelType in modelTypeList)
+            // {
+            //     if (!modelType.Equals(rootNode))
+            //     {
+            //         dAGraph.addNode(modelType);
+            //     }
+            // }
 
             DAGraph<ItemHolder> dag = new DAGraph<ItemHolder>(nodeF);
             dag.addNode(nodeA);
@@ -75,6 +115,27 @@ namespace AutoRest.Python.Azure.Tests {
 
             Console.WriteLine("Done with test DAGraphNext");
         }
+
+        // private ItemHolder buildUpDAGNodes(ItemHolder node, ref HashSet<string> touchedNodes, ref List<ItemHolder> dagNodes)
+        // {
+        //     if (!node.hasDependencies())
+        //     {
+        //         //DAGNode<CompositeType> baseNode = new DAGNode<CompositeType>(modelType.Name);
+        //         dagNodes.Add(node);
+        //         touchedNodes.Add(node.Key);
+        //         return node;
+        //     }
+        //     //DAGNode<CompositeType> curr = new DAGNode<CompositeType>(modelType.Name);
+        //     if (!touchedNodes.Contains(node.Key))
+        //     {
+        //         touchedNodes.Add(node.Key);
+        //         foreach (var dependency in node.dependencyKeys()) {
+        //             node.addDependency(buildUpDAGNodes(node. as CompositeTypePy, ref touchedModelTypes, ref moddagNodeselTypeList).Key);
+        //         }
+        //         dagNodes.Add(node);
+        //     }
+        //     return node;
+        // }
 
         [TestMethod]
         public void testGraphMerge() {

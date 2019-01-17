@@ -73,16 +73,21 @@ namespace AutoRest.Python.Azure
                     Model = codeModel
                 };
                 await Write(modelInitTemplate, Path.Combine(folderName, "models", "__init__.py"));
+                await Write(modelInitTemplate, Path.Combine(folderName, "isabella", "__init__.py"));
 
-
-                foreach (var modelType in models)
-                {
-                    var modelTemplate = new ModelTemplate { Model = modelType };
-                    await Write(modelTemplate, Path.Combine(folderName, "models", modelType.Name.ToPythonCase() + ".py"));
-                    // Rebuild the same in Python 3 mode
-                    modelTemplate.Python3Mode = true;
-                    await Write(modelTemplate, Path.Combine(folderName, "models", modelType.Name.ToPythonCase() + "_py3.py"));
-                }
+                var modelTemplate = new ModelTemplate { Model = codeModel.ModelDAGraph };
+                await Write(modelTemplate, Path.Combine(folderName, "models", ("testingOutputIsabella").ToPythonCase() + ".py"));
+                modelTemplate.Python3Mode = true;
+                await Write(modelTemplate, Path.Combine(folderName, "models", ("testingOutputIsabella").ToPythonCase() + "_py3.py"));
+                
+                // foreach (var modelType in models)
+                // {
+                //     var modelTemplate = new ModelTemplate { Model = modelType };
+                //     await Write(modelTemplate, Path.Combine(folderName, "models", modelType.Name.ToPythonCase() + ".py"));
+                //     // Rebuild the same in Python 3 mode
+                //     modelTemplate.Python3Mode = true;
+                //     await Write(modelTemplate, Path.Combine(folderName, "models", modelType.Name.ToPythonCase() + "_py3.py"));
+                // }
             }
 
             //MethodGroups
