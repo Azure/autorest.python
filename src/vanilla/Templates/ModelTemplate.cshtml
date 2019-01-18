@@ -4,13 +4,13 @@
 @using AutoRest.Core.Model
 @using AutoRest.Python
 @using AutoRest.Python.Model
-@inherits AutoRest.Python.PythonTemplate<AutoRest.Core.Model.DAGraph<AutoRest.Core.Model.CompositeType>>
+@inherits AutoRest.Python.PythonTemplate<AutoRest.Python.DAG.DAGraph<AutoRest.Python.Model.CompositeTypePy>>
 # coding=utf-8
 # --------------------------------------------------------------------------
 @Header("# ").TrimMultilineHeader()
 # --------------------------------------------------------------------------
 @EmptyLine
-@{ CompositeTypePy nextNode = Model.getNext() as CompositeTypePy; }
+@{ CompositeTypePy nextNode = Model.getNext(); }
 @while (nextNode != null) {
 <text>    
     @if (nextNode.ComplexConstants.Any())
@@ -180,7 +180,7 @@
     }
     @{
         Model.reportCompletion(nextNode);
-        nextNode = Model.getNext() as CompositeTypePy;
+        nextNode = Model.getNext();
     }
 </text>
 } 

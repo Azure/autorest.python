@@ -8,6 +8,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using AutoRest.Core;
 using AutoRest.Core.Model;
+using AutoRest.Python.DAG;
 using AutoRest.Core.Utilities;
 using AutoRest.Extensions;
 using Newtonsoft.Json;
@@ -37,7 +38,7 @@ namespace AutoRest.Python.Model
         [JsonIgnore]
         public virtual IEnumerable<MethodGroupPy> MethodGroupModels => Operations.Cast<MethodGroupPy>().Where(each => !each.IsCodeModelMethodGroup);
 
-        public DAGraph<CompositeType> ModelDAGraph { get; set;  }
+        public DAGraph<CompositeTypePy> ModelDAGraph { get; set;  }
 
         public string PolymorphicDictionary
         {

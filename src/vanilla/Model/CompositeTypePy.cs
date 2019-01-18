@@ -7,24 +7,66 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using AutoRest.Core.Model;
+using AutoRest.Python.DAG;
 using AutoRest.Core.Utilities;
 using Newtonsoft.Json;
 using static AutoRest.Core.Utilities.DependencyInjection;
+using System.Collections.ObjectModel;
 
 namespace AutoRest.Python.Model
 {
-    public class CompositeTypePy : Core.Model.CompositeType, IExtendedModelTypePy
+    public class CompositeTypePy : Core.Model.CompositeType, IExtendedModelTypePy, IDAGNode<CompositeTypePy>
     {
+        private DAGNode<CompositeTypePy> dAGNode;
+
+        public ReadOnlyCollection<string> dependentKeys() => dAGNode.dependentKeys();
+
+        public void addDependent(string key) => dAGNode.addDependent(key);
+
+        public ReadOnlyCollection<string> dependencyKeys() => dAGNode.dependencyKeys();
+
+        public void addDependency(string dependencyKey) => dAGNode.addDependency(dependencyKey);
+
+        public void removeDependency(string dependencyKey) => dAGNode.removeDependency(dependencyKey);
+
+        public bool hasDependencies() => dAGNode.hasDependencies();
+
+        public void setPreparer(bool isPreparer) => dAGNode.setPreparer(isPreparer);
+
+        public bool isPreparer() => dAGNode.isPreparer();
+
+        public void initialize() => dAGNode.initialize();
+
+        public bool hasAllResolved() => dAGNode.hasAllResolved();
+
+        public void onSuccessfulResolution(string dependencyKey) => dAGNode.onSuccessfulResolution(dependencyKey);
+
+        public void onFaultedResolution(string dependencyKey, Exception exception) => dAGNode.onFaultedResolution(dependencyKey, exception);
+
+        public bool hasChildren() => dAGNode.hasChildren();
+
+        public ReadOnlyCollection<string> children() => dAGNode.children();
+
+        public void addChild(string childKey) => dAGNode.addChild(childKey);
+
+        public void removeChild(string childKey) => dAGNode.removeChild(childKey);
+
+        public void setOwner(IGraph<CompositeTypePy> ownerGraph) => dAGNode.setOwner(ownerGraph);
+
+        public IGraph<CompositeTypePy> owner() => dAGNode.owner();
         private CompositeTypePy _parent => BaseModelType as CompositeTypePy;
 
         private readonly IList<Core.Model.CompositeType> _subModelTypes = new List<Core.Model.CompositeType>();
 
         protected CompositeTypePy() : base()
         {
+            dAGNode = new DAGNode<CompositeTypePy>(Name);
         }
 
         protected CompositeTypePy(string name) : base(name)
         {
+            Name = name;
+            dAGNode = new DAGNode<CompositeTypePy>(Name);
         }
 
         private IEnumerable<Property> removeDuplicateIfNeeded(IEnumerable<Property> originalEnumerable, IEnumerable<Property> potentialDuplicate)
@@ -494,5 +536,11 @@ namespace AutoRest.Python.Model
 
         public string TypeDocumentation =>       $"~{((CodeModelPy)CodeModel)?.Namespace}.models.{Name}";
         public string ReturnTypeDocumentation => TypeDocumentation;
+
+        public string Key => Name;
+
+        public CompositeType Data => dAGNode.Data;
+
+        CompositeTypePy INode<CompositeTypePy>.Data => throw new NotImplementedException();
     }
 }

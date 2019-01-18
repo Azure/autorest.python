@@ -10,6 +10,7 @@ using AutoRest.Core.Model;
 using AutoRest.Core.Utilities;
 using AutoRest.Extensions;
 using AutoRest.Python.Model;
+using AutoRest.Python.DAG;
 using static AutoRest.Core.Utilities.DependencyInjection;
 
 namespace AutoRest.Python
@@ -43,7 +44,7 @@ namespace AutoRest.Python
             GenerateConstantProperties(codeModel);
 
             HashSet<string> touchedNodes = new HashSet<string>();
-            List<CompositeType> modelTypeList = new List<CompositeType>();
+            List<CompositeTypePy> modelTypeList = new List<CompositeTypePy>();
             
             foreach (var modelType in codeModel.ModelTemplateModels)
             {
@@ -54,13 +55,13 @@ namespace AutoRest.Python
             }
 
 
-            CompositeType rootNode = null;
-            DAGraph<CompositeType> dAGraph = null;
+            CompositeTypePy rootNode = null;
+            DAGraph<CompositeTypePy> dAGraph = null;
 
             foreach (var modelType in modelTypeList) {
                 if (!modelType.hasDependencies() && !string.IsNullOrEmpty(modelType.Name)) {
                     rootNode = modelType;
-                    dAGraph = new DAGraph<CompositeType>(rootNode);
+                    dAGraph = new DAGraph<CompositeTypePy>(rootNode);
                     break;
                 }
             }
@@ -77,7 +78,7 @@ namespace AutoRest.Python
             return codeModel;
         }
 
-        private CompositeType buildUpDAGNodes(CompositeTypePy modelType, ref HashSet<string> touchedModelTypes, ref List<CompositeType> modelTypeList)
+        private CompositeTypePy buildUpDAGNodes(CompositeTypePy modelType, ref HashSet<string> touchedModelTypes, ref List<CompositeTypePy> modelTypeList)
         {
             if (!modelType.HasParent && !string.IsNullOrEmpty(modelType.Name))
             {

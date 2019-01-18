@@ -9,11 +9,13 @@ using System.Globalization;
 using System.Linq;
 using AutoRest.Core;
 using AutoRest.Core.Model;
+using AutoRest.Python.DAG;
 using AutoRest.Core.Utilities;
 using AutoRest.Extensions;
 using AutoRest.Extensions.Azure;
 using AutoRest.Python.Azure.Model;
 using AutoRest.Python.Model;
+using AutoRest.Core.Model;
 using Newtonsoft.Json.Linq;
 using static AutoRest.Core.Utilities.DependencyInjection;
 
@@ -54,7 +56,7 @@ namespace AutoRest.Python.Azure
             NormalizePaginatedMethods(codeModel);
 
             HashSet<string> touchedNodes = new HashSet<string>();
-            List<CompositeType> modelTypeList = new List<CompositeType>();
+            List<CompositeTypePy> modelTypeList = new List<CompositeTypePy>();
             
             foreach (var modelType in codeModel.ModelTemplateModels)
             {
@@ -64,8 +66,8 @@ namespace AutoRest.Python.Azure
                 }
             }
 
-            CompositeType rootNode = modelTypeList[0];
-            DAGraph<CompositeType> dAGraph = new DAGraph<CompositeType>(rootNode);
+            CompositeTypePy rootNode = modelTypeList[0];
+            DAGraph<CompositeTypePy> dAGraph = new DAGraph<CompositeTypePy>(rootNode);
 
             foreach (var modelType in modelTypeList)
             {
@@ -80,7 +82,7 @@ namespace AutoRest.Python.Azure
             return codeModel;
         }
 
-        private CompositeType buildUpDAGNodes(CompositeTypePy modelType, ref HashSet<string> touchedModelTypes, ref List<CompositeType> modelTypeList)
+        private CompositeTypePy buildUpDAGNodes(CompositeTypePy modelType, ref HashSet<string> touchedModelTypes, ref List<CompositeTypePy> modelTypeList)
         {
             if (!modelType.HasParent)
             {

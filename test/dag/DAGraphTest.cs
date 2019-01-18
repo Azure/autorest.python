@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using AutoRest.Core.Model;
+using AutoRest.Python.DAG;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace AutoRest.Python.Azure.Tests {
