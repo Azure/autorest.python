@@ -12,6 +12,7 @@
 @EmptyLine
 @{ 
     CompositeTypePy nextNode = Model.getNext(); 
+    List<Tuple<string, string>> seenImports = new List<Tuple<string, string>>();
 }
 @while (nextNode != null) {
 <text>
@@ -19,24 +20,44 @@
 {
     foreach (var property in nextNode.ComplexConstants.Values)
     {
+        Tuple<string, string> currImport = Tuple.Create(property.Name.ToPythonCase(), property.Name.ToPythonCase());
+        if (!seenImports.Contains(currImport)) {
 @:from .@property.Name.ToPythonCase() import @property.Name
+            seenImports.Add(currImport);
+        }
     }
 }
 @if (nextNode.BaseModelType != null && Python3Mode)
 {
+    Tuple<string, string> currImport = Tuple.Create(nextNode.BaseModelType.Name.ToPythonCase() + "_py3", nextNode.BaseModelType.Name.ToPythonCase());
+    if (!seenImports.Contains(currImport)) {
 @:from .@nextNode.BaseModelType.Name.ToPythonCase()_py3 import @nextNode.BaseModelType.Name
+        seenImports.Add(currImport);
+    }
 }
 else if (nextNode.BaseModelType != null && !Python3Mode)
 {
+    Tuple<string, string> currImport = Tuple.Create(nextNode.BaseModelType.Name.ToPythonCase(), nextNode.BaseModelType.Name.ToPythonCase());
+    if (!seenImports.Contains(currImport)) {
 @:from .@nextNode.BaseModelType.Name.ToPythonCase() import @nextNode.BaseModelType.Name
+        seenImports.Add(currImport);
+    }
 }
 else
 {
-@:from msrest.serialization import nextNode
+    Tuple<string, string> currImport = Tuple.Create("msrest.serialization", "Model");
+    if (!seenImports.Contains(currImport)) {
+@:from msrest.serialization import Model
+    seenImports.Add(currImport);
+    }
 }
 @if (nextNode.IsException)
 {
+    Tuple<string, string> currImport = Tuple.Create("msrest.exceptions", "HttpOperationError");
+    if (!seenImports.Contains(currImport)) {
 @:from msrest.exceptions import HttpOperationError
+        seenImports.Add(currImport);
+    }
 }
 </text>
 @{
@@ -58,7 +79,7 @@ else
 }
 else
 {
-@:class @(nextNode.Name)(nextNode):
+@:class @(nextNode.Name)(Model):
 }
     """@(WrapComment(string.Empty, nextNode.BuildSummaryAndDescriptionString()))
 @if (nextNode.SubModelTypes.Any())
@@ -113,7 +134,7 @@ else
     {
         for (int i = 0; i < mapAttrList.Count; i++)
         {
-            @:@(nextNode.InitializeProperty(mapAttrList[i]))
+        @:@(nextNode.InitializeProperty(mapAttrList[i]))
         }
     }
     @:}
