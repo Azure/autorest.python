@@ -81,14 +81,14 @@ namespace AutoRest.Python
             //Models
             if (codeModel.ModelTypes.Any())
             {
-                //var modelInitTemplate = new ModelInitTemplate { Model = codeModel };
-                //await Write(modelInitTemplate, Path.Combine(folderName, "models", "__init__.py"));
-                //var modelTemplate = new ModelTemplate { Model = codeModel.ModelDAGraph };
-                //await Write(modelTemplate, Path.Combine(folderName, "models", ("testingOutput").ToPythonCase() + ".py"));
-                //modelTemplate.Python3Mode = true;
-                //await Write(modelTemplate, Path.Combine(folderName, "models", ("testingOutput").ToPythonCase() + "_py3.py"));
-                var demoTemplate = new DemoTemplate { Model = codeModel.ModelDAGraph };
-                await Write(demoTemplate, Path.Combine(folderName, ("demoOutput").ToPythonCase() + ".py"));
+                var modelInitTemplate = new ModelInitTemplate { Model = codeModel };
+                await Write(modelInitTemplate, Path.Combine(folderName, "models", "__init__.py"));
+                var modelTemplate = new ModelTemplate { Model = codeModel.ModelDAGraph };
+                await Write(modelTemplate, Path.Combine(folderName, "models", ("testingOutput").ToPythonCase() + ".py"));
+                modelTemplate.Python3Mode = true;
+                await Write(modelTemplate, Path.Combine(folderName, "models", ("testingOutput").ToPythonCase() + "_py3.py"));
+                // var demoTemplate = new DemoTemplate { Model = codeModel.ModelDAGraph };
+                // await Write(demoTemplate, Path.Combine(folderName, ("demoOutput").ToPythonCase() + ".py"));
 
                 //foreach (var modelType in codeModel.ModelTemplateModels)
                 //{
