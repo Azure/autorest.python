@@ -1,0 +1,31 @@
+﻿@using System;
+@using System.Linq
+@using System.Collections.Generic
+@using AutoRest.Core.Model
+@using AutoRest.Python
+@using AutoRest.Python.Model
+@inherits AutoRest.Python.PythonTemplate<AutoRest.Python.DAG.DAGraph<AutoRest.Python.Model.CompositeTypePy>>
+# coding=utf-8
+# --------------------------------------------------------------------------
+@Header("# ").TrimMultilineHeader()
+# --------------------------------------------------------------------------
+@EmptyLine
+@{ CompositeTypePy nextNode = Model.getNext(); }
+@while (nextNode != null)
+{
+    <text>
+        @if (nextNode.BaseModelType != null)
+        {
+            @:class @(nextNode.Name)(@nextNode.BaseModelType.Name):
+        }
+        else
+        {
+            @:class @(nextNode.Name)():
+        }
+        @{
+            Model.reportCompletion(nextNode);
+            nextNode = Model.getNext();
+        }
+        </text>
+    }
+

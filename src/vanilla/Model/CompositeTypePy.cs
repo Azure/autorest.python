@@ -65,7 +65,6 @@ namespace AutoRest.Python.Model
 
         protected CompositeTypePy(string name) : base(name)
         {
-            Name = name;
             dAGNode = new DAGNode<CompositeTypePy>(Name);
         }
 
@@ -539,8 +538,7 @@ namespace AutoRest.Python.Model
 
         public string Key => Name;
 
-        public CompositeType Data => dAGNode.Data;
-
-        CompositeTypePy INode<CompositeTypePy>.Data => throw new NotImplementedException();
+        public CompositeTypePy Data => dAGNode.Data;
+        
     }
 }

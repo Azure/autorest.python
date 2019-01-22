@@ -1,0 +1,182 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "PetResourceProviderClient",
+    "description": "The Pets Resource Provider Client.",
+    "version": "2018-04-01"
+  },
+  "host": "management.azure.com",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Pets/dogs/{dogName}": {
+      "put": {
+        "tags": [
+          "Dogs"
+        ],
+        "operationId": "Dogs_CreateOrUpdate",
+        "description": "Creates or updates a dog.",
+        "parameters": [
+          {
+            "$ref": "#/parameters/SubscriptionIdParameter"
+          },
+          {
+            "$ref": "#/parameters/ResourceGroupNameParameter"
+          },
+          {
+            "$ref": "#/parameters/DogNameParameter"
+          },
+          {
+            "$ref": "#/parameters/ApiVersionParameter"
+          },
+          {
+            "name": "dog",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Dog"
+            },
+            "description": "Dog object supplied in the body of the Put dog operation."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Dog"
+            }
+          },
+          "202": {
+            "description": "Accepted",
+            "schema": {
+              "$ref": "#/definitions/Dog"
+            }
+          }
+        },
+        "x-ms-long-running-operation": true
+      }
+    }
+  },
+  "definitions": {
+    "Animal": {
+      "description": "The animal model definition.",
+      "properties": {
+        "name": {
+          "readOnly": true,
+          "type": "string",
+          "description": "Animal name"
+        },
+        "age": {
+          "readOnly": true,
+          "type": "string",
+          "description": "Animal age"
+        }
+      },
+      "required": [
+        "name"
+      ]
+    },
+    "Dog": {
+      "properties": {
+        "breed": {
+          "readOnly": true,
+          "type": "string",
+          "description": "Name of dog breed"
+        }
+      },
+      "allOf": [
+        {
+          "$ref": "#/definitions/Animal"
+        }
+      ],
+      "description": "Dog resource."
+    },
+    "Puppy": {
+      "properties": {
+        "mother": {
+          "readOnly": true,
+          "type": "string",
+          "description": "Name of mother"
+        }
+      },
+      "allOf": [
+        {
+          "$ref": "#/definitions/Dog"
+        }
+      ],
+      "description": "Puppy resource."
+    },
+    "Cat": {
+      "properties": {
+        "breed": {
+          "readOnly": true,
+          "type": "string",
+          "description": "Name of cat breed"
+        }
+      },
+      "allOf": [
+        {
+          "$ref": "#/definitions/Animal"
+        }
+      ],
+      "description": "Cat resource."
+    },
+    "Rock": {
+      "description": "The rock model definition.",
+      "properties": {
+        "name": {
+          "readOnly": true,
+          "type": "string",
+          "description": "Rock name"
+        },
+        "rockType": {
+          "readOnly": true,
+          "type": "string",
+          "description": "Type of rock"
+        }
+      },
+      "required": [
+        "name"
+      ]
+    }
+  },
+  "parameters": {
+    "SubscriptionIdParameter": {
+      "name": "subscriptionId",
+      "in": "path",
+      "required": true,
+      "type": "string",
+      "description": "Subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+    },
+    "ApiVersionParameter": {
+      "name": "api-version",
+      "in": "query",
+      "required": true,
+      "type": "string",
+      "description": "Client Api Version."
+    },
+    "ResourceGroupNameParameter": {
+      "name": "resourceGroupName",
+      "in": "path",
+      "required": true,
+      "type": "string",
+      "description": "The name of the resource group.",
+      "x-ms-parameter-location": "method"
+    },
+    "DogNameParameter": {
+      "name": "dogName",
+      "in": "path",
+      "required": true,
+      "type": "string",
+      "description": "The name of the managed dog that is being created. The name can't be changed after the dog is created. Supported characters for the name are a-z, A-Z, 0-9 and _. The maximum name length is 80 characters.",
+      "x-ms-parameter-location": "method"
+    }
+  }
+}
