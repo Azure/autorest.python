@@ -2,6 +2,7 @@
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -81,30 +82,32 @@ namespace AutoRest.Python
             //Models
             if (codeModel.ModelTypes.Any())
             {
+                HashSet<CompositeTypePy> generated_models = new HashSet<CompositeTypePy>();
+                List<CompositeTypePy> generate_model_list = new List<CompositeTypePy>();
+                foreach(CompositeTypePy model in codeModel.ModelTemplateModels) {
+                    if (generated_models.Contains(model)) {
+                        continue;
+                    }
+                    List<CompositeTypePy> ancestors = new List<CompositeTypePy>();
+                    CompositeTypePy current = model;
+                    ancestors.Add(current);
+                    while (current.BaseModelType != null) {
+                        CompositeTypePy parent = current.BaseModelType as CompositeTypePy;
+                        if (generated_models.Contains(parent)) {
+                            break;
+                        }
+                        ancestors.Insert(0, parent);
+                        generated_models.Add(current);
+                        current = parent;
+                    }
+                    generate_model_list.AddRange(ancestors);
+                }
                 var modelInitTemplate = new ModelInitTemplate { Model = codeModel };
                 await Write(modelInitTemplate, Path.Combine(folderName, "models", "__init__.py"));
-                var modelTemplate = new ModelTemplate { Model = codeModel.ModelDAGraph };
-                await Write(modelTemplate, Path.Combine(folderName, "models", ("testingOutput").ToPythonCase() + ".py"));
+                var modelTemplate = new ModelTemplate { Model = generate_model_list };
+                await Write(modelTemplate, Path.Combine(folderName, "models", "_models.py"));
                 modelTemplate.Python3Mode = true;
-                await Write(modelTemplate, Path.Combine(folderName, "models", ("testingOutput").ToPythonCase() + "_py3.py"));
-                // var demoTemplate = new DemoTemplate { Model = codeModel.ModelDAGraph };
-                // await Write(demoTemplate, Path.Combine(folderName, ("demoOutput").ToPythonCase() + ".py"));
-
-                //foreach (var modelType in codeModel.ModelTemplateModels)
-                //{
-                //    var modelTemplate = new ModelTemplate
-                //    {
-                //        Model = modelType
-                //    };
-                //    await Write(modelTemplate, Path.Combine(folderName, "models", ((string)modelType.Name).ToPythonCase() + ".py"));
-                //    // Rebuild the same in Python 3 mode
-                //    modelTemplate.Python3Mode = true;
-                //    await Write(modelTemplate, Path.Combine(folderName, "models", ((string)modelType.Name).ToPythonCase() + "_py3.py"));
-                //}
-                //var modelTemplate = new ModelTemplate
-                //{
-                //    Model = codeModel.ModelDAGraph
-                //};
+                await Write(modelTemplate, Path.Combine(folderName, "models", "_models_py3.py"));
             }
 
             //MethodGroups

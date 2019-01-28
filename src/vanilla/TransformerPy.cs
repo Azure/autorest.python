@@ -42,7 +42,12 @@ namespace AutoRest.Python
             PopulateDiscriminator(codeModel);
             Flattening(codeModel);
             GenerateConstantProperties(codeModel);
+            //buildUpModelGraph(ref codeModel);
+            
+            return codeModel;
+        }
 
+        private void buildUpModelGraph(ref CodeModelPy codeModel) {
             HashSet<string> touchedNodes = new HashSet<string>();
             List<CompositeTypePy> modelTypeList = new List<CompositeTypePy>();
             
@@ -50,35 +55,36 @@ namespace AutoRest.Python
             {
                 if (!touchedNodes.Contains(modelType.Name) && !string.IsNullOrEmpty(modelType.Name))
                 {
-                    buildUpDAGNodes(modelType, ref touchedNodes, ref modelTypeList);
+                    buildUpDAGNodesModel(modelType, ref touchedNodes, ref modelTypeList);
                 }
             }
 
 
             CompositeTypePy rootNode = null;
-            DAGraph<CompositeTypePy> dAGraph = null;
-
-            foreach (var modelType in modelTypeList) {
-                if (!modelType.hasDependencies() && !string.IsNullOrEmpty(modelType.Name)) {
-                    rootNode = modelType;
-                    dAGraph = new DAGraph<CompositeTypePy>(rootNode);
-                    break;
+            DAGraph<CompositeTypePy> dAGraph = codeModel.ModelDAGraph;
+            if (dAGraph == null) {
+                foreach (var modelType in modelTypeList) {
+                    if (!modelType.hasDependencies() && !string.IsNullOrEmpty(modelType.Name)) {
+                        rootNode = modelType;
+                        dAGraph = new DAGraph<CompositeTypePy>(rootNode);
+                        break;
+                    }
                 }
-            }
-
-            foreach (var modelType in modelTypeList)
-            {
-                if (!modelType.Equals(rootNode))
+                foreach (var modelType in modelTypeList)
                 {
-                    dAGraph.addNode(modelType);
+                    if (!modelType.Equals(rootNode))
+                    {
+                        dAGraph.addNode(modelType);
+                    }
                 }
             }
+
+
             dAGraph.prepareForEnumeration();
             codeModel.ModelDAGraph = dAGraph;
-            return codeModel;
         }
 
-        private CompositeTypePy buildUpDAGNodes(CompositeTypePy modelType, ref HashSet<string> touchedModelTypes, ref List<CompositeTypePy> modelTypeList)
+        private CompositeTypePy buildUpDAGNodesModel(CompositeTypePy modelType, ref HashSet<string> touchedModelTypes, ref List<CompositeTypePy> modelTypeList)
         {
             if (!modelType.HasParent && !string.IsNullOrEmpty(modelType.Name))
             {
@@ -91,7 +97,7 @@ namespace AutoRest.Python
             if (!touchedModelTypes.Contains(modelType.Name) && !string.IsNullOrEmpty(modelType.Name))
             {
                 touchedModelTypes.Add(modelType.Name);
-                modelType.addDependency(buildUpDAGNodes(modelType.BaseModelType as CompositeTypePy, ref touchedModelTypes, ref modelTypeList).Key);
+                modelType.addDependency(buildUpDAGNodesModel(modelType.BaseModelType as CompositeTypePy, ref touchedModelTypes, ref modelTypeList).Key);
                 modelTypeList.Add(modelType);
             }
             return modelType;

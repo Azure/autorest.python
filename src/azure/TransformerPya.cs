@@ -55,51 +55,11 @@ namespace AutoRest.Python.Azure
 
             NormalizePaginatedMethods(codeModel);
 
-            HashSet<string> touchedNodes = new HashSet<string>();
-            List<CompositeTypePy> modelTypeList = new List<CompositeTypePy>();
-            
-            foreach (var modelType in codeModel.ModelTemplateModels)
-            {
-                if (!touchedNodes.Contains(modelType.Name))
-                {
-                    buildUpDAGNodes(modelType, ref touchedNodes, ref modelTypeList);
-                }
-            }
-
-            CompositeTypePy rootNode = modelTypeList[0];
-            DAGraph<CompositeTypePy> dAGraph = new DAGraph<CompositeTypePy>(rootNode);
-
-            foreach (var modelType in modelTypeList)
-            {
-                if (!modelType.Equals(rootNode))
-                {
-                    dAGraph.addNode(modelType);
-                }
-            }
-            dAGraph.prepareForEnumeration();
-            codeModel.ModelDAGraph = dAGraph;
+            //buildUpModelGraph(ref codeModel);
 
             return codeModel;
         }
 
-        private CompositeTypePy buildUpDAGNodes(CompositeTypePy modelType, ref HashSet<string> touchedModelTypes, ref List<CompositeTypePy> modelTypeList)
-        {
-            if (!modelType.HasParent)
-            {
-                //DAGNode<CompositeType> baseNode = new DAGNode<CompositeType>(modelType.Name);
-                modelTypeList.Add(modelType);
-                touchedModelTypes.Add(modelType.Name);
-                return modelType;
-            }
-            //DAGNode<CompositeType> curr = new DAGNode<CompositeType>(modelType.Name);
-            if (!touchedModelTypes.Contains(modelType.Name))
-            {
-                touchedModelTypes.Add(modelType.Name);
-                modelType.addDependency(buildUpDAGNodes(modelType.BaseModelType as CompositeTypePy, ref touchedModelTypes, ref modelTypeList).Key);
-                modelTypeList.Add(modelType);
-            }
-            return modelType;
-        }
 
         private void TransformPagingMethods(CodeModelPya codeModel)
         {

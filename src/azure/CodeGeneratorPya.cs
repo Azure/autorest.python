@@ -12,6 +12,7 @@ using AutoRest.Python.Model;
 using AutoRest.Python.Azure.Model;
 using AutoRest.Python.azure.Templates;
 using AutoRest.Python.vanilla.Templates;
+using System.Collections.Generic;
 
 namespace AutoRest.Python.Azure
 {
@@ -72,22 +73,35 @@ namespace AutoRest.Python.Azure
                 {
                     Model = codeModel
                 };
+                // var modelTemplate = new ModelTemplate { Model = codeModel.ModelDAGraph };
+                // await Write(modelTemplate, Path.Combine(folderName, "models", "_models.py"));
+                // modelTemplate.Python3Mode = true;
+                // await Write(modelTemplate, Path.Combine(folderName, "models", "_models_py3.py"));
+                HashSet<CompositeTypePy> generated_models = new HashSet<CompositeTypePy>();
+                List<CompositeTypePy> generate_model_list = new List<CompositeTypePy>();
+                foreach(CompositeTypePy model in codeModel.ModelTemplateModels) {
+                    if (generated_models.Contains(model)) {
+                        continue;
+                    }
+                    List<CompositeTypePy> ancestors = new List<CompositeTypePy>();
+                    CompositeTypePy current = model;
+                    ancestors.Add(current);
+                    while (current.BaseModelType != null) {
+                        CompositeTypePy parent = current.BaseModelType as CompositeTypePy;
+                        if (generated_models.Contains(parent)) {
+                            break;
+                        }
+                        ancestors.Insert(0, parent);
+                        generated_models.Add(current);
+                        current = parent;
+                    }
+                    generate_model_list.AddRange(ancestors);
+                }
                 await Write(modelInitTemplate, Path.Combine(folderName, "models", "__init__.py"));
-                await Write(modelInitTemplate, Path.Combine(folderName, "isabella", "__init__.py"));
-
-                var modelTemplate = new ModelTemplate { Model = codeModel.ModelDAGraph };
-                await Write(modelTemplate, Path.Combine(folderName, "models", ("testingOutputIsabella").ToPythonCase() + ".py"));
+                var modelTemplate = new ModelTemplate { Model = generate_model_list };
+                await Write(modelTemplate, Path.Combine(folderName, "models", "_models.py"));
                 modelTemplate.Python3Mode = true;
-                await Write(modelTemplate, Path.Combine(folderName, "models", ("testingOutputIsabella").ToPythonCase() + "_py3.py"));
-                
-                // foreach (var modelType in models)
-                // {
-                //     var modelTemplate = new ModelTemplate { Model = modelType };
-                //     await Write(modelTemplate, Path.Combine(folderName, "models", modelType.Name.ToPythonCase() + ".py"));
-                //     // Rebuild the same in Python 3 mode
-                //     modelTemplate.Python3Mode = true;
-                //     await Write(modelTemplate, Path.Combine(folderName, "models", modelType.Name.ToPythonCase() + "_py3.py"));
-                // }
+                await Write(modelTemplate, Path.Combine(folderName, "models", "_models_py3.py"));
             }
 
             //MethodGroups
