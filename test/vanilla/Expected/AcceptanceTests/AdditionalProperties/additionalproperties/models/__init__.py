@@ -10,21 +10,21 @@
 # --------------------------------------------------------------------------
 
 try:
-    from .error_py3 import Error, ErrorException
-    from .pet_ap_true_py3 import PetAPTrue
-    from .cat_ap_true_py3 import CatAPTrue
-    from .pet_ap_object_py3 import PetAPObject
-    from .pet_ap_string_py3 import PetAPString
-    from .pet_ap_in_properties_py3 import PetAPInProperties
-    from .pet_ap_in_properties_with_ap_string_py3 import PetAPInPropertiesWithAPString
+    from ._models_py3 import Error, ErrorException
+    from ._models_py3 import PetAPTrue
+    from ._models_py3 import CatAPTrue
+    from ._models_py3 import PetAPObject
+    from ._models_py3 import PetAPString
+    from ._models_py3 import PetAPInProperties
+    from ._models_py3 import PetAPInPropertiesWithAPString
 except (SyntaxError, ImportError):
-    from .error import Error, ErrorException
-    from .pet_ap_true import PetAPTrue
-    from .cat_ap_true import CatAPTrue
-    from .pet_ap_object import PetAPObject
-    from .pet_ap_string import PetAPString
-    from .pet_ap_in_properties import PetAPInProperties
-    from .pet_ap_in_properties_with_ap_string import PetAPInPropertiesWithAPString
+    from ._models import Error, ErrorException
+    from ._models import PetAPTrue
+    from ._models import CatAPTrue
+    from ._models import PetAPObject
+    from ._models import PetAPString
+    from ._models import PetAPInProperties
+    from ._models import PetAPInPropertiesWithAPString
 
 __all__ = [
     'Error', 'ErrorException',

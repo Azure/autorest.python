@@ -43,6 +43,7 @@ class ErrorException(HttpOperationError):
     def __init__(self, deserialize, response, *args):
 
         super(ErrorException, self).__init__(deserialize, response, 'Error', *args)
+from msrest.serialization import Model
 
 
 class IntWrapper(Model):
@@ -65,6 +66,7 @@ class IntWrapper(Model):
     def __init__(self, **kwargs):
         super(IntWrapper, self).__init__(**kwargs)
         self.value = kwargs.get('value', None)
+from msrest.serialization import Model
 
 
 class IntOptionalWrapper(Model):
@@ -81,6 +83,7 @@ class IntOptionalWrapper(Model):
     def __init__(self, **kwargs):
         super(IntOptionalWrapper, self).__init__(**kwargs)
         self.value = kwargs.get('value', None)
+from msrest.serialization import Model
 
 
 class StringWrapper(Model):
@@ -103,6 +106,7 @@ class StringWrapper(Model):
     def __init__(self, **kwargs):
         super(StringWrapper, self).__init__(**kwargs)
         self.value = kwargs.get('value', None)
+from msrest.serialization import Model
 
 
 class StringOptionalWrapper(Model):
@@ -119,6 +123,7 @@ class StringOptionalWrapper(Model):
     def __init__(self, **kwargs):
         super(StringOptionalWrapper, self).__init__(**kwargs)
         self.value = kwargs.get('value', None)
+from msrest.serialization import Model
 
 
 class ArrayWrapper(Model):
@@ -141,6 +146,7 @@ class ArrayWrapper(Model):
     def __init__(self, **kwargs):
         super(ArrayWrapper, self).__init__(**kwargs)
         self.value = kwargs.get('value', None)
+from msrest.serialization import Model
 
 
 class ArrayOptionalWrapper(Model):
@@ -157,6 +163,7 @@ class ArrayOptionalWrapper(Model):
     def __init__(self, **kwargs):
         super(ArrayOptionalWrapper, self).__init__(**kwargs)
         self.value = kwargs.get('value', None)
+from msrest.serialization import Model
 
 
 class Product(Model):
@@ -183,6 +190,7 @@ class Product(Model):
         super(Product, self).__init__(**kwargs)
         self.id = kwargs.get('id', None)
         self.name = kwargs.get('name', None)
+from msrest.serialization import Model
 
 
 class ClassWrapper(Model):
@@ -205,6 +213,7 @@ class ClassWrapper(Model):
     def __init__(self, **kwargs):
         super(ClassWrapper, self).__init__(**kwargs)
         self.value = kwargs.get('value', None)
+from msrest.serialization import Model
 
 
 class ClassOptionalWrapper(Model):

@@ -30,6 +30,7 @@ class ProductProperties(Model):
         super(ProductProperties, self).__init__(**kwargs)
         self.id = kwargs.get('id', None)
         self.name = kwargs.get('name', None)
+from msrest.serialization import Model
 
 
 class Product(Model):
@@ -46,6 +47,7 @@ class Product(Model):
     def __init__(self, **kwargs):
         super(Product, self).__init__(**kwargs)
         self.properties = kwargs.get('properties', None)
+from msrest.serialization import Model
 
 
 class ProductResult(Model):
@@ -66,6 +68,7 @@ class ProductResult(Model):
         super(ProductResult, self).__init__(**kwargs)
         self.values = kwargs.get('values', None)
         self.next_link = kwargs.get('next_link', None)
+from msrest.serialization import Model
 
 
 class OperationResult(Model):
@@ -84,6 +87,7 @@ class OperationResult(Model):
     def __init__(self, **kwargs):
         super(OperationResult, self).__init__(**kwargs)
         self.status = kwargs.get('status', None)
+from msrest.serialization import Model
 
 
 class PagingGetMultiplePagesOptions(Model):
@@ -106,6 +110,7 @@ class PagingGetMultiplePagesOptions(Model):
         super(PagingGetMultiplePagesOptions, self).__init__(**kwargs)
         self.maxresults = kwargs.get('maxresults', None)
         self.timeout = kwargs.get('timeout', 30)
+from msrest.serialization import Model
 
 
 class PagingGetOdataMultiplePagesOptions(Model):
@@ -128,6 +133,7 @@ class PagingGetOdataMultiplePagesOptions(Model):
         super(PagingGetOdataMultiplePagesOptions, self).__init__(**kwargs)
         self.maxresults = kwargs.get('maxresults', None)
         self.timeout = kwargs.get('timeout', 30)
+from msrest.serialization import Model
 
 
 class PagingGetMultiplePagesWithOffsetOptions(Model):
@@ -160,6 +166,7 @@ class PagingGetMultiplePagesWithOffsetOptions(Model):
         self.maxresults = kwargs.get('maxresults', None)
         self.offset = kwargs.get('offset', None)
         self.timeout = kwargs.get('timeout', 30)
+from msrest.serialization import Model
 
 
 class CustomParameterGroup(Model):
@@ -188,6 +195,7 @@ class CustomParameterGroup(Model):
         super(CustomParameterGroup, self).__init__(**kwargs)
         self.api_version = kwargs.get('api_version', None)
         self.tenant = kwargs.get('tenant', None)
+from msrest.serialization import Model
 
 
 class PagingGetMultiplePagesLroOptions(Model):
@@ -210,6 +218,7 @@ class PagingGetMultiplePagesLroOptions(Model):
         super(PagingGetMultiplePagesLroOptions, self).__init__(**kwargs)
         self.maxresults = kwargs.get('maxresults', None)
         self.timeout = kwargs.get('timeout', 30)
+from msrest.serialization import Model
 
 
 class CloudError(Model):

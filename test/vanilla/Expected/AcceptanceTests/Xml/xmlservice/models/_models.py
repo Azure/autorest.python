@@ -45,6 +45,7 @@ class ErrorException(HttpOperationError):
     def __init__(self, deserialize, response, *args):
 
         super(ErrorException, self).__init__(deserialize, response, 'Error', *args)
+from msrest.serialization import Model
 
 
 class Slide(Model):
@@ -72,6 +73,7 @@ class Slide(Model):
         self.type = kwargs.get('type', None)
         self.title = kwargs.get('title', None)
         self.items = kwargs.get('items', None)
+from msrest.serialization import Model
 
 
 class Slideshow(Model):
@@ -103,6 +105,7 @@ class Slideshow(Model):
         self.date_property = kwargs.get('date_property', None)
         self.author = kwargs.get('author', None)
         self.slides = kwargs.get('slides', None)
+from msrest.serialization import Model
 
 
 class AppleBarrel(Model):
@@ -125,6 +128,7 @@ class AppleBarrel(Model):
         super(AppleBarrel, self).__init__(**kwargs)
         self.good_apples = kwargs.get('good_apples', None)
         self.bad_apples = kwargs.get('bad_apples', None)
+from msrest.serialization import Model
 
 
 class Banana(Model):
@@ -153,6 +157,7 @@ class Banana(Model):
         self.name = kwargs.get('name', None)
         self.flavor = kwargs.get('flavor', None)
         self.expiration = kwargs.get('expiration', None)
+from msrest.serialization import Model
 
 
 class ContainerProperties(Model):
@@ -199,6 +204,7 @@ class ContainerProperties(Model):
         self.lease_state = kwargs.get('lease_state', None)
         self.lease_duration = kwargs.get('lease_duration', None)
         self.public_access = kwargs.get('public_access', None)
+from msrest.serialization import Model
 
 
 class Container(Model):
@@ -232,6 +238,7 @@ class Container(Model):
         self.name = kwargs.get('name', None)
         self.properties = kwargs.get('properties', None)
         self.metadata = kwargs.get('metadata', None)
+from msrest.serialization import Model
 
 
 class ListContainersResponse(Model):
@@ -280,6 +287,7 @@ class ListContainersResponse(Model):
         self.max_results = kwargs.get('max_results', None)
         self.containers = kwargs.get('containers', None)
         self.next_marker = kwargs.get('next_marker', None)
+from msrest.serialization import Model
 
 
 class CorsRule(Model):
@@ -339,6 +347,7 @@ class CorsRule(Model):
         self.allowed_headers = kwargs.get('allowed_headers', None)
         self.exposed_headers = kwargs.get('exposed_headers', None)
         self.max_age_in_seconds = kwargs.get('max_age_in_seconds', None)
+from msrest.serialization import Model
 
 
 class BlobProperties(Model):
@@ -477,6 +486,7 @@ class BlobProperties(Model):
         self.access_tier = kwargs.get('access_tier', None)
         self.access_tier_inferred = kwargs.get('access_tier_inferred', None)
         self.archive_status = kwargs.get('archive_status', None)
+from msrest.serialization import Model
 
 
 class Blob(Model):
@@ -521,6 +531,7 @@ class Blob(Model):
         self.snapshot = kwargs.get('snapshot', None)
         self.properties = kwargs.get('properties', None)
         self.metadata = kwargs.get('metadata', None)
+from msrest.serialization import Model
 
 
 class RetentionPolicy(Model):
@@ -553,6 +564,7 @@ class RetentionPolicy(Model):
         super(RetentionPolicy, self).__init__(**kwargs)
         self.enabled = kwargs.get('enabled', None)
         self.days = kwargs.get('days', None)
+from msrest.serialization import Model
 
 
 class Logging(Model):
@@ -600,6 +612,7 @@ class Logging(Model):
         self.read = kwargs.get('read', None)
         self.write = kwargs.get('write', None)
         self.retention_policy = kwargs.get('retention_policy', None)
+from msrest.serialization import Model
 
 
 class Metrics(Model):
@@ -638,6 +651,7 @@ class Metrics(Model):
         self.enabled = kwargs.get('enabled', None)
         self.include_ap_is = kwargs.get('include_ap_is', None)
         self.retention_policy = kwargs.get('retention_policy', None)
+from msrest.serialization import Model
 
 
 class BlobPrefix(Model):
@@ -662,6 +676,7 @@ class BlobPrefix(Model):
     def __init__(self, **kwargs):
         super(BlobPrefix, self).__init__(**kwargs)
         self.name = kwargs.get('name', None)
+from msrest.serialization import Model
 
 
 class Blobs(Model):
@@ -684,6 +699,7 @@ class Blobs(Model):
         super(Blobs, self).__init__(**kwargs)
         self.blob_prefix = kwargs.get('blob_prefix', None)
         self.blob = kwargs.get('blob', None)
+from msrest.serialization import Model
 
 
 class ListBlobsResponse(Model):
@@ -744,6 +760,7 @@ class ListBlobsResponse(Model):
         self.delimiter = kwargs.get('delimiter', None)
         self.blobs = kwargs.get('blobs', None)
         self.next_marker = kwargs.get('next_marker', None)
+from msrest.serialization import Model
 
 
 class AccessPolicy(Model):
@@ -778,6 +795,7 @@ class AccessPolicy(Model):
         self.start = kwargs.get('start', None)
         self.expiry = kwargs.get('expiry', None)
         self.permission = kwargs.get('permission', None)
+from msrest.serialization import Model
 
 
 class SignedIdentifier(Model):
@@ -808,6 +826,7 @@ class SignedIdentifier(Model):
         super(SignedIdentifier, self).__init__(**kwargs)
         self.id = kwargs.get('id', None)
         self.access_policy = kwargs.get('access_policy', None)
+from msrest.serialization import Model
 
 
 class StorageServiceProperties(Model):
@@ -851,6 +870,7 @@ class StorageServiceProperties(Model):
         self.cors = kwargs.get('cors', None)
         self.default_service_version = kwargs.get('default_service_version', None)
         self.delete_retention_policy = kwargs.get('delete_retention_policy', None)
+from msrest.serialization import Model
 
 
 class ComplexTypeNoMeta(Model):
@@ -869,6 +889,7 @@ class ComplexTypeNoMeta(Model):
     def __init__(self, **kwargs):
         super(ComplexTypeNoMeta, self).__init__(**kwargs)
         self.id = kwargs.get('id', None)
+from msrest.serialization import Model
 
 
 class ComplexTypeWithMeta(Model):
@@ -888,6 +909,7 @@ class ComplexTypeWithMeta(Model):
     def __init__(self, **kwargs):
         super(ComplexTypeWithMeta, self).__init__(**kwargs)
         self.id = kwargs.get('id', None)
+from msrest.serialization import Model
 
 
 class RootWithRefAndNoMeta(Model):
@@ -910,6 +932,7 @@ class RootWithRefAndNoMeta(Model):
         super(RootWithRefAndNoMeta, self).__init__(**kwargs)
         self.ref_to_model = kwargs.get('ref_to_model', None)
         self.something = kwargs.get('something', None)
+from msrest.serialization import Model
 
 
 class RootWithRefAndMeta(Model):

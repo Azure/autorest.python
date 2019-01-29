@@ -43,6 +43,7 @@ class ErrorException(HttpOperationError):
     def __init__(self, deserialize, response, *args):
 
         super(ErrorException, self).__init__(deserialize, response, 'Error', *args)
+from msrest.serialization import Model
 
 
 class ParameterGroupingPostRequiredParameters(Model):
@@ -78,6 +79,7 @@ class ParameterGroupingPostRequiredParameters(Model):
         self.custom_header = kwargs.get('custom_header', None)
         self.query = kwargs.get('query', 30)
         self.path = kwargs.get('path', None)
+from msrest.serialization import Model
 
 
 class ParameterGroupingPostOptionalParameters(Model):
@@ -98,6 +100,7 @@ class ParameterGroupingPostOptionalParameters(Model):
         super(ParameterGroupingPostOptionalParameters, self).__init__(**kwargs)
         self.custom_header = kwargs.get('custom_header', None)
         self.query = kwargs.get('query', 30)
+from msrest.serialization import Model
 
 
 class FirstParameterGroup(Model):
@@ -120,6 +123,7 @@ class FirstParameterGroup(Model):
         super(FirstParameterGroup, self).__init__(**kwargs)
         self.header_one = kwargs.get('header_one', None)
         self.query_one = kwargs.get('query_one', 30)
+from msrest.serialization import Model
 
 
 class ParameterGroupingPostMultiParamGroupsSecondParamGroup(Model):
@@ -140,6 +144,7 @@ class ParameterGroupingPostMultiParamGroupsSecondParamGroup(Model):
         super(ParameterGroupingPostMultiParamGroupsSecondParamGroup, self).__init__(**kwargs)
         self.header_two = kwargs.get('header_two', None)
         self.query_two = kwargs.get('query_two', 30)
+from msrest.serialization import Model
 
 
 class CloudError(Model):

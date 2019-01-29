@@ -11,8 +11,6 @@
 
 from msrest.serialization import Model
 from msrest.exceptions import HttpOperationError
-from .resource import Resource
-from .base_product import BaseProduct
 
 
 class Error(Model):
@@ -49,6 +47,7 @@ class ErrorException(HttpOperationError):
     def __init__(self, deserialize, response, *args):
 
         super(ErrorException, self).__init__(deserialize, response, 'Error', *args)
+from msrest.serialization import Model
 
 
 class Resource(Model):
@@ -90,47 +89,7 @@ class Resource(Model):
         self.tags = kwargs.get('tags', None)
         self.location = kwargs.get('location', None)
         self.name = None
-
-
-class Resource(Model):
-    """Resource.
-
-    Variables are only populated by the server, and will be ignored when
-    sending a request.
-
-    :ivar id: Resource Id
-    :vartype id: str
-    :ivar type: Resource Type
-    :vartype type: str
-    :param tags:
-    :type tags: dict[str, str]
-    :param location: Resource Location
-    :type location: str
-    :ivar name: Resource Name
-    :vartype name: str
-    """
-
-    _validation = {
-        'id': {'readonly': True},
-        'type': {'readonly': True},
-        'name': {'readonly': True},
-    }
-
-    _attribute_map = {
-        'id': {'key': 'id', 'type': 'str'},
-        'type': {'key': 'type', 'type': 'str'},
-        'tags': {'key': 'tags', 'type': '{str}'},
-        'location': {'key': 'location', 'type': 'str'},
-        'name': {'key': 'name', 'type': 'str'},
-    }
-
-    def __init__(self, **kwargs):
-        super(Resource, self).__init__(**kwargs)
-        self.id = None
-        self.type = None
-        self.tags = kwargs.get('tags', None)
-        self.location = kwargs.get('location', None)
-        self.name = None
+from msrest.serialization import Model
 
 
 class FlattenedProduct(Resource):
@@ -186,6 +145,7 @@ class FlattenedProduct(Resource):
         self.flattened_product_type = kwargs.get('flattened_product_type', None)
         self.provisioning_state_values = None
         self.provisioning_state = kwargs.get('provisioning_state', None)
+from msrest.serialization import Model
 
 
 class ResourceCollection(Model):
@@ -211,6 +171,7 @@ class ResourceCollection(Model):
         self.productresource = kwargs.get('productresource', None)
         self.arrayofresources = kwargs.get('arrayofresources', None)
         self.dictionaryofresources = kwargs.get('dictionaryofresources', None)
+from msrest.serialization import Model
 
 
 class BaseProduct(Model):
@@ -239,34 +200,7 @@ class BaseProduct(Model):
         super(BaseProduct, self).__init__(**kwargs)
         self.product_id = kwargs.get('product_id', None)
         self.description = kwargs.get('description', None)
-
-
-class BaseProduct(Model):
-    """The product documentation.
-
-    All required parameters must be populated in order to send to Azure.
-
-    :param product_id: Required. Unique identifier representing a specific
-     product for a given latitude & longitude. For example, uberX in San
-     Francisco will have a different product_id than uberX in Los Angeles.
-    :type product_id: str
-    :param description: Description of product.
-    :type description: str
-    """
-
-    _validation = {
-        'product_id': {'required': True},
-    }
-
-    _attribute_map = {
-        'product_id': {'key': 'base_product_id', 'type': 'str'},
-        'description': {'key': 'base_product_description', 'type': 'str'},
-    }
-
-    def __init__(self, **kwargs):
-        super(BaseProduct, self).__init__(**kwargs)
-        self.product_id = kwargs.get('product_id', None)
-        self.description = kwargs.get('description', None)
+from msrest.serialization import Model
 
 
 class SimpleProduct(BaseProduct):
@@ -316,6 +250,7 @@ class SimpleProduct(BaseProduct):
         self.max_product_display_name = kwargs.get('max_product_display_name', None)
         self.generic_value = kwargs.get('generic_value', None)
         self.odatavalue = kwargs.get('odatavalue', None)
+from msrest.serialization import Model
 
 
 class GenericUrl(Model):
@@ -332,6 +267,7 @@ class GenericUrl(Model):
     def __init__(self, **kwargs):
         super(GenericUrl, self).__init__(**kwargs)
         self.generic_value = kwargs.get('generic_value', None)
+from msrest.serialization import Model
 
 
 class WrappedProduct(Model):
@@ -348,6 +284,7 @@ class WrappedProduct(Model):
     def __init__(self, **kwargs):
         super(WrappedProduct, self).__init__(**kwargs)
         self.value = kwargs.get('value', None)
+from msrest.serialization import Model
 
 
 class ProductWrapper(Model):
@@ -364,6 +301,7 @@ class ProductWrapper(Model):
     def __init__(self, **kwargs):
         super(ProductWrapper, self).__init__(**kwargs)
         self.value = kwargs.get('value', None)
+from msrest.serialization import Model
 
 
 class FlattenParameterGroup(Model):
@@ -410,6 +348,7 @@ class FlattenParameterGroup(Model):
         self.max_product_display_name = kwargs.get('max_product_display_name', None)
         self.generic_value = kwargs.get('generic_value', None)
         self.odatavalue = kwargs.get('odatavalue', None)
+from msrest.serialization import Model
 
 
 class CloudError(Model):

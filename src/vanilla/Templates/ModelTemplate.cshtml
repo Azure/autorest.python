@@ -10,58 +10,13 @@
 @Header("# ").TrimMultilineHeader()
 # --------------------------------------------------------------------------
 @EmptyLine
-@{ 
-    List<Tuple<string, string>> seenImports = new List<Tuple<string, string>>();
-}
-@foreach (var currModel in Model) {
+@foreach(var currModel in Model) {
 <text>
-@if (currModel.ComplexConstants.Any())
-{
-    foreach (var property in currModel.ComplexConstants.Values)
-    {
-        Tuple<string, string> currImport = Tuple.Create(property.Name.ToPythonCase(), property.Name.ToPythonCase());
-        if (!seenImports.Contains(currImport)) {
-@:from .@property.Name.ToPythonCase() import @property.Name
-            seenImports.Add(currImport);
-        }
-    }
-}
-@if (currModel.BaseModelType != null && Python3Mode)
-{
-    Tuple<string, string> currImport = Tuple.Create(currModel.BaseModelType.Name.ToPythonCase() + "_py3", currModel.BaseModelType.Name.ToPythonCase());
-    if (!seenImports.Contains(currImport)) {
-@:from .@currModel.BaseModelType.Name.ToPythonCase()_py3 import @currModel.BaseModelType.Name
-        seenImports.Add(currImport);
-    }
-}
-else if (currModel.BaseModelType != null && !Python3Mode)
-{
-    Tuple<string, string> currImport = Tuple.Create(currModel.BaseModelType.Name.ToPythonCase(), currModel.BaseModelType.Name.ToPythonCase());
-    if (!seenImports.Contains(currImport)) {
-@:from .@currModel.BaseModelType.Name.ToPythonCase() import @currModel.BaseModelType.Name
-        seenImports.Add(currImport);
-    }
-}
-else
-{
-    Tuple<string, string> currImport = Tuple.Create("msrest.serialization", "Model");
-    if (!seenImports.Contains(currImport)) {
-@:from msrest.serialization import Model
-    seenImports.Add(currImport);
-    }
-}
+from msrest.serialization import Model
 @if (currModel.IsException)
 {
-    Tuple<string, string> currImport = Tuple.Create("msrest.exceptions", "HttpOperationError");
-    if (!seenImports.Contains(currImport)) {
 @:from msrest.exceptions import HttpOperationError
-        seenImports.Add(currImport);
-    }
 }
-</text>
-}
-@foreach (var currModel in Model) {
-<text>    
 @EmptyLine
 @EmptyLine
 @if (currModel.BaseModelType != null)
@@ -97,14 +52,14 @@ else
         if (property.IsConstant || property.IsReadOnly)
         {
 @:    @ParameterWrapComment(string.Empty, ":vartype " + property.Name + ": " + currModel.GetPropertyDocumentationType(property.ModelType))
-        }
+    }
         else
         {
 @:    @ParameterWrapComment(string.Empty, ":type " + property.Name + ": " + currModel.GetPropertyDocumentationType(property.ModelType))
         }
     }
 }
-    """
+    """ 
 @if (currModel.Validators.Any() || currModel.RequiredFieldsList.Any())
 {
 <text>
@@ -123,14 +78,14 @@ else
     @:_attribute_map = {
     if (mapAttrList.Count > 0)
     {
-        for (int i = 0; i < mapAttrList.Count; i++)
-        {
+      for (int i = 0; i < mapAttrList.Count; i++) 
+      {
         @:@(currModel.InitializeProperty(mapAttrList[i]))
-        }
+      }
     }
     @:}
 }
-@if (currModel.CodeModel.ShouldGenerateXmlSerialization)
+@if(currModel.CodeModel.ShouldGenerateXmlSerialization)
 {
     @:_xml_map = {
         @:@(currModel.InitializeXmlProperty())
@@ -141,11 +96,11 @@ else
 <text>
 @EmptyLine
     _subtype_map = {
-    '@currModel.PolymorphicDiscriminatorProperty.Name': {@currModel.SubModelTypeList}
+        '@currModel.PolymorphicDiscriminatorProperty.Name': {@currModel.SubModelTypeList}
     }
 </text>
 }
-@foreach (var property in currModel.Properties)
+@foreach(var property in currModel.Properties)
 {
     if (property.IsConstant)
     {
@@ -154,11 +109,11 @@ else
     }
 }
 @if (currModel.NeedsConstructor)
-{
+{ 
 @EmptyLine
 @if (Python3Mode)
 {
-    @:def __init__(self@(currModel.ModelParameterDeclaration())) -> None:
+    @:def __init__(self@(currModel.ModelParameterDeclaration())) -> None: 
     if (currModel.HasParent)
     {
         @:super(@(currModel.Name), self).__init__(@(currModel.SuperParameterDeclaration()))
@@ -166,7 +121,7 @@ else
     else
     {
         @:super(@(currModel.Name), self).__init__(**kwargs)
-    }
+    }    
 }
 else
 {
@@ -182,8 +137,8 @@ else
             {
         @:@(currModel.InitializeProperty("self", propertyList[i], !Python3Mode))
             }
-        }
-    }
+	    }
+	}
     if (currModel.NeedsPolymorphicConverter)
     {
         @:self.@currModel.PolymorphicDiscriminatorProperty.Name = '@currModel.SerializedName'
@@ -205,5 +160,4 @@ else
         @:super(@(currModel.ExceptionTypeDefinitionName), self).__init__(deserialize, response, '@(currModel.Name)', *args)
 }
 </text>
-} 
-
+}

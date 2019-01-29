@@ -45,6 +45,7 @@ class ErrorException(HttpOperationError):
     def __init__(self, deserialize, response, *args):
 
         super(ErrorException, self).__init__(deserialize, response, 'Error', *args)
+from msrest.serialization import Model
 
 
 class Slide(Model):
@@ -72,6 +73,7 @@ class Slide(Model):
         self.type = type
         self.title = title
         self.items = items
+from msrest.serialization import Model
 
 
 class Slideshow(Model):
@@ -103,6 +105,7 @@ class Slideshow(Model):
         self.date_property = date_property
         self.author = author
         self.slides = slides
+from msrest.serialization import Model
 
 
 class AppleBarrel(Model):
@@ -125,6 +128,7 @@ class AppleBarrel(Model):
         super(AppleBarrel, self).__init__(**kwargs)
         self.good_apples = good_apples
         self.bad_apples = bad_apples
+from msrest.serialization import Model
 
 
 class Banana(Model):
@@ -153,6 +157,7 @@ class Banana(Model):
         self.name = name
         self.flavor = flavor
         self.expiration = expiration
+from msrest.serialization import Model
 
 
 class ContainerProperties(Model):
@@ -199,6 +204,7 @@ class ContainerProperties(Model):
         self.lease_state = lease_state
         self.lease_duration = lease_duration
         self.public_access = public_access
+from msrest.serialization import Model
 
 
 class Container(Model):
@@ -232,6 +238,7 @@ class Container(Model):
         self.name = name
         self.properties = properties
         self.metadata = metadata
+from msrest.serialization import Model
 
 
 class ListContainersResponse(Model):
@@ -280,6 +287,7 @@ class ListContainersResponse(Model):
         self.max_results = max_results
         self.containers = containers
         self.next_marker = next_marker
+from msrest.serialization import Model
 
 
 class CorsRule(Model):
@@ -339,6 +347,7 @@ class CorsRule(Model):
         self.allowed_headers = allowed_headers
         self.exposed_headers = exposed_headers
         self.max_age_in_seconds = max_age_in_seconds
+from msrest.serialization import Model
 
 
 class BlobProperties(Model):
@@ -477,6 +486,7 @@ class BlobProperties(Model):
         self.access_tier = access_tier
         self.access_tier_inferred = access_tier_inferred
         self.archive_status = archive_status
+from msrest.serialization import Model
 
 
 class Blob(Model):
@@ -521,6 +531,7 @@ class Blob(Model):
         self.snapshot = snapshot
         self.properties = properties
         self.metadata = metadata
+from msrest.serialization import Model
 
 
 class RetentionPolicy(Model):
@@ -553,6 +564,7 @@ class RetentionPolicy(Model):
         super(RetentionPolicy, self).__init__(**kwargs)
         self.enabled = enabled
         self.days = days
+from msrest.serialization import Model
 
 
 class Logging(Model):
@@ -600,6 +612,7 @@ class Logging(Model):
         self.read = read
         self.write = write
         self.retention_policy = retention_policy
+from msrest.serialization import Model
 
 
 class Metrics(Model):
@@ -638,6 +651,7 @@ class Metrics(Model):
         self.enabled = enabled
         self.include_ap_is = include_ap_is
         self.retention_policy = retention_policy
+from msrest.serialization import Model
 
 
 class BlobPrefix(Model):
@@ -662,6 +676,7 @@ class BlobPrefix(Model):
     def __init__(self, *, name: str, **kwargs) -> None:
         super(BlobPrefix, self).__init__(**kwargs)
         self.name = name
+from msrest.serialization import Model
 
 
 class Blobs(Model):
@@ -684,6 +699,7 @@ class Blobs(Model):
         super(Blobs, self).__init__(**kwargs)
         self.blob_prefix = blob_prefix
         self.blob = blob
+from msrest.serialization import Model
 
 
 class ListBlobsResponse(Model):
@@ -744,6 +760,7 @@ class ListBlobsResponse(Model):
         self.delimiter = delimiter
         self.blobs = blobs
         self.next_marker = next_marker
+from msrest.serialization import Model
 
 
 class AccessPolicy(Model):
@@ -778,6 +795,7 @@ class AccessPolicy(Model):
         self.start = start
         self.expiry = expiry
         self.permission = permission
+from msrest.serialization import Model
 
 
 class SignedIdentifier(Model):
@@ -808,6 +826,7 @@ class SignedIdentifier(Model):
         super(SignedIdentifier, self).__init__(**kwargs)
         self.id = id
         self.access_policy = access_policy
+from msrest.serialization import Model
 
 
 class StorageServiceProperties(Model):
@@ -851,6 +870,7 @@ class StorageServiceProperties(Model):
         self.cors = cors
         self.default_service_version = default_service_version
         self.delete_retention_policy = delete_retention_policy
+from msrest.serialization import Model
 
 
 class ComplexTypeNoMeta(Model):
@@ -869,6 +889,7 @@ class ComplexTypeNoMeta(Model):
     def __init__(self, *, id: str=None, **kwargs) -> None:
         super(ComplexTypeNoMeta, self).__init__(**kwargs)
         self.id = id
+from msrest.serialization import Model
 
 
 class ComplexTypeWithMeta(Model):
@@ -888,6 +909,7 @@ class ComplexTypeWithMeta(Model):
     def __init__(self, *, id: str=None, **kwargs) -> None:
         super(ComplexTypeWithMeta, self).__init__(**kwargs)
         self.id = id
+from msrest.serialization import Model
 
 
 class RootWithRefAndNoMeta(Model):
@@ -910,6 +932,7 @@ class RootWithRefAndNoMeta(Model):
         super(RootWithRefAndNoMeta, self).__init__(**kwargs)
         self.ref_to_model = ref_to_model
         self.something = something
+from msrest.serialization import Model
 
 
 class RootWithRefAndMeta(Model):

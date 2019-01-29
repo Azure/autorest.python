@@ -10,7 +10,6 @@
 # --------------------------------------------------------------------------
 
 from msrest.serialization import Model
-from msrest.exceptions import HttpOperationError
 
 
 class SampleResourceGroup(Model):
@@ -31,6 +30,8 @@ class SampleResourceGroup(Model):
         super(SampleResourceGroup, self).__init__(**kwargs)
         self.name = kwargs.get('name', None)
         self.location = kwargs.get('location', None)
+from msrest.serialization import Model
+from msrest.exceptions import HttpOperationError
 
 
 class Error(Model):
@@ -63,6 +64,7 @@ class ErrorException(HttpOperationError):
     def __init__(self, deserialize, response, *args):
 
         super(ErrorException, self).__init__(deserialize, response, 'Error', *args)
+from msrest.serialization import Model
 
 
 class CloudError(Model):

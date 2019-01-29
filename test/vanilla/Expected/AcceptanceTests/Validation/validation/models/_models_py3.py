@@ -10,8 +10,6 @@
 # --------------------------------------------------------------------------
 
 from msrest.serialization import Model
-from .constant_product import ConstantProduct
-from msrest.exceptions import HttpOperationError
 
 
 class ChildProduct(Model):
@@ -43,6 +41,7 @@ class ChildProduct(Model):
     def __init__(self, *, count: int=None, **kwargs) -> None:
         super(ChildProduct, self).__init__(**kwargs)
         self.count = count
+from msrest.serialization import Model
 
 
 class ConstantProduct(Model):
@@ -74,6 +73,7 @@ class ConstantProduct(Model):
     const_property = "constant"
 
     const_property2 = "constant2"
+from msrest.serialization import Model
 
 
 class Product(Model):
@@ -138,6 +138,8 @@ class Product(Model):
         self.image = image
         self.child = child
         self.const_string_as_enum = const_string_as_enum
+from msrest.serialization import Model
+from msrest.exceptions import HttpOperationError
 
 
 class Error(Model):

@@ -10,27 +10,27 @@
 # --------------------------------------------------------------------------
 
 try:
-    from .error_py3 import Error, ErrorException
-    from .resource_py3 import Resource
-    from .flattened_product_py3 import FlattenedProduct
-    from .resource_collection_py3 import ResourceCollection
-    from .base_product_py3 import BaseProduct
-    from .simple_product_py3 import SimpleProduct
-    from .generic_url_py3 import GenericUrl
-    from .wrapped_product_py3 import WrappedProduct
-    from .product_wrapper_py3 import ProductWrapper
-    from .flatten_parameter_group_py3 import FlattenParameterGroup
+    from ._models_py3 import Error, ErrorException
+    from ._models_py3 import Resource
+    from ._models_py3 import FlattenedProduct
+    from ._models_py3 import ResourceCollection
+    from ._models_py3 import BaseProduct
+    from ._models_py3 import SimpleProduct
+    from ._models_py3 import GenericUrl
+    from ._models_py3 import WrappedProduct
+    from ._models_py3 import ProductWrapper
+    from ._models_py3 import FlattenParameterGroup
 except (SyntaxError, ImportError):
-    from .error import Error, ErrorException
-    from .resource import Resource
-    from .flattened_product import FlattenedProduct
-    from .resource_collection import ResourceCollection
-    from .base_product import BaseProduct
-    from .simple_product import SimpleProduct
-    from .generic_url import GenericUrl
-    from .wrapped_product import WrappedProduct
-    from .product_wrapper import ProductWrapper
-    from .flatten_parameter_group import FlattenParameterGroup
+    from ._models import Error, ErrorException
+    from ._models import Resource
+    from ._models import FlattenedProduct
+    from ._models import ResourceCollection
+    from ._models import BaseProduct
+    from ._models import SimpleProduct
+    from ._models import GenericUrl
+    from ._models import WrappedProduct
+    from ._models import ProductWrapper
+    from ._models import FlattenParameterGroup
 
 __all__ = [
     'Error', 'ErrorException',

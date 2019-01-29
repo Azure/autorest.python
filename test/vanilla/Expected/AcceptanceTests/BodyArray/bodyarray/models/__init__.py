@@ -10,11 +10,11 @@
 # --------------------------------------------------------------------------
 
 try:
-    from .product_py3 import Product
-    from .error_py3 import Error, ErrorException
+    from ._models_py3 import Product
+    from ._models_py3 import Error, ErrorException
 except (SyntaxError, ImportError):
-    from .product import Product
-    from .error import Error, ErrorException
+    from ._models import Product
+    from ._models import Error, ErrorException
 from .auto_rest_swagger_bat_array_service_enums import (
     FooEnum,
 )

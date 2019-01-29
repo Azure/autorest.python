@@ -10,12 +10,12 @@
 try:
 @foreach (var modelType in Model.ModelTypes)
   {
-@:    from .@(modelType.Name.ToPythonCase())_py3 import @modelType.Name@Model.GetExceptionNameIfExist(modelType, false)
+@:    from ._models_py3 import @modelType.Name@Model.GetExceptionNameIfExist(modelType, false)
   }
 except (SyntaxError, ImportError):
 @foreach (var modelType in Model.ModelTypes)
   {
-@:    from .@(modelType.Name.ToPythonCase()) import @modelType.Name@Model.GetExceptionNameIfExist(modelType, false)
+@:    from ._models import @modelType.Name@Model.GetExceptionNameIfExist(modelType, false)
   }
 @if (Model.EnumTypes.Any())
   {

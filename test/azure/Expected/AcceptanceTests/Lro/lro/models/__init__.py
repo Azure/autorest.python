@@ -10,21 +10,21 @@
 # --------------------------------------------------------------------------
 
 try:
-    from .resource_py3 import Resource
-    from .sku_py3 import Sku
-    from .product_py3 import Product
-    from .sub_product_py3 import SubProduct
-    from .sub_resource_py3 import SubResource
-    from .operation_result_error_py3 import OperationResultError
-    from .operation_result_py3 import OperationResult
+    from ._models_py3 import Resource
+    from ._models_py3 import Sku
+    from ._models_py3 import Product
+    from ._models_py3 import SubProduct
+    from ._models_py3 import SubResource
+    from ._models_py3 import OperationResultError
+    from ._models_py3 import OperationResult
 except (SyntaxError, ImportError):
-    from .resource import Resource
-    from .sku import Sku
-    from .product import Product
-    from .sub_product import SubProduct
-    from .sub_resource import SubResource
-    from .operation_result_error import OperationResultError
-    from .operation_result import OperationResult
+    from ._models import Resource
+    from ._models import Sku
+    from ._models import Product
+    from ._models import SubProduct
+    from ._models import SubResource
+    from ._models import OperationResultError
+    from ._models import OperationResult
 
 __all__ = [
     'Resource',

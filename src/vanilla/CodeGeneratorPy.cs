@@ -101,6 +101,7 @@ namespace AutoRest.Python
                         current = parent;
                     }
                     generate_model_list.AddRange(ancestors);
+                    generated_models.Add(current);
                 }
                 var modelInitTemplate = new ModelInitTemplate { Model = codeModel };
                 await Write(modelInitTemplate, Path.Combine(folderName, "models", "__init__.py"));

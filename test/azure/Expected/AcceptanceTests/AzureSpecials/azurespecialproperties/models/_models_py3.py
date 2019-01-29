@@ -57,6 +57,7 @@ class ErrorException(HttpOperationError):
     def __init__(self, deserialize, response, *args):
 
         super(ErrorException, self).__init__(deserialize, response, 'Error', *args)
+from msrest.serialization import Model
 
 
 class OdataFilter(Model):
@@ -77,6 +78,7 @@ class OdataFilter(Model):
         super(OdataFilter, self).__init__(**kwargs)
         self.id = id
         self.name = name
+from msrest.serialization import Model
 
 
 class HeaderCustomNamedRequestIdParamGroupingParameters(Model):
@@ -99,6 +101,7 @@ class HeaderCustomNamedRequestIdParamGroupingParameters(Model):
     def __init__(self, *, foo_client_request_id: str, **kwargs) -> None:
         super(HeaderCustomNamedRequestIdParamGroupingParameters, self).__init__(**kwargs)
         self.foo_client_request_id = foo_client_request_id
+from msrest.serialization import Model
 
 
 class CloudError(Model):

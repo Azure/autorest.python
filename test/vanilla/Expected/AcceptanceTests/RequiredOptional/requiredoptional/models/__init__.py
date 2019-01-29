@@ -10,27 +10,27 @@
 # --------------------------------------------------------------------------
 
 try:
-    from .error_py3 import Error, ErrorException
-    from .int_wrapper_py3 import IntWrapper
-    from .int_optional_wrapper_py3 import IntOptionalWrapper
-    from .string_wrapper_py3 import StringWrapper
-    from .string_optional_wrapper_py3 import StringOptionalWrapper
-    from .array_wrapper_py3 import ArrayWrapper
-    from .array_optional_wrapper_py3 import ArrayOptionalWrapper
-    from .product_py3 import Product
-    from .class_wrapper_py3 import ClassWrapper
-    from .class_optional_wrapper_py3 import ClassOptionalWrapper
+    from ._models_py3 import Error, ErrorException
+    from ._models_py3 import IntWrapper
+    from ._models_py3 import IntOptionalWrapper
+    from ._models_py3 import StringWrapper
+    from ._models_py3 import StringOptionalWrapper
+    from ._models_py3 import ArrayWrapper
+    from ._models_py3 import ArrayOptionalWrapper
+    from ._models_py3 import Product
+    from ._models_py3 import ClassWrapper
+    from ._models_py3 import ClassOptionalWrapper
 except (SyntaxError, ImportError):
-    from .error import Error, ErrorException
-    from .int_wrapper import IntWrapper
-    from .int_optional_wrapper import IntOptionalWrapper
-    from .string_wrapper import StringWrapper
-    from .string_optional_wrapper import StringOptionalWrapper
-    from .array_wrapper import ArrayWrapper
-    from .array_optional_wrapper import ArrayOptionalWrapper
-    from .product import Product
-    from .class_wrapper import ClassWrapper
-    from .class_optional_wrapper import ClassOptionalWrapper
+    from ._models import Error, ErrorException
+    from ._models import IntWrapper
+    from ._models import IntOptionalWrapper
+    from ._models import StringWrapper
+    from ._models import StringOptionalWrapper
+    from ._models import ArrayWrapper
+    from ._models import ArrayOptionalWrapper
+    from ._models import Product
+    from ._models import ClassWrapper
+    from ._models import ClassOptionalWrapper
 
 __all__ = [
     'Error', 'ErrorException',

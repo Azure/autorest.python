@@ -10,7 +10,6 @@
 # --------------------------------------------------------------------------
 
 from msrest.serialization import Model
-from msrest.exceptions import HttpOperationError
 
 
 class Product(Model):
@@ -31,6 +30,8 @@ class Product(Model):
         super(Product, self).__init__(**kwargs)
         self.integer = integer
         self.string = string
+from msrest.serialization import Model
+from msrest.exceptions import HttpOperationError
 
 
 class Error(Model):

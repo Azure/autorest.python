@@ -11,7 +11,6 @@
 
 from msrest.serialization import Model
 from msrest.exceptions import HttpOperationError
-from .a import A
 
 
 class Error(Model):
@@ -44,6 +43,8 @@ class ErrorException(HttpOperationError):
     def __init__(self, deserialize, response, *args):
 
         super(ErrorException, self).__init__(deserialize, response, 'Error', *args)
+from msrest.serialization import Model
+from msrest.exceptions import HttpOperationError
 
 
 class A(Model):
@@ -72,34 +73,7 @@ class AException(HttpOperationError):
     def __init__(self, deserialize, response, *args):
 
         super(AException, self).__init__(deserialize, response, 'A', *args)
-
-
-class A(Model):
-    """A.
-
-    :param status_code:
-    :type status_code: str
-    """
-
-    _attribute_map = {
-        'status_code': {'key': 'statusCode', 'type': 'str'},
-    }
-
-    def __init__(self, **kwargs):
-        super(A, self).__init__(**kwargs)
-        self.status_code = kwargs.get('status_code', None)
-
-
-class AException(HttpOperationError):
-    """Server responsed with exception of type: 'A'.
-
-    :param deserialize: A deserializer
-    :param response: Server response to be deserialized.
-    """
-
-    def __init__(self, deserialize, response, *args):
-
-        super(AException, self).__init__(deserialize, response, 'A', *args)
+from msrest.serialization import Model
 
 
 class B(A):
@@ -119,6 +93,7 @@ class B(A):
     def __init__(self, **kwargs):
         super(B, self).__init__(**kwargs)
         self.text_status_code = kwargs.get('text_status_code', None)
+from msrest.serialization import Model
 
 
 class C(Model):
@@ -135,6 +110,7 @@ class C(Model):
     def __init__(self, **kwargs):
         super(C, self).__init__(**kwargs)
         self.http_code = kwargs.get('http_code', None)
+from msrest.serialization import Model
 
 
 class D(Model):

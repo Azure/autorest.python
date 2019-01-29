@@ -11,8 +11,6 @@
 
 from msrest.serialization import Model
 from msrest.exceptions import HttpOperationError
-from .resource import Resource
-from .sub_resource import SubResource
 
 
 class CloudError(Model):
@@ -45,6 +43,7 @@ class CloudErrorException(HttpOperationError):
     def __init__(self, deserialize, response, *args):
 
         super(CloudErrorException, self).__init__(deserialize, response, 'CloudError', *args)
+from msrest.serialization import Model
 
 
 class Resource(Model):
@@ -86,6 +85,7 @@ class Resource(Model):
         self.tags = kwargs.get('tags', None)
         self.location = kwargs.get('location', None)
         self.name = None
+from msrest.serialization import Model
 
 
 class Sku(Model):
@@ -106,47 +106,7 @@ class Sku(Model):
         super(Sku, self).__init__(**kwargs)
         self.name = kwargs.get('name', None)
         self.id = kwargs.get('id', None)
-
-
-class Resource(Model):
-    """Resource.
-
-    Variables are only populated by the server, and will be ignored when
-    sending a request.
-
-    :ivar id: Resource Id
-    :vartype id: str
-    :ivar type: Resource Type
-    :vartype type: str
-    :param tags:
-    :type tags: dict[str, str]
-    :param location: Resource Location
-    :type location: str
-    :ivar name: Resource Name
-    :vartype name: str
-    """
-
-    _validation = {
-        'id': {'readonly': True},
-        'type': {'readonly': True},
-        'name': {'readonly': True},
-    }
-
-    _attribute_map = {
-        'id': {'key': 'id', 'type': 'str'},
-        'type': {'key': 'type', 'type': 'str'},
-        'tags': {'key': 'tags', 'type': '{str}'},
-        'location': {'key': 'location', 'type': 'str'},
-        'name': {'key': 'name', 'type': 'str'},
-    }
-
-    def __init__(self, **kwargs):
-        super(Resource, self).__init__(**kwargs)
-        self.id = None
-        self.type = None
-        self.tags = kwargs.get('tags', None)
-        self.location = kwargs.get('location', None)
-        self.name = None
+from msrest.serialization import Model
 
 
 class Product(Resource):
@@ -194,6 +154,7 @@ class Product(Resource):
         super(Product, self).__init__(**kwargs)
         self.provisioning_state = kwargs.get('provisioning_state', None)
         self.provisioning_state_values = None
+from msrest.serialization import Model
 
 
 class SubResource(Model):
@@ -217,6 +178,7 @@ class SubResource(Model):
     def __init__(self, **kwargs):
         super(SubResource, self).__init__(**kwargs)
         self.id = None
+from msrest.serialization import Model
 
 
 class SubProduct(SubResource):
@@ -250,29 +212,7 @@ class SubProduct(SubResource):
         super(SubProduct, self).__init__(**kwargs)
         self.provisioning_state = kwargs.get('provisioning_state', None)
         self.provisioning_state_values = None
-
-
-class SubResource(Model):
-    """SubResource.
-
-    Variables are only populated by the server, and will be ignored when
-    sending a request.
-
-    :ivar id: Sub Resource Id
-    :vartype id: str
-    """
-
-    _validation = {
-        'id': {'readonly': True},
-    }
-
-    _attribute_map = {
-        'id': {'key': 'id', 'type': 'str'},
-    }
-
-    def __init__(self, **kwargs):
-        super(SubResource, self).__init__(**kwargs)
-        self.id = None
+from msrest.serialization import Model
 
 
 class OperationResultError(Model):
@@ -293,6 +233,7 @@ class OperationResultError(Model):
         super(OperationResultError, self).__init__(**kwargs)
         self.code = kwargs.get('code', None)
         self.message = kwargs.get('message', None)
+from msrest.serialization import Model
 
 
 class OperationResult(Model):

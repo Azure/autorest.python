@@ -77,6 +77,9 @@ namespace AutoRest.Python.Azure
                 // await Write(modelTemplate, Path.Combine(folderName, "models", "_models.py"));
                 // modelTemplate.Python3Mode = true;
                 // await Write(modelTemplate, Path.Combine(folderName, "models", "_models_py3.py"));
+                
+                await Write(modelInitTemplate, Path.Combine(folderName, "models", "__init__.py"));
+
                 HashSet<CompositeTypePy> generated_models = new HashSet<CompositeTypePy>();
                 List<CompositeTypePy> generate_model_list = new List<CompositeTypePy>();
                 foreach(CompositeTypePy model in codeModel.ModelTemplateModels) {
@@ -95,9 +98,9 @@ namespace AutoRest.Python.Azure
                         generated_models.Add(current);
                         current = parent;
                     }
+                    generated_models.Add(current);
                     generate_model_list.AddRange(ancestors);
                 }
-                await Write(modelInitTemplate, Path.Combine(folderName, "models", "__init__.py"));
                 var modelTemplate = new ModelTemplate { Model = generate_model_list };
                 await Write(modelTemplate, Path.Combine(folderName, "models", "_models.py"));
                 modelTemplate.Python3Mode = true;

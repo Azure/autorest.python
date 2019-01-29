@@ -10,9 +10,9 @@
 # --------------------------------------------------------------------------
 
 try:
-    from .error_py3 import Error, ErrorException
+    from ._models_py3 import Error, ErrorException
 except (SyntaxError, ImportError):
-    from .error import Error, ErrorException
+    from ._models import Error, ErrorException
 from .auto_rest_url_test_service_enums import (
     UriColor,
 )

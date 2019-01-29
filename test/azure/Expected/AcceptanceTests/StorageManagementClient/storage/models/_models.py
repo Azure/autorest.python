@@ -10,7 +10,6 @@
 # --------------------------------------------------------------------------
 
 from msrest.serialization import Model
-from .resource import Resource
 
 
 class StorageAccountCheckNameAvailabilityParameters(Model):
@@ -37,6 +36,7 @@ class StorageAccountCheckNameAvailabilityParameters(Model):
         super(StorageAccountCheckNameAvailabilityParameters, self).__init__(**kwargs)
         self.name = kwargs.get('name', None)
         self.type = kwargs.get('type', "Microsoft.Storage/storageAccounts")
+from msrest.serialization import Model
 
 
 class CheckNameAvailabilityResult(Model):
@@ -66,6 +66,7 @@ class CheckNameAvailabilityResult(Model):
         self.name_available = kwargs.get('name_available', None)
         self.reason = kwargs.get('reason', None)
         self.message = kwargs.get('message', None)
+from msrest.serialization import Model
 
 
 class Resource(Model):
@@ -110,6 +111,7 @@ class Resource(Model):
         self.type = None
         self.location = kwargs.get('location', None)
         self.tags = kwargs.get('tags', None)
+from msrest.serialization import Model
 
 
 class StorageAccountCreateParameters(Resource):
@@ -155,6 +157,7 @@ class StorageAccountCreateParameters(Resource):
     def __init__(self, **kwargs):
         super(StorageAccountCreateParameters, self).__init__(**kwargs)
         self.account_type = kwargs.get('account_type', None)
+from msrest.serialization import Model
 
 
 class Bar(Model):
@@ -172,6 +175,7 @@ class Bar(Model):
     def __init__(self, **kwargs):
         super(Bar, self).__init__(**kwargs)
         self.recursive_point = kwargs.get('recursive_point', None)
+from msrest.serialization import Model
 
 
 class Foo(Model):
@@ -189,6 +193,7 @@ class Foo(Model):
     def __init__(self, **kwargs):
         super(Foo, self).__init__(**kwargs)
         self.bar_point = kwargs.get('bar_point', None)
+from msrest.serialization import Model
 
 
 class Endpoints(Model):
@@ -222,6 +227,7 @@ class Endpoints(Model):
         self.table = kwargs.get('table', None)
         self.dummy_end_point = kwargs.get('dummy_end_point', None)
         self.foo_point = kwargs.get('foo_point', None)
+from msrest.serialization import Model
 
 
 class CustomDomain(Model):
@@ -245,50 +251,7 @@ class CustomDomain(Model):
         super(CustomDomain, self).__init__(**kwargs)
         self.name = kwargs.get('name', None)
         self.use_sub_domain = kwargs.get('use_sub_domain', None)
-
-
-class Resource(Model):
-    """Resource.
-
-    Variables are only populated by the server, and will be ignored when
-    sending a request.
-
-    All required parameters must be populated in order to send to Azure.
-
-    :ivar id: Resource Id
-    :vartype id: str
-    :ivar name: Resource name
-    :vartype name: str
-    :ivar type: Resource type
-    :vartype type: str
-    :param location: Required. Resource location
-    :type location: str
-    :param tags: Resource tags
-    :type tags: dict[str, str]
-    """
-
-    _validation = {
-        'id': {'readonly': True},
-        'name': {'readonly': True},
-        'type': {'readonly': True},
-        'location': {'required': True},
-    }
-
-    _attribute_map = {
-        'id': {'key': 'id', 'type': 'str'},
-        'name': {'key': 'name', 'type': 'str'},
-        'type': {'key': 'type', 'type': 'str'},
-        'location': {'key': 'location', 'type': 'str'},
-        'tags': {'key': 'tags', 'type': '{str}'},
-    }
-
-    def __init__(self, **kwargs):
-        super(Resource, self).__init__(**kwargs)
-        self.id = None
-        self.name = None
-        self.type = None
-        self.location = kwargs.get('location', None)
-        self.tags = kwargs.get('tags', None)
+from msrest.serialization import Model
 
 
 class StorageAccount(Resource):
@@ -395,6 +358,7 @@ class StorageAccount(Resource):
         self.creation_time = kwargs.get('creation_time', None)
         self.custom_domain = kwargs.get('custom_domain', None)
         self.secondary_endpoints = kwargs.get('secondary_endpoints', None)
+from msrest.serialization import Model
 
 
 class StorageAccountKeys(Model):
@@ -415,50 +379,7 @@ class StorageAccountKeys(Model):
         super(StorageAccountKeys, self).__init__(**kwargs)
         self.key1 = kwargs.get('key1', None)
         self.key2 = kwargs.get('key2', None)
-
-
-class Resource(Model):
-    """Resource.
-
-    Variables are only populated by the server, and will be ignored when
-    sending a request.
-
-    All required parameters must be populated in order to send to Azure.
-
-    :ivar id: Resource Id
-    :vartype id: str
-    :ivar name: Resource name
-    :vartype name: str
-    :ivar type: Resource type
-    :vartype type: str
-    :param location: Required. Resource location
-    :type location: str
-    :param tags: Resource tags
-    :type tags: dict[str, str]
-    """
-
-    _validation = {
-        'id': {'readonly': True},
-        'name': {'readonly': True},
-        'type': {'readonly': True},
-        'location': {'required': True},
-    }
-
-    _attribute_map = {
-        'id': {'key': 'id', 'type': 'str'},
-        'name': {'key': 'name', 'type': 'str'},
-        'type': {'key': 'type', 'type': 'str'},
-        'location': {'key': 'location', 'type': 'str'},
-        'tags': {'key': 'tags', 'type': '{str}'},
-    }
-
-    def __init__(self, **kwargs):
-        super(Resource, self).__init__(**kwargs)
-        self.id = None
-        self.name = None
-        self.type = None
-        self.location = kwargs.get('location', None)
-        self.tags = kwargs.get('tags', None)
+from msrest.serialization import Model
 
 
 class StorageAccountUpdateParameters(Resource):
@@ -513,6 +434,7 @@ class StorageAccountUpdateParameters(Resource):
         super(StorageAccountUpdateParameters, self).__init__(**kwargs)
         self.account_type = kwargs.get('account_type', None)
         self.custom_domain = kwargs.get('custom_domain', None)
+from msrest.serialization import Model
 
 
 class StorageAccountRegenerateKeyParameters(Model):
@@ -529,6 +451,7 @@ class StorageAccountRegenerateKeyParameters(Model):
     def __init__(self, **kwargs):
         super(StorageAccountRegenerateKeyParameters, self).__init__(**kwargs)
         self.key_name = kwargs.get('key_name', None)
+from msrest.serialization import Model
 
 
 class UsageName(Model):
@@ -550,6 +473,7 @@ class UsageName(Model):
         super(UsageName, self).__init__(**kwargs)
         self.value = kwargs.get('value', None)
         self.localized_value = kwargs.get('localized_value', None)
+from msrest.serialization import Model
 
 
 class Usage(Model):
@@ -582,6 +506,7 @@ class Usage(Model):
         self.current_value = kwargs.get('current_value', None)
         self.limit = kwargs.get('limit', None)
         self.name = kwargs.get('name', None)
+from msrest.serialization import Model
 
 
 class UsageListResult(Model):
@@ -598,50 +523,7 @@ class UsageListResult(Model):
     def __init__(self, **kwargs):
         super(UsageListResult, self).__init__(**kwargs)
         self.value = kwargs.get('value', None)
-
-
-class Resource(Model):
-    """Resource.
-
-    Variables are only populated by the server, and will be ignored when
-    sending a request.
-
-    All required parameters must be populated in order to send to Azure.
-
-    :ivar id: Resource Id
-    :vartype id: str
-    :ivar name: Resource name
-    :vartype name: str
-    :ivar type: Resource type
-    :vartype type: str
-    :param location: Required. Resource location
-    :type location: str
-    :param tags: Resource tags
-    :type tags: dict[str, str]
-    """
-
-    _validation = {
-        'id': {'readonly': True},
-        'name': {'readonly': True},
-        'type': {'readonly': True},
-        'location': {'required': True},
-    }
-
-    _attribute_map = {
-        'id': {'key': 'id', 'type': 'str'},
-        'name': {'key': 'name', 'type': 'str'},
-        'type': {'key': 'type', 'type': 'str'},
-        'location': {'key': 'location', 'type': 'str'},
-        'tags': {'key': 'tags', 'type': '{str}'},
-    }
-
-    def __init__(self, **kwargs):
-        super(Resource, self).__init__(**kwargs)
-        self.id = None
-        self.name = None
-        self.type = None
-        self.location = kwargs.get('location', None)
-        self.tags = kwargs.get('tags', None)
+from msrest.serialization import Model
 
 
 class SubResource(Model):
@@ -658,6 +540,7 @@ class SubResource(Model):
     def __init__(self, **kwargs):
         super(SubResource, self).__init__(**kwargs)
         self.id = kwargs.get('id', None)
+from msrest.serialization import Model
 
 
 class CloudError(Model):

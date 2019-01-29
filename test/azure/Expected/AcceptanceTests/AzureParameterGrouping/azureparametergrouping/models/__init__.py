@@ -10,17 +10,17 @@
 # --------------------------------------------------------------------------
 
 try:
-    from .error_py3 import Error, ErrorException
-    from .parameter_grouping_post_required_parameters_py3 import ParameterGroupingPostRequiredParameters
-    from .parameter_grouping_post_optional_parameters_py3 import ParameterGroupingPostOptionalParameters
-    from .first_parameter_group_py3 import FirstParameterGroup
-    from .parameter_grouping_post_multi_param_groups_second_param_group_py3 import ParameterGroupingPostMultiParamGroupsSecondParamGroup
+    from ._models_py3 import Error, ErrorException
+    from ._models_py3 import ParameterGroupingPostRequiredParameters
+    from ._models_py3 import ParameterGroupingPostOptionalParameters
+    from ._models_py3 import FirstParameterGroup
+    from ._models_py3 import ParameterGroupingPostMultiParamGroupsSecondParamGroup
 except (SyntaxError, ImportError):
-    from .error import Error, ErrorException
-    from .parameter_grouping_post_required_parameters import ParameterGroupingPostRequiredParameters
-    from .parameter_grouping_post_optional_parameters import ParameterGroupingPostOptionalParameters
-    from .first_parameter_group import FirstParameterGroup
-    from .parameter_grouping_post_multi_param_groups_second_param_group import ParameterGroupingPostMultiParamGroupsSecondParamGroup
+    from ._models import Error, ErrorException
+    from ._models import ParameterGroupingPostRequiredParameters
+    from ._models import ParameterGroupingPostOptionalParameters
+    from ._models import FirstParameterGroup
+    from ._models import ParameterGroupingPostMultiParamGroupsSecondParamGroup
 
 __all__ = [
     'Error', 'ErrorException',

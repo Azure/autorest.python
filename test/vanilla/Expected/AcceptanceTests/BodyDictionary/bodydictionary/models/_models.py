@@ -10,7 +10,6 @@
 # --------------------------------------------------------------------------
 
 from msrest.serialization import Model
-from msrest.exceptions import HttpOperationError
 
 
 class Widget(Model):
@@ -31,6 +30,8 @@ class Widget(Model):
         super(Widget, self).__init__(**kwargs)
         self.integer = kwargs.get('integer', None)
         self.string = kwargs.get('string', None)
+from msrest.serialization import Model
+from msrest.exceptions import HttpOperationError
 
 
 class Error(Model):
