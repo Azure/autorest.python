@@ -10,15 +10,26 @@
 @Header("# ").TrimMultilineHeader()
 # --------------------------------------------------------------------------
 @EmptyLine
+from msrest.serialization import Model
 @foreach(var currModel in Model) {
 <text>
-from msrest.serialization import Model
 @if (currModel.IsException)
 {
 @:from msrest.exceptions import HttpOperationError
+break;
+}
+</text>
 }
 @EmptyLine
 @EmptyLine
+@{bool first_model = true; }
+@foreach(var currModel in Model){
+<text>
+@if (!first_model) {
+@EmptyLine
+@EmptyLine
+}
+@{first_model = false;}
 @if (currModel.BaseModelType != null)
 {
 @:class @(currModel.Name)(@currModel.BaseModelType.Name):

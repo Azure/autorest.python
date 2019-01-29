@@ -43,7 +43,6 @@ class ErrorException(HttpOperationError):
     def __init__(self, deserialize, response, *args):
 
         super(ErrorException, self).__init__(deserialize, response, 'Error', *args)
-from msrest.serialization import Model
 
 
 class CloudError(Model):

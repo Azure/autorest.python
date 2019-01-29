@@ -43,7 +43,6 @@ class ErrorException(HttpOperationError):
     def __init__(self, deserialize, response, *args):
 
         super(ErrorException, self).__init__(deserialize, response, 'Error', *args)
-from msrest.serialization import Model
 
 
 class PetAPTrue(Model):
@@ -83,7 +82,6 @@ class PetAPTrue(Model):
         self.id = id
         self.name = name
         self.status = None
-from msrest.serialization import Model
 
 
 class CatAPTrue(PetAPTrue):
@@ -123,7 +121,6 @@ class CatAPTrue(PetAPTrue):
     def __init__(self, *, id: int, additional_properties=None, name: str=None, friendly: bool=None, **kwargs) -> None:
         super(CatAPTrue, self).__init__(additional_properties=additional_properties, id=id, name=name, **kwargs)
         self.friendly = friendly
-from msrest.serialization import Model
 
 
 class PetAPObject(Model):
@@ -163,7 +160,6 @@ class PetAPObject(Model):
         self.id = id
         self.name = name
         self.status = None
-from msrest.serialization import Model
 
 
 class PetAPString(Model):
@@ -203,7 +199,6 @@ class PetAPString(Model):
         self.id = id
         self.name = name
         self.status = None
-from msrest.serialization import Model
 
 
 class PetAPInProperties(Model):
@@ -242,7 +237,6 @@ class PetAPInProperties(Model):
         self.name = name
         self.status = None
         self.additional_properties = additional_properties
-from msrest.serialization import Model
 
 
 class PetAPInPropertiesWithAPString(Model):

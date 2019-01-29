@@ -36,7 +36,6 @@ class StorageAccountCheckNameAvailabilityParameters(Model):
         super(StorageAccountCheckNameAvailabilityParameters, self).__init__(**kwargs)
         self.name = name
         self.type = type
-from msrest.serialization import Model
 
 
 class CheckNameAvailabilityResult(Model):
@@ -66,7 +65,6 @@ class CheckNameAvailabilityResult(Model):
         self.name_available = name_available
         self.reason = reason
         self.message = message
-from msrest.serialization import Model
 
 
 class Resource(Model):
@@ -111,7 +109,6 @@ class Resource(Model):
         self.type = None
         self.location = location
         self.tags = tags
-from msrest.serialization import Model
 
 
 class StorageAccountCreateParameters(Resource):
@@ -157,7 +154,6 @@ class StorageAccountCreateParameters(Resource):
     def __init__(self, *, location: str, tags=None, account_type=None, **kwargs) -> None:
         super(StorageAccountCreateParameters, self).__init__(location=location, tags=tags, **kwargs)
         self.account_type = account_type
-from msrest.serialization import Model
 
 
 class Bar(Model):
@@ -175,7 +171,6 @@ class Bar(Model):
     def __init__(self, *, recursive_point=None, **kwargs) -> None:
         super(Bar, self).__init__(**kwargs)
         self.recursive_point = recursive_point
-from msrest.serialization import Model
 
 
 class Foo(Model):
@@ -193,7 +188,6 @@ class Foo(Model):
     def __init__(self, *, bar_point=None, **kwargs) -> None:
         super(Foo, self).__init__(**kwargs)
         self.bar_point = bar_point
-from msrest.serialization import Model
 
 
 class Endpoints(Model):
@@ -227,7 +221,6 @@ class Endpoints(Model):
         self.table = table
         self.dummy_end_point = dummy_end_point
         self.foo_point = foo_point
-from msrest.serialization import Model
 
 
 class CustomDomain(Model):
@@ -251,7 +244,6 @@ class CustomDomain(Model):
         super(CustomDomain, self).__init__(**kwargs)
         self.name = name
         self.use_sub_domain = use_sub_domain
-from msrest.serialization import Model
 
 
 class StorageAccount(Resource):
@@ -358,7 +350,6 @@ class StorageAccount(Resource):
         self.creation_time = creation_time
         self.custom_domain = custom_domain
         self.secondary_endpoints = secondary_endpoints
-from msrest.serialization import Model
 
 
 class StorageAccountKeys(Model):
@@ -379,7 +370,6 @@ class StorageAccountKeys(Model):
         super(StorageAccountKeys, self).__init__(**kwargs)
         self.key1 = key1
         self.key2 = key2
-from msrest.serialization import Model
 
 
 class StorageAccountUpdateParameters(Resource):
@@ -434,7 +424,6 @@ class StorageAccountUpdateParameters(Resource):
         super(StorageAccountUpdateParameters, self).__init__(location=location, tags=tags, **kwargs)
         self.account_type = account_type
         self.custom_domain = custom_domain
-from msrest.serialization import Model
 
 
 class StorageAccountRegenerateKeyParameters(Model):
@@ -451,7 +440,6 @@ class StorageAccountRegenerateKeyParameters(Model):
     def __init__(self, *, key_name=None, **kwargs) -> None:
         super(StorageAccountRegenerateKeyParameters, self).__init__(**kwargs)
         self.key_name = key_name
-from msrest.serialization import Model
 
 
 class UsageName(Model):
@@ -473,7 +461,6 @@ class UsageName(Model):
         super(UsageName, self).__init__(**kwargs)
         self.value = value
         self.localized_value = localized_value
-from msrest.serialization import Model
 
 
 class Usage(Model):
@@ -506,7 +493,6 @@ class Usage(Model):
         self.current_value = current_value
         self.limit = limit
         self.name = name
-from msrest.serialization import Model
 
 
 class UsageListResult(Model):
@@ -523,7 +509,6 @@ class UsageListResult(Model):
     def __init__(self, *, value=None, **kwargs) -> None:
         super(UsageListResult, self).__init__(**kwargs)
         self.value = value
-from msrest.serialization import Model
 
 
 class SubResource(Model):
@@ -540,7 +525,6 @@ class SubResource(Model):
     def __init__(self, *, id: str=None, **kwargs) -> None:
         super(SubResource, self).__init__(**kwargs)
         self.id = id
-from msrest.serialization import Model
 
 
 class CloudError(Model):

@@ -43,7 +43,6 @@ class ErrorException(HttpOperationError):
     def __init__(self, deserialize, response, *args):
 
         super(ErrorException, self).__init__(deserialize, response, 'Error', *args)
-from msrest.serialization import Model
 
 
 class ParameterGroupingPostRequiredParameters(Model):
@@ -79,7 +78,6 @@ class ParameterGroupingPostRequiredParameters(Model):
         self.custom_header = custom_header
         self.query = query
         self.path = path
-from msrest.serialization import Model
 
 
 class ParameterGroupingPostOptionalParameters(Model):
@@ -100,7 +98,6 @@ class ParameterGroupingPostOptionalParameters(Model):
         super(ParameterGroupingPostOptionalParameters, self).__init__(**kwargs)
         self.custom_header = custom_header
         self.query = query
-from msrest.serialization import Model
 
 
 class FirstParameterGroup(Model):
@@ -123,7 +120,6 @@ class FirstParameterGroup(Model):
         super(FirstParameterGroup, self).__init__(**kwargs)
         self.header_one = header_one
         self.query_one = query_one
-from msrest.serialization import Model
 
 
 class ParameterGroupingPostMultiParamGroupsSecondParamGroup(Model):
@@ -144,7 +140,6 @@ class ParameterGroupingPostMultiParamGroupsSecondParamGroup(Model):
         super(ParameterGroupingPostMultiParamGroupsSecondParamGroup, self).__init__(**kwargs)
         self.header_two = header_two
         self.query_two = query_two
-from msrest.serialization import Model
 
 
 class CloudError(Model):

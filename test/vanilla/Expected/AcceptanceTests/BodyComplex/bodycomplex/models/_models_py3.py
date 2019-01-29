@@ -43,7 +43,6 @@ class ErrorException(HttpOperationError):
     def __init__(self, deserialize, response, *args):
 
         super(ErrorException, self).__init__(deserialize, response, 'Error', *args)
-from msrest.serialization import Model
 
 
 class Basic(Model):
@@ -70,7 +69,6 @@ class Basic(Model):
         self.id = id
         self.name = name
         self.color = color
-from msrest.serialization import Model
 
 
 class Pet(Model):
@@ -91,7 +89,6 @@ class Pet(Model):
         super(Pet, self).__init__(**kwargs)
         self.id = id
         self.name = name
-from msrest.serialization import Model
 
 
 class Dog(Pet):
@@ -114,7 +111,6 @@ class Dog(Pet):
     def __init__(self, *, id: int=None, name: str=None, food: str=None, **kwargs) -> None:
         super(Dog, self).__init__(id=id, name=name, **kwargs)
         self.food = food
-from msrest.serialization import Model
 
 
 class Cat(Pet):
@@ -141,7 +137,6 @@ class Cat(Pet):
         super(Cat, self).__init__(id=id, name=name, **kwargs)
         self.color = color
         self.hates = hates
-from msrest.serialization import Model
 
 
 class Siamese(Cat):
@@ -170,7 +165,6 @@ class Siamese(Cat):
     def __init__(self, *, id: int=None, name: str=None, color: str=None, hates=None, breed: str=None, **kwargs) -> None:
         super(Siamese, self).__init__(id=id, name=name, color=color, hates=hates, **kwargs)
         self.breed = breed
-from msrest.serialization import Model
 
 
 class Fish(Model):
@@ -213,7 +207,6 @@ class Fish(Model):
         self.length = length
         self.siblings = siblings
         self.fishtype = None
-from msrest.serialization import Model
 
 
 class Salmon(Fish):
@@ -261,7 +254,6 @@ class Salmon(Fish):
         self.location = location
         self.iswild = iswild
         self.fishtype = 'salmon'
-from msrest.serialization import Model
 
 
 class SmartSalmon(Salmon):
@@ -309,7 +301,6 @@ class SmartSalmon(Salmon):
         self.additional_properties = additional_properties
         self.college_degree = college_degree
         self.fishtype = 'smart_salmon'
-from msrest.serialization import Model
 
 
 class Shark(Fish):
@@ -358,7 +349,6 @@ class Shark(Fish):
         self.age = age
         self.birthday = birthday
         self.fishtype = 'shark'
-from msrest.serialization import Model
 
 
 class Sawshark(Shark):
@@ -402,7 +392,6 @@ class Sawshark(Shark):
         super(Sawshark, self).__init__(species=species, length=length, siblings=siblings, age=age, birthday=birthday, **kwargs)
         self.picture = picture
         self.fishtype = 'sawshark'
-from msrest.serialization import Model
 
 
 class Goblinshark(Shark):
@@ -451,7 +440,6 @@ class Goblinshark(Shark):
         self.jawsize = jawsize
         self.color = color
         self.fishtype = 'goblin'
-from msrest.serialization import Model
 
 
 class Cookiecuttershark(Shark):
@@ -491,7 +479,6 @@ class Cookiecuttershark(Shark):
     def __init__(self, *, length: float, birthday, species: str=None, siblings=None, age: int=None, **kwargs) -> None:
         super(Cookiecuttershark, self).__init__(species=species, length=length, siblings=siblings, age=age, birthday=birthday, **kwargs)
         self.fishtype = 'cookiecuttershark'
-from msrest.serialization import Model
 
 
 class IntWrapper(Model):
@@ -512,7 +499,6 @@ class IntWrapper(Model):
         super(IntWrapper, self).__init__(**kwargs)
         self.field1 = field1
         self.field2 = field2
-from msrest.serialization import Model
 
 
 class LongWrapper(Model):
@@ -533,7 +519,6 @@ class LongWrapper(Model):
         super(LongWrapper, self).__init__(**kwargs)
         self.field1 = field1
         self.field2 = field2
-from msrest.serialization import Model
 
 
 class FloatWrapper(Model):
@@ -554,7 +539,6 @@ class FloatWrapper(Model):
         super(FloatWrapper, self).__init__(**kwargs)
         self.field1 = field1
         self.field2 = field2
-from msrest.serialization import Model
 
 
 class DoubleWrapper(Model):
@@ -578,7 +562,6 @@ class DoubleWrapper(Model):
         super(DoubleWrapper, self).__init__(**kwargs)
         self.field1 = field1
         self.field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose = field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose
-from msrest.serialization import Model
 
 
 class BooleanWrapper(Model):
@@ -599,7 +582,6 @@ class BooleanWrapper(Model):
         super(BooleanWrapper, self).__init__(**kwargs)
         self.field_true = field_true
         self.field_false = field_false
-from msrest.serialization import Model
 
 
 class StringWrapper(Model):
@@ -624,7 +606,6 @@ class StringWrapper(Model):
         self.field = field
         self.empty = empty
         self.null = null
-from msrest.serialization import Model
 
 
 class DateWrapper(Model):
@@ -645,7 +626,6 @@ class DateWrapper(Model):
         super(DateWrapper, self).__init__(**kwargs)
         self.field = field
         self.leap = leap
-from msrest.serialization import Model
 
 
 class DatetimeWrapper(Model):
@@ -666,7 +646,6 @@ class DatetimeWrapper(Model):
         super(DatetimeWrapper, self).__init__(**kwargs)
         self.field = field
         self.now = now
-from msrest.serialization import Model
 
 
 class Datetimerfc1123Wrapper(Model):
@@ -687,7 +666,6 @@ class Datetimerfc1123Wrapper(Model):
         super(Datetimerfc1123Wrapper, self).__init__(**kwargs)
         self.field = field
         self.now = now
-from msrest.serialization import Model
 
 
 class DurationWrapper(Model):
@@ -704,7 +682,6 @@ class DurationWrapper(Model):
     def __init__(self, *, field=None, **kwargs) -> None:
         super(DurationWrapper, self).__init__(**kwargs)
         self.field = field
-from msrest.serialization import Model
 
 
 class ByteWrapper(Model):
@@ -721,7 +698,6 @@ class ByteWrapper(Model):
     def __init__(self, *, field: bytearray=None, **kwargs) -> None:
         super(ByteWrapper, self).__init__(**kwargs)
         self.field = field
-from msrest.serialization import Model
 
 
 class ArrayWrapper(Model):
@@ -738,7 +714,6 @@ class ArrayWrapper(Model):
     def __init__(self, *, array=None, **kwargs) -> None:
         super(ArrayWrapper, self).__init__(**kwargs)
         self.array = array
-from msrest.serialization import Model
 
 
 class DictionaryWrapper(Model):
@@ -755,7 +730,6 @@ class DictionaryWrapper(Model):
     def __init__(self, *, default_program=None, **kwargs) -> None:
         super(DictionaryWrapper, self).__init__(**kwargs)
         self.default_program = default_program
-from msrest.serialization import Model
 
 
 class ReadonlyObj(Model):
@@ -783,7 +757,6 @@ class ReadonlyObj(Model):
         super(ReadonlyObj, self).__init__(**kwargs)
         self.id = None
         self.size = size
-from msrest.serialization import Model
 
 
 class MyBaseType(Model):
@@ -821,7 +794,6 @@ class MyBaseType(Model):
         self.prop_b1 = prop_b1
         self.prop_bh1 = prop_bh1
         self.kind = None
-from msrest.serialization import Model
 
 
 class MyDerivedType(MyBaseType):

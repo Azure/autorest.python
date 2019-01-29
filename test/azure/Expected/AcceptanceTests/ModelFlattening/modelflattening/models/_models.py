@@ -47,7 +47,6 @@ class ErrorException(HttpOperationError):
     def __init__(self, deserialize, response, *args):
 
         super(ErrorException, self).__init__(deserialize, response, 'Error', *args)
-from msrest.serialization import Model
 
 
 class Resource(Model):
@@ -89,7 +88,6 @@ class Resource(Model):
         self.tags = kwargs.get('tags', None)
         self.location = kwargs.get('location', None)
         self.name = None
-from msrest.serialization import Model
 
 
 class FlattenedProduct(Resource):
@@ -145,7 +143,6 @@ class FlattenedProduct(Resource):
         self.flattened_product_type = kwargs.get('flattened_product_type', None)
         self.provisioning_state_values = None
         self.provisioning_state = kwargs.get('provisioning_state', None)
-from msrest.serialization import Model
 
 
 class ResourceCollection(Model):
@@ -171,7 +168,6 @@ class ResourceCollection(Model):
         self.productresource = kwargs.get('productresource', None)
         self.arrayofresources = kwargs.get('arrayofresources', None)
         self.dictionaryofresources = kwargs.get('dictionaryofresources', None)
-from msrest.serialization import Model
 
 
 class BaseProduct(Model):
@@ -200,7 +196,6 @@ class BaseProduct(Model):
         super(BaseProduct, self).__init__(**kwargs)
         self.product_id = kwargs.get('product_id', None)
         self.description = kwargs.get('description', None)
-from msrest.serialization import Model
 
 
 class SimpleProduct(BaseProduct):
@@ -250,7 +245,6 @@ class SimpleProduct(BaseProduct):
         self.max_product_display_name = kwargs.get('max_product_display_name', None)
         self.generic_value = kwargs.get('generic_value', None)
         self.odatavalue = kwargs.get('odatavalue', None)
-from msrest.serialization import Model
 
 
 class GenericUrl(Model):
@@ -267,7 +261,6 @@ class GenericUrl(Model):
     def __init__(self, **kwargs):
         super(GenericUrl, self).__init__(**kwargs)
         self.generic_value = kwargs.get('generic_value', None)
-from msrest.serialization import Model
 
 
 class WrappedProduct(Model):
@@ -284,7 +277,6 @@ class WrappedProduct(Model):
     def __init__(self, **kwargs):
         super(WrappedProduct, self).__init__(**kwargs)
         self.value = kwargs.get('value', None)
-from msrest.serialization import Model
 
 
 class ProductWrapper(Model):
@@ -301,7 +293,6 @@ class ProductWrapper(Model):
     def __init__(self, **kwargs):
         super(ProductWrapper, self).__init__(**kwargs)
         self.value = kwargs.get('value', None)
-from msrest.serialization import Model
 
 
 class FlattenParameterGroup(Model):
@@ -348,7 +339,6 @@ class FlattenParameterGroup(Model):
         self.max_product_display_name = kwargs.get('max_product_display_name', None)
         self.generic_value = kwargs.get('generic_value', None)
         self.odatavalue = kwargs.get('odatavalue', None)
-from msrest.serialization import Model
 
 
 class CloudError(Model):

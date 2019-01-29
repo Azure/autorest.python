@@ -43,7 +43,6 @@ class CloudErrorException(HttpOperationError):
     def __init__(self, deserialize, response, *args):
 
         super(CloudErrorException, self).__init__(deserialize, response, 'CloudError', *args)
-from msrest.serialization import Model
 
 
 class Resource(Model):
@@ -85,7 +84,6 @@ class Resource(Model):
         self.tags = kwargs.get('tags', None)
         self.location = kwargs.get('location', None)
         self.name = None
-from msrest.serialization import Model
 
 
 class Sku(Model):
@@ -106,7 +104,6 @@ class Sku(Model):
         super(Sku, self).__init__(**kwargs)
         self.name = kwargs.get('name', None)
         self.id = kwargs.get('id', None)
-from msrest.serialization import Model
 
 
 class Product(Resource):
@@ -154,7 +151,6 @@ class Product(Resource):
         super(Product, self).__init__(**kwargs)
         self.provisioning_state = kwargs.get('provisioning_state', None)
         self.provisioning_state_values = None
-from msrest.serialization import Model
 
 
 class SubResource(Model):
@@ -178,7 +174,6 @@ class SubResource(Model):
     def __init__(self, **kwargs):
         super(SubResource, self).__init__(**kwargs)
         self.id = None
-from msrest.serialization import Model
 
 
 class SubProduct(SubResource):
@@ -212,7 +207,6 @@ class SubProduct(SubResource):
         super(SubProduct, self).__init__(**kwargs)
         self.provisioning_state = kwargs.get('provisioning_state', None)
         self.provisioning_state_values = None
-from msrest.serialization import Model
 
 
 class OperationResultError(Model):
@@ -233,7 +227,6 @@ class OperationResultError(Model):
         super(OperationResultError, self).__init__(**kwargs)
         self.code = kwargs.get('code', None)
         self.message = kwargs.get('message', None)
-from msrest.serialization import Model
 
 
 class OperationResult(Model):
