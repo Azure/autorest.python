@@ -9,10 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-try:
-    from .queries_operations_async import QueriesOperations
-except (SyntaxError, ImportError):
-    from .queries_operations import QueriesOperations
+from ._queries_operations import QueriesOperations
 
 __all__ = [
     'QueriesOperations',

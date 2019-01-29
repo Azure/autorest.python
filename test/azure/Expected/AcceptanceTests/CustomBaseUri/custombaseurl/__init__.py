@@ -9,10 +9,17 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .auto_rest_parameterized_host_test_client import AutoRestParameterizedHostTestClient
-from .version import VERSION
+from ._configuration import AutoRestParameterizedHostTestClientConfiguration
+from ._auto_rest_parameterized_host_test_client import AutoRestParameterizedHostTestClient
+__all__ = ['AutoRestParameterizedHostTestClient', 'AutoRestParameterizedHostTestClientConfiguration']
 
-__all__ = ['AutoRestParameterizedHostTestClient']
+try:
+    from ._auto_rest_parameterized_host_test_client_async import AutoRestParameterizedHostTestClientAsync
+    __all__ += ['AutoRestParameterizedHostTestClientAsync']
+except (SyntaxError, ImportError):  # Python 2
+    pass
+
+from .version import VERSION
 
 __version__ = VERSION
 

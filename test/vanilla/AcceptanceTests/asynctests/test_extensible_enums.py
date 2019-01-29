@@ -37,7 +37,7 @@ sys.path.append(join(tests, "ExtensibleEnums"))
 
 from msrest.serialization import Deserializer
 
-from extensibleenumsswagger import PetStoreInc
+from extensibleenumsswagger import PetStoreIncAsync
 from extensibleenumsswagger.models import (
     Pet,
     DaysOfWeekExtensibleEnum,
@@ -50,19 +50,19 @@ class TestExtensibleEnums(object):
 
     @pytest.mark.asyncio
     async def test_ext_enums(self):
-        client = PetStoreInc(base_url="http://localhost:3000")
-        
+        client = PetStoreIncAsync(base_url="http://localhost:3000")
+
         # Now enum return are always string (Autorest.Python 3.0)
 
-        tommy = await client.pet.get_by_pet_id_async('tommy')
-        assert tommy.days_of_week ==  "Monday" 
+        tommy = await client.pet.get_by_pet_id('tommy')
+        assert tommy.days_of_week ==  "Monday"
         assert tommy.int_enum ==  "1"
 
-        casper = await client.pet.get_by_pet_id_async('casper')
-        assert casper.days_of_week ==  "Weekend" 
+        casper = await client.pet.get_by_pet_id('casper')
+        assert casper.days_of_week ==  "Weekend"
         assert casper.int_enum ==  "2"
 
-        scooby = await client.pet.get_by_pet_id_async('scooby')
+        scooby = await client.pet.get_by_pet_id('scooby')
         assert scooby.days_of_week ==  "Thursday"
         # https://github.com/Azure/autorest.csharp/blob/e5f871b7433e0f6ca6a17307fba4a2cfea4942b4/test/vanilla/AcceptanceTests.cs#L429
         # "allowedValues" of "x-ms-enum" is not supported in Python
@@ -73,8 +73,8 @@ class TestExtensibleEnums(object):
             int_enum=IntEnum.three,
             days_of_week=DaysOfWeekExtensibleEnum.friday
         )
-        returned_pet = await client.pet.add_pet_async(retriever)
-        assert returned_pet.days_of_week ==  "Friday" 
+        returned_pet = await client.pet.add_pet(retriever)
+        assert returned_pet.days_of_week ==  "Friday"
         assert returned_pet.int_enum ==  "3"
         assert returned_pet.name ==  "Retriever"
 

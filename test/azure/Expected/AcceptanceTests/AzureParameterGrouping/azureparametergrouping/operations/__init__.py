@@ -9,10 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-try:
-    from .parameter_grouping_operations_async import ParameterGroupingOperations
-except (SyntaxError, ImportError):
-    from .parameter_grouping_operations import ParameterGroupingOperations
+from ._parameter_grouping_operations import ParameterGroupingOperations
 
 __all__ = [
     'ParameterGroupingOperations',

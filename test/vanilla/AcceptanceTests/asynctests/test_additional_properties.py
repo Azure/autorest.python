@@ -43,7 +43,7 @@ sys.path.append(join(tests, "AdditionalProperties"))
 from msrest.serialization import Deserializer
 from msrest.exceptions import DeserializationError
 
-from additionalproperties import AdditionalPropertiesClient
+from additionalproperties import AdditionalPropertiesClientAsync
 from additionalproperties.models import (
     PetAPTrue,
     PetAPObject,
@@ -58,7 +58,7 @@ class TestAdditionalProperties(object):
 
     @pytest.mark.asyncio
     async def test_put(self):
-        client = AdditionalPropertiesClient(base_url="http://localhost:3000")
+        client = AdditionalPropertiesClientAsync(base_url="http://localhost:3000")
 
         input_ap_true = PetAPTrue(
             id = 1,
@@ -70,7 +70,7 @@ class TestAdditionalProperties(object):
                 }
             }
         )
-        output_ap_true = await client.pets.create_ap_true_async(input_ap_true)
+        output_ap_true = await client.pets.create_ap_true(input_ap_true)
         assert output_ap_true.additional_properties['birthdate'] ==  '2017-12-13T02:29:51Z'
 
         input_ap_obj = PetAPObject(
@@ -88,7 +88,7 @@ class TestAdditionalProperties(object):
                 'picture': '//////4='
             }
         )
-        output_ap_obj = await client.pets.create_ap_object_async(input_ap_obj)
+        output_ap_obj = await client.pets.create_ap_object(input_ap_obj)
         assert output_ap_obj.additional_properties['siblings'][0]['birthdate'] ==  '2017-12-13T02:29:51Z'
 
         input_ap_str = PetAPString(
@@ -100,7 +100,7 @@ class TestAdditionalProperties(object):
                 'city': 'Bombay'
             }
         )
-        output_ap_str = await client.pets.create_ap_string_async(input_ap_str)
+        output_ap_str = await client.pets.create_ap_string(input_ap_str)
         assert output_ap_str.additional_properties['color'] ==  'red'
 
         input_ap_int = PetAPInProperties(
@@ -112,7 +112,7 @@ class TestAdditionalProperties(object):
                 'footsize': 11.5
             }
         )
-        output_ap_int = await client.pets.create_ap_in_properties_async(input_ap_int)
+        output_ap_int = await client.pets.create_ap_in_properties(input_ap_int)
         assert output_ap_int.additional_properties['weight'] ==  599
 
         input_ap_str_add = PetAPInPropertiesWithAPString(
@@ -128,9 +128,9 @@ class TestAdditionalProperties(object):
                 'height': 5.61,
                 'weight': 599,
                 'footsize': 11.5
-            }            
+            }
         )
-        output_ap_str_add = await client.pets.create_ap_in_properties_with_ap_string_async(input_ap_str_add)
+        output_ap_str_add = await client.pets.create_ap_in_properties_with_ap_string(input_ap_str_add)
         assert output_ap_str_add.additional_properties['color'] ==  'red'
         assert output_ap_str_add.additional_properties1['weight'] ==  599
 

@@ -9,10 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-try:
-    from .pet_operations_async import PetOperations
-except (SyntaxError, ImportError):
-    from .pet_operations import PetOperations
+from ._pet_operations import PetOperations
 
 __all__ = [
     'PetOperations',

@@ -9,16 +9,10 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-try:
-    from .lr_os_operations_async import LROsOperations
-    from .lro_retrys_operations_async import LRORetrysOperations
-    from .lrosa_ds_operations_async import LROSADsOperations
-    from .lr_os_custom_header_operations_async import LROsCustomHeaderOperations
-except (SyntaxError, ImportError):
-    from .lr_os_operations import LROsOperations
-    from .lro_retrys_operations import LRORetrysOperations
-    from .lrosa_ds_operations import LROSADsOperations
-    from .lr_os_custom_header_operations import LROsCustomHeaderOperations
+from ._lr_os_operations import LROsOperations
+from ._lro_retrys_operations import LRORetrysOperations
+from ._lrosa_ds_operations import LROSADsOperations
+from ._lr_os_custom_header_operations import LROsCustomHeaderOperations
 
 __all__ = [
     'LROsOperations',

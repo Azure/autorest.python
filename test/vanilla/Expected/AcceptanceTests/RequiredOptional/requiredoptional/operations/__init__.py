@@ -9,12 +9,8 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-try:
-    from .implicit_operations_async import ImplicitOperations
-    from .explicit_operations_async import ExplicitOperations
-except (SyntaxError, ImportError):
-    from .implicit_operations import ImplicitOperations
-    from .explicit_operations import ExplicitOperations
+from ._implicit_operations import ImplicitOperations
+from ._explicit_operations import ExplicitOperations
 
 __all__ = [
     'ImplicitOperations',

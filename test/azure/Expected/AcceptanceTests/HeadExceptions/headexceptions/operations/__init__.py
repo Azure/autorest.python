@@ -9,10 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-try:
-    from .head_exception_operations_async import HeadExceptionOperations
-except (SyntaxError, ImportError):
-    from .head_exception_operations import HeadExceptionOperations
+from ._head_exception_operations import HeadExceptionOperations
 
 __all__ = [
     'HeadExceptionOperations',

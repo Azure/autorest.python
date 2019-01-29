@@ -44,7 +44,7 @@ from msrest.serialization import Deserializer
 from msrest.authentication import Authentication
 from msrest.exceptions import DeserializationError
 
-from modelflattening import AutoRestResourceFlatteningTestService
+from modelflattening import AutoRestResourceFlatteningTestServiceAsync
 from modelflattening.models import (
     FlattenedProduct,
     ErrorException,
@@ -58,7 +58,7 @@ import pytest
 def client():
     # This is the same client of the "vanilla" one, generated with "azure" because it's the
     # only test that use client level method, and I want to test Azure works too on that.
-    return AutoRestResourceFlatteningTestService(Authentication(), base_url="http://localhost:3000")
+    return AutoRestResourceFlatteningTestServiceAsync(Authentication(), base_url="http://localhost:3000")
 
 class TestModelFlatteningTests(object):
 
@@ -66,7 +66,7 @@ class TestModelFlatteningTests(object):
     async def test_flattening_array(self, client):
 
         #Array
-        result = await client.get_array_async()
+        result = await client.get_array()
         assert 3 ==  len(result)
         # Resource 1
         assert "1" ==  result[0].id
@@ -94,13 +94,13 @@ class TestModelFlatteningTests(object):
                 {
                     'location': "Building 44"}]
 
-        await client.put_array_async(resourceArray)
+        await client.put_array(resourceArray)
 
     @pytest.mark.asyncio
     async def test_flattening_dictionary(self, client):
 
         #Dictionary
-        resultDictionary = await client.get_dictionary_async()
+        resultDictionary = await client.get_dictionary()
         assert 3 ==  len(resultDictionary)
         # Resource 1
         assert "1" ==  resultDictionary["Product1"].id
@@ -132,13 +132,13 @@ class TestModelFlatteningTests(object):
                     'pname': "Product2",
                     'flattened_product_type': "Flat"}}
 
-        await client.put_dictionary_async(resourceDictionary)
+        await client.put_dictionary(resourceDictionary)
 
     @pytest.mark.asyncio
     async def test_flattening_complex_object(self, client):
 
         #ResourceCollection
-        resultResource = await client.get_resource_collection_async()
+        resultResource = await client.get_resource_collection()
 
         #dictionaryofresources
         assert 3 ==  len(resultResource.dictionaryofresources)
@@ -214,7 +214,7 @@ class TestModelFlatteningTests(object):
                     pname = "Azure",
                     flattened_product_type = "Flat"))
 
-        await client.put_resource_collection_async(resourceComplexObject)
+        await client.put_resource_collection(resourceComplexObject)
 
     @pytest.mark.asyncio
     async def test_model_flattening_simple(self, client):
@@ -228,7 +228,7 @@ class TestModelFlatteningTests(object):
         )
         simple_product.additional_properties = {} # Not the purpose of this test. This enables the ==.
 
-        result = await client.put_simple_product_async(simple_product)
+        result = await client.put_simple_product(simple_product)
         result.additional_properties = {} # Not the purpose of this test. This enables the ==.
         assert result ==  simple_product
 
@@ -243,7 +243,7 @@ class TestModelFlatteningTests(object):
         )
         simple_product.additional_properties = {} # Not the purpose of this test. This enables the ==.
 
-        result = await client.post_flattened_simple_product_async("123", "max name", "product description", None, "http://foo")
+        result = await client.post_flattened_simple_product("123", "max name", "product description", None, "http://foo")
         result.additional_properties = {} # Not the purpose of this test. This enables the ==.
         assert result ==  simple_product
 
@@ -265,6 +265,6 @@ class TestModelFlatteningTests(object):
             odatavalue="http://foo",
             name="groupproduct")
 
-        result = await client.put_simple_product_with_grouping_async(group)
+        result = await client.put_simple_product_with_grouping(group)
         result.additional_properties = {} # Not the purpose of this test. This enables the ==.
         assert result ==  simple_product

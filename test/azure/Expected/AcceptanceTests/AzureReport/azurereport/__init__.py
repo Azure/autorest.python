@@ -9,10 +9,17 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .auto_rest_report_service_for_azure import AutoRestReportServiceForAzure
-from .version import VERSION
+from ._configuration import AutoRestReportServiceForAzureConfiguration
+from ._auto_rest_report_service_for_azure import AutoRestReportServiceForAzure
+__all__ = ['AutoRestReportServiceForAzure', 'AutoRestReportServiceForAzureConfiguration']
 
-__all__ = ['AutoRestReportServiceForAzure']
+try:
+    from ._auto_rest_report_service_for_azure_async import AutoRestReportServiceForAzureAsync
+    __all__ += ['AutoRestReportServiceForAzureAsync']
+except (SyntaxError, ImportError):  # Python 2
+    pass
+
+from .version import VERSION
 
 __version__ = VERSION
 

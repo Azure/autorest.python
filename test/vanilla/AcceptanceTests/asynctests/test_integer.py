@@ -43,7 +43,7 @@ sys.path.append(join(tests, "BodyInteger"))
 from msrest.serialization import Deserializer
 from msrest.exceptions import DeserializationError
 
-from bodyinteger import AutoRestIntegerTestService
+from bodyinteger import AutoRestIntegerTestServiceAsync
 
 import pytest
 
@@ -51,28 +51,28 @@ class TestInteger(object):
 
     @pytest.mark.asyncio
     async def test_integer(self):
-        client = AutoRestIntegerTestService(base_url="http://localhost:3000")
+        client = AutoRestIntegerTestServiceAsync(base_url="http://localhost:3000")
 
-        await client.int_model.put_max32_async(2147483647) # sys.maxint
-        await client.int_model.put_min32_async(-2147483648)
+        await client.int_model.put_max32(2147483647) # sys.maxint
+        await client.int_model.put_min32(-2147483648)
 
-        await client.int_model.put_max64_async(9223372036854776000)  # sys.maxsize
-        await client.int_model.put_min64_async(-9223372036854776000)
-        await client.int_model.get_null_async()
+        await client.int_model.put_max64(9223372036854776000)  # sys.maxsize
+        await client.int_model.put_min64(-9223372036854776000)
+        await client.int_model.get_null()
 
         with pytest.raises(DeserializationError):
-            await client.int_model.get_invalid_async()
+            await client.int_model.get_invalid()
 
         # Testserver excepts these to fail, but they won't in Python and it's ok.
-        await client.int_model.get_overflow_int32_async()
-        await client.int_model.get_overflow_int64_async()
-        await client.int_model.get_underflow_int32_async()
-        await client.int_model.get_underflow_int64_async()
+        await client.int_model.get_overflow_int32()
+        await client.int_model.get_overflow_int64()
+        await client.int_model.get_underflow_int32()
+        await client.int_model.get_underflow_int64()
 
         unix_date = datetime(year=2016, month=4, day=13)
-        await client.int_model.put_unix_time_date_async(unix_date)
-        assert unix_date.utctimetuple() == (await client.int_model.get_unix_time_async()).utctimetuple()
-        assert await client.int_model.get_null_unix_time_async() is None
+        await client.int_model.put_unix_time_date(unix_date)
+        assert unix_date.utctimetuple() == (await client.int_model.get_unix_time()).utctimetuple()
+        assert await client.int_model.get_null_unix_time() is None
 
         with pytest.raises(DeserializationError):
-            await client.int_model.get_invalid_unix_time_async()
+            await client.int_model.get_invalid_unix_time()

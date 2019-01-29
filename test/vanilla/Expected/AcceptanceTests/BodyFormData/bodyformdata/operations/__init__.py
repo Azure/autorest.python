@@ -9,10 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-try:
-    from .formdata_operations_async import FormdataOperations
-except (SyntaxError, ImportError):
-    from .formdata_operations import FormdataOperations
+from ._formdata_operations import FormdataOperations
 
 __all__ = [
     'FormdataOperations',

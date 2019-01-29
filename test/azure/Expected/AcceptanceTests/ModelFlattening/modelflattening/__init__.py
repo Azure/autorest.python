@@ -9,10 +9,17 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .auto_rest_resource_flattening_test_service import AutoRestResourceFlatteningTestService
-from .version import VERSION
+from ._configuration import AutoRestResourceFlatteningTestServiceConfiguration
+from ._auto_rest_resource_flattening_test_service import AutoRestResourceFlatteningTestService
+__all__ = ['AutoRestResourceFlatteningTestService', 'AutoRestResourceFlatteningTestServiceConfiguration']
 
-__all__ = ['AutoRestResourceFlatteningTestService']
+try:
+    from ._auto_rest_resource_flattening_test_service_async import AutoRestResourceFlatteningTestServiceAsync
+    __all__ += ['AutoRestResourceFlatteningTestServiceAsync']
+except (SyntaxError, ImportError):  # Python 2
+    pass
+
+from .version import VERSION
 
 __version__ = VERSION
 

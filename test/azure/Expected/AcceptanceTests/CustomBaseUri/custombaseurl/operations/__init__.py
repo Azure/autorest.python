@@ -9,10 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-try:
-    from .paths_operations_async import PathsOperations
-except (SyntaxError, ImportError):
-    from .paths_operations import PathsOperations
+from ._paths_operations import PathsOperations
 
 __all__ = [
     'PathsOperations',
