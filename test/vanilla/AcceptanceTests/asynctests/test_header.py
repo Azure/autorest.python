@@ -43,7 +43,7 @@ sys.path.append(join(tests, "Header"))
 from msrest.serialization import Deserializer
 from msrest.exceptions import DeserializationError
 
-from header import AutoRestSwaggerBATHeaderServiceAsync
+from header.aio import AutoRestSwaggerBATHeaderService
 from header.models.auto_rest_swagger_bat_header_service_enums import GreyscaleColors
 
 import pytest
@@ -52,7 +52,7 @@ class TestHeader(object):
 
     @pytest.mark.asyncio
     async def test_headers(self):
-        client = AutoRestSwaggerBATHeaderServiceAsync(base_url="http://localhost:3000")
+        client = AutoRestSwaggerBATHeaderService(base_url="http://localhost:3000")
 
         await client.header.param_integer("positive", 1)
         await client.header.param_integer("negative", -2)

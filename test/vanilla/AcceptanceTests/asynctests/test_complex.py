@@ -43,7 +43,7 @@ sys.path.append(join(tests, "BodyComplex"))
 from msrest.serialization import Deserializer
 from msrest.exceptions import DeserializationError, SerializationError, ValidationError
 
-from bodycomplex import AutoRestComplexTestServiceAsync
+from bodycomplex.aio import AutoRestComplexTestService
 from bodycomplex.models import *
 
 class UTC(tzinfo):
@@ -62,7 +62,7 @@ class TestComplex(object):
 
     @pytest.mark.asyncio
     async def test_complex(self):
-        client = AutoRestComplexTestServiceAsync(base_url="http://localhost:3000")
+        client = AutoRestComplexTestService(base_url="http://localhost:3000")
 
         # GET basic/valid
         basic_result = await client.basic.get_valid()

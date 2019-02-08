@@ -13,12 +13,6 @@ from ._configuration import AdditionalPropertiesClientConfiguration
 from ._additional_properties_client import AdditionalPropertiesClient
 __all__ = ['AdditionalPropertiesClient', 'AdditionalPropertiesClientConfiguration']
 
-try:
-    from ._additional_properties_client_async import AdditionalPropertiesClientAsync
-    __all__ += ['AdditionalPropertiesClientAsync']
-except (SyntaxError, ImportError):  # Python 2
-    pass
-
 from .version import VERSION
 
 __version__ = VERSION

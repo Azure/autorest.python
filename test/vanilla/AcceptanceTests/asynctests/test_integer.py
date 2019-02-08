@@ -43,7 +43,7 @@ sys.path.append(join(tests, "BodyInteger"))
 from msrest.serialization import Deserializer
 from msrest.exceptions import DeserializationError
 
-from bodyinteger import AutoRestIntegerTestServiceAsync
+from bodyinteger.aio import AutoRestIntegerTestService
 
 import pytest
 
@@ -51,7 +51,7 @@ class TestInteger(object):
 
     @pytest.mark.asyncio
     async def test_integer(self):
-        client = AutoRestIntegerTestServiceAsync(base_url="http://localhost:3000")
+        client = AutoRestIntegerTestService(base_url="http://localhost:3000")
 
         await client.int_model.put_max32(2147483647) # sys.maxint
         await client.int_model.put_min32(-2147483648)

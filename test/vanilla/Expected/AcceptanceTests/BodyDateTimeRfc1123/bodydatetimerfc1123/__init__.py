@@ -13,12 +13,6 @@ from ._configuration import AutoRestRFC1123DateTimeTestServiceConfiguration
 from ._auto_rest_rfc1123_date_time_test_service import AutoRestRFC1123DateTimeTestService
 __all__ = ['AutoRestRFC1123DateTimeTestService', 'AutoRestRFC1123DateTimeTestServiceConfiguration']
 
-try:
-    from ._auto_rest_rfc1123_date_time_test_service_async import AutoRestRFC1123DateTimeTestServiceAsync
-    __all__ += ['AutoRestRFC1123DateTimeTestServiceAsync']
-except (SyntaxError, ImportError):  # Python 2
-    pass
-
 from .version import VERSION
 
 __version__ = VERSION

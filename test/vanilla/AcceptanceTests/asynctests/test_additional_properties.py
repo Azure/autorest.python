@@ -43,7 +43,7 @@ sys.path.append(join(tests, "AdditionalProperties"))
 from msrest.serialization import Deserializer
 from msrest.exceptions import DeserializationError
 
-from additionalproperties import AdditionalPropertiesClientAsync
+from additionalproperties.aio import AdditionalPropertiesClient
 from additionalproperties.models import (
     PetAPTrue,
     PetAPObject,
@@ -58,7 +58,7 @@ class TestAdditionalProperties(object):
 
     @pytest.mark.asyncio
     async def test_put(self):
-        client = AdditionalPropertiesClientAsync(base_url="http://localhost:3000")
+        client = AdditionalPropertiesClient(base_url="http://localhost:3000")
 
         input_ap_true = PetAPTrue(
             id = 1,

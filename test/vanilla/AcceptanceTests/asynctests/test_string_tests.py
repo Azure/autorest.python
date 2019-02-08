@@ -44,7 +44,7 @@ sys.path.append(join(tests, "BodyString"))
 from msrest.serialization import Deserializer
 from msrest.exceptions import DeserializationError, SerializationError
 
-from bodystring import AutoRestSwaggerBATServiceAsync
+from bodystring.aio import AutoRestSwaggerBATService
 from bodystring.models.auto_rest_swagger_bat_service_enums import *
 
 import pytest
@@ -53,7 +53,7 @@ class TestString(object):
 
     @pytest.mark.asyncio
     async def test_string(self):
-        client = AutoRestSwaggerBATServiceAsync(base_url="http://localhost:3000")
+        client = AutoRestSwaggerBATService(base_url="http://localhost:3000")
 
         assert await client.string.get_null() is None
         await client.string.put_null(None)

@@ -13,12 +13,6 @@ from ._configuration import StorageManagementClientConfiguration
 from ._storage_management_client import StorageManagementClient
 __all__ = ['StorageManagementClient', 'StorageManagementClientConfiguration']
 
-try:
-    from ._storage_management_client_async import StorageManagementClientAsync
-    __all__ += ['StorageManagementClientAsync']
-except (SyntaxError, ImportError):  # Python 2
-    pass
-
 from .version import VERSION
 
 __version__ = VERSION

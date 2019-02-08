@@ -43,7 +43,7 @@ sys.path.append(join(tests, "BodyDate"))
 from msrest.serialization import Deserializer
 from msrest.exceptions import DeserializationError
 
-from bodydate import AutoRestDateTestServiceAsync
+from bodydate.aio import AutoRestDateTestService
 
 import pytest
 
@@ -51,7 +51,7 @@ class TestDate(object):
 
     @pytest.mark.asyncio
     async def test_date(self):
-        client = AutoRestDateTestServiceAsync(base_url="http://localhost:3000")
+        client = AutoRestDateTestService(base_url="http://localhost:3000")
 
         max_date = isodate.parse_date("9999-12-31T23:59:59.999999Z")
         min_date = isodate.parse_date("0001-01-01T00:00:00Z")

@@ -10,7 +10,7 @@
 @Header("# ").TrimMultilineHeader()
 # --------------------------------------------------------------------------
 @{
-string clientName = Model.Name + "Async";
+string clientName = Model.Name;
 }
 
 @EmptyLine
@@ -21,7 +21,7 @@ string clientName = Model.Name + "Async";
 from msrest.async_client import SDKClientAsync
 from msrest import Serializer, Deserializer
 @EmptyLine
-from ._configuration import @(Model.Name)Configuration
+from .._configuration import @(Model.Name)Configuration
 @{
 bool hasClientLevelMethods = Model.MethodTemplateModels.Any( each => each.MethodGroup.IsCodeModelMethodGroup);
 }
@@ -42,7 +42,7 @@ bool hasClientLevelMethods = Model.MethodTemplateModels.Any( each => each.Method
 }
 @if (Model.HasAnyModel)
 {
-@:from . import models
+@:from .. import models
 }
 @EmptyLine
 @EmptyLine

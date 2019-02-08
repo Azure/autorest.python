@@ -13,12 +13,6 @@ from ._configuration import AutoRestLongRunningOperationTestServiceConfiguration
 from ._auto_rest_long_running_operation_test_service import AutoRestLongRunningOperationTestService
 __all__ = ['AutoRestLongRunningOperationTestService', 'AutoRestLongRunningOperationTestServiceConfiguration']
 
-try:
-    from ._auto_rest_long_running_operation_test_service_async import AutoRestLongRunningOperationTestServiceAsync
-    __all__ += ['AutoRestLongRunningOperationTestServiceAsync']
-except (SyntaxError, ImportError):  # Python 2
-    pass
-
 from .version import VERSION
 
 __version__ = VERSION

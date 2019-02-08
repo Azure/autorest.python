@@ -43,7 +43,7 @@ sys.path.append(join(tests, "ModelFlattening"))
 from msrest.serialization import Deserializer
 from msrest.exceptions import DeserializationError
 
-from modelflattening import AutoRestResourceFlatteningTestServiceAsync
+from modelflattening.aio import AutoRestResourceFlatteningTestService
 from modelflattening.models import (
     FlattenedProduct,
     ErrorException,
@@ -55,7 +55,7 @@ import pytest
 
 @pytest.fixture()
 def client():
-    return AutoRestResourceFlatteningTestServiceAsync(base_url="http://localhost:3000")
+    return AutoRestResourceFlatteningTestService(base_url="http://localhost:3000")
 
 class TestModelFlatteningTests(object):
 

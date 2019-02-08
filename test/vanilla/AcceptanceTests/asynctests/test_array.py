@@ -43,7 +43,7 @@ sys.path.append(join(tests, "BodyArray"))
 from msrest.serialization import Deserializer
 from msrest.exceptions import DeserializationError
 
-from bodyarray import AutoRestSwaggerBATArrayServiceAsync
+from bodyarray.aio import AutoRestSwaggerBATArrayService
 from bodyarray.models import Product
 
 import pytest
@@ -53,7 +53,7 @@ class TestArray(object):
 
     @pytest.mark.asyncio
     async def test_array(self):
-        client = AutoRestSwaggerBATArrayServiceAsync(base_url="http://localhost:3000")
+        client = AutoRestSwaggerBATArrayService(base_url="http://localhost:3000")
 
         assert [] ==  await client.array.get_empty()
         assert await client.array.get_null() is None

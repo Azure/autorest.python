@@ -40,14 +40,14 @@ sys.path.append(join(tests, "RequiredOptional"))
 
 from msrest.exceptions import DeserializationError, SerializationError, ValidationError
 
-from requiredoptional import AutoRestRequiredOptionalTestServiceAsync
+from requiredoptional.aio import AutoRestRequiredOptionalTestService
 from requiredoptional.models import StringWrapper, ArrayWrapper, ClassWrapper
 
 import pytest
 
 @pytest.fixture
 def client():
-    return AutoRestRequiredOptionalTestServiceAsync(
+    return AutoRestRequiredOptionalTestService(
             "required_path",
             "required_query",
             base_url="http://localhost:3000")

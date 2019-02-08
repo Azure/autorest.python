@@ -13,12 +13,6 @@ from ._configuration import AutoRestDateTimeTestServiceConfiguration
 from ._auto_rest_date_time_test_service import AutoRestDateTimeTestService
 __all__ = ['AutoRestDateTimeTestService', 'AutoRestDateTimeTestServiceConfiguration']
 
-try:
-    from ._auto_rest_date_time_test_service_async import AutoRestDateTimeTestServiceAsync
-    __all__ += ['AutoRestDateTimeTestServiceAsync']
-except (SyntaxError, ImportError):  # Python 2
-    pass
-
 from .version import VERSION
 
 __version__ = VERSION

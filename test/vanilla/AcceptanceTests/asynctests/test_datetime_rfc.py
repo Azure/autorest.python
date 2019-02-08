@@ -43,7 +43,7 @@ sys.path.append(join(tests, "BodyDateTimeRfc1123"))
 from msrest.serialization import Deserializer
 from msrest.exceptions import DeserializationError
 
-from bodydatetimerfc1123 import AutoRestRFC1123DateTimeTestServiceAsync
+from bodydatetimerfc1123.aio import AutoRestRFC1123DateTimeTestService
 
 import pytest
 
@@ -51,7 +51,7 @@ class TestDateTimeRfc(object):
 
     @pytest.mark.asyncio
     async def test_datetime_rfc(self):
-        client = AutoRestRFC1123DateTimeTestServiceAsync(base_url="http://localhost:3000")
+        client = AutoRestRFC1123DateTimeTestService(base_url="http://localhost:3000")
 
         assert await client.datetimerfc1123.get_null() is None
 

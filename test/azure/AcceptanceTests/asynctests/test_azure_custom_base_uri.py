@@ -49,7 +49,7 @@ from msrest.exceptions import (
 )
 from msrest.authentication import BasicTokenAuthentication
 
-from custombaseurl import AutoRestParameterizedHostTestClientAsync
+from custombaseurl.aio import AutoRestParameterizedHostTestClient
 from custombaseurl.models import Error, ErrorException
 
 import pytest
@@ -59,13 +59,13 @@ class TestCustomBaseUri(object):
     @pytest.mark.asyncio
     async def test_custom_base_uri_positive(self):
         cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
-        client = AutoRestParameterizedHostTestClientAsync(cred, host="host:3000")
+        client = AutoRestParameterizedHostTestClient(cred, host="host:3000")
         await client.paths.get_empty("local")
 
     @pytest.mark.asyncio
     async def test_custom_base_uri_negative(self):
         cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
-        client = AutoRestParameterizedHostTestClientAsync(cred, host="host:3000")
+        client = AutoRestParameterizedHostTestClient(cred, host="host:3000")
         client.config.retry_policy.retries = 0
         with pytest.raises(ClientRequestError):
             await client.paths.get_empty("bad")
