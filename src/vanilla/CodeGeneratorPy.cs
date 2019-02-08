@@ -151,7 +151,7 @@ namespace AutoRest.Python
                 for (int i = 1; i < namespaceParts.Length; ++i)
                 {
                     string initFolderName = Path.Combine(namespaceParts.Take(i).ToArray());
-                    await Write("__import__('pkg_resources').declare_namespace(__name__)",
+                    await Write("__path__ = __import__('pkgutil').extend_path(__path__, __name__)",
                                 Path.Combine(initFolderName, "__init__.py"), true);
                 }
             }
