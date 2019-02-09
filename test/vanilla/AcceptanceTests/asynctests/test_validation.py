@@ -43,7 +43,7 @@ sys.path.append(join(tests, "Validation"))
 from msrest.serialization import Deserializer
 from msrest.exceptions import DeserializationError, ValidationError
 
-from validation import AutoRestValidationTestAsync
+from validation.aio import AutoRestValidationTest
 from validation.models import (
     Product,
     ConstantProduct,
@@ -55,7 +55,7 @@ class TestValidation(object):
 
     @pytest.mark.asyncio
     async def test_constant_values(self):
-        client = AutoRestValidationTestAsync(
+        client = AutoRestValidationTest(
             "abc123",
             base_url="http://localhost:3000")
         client.api_version = "12-34-5678"
@@ -68,7 +68,7 @@ class TestValidation(object):
 
     @pytest.mark.asyncio
     async def test_validation(self):
-        client = AutoRestValidationTestAsync(
+        client = AutoRestValidationTest(
             "abc123",
             base_url="http://localhost:3000")
         client.api_version = "12-34-5678"
@@ -131,7 +131,7 @@ class TestValidation(object):
             assert err.rule ==  "max_items"
             assert "display_names" in  err.target
 
-        client2 = AutoRestValidationTestAsync(
+        client2 = AutoRestValidationTest(
             "abc123",
             base_url="http://localhost:3000")
         client2.api_version = "abc"

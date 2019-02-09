@@ -46,9 +46,9 @@ sys.path.append(join(tests, "AzureSpecials"))
 from msrest.authentication import BasicTokenAuthentication
 from msrest.exceptions import DeserializationError, ValidationError
 
-from azureparametergrouping import AutoRestParameterGroupingTestServiceAsync
-from subscriptionidapiversion import MicrosoftAzureTestUrlAsync
-from azurespecialproperties import AutoRestAzureSpecialParametersTestClientAsync
+from azureparametergrouping.aio import AutoRestParameterGroupingTestService
+from subscriptionidapiversion.aio import MicrosoftAzureTestUrl
+from azurespecialproperties.aio import AutoRestAzureSpecialParametersTestClient
 
 from azureparametergrouping.models import (
     ParameterGroupingPostMultiParamGroupsSecondParamGroup,
@@ -69,7 +69,7 @@ class TestParameter(object):
         pathParameter = 'path'
 
         cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
-        client = AutoRestParameterGroupingTestServiceAsync(cred, base_url="http://localhost:3000")
+        client = AutoRestParameterGroupingTestService(cred, base_url="http://localhost:3000")
 
         # Valid required parameters
         requiredParameters = ParameterGroupingPostRequiredParameters(body=bodyParameter, path=pathParameter, custom_header=headerParameter, query=queryParameter)
@@ -115,7 +115,7 @@ class TestParameter(object):
         unencodedPath = 'path1/path2/path3'
         unencodedQuery = 'value1&q2=value2&q3=value3'
         cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
-        client = AutoRestAzureSpecialParametersTestClientAsync(cred, validSubscription, base_url="http://localhost:3000")
+        client = AutoRestAzureSpecialParametersTestClient(cred, validSubscription, base_url="http://localhost:3000")
 
         await client.subscription_in_credentials.post_method_global_not_provided_valid()
         await client.subscription_in_credentials.post_method_global_valid()
@@ -150,7 +150,7 @@ class TestParameter(object):
 
         validSubscription = '1234-5678-9012-3456'
         cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
-        client = AutoRestAzureSpecialParametersTestClientAsync(cred, validSubscription, base_url="http://localhost:3000")
+        client = AutoRestAzureSpecialParametersTestClient(cred, validSubscription, base_url="http://localhost:3000")
         await client.odata.get_with_filter(filter="id gt 5 and name eq 'foo'", top=10, orderby="id")
 
 

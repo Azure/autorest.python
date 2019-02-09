@@ -13,12 +13,6 @@ from ._configuration import AutoRestBoolTestServiceConfiguration
 from ._auto_rest_bool_test_service import AutoRestBoolTestService
 __all__ = ['AutoRestBoolTestService', 'AutoRestBoolTestServiceConfiguration']
 
-try:
-    from ._auto_rest_bool_test_service_async import AutoRestBoolTestServiceAsync
-    __all__ += ['AutoRestBoolTestServiceAsync']
-except (SyntaxError, ImportError):  # Python 2
-    pass
-
 from .version import VERSION
 
 __version__ = VERSION

@@ -13,12 +13,6 @@ from ._configuration import AutoRestUrlTestServiceConfiguration
 from ._auto_rest_url_test_service import AutoRestUrlTestService
 __all__ = ['AutoRestUrlTestService', 'AutoRestUrlTestServiceConfiguration']
 
-try:
-    from ._auto_rest_url_test_service_async import AutoRestUrlTestServiceAsync
-    __all__ += ['AutoRestUrlTestServiceAsync']
-except (SyntaxError, ImportError):  # Python 2
-    pass
-
 from .version import VERSION
 
 __version__ = VERSION

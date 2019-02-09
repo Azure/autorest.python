@@ -46,7 +46,7 @@ from msrest.exceptions import DeserializationError
 from msrest.authentication import BasicTokenAuthentication
 from msrestazure.azure_exceptions import CloudError, CloudErrorData
 
-from azurespecialproperties import AutoRestAzureSpecialParametersTestClientAsync
+from azurespecialproperties.aio import AutoRestAzureSpecialParametersTestClient
 from azurespecialproperties import models
 
 import pytest
@@ -60,7 +60,7 @@ class TestXmsRequestClientId(object):
         validClientId = '9C4D50EE-2D56-4CD3-8152-34347DC9F2B0'
 
         cred = BasicTokenAuthentication({"access_token":123})
-        client = AutoRestAzureSpecialParametersTestClientAsync(cred, validSubscription, base_url="http://localhost:3000")
+        client = AutoRestAzureSpecialParametersTestClient(cred, validSubscription, base_url="http://localhost:3000")
 
         custom_headers = {"x-ms-client-request-id": validClientId }
 
@@ -78,7 +78,7 @@ class TestXmsRequestClientId(object):
         expectedRequestId = '9C4D50EE-2D56-4CD3-8152-34347DC9F2B0'
 
         cred = BasicTokenAuthentication({"access_token":123})
-        client = AutoRestAzureSpecialParametersTestClientAsync(cred, validSubscription, base_url="http://localhost:3000")
+        client = AutoRestAzureSpecialParametersTestClient(cred, validSubscription, base_url="http://localhost:3000")
 
         response = await client.header.custom_named_request_id(expectedRequestId, raw=True)
         assert "123" ==  response.response.headers.get("foo-request-id")
@@ -90,7 +90,7 @@ class TestXmsRequestClientId(object):
         expectedRequestId = '9C4D50EE-2D56-4CD3-8152-34347DC9F2B0'
 
         cred = BasicTokenAuthentication({"access_token":123})
-        client = AutoRestAzureSpecialParametersTestClientAsync(cred, validSubscription, base_url="http://localhost:3000")
+        client = AutoRestAzureSpecialParametersTestClient(cred, validSubscription, base_url="http://localhost:3000")
 
         group = models.HeaderCustomNamedRequestIdParamGroupingParameters(foo_client_request_id=expectedRequestId)
         response = await client.header.custom_named_request_id_param_grouping(group, raw=True)
@@ -102,7 +102,7 @@ class TestXmsRequestClientId(object):
         expectedRequestId = '9C4D50EE-2D56-4CD3-8152-34347DC9F2B0'
 
         cred = BasicTokenAuthentication({"access_token":123})
-        client = AutoRestAzureSpecialParametersTestClientAsync(cred, validSubscription, base_url="http://localhost:3000")
+        client = AutoRestAzureSpecialParametersTestClient(cred, validSubscription, base_url="http://localhost:3000")
 
         try:
             await client.xms_client_request_id.get()
@@ -117,7 +117,7 @@ class TestXmsRequestClientId(object):
         expectedRequestId = '9C4D50EE-2D56-4CD3-8152-34347DC9F2B0'
 
         cred = BasicTokenAuthentication({"access_token":123})
-        client = AutoRestAzureSpecialParametersTestClientAsync(cred, validSubscription, base_url="http://localhost:3000")
+        client = AutoRestAzureSpecialParametersTestClient(cred, validSubscription, base_url="http://localhost:3000")
         client.config.generate_client_request_id = False
         await client.xms_client_request_id.get()
 

@@ -37,7 +37,7 @@ sys.path.append(join(tests, "ExtensibleEnums"))
 
 from msrest.serialization import Deserializer
 
-from extensibleenumsswagger import PetStoreIncAsync
+from extensibleenumsswagger.aio import PetStoreInc
 from extensibleenumsswagger.models import (
     Pet,
     DaysOfWeekExtensibleEnum,
@@ -50,7 +50,7 @@ class TestExtensibleEnums(object):
 
     @pytest.mark.asyncio
     async def test_ext_enums(self):
-        client = PetStoreIncAsync(base_url="http://localhost:3000")
+        client = PetStoreInc(base_url="http://localhost:3000")
 
         # Now enum return are always string (Autorest.Python 3.0)
 

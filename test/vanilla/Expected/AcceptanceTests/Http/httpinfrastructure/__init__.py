@@ -13,12 +13,6 @@ from ._configuration import AutoRestHttpInfrastructureTestServiceConfiguration
 from ._auto_rest_http_infrastructure_test_service import AutoRestHttpInfrastructureTestService
 __all__ = ['AutoRestHttpInfrastructureTestService', 'AutoRestHttpInfrastructureTestServiceConfiguration']
 
-try:
-    from ._auto_rest_http_infrastructure_test_service_async import AutoRestHttpInfrastructureTestServiceAsync
-    __all__ += ['AutoRestHttpInfrastructureTestServiceAsync']
-except (SyntaxError, ImportError):  # Python 2
-    pass
-
 from .version import VERSION
 
 __version__ = VERSION

@@ -13,12 +13,6 @@ from ._configuration import MicrosoftAzureTestUrlConfiguration
 from ._microsoft_azure_test_url import MicrosoftAzureTestUrl
 __all__ = ['MicrosoftAzureTestUrl', 'MicrosoftAzureTestUrlConfiguration']
 
-try:
-    from ._microsoft_azure_test_url_async import MicrosoftAzureTestUrlAsync
-    __all__ += ['MicrosoftAzureTestUrlAsync']
-except (SyntaxError, ImportError):  # Python 2
-    pass
-
 from .version import VERSION
 
 __version__ = VERSION

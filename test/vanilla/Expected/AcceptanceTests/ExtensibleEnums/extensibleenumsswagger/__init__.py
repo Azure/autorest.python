@@ -13,12 +13,6 @@ from ._configuration import PetStoreIncConfiguration
 from ._pet_store_inc import PetStoreInc
 __all__ = ['PetStoreInc', 'PetStoreIncConfiguration']
 
-try:
-    from ._pet_store_inc_async import PetStoreIncAsync
-    __all__ += ['PetStoreIncAsync']
-except (SyntaxError, ImportError):  # Python 2
-    pass
-
 from .version import VERSION
 
 __version__ = VERSION

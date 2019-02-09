@@ -42,14 +42,14 @@ sys.path.append(join(tests, "BodyFile"))
 
 from msrest.exceptions import DeserializationError
 
-from bodyfile import AutoRestSwaggerBATFileServiceAsync
+from bodyfile.aio import AutoRestSwaggerBATFileService
 from bodyfile.models import ErrorException
 
 import pytest
 
 @pytest.fixture
 def client():
-    client = AutoRestSwaggerBATFileServiceAsync(base_url="http://localhost:3000")
+    client = AutoRestSwaggerBATFileService(base_url="http://localhost:3000")
     return client
 
 class TestFile(object):

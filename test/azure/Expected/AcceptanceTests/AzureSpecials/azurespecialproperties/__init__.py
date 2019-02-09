@@ -13,12 +13,6 @@ from ._configuration import AutoRestAzureSpecialParametersTestClientConfiguratio
 from ._auto_rest_azure_special_parameters_test_client import AutoRestAzureSpecialParametersTestClient
 __all__ = ['AutoRestAzureSpecialParametersTestClient', 'AutoRestAzureSpecialParametersTestClientConfiguration']
 
-try:
-    from ._auto_rest_azure_special_parameters_test_client_async import AutoRestAzureSpecialParametersTestClientAsync
-    __all__ += ['AutoRestAzureSpecialParametersTestClientAsync']
-except (SyntaxError, ImportError):  # Python 2
-    pass
-
 from .version import VERSION
 
 __version__ = VERSION

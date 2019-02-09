@@ -44,7 +44,7 @@ from msrest.serialization import Deserializer
 from msrest.authentication import Authentication
 from msrest.exceptions import DeserializationError
 
-from modelflattening import AutoRestResourceFlatteningTestServiceAsync
+from modelflattening.aio import AutoRestResourceFlatteningTestService
 from modelflattening.models import (
     FlattenedProduct,
     ErrorException,
@@ -58,7 +58,7 @@ import pytest
 def client():
     # This is the same client of the "vanilla" one, generated with "azure" because it's the
     # only test that use client level method, and I want to test Azure works too on that.
-    return AutoRestResourceFlatteningTestServiceAsync(Authentication(), base_url="http://localhost:3000")
+    return AutoRestResourceFlatteningTestService(Authentication(), base_url="http://localhost:3000")
 
 class TestModelFlatteningTests(object):
 

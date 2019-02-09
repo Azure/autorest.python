@@ -13,12 +13,6 @@ from ._configuration import AutoRestValidationTestConfiguration
 from ._auto_rest_validation_test import AutoRestValidationTest
 __all__ = ['AutoRestValidationTest', 'AutoRestValidationTestConfiguration']
 
-try:
-    from ._auto_rest_validation_test_async import AutoRestValidationTestAsync
-    __all__ += ['AutoRestValidationTestAsync']
-except (SyntaxError, ImportError):  # Python 2
-    pass
-
 from .version import VERSION
 
 __version__ = VERSION

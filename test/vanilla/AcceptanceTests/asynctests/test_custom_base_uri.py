@@ -45,9 +45,9 @@ from msrest.exceptions import (
     ClientRequestError,
     ValidationError)
 
-from custombaseurl import AutoRestParameterizedHostTestClientAsync
+from custombaseurl.aio import AutoRestParameterizedHostTestClient
 from custombaseurl.models import Error, ErrorException
-from custombaseurlmoreoptions import AutoRestParameterizedCustomHostTestClientAsync
+from custombaseurlmoreoptions.aio import AutoRestParameterizedCustomHostTestClient
 
 import pytest
 
@@ -55,12 +55,12 @@ class TestCustomBaseUri(object):
 
     @pytest.mark.asyncio
     async def test_custom_base_uri_positive(self):
-        client = AutoRestParameterizedHostTestClientAsync("host:3000")
+        client = AutoRestParameterizedHostTestClient("host:3000")
         await client.paths.get_empty("local")
 
     @pytest.mark.asyncio
     async def test_custom_base_uri_negative(self):
-        client = AutoRestParameterizedHostTestClientAsync("host:3000")
+        client = AutoRestParameterizedHostTestClient("host:3000")
         client.config.retry_policy.retries = 0
 
         with pytest.raises(ClientRequestError):
@@ -75,5 +75,5 @@ class TestCustomBaseUri(object):
 
     @pytest.mark.asyncio
     async def test_custom_base_uri_more_optiopns(self):
-        client = AutoRestParameterizedCustomHostTestClientAsync("test12", "host:3000")
+        client = AutoRestParameterizedCustomHostTestClient("test12", "host:3000")
         await client.paths.get_empty("http://lo", "cal", "key1")

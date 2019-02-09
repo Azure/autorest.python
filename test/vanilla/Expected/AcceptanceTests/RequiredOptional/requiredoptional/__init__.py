@@ -13,12 +13,6 @@ from ._configuration import AutoRestRequiredOptionalTestServiceConfiguration
 from ._auto_rest_required_optional_test_service import AutoRestRequiredOptionalTestService
 __all__ = ['AutoRestRequiredOptionalTestService', 'AutoRestRequiredOptionalTestServiceConfiguration']
 
-try:
-    from ._auto_rest_required_optional_test_service_async import AutoRestRequiredOptionalTestServiceAsync
-    __all__ += ['AutoRestRequiredOptionalTestServiceAsync']
-except (SyntaxError, ImportError):  # Python 2
-    pass
-
 from .version import VERSION
 
 __version__ = VERSION

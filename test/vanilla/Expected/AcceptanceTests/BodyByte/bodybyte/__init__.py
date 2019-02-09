@@ -13,12 +13,6 @@ from ._configuration import AutoRestSwaggerBATByteServiceConfiguration
 from ._auto_rest_swagger_bat_byte_service import AutoRestSwaggerBATByteService
 __all__ = ['AutoRestSwaggerBATByteService', 'AutoRestSwaggerBATByteServiceConfiguration']
 
-try:
-    from ._auto_rest_swagger_bat_byte_service_async import AutoRestSwaggerBATByteServiceAsync
-    __all__ += ['AutoRestSwaggerBATByteServiceAsync']
-except (SyntaxError, ImportError):  # Python 2
-    pass
-
 from .version import VERSION
 
 __version__ = VERSION

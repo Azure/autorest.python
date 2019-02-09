@@ -44,7 +44,7 @@ sys.path.append(join(tests, "BodyNumber"))
 from msrest.serialization import Deserializer
 from msrest.exceptions import DeserializationError
 
-from bodynumber import AutoRestNumberTestServiceAsync
+from bodynumber.aio import AutoRestNumberTestService
 
 import pytest
 
@@ -52,7 +52,7 @@ class TestNumber(object):
 
     @pytest.mark.asyncio
     async def test_numbers(self):
-        client = AutoRestNumberTestServiceAsync(base_url="http://localhost:3000")
+        client = AutoRestNumberTestService(base_url="http://localhost:3000")
 
         await client.number.put_big_float(3.402823e+20)
         await client.number.put_small_float(3.402823e-20)
