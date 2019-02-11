@@ -1,5 +1,9 @@
 # Change Log
 
+### 2019-02-11 - 4.0.66
+
+- Fix async cross-link documentation
+
 ### 2019-02-08 - 4.0.65
 
 - New version of async generation. Requires msrest 0.6.3 and msrestazure 0.6.0.
