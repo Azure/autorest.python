@@ -13,21 +13,6 @@
 from msrest.serialization import Model
 @foreach(var currModel in Model) {
 <text>
-@if(currModel.ComplexConstants.Any())
-{
-    foreach(var property in currModel.ComplexConstants.Values)
-    {
-        if (Python3Mode) {
-@:from ._models_py3 import @property.Name
-        } else {
-@:from ._models import @property.Name
-        }
-    }
-}
-</text>
-}
-@foreach(var currModel in Model) {
-<text>
 @if (currModel.IsException)
 {
 @:from msrest.exceptions import HttpOperationError
