@@ -26,11 +26,11 @@ class AutoRestUrlTestService(SDKClientAsync):
     :vartype config: AutoRestUrlTestServiceConfiguration
 
     :ivar paths: Paths operations
-    :vartype paths: url.operations.PathsOperations
+    :vartype paths: url.operations_async.PathsOperations
     :ivar queries: Queries operations
-    :vartype queries: url.operations.QueriesOperations
+    :vartype queries: url.operations_async.QueriesOperations
     :ivar path_items: PathItems operations
-    :vartype path_items: url.operations.PathItemsOperations
+    :vartype path_items: url.operations_async.PathItemsOperations
 
     :param global_string_path: A string value 'globalItemStringPath' that
      appears in the path

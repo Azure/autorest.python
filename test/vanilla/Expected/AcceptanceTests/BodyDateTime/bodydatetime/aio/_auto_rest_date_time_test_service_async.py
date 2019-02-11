@@ -24,7 +24,7 @@ class AutoRestDateTimeTestService(SDKClientAsync):
     :vartype config: AutoRestDateTimeTestServiceConfiguration
 
     :ivar datetime_model: DatetimeModel operations
-    :vartype datetime_model: bodydatetime.operations.DatetimeModelOperations
+    :vartype datetime_model: bodydatetime.operations_async.DatetimeModelOperations
 
     :param str base_url: Service URL
     """

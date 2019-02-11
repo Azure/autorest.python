@@ -24,7 +24,7 @@ class AutoRestParameterizedHostTestClient(SDKClientAsync):
     :vartype config: AutoRestParameterizedHostTestClientConfiguration
 
     :ivar paths: Paths operations
-    :vartype paths: custombaseurl.operations.PathsOperations
+    :vartype paths: custombaseurl.operations_async.PathsOperations
 
     :param host: A string value that is used as a global part of the
      parameterized host

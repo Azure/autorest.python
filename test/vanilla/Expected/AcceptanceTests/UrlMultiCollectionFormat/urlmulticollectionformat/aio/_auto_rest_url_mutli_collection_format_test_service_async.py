@@ -24,7 +24,7 @@ class AutoRestUrlMutliCollectionFormatTestService(SDKClientAsync):
     :vartype config: AutoRestUrlMutliCollectionFormatTestServiceConfiguration
 
     :ivar queries: Queries operations
-    :vartype queries: urlmulticollectionformat.operations.QueriesOperations
+    :vartype queries: urlmulticollectionformat.operations_async.QueriesOperations
 
     :param str base_url: Service URL
     """

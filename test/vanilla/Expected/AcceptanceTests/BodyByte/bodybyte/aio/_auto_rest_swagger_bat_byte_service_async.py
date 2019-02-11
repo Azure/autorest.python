@@ -24,7 +24,7 @@ class AutoRestSwaggerBATByteService(SDKClientAsync):
     :vartype config: AutoRestSwaggerBATByteServiceConfiguration
 
     :ivar byte: Byte operations
-    :vartype byte: bodybyte.operations.ByteOperations
+    :vartype byte: bodybyte.operations_async.ByteOperations
 
     :param str base_url: Service URL
     """

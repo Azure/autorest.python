@@ -25,9 +25,9 @@ class AutoRestSwaggerBATService(SDKClientAsync):
     :vartype config: AutoRestSwaggerBATServiceConfiguration
 
     :ivar string: String operations
-    :vartype string: bodystring.operations.StringOperations
+    :vartype string: bodystring.operations_async.StringOperations
     :ivar enum: Enum operations
-    :vartype enum: bodystring.operations.EnumOperations
+    :vartype enum: bodystring.operations_async.EnumOperations
 
     :param str base_url: Service URL
     """

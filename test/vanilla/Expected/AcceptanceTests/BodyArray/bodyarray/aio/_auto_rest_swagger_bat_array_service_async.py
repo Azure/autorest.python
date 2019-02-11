@@ -24,7 +24,7 @@ class AutoRestSwaggerBATArrayService(SDKClientAsync):
     :vartype config: AutoRestSwaggerBATArrayServiceConfiguration
 
     :ivar array: Array operations
-    :vartype array: bodyarray.operations.ArrayOperations
+    :vartype array: bodyarray.operations_async.ArrayOperations
 
     :param str base_url: Service URL
     """

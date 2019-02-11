@@ -24,7 +24,7 @@ class AutoRestParameterizedCustomHostTestClient(SDKClientAsync):
     :vartype config: AutoRestParameterizedCustomHostTestClientConfiguration
 
     :ivar paths: Paths operations
-    :vartype paths: custombaseurlmoreoptions.operations.PathsOperations
+    :vartype paths: custombaseurlmoreoptions.operations_async.PathsOperations
 
     :param subscription_id: The subscription id with value 'test12'.
     :type subscription_id: str
