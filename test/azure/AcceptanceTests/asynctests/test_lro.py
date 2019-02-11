@@ -49,7 +49,7 @@ from msrestazure.azure_exceptions import CloudError, CloudErrorData
 from msrestazure.polling.async_arm_polling import (
     AsyncARMPolling,
 )
-from lro import AutoRestLongRunningOperationTestServiceAsync
+from lro.aio import AutoRestLongRunningOperationTestService
 from lro.models import *  # pylint: disable=W0614
 
 try:
@@ -84,9 +84,9 @@ class AutorestTestARMPolling(AsyncARMPolling):
 
 @pytest.fixture()
 def client():
-    """Create a AutoRestLongRunningOperationTestServiceAsync client with test server credentials."""
+    """Create a AutoRestLongRunningOperationTestService client with test server credentials."""
     cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
-    client = AutoRestLongRunningOperationTestServiceAsync(cred, base_url="http://localhost:3000")
+    client = AutoRestLongRunningOperationTestService(cred, base_url="http://localhost:3000")
     client.config.long_running_operation_timeout = 0 # In theory pointless, since we use AutorestTestARMPolling
     return client
 

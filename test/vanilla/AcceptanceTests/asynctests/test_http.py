@@ -44,7 +44,7 @@ sys.path.append(join(tests, "Http"))
 
 from msrest.exceptions import DeserializationError, HttpOperationError
 
-from httpinfrastructure import AutoRestHttpInfrastructureTestServiceAsync
+from httpinfrastructure.aio import AutoRestHttpInfrastructureTestService
 from httpinfrastructure.models import (
     A, B, C, D, ErrorException)
 
@@ -53,8 +53,8 @@ import pytest
 
 @pytest.fixture()
 def client():
-    """Create a AutoRestHttpInfrastructureTestServiceAsync client with test server credentials."""
-    client = AutoRestHttpInfrastructureTestServiceAsync(base_url="http://localhost:3000")
+    """Create a AutoRestHttpInfrastructureTestService client with test server credentials."""
+    client = AutoRestHttpInfrastructureTestService(base_url="http://localhost:3000")
     return client
 
 @pytest.fixture()

@@ -40,14 +40,14 @@ sys.path.append(join(tests, "BodyDictionary"))
 
 from msrest.exceptions import DeserializationError
 
-from bodydictionary import AutoRestSwaggerBATdictionaryServiceAsync
+from bodydictionary.aio import AutoRestSwaggerBATdictionaryService
 from bodydictionary.models import Widget, ErrorException
 
 import pytest
 
 @pytest.fixture
 def client():
-    return AutoRestSwaggerBATdictionaryServiceAsync(base_url="http://localhost:3000")
+    return AutoRestSwaggerBATdictionaryService(base_url="http://localhost:3000")
 
 class TestDictionary(object):
 

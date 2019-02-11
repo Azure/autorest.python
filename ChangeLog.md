@@ -1,5 +1,13 @@
 # Change Log
 
+### 2019-02-08 - 4.0.65
+
+- New version of async generation. Requires msrest 0.6.3 and msrestazure 0.6.0.
+
+  - namespace.XXXXClientAsync is now namespace.aio.XXXClient
+
+- Support now MICROSOFT_MIT_SMALL and MICROSOFT_MIT_SMALL_NO_CODEGEN headers options
+
 ### 2019-01-08 - 4.0.64
 
 - New version of async generation. Requires msrest 0.6.3 and msrestazure 0.6.0.

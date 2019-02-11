@@ -57,11 +57,15 @@ namespace AutoRest.Python
             var configurationTemplate = new ConfigurationTemplate { Model = codeModel };
             await Write(configurationTemplate, Path.Combine(folderName, "_configuration.py"));
 
+            var serviceClientInitTemplateAsync = new ServiceClientInitTemplateAsync { Model = codeModel };
+            await Write(serviceClientInitTemplateAsync, Path.Combine(folderName, "aio", "__init__.py"));
+
+            // Writing service client
             var serviceClientTemplate = new ServiceClientTemplate { Model = codeModel };
             await Write(serviceClientTemplate, Path.Combine(folderName, "_" + codeModel.Name.ToPythonCase() + ".py"));
 
             var serviceClientAsyncTemplate = new ServiceClientTemplateAsync { Model = codeModel };
-            await Write(serviceClientAsyncTemplate, Path.Combine(folderName, "_" + codeModel.Name.ToPythonCase() + "_async.py"));
+            await Write(serviceClientAsyncTemplate, Path.Combine(folderName, "aio", "_" + codeModel.Name.ToPythonCase() + "_async.py"));
 
             // If async method at the client level, create another file
             if(codeModel.MethodTemplateModels.Any( each => each.MethodGroup.IsCodeModelMethodGroup))
@@ -70,7 +74,7 @@ namespace AutoRest.Python
                 await Write(serviceClientOpTemplate, Path.Combine(folderName, "operations", "_" + codeModel.Name.ToPythonCase() + "_operations.py"));
 
                 var serviceClientOpTemplateAsync = new ServiceClientOperationsTemplateAsync { Model = codeModel };
-                await Write(serviceClientOpTemplateAsync, Path.Combine(folderName, "operations_async", "_" + codeModel.Name.ToPythonCase() + "_operations_async.py"));
+                await Write(serviceClientOpTemplateAsync, Path.Combine(folderName, "aio", "operations_async", "_" + codeModel.Name.ToPythonCase() + "_operations_async.py"));
             }
 
             // do we need to write out the version template file?
@@ -110,7 +114,7 @@ namespace AutoRest.Python
                     Model = codeModel,
                     AsyncMode = true
                 };
-                await Write(methodGroupIndexTemplateAsync, Path.Combine(folderName, "operations_async", "__init__.py"));
+                await Write(methodGroupIndexTemplateAsync, Path.Combine(folderName, "aio", "operations_async", "__init__.py"));
 
                 foreach (var methodGroupModel in codeModel.MethodGroupModels)
                 {
@@ -124,7 +128,7 @@ namespace AutoRest.Python
                     {
                         Model = methodGroupModel
                     };
-                    await Write(methodGroupTemplatePy3, Path.Combine(folderName, "operations_async", "_" + ((string) methodGroupModel.TypeName).ToPythonCase() + "_async.py"));
+                    await Write(methodGroupTemplatePy3, Path.Combine(folderName, "aio", "operations_async", "_" + ((string) methodGroupModel.TypeName).ToPythonCase() + "_async.py"));
                 }
             }
 
@@ -144,7 +148,7 @@ namespace AutoRest.Python
                 for (int i = 1; i < namespaceParts.Length; ++i)
                 {
                     string initFolderName = Path.Combine(namespaceParts.Take(i).ToArray());
-                    await Write("__import__('pkg_resources').declare_namespace(__name__)",
+                    await Write("__path__ = __import__('pkgutil').extend_path(__path__, __name__)",
                                 Path.Combine(initFolderName, "__init__.py"), true);
                 }
             }

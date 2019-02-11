@@ -45,7 +45,7 @@ from msrest.serialization import Deserializer
 from msrest.exceptions import DeserializationError
 from msrest.authentication import BasicTokenAuthentication
 
-from subscriptionidapiversion import MicrosoftAzureTestUrlAsync
+from subscriptionidapiversion.aio import MicrosoftAzureTestUrl
 from subscriptionidapiversion.models import ErrorException, SampleResourceGroup
 
 import pytest
@@ -58,7 +58,7 @@ class TestAzureUrl(object):
         sub_id = str(uuid4())
 
         cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
-        client = MicrosoftAzureTestUrlAsync(cred, sub_id, base_url="http://localhost:3000")
+        client = MicrosoftAzureTestUrl(cred, sub_id, base_url="http://localhost:3000")
 
         group = await client.group.get_sample_resource_group("testgoup101")
         assert group.name ==  "testgroup101"

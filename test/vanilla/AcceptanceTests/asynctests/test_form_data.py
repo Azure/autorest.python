@@ -40,7 +40,7 @@ sys.path.append(join(tests, "BodyFormData"))
 
 from msrest.exceptions import DeserializationError
 
-from bodyformdata import AutoRestSwaggerBATFormDataServiceAsync
+from bodyformdata.aio import AutoRestSwaggerBATFormDataService
 
 import pytest
 
@@ -54,7 +54,7 @@ def dummy_file():
 
 @pytest.fixture
 def client():
-    client = AutoRestSwaggerBATFormDataServiceAsync(base_url="http://localhost:3000")
+    client = AutoRestSwaggerBATFormDataService(base_url="http://localhost:3000")
     client.config.connection.data_block_size = 2
     client.config.retry_policy.retries = 50  # Be agressive on this test, sometimes testserver DDOS :-p
     client.config.retry_policy.backoff_factor = 1.6

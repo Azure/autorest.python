@@ -13,12 +13,6 @@ from ._configuration import AutoRestSwaggerBATdictionaryServiceConfiguration
 from ._auto_rest_swagger_ba_tdictionary_service import AutoRestSwaggerBATdictionaryService
 __all__ = ['AutoRestSwaggerBATdictionaryService', 'AutoRestSwaggerBATdictionaryServiceConfiguration']
 
-try:
-    from ._auto_rest_swagger_ba_tdictionary_service_async import AutoRestSwaggerBATdictionaryServiceAsync
-    __all__ += ['AutoRestSwaggerBATdictionaryServiceAsync']
-except (SyntaxError, ImportError):  # Python 2
-    pass
-
 from .version import VERSION
 
 __version__ = VERSION
