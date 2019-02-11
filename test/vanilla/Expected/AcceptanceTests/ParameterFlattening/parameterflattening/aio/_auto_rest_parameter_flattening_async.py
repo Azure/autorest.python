@@ -25,7 +25,7 @@ class AutoRestParameterFlattening(SDKClientAsync):
     :vartype config: AutoRestParameterFlatteningConfiguration
 
     :ivar availability_sets: AvailabilitySets operations
-    :vartype availability_sets: parameterflattening.operations_async.AvailabilitySetsOperations
+    :vartype availability_sets: parameterflattening.aio.operations_async.AvailabilitySetsOperations
 
     :param str base_url: Service URL
     """

@@ -24,7 +24,7 @@ class AutoRestSwaggerBATdictionaryService(SDKClientAsync):
     :vartype config: AutoRestSwaggerBATdictionaryServiceConfiguration
 
     :ivar dictionary: Dictionary operations
-    :vartype dictionary: bodydictionary.operations_async.DictionaryOperations
+    :vartype dictionary: bodydictionary.aio.operations_async.DictionaryOperations
 
     :param str base_url: Service URL
     """

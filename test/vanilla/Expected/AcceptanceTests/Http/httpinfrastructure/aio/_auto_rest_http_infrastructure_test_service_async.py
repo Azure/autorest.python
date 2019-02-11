@@ -31,19 +31,19 @@ class AutoRestHttpInfrastructureTestService(SDKClientAsync):
     :vartype config: AutoRestHttpInfrastructureTestServiceConfiguration
 
     :ivar http_failure: HttpFailure operations
-    :vartype http_failure: httpinfrastructure.operations_async.HttpFailureOperations
+    :vartype http_failure: httpinfrastructure.aio.operations_async.HttpFailureOperations
     :ivar http_success: HttpSuccess operations
-    :vartype http_success: httpinfrastructure.operations_async.HttpSuccessOperations
+    :vartype http_success: httpinfrastructure.aio.operations_async.HttpSuccessOperations
     :ivar http_redirects: HttpRedirects operations
-    :vartype http_redirects: httpinfrastructure.operations_async.HttpRedirectsOperations
+    :vartype http_redirects: httpinfrastructure.aio.operations_async.HttpRedirectsOperations
     :ivar http_client_failure: HttpClientFailure operations
-    :vartype http_client_failure: httpinfrastructure.operations_async.HttpClientFailureOperations
+    :vartype http_client_failure: httpinfrastructure.aio.operations_async.HttpClientFailureOperations
     :ivar http_server_failure: HttpServerFailure operations
-    :vartype http_server_failure: httpinfrastructure.operations_async.HttpServerFailureOperations
+    :vartype http_server_failure: httpinfrastructure.aio.operations_async.HttpServerFailureOperations
     :ivar http_retry: HttpRetry operations
-    :vartype http_retry: httpinfrastructure.operations_async.HttpRetryOperations
+    :vartype http_retry: httpinfrastructure.aio.operations_async.HttpRetryOperations
     :ivar multiple_responses: MultipleResponses operations
-    :vartype multiple_responses: httpinfrastructure.operations_async.MultipleResponsesOperations
+    :vartype multiple_responses: httpinfrastructure.aio.operations_async.MultipleResponsesOperations
 
     :param str base_url: Service URL
     """

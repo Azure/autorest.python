@@ -24,7 +24,7 @@ class AutoRestSwaggerBATFileService(SDKClientAsync):
     :vartype config: AutoRestSwaggerBATFileServiceConfiguration
 
     :ivar files: Files operations
-    :vartype files: bodyfile.operations_async.FilesOperations
+    :vartype files: bodyfile.aio.operations_async.FilesOperations
 
     :param str base_url: Service URL
     """

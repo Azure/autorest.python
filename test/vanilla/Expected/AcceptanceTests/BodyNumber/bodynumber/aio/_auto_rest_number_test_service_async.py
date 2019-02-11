@@ -24,7 +24,7 @@ class AutoRestNumberTestService(SDKClientAsync):
     :vartype config: AutoRestNumberTestServiceConfiguration
 
     :ivar number: Number operations
-    :vartype number: bodynumber.operations_async.NumberOperations
+    :vartype number: bodynumber.aio.operations_async.NumberOperations
 
     :param str base_url: Service URL
     """

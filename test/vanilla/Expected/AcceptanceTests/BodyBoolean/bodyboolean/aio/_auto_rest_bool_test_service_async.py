@@ -24,7 +24,7 @@ class AutoRestBoolTestService(SDKClientAsync):
     :vartype config: AutoRestBoolTestServiceConfiguration
 
     :ivar bool_model: BoolModel operations
-    :vartype bool_model: bodyboolean.operations_async.BoolModelOperations
+    :vartype bool_model: bodyboolean.aio.operations_async.BoolModelOperations
 
     :param str base_url: Service URL
     """

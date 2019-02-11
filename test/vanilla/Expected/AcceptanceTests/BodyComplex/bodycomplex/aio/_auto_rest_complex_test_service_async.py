@@ -33,23 +33,23 @@ class AutoRestComplexTestService(SDKClientAsync):
     :vartype config: AutoRestComplexTestServiceConfiguration
 
     :ivar basic: Basic operations
-    :vartype basic: bodycomplex.operations_async.BasicOperations
+    :vartype basic: bodycomplex.aio.operations_async.BasicOperations
     :ivar primitive: Primitive operations
-    :vartype primitive: bodycomplex.operations_async.PrimitiveOperations
+    :vartype primitive: bodycomplex.aio.operations_async.PrimitiveOperations
     :ivar array: Array operations
-    :vartype array: bodycomplex.operations_async.ArrayOperations
+    :vartype array: bodycomplex.aio.operations_async.ArrayOperations
     :ivar dictionary: Dictionary operations
-    :vartype dictionary: bodycomplex.operations_async.DictionaryOperations
+    :vartype dictionary: bodycomplex.aio.operations_async.DictionaryOperations
     :ivar inheritance: Inheritance operations
-    :vartype inheritance: bodycomplex.operations_async.InheritanceOperations
+    :vartype inheritance: bodycomplex.aio.operations_async.InheritanceOperations
     :ivar polymorphism: Polymorphism operations
-    :vartype polymorphism: bodycomplex.operations_async.PolymorphismOperations
+    :vartype polymorphism: bodycomplex.aio.operations_async.PolymorphismOperations
     :ivar polymorphicrecursive: Polymorphicrecursive operations
-    :vartype polymorphicrecursive: bodycomplex.operations_async.PolymorphicrecursiveOperations
+    :vartype polymorphicrecursive: bodycomplex.aio.operations_async.PolymorphicrecursiveOperations
     :ivar readonlyproperty: Readonlyproperty operations
-    :vartype readonlyproperty: bodycomplex.operations_async.ReadonlypropertyOperations
+    :vartype readonlyproperty: bodycomplex.aio.operations_async.ReadonlypropertyOperations
     :ivar flattencomplex: Flattencomplex operations
-    :vartype flattencomplex: bodycomplex.operations_async.FlattencomplexOperations
+    :vartype flattencomplex: bodycomplex.aio.operations_async.FlattencomplexOperations
 
     :param str base_url: Service URL
     """

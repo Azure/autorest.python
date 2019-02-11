@@ -24,7 +24,7 @@ class AdditionalPropertiesClient(SDKClientAsync):
     :vartype config: AdditionalPropertiesClientConfiguration
 
     :ivar pets: Pets operations
-    :vartype pets: additionalproperties.operations_async.PetsOperations
+    :vartype pets: additionalproperties.aio.operations_async.PetsOperations
 
     :param str base_url: Service URL
     """

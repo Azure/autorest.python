@@ -24,7 +24,7 @@ class AutoRestDurationTestService(SDKClientAsync):
     :vartype config: AutoRestDurationTestServiceConfiguration
 
     :ivar duration: Duration operations
-    :vartype duration: bodyduration.operations_async.DurationOperations
+    :vartype duration: bodyduration.aio.operations_async.DurationOperations
 
     :param str base_url: Service URL
     """
