@@ -269,7 +269,7 @@ namespace AutoRest.Python.Model
 
         public virtual string GetExceptionNameIfExist(IModelType type, bool needsQuote)
         {
-            Core.Model.CompositeType compType = type as Core.Model.CompositeType;
+            CompositeType compType = type as CompositeType;
             if (compType != null)
             {
                 if (ErrorTypes.Contains(compType))

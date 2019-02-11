@@ -780,7 +780,7 @@ namespace AutoRest.Python.Model
                     result = string.Format(CultureInfo.InvariantCulture,
                         "Possible values for result are - {0}.", enumValues);
                 }
-                else if (body is Core.Model.CompositeType)
+                else if (body is CompositeType)
                 {
                     result = string.Format(CultureInfo.InvariantCulture,
                         "See {{@link {0}}} for more information.", ReturnTypeString);

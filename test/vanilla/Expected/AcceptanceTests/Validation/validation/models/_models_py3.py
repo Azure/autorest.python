@@ -10,6 +10,7 @@
 # --------------------------------------------------------------------------
 
 from msrest.serialization import Model
+from ._models_py3 import ConstantProduct
 from msrest.exceptions import HttpOperationError
 
 

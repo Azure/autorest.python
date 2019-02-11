@@ -13,7 +13,6 @@ using AutoRest.Core.Utilities;
 using AutoRest.Extensions;
 using AutoRest.Extensions.Azure;
 using AutoRest.Python.Azure.Model;
-using AutoRest.Python.Model;
 using Newtonsoft.Json.Linq;
 using static AutoRest.Core.Utilities.DependencyInjection;
 

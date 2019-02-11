@@ -82,10 +82,10 @@ namespace AutoRest.Python.Azure
                 var modelInitTemplate = new AzureModelInitTemplate
                 {
                     Model = codeModel
-                };                
+                };
                 await Write(modelInitTemplate, Path.Combine(folderName, "models", "__init__.py"));
 
-                
+
                 var modelTemplate = new ModelTemplate { Model = codeModel.getSortedModels() };
                 await Write(modelTemplate, Path.Combine(folderName, "models", "_models.py"));
                 modelTemplate.Python3Mode = true;

@@ -1,82 +1,82 @@
-﻿// This file is used by Code Analysis to maintain SuppressMessage 
+﻿// This file is used by Code Analysis to maintain SuppressMessage
 // attributes that are applied to this project.
-// Project-level suppressions either have no target or are given 
+// Project-level suppressions either have no target or are given
 // a specific target and scoped to a namespace, type, member, etc.
 //
-// To add a suppression to this file, right-click the message in the 
-// Code Analysis results, point to "Suppress Message", and click 
+// To add a suppression to this file, right-click the message in the
+// Code Analysis results, point to "Suppress Message", and click
 // "In Suppression File".
 // You do not need to add suppressions to this file manually.
 
-[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1002:DoNotExposeGenericLists", Scope = "member", 
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1002:DoNotExposeGenericLists", Scope = "member",
     Target = "AutoRest.Python.ServiceClientTemplateModel.#ModelTemplateModels", Justification="Using another type would add unneeded complexity")]
-[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1002:DoNotExposeGenericLists", Scope = "member", 
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1002:DoNotExposeGenericLists", Scope = "member",
     Target = "AutoRest.Python.MethodGroupTemplateModel.#MethodTemplateModels", Justification="Using another type would add unneeded complexity")]
-[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1002:DoNotExposeGenericLists", Scope = "member", 
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1002:DoNotExposeGenericLists", Scope = "member",
     Target = "AutoRest.Python.MethodTemplateModel.#ParameterTemplateModels", Justification="Using another type would add unneeded complexity")]
-[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1002:DoNotExposeGenericLists", Scope = "member", 
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1002:DoNotExposeGenericLists", Scope = "member",
     Target = "AutoRest.Python.ServiceClientTemplateModel.#MethodTemplateModels", Justification="Using another type would add unneeded complexity")]
-[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1020:AvoidNamespacesWithFewTypes", 
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1020:AvoidNamespacesWithFewTypes",
     Scope = "namespace", Target = "AutoRest.Python.TemplateModels", Justification = "Parallel with other generators")]
-[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed", 
-    Scope = "member", 
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed",
+    Scope = "member",
     Target = "AutoRest.Python.TemplateModels.ClientModelExtensions.#ValidateType(AutoRest.Core.ClientModel.IType,AutoRest.Core.Utilities.IScopeProvider,System.String,System.String)", Justification="Code simplification")]
-[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed", 
-    Scope = "member", 
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed",
+    Scope = "member",
     Target = "AutoRest.Python.TemplateModels.ClientModelExtensions.#DeserializeType(AutoRest.Core.ClientModel.IType,AutoRest.Core.Utilities.IScopeProvider,System.String,System.String)", Justification="Code simplification")]
-[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed", 
-    Scope = "member", 
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed",
+    Scope = "member",
     Target = "AutoRest.Python.MethodTemplateModel.#GetDeserializationString(AutoRest.Core.ClientModel.IType,System.String)")]
-[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings", 
-    MessageId = "0#", Scope = "member", 
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings",
+    MessageId = "0#", Scope = "member",
     Target = "AutoRest.Python.MethodTemplateModel.#RemoveDuplicateForwardSlashes(System.String)", Justification="Uri will not pass uri validation")]
-[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1055:UriReturnValuesShouldNotBeStrings", 
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1055:UriReturnValuesShouldNotBeStrings",
     Scope = "member", Target = "AutoRest.Python.MethodTemplateModel.#BuildUrl(System.String)", Justification="Uri will not pass uri validation")]
-[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1062:Validate arguments of public methods", 
-    MessageId = "1", Scope = "member", 
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1062:Validate arguments of public methods",
+    MessageId = "1", Scope = "member",
     Target = "AutoRest.Python.MethodTemplateModel.#.ctor(AutoRest.Core.ClientModel.Method,AutoRest.Core.ClientModel.ServiceClient)", Justification="Validated by LoadFrom method")]
-[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1062:Validate arguments of public methods", 
-    MessageId = "0", Scope = "member", 
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1062:Validate arguments of public methods",
+    MessageId = "0", Scope = "member",
     Target = "AutoRest.Python.MethodTemplateModel.#.ctor(AutoRest.Core.ClientModel.Method,AutoRest.Core.ClientModel.ServiceClient)", Justification="Validated by LoadFrom method")]
-[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1062:Validate arguments of public methods", 
-    MessageId = "0", Scope = "member", 
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1062:Validate arguments of public methods",
+    MessageId = "0", Scope = "member",
     Target = "AutoRest.Python.ModelTemplateModel.#.ctor(AutoRest.Core.ClientModel.CompositeType,AutoRest.Core.ClientModel.ServiceClient)", Justification="Validated by LoadFrom method")]
-[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Globalization", 
-    "CA1303:Do not pass literals as localized parameters", 
-    MessageId = "AutoRest.Core.Utilities.IndentedStringBuilder.AppendLine(System.String)", Scope = "member", 
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Globalization",
+    "CA1303:Do not pass literals as localized parameters",
+    MessageId = "AutoRest.Core.Utilities.IndentedStringBuilder.AppendLine(System.String)", Scope = "member",
     Target = "AutoRest.Python.TemplateModels.ClientModelExtensions.#DeserializeType(AutoRest.Core.ClientModel.IType,AutoRest.Core.Utilities.IScopeProvider,System.String,System.String)", Justification="Literal string is generated code, no localization concerns")]
-[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Globalization", 
-    "CA1303:Do not pass literals as localized parameters", 
-    MessageId = "AutoRest.Core.Utilities.IndentedStringBuilder.AppendLine(System.String)", Scope = "member", 
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Globalization",
+    "CA1303:Do not pass literals as localized parameters",
+    MessageId = "AutoRest.Core.Utilities.IndentedStringBuilder.AppendLine(System.String)", Scope = "member",
     Target = "AutoRest.Python.TemplateModels.ClientModelExtensions.#ValidateRequiredType(AutoRest.Core.ClientModel.IType,AutoRest.Core.Utilities.IScopeProvider,System.String,System.String)", Justification="Literal string is generated code, no localization concerns")]
-[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Globalization", 
-    "CA1303:Do not pass literals as localized parameters", 
-    MessageId = "AutoRest.Core.Utilities.IndentedStringBuilder.AppendLine(System.String)", Scope = "member", 
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Globalization",
+    "CA1303:Do not pass literals as localized parameters",
+    MessageId = "AutoRest.Core.Utilities.IndentedStringBuilder.AppendLine(System.String)", Scope = "member",
     Target = "AutoRest.Python.TemplateModels.ClientModelExtensions.#ValidateType(AutoRest.Core.ClientModel.IType,AutoRest.Core.Utilities.IScopeProvider,System.String,System.String)", Justification="Literal string is generated code, no localization concerns")]
-[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Globalization", 
-    "CA1303:Do not pass literals as localized parameters", 
-    MessageId = "AutoRest.Core.Utilities.IndentedStringBuilder.AppendLine(System.String)", Scope = "member", 
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Globalization",
+    "CA1303:Do not pass literals as localized parameters",
+    MessageId = "AutoRest.Core.Utilities.IndentedStringBuilder.AppendLine(System.String)", Scope = "member",
     Target = "AutoRest.Python.MethodTemplateModel.#GetDeserializationString(AutoRest.Core.ClientModel.IType,System.String)", Justification="Literal string is generated code, no localization concerns")]
-[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Globalization", 
-    "CA1303:Do not pass literals as localized parameters", 
-    MessageId = "AutoRest.Core.Utilities.IndentedStringBuilder.AppendLine(System.String)", Scope = "member", 
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Globalization",
+    "CA1303:Do not pass literals as localized parameters",
+    MessageId = "AutoRest.Core.Utilities.IndentedStringBuilder.AppendLine(System.String)", Scope = "member",
     Target = "AutoRest.Python.ServiceClientTemplateModel.#PolymorphicDictionary", Justification="Literal string is generated code, no localization concerns")]
-[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Globalization", 
-    "CA1303:Do not pass literals as localized parameters", 
-    MessageId = "AutoRest.Core.Utilities.IndentedStringBuilder.AppendLine(System.String)", Scope = "member", 
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Globalization",
+    "CA1303:Do not pass literals as localized parameters",
+    MessageId = "AutoRest.Core.Utilities.IndentedStringBuilder.AppendLine(System.String)", Scope = "member",
     Target = "AutoRest.Python.MethodTemplateModel.#BuildUrl(System.String)", Justification="Literal string is generated code, no localization concerns")]
-[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Globalization", 
-    "CA1303:Do not pass literals as localized parameters", 
-    MessageId = "AutoRest.Core.Utilities.IndentedStringBuilder.AppendLine(System.String)", Scope = "member", 
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Globalization",
+    "CA1303:Do not pass literals as localized parameters",
+    MessageId = "AutoRest.Core.Utilities.IndentedStringBuilder.AppendLine(System.String)", Scope = "member",
     Target = "AutoRest.Python.MethodTemplateModel.#RemoveDuplicateForwardSlashes(System.String)", Justification="Literal string is generated code, no localization concerns")]
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Globalization", "CA1303:Do not pass literals as localized parameters", MessageId = "AutoRest.Core.Utilities.IndentedStringBuilder.Append(System.String)", Scope = "member", Target = "AutoRest.Python.ServiceClientTemplateModel.#PolymorphicDictionary", Justification="Literal string is generated code, no localization concerns")]
-[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Globalization", "CA1308:NormalizeStringsToUppercase", 
-    Scope = "member", 
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Globalization", "CA1308:NormalizeStringsToUppercase",
+    Scope = "member",
     Target = "AutoRest.Python.TemplateModels.ClientModelExtensions.#ValidateType(AutoRest.Core.ClientModel.IType,AutoRest.Core.Utilities.IScopeProvider,System.String,System.String)", Justification="Node conventions require lower casing")]
-[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1800:DoNotCastUnnecessarily", 
-    Scope = "member", 
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1800:DoNotCastUnnecessarily",
+    Scope = "member",
     Target = "AutoRest.Python.ModelTemplateModel.#isSpecial(AutoRest.Core.ClientModel.IType)", Justification="False Positive")]
-[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", 
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly",
     MessageId = "gi", Scope = "member", Target = "AutoRest.Python.MethodTemplateModel.#RemoveDuplicateForwardSlashes(System.String)", Justification="Generated code parameters to regular expression")]
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Globalization", "CA1303:Do not pass literals as localized parameters", MessageId = "AutoRest.Core.Utilities.IndentedStringBuilder.AppendLine(System.String)", Scope = "member", Target = "AutoRest.Python.MethodTemplateModel.#AddQueryParametersToUrl(System.String,AutoRest.Core.Utilities.IndentedStringBuilder)", Justification="Literal string is generated code, no localization concerns.")]
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Globalization", "CA1303:Do not pass literals as localized parameters", MessageId = "AutoRest.Core.Utilities.IndentedStringBuilder.AppendLine(System.String)", Scope = "member", Target = "AutoRest.Python.MethodTemplateModel.#BuildQueryParameterArray(AutoRest.Core.Utilities.IndentedStringBuilder)", Justification="Literal string is generated code, no localization concerns.")]

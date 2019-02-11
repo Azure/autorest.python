@@ -13,6 +13,21 @@
 from msrest.serialization import Model
 @foreach(var currModel in Model) {
 <text>
+@if(currModel.ComplexConstants.Any())
+{
+    foreach(var property in currModel.ComplexConstants.Values)
+    {
+        if (Python3Mode) {
+@:from ._models_py3 import @property.Name
+        } else {
+@:from ._models import @property.Name
+        }
+    }
+}
+</text>
+}
+@foreach(var currModel in Model) {
+<text>
 @if (currModel.IsException)
 {
 @:from msrest.exceptions import HttpOperationError
@@ -70,7 +85,7 @@ else
         }
     }
 }
-    """ 
+    """
 @if (currModel.Validators.Any() || currModel.RequiredFieldsList.Any())
 {
 <text>
@@ -89,7 +104,7 @@ else
     @:_attribute_map = {
     if (mapAttrList.Count > 0)
     {
-      for (int i = 0; i < mapAttrList.Count; i++) 
+      for (int i = 0; i < mapAttrList.Count; i++)
       {
         @:@(currModel.InitializeProperty(mapAttrList[i]))
       }
@@ -120,11 +135,11 @@ else
     }
 }
 @if (currModel.NeedsConstructor)
-{ 
+{
 @EmptyLine
 @if (Python3Mode)
 {
-    @:def __init__(self@(currModel.ModelParameterDeclaration())) -> None: 
+    @:def __init__(self@(currModel.ModelParameterDeclaration())) -> None:
     if (currModel.HasParent)
     {
         @:super(@(currModel.Name), self).__init__(@(currModel.SuperParameterDeclaration()))
@@ -132,7 +147,7 @@ else
     else
     {
         @:super(@(currModel.Name), self).__init__(**kwargs)
-    }    
+    }
 }
 else
 {
