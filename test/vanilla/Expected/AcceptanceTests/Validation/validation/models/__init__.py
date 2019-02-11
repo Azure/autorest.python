@@ -12,13 +12,13 @@
 try:
     from ._models_py3 import ChildProduct
     from ._models_py3 import ConstantProduct
-    from ._models_py3 import Product
     from ._models_py3 import Error, ErrorException
+    from ._models_py3 import Product
 except (SyntaxError, ImportError):
     from ._models import ChildProduct
     from ._models import ConstantProduct
-    from ._models import Product
     from ._models import Error, ErrorException
+    from ._models import Product
 from .auto_rest_validation_test_enums import (
     EnumConst,
 )
@@ -26,7 +26,7 @@ from .auto_rest_validation_test_enums import (
 __all__ = [
     'ChildProduct',
     'ConstantProduct',
-    'Product',
     'Error', 'ErrorException',
+    'Product',
     'EnumConst',
 ]

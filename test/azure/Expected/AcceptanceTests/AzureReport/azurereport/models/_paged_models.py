@@ -9,8 +9,6 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .paths_operations import PathsOperations
+from msrest.paging import Paged
 
-__all__ = [
-    'PathsOperations',
-]
+

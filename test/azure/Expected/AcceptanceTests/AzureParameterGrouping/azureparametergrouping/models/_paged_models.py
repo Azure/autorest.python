@@ -9,10 +9,6 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .auto_rest_parameterized_host_test_client import AutoRestParameterizedHostTestClient
-from .version import VERSION
+from msrest.paging import Paged
 
-__all__ = ['AutoRestParameterizedHostTestClient']
-
-__version__ = VERSION
 

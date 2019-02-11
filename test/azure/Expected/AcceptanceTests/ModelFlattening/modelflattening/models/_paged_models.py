@@ -9,8 +9,6 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .error import Error, ErrorException
+from msrest.paging import Paged
 
-__all__ = [
-    'Error', 'ErrorException',
-]
+

@@ -13,6 +13,14 @@ from msrest.serialization import Model
 from msrest.exceptions import HttpOperationError
 
 
+class CloudError(Model):
+    """CloudError.
+    """
+
+    _attribute_map = {
+    }
+
+
 class Error(Model):
     """Error.
 
@@ -59,26 +67,6 @@ class ErrorException(HttpOperationError):
         super(ErrorException, self).__init__(deserialize, response, 'Error', *args)
 
 
-class OdataFilter(Model):
-    """OdataFilter.
-
-    :param id:
-    :type id: int
-    :param name:
-    :type name: str
-    """
-
-    _attribute_map = {
-        'id': {'key': 'id', 'type': 'int'},
-        'name': {'key': 'name', 'type': 'str'},
-    }
-
-    def __init__(self, **kwargs):
-        super(OdataFilter, self).__init__(**kwargs)
-        self.id = kwargs.get('id', None)
-        self.name = kwargs.get('name', None)
-
-
 class HeaderCustomNamedRequestIdParamGroupingParameters(Model):
     """Additional parameters for custom_named_request_id_param_grouping operation.
 
@@ -101,9 +89,21 @@ class HeaderCustomNamedRequestIdParamGroupingParameters(Model):
         self.foo_client_request_id = kwargs.get('foo_client_request_id', None)
 
 
-class CloudError(Model):
-    """CloudError.
+class OdataFilter(Model):
+    """OdataFilter.
+
+    :param id:
+    :type id: int
+    :param name:
+    :type name: str
     """
 
     _attribute_map = {
+        'id': {'key': 'id', 'type': 'int'},
+        'name': {'key': 'name', 'type': 'str'},
     }
+
+    def __init__(self, **kwargs):
+        super(OdataFilter, self).__init__(**kwargs)
+        self.id = kwargs.get('id', None)
+        self.name = kwargs.get('name', None)

@@ -9,14 +9,6 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-try:
-    from ._models_py3 import Error, ErrorException
-    from ._models_py3 import SampleResourceGroup
-except (SyntaxError, ImportError):
-    from ._models import Error, ErrorException
-    from ._models import SampleResourceGroup
+from msrest.paging import Paged
 
-__all__ = [
-    'Error', 'ErrorException',
-    'SampleResourceGroup',
-]
+

@@ -10,65 +10,65 @@
 # --------------------------------------------------------------------------
 
 try:
-    from ._models_py3 import Error, ErrorException
+    from ._models_py3 import ArrayWrapper
     from ._models_py3 import Basic
-    from ._models_py3 import Pet
-    from ._models_py3 import Dog
+    from ._models_py3 import BooleanWrapper
+    from ._models_py3 import ByteWrapper
     from ._models_py3 import Cat
-    from ._models_py3 import Siamese
-    from ._models_py3 import Fish
-    from ._models_py3 import Salmon
-    from ._models_py3 import SmartSalmon
-    from ._models_py3 import Shark
-    from ._models_py3 import Sawshark
-    from ._models_py3 import Goblinshark
     from ._models_py3 import Cookiecuttershark
+    from ._models_py3 import Datetimerfc1123Wrapper
+    from ._models_py3 import DatetimeWrapper
+    from ._models_py3 import DateWrapper
+    from ._models_py3 import DictionaryWrapper
+    from ._models_py3 import Dog
+    from ._models_py3 import DoubleWrapper
+    from ._models_py3 import DurationWrapper
+    from ._models_py3 import Error, ErrorException
+    from ._models_py3 import Fish
+    from ._models_py3 import FloatWrapper
+    from ._models_py3 import Goblinshark
     from ._models_py3 import IntWrapper
     from ._models_py3 import LongWrapper
-    from ._models_py3 import FloatWrapper
-    from ._models_py3 import DoubleWrapper
-    from ._models_py3 import BooleanWrapper
-    from ._models_py3 import StringWrapper
-    from ._models_py3 import DateWrapper
-    from ._models_py3 import DatetimeWrapper
-    from ._models_py3 import Datetimerfc1123Wrapper
-    from ._models_py3 import DurationWrapper
-    from ._models_py3 import ByteWrapper
-    from ._models_py3 import ArrayWrapper
-    from ._models_py3 import DictionaryWrapper
-    from ._models_py3 import ReadonlyObj
     from ._models_py3 import MyBaseType
     from ._models_py3 import MyDerivedType
+    from ._models_py3 import Pet
+    from ._models_py3 import ReadonlyObj
+    from ._models_py3 import Salmon
+    from ._models_py3 import Sawshark
+    from ._models_py3 import Shark
+    from ._models_py3 import Siamese
+    from ._models_py3 import SmartSalmon
+    from ._models_py3 import StringWrapper
 except (SyntaxError, ImportError):
-    from ._models import Error, ErrorException
+    from ._models import ArrayWrapper
     from ._models import Basic
-    from ._models import Pet
-    from ._models import Dog
+    from ._models import BooleanWrapper
+    from ._models import ByteWrapper
     from ._models import Cat
-    from ._models import Siamese
-    from ._models import Fish
-    from ._models import Salmon
-    from ._models import SmartSalmon
-    from ._models import Shark
-    from ._models import Sawshark
-    from ._models import Goblinshark
     from ._models import Cookiecuttershark
+    from ._models import Datetimerfc1123Wrapper
+    from ._models import DatetimeWrapper
+    from ._models import DateWrapper
+    from ._models import DictionaryWrapper
+    from ._models import Dog
+    from ._models import DoubleWrapper
+    from ._models import DurationWrapper
+    from ._models import Error, ErrorException
+    from ._models import Fish
+    from ._models import FloatWrapper
+    from ._models import Goblinshark
     from ._models import IntWrapper
     from ._models import LongWrapper
-    from ._models import FloatWrapper
-    from ._models import DoubleWrapper
-    from ._models import BooleanWrapper
-    from ._models import StringWrapper
-    from ._models import DateWrapper
-    from ._models import DatetimeWrapper
-    from ._models import Datetimerfc1123Wrapper
-    from ._models import DurationWrapper
-    from ._models import ByteWrapper
-    from ._models import ArrayWrapper
-    from ._models import DictionaryWrapper
-    from ._models import ReadonlyObj
     from ._models import MyBaseType
     from ._models import MyDerivedType
+    from ._models import Pet
+    from ._models import ReadonlyObj
+    from ._models import Salmon
+    from ._models import Sawshark
+    from ._models import Shark
+    from ._models import Siamese
+    from ._models import SmartSalmon
+    from ._models import StringWrapper
 from .auto_rest_complex_test_service_enums import (
     CMYKColors,
     GoblinSharkColor,
@@ -76,35 +76,35 @@ from .auto_rest_complex_test_service_enums import (
 )
 
 __all__ = [
-    'Error', 'ErrorException',
+    'ArrayWrapper',
     'Basic',
-    'Pet',
-    'Dog',
+    'BooleanWrapper',
+    'ByteWrapper',
     'Cat',
-    'Siamese',
-    'Fish',
-    'Salmon',
-    'SmartSalmon',
-    'Shark',
-    'Sawshark',
-    'Goblinshark',
     'Cookiecuttershark',
+    'Datetimerfc1123Wrapper',
+    'DatetimeWrapper',
+    'DateWrapper',
+    'DictionaryWrapper',
+    'Dog',
+    'DoubleWrapper',
+    'DurationWrapper',
+    'Error', 'ErrorException',
+    'Fish',
+    'FloatWrapper',
+    'Goblinshark',
     'IntWrapper',
     'LongWrapper',
-    'FloatWrapper',
-    'DoubleWrapper',
-    'BooleanWrapper',
-    'StringWrapper',
-    'DateWrapper',
-    'DatetimeWrapper',
-    'Datetimerfc1123Wrapper',
-    'DurationWrapper',
-    'ByteWrapper',
-    'ArrayWrapper',
-    'DictionaryWrapper',
-    'ReadonlyObj',
     'MyBaseType',
     'MyDerivedType',
+    'Pet',
+    'ReadonlyObj',
+    'Salmon',
+    'Sawshark',
+    'Shark',
+    'Siamese',
+    'SmartSalmon',
+    'StringWrapper',
     'CMYKColors',
     'GoblinSharkColor',
     'MyKind',

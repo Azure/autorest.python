@@ -13,6 +13,82 @@ from msrest.serialization import Model
 from msrest.exceptions import HttpOperationError
 
 
+class ArrayOptionalWrapper(Model):
+    """ArrayOptionalWrapper.
+
+    :param value:
+    :type value: list[str]
+    """
+
+    _attribute_map = {
+        'value': {'key': 'value', 'type': '[str]'},
+    }
+
+    def __init__(self, *, value=None, **kwargs) -> None:
+        super(ArrayOptionalWrapper, self).__init__(**kwargs)
+        self.value = value
+
+
+class ArrayWrapper(Model):
+    """ArrayWrapper.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :param value: Required.
+    :type value: list[str]
+    """
+
+    _validation = {
+        'value': {'required': True},
+    }
+
+    _attribute_map = {
+        'value': {'key': 'value', 'type': '[str]'},
+    }
+
+    def __init__(self, *, value, **kwargs) -> None:
+        super(ArrayWrapper, self).__init__(**kwargs)
+        self.value = value
+
+
+class ClassOptionalWrapper(Model):
+    """ClassOptionalWrapper.
+
+    :param value:
+    :type value: ~requiredoptional.models.Product
+    """
+
+    _attribute_map = {
+        'value': {'key': 'value', 'type': 'Product'},
+    }
+
+    def __init__(self, *, value=None, **kwargs) -> None:
+        super(ClassOptionalWrapper, self).__init__(**kwargs)
+        self.value = value
+
+
+class ClassWrapper(Model):
+    """ClassWrapper.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :param value: Required.
+    :type value: ~requiredoptional.models.Product
+    """
+
+    _validation = {
+        'value': {'required': True},
+    }
+
+    _attribute_map = {
+        'value': {'key': 'value', 'type': 'Product'},
+    }
+
+    def __init__(self, *, value, **kwargs) -> None:
+        super(ClassWrapper, self).__init__(**kwargs)
+        self.value = value
+
+
 class Error(Model):
     """Error.
 
@@ -45,6 +121,22 @@ class ErrorException(HttpOperationError):
         super(ErrorException, self).__init__(deserialize, response, 'Error', *args)
 
 
+class IntOptionalWrapper(Model):
+    """IntOptionalWrapper.
+
+    :param value:
+    :type value: int
+    """
+
+    _attribute_map = {
+        'value': {'key': 'value', 'type': 'int'},
+    }
+
+    def __init__(self, *, value: int=None, **kwargs) -> None:
+        super(IntOptionalWrapper, self).__init__(**kwargs)
+        self.value = value
+
+
 class IntWrapper(Model):
     """IntWrapper.
 
@@ -64,98 +156,6 @@ class IntWrapper(Model):
 
     def __init__(self, *, value: int, **kwargs) -> None:
         super(IntWrapper, self).__init__(**kwargs)
-        self.value = value
-
-
-class IntOptionalWrapper(Model):
-    """IntOptionalWrapper.
-
-    :param value:
-    :type value: int
-    """
-
-    _attribute_map = {
-        'value': {'key': 'value', 'type': 'int'},
-    }
-
-    def __init__(self, *, value: int=None, **kwargs) -> None:
-        super(IntOptionalWrapper, self).__init__(**kwargs)
-        self.value = value
-
-
-class StringWrapper(Model):
-    """StringWrapper.
-
-    All required parameters must be populated in order to send to Azure.
-
-    :param value: Required.
-    :type value: str
-    """
-
-    _validation = {
-        'value': {'required': True},
-    }
-
-    _attribute_map = {
-        'value': {'key': 'value', 'type': 'str'},
-    }
-
-    def __init__(self, *, value: str, **kwargs) -> None:
-        super(StringWrapper, self).__init__(**kwargs)
-        self.value = value
-
-
-class StringOptionalWrapper(Model):
-    """StringOptionalWrapper.
-
-    :param value:
-    :type value: str
-    """
-
-    _attribute_map = {
-        'value': {'key': 'value', 'type': 'str'},
-    }
-
-    def __init__(self, *, value: str=None, **kwargs) -> None:
-        super(StringOptionalWrapper, self).__init__(**kwargs)
-        self.value = value
-
-
-class ArrayWrapper(Model):
-    """ArrayWrapper.
-
-    All required parameters must be populated in order to send to Azure.
-
-    :param value: Required.
-    :type value: list[str]
-    """
-
-    _validation = {
-        'value': {'required': True},
-    }
-
-    _attribute_map = {
-        'value': {'key': 'value', 'type': '[str]'},
-    }
-
-    def __init__(self, *, value, **kwargs) -> None:
-        super(ArrayWrapper, self).__init__(**kwargs)
-        self.value = value
-
-
-class ArrayOptionalWrapper(Model):
-    """ArrayOptionalWrapper.
-
-    :param value:
-    :type value: list[str]
-    """
-
-    _attribute_map = {
-        'value': {'key': 'value', 'type': '[str]'},
-    }
-
-    def __init__(self, *, value=None, **kwargs) -> None:
-        super(ArrayOptionalWrapper, self).__init__(**kwargs)
         self.value = value
 
 
@@ -185,13 +185,29 @@ class Product(Model):
         self.name = name
 
 
-class ClassWrapper(Model):
-    """ClassWrapper.
+class StringOptionalWrapper(Model):
+    """StringOptionalWrapper.
+
+    :param value:
+    :type value: str
+    """
+
+    _attribute_map = {
+        'value': {'key': 'value', 'type': 'str'},
+    }
+
+    def __init__(self, *, value: str=None, **kwargs) -> None:
+        super(StringOptionalWrapper, self).__init__(**kwargs)
+        self.value = value
+
+
+class StringWrapper(Model):
+    """StringWrapper.
 
     All required parameters must be populated in order to send to Azure.
 
     :param value: Required.
-    :type value: ~requiredoptional.models.Product
+    :type value: str
     """
 
     _validation = {
@@ -199,25 +215,9 @@ class ClassWrapper(Model):
     }
 
     _attribute_map = {
-        'value': {'key': 'value', 'type': 'Product'},
+        'value': {'key': 'value', 'type': 'str'},
     }
 
-    def __init__(self, *, value, **kwargs) -> None:
-        super(ClassWrapper, self).__init__(**kwargs)
-        self.value = value
-
-
-class ClassOptionalWrapper(Model):
-    """ClassOptionalWrapper.
-
-    :param value:
-    :type value: ~requiredoptional.models.Product
-    """
-
-    _attribute_map = {
-        'value': {'key': 'value', 'type': 'Product'},
-    }
-
-    def __init__(self, *, value=None, **kwargs) -> None:
-        super(ClassOptionalWrapper, self).__init__(**kwargs)
+    def __init__(self, *, value: str, **kwargs) -> None:
+        super(StringWrapper, self).__init__(**kwargs)
         self.value = value

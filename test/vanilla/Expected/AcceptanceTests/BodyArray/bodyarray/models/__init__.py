@@ -10,17 +10,17 @@
 # --------------------------------------------------------------------------
 
 try:
-    from ._models_py3 import Product
     from ._models_py3 import Error, ErrorException
+    from ._models_py3 import Product
 except (SyntaxError, ImportError):
-    from ._models import Product
     from ._models import Error, ErrorException
+    from ._models import Product
 from .auto_rest_swagger_bat_array_service_enums import (
     FooEnum,
 )
 
 __all__ = [
-    'Product',
     'Error', 'ErrorException',
+    'Product',
     'FooEnum',
 ]

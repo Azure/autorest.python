@@ -10,7 +10,6 @@ using AutoRest.Core.Model;
 using AutoRest.Core.Utilities;
 using AutoRest.Extensions;
 using AutoRest.Python.Model;
-using AutoRest.Python.DAG;
 using static AutoRest.Core.Utilities.DependencyInjection;
 
 namespace AutoRest.Python
@@ -42,65 +41,8 @@ namespace AutoRest.Python
             PopulateDiscriminator(codeModel);
             Flattening(codeModel);
             GenerateConstantProperties(codeModel);
-            //buildUpModelGraph(ref codeModel);
             
             return codeModel;
-        }
-
-        private void buildUpModelGraph(ref CodeModelPy codeModel) {
-            HashSet<string> touchedNodes = new HashSet<string>();
-            List<CompositeTypePy> modelTypeList = new List<CompositeTypePy>();
-            
-            foreach (var modelType in codeModel.ModelTemplateModels)
-            {
-                if (!touchedNodes.Contains(modelType.Name) && !string.IsNullOrEmpty(modelType.Name))
-                {
-                    buildUpDAGNodesModel(modelType, ref touchedNodes, ref modelTypeList);
-                }
-            }
-
-
-            CompositeTypePy rootNode = null;
-            DAGraph<CompositeTypePy> dAGraph = codeModel.ModelDAGraph;
-            if (dAGraph == null) {
-                foreach (var modelType in modelTypeList) {
-                    if (!modelType.hasDependencies() && !string.IsNullOrEmpty(modelType.Name)) {
-                        rootNode = modelType;
-                        dAGraph = new DAGraph<CompositeTypePy>(rootNode);
-                        break;
-                    }
-                }
-                foreach (var modelType in modelTypeList)
-                {
-                    if (!modelType.Equals(rootNode))
-                    {
-                        dAGraph.addNode(modelType);
-                    }
-                }
-            }
-
-
-            dAGraph.prepareForEnumeration();
-            codeModel.ModelDAGraph = dAGraph;
-        }
-
-        private CompositeTypePy buildUpDAGNodesModel(CompositeTypePy modelType, ref HashSet<string> touchedModelTypes, ref List<CompositeTypePy> modelTypeList)
-        {
-            if (!modelType.HasParent && !string.IsNullOrEmpty(modelType.Name))
-            {
-                //DAGNode<CompositeType> baseNode = new DAGNode<CompositeType>(modelType.Name);
-                modelTypeList.Add(modelType);
-                touchedModelTypes.Add(modelType.Name);
-                return modelType;
-            }
-            //DAGNode<CompositeType> curr = new DAGNode<CompositeType>(modelType.Name);
-            if (!touchedModelTypes.Contains(modelType.Name) && !string.IsNullOrEmpty(modelType.Name))
-            {
-                touchedModelTypes.Add(modelType.Name);
-                modelType.addDependency(buildUpDAGNodesModel(modelType.BaseModelType as CompositeTypePy, ref touchedModelTypes, ref modelTypeList).Key);
-                modelTypeList.Add(modelType);
-            }
-            return modelType;
         }
 
         private void PopulateDiscriminator(CodeModelPy codeModel)

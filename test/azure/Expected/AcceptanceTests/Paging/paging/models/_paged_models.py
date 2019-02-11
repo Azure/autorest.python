@@ -12,6 +12,19 @@
 from msrest.paging import Paged
 
 
+class ProductPaged(Paged):
+    """
+    A paging container for iterating over a list of :class:`Product <paging.models.Product>` object
+    """
+
+    _attribute_map = {
+        'next_link': {'key': 'nextLink', 'type': 'str'},
+        'current_page': {'key': 'values', 'type': '[Product]'}
+    }
+
+    def __init__(self, *args, **kwargs):
+
+        super(ProductPaged, self).__init__(*args, **kwargs)
 class ProductPaged1(Paged):
     """
     A paging container for iterating over a list of :class:`Product <paging.models.Product>` object

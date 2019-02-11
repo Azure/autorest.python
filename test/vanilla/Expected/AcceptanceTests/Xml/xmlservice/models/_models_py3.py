@@ -13,96 +13,38 @@ from msrest.serialization import Model
 from msrest.exceptions import HttpOperationError
 
 
-class Error(Model):
-    """Error.
+class AccessPolicy(Model):
+    """An Access policy.
 
-    :param status:
-    :type status: int
-    :param message:
-    :type message: str
+    All required parameters must be populated in order to send to Azure.
+
+    :param start: Required. the date-time the policy is active
+    :type start: datetime
+    :param expiry: Required. the date-time the policy expires
+    :type expiry: datetime
+    :param permission: Required. the permissions for the acl policy
+    :type permission: str
     """
 
+    _validation = {
+        'start': {'required': True},
+        'expiry': {'required': True},
+        'permission': {'required': True},
+    }
+
     _attribute_map = {
-        'status': {'key': 'status', 'type': 'int', 'xml': {'name': 'status'}},
-        'message': {'key': 'message', 'type': 'str', 'xml': {'name': 'message'}},
+        'start': {'key': 'Start', 'type': 'iso-8601', 'xml': {'name': 'Start'}},
+        'expiry': {'key': 'Expiry', 'type': 'iso-8601', 'xml': {'name': 'Expiry'}},
+        'permission': {'key': 'Permission', 'type': 'str', 'xml': {'name': 'Permission'}},
     }
     _xml_map = {
     }
 
-    def __init__(self, *, status: int=None, message: str=None, **kwargs) -> None:
-        super(Error, self).__init__(**kwargs)
-        self.status = status
-        self.message = message
-
-
-class ErrorException(HttpOperationError):
-    """Server responsed with exception of type: 'Error'.
-
-    :param deserialize: A deserializer
-    :param response: Server response to be deserialized.
-    """
-
-    def __init__(self, deserialize, response, *args):
-
-        super(ErrorException, self).__init__(deserialize, response, 'Error', *args)
-
-
-class Slide(Model):
-    """A slide in a slideshow.
-
-    :param type:
-    :type type: str
-    :param title:
-    :type title: str
-    :param items:
-    :type items: list[str]
-    """
-
-    _attribute_map = {
-        'type': {'key': 'type', 'type': 'str', 'xml': {'name': 'type', 'attr': True}},
-        'title': {'key': 'title', 'type': 'str', 'xml': {'name': 'title'}},
-        'items': {'key': 'items', 'type': '[str]', 'xml': {'name': 'items', 'itemsName': 'item'}},
-    }
-    _xml_map = {
-        'name': 'slide'
-    }
-
-    def __init__(self, *, type: str=None, title: str=None, items=None, **kwargs) -> None:
-        super(Slide, self).__init__(**kwargs)
-        self.type = type
-        self.title = title
-        self.items = items
-
-
-class Slideshow(Model):
-    """Data about a slideshow.
-
-    :param title:
-    :type title: str
-    :param date_property:
-    :type date_property: str
-    :param author:
-    :type author: str
-    :param slides:
-    :type slides: list[~xmlservice.models.Slide]
-    """
-
-    _attribute_map = {
-        'title': {'key': 'title', 'type': 'str', 'xml': {'name': 'title', 'attr': True}},
-        'date_property': {'key': 'date', 'type': 'str', 'xml': {'name': 'date', 'attr': True}},
-        'author': {'key': 'author', 'type': 'str', 'xml': {'name': 'author', 'attr': True}},
-        'slides': {'key': 'slides', 'type': '[Slide]', 'xml': {'name': 'slides', 'itemsName': 'slide'}},
-    }
-    _xml_map = {
-        'name': 'slideshow'
-    }
-
-    def __init__(self, *, title: str=None, date_property: str=None, author: str=None, slides=None, **kwargs) -> None:
-        super(Slideshow, self).__init__(**kwargs)
-        self.title = title
-        self.date_property = date_property
-        self.author = author
-        self.slides = slides
+    def __init__(self, *, start, expiry, permission: str, **kwargs) -> None:
+        super(AccessPolicy, self).__init__(**kwargs)
+        self.start = start
+        self.expiry = expiry
+        self.permission = permission
 
 
 class AppleBarrel(Model):
@@ -155,190 +97,72 @@ class Banana(Model):
         self.expiration = expiration
 
 
-class ContainerProperties(Model):
-    """Properties of a container.
-
-    All required parameters must be populated in order to send to Azure.
-
-    :param last_modified: Required.
-    :type last_modified: datetime
-    :param etag: Required.
-    :type etag: str
-    :param lease_status: Possible values include: 'locked', 'unlocked'
-    :type lease_status: str or ~xmlservice.models.LeaseStatusType
-    :param lease_state: Possible values include: 'available', 'leased',
-     'expired', 'breaking', 'broken'
-    :type lease_state: str or ~xmlservice.models.LeaseStateType
-    :param lease_duration: Possible values include: 'infinite', 'fixed'
-    :type lease_duration: str or ~xmlservice.models.LeaseDurationType
-    :param public_access: Possible values include: 'container', 'blob'
-    :type public_access: str or ~xmlservice.models.PublicAccessType
-    """
-
-    _validation = {
-        'last_modified': {'required': True},
-        'etag': {'required': True},
-    }
-
-    _attribute_map = {
-        'last_modified': {'key': 'Last-Modified', 'type': 'rfc-1123', 'xml': {'name': 'Last-Modified'}},
-        'etag': {'key': 'Etag', 'type': 'str', 'xml': {'name': 'Etag'}},
-        'lease_status': {'key': 'LeaseStatus', 'type': 'LeaseStatusType', 'xml': {'name': 'LeaseStatus'}},
-        'lease_state': {'key': 'LeaseState', 'type': 'LeaseStateType', 'xml': {'name': 'LeaseState'}},
-        'lease_duration': {'key': 'LeaseDuration', 'type': 'LeaseDurationType', 'xml': {'name': 'LeaseDuration'}},
-        'public_access': {'key': 'PublicAccess', 'type': 'str', 'xml': {'name': 'PublicAccess'}},
-    }
-    _xml_map = {
-    }
-
-    def __init__(self, *, last_modified, etag: str, lease_status=None, lease_state=None, lease_duration=None, public_access=None, **kwargs) -> None:
-        super(ContainerProperties, self).__init__(**kwargs)
-        self.last_modified = last_modified
-        self.etag = etag
-        self.lease_status = lease_status
-        self.lease_state = lease_state
-        self.lease_duration = lease_duration
-        self.public_access = public_access
-
-
-class Container(Model):
-    """An Azure Storage container.
+class Blob(Model):
+    """An Azure Storage blob.
 
     All required parameters must be populated in order to send to Azure.
 
     :param name: Required.
     :type name: str
+    :param deleted: Required.
+    :type deleted: bool
+    :param snapshot: Required.
+    :type snapshot: str
     :param properties: Required.
-    :type properties: ~xmlservice.models.ContainerProperties
+    :type properties: ~xmlservice.models.BlobProperties
     :param metadata:
     :type metadata: dict[str, str]
     """
 
     _validation = {
         'name': {'required': True},
+        'deleted': {'required': True},
+        'snapshot': {'required': True},
         'properties': {'required': True},
     }
 
     _attribute_map = {
         'name': {'key': 'Name', 'type': 'str', 'xml': {'name': 'Name'}},
-        'properties': {'key': 'Properties', 'type': 'ContainerProperties', 'xml': {'name': 'Properties'}},
+        'deleted': {'key': 'Deleted', 'type': 'bool', 'xml': {'name': 'Deleted'}},
+        'snapshot': {'key': 'Snapshot', 'type': 'str', 'xml': {'name': 'Snapshot'}},
+        'properties': {'key': 'Properties', 'type': 'BlobProperties', 'xml': {'name': 'Properties'}},
         'metadata': {'key': 'Metadata', 'type': '{str}', 'xml': {'name': 'Metadata'}},
     }
     _xml_map = {
+        'name': 'Blob'
     }
 
-    def __init__(self, *, name: str, properties, metadata=None, **kwargs) -> None:
-        super(Container, self).__init__(**kwargs)
+    def __init__(self, *, name: str, deleted: bool, snapshot: str, properties, metadata=None, **kwargs) -> None:
+        super(Blob, self).__init__(**kwargs)
         self.name = name
+        self.deleted = deleted
+        self.snapshot = snapshot
         self.properties = properties
         self.metadata = metadata
 
 
-class ListContainersResponse(Model):
-    """An enumeration of containers.
+class BlobPrefix(Model):
+    """BlobPrefix.
 
     All required parameters must be populated in order to send to Azure.
 
-    :param service_endpoint: Required.
-    :type service_endpoint: str
-    :param prefix: Required.
-    :type prefix: str
-    :param marker:
-    :type marker: str
-    :param max_results: Required.
-    :type max_results: int
-    :param containers:
-    :type containers: list[~xmlservice.models.Container]
-    :param next_marker: Required.
-    :type next_marker: str
+    :param name: Required.
+    :type name: str
     """
 
     _validation = {
-        'service_endpoint': {'required': True},
-        'prefix': {'required': True},
-        'max_results': {'required': True},
-        'next_marker': {'required': True},
+        'name': {'required': True},
     }
 
     _attribute_map = {
-        'service_endpoint': {'key': 'ServiceEndpoint', 'type': 'str', 'xml': {'name': 'ServiceEndpoint', 'attr': True}},
-        'prefix': {'key': 'Prefix', 'type': 'str', 'xml': {'name': 'Prefix'}},
-        'marker': {'key': 'Marker', 'type': 'str', 'xml': {'name': 'Marker'}},
-        'max_results': {'key': 'MaxResults', 'type': 'int', 'xml': {'name': 'MaxResults'}},
-        'containers': {'key': 'Containers', 'type': '[Container]', 'xml': {'name': 'Containers', 'itemsName': 'Container', 'wrapped': True}},
-        'next_marker': {'key': 'NextMarker', 'type': 'str', 'xml': {'name': 'NextMarker'}},
+        'name': {'key': 'Name', 'type': 'str', 'xml': {'name': 'Name'}},
     }
     _xml_map = {
-        'name': 'EnumerationResults'
     }
 
-    def __init__(self, *, service_endpoint: str, prefix: str, max_results: int, next_marker: str, marker: str=None, containers=None, **kwargs) -> None:
-        super(ListContainersResponse, self).__init__(**kwargs)
-        self.service_endpoint = service_endpoint
-        self.prefix = prefix
-        self.marker = marker
-        self.max_results = max_results
-        self.containers = containers
-        self.next_marker = next_marker
-
-
-class CorsRule(Model):
-    """CORS is an HTTP feature that enables a web application running under one
-    domain to access resources in another domain. Web browsers implement a
-    security restriction known as same-origin policy that prevents a web page
-    from calling APIs in a different domain; CORS provides a secure way to
-    allow one domain (the origin domain) to call APIs in another domain.
-
-    All required parameters must be populated in order to send to Azure.
-
-    :param allowed_origins: Required. The origin domains that are permitted to
-     make a request against the storage service via CORS. The origin domain is
-     the domain from which the request originates. Note that the origin must be
-     an exact case-sensitive match with the origin that the user age sends to
-     the service. You can also use the wildcard character '*' to allow all
-     origin domains to make requests via CORS.
-    :type allowed_origins: str
-    :param allowed_methods: Required. The methods (HTTP request verbs) that
-     the origin domain may use for a CORS request. (comma separated)
-    :type allowed_methods: str
-    :param allowed_headers: Required. the request headers that the origin
-     domain may specify on the CORS request.
-    :type allowed_headers: str
-    :param exposed_headers: Required. The response headers that may be sent in
-     the response to the CORS request and exposed by the browser to the request
-     issuer
-    :type exposed_headers: str
-    :param max_age_in_seconds: Required. The maximum amount time that a
-     browser should cache the preflight OPTIONS request.
-    :type max_age_in_seconds: int
-    """
-
-    _validation = {
-        'allowed_origins': {'required': True},
-        'allowed_methods': {'required': True},
-        'allowed_headers': {'required': True},
-        'exposed_headers': {'required': True},
-        'max_age_in_seconds': {'required': True, 'minimum': 0},
-    }
-
-    _attribute_map = {
-        'allowed_origins': {'key': 'AllowedOrigins', 'type': 'str', 'xml': {'name': 'AllowedOrigins'}},
-        'allowed_methods': {'key': 'AllowedMethods', 'type': 'str', 'xml': {'name': 'AllowedMethods'}},
-        'allowed_headers': {'key': 'AllowedHeaders', 'type': 'str', 'xml': {'name': 'AllowedHeaders'}},
-        'exposed_headers': {'key': 'ExposedHeaders', 'type': 'str', 'xml': {'name': 'ExposedHeaders'}},
-        'max_age_in_seconds': {'key': 'MaxAgeInSeconds', 'type': 'int', 'xml': {'name': 'MaxAgeInSeconds'}},
-    }
-    _xml_map = {
-        'name': 'CorsRule'
-    }
-
-    def __init__(self, *, allowed_origins: str, allowed_methods: str, allowed_headers: str, exposed_headers: str, max_age_in_seconds: int, **kwargs) -> None:
-        super(CorsRule, self).__init__(**kwargs)
-        self.allowed_origins = allowed_origins
-        self.allowed_methods = allowed_methods
-        self.allowed_headers = allowed_headers
-        self.exposed_headers = exposed_headers
-        self.max_age_in_seconds = max_age_in_seconds
+    def __init__(self, *, name: str, **kwargs) -> None:
+        super(BlobPrefix, self).__init__(**kwargs)
+        self.name = name
 
 
 class BlobProperties(Model):
@@ -479,80 +303,343 @@ class BlobProperties(Model):
         self.archive_status = archive_status
 
 
-class Blob(Model):
-    """An Azure Storage blob.
+class Blobs(Model):
+    """Blobs.
+
+    :param blob_prefix:
+    :type blob_prefix: list[~xmlservice.models.BlobPrefix]
+    :param blob:
+    :type blob: list[~xmlservice.models.Blob]
+    """
+
+    _attribute_map = {
+        'blob_prefix': {'key': 'BlobPrefix', 'type': '[BlobPrefix]', 'xml': {'name': 'BlobPrefix', 'itemsName': 'BlobPrefix'}},
+        'blob': {'key': 'Blob', 'type': '[Blob]', 'xml': {'name': 'Blob', 'itemsName': 'Blob'}},
+    }
+    _xml_map = {
+    }
+
+    def __init__(self, *, blob_prefix=None, blob=None, **kwargs) -> None:
+        super(Blobs, self).__init__(**kwargs)
+        self.blob_prefix = blob_prefix
+        self.blob = blob
+
+
+class ComplexTypeNoMeta(Model):
+    """I am a complex type with no XML node.
+
+    :param id: The id of the res
+    :type id: str
+    """
+
+    _attribute_map = {
+        'id': {'key': 'ID', 'type': 'str', 'xml': {'name': 'ID'}},
+    }
+    _xml_map = {
+    }
+
+    def __init__(self, *, id: str=None, **kwargs) -> None:
+        super(ComplexTypeNoMeta, self).__init__(**kwargs)
+        self.id = id
+
+
+class ComplexTypeWithMeta(Model):
+    """I am a complex type with XML node.
+
+    :param id: The id of the res
+    :type id: str
+    """
+
+    _attribute_map = {
+        'id': {'key': 'ID', 'type': 'str', 'xml': {'name': 'ID'}},
+    }
+    _xml_map = {
+        'name': 'XMLComplexTypeWithMeta'
+    }
+
+    def __init__(self, *, id: str=None, **kwargs) -> None:
+        super(ComplexTypeWithMeta, self).__init__(**kwargs)
+        self.id = id
+
+
+class Container(Model):
+    """An Azure Storage container.
 
     All required parameters must be populated in order to send to Azure.
 
     :param name: Required.
     :type name: str
-    :param deleted: Required.
-    :type deleted: bool
-    :param snapshot: Required.
-    :type snapshot: str
     :param properties: Required.
-    :type properties: ~xmlservice.models.BlobProperties
+    :type properties: ~xmlservice.models.ContainerProperties
     :param metadata:
     :type metadata: dict[str, str]
     """
 
     _validation = {
         'name': {'required': True},
-        'deleted': {'required': True},
-        'snapshot': {'required': True},
         'properties': {'required': True},
     }
 
     _attribute_map = {
         'name': {'key': 'Name', 'type': 'str', 'xml': {'name': 'Name'}},
-        'deleted': {'key': 'Deleted', 'type': 'bool', 'xml': {'name': 'Deleted'}},
-        'snapshot': {'key': 'Snapshot', 'type': 'str', 'xml': {'name': 'Snapshot'}},
-        'properties': {'key': 'Properties', 'type': 'BlobProperties', 'xml': {'name': 'Properties'}},
+        'properties': {'key': 'Properties', 'type': 'ContainerProperties', 'xml': {'name': 'Properties'}},
         'metadata': {'key': 'Metadata', 'type': '{str}', 'xml': {'name': 'Metadata'}},
     }
     _xml_map = {
-        'name': 'Blob'
     }
 
-    def __init__(self, *, name: str, deleted: bool, snapshot: str, properties, metadata=None, **kwargs) -> None:
-        super(Blob, self).__init__(**kwargs)
+    def __init__(self, *, name: str, properties, metadata=None, **kwargs) -> None:
+        super(Container, self).__init__(**kwargs)
         self.name = name
-        self.deleted = deleted
-        self.snapshot = snapshot
         self.properties = properties
         self.metadata = metadata
 
 
-class RetentionPolicy(Model):
-    """the retention policy.
+class ContainerProperties(Model):
+    """Properties of a container.
 
     All required parameters must be populated in order to send to Azure.
 
-    :param enabled: Required. Indicates whether a retention policy is enabled
-     for the storage service
-    :type enabled: bool
-    :param days: Indicates the number of days that metrics or logging or
-     soft-deleted data should be retained. All data older than this value will
-     be deleted
-    :type days: int
+    :param last_modified: Required.
+    :type last_modified: datetime
+    :param etag: Required.
+    :type etag: str
+    :param lease_status: Possible values include: 'locked', 'unlocked'
+    :type lease_status: str or ~xmlservice.models.LeaseStatusType
+    :param lease_state: Possible values include: 'available', 'leased',
+     'expired', 'breaking', 'broken'
+    :type lease_state: str or ~xmlservice.models.LeaseStateType
+    :param lease_duration: Possible values include: 'infinite', 'fixed'
+    :type lease_duration: str or ~xmlservice.models.LeaseDurationType
+    :param public_access: Possible values include: 'container', 'blob'
+    :type public_access: str or ~xmlservice.models.PublicAccessType
     """
 
     _validation = {
-        'enabled': {'required': True},
-        'days': {'minimum': 1},
+        'last_modified': {'required': True},
+        'etag': {'required': True},
     }
 
     _attribute_map = {
-        'enabled': {'key': 'Enabled', 'type': 'bool', 'xml': {'name': 'Enabled'}},
-        'days': {'key': 'Days', 'type': 'int', 'xml': {'name': 'Days'}},
+        'last_modified': {'key': 'Last-Modified', 'type': 'rfc-1123', 'xml': {'name': 'Last-Modified'}},
+        'etag': {'key': 'Etag', 'type': 'str', 'xml': {'name': 'Etag'}},
+        'lease_status': {'key': 'LeaseStatus', 'type': 'LeaseStatusType', 'xml': {'name': 'LeaseStatus'}},
+        'lease_state': {'key': 'LeaseState', 'type': 'LeaseStateType', 'xml': {'name': 'LeaseState'}},
+        'lease_duration': {'key': 'LeaseDuration', 'type': 'LeaseDurationType', 'xml': {'name': 'LeaseDuration'}},
+        'public_access': {'key': 'PublicAccess', 'type': 'str', 'xml': {'name': 'PublicAccess'}},
     }
     _xml_map = {
     }
 
-    def __init__(self, *, enabled: bool, days: int=None, **kwargs) -> None:
-        super(RetentionPolicy, self).__init__(**kwargs)
-        self.enabled = enabled
-        self.days = days
+    def __init__(self, *, last_modified, etag: str, lease_status=None, lease_state=None, lease_duration=None, public_access=None, **kwargs) -> None:
+        super(ContainerProperties, self).__init__(**kwargs)
+        self.last_modified = last_modified
+        self.etag = etag
+        self.lease_status = lease_status
+        self.lease_state = lease_state
+        self.lease_duration = lease_duration
+        self.public_access = public_access
+
+
+class CorsRule(Model):
+    """CORS is an HTTP feature that enables a web application running under one
+    domain to access resources in another domain. Web browsers implement a
+    security restriction known as same-origin policy that prevents a web page
+    from calling APIs in a different domain; CORS provides a secure way to
+    allow one domain (the origin domain) to call APIs in another domain.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :param allowed_origins: Required. The origin domains that are permitted to
+     make a request against the storage service via CORS. The origin domain is
+     the domain from which the request originates. Note that the origin must be
+     an exact case-sensitive match with the origin that the user age sends to
+     the service. You can also use the wildcard character '*' to allow all
+     origin domains to make requests via CORS.
+    :type allowed_origins: str
+    :param allowed_methods: Required. The methods (HTTP request verbs) that
+     the origin domain may use for a CORS request. (comma separated)
+    :type allowed_methods: str
+    :param allowed_headers: Required. the request headers that the origin
+     domain may specify on the CORS request.
+    :type allowed_headers: str
+    :param exposed_headers: Required. The response headers that may be sent in
+     the response to the CORS request and exposed by the browser to the request
+     issuer
+    :type exposed_headers: str
+    :param max_age_in_seconds: Required. The maximum amount time that a
+     browser should cache the preflight OPTIONS request.
+    :type max_age_in_seconds: int
+    """
+
+    _validation = {
+        'allowed_origins': {'required': True},
+        'allowed_methods': {'required': True},
+        'allowed_headers': {'required': True},
+        'exposed_headers': {'required': True},
+        'max_age_in_seconds': {'required': True, 'minimum': 0},
+    }
+
+    _attribute_map = {
+        'allowed_origins': {'key': 'AllowedOrigins', 'type': 'str', 'xml': {'name': 'AllowedOrigins'}},
+        'allowed_methods': {'key': 'AllowedMethods', 'type': 'str', 'xml': {'name': 'AllowedMethods'}},
+        'allowed_headers': {'key': 'AllowedHeaders', 'type': 'str', 'xml': {'name': 'AllowedHeaders'}},
+        'exposed_headers': {'key': 'ExposedHeaders', 'type': 'str', 'xml': {'name': 'ExposedHeaders'}},
+        'max_age_in_seconds': {'key': 'MaxAgeInSeconds', 'type': 'int', 'xml': {'name': 'MaxAgeInSeconds'}},
+    }
+    _xml_map = {
+        'name': 'CorsRule'
+    }
+
+    def __init__(self, *, allowed_origins: str, allowed_methods: str, allowed_headers: str, exposed_headers: str, max_age_in_seconds: int, **kwargs) -> None:
+        super(CorsRule, self).__init__(**kwargs)
+        self.allowed_origins = allowed_origins
+        self.allowed_methods = allowed_methods
+        self.allowed_headers = allowed_headers
+        self.exposed_headers = exposed_headers
+        self.max_age_in_seconds = max_age_in_seconds
+
+
+class Error(Model):
+    """Error.
+
+    :param status:
+    :type status: int
+    :param message:
+    :type message: str
+    """
+
+    _attribute_map = {
+        'status': {'key': 'status', 'type': 'int', 'xml': {'name': 'status'}},
+        'message': {'key': 'message', 'type': 'str', 'xml': {'name': 'message'}},
+    }
+    _xml_map = {
+    }
+
+    def __init__(self, *, status: int=None, message: str=None, **kwargs) -> None:
+        super(Error, self).__init__(**kwargs)
+        self.status = status
+        self.message = message
+
+
+class ErrorException(HttpOperationError):
+    """Server responsed with exception of type: 'Error'.
+
+    :param deserialize: A deserializer
+    :param response: Server response to be deserialized.
+    """
+
+    def __init__(self, deserialize, response, *args):
+
+        super(ErrorException, self).__init__(deserialize, response, 'Error', *args)
+
+
+class ListBlobsResponse(Model):
+    """An enumeration of blobs.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :param service_endpoint: Required.
+    :type service_endpoint: str
+    :param container_name: Required.
+    :type container_name: str
+    :param prefix: Required.
+    :type prefix: str
+    :param marker: Required.
+    :type marker: str
+    :param max_results: Required.
+    :type max_results: int
+    :param delimiter: Required.
+    :type delimiter: str
+    :param blobs: Required.
+    :type blobs: ~xmlservice.models.Blobs
+    :param next_marker: Required.
+    :type next_marker: str
+    """
+
+    _validation = {
+        'service_endpoint': {'required': True},
+        'container_name': {'required': True},
+        'prefix': {'required': True},
+        'marker': {'required': True},
+        'max_results': {'required': True},
+        'delimiter': {'required': True},
+        'blobs': {'required': True},
+        'next_marker': {'required': True},
+    }
+
+    _attribute_map = {
+        'service_endpoint': {'key': 'ServiceEndpoint', 'type': 'str', 'xml': {'name': 'ServiceEndpoint', 'attr': True}},
+        'container_name': {'key': 'ContainerName', 'type': 'str', 'xml': {'name': 'ContainerName', 'attr': True}},
+        'prefix': {'key': 'Prefix', 'type': 'str', 'xml': {'name': 'Prefix'}},
+        'marker': {'key': 'Marker', 'type': 'str', 'xml': {'name': 'Marker'}},
+        'max_results': {'key': 'MaxResults', 'type': 'int', 'xml': {'name': 'MaxResults'}},
+        'delimiter': {'key': 'Delimiter', 'type': 'str', 'xml': {'name': 'Delimiter'}},
+        'blobs': {'key': 'Blobs', 'type': 'Blobs', 'xml': {'name': 'Blobs'}},
+        'next_marker': {'key': 'NextMarker', 'type': 'str', 'xml': {'name': 'NextMarker'}},
+    }
+    _xml_map = {
+        'name': 'EnumerationResults'
+    }
+
+    def __init__(self, *, service_endpoint: str, container_name: str, prefix: str, marker: str, max_results: int, delimiter: str, blobs, next_marker: str, **kwargs) -> None:
+        super(ListBlobsResponse, self).__init__(**kwargs)
+        self.service_endpoint = service_endpoint
+        self.container_name = container_name
+        self.prefix = prefix
+        self.marker = marker
+        self.max_results = max_results
+        self.delimiter = delimiter
+        self.blobs = blobs
+        self.next_marker = next_marker
+
+
+class ListContainersResponse(Model):
+    """An enumeration of containers.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :param service_endpoint: Required.
+    :type service_endpoint: str
+    :param prefix: Required.
+    :type prefix: str
+    :param marker:
+    :type marker: str
+    :param max_results: Required.
+    :type max_results: int
+    :param containers:
+    :type containers: list[~xmlservice.models.Container]
+    :param next_marker: Required.
+    :type next_marker: str
+    """
+
+    _validation = {
+        'service_endpoint': {'required': True},
+        'prefix': {'required': True},
+        'max_results': {'required': True},
+        'next_marker': {'required': True},
+    }
+
+    _attribute_map = {
+        'service_endpoint': {'key': 'ServiceEndpoint', 'type': 'str', 'xml': {'name': 'ServiceEndpoint', 'attr': True}},
+        'prefix': {'key': 'Prefix', 'type': 'str', 'xml': {'name': 'Prefix'}},
+        'marker': {'key': 'Marker', 'type': 'str', 'xml': {'name': 'Marker'}},
+        'max_results': {'key': 'MaxResults', 'type': 'int', 'xml': {'name': 'MaxResults'}},
+        'containers': {'key': 'Containers', 'type': '[Container]', 'xml': {'name': 'Containers', 'itemsName': 'Container', 'wrapped': True}},
+        'next_marker': {'key': 'NextMarker', 'type': 'str', 'xml': {'name': 'NextMarker'}},
+    }
+    _xml_map = {
+        'name': 'EnumerationResults'
+    }
+
+    def __init__(self, *, service_endpoint: str, prefix: str, max_results: int, next_marker: str, marker: str=None, containers=None, **kwargs) -> None:
+        super(ListContainersResponse, self).__init__(**kwargs)
+        self.service_endpoint = service_endpoint
+        self.prefix = prefix
+        self.marker = marker
+        self.max_results = max_results
+        self.containers = containers
+        self.next_marker = next_marker
 
 
 class Logging(Model):
@@ -640,144 +727,80 @@ class Metrics(Model):
         self.retention_policy = retention_policy
 
 
-class BlobPrefix(Model):
-    """BlobPrefix.
+class RetentionPolicy(Model):
+    """the retention policy.
 
     All required parameters must be populated in order to send to Azure.
 
-    :param name: Required.
-    :type name: str
+    :param enabled: Required. Indicates whether a retention policy is enabled
+     for the storage service
+    :type enabled: bool
+    :param days: Indicates the number of days that metrics or logging or
+     soft-deleted data should be retained. All data older than this value will
+     be deleted
+    :type days: int
     """
 
     _validation = {
-        'name': {'required': True},
+        'enabled': {'required': True},
+        'days': {'minimum': 1},
     }
 
     _attribute_map = {
-        'name': {'key': 'Name', 'type': 'str', 'xml': {'name': 'Name'}},
+        'enabled': {'key': 'Enabled', 'type': 'bool', 'xml': {'name': 'Enabled'}},
+        'days': {'key': 'Days', 'type': 'int', 'xml': {'name': 'Days'}},
     }
     _xml_map = {
     }
 
-    def __init__(self, *, name: str, **kwargs) -> None:
-        super(BlobPrefix, self).__init__(**kwargs)
-        self.name = name
+    def __init__(self, *, enabled: bool, days: int=None, **kwargs) -> None:
+        super(RetentionPolicy, self).__init__(**kwargs)
+        self.enabled = enabled
+        self.days = days
 
 
-class Blobs(Model):
-    """Blobs.
+class RootWithRefAndMeta(Model):
+    """I am root, and I ref a model WITH meta.
 
-    :param blob_prefix:
-    :type blob_prefix: list[~xmlservice.models.BlobPrefix]
-    :param blob:
-    :type blob: list[~xmlservice.models.Blob]
+    :param ref_to_model: XML will use XMLComplexTypeWithMeta
+    :type ref_to_model: ~xmlservice.models.ComplexTypeWithMeta
+    :param something: Something else (just to avoid flattening)
+    :type something: str
     """
 
     _attribute_map = {
-        'blob_prefix': {'key': 'BlobPrefix', 'type': '[BlobPrefix]', 'xml': {'name': 'BlobPrefix', 'itemsName': 'BlobPrefix'}},
-        'blob': {'key': 'Blob', 'type': '[Blob]', 'xml': {'name': 'Blob', 'itemsName': 'Blob'}},
+        'ref_to_model': {'key': 'RefToModel', 'type': 'ComplexTypeWithMeta', 'xml': {'name': 'RefToModel'}},
+        'something': {'key': 'Something', 'type': 'str', 'xml': {'name': 'Something'}},
     }
     _xml_map = {
     }
 
-    def __init__(self, *, blob_prefix=None, blob=None, **kwargs) -> None:
-        super(Blobs, self).__init__(**kwargs)
-        self.blob_prefix = blob_prefix
-        self.blob = blob
+    def __init__(self, *, ref_to_model=None, something: str=None, **kwargs) -> None:
+        super(RootWithRefAndMeta, self).__init__(**kwargs)
+        self.ref_to_model = ref_to_model
+        self.something = something
 
 
-class ListBlobsResponse(Model):
-    """An enumeration of blobs.
+class RootWithRefAndNoMeta(Model):
+    """I am root, and I ref a model with no meta.
 
-    All required parameters must be populated in order to send to Azure.
-
-    :param service_endpoint: Required.
-    :type service_endpoint: str
-    :param container_name: Required.
-    :type container_name: str
-    :param prefix: Required.
-    :type prefix: str
-    :param marker: Required.
-    :type marker: str
-    :param max_results: Required.
-    :type max_results: int
-    :param delimiter: Required.
-    :type delimiter: str
-    :param blobs: Required.
-    :type blobs: ~xmlservice.models.Blobs
-    :param next_marker: Required.
-    :type next_marker: str
+    :param ref_to_model: XML will use RefToModel
+    :type ref_to_model: ~xmlservice.models.ComplexTypeNoMeta
+    :param something: Something else (just to avoid flattening)
+    :type something: str
     """
 
-    _validation = {
-        'service_endpoint': {'required': True},
-        'container_name': {'required': True},
-        'prefix': {'required': True},
-        'marker': {'required': True},
-        'max_results': {'required': True},
-        'delimiter': {'required': True},
-        'blobs': {'required': True},
-        'next_marker': {'required': True},
-    }
-
     _attribute_map = {
-        'service_endpoint': {'key': 'ServiceEndpoint', 'type': 'str', 'xml': {'name': 'ServiceEndpoint', 'attr': True}},
-        'container_name': {'key': 'ContainerName', 'type': 'str', 'xml': {'name': 'ContainerName', 'attr': True}},
-        'prefix': {'key': 'Prefix', 'type': 'str', 'xml': {'name': 'Prefix'}},
-        'marker': {'key': 'Marker', 'type': 'str', 'xml': {'name': 'Marker'}},
-        'max_results': {'key': 'MaxResults', 'type': 'int', 'xml': {'name': 'MaxResults'}},
-        'delimiter': {'key': 'Delimiter', 'type': 'str', 'xml': {'name': 'Delimiter'}},
-        'blobs': {'key': 'Blobs', 'type': 'Blobs', 'xml': {'name': 'Blobs'}},
-        'next_marker': {'key': 'NextMarker', 'type': 'str', 'xml': {'name': 'NextMarker'}},
-    }
-    _xml_map = {
-        'name': 'EnumerationResults'
-    }
-
-    def __init__(self, *, service_endpoint: str, container_name: str, prefix: str, marker: str, max_results: int, delimiter: str, blobs, next_marker: str, **kwargs) -> None:
-        super(ListBlobsResponse, self).__init__(**kwargs)
-        self.service_endpoint = service_endpoint
-        self.container_name = container_name
-        self.prefix = prefix
-        self.marker = marker
-        self.max_results = max_results
-        self.delimiter = delimiter
-        self.blobs = blobs
-        self.next_marker = next_marker
-
-
-class AccessPolicy(Model):
-    """An Access policy.
-
-    All required parameters must be populated in order to send to Azure.
-
-    :param start: Required. the date-time the policy is active
-    :type start: datetime
-    :param expiry: Required. the date-time the policy expires
-    :type expiry: datetime
-    :param permission: Required. the permissions for the acl policy
-    :type permission: str
-    """
-
-    _validation = {
-        'start': {'required': True},
-        'expiry': {'required': True},
-        'permission': {'required': True},
-    }
-
-    _attribute_map = {
-        'start': {'key': 'Start', 'type': 'iso-8601', 'xml': {'name': 'Start'}},
-        'expiry': {'key': 'Expiry', 'type': 'iso-8601', 'xml': {'name': 'Expiry'}},
-        'permission': {'key': 'Permission', 'type': 'str', 'xml': {'name': 'Permission'}},
+        'ref_to_model': {'key': 'RefToModel', 'type': 'ComplexTypeNoMeta', 'xml': {'name': 'RefToModel'}},
+        'something': {'key': 'Something', 'type': 'str', 'xml': {'name': 'Something'}},
     }
     _xml_map = {
     }
 
-    def __init__(self, *, start, expiry, permission: str, **kwargs) -> None:
-        super(AccessPolicy, self).__init__(**kwargs)
-        self.start = start
-        self.expiry = expiry
-        self.permission = permission
+    def __init__(self, *, ref_to_model=None, something: str=None, **kwargs) -> None:
+        super(RootWithRefAndNoMeta, self).__init__(**kwargs)
+        self.ref_to_model = ref_to_model
+        self.something = something
 
 
 class SignedIdentifier(Model):
@@ -808,6 +831,64 @@ class SignedIdentifier(Model):
         super(SignedIdentifier, self).__init__(**kwargs)
         self.id = id
         self.access_policy = access_policy
+
+
+class Slide(Model):
+    """A slide in a slideshow.
+
+    :param type:
+    :type type: str
+    :param title:
+    :type title: str
+    :param items:
+    :type items: list[str]
+    """
+
+    _attribute_map = {
+        'type': {'key': 'type', 'type': 'str', 'xml': {'name': 'type', 'attr': True}},
+        'title': {'key': 'title', 'type': 'str', 'xml': {'name': 'title'}},
+        'items': {'key': 'items', 'type': '[str]', 'xml': {'name': 'items', 'itemsName': 'item'}},
+    }
+    _xml_map = {
+        'name': 'slide'
+    }
+
+    def __init__(self, *, type: str=None, title: str=None, items=None, **kwargs) -> None:
+        super(Slide, self).__init__(**kwargs)
+        self.type = type
+        self.title = title
+        self.items = items
+
+
+class Slideshow(Model):
+    """Data about a slideshow.
+
+    :param title:
+    :type title: str
+    :param date_property:
+    :type date_property: str
+    :param author:
+    :type author: str
+    :param slides:
+    :type slides: list[~xmlservice.models.Slide]
+    """
+
+    _attribute_map = {
+        'title': {'key': 'title', 'type': 'str', 'xml': {'name': 'title', 'attr': True}},
+        'date_property': {'key': 'date', 'type': 'str', 'xml': {'name': 'date', 'attr': True}},
+        'author': {'key': 'author', 'type': 'str', 'xml': {'name': 'author', 'attr': True}},
+        'slides': {'key': 'slides', 'type': '[Slide]', 'xml': {'name': 'slides', 'itemsName': 'slide'}},
+    }
+    _xml_map = {
+        'name': 'slideshow'
+    }
+
+    def __init__(self, *, title: str=None, date_property: str=None, author: str=None, slides=None, **kwargs) -> None:
+        super(Slideshow, self).__init__(**kwargs)
+        self.title = title
+        self.date_property = date_property
+        self.author = author
+        self.slides = slides
 
 
 class StorageServiceProperties(Model):
@@ -851,84 +932,3 @@ class StorageServiceProperties(Model):
         self.cors = cors
         self.default_service_version = default_service_version
         self.delete_retention_policy = delete_retention_policy
-
-
-class ComplexTypeNoMeta(Model):
-    """I am a complex type with no XML node.
-
-    :param id: The id of the res
-    :type id: str
-    """
-
-    _attribute_map = {
-        'id': {'key': 'ID', 'type': 'str', 'xml': {'name': 'ID'}},
-    }
-    _xml_map = {
-    }
-
-    def __init__(self, *, id: str=None, **kwargs) -> None:
-        super(ComplexTypeNoMeta, self).__init__(**kwargs)
-        self.id = id
-
-
-class ComplexTypeWithMeta(Model):
-    """I am a complex type with XML node.
-
-    :param id: The id of the res
-    :type id: str
-    """
-
-    _attribute_map = {
-        'id': {'key': 'ID', 'type': 'str', 'xml': {'name': 'ID'}},
-    }
-    _xml_map = {
-        'name': 'XMLComplexTypeWithMeta'
-    }
-
-    def __init__(self, *, id: str=None, **kwargs) -> None:
-        super(ComplexTypeWithMeta, self).__init__(**kwargs)
-        self.id = id
-
-
-class RootWithRefAndNoMeta(Model):
-    """I am root, and I ref a model with no meta.
-
-    :param ref_to_model: XML will use RefToModel
-    :type ref_to_model: ~xmlservice.models.ComplexTypeNoMeta
-    :param something: Something else (just to avoid flattening)
-    :type something: str
-    """
-
-    _attribute_map = {
-        'ref_to_model': {'key': 'RefToModel', 'type': 'ComplexTypeNoMeta', 'xml': {'name': 'RefToModel'}},
-        'something': {'key': 'Something', 'type': 'str', 'xml': {'name': 'Something'}},
-    }
-    _xml_map = {
-    }
-
-    def __init__(self, *, ref_to_model=None, something: str=None, **kwargs) -> None:
-        super(RootWithRefAndNoMeta, self).__init__(**kwargs)
-        self.ref_to_model = ref_to_model
-        self.something = something
-
-
-class RootWithRefAndMeta(Model):
-    """I am root, and I ref a model WITH meta.
-
-    :param ref_to_model: XML will use XMLComplexTypeWithMeta
-    :type ref_to_model: ~xmlservice.models.ComplexTypeWithMeta
-    :param something: Something else (just to avoid flattening)
-    :type something: str
-    """
-
-    _attribute_map = {
-        'ref_to_model': {'key': 'RefToModel', 'type': 'ComplexTypeWithMeta', 'xml': {'name': 'RefToModel'}},
-        'something': {'key': 'Something', 'type': 'str', 'xml': {'name': 'Something'}},
-    }
-    _xml_map = {
-    }
-
-    def __init__(self, *, ref_to_model=None, something: str=None, **kwargs) -> None:
-        super(RootWithRefAndMeta, self).__init__(**kwargs)
-        self.ref_to_model = ref_to_model
-        self.something = something

@@ -13,26 +13,6 @@ from msrest.serialization import Model
 from msrest.exceptions import HttpOperationError
 
 
-class Widget(Model):
-    """Widget.
-
-    :param integer:
-    :type integer: int
-    :param string:
-    :type string: str
-    """
-
-    _attribute_map = {
-        'integer': {'key': 'integer', 'type': 'int'},
-        'string': {'key': 'string', 'type': 'str'},
-    }
-
-    def __init__(self, *, integer: int=None, string: str=None, **kwargs) -> None:
-        super(Widget, self).__init__(**kwargs)
-        self.integer = integer
-        self.string = string
-
-
 class Error(Model):
     """Error.
 
@@ -63,3 +43,23 @@ class ErrorException(HttpOperationError):
     def __init__(self, deserialize, response, *args):
 
         super(ErrorException, self).__init__(deserialize, response, 'Error', *args)
+
+
+class Widget(Model):
+    """Widget.
+
+    :param integer:
+    :type integer: int
+    :param string:
+    :type string: str
+    """
+
+    _attribute_map = {
+        'integer': {'key': 'integer', 'type': 'int'},
+        'string': {'key': 'string', 'type': 'str'},
+    }
+
+    def __init__(self, *, integer: int=None, string: str=None, **kwargs) -> None:
+        super(Widget, self).__init__(**kwargs)
+        self.integer = integer
+        self.string = string

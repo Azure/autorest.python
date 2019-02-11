@@ -75,6 +75,42 @@ class ConstantProduct(Model):
     const_property2 = "constant2"
 
 
+class Error(Model):
+    """Error.
+
+    :param code:
+    :type code: int
+    :param message:
+    :type message: str
+    :param fields:
+    :type fields: str
+    """
+
+    _attribute_map = {
+        'code': {'key': 'code', 'type': 'int'},
+        'message': {'key': 'message', 'type': 'str'},
+        'fields': {'key': 'fields', 'type': 'str'},
+    }
+
+    def __init__(self, **kwargs):
+        super(Error, self).__init__(**kwargs)
+        self.code = kwargs.get('code', None)
+        self.message = kwargs.get('message', None)
+        self.fields = kwargs.get('fields', None)
+
+
+class ErrorException(HttpOperationError):
+    """Server responsed with exception of type: 'Error'.
+
+    :param deserialize: A deserializer
+    :param response: Server response to be deserialized.
+    """
+
+    def __init__(self, deserialize, response, *args):
+
+        super(ErrorException, self).__init__(deserialize, response, 'Error', *args)
+
+
 class Product(Model):
     """The product documentation.
 
@@ -137,39 +173,3 @@ class Product(Model):
         self.image = kwargs.get('image', None)
         self.child = kwargs.get('child', None)
         self.const_string_as_enum = kwargs.get('const_string_as_enum', None)
-
-
-class Error(Model):
-    """Error.
-
-    :param code:
-    :type code: int
-    :param message:
-    :type message: str
-    :param fields:
-    :type fields: str
-    """
-
-    _attribute_map = {
-        'code': {'key': 'code', 'type': 'int'},
-        'message': {'key': 'message', 'type': 'str'},
-        'fields': {'key': 'fields', 'type': 'str'},
-    }
-
-    def __init__(self, **kwargs):
-        super(Error, self).__init__(**kwargs)
-        self.code = kwargs.get('code', None)
-        self.message = kwargs.get('message', None)
-        self.fields = kwargs.get('fields', None)
-
-
-class ErrorException(HttpOperationError):
-    """Server responsed with exception of type: 'Error'.
-
-    :param deserialize: A deserializer
-    :param response: Server response to be deserialized.
-    """
-
-    def __init__(self, deserialize, response, *args):
-
-        super(ErrorException, self).__init__(deserialize, response, 'Error', *args)

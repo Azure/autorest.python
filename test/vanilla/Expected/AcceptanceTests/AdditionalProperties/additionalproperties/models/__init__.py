@@ -10,28 +10,28 @@
 # --------------------------------------------------------------------------
 
 try:
-    from ._models_py3 import Error, ErrorException
-    from ._models_py3 import PetAPTrue
     from ._models_py3 import CatAPTrue
-    from ._models_py3 import PetAPObject
-    from ._models_py3 import PetAPString
+    from ._models_py3 import Error, ErrorException
     from ._models_py3 import PetAPInProperties
     from ._models_py3 import PetAPInPropertiesWithAPString
+    from ._models_py3 import PetAPObject
+    from ._models_py3 import PetAPString
+    from ._models_py3 import PetAPTrue
 except (SyntaxError, ImportError):
-    from ._models import Error, ErrorException
-    from ._models import PetAPTrue
     from ._models import CatAPTrue
-    from ._models import PetAPObject
-    from ._models import PetAPString
+    from ._models import Error, ErrorException
     from ._models import PetAPInProperties
     from ._models import PetAPInPropertiesWithAPString
+    from ._models import PetAPObject
+    from ._models import PetAPString
+    from ._models import PetAPTrue
 
 __all__ = [
-    'Error', 'ErrorException',
-    'PetAPTrue',
     'CatAPTrue',
-    'PetAPObject',
-    'PetAPString',
+    'Error', 'ErrorException',
     'PetAPInProperties',
     'PetAPInPropertiesWithAPString',
+    'PetAPObject',
+    'PetAPString',
+    'PetAPTrue',
 ]

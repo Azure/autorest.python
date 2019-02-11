@@ -13,6 +13,14 @@ from msrest.serialization import Model
 from msrest.exceptions import HttpOperationError
 
 
+class CloudError(Model):
+    """CloudError.
+    """
+
+    _attribute_map = {
+    }
+
+
 class Error(Model):
     """Error.
 
@@ -43,61 +51,6 @@ class ErrorException(HttpOperationError):
     def __init__(self, deserialize, response, *args):
 
         super(ErrorException, self).__init__(deserialize, response, 'Error', *args)
-
-
-class ParameterGroupingPostRequiredParameters(Model):
-    """Additional parameters for post_required operation.
-
-    All required parameters must be populated in order to send to Azure.
-
-    :param body: Required.
-    :type body: int
-    :param custom_header:
-    :type custom_header: str
-    :param query: Query parameter with default. Default value: 30 .
-    :type query: int
-    :param path: Required. Path parameter
-    :type path: str
-    """
-
-    _validation = {
-        'body': {'required': True},
-        'path': {'required': True},
-    }
-
-    _attribute_map = {
-        'body': {'key': '', 'type': 'int'},
-        'custom_header': {'key': '', 'type': 'str'},
-        'query': {'key': '', 'type': 'int'},
-        'path': {'key': '', 'type': 'str'},
-    }
-
-    def __init__(self, **kwargs):
-        super(ParameterGroupingPostRequiredParameters, self).__init__(**kwargs)
-        self.body = kwargs.get('body', None)
-        self.custom_header = kwargs.get('custom_header', None)
-        self.query = kwargs.get('query', 30)
-        self.path = kwargs.get('path', None)
-
-
-class ParameterGroupingPostOptionalParameters(Model):
-    """Additional parameters for post_optional operation.
-
-    :param custom_header:
-    :type custom_header: str
-    :param query: Query parameter with default. Default value: 30 .
-    :type query: int
-    """
-
-    _attribute_map = {
-        'custom_header': {'key': '', 'type': 'str'},
-        'query': {'key': '', 'type': 'int'},
-    }
-
-    def __init__(self, **kwargs):
-        super(ParameterGroupingPostOptionalParameters, self).__init__(**kwargs)
-        self.custom_header = kwargs.get('custom_header', None)
-        self.query = kwargs.get('query', 30)
 
 
 class FirstParameterGroup(Model):
@@ -142,9 +95,56 @@ class ParameterGroupingPostMultiParamGroupsSecondParamGroup(Model):
         self.query_two = kwargs.get('query_two', 30)
 
 
-class CloudError(Model):
-    """CloudError.
+class ParameterGroupingPostOptionalParameters(Model):
+    """Additional parameters for post_optional operation.
+
+    :param custom_header:
+    :type custom_header: str
+    :param query: Query parameter with default. Default value: 30 .
+    :type query: int
     """
 
     _attribute_map = {
+        'custom_header': {'key': '', 'type': 'str'},
+        'query': {'key': '', 'type': 'int'},
     }
+
+    def __init__(self, **kwargs):
+        super(ParameterGroupingPostOptionalParameters, self).__init__(**kwargs)
+        self.custom_header = kwargs.get('custom_header', None)
+        self.query = kwargs.get('query', 30)
+
+
+class ParameterGroupingPostRequiredParameters(Model):
+    """Additional parameters for post_required operation.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :param body: Required.
+    :type body: int
+    :param custom_header:
+    :type custom_header: str
+    :param query: Query parameter with default. Default value: 30 .
+    :type query: int
+    :param path: Required. Path parameter
+    :type path: str
+    """
+
+    _validation = {
+        'body': {'required': True},
+        'path': {'required': True},
+    }
+
+    _attribute_map = {
+        'body': {'key': '', 'type': 'int'},
+        'custom_header': {'key': '', 'type': 'str'},
+        'query': {'key': '', 'type': 'int'},
+        'path': {'key': '', 'type': 'str'},
+    }
+
+    def __init__(self, **kwargs):
+        super(ParameterGroupingPostRequiredParameters, self).__init__(**kwargs)
+        self.body = kwargs.get('body', None)
+        self.custom_header = kwargs.get('custom_header', None)
+        self.query = kwargs.get('query', 30)
+        self.path = kwargs.get('path', None)

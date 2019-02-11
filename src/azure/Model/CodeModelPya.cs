@@ -7,7 +7,6 @@ using System.Globalization;
 using System.Linq;
 using AutoRest.Core.Model;
 using AutoRest.Extensions.Azure;
-using AutoRest.Python.DAG;
 using AutoRest.Python.Model;
 
 namespace AutoRest.Python.Azure.Model

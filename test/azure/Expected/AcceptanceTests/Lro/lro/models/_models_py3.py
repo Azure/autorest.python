@@ -45,6 +45,48 @@ class CloudErrorException(HttpOperationError):
         super(CloudErrorException, self).__init__(deserialize, response, 'CloudError', *args)
 
 
+class OperationResult(Model):
+    """OperationResult.
+
+    :param status: The status of the request. Possible values include:
+     'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+     'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+    :type status: str or ~lro.models.enum
+    :param error:
+    :type error: ~lro.models.OperationResultError
+    """
+
+    _attribute_map = {
+        'status': {'key': 'status', 'type': 'str'},
+        'error': {'key': 'error', 'type': 'OperationResultError'},
+    }
+
+    def __init__(self, *, status=None, error=None, **kwargs) -> None:
+        super(OperationResult, self).__init__(**kwargs)
+        self.status = status
+        self.error = error
+
+
+class OperationResultError(Model):
+    """OperationResultError.
+
+    :param code: The error code for an operation failure
+    :type code: int
+    :param message: The detailed arror message
+    :type message: str
+    """
+
+    _attribute_map = {
+        'code': {'key': 'code', 'type': 'int'},
+        'message': {'key': 'message', 'type': 'str'},
+    }
+
+    def __init__(self, *, code: int=None, message: str=None, **kwargs) -> None:
+        super(OperationResultError, self).__init__(**kwargs)
+        self.code = code
+        self.message = message
+
+
 class Resource(Model):
     """Resource.
 
@@ -84,26 +126,6 @@ class Resource(Model):
         self.tags = tags
         self.location = location
         self.name = None
-
-
-class Sku(Model):
-    """Sku.
-
-    :param name:
-    :type name: str
-    :param id:
-    :type id: str
-    """
-
-    _attribute_map = {
-        'name': {'key': 'name', 'type': 'str'},
-        'id': {'key': 'id', 'type': 'str'},
-    }
-
-    def __init__(self, *, name: str=None, id: str=None, **kwargs) -> None:
-        super(Sku, self).__init__(**kwargs)
-        self.name = name
-        self.id = id
 
 
 class Product(Resource):
@@ -151,6 +173,26 @@ class Product(Resource):
         super(Product, self).__init__(tags=tags, location=location, **kwargs)
         self.provisioning_state = provisioning_state
         self.provisioning_state_values = None
+
+
+class Sku(Model):
+    """Sku.
+
+    :param name:
+    :type name: str
+    :param id:
+    :type id: str
+    """
+
+    _attribute_map = {
+        'name': {'key': 'name', 'type': 'str'},
+        'id': {'key': 'id', 'type': 'str'},
+    }
+
+    def __init__(self, *, name: str=None, id: str=None, **kwargs) -> None:
+        super(Sku, self).__init__(**kwargs)
+        self.name = name
+        self.id = id
 
 
 class SubResource(Model):
@@ -207,45 +249,3 @@ class SubProduct(SubResource):
         super(SubProduct, self).__init__(**kwargs)
         self.provisioning_state = provisioning_state
         self.provisioning_state_values = None
-
-
-class OperationResultError(Model):
-    """OperationResultError.
-
-    :param code: The error code for an operation failure
-    :type code: int
-    :param message: The detailed arror message
-    :type message: str
-    """
-
-    _attribute_map = {
-        'code': {'key': 'code', 'type': 'int'},
-        'message': {'key': 'message', 'type': 'str'},
-    }
-
-    def __init__(self, *, code: int=None, message: str=None, **kwargs) -> None:
-        super(OperationResultError, self).__init__(**kwargs)
-        self.code = code
-        self.message = message
-
-
-class OperationResult(Model):
-    """OperationResult.
-
-    :param status: The status of the request. Possible values include:
-     'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
-     'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
-    :type status: str or ~lro.models.enum
-    :param error:
-    :type error: ~lro.models.OperationResultError
-    """
-
-    _attribute_map = {
-        'status': {'key': 'status', 'type': 'str'},
-        'error': {'key': 'error', 'type': 'OperationResultError'},
-    }
-
-    def __init__(self, *, status=None, error=None, **kwargs) -> None:
-        super(OperationResult, self).__init__(**kwargs)
-        self.status = status
-        self.error = error

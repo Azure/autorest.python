@@ -10,28 +10,28 @@
 # --------------------------------------------------------------------------
 
 try:
+    from ._models_py3 import OperationResult
+    from ._models_py3 import OperationResultError
+    from ._models_py3 import Product
     from ._models_py3 import Resource
     from ._models_py3 import Sku
-    from ._models_py3 import Product
     from ._models_py3 import SubProduct
     from ._models_py3 import SubResource
-    from ._models_py3 import OperationResultError
-    from ._models_py3 import OperationResult
 except (SyntaxError, ImportError):
+    from ._models import OperationResult
+    from ._models import OperationResultError
+    from ._models import Product
     from ._models import Resource
     from ._models import Sku
-    from ._models import Product
     from ._models import SubProduct
     from ._models import SubResource
-    from ._models import OperationResultError
-    from ._models import OperationResult
 
 __all__ = [
+    'OperationResult',
+    'OperationResultError',
+    'Product',
     'Resource',
     'Sku',
-    'Product',
     'SubProduct',
     'SubResource',
-    'OperationResultError',
-    'OperationResult',
 ]

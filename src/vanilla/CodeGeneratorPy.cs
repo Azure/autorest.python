@@ -88,30 +88,9 @@ namespace AutoRest.Python
             //Models
             if (codeModel.ModelTypes.Any())
             {
-                HashSet<CompositeTypePy> generated_models = new HashSet<CompositeTypePy>();
-                List<CompositeTypePy> generate_model_list = new List<CompositeTypePy>();
-                foreach(CompositeTypePy model in codeModel.ModelTemplateModels) {
-                    if (generated_models.Contains(model)) {
-                        continue;
-                    }
-                    List<CompositeTypePy> ancestors = new List<CompositeTypePy>();
-                    CompositeTypePy current = model;
-                    ancestors.Add(current);
-                    while (current.BaseModelType != null) {
-                        CompositeTypePy parent = current.BaseModelType as CompositeTypePy;
-                        if (generated_models.Contains(parent)) {
-                            break;
-                        }
-                        ancestors.Insert(0, parent);
-                        generated_models.Add(current);
-                        current = parent;
-                    }
-                    generate_model_list.AddRange(ancestors);
-                    generated_models.Add(current);
-                }
                 var modelInitTemplate = new ModelInitTemplate { Model = codeModel };
                 await Write(modelInitTemplate, Path.Combine(folderName, "models", "__init__.py"));
-                var modelTemplate = new ModelTemplate { Model = generate_model_list };
+                var modelTemplate = new ModelTemplate { Model = codeModel.getSortedModels() };
                 await Write(modelTemplate, Path.Combine(folderName, "models", "_models.py"));
                 modelTemplate.Python3Mode = true;
                 await Write(modelTemplate, Path.Combine(folderName, "models", "_models_py3.py"));

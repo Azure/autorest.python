@@ -13,38 +13,6 @@ from msrest.serialization import Model
 from msrest.exceptions import HttpOperationError
 
 
-class Error(Model):
-    """Error.
-
-    :param status:
-    :type status: int
-    :param message:
-    :type message: str
-    """
-
-    _attribute_map = {
-        'status': {'key': 'status', 'type': 'int'},
-        'message': {'key': 'message', 'type': 'str'},
-    }
-
-    def __init__(self, *, status: int=None, message: str=None, **kwargs) -> None:
-        super(Error, self).__init__(**kwargs)
-        self.status = status
-        self.message = message
-
-
-class ErrorException(HttpOperationError):
-    """Server responsed with exception of type: 'Error'.
-
-    :param deserialize: A deserializer
-    :param response: Server response to be deserialized.
-    """
-
-    def __init__(self, deserialize, response, *args):
-
-        super(ErrorException, self).__init__(deserialize, response, 'Error', *args)
-
-
 class A(Model):
     """A.
 
@@ -122,3 +90,35 @@ class D(Model):
     def __init__(self, *, http_status_code: str=None, **kwargs) -> None:
         super(D, self).__init__(**kwargs)
         self.http_status_code = http_status_code
+
+
+class Error(Model):
+    """Error.
+
+    :param status:
+    :type status: int
+    :param message:
+    :type message: str
+    """
+
+    _attribute_map = {
+        'status': {'key': 'status', 'type': 'int'},
+        'message': {'key': 'message', 'type': 'str'},
+    }
+
+    def __init__(self, *, status: int=None, message: str=None, **kwargs) -> None:
+        super(Error, self).__init__(**kwargs)
+        self.status = status
+        self.message = message
+
+
+class ErrorException(HttpOperationError):
+    """Server responsed with exception of type: 'Error'.
+
+    :param deserialize: A deserializer
+    :param response: Server response to be deserialized.
+    """
+
+    def __init__(self, deserialize, response, *args):
+
+        super(ErrorException, self).__init__(deserialize, response, 'Error', *args)

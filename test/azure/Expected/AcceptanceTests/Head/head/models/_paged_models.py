@@ -9,5 +9,6 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-VERSION = "1.0.0"
+from msrest.paging import Paged
+
 

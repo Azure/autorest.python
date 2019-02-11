@@ -10,37 +10,37 @@
 # --------------------------------------------------------------------------
 
 try:
-    from ._models_py3 import Error, ErrorException
-    from ._models_py3 import IntWrapper
-    from ._models_py3 import IntOptionalWrapper
-    from ._models_py3 import StringWrapper
-    from ._models_py3 import StringOptionalWrapper
-    from ._models_py3 import ArrayWrapper
     from ._models_py3 import ArrayOptionalWrapper
-    from ._models_py3 import Product
-    from ._models_py3 import ClassWrapper
+    from ._models_py3 import ArrayWrapper
     from ._models_py3 import ClassOptionalWrapper
+    from ._models_py3 import ClassWrapper
+    from ._models_py3 import Error, ErrorException
+    from ._models_py3 import IntOptionalWrapper
+    from ._models_py3 import IntWrapper
+    from ._models_py3 import Product
+    from ._models_py3 import StringOptionalWrapper
+    from ._models_py3 import StringWrapper
 except (SyntaxError, ImportError):
-    from ._models import Error, ErrorException
-    from ._models import IntWrapper
-    from ._models import IntOptionalWrapper
-    from ._models import StringWrapper
-    from ._models import StringOptionalWrapper
-    from ._models import ArrayWrapper
     from ._models import ArrayOptionalWrapper
-    from ._models import Product
-    from ._models import ClassWrapper
+    from ._models import ArrayWrapper
     from ._models import ClassOptionalWrapper
+    from ._models import ClassWrapper
+    from ._models import Error, ErrorException
+    from ._models import IntOptionalWrapper
+    from ._models import IntWrapper
+    from ._models import Product
+    from ._models import StringOptionalWrapper
+    from ._models import StringWrapper
 
 __all__ = [
-    'Error', 'ErrorException',
-    'IntWrapper',
-    'IntOptionalWrapper',
-    'StringWrapper',
-    'StringOptionalWrapper',
-    'ArrayWrapper',
     'ArrayOptionalWrapper',
-    'Product',
-    'ClassWrapper',
+    'ArrayWrapper',
     'ClassOptionalWrapper',
+    'ClassWrapper',
+    'Error', 'ErrorException',
+    'IntOptionalWrapper',
+    'IntWrapper',
+    'Product',
+    'StringOptionalWrapper',
+    'StringWrapper',
 ]

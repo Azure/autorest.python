@@ -6,8 +6,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "autorest.common", "autorest
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "autorest.python", "src\autorest.python.csproj", "{9E857E16-D118-4311-8799-CFA9D292D0B6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dag.tests", "test\dag\dag.tests.csproj", "{4C1136F7-DCF3-48DB-8F2C-9E925854BD2C}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

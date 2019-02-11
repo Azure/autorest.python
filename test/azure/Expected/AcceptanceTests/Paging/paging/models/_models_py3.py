@@ -12,60 +12,40 @@
 from msrest.serialization import Model
 
 
-class ProductProperties(Model):
-    """ProductProperties.
-
-    :param id:
-    :type id: int
-    :param name:
-    :type name: str
+class CloudError(Model):
+    """CloudError.
     """
 
     _attribute_map = {
-        'id': {'key': 'id', 'type': 'int'},
-        'name': {'key': 'name', 'type': 'str'},
     }
 
-    def __init__(self, *, id: int=None, name: str=None, **kwargs) -> None:
-        super(ProductProperties, self).__init__(**kwargs)
-        self.id = id
-        self.name = name
 
+class CustomParameterGroup(Model):
+    """Additional parameters for
+    get_multiple_pages_fragment_with_grouping_next_link operation.
 
-class Product(Model):
-    """Product.
+    All required parameters must be populated in order to send to Azure.
 
-    :param properties:
-    :type properties: ~paging.models.ProductProperties
+    :param api_version: Required. Sets the api version to use.
+    :type api_version: str
+    :param tenant: Required. Sets the tenant to use.
+    :type tenant: str
     """
 
-    _attribute_map = {
-        'properties': {'key': 'properties', 'type': 'ProductProperties'},
+    _validation = {
+        'api_version': {'required': True},
+        'tenant': {'required': True},
     }
 
-    def __init__(self, *, properties=None, **kwargs) -> None:
-        super(Product, self).__init__(**kwargs)
-        self.properties = properties
-
-
-class ProductResult(Model):
-    """ProductResult.
-
-    :param values:
-    :type values: list[~paging.models.Product]
-    :param next_link:
-    :type next_link: str
-    """
-
     _attribute_map = {
-        'values': {'key': 'values', 'type': '[Product]'},
-        'next_link': {'key': 'nextLink', 'type': 'str'},
+        'api_version': {'key': '', 'type': 'str'},
+        'tenant': {'key': '', 'type': 'str'},
     }
 
-    def __init__(self, *, values=None, next_link: str=None, **kwargs) -> None:
-        super(ProductResult, self).__init__(**kwargs)
-        self.values = values
-        self.next_link = next_link
+    def __init__(self, *, api_version: str, tenant: str, **kwargs) -> None:
+        super(CustomParameterGroup, self).__init__(**kwargs)
+        self.api_version = api_version
+        self.tenant = tenant
 
 
 class OperationResult(Model):
@@ -86,6 +66,28 @@ class OperationResult(Model):
         self.status = status
 
 
+class PagingGetMultiplePagesLroOptions(Model):
+    """Additional parameters for get_multiple_pages_lro operation.
+
+    :param maxresults: Sets the maximum number of items to return in the
+     response.
+    :type maxresults: int
+    :param timeout: Sets the maximum time that the server can spend processing
+     the request, in seconds. The default is 30 seconds. Default value: 30 .
+    :type timeout: int
+    """
+
+    _attribute_map = {
+        'maxresults': {'key': '', 'type': 'int'},
+        'timeout': {'key': '', 'type': 'int'},
+    }
+
+    def __init__(self, *, maxresults: int=None, timeout: int=30, **kwargs) -> None:
+        super(PagingGetMultiplePagesLroOptions, self).__init__(**kwargs)
+        self.maxresults = maxresults
+        self.timeout = timeout
+
+
 class PagingGetMultiplePagesOptions(Model):
     """Additional parameters for get_multiple_pages operation.
 
@@ -104,28 +106,6 @@ class PagingGetMultiplePagesOptions(Model):
 
     def __init__(self, *, maxresults: int=None, timeout: int=30, **kwargs) -> None:
         super(PagingGetMultiplePagesOptions, self).__init__(**kwargs)
-        self.maxresults = maxresults
-        self.timeout = timeout
-
-
-class PagingGetOdataMultiplePagesOptions(Model):
-    """Additional parameters for get_odata_multiple_pages operation.
-
-    :param maxresults: Sets the maximum number of items to return in the
-     response.
-    :type maxresults: int
-    :param timeout: Sets the maximum time that the server can spend processing
-     the request, in seconds. The default is 30 seconds. Default value: 30 .
-    :type timeout: int
-    """
-
-    _attribute_map = {
-        'maxresults': {'key': '', 'type': 'int'},
-        'timeout': {'key': '', 'type': 'int'},
-    }
-
-    def __init__(self, *, maxresults: int=None, timeout: int=30, **kwargs) -> None:
-        super(PagingGetOdataMultiplePagesOptions, self).__init__(**kwargs)
         self.maxresults = maxresults
         self.timeout = timeout
 
@@ -162,36 +142,8 @@ class PagingGetMultiplePagesWithOffsetOptions(Model):
         self.timeout = timeout
 
 
-class CustomParameterGroup(Model):
-    """Additional parameters for
-    get_multiple_pages_fragment_with_grouping_next_link operation.
-
-    All required parameters must be populated in order to send to Azure.
-
-    :param api_version: Required. Sets the api version to use.
-    :type api_version: str
-    :param tenant: Required. Sets the tenant to use.
-    :type tenant: str
-    """
-
-    _validation = {
-        'api_version': {'required': True},
-        'tenant': {'required': True},
-    }
-
-    _attribute_map = {
-        'api_version': {'key': '', 'type': 'str'},
-        'tenant': {'key': '', 'type': 'str'},
-    }
-
-    def __init__(self, *, api_version: str, tenant: str, **kwargs) -> None:
-        super(CustomParameterGroup, self).__init__(**kwargs)
-        self.api_version = api_version
-        self.tenant = tenant
-
-
-class PagingGetMultiplePagesLroOptions(Model):
-    """Additional parameters for get_multiple_pages_lro operation.
+class PagingGetOdataMultiplePagesOptions(Model):
+    """Additional parameters for get_odata_multiple_pages operation.
 
     :param maxresults: Sets the maximum number of items to return in the
      response.
@@ -207,14 +159,62 @@ class PagingGetMultiplePagesLroOptions(Model):
     }
 
     def __init__(self, *, maxresults: int=None, timeout: int=30, **kwargs) -> None:
-        super(PagingGetMultiplePagesLroOptions, self).__init__(**kwargs)
+        super(PagingGetOdataMultiplePagesOptions, self).__init__(**kwargs)
         self.maxresults = maxresults
         self.timeout = timeout
 
 
-class CloudError(Model):
-    """CloudError.
+class Product(Model):
+    """Product.
+
+    :param properties:
+    :type properties: ~paging.models.ProductProperties
     """
 
     _attribute_map = {
+        'properties': {'key': 'properties', 'type': 'ProductProperties'},
     }
+
+    def __init__(self, *, properties=None, **kwargs) -> None:
+        super(Product, self).__init__(**kwargs)
+        self.properties = properties
+
+
+class ProductProperties(Model):
+    """ProductProperties.
+
+    :param id:
+    :type id: int
+    :param name:
+    :type name: str
+    """
+
+    _attribute_map = {
+        'id': {'key': 'id', 'type': 'int'},
+        'name': {'key': 'name', 'type': 'str'},
+    }
+
+    def __init__(self, *, id: int=None, name: str=None, **kwargs) -> None:
+        super(ProductProperties, self).__init__(**kwargs)
+        self.id = id
+        self.name = name
+
+
+class ProductResult(Model):
+    """ProductResult.
+
+    :param values:
+    :type values: list[~paging.models.Product]
+    :param next_link:
+    :type next_link: str
+    """
+
+    _attribute_map = {
+        'values': {'key': 'values', 'type': '[Product]'},
+        'next_link': {'key': 'nextLink', 'type': 'str'},
+    }
+
+    def __init__(self, *, values=None, next_link: str=None, **kwargs) -> None:
+        super(ProductResult, self).__init__(**kwargs)
+        self.values = values
+        self.next_link = next_link

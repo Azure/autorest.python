@@ -13,6 +13,14 @@ from msrest.serialization import Model
 from msrest.exceptions import HttpOperationError
 
 
+class CloudError(Model):
+    """CloudError.
+    """
+
+    _attribute_map = {
+    }
+
+
 class Error(Model):
     """Error.
 
@@ -43,61 +51,6 @@ class ErrorException(HttpOperationError):
     def __init__(self, deserialize, response, *args):
 
         super(ErrorException, self).__init__(deserialize, response, 'Error', *args)
-
-
-class ParameterGroupingPostRequiredParameters(Model):
-    """Additional parameters for post_required operation.
-
-    All required parameters must be populated in order to send to Azure.
-
-    :param body: Required.
-    :type body: int
-    :param custom_header:
-    :type custom_header: str
-    :param query: Query parameter with default. Default value: 30 .
-    :type query: int
-    :param path: Required. Path parameter
-    :type path: str
-    """
-
-    _validation = {
-        'body': {'required': True},
-        'path': {'required': True},
-    }
-
-    _attribute_map = {
-        'body': {'key': '', 'type': 'int'},
-        'custom_header': {'key': '', 'type': 'str'},
-        'query': {'key': '', 'type': 'int'},
-        'path': {'key': '', 'type': 'str'},
-    }
-
-    def __init__(self, *, body: int, path: str, custom_header: str=None, query: int=30, **kwargs) -> None:
-        super(ParameterGroupingPostRequiredParameters, self).__init__(**kwargs)
-        self.body = body
-        self.custom_header = custom_header
-        self.query = query
-        self.path = path
-
-
-class ParameterGroupingPostOptionalParameters(Model):
-    """Additional parameters for post_optional operation.
-
-    :param custom_header:
-    :type custom_header: str
-    :param query: Query parameter with default. Default value: 30 .
-    :type query: int
-    """
-
-    _attribute_map = {
-        'custom_header': {'key': '', 'type': 'str'},
-        'query': {'key': '', 'type': 'int'},
-    }
-
-    def __init__(self, *, custom_header: str=None, query: int=30, **kwargs) -> None:
-        super(ParameterGroupingPostOptionalParameters, self).__init__(**kwargs)
-        self.custom_header = custom_header
-        self.query = query
 
 
 class FirstParameterGroup(Model):
@@ -142,9 +95,56 @@ class ParameterGroupingPostMultiParamGroupsSecondParamGroup(Model):
         self.query_two = query_two
 
 
-class CloudError(Model):
-    """CloudError.
+class ParameterGroupingPostOptionalParameters(Model):
+    """Additional parameters for post_optional operation.
+
+    :param custom_header:
+    :type custom_header: str
+    :param query: Query parameter with default. Default value: 30 .
+    :type query: int
     """
 
     _attribute_map = {
+        'custom_header': {'key': '', 'type': 'str'},
+        'query': {'key': '', 'type': 'int'},
     }
+
+    def __init__(self, *, custom_header: str=None, query: int=30, **kwargs) -> None:
+        super(ParameterGroupingPostOptionalParameters, self).__init__(**kwargs)
+        self.custom_header = custom_header
+        self.query = query
+
+
+class ParameterGroupingPostRequiredParameters(Model):
+    """Additional parameters for post_required operation.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :param body: Required.
+    :type body: int
+    :param custom_header:
+    :type custom_header: str
+    :param query: Query parameter with default. Default value: 30 .
+    :type query: int
+    :param path: Required. Path parameter
+    :type path: str
+    """
+
+    _validation = {
+        'body': {'required': True},
+        'path': {'required': True},
+    }
+
+    _attribute_map = {
+        'body': {'key': '', 'type': 'int'},
+        'custom_header': {'key': '', 'type': 'str'},
+        'query': {'key': '', 'type': 'int'},
+        'path': {'key': '', 'type': 'str'},
+    }
+
+    def __init__(self, *, body: int, path: str, custom_header: str=None, query: int=30, **kwargs) -> None:
+        super(ParameterGroupingPostRequiredParameters, self).__init__(**kwargs)
+        self.body = body
+        self.custom_header = custom_header
+        self.query = query
+        self.path = path

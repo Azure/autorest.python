@@ -10,37 +10,37 @@
 # --------------------------------------------------------------------------
 
 try:
-    from ._models_py3 import Error, ErrorException
-    from ._models_py3 import Resource
-    from ._models_py3 import FlattenedProduct
-    from ._models_py3 import ResourceCollection
     from ._models_py3 import BaseProduct
-    from ._models_py3 import SimpleProduct
-    from ._models_py3 import GenericUrl
-    from ._models_py3 import WrappedProduct
-    from ._models_py3 import ProductWrapper
+    from ._models_py3 import Error, ErrorException
+    from ._models_py3 import FlattenedProduct
     from ._models_py3 import FlattenParameterGroup
+    from ._models_py3 import GenericUrl
+    from ._models_py3 import ProductWrapper
+    from ._models_py3 import Resource
+    from ._models_py3 import ResourceCollection
+    from ._models_py3 import SimpleProduct
+    from ._models_py3 import WrappedProduct
 except (SyntaxError, ImportError):
-    from ._models import Error, ErrorException
-    from ._models import Resource
-    from ._models import FlattenedProduct
-    from ._models import ResourceCollection
     from ._models import BaseProduct
-    from ._models import SimpleProduct
-    from ._models import GenericUrl
-    from ._models import WrappedProduct
-    from ._models import ProductWrapper
+    from ._models import Error, ErrorException
+    from ._models import FlattenedProduct
     from ._models import FlattenParameterGroup
+    from ._models import GenericUrl
+    from ._models import ProductWrapper
+    from ._models import Resource
+    from ._models import ResourceCollection
+    from ._models import SimpleProduct
+    from ._models import WrappedProduct
 
 __all__ = [
-    'Error', 'ErrorException',
-    'Resource',
-    'FlattenedProduct',
-    'ResourceCollection',
     'BaseProduct',
-    'SimpleProduct',
-    'GenericUrl',
-    'WrappedProduct',
-    'ProductWrapper',
+    'Error', 'ErrorException',
+    'FlattenedProduct',
     'FlattenParameterGroup',
+    'GenericUrl',
+    'ProductWrapper',
+    'Resource',
+    'ResourceCollection',
+    'SimpleProduct',
+    'WrappedProduct',
 ]

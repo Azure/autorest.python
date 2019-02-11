@@ -9,13 +9,11 @@ using System.Globalization;
 using System.Linq;
 using AutoRest.Core;
 using AutoRest.Core.Model;
-using AutoRest.Python.DAG;
 using AutoRest.Core.Utilities;
 using AutoRest.Extensions;
 using AutoRest.Extensions.Azure;
 using AutoRest.Python.Azure.Model;
 using AutoRest.Python.Model;
-using AutoRest.Core.Model;
 using Newtonsoft.Json.Linq;
 using static AutoRest.Core.Utilities.DependencyInjection;
 
@@ -54,8 +52,6 @@ namespace AutoRest.Python.Azure
             Base.TransformCodeModel(codeModel);
 
             NormalizePaginatedMethods(codeModel);
-
-            //buildUpModelGraph(ref codeModel);
 
             return codeModel;
         }

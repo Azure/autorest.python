@@ -13,24 +13,12 @@ from msrest.serialization import Model
 from msrest.exceptions import HttpOperationError
 
 
-class SampleResourceGroup(Model):
-    """SampleResourceGroup.
-
-    :param name: resource group name 'testgroup101'
-    :type name: str
-    :param location: resource group location 'West US'
-    :type location: str
+class CloudError(Model):
+    """CloudError.
     """
 
     _attribute_map = {
-        'name': {'key': 'name', 'type': 'str'},
-        'location': {'key': 'location', 'type': 'str'},
     }
-
-    def __init__(self, **kwargs):
-        super(SampleResourceGroup, self).__init__(**kwargs)
-        self.name = kwargs.get('name', None)
-        self.location = kwargs.get('location', None)
 
 
 class Error(Model):
@@ -65,9 +53,21 @@ class ErrorException(HttpOperationError):
         super(ErrorException, self).__init__(deserialize, response, 'Error', *args)
 
 
-class CloudError(Model):
-    """CloudError.
+class SampleResourceGroup(Model):
+    """SampleResourceGroup.
+
+    :param name: resource group name 'testgroup101'
+    :type name: str
+    :param location: resource group location 'West US'
+    :type location: str
     """
 
     _attribute_map = {
+        'name': {'key': 'name', 'type': 'str'},
+        'location': {'key': 'location', 'type': 'str'},
     }
+
+    def __init__(self, **kwargs):
+        super(SampleResourceGroup, self).__init__(**kwargs)
+        self.name = kwargs.get('name', None)
+        self.location = kwargs.get('location', None)
