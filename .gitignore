@@ -303,3 +303,8 @@ package/
 src/obj/
 *.log
 .pytest_cache
+
+ .vscode/
+autorest.python.sln
+package.json
+src/autorest.python.csprojs
