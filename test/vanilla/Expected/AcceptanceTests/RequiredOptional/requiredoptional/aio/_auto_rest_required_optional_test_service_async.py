@@ -25,9 +25,9 @@ class AutoRestRequiredOptionalTestService(SDKClientAsync):
     :vartype config: AutoRestRequiredOptionalTestServiceConfiguration
 
     :ivar implicit: Implicit operations
-    :vartype implicit: requiredoptional.operations.ImplicitOperations
+    :vartype implicit: requiredoptional.aio.operations_async.ImplicitOperations
     :ivar explicit: Explicit operations
-    :vartype explicit: requiredoptional.operations.ExplicitOperations
+    :vartype explicit: requiredoptional.aio.operations_async.ExplicitOperations
 
     :param required_global_path: number of items to skip
     :type required_global_path: str

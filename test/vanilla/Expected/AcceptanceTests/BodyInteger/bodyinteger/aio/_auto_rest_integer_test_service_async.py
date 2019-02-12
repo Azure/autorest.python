@@ -24,7 +24,7 @@ class AutoRestIntegerTestService(SDKClientAsync):
     :vartype config: AutoRestIntegerTestServiceConfiguration
 
     :ivar int_model: IntModel operations
-    :vartype int_model: bodyinteger.operations.IntModelOperations
+    :vartype int_model: bodyinteger.aio.operations_async.IntModelOperations
 
     :param str base_url: Service URL
     """
