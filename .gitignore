@@ -303,3 +303,4 @@ package/
 src/obj/
 *.log
 .pytest_cache
+.vscode/
