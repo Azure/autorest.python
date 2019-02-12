@@ -15,7 +15,7 @@ try:
 except (SyntaxError, ImportError):
     from ._models import Error, ErrorException
     from ._models import RefColorConstant
-from .auto_rest_swagger_bat_service_enums import (
+from ._auto_rest_swagger_bat_service_enums import (
     Colors,
 )
 

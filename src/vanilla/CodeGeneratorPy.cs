@@ -136,7 +136,7 @@ namespace AutoRest.Python
             if (codeModel.EnumTypes.Any())
             {
                 var enumTemplate = new EnumTemplate { Model = codeModel.EnumTypes };
-                await Write(enumTemplate, Path.Combine(folderName, "models", codeModel.Name.ToPythonCase() + "_enums.py"));
+                await Write(enumTemplate, Path.Combine(folderName, "models", "_" + codeModel.Name.ToPythonCase() + "_enums.py"));
             }
         }
 

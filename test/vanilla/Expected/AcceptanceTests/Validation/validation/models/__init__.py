@@ -19,7 +19,7 @@ except (SyntaxError, ImportError):
     from ._models import ConstantProduct
     from ._models import Error, ErrorException
     from ._models import Product
-from .auto_rest_validation_test_enums import (
+from ._auto_rest_validation_test_enums import (
     EnumConst,
 )
 

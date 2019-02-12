@@ -44,7 +44,7 @@ except (SyntaxError, ImportError):
     from ._models import UsageListResult
     from ._models import UsageName
 from ._paged_models import StorageAccountPaged
-from .storage_management_client_enums import (
+from ._storage_management_client_enums import (
     Reason,
     AccountType,
     ProvisioningState,

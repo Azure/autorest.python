@@ -59,7 +59,7 @@ except (SyntaxError, ImportError):
     from ._models import Slide
     from ._models import Slideshow
     from ._models import StorageServiceProperties
-from .auto_rest_swagger_batxml_service_enums import (
+from ._auto_rest_swagger_batxml_service_enums import (
     AccessTier,
     ArchiveStatus,
     BlobType,

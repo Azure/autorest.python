@@ -69,7 +69,7 @@ except (SyntaxError, ImportError):
     from ._models import Siamese
     from ._models import SmartSalmon
     from ._models import StringWrapper
-from .auto_rest_complex_test_service_enums import (
+from ._auto_rest_complex_test_service_enums import (
     CMYKColors,
     GoblinSharkColor,
     MyKind,

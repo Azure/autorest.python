@@ -34,7 +34,7 @@ except (SyntaxError, ImportError):
   }
 @if (Model.EnumTypes.Any())
   {
-@:from .@(Model.Name.ToPythonCase())_enums import (
+@:from ._@(Model.Name.ToPythonCase())_enums import (
     foreach (var enumType in @Model.EnumTypes)
     {
     @:@(enumType.Name),
