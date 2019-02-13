@@ -44,7 +44,7 @@ from msrest.serialization import Deserializer
 from msrest.exceptions import DeserializationError
 
 from header.aio import AutoRestSwaggerBATHeaderService
-from header.models.auto_rest_swagger_bat_header_service_enums import GreyscaleColors
+from header.models import GreyscaleColors
 
 import pytest
 

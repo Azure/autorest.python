@@ -1,5 +1,11 @@
 # Change Log
 
+
+### 2019-02-13 - 4.0.67
+
+- All models will now be generated in two files `_models` and `_models_py3`, and paging in a page file
+- Breaking changes: Import of models and enums from package must be done from package.models
+
 ### 2019-02-11 - 4.0.66
 
 - Fix async cross-link documentation

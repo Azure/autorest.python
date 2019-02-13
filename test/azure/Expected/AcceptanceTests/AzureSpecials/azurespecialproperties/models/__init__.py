@@ -10,16 +10,16 @@
 # --------------------------------------------------------------------------
 
 try:
-    from .error_py3 import Error, ErrorException
-    from .odata_filter_py3 import OdataFilter
-    from .header_custom_named_request_id_param_grouping_parameters_py3 import HeaderCustomNamedRequestIdParamGroupingParameters
+    from ._models_py3 import Error, ErrorException
+    from ._models_py3 import HeaderCustomNamedRequestIdParamGroupingParameters
+    from ._models_py3 import OdataFilter
 except (SyntaxError, ImportError):
-    from .error import Error, ErrorException
-    from .odata_filter import OdataFilter
-    from .header_custom_named_request_id_param_grouping_parameters import HeaderCustomNamedRequestIdParamGroupingParameters
+    from ._models import Error, ErrorException
+    from ._models import HeaderCustomNamedRequestIdParamGroupingParameters
+    from ._models import OdataFilter
 
 __all__ = [
     'Error', 'ErrorException',
-    'OdataFilter',
     'HeaderCustomNamedRequestIdParamGroupingParameters',
+    'OdataFilter',
 ]

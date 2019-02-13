@@ -2,6 +2,7 @@
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -93,18 +94,10 @@ namespace AutoRest.Python
             {
                 var modelInitTemplate = new ModelInitTemplate { Model = codeModel };
                 await Write(modelInitTemplate, Path.Combine(folderName, "models", "__init__.py"));
-
-                foreach (var modelType in codeModel.ModelTemplateModels)
-                {
-                    var modelTemplate = new ModelTemplate
-                    {
-                        Model = modelType
-                    };
-                    await Write(modelTemplate, Path.Combine(folderName, "models", ((string)modelType.Name).ToPythonCase() + ".py"));
-                    // Rebuild the same in Python 3 mode
-                    modelTemplate.Python3Mode = true;
-                    await Write(modelTemplate, Path.Combine(folderName, "models", ((string)modelType.Name).ToPythonCase() + "_py3.py"));
-                }
+                var modelTemplate = new ModelTemplate { Model = codeModel.getSortedModels() };
+                await Write(modelTemplate, Path.Combine(folderName, "models", "_models.py"));
+                modelTemplate.Python3Mode = true;
+                await Write(modelTemplate, Path.Combine(folderName, "models", "_models_py3.py"));
             }
 
             //MethodGroups
@@ -143,7 +136,7 @@ namespace AutoRest.Python
             if (codeModel.EnumTypes.Any())
             {
                 var enumTemplate = new EnumTemplate { Model = codeModel.EnumTypes };
-                await Write(enumTemplate, Path.Combine(folderName, "models", codeModel.Name.ToPythonCase() + "_enums.py"));
+                await Write(enumTemplate, Path.Combine(folderName, "models", "_" + codeModel.Name.ToPythonCase() + "_enums.py"));
             }
         }
 

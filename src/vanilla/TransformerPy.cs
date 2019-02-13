@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
-// 
+//
 
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -41,6 +41,7 @@ namespace AutoRest.Python
             PopulateDiscriminator(codeModel);
             Flattening(codeModel);
             GenerateConstantProperties(codeModel);
+
             return codeModel;
         }
 
@@ -76,7 +77,7 @@ namespace AutoRest.Python
 
         protected void Flattening(CodeModelPy codeModel)
         {
-            foreach( var method in codeModel.Methods) { 
+            foreach( var method in codeModel.Methods) {
             foreach (var parameterTransformation in method.InputParameterTransformation)
             {
                 parameterTransformation.OutputParameter.Name = method.GetUniqueName(CodeNamer.Instance.GetParameterName(parameterTransformation.OutputParameter.GetClientName()));
@@ -85,7 +86,7 @@ namespace AutoRest.Python
 
                 foreach (var parameterMapping in parameterTransformation.ParameterMappings)
                 {
-                    
+
                     if (parameterMapping.InputParameterProperty != null)
                     {
                         parameterMapping.InputParameterProperty = CodeNamer.Instance.GetPropertyName(parameterMapping.InputParameterProperty);
@@ -118,7 +119,7 @@ namespace AutoRest.Python
 
                     if (constantProperties.All(each => each.Name.RawValue != parameter.Name.RawValue))
                     {
-                        
+
                         constantProperties.Add(New<PropertyPy>(new
                         {
                             Name = parameter.Name.RawValue,

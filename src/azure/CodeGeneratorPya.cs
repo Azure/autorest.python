@@ -8,9 +8,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoRest.Core.Model;
 using AutoRest.Extensions.Azure;
+using AutoRest.Python.Model;
 using AutoRest.Python.Azure.Model;
 using AutoRest.Python.azure.Templates;
 using AutoRest.Python.vanilla.Templates;
+using System.Collections.Generic;
 
 namespace AutoRest.Python.Azure
 {
@@ -83,14 +85,11 @@ namespace AutoRest.Python.Azure
                 };
                 await Write(modelInitTemplate, Path.Combine(folderName, "models", "__init__.py"));
 
-                foreach (var modelType in models)
-                {
-                    var modelTemplate = new ModelTemplate { Model = modelType };
-                    await Write(modelTemplate, Path.Combine(folderName, "models", modelType.Name.ToPythonCase() + ".py"));
-                    // Rebuild the same in Python 3 mode
-                    modelTemplate.Python3Mode = true;
-                    await Write(modelTemplate, Path.Combine(folderName, "models", modelType.Name.ToPythonCase() + "_py3.py"));
-                }
+
+                var modelTemplate = new ModelTemplate { Model = codeModel.getSortedModels() };
+                await Write(modelTemplate, Path.Combine(folderName, "models", "_models.py"));
+                modelTemplate.Python3Mode = true;
+                await Write(modelTemplate, Path.Combine(folderName, "models", "_models_py3.py"));
             }
 
             //MethodGroups
@@ -129,17 +128,18 @@ namespace AutoRest.Python.Azure
             if (codeModel.EnumTypes.Any())
             {
                 var enumTemplate = new EnumTemplate { Model = codeModel.EnumTypes };
-                await Write(enumTemplate, Path.Combine(folderName, "models", codeModel.Name.ToPythonCase() + "_enums.py"));
+                await Write(enumTemplate, Path.Combine(folderName, "models", "_" + codeModel.Name.ToPythonCase() + "_enums.py"));
             }
 
             // Page class
-            foreach (var pageModel in codeModel.PageModels)
-            {
+            if (codeModel.PageModels.Any()) {
+                List<PagePya> pagedModels = codeModel.PageModels as List<PagePya>;
                 var pageTemplate = new PageTemplate
                 {
-                    Model = pageModel
+                    Model = pagedModels
                 };
-                await Write(pageTemplate, Path.Combine(folderName, "models", pageModel.TypeDefinitionName.ToPythonCase() + ".py"));
+                await Write(pageTemplate, Path.Combine(folderName, "models", "_paged_models.py"));
+
             }
         }
     }

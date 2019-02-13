@@ -50,8 +50,8 @@ namespace AutoRest.Python.Model
             get
             {
                 var composite = ModelType as CompositeType;
-                return composite?.BaseModelType != null ? 
-                    composite.Properties.Union(composite.BaseModelType.Properties.Where(p => !p.IsReadOnly)) : 
+                return composite?.BaseModelType != null ?
+                    composite.Properties.Union(composite.BaseModelType.Properties.Where(p => !p.IsReadOnly)) :
                     composite?.Properties;
             }
         }
