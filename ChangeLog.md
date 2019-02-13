@@ -1,5 +1,9 @@
 # Change Log
 
+### 2019-02-13 - 5.0.0
+- All models will now be generated in two files _models and _models_py3
+- Breaking changes: Import of models and enums from package must be done from package.models
+
 ### 2019-02-08 - 4.0.65
 
 - New version of async generation. Requires msrest 0.6.3 and msrestazure 0.6.0.
