@@ -24,7 +24,7 @@ class AutoRestDateTestService(SDKClientAsync):
     :vartype config: AutoRestDateTestServiceConfiguration
 
     :ivar date_model: DateModel operations
-    :vartype date_model: bodydate.operations.DateModelOperations
+    :vartype date_model: bodydate.aio.operations_async.DateModelOperations
 
     :param str base_url: Service URL
     """

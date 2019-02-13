@@ -24,7 +24,7 @@ class AutoRestSwaggerBATFormDataService(SDKClientAsync):
     :vartype config: AutoRestSwaggerBATFormDataServiceConfiguration
 
     :ivar formdata: Formdata operations
-    :vartype formdata: bodyformdata.operations.FormdataOperations
+    :vartype formdata: bodyformdata.aio.operations_async.FormdataOperations
 
     :param str base_url: Service URL
     """
