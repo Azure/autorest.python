@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .array_operations import ArrayOperations
+from ._array_operations import ArrayOperations
 
 __all__ = [
     'ArrayOperations',

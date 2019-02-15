@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .header_operations import HeaderOperations
+from ._header_operations import HeaderOperations
 
 __all__ = [
     'HeaderOperations',

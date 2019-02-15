@@ -7,10 +7,11 @@
 @Header("# ").TrimMultilineHeader()
 # --------------------------------------------------------------------------
 @EmptyLine
-from .@(Model.Name.ToPythonCase()) import @(Model.Name)
-from .version import VERSION
+from ._configuration import @(Model.Name)Configuration
+from ._@(Model.Name.ToPythonCase()) import @(Model.Name)
+__all__ = ['@(Model.Name)', '@(Model.Name)Configuration']
 @EmptyLine
-__all__ = ['@(Model.Name)']
+from .version import VERSION
 @EmptyLine
 __version__ = VERSION
 @EmptyLine

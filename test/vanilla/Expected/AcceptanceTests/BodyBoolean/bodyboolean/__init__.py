@@ -9,10 +9,11 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .auto_rest_bool_test_service import AutoRestBoolTestService
-from .version import VERSION
+from ._configuration import AutoRestBoolTestServiceConfiguration
+from ._auto_rest_bool_test_service import AutoRestBoolTestService
+__all__ = ['AutoRestBoolTestService', 'AutoRestBoolTestServiceConfiguration']
 
-__all__ = ['AutoRestBoolTestService']
+from .version import VERSION
 
 __version__ = VERSION
 

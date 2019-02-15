@@ -10,13 +10,13 @@
 # --------------------------------------------------------------------------
 
 try:
-    from .widget_py3 import Widget
-    from .error_py3 import Error, ErrorException
+    from ._models_py3 import Error, ErrorException
+    from ._models_py3 import Widget
 except (SyntaxError, ImportError):
-    from .widget import Widget
-    from .error import Error, ErrorException
+    from ._models import Error, ErrorException
+    from ._models import Widget
 
 __all__ = [
-    'Widget',
     'Error', 'ErrorException',
+    'Widget',
 ]

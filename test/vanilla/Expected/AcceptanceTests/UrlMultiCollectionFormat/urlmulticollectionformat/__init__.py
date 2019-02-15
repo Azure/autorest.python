@@ -9,10 +9,11 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .auto_rest_url_mutli_collection_format_test_service import AutoRestUrlMutliCollectionFormatTestService
-from .version import VERSION
+from ._configuration import AutoRestUrlMutliCollectionFormatTestServiceConfiguration
+from ._auto_rest_url_mutli_collection_format_test_service import AutoRestUrlMutliCollectionFormatTestService
+__all__ = ['AutoRestUrlMutliCollectionFormatTestService', 'AutoRestUrlMutliCollectionFormatTestServiceConfiguration']
 
-__all__ = ['AutoRestUrlMutliCollectionFormatTestService']
+from .version import VERSION
 
 __version__ = VERSION
 

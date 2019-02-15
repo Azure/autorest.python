@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .byte_operations import ByteOperations
+from ._byte_operations import ByteOperations
 
 __all__ = [
     'ByteOperations',

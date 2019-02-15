@@ -98,7 +98,7 @@ namespace AutoRest.Python.Model
                     var modelNamespace = CodeModel.Name.ToPythonCase();
                     if (!CodeModel.Namespace.IsNullOrEmpty())
                         modelNamespace = CodeModel.Namespace;
-                    CompositeType compType = body as CompositeType;
+                    Core.Model.CompositeType compType = body as Core.Model.CompositeType;
                     if (compType != null)
                     {
                         return string.Format(CultureInfo.InvariantCulture, ":class:`{0}<{1}.models.{0}>`", compType.GetExceptionDefineType(), modelNamespace.ToLower());
@@ -123,7 +123,7 @@ namespace AutoRest.Python.Model
                 }
                 else
                 {
-                    CompositeType compType = body as CompositeType;
+                    Core.Model.CompositeType compType = body as Core.Model.CompositeType;
                     if (compType != null)
                     {
                         return string.Format(CultureInfo.InvariantCulture, "raise models.{0}(self._deserialize, response)", compType.GetExceptionDefineType());
@@ -141,7 +141,7 @@ namespace AutoRest.Python.Model
         /// </summary>
         /// <param name="addCustomHeaderParameters">If true add the customHeader to the parameters</param>
         /// <returns>Generated string of parameters</returns>
-        public virtual string MethodParameterDeclaration(bool addCustomHeaderParameters)
+        public virtual string MethodParameterDeclaration(bool addCustomHeaderParameters, bool python3Mode)
         {
             List<string> declarations = new List<string>();
             List<string> requiredDeclarations = new List<string>();
@@ -161,6 +161,11 @@ namespace AutoRest.Python.Model
                         parameter.Name,
                         parameter.DefaultValue));
                 }
+            }
+
+            if (python3Mode)
+            {
+                declarations.Add("*");
             }
 
             if (addCustomHeaderParameters)
@@ -373,7 +378,7 @@ namespace AutoRest.Python.Model
                 if (this.ReturnType.Headers != null)
                 {
                     builder.AppendLine("client_raw_response.add_headers({").Indent();
-                    AddHeaderDictionary(builder, (CompositeType)ReturnType.Headers);
+                    AddHeaderDictionary(builder, (Core.Model.CompositeType)ReturnType.Headers);
                     builder.Outdent().AppendLine("})");
                 }
                 builder.AppendLine("return client_raw_response").
@@ -435,7 +440,7 @@ namespace AutoRest.Python.Model
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Globalization", "CA1303:Do not pass literals as localized parameters", MessageId = "AutoRest.Core.Utilities.IndentedStringBuilder.AppendLine(System.String)")]
-        protected void AddHeaderDictionary(IndentedStringBuilder builder, CompositeType headersType)
+        protected void AddHeaderDictionary(IndentedStringBuilder builder, Core.Model.CompositeType headersType)
         {
             if (builder == null)
             {
@@ -492,7 +497,7 @@ namespace AutoRest.Python.Model
             else
             {
                 builder.AppendLine("header_dict = {").Indent();
-                AddHeaderDictionary(builder, (CompositeType)headersType);
+                AddHeaderDictionary(builder, (Core.Model.CompositeType)headersType);
                 builder.Outdent().AppendLine("}");
             }
             return builder.ToString();
@@ -637,7 +642,7 @@ namespace AutoRest.Python.Model
             foreach (var transformation in InputParameterTransformation)
             {
                 if (transformation.ParameterMappings.Any(m => !string.IsNullOrEmpty(m.OutputParameterProperty)) &&
-                    transformation.OutputParameter.ModelType is CompositeType)
+                    transformation.OutputParameter.ModelType is Core.Model.CompositeType)
                 {
                     var comps = CodeModel.ModelTypes.Where(x => x.Name == transformation.OutputParameter.ModelTypeName);
                     var composite = comps.First();
@@ -704,6 +709,16 @@ namespace AutoRest.Python.Model
                 {
                     return string.Empty;
                 }
+            }
+        }
+
+        public string GetSendCall(bool asyncMode)
+        {
+            if(asyncMode) {
+                return "await self._client.async_send";
+            }
+            else {
+                return "self._client.send";
             }
         }
 

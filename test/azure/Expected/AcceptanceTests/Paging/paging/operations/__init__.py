@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .paging_operations import PagingOperations
+from ._paging_operations import PagingOperations
 
 __all__ = [
     'PagingOperations',

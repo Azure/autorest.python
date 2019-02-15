@@ -9,10 +9,11 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .auto_rest_url_test_service import AutoRestUrlTestService
-from .version import VERSION
+from ._configuration import AutoRestUrlTestServiceConfiguration
+from ._auto_rest_url_test_service import AutoRestUrlTestService
+__all__ = ['AutoRestUrlTestService', 'AutoRestUrlTestServiceConfiguration']
 
-__all__ = ['AutoRestUrlTestService']
+from .version import VERSION
 
 __version__ = VERSION
 

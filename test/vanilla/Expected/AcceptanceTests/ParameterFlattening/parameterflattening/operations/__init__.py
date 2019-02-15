@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .availability_sets_operations import AvailabilitySetsOperations
+from ._availability_sets_operations import AvailabilitySetsOperations
 
 __all__ = [
     'AvailabilitySetsOperations',

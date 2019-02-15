@@ -45,7 +45,7 @@ from msrest.serialization import Deserializer
 from msrest.exceptions import DeserializationError, SerializationError
 
 from bodystring import AutoRestSwaggerBATService
-from bodystring.models.auto_rest_swagger_bat_service_enums import *
+from bodystring.models import Colors
 
 import pytest
 

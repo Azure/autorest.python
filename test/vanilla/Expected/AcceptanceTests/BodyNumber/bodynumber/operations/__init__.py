@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .number_operations import NumberOperations
+from ._number_operations import NumberOperations
 
 __all__ = [
     'NumberOperations',

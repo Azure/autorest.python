@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .head_exception_operations import HeadExceptionOperations
+from ._head_exception_operations import HeadExceptionOperations
 
 __all__ = [
     'HeadExceptionOperations',

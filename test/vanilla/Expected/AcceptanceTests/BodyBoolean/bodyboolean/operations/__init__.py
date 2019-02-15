@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .bool_model_operations import BoolModelOperations
+from ._bool_model_operations import BoolModelOperations
 
 __all__ = [
     'BoolModelOperations',

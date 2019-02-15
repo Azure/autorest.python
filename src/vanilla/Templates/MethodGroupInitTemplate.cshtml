@@ -1,25 +1,32 @@
 ﻿@using AutoRest.Python.vanilla.Templates
 @using System.Linq
 @using AutoRest.Python
-@inherits AutoRest.Core.Template<AutoRest.Python.Model.CodeModelPy>
+@inherits AutoRest.Python.PythonTemplate<AutoRest.Python.Model.CodeModelPy>
 # coding=utf-8
 # --------------------------------------------------------------------------
 @Header("# ").TrimMultilineHeader()
 # --------------------------------------------------------------------------
-@EmptyLine
 @{
-  if (Model.MethodGroupModels.Any())
-  {
-    foreach (var modelGroupType in Model.MethodGroupModels)
-    {
-@:from .@( modelGroupType.TypeName.ToPythonCase()) import @modelGroupType.TypeName
-    }
+bool hasClientLevelMethods = Model.MethodTemplateModels.Any( each => each.MethodGroup.IsCodeModelMethodGroup);
+string fileSuffix = AsyncMode? "_async" : "";
+}
 @EmptyLine
-@:__all__ = [
-    foreach (var modelGroupType in Model.MethodGroupModels)
+@foreach (var modelGroupType in Model.MethodGroupModels)
+    {
+@:from ._@( modelGroupType.TypeName.ToPythonCase())@(fileSuffix) import @modelGroupType.TypeName
+    }
+@if(hasClientLevelMethods)
+{
+@:from ._@(Model.Name.ToPythonCase())_operations@(fileSuffix) import @(Model.Name)OperationsMixin
+}
+@EmptyLine
+__all__ = [
+@foreach (var modelGroupType in Model.MethodGroupModels)
     {
 @:    '@modelGroupType.TypeName.Value',
     }
-@:]
-  }
+@if(hasClientLevelMethods)
+{
+@:    '@(Model.Name)OperationsMixin',
 }
+]

@@ -10,91 +10,91 @@
 # --------------------------------------------------------------------------
 
 try:
-    from .error_py3 import Error, ErrorException
-    from .slide_py3 import Slide
-    from .slideshow_py3 import Slideshow
-    from .apple_barrel_py3 import AppleBarrel
-    from .banana_py3 import Banana
-    from .container_properties_py3 import ContainerProperties
-    from .container_py3 import Container
-    from .list_containers_response_py3 import ListContainersResponse
-    from .cors_rule_py3 import CorsRule
-    from .blob_properties_py3 import BlobProperties
-    from .blob_py3 import Blob
-    from .retention_policy_py3 import RetentionPolicy
-    from .logging_py3 import Logging
-    from .metrics_py3 import Metrics
-    from .blob_prefix_py3 import BlobPrefix
-    from .blobs_py3 import Blobs
-    from .list_blobs_response_py3 import ListBlobsResponse
-    from .access_policy_py3 import AccessPolicy
-    from .signed_identifier_py3 import SignedIdentifier
-    from .storage_service_properties_py3 import StorageServiceProperties
-    from .complex_type_no_meta_py3 import ComplexTypeNoMeta
-    from .complex_type_with_meta_py3 import ComplexTypeWithMeta
-    from .root_with_ref_and_no_meta_py3 import RootWithRefAndNoMeta
-    from .root_with_ref_and_meta_py3 import RootWithRefAndMeta
+    from ._models_py3 import AccessPolicy
+    from ._models_py3 import AppleBarrel
+    from ._models_py3 import Banana
+    from ._models_py3 import Blob
+    from ._models_py3 import BlobPrefix
+    from ._models_py3 import BlobProperties
+    from ._models_py3 import Blobs
+    from ._models_py3 import ComplexTypeNoMeta
+    from ._models_py3 import ComplexTypeWithMeta
+    from ._models_py3 import Container
+    from ._models_py3 import ContainerProperties
+    from ._models_py3 import CorsRule
+    from ._models_py3 import Error, ErrorException
+    from ._models_py3 import ListBlobsResponse
+    from ._models_py3 import ListContainersResponse
+    from ._models_py3 import Logging
+    from ._models_py3 import Metrics
+    from ._models_py3 import RetentionPolicy
+    from ._models_py3 import RootWithRefAndMeta
+    from ._models_py3 import RootWithRefAndNoMeta
+    from ._models_py3 import SignedIdentifier
+    from ._models_py3 import Slide
+    from ._models_py3 import Slideshow
+    from ._models_py3 import StorageServiceProperties
 except (SyntaxError, ImportError):
-    from .error import Error, ErrorException
-    from .slide import Slide
-    from .slideshow import Slideshow
-    from .apple_barrel import AppleBarrel
-    from .banana import Banana
-    from .container_properties import ContainerProperties
-    from .container import Container
-    from .list_containers_response import ListContainersResponse
-    from .cors_rule import CorsRule
-    from .blob_properties import BlobProperties
-    from .blob import Blob
-    from .retention_policy import RetentionPolicy
-    from .logging import Logging
-    from .metrics import Metrics
-    from .blob_prefix import BlobPrefix
-    from .blobs import Blobs
-    from .list_blobs_response import ListBlobsResponse
-    from .access_policy import AccessPolicy
-    from .signed_identifier import SignedIdentifier
-    from .storage_service_properties import StorageServiceProperties
-    from .complex_type_no_meta import ComplexTypeNoMeta
-    from .complex_type_with_meta import ComplexTypeWithMeta
-    from .root_with_ref_and_no_meta import RootWithRefAndNoMeta
-    from .root_with_ref_and_meta import RootWithRefAndMeta
-from .auto_rest_swagger_batxml_service_enums import (
-    LeaseStatusType,
-    LeaseStateType,
-    LeaseDurationType,
-    PublicAccessType,
-    BlobType,
-    CopyStatusType,
+    from ._models import AccessPolicy
+    from ._models import AppleBarrel
+    from ._models import Banana
+    from ._models import Blob
+    from ._models import BlobPrefix
+    from ._models import BlobProperties
+    from ._models import Blobs
+    from ._models import ComplexTypeNoMeta
+    from ._models import ComplexTypeWithMeta
+    from ._models import Container
+    from ._models import ContainerProperties
+    from ._models import CorsRule
+    from ._models import Error, ErrorException
+    from ._models import ListBlobsResponse
+    from ._models import ListContainersResponse
+    from ._models import Logging
+    from ._models import Metrics
+    from ._models import RetentionPolicy
+    from ._models import RootWithRefAndMeta
+    from ._models import RootWithRefAndNoMeta
+    from ._models import SignedIdentifier
+    from ._models import Slide
+    from ._models import Slideshow
+    from ._models import StorageServiceProperties
+from ._auto_rest_swagger_batxml_service_enums import (
     AccessTier,
     ArchiveStatus,
+    BlobType,
+    CopyStatusType,
+    LeaseDurationType,
+    LeaseStateType,
+    LeaseStatusType,
+    PublicAccessType,
 )
 
 __all__ = [
-    'Error', 'ErrorException',
-    'Slide',
-    'Slideshow',
+    'AccessPolicy',
     'AppleBarrel',
     'Banana',
-    'ContainerProperties',
-    'Container',
-    'ListContainersResponse',
-    'CorsRule',
-    'BlobProperties',
     'Blob',
-    'RetentionPolicy',
-    'Logging',
-    'Metrics',
     'BlobPrefix',
+    'BlobProperties',
     'Blobs',
-    'ListBlobsResponse',
-    'AccessPolicy',
-    'SignedIdentifier',
-    'StorageServiceProperties',
     'ComplexTypeNoMeta',
     'ComplexTypeWithMeta',
-    'RootWithRefAndNoMeta',
+    'Container',
+    'ContainerProperties',
+    'CorsRule',
+    'Error', 'ErrorException',
+    'ListBlobsResponse',
+    'ListContainersResponse',
+    'Logging',
+    'Metrics',
+    'RetentionPolicy',
     'RootWithRefAndMeta',
+    'RootWithRefAndNoMeta',
+    'SignedIdentifier',
+    'Slide',
+    'Slideshow',
+    'StorageServiceProperties',
     'LeaseStatusType',
     'LeaseStateType',
     'LeaseDurationType',

@@ -9,15 +9,15 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .basic_operations import BasicOperations
-from .primitive_operations import PrimitiveOperations
-from .array_operations import ArrayOperations
-from .dictionary_operations import DictionaryOperations
-from .inheritance_operations import InheritanceOperations
-from .polymorphism_operations import PolymorphismOperations
-from .polymorphicrecursive_operations import PolymorphicrecursiveOperations
-from .readonlyproperty_operations import ReadonlypropertyOperations
-from .flattencomplex_operations import FlattencomplexOperations
+from ._basic_operations import BasicOperations
+from ._primitive_operations import PrimitiveOperations
+from ._array_operations import ArrayOperations
+from ._dictionary_operations import DictionaryOperations
+from ._inheritance_operations import InheritanceOperations
+from ._polymorphism_operations import PolymorphismOperations
+from ._polymorphicrecursive_operations import PolymorphicrecursiveOperations
+from ._readonlyproperty_operations import ReadonlypropertyOperations
+from ._flattencomplex_operations import FlattencomplexOperations
 
 __all__ = [
     'BasicOperations',

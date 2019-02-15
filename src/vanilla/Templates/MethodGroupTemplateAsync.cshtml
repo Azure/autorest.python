@@ -1,0 +1,61 @@
+﻿@using AutoRest.Python.vanilla.Templates
+@using System.Linq;
+@using AutoRest.Python
+@inherits AutoRest.Python.PythonTemplate<AutoRest.Python.Model.MethodGroupPy>
+# coding=utf-8
+# --------------------------------------------------------------------------
+@Header("# ").TrimMultilineHeader()
+# --------------------------------------------------------------------------
+@EmptyLine
+@if (Model.HasAnyDeprecated)
+{
+@:import warnings
+}
+from msrest.pipeline import ClientRawResponse
+@if (Model.HasAnyDefaultExceptions)
+{
+@:from msrest.exceptions import HttpOperationError
+}
+@if (Model.HasAnyModel)
+{
+@EmptyLine
+@:from ... import models
+}
+@EmptyLine
+@EmptyLine
+class @((string) Model.TypeName):
+    """@((string) Model.TypeName) async operations.
+@EmptyLine
+    You should not instantiate directly this class, but create a Client instance that will create it for you and attach it as attribute.
+@EmptyLine
+    :param client: Client for service requests.
+    :param config: Configuration of service client.
+    :param serializer: An object model serializer.
+    :param deserializer: An object model deserializer.
+@foreach(var property in Model.ConstantProperties)
+{
+    @:@Model.GetPropertyDocumentationString(property)
+}
+    """
+@if (Model.HasAnyModel)
+{
+@EmptyLine
+@:    models = models
+}
+@EmptyLine
+    def __init__(self, client, config, serializer, deserializer) -> None:
+@EmptyLine
+        self._client = client
+        self._serialize = serializer
+        self._deserialize = deserializer
+@EmptyLine
+        self.config = config
+@foreach(var property in Model.ConstantProperties)
+{
+        @:@property.Name = @property.DefaultValue
+}
+@foreach (var method in Model.MethodTemplateModels)
+{
+@EmptyLine
+@:@(Include(new MethodTemplate() {AsyncMode = true, Python3Mode = true}, method))
+}

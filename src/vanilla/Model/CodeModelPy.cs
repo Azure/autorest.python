@@ -35,8 +35,32 @@ namespace AutoRest.Python.Model
         public IEnumerable<CompositeTypePy> ModelTemplateModels => ModelTypes.Cast<CompositeTypePy>();
 
         [JsonIgnore]
-        public virtual IEnumerable<MethodGroupPy> MethodGroupModels => Operations.Cast<MethodGroupPy>().Where( each => !each.IsCodeModelMethodGroup);
+        public virtual IEnumerable<MethodGroupPy> MethodGroupModels => Operations.Cast<MethodGroupPy>().Where(each => !each.IsCodeModelMethodGroup);
 
+        public List<CompositeTypePy> getSortedModels() {
+            HashSet<CompositeTypePy> seenModels = new HashSet<CompositeTypePy>();
+            List<CompositeTypePy> modelsToGenerate = new List<CompositeTypePy>();
+            foreach(CompositeTypePy model in this.ModelTemplateModels.OrderBy(o => o.ClassName)) {
+                if (seenModels.Contains(model)) {
+                    continue;
+                }
+                List<CompositeTypePy> ancestors = new List<CompositeTypePy>();
+                CompositeTypePy current = model;
+                ancestors.Add(current);
+                while (current.BaseModelType != null) {
+                    CompositeTypePy parent = current.BaseModelType as CompositeTypePy;
+                    if (seenModels.Contains(parent)) {
+                        break;
+                    }
+                    ancestors.Insert(0, parent);
+                    seenModels.Add(current);
+                    current = parent;
+                }
+                seenModels.Add(current);
+                modelsToGenerate.AddRange(ancestors);
+            }
+            return modelsToGenerate;
+        }
 
         public string PolymorphicDictionary
         {
@@ -142,7 +166,7 @@ namespace AutoRest.Python.Model
 
         public virtual string UserAgent => PackageName;
 
-        public virtual string SetupRequires => @"""msrest>=0.5.2""";
+        public virtual string SetupRequires => @"""msrest>=0.6.0""";
 
 
         public string Version => Settings.Instance.PackageVersion.Else(ApiVersion);

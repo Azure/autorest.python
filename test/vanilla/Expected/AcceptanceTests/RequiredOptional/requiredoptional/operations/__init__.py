@@ -9,8 +9,8 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .implicit_operations import ImplicitOperations
-from .explicit_operations import ExplicitOperations
+from ._implicit_operations import ImplicitOperations
+from ._explicit_operations import ExplicitOperations
 
 __all__ = [
     'ImplicitOperations',

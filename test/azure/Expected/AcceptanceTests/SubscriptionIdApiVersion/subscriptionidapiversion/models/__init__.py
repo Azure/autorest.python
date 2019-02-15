@@ -10,13 +10,13 @@
 # --------------------------------------------------------------------------
 
 try:
-    from .sample_resource_group_py3 import SampleResourceGroup
-    from .error_py3 import Error, ErrorException
+    from ._models_py3 import Error, ErrorException
+    from ._models_py3 import SampleResourceGroup
 except (SyntaxError, ImportError):
-    from .sample_resource_group import SampleResourceGroup
-    from .error import Error, ErrorException
+    from ._models import Error, ErrorException
+    from ._models import SampleResourceGroup
 
 __all__ = [
-    'SampleResourceGroup',
     'Error', 'ErrorException',
+    'SampleResourceGroup',
 ]

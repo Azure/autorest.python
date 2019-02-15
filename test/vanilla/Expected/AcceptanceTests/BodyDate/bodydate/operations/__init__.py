@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .date_model_operations import DateModelOperations
+from ._date_model_operations import DateModelOperations
 
 __all__ = [
     'DateModelOperations',

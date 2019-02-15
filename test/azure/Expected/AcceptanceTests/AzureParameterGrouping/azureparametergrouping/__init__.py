@@ -9,10 +9,11 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .auto_rest_parameter_grouping_test_service import AutoRestParameterGroupingTestService
-from .version import VERSION
+from ._configuration import AutoRestParameterGroupingTestServiceConfiguration
+from ._auto_rest_parameter_grouping_test_service import AutoRestParameterGroupingTestService
+__all__ = ['AutoRestParameterGroupingTestService', 'AutoRestParameterGroupingTestServiceConfiguration']
 
-__all__ = ['AutoRestParameterGroupingTestService']
+from .version import VERSION
 
 __version__ = VERSION
 

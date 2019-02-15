@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .formdata_operations import FormdataOperations
+from ._formdata_operations import FormdataOperations
 
 __all__ = [
     'FormdataOperations',

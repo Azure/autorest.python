@@ -10,22 +10,22 @@
 # --------------------------------------------------------------------------
 
 try:
-    from .error_py3 import Error, ErrorException
-    from .a_py3 import A, AException
-    from .b_py3 import B
-    from .c_py3 import C
-    from .d_py3 import D
+    from ._models_py3 import A, AException
+    from ._models_py3 import B
+    from ._models_py3 import C
+    from ._models_py3 import D
+    from ._models_py3 import Error, ErrorException
 except (SyntaxError, ImportError):
-    from .error import Error, ErrorException
-    from .a import A, AException
-    from .b import B
-    from .c import C
-    from .d import D
+    from ._models import A, AException
+    from ._models import B
+    from ._models import C
+    from ._models import D
+    from ._models import Error, ErrorException
 
 __all__ = [
-    'Error', 'ErrorException',
     'A', 'AException',
     'B',
     'C',
     'D',
+    'Error', 'ErrorException',
 ]

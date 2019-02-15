@@ -15,13 +15,15 @@
 @:import warnings
 }
 from msrest.service_client import SDKClient
-from msrest import Configuration, Serializer, Deserializer
-from .version import VERSION
-@if (Model.MethodTemplateModels.Any( each => each.MethodGroup.IsCodeModelMethodGroup))
+from msrest import Serializer, Deserializer
+@EmptyLine
+from ._configuration import @(Model.Name)Configuration
+@{
+bool hasClientLevelMethods = Model.MethodTemplateModels.Any( each => each.MethodGroup.IsCodeModelMethodGroup);
+}
+@if (hasClientLevelMethods)
 {
-<text>
-from msrest.pipeline import ClientRawResponse
-</text>
+@:from .operations import @(Model.Name)OperationsMixin
 }
 @if (Model.HasAnyDefaultExceptions)
 {
@@ -31,7 +33,7 @@ from msrest.pipeline import ClientRawResponse
 {
   foreach (var modelGroupType in Model.MethodGroupModels)
   {
-@:from .operations.@(((string) modelGroupType.TypeName).ToPythonCase()) import @((string) modelGroupType.TypeName)
+@:from .operations import @((string) modelGroupType.TypeName)
   }
 }
 @if (Model.HasAnyModel)
@@ -40,62 +42,14 @@ from msrest.pipeline import ClientRawResponse
 }
 @EmptyLine
 @EmptyLine
-class @(Model.Name)Configuration(Configuration):
-    """Configuration for @(Model.Name)
-    Note that all parameters used to create this instance are saved as instance
-    attributes.
-@EmptyLine
-@foreach(var property in Model.Properties.Where( each => !each.IsConstant))
+@if (hasClientLevelMethods)
 {
-@:    @ParameterWrapComment(string.Empty, CodeModelPy.GetPropertyDocumentationString(property))
-@:    @ParameterWrapComment(string.Empty, ":type " + property.Name + ": " + Model.GetPropertyDocumentationType(property.ModelType))
-}
-@foreach(var property in Model.ConstantProperties)
-{
-@:    @ParameterWrapComment(string.Empty, CodeModelPy.GetPropertyDocumentationString(property))
-@:    @ParameterWrapComment(string.Empty, ":type " + property.Name + ": " + Model.GetPropertyDocumentationType(property.ModelType))
-}
-
-@if (!Model.IsCustomBaseUri)
-{ 
-@:    :param str base_url: Service URL
-}
-    """
-@EmptyLine
-    def __init__(
-            self@(Model.RequiredConstructorParameters)@(Model.IsCustomBaseUri ? "" : ", base_url=None")):
-@EmptyLine
-        @Model.ValidateRequiredParameters
-
-@if (Model.IsCustomBaseUri)
-{
-@:        base_url = '@Model.BaseUrl'
+@:class @(Model.Name)(@(Model.Name)OperationsMixin, SDKClient):
 }
 else
 {
-@:        if not base_url:
-@:            base_url = '@Model.BaseUrl'
+@:class @(Model.Name)(SDKClient):
 }
-
-@EmptyLine
-        super(@(Model.Name)Configuration, self).__init__(base_url)
-@EmptyLine
-        self.add_user_agent('@Model.UserAgent/{}'.format(VERSION))
-@if (Model.Properties.Any() || Model.ConstantProperties.Any())
-{
-    @EmptyLine
-    foreach (var property in Model.Properties.Where( each => !each.IsConstant))
-    {
-        @:self.@(property.Name) = @(property.Name)
-    }
-    foreach (var property in Model.ConstantProperties)
-    {
-        @:self.@(property.Name) = @(property.DefaultValue)
-    }
-}
-@EmptyLine
-@EmptyLine
-class @(Model.Name)(SDKClient):
     """@Model.ServiceDocument
 @EmptyLine
     :ivar config: Configuration for client.
@@ -151,9 +105,4 @@ else
 {
         @:self.@(((string) methodGroup.Name).ToPythonCase()) = @((string) methodGroup.TypeName)(
             @:self._client, self.config, self._serialize, self._deserialize)
-}
-@foreach (var method in Model.MethodTemplateModels.Where(each => each.MethodGroup.IsCodeModelMethodGroup))
-{
-@EmptyLine
-@(Include(new MethodTemplate(), method))
 }

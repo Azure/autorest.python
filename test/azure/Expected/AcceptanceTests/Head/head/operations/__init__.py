@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .http_success_operations import HttpSuccessOperations
+from ._http_success_operations import HttpSuccessOperations
 
 __all__ = [
     'HttpSuccessOperations',

@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .datetimerfc1123_operations import Datetimerfc1123Operations
+from ._datetimerfc1123_operations import Datetimerfc1123Operations
 
 __all__ = [
     'Datetimerfc1123Operations',

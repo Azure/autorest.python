@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .xml_operations import XmlOperations
+from ._xml_operations import XmlOperations
 
 __all__ = [
     'XmlOperations',

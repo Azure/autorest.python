@@ -9,10 +9,11 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .pet_store_inc import PetStoreInc
-from .version import VERSION
+from ._configuration import PetStoreIncConfiguration
+from ._pet_store_inc import PetStoreInc
+__all__ = ['PetStoreInc', 'PetStoreIncConfiguration']
 
-__all__ = ['PetStoreInc']
+from .version import VERSION
 
 __version__ = VERSION
 

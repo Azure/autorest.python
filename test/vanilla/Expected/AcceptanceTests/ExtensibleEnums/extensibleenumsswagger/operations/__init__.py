@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .pet_operations import PetOperations
+from ._pet_operations import PetOperations
 
 __all__ = [
     'PetOperations',

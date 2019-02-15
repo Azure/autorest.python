@@ -9,10 +9,11 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .additional_properties_client import AdditionalPropertiesClient
-from .version import VERSION
+from ._configuration import AdditionalPropertiesClientConfiguration
+from ._additional_properties_client import AdditionalPropertiesClient
+__all__ = ['AdditionalPropertiesClient', 'AdditionalPropertiesClientConfiguration']
 
-__all__ = ['AdditionalPropertiesClient']
+from .version import VERSION
 
 __version__ = VERSION
 

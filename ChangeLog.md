@@ -1,5 +1,33 @@
 # Change Log
 
+
+### 2019-02-13 - 4.0.67
+
+- All models will now be generated in two files `_models` and `_models_py3`, and paging in a page file
+- Breaking changes: Import of models and enums from package must be done from package.models
+
+### 2019-02-11 - 4.0.66
+
+- Fix async cross-link documentation
+
+### 2019-02-08 - 4.0.65
+
+- New version of async generation. Requires msrest 0.6.3 and msrestazure 0.6.0.
+
+  - namespace.XXXXClientAsync is now namespace.aio.XXXClient
+
+- Support now MICROSOFT_MIT_SMALL and MICROSOFT_MIT_SMALL_NO_CODEGEN headers options
+
+### 2019-01-08 - 4.0.64
+
+- New version of async generation. Requires msrest 0.6.3 and msrestazure 0.6.0.
+
+### 2018-12-17 - 4.0.63
+
+- Autorest now generates async code.
+
+**This version requires EXACTLY msrest 0.6.0 to 0.6.2 and is considered deprecated. Do NOT generate with it.**
+
 ### 2018-07-09 - 3.0.58
 
 - Fix some complex XML parsing issues. Requires msrest 0.5.2
