@@ -17,7 +17,7 @@ from enum import Enum
     for (int i = 0; i < enumType.Values.Count; i++)
     {
       var enum_value = enumType.Values[i];
-      string doc = string.IsNullOrEmpty(enum_value.Description) ? "" : "  #: "+enum_value.Description;
+      string doc = string.IsNullOrEmpty(enum_value.Description) ? "" : "  #: "+enum_value.Description.Replace("\r", " ").Replace("\n", " ");
 @:    @(enum_value.MemberName) = "@enum_value.SerializedName"@doc
     }
   }
