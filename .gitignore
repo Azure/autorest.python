@@ -303,3 +303,6 @@ package/
 src/obj/
 *.log
 .pytest_cache
+
+# Python environment
+env/
