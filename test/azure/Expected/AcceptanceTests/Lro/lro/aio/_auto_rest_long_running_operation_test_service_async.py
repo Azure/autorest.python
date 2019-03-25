@@ -12,7 +12,7 @@
 from msrest.async_client import SDKClientAsync
 from msrest import Serializer, Deserializer
 
-from .._configuration import AutoRestLongRunningOperationTestServiceConfiguration
+from ._configuration_async import AutoRestLongRunningOperationTestServiceConfiguration
 from .operations_async import LROsOperations
 from .operations_async import LRORetrysOperations
 from .operations_async import LROSADsOperations
@@ -45,7 +45,7 @@ class AutoRestLongRunningOperationTestService(SDKClientAsync):
             self, credentials, base_url=None):
 
         self.config = AutoRestLongRunningOperationTestServiceConfiguration(credentials, base_url)
-        super(AutoRestLongRunningOperationTestService, self).__init__(self.config)
+        super(AutoRestLongRunningOperationTestService, self).__init__(self.config.credentials, self.config)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '1.0.0'

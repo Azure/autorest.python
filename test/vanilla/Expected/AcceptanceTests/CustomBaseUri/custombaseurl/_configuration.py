@@ -10,6 +10,7 @@
 # --------------------------------------------------------------------------
 
 from msrest import Configuration
+from msrest.universal_http import ClientRedirectPolicy, ClientRetryPolicy
 
 from .version import VERSION
 
@@ -32,10 +33,13 @@ class AutoRestParameterizedHostTestClientConfiguration(Configuration):
         base_url = 'http://{accountName}{host}'
 
         super(AutoRestParameterizedHostTestClientConfiguration, self).__init__(base_url)
-
-        # Starting Autorest.Python 4.0.64, make connection pool activated by default
-        self.keep_alive = True
+        self._configure()
 
         self.add_user_agent('autorestparameterizedhosttestclient/{}'.format(VERSION))
 
         self.host = host
+
+    def _configure(self):
+        super(AutoRestParameterizedHostTestClientConfiguration, self)._configure()
+        self.retry_policy = ClientRetryPolicy()
+        self.redirect_policy = ClientRedirectPolicy()

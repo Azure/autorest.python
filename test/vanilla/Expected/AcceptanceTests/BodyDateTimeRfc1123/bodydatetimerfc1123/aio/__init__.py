@@ -10,4 +10,5 @@
 # --------------------------------------------------------------------------
 
 from ._auto_rest_rfc1123_date_time_test_service_async import AutoRestRFC1123DateTimeTestService
+from ._configuration_async import AutoRestRFC1123DateTimeTestServiceConfiguration
 __all__ = ['AutoRestRFC1123DateTimeTestService']

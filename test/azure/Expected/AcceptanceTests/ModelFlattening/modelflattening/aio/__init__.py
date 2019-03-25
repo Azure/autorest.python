@@ -10,4 +10,5 @@
 # --------------------------------------------------------------------------
 
 from ._auto_rest_resource_flattening_test_service_async import AutoRestResourceFlatteningTestService
+from ._configuration_async import AutoRestResourceFlatteningTestServiceConfiguration
 __all__ = ['AutoRestResourceFlatteningTestService']

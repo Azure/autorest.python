@@ -12,7 +12,7 @@
 from msrest.async_client import SDKClientAsync
 from msrest import Serializer, Deserializer
 
-from .._configuration import AutoRestParameterFlatteningConfiguration
+from ._configuration_async import AutoRestParameterFlatteningConfiguration
 from msrest.exceptions import HttpOperationError
 from .operations_async import AvailabilitySetsOperations
 from .. import models
@@ -31,10 +31,10 @@ class AutoRestParameterFlattening(SDKClientAsync):
     """
 
     def __init__(
-            self, base_url=None):
+            self, base_url=None, config=None, pipeline=None):
 
-        self.config = AutoRestParameterFlatteningConfiguration(base_url)
-        super(AutoRestParameterFlattening, self).__init__(self.config)
+        self.config = config or AutoRestParameterFlatteningConfiguration(base_url)
+        super(AutoRestParameterFlattening, self).__init__(None, self.config, pipeline=pipeline)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '1.0.0'

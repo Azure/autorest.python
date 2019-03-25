@@ -10,4 +10,5 @@
 # --------------------------------------------------------------------------
 
 from ._additional_properties_client_async import AdditionalPropertiesClient
+from ._configuration_async import AdditionalPropertiesClientConfiguration
 __all__ = ['AdditionalPropertiesClient']

@@ -12,7 +12,7 @@
 from msrest.async_client import SDKClientAsync
 from msrest import Serializer, Deserializer
 
-from .._configuration import AutoRestUrlMutliCollectionFormatTestServiceConfiguration
+from ._configuration_async import AutoRestUrlMutliCollectionFormatTestServiceConfiguration
 from .operations_async import QueriesOperations
 from .. import models
 
@@ -30,10 +30,10 @@ class AutoRestUrlMutliCollectionFormatTestService(SDKClientAsync):
     """
 
     def __init__(
-            self, base_url=None):
+            self, base_url=None, config=None, pipeline=None):
 
-        self.config = AutoRestUrlMutliCollectionFormatTestServiceConfiguration(base_url)
-        super(AutoRestUrlMutliCollectionFormatTestService, self).__init__(self.config)
+        self.config = config or AutoRestUrlMutliCollectionFormatTestServiceConfiguration(base_url)
+        super(AutoRestUrlMutliCollectionFormatTestService, self).__init__(None, self.config, pipeline=pipeline)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '1.0.0'

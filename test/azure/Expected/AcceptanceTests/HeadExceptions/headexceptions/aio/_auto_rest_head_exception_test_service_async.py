@@ -12,7 +12,7 @@
 from msrest.async_client import SDKClientAsync
 from msrest import Serializer, Deserializer
 
-from .._configuration import AutoRestHeadExceptionTestServiceConfiguration
+from ._configuration_async import AutoRestHeadExceptionTestServiceConfiguration
 from .operations_async import HeadExceptionOperations
 
 
@@ -35,7 +35,7 @@ class AutoRestHeadExceptionTestService(SDKClientAsync):
             self, credentials, base_url=None):
 
         self.config = AutoRestHeadExceptionTestServiceConfiguration(credentials, base_url)
-        super(AutoRestHeadExceptionTestService, self).__init__(self.config)
+        super(AutoRestHeadExceptionTestService, self).__init__(self.config.credentials, self.config)
 
         client_models = {}
         self.api_version = '1.0.0'

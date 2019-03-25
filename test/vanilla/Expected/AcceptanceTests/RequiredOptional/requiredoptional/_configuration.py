@@ -10,6 +10,7 @@
 # --------------------------------------------------------------------------
 
 from msrest import Configuration
+from msrest.universal_http import ClientRedirectPolicy, ClientRetryPolicy
 
 from .version import VERSION
 
@@ -39,12 +40,15 @@ class AutoRestRequiredOptionalTestServiceConfiguration(Configuration):
             base_url = 'http://localhost:3000'
 
         super(AutoRestRequiredOptionalTestServiceConfiguration, self).__init__(base_url)
-
-        # Starting Autorest.Python 4.0.64, make connection pool activated by default
-        self.keep_alive = True
+        self._configure()
 
         self.add_user_agent('autorestrequiredoptionaltestservice/{}'.format(VERSION))
 
         self.required_global_path = required_global_path
         self.required_global_query = required_global_query
         self.optional_global_query = optional_global_query
+
+    def _configure(self):
+        super(AutoRestRequiredOptionalTestServiceConfiguration, self)._configure()
+        self.retry_policy = ClientRetryPolicy()
+        self.redirect_policy = ClientRedirectPolicy()

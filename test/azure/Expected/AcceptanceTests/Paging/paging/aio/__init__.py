@@ -10,4 +10,5 @@
 # --------------------------------------------------------------------------
 
 from ._auto_rest_paging_test_service_async import AutoRestPagingTestService
+from ._configuration_async import AutoRestPagingTestServiceConfiguration
 __all__ = ['AutoRestPagingTestService']

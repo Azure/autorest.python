@@ -10,4 +10,5 @@
 # --------------------------------------------------------------------------
 
 from ._auto_rest_swagger_bat_file_service_async import AutoRestSwaggerBATFileService
+from ._configuration_async import AutoRestSwaggerBATFileServiceConfiguration
 __all__ = ['AutoRestSwaggerBATFileService']

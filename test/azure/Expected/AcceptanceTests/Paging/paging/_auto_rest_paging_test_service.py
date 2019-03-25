@@ -33,10 +33,10 @@ class AutoRestPagingTestService(SDKClient):
     """
 
     def __init__(
-            self, credentials, base_url=None):
+            self, credentials, base_url=None, config=None, pipeline=None):
 
-        self.config = AutoRestPagingTestServiceConfiguration(credentials, base_url)
-        super(AutoRestPagingTestService, self).__init__(self.config.credentials, self.config)
+        self.config = config or AutoRestPagingTestServiceConfiguration(credentials, base_url)
+        super(AutoRestPagingTestService, self).__init__(self.config.credentials, self.config, pipeline=pipeline)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '1.0.0'

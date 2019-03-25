@@ -10,4 +10,5 @@
 # --------------------------------------------------------------------------
 
 from ._pet_store_inc_async import PetStoreInc
+from ._configuration_async import PetStoreIncConfiguration
 __all__ = ['PetStoreInc']

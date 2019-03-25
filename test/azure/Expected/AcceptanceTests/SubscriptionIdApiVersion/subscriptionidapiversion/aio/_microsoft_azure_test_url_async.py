@@ -12,7 +12,7 @@
 from msrest.async_client import SDKClientAsync
 from msrest import Serializer, Deserializer
 
-from .._configuration import MicrosoftAzureTestUrlConfiguration
+from ._configuration_async import MicrosoftAzureTestUrlConfiguration
 from .operations_async import GroupOperations
 from .. import models
 
@@ -38,7 +38,7 @@ class MicrosoftAzureTestUrl(SDKClientAsync):
             self, credentials, subscription_id, base_url=None):
 
         self.config = MicrosoftAzureTestUrlConfiguration(credentials, subscription_id, base_url)
-        super(MicrosoftAzureTestUrl, self).__init__(self.config)
+        super(MicrosoftAzureTestUrl, self).__init__(self.config.credentials, self.config)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '2014-04-01-preview'

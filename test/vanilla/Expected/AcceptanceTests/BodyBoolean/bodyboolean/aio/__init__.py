@@ -10,4 +10,5 @@
 # --------------------------------------------------------------------------
 
 from ._auto_rest_bool_test_service_async import AutoRestBoolTestService
+from ._configuration_async import AutoRestBoolTestServiceConfiguration
 __all__ = ['AutoRestBoolTestService']

@@ -10,4 +10,5 @@
 # --------------------------------------------------------------------------
 
 from ._auto_rest_http_infrastructure_test_service_async import AutoRestHttpInfrastructureTestService
+from ._configuration_async import AutoRestHttpInfrastructureTestServiceConfiguration
 __all__ = ['AutoRestHttpInfrastructureTestService']

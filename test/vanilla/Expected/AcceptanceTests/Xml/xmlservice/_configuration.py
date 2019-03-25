@@ -10,6 +10,7 @@
 # --------------------------------------------------------------------------
 
 from msrest import Configuration
+from msrest.universal_http import ClientRedirectPolicy, ClientRetryPolicy
 
 from .version import VERSION
 
@@ -29,8 +30,11 @@ class AutoRestSwaggerBATXMLServiceConfiguration(Configuration):
             base_url = 'http://localhost:3000'
 
         super(AutoRestSwaggerBATXMLServiceConfiguration, self).__init__(base_url)
-
-        # Starting Autorest.Python 4.0.64, make connection pool activated by default
-        self.keep_alive = True
+        self._configure()
 
         self.add_user_agent('autorestswaggerbatxmlservice/{}'.format(VERSION))
+
+    def _configure(self):
+        super(AutoRestSwaggerBATXMLServiceConfiguration, self)._configure()
+        self.retry_policy = ClientRetryPolicy()
+        self.redirect_policy = ClientRedirectPolicy()

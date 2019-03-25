@@ -12,7 +12,7 @@
 from msrest.async_client import SDKClientAsync
 from msrest import Serializer, Deserializer
 
-from .._configuration import StorageManagementClientConfiguration
+from ._configuration_async import StorageManagementClientConfiguration
 from .operations_async import StorageAccountsOperations
 from .operations_async import UsageOperations
 from .. import models
@@ -43,7 +43,7 @@ class StorageManagementClient(SDKClientAsync):
             self, credentials, subscription_id, base_url=None):
 
         self.config = StorageManagementClientConfiguration(credentials, subscription_id, base_url)
-        super(StorageManagementClient, self).__init__(self.config)
+        super(StorageManagementClient, self).__init__(self.config.credentials, self.config)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '2015-05-01-preview'

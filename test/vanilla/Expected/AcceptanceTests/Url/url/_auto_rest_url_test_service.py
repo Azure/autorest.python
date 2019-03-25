@@ -41,10 +41,10 @@ class AutoRestUrlTestService(SDKClient):
     """
 
     def __init__(
-            self, global_string_path, global_string_query=None, base_url=None):
+            self, global_string_path, global_string_query=None, base_url=None, config=None, pipeline=None):
 
-        self.config = AutoRestUrlTestServiceConfiguration(global_string_path, global_string_query, base_url)
-        super(AutoRestUrlTestService, self).__init__(None, self.config)
+        self.config = config or AutoRestUrlTestServiceConfiguration(global_string_path, global_string_query, base_url)
+        super(AutoRestUrlTestService, self).__init__(None, self.config, pipeline=pipeline)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '1.0.0'

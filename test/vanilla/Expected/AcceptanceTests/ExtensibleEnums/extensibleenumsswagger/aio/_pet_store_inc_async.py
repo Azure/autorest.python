@@ -12,7 +12,7 @@
 from msrest.async_client import SDKClientAsync
 from msrest import Serializer, Deserializer
 
-from .._configuration import PetStoreIncConfiguration
+from ._configuration_async import PetStoreIncConfiguration
 from msrest.exceptions import HttpOperationError
 from .operations_async import PetOperations
 from .. import models
@@ -31,10 +31,10 @@ class PetStoreInc(SDKClientAsync):
     """
 
     def __init__(
-            self, base_url=None):
+            self, base_url=None, config=None, pipeline=None):
 
-        self.config = PetStoreIncConfiguration(base_url)
-        super(PetStoreInc, self).__init__(self.config)
+        self.config = config or PetStoreIncConfiguration(base_url)
+        super(PetStoreInc, self).__init__(None, self.config, pipeline=pipeline)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '2016-07-07'

@@ -12,7 +12,7 @@
 from msrest.async_client import SDKClientAsync
 from msrest import Serializer, Deserializer
 
-from .._configuration import AutoRestDurationTestServiceConfiguration
+from ._configuration_async import AutoRestDurationTestServiceConfiguration
 from .operations_async import DurationOperations
 from .. import models
 
@@ -36,7 +36,7 @@ class AutoRestDurationTestService(SDKClientAsync):
             self, credentials, base_url=None):
 
         self.config = AutoRestDurationTestServiceConfiguration(credentials, base_url)
-        super(AutoRestDurationTestService, self).__init__(self.config)
+        super(AutoRestDurationTestService, self).__init__(self.config.credentials, self.config)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '1.0.0'

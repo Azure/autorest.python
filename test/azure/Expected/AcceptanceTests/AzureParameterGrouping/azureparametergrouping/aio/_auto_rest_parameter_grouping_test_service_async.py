@@ -12,7 +12,7 @@
 from msrest.async_client import SDKClientAsync
 from msrest import Serializer, Deserializer
 
-from .._configuration import AutoRestParameterGroupingTestServiceConfiguration
+from ._configuration_async import AutoRestParameterGroupingTestServiceConfiguration
 from .operations_async import ParameterGroupingOperations
 from .. import models
 
@@ -36,7 +36,7 @@ class AutoRestParameterGroupingTestService(SDKClientAsync):
             self, credentials, base_url=None):
 
         self.config = AutoRestParameterGroupingTestServiceConfiguration(credentials, base_url)
-        super(AutoRestParameterGroupingTestService, self).__init__(self.config)
+        super(AutoRestParameterGroupingTestService, self).__init__(self.config.credentials, self.config)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '1.0.0'

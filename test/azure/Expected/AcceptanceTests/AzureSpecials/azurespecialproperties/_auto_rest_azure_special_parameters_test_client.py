@@ -57,10 +57,10 @@ class AutoRestAzureSpecialParametersTestClient(SDKClient):
     """
 
     def __init__(
-            self, credentials, subscription_id, base_url=None):
+            self, credentials, subscription_id, base_url=None, config=None, pipeline=None):
 
-        self.config = AutoRestAzureSpecialParametersTestClientConfiguration(credentials, subscription_id, base_url)
-        super(AutoRestAzureSpecialParametersTestClient, self).__init__(self.config.credentials, self.config)
+        self.config = config or AutoRestAzureSpecialParametersTestClientConfiguration(credentials, subscription_id, base_url)
+        super(AutoRestAzureSpecialParametersTestClient, self).__init__(self.config.credentials, self.config, pipeline=pipeline)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '2015-07-01-preview'

@@ -32,10 +32,10 @@ class AutoRestHeadExceptionTestService(SDKClient):
     """
 
     def __init__(
-            self, credentials, base_url=None):
+            self, credentials, base_url=None, config=None, pipeline=None):
 
-        self.config = AutoRestHeadExceptionTestServiceConfiguration(credentials, base_url)
-        super(AutoRestHeadExceptionTestService, self).__init__(self.config.credentials, self.config)
+        self.config = config or AutoRestHeadExceptionTestServiceConfiguration(credentials, base_url)
+        super(AutoRestHeadExceptionTestService, self).__init__(self.config.credentials, self.config, pipeline=pipeline)
 
         client_models = {}
         self.api_version = '1.0.0'

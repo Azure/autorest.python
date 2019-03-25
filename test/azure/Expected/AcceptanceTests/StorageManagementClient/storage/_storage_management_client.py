@@ -40,10 +40,10 @@ class StorageManagementClient(SDKClient):
     """
 
     def __init__(
-            self, credentials, subscription_id, base_url=None):
+            self, credentials, subscription_id, base_url=None, config=None, pipeline=None):
 
-        self.config = StorageManagementClientConfiguration(credentials, subscription_id, base_url)
-        super(StorageManagementClient, self).__init__(self.config.credentials, self.config)
+        self.config = config or StorageManagementClientConfiguration(credentials, subscription_id, base_url)
+        super(StorageManagementClient, self).__init__(self.config.credentials, self.config, pipeline=pipeline)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '2015-05-01-preview'

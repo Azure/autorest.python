@@ -9,6 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 from msrestazure import AzureConfiguration
+from msrest.universal_http import ClientRedirectPolicy, ClientRetryPolicy
 
 from .version import VERSION
 
@@ -33,11 +34,14 @@ class AutoRestPagingTestServiceConfiguration(AzureConfiguration):
             base_url = 'http://localhost:3000'
 
         super(AutoRestPagingTestServiceConfiguration, self).__init__(base_url)
-
-        # Starting Autorest.Python 4.0.64, make connection pool activated by default
-        self.keep_alive = True
+        self._configure()
 
         self.add_user_agent('autorestpagingtestservice/{}'.format(VERSION))
         self.add_user_agent('Azure-SDK-For-Python')
 
         self.credentials = credentials
+
+    def _configure(self):
+        super(AutoRestPagingTestServiceConfiguration, self)._configure()
+        self.retry_policy = ClientRetryPolicy()
+        self.redirect_policy = ClientRedirectPolicy()

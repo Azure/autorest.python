@@ -55,10 +55,10 @@ class AutoRestComplexTestService(SDKClient):
     """
 
     def __init__(
-            self, base_url=None):
+            self, base_url=None, config=None, pipeline=None):
 
-        self.config = AutoRestComplexTestServiceConfiguration(base_url)
-        super(AutoRestComplexTestService, self).__init__(None, self.config)
+        self.config = config or AutoRestComplexTestServiceConfiguration(base_url)
+        super(AutoRestComplexTestService, self).__init__(None, self.config, pipeline=pipeline)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '2016-02-29'

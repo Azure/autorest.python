@@ -12,7 +12,7 @@
 from msrest.async_client import SDKClientAsync
 from msrest import Serializer, Deserializer
 
-from .._configuration import AutoRestParameterizedHostTestClientConfiguration
+from ._configuration_async import AutoRestParameterizedHostTestClientConfiguration
 from .operations_async import PathsOperations
 from .. import models
 
@@ -38,7 +38,7 @@ class AutoRestParameterizedHostTestClient(SDKClientAsync):
             self, credentials, host):
 
         self.config = AutoRestParameterizedHostTestClientConfiguration(credentials, host)
-        super(AutoRestParameterizedHostTestClient, self).__init__(self.config)
+        super(AutoRestParameterizedHostTestClient, self).__init__(self.config.credentials, self.config)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '1.0.0'

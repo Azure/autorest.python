@@ -30,10 +30,10 @@ class AutoRestSwaggerBATArrayService(SDKClient):
     """
 
     def __init__(
-            self, base_url=None):
+            self, base_url=None, config=None, pipeline=None):
 
-        self.config = AutoRestSwaggerBATArrayServiceConfiguration(base_url)
-        super(AutoRestSwaggerBATArrayService, self).__init__(None, self.config)
+        self.config = config or AutoRestSwaggerBATArrayServiceConfiguration(base_url)
+        super(AutoRestSwaggerBATArrayService, self).__init__(None, self.config, pipeline=pipeline)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '1.0.0'

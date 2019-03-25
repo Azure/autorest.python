@@ -10,4 +10,5 @@
 # --------------------------------------------------------------------------
 
 from ._microsoft_azure_test_url_async import MicrosoftAzureTestUrl
+from ._configuration_async import MicrosoftAzureTestUrlConfiguration
 __all__ = ['MicrosoftAzureTestUrl']

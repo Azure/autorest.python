@@ -12,7 +12,7 @@
 from msrest.async_client import SDKClientAsync
 from msrest import Serializer, Deserializer
 
-from .._configuration import AutoRestAzureSpecialParametersTestClientConfiguration
+from ._configuration_async import AutoRestAzureSpecialParametersTestClientConfiguration
 from .operations_async import XMsClientRequestIdOperations
 from .operations_async import SubscriptionInCredentialsOperations
 from .operations_async import SubscriptionInMethodOperations
@@ -60,7 +60,7 @@ class AutoRestAzureSpecialParametersTestClient(SDKClientAsync):
             self, credentials, subscription_id, base_url=None):
 
         self.config = AutoRestAzureSpecialParametersTestClientConfiguration(credentials, subscription_id, base_url)
-        super(AutoRestAzureSpecialParametersTestClient, self).__init__(self.config)
+        super(AutoRestAzureSpecialParametersTestClient, self).__init__(self.config.credentials, self.config)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '2015-07-01-preview'

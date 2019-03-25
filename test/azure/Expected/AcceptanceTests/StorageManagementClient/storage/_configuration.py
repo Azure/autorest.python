@@ -9,6 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 from msrestazure import AzureConfiguration
+from msrest.universal_http import ClientRedirectPolicy, ClientRetryPolicy
 
 from .version import VERSION
 
@@ -39,12 +40,15 @@ class StorageManagementClientConfiguration(AzureConfiguration):
             base_url = 'https://management.azure.com'
 
         super(StorageManagementClientConfiguration, self).__init__(base_url)
-
-        # Starting Autorest.Python 4.0.64, make connection pool activated by default
-        self.keep_alive = True
+        self._configure()
 
         self.add_user_agent('storagemanagementclient/{}'.format(VERSION))
         self.add_user_agent('Azure-SDK-For-Python')
 
         self.credentials = credentials
         self.subscription_id = subscription_id
+
+    def _configure(self):
+        super(StorageManagementClientConfiguration, self)._configure()
+        self.retry_policy = ClientRetryPolicy()
+        self.redirect_policy = ClientRedirectPolicy()

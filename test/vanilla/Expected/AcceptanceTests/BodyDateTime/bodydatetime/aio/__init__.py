@@ -10,4 +10,5 @@
 # --------------------------------------------------------------------------
 
 from ._auto_rest_date_time_test_service_async import AutoRestDateTimeTestService
+from ._configuration_async import AutoRestDateTimeTestServiceConfiguration
 __all__ = ['AutoRestDateTimeTestService']

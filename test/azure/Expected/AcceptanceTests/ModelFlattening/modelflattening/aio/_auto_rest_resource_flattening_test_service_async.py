@@ -12,7 +12,7 @@
 from msrest.async_client import SDKClientAsync
 from msrest import Serializer, Deserializer
 
-from .._configuration import AutoRestResourceFlatteningTestServiceConfiguration
+from ._configuration_async import AutoRestResourceFlatteningTestServiceConfiguration
 from .operations_async import AutoRestResourceFlatteningTestServiceOperationsMixin
 from .. import models
 
@@ -33,7 +33,7 @@ class AutoRestResourceFlatteningTestService(AutoRestResourceFlatteningTestServic
             self, credentials, base_url=None):
 
         self.config = AutoRestResourceFlatteningTestServiceConfiguration(credentials, base_url)
-        super(AutoRestResourceFlatteningTestService, self).__init__(self.config)
+        super(AutoRestResourceFlatteningTestService, self).__init__(self.config.credentials, self.config)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '1.0.0'

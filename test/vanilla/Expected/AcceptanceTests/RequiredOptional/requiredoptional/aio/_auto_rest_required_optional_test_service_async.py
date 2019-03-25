@@ -12,7 +12,7 @@
 from msrest.async_client import SDKClientAsync
 from msrest import Serializer, Deserializer
 
-from .._configuration import AutoRestRequiredOptionalTestServiceConfiguration
+from ._configuration_async import AutoRestRequiredOptionalTestServiceConfiguration
 from .operations_async import ImplicitOperations
 from .operations_async import ExplicitOperations
 from .. import models
@@ -39,10 +39,10 @@ class AutoRestRequiredOptionalTestService(SDKClientAsync):
     """
 
     def __init__(
-            self, required_global_path, required_global_query, optional_global_query=None, base_url=None):
+            self, required_global_path, required_global_query, optional_global_query=None, base_url=None, config=None, pipeline=None):
 
-        self.config = AutoRestRequiredOptionalTestServiceConfiguration(required_global_path, required_global_query, optional_global_query, base_url)
-        super(AutoRestRequiredOptionalTestService, self).__init__(self.config)
+        self.config = config or AutoRestRequiredOptionalTestServiceConfiguration(required_global_path, required_global_query, optional_global_query, base_url)
+        super(AutoRestRequiredOptionalTestService, self).__init__(None, self.config, pipeline=pipeline)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '1.0.0'

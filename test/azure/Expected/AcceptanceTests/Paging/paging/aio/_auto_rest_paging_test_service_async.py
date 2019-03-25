@@ -12,7 +12,7 @@
 from msrest.async_client import SDKClientAsync
 from msrest import Serializer, Deserializer
 
-from .._configuration import AutoRestPagingTestServiceConfiguration
+from ._configuration_async import AutoRestPagingTestServiceConfiguration
 from .operations_async import PagingOperations
 from .. import models
 
@@ -36,7 +36,7 @@ class AutoRestPagingTestService(SDKClientAsync):
             self, credentials, base_url=None):
 
         self.config = AutoRestPagingTestServiceConfiguration(credentials, base_url)
-        super(AutoRestPagingTestService, self).__init__(self.config)
+        super(AutoRestPagingTestService, self).__init__(self.config.credentials, self.config)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '1.0.0'

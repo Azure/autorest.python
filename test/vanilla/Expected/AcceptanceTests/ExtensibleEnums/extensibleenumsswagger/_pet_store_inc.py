@@ -31,10 +31,10 @@ class PetStoreInc(SDKClient):
     """
 
     def __init__(
-            self, base_url=None):
+            self, base_url=None, config=None, pipeline=None):
 
-        self.config = PetStoreIncConfiguration(base_url)
-        super(PetStoreInc, self).__init__(None, self.config)
+        self.config = config or PetStoreIncConfiguration(base_url)
+        super(PetStoreInc, self).__init__(None, self.config, pipeline=pipeline)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '2016-07-07'

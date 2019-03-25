@@ -34,10 +34,10 @@ class AutoRestParameterizedCustomHostTestClient(SDKClient):
     """
 
     def __init__(
-            self, subscription_id, dns_suffix):
+            self, subscription_id, dns_suffix, config=None, pipeline=None):
 
-        self.config = AutoRestParameterizedCustomHostTestClientConfiguration(subscription_id, dns_suffix)
-        super(AutoRestParameterizedCustomHostTestClient, self).__init__(None, self.config)
+        self.config = config or AutoRestParameterizedCustomHostTestClientConfiguration(subscription_id, dns_suffix)
+        super(AutoRestParameterizedCustomHostTestClient, self).__init__(None, self.config, pipeline=pipeline)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '1.0.0'

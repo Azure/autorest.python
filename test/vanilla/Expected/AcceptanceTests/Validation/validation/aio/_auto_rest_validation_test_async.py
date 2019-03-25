@@ -12,7 +12,7 @@
 from msrest.async_client import SDKClientAsync
 from msrest import Serializer, Deserializer
 
-from .._configuration import AutoRestValidationTestConfiguration
+from ._configuration_async import AutoRestValidationTestConfiguration
 from .operations_async import AutoRestValidationTestOperationsMixin
 from msrest.exceptions import HttpOperationError
 from .. import models
@@ -30,10 +30,10 @@ class AutoRestValidationTest(AutoRestValidationTestOperationsMixin, SDKClientAsy
     """
 
     def __init__(
-            self, subscription_id, base_url=None):
+            self, subscription_id, base_url=None, config=None, pipeline=None):
 
-        self.config = AutoRestValidationTestConfiguration(subscription_id, base_url)
-        super(AutoRestValidationTest, self).__init__(self.config)
+        self.config = config or AutoRestValidationTestConfiguration(subscription_id, base_url)
+        super(AutoRestValidationTest, self).__init__(None, self.config, pipeline=pipeline)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '1.0.0'

@@ -12,7 +12,7 @@
 from msrest.async_client import SDKClientAsync
 from msrest import Serializer, Deserializer
 
-from .._configuration import AutoRestSwaggerBATServiceConfiguration
+from ._configuration_async import AutoRestSwaggerBATServiceConfiguration
 from .operations_async import StringOperations
 from .operations_async import EnumOperations
 from .. import models
@@ -33,10 +33,10 @@ class AutoRestSwaggerBATService(SDKClientAsync):
     """
 
     def __init__(
-            self, base_url=None):
+            self, base_url=None, config=None, pipeline=None):
 
-        self.config = AutoRestSwaggerBATServiceConfiguration(base_url)
-        super(AutoRestSwaggerBATService, self).__init__(self.config)
+        self.config = config or AutoRestSwaggerBATServiceConfiguration(base_url)
+        super(AutoRestSwaggerBATService, self).__init__(None, self.config, pipeline=pipeline)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '1.0.0'

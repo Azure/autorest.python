@@ -12,7 +12,7 @@
 from msrest.async_client import SDKClientAsync
 from msrest import Serializer, Deserializer
 
-from .._configuration import AutoRestComplexTestServiceConfiguration
+from ._configuration_async import AutoRestComplexTestServiceConfiguration
 from msrest.exceptions import HttpOperationError
 from .operations_async import BasicOperations
 from .operations_async import PrimitiveOperations
@@ -55,10 +55,10 @@ class AutoRestComplexTestService(SDKClientAsync):
     """
 
     def __init__(
-            self, base_url=None):
+            self, base_url=None, config=None, pipeline=None):
 
-        self.config = AutoRestComplexTestServiceConfiguration(base_url)
-        super(AutoRestComplexTestService, self).__init__(self.config)
+        self.config = config or AutoRestComplexTestServiceConfiguration(base_url)
+        super(AutoRestComplexTestService, self).__init__(None, self.config, pipeline=pipeline)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '2016-02-29'
