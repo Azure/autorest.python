@@ -23,7 +23,7 @@ string clientName = Model.Name;
 from msrest.async_client import SDKClientAsync
 from msrest import Serializer, Deserializer
 @EmptyLine
-from .._configuration import @(Model.Name)Configuration
+from ._configuration_async import @(Model.Name)Configuration
 @{
 bool hasClientLevelMethods = Model.MethodTemplateModels.Any( each => each.MethodGroup.IsCodeModelMethodGroup);
 }
@@ -82,7 +82,7 @@ else
             self@(Model.RequiredConstructorParameters)@(Model.IsCustomBaseUri ? "" : ", base_url=None")):
 @EmptyLine
         self.config = @(Model.Name)Configuration(@(Model.ConfigConstructorParameters))
-        super(@(clientName), self).__init__(self.config)
+        super(@(clientName), self).__init__(@(Settings.AddCredentials? "self.config.credentials" : PythonConstants.None), self.config)
 @EmptyLine
 @if (Model.ModelTemplateModels.Any(each => !each.Extensions.ContainsKey(AzureExtensions.ExternalExtension)))
 {

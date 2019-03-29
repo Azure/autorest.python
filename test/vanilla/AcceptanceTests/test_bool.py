@@ -41,7 +41,7 @@ tests = realpath(join(cwd, pardir, "Expected", "AcceptanceTests"))
 sys.path.append(join(tests, "BodyBoolean"))
 
 from msrest.serialization import Deserializer
-from msrest.exceptions import DeserializationError
+from azure.core.exceptions import DecodeError
 
 from bodyboolean import AutoRestBoolTestService
 from bodyboolean.models import ErrorException
@@ -60,7 +60,7 @@ class TestBool(object):
         client.bool_model.put_false()
         client.bool_model.put_true()
 
-        with pytest.raises(DeserializationError):
+        with pytest.raises(DecodeError):
             client.bool_model.get_invalid()
 
 if __name__ == '__main__':

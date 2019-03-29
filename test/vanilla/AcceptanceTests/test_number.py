@@ -42,7 +42,7 @@ tests = realpath(join(cwd, pardir, "Expected", "AcceptanceTests"))
 sys.path.append(join(tests, "BodyNumber"))
 
 from msrest.serialization import Deserializer
-from msrest.exceptions import DeserializationError
+from azure.core.exceptions import DecodeError
 
 from bodynumber import AutoRestNumberTestService
 
@@ -75,13 +75,13 @@ class TestNumber(object):
         assert client.number.get_big_decimal_negative_decimal() ==  -99999999.99
         assert client.number.get_big_decimal_positive_decimal() ==  99999999.99
 
-        with pytest.raises(DeserializationError):
+        with pytest.raises(DecodeError):
             client.number.get_invalid_decimal()
 
-        with pytest.raises(DeserializationError):
+        with pytest.raises(DecodeError):
             client.number.get_invalid_double()
 
-        with pytest.raises(DeserializationError):
+        with pytest.raises(DecodeError):
             client.number.get_invalid_float()
 
 

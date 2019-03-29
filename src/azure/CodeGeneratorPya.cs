@@ -55,6 +55,9 @@ namespace AutoRest.Python.Azure
             var serviceClientInitTemplateAsync = new ServiceClientInitTemplateAsync { Model = codeModel };
             await Write(serviceClientInitTemplateAsync, Path.Combine(folderName, "aio", "__init__.py"));
 
+            var configurationTemplateAsync = new AzureConfigurationTemplateAsync { Model = codeModel };
+            await Write(configurationTemplateAsync, Path.Combine(folderName, "aio", "_configuration_async.py"));
+
             // Writing service client
             var serviceClientTemplate = new AzureServiceClientTemplate { Model = codeModel, };
             await Write(serviceClientTemplate, Path.Combine(folderName, "_" + codeModel.Name.ToPythonCase() + ".py"));

@@ -44,10 +44,11 @@ from msrest.serialization import Deserializer
 from msrest.exceptions import (
     DeserializationError,
     SerializationError,
-    ClientRequestError,
     ValidationError
 )
 from msrest.authentication import BasicTokenAuthentication
+
+from azure.core.exceptions import ConnectionError
 
 from custombaseurl.aio import AutoRestParameterizedHostTestClient
 from custombaseurl.models import Error, ErrorException
@@ -67,14 +68,14 @@ class TestCustomBaseUri(object):
         cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
         client = AutoRestParameterizedHostTestClient(cred, host="host:3000")
         client.config.retry_policy.retries = 0
-        with pytest.raises(ClientRequestError):
+        with pytest.raises(ConnectionError):
             await client.paths.get_empty("bad")
 
         with pytest.raises(ValidationError):
             await client.paths.get_empty(None)
 
         client.config.host = "badhost:3000"
-        with pytest.raises(ClientRequestError):
+        with pytest.raises(ConnectionError):
             await client.paths.get_empty("local")
 
 if __name__ == '__main__':

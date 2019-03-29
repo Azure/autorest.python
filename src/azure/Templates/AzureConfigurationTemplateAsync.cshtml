@@ -2,26 +2,28 @@
 @using System.Linq
 @using AutoRest.Core.Model
 @using AutoRest.Core.Utilities
+@using AutoRest.Extensions.Azure
 @using AutoRest.Python
+@using AutoRest.Python.Azure.Model
+@using AutoRest.Python.azure.Templates
 @using AutoRest.Python.Model
-@inherits AutoRest.Python.PythonTemplate<AutoRest.Python.Model.CodeModelPy>
+@inherits AutoRest.Python.PythonTemplate<CodeModelPya>
 # coding=utf-8
 # --------------------------------------------------------------------------
 @Header("# ").TrimMultilineHeader()
 # --------------------------------------------------------------------------
+from msrestazure import AzureConfiguration
+from msrest.universal_http import AsyncClientRedirectPolicy, AsyncClientRetryPolicy
 @EmptyLine
-from msrest import Configuration
-from msrest.universal_http import ClientRedirectPolicy, ClientRetryPolicy
-@EmptyLine
-from .version import VERSION
+from ..version import VERSION
 @EmptyLine
 @EmptyLine
-class @(Model.Name)Configuration(Configuration):
+class @(Model.Name)Configuration(AzureConfiguration):
     """Configuration for @(Model.Name)
     Note that all parameters used to create this instance are saved as instance
     attributes.
 @EmptyLine
-@foreach(var property in Model.Properties.Where( each => !each.IsConstant))
+@foreach(var property in Model.Properties.Where(each => !each.IsConstant))
 {
 @:    @ParameterWrapComment(string.Empty, CodeModelPy.GetPropertyDocumentationString(property))
 @:    @ParameterWrapComment(string.Empty, ":type " + property.Name + ": " + Model.GetPropertyDocumentationType(property.ModelType))
@@ -58,20 +60,21 @@ else
         self._configure()
 @EmptyLine
         self.add_user_agent('@(Model.UserAgent)/{}'.format(VERSION))
-@if (Model.Properties.Any() || Model.ConstantProperties.Any())
+        self.add_user_agent('Azure-SDK-For-Python')
+@if (Model.Properties.Any())
 {
-    @EmptyLine
-    foreach (var property in Model.Properties.Where( each => !each.IsConstant))
-    {
+@EmptyLine
+  foreach (var property in Model.Properties.Where(each => !each.IsConstant))
+  {
         @:self.@(property.Name) = @(property.Name)
-    }
-    foreach (var property in Model.ConstantProperties)
-    {
+  }
+  foreach (var property in Model.ConstantProperties)
+  {
         @:self.@(property.Name) = @(property.DefaultValue)
-    }
+  }
 }
 @EmptyLine
     def _configure(self):
         super(@(Model.Name)Configuration, self)._configure()
-        self.retry_policy = ClientRetryPolicy()
-        self.redirect_policy = ClientRedirectPolicy()
+        self.retry_policy = AsyncClientRetryPolicy()
+        self.redirect_policy = AsyncClientRedirectPolicy()

@@ -306,3 +306,4 @@ src/obj/
 
 # Python environment
 env/
+.DS_Store

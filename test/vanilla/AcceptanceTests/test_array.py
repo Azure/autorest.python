@@ -42,6 +42,7 @@ sys.path.append(join(tests, "BodyArray"))
 
 from msrest.serialization import Deserializer
 from msrest.exceptions import DeserializationError
+from azure.core.exceptions import DecodeError
 
 from bodyarray import AutoRestSwaggerBATArrayService
 from bodyarray.models import Product
@@ -166,7 +167,7 @@ class TestArray(object):
         listdict[1] = {}
         assert listdict ==  client.array.get_dictionary_item_empty()
 
-        with pytest.raises(DeserializationError):
+        with pytest.raises(DecodeError):
             client.array.get_invalid()
 
         assert client.array.get_boolean_invalid_null(), [True, None ==  False]

@@ -77,10 +77,10 @@ else
     """
 @EmptyLine
     def __init__(
-            self@(Model.RequiredConstructorParameters)@(Model.IsCustomBaseUri ? "" : ", base_url=None")):
+            self@(Model.RequiredConstructorParameters)@(Model.IsCustomBaseUri ? "" : ", base_url=None"), config=None, pipeline=None):
 @EmptyLine
-        self.config = @(Model.Name)Configuration(@(Model.ConfigConstructorParameters))
-        super(@(Model.Name), self).__init__(@(Settings.AddCredentials? "self.config.credentials" : PythonConstants.None), self.config)
+        self.config = config or @(Model.Name)Configuration(@(Model.ConfigConstructorParameters))
+        super(@(Model.Name), self).__init__(@(Settings.AddCredentials? "self.config.credentials" : PythonConstants.None), self.config, pipeline=pipeline)
 @EmptyLine
 @if (Model.ModelTemplateModels.Any())
 {

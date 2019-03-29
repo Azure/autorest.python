@@ -11,9 +11,9 @@
 # --------------------------------------------------------------------------
 @EmptyLine
 from msrest import Configuration
-from msrest.universal_http import ClientRedirectPolicy, ClientRetryPolicy
+from msrest.universal_http import AsyncClientRedirectPolicy, AsyncClientRetryPolicy
 @EmptyLine
-from .version import VERSION
+from ..version import VERSION
 @EmptyLine
 @EmptyLine
 class @(Model.Name)Configuration(Configuration):
@@ -73,5 +73,5 @@ else
 @EmptyLine
     def _configure(self):
         super(@(Model.Name)Configuration, self)._configure()
-        self.retry_policy = ClientRetryPolicy()
-        self.redirect_policy = ClientRedirectPolicy()
+        self.retry_policy = AsyncClientRetryPolicy()
+        self.redirect_policy = AsyncClientRedirectPolicy()

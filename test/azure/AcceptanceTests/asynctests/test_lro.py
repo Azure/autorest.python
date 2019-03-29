@@ -43,6 +43,7 @@ sys.path.append(join(tests, "Lro"))
 
 from msrest.serialization import Deserializer
 from msrest.exceptions import DeserializationError
+from azure.core.exceptions import DecodeError
 from msrest.authentication import BasicTokenAuthentication
 from msrest.polling.async_poller import async_poller
 from msrestazure.azure_exceptions import CloudError, CloudErrorData
@@ -326,7 +327,7 @@ class TestLro:
         await self.assertRaisesWithMessage("The response from long running operation does not contain a body.",
             client.lrosa_ds.put_async_relative_retry_no_status_payload, product)
 
-        with pytest.raises(DeserializationError):
+        with pytest.raises(DecodeError):
             await self.lro_result(client.lrosa_ds.put200_invalid_json, product)
 
         with pytest.raises(DeserializationError):

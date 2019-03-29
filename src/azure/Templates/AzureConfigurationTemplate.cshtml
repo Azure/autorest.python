@@ -13,6 +13,7 @@
 @Header("# ").TrimMultilineHeader()
 # --------------------------------------------------------------------------
 from msrestazure import AzureConfiguration
+from msrest.universal_http import ClientRedirectPolicy, ClientRetryPolicy
 @EmptyLine
 from .version import VERSION
 @EmptyLine
@@ -56,9 +57,7 @@ else
 
 @EmptyLine
         super(@(Model.Name)Configuration, self).__init__(base_url)
-@EmptyLine
-        # Starting Autorest.Python 4.0.64, make connection pool activated by default
-        self.keep_alive = True
+        self._configure()
 @EmptyLine
         self.add_user_agent('@(Model.UserAgent)/{}'.format(VERSION))
         self.add_user_agent('Azure-SDK-For-Python')
@@ -74,3 +73,8 @@ else
         @:self.@(property.Name) = @(property.DefaultValue)
   }
 }
+@EmptyLine
+    def _configure(self):
+        super(@(Model.Name)Configuration, self)._configure()
+        self.retry_policy = ClientRetryPolicy()
+        self.redirect_policy = ClientRedirectPolicy()

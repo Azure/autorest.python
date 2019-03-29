@@ -41,7 +41,7 @@ tests = realpath(join(cwd, pardir, "Expected", "AcceptanceTests"))
 sys.path.append(join(tests, "BodyInteger"))
 
 from msrest.serialization import Deserializer
-from msrest.exceptions import DeserializationError
+from azure.core.exceptions import DecodeError
 
 from bodyinteger import AutoRestIntegerTestService
 
@@ -59,7 +59,7 @@ class TestInteger(object):
         client.int_model.put_min64(-9223372036854776000)
         client.int_model.get_null()
 
-        with pytest.raises(DeserializationError):
+        with pytest.raises(DecodeError):
             client.int_model.get_invalid()
 
         # Testserver excepts these to fail, but they won't in Python and it's ok.
@@ -73,7 +73,7 @@ class TestInteger(object):
         assert unix_date.utctimetuple() ==  client.int_model.get_unix_time().utctimetuple()
         assert client.int_model.get_null_unix_time() is None
 
-        with pytest.raises(DeserializationError):
+        with pytest.raises(DecodeError):
             client.int_model.get_invalid_unix_time()
 
 

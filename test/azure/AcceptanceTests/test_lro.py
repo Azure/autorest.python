@@ -43,6 +43,7 @@ sys.path.append(join(tests, "Lro"))
 
 from msrest.serialization import Deserializer
 from msrest.exceptions import DeserializationError
+from azure.core.exceptions import DecodeError
 from msrest.authentication import BasicTokenAuthentication
 from msrest.polling import LROPoller
 from msrestazure.azure_exceptions import CloudError, CloudErrorData
@@ -125,6 +126,7 @@ class TestLro:
         assert product.id == "100"
 
     def test_lro_happy_paths(self, special_client):
+
         client = special_client
 
         product = Product(location="West US")
@@ -326,10 +328,10 @@ class TestLro:
         self.assertRaisesWithMessage("The response from long running operation does not contain a body.",
             client.lrosa_ds.put_async_relative_retry_no_status_payload, product)
 
-        with pytest.raises(DeserializationError):
+        with pytest.raises(DecodeError):
             self.lro_result(client.lrosa_ds.put200_invalid_json, product)
 
-        with pytest.raises(DeserializationError):
+        with pytest.raises(DecodeError):
             self.lro_result(client.lrosa_ds.put_async_relative_retry_invalid_json_polling, product)
 
         with pytest.raises(Exception):
@@ -347,10 +349,10 @@ class TestLro:
         with pytest.raises(Exception):
             self.lro_result(client.lrosa_ds.post_async_relative_retry_invalid_header)
 
-        with pytest.raises(DeserializationError):
+        with pytest.raises(DecodeError):
             self.lro_result(client.lrosa_ds.delete_async_relative_retry_invalid_json_polling)
 
-        with pytest.raises(DeserializationError):
+        with pytest.raises(DecodeError):
             self.lro_result(client.lrosa_ds.post_async_relative_retry_invalid_json_polling)
 
         self.lro_result(client.lrosa_ds.delete204_succeeded)
@@ -364,8 +366,8 @@ class TestLro:
         self.assertRaisesWithMessage("The response from long running operation does not contain a body.",
             client.lrosa_ds.post_async_relative_retry_no_payload)
 
-        self.assertRaisesWithMessage("Operation failed",
-            client.lrosa_ds.put_non_retry201_creating400_invalid_json, product)
+        with pytest.raises(DecodeError):
+            self.lro_result(client.lrosa_ds.put_non_retry201_creating400_invalid_json, product)
 
 if __name__ == '__main__':
     unittest.main()
