@@ -8,13 +8,13 @@
 # Changes may cause incorrect behavior and will be lost if the code is
 # regenerated.
 # --------------------------------------------------------------------------
-from msrestazure import AzureConfiguration
-from msrest.universal_http import AsyncClientRedirectPolicy, AsyncClientRetryPolicy
+from azure.core.configuration import Configuration, ConnectionConfiguration
+from azure.core.pipeline import policies
 
 from ..version import VERSION
 
 
-class AutoRestAzureSpecialParametersTestClientConfiguration(AzureConfiguration):
+class AutoRestAzureSpecialParametersTestClientConfiguration(Configuration):
     """Configuration for AutoRestAzureSpecialParametersTestClient
     Note that all parameters used to create this instance are saved as instance
     attributes.
@@ -25,29 +25,29 @@ class AutoRestAzureSpecialParametersTestClientConfiguration(AzureConfiguration):
     :param subscription_id: The subscription id, which appears in the path,
      always modeled in credentials. The value is always '1234-5678-9012-3456'
     :type subscription_id: str
-    :param str base_url: Service URL
     """
 
-    def __init__(
-            self, credentials, subscription_id, base_url=None):
+    def __init__(self, credentials, subscription_id, **kwargs):
 
         if credentials is None:
             raise ValueError("Parameter 'credentials' must not be None.")
         if subscription_id is None:
             raise ValueError("Parameter 'subscription_id' must not be None.")
-        if not base_url:
-            base_url = 'http://localhost:3000'
 
-        super(AutoRestAzureSpecialParametersTestClientConfiguration, self).__init__(base_url)
-        self._configure()
+        super(AutoRestAzureSpecialParametersTestClientConfiguration, self).__init__(**kwargs)
+        self._configure(**kwargs)
 
-        self.add_user_agent('autorestazurespecialparameterstestclient/{}'.format(VERSION))
-        self.add_user_agent('Azure-SDK-For-Python')
+        self.user_agent_policy.add_user_agent('autorestazurespecialparameterstestclient/{}'.format(VERSION))
+        self.user_agent_policy.add_user_agent('Azure-SDK-For-Python')
 
         self.credentials = credentials
         self.subscription_id = subscription_id
 
-    def _configure(self):
-        super(AutoRestAzureSpecialParametersTestClientConfiguration, self)._configure()
-        self.retry_policy = AsyncClientRetryPolicy()
-        self.redirect_policy = AsyncClientRedirectPolicy()
+    def _configure(self, **kwargs):
+        self.connection = ConnectionConfiguration(**kwargs)
+        self.user_agent_policy = policies.UserAgentPolicy(**kwargs)
+        self.headers_policy = policies.HeadersPolicy(**kwargs)
+        self.proxy_policy = policies.ProxyPolicy(**kwargs)
+        self.logging_policy = policies.NetworkTraceLoggingPolicy(**kwargs)
+        self.retry_policy = policies.AsyncRetryPolicy(**kwargs)
+        self.redirect_policy = policies.AsyncRedirectPolicy(**kwargs)

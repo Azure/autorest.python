@@ -9,8 +9,8 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest import Configuration
-from msrest.universal_http import AsyncClientRedirectPolicy, AsyncClientRetryPolicy
+from azure.core.configuration import Configuration, ConnectionConfiguration
+from azure.core.pipeline import policies
 
 from ..version import VERSION
 
@@ -25,26 +25,26 @@ class AutoRestUrlTestServiceConfiguration(Configuration):
     :type global_string_path: str
     :param global_string_query: should contain value null
     :type global_string_query: str
-    :param str base_url: Service URL
     """
 
-    def __init__(
-            self, global_string_path, global_string_query=None, base_url=None):
+    def __init__(self, global_string_path, global_string_query=None, **kwargs):
 
         if global_string_path is None:
             raise ValueError("Parameter 'global_string_path' must not be None.")
-        if not base_url:
-            base_url = 'http://localhost:3000'
 
-        super(AutoRestUrlTestServiceConfiguration, self).__init__(base_url)
-        self._configure()
+        super(AutoRestUrlTestServiceConfiguration, self).__init__(**kwargs)
+        self._configure(**kwargs)
 
-        self.add_user_agent('autoresturltestservice/{}'.format(VERSION))
+        self.user_agent_policy.add_user_agent('autoresturltestservice/{}'.format(VERSION))
 
         self.global_string_path = global_string_path
         self.global_string_query = global_string_query
 
-    def _configure(self):
-        super(AutoRestUrlTestServiceConfiguration, self)._configure()
-        self.retry_policy = AsyncClientRetryPolicy()
-        self.redirect_policy = AsyncClientRedirectPolicy()
+    def _configure(self, **kwargs):
+        self.connection = ConnectionConfiguration(**kwargs)
+        self.user_agent_policy = policies.UserAgentPolicy(**kwargs)
+        self.headers_policy = policies.HeadersPolicy(**kwargs)
+        self.proxy_policy = policies.ProxyPolicy(**kwargs)
+        self.logging_policy = policies.NetworkTraceLoggingPolicy(**kwargs)
+        self.retry_policy = policies.AsyncRetryPolicy(**kwargs)
+        self.redirect_policy = policies.AsyncRedirectPolicy(**kwargs)

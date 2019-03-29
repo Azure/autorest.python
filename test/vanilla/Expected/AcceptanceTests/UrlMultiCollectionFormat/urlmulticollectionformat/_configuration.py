@@ -9,8 +9,8 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest import Configuration
-from msrest.universal_http import ClientRedirectPolicy, ClientRetryPolicy
+from azure.core.configuration import Configuration, ConnectionConfiguration
+from azure.core.pipeline import policies
 
 from .version import VERSION
 
@@ -20,21 +20,21 @@ class AutoRestUrlMutliCollectionFormatTestServiceConfiguration(Configuration):
     Note that all parameters used to create this instance are saved as instance
     attributes.
 
-    :param str base_url: Service URL
     """
 
-    def __init__(
-            self, base_url=None):
+    def __init__(self, **kwargs):
 
-        if not base_url:
-            base_url = 'http://localhost:3000'
 
-        super(AutoRestUrlMutliCollectionFormatTestServiceConfiguration, self).__init__(base_url)
-        self._configure()
+        super(AutoRestUrlMutliCollectionFormatTestServiceConfiguration, self).__init__(**kwargs)
+        self._configure(**kwargs)
 
-        self.add_user_agent('autoresturlmutlicollectionformattestservice/{}'.format(VERSION))
+        self.user_agent_policy.add_user_agent('autoresturlmutlicollectionformattestservice/{}'.format(VERSION))
 
-    def _configure(self):
-        super(AutoRestUrlMutliCollectionFormatTestServiceConfiguration, self)._configure()
-        self.retry_policy = ClientRetryPolicy()
-        self.redirect_policy = ClientRedirectPolicy()
+    def _configure(self, **kwargs):
+        self.connection = ConnectionConfiguration(**kwargs)
+        self.user_agent_policy = policies.UserAgentPolicy(**kwargs)
+        self.headers_policy = policies.HeadersPolicy(**kwargs)
+        self.proxy_policy = policies.ProxyPolicy(**kwargs)
+        self.logging_policy = policies.NetworkTraceLoggingPolicy(**kwargs)
+        self.retry_policy = policies.RetryPolicy(**kwargs)
+        self.redirect_policy = policies.RedirectPolicy(**kwargs)

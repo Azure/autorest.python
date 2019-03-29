@@ -8,13 +8,13 @@
 # Changes may cause incorrect behavior and will be lost if the code is
 # regenerated.
 # --------------------------------------------------------------------------
-from msrestazure import AzureConfiguration
-from msrest.universal_http import ClientRedirectPolicy, ClientRetryPolicy
+from azure.core.configuration import Configuration, ConnectionConfiguration
+from azure.core.pipeline import policies
 
 from .version import VERSION
 
 
-class MicrosoftAzureTestUrlConfiguration(AzureConfiguration):
+class MicrosoftAzureTestUrlConfiguration(Configuration):
     """Configuration for MicrosoftAzureTestUrl
     Note that all parameters used to create this instance are saved as instance
     attributes.
@@ -24,29 +24,29 @@ class MicrosoftAzureTestUrlConfiguration(AzureConfiguration):
      object<msrestazure.azure_active_directory>`
     :param subscription_id: Subscription Id.
     :type subscription_id: str
-    :param str base_url: Service URL
     """
 
-    def __init__(
-            self, credentials, subscription_id, base_url=None):
+    def __init__(self, credentials, subscription_id, **kwargs):
 
         if credentials is None:
             raise ValueError("Parameter 'credentials' must not be None.")
         if subscription_id is None:
             raise ValueError("Parameter 'subscription_id' must not be None.")
-        if not base_url:
-            base_url = 'https://management.azure.com'
 
-        super(MicrosoftAzureTestUrlConfiguration, self).__init__(base_url)
-        self._configure()
+        super(MicrosoftAzureTestUrlConfiguration, self).__init__(**kwargs)
+        self._configure(**kwargs)
 
-        self.add_user_agent('microsoftazuretesturl/{}'.format(VERSION))
-        self.add_user_agent('Azure-SDK-For-Python')
+        self.user_agent_policy.add_user_agent('microsoftazuretesturl/{}'.format(VERSION))
+        self.user_agent_policy.add_user_agent('Azure-SDK-For-Python')
 
         self.credentials = credentials
         self.subscription_id = subscription_id
 
-    def _configure(self):
-        super(MicrosoftAzureTestUrlConfiguration, self)._configure()
-        self.retry_policy = ClientRetryPolicy()
-        self.redirect_policy = ClientRedirectPolicy()
+    def _configure(self, **kwargs):
+        self.connection = ConnectionConfiguration(**kwargs)
+        self.user_agent_policy = policies.UserAgentPolicy(**kwargs)
+        self.headers_policy = policies.HeadersPolicy(**kwargs)
+        self.proxy_policy = policies.ProxyPolicy(**kwargs)
+        self.logging_policy = policies.NetworkTraceLoggingPolicy(**kwargs)
+        self.retry_policy = policies.RetryPolicy(**kwargs)
+        self.redirect_policy = policies.RedirectPolicy(**kwargs)

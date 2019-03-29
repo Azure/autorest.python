@@ -9,8 +9,8 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest import Configuration
-from msrest.universal_http import ClientRedirectPolicy, ClientRetryPolicy
+from azure.core.configuration import Configuration, ConnectionConfiguration
+from azure.core.pipeline import policies
 
 from .version import VERSION
 
@@ -25,21 +25,23 @@ class AutoRestParameterizedHostTestClientConfiguration(Configuration):
     :type host: str
     """
 
-    def __init__(
-            self, host):
+    def __init__(self, host, **kwargs):
 
         if host is None:
             raise ValueError("Parameter 'host' must not be None.")
-        base_url = 'http://{accountName}{host}'
 
-        super(AutoRestParameterizedHostTestClientConfiguration, self).__init__(base_url)
-        self._configure()
+        super(AutoRestParameterizedHostTestClientConfiguration, self).__init__(**kwargs)
+        self._configure(**kwargs)
 
-        self.add_user_agent('autorestparameterizedhosttestclient/{}'.format(VERSION))
+        self.user_agent_policy.add_user_agent('autorestparameterizedhosttestclient/{}'.format(VERSION))
 
         self.host = host
 
-    def _configure(self):
-        super(AutoRestParameterizedHostTestClientConfiguration, self)._configure()
-        self.retry_policy = ClientRetryPolicy()
-        self.redirect_policy = ClientRedirectPolicy()
+    def _configure(self, **kwargs):
+        self.connection = ConnectionConfiguration(**kwargs)
+        self.user_agent_policy = policies.UserAgentPolicy(**kwargs)
+        self.headers_policy = policies.HeadersPolicy(**kwargs)
+        self.proxy_policy = policies.ProxyPolicy(**kwargs)
+        self.logging_policy = policies.NetworkTraceLoggingPolicy(**kwargs)
+        self.retry_policy = policies.RetryPolicy(**kwargs)
+        self.redirect_policy = policies.RedirectPolicy(**kwargs)
