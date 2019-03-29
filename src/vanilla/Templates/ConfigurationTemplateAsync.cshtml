@@ -10,8 +10,8 @@
 @Header("# ").TrimMultilineHeader()
 # --------------------------------------------------------------------------
 @EmptyLine
-from msrest import Configuration
-from msrest.universal_http import AsyncClientRedirectPolicy, AsyncClientRetryPolicy
+from azure.core.configuration import Configuration, ConnectionConfiguration
+from azure.core.pipeline import policies
 @EmptyLine
 from ..version import VERSION
 @EmptyLine
@@ -31,33 +31,17 @@ class @(Model.Name)Configuration(Configuration):
 @:    @ParameterWrapComment(string.Empty, CodeModelPy.GetPropertyDocumentationString(property))
 @:    @ParameterWrapComment(string.Empty, ":type " + property.Name + ": " + Model.GetPropertyDocumentationType(property.ModelType))
 }
-
-@if (!Model.IsCustomBaseUri)
-{
-@:    :param str base_url: Service URL
-}
     """
 @EmptyLine
-    def __init__(
-            self@(Model.RequiredConstructorParameters)@(Model.IsCustomBaseUri ? "" : ", base_url=None")):
+    def __init__(self@(Model.RequiredConstructorParameters), **kwargs):
 @EmptyLine
         @Model.ValidateRequiredParameters
 
-@if (Model.IsCustomBaseUri)
-{
-@:        base_url = '@Model.BaseUrl'
-}
-else
-{
-@:        if not base_url:
-@:            base_url = '@Model.BaseUrl'
-}
-
 @EmptyLine
-        super(@(Model.Name)Configuration, self).__init__(base_url)
-        self._configure()
+        super(@(Model.Name)Configuration, self).__init__(**kwargs)
+        self._configure(**kwargs)
 @EmptyLine
-        self.add_user_agent('@(Model.UserAgent)/{}'.format(VERSION))
+        self.user_agent_policy.add_user_agent('@(Model.UserAgent)/{}'.format(VERSION))
 @if (Model.Properties.Any() || Model.ConstantProperties.Any())
 {
     @EmptyLine
@@ -71,7 +55,11 @@ else
     }
 }
 @EmptyLine
-    def _configure(self):
-        super(@(Model.Name)Configuration, self)._configure()
-        self.retry_policy = AsyncClientRetryPolicy()
-        self.redirect_policy = AsyncClientRedirectPolicy()
+    def _configure(self, **kwargs):
+        self.connection = ConnectionConfiguration(**kwargs)
+        self.user_agent_policy = policies.UserAgentPolicy(**kwargs)
+        self.headers_policy = policies.HeadersPolicy(**kwargs)
+        self.proxy_policy = policies.ProxyPolicy(**kwargs)
+        self.logging_policy = policies.NetworkTraceLoggingPolicy(**kwargs)
+        self.retry_policy = policies.AsyncRetryPolicy(**kwargs)
+        self.redirect_policy = policies.AsyncRedirectPolicy(**kwargs)
