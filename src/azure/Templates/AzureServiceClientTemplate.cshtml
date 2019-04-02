@@ -17,7 +17,7 @@
 {
 @:import warnings
 }
-from msrest.service_client import SDKClient
+# from azure.core import PipelineClient  TODO
 from msrest import Serializer, Deserializer
 @EmptyLine
 from ._configuration import @(Model.Name)Configuration
@@ -43,16 +43,14 @@ bool hasClientLevelMethods = Model.MethodTemplateModels.Any( each => each.Method
 @EmptyLine
 @if (hasClientLevelMethods)
 {
-@:class @(Model.Name)(@(Model.Name)OperationsMixin, SDKClient):
+@:class @(Model.Name)(@(Model.Name)OperationsMixin):
 }
 else
 {
-@:class @(Model.Name)(SDKClient):
+@:class @(Model.Name)(object):
 }
     """@Model.ServiceDocument
     @EmptyLine
-    :ivar config: Configuration for client.
-    :vartype config: @(Model.Name)Configuration
 @if (Model.MethodGroupModels.Any())
 {
     @EmptyLine
@@ -76,10 +74,10 @@ else
     """
 @EmptyLine
     def __init__(
-            self@(Model.RequiredConstructorParameters)@(Model.IsCustomBaseUri ? "" : ", base_url=None"), config=None, pipeline=None):
+            self@(Model.RequiredConstructorParameters)@(Model.IsCustomBaseUri ? "" : ", base_url=None"), config=None, **kwargs):
 @EmptyLine
-        self.config = config or @(Model.Name)Configuration(@(Model.ConfigConstructorParameters))
-        super(@(Model.Name), self).__init__(@(Settings.AddCredentials? "self.config.credentials" : PythonConstants.None), self.config, pipeline=pipeline)
+        self._config = config or @(Model.Name)Configuration(@(Model.ConfigConstructorParameters)**kwargs)
+        self._client = PipelineClient(base_url=@(!Model.IsCustomBaseUri? "base_url": PythonConstants.None), credentials=@(Settings.AddCredentials? "credentials" : PythonConstants.None), config=self._config, **kwargs)
 @EmptyLine
 @if (Model.ModelTemplateModels.Any(each => !each.Extensions.ContainsKey(AzureExtensions.ExternalExtension)))
 {
@@ -99,5 +97,5 @@ else
 @foreach (var methodGroup in Model.MethodGroupModels)
 {
         @:self.@(((string) methodGroup.Name).ToPythonCase()) = @((string) methodGroup.TypeName)(
-            @:self._client, self.config, self._serialize, self._deserialize)
+            @:self._client, self._config, self._serialize, self._deserialize)
 }

@@ -132,10 +132,7 @@ namespace AutoRest.Python.Model
                     configParams.Add(property.Name);
                 }
                 var param = string.Join(", ", configParams);
-                if (!IsCustomBaseUri)
-                {
-                    param += (param.IsNullOrEmpty() ? "" : ", ") + "base_url";
-                }
+                param += (param.IsNullOrEmpty() ? "" : ", ");
                 return param;
             }
         }
