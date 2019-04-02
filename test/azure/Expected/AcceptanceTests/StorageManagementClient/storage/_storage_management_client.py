@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.service_client import SDKClient
+# from azure.core import PipelineClient  TODO
 from msrest import Serializer, Deserializer
 
 from ._configuration import StorageManagementClientConfiguration
@@ -18,11 +18,9 @@ from .operations import UsageOperations
 from . import models
 
 
-class StorageManagementClient(SDKClient):
+class StorageManagementClient(object):
     """StorageManagementClient
 
-    :ivar config: Configuration for client.
-    :vartype config: StorageManagementClientConfiguration
 
     :ivar storage_accounts: StorageAccounts operations
     :vartype storage_accounts: storage.operations.StorageAccountsOperations
@@ -40,10 +38,10 @@ class StorageManagementClient(SDKClient):
     """
 
     def __init__(
-            self, credentials, subscription_id, base_url=None, config=None, pipeline=None):
+            self, credentials, subscription_id, base_url=None, config=None, **kwargs):
 
-        self.config = config or StorageManagementClientConfiguration(credentials, subscription_id, base_url)
-        super(StorageManagementClient, self).__init__(self.config.credentials, self.config, pipeline=pipeline)
+        self._config = config or StorageManagementClientConfiguration(credentials, subscription_id, **kwargs)
+        self._client = PipelineClient(base_url=base_url, credentials=credentials, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '2015-05-01-preview'
@@ -51,6 +49,6 @@ class StorageManagementClient(SDKClient):
         self._deserialize = Deserializer(client_models)
 
         self.storage_accounts = StorageAccountsOperations(
-            self._client, self.config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize)
         self.usage = UsageOperations(
-            self._client, self.config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize)

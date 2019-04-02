@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.service_client import SDKClient
+# from azure.core import PipelineClient  TODO
 from msrest import Serializer, Deserializer
 
 from ._configuration import AutoRestParameterFlatteningConfiguration
@@ -18,11 +18,9 @@ from .operations import AvailabilitySetsOperations
 from . import models
 
 
-class AutoRestParameterFlattening(SDKClient):
+class AutoRestParameterFlattening(object):
     """Resource Flattening for AutoRest
 
-    :ivar config: Configuration for client.
-    :vartype config: AutoRestParameterFlatteningConfiguration
 
     :ivar availability_sets: AvailabilitySets operations
     :vartype availability_sets: parameterflattening.operations.AvailabilitySetsOperations
@@ -30,11 +28,10 @@ class AutoRestParameterFlattening(SDKClient):
     :param str base_url: Service URL
     """
 
-    def __init__(
-            self, base_url=None, config=None, pipeline=None):
+    def __init__(self, base_url=None, config=None, **kwargs):
 
-        self.config = config or AutoRestParameterFlatteningConfiguration(base_url)
-        super(AutoRestParameterFlattening, self).__init__(None, self.config, pipeline=pipeline)
+        self._config = config or AutoRestParameterFlatteningConfiguration(**kwargs)
+        self._client = PipelineClient(base_url=base_url, credentials=None, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '1.0.0'
@@ -42,4 +39,4 @@ class AutoRestParameterFlattening(SDKClient):
         self._deserialize = Deserializer(client_models)
 
         self.availability_sets = AvailabilitySetsOperations(
-            self._client, self.config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize)

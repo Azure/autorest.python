@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.async_client import SDKClientAsync
+# from azure.core import AsyncPipelineClient  TODO
 from msrest import Serializer, Deserializer
 
 from ._configuration_async import AutoRestAzureSpecialParametersTestClientConfiguration
@@ -24,11 +24,9 @@ from .operations_async import HeaderOperations
 from .. import models
 
 
-class AutoRestAzureSpecialParametersTestClient(SDKClientAsync):
+class AutoRestAzureSpecialParametersTestClient:
     """Test Infrastructure for AutoRest
 
-    :ivar config: Configuration for client.
-    :vartype config: AutoRestAzureSpecialParametersTestClientConfiguration
 
     :ivar xms_client_request_id: XMsClientRequestId operations
     :vartype xms_client_request_id: azurespecialproperties.operations.XMsClientRequestIdOperations
@@ -57,10 +55,10 @@ class AutoRestAzureSpecialParametersTestClient(SDKClientAsync):
     """
 
     def __init__(
-            self, credentials, subscription_id, base_url=None):
+            self, credentials, subscription_id, base_url=None, config=None, **kwargs):
 
-        self.config = AutoRestAzureSpecialParametersTestClientConfiguration(credentials, subscription_id, base_url)
-        super(AutoRestAzureSpecialParametersTestClient, self).__init__(self.config.credentials, self.config)
+        self._config = config or AutoRestAzureSpecialParametersTestClientConfiguration(credentials, subscription_id, **kwargs)
+        self._client = AsyncPipelineClient(base_url=base_url, credentials=credentials, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '2015-07-01-preview'
@@ -68,18 +66,18 @@ class AutoRestAzureSpecialParametersTestClient(SDKClientAsync):
         self._deserialize = Deserializer(client_models)
 
         self.xms_client_request_id = XMsClientRequestIdOperations(
-            self._client, self.config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize)
         self.subscription_in_credentials = SubscriptionInCredentialsOperations(
-            self._client, self.config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize)
         self.subscription_in_method = SubscriptionInMethodOperations(
-            self._client, self.config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize)
         self.api_version_default = ApiVersionDefaultOperations(
-            self._client, self.config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize)
         self.api_version_local = ApiVersionLocalOperations(
-            self._client, self.config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize)
         self.skip_url_encoding = SkipUrlEncodingOperations(
-            self._client, self.config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize)
         self.odata = OdataOperations(
-            self._client, self.config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize)
         self.header = HeaderOperations(
-            self._client, self.config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize)

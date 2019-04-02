@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.service_client import SDKClient
+# from azure.core import PipelineClient  TODO
 from msrest import Serializer, Deserializer
 
 from ._configuration import AutoRestResourceFlatteningTestServiceConfiguration
@@ -17,11 +17,9 @@ from .operations import AutoRestResourceFlatteningTestServiceOperationsMixin
 from . import models
 
 
-class AutoRestResourceFlatteningTestService(AutoRestResourceFlatteningTestServiceOperationsMixin, SDKClient):
+class AutoRestResourceFlatteningTestService(AutoRestResourceFlatteningTestServiceOperationsMixin):
     """Resource Flattening for AutoRest
 
-    :ivar config: Configuration for client.
-    :vartype config: AutoRestResourceFlatteningTestServiceConfiguration
 
     :param credentials: Credentials needed for the client to connect to Azure.
     :type credentials: :mod:`A msrestazure Credentials
@@ -30,10 +28,10 @@ class AutoRestResourceFlatteningTestService(AutoRestResourceFlatteningTestServic
     """
 
     def __init__(
-            self, credentials, base_url=None, config=None, pipeline=None):
+            self, credentials, base_url=None, config=None, **kwargs):
 
-        self.config = config or AutoRestResourceFlatteningTestServiceConfiguration(credentials, base_url)
-        super(AutoRestResourceFlatteningTestService, self).__init__(self.config.credentials, self.config, pipeline=pipeline)
+        self._config = config or AutoRestResourceFlatteningTestServiceConfiguration(credentials, **kwargs)
+        self._client = PipelineClient(base_url=base_url, credentials=credentials, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '1.0.0'

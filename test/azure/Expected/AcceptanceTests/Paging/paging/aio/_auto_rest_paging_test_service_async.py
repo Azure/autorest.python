@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.async_client import SDKClientAsync
+# from azure.core import AsyncPipelineClient  TODO
 from msrest import Serializer, Deserializer
 
 from ._configuration_async import AutoRestPagingTestServiceConfiguration
@@ -17,11 +17,9 @@ from .operations_async import PagingOperations
 from .. import models
 
 
-class AutoRestPagingTestService(SDKClientAsync):
+class AutoRestPagingTestService:
     """Long-running Operation for AutoRest
 
-    :ivar config: Configuration for client.
-    :vartype config: AutoRestPagingTestServiceConfiguration
 
     :ivar paging: Paging operations
     :vartype paging: paging.operations.PagingOperations
@@ -33,10 +31,10 @@ class AutoRestPagingTestService(SDKClientAsync):
     """
 
     def __init__(
-            self, credentials, base_url=None):
+            self, credentials, base_url=None, config=None, **kwargs):
 
-        self.config = AutoRestPagingTestServiceConfiguration(credentials, base_url)
-        super(AutoRestPagingTestService, self).__init__(self.config.credentials, self.config)
+        self._config = config or AutoRestPagingTestServiceConfiguration(credentials, **kwargs)
+        self._client = AsyncPipelineClient(base_url=base_url, credentials=credentials, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '1.0.0'
@@ -44,4 +42,4 @@ class AutoRestPagingTestService(SDKClientAsync):
         self._deserialize = Deserializer(client_models)
 
         self.paging = PagingOperations(
-            self._client, self.config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize)

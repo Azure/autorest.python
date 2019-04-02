@@ -9,18 +9,16 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.async_client import SDKClientAsync
+# from azure.core import AsyncPipelineClient  TODO
 from msrest import Serializer, Deserializer
 
 from ._configuration_async import AutoRestHeadExceptionTestServiceConfiguration
 from .operations_async import HeadExceptionOperations
 
 
-class AutoRestHeadExceptionTestService(SDKClientAsync):
+class AutoRestHeadExceptionTestService:
     """Test Infrastructure for AutoRest
 
-    :ivar config: Configuration for client.
-    :vartype config: AutoRestHeadExceptionTestServiceConfiguration
 
     :ivar head_exception: HeadException operations
     :vartype head_exception: headexceptions.operations.HeadExceptionOperations
@@ -32,10 +30,10 @@ class AutoRestHeadExceptionTestService(SDKClientAsync):
     """
 
     def __init__(
-            self, credentials, base_url=None):
+            self, credentials, base_url=None, config=None, **kwargs):
 
-        self.config = AutoRestHeadExceptionTestServiceConfiguration(credentials, base_url)
-        super(AutoRestHeadExceptionTestService, self).__init__(self.config.credentials, self.config)
+        self._config = config or AutoRestHeadExceptionTestServiceConfiguration(credentials, **kwargs)
+        self._client = AsyncPipelineClient(base_url=base_url, credentials=credentials, config=self._config, **kwargs)
 
         client_models = {}
         self.api_version = '1.0.0'
@@ -43,4 +41,4 @@ class AutoRestHeadExceptionTestService(SDKClientAsync):
         self._deserialize = Deserializer(client_models)
 
         self.head_exception = HeadExceptionOperations(
-            self._client, self.config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize)

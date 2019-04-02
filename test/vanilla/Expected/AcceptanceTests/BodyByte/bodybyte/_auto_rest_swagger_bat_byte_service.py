@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.service_client import SDKClient
+# from azure.core import PipelineClient  TODO
 from msrest import Serializer, Deserializer
 
 from ._configuration import AutoRestSwaggerBATByteServiceConfiguration
@@ -17,11 +17,9 @@ from .operations import ByteOperations
 from . import models
 
 
-class AutoRestSwaggerBATByteService(SDKClient):
+class AutoRestSwaggerBATByteService(object):
     """Test Infrastructure for AutoRest Swagger BAT
 
-    :ivar config: Configuration for client.
-    :vartype config: AutoRestSwaggerBATByteServiceConfiguration
 
     :ivar byte: Byte operations
     :vartype byte: bodybyte.operations.ByteOperations
@@ -29,11 +27,10 @@ class AutoRestSwaggerBATByteService(SDKClient):
     :param str base_url: Service URL
     """
 
-    def __init__(
-            self, base_url=None, config=None, pipeline=None):
+    def __init__(self, base_url=None, config=None, **kwargs):
 
-        self.config = config or AutoRestSwaggerBATByteServiceConfiguration(base_url)
-        super(AutoRestSwaggerBATByteService, self).__init__(None, self.config, pipeline=pipeline)
+        self._config = config or AutoRestSwaggerBATByteServiceConfiguration(**kwargs)
+        self._client = PipelineClient(base_url=base_url, credentials=None, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '1.0.0'
@@ -41,4 +38,4 @@ class AutoRestSwaggerBATByteService(SDKClient):
         self._deserialize = Deserializer(client_models)
 
         self.byte = ByteOperations(
-            self._client, self.config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize)

@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.service_client import SDKClient
+# from azure.core import PipelineClient  TODO
 from msrest import Serializer, Deserializer
 
 from ._configuration import PetStoreIncConfiguration
@@ -18,11 +18,9 @@ from .operations import PetOperations
 from . import models
 
 
-class PetStoreInc(SDKClient):
+class PetStoreInc(object):
     """PetStore
 
-    :ivar config: Configuration for client.
-    :vartype config: PetStoreIncConfiguration
 
     :ivar pet: Pet operations
     :vartype pet: extensibleenumsswagger.operations.PetOperations
@@ -30,11 +28,10 @@ class PetStoreInc(SDKClient):
     :param str base_url: Service URL
     """
 
-    def __init__(
-            self, base_url=None, config=None, pipeline=None):
+    def __init__(self, base_url=None, config=None, **kwargs):
 
-        self.config = config or PetStoreIncConfiguration(base_url)
-        super(PetStoreInc, self).__init__(None, self.config, pipeline=pipeline)
+        self._config = config or PetStoreIncConfiguration(**kwargs)
+        self._client = PipelineClient(base_url=base_url, credentials=None, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '2016-07-07'
@@ -42,4 +39,4 @@ class PetStoreInc(SDKClient):
         self._deserialize = Deserializer(client_models)
 
         self.pet = PetOperations(
-            self._client, self.config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize)

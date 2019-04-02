@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.service_client import SDKClient
+# from azure.core import PipelineClient  TODO
 from msrest import Serializer, Deserializer
 
 from ._configuration import AutoRestParameterGroupingTestServiceConfiguration
@@ -17,11 +17,9 @@ from .operations import ParameterGroupingOperations
 from . import models
 
 
-class AutoRestParameterGroupingTestService(SDKClient):
+class AutoRestParameterGroupingTestService(object):
     """Test Infrastructure for AutoRest
 
-    :ivar config: Configuration for client.
-    :vartype config: AutoRestParameterGroupingTestServiceConfiguration
 
     :ivar parameter_grouping: ParameterGrouping operations
     :vartype parameter_grouping: azureparametergrouping.operations.ParameterGroupingOperations
@@ -33,10 +31,10 @@ class AutoRestParameterGroupingTestService(SDKClient):
     """
 
     def __init__(
-            self, credentials, base_url=None, config=None, pipeline=None):
+            self, credentials, base_url=None, config=None, **kwargs):
 
-        self.config = config or AutoRestParameterGroupingTestServiceConfiguration(credentials, base_url)
-        super(AutoRestParameterGroupingTestService, self).__init__(self.config.credentials, self.config, pipeline=pipeline)
+        self._config = config or AutoRestParameterGroupingTestServiceConfiguration(credentials, **kwargs)
+        self._client = PipelineClient(base_url=base_url, credentials=credentials, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '1.0.0'
@@ -44,4 +42,4 @@ class AutoRestParameterGroupingTestService(SDKClient):
         self._deserialize = Deserializer(client_models)
 
         self.parameter_grouping = ParameterGroupingOperations(
-            self._client, self.config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize)

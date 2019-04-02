@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.async_client import SDKClientAsync
+# from azure.core import AsyncPipelineClient  TODO
 from msrest import Serializer, Deserializer
 
 from ._configuration_async import AutoRestRequiredOptionalTestServiceConfiguration
@@ -18,11 +18,9 @@ from .operations_async import ExplicitOperations
 from .. import models
 
 
-class AutoRestRequiredOptionalTestService(SDKClientAsync):
+class AutoRestRequiredOptionalTestService:
     """Test Infrastructure for AutoRest
 
-    :ivar config: Configuration for client.
-    :vartype config: AutoRestRequiredOptionalTestServiceConfiguration
 
     :ivar implicit: Implicit operations
     :vartype implicit: requiredoptional.aio.operations_async.ImplicitOperations
@@ -39,10 +37,10 @@ class AutoRestRequiredOptionalTestService(SDKClientAsync):
     """
 
     def __init__(
-            self, required_global_path, required_global_query, optional_global_query=None, base_url=None, config=None, pipeline=None):
+            self, required_global_path, required_global_query, optional_global_query=None, base_url=None, config=None, **kwargs):
 
-        self.config = config or AutoRestRequiredOptionalTestServiceConfiguration(required_global_path, required_global_query, optional_global_query, base_url)
-        super(AutoRestRequiredOptionalTestService, self).__init__(None, self.config, pipeline=pipeline)
+        self._config = config or AutoRestRequiredOptionalTestServiceConfiguration(required_global_path, required_global_query, optional_global_query, **kwargs)
+        self._client = AsyncPipelineClient(base_url=base_url, credentials=None, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '1.0.0'
@@ -50,6 +48,6 @@ class AutoRestRequiredOptionalTestService(SDKClientAsync):
         self._deserialize = Deserializer(client_models)
 
         self.implicit = ImplicitOperations(
-            self._client, self.config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize)
         self.explicit = ExplicitOperations(
-            self._client, self.config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize)

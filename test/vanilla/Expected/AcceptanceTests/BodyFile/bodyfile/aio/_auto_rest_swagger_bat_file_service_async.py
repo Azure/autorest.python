@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.async_client import SDKClientAsync
+# from azure.core import AsyncPipelineClient  TODO
 from msrest import Serializer, Deserializer
 
 from ._configuration_async import AutoRestSwaggerBATFileServiceConfiguration
@@ -17,11 +17,9 @@ from .operations_async import FilesOperations
 from .. import models
 
 
-class AutoRestSwaggerBATFileService(SDKClientAsync):
+class AutoRestSwaggerBATFileService:
     """Test Infrastructure for AutoRest Swagger BAT
 
-    :ivar config: Configuration for client.
-    :vartype config: AutoRestSwaggerBATFileServiceConfiguration
 
     :ivar files: Files operations
     :vartype files: bodyfile.aio.operations_async.FilesOperations
@@ -30,10 +28,10 @@ class AutoRestSwaggerBATFileService(SDKClientAsync):
     """
 
     def __init__(
-            self, base_url=None, config=None, pipeline=None):
+            self, base_url=None, config=None, **kwargs):
 
-        self.config = config or AutoRestSwaggerBATFileServiceConfiguration(base_url)
-        super(AutoRestSwaggerBATFileService, self).__init__(None, self.config, pipeline=pipeline)
+        self._config = config or AutoRestSwaggerBATFileServiceConfiguration(**kwargs)
+        self._client = AsyncPipelineClient(base_url=base_url, credentials=None, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '1.0.0'
@@ -41,4 +39,4 @@ class AutoRestSwaggerBATFileService(SDKClientAsync):
         self._deserialize = Deserializer(client_models)
 
         self.files = FilesOperations(
-            self._client, self.config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize)

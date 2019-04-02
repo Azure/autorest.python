@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.service_client import SDKClient
+# from azure.core import PipelineClient  TODO
 from msrest import Serializer, Deserializer
 
 from ._configuration import AutoRestSwaggerBATServiceConfiguration
@@ -18,11 +18,9 @@ from .operations import EnumOperations
 from . import models
 
 
-class AutoRestSwaggerBATService(SDKClient):
+class AutoRestSwaggerBATService(object):
     """Test Infrastructure for AutoRest Swagger BAT
 
-    :ivar config: Configuration for client.
-    :vartype config: AutoRestSwaggerBATServiceConfiguration
 
     :ivar string: String operations
     :vartype string: bodystring.operations.StringOperations
@@ -32,11 +30,10 @@ class AutoRestSwaggerBATService(SDKClient):
     :param str base_url: Service URL
     """
 
-    def __init__(
-            self, base_url=None, config=None, pipeline=None):
+    def __init__(self, base_url=None, config=None, **kwargs):
 
-        self.config = config or AutoRestSwaggerBATServiceConfiguration(base_url)
-        super(AutoRestSwaggerBATService, self).__init__(None, self.config, pipeline=pipeline)
+        self._config = config or AutoRestSwaggerBATServiceConfiguration(**kwargs)
+        self._client = PipelineClient(base_url=base_url, credentials=None, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '1.0.0'
@@ -44,6 +41,6 @@ class AutoRestSwaggerBATService(SDKClient):
         self._deserialize = Deserializer(client_models)
 
         self.string = StringOperations(
-            self._client, self.config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize)
         self.enum = EnumOperations(
-            self._client, self.config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize)

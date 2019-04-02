@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.async_client import SDKClientAsync
+# from azure.core import AsyncPipelineClient  TODO
 from msrest import Serializer, Deserializer
 
 from ._configuration_async import AutoRestParameterizedCustomHostTestClientConfiguration
@@ -17,11 +17,9 @@ from .operations_async import PathsOperations
 from .. import models
 
 
-class AutoRestParameterizedCustomHostTestClient(SDKClientAsync):
+class AutoRestParameterizedCustomHostTestClient:
     """Test Infrastructure for AutoRest
 
-    :ivar config: Configuration for client.
-    :vartype config: AutoRestParameterizedCustomHostTestClientConfiguration
 
     :ivar paths: Paths operations
     :vartype paths: custombaseurlmoreoptions.aio.operations_async.PathsOperations
@@ -34,10 +32,10 @@ class AutoRestParameterizedCustomHostTestClient(SDKClientAsync):
     """
 
     def __init__(
-            self, subscription_id, dns_suffix, config=None, pipeline=None):
+            self, subscription_id, dns_suffix, config=None, **kwargs):
 
-        self.config = config or AutoRestParameterizedCustomHostTestClientConfiguration(subscription_id, dns_suffix)
-        super(AutoRestParameterizedCustomHostTestClient, self).__init__(None, self.config, pipeline=pipeline)
+        self._config = config or AutoRestParameterizedCustomHostTestClientConfiguration(subscription_id, dns_suffix, **kwargs)
+        self._client = AsyncPipelineClient(base_url=None, credentials=None, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '1.0.0'
@@ -45,4 +43,4 @@ class AutoRestParameterizedCustomHostTestClient(SDKClientAsync):
         self._deserialize = Deserializer(client_models)
 
         self.paths = PathsOperations(
-            self._client, self.config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize)

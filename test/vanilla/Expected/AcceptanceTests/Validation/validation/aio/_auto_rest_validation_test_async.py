@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.async_client import SDKClientAsync
+# from azure.core import AsyncPipelineClient  TODO
 from msrest import Serializer, Deserializer
 
 from ._configuration_async import AutoRestValidationTestConfiguration
@@ -18,11 +18,9 @@ from msrest.exceptions import HttpOperationError
 from .. import models
 
 
-class AutoRestValidationTest(AutoRestValidationTestOperationsMixin, SDKClientAsync):
+class AutoRestValidationTest(AutoRestValidationTestOperationsMixin):
     """Test Infrastructure for AutoRest. No server backend exists for these tests.
 
-    :ivar config: Configuration for client.
-    :vartype config: AutoRestValidationTestConfiguration
 
     :param subscription_id: Subscription ID.
     :type subscription_id: str
@@ -30,10 +28,10 @@ class AutoRestValidationTest(AutoRestValidationTestOperationsMixin, SDKClientAsy
     """
 
     def __init__(
-            self, subscription_id, base_url=None, config=None, pipeline=None):
+            self, subscription_id, base_url=None, config=None, **kwargs):
 
-        self.config = config or AutoRestValidationTestConfiguration(subscription_id, base_url)
-        super(AutoRestValidationTest, self).__init__(None, self.config, pipeline=pipeline)
+        self._config = config or AutoRestValidationTestConfiguration(subscription_id, **kwargs)
+        self._client = AsyncPipelineClient(base_url=base_url, credentials=None, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '1.0.0'

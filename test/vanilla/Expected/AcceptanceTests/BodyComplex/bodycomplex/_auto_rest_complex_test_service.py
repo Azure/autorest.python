@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.service_client import SDKClient
+# from azure.core import PipelineClient  TODO
 from msrest import Serializer, Deserializer
 
 from ._configuration import AutoRestComplexTestServiceConfiguration
@@ -26,11 +26,9 @@ from .operations import FlattencomplexOperations
 from . import models
 
 
-class AutoRestComplexTestService(SDKClient):
+class AutoRestComplexTestService(object):
     """Test Infrastructure for AutoRest
 
-    :ivar config: Configuration for client.
-    :vartype config: AutoRestComplexTestServiceConfiguration
 
     :ivar basic: Basic operations
     :vartype basic: bodycomplex.operations.BasicOperations
@@ -54,11 +52,10 @@ class AutoRestComplexTestService(SDKClient):
     :param str base_url: Service URL
     """
 
-    def __init__(
-            self, base_url=None, config=None, pipeline=None):
+    def __init__(self, base_url=None, config=None, **kwargs):
 
-        self.config = config or AutoRestComplexTestServiceConfiguration(base_url)
-        super(AutoRestComplexTestService, self).__init__(None, self.config, pipeline=pipeline)
+        self._config = config or AutoRestComplexTestServiceConfiguration(**kwargs)
+        self._client = PipelineClient(base_url=base_url, credentials=None, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '2016-02-29'
@@ -66,20 +63,20 @@ class AutoRestComplexTestService(SDKClient):
         self._deserialize = Deserializer(client_models)
 
         self.basic = BasicOperations(
-            self._client, self.config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize)
         self.primitive = PrimitiveOperations(
-            self._client, self.config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize)
         self.array = ArrayOperations(
-            self._client, self.config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize)
         self.dictionary = DictionaryOperations(
-            self._client, self.config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize)
         self.inheritance = InheritanceOperations(
-            self._client, self.config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize)
         self.polymorphism = PolymorphismOperations(
-            self._client, self.config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize)
         self.polymorphicrecursive = PolymorphicrecursiveOperations(
-            self._client, self.config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize)
         self.readonlyproperty = ReadonlypropertyOperations(
-            self._client, self.config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize)
         self.flattencomplex = FlattencomplexOperations(
-            self._client, self.config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize)

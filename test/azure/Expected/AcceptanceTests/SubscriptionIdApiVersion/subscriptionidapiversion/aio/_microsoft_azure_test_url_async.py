@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.async_client import SDKClientAsync
+# from azure.core import AsyncPipelineClient  TODO
 from msrest import Serializer, Deserializer
 
 from ._configuration_async import MicrosoftAzureTestUrlConfiguration
@@ -17,11 +17,9 @@ from .operations_async import GroupOperations
 from .. import models
 
 
-class MicrosoftAzureTestUrl(SDKClientAsync):
+class MicrosoftAzureTestUrl:
     """Some cool documentation.
 
-    :ivar config: Configuration for client.
-    :vartype config: MicrosoftAzureTestUrlConfiguration
 
     :ivar group: Group operations
     :vartype group: subscriptionidapiversion.operations.GroupOperations
@@ -35,10 +33,10 @@ class MicrosoftAzureTestUrl(SDKClientAsync):
     """
 
     def __init__(
-            self, credentials, subscription_id, base_url=None):
+            self, credentials, subscription_id, base_url=None, config=None, **kwargs):
 
-        self.config = MicrosoftAzureTestUrlConfiguration(credentials, subscription_id, base_url)
-        super(MicrosoftAzureTestUrl, self).__init__(self.config.credentials, self.config)
+        self._config = config or MicrosoftAzureTestUrlConfiguration(credentials, subscription_id, **kwargs)
+        self._client = AsyncPipelineClient(base_url=base_url, credentials=credentials, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '2014-04-01-preview'
@@ -46,4 +44,4 @@ class MicrosoftAzureTestUrl(SDKClientAsync):
         self._deserialize = Deserializer(client_models)
 
         self.group = GroupOperations(
-            self._client, self.config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize)

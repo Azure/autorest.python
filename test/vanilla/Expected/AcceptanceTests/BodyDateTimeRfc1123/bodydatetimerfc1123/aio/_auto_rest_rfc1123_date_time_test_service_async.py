@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.async_client import SDKClientAsync
+# from azure.core import AsyncPipelineClient  TODO
 from msrest import Serializer, Deserializer
 
 from ._configuration_async import AutoRestRFC1123DateTimeTestServiceConfiguration
@@ -17,11 +17,9 @@ from .operations_async import Datetimerfc1123Operations
 from .. import models
 
 
-class AutoRestRFC1123DateTimeTestService(SDKClientAsync):
+class AutoRestRFC1123DateTimeTestService:
     """Test Infrastructure for AutoRest
 
-    :ivar config: Configuration for client.
-    :vartype config: AutoRestRFC1123DateTimeTestServiceConfiguration
 
     :ivar datetimerfc1123: Datetimerfc1123 operations
     :vartype datetimerfc1123: bodydatetimerfc1123.aio.operations_async.Datetimerfc1123Operations
@@ -30,10 +28,10 @@ class AutoRestRFC1123DateTimeTestService(SDKClientAsync):
     """
 
     def __init__(
-            self, base_url=None, config=None, pipeline=None):
+            self, base_url=None, config=None, **kwargs):
 
-        self.config = config or AutoRestRFC1123DateTimeTestServiceConfiguration(base_url)
-        super(AutoRestRFC1123DateTimeTestService, self).__init__(None, self.config, pipeline=pipeline)
+        self._config = config or AutoRestRFC1123DateTimeTestServiceConfiguration(**kwargs)
+        self._client = AsyncPipelineClient(base_url=base_url, credentials=None, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '1.0.0'
@@ -41,4 +39,4 @@ class AutoRestRFC1123DateTimeTestService(SDKClientAsync):
         self._deserialize = Deserializer(client_models)
 
         self.datetimerfc1123 = Datetimerfc1123Operations(
-            self._client, self.config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize)

@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.async_client import SDKClientAsync
+# from azure.core import AsyncPipelineClient  TODO
 from msrest import Serializer, Deserializer
 
 from ._configuration_async import AutoRestNumberTestServiceConfiguration
@@ -17,11 +17,9 @@ from .operations_async import NumberOperations
 from .. import models
 
 
-class AutoRestNumberTestService(SDKClientAsync):
+class AutoRestNumberTestService:
     """Test Infrastructure for AutoRest
 
-    :ivar config: Configuration for client.
-    :vartype config: AutoRestNumberTestServiceConfiguration
 
     :ivar number: Number operations
     :vartype number: bodynumber.aio.operations_async.NumberOperations
@@ -30,10 +28,10 @@ class AutoRestNumberTestService(SDKClientAsync):
     """
 
     def __init__(
-            self, base_url=None, config=None, pipeline=None):
+            self, base_url=None, config=None, **kwargs):
 
-        self.config = config or AutoRestNumberTestServiceConfiguration(base_url)
-        super(AutoRestNumberTestService, self).__init__(None, self.config, pipeline=pipeline)
+        self._config = config or AutoRestNumberTestServiceConfiguration(**kwargs)
+        self._client = AsyncPipelineClient(base_url=base_url, credentials=None, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '1.0.0'
@@ -41,4 +39,4 @@ class AutoRestNumberTestService(SDKClientAsync):
         self._deserialize = Deserializer(client_models)
 
         self.number = NumberOperations(
-            self._client, self.config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize)

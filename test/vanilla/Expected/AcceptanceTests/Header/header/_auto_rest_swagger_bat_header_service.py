@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.service_client import SDKClient
+# from azure.core import PipelineClient  TODO
 from msrest import Serializer, Deserializer
 
 from ._configuration import AutoRestSwaggerBATHeaderServiceConfiguration
@@ -17,11 +17,9 @@ from .operations import HeaderOperations
 from . import models
 
 
-class AutoRestSwaggerBATHeaderService(SDKClient):
+class AutoRestSwaggerBATHeaderService(object):
     """Test Infrastructure for AutoRest
 
-    :ivar config: Configuration for client.
-    :vartype config: AutoRestSwaggerBATHeaderServiceConfiguration
 
     :ivar header: Header operations
     :vartype header: header.operations.HeaderOperations
@@ -29,11 +27,10 @@ class AutoRestSwaggerBATHeaderService(SDKClient):
     :param str base_url: Service URL
     """
 
-    def __init__(
-            self, base_url=None, config=None, pipeline=None):
+    def __init__(self, base_url=None, config=None, **kwargs):
 
-        self.config = config or AutoRestSwaggerBATHeaderServiceConfiguration(base_url)
-        super(AutoRestSwaggerBATHeaderService, self).__init__(None, self.config, pipeline=pipeline)
+        self._config = config or AutoRestSwaggerBATHeaderServiceConfiguration(**kwargs)
+        self._client = PipelineClient(base_url=base_url, credentials=None, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '1.0.0'
@@ -41,4 +38,4 @@ class AutoRestSwaggerBATHeaderService(SDKClient):
         self._deserialize = Deserializer(client_models)
 
         self.header = HeaderOperations(
-            self._client, self.config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize)

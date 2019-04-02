@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.async_client import SDKClientAsync
+# from azure.core import AsyncPipelineClient  TODO
 from msrest import Serializer, Deserializer
 
 from ._configuration_async import AutoRestReportServiceForAzureConfiguration
@@ -17,11 +17,9 @@ from .operations_async import AutoRestReportServiceForAzureOperationsMixin
 from .. import models
 
 
-class AutoRestReportServiceForAzure(AutoRestReportServiceForAzureOperationsMixin, SDKClientAsync):
+class AutoRestReportServiceForAzure(AutoRestReportServiceForAzureOperationsMixin):
     """Test Infrastructure for AutoRest
 
-    :ivar config: Configuration for client.
-    :vartype config: AutoRestReportServiceForAzureConfiguration
 
     :param credentials: Credentials needed for the client to connect to Azure.
     :type credentials: :mod:`A msrestazure Credentials
@@ -30,10 +28,10 @@ class AutoRestReportServiceForAzure(AutoRestReportServiceForAzureOperationsMixin
     """
 
     def __init__(
-            self, credentials, base_url=None):
+            self, credentials, base_url=None, config=None, **kwargs):
 
-        self.config = AutoRestReportServiceForAzureConfiguration(credentials, base_url)
-        super(AutoRestReportServiceForAzure, self).__init__(self.config.credentials, self.config)
+        self._config = config or AutoRestReportServiceForAzureConfiguration(credentials, **kwargs)
+        self._client = AsyncPipelineClient(base_url=base_url, credentials=credentials, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '1.0.0'

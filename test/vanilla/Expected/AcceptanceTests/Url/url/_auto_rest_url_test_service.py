@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.service_client import SDKClient
+# from azure.core import PipelineClient  TODO
 from msrest import Serializer, Deserializer
 
 from ._configuration import AutoRestUrlTestServiceConfiguration
@@ -19,11 +19,9 @@ from .operations import PathItemsOperations
 from . import models
 
 
-class AutoRestUrlTestService(SDKClient):
+class AutoRestUrlTestService(object):
     """Test Infrastructure for AutoRest
 
-    :ivar config: Configuration for client.
-    :vartype config: AutoRestUrlTestServiceConfiguration
 
     :ivar paths: Paths operations
     :vartype paths: url.operations.PathsOperations
@@ -40,11 +38,10 @@ class AutoRestUrlTestService(SDKClient):
     :param str base_url: Service URL
     """
 
-    def __init__(
-            self, global_string_path, global_string_query=None, base_url=None, config=None, pipeline=None):
+    def __init__(self, global_string_path, global_string_query=None, base_url=None, config=None, **kwargs):
 
-        self.config = config or AutoRestUrlTestServiceConfiguration(global_string_path, global_string_query, base_url)
-        super(AutoRestUrlTestService, self).__init__(None, self.config, pipeline=pipeline)
+        self._config = config or AutoRestUrlTestServiceConfiguration(global_string_path, global_string_query, **kwargs)
+        self._client = PipelineClient(base_url=base_url, credentials=None, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '1.0.0'
@@ -52,8 +49,8 @@ class AutoRestUrlTestService(SDKClient):
         self._deserialize = Deserializer(client_models)
 
         self.paths = PathsOperations(
-            self._client, self.config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize)
         self.queries = QueriesOperations(
-            self._client, self.config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize)
         self.path_items = PathItemsOperations(
-            self._client, self.config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize)

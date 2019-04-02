@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.service_client import SDKClient
+# from azure.core import PipelineClient  TODO
 from msrest import Serializer, Deserializer
 
 from ._configuration import AutoRestSwaggerBATXMLServiceConfiguration
@@ -18,11 +18,9 @@ from .operations import XmlOperations
 from . import models
 
 
-class AutoRestSwaggerBATXMLService(SDKClient):
+class AutoRestSwaggerBATXMLService(object):
     """Test Infrastructure for AutoRest Swagger BAT
 
-    :ivar config: Configuration for client.
-    :vartype config: AutoRestSwaggerBATXMLServiceConfiguration
 
     :ivar xml: Xml operations
     :vartype xml: xmlservice.operations.XmlOperations
@@ -30,11 +28,10 @@ class AutoRestSwaggerBATXMLService(SDKClient):
     :param str base_url: Service URL
     """
 
-    def __init__(
-            self, base_url=None, config=None, pipeline=None):
+    def __init__(self, base_url=None, config=None, **kwargs):
 
-        self.config = config or AutoRestSwaggerBATXMLServiceConfiguration(base_url)
-        super(AutoRestSwaggerBATXMLService, self).__init__(None, self.config, pipeline=pipeline)
+        self._config = config or AutoRestSwaggerBATXMLServiceConfiguration(**kwargs)
+        self._client = PipelineClient(base_url=base_url, credentials=None, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '1.0.0'
@@ -42,4 +39,4 @@ class AutoRestSwaggerBATXMLService(SDKClient):
         self._deserialize = Deserializer(client_models)
 
         self.xml = XmlOperations(
-            self._client, self.config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize)

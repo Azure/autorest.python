@@ -9,18 +9,16 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.service_client import SDKClient
+# from azure.core import PipelineClient  TODO
 from msrest import Serializer, Deserializer
 
 from ._configuration import AutoRestHeadTestServiceConfiguration
 from .operations import HttpSuccessOperations
 
 
-class AutoRestHeadTestService(SDKClient):
+class AutoRestHeadTestService(object):
     """Test Infrastructure for AutoRest
 
-    :ivar config: Configuration for client.
-    :vartype config: AutoRestHeadTestServiceConfiguration
 
     :ivar http_success: HttpSuccess operations
     :vartype http_success: head.operations.HttpSuccessOperations
@@ -32,10 +30,10 @@ class AutoRestHeadTestService(SDKClient):
     """
 
     def __init__(
-            self, credentials, base_url=None, config=None, pipeline=None):
+            self, credentials, base_url=None, config=None, **kwargs):
 
-        self.config = config or AutoRestHeadTestServiceConfiguration(credentials, base_url)
-        super(AutoRestHeadTestService, self).__init__(self.config.credentials, self.config, pipeline=pipeline)
+        self._config = config or AutoRestHeadTestServiceConfiguration(credentials, **kwargs)
+        self._client = PipelineClient(base_url=base_url, credentials=credentials, config=self._config, **kwargs)
 
         client_models = {}
         self.api_version = '1.0.0'
@@ -43,4 +41,4 @@ class AutoRestHeadTestService(SDKClient):
         self._deserialize = Deserializer(client_models)
 
         self.http_success = HttpSuccessOperations(
-            self._client, self.config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize)

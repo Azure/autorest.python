@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.async_client import SDKClientAsync
+# from azure.core import AsyncPipelineClient  TODO
 from msrest import Serializer, Deserializer
 
 from ._configuration_async import AutoRestSwaggerBATArrayServiceConfiguration
@@ -17,11 +17,9 @@ from .operations_async import ArrayOperations
 from .. import models
 
 
-class AutoRestSwaggerBATArrayService(SDKClientAsync):
+class AutoRestSwaggerBATArrayService:
     """Test Infrastructure for AutoRest Swagger BAT
 
-    :ivar config: Configuration for client.
-    :vartype config: AutoRestSwaggerBATArrayServiceConfiguration
 
     :ivar array: Array operations
     :vartype array: bodyarray.aio.operations_async.ArrayOperations
@@ -30,10 +28,10 @@ class AutoRestSwaggerBATArrayService(SDKClientAsync):
     """
 
     def __init__(
-            self, base_url=None, config=None, pipeline=None):
+            self, base_url=None, config=None, **kwargs):
 
-        self.config = config or AutoRestSwaggerBATArrayServiceConfiguration(base_url)
-        super(AutoRestSwaggerBATArrayService, self).__init__(None, self.config, pipeline=pipeline)
+        self._config = config or AutoRestSwaggerBATArrayServiceConfiguration(**kwargs)
+        self._client = AsyncPipelineClient(base_url=base_url, credentials=None, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '1.0.0'
@@ -41,4 +39,4 @@ class AutoRestSwaggerBATArrayService(SDKClientAsync):
         self._deserialize = Deserializer(client_models)
 
         self.array = ArrayOperations(
-            self._client, self.config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize)

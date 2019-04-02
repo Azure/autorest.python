@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.async_client import SDKClientAsync
+# from azure.core import AsyncPipelineClient  TODO
 from msrest import Serializer, Deserializer
 
 from ._configuration_async import PetStoreIncConfiguration
@@ -18,11 +18,9 @@ from .operations_async import PetOperations
 from .. import models
 
 
-class PetStoreInc(SDKClientAsync):
+class PetStoreInc:
     """PetStore
 
-    :ivar config: Configuration for client.
-    :vartype config: PetStoreIncConfiguration
 
     :ivar pet: Pet operations
     :vartype pet: extensibleenumsswagger.aio.operations_async.PetOperations
@@ -31,10 +29,10 @@ class PetStoreInc(SDKClientAsync):
     """
 
     def __init__(
-            self, base_url=None, config=None, pipeline=None):
+            self, base_url=None, config=None, **kwargs):
 
-        self.config = config or PetStoreIncConfiguration(base_url)
-        super(PetStoreInc, self).__init__(None, self.config, pipeline=pipeline)
+        self._config = config or PetStoreIncConfiguration(**kwargs)
+        self._client = AsyncPipelineClient(base_url=base_url, credentials=None, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '2016-07-07'
@@ -42,4 +40,4 @@ class PetStoreInc(SDKClientAsync):
         self._deserialize = Deserializer(client_models)
 
         self.pet = PetOperations(
-            self._client, self.config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize)

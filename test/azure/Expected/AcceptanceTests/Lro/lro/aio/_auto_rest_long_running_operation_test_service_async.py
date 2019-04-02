@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.async_client import SDKClientAsync
+# from azure.core import AsyncPipelineClient  TODO
 from msrest import Serializer, Deserializer
 
 from ._configuration_async import AutoRestLongRunningOperationTestServiceConfiguration
@@ -20,11 +20,9 @@ from .operations_async import LROsCustomHeaderOperations
 from .. import models
 
 
-class AutoRestLongRunningOperationTestService(SDKClientAsync):
+class AutoRestLongRunningOperationTestService:
     """Long-running Operation for AutoRest
 
-    :ivar config: Configuration for client.
-    :vartype config: AutoRestLongRunningOperationTestServiceConfiguration
 
     :ivar lr_os: LROs operations
     :vartype lr_os: lro.operations.LROsOperations
@@ -42,10 +40,10 @@ class AutoRestLongRunningOperationTestService(SDKClientAsync):
     """
 
     def __init__(
-            self, credentials, base_url=None):
+            self, credentials, base_url=None, config=None, **kwargs):
 
-        self.config = AutoRestLongRunningOperationTestServiceConfiguration(credentials, base_url)
-        super(AutoRestLongRunningOperationTestService, self).__init__(self.config.credentials, self.config)
+        self._config = config or AutoRestLongRunningOperationTestServiceConfiguration(credentials, **kwargs)
+        self._client = AsyncPipelineClient(base_url=base_url, credentials=credentials, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '1.0.0'
@@ -53,10 +51,10 @@ class AutoRestLongRunningOperationTestService(SDKClientAsync):
         self._deserialize = Deserializer(client_models)
 
         self.lr_os = LROsOperations(
-            self._client, self.config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize)
         self.lro_retrys = LRORetrysOperations(
-            self._client, self.config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize)
         self.lrosa_ds = LROSADsOperations(
-            self._client, self.config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize)
         self.lr_os_custom_header = LROsCustomHeaderOperations(
-            self._client, self.config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize)

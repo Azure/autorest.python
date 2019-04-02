@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.service_client import SDKClient
+# from azure.core import PipelineClient  TODO
 from msrest import Serializer, Deserializer
 
 from ._configuration import AutoRestReportServiceConfiguration
@@ -17,20 +17,17 @@ from .operations import AutoRestReportServiceOperationsMixin
 from . import models
 
 
-class AutoRestReportService(AutoRestReportServiceOperationsMixin, SDKClient):
+class AutoRestReportService(AutoRestReportServiceOperationsMixin):
     """Test Infrastructure for AutoRest
 
-    :ivar config: Configuration for client.
-    :vartype config: AutoRestReportServiceConfiguration
 
     :param str base_url: Service URL
     """
 
-    def __init__(
-            self, base_url=None, config=None, pipeline=None):
+    def __init__(self, base_url=None, config=None, **kwargs):
 
-        self.config = config or AutoRestReportServiceConfiguration(base_url)
-        super(AutoRestReportService, self).__init__(None, self.config, pipeline=pipeline)
+        self._config = config or AutoRestReportServiceConfiguration(**kwargs)
+        self._client = PipelineClient(base_url=base_url, credentials=None, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '1.0.0'

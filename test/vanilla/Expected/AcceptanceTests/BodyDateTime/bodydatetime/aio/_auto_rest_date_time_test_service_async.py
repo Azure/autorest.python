@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.async_client import SDKClientAsync
+# from azure.core import AsyncPipelineClient  TODO
 from msrest import Serializer, Deserializer
 
 from ._configuration_async import AutoRestDateTimeTestServiceConfiguration
@@ -17,11 +17,9 @@ from .operations_async import DatetimeModelOperations
 from .. import models
 
 
-class AutoRestDateTimeTestService(SDKClientAsync):
+class AutoRestDateTimeTestService:
     """Test Infrastructure for AutoRest
 
-    :ivar config: Configuration for client.
-    :vartype config: AutoRestDateTimeTestServiceConfiguration
 
     :ivar datetime_model: DatetimeModel operations
     :vartype datetime_model: bodydatetime.aio.operations_async.DatetimeModelOperations
@@ -30,10 +28,10 @@ class AutoRestDateTimeTestService(SDKClientAsync):
     """
 
     def __init__(
-            self, base_url=None, config=None, pipeline=None):
+            self, base_url=None, config=None, **kwargs):
 
-        self.config = config or AutoRestDateTimeTestServiceConfiguration(base_url)
-        super(AutoRestDateTimeTestService, self).__init__(None, self.config, pipeline=pipeline)
+        self._config = config or AutoRestDateTimeTestServiceConfiguration(**kwargs)
+        self._client = AsyncPipelineClient(base_url=base_url, credentials=None, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '1.0.0'
@@ -41,4 +39,4 @@ class AutoRestDateTimeTestService(SDKClientAsync):
         self._deserialize = Deserializer(client_models)
 
         self.datetime_model = DatetimeModelOperations(
-            self._client, self.config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize)
