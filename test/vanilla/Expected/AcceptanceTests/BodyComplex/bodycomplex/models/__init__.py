@@ -21,6 +21,8 @@ try:
     from ._models_py3 import DateWrapper
     from ._models_py3 import DictionaryWrapper
     from ._models_py3 import Dog
+    from ._models_py3 import DotFish
+    from ._models_py3 import DotSalmon
     from ._models_py3 import DoubleWrapper
     from ._models_py3 import DurationWrapper
     from ._models_py3 import Error, ErrorException
@@ -51,6 +53,8 @@ except (SyntaxError, ImportError):
     from ._models import DateWrapper
     from ._models import DictionaryWrapper
     from ._models import Dog
+    from ._models import DotFish
+    from ._models import DotSalmon
     from ._models import DoubleWrapper
     from ._models import DurationWrapper
     from ._models import Error, ErrorException
@@ -87,6 +91,8 @@ __all__ = [
     'DateWrapper',
     'DictionaryWrapper',
     'Dog',
+    'DotFish',
+    'DotSalmon',
     'DoubleWrapper',
     'DurationWrapper',
     'Error', 'ErrorException',
