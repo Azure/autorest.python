@@ -100,7 +100,7 @@ class ContainerOperations(object):
         response = pipeline_output.http_response
 
         if response.status_code not in [201]:
-            raise models.StorageErrorException(self._deserialize, response)
+            raise models.StorageErrorException(response, self._deserialize)
 
         if cls:
             response_headers = {
@@ -173,7 +173,7 @@ class ContainerOperations(object):
         response = pipeline_output.http_response
 
         if response.status_code not in [200]:
-            raise models.StorageErrorException(self._deserialize, response)
+            raise models.StorageErrorException(response, self._deserialize)
 
         if cls:
             response_headers = {
@@ -267,7 +267,7 @@ class ContainerOperations(object):
         response = pipeline_output.http_response
 
         if response.status_code not in [202]:
-            raise models.StorageErrorException(self._deserialize, response)
+            raise models.StorageErrorException(response, self._deserialize)
 
         if cls:
             response_headers = {
@@ -360,7 +360,7 @@ class ContainerOperations(object):
         response = pipeline_output.http_response
 
         if response.status_code not in [200]:
-            raise models.StorageErrorException(self._deserialize, response)
+            raise models.StorageErrorException(response, self._deserialize)
 
         if cls:
             response_headers = {
@@ -435,7 +435,7 @@ class ContainerOperations(object):
         response = pipeline_output.http_response
 
         if response.status_code not in [200]:
-            raise models.StorageErrorException(self._deserialize, response)
+            raise models.StorageErrorException(response, self._deserialize)
 
         header_dict = {}
         deserialized = None
@@ -547,7 +547,7 @@ class ContainerOperations(object):
         response = pipeline_output.http_response
 
         if response.status_code not in [200]:
-            raise models.StorageErrorException(self._deserialize, response)
+            raise models.StorageErrorException(response, self._deserialize)
 
         if cls:
             response_headers = {
@@ -644,7 +644,7 @@ class ContainerOperations(object):
         response = pipeline_output.http_response
 
         if response.status_code not in [201]:
-            raise models.StorageErrorException(self._deserialize, response)
+            raise models.StorageErrorException(response, self._deserialize)
 
         if cls:
             response_headers = {
@@ -731,7 +731,7 @@ class ContainerOperations(object):
         response = pipeline_output.http_response
 
         if response.status_code not in [200]:
-            raise models.StorageErrorException(self._deserialize, response)
+            raise models.StorageErrorException(response, self._deserialize)
 
         if cls:
             response_headers = {
@@ -817,7 +817,7 @@ class ContainerOperations(object):
         response = pipeline_output.http_response
 
         if response.status_code not in [200]:
-            raise models.StorageErrorException(self._deserialize, response)
+            raise models.StorageErrorException(response, self._deserialize)
 
         if cls:
             response_headers = {
@@ -913,7 +913,7 @@ class ContainerOperations(object):
         response = pipeline_output.http_response
 
         if response.status_code not in [202]:
-            raise models.StorageErrorException(self._deserialize, response)
+            raise models.StorageErrorException(response, self._deserialize)
 
         if cls:
             response_headers = {
@@ -1006,7 +1006,7 @@ class ContainerOperations(object):
         response = pipeline_output.http_response
 
         if response.status_code not in [200]:
-            raise models.StorageErrorException(self._deserialize, response)
+            raise models.StorageErrorException(response, self._deserialize)
 
         if cls:
             response_headers = {
@@ -1104,7 +1104,7 @@ class ContainerOperations(object):
         response = pipeline_output.http_response
 
         if response.status_code not in [200]:
-            raise models.StorageErrorException(self._deserialize, response)
+            raise models.StorageErrorException(response, self._deserialize)
 
         header_dict = {}
         deserialized = None
@@ -1215,7 +1215,7 @@ class ContainerOperations(object):
         response = pipeline_output.http_response
 
         if response.status_code not in [200]:
-            raise models.StorageErrorException(self._deserialize, response)
+            raise models.StorageErrorException(response, self._deserialize)
 
         header_dict = {}
         deserialized = None
@@ -1272,7 +1272,7 @@ class ContainerOperations(object):
         response = pipeline_output.http_response
 
         if response.status_code not in [200]:
-            raise models.StorageErrorException(self._deserialize, response)
+            raise models.StorageErrorException(response, self._deserialize)
 
         if cls:
             response_headers = {

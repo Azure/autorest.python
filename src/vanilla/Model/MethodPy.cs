@@ -75,7 +75,7 @@ namespace AutoRest.Python.Model
                 IModelType body = DefaultResponse.Body;
                 if (body == null)
                 {
-                    return ":class:`HttpOperationError<msrest.exceptions.HttpOperationError>`";
+                    return ":class:`ClientRequestError<azore.core.exceptions.ClientRequestError>`";
                 }
                 else
                 {
@@ -90,7 +90,7 @@ namespace AutoRest.Python.Model
                     }
                     else
                     {
-                        return ":class:`HttpOperationError<msrest.exceptions.HttpOperationError>`";
+                        return ":class:`ClientRequestError<azure.core.exceptions.ClientRequestError>`";
                     }
                 }
             }
@@ -104,18 +104,18 @@ namespace AutoRest.Python.Model
 
                 if (body == null)
                 {
-                    return "raise HttpOperationError(self._deserialize, response)";
+                    return "raise ClientRequestError(response)";
                 }
                 else
                 {
                     Core.Model.CompositeType compType = body as Core.Model.CompositeType;
                     if (compType != null)
                     {
-                        return string.Format(CultureInfo.InvariantCulture, "raise models.{0}(self._deserialize, response)", compType.GetExceptionDefineType());
+                        return string.Format(CultureInfo.InvariantCulture, "raise models.{0}(response, self._deserialize)", compType.GetExceptionDefineType());
                     }
                     else
                     {
-                        return string.Format(CultureInfo.InvariantCulture, "raise HttpOperationError(self._deserialize, response, '{0}')", body.ToPythonRuntimeTypeString());
+                        return string.Format(CultureInfo.InvariantCulture, "raise ClientRequestError(response)", body.ToPythonRuntimeTypeString());
                     }
                 }
             }

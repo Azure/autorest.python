@@ -72,9 +72,9 @@ class FormdataOperations:
         response = pipeline_output.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
-        deserialized = self._client.stream_download_async(response, callback)
+        deserialized = response.stream_download()
 
         if cls:
             return cls(response, deserialized, None)
@@ -109,14 +109,14 @@ class FormdataOperations:
         # Construct body
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        request = self._client.put(url, query_parameters, header_parameters, stream_content=file_content)
         pipeline_output = await self._client.pipeline.run(request, stream=True, **operation_config)
         response = pipeline_output.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
-        deserialized = self._client.stream_download_async(response, callback)
+        deserialized = response.stream_download()
 
         if cls:
             return cls(response, deserialized, None)

@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.exceptions import HttpOperationError
+from azure.core.exceptions import ClientRequestError
 
 from .. import models
 
@@ -62,7 +62,7 @@ class HttpFailureOperations(object):
         response = pipeline_output.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
@@ -84,7 +84,7 @@ class HttpFailureOperations(object):
         :return: bool or the result of cls(response)
         :rtype: bool
         :raises:
-         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+         :class:`ClientRequestError<azore.core.exceptions.ClientRequestError>`
         """
         # Construct URL
         url = self.get_no_model_error.metadata['url']
@@ -102,7 +102,7 @@ class HttpFailureOperations(object):
         response = pipeline_output.http_response
 
         if response.status_code not in [200]:
-            raise HttpOperationError(self._deserialize, response)
+            raise ClientRequestError(response)
 
         deserialized = None
         if response.status_code == 200:
@@ -124,7 +124,7 @@ class HttpFailureOperations(object):
         :return: bool or the result of cls(response)
         :rtype: bool
         :raises:
-         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+         :class:`ClientRequestError<azore.core.exceptions.ClientRequestError>`
         """
         # Construct URL
         url = self.get_no_model_empty.metadata['url']
@@ -142,7 +142,7 @@ class HttpFailureOperations(object):
         response = pipeline_output.http_response
 
         if response.status_code not in [200]:
-            raise HttpOperationError(self._deserialize, response)
+            raise ClientRequestError(response)
 
         deserialized = None
         if response.status_code == 200:

@@ -60,7 +60,7 @@ class TestRequiredOptional(object):
         await client.implicit.put_optional_body(None)
         await client.implicit.put_optional_header(None)
 
-        await client.implicit.get_optional_global_query(custom_headers=None)
+        await client.implicit.get_optional_global_query(headers={})
 
         await client.explicit.post_optional_integer_parameter(None)
         await client.explicit.post_optional_integer_property(None)

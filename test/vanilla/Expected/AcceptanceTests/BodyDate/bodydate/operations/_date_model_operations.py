@@ -60,7 +60,7 @@ class DateModelOperations(object):
         response = pipeline_output.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
@@ -99,7 +99,7 @@ class DateModelOperations(object):
         response = pipeline_output.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
@@ -138,7 +138,7 @@ class DateModelOperations(object):
         response = pipeline_output.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
@@ -177,7 +177,7 @@ class DateModelOperations(object):
         response = pipeline_output.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
@@ -221,7 +221,7 @@ class DateModelOperations(object):
         response = pipeline_output.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         if cls:
             response_headers = {}
@@ -255,7 +255,7 @@ class DateModelOperations(object):
         response = pipeline_output.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
@@ -299,7 +299,7 @@ class DateModelOperations(object):
         response = pipeline_output.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         if cls:
             response_headers = {}
@@ -333,7 +333,7 @@ class DateModelOperations(object):
         response = pipeline_output.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:

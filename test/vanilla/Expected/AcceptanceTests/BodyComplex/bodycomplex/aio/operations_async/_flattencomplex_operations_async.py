@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.exceptions import HttpOperationError
+from azure.core.exceptions import ClientRequestError
 
 from ... import models
 
@@ -44,7 +44,7 @@ class FlattencomplexOperations:
         :return: MyBaseType or the result of cls(response)
         :rtype: ~bodycomplex.models.MyBaseType
         :raises:
-         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+         :class:`ClientRequestError<azore.core.exceptions.ClientRequestError>`
         """
         # Construct URL
         url = self.get_valid.metadata['url']
@@ -62,7 +62,7 @@ class FlattencomplexOperations:
         response = pipeline_output.http_response
 
         if response.status_code not in [200]:
-            raise HttpOperationError(self._deserialize, response)
+            raise ClientRequestError(response)
 
         deserialized = None
         if response.status_code == 200:

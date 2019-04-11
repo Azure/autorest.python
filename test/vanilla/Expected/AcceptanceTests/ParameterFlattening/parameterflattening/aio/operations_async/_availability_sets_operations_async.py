@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.exceptions import HttpOperationError
+from azure.core.exceptions import ClientRequestError
 
 from ... import models
 
@@ -50,7 +50,7 @@ class AvailabilitySetsOperations:
         :return: None or the result of cls(response)
         :rtype: None
         :raises:
-         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+         :class:`ClientRequestError<azore.core.exceptions.ClientRequestError>`
         """
         tags1 = models.AvailabilitySetUpdateParameters(tags=tags)
 
@@ -78,7 +78,7 @@ class AvailabilitySetsOperations:
         response = pipeline_output.http_response
 
         if response.status_code not in [200]:
-            raise HttpOperationError(self._deserialize, response)
+            raise ClientRequestError(response)
 
         if cls:
             response_headers = {}

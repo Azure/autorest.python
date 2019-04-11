@@ -53,7 +53,7 @@ def client():
         yield client
 
 def _assert_with_log(func, *args, **kwargs):
-    def raise_for_status(response):
+    def raise_for_status(response, deserialized, headers):
         response.internal_response.raise_for_status()
     try:
         http_response = func(*args, cls=raise_for_status, **kwargs)

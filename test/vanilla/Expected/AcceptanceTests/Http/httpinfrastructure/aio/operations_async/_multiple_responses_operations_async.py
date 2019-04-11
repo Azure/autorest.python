@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.exceptions import HttpOperationError
+from azure.core.exceptions import ClientRequestError
 
 from ... import models
 
@@ -62,7 +62,7 @@ class MultipleResponsesOperations:
         response = pipeline_output.http_response
 
         if response.status_code not in [200, 204]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
@@ -102,7 +102,7 @@ class MultipleResponsesOperations:
         response = pipeline_output.http_response
 
         if response.status_code not in [200, 204]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
@@ -142,7 +142,7 @@ class MultipleResponsesOperations:
         response = pipeline_output.http_response
 
         if response.status_code not in [200, 204]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
@@ -182,7 +182,7 @@ class MultipleResponsesOperations:
         response = pipeline_output.http_response
 
         if response.status_code not in [200, 204]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
@@ -223,7 +223,7 @@ class MultipleResponsesOperations:
         response = pipeline_output.http_response
 
         if response.status_code not in [200, 204]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
@@ -263,7 +263,7 @@ class MultipleResponsesOperations:
         response = pipeline_output.http_response
 
         if response.status_code not in [200, 201]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
@@ -306,7 +306,7 @@ class MultipleResponsesOperations:
         response = pipeline_output.http_response
 
         if response.status_code not in [200, 201]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
@@ -349,7 +349,7 @@ class MultipleResponsesOperations:
         response = pipeline_output.http_response
 
         if response.status_code not in [200, 201]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
@@ -391,7 +391,7 @@ class MultipleResponsesOperations:
         response = pipeline_output.http_response
 
         if response.status_code not in [200, 201, 404]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
@@ -435,7 +435,7 @@ class MultipleResponsesOperations:
         response = pipeline_output.http_response
 
         if response.status_code not in [200, 201, 404]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
@@ -479,7 +479,7 @@ class MultipleResponsesOperations:
         response = pipeline_output.http_response
 
         if response.status_code not in [200, 201, 404]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
@@ -524,7 +524,7 @@ class MultipleResponsesOperations:
         response = pipeline_output.http_response
 
         if response.status_code not in [200, 201, 404]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
@@ -567,7 +567,7 @@ class MultipleResponsesOperations:
         response = pipeline_output.http_response
 
         if response.status_code not in [202, 204]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         if cls:
             response_headers = {}
@@ -601,7 +601,7 @@ class MultipleResponsesOperations:
         response = pipeline_output.http_response
 
         if response.status_code not in [202, 204]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         if cls:
             response_headers = {}
@@ -636,7 +636,7 @@ class MultipleResponsesOperations:
         response = pipeline_output.http_response
 
         if response.status_code not in [202, 204]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         if cls:
             response_headers = {}
@@ -653,7 +653,7 @@ class MultipleResponsesOperations:
         :return: None or the result of cls(response)
         :rtype: None
         :raises:
-         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+         :class:`ClientRequestError<azore.core.exceptions.ClientRequestError>`
         """
         # Construct URL
         url = self.get202_none204_none_default_none202_invalid.metadata['url']
@@ -670,7 +670,7 @@ class MultipleResponsesOperations:
         response = pipeline_output.http_response
 
         if response.status_code not in [202, 204]:
-            raise HttpOperationError(self._deserialize, response)
+            raise ClientRequestError(response)
 
         if cls:
             response_headers = {}
@@ -687,7 +687,7 @@ class MultipleResponsesOperations:
         :return: None or the result of cls(response)
         :rtype: None
         :raises:
-         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+         :class:`ClientRequestError<azore.core.exceptions.ClientRequestError>`
         """
         # Construct URL
         url = self.get202_none204_none_default_none204_none.metadata['url']
@@ -704,7 +704,7 @@ class MultipleResponsesOperations:
         response = pipeline_output.http_response
 
         if response.status_code not in [202, 204]:
-            raise HttpOperationError(self._deserialize, response)
+            raise ClientRequestError(response)
 
         if cls:
             response_headers = {}
@@ -721,7 +721,7 @@ class MultipleResponsesOperations:
         :return: None or the result of cls(response)
         :rtype: None
         :raises:
-         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+         :class:`ClientRequestError<azore.core.exceptions.ClientRequestError>`
         """
         # Construct URL
         url = self.get202_none204_none_default_none400_none.metadata['url']
@@ -738,7 +738,7 @@ class MultipleResponsesOperations:
         response = pipeline_output.http_response
 
         if response.status_code not in [202, 204]:
-            raise HttpOperationError(self._deserialize, response)
+            raise ClientRequestError(response)
 
         if cls:
             response_headers = {}
@@ -755,7 +755,7 @@ class MultipleResponsesOperations:
         :return: None or the result of cls(response)
         :rtype: None
         :raises:
-         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+         :class:`ClientRequestError<azore.core.exceptions.ClientRequestError>`
         """
         # Construct URL
         url = self.get202_none204_none_default_none400_invalid.metadata['url']
@@ -772,7 +772,7 @@ class MultipleResponsesOperations:
         response = pipeline_output.http_response
 
         if response.status_code not in [202, 204]:
-            raise HttpOperationError(self._deserialize, response)
+            raise ClientRequestError(response)
 
         if cls:
             response_headers = {}
@@ -805,7 +805,7 @@ class MultipleResponsesOperations:
         response = pipeline_output.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
-            raise models.AException(self._deserialize, response)
+            raise models.AException(response, self._deserialize)
 
         if cls:
             response_headers = {}
@@ -838,7 +838,7 @@ class MultipleResponsesOperations:
         response = pipeline_output.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
-            raise models.AException(self._deserialize, response)
+            raise models.AException(response, self._deserialize)
 
         if cls:
             response_headers = {}
@@ -871,7 +871,7 @@ class MultipleResponsesOperations:
         response = pipeline_output.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
-            raise models.AException(self._deserialize, response)
+            raise models.AException(response, self._deserialize)
 
         if cls:
             response_headers = {}
@@ -904,7 +904,7 @@ class MultipleResponsesOperations:
         response = pipeline_output.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
-            raise models.AException(self._deserialize, response)
+            raise models.AException(response, self._deserialize)
 
         if cls:
             response_headers = {}
@@ -921,7 +921,7 @@ class MultipleResponsesOperations:
         :return: None or the result of cls(response)
         :rtype: None
         :raises:
-         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+         :class:`ClientRequestError<azore.core.exceptions.ClientRequestError>`
         """
         # Construct URL
         url = self.get_default_none200_invalid.metadata['url']
@@ -938,7 +938,7 @@ class MultipleResponsesOperations:
         response = pipeline_output.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
-            raise HttpOperationError(self._deserialize, response)
+            raise ClientRequestError(response)
 
         if cls:
             response_headers = {}
@@ -955,7 +955,7 @@ class MultipleResponsesOperations:
         :return: None or the result of cls(response)
         :rtype: None
         :raises:
-         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+         :class:`ClientRequestError<azore.core.exceptions.ClientRequestError>`
         """
         # Construct URL
         url = self.get_default_none200_none.metadata['url']
@@ -972,7 +972,7 @@ class MultipleResponsesOperations:
         response = pipeline_output.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
-            raise HttpOperationError(self._deserialize, response)
+            raise ClientRequestError(response)
 
         if cls:
             response_headers = {}
@@ -989,7 +989,7 @@ class MultipleResponsesOperations:
         :return: None or the result of cls(response)
         :rtype: None
         :raises:
-         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+         :class:`ClientRequestError<azore.core.exceptions.ClientRequestError>`
         """
         # Construct URL
         url = self.get_default_none400_invalid.metadata['url']
@@ -1006,7 +1006,7 @@ class MultipleResponsesOperations:
         response = pipeline_output.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
-            raise HttpOperationError(self._deserialize, response)
+            raise ClientRequestError(response)
 
         if cls:
             response_headers = {}
@@ -1023,7 +1023,7 @@ class MultipleResponsesOperations:
         :return: None or the result of cls(response)
         :rtype: None
         :raises:
-         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+         :class:`ClientRequestError<azore.core.exceptions.ClientRequestError>`
         """
         # Construct URL
         url = self.get_default_none400_none.metadata['url']
@@ -1040,7 +1040,7 @@ class MultipleResponsesOperations:
         response = pipeline_output.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
-            raise HttpOperationError(self._deserialize, response)
+            raise ClientRequestError(response)
 
         if cls:
             response_headers = {}
@@ -1058,7 +1058,7 @@ class MultipleResponsesOperations:
         :return: A or the result of cls(response)
         :rtype: ~httpinfrastructure.models.A
         :raises:
-         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+         :class:`ClientRequestError<azore.core.exceptions.ClientRequestError>`
         """
         # Construct URL
         url = self.get200_model_a200_none.metadata['url']
@@ -1076,7 +1076,7 @@ class MultipleResponsesOperations:
         response = pipeline_output.http_response
 
         if response.status_code not in [200]:
-            raise HttpOperationError(self._deserialize, response)
+            raise ClientRequestError(response)
 
         deserialized = None
         if response.status_code == 200:
@@ -1098,7 +1098,7 @@ class MultipleResponsesOperations:
         :return: A or the result of cls(response)
         :rtype: ~httpinfrastructure.models.A
         :raises:
-         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+         :class:`ClientRequestError<azore.core.exceptions.ClientRequestError>`
         """
         # Construct URL
         url = self.get200_model_a200_valid.metadata['url']
@@ -1116,7 +1116,7 @@ class MultipleResponsesOperations:
         response = pipeline_output.http_response
 
         if response.status_code not in [200]:
-            raise HttpOperationError(self._deserialize, response)
+            raise ClientRequestError(response)
 
         deserialized = None
         if response.status_code == 200:
@@ -1138,7 +1138,7 @@ class MultipleResponsesOperations:
         :return: A or the result of cls(response)
         :rtype: ~httpinfrastructure.models.A
         :raises:
-         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+         :class:`ClientRequestError<azore.core.exceptions.ClientRequestError>`
         """
         # Construct URL
         url = self.get200_model_a200_invalid.metadata['url']
@@ -1156,7 +1156,7 @@ class MultipleResponsesOperations:
         response = pipeline_output.http_response
 
         if response.status_code not in [200]:
-            raise HttpOperationError(self._deserialize, response)
+            raise ClientRequestError(response)
 
         deserialized = None
         if response.status_code == 200:
@@ -1179,7 +1179,7 @@ class MultipleResponsesOperations:
         :return: A or the result of cls(response)
         :rtype: ~httpinfrastructure.models.A
         :raises:
-         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+         :class:`ClientRequestError<azore.core.exceptions.ClientRequestError>`
         """
         # Construct URL
         url = self.get200_model_a400_none.metadata['url']
@@ -1197,7 +1197,7 @@ class MultipleResponsesOperations:
         response = pipeline_output.http_response
 
         if response.status_code not in [200]:
-            raise HttpOperationError(self._deserialize, response)
+            raise ClientRequestError(response)
 
         deserialized = None
         if response.status_code == 200:
@@ -1219,7 +1219,7 @@ class MultipleResponsesOperations:
         :return: A or the result of cls(response)
         :rtype: ~httpinfrastructure.models.A
         :raises:
-         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+         :class:`ClientRequestError<azore.core.exceptions.ClientRequestError>`
         """
         # Construct URL
         url = self.get200_model_a400_valid.metadata['url']
@@ -1237,7 +1237,7 @@ class MultipleResponsesOperations:
         response = pipeline_output.http_response
 
         if response.status_code not in [200]:
-            raise HttpOperationError(self._deserialize, response)
+            raise ClientRequestError(response)
 
         deserialized = None
         if response.status_code == 200:
@@ -1259,7 +1259,7 @@ class MultipleResponsesOperations:
         :return: A or the result of cls(response)
         :rtype: ~httpinfrastructure.models.A
         :raises:
-         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+         :class:`ClientRequestError<azore.core.exceptions.ClientRequestError>`
         """
         # Construct URL
         url = self.get200_model_a400_invalid.metadata['url']
@@ -1277,7 +1277,7 @@ class MultipleResponsesOperations:
         response = pipeline_output.http_response
 
         if response.status_code not in [200]:
-            raise HttpOperationError(self._deserialize, response)
+            raise ClientRequestError(response)
 
         deserialized = None
         if response.status_code == 200:
@@ -1299,7 +1299,7 @@ class MultipleResponsesOperations:
         :return: A or the result of cls(response)
         :rtype: ~httpinfrastructure.models.A
         :raises:
-         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+         :class:`ClientRequestError<azore.core.exceptions.ClientRequestError>`
         """
         # Construct URL
         url = self.get200_model_a202_valid.metadata['url']
@@ -1317,7 +1317,7 @@ class MultipleResponsesOperations:
         response = pipeline_output.http_response
 
         if response.status_code not in [200]:
-            raise HttpOperationError(self._deserialize, response)
+            raise ClientRequestError(response)
 
         deserialized = None
         if response.status_code == 200:

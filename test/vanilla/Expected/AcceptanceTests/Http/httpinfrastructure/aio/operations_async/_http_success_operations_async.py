@@ -60,7 +60,7 @@ class HttpSuccessOperations:
         response = pipeline_output.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         if cls:
             response_headers = {}
@@ -95,7 +95,7 @@ class HttpSuccessOperations:
         response = pipeline_output.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
@@ -143,7 +143,7 @@ class HttpSuccessOperations:
         response = pipeline_output.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         if cls:
             response_headers = {}
@@ -186,7 +186,7 @@ class HttpSuccessOperations:
         response = pipeline_output.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         if cls:
             response_headers = {}
@@ -229,7 +229,7 @@ class HttpSuccessOperations:
         response = pipeline_output.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         if cls:
             response_headers = {}
@@ -272,7 +272,7 @@ class HttpSuccessOperations:
         response = pipeline_output.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         if cls:
             response_headers = {}
@@ -315,7 +315,7 @@ class HttpSuccessOperations:
         response = pipeline_output.http_response
 
         if response.status_code not in [201]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         if cls:
             response_headers = {}
@@ -358,7 +358,7 @@ class HttpSuccessOperations:
         response = pipeline_output.http_response
 
         if response.status_code not in [201]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         if cls:
             response_headers = {}
@@ -401,7 +401,7 @@ class HttpSuccessOperations:
         response = pipeline_output.http_response
 
         if response.status_code not in [202]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         if cls:
             response_headers = {}
@@ -444,7 +444,7 @@ class HttpSuccessOperations:
         response = pipeline_output.http_response
 
         if response.status_code not in [202]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         if cls:
             response_headers = {}
@@ -487,7 +487,7 @@ class HttpSuccessOperations:
         response = pipeline_output.http_response
 
         if response.status_code not in [202]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         if cls:
             response_headers = {}
@@ -530,7 +530,7 @@ class HttpSuccessOperations:
         response = pipeline_output.http_response
 
         if response.status_code not in [202]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         if cls:
             response_headers = {}
@@ -564,7 +564,7 @@ class HttpSuccessOperations:
         response = pipeline_output.http_response
 
         if response.status_code not in [204]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         if cls:
             response_headers = {}
@@ -607,7 +607,7 @@ class HttpSuccessOperations:
         response = pipeline_output.http_response
 
         if response.status_code not in [204]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         if cls:
             response_headers = {}
@@ -650,7 +650,7 @@ class HttpSuccessOperations:
         response = pipeline_output.http_response
 
         if response.status_code not in [204]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         if cls:
             response_headers = {}
@@ -693,7 +693,7 @@ class HttpSuccessOperations:
         response = pipeline_output.http_response
 
         if response.status_code not in [204]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         if cls:
             response_headers = {}
@@ -736,7 +736,7 @@ class HttpSuccessOperations:
         response = pipeline_output.http_response
 
         if response.status_code not in [204]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         if cls:
             response_headers = {}
@@ -770,7 +770,7 @@ class HttpSuccessOperations:
         response = pipeline_output.http_response
 
         if response.status_code not in [204, 404]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         if cls:
             response_headers = {}

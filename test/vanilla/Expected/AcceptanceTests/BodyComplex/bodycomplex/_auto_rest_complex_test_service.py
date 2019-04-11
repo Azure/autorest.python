@@ -13,7 +13,7 @@ from azure.core import PipelineClient
 from msrest import Serializer, Deserializer
 
 from ._configuration import AutoRestComplexTestServiceConfiguration
-from msrest.exceptions import HttpOperationError
+from azure.core.exceptions import ClientRequestError
 from .operations import BasicOperations
 from .operations import PrimitiveOperations
 from .operations import ArrayOperations

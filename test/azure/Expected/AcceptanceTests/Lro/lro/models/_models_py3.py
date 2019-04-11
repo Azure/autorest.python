@@ -10,7 +10,7 @@
 # --------------------------------------------------------------------------
 
 from msrest.serialization import Model
-from msrest.exceptions import HttpOperationError
+from azure.core.exceptions import ClientRequestError
 
 
 class CloudError(Model):
@@ -33,16 +33,20 @@ class CloudError(Model):
         self.message = message
 
 
-class CloudErrorException(HttpOperationError):
+class CloudErrorException(ClientRequestError):
     """Server responsed with exception of type: 'CloudError'.
 
     :param deserialize: A deserializer
     :param response: Server response to be deserialized.
     """
 
-    def __init__(self, deserialize, response, *args):
+    def __init__(self, response, deserialize, *args):
 
-        super(CloudErrorException, self).__init__(deserialize, response, 'CloudError', *args)
+        model_name = 'CloudError'
+        self.error = deserialize(model_name, response)
+        if self.error is None:
+            self.error = deserialize.dependencies[model_name]()
+        super(CloudErrorException, self).__init__(response)
 
 
 class OperationResult(Model):

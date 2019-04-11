@@ -172,7 +172,7 @@ class PageBlobOperations(object):
         response = pipeline_output.http_response
 
         if response.status_code not in [201]:
-            raise models.StorageErrorException(self._deserialize, response)
+            raise models.StorageErrorException(response, self._deserialize)
 
         if cls:
             response_headers = {
@@ -303,12 +303,12 @@ class PageBlobOperations(object):
         # Construct body
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        request = self._client.put(url, query_parameters, header_parameters, stream_content=body)
         pipeline_output = self._client.pipeline.run(request, stream=False, **operation_config)
         response = pipeline_output.http_response
 
         if response.status_code not in [201]:
-            raise models.StorageErrorException(self._deserialize, response)
+            raise models.StorageErrorException(response, self._deserialize)
 
         if cls:
             response_headers = {
@@ -435,7 +435,7 @@ class PageBlobOperations(object):
         response = pipeline_output.http_response
 
         if response.status_code not in [201]:
-            raise models.StorageErrorException(self._deserialize, response)
+            raise models.StorageErrorException(response, self._deserialize)
 
         if cls:
             response_headers = {
@@ -547,7 +547,7 @@ class PageBlobOperations(object):
         response = pipeline_output.http_response
 
         if response.status_code not in [200]:
-            raise models.StorageErrorException(self._deserialize, response)
+            raise models.StorageErrorException(response, self._deserialize)
 
         header_dict = {}
         deserialized = None
@@ -677,7 +677,7 @@ class PageBlobOperations(object):
         response = pipeline_output.http_response
 
         if response.status_code not in [200]:
-            raise models.StorageErrorException(self._deserialize, response)
+            raise models.StorageErrorException(response, self._deserialize)
 
         header_dict = {}
         deserialized = None
@@ -785,7 +785,7 @@ class PageBlobOperations(object):
         response = pipeline_output.http_response
 
         if response.status_code not in [200]:
-            raise models.StorageErrorException(self._deserialize, response)
+            raise models.StorageErrorException(response, self._deserialize)
 
         if cls:
             response_headers = {
@@ -895,7 +895,7 @@ class PageBlobOperations(object):
         response = pipeline_output.http_response
 
         if response.status_code not in [200]:
-            raise models.StorageErrorException(self._deserialize, response)
+            raise models.StorageErrorException(response, self._deserialize)
 
         if cls:
             response_headers = {
@@ -995,7 +995,7 @@ class PageBlobOperations(object):
         response = pipeline_output.http_response
 
         if response.status_code not in [202]:
-            raise models.StorageErrorException(self._deserialize, response)
+            raise models.StorageErrorException(response, self._deserialize)
 
         if cls:
             response_headers = {

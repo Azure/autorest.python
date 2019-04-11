@@ -42,7 +42,8 @@ log_level = int(os.environ.get('PythonLogLevel', 30))
 tests = realpath(join(cwd, pardir, "Expected", "AcceptanceTests"))
 sys.path.append(join(tests, "Http"))
 
-from msrest.exceptions import DeserializationError, HttpOperationError
+from azure.core.exceptions import ClientRequestError
+from msrest.exceptions import DeserializationError
 
 from httpinfrastructure.aio import AutoRestHttpInfrastructureTestService, AutoRestHttpInfrastructureTestServiceConfiguration
 from httpinfrastructure.models import (
@@ -70,7 +71,7 @@ class TestHttp(object):
             await func(*args, **kwargs)
             pytest.fail()
 
-        except HttpOperationError as err:
+        except ClientRequestError as err:
             assert err.message == msg
 
     async def assertRaisesWithModel(self, code, model, func, *args, **kwargs):
@@ -78,7 +79,7 @@ class TestHttp(object):
             await func(*args, **kwargs)
             pytest.fail()
 
-        except HttpOperationError as err:
+        except ClientRequestError as err:
             assert isinstance(err.error, model)
             assert err.response.status_code == code
 
@@ -87,7 +88,7 @@ class TestHttp(object):
             await func(*args, **kwargs)
             pytest.fail()
 
-        except HttpOperationError as err:
+        except ClientRequestError as err:
             assert err.response.status_code == code
 
     async def assertRaisesWithStatusAndMessage(self, code, msg, func, *args, **kwargs):
@@ -95,7 +96,7 @@ class TestHttp(object):
             await func(*args, **kwargs)
             pytest.fail()
 
-        except HttpOperationError as err:
+        except ClientRequestError as err:
             assert err.message == msg
             assert err.response.status_code == code
 
@@ -104,7 +105,7 @@ class TestHttp(object):
             await func(*args, **kwargs)
             pytest.fail()
 
-        except HttpOperationError as err:
+        except ClientRequestError as err:
             assert err.response.status_code == code
             assert msg in err.response.content.decode("utf-8")
 

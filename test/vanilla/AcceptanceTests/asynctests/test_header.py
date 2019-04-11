@@ -169,5 +169,5 @@ class TestHeader(object):
         assert "text/html; charset=utf-8", raw.headers.get('Content-Type')
 
         custom_headers = {"x-ms-client-request-id": "9C4D50EE-2D56-4CD3-8152-34347DC9F2B0"}
-        raw = await client.header.custom_request_id(custom_headers=custom_headers, raw=True)
+        raw = await client.header.custom_request_id(headers=custom_headers, raw=True)
         assert raw.response.status_code ==  200

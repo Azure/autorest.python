@@ -66,7 +66,7 @@ class ImplicitOperations(object):
         response = pipeline_output.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         if cls:
             response_headers = {}
@@ -104,7 +104,7 @@ class ImplicitOperations(object):
         response = pipeline_output.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         if cls:
             response_headers = {}
@@ -142,7 +142,7 @@ class ImplicitOperations(object):
         response = pipeline_output.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         if cls:
             response_headers = {}
@@ -185,7 +185,7 @@ class ImplicitOperations(object):
         response = pipeline_output.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         if cls:
             response_headers = {}
@@ -223,7 +223,7 @@ class ImplicitOperations(object):
         response = pipeline_output.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         if cls:
             response_headers = {}
@@ -258,7 +258,7 @@ class ImplicitOperations(object):
         response = pipeline_output.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         if cls:
             response_headers = {}
@@ -294,7 +294,7 @@ class ImplicitOperations(object):
         response = pipeline_output.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         if cls:
             response_headers = {}

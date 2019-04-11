@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.exceptions import HttpOperationError
+from azure.core.exceptions import ClientRequestError
 from .. import models
 
 
@@ -54,7 +54,7 @@ class AutoRestValidationTestOperationsMixin(object):
         response = pipeline_output.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
@@ -114,7 +114,7 @@ class AutoRestValidationTestOperationsMixin(object):
         response = pipeline_output.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
@@ -136,7 +136,7 @@ class AutoRestValidationTestOperationsMixin(object):
         :return: None or the result of cls(response)
         :rtype: None
         :raises:
-         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+         :class:`ClientRequestError<azore.core.exceptions.ClientRequestError>`
         """
         constant_param = "constant"
 
@@ -159,7 +159,7 @@ class AutoRestValidationTestOperationsMixin(object):
         response = pipeline_output.http_response
 
         if response.status_code not in [200]:
-            raise HttpOperationError(self._deserialize, response)
+            raise ClientRequestError(response)
 
         if cls:
             response_headers = {}
@@ -178,7 +178,7 @@ class AutoRestValidationTestOperationsMixin(object):
         :return: Product or the result of cls(response)
         :rtype: ~validation.models.Product
         :raises:
-         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+         :class:`ClientRequestError<azore.core.exceptions.ClientRequestError>`
         """
         constant_param = "constant"
 
@@ -209,7 +209,7 @@ class AutoRestValidationTestOperationsMixin(object):
         response = pipeline_output.http_response
 
         if response.status_code not in [200]:
-            raise HttpOperationError(self._deserialize, response)
+            raise ClientRequestError(response)
 
         deserialized = None
         if response.status_code == 200:

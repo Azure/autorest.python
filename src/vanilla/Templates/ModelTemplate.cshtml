@@ -15,7 +15,7 @@ from msrest.serialization import Model
 <text>
 @if (currModel.IsException)
 {
-@:from msrest.exceptions import HttpOperationError
+@:from azure.core.exceptions import ClientRequestError
 break;
 }
 </text>
@@ -159,16 +159,20 @@ else
 {
 @EmptyLine
 @EmptyLine
-@:class @(currModel.ExceptionTypeDefinitionName)(HttpOperationError):
+@:class @(currModel.ExceptionTypeDefinitionName)(ClientRequestError):
 @:    """Server responsed with exception of type: '@(currModel.Name)'.
 @EmptyLine
 @:    :param deserialize: A deserializer
 @:    :param response: Server response to be deserialized.
 @:    """
 @EmptyLine
-    @:def __init__(self, deserialize, response, *args):
+    @:def __init__(self, response, deserialize, *args):
 @EmptyLine
-        @:super(@(currModel.ExceptionTypeDefinitionName), self).__init__(deserialize, response, '@(currModel.Name)', *args)
+@:        model_name = '@(currModel.Name)'
+@:        self.error = deserialize(model_name, response)
+@:        if self.error is None:
+@:            self.error = deserialize.dependencies[model_name]()
+@:        super(@(currModel.ExceptionTypeDefinitionName), self).__init__(response)
 }
 </text>
 }

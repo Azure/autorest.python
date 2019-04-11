@@ -42,7 +42,8 @@ log_level = int(os.environ.get('PythonLogLevel', 30))
 tests = realpath(join(cwd, pardir, "Expected", "AcceptanceTests"))
 sys.path.append(join(tests, "Http"))
 
-from msrest.exceptions import DeserializationError, HttpOperationError
+from azure.core.exceptions import ClientRequestError
+from msrest.exceptions import DeserializationError
 
 from httpinfrastructure import AutoRestHttpInfrastructureTestService
 from httpinfrastructure.models import (
@@ -61,16 +62,18 @@ def client():
 class TestHttp(object):
 
     def assertStatus(self, code, func, *args, **kwargs):
-        kwargs['raw'] = True
-        raw = func(*args, **kwargs)
-        raw.response.status_code == code
+        def return_status(response, data, headers):
+            return response.status_code
+        kwargs['cls'] = return_status
+        status_code = func(*args, **kwargs)
+        assert status_code == code
 
     def assertRaisesWithMessage(self, msg, func, *args, **kwargs):
         try:
             func(*args, **kwargs)
             pytest.fail()
 
-        except HttpOperationError as err:
+        except ClientRequestError as err:
             assert err.message == msg
 
     def assertRaisesWithModel(self, code, model, func, *args, **kwargs):
@@ -78,7 +81,7 @@ class TestHttp(object):
             func(*args, **kwargs)
             pytest.fail()
 
-        except HttpOperationError as err:
+        except ClientRequestError as err:
             assert isinstance(err.error, model)
             assert err.response.status_code == code
 
@@ -87,7 +90,7 @@ class TestHttp(object):
             func(*args, **kwargs)
             pytest.fail()
 
-        except HttpOperationError as err:
+        except ClientRequestError as err:
             assert err.response.status_code == code
 
     def assertRaisesWithStatusAndMessage(self, code, msg, func, *args, **kwargs):
@@ -95,7 +98,7 @@ class TestHttp(object):
             func(*args, **kwargs)
             pytest.fail()
 
-        except HttpOperationError as err:
+        except ClientRequestError as err:
             assert err.message == msg
             assert err.response.status_code == code
 
@@ -104,9 +107,9 @@ class TestHttp(object):
             func(*args, **kwargs)
             pytest.fail()
 
-        except HttpOperationError as err:
+        except ClientRequestError as err:
             assert err.response.status_code == code
-            assert msg in err.response.content.decode("utf-8")
+            assert msg in err.response.text()
 
     def test_response_modeling(self, client):
 
@@ -312,10 +315,7 @@ class TestHttp(object):
 
     def test_redirect_status_codes(self, client):
 
-        # requests does NOT redirect on 300. We is ok with the HTTP
-        # spec that is fuzzy about this. Let's keep it that way for now.
-        self.assertStatus(300, client.http_redirects.get300)
-
+        self.assertStatus(200, client.http_redirects.get300)
         self.assertStatus(200, client.http_redirects.head302)
         self.assertStatus(200, client.http_redirects.head301)
         self.assertStatus(200, client.http_redirects.get301)

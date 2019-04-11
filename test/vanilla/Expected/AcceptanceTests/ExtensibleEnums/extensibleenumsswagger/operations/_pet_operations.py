@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.exceptions import HttpOperationError
+from azure.core.exceptions import ClientRequestError
 
 from .. import models
 
@@ -46,7 +46,7 @@ class PetOperations(object):
         :return: Pet or the result of cls(response)
         :rtype: ~extensibleenumsswagger.models.Pet
         :raises:
-         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+         :class:`ClientRequestError<azore.core.exceptions.ClientRequestError>`
         """
         # Construct URL
         url = self.get_by_pet_id.metadata['url']
@@ -68,7 +68,7 @@ class PetOperations(object):
         response = pipeline_output.http_response
 
         if response.status_code not in [200]:
-            raise HttpOperationError(self._deserialize, response)
+            raise ClientRequestError(response)
 
         deserialized = None
         if response.status_code == 200:
@@ -92,7 +92,7 @@ class PetOperations(object):
         :return: Pet or the result of cls(response)
         :rtype: ~extensibleenumsswagger.models.Pet
         :raises:
-         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+         :class:`ClientRequestError<azore.core.exceptions.ClientRequestError>`
         """
         # Construct URL
         url = self.add_pet.metadata['url']
@@ -117,7 +117,7 @@ class PetOperations(object):
         response = pipeline_output.http_response
 
         if response.status_code not in [200]:
-            raise HttpOperationError(self._deserialize, response)
+            raise ClientRequestError(response)
 
         deserialized = None
         if response.status_code == 200:
