@@ -145,7 +145,12 @@ else
 }
 @{string streamParameter = "stream="+(Model.IsStreamResponse?"True":"False");}
 @{string sendCall = Model.GetSendCall(AsyncMode);}
-        response = @(sendCall)(request, @(streamParameter), **operation_config)
+        try:
+            pipeline_response = @(sendCall)(request)
+            response = pipeline_response.http_response.internal_response
+        finally:
+            if not self._config.connection.keep_alive and (not response):
+                self.pipeline._sender.driver.session.close()
 @EmptyLine
         if @Model.FailureStatusCodePredicate:
             @Model.RaisedException

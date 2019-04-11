@@ -31,7 +31,7 @@ namespace AutoRest.Python.Model
 
                     if (IsClientProperty)
                     {
-                        return $"self.config.{value}";
+                        return $"self._config.{value}";
                     }
                 }
                 return value;

@@ -715,10 +715,10 @@ namespace AutoRest.Python.Model
         public string GetSendCall(bool asyncMode)
         {
             if(asyncMode) {
-                return "await self._client.async_send";
+                return "await self.pipeline.run";
             }
             else {
-                return "self._client.send";
+                return "self.pipeline.run";
             }
         }
 

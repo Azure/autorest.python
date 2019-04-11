@@ -89,7 +89,7 @@ namespace AutoRest.Python.Azure.Model
             get
             {
                 var sb = new IndentedStringBuilder();
-                sb.AppendLine("if self.config.generate_client_request_id:", this.ClientRequestIdString).Indent();
+                sb.AppendLine("if self._config.generate_client_request_id:", this.ClientRequestIdString).Indent();
                 sb.AppendLine("header_parameters['{0}'] = str(uuid.uuid1())", this.ClientRequestIdString).Outdent().Append(base.SetDefaultHeaders);
                 return sb.ToString();
             }

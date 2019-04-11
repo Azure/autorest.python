@@ -17,7 +17,7 @@
 {
 @:import warnings
 }
-# from azure.core import PipelineClient  TODO
+from azure.core import PipelineClient
 from msrest import Serializer, Deserializer
 @EmptyLine
 from ._configuration import @(Model.Name)Configuration
@@ -43,7 +43,7 @@ bool hasClientLevelMethods = Model.MethodTemplateModels.Any( each => each.Method
 @EmptyLine
 @if (hasClientLevelMethods)
 {
-@:class @(Model.Name)(@(Model.Name)OperationsMixin):
+@:class @(Model.Name)(@(Model.Name)OperationsMixin, PipelineClient):
 }
 else
 {
@@ -77,7 +77,7 @@ else
             self@(Model.RequiredConstructorParameters)@(Model.IsCustomBaseUri ? "" : ", base_url=None"), config=None, **kwargs):
 @EmptyLine
         self._config = config or @(Model.Name)Configuration(@(Model.ConfigConstructorParameters)**kwargs)
-        self._client = PipelineClient(base_url=@(!Model.IsCustomBaseUri? "base_url": PythonConstants.None), credentials=@(Settings.AddCredentials? "credentials" : PythonConstants.None), config=self._config, **kwargs)
+        self._client = PipelineClient(base_url=@(!Model.IsCustomBaseUri? "base_url": PythonConstants.None), config=self._config, **kwargs)
 @EmptyLine
 @if (Model.ModelTemplateModels.Any(each => !each.Extensions.ContainsKey(AzureExtensions.ExternalExtension)))
 {

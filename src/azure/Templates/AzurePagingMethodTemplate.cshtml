@@ -113,7 +113,13 @@ else
         def internal_paging(next_link=None):
             request = prepare_request(next_link)
 @EmptyLine
-            response = self._client.send(request, stream=False, **operation_config)
+            try:
+                pipeline_response = self.pipeline.run(request)
+                response = pipeline_response.http_response.internal_response
+        
+            finally:
+                if not self._config.connection.keep_alive and (not response):
+                    self.pipeline._sender.driver.session.close()
 @EmptyLine
             if @Model.FailureStatusCodePredicate:
                 @Model.RaisedException
