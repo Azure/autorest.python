@@ -42,6 +42,7 @@ sys.path.append(join(tests, "BodyInteger"))
 
 from msrest.serialization import Deserializer
 from msrest.exceptions import DeserializationError
+from azure.core.exceptions import DecodeError
 
 from bodyinteger.aio import AutoRestIntegerTestService
 
@@ -60,7 +61,7 @@ class TestInteger(object):
         await client.int_model.put_min64(-9223372036854776000)
         await client.int_model.get_null()
 
-        with pytest.raises(DeserializationError):
+        with pytest.raises(DecodeError):
             await client.int_model.get_invalid()
 
         # Testserver excepts these to fail, but they won't in Python and it's ok.
