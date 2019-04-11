@@ -89,7 +89,7 @@ namespace AutoRest.Python.Azure.Model
             get
             {
                 var sb = new IndentedStringBuilder();
-                sb.AppendLine("if self.config.generate_client_request_id:", this.ClientRequestIdString).Indent();
+                sb.AppendLine("if self._config.generate_client_request_id:", this.ClientRequestIdString).Indent();
                 sb.AppendLine("header_parameters['{0}'] = str(uuid.uuid1())", this.ClientRequestIdString).Outdent().Append(base.SetDefaultHeaders);
                 return sb.ToString();
             }
@@ -105,15 +105,18 @@ namespace AutoRest.Python.Azure.Model
                     HttpStatusCode code = this.Responses.Keys.FirstOrDefault(AzureExtensions.HttpHeadStatusCodeSuccessFunc);
                     var builder = new IndentedStringBuilder("    ");
                     builder.AppendFormat("deserialized = (response.status_code == {0})", (int)code).AppendLine();
-                    builder.AppendLine("if raw:").Indent().
-                        AppendLine("client_raw_response = ClientRawResponse(deserialized, response)");
+                    builder.AppendLine("if cls:").Indent();
                     if (this.Responses[code].Headers != null)
                     {
-                        builder.AppendLine("client_raw_response.add_headers({").Indent();
+                        builder.AppendLine("response_headers = {").Indent();
                         AddHeaderDictionary(builder, (CompositeType)this.Responses[code].Headers);
-                        builder.AppendLine("})").Outdent();
+                        builder.AppendLine("}").Outdent();
                     }
-                    builder.AppendLine("return client_raw_response").
+                    else
+                    {
+                        builder.AppendLine("response_headers = {}");
+                    }
+                    builder.AppendLine("return cls(response, deserialized, response_headers)").
                         Outdent();
                     builder.AppendLine("return deserialized");
 

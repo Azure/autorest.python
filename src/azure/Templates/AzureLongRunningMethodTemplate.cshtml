@@ -205,7 +205,7 @@ else
 @EmptyLine
         lro_delay = operation_config.get(
             'long_running_operation_timeout',
-            self.config.long_running_operation_timeout)
+            self._config.long_running_operation_timeout)
 @{
 var lro_string = Model.GetLROOptions();
 if(lro_string != "")

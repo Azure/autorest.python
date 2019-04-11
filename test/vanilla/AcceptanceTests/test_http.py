@@ -57,10 +57,6 @@ def client():
     with AutoRestHttpInfrastructureTestService(base_url="http://localhost:3000") as client:
         yield client
 
-@pytest.fixture()
-def special_client(client, test_session_callback):
-    client.config.session_configuration_callback = test_session_callback
-    return client
 
 class TestHttp(object):
 
@@ -204,8 +200,7 @@ class TestHttp(object):
         self.assertRaisesWithStatus(202,
             client.multiple_responses.get200_model_a202_valid)
 
-    def test_server_error_status_codes(self, special_client):
-        client = special_client
+    def test_server_error_status_codes(self, client):
 
         self.assertRaisesWithStatus(requests.codes.not_implemented,
             client.http_server_failure.head501)

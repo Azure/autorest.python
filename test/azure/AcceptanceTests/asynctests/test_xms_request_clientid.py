@@ -46,7 +46,7 @@ from msrest.exceptions import DeserializationError
 from msrest.authentication import BasicTokenAuthentication
 from msrestazure.azure_exceptions import CloudError, CloudErrorData
 
-from azurespecialproperties.aio import AutoRestAzureSpecialParametersTestClient
+from azurespecialproperties.aio import AutoRestAzureSpecialParametersTestClient, AutoRestAzureSpecialParametersTestClientConfiguration
 from azurespecialproperties import models
 
 import pytest
@@ -64,15 +64,21 @@ class TestXmsRequestClientId(object):
 
         custom_headers = {"x-ms-client-request-id": validClientId }
 
-        result1 = await client.xms_client_request_id.get(custom_headers = custom_headers, raw=True)
-        #TODO: should we put the x-ms-request-id into response header of swagger spec?
-        assert "123" ==  result1.response.headers.get("x-ms-request-id")
+        def assert_header(response):
+            return response.headers.get("x-ms-request-id")
 
-        result2 = await client.xms_client_request_id.param_get(validClientId, raw=True)
-        assert "123" ==  result2.response.headers.get("x-ms-request-id")
+        result1 = await client.xms_client_request_id.get(headers=custom_headers, cls=assert_header)
+        #TODO: should we put the x-ms-request-id into response header of swagger spec?
+        assert result1 == "123"
+
+        result2 = await client.xms_client_request_id.param_get(validClientId, cls=assert_header)
+        assert result2 == "123"
 
     @pytest.mark.asyncio
     async def test_custom_named_request_id(self):
+
+        def assert_header(response):
+            return "123" ==  response.headers.get("foo-request-id")
 
         validSubscription = '1234-5678-9012-3456'
         expectedRequestId = '9C4D50EE-2D56-4CD3-8152-34347DC9F2B0'
@@ -80,11 +86,14 @@ class TestXmsRequestClientId(object):
         cred = BasicTokenAuthentication({"access_token":123})
         client = AutoRestAzureSpecialParametersTestClient(cred, validSubscription, base_url="http://localhost:3000")
 
-        response = await client.header.custom_named_request_id(expectedRequestId, raw=True)
-        assert "123" ==  response.response.headers.get("foo-request-id")
+        response = await client.header.custom_named_request_id(expectedRequestId, cls=assert_header)
+        assert response == "123"
 
     @pytest.mark.asyncio
     async def test_custom_named_request_id_param_grouping(self):
+
+        def assert_header(response):
+            return response.headers.get("foo-request-id")
 
         validSubscription = '1234-5678-9012-3456'
         expectedRequestId = '9C4D50EE-2D56-4CD3-8152-34347DC9F2B0'
@@ -93,8 +102,8 @@ class TestXmsRequestClientId(object):
         client = AutoRestAzureSpecialParametersTestClient(cred, validSubscription, base_url="http://localhost:3000")
 
         group = models.HeaderCustomNamedRequestIdParamGroupingParameters(foo_client_request_id=expectedRequestId)
-        response = await client.header.custom_named_request_id_param_grouping(group, raw=True)
-        assert "123" ==  response.response.headers.get("foo-request-id")
+        response = await client.header.custom_named_request_id_param_grouping(group, cls=assert_header)
+        assert response == "123"
 
     @pytest.mark.asyncio
     async def test_client_request_id_in_exception(self):
@@ -117,8 +126,9 @@ class TestXmsRequestClientId(object):
         expectedRequestId = '9C4D50EE-2D56-4CD3-8152-34347DC9F2B0'
 
         cred = BasicTokenAuthentication({"access_token":123})
-        client = AutoRestAzureSpecialParametersTestClient(cred, validSubscription, base_url="http://localhost:3000")
-        client.config.generate_client_request_id = False
+        config = AutoRestAzureSpecialParametersTestClientConfiguration(cred, validSubscription)
+        config.generate_client_request_id = False
+        client = AutoRestAzureSpecialParametersTestClient(base_url="http://localhost:3000", config=config)
         await client.xms_client_request_id.get()
 
 

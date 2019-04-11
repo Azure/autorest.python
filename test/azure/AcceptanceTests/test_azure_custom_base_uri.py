@@ -50,7 +50,7 @@ from msrest.authentication import BasicTokenAuthentication
 
 from azure.core.exceptions import ConnectionError
 
-from custombaseurl import AutoRestParameterizedHostTestClient
+from custombaseurl import AutoRestParameterizedHostTestClient, AutoRestParameterizedHostTestClientConfiguration
 from custombaseurl.models import Error, ErrorException
 
 import pytest
@@ -64,15 +64,17 @@ class TestCustomBaseUri(object):
 
     def test_custom_base_uri_negative(self):
         cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
-        client = AutoRestParameterizedHostTestClient(cred, host="host:3000")
-        client.config.retry_policy.retries = 0
+        config = AutoRestParameterizedHostTestClientConfiguration(cred, host="host:3000")
+        config.retry_policy.total_retries = 0
+        client = AutoRestParameterizedHostTestClient(config=config)
         with pytest.raises(ConnectionError):
             client.paths.get_empty("bad")
 
         with pytest.raises(ValidationError):
             client.paths.get_empty(None)
 
-        client.config.host = "badhost:3000"
+        config.host = "badhost:3000"
+        client = AutoRestParameterizedHostTestClient(config=config)
         with pytest.raises(ConnectionError):
             client.paths.get_empty("local")
 

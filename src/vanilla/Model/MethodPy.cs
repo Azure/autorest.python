@@ -68,21 +68,6 @@ namespace AutoRest.Python.Model
             }
         }
 
-        public virtual bool NeedsCallback
-        {
-            get
-            {
-                if (IsStreamResponse || IsStreamRequestBody)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-        }
-
         public virtual string ExceptionDocumentation
         {
             get
@@ -168,16 +153,7 @@ namespace AutoRest.Python.Model
                 declarations.Add("*");
             }
 
-            if (addCustomHeaderParameters)
-            {
-                declarations.Add("custom_headers=None");
-            }
-
-            declarations.Add("raw=False");
-            if (this.NeedsCallback)
-            {
-                declarations.Add("callback=None");
-            }
+            declarations.Add("cls=None");
 
             if (requiredDeclarations.Any())
             {
@@ -373,15 +349,18 @@ namespace AutoRest.Python.Model
             get
             {
                 var builder = new IndentedStringBuilder("    ");
-                builder.AppendLine("if raw:").Indent().
-                    AppendLine("client_raw_response = ClientRawResponse(None, response)");
+                builder.AppendLine("if cls:").Indent();
                 if (this.ReturnType.Headers != null)
                 {
-                    builder.AppendLine("client_raw_response.add_headers({").Indent();
+                    builder.AppendLine("response_headers = {").Indent();
                     AddHeaderDictionary(builder, (Core.Model.CompositeType)ReturnType.Headers);
-                    builder.Outdent().AppendLine("})");
+                    builder.Outdent().AppendLine("}");
                 }
-                builder.AppendLine("return client_raw_response").
+                else
+                {
+                    builder.AppendLine("response_headers = {}");
+                }
+                builder.AppendLine("return cls(response, None, response_headers)").
                     Outdent();
 
                 return builder.ToString();
@@ -429,13 +408,11 @@ namespace AutoRest.Python.Model
         {
             if (HasResponseHeader)
             {
-                var builder = new IndentedStringBuilder("    ");
-                builder.AppendLine("client_raw_response.add_headers(header_dict)");
-                return builder.ToString();
+                return "header_dict";
             }
             else
             {
-                return string.Empty;
+                return PythonConstants.None;
             }
         }
 
@@ -456,11 +433,11 @@ namespace AutoRest.Python.Model
                 var enumType = prop.ModelType as EnumType;
                 if (CodeModel.EnumTypes.Contains(prop.ModelType) && !enumType.ModelAsString)
                 {
-                    builder.AppendLine(String.Format(CultureInfo.InvariantCulture, "'{0}': models.{1},", prop.SerializedName, prop.ModelType.ToPythonRuntimeTypeString()));
+                    builder.AppendLine(String.Format(CultureInfo.InvariantCulture, "'{0}': self._deserialize(models.{1}, response.headers.get('{0}')),", prop.SerializedName, prop.ModelType.ToPythonRuntimeTypeString()));
                 }
                 else
                 {
-                    builder.AppendLine(String.Format(CultureInfo.InvariantCulture, "'{0}': '{1}',", prop.SerializedName, prop.ModelType.ToPythonRuntimeTypeString()));
+                    builder.AppendLine(String.Format(CultureInfo.InvariantCulture, "'{0}': self._deserialize('{1}', response.headers.get('{0}')),", prop.SerializedName, prop.ModelType.ToPythonRuntimeTypeString()));
                 }
             }
         }
@@ -699,26 +676,17 @@ namespace AutoRest.Python.Model
         {
             get
             {
-                if (this.AddCustomHeader)
-                {
-                    var sb = new IndentedStringBuilder();
-                    sb.AppendLine("if custom_headers:").Indent().AppendLine("header_parameters.update(custom_headers)").Outdent();
-                    return sb.ToString();
-                }
-                else
-                {
-                    return string.Empty;
-                }
+                return string.Empty;
             }
         }
 
         public string GetSendCall(bool asyncMode)
         {
             if(asyncMode) {
-                return "await self._client.async_send";
+                return "await self._client.pipeline.run";
             }
             else {
-                return "self._client.send";
+                return "self._client.pipeline.run";
             }
         }
 

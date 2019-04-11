@@ -45,20 +45,16 @@ from requiredoptional.models import StringWrapper, ArrayWrapper, ClassWrapper
 
 import pytest
 
-@pytest.fixture
-def client():
-    return AutoRestRequiredOptionalTestService(
-            "required_path",
-            "required_query",
-            base_url="http://localhost:3000")
 
 class TestRequiredOptional(object):
 
     @pytest.mark.asyncio
-    async def test_required_optional(self, client):
+    async def test_required_optional(self):
 
-        client.config.required_global_path = "required_path"
-        client.config.required_global_query = "required_query"
+        client = AutoRestRequiredOptionalTestService(
+            required_global_path="required_path",
+            required_global_query="required_query",
+            base_url="http://localhost:3000")
 
         await client.implicit.put_optional_query(None)
         await client.implicit.put_optional_body(None)
@@ -82,10 +78,12 @@ class TestRequiredOptional(object):
         await client.explicit.post_optional_array_header(None)
 
     @pytest.mark.asyncio
-    async def test_required_optional_negative(self, client):
+    async def test_required_optional_negative(self):
 
-        client.config.required_global_path = None
-        client.config.required_global_query = None
+        client = AutoRestRequiredOptionalTestService(
+            required_global_path=None,
+            equired_global_query=None,
+            base_url="http://localhost:3000")
 
         with pytest.raises(ValidationError):
             await client.implicit.get_required_path(None)

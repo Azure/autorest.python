@@ -46,7 +46,7 @@ from msrest.exceptions import (
 
 from azure.core.exceptions import ConnectionError
 
-from custombaseurl import AutoRestParameterizedHostTestClient
+from custombaseurl import AutoRestParameterizedHostTestClient, AutoRestParameterizedHostTestClientConfiguration
 from custombaseurl.models import Error, ErrorException
 from custombaseurlmoreoptions import AutoRestParameterizedCustomHostTestClient
 
@@ -59,8 +59,9 @@ class TestCustomBaseUri(object):
         client.paths.get_empty("local")
 
     def test_custom_base_uri_negative(self):
-        client = AutoRestParameterizedHostTestClient("host:3000")
-        client.config.retry_policy.retries = 0
+        config = AutoRestParameterizedHostTestClientConfiguration("host:3000")
+        config.retry_policy.total_retries = 0
+        client = AutoRestParameterizedHostTestClient(config=config)
 
         with pytest.raises(ConnectionError):
             client.paths.get_empty("bad")
@@ -68,7 +69,9 @@ class TestCustomBaseUri(object):
         with pytest.raises(ValidationError):
             client.paths.get_empty(None)
 
-        client.config.host = "badhost:3000"
+        config = AutoRestParameterizedHostTestClientConfiguration("badhost:3000")
+        config.retry_policy.total_retries = 0
+        client = AutoRestParameterizedHostTestClient(config=config)
         with pytest.raises(ConnectionError):
             client.paths.get_empty("local")
 

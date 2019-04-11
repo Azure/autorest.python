@@ -38,7 +38,7 @@ cwd = dirname(realpath(__file__))
 tests = realpath(join(cwd, pardir, "Expected", "AcceptanceTests"))
 sys.path.append(join(tests, "Xml"))
 
-from xmlservice import AutoRestSwaggerBATXMLService
+from xmlservice import AutoRestSwaggerBATXMLService, AutoRestSwaggerBATXMLServiceConfiguration
 from xmlservice.models import BlobType
 
 import pytest
@@ -47,17 +47,19 @@ _LOGGER = logging.getLogger(__name__)
 
 @pytest.fixture
 def client():
-    with AutoRestSwaggerBATXMLService(base_url="http://localhost:3000") as client:
-        client.config.enable_http_logger = True
+    config = AutoRestSwaggerBATXMLServiceConfiguration()
+    config.logging_policy.enable_http_logger = True
+    with AutoRestSwaggerBATXMLService(base_url="http://localhost:3000", config=config) as client:
         yield client
 
 def _assert_with_log(func, *args, **kwargs):
+    def raise_for_status(response):
+        response.internal_response.raise_for_status()
     try:
-        http_response = func(*args, raw=True, **kwargs)
+        http_response = func(*args, cls=raise_for_status, **kwargs)
     except Exception as err:
         print(err.response.text)
         pytest.fail()
-    http_response.response.raise_for_status()
 
 class TestXml(object):
 

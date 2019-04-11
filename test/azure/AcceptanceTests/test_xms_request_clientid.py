@@ -46,7 +46,7 @@ from msrest.exceptions import DeserializationError
 from msrest.authentication import BasicTokenAuthentication
 from msrestazure.azure_exceptions import CloudError, CloudErrorData
 
-from azurespecialproperties import AutoRestAzureSpecialParametersTestClient
+from azurespecialproperties import AutoRestAzureSpecialParametersTestClient, AutoRestAzureSpecialParametersTestClientConfiguration
 from azurespecialproperties import models
 
 import pytest
@@ -54,6 +54,9 @@ import pytest
 class TestXmsRequestClientId(object):
 
     def test_xms_request_client_id(self):
+
+        def assert_header(response):
+            return response.headers.get("x-ms-request-id")
 
         validSubscription = '1234-5678-9012-3456'
         validClientId = '9C4D50EE-2D56-4CD3-8152-34347DC9F2B0'
@@ -63,14 +66,17 @@ class TestXmsRequestClientId(object):
 
         custom_headers = {"x-ms-client-request-id": validClientId }
 
-        result1 = client.xms_client_request_id.get(custom_headers = custom_headers, raw=True)
+        result1 = client.xms_client_request_id.get(headers=custom_headers, cls=assert_header)
         #TODO: should we put the x-ms-request-id into response header of swagger spec?
-        assert "123" ==  result1.response.headers.get("x-ms-request-id")
+        assert result1 == "123"
 
-        result2 = client.xms_client_request_id.param_get(validClientId, raw=True)
-        assert "123" ==  result2.response.headers.get("x-ms-request-id")
+        result2 = client.xms_client_request_id.param_get(validClientId, cls=assert_header)
+        assert result2 == "123"
 
     def test_custom_named_request_id(self):
+
+        def assert_header(response):
+            return response.headers.get("foo-request-id")
 
         validSubscription = '1234-5678-9012-3456'
         expectedRequestId = '9C4D50EE-2D56-4CD3-8152-34347DC9F2B0'
@@ -78,10 +84,13 @@ class TestXmsRequestClientId(object):
         cred = BasicTokenAuthentication({"access_token":123})
         client = AutoRestAzureSpecialParametersTestClient(cred, validSubscription, base_url="http://localhost:3000")
 
-        response = client.header.custom_named_request_id(expectedRequestId, raw=True)
-        assert "123" ==  response.response.headers.get("foo-request-id")
+        response = client.header.custom_named_request_id(expectedRequestId, cls=assert_header)
+        assert response == "123"
 
     def test_custom_named_request_id_param_grouping(self):
+
+        def assert_header(response):
+            return response.headers.get("foo-request-id")
 
         validSubscription = '1234-5678-9012-3456'
         expectedRequestId = '9C4D50EE-2D56-4CD3-8152-34347DC9F2B0'
@@ -90,8 +99,8 @@ class TestXmsRequestClientId(object):
         client = AutoRestAzureSpecialParametersTestClient(cred, validSubscription, base_url="http://localhost:3000")
 
         group = models.HeaderCustomNamedRequestIdParamGroupingParameters(foo_client_request_id=expectedRequestId)
-        response = client.header.custom_named_request_id_param_grouping(group, raw=True)
-        assert "123" ==  response.response.headers.get("foo-request-id")
+        response = client.header.custom_named_request_id_param_grouping(group, cls=assert_header)
+        assert response == "123"
 
     def test_client_request_id_in_exception(self):
         validSubscription = '1234-5678-9012-3456'
@@ -112,8 +121,9 @@ class TestXmsRequestClientId(object):
         expectedRequestId = '9C4D50EE-2D56-4CD3-8152-34347DC9F2B0'
 
         cred = BasicTokenAuthentication({"access_token":123})
-        client = AutoRestAzureSpecialParametersTestClient(cred, validSubscription, base_url="http://localhost:3000")
-        client.config.generate_client_request_id = False
+        config = AutoRestAzureSpecialParametersTestClientConfiguration(cred, validSubscription)
+        config.generate_client_request_id = False
+        client = AutoRestAzureSpecialParametersTestClient(base_url="http://localhost:3000")
         client.xms_client_request_id.get()
 
 

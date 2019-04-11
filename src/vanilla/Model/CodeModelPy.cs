@@ -102,14 +102,7 @@ namespace AutoRest.Python.Model
                     {
                         continue;
                     }
-                    if (property.IsRequired)
-                    {
-                        requireParams.Add(property.Name);
-                    }
-                    else
-                    {
-                        requireParams.Add(string.Format(CultureInfo.InvariantCulture, "{0}=None", property.Name));
-                    }
+                    requireParams.Add(string.Format(CultureInfo.InvariantCulture, "{0}=None", property.Name));
                 }
                 //requireParams.Add("baseUri");
                 var param = string.Join(", ", requireParams);

@@ -44,7 +44,7 @@ sys.path.append(join(tests, "Http"))
 
 from msrest.exceptions import DeserializationError, HttpOperationError
 
-from httpinfrastructure.aio import AutoRestHttpInfrastructureTestService
+from httpinfrastructure.aio import AutoRestHttpInfrastructureTestService, AutoRestHttpInfrastructureTestServiceConfiguration
 from httpinfrastructure.models import (
     A, B, C, D, ErrorException)
 
@@ -57,10 +57,6 @@ def client():
     client = AutoRestHttpInfrastructureTestService(base_url="http://localhost:3000")
     return client
 
-@pytest.fixture()
-def special_client(client, test_session_callback):
-    client.config.session_configuration_callback = test_session_callback
-    return client
 
 class TestHttp(object):
 
@@ -206,8 +202,7 @@ class TestHttp(object):
             client.multiple_responses.get200_model_a202_valid)
 
     @pytest.mark.asyncio
-    async def test_server_error_status_codes(self, special_client):
-        client = special_client
+    async def test_server_error_status_codes(self, client):
 
         await self.assertRaisesWithStatus(requests.codes.not_implemented,
             client.http_server_failure.head501)

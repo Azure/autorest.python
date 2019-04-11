@@ -38,33 +38,24 @@ namespace AutoRest.Python.Azure.Model
         {
             get
             {
-                var requireParams = new List<string>();
-                var optionalParams = new List<string>();
+                var allParams = new List<string>();
                 foreach (var property in Properties)
                 {
                     if (property.IsConstant)
                     {
                         continue;
                     }
-                    if (property.IsRequired)
+                    var defaultValue = PythonConstants.None;
+                    if (!string.IsNullOrWhiteSpace(property.DefaultValue) && property.ModelType is PrimaryType)
                     {
-                        requireParams.Add(property.Name.ToPythonCase());
+                        defaultValue = property.DefaultValue;
                     }
-                    else
-                    {
-                        var defaultValue = PythonConstants.None;
-                        if (!string.IsNullOrWhiteSpace(property.DefaultValue) && property.ModelType is PrimaryType)
-                        {
-                            defaultValue = property.DefaultValue;
-                        }
-                        optionalParams.Add(string.Format(CultureInfo.InvariantCulture, "{0}={1}",
-                            property.Name.ToPythonCase(), defaultValue));
-                    }
+                    allParams.Add(string.Format(CultureInfo.InvariantCulture, "{0}={1}",
+                        property.Name.ToPythonCase(), defaultValue));
                 }
 
                 // The parameter without default value has to be in front of the parameters with default value
-                requireParams.AddRange(optionalParams);
-                var param = string.Join(", ", requireParams);
+                var param = string.Join(", ", allParams);
                 if (!string.IsNullOrEmpty(param))
                 {
                     param = ", " + param;

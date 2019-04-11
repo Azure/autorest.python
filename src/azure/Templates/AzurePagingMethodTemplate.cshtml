@@ -23,7 +23,6 @@ string methodName = Model.Name.ToPythonCase();
 @:        @ParameterWrapComment(string.Empty, MethodPy.GetParameterDocumentationString(parameter))
 @:        @ParameterWrapComment(string.Empty, ":type " + parameter.Name + ": " + Model.GetDocumentationType(parameter.ModelType))
 }
-        @ParameterWrapComment(string.Empty, ":param dict custom_headers: headers that will be added to the request")
         @ParameterWrapComment(string.Empty, ":param bool raw: returns the direct response alongside the deserialized response")
         @ParameterWrapComment(string.Empty, ":param operation_config: :ref:`Operation configuration overrides<msrest:optionsforoperations>`.")
         @ParameterWrapComment(string.Empty, ":return: An iterator like instance of " + Model.GetDocumentationTypeName(Model.PagedResponseContentClass))

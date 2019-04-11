@@ -11,7 +11,6 @@
 {
 @:import warnings
 }
-from msrest.pipeline import ClientRawResponse
 @if (Model.HasAnyDefaultExceptions)
 {
 @:from msrest.exceptions import HttpOperationError
@@ -48,8 +47,7 @@ class @((string) Model.TypeName):
         self._client = client
         self._serialize = serializer
         self._deserialize = deserializer
-@EmptyLine
-        self.config = config
+        self._config = config
 @foreach(var property in Model.ConstantProperties)
 {
         @:@property.Name = @property.DefaultValue

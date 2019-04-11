@@ -17,7 +17,7 @@
 {
 @:import warnings
 }
-# from azure.core import PipelineClient  TODO
+from azure.core import PipelineClient
 from msrest import Serializer, Deserializer
 @EmptyLine
 from ._configuration import @(Model.Name)Configuration
@@ -76,8 +76,18 @@ else
     def __init__(
             self@(Model.RequiredConstructorParameters)@(Model.IsCustomBaseUri ? "" : ", base_url=None"), config=None, **kwargs):
 @EmptyLine
+@if (Model.IsCustomBaseUri)
+{
+@:        base_url = '@Model.BaseUrl'
+}
+else
+{
+@:        if not base_url:
+@:            base_url = '@Model.BaseUrl'
+}
         self._config = config or @(Model.Name)Configuration(@(Model.ConfigConstructorParameters)**kwargs)
-        self._client = PipelineClient(base_url=@(!Model.IsCustomBaseUri? "base_url": PythonConstants.None), credentials=@(Settings.AddCredentials? "credentials" : PythonConstants.None), config=self._config, **kwargs)
+        pipeline = kwargs.get('pipeline', self._config.build_pipeline())
+        self._client = PipelineClient(base_url, config=self._config, pipeline=pipeline, **kwargs)
 @EmptyLine
 @if (Model.ModelTemplateModels.Any(each => !each.Extensions.ContainsKey(AzureExtensions.ExternalExtension)))
 {
@@ -99,3 +109,10 @@ else
         @:self.@(((string) methodGroup.Name).ToPythonCase()) = @((string) methodGroup.TypeName)(
             @:self._client, self._config, self._serialize, self._deserialize)
 }
+@EmptyLine
+    def __enter__(self):
+        self._client.pipeline.__enter__()
+        return self
+
+    def __exit__(self, *exc_details):
+        self._client.pipeline.__exit__(*exc_details)
