@@ -10,7 +10,6 @@
 # --------------------------------------------------------------------------
 
 import uuid
-from msrest.pipeline import ClientRawResponse
 from msrestazure.azure_exceptions import CloudError
 from msrest.polling import LROPoller, NoPolling
 from msrestazure.polling.arm_polling import ARMPolling
@@ -37,11 +36,11 @@ class LROsCustomHeaderOperations(object):
         self._serialize = serializer
         self._deserialize = deserializer
 
-        self.config = config
+        self._config = config
 
 
     def _put_async_retry_succeeded_initial(
-            self, product=None, custom_headers=None, raw=False, **operation_config):
+            self, product=None, cls=None, **operation_config):
         # Construct URL
         url = self.put_async_retry_succeeded.metadata['url']
 
@@ -52,12 +51,10 @@ class LROsCustomHeaderOperations(object):
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct body
         if product is not None:
@@ -67,7 +64,7 @@ class LROsCustomHeaderOperations(object):
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        response = self._client.pipeline.run(request, stream=False, **operation_config)
 
         if response.status_code not in [200]:
             exp = CloudError(response)
@@ -80,20 +77,20 @@ class LROsCustomHeaderOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('Product', response)
             header_dict = {
-                'Azure-AsyncOperation': 'str',
-                'Location': 'str',
-                'Retry-After': 'int',
+                'Azure-AsyncOperation': self._deserialize('str', response.headers.get('Azure-AsyncOperation')),
+                'Location': self._deserialize('str', response.headers.get('Location')),
+                'Retry-After': self._deserialize('int', response.headers.get('Retry-After')),
             }
 
         if raw:
             client_raw_response = ClientRawResponse(deserialized, response)
-            client_raw_response.add_headers(header_dict)
+            header_dict
             return client_raw_response
 
         return deserialized
 
     def put_async_retry_succeeded(
-            self, product=None, custom_headers=None, raw=False, polling=True, **operation_config):
+            self, product=None, cls=None, polling=True, **operation_config):
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is
         required message header for all requests. Long running put request,
         service returns a 200 to the initial request, with an entity that
@@ -124,22 +121,22 @@ class LROsCustomHeaderOperations(object):
 
         def get_long_running_output(response):
             header_dict = {
-                'Azure-AsyncOperation': 'str',
-                'Location': 'str',
-                'Retry-After': 'int',
+                'Azure-AsyncOperation': self._deserialize('str', response.headers.get('Azure-AsyncOperation')),
+                'Location': self._deserialize('str', response.headers.get('Location')),
+                'Retry-After': self._deserialize('int', response.headers.get('Retry-After')),
             }
             deserialized = self._deserialize('Product', response)
 
             if raw:
                 client_raw_response = ClientRawResponse(deserialized, response)
-                client_raw_response.add_headers(header_dict)
+                header_dict
                 return client_raw_response
 
             return deserialized
 
         lro_delay = operation_config.get(
             'long_running_operation_timeout',
-            self.config.long_running_operation_timeout)
+            self._config.long_running_operation_timeout)
         if polling is True: polling_method = ARMPolling(lro_delay, **operation_config)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
@@ -148,7 +145,7 @@ class LROsCustomHeaderOperations(object):
 
 
     def _put201_creating_succeeded200_initial(
-            self, product=None, custom_headers=None, raw=False, **operation_config):
+            self, product=None, cls=None, **operation_config):
         # Construct URL
         url = self.put201_creating_succeeded200.metadata['url']
 
@@ -159,12 +156,10 @@ class LROsCustomHeaderOperations(object):
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct body
         if product is not None:
@@ -174,7 +169,7 @@ class LROsCustomHeaderOperations(object):
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        response = self._client.pipeline.run(request, stream=False, **operation_config)
 
         if response.status_code not in [200, 201]:
             exp = CloudError(response)
@@ -195,7 +190,7 @@ class LROsCustomHeaderOperations(object):
         return deserialized
 
     def put201_creating_succeeded200(
-            self, product=None, custom_headers=None, raw=False, polling=True, **operation_config):
+            self, product=None, cls=None, polling=True, **operation_config):
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is
         required message header for all requests. Long running put request,
         service returns a 201 to the initial request, with an entity that
@@ -229,13 +224,14 @@ class LROsCustomHeaderOperations(object):
 
             if raw:
                 client_raw_response = ClientRawResponse(deserialized, response)
+                None
                 return client_raw_response
 
             return deserialized
 
         lro_delay = operation_config.get(
             'long_running_operation_timeout',
-            self.config.long_running_operation_timeout)
+            self._config.long_running_operation_timeout)
         if polling is True: polling_method = ARMPolling(lro_delay, **operation_config)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
@@ -244,7 +240,7 @@ class LROsCustomHeaderOperations(object):
 
 
     def _post202_retry200_initial(
-            self, product=None, custom_headers=None, raw=False, **operation_config):
+            self, product=None, cls=None, **operation_config):
         # Construct URL
         url = self.post202_retry200.metadata['url']
 
@@ -254,12 +250,10 @@ class LROsCustomHeaderOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct body
         if product is not None:
@@ -269,7 +263,7 @@ class LROsCustomHeaderOperations(object):
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        response = self._client.pipeline.run(request, stream=False, **operation_config)
 
         if response.status_code not in [202]:
             exp = CloudError(response)
@@ -279,14 +273,14 @@ class LROsCustomHeaderOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             header_dict = {
-                'Location': 'str',
-                'Retry-After': 'int',
+                'Location': self._deserialize('str', response.headers.get('Location')),
+                'Retry-After': self._deserialize('int', response.headers.get('Retry-After')),
             }
-            client_raw_response.add_headers(header_dict)
+            header_dict
             return client_raw_response
 
     def post202_retry200(
-            self, product=None, custom_headers=None, raw=False, polling=True, **operation_config):
+            self, product=None, cls=None, polling=True, **operation_config):
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is
         required message header for all requests. Long running post request,
         service returns a 202 to the initial request, with 'Location' and
@@ -314,17 +308,16 @@ class LROsCustomHeaderOperations(object):
         )
 
         def get_long_running_output(response):
-            if raw:
-                client_raw_response = ClientRawResponse(None, response)
-                client_raw_response.add_headers({
-                    'Location': 'str',
-                    'Retry-After': 'int',
-                })
-                return client_raw_response
+            if cls:
+                response_headers = {
+                    'Location': self._deserialize('str', response.headers.get('Location')),
+                    'Retry-After': self._deserialize('int', response.headers.get('Retry-After')),
+                }
+                return cls(response, None, response_headers)
 
         lro_delay = operation_config.get(
             'long_running_operation_timeout',
-            self.config.long_running_operation_timeout)
+            self._config.long_running_operation_timeout)
         if polling is True: polling_method = ARMPolling(lro_delay, **operation_config)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
@@ -333,7 +326,7 @@ class LROsCustomHeaderOperations(object):
 
 
     def _post_async_retry_succeeded_initial(
-            self, product=None, custom_headers=None, raw=False, **operation_config):
+            self, product=None, cls=None, **operation_config):
         # Construct URL
         url = self.post_async_retry_succeeded.metadata['url']
 
@@ -343,12 +336,10 @@ class LROsCustomHeaderOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct body
         if product is not None:
@@ -358,7 +349,7 @@ class LROsCustomHeaderOperations(object):
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        response = self._client.pipeline.run(request, stream=False, **operation_config)
 
         if response.status_code not in [202]:
             exp = CloudError(response)
@@ -368,15 +359,15 @@ class LROsCustomHeaderOperations(object):
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             header_dict = {
-                'Azure-AsyncOperation': 'str',
-                'Location': 'str',
-                'Retry-After': 'int',
+                'Azure-AsyncOperation': self._deserialize('str', response.headers.get('Azure-AsyncOperation')),
+                'Location': self._deserialize('str', response.headers.get('Location')),
+                'Retry-After': self._deserialize('int', response.headers.get('Retry-After')),
             }
-            client_raw_response.add_headers(header_dict)
+            header_dict
             return client_raw_response
 
     def post_async_retry_succeeded(
-            self, product=None, custom_headers=None, raw=False, polling=True, **operation_config):
+            self, product=None, cls=None, polling=True, **operation_config):
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is
         required message header for all requests. Long running post request,
         service returns a 202 to the initial request, with an entity that
@@ -404,18 +395,17 @@ class LROsCustomHeaderOperations(object):
         )
 
         def get_long_running_output(response):
-            if raw:
-                client_raw_response = ClientRawResponse(None, response)
-                client_raw_response.add_headers({
-                    'Azure-AsyncOperation': 'str',
-                    'Location': 'str',
-                    'Retry-After': 'int',
-                })
-                return client_raw_response
+            if cls:
+                response_headers = {
+                    'Azure-AsyncOperation': self._deserialize('str', response.headers.get('Azure-AsyncOperation')),
+                    'Location': self._deserialize('str', response.headers.get('Location')),
+                    'Retry-After': self._deserialize('int', response.headers.get('Retry-After')),
+                }
+                return cls(response, None, response_headers)
 
         lro_delay = operation_config.get(
             'long_running_operation_timeout',
-            self.config.long_running_operation_timeout)
+            self._config.long_running_operation_timeout)
         if polling is True: polling_method = ARMPolling(lro_delay, **operation_config)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling

@@ -10,7 +10,6 @@
 # --------------------------------------------------------------------------
 
 import uuid
-from msrest.pipeline import ClientRawResponse
 from msrestazure.azure_exceptions import CloudError
 
 from .. import models
@@ -37,27 +36,24 @@ class UsageOperations(object):
         self._deserialize = deserializer
         self.api_version = "2015-05-01-preview"
 
-        self.config = config
+        self._config = config
 
-    def list(
-            self, custom_headers=None, raw=False, **operation_config):
+    def list(self, cls=None, **operation_config):
         """Gets the current usage count and the limit for the resources under the
         subscription.
 
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: UsageListResult or ClientRawResponse if raw=true
-        :rtype: ~storage.models.UsageListResult or
-         ~msrest.pipeline.ClientRawResponse
+        :return: UsageListResult or the result of cls(response)
+        :rtype: ~storage.models.UsageListResult
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
         # Construct URL
         url = self.list.metadata['url']
         path_format_arguments = {
-            'subscriptionId': self._serialize.url("self.config.subscription_id", self.config.subscription_id, 'str')
+            'subscriptionId': self._serialize.url("self._config.subscription_id", self._config.subscription_id, 'str')
         }
         url = self._client.format_url(url, **path_format_arguments)
 
@@ -68,16 +64,15 @@ class UsageOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        pipeline_output = self._client.pipeline.run(request, stream=False, **operation_config)
+        response = pipeline_output.http_response
 
         if response.status_code not in [200]:
             exp = CloudError(response)
@@ -88,9 +83,8 @@ class UsageOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('UsageListResult', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
+        if cls:
+            return cls(response, deserialized, None)
 
         return deserialized
     list.metadata = {'url': '/subscriptions/{subscriptionId}/providers/Microsoft.Storage/usages'}

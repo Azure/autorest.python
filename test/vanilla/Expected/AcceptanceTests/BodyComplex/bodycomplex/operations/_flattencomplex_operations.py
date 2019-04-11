@@ -9,7 +9,6 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.pipeline import ClientRawResponse
 from msrest.exceptions import HttpOperationError
 
 from .. import models
@@ -33,21 +32,17 @@ class FlattencomplexOperations(object):
         self._client = client
         self._serialize = serializer
         self._deserialize = deserializer
+        self._config = config
 
-        self.config = config
-
-    def get_valid(
-            self, custom_headers=None, raw=False, **operation_config):
+    def get_valid(self, cls=None, **operation_config):
         """
 
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: MyBaseType or ClientRawResponse if raw=true
-        :rtype: ~bodycomplex.models.MyBaseType or
-         ~msrest.pipeline.ClientRawResponse
+        :return: MyBaseType or the result of cls(response)
+        :rtype: ~bodycomplex.models.MyBaseType
         :raises:
          :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
         """
@@ -60,12 +55,11 @@ class FlattencomplexOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        pipeline_output = self._client.pipeline.run(request, stream=False, **operation_config)
+        response = pipeline_output.http_response
 
         if response.status_code not in [200]:
             raise HttpOperationError(self._deserialize, response)
@@ -74,9 +68,8 @@ class FlattencomplexOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('MyBaseType', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
+        if cls:
+            return cls(response, deserialized, None)
 
         return deserialized
     get_valid.metadata = {'url': '/complex/flatten/valid'}

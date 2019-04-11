@@ -28,7 +28,7 @@ class StorageManagementClientConfiguration(Configuration):
     :type subscription_id: str
     """
 
-    def __init__(self, credentials, subscription_id, **kwargs):
+    def __init__(self, credentials=None, subscription_id=None, **kwargs):
 
         if credentials is None:
             raise ValueError("Parameter 'credentials' must not be None.")

@@ -9,7 +9,6 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.pipeline import ClientRawResponse
 
 from .. import models
 
@@ -32,20 +31,17 @@ class DurationOperations(object):
         self._client = client
         self._serialize = serializer
         self._deserialize = deserializer
+        self._config = config
 
-        self.config = config
-
-    def get_null(
-            self, custom_headers=None, raw=False, **operation_config):
+    def get_null(self, cls=None, **operation_config):
         """Get null duration value.
 
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: timedelta or ClientRawResponse if raw=true
-        :rtype: timedelta or ~msrest.pipeline.ClientRawResponse
+        :return: timedelta or the result of cls(response)
+        :rtype: timedelta
         :raises: :class:`ErrorException<bodyduration.models.ErrorException>`
         """
         # Construct URL
@@ -57,12 +53,11 @@ class DurationOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        pipeline_output = self._client.pipeline.run(request, stream=False, **operation_config)
+        response = pipeline_output.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -71,26 +66,23 @@ class DurationOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('duration', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
+        if cls:
+            return cls(response, deserialized, None)
 
         return deserialized
     get_null.metadata = {'url': '/duration/null'}
 
-    def put_positive_duration(
-            self, duration_body, custom_headers=None, raw=False, **operation_config):
+    def put_positive_duration(self, duration_body, cls=None, **operation_config):
         """Put a positive duration value.
 
         :param duration_body:
         :type duration_body: timedelta
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None or the result of cls(response)
+        :rtype: None
         :raises: :class:`ErrorException<bodyduration.models.ErrorException>`
         """
         # Construct URL
@@ -102,35 +94,32 @@ class DurationOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
 
         # Construct body
         body_content = self._serialize.body(duration_body, 'duration')
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        pipeline_output = self._client.pipeline.run(request, stream=False, **operation_config)
+        response = pipeline_output.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     put_positive_duration.metadata = {'url': '/duration/positiveduration'}
 
-    def get_positive_duration(
-            self, custom_headers=None, raw=False, **operation_config):
+    def get_positive_duration(self, cls=None, **operation_config):
         """Get a positive duration value.
 
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: timedelta or ClientRawResponse if raw=true
-        :rtype: timedelta or ~msrest.pipeline.ClientRawResponse
+        :return: timedelta or the result of cls(response)
+        :rtype: timedelta
         :raises: :class:`ErrorException<bodyduration.models.ErrorException>`
         """
         # Construct URL
@@ -142,12 +131,11 @@ class DurationOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        pipeline_output = self._client.pipeline.run(request, stream=False, **operation_config)
+        response = pipeline_output.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -156,24 +144,21 @@ class DurationOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('duration', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
+        if cls:
+            return cls(response, deserialized, None)
 
         return deserialized
     get_positive_duration.metadata = {'url': '/duration/positiveduration'}
 
-    def get_invalid(
-            self, custom_headers=None, raw=False, **operation_config):
+    def get_invalid(self, cls=None, **operation_config):
         """Get an invalid duration value.
 
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: timedelta or ClientRawResponse if raw=true
-        :rtype: timedelta or ~msrest.pipeline.ClientRawResponse
+        :return: timedelta or the result of cls(response)
+        :rtype: timedelta
         :raises: :class:`ErrorException<bodyduration.models.ErrorException>`
         """
         # Construct URL
@@ -185,12 +170,11 @@ class DurationOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        pipeline_output = self._client.pipeline.run(request, stream=False, **operation_config)
+        response = pipeline_output.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -199,9 +183,8 @@ class DurationOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('duration', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
+        if cls:
+            return cls(response, deserialized, None)
 
         return deserialized
     get_invalid.metadata = {'url': '/duration/invalid'}

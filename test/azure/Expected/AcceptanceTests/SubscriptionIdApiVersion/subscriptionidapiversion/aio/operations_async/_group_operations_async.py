@@ -10,7 +10,6 @@
 # --------------------------------------------------------------------------
 
 import uuid
-from msrest.pipeline import ClientRawResponse
 
 from ... import models
 
@@ -36,30 +35,27 @@ class GroupOperations:
         self._deserialize = deserializer
         self.api_version = "2014-04-01-preview"
 
-        self.config = config
+        self._config = config
 
-    async def get_sample_resource_group(
-            self, resource_group_name, *, custom_headers=None, raw=False, **operation_config):
+    async def get_sample_resource_group(self, resource_group_name, *, cls=None, **operation_config):
         """Provides a resouce group with name 'testgroup101' and location 'West
         US'.
 
         :param resource_group_name: Resource Group name 'testgroup101'.
         :type resource_group_name: str
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: SampleResourceGroup or ClientRawResponse if raw=true
-        :rtype: ~subscriptionidapiversion.models.SampleResourceGroup or
-         ~msrest.pipeline.ClientRawResponse
+        :return: SampleResourceGroup or the result of cls(response)
+        :rtype: ~subscriptionidapiversion.models.SampleResourceGroup
         :raises:
          :class:`ErrorException<subscriptionidapiversion.models.ErrorException>`
         """
         # Construct URL
         url = self.get_sample_resource_group.metadata['url']
         path_format_arguments = {
-            'subscriptionId': self._serialize.url("self.config.subscription_id", self.config.subscription_id, 'str'),
+            'subscriptionId': self._serialize.url("self._config.subscription_id", self._config.subscription_id, 'str'),
             'resourceGroupName': self._serialize.url("resource_group_name", resource_group_name, 'str')
         }
         url = self._client.format_url(url, **path_format_arguments)
@@ -71,16 +67,15 @@ class GroupOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        pipeline_output = await self._client.pipeline.run(request, stream=False, **operation_config)
+        response = pipeline_output.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -89,9 +84,8 @@ class GroupOperations:
         if response.status_code == 200:
             deserialized = self._deserialize('SampleResourceGroup', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
+        if cls:
+            return cls(response, deserialized, None)
 
         return deserialized
     get_sample_resource_group.metadata = {'url': '/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}'}

@@ -10,7 +10,6 @@
 # --------------------------------------------------------------------------
 
 import uuid
-from msrest.pipeline import ClientRawResponse
 
 from ... import models
 
@@ -38,23 +37,21 @@ class SkipUrlEncodingOperations:
         self.unencoded_path_param = "path1/path2/path3"
         self.q1 = "value1&q2=value2&q3=value3"
 
-        self.config = config
+        self._config = config
 
-    async def get_method_path_valid(
-            self, unencoded_path_param, *, custom_headers=None, raw=False, **operation_config):
+    async def get_method_path_valid(self, unencoded_path_param, *, cls=None, **operation_config):
         """Get method with unencoded path parameter with value
         'path1/path2/path3'.
 
         :param unencoded_path_param: Unencoded path parameter with value
          'path1/path2/path3'
         :type unencoded_path_param: str
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None or the result of cls(response)
+        :rtype: None
         :raises:
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
         """
@@ -70,40 +67,37 @@ class SkipUrlEncodingOperations:
 
         # Construct headers
         header_parameters = {}
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        pipeline_output = await self._client.pipeline.run(request, stream=False, **operation_config)
+        response = pipeline_output.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     get_method_path_valid.metadata = {'url': '/azurespecials/skipUrlEncoding/method/path/valid/{unencodedPathParam}'}
 
-    async def get_path_path_valid(
-            self, unencoded_path_param, *, custom_headers=None, raw=False, **operation_config):
+    async def get_path_path_valid(self, unencoded_path_param, *, cls=None, **operation_config):
         """Get method with unencoded path parameter with value
         'path1/path2/path3'.
 
         :param unencoded_path_param: Unencoded path parameter with value
          'path1/path2/path3'
         :type unencoded_path_param: str
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None or the result of cls(response)
+        :rtype: None
         :raises:
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
         """
@@ -119,37 +113,34 @@ class SkipUrlEncodingOperations:
 
         # Construct headers
         header_parameters = {}
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        pipeline_output = await self._client.pipeline.run(request, stream=False, **operation_config)
+        response = pipeline_output.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     get_path_path_valid.metadata = {'url': '/azurespecials/skipUrlEncoding/path/path/valid/{unencodedPathParam}'}
 
-    async def get_swagger_path_valid(
-            self, *, custom_headers=None, raw=False, **operation_config):
+    async def get_swagger_path_valid(self, *, cls=None, **operation_config):
         """Get method with unencoded path parameter with value
         'path1/path2/path3'.
 
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None or the result of cls(response)
+        :rtype: None
         :raises:
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
         """
@@ -165,40 +156,37 @@ class SkipUrlEncodingOperations:
 
         # Construct headers
         header_parameters = {}
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        pipeline_output = await self._client.pipeline.run(request, stream=False, **operation_config)
+        response = pipeline_output.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     get_swagger_path_valid.metadata = {'url': '/azurespecials/skipUrlEncoding/swagger/path/valid/{unencodedPathParam}'}
 
-    async def get_method_query_valid(
-            self, q1, *, custom_headers=None, raw=False, **operation_config):
+    async def get_method_query_valid(self, q1, *, cls=None, **operation_config):
         """Get method with unencoded query parameter with value
         'value1&q2=value2&q3=value3'.
 
         :param q1: Unencoded query parameter with value
          'value1&q2=value2&q3=value3'
         :type q1: str
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None or the result of cls(response)
+        :rtype: None
         :raises:
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
         """
@@ -211,38 +199,35 @@ class SkipUrlEncodingOperations:
 
         # Construct headers
         header_parameters = {}
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        pipeline_output = await self._client.pipeline.run(request, stream=False, **operation_config)
+        response = pipeline_output.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     get_method_query_valid.metadata = {'url': '/azurespecials/skipUrlEncoding/method/query/valid'}
 
-    async def get_method_query_null(
-            self, q1=None, *, custom_headers=None, raw=False, **operation_config):
+    async def get_method_query_null(self, q1=None, *, cls=None, **operation_config):
         """Get method with unencoded query parameter with value null.
 
         :param q1: Unencoded query parameter with value null
         :type q1: str
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None or the result of cls(response)
+        :rtype: None
         :raises:
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
         """
@@ -256,40 +241,37 @@ class SkipUrlEncodingOperations:
 
         # Construct headers
         header_parameters = {}
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        pipeline_output = await self._client.pipeline.run(request, stream=False, **operation_config)
+        response = pipeline_output.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     get_method_query_null.metadata = {'url': '/azurespecials/skipUrlEncoding/method/query/null'}
 
-    async def get_path_query_valid(
-            self, q1, *, custom_headers=None, raw=False, **operation_config):
+    async def get_path_query_valid(self, q1, *, cls=None, **operation_config):
         """Get method with unencoded query parameter with value
         'value1&q2=value2&q3=value3'.
 
         :param q1: Unencoded query parameter with value
          'value1&q2=value2&q3=value3'
         :type q1: str
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None or the result of cls(response)
+        :rtype: None
         :raises:
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
         """
@@ -302,37 +284,34 @@ class SkipUrlEncodingOperations:
 
         # Construct headers
         header_parameters = {}
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        pipeline_output = await self._client.pipeline.run(request, stream=False, **operation_config)
+        response = pipeline_output.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     get_path_query_valid.metadata = {'url': '/azurespecials/skipUrlEncoding/path/query/valid'}
 
-    async def get_swagger_query_valid(
-            self, *, custom_headers=None, raw=False, **operation_config):
+    async def get_swagger_query_valid(self, *, cls=None, **operation_config):
         """Get method with unencoded query parameter with value
         'value1&q2=value2&q3=value3'.
 
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None or the result of cls(response)
+        :rtype: None
         :raises:
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
         """
@@ -345,21 +324,20 @@ class SkipUrlEncodingOperations:
 
         # Construct headers
         header_parameters = {}
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        pipeline_output = await self._client.pipeline.run(request, stream=False, **operation_config)
+        response = pipeline_output.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     get_swagger_query_valid.metadata = {'url': '/azurespecials/skipUrlEncoding/swagger/query/valid'}

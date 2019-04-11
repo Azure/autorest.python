@@ -9,7 +9,6 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.pipeline import ClientRawResponse
 
 from ... import models
 
@@ -32,20 +31,17 @@ class HttpRetryOperations:
         self._client = client
         self._serialize = serializer
         self._deserialize = deserializer
+        self._config = config
 
-        self.config = config
-
-    async def head408(
-            self, *, custom_headers=None, raw=False, **operation_config):
+    async def head408(self, *, cls=None, **operation_config):
         """Return 408 status code, then 200 after retry.
 
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None or the result of cls(response)
+        :rtype: None
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
@@ -57,34 +53,31 @@ class HttpRetryOperations:
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
 
         # Construct and send request
         request = self._client.head(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        pipeline_output = await self._client.pipeline.run(request, stream=False, **operation_config)
+        response = pipeline_output.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     head408.metadata = {'url': '/http/retry/408'}
 
-    async def put500(
-            self, boolean_value=None, *, custom_headers=None, raw=False, **operation_config):
+    async def put500(self, boolean_value=None, *, cls=None, **operation_config):
         """Return 500 status code, then 200 after retry.
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None or the result of cls(response)
+        :rtype: None
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
@@ -97,8 +90,6 @@ class HttpRetryOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
 
         # Construct body
         if boolean_value is not None:
@@ -108,29 +99,28 @@ class HttpRetryOperations:
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        pipeline_output = await self._client.pipeline.run(request, stream=False, **operation_config)
+        response = pipeline_output.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     put500.metadata = {'url': '/http/retry/500'}
 
-    async def patch500(
-            self, boolean_value=None, *, custom_headers=None, raw=False, **operation_config):
+    async def patch500(self, boolean_value=None, *, cls=None, **operation_config):
         """Return 500 status code, then 200 after retry.
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None or the result of cls(response)
+        :rtype: None
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
@@ -143,8 +133,6 @@ class HttpRetryOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
 
         # Construct body
         if boolean_value is not None:
@@ -154,27 +142,26 @@ class HttpRetryOperations:
 
         # Construct and send request
         request = self._client.patch(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        pipeline_output = await self._client.pipeline.run(request, stream=False, **operation_config)
+        response = pipeline_output.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     patch500.metadata = {'url': '/http/retry/500'}
 
-    async def get502(
-            self, *, custom_headers=None, raw=False, **operation_config):
+    async def get502(self, *, cls=None, **operation_config):
         """Return 502 status code, then 200 after retry.
 
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None or the result of cls(response)
+        :rtype: None
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
@@ -186,34 +173,31 @@ class HttpRetryOperations:
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        pipeline_output = await self._client.pipeline.run(request, stream=False, **operation_config)
+        response = pipeline_output.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     get502.metadata = {'url': '/http/retry/502'}
 
-    async def post503(
-            self, boolean_value=None, *, custom_headers=None, raw=False, **operation_config):
+    async def post503(self, boolean_value=None, *, cls=None, **operation_config):
         """Return 503 status code, then 200 after retry.
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None or the result of cls(response)
+        :rtype: None
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
@@ -226,8 +210,6 @@ class HttpRetryOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
 
         # Construct body
         if boolean_value is not None:
@@ -237,29 +219,28 @@ class HttpRetryOperations:
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        pipeline_output = await self._client.pipeline.run(request, stream=False, **operation_config)
+        response = pipeline_output.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     post503.metadata = {'url': '/http/retry/503'}
 
-    async def delete503(
-            self, boolean_value=None, *, custom_headers=None, raw=False, **operation_config):
+    async def delete503(self, boolean_value=None, *, cls=None, **operation_config):
         """Return 503 status code, then 200 after retry.
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None or the result of cls(response)
+        :rtype: None
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
@@ -272,8 +253,6 @@ class HttpRetryOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
 
         # Construct body
         if boolean_value is not None:
@@ -283,29 +262,28 @@ class HttpRetryOperations:
 
         # Construct and send request
         request = self._client.delete(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        pipeline_output = await self._client.pipeline.run(request, stream=False, **operation_config)
+        response = pipeline_output.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     delete503.metadata = {'url': '/http/retry/503'}
 
-    async def put504(
-            self, boolean_value=None, *, custom_headers=None, raw=False, **operation_config):
+    async def put504(self, boolean_value=None, *, cls=None, **operation_config):
         """Return 504 status code, then 200 after retry.
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None or the result of cls(response)
+        :rtype: None
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
@@ -318,8 +296,6 @@ class HttpRetryOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
 
         # Construct body
         if boolean_value is not None:
@@ -329,29 +305,28 @@ class HttpRetryOperations:
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        pipeline_output = await self._client.pipeline.run(request, stream=False, **operation_config)
+        response = pipeline_output.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     put504.metadata = {'url': '/http/retry/504'}
 
-    async def patch504(
-            self, boolean_value=None, *, custom_headers=None, raw=False, **operation_config):
+    async def patch504(self, boolean_value=None, *, cls=None, **operation_config):
         """Return 504 status code, then 200 after retry.
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None or the result of cls(response)
+        :rtype: None
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
@@ -364,8 +339,6 @@ class HttpRetryOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
 
         # Construct body
         if boolean_value is not None:
@@ -375,12 +348,13 @@ class HttpRetryOperations:
 
         # Construct and send request
         request = self._client.patch(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        pipeline_output = await self._client.pipeline.run(request, stream=False, **operation_config)
+        response = pipeline_output.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     patch504.metadata = {'url': '/http/retry/504'}

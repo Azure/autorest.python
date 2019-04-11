@@ -10,7 +10,6 @@
 # --------------------------------------------------------------------------
 
 import uuid
-from msrest.pipeline import ClientRawResponse
 
 from ... import models
 
@@ -34,22 +33,20 @@ class HeaderOperations:
         self._serialize = serializer
         self._deserialize = deserializer
 
-        self.config = config
+        self._config = config
 
-    async def custom_named_request_id(
-            self, foo_client_request_id, *, custom_headers=None, raw=False, **operation_config):
+    async def custom_named_request_id(self, foo_client_request_id, *, cls=None, **operation_config):
         """Send foo-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in
         the header of the request.
 
         :param foo_client_request_id: The fooRequestId
         :type foo_client_request_id: str
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None or the result of cls(response)
+        :rtype: None
         :raises:
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
         """
@@ -61,31 +58,28 @@ class HeaderOperations:
 
         # Construct headers
         header_parameters = {}
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['foo-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
         header_parameters['foo-client-request-id'] = self._serialize.header("foo_client_request_id", foo_client_request_id, 'str')
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        pipeline_output = await self._client.pipeline.run(request, stream=False, **operation_config)
+        response = pipeline_output.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            client_raw_response.add_headers({
-                'foo-request-id': 'str',
-            })
-            return client_raw_response
+        if cls:
+            response_headers = {
+                'foo-request-id': self._deserialize('str', response.headers.get('foo-request-id')),
+            }
+            return cls(response, None, response_headers)
     custom_named_request_id.metadata = {'url': '/azurespecials/customNamedRequestId'}
 
-    async def custom_named_request_id_param_grouping(
-            self, header_custom_named_request_id_param_grouping_parameters, *, custom_headers=None, raw=False, **operation_config):
+    async def custom_named_request_id_param_grouping(self, header_custom_named_request_id_param_grouping_parameters, *, cls=None, **operation_config):
         """Send foo-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in
         the header of the request, via a parameter group.
 
@@ -93,13 +87,12 @@ class HeaderOperations:
          Additional parameters for the operation
         :type header_custom_named_request_id_param_grouping_parameters:
          ~azurespecialproperties.models.HeaderCustomNamedRequestIdParamGroupingParameters
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None or the result of cls(response)
+        :rtype: None
         :raises:
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
         """
@@ -115,43 +108,39 @@ class HeaderOperations:
 
         # Construct headers
         header_parameters = {}
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['foo-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
         header_parameters['foo-client-request-id'] = self._serialize.header("foo_client_request_id", foo_client_request_id, 'str')
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        pipeline_output = await self._client.pipeline.run(request, stream=False, **operation_config)
+        response = pipeline_output.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            client_raw_response.add_headers({
-                'foo-request-id': 'str',
-            })
-            return client_raw_response
+        if cls:
+            response_headers = {
+                'foo-request-id': self._deserialize('str', response.headers.get('foo-request-id')),
+            }
+            return cls(response, None, response_headers)
     custom_named_request_id_param_grouping.metadata = {'url': '/azurespecials/customNamedRequestIdParamGrouping'}
 
-    async def custom_named_request_id_head(
-            self, foo_client_request_id, *, custom_headers=None, raw=False, **operation_config):
+    async def custom_named_request_id_head(self, foo_client_request_id, *, cls=None, **operation_config):
         """Send foo-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in
         the header of the request.
 
         :param foo_client_request_id: The fooRequestId
         :type foo_client_request_id: str
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: bool or ClientRawResponse if raw=true
-        :rtype: bool or ~msrest.pipeline.ClientRawResponse
+        :return: bool or the result of cls(response)
+        :rtype: bool
         :raises:
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
         """
@@ -163,27 +152,25 @@ class HeaderOperations:
 
         # Construct headers
         header_parameters = {}
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['foo-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
         header_parameters['foo-client-request-id'] = self._serialize.header("foo_client_request_id", foo_client_request_id, 'str')
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct and send request
         request = self._client.head(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        pipeline_output = await self._client.pipeline.run(request, stream=False, **operation_config)
+        response = pipeline_output.http_response
 
         if response.status_code not in [200, 404]:
             raise models.ErrorException(self._deserialize, response)
 
         deserialized = (response.status_code == 200)
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            client_raw_response.add_headers({
-                'foo-request-id': 'str',
-                })
-            return client_raw_response
+        if cls:
+            response_headers = {
+                'foo-request-id': self._deserialize('str', response.headers.get('foo-request-id')),
+                }
+            return cls(response, deserialized, response_headers)
         return deserialized
     custom_named_request_id_head.metadata = {'url': '/azurespecials/customNamedRequestIdHead'}

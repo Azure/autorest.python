@@ -9,7 +9,6 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.pipeline import ClientRawResponse
 
 from .. import models
 
@@ -32,23 +31,20 @@ class QueriesOperations(object):
         self._client = client
         self._serialize = serializer
         self._deserialize = deserializer
+        self._config = config
 
-        self.config = config
-
-    def array_string_multi_null(
-            self, array_query=None, custom_headers=None, raw=False, **operation_config):
+    def array_string_multi_null(self, array_query=None, cls=None, **operation_config):
         """Get a null array of string using the multi-array format.
 
         :param array_query: a null array of string using the multi-array
          format
         :type array_query: list[str]
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None or the result of cls(response)
+        :rtype: None
         :raises:
          :class:`ErrorException<urlmulticollectionformat.models.ErrorException>`
         """
@@ -62,35 +58,32 @@ class QueriesOperations(object):
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        pipeline_output = self._client.pipeline.run(request, stream=False, **operation_config)
+        response = pipeline_output.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     array_string_multi_null.metadata = {'url': '/queries/array/multi/string/null'}
 
-    def array_string_multi_empty(
-            self, array_query=None, custom_headers=None, raw=False, **operation_config):
+    def array_string_multi_empty(self, array_query=None, cls=None, **operation_config):
         """Get an empty array [] of string using the multi-array format.
 
         :param array_query: an empty array [] of string using the multi-array
          format
         :type array_query: list[str]
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None or the result of cls(response)
+        :rtype: None
         :raises:
          :class:`ErrorException<urlmulticollectionformat.models.ErrorException>`
         """
@@ -104,36 +97,33 @@ class QueriesOperations(object):
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        pipeline_output = self._client.pipeline.run(request, stream=False, **operation_config)
+        response = pipeline_output.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     array_string_multi_empty.metadata = {'url': '/queries/array/multi/string/empty'}
 
-    def array_string_multi_valid(
-            self, array_query=None, custom_headers=None, raw=False, **operation_config):
+    def array_string_multi_valid(self, array_query=None, cls=None, **operation_config):
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' ,
         null, ''] using the mult-array format.
 
         :param array_query: an array of string ['ArrayQuery1', 'begin!*'();:@
          &=+$,/?#[]end' , null, ''] using the mult-array format
         :type array_query: list[str]
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None or the result of cls(response)
+        :rtype: None
         :raises:
          :class:`ErrorException<urlmulticollectionformat.models.ErrorException>`
         """
@@ -147,17 +137,16 @@ class QueriesOperations(object):
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        pipeline_output = self._client.pipeline.run(request, stream=False, **operation_config)
+        response = pipeline_output.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     array_string_multi_valid.metadata = {'url': '/queries/array/multi/string/valid'}

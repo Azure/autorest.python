@@ -10,7 +10,8 @@
 # --------------------------------------------------------------------------
 
 from azure.core.configuration import Configuration, ConnectionConfiguration
-from azure.core.pipeline import policies
+from azure.core.pipeline import policies, AsyncPipeline
+from azure.core.pipeline.transport import AioHttpTransport
 
 from ..version import VERSION
 
@@ -28,7 +29,7 @@ class AutoRestRequiredOptionalTestServiceConfiguration(Configuration):
     :type optional_global_query: int
     """
 
-    def __init__(self, required_global_path, required_global_query, optional_global_query=None, **kwargs):
+    def __init__(self, required_global_path=None, required_global_query=None, optional_global_query=None, **kwargs):
 
         if required_global_path is None:
             raise ValueError("Parameter 'required_global_path' must not be None.")
@@ -52,3 +53,17 @@ class AutoRestRequiredOptionalTestServiceConfiguration(Configuration):
         self.logging_policy = policies.NetworkTraceLoggingPolicy(**kwargs)
         self.retry_policy = policies.AsyncRetryPolicy(**kwargs)
         self.redirect_policy = policies.AsyncRedirectPolicy(**kwargs)
+        self.transport = kwargs.get('transport', AioHttpTransport)
+
+    def build_pipeline(self, credentials=None):
+        transport = self.get_transport()
+        pipeline_policies = [
+            self.user_agent_policy,
+            self.headers_policy,
+            credentials,
+            policies.ContentDecodePolicy(),
+            self.redirect_policy,
+            self.retry_policy,
+            self.logging_policy,
+        ]
+        return AsyncPipeline(transport, policies=pipeline_policies)

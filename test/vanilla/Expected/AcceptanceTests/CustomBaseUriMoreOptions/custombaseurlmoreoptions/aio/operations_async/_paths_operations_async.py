@@ -9,7 +9,6 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.pipeline import ClientRawResponse
 
 from ... import models
 
@@ -32,11 +31,9 @@ class PathsOperations:
         self._client = client
         self._serialize = serializer
         self._deserialize = deserializer
+        self._config = config
 
-        self.config = config
-
-    async def get_empty(
-            self, vault, secret, key_name, key_version="v1", *, custom_headers=None, raw=False, **operation_config):
+    async def get_empty(self, vault, secret, key_name, key_version="v1", *, cls=None, **operation_config):
         """Get a 200 to test a valid base uri.
 
         :param vault: The vault name, e.g. https://myvault
@@ -47,13 +44,12 @@ class PathsOperations:
         :type key_name: str
         :param key_version: The key version. Default value 'v1'.
         :type key_version: str
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None or the result of cls(response)
+        :rtype: None
         :raises:
          :class:`ErrorException<custombaseurlmoreoptions.models.ErrorException>`
         """
@@ -62,9 +58,9 @@ class PathsOperations:
         path_format_arguments = {
             'vault': self._serialize.url("vault", vault, 'str', skip_quote=True),
             'secret': self._serialize.url("secret", secret, 'str', skip_quote=True),
-            'dnsSuffix': self._serialize.url("self.config.dns_suffix", self.config.dns_suffix, 'str', skip_quote=True),
+            'dnsSuffix': self._serialize.url("self._config.dns_suffix", self._config.dns_suffix, 'str', skip_quote=True),
             'keyName': self._serialize.url("key_name", key_name, 'str'),
-            'subscriptionId': self._serialize.url("self.config.subscription_id", self.config.subscription_id, 'str')
+            'subscriptionId': self._serialize.url("self._config.subscription_id", self._config.subscription_id, 'str')
         }
         url = self._client.format_url(url, **path_format_arguments)
 
@@ -75,17 +71,16 @@ class PathsOperations:
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        pipeline_output = await self._client.pipeline.run(request, stream=False, **operation_config)
+        response = pipeline_output.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     get_empty.metadata = {'url': '/customuri/{subscriptionId}/{keyName}'}

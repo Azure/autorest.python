@@ -24,7 +24,7 @@ class AutoRestLongRunningOperationTestServiceConfiguration(Configuration):
      object<msrestazure.azure_active_directory>`
     """
 
-    def __init__(self, credentials, **kwargs):
+    def __init__(self, credentials=None, **kwargs):
 
         if credentials is None:
             raise ValueError("Parameter 'credentials' must not be None.")

@@ -9,7 +9,6 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.pipeline import ClientRawResponse
 from msrest.exceptions import HttpOperationError
 
 from .. import models
@@ -33,23 +32,19 @@ class PetOperations(object):
         self._client = client
         self._serialize = serializer
         self._deserialize = deserializer
+        self._config = config
 
-        self.config = config
-
-    def get_by_pet_id(
-            self, pet_id, custom_headers=None, raw=False, **operation_config):
+    def get_by_pet_id(self, pet_id, cls=None, **operation_config):
         """
 
         :param pet_id: Pet id
         :type pet_id: str
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: Pet or ClientRawResponse if raw=true
-        :rtype: ~extensibleenumsswagger.models.Pet or
-         ~msrest.pipeline.ClientRawResponse
+        :return: Pet or the result of cls(response)
+        :rtype: ~extensibleenumsswagger.models.Pet
         :raises:
          :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
         """
@@ -66,12 +61,11 @@ class PetOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        pipeline_output = self._client.pipeline.run(request, stream=False, **operation_config)
+        response = pipeline_output.http_response
 
         if response.status_code not in [200]:
             raise HttpOperationError(self._deserialize, response)
@@ -80,27 +74,23 @@ class PetOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('Pet', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
+        if cls:
+            return cls(response, deserialized, None)
 
         return deserialized
     get_by_pet_id.metadata = {'url': '/extensibleenums/pet/{petId}'}
 
-    def add_pet(
-            self, pet_param=None, custom_headers=None, raw=False, **operation_config):
+    def add_pet(self, pet_param=None, cls=None, **operation_config):
         """
 
         :param pet_param:
         :type pet_param: ~extensibleenumsswagger.models.Pet
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: Pet or ClientRawResponse if raw=true
-        :rtype: ~extensibleenumsswagger.models.Pet or
-         ~msrest.pipeline.ClientRawResponse
+        :return: Pet or the result of cls(response)
+        :rtype: ~extensibleenumsswagger.models.Pet
         :raises:
          :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
         """
@@ -114,8 +104,6 @@ class PetOperations(object):
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
 
         # Construct body
         if pet_param is not None:
@@ -125,7 +113,8 @@ class PetOperations(object):
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        pipeline_output = self._client.pipeline.run(request, stream=False, **operation_config)
+        response = pipeline_output.http_response
 
         if response.status_code not in [200]:
             raise HttpOperationError(self._deserialize, response)
@@ -134,9 +123,8 @@ class PetOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('Pet', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
+        if cls:
+            return cls(response, deserialized, None)
 
         return deserialized
     add_pet.metadata = {'url': '/extensibleenums/pet/addPet'}

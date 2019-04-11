@@ -10,7 +10,8 @@
 # --------------------------------------------------------------------------
 
 from azure.core.configuration import Configuration, ConnectionConfiguration
-from azure.core.pipeline import policies
+from azure.core.pipeline import policies, AsyncPipeline
+from azure.core.pipeline.transport import AioHttpTransport
 
 from ..version import VERSION
 
@@ -27,7 +28,7 @@ class AutoRestParameterizedCustomHostTestClientConfiguration(Configuration):
     :type dns_suffix: str
     """
 
-    def __init__(self, subscription_id, dns_suffix, **kwargs):
+    def __init__(self, subscription_id=None, dns_suffix=None, **kwargs):
 
         if subscription_id is None:
             raise ValueError("Parameter 'subscription_id' must not be None.")
@@ -50,3 +51,17 @@ class AutoRestParameterizedCustomHostTestClientConfiguration(Configuration):
         self.logging_policy = policies.NetworkTraceLoggingPolicy(**kwargs)
         self.retry_policy = policies.AsyncRetryPolicy(**kwargs)
         self.redirect_policy = policies.AsyncRedirectPolicy(**kwargs)
+        self.transport = kwargs.get('transport', AioHttpTransport)
+
+    def build_pipeline(self, credentials=None):
+        transport = self.get_transport()
+        pipeline_policies = [
+            self.user_agent_policy,
+            self.headers_policy,
+            credentials,
+            policies.ContentDecodePolicy(),
+            self.redirect_policy,
+            self.retry_policy,
+            self.logging_policy,
+        ]
+        return AsyncPipeline(transport, policies=pipeline_policies)

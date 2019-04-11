@@ -9,7 +9,6 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.pipeline import ClientRawResponse
 
 from ... import models
 
@@ -32,20 +31,17 @@ class HttpRedirectsOperations:
         self._client = client
         self._serialize = serializer
         self._deserialize = deserializer
+        self._config = config
 
-        self.config = config
-
-    async def head300(
-            self, *, custom_headers=None, raw=False, **operation_config):
+    async def head300(self, *, cls=None, **operation_config):
         """Return 300 status code and redirect to /http/success/200.
 
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None or the result of cls(response)
+        :rtype: None
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
@@ -57,35 +53,31 @@ class HttpRedirectsOperations:
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
 
         # Construct and send request
         request = self._client.head(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        pipeline_output = await self._client.pipeline.run(request, stream=False, **operation_config)
+        response = pipeline_output.http_response
 
         if response.status_code not in [200, 300]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            client_raw_response.add_headers({
-                'Location': 'str',
-            })
-            return client_raw_response
+        if cls:
+            response_headers = {
+                'Location': self._deserialize('str', response.headers.get('Location')),
+            }
+            return cls(response, None, response_headers)
     head300.metadata = {'url': '/http/redirect/300'}
 
-    async def get300(
-            self, *, custom_headers=None, raw=False, **operation_config):
+    async def get300(self, *, cls=None, **operation_config):
         """Return 300 status code and redirect to /http/success/200.
 
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: list or ClientRawResponse if raw=true
-        :rtype: list[str] or ~msrest.pipeline.ClientRawResponse
+        :return: list or the result of cls(response)
+        :rtype: list[str]
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
@@ -98,12 +90,11 @@ class HttpRedirectsOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        pipeline_output = await self._client.pipeline.run(request, stream=False, **operation_config)
+        response = pipeline_output.http_response
 
         if response.status_code not in [200, 300]:
             raise models.ErrorException(self._deserialize, response)
@@ -113,28 +104,24 @@ class HttpRedirectsOperations:
         if response.status_code == 300:
             deserialized = self._deserialize('[str]', response)
             header_dict = {
-                'Location': 'str',
+                'Location': self._deserialize('str', response.headers.get('Location')),
             }
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            client_raw_response.add_headers(header_dict)
-            return client_raw_response
+        if cls:
+            return cls(response, deserialized, header_dict)
 
         return deserialized
     get300.metadata = {'url': '/http/redirect/300'}
 
-    async def head301(
-            self, *, custom_headers=None, raw=False, **operation_config):
+    async def head301(self, *, cls=None, **operation_config):
         """Return 301 status code and redirect to /http/success/200.
 
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None or the result of cls(response)
+        :rtype: None
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
@@ -146,35 +133,31 @@ class HttpRedirectsOperations:
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
 
         # Construct and send request
         request = self._client.head(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        pipeline_output = await self._client.pipeline.run(request, stream=False, **operation_config)
+        response = pipeline_output.http_response
 
         if response.status_code not in [200, 301]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            client_raw_response.add_headers({
-                'Location': 'str',
-            })
-            return client_raw_response
+        if cls:
+            response_headers = {
+                'Location': self._deserialize('str', response.headers.get('Location')),
+            }
+            return cls(response, None, response_headers)
     head301.metadata = {'url': '/http/redirect/301'}
 
-    async def get301(
-            self, *, custom_headers=None, raw=False, **operation_config):
+    async def get301(self, *, cls=None, **operation_config):
         """Return 301 status code and redirect to /http/success/200.
 
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None or the result of cls(response)
+        :rtype: None
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
@@ -186,39 +169,35 @@ class HttpRedirectsOperations:
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        pipeline_output = await self._client.pipeline.run(request, stream=False, **operation_config)
+        response = pipeline_output.http_response
 
         if response.status_code not in [200, 301]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            client_raw_response.add_headers({
-                'Location': 'str',
-            })
-            return client_raw_response
+        if cls:
+            response_headers = {
+                'Location': self._deserialize('str', response.headers.get('Location')),
+            }
+            return cls(response, None, response_headers)
     get301.metadata = {'url': '/http/redirect/301'}
 
-    async def put301(
-            self, boolean_value=None, *, custom_headers=None, raw=False, **operation_config):
+    async def put301(self, boolean_value=None, *, cls=None, **operation_config):
         """Put true Boolean value in request returns 301.  This request should not
         be automatically redirected, but should return the received 301 to the
         caller for evaluation.
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None or the result of cls(response)
+        :rtype: None
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
@@ -231,8 +210,6 @@ class HttpRedirectsOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
 
         # Construct body
         if boolean_value is not None:
@@ -242,30 +219,28 @@ class HttpRedirectsOperations:
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        pipeline_output = await self._client.pipeline.run(request, stream=False, **operation_config)
+        response = pipeline_output.http_response
 
         if response.status_code not in [301]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            client_raw_response.add_headers({
-                'Location': 'str',
-            })
-            return client_raw_response
+        if cls:
+            response_headers = {
+                'Location': self._deserialize('str', response.headers.get('Location')),
+            }
+            return cls(response, None, response_headers)
     put301.metadata = {'url': '/http/redirect/301'}
 
-    async def head302(
-            self, *, custom_headers=None, raw=False, **operation_config):
+    async def head302(self, *, cls=None, **operation_config):
         """Return 302 status code and redirect to /http/success/200.
 
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None or the result of cls(response)
+        :rtype: None
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
@@ -277,35 +252,31 @@ class HttpRedirectsOperations:
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
 
         # Construct and send request
         request = self._client.head(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        pipeline_output = await self._client.pipeline.run(request, stream=False, **operation_config)
+        response = pipeline_output.http_response
 
         if response.status_code not in [200, 302]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            client_raw_response.add_headers({
-                'Location': 'str',
-            })
-            return client_raw_response
+        if cls:
+            response_headers = {
+                'Location': self._deserialize('str', response.headers.get('Location')),
+            }
+            return cls(response, None, response_headers)
     head302.metadata = {'url': '/http/redirect/302'}
 
-    async def get302(
-            self, *, custom_headers=None, raw=False, **operation_config):
+    async def get302(self, *, cls=None, **operation_config):
         """Return 302 status code and redirect to /http/success/200.
 
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None or the result of cls(response)
+        :rtype: None
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
@@ -317,39 +288,35 @@ class HttpRedirectsOperations:
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        pipeline_output = await self._client.pipeline.run(request, stream=False, **operation_config)
+        response = pipeline_output.http_response
 
         if response.status_code not in [200, 302]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            client_raw_response.add_headers({
-                'Location': 'str',
-            })
-            return client_raw_response
+        if cls:
+            response_headers = {
+                'Location': self._deserialize('str', response.headers.get('Location')),
+            }
+            return cls(response, None, response_headers)
     get302.metadata = {'url': '/http/redirect/302'}
 
-    async def patch302(
-            self, boolean_value=None, *, custom_headers=None, raw=False, **operation_config):
+    async def patch302(self, boolean_value=None, *, cls=None, **operation_config):
         """Patch true Boolean value in request returns 302.  This request should
         not be automatically redirected, but should return the received 302 to
         the caller for evaluation.
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None or the result of cls(response)
+        :rtype: None
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
@@ -362,8 +329,6 @@ class HttpRedirectsOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
 
         # Construct body
         if boolean_value is not None:
@@ -373,34 +338,32 @@ class HttpRedirectsOperations:
 
         # Construct and send request
         request = self._client.patch(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        pipeline_output = await self._client.pipeline.run(request, stream=False, **operation_config)
+        response = pipeline_output.http_response
 
         if response.status_code not in [302]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            client_raw_response.add_headers({
-                'Location': 'str',
-            })
-            return client_raw_response
+        if cls:
+            response_headers = {
+                'Location': self._deserialize('str', response.headers.get('Location')),
+            }
+            return cls(response, None, response_headers)
     patch302.metadata = {'url': '/http/redirect/302'}
 
-    async def post303(
-            self, boolean_value=None, *, custom_headers=None, raw=False, **operation_config):
+    async def post303(self, boolean_value=None, *, cls=None, **operation_config):
         """Post true Boolean value in request returns 303.  This request should be
         automatically redirected usign a get, ultimately returning a 200 status
         code.
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None or the result of cls(response)
+        :rtype: None
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
@@ -413,8 +376,6 @@ class HttpRedirectsOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
 
         # Construct body
         if boolean_value is not None:
@@ -424,30 +385,28 @@ class HttpRedirectsOperations:
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        pipeline_output = await self._client.pipeline.run(request, stream=False, **operation_config)
+        response = pipeline_output.http_response
 
         if response.status_code not in [200, 303]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            client_raw_response.add_headers({
-                'Location': 'str',
-            })
-            return client_raw_response
+        if cls:
+            response_headers = {
+                'Location': self._deserialize('str', response.headers.get('Location')),
+            }
+            return cls(response, None, response_headers)
     post303.metadata = {'url': '/http/redirect/303'}
 
-    async def head307(
-            self, *, custom_headers=None, raw=False, **operation_config):
+    async def head307(self, *, cls=None, **operation_config):
         """Redirect with 307, resulting in a 200 success.
 
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None or the result of cls(response)
+        :rtype: None
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
@@ -459,35 +418,31 @@ class HttpRedirectsOperations:
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
 
         # Construct and send request
         request = self._client.head(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        pipeline_output = await self._client.pipeline.run(request, stream=False, **operation_config)
+        response = pipeline_output.http_response
 
         if response.status_code not in [200, 307]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            client_raw_response.add_headers({
-                'Location': 'str',
-            })
-            return client_raw_response
+        if cls:
+            response_headers = {
+                'Location': self._deserialize('str', response.headers.get('Location')),
+            }
+            return cls(response, None, response_headers)
     head307.metadata = {'url': '/http/redirect/307'}
 
-    async def get307(
-            self, *, custom_headers=None, raw=False, **operation_config):
+    async def get307(self, *, cls=None, **operation_config):
         """Redirect get with 307, resulting in a 200 success.
 
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None or the result of cls(response)
+        :rtype: None
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
@@ -499,37 +454,33 @@ class HttpRedirectsOperations:
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        pipeline_output = await self._client.pipeline.run(request, stream=False, **operation_config)
+        response = pipeline_output.http_response
 
         if response.status_code not in [200, 307]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            client_raw_response.add_headers({
-                'Location': 'str',
-            })
-            return client_raw_response
+        if cls:
+            response_headers = {
+                'Location': self._deserialize('str', response.headers.get('Location')),
+            }
+            return cls(response, None, response_headers)
     get307.metadata = {'url': '/http/redirect/307'}
 
-    async def put307(
-            self, boolean_value=None, *, custom_headers=None, raw=False, **operation_config):
+    async def put307(self, boolean_value=None, *, cls=None, **operation_config):
         """Put redirected with 307, resulting in a 200 after redirect.
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None or the result of cls(response)
+        :rtype: None
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
@@ -542,8 +493,6 @@ class HttpRedirectsOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
 
         # Construct body
         if boolean_value is not None:
@@ -553,32 +502,30 @@ class HttpRedirectsOperations:
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        pipeline_output = await self._client.pipeline.run(request, stream=False, **operation_config)
+        response = pipeline_output.http_response
 
         if response.status_code not in [200, 307]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            client_raw_response.add_headers({
-                'Location': 'str',
-            })
-            return client_raw_response
+        if cls:
+            response_headers = {
+                'Location': self._deserialize('str', response.headers.get('Location')),
+            }
+            return cls(response, None, response_headers)
     put307.metadata = {'url': '/http/redirect/307'}
 
-    async def patch307(
-            self, boolean_value=None, *, custom_headers=None, raw=False, **operation_config):
+    async def patch307(self, boolean_value=None, *, cls=None, **operation_config):
         """Patch redirected with 307, resulting in a 200 after redirect.
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None or the result of cls(response)
+        :rtype: None
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
@@ -591,8 +538,6 @@ class HttpRedirectsOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
 
         # Construct body
         if boolean_value is not None:
@@ -602,32 +547,30 @@ class HttpRedirectsOperations:
 
         # Construct and send request
         request = self._client.patch(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        pipeline_output = await self._client.pipeline.run(request, stream=False, **operation_config)
+        response = pipeline_output.http_response
 
         if response.status_code not in [200, 307]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            client_raw_response.add_headers({
-                'Location': 'str',
-            })
-            return client_raw_response
+        if cls:
+            response_headers = {
+                'Location': self._deserialize('str', response.headers.get('Location')),
+            }
+            return cls(response, None, response_headers)
     patch307.metadata = {'url': '/http/redirect/307'}
 
-    async def post307(
-            self, boolean_value=None, *, custom_headers=None, raw=False, **operation_config):
+    async def post307(self, boolean_value=None, *, cls=None, **operation_config):
         """Post redirected with 307, resulting in a 200 after redirect.
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None or the result of cls(response)
+        :rtype: None
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
@@ -640,8 +583,6 @@ class HttpRedirectsOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
 
         # Construct body
         if boolean_value is not None:
@@ -651,32 +592,30 @@ class HttpRedirectsOperations:
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        pipeline_output = await self._client.pipeline.run(request, stream=False, **operation_config)
+        response = pipeline_output.http_response
 
         if response.status_code not in [200, 307]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            client_raw_response.add_headers({
-                'Location': 'str',
-            })
-            return client_raw_response
+        if cls:
+            response_headers = {
+                'Location': self._deserialize('str', response.headers.get('Location')),
+            }
+            return cls(response, None, response_headers)
     post307.metadata = {'url': '/http/redirect/307'}
 
-    async def delete307(
-            self, boolean_value=None, *, custom_headers=None, raw=False, **operation_config):
+    async def delete307(self, boolean_value=None, *, cls=None, **operation_config):
         """Delete redirected with 307, resulting in a 200 after redirect.
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None or the result of cls(response)
+        :rtype: None
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
@@ -689,8 +628,6 @@ class HttpRedirectsOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
 
         # Construct body
         if boolean_value is not None:
@@ -700,15 +637,15 @@ class HttpRedirectsOperations:
 
         # Construct and send request
         request = self._client.delete(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        pipeline_output = await self._client.pipeline.run(request, stream=False, **operation_config)
+        response = pipeline_output.http_response
 
         if response.status_code not in [200, 307]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            client_raw_response.add_headers({
-                'Location': 'str',
-            })
-            return client_raw_response
+        if cls:
+            response_headers = {
+                'Location': self._deserialize('str', response.headers.get('Location')),
+            }
+            return cls(response, None, response_headers)
     delete307.metadata = {'url': '/http/redirect/307'}

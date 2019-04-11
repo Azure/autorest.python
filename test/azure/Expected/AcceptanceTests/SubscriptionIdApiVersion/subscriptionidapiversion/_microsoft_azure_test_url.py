@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-# from azure.core import PipelineClient  TODO
+from azure.core import PipelineClient
 from msrest import Serializer, Deserializer
 
 from ._configuration import MicrosoftAzureTestUrlConfiguration
@@ -33,10 +33,13 @@ class MicrosoftAzureTestUrl(object):
     """
 
     def __init__(
-            self, credentials, subscription_id, base_url=None, config=None, **kwargs):
+            self, credentials=None, subscription_id=None, base_url=None, config=None, **kwargs):
 
+        if not base_url:
+            base_url = 'https://management.azure.com'
         self._config = config or MicrosoftAzureTestUrlConfiguration(credentials, subscription_id, **kwargs)
-        self._client = PipelineClient(base_url=base_url, credentials=credentials, config=self._config, **kwargs)
+        pipeline = kwargs.get('pipeline', self._config.build_pipeline())
+        self._client = PipelineClient(base_url, config=self._config, pipeline=pipeline, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '2014-04-01-preview'
@@ -45,3 +48,9 @@ class MicrosoftAzureTestUrl(object):
 
         self.group = GroupOperations(
             self._client, self._config, self._serialize, self._deserialize)
+
+    def __enter__(self):
+        self._client.pipeline.__enter__()
+        return self
+    def __exit__(self, *exc_details):
+        self._client.pipeline.__exit__(*exc_details)

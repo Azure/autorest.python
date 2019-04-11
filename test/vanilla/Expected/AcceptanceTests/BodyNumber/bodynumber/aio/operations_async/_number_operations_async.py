@@ -9,7 +9,6 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.pipeline import ClientRawResponse
 
 from ... import models
 
@@ -32,20 +31,17 @@ class NumberOperations:
         self._client = client
         self._serialize = serializer
         self._deserialize = deserializer
+        self._config = config
 
-        self.config = config
-
-    async def get_null(
-            self, *, custom_headers=None, raw=False, **operation_config):
+    async def get_null(self, *, cls=None, **operation_config):
         """Get null Number value.
 
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: float or ClientRawResponse if raw=true
-        :rtype: float or ~msrest.pipeline.ClientRawResponse
+        :return: float or the result of cls(response)
+        :rtype: float
         :raises: :class:`ErrorException<bodynumber.models.ErrorException>`
         """
         # Construct URL
@@ -57,12 +53,11 @@ class NumberOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        pipeline_output = await self._client.pipeline.run(request, stream=False, **operation_config)
+        response = pipeline_output.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -71,24 +66,21 @@ class NumberOperations:
         if response.status_code == 200:
             deserialized = self._deserialize('float', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
+        if cls:
+            return cls(response, deserialized, None)
 
         return deserialized
     get_null.metadata = {'url': '/number/null'}
 
-    async def get_invalid_float(
-            self, *, custom_headers=None, raw=False, **operation_config):
+    async def get_invalid_float(self, *, cls=None, **operation_config):
         """Get invalid float Number value.
 
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: float or ClientRawResponse if raw=true
-        :rtype: float or ~msrest.pipeline.ClientRawResponse
+        :return: float or the result of cls(response)
+        :rtype: float
         :raises: :class:`ErrorException<bodynumber.models.ErrorException>`
         """
         # Construct URL
@@ -100,12 +92,11 @@ class NumberOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        pipeline_output = await self._client.pipeline.run(request, stream=False, **operation_config)
+        response = pipeline_output.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -114,24 +105,21 @@ class NumberOperations:
         if response.status_code == 200:
             deserialized = self._deserialize('float', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
+        if cls:
+            return cls(response, deserialized, None)
 
         return deserialized
     get_invalid_float.metadata = {'url': '/number/invalidfloat'}
 
-    async def get_invalid_double(
-            self, *, custom_headers=None, raw=False, **operation_config):
+    async def get_invalid_double(self, *, cls=None, **operation_config):
         """Get invalid double Number value.
 
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: float or ClientRawResponse if raw=true
-        :rtype: float or ~msrest.pipeline.ClientRawResponse
+        :return: float or the result of cls(response)
+        :rtype: float
         :raises: :class:`ErrorException<bodynumber.models.ErrorException>`
         """
         # Construct URL
@@ -143,12 +131,11 @@ class NumberOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        pipeline_output = await self._client.pipeline.run(request, stream=False, **operation_config)
+        response = pipeline_output.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -157,24 +144,21 @@ class NumberOperations:
         if response.status_code == 200:
             deserialized = self._deserialize('float', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
+        if cls:
+            return cls(response, deserialized, None)
 
         return deserialized
     get_invalid_double.metadata = {'url': '/number/invaliddouble'}
 
-    async def get_invalid_decimal(
-            self, *, custom_headers=None, raw=False, **operation_config):
+    async def get_invalid_decimal(self, *, cls=None, **operation_config):
         """Get invalid decimal Number value.
 
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: decimal.Decimal or ClientRawResponse if raw=true
-        :rtype: decimal.Decimal or ~msrest.pipeline.ClientRawResponse
+        :return: decimal.Decimal or the result of cls(response)
+        :rtype: decimal.Decimal
         :raises: :class:`ErrorException<bodynumber.models.ErrorException>`
         """
         # Construct URL
@@ -186,12 +170,11 @@ class NumberOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        pipeline_output = await self._client.pipeline.run(request, stream=False, **operation_config)
+        response = pipeline_output.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -200,26 +183,23 @@ class NumberOperations:
         if response.status_code == 200:
             deserialized = self._deserialize('decimal', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
+        if cls:
+            return cls(response, deserialized, None)
 
         return deserialized
     get_invalid_decimal.metadata = {'url': '/number/invaliddecimal'}
 
-    async def put_big_float(
-            self, number_body, *, custom_headers=None, raw=False, **operation_config):
+    async def put_big_float(self, number_body, *, cls=None, **operation_config):
         """Put big float value 3.402823e+20.
 
         :param number_body:
         :type number_body: float
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None or the result of cls(response)
+        :rtype: None
         :raises: :class:`ErrorException<bodynumber.models.ErrorException>`
         """
         # Construct URL
@@ -231,35 +211,32 @@ class NumberOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
 
         # Construct body
         body_content = self._serialize.body(number_body, 'float')
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        pipeline_output = await self._client.pipeline.run(request, stream=False, **operation_config)
+        response = pipeline_output.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     put_big_float.metadata = {'url': '/number/big/float/3.402823e+20'}
 
-    async def get_big_float(
-            self, *, custom_headers=None, raw=False, **operation_config):
+    async def get_big_float(self, *, cls=None, **operation_config):
         """Get big float value 3.402823e+20.
 
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: float or ClientRawResponse if raw=true
-        :rtype: float or ~msrest.pipeline.ClientRawResponse
+        :return: float or the result of cls(response)
+        :rtype: float
         :raises: :class:`ErrorException<bodynumber.models.ErrorException>`
         """
         # Construct URL
@@ -271,12 +248,11 @@ class NumberOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        pipeline_output = await self._client.pipeline.run(request, stream=False, **operation_config)
+        response = pipeline_output.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -285,26 +261,23 @@ class NumberOperations:
         if response.status_code == 200:
             deserialized = self._deserialize('float', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
+        if cls:
+            return cls(response, deserialized, None)
 
         return deserialized
     get_big_float.metadata = {'url': '/number/big/float/3.402823e+20'}
 
-    async def put_big_double(
-            self, number_body, *, custom_headers=None, raw=False, **operation_config):
+    async def put_big_double(self, number_body, *, cls=None, **operation_config):
         """Put big double value 2.5976931e+101.
 
         :param number_body:
         :type number_body: float
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None or the result of cls(response)
+        :rtype: None
         :raises: :class:`ErrorException<bodynumber.models.ErrorException>`
         """
         # Construct URL
@@ -316,35 +289,32 @@ class NumberOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
 
         # Construct body
         body_content = self._serialize.body(number_body, 'float')
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        pipeline_output = await self._client.pipeline.run(request, stream=False, **operation_config)
+        response = pipeline_output.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     put_big_double.metadata = {'url': '/number/big/double/2.5976931e+101'}
 
-    async def get_big_double(
-            self, *, custom_headers=None, raw=False, **operation_config):
+    async def get_big_double(self, *, cls=None, **operation_config):
         """Get big double value 2.5976931e+101.
 
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: float or ClientRawResponse if raw=true
-        :rtype: float or ~msrest.pipeline.ClientRawResponse
+        :return: float or the result of cls(response)
+        :rtype: float
         :raises: :class:`ErrorException<bodynumber.models.ErrorException>`
         """
         # Construct URL
@@ -356,12 +326,11 @@ class NumberOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        pipeline_output = await self._client.pipeline.run(request, stream=False, **operation_config)
+        response = pipeline_output.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -370,24 +339,21 @@ class NumberOperations:
         if response.status_code == 200:
             deserialized = self._deserialize('float', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
+        if cls:
+            return cls(response, deserialized, None)
 
         return deserialized
     get_big_double.metadata = {'url': '/number/big/double/2.5976931e+101'}
 
-    async def put_big_double_positive_decimal(
-            self, *, custom_headers=None, raw=False, **operation_config):
+    async def put_big_double_positive_decimal(self, *, cls=None, **operation_config):
         """Put big double value 99999999.99.
 
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None or the result of cls(response)
+        :rtype: None
         :raises: :class:`ErrorException<bodynumber.models.ErrorException>`
         """
         number_body = 99999999.99
@@ -401,35 +367,32 @@ class NumberOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
 
         # Construct body
         body_content = self._serialize.body(number_body, 'float')
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        pipeline_output = await self._client.pipeline.run(request, stream=False, **operation_config)
+        response = pipeline_output.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     put_big_double_positive_decimal.metadata = {'url': '/number/big/double/99999999.99'}
 
-    async def get_big_double_positive_decimal(
-            self, *, custom_headers=None, raw=False, **operation_config):
+    async def get_big_double_positive_decimal(self, *, cls=None, **operation_config):
         """Get big double value 99999999.99.
 
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: float or ClientRawResponse if raw=true
-        :rtype: float or ~msrest.pipeline.ClientRawResponse
+        :return: float or the result of cls(response)
+        :rtype: float
         :raises: :class:`ErrorException<bodynumber.models.ErrorException>`
         """
         # Construct URL
@@ -441,12 +404,11 @@ class NumberOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        pipeline_output = await self._client.pipeline.run(request, stream=False, **operation_config)
+        response = pipeline_output.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -455,24 +417,21 @@ class NumberOperations:
         if response.status_code == 200:
             deserialized = self._deserialize('float', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
+        if cls:
+            return cls(response, deserialized, None)
 
         return deserialized
     get_big_double_positive_decimal.metadata = {'url': '/number/big/double/99999999.99'}
 
-    async def put_big_double_negative_decimal(
-            self, *, custom_headers=None, raw=False, **operation_config):
+    async def put_big_double_negative_decimal(self, *, cls=None, **operation_config):
         """Put big double value -99999999.99.
 
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None or the result of cls(response)
+        :rtype: None
         :raises: :class:`ErrorException<bodynumber.models.ErrorException>`
         """
         number_body = -99999999.99
@@ -486,35 +445,32 @@ class NumberOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
 
         # Construct body
         body_content = self._serialize.body(number_body, 'float')
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        pipeline_output = await self._client.pipeline.run(request, stream=False, **operation_config)
+        response = pipeline_output.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     put_big_double_negative_decimal.metadata = {'url': '/number/big/double/-99999999.99'}
 
-    async def get_big_double_negative_decimal(
-            self, *, custom_headers=None, raw=False, **operation_config):
+    async def get_big_double_negative_decimal(self, *, cls=None, **operation_config):
         """Get big double value -99999999.99.
 
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: float or ClientRawResponse if raw=true
-        :rtype: float or ~msrest.pipeline.ClientRawResponse
+        :return: float or the result of cls(response)
+        :rtype: float
         :raises: :class:`ErrorException<bodynumber.models.ErrorException>`
         """
         # Construct URL
@@ -526,12 +482,11 @@ class NumberOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        pipeline_output = await self._client.pipeline.run(request, stream=False, **operation_config)
+        response = pipeline_output.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -540,26 +495,23 @@ class NumberOperations:
         if response.status_code == 200:
             deserialized = self._deserialize('float', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
+        if cls:
+            return cls(response, deserialized, None)
 
         return deserialized
     get_big_double_negative_decimal.metadata = {'url': '/number/big/double/-99999999.99'}
 
-    async def put_big_decimal(
-            self, number_body, *, custom_headers=None, raw=False, **operation_config):
+    async def put_big_decimal(self, number_body, *, cls=None, **operation_config):
         """Put big decimal value 2.5976931e+101.
 
         :param number_body:
         :type number_body: decimal.Decimal
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None or the result of cls(response)
+        :rtype: None
         :raises: :class:`ErrorException<bodynumber.models.ErrorException>`
         """
         # Construct URL
@@ -571,35 +523,32 @@ class NumberOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
 
         # Construct body
         body_content = self._serialize.body(number_body, 'decimal')
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        pipeline_output = await self._client.pipeline.run(request, stream=False, **operation_config)
+        response = pipeline_output.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     put_big_decimal.metadata = {'url': '/number/big/decimal/2.5976931e+101'}
 
-    async def get_big_decimal(
-            self, *, custom_headers=None, raw=False, **operation_config):
+    async def get_big_decimal(self, *, cls=None, **operation_config):
         """Get big decimal value 2.5976931e+101.
 
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: decimal.Decimal or ClientRawResponse if raw=true
-        :rtype: decimal.Decimal or ~msrest.pipeline.ClientRawResponse
+        :return: decimal.Decimal or the result of cls(response)
+        :rtype: decimal.Decimal
         :raises: :class:`ErrorException<bodynumber.models.ErrorException>`
         """
         # Construct URL
@@ -611,12 +560,11 @@ class NumberOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        pipeline_output = await self._client.pipeline.run(request, stream=False, **operation_config)
+        response = pipeline_output.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -625,24 +573,21 @@ class NumberOperations:
         if response.status_code == 200:
             deserialized = self._deserialize('decimal', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
+        if cls:
+            return cls(response, deserialized, None)
 
         return deserialized
     get_big_decimal.metadata = {'url': '/number/big/decimal/2.5976931e+101'}
 
-    async def put_big_decimal_positive_decimal(
-            self, *, custom_headers=None, raw=False, **operation_config):
+    async def put_big_decimal_positive_decimal(self, *, cls=None, **operation_config):
         """Put big decimal value 99999999.99.
 
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None or the result of cls(response)
+        :rtype: None
         :raises: :class:`ErrorException<bodynumber.models.ErrorException>`
         """
         number_body = Decimal(99999999.99)
@@ -656,35 +601,32 @@ class NumberOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
 
         # Construct body
         body_content = self._serialize.body(number_body, 'decimal')
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        pipeline_output = await self._client.pipeline.run(request, stream=False, **operation_config)
+        response = pipeline_output.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     put_big_decimal_positive_decimal.metadata = {'url': '/number/big/decimal/99999999.99'}
 
-    async def get_big_decimal_positive_decimal(
-            self, *, custom_headers=None, raw=False, **operation_config):
+    async def get_big_decimal_positive_decimal(self, *, cls=None, **operation_config):
         """Get big decimal value 99999999.99.
 
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: decimal.Decimal or ClientRawResponse if raw=true
-        :rtype: decimal.Decimal or ~msrest.pipeline.ClientRawResponse
+        :return: decimal.Decimal or the result of cls(response)
+        :rtype: decimal.Decimal
         :raises: :class:`ErrorException<bodynumber.models.ErrorException>`
         """
         # Construct URL
@@ -696,12 +638,11 @@ class NumberOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        pipeline_output = await self._client.pipeline.run(request, stream=False, **operation_config)
+        response = pipeline_output.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -710,24 +651,21 @@ class NumberOperations:
         if response.status_code == 200:
             deserialized = self._deserialize('decimal', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
+        if cls:
+            return cls(response, deserialized, None)
 
         return deserialized
     get_big_decimal_positive_decimal.metadata = {'url': '/number/big/decimal/99999999.99'}
 
-    async def put_big_decimal_negative_decimal(
-            self, *, custom_headers=None, raw=False, **operation_config):
+    async def put_big_decimal_negative_decimal(self, *, cls=None, **operation_config):
         """Put big decimal value -99999999.99.
 
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None or the result of cls(response)
+        :rtype: None
         :raises: :class:`ErrorException<bodynumber.models.ErrorException>`
         """
         number_body = Decimal(-99999999.99)
@@ -741,35 +679,32 @@ class NumberOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
 
         # Construct body
         body_content = self._serialize.body(number_body, 'decimal')
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        pipeline_output = await self._client.pipeline.run(request, stream=False, **operation_config)
+        response = pipeline_output.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     put_big_decimal_negative_decimal.metadata = {'url': '/number/big/decimal/-99999999.99'}
 
-    async def get_big_decimal_negative_decimal(
-            self, *, custom_headers=None, raw=False, **operation_config):
+    async def get_big_decimal_negative_decimal(self, *, cls=None, **operation_config):
         """Get big decimal value -99999999.99.
 
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: decimal.Decimal or ClientRawResponse if raw=true
-        :rtype: decimal.Decimal or ~msrest.pipeline.ClientRawResponse
+        :return: decimal.Decimal or the result of cls(response)
+        :rtype: decimal.Decimal
         :raises: :class:`ErrorException<bodynumber.models.ErrorException>`
         """
         # Construct URL
@@ -781,12 +716,11 @@ class NumberOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        pipeline_output = await self._client.pipeline.run(request, stream=False, **operation_config)
+        response = pipeline_output.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -795,26 +729,23 @@ class NumberOperations:
         if response.status_code == 200:
             deserialized = self._deserialize('decimal', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
+        if cls:
+            return cls(response, deserialized, None)
 
         return deserialized
     get_big_decimal_negative_decimal.metadata = {'url': '/number/big/decimal/-99999999.99'}
 
-    async def put_small_float(
-            self, number_body, *, custom_headers=None, raw=False, **operation_config):
+    async def put_small_float(self, number_body, *, cls=None, **operation_config):
         """Put small float value 3.402823e-20.
 
         :param number_body:
         :type number_body: float
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None or the result of cls(response)
+        :rtype: None
         :raises: :class:`ErrorException<bodynumber.models.ErrorException>`
         """
         # Construct URL
@@ -826,35 +757,32 @@ class NumberOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
 
         # Construct body
         body_content = self._serialize.body(number_body, 'float')
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        pipeline_output = await self._client.pipeline.run(request, stream=False, **operation_config)
+        response = pipeline_output.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     put_small_float.metadata = {'url': '/number/small/float/3.402823e-20'}
 
-    async def get_small_float(
-            self, *, custom_headers=None, raw=False, **operation_config):
+    async def get_small_float(self, *, cls=None, **operation_config):
         """Get big double value 3.402823e-20.
 
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: float or ClientRawResponse if raw=true
-        :rtype: float or ~msrest.pipeline.ClientRawResponse
+        :return: float or the result of cls(response)
+        :rtype: float
         :raises: :class:`ErrorException<bodynumber.models.ErrorException>`
         """
         # Construct URL
@@ -866,12 +794,11 @@ class NumberOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        pipeline_output = await self._client.pipeline.run(request, stream=False, **operation_config)
+        response = pipeline_output.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -880,26 +807,23 @@ class NumberOperations:
         if response.status_code == 200:
             deserialized = self._deserialize('float', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
+        if cls:
+            return cls(response, deserialized, None)
 
         return deserialized
     get_small_float.metadata = {'url': '/number/small/float/3.402823e-20'}
 
-    async def put_small_double(
-            self, number_body, *, custom_headers=None, raw=False, **operation_config):
+    async def put_small_double(self, number_body, *, cls=None, **operation_config):
         """Put small double value 2.5976931e-101.
 
         :param number_body:
         :type number_body: float
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None or the result of cls(response)
+        :rtype: None
         :raises: :class:`ErrorException<bodynumber.models.ErrorException>`
         """
         # Construct URL
@@ -911,35 +835,32 @@ class NumberOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
 
         # Construct body
         body_content = self._serialize.body(number_body, 'float')
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        pipeline_output = await self._client.pipeline.run(request, stream=False, **operation_config)
+        response = pipeline_output.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     put_small_double.metadata = {'url': '/number/small/double/2.5976931e-101'}
 
-    async def get_small_double(
-            self, *, custom_headers=None, raw=False, **operation_config):
+    async def get_small_double(self, *, cls=None, **operation_config):
         """Get big double value 2.5976931e-101.
 
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: float or ClientRawResponse if raw=true
-        :rtype: float or ~msrest.pipeline.ClientRawResponse
+        :return: float or the result of cls(response)
+        :rtype: float
         :raises: :class:`ErrorException<bodynumber.models.ErrorException>`
         """
         # Construct URL
@@ -951,12 +872,11 @@ class NumberOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        pipeline_output = await self._client.pipeline.run(request, stream=False, **operation_config)
+        response = pipeline_output.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -965,26 +885,23 @@ class NumberOperations:
         if response.status_code == 200:
             deserialized = self._deserialize('float', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
+        if cls:
+            return cls(response, deserialized, None)
 
         return deserialized
     get_small_double.metadata = {'url': '/number/small/double/2.5976931e-101'}
 
-    async def put_small_decimal(
-            self, number_body, *, custom_headers=None, raw=False, **operation_config):
+    async def put_small_decimal(self, number_body, *, cls=None, **operation_config):
         """Put small decimal value 2.5976931e-101.
 
         :param number_body:
         :type number_body: decimal.Decimal
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None or the result of cls(response)
+        :rtype: None
         :raises: :class:`ErrorException<bodynumber.models.ErrorException>`
         """
         # Construct URL
@@ -996,35 +913,32 @@ class NumberOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
 
         # Construct body
         body_content = self._serialize.body(number_body, 'decimal')
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        pipeline_output = await self._client.pipeline.run(request, stream=False, **operation_config)
+        response = pipeline_output.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     put_small_decimal.metadata = {'url': '/number/small/decimal/2.5976931e-101'}
 
-    async def get_small_decimal(
-            self, *, custom_headers=None, raw=False, **operation_config):
+    async def get_small_decimal(self, *, cls=None, **operation_config):
         """Get small decimal value 2.5976931e-101.
 
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: decimal.Decimal or ClientRawResponse if raw=true
-        :rtype: decimal.Decimal or ~msrest.pipeline.ClientRawResponse
+        :return: decimal.Decimal or the result of cls(response)
+        :rtype: decimal.Decimal
         :raises: :class:`ErrorException<bodynumber.models.ErrorException>`
         """
         # Construct URL
@@ -1036,12 +950,11 @@ class NumberOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        pipeline_output = await self._client.pipeline.run(request, stream=False, **operation_config)
+        response = pipeline_output.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -1050,9 +963,8 @@ class NumberOperations:
         if response.status_code == 200:
             deserialized = self._deserialize('decimal', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
+        if cls:
+            return cls(response, deserialized, None)
 
         return deserialized
     get_small_decimal.metadata = {'url': '/number/small/decimal/2.5976931e-101'}

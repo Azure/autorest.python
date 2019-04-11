@@ -9,7 +9,6 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.pipeline import ClientRawResponse
 from msrest.exceptions import HttpOperationError
 
 from ... import models
@@ -33,11 +32,9 @@ class AvailabilitySetsOperations:
         self._client = client
         self._serialize = serializer
         self._deserialize = deserializer
+        self._config = config
 
-        self.config = config
-
-    async def update(
-            self, resource_group_name, avset, tags, *, custom_headers=None, raw=False, **operation_config):
+    async def update(self, resource_group_name, avset, tags, *, cls=None, **operation_config):
         """Updates the tags for an availability set.
 
         :param resource_group_name: The name of the resource group.
@@ -46,13 +43,12 @@ class AvailabilitySetsOperations:
         :type avset: str
         :param tags: A set of tags. A description about the set of tags.
         :type tags: dict[str, str]
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None or the result of cls(response)
+        :rtype: None
         :raises:
          :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
         """
@@ -72,20 +68,19 @@ class AvailabilitySetsOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
 
         # Construct body
         body_content = self._serialize.body(tags1, 'AvailabilitySetUpdateParameters')
 
         # Construct and send request
         request = self._client.patch(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        pipeline_output = await self._client.pipeline.run(request, stream=False, **operation_config)
+        response = pipeline_output.http_response
 
         if response.status_code not in [200]:
             raise HttpOperationError(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     update.metadata = {'url': '/parameterFlattening/{resourceGroupName}/{availabilitySetName}'}

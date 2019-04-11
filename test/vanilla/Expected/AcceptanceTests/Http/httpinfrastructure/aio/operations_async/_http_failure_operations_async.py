@@ -9,7 +9,6 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.pipeline import ClientRawResponse
 from msrest.exceptions import HttpOperationError
 
 from ... import models
@@ -33,20 +32,17 @@ class HttpFailureOperations:
         self._client = client
         self._serialize = serializer
         self._deserialize = deserializer
+        self._config = config
 
-        self.config = config
-
-    async def get_empty_error(
-            self, *, custom_headers=None, raw=False, **operation_config):
+    async def get_empty_error(self, *, cls=None, **operation_config):
         """Get empty error form server.
 
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: bool or ClientRawResponse if raw=true
-        :rtype: bool or ~msrest.pipeline.ClientRawResponse
+        :return: bool or the result of cls(response)
+        :rtype: bool
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
@@ -59,12 +55,11 @@ class HttpFailureOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        pipeline_output = await self._client.pipeline.run(request, stream=False, **operation_config)
+        response = pipeline_output.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -73,24 +68,21 @@ class HttpFailureOperations:
         if response.status_code == 200:
             deserialized = self._deserialize('bool', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
+        if cls:
+            return cls(response, deserialized, None)
 
         return deserialized
     get_empty_error.metadata = {'url': '/http/failure/emptybody/error'}
 
-    async def get_no_model_error(
-            self, *, custom_headers=None, raw=False, **operation_config):
+    async def get_no_model_error(self, *, cls=None, **operation_config):
         """Get empty error form server.
 
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: bool or ClientRawResponse if raw=true
-        :rtype: bool or ~msrest.pipeline.ClientRawResponse
+        :return: bool or the result of cls(response)
+        :rtype: bool
         :raises:
          :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
         """
@@ -103,12 +95,11 @@ class HttpFailureOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        pipeline_output = await self._client.pipeline.run(request, stream=False, **operation_config)
+        response = pipeline_output.http_response
 
         if response.status_code not in [200]:
             raise HttpOperationError(self._deserialize, response)
@@ -117,24 +108,21 @@ class HttpFailureOperations:
         if response.status_code == 200:
             deserialized = self._deserialize('bool', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
+        if cls:
+            return cls(response, deserialized, None)
 
         return deserialized
     get_no_model_error.metadata = {'url': '/http/failure/nomodel/error'}
 
-    async def get_no_model_empty(
-            self, *, custom_headers=None, raw=False, **operation_config):
+    async def get_no_model_empty(self, *, cls=None, **operation_config):
         """Get empty response from server.
 
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: bool or ClientRawResponse if raw=true
-        :rtype: bool or ~msrest.pipeline.ClientRawResponse
+        :return: bool or the result of cls(response)
+        :rtype: bool
         :raises:
          :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
         """
@@ -147,12 +135,11 @@ class HttpFailureOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        pipeline_output = await self._client.pipeline.run(request, stream=False, **operation_config)
+        response = pipeline_output.http_response
 
         if response.status_code not in [200]:
             raise HttpOperationError(self._deserialize, response)
@@ -161,9 +148,8 @@ class HttpFailureOperations:
         if response.status_code == 200:
             deserialized = self._deserialize('bool', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
+        if cls:
+            return cls(response, deserialized, None)
 
         return deserialized
     get_no_model_empty.metadata = {'url': '/http/failure/nomodel/empty'}

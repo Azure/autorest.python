@@ -9,14 +9,12 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.pipeline import ClientRawResponse
 from .. import models
 
 
 class AutoRestReportServiceOperationsMixin(object):
 
-    def get_report(
-            self, qualifier=None, custom_headers=None, raw=False, **operation_config):
+    def get_report(self, qualifier=None, cls=None, **operation_config):
         """Get test coverage report.
 
         :param qualifier: If specified, qualifies the generated report further
@@ -24,13 +22,12 @@ class AutoRestReportServiceOperationsMixin(object):
          generators that run all tests several times, can distinguish the
          generated reports.
         :type qualifier: str
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: dict or ClientRawResponse if raw=true
-        :rtype: dict[str, int] or ~msrest.pipeline.ClientRawResponse
+        :return: dict or the result of cls(response)
+        :rtype: dict[str, int]
         :raises: :class:`ErrorException<report.models.ErrorException>`
         """
         # Construct URL
@@ -44,12 +41,11 @@ class AutoRestReportServiceOperationsMixin(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        pipeline_output = self._client.pipeline.run(request, stream=False, **operation_config)
+        response = pipeline_output.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -58,9 +54,8 @@ class AutoRestReportServiceOperationsMixin(object):
         if response.status_code == 200:
             deserialized = self._deserialize('{int}', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
+        if cls:
+            return cls(response, deserialized, None)
 
         return deserialized
     get_report.metadata = {'url': '/report'}

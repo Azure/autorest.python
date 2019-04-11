@@ -9,7 +9,6 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.pipeline import ClientRawResponse
 
 from ... import models
 
@@ -32,21 +31,17 @@ class ReadonlypropertyOperations:
         self._client = client
         self._serialize = serializer
         self._deserialize = deserializer
+        self._config = config
 
-        self.config = config
-
-    async def get_valid(
-            self, *, custom_headers=None, raw=False, **operation_config):
+    async def get_valid(self, *, cls=None, **operation_config):
         """Get complex types that have readonly properties.
 
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: ReadonlyObj or ClientRawResponse if raw=true
-        :rtype: ~bodycomplex.models.ReadonlyObj or
-         ~msrest.pipeline.ClientRawResponse
+        :return: ReadonlyObj or the result of cls(response)
+        :rtype: ~bodycomplex.models.ReadonlyObj
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
@@ -58,12 +53,11 @@ class ReadonlypropertyOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        pipeline_output = await self._client.pipeline.run(request, stream=False, **operation_config)
+        response = pipeline_output.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -72,26 +66,23 @@ class ReadonlypropertyOperations:
         if response.status_code == 200:
             deserialized = self._deserialize('ReadonlyObj', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
+        if cls:
+            return cls(response, deserialized, None)
 
         return deserialized
     get_valid.metadata = {'url': '/complex/readonlyproperty/valid'}
 
-    async def put_valid(
-            self, size=None, *, custom_headers=None, raw=False, **operation_config):
+    async def put_valid(self, size=None, *, cls=None, **operation_config):
         """Put complex types that have readonly properties.
 
         :param size:
         :type size: int
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None or the result of cls(response)
+        :rtype: None
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         complex_body = models.ReadonlyObj(size=size)
@@ -105,20 +96,19 @@ class ReadonlypropertyOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
 
         # Construct body
         body_content = self._serialize.body(complex_body, 'ReadonlyObj')
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        pipeline_output = await self._client.pipeline.run(request, stream=False, **operation_config)
+        response = pipeline_output.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     put_valid.metadata = {'url': '/complex/readonlyproperty/valid'}

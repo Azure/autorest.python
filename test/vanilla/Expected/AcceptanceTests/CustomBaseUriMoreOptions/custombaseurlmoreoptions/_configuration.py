@@ -10,7 +10,8 @@
 # --------------------------------------------------------------------------
 
 from azure.core.configuration import Configuration, ConnectionConfiguration
-from azure.core.pipeline import policies
+from azure.core.pipeline import policies, Pipeline
+from azure.core.pipeline.transport import RequestsTransport
 
 from .version import VERSION
 
@@ -27,7 +28,7 @@ class AutoRestParameterizedCustomHostTestClientConfiguration(Configuration):
     :type dns_suffix: str
     """
 
-    def __init__(self, subscription_id, dns_suffix, **kwargs):
+    def __init__(self, subscription_id=None, dns_suffix=None, **kwargs):
 
         if subscription_id is None:
             raise ValueError("Parameter 'subscription_id' must not be None.")
@@ -35,6 +36,7 @@ class AutoRestParameterizedCustomHostTestClientConfiguration(Configuration):
             raise ValueError("Parameter 'dns_suffix' must not be None.")
 
         super(AutoRestParameterizedCustomHostTestClientConfiguration, self).__init__(**kwargs)
+        self.credentials = None
         self._configure(**kwargs)
 
         self.user_agent_policy.add_user_agent('autorestparameterizedcustomhosttestclient/{}'.format(VERSION))
@@ -50,3 +52,17 @@ class AutoRestParameterizedCustomHostTestClientConfiguration(Configuration):
         self.logging_policy = policies.NetworkTraceLoggingPolicy(**kwargs)
         self.retry_policy = policies.RetryPolicy(**kwargs)
         self.redirect_policy = policies.RedirectPolicy(**kwargs)
+        self.transport = kwargs.get('transport', RequestsTransport)
+
+    def build_pipeline(self):
+        transport = self.get_transport()
+        pipeline_policies = [
+            self.user_agent_policy,
+            self.headers_policy,
+            self.credentials,
+            policies.ContentDecodePolicy(),
+            self.redirect_policy,
+            self.retry_policy,
+            self.logging_policy,
+        ]
+        return Pipeline(transport, policies=pipeline_policies)

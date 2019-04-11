@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-# from azure.core import AsyncPipelineClient  TODO
+from azure.core import PipelineClient
 from msrest import Serializer, Deserializer
 
 from ._configuration_async import StorageManagementClientConfiguration
@@ -38,10 +38,13 @@ class StorageManagementClient:
     """
 
     def __init__(
-            self, credentials, subscription_id, base_url=None, config=None, **kwargs):
+            self, credentials=None, subscription_id=None, base_url=None, config=None, **kwargs):
 
+        if not base_url:
+            base_url = 'https://management.azure.com'
         self._config = config or StorageManagementClientConfiguration(credentials, subscription_id, **kwargs)
-        self._client = AsyncPipelineClient(base_url=base_url, credentials=credentials, config=self._config, **kwargs)
+        pipeline = kwargs.get('pipeline', self._config.build_pipeline())
+        self._client = PipelineClient(base_url, config=self._config, pipeline=pipeline, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '2015-05-01-preview'
@@ -52,3 +55,14 @@ class StorageManagementClient:
             self._client, self._config, self._serialize, self._deserialize)
         self.usage = UsageOperations(
             self._client, self._config, self._serialize, self._deserialize)
+    async def __aenter__(self):
+        await self.pipeline.__aenter__()
+        return self
+    async def __aexit__(self, *exc_details):
+        await self.pipeline.__aexit__(*exc_details)
+
+    async def __aenter__(self):
+        await self._client.pipeline.__enter__()
+        return self
+    async def __aexit__(self, *exc_details):
+        await self._client.pipeline.__exit__(*exc_details)
