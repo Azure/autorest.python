@@ -85,7 +85,8 @@ else
         @:request = self.@(MethodPy.GetHttpFunction(Model.HttpMethod))(url, query_parameters, header_parameters)
 }
 @{string sendCall = Model.GetSendCall(AsyncMode);}
-        response = @(sendCall)(request, stream=False, **operation_config)
+        pipeline_response = @(sendCall)(request)
+        response = pipeline_response.http_response.internal_response
 @EmptyLine
         if @Model.FailureStatusCodePredicate:
             @Model.RaisedException
