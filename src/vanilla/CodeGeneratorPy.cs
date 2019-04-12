@@ -60,8 +60,8 @@ namespace AutoRest.Python
             var serviceClientInitTemplateAsync = new ServiceClientInitTemplateAsync { Model = codeModel };
             await Write(serviceClientInitTemplateAsync, Path.Combine(folderName, "aio", "__init__.py"));
 
-            //var configurationTemplateAsync = new ConfigurationTemplateAsync { Model = codeModel };
-            //await Write(configurationTemplateAsync, Path.Combine(folderName, "aio", "_configuration_async.py"));
+            var configurationTemplateAsync = new ConfigurationTemplateAsync { Model = codeModel };
+            await Write(configurationTemplateAsync, Path.Combine(folderName, "aio", "_configuration_async.py"));
 
             // Writing service client
             var serviceClientTemplate = new ServiceClientTemplate { Model = codeModel };

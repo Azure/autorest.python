@@ -21,7 +21,7 @@ string clientName = Model.Name;
 from azure.core import PipelineClient
 from msrest import Serializer, Deserializer
 @EmptyLine
-from .._configuration import @(Model.Name)Configuration
+from ._configuration_async import @(Model.Name)Configuration
 @{
 bool hasClientLevelMethods = Model.MethodTemplateModels.Any( each => each.MethodGroup.IsCodeModelMethodGroup);
 }
