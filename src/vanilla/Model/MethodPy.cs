@@ -291,7 +291,7 @@ namespace AutoRest.Python.Model
                 }
 
                 builder.Outdent().AppendLine("}");
-                builder.AppendLine("{0} = self._client.format_url({0}, **path_format_arguments)", variableName);
+                builder.AppendLine("{0} = self.format_url({0}, **path_format_arguments)", variableName);
             }
 
             return builder.ToString();

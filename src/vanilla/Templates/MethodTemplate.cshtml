@@ -84,7 +84,7 @@ string defKeyword = AsyncMode? "async def" : "def";
     {
       if (parameter.Location == ParameterLocation.Body && parameter.ModelType.IsPrimaryType(KnownPrimaryType.Stream))
       {
-        @:body_content = self._client.stream_upload(@parameter.Name, callback)
+        @:body_content = self.stream_upload(@parameter.Name, callback)
         break;
       }
     }
@@ -133,15 +133,15 @@ else if (Model.IsFormData)
         # Construct and send request
 @if (Model.RequestBody != null)
 {
-        @:request = self._client.@(MethodPy.GetHttpFunction(Model.HttpMethod))(url, query_parameters, header_parameters, body_content)
+        @:request = self.@(MethodPy.GetHttpFunction(Model.HttpMethod))(url, query_parameters, header_parameters, body_content)
 }
 else if (Model.IsFormData)
 {
-        @:request = self._client.@(MethodPy.GetHttpFunction(Model.HttpMethod))(url, query_parameters, header_parameters, form_content=form_data_content)
+        @:request = self.@(MethodPy.GetHttpFunction(Model.HttpMethod))(url, query_parameters, header_parameters, form_content=form_data_content)
 }
 else
 {
-        @:request = self._client.@(MethodPy.GetHttpFunction(Model.HttpMethod))(url, query_parameters, header_parameters)
+        @:request = self.@(MethodPy.GetHttpFunction(Model.HttpMethod))(url, query_parameters, header_parameters)
 }
 @{string streamParameter = "stream="+(Model.IsStreamResponse?"True":"False");}
 @{string sendCall = Model.GetSendCall(AsyncMode);}
@@ -163,7 +163,7 @@ else
   }
 if (Model.IsStreamResponse)
 {
-        @:deserialized = self._client.stream_download@(AsyncMode?"_async":"")(response, callback)
+        @:deserialized = self.stream_download@(AsyncMode?"_async":"")(response, callback)
 }
 else
 {
