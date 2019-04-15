@@ -18,9 +18,9 @@
 @:import warnings
 }
 from msrest.pipeline import ClientRawResponse
-@if(Model.HasAnyCloudErrors)
+@if(Model.HasAnyAzureErrors)
 {
-@:from msrestazure.azure_exceptions import CloudError
+@:from azure.core import AzureError
 }
 @if (Model.HasAnyLongRunOperation)
 {
@@ -35,6 +35,20 @@ import uuid
 @EmptyLine
 @EmptyLine
 class @(Model.Name)OperationsMixin:
+    def _map_error(self, status_code, **config):
+        error_map = config.get("error_map")
+        if error_map is None:
+            return None
+        error = error_map.get(status_code)
+        if error is None:
+            return
+        error_type = error[0]
+        msg = error[1]
+        model_module = __import__('azure')
+        m_py = getattr(model_module, 'core')
+        error_class_name = getattr(m_py, error_type)
+        error_instance = error_class_name(msg)
+        raise error_instance
 @foreach (var method in Model.MethodTemplateModels.Where(each => each.MethodGroup.IsCodeModelMethodGroup))
 {
 @EmptyLine

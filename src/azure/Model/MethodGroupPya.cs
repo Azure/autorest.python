@@ -24,7 +24,7 @@ namespace AutoRest.Python.Azure.Model
             !model.Extensions.ContainsKey(AzureExtensions.ExternalExtension) || 
             !(bool) model.Extensions[AzureExtensions.ExternalExtension]);
 
-        public bool HasAnyCloudErrors => MethodTemplateModels.Any(item => item.DefaultResponse.Body == null || item.DefaultResponse.Body.Name == "CloudError");
+        public bool HasAnyAzureErrors => MethodTemplateModels.Any(item => item.DefaultResponse.Body == null || item.DefaultResponse.Body.Name == "AzureError");
 
         public bool HasAnyLongRunOperation => MethodTemplateModels.Any(m => m.Extensions.ContainsKey(AzureExtensions.LongRunningExtension));
     }

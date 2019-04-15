@@ -55,24 +55,24 @@ namespace AutoRest.Python.Azure.Model
         {
             get
             {
-                if (DefaultResponse.Body == null || DefaultResponse.Body.Name == "CloudError")
+                if (DefaultResponse.Body == null || DefaultResponse.Body.Name == "AzureError")
                 {
-                    return ":class:`CloudError<msrestazure.azure_exceptions.CloudError>`";
+                    return ":class:`AzureError<azure.core.AzureError>`";
                 }
                 return base.ExceptionDocumentation;
             }
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "exp"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Globalization", "CA1303:Do not pass literals as localized parameters", MessageId = "AutoRest.Core.Utilities.IndentedStringBuilder.AppendLine(System.String)"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "CloudError")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "exp"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Globalization", "CA1303:Do not pass literals as localized parameters", MessageId = "AutoRest.Core.Utilities.IndentedStringBuilder.AppendLine(System.String)"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "AzureError")]
         public override string RaisedException
         {
             get
             {
-                if (DefaultResponse.Body == null || DefaultResponse.Body.Name == "CloudError")
+                if (DefaultResponse.Body == null || DefaultResponse.Body.Name == "AzureError")
                 {
                     var sb = new IndentedStringBuilder();
-                    sb.AppendLine("exp = CloudError(response)");
-                    sb.AppendLine("exp.request_id = response.headers.get('{0}')", this.RequestIdString);
+                    sb.AppendLine("error = self._map_error(status_code = response.status_code, error_map = operation_config.get('error_map'))");
+                    sb.AppendLine("exp = AzureError(message = response.reason, response=response)");
                     sb.AppendLine("raise exp");
                     return sb.ToString();
                 }
