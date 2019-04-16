@@ -35,7 +35,7 @@ import uuid
 @EmptyLine
 @EmptyLine
 class @(Model.Name)OperationsMixin(object):
-    def _map_error(self, status_code, **config):
+    def _map_error(self, status_code, response, **config):
         error_map = config.get("error_map")
         if error_map is None:
             return None
@@ -47,7 +47,7 @@ class @(Model.Name)OperationsMixin(object):
         model_module = __import__('azure')
         m_py = getattr(model_module, 'core')
         error_class_name = getattr(m_py, error_type)
-        error_instance = error_class_name(msg)
+        error_instance = error_class_name(message=msg, response=response)
         raise error_instance
         
 @foreach (var method in Model.MethodTemplateModels.Where(each => each.MethodGroup.IsCodeModelMethodGroup))
