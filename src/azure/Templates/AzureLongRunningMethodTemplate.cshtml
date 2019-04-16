@@ -13,7 +13,7 @@ string methodName = Model.Name.ToPythonCase();
 string initialMethodName = "_" + methodName + "_initial";
 }
     @(defKeyword) @(initialMethodName)(
-            self, @(Model.MethodParameterDeclaration(Model.AddCustomHeader, Python3Mode)), **operation_config):
+            self, @(Model.MethodParameterDeclaration(Model.AddCustomHeader, Python3Mode)), **kwargs):
         @Model.BuildInputMappings()
 @if (Model.InputParameterTransformation.Any())
 {
@@ -130,7 +130,7 @@ else
 }
 @EmptyLine
     @(defKeyword) @(methodName)(
-            self, @(Model.MethodParameterDeclaration(Model.AddCustomHeader, Python3Mode)), polling=True, **operation_config):
+            self, @(Model.MethodParameterDeclaration(Model.AddCustomHeader, Python3Mode)), polling=True, **kwargs):
         """@(WrapComment(string.Empty, Model.BuildSummaryAndDescriptionString()))
 @*need to fix comment here for long running function*@
 @EmptyLine
@@ -180,7 +180,7 @@ else
 }
             custom_headers=custom_headers,
             raw=True,
-            **operation_config
+            **kwargs
         )
 @EmptyLine
         def get_long_running_output(response):
@@ -204,7 +204,7 @@ else
             @:@Model.ReturnEmptyResponse
 }
 @EmptyLine
-        lro_delay = operation_config.get(
+        lro_delay = kwargs.get(
             'long_running_operation_timeout',
             self.config.long_running_operation_timeout)
 @{
@@ -216,14 +216,14 @@ if(lro_string != "")
 }
 @if (AsyncMode)
 {
-@:        if polling is True: polling_method = AsyncARMPolling(lro_delay@(lro_string), **operation_config)
+@:        if polling is True: polling_method = AsyncARMPolling(lro_delay@(lro_string), **kwargs)
 @:        elif polling is False: polling_method = AsyncNoPolling()
 @:        else: polling_method = polling
 @:        return await async_poller(self, raw_result, get_long_running_output, polling_method)
 }
 else
 {
-@:        if polling is True: polling_method = ARMPolling(lro_delay@(lro_string), **operation_config)
+@:        if polling is True: polling_method = ARMPolling(lro_delay@(lro_string), **kwargs)
 @:        elif polling is False: polling_method = NoPolling()
 @:        else: polling_method = polling
 @:        return LROPoller(self, raw_result, get_long_running_output, polling_method)
