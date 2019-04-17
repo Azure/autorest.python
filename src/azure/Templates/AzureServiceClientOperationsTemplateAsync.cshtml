@@ -44,10 +44,7 @@ class @(Model.Name)OperationsMixin:
             return
         error_type = error[0]
         msg = error[1]
-        model_module = __import__('azure')
-        m_py = getattr(model_module, 'core')
-        error_class_name = getattr(m_py, error_type)
-        error_instance = error_class_name(message=msg, response=response)
+        error_instance = error_type(message=msg, response=response)
         raise error_instance
 @foreach (var method in Model.MethodTemplateModels.Where(each => each.MethodGroup.IsCodeModelMethodGroup))
 {
