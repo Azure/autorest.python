@@ -15,9 +15,9 @@ import uuid
 @:import warnings
 }
 from msrest.pipeline import ClientRawResponse
-@if (Model.HasAnyAzureErrors)
+@if (Model.HasAnyClientRequestErrors)
 {
-@:from azure.core import AzureError
+@:from azure.core import ClientRequestError
 }
 @if (Model.HasAnyLongRunOperation)
 {
