@@ -11,7 +11,7 @@ string methodName = Model.Name.ToPythonCase();
 string defKeyword = AsyncMode? "async def" : "def";
 }
     @(defKeyword) @(methodName)(
-            self, @(Model.MethodParameterDeclaration(Model.AddCustomHeader, Python3Mode)), **kwargs):
+            self, @(Model.MethodParameterDeclaration(Python3Mode)), **kwargs):
         """@(WrapComment(string.Empty, Model.BuildSummaryAndDescriptionString()))
 @EmptyLine
 @if (Model.Deprecated)
@@ -25,7 +25,6 @@ string defKeyword = AsyncMode? "async def" : "def";
 @:        @ParameterWrapComment(string.Empty, MethodPy.GetParameterDocumentationString(parameter))
 @:        @ParameterWrapComment(string.Empty, ":type " + parameter.Name + ": " + Model.GetDocumentationType(parameter.ModelType))
 }
-        @ParameterWrapComment(string.Empty, ":param dict custom_headers: headers that will be added to the request")
         @ParameterWrapComment(string.Empty, ":param bool raw: returns the direct response alongside the deserialized response")
 @if (Model.NeedsCallback)
 {

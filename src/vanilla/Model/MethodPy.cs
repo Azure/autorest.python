@@ -32,8 +32,6 @@ namespace AutoRest.Python.Model
             set => base.Url = value;
         }
 
-        public bool AddCustomHeader => true;
-
         public string OperationName { get; set; }
 
         public IEnumerable<ParameterPy> ParameterTemplateModels => Parameters.Cast<ParameterPy>();
@@ -139,9 +137,8 @@ namespace AutoRest.Python.Model
         /// <summary>
         /// Generate the method parameter declarations for a method
         /// </summary>
-        /// <param name="addCustomHeaderParameters">If true add the customHeader to the parameters</param>
         /// <returns>Generated string of parameters</returns>
-        public virtual string MethodParameterDeclaration(bool addCustomHeaderParameters, bool python3Mode)
+        public virtual string MethodParameterDeclaration(bool python3Mode)
         {
             List<string> declarations = new List<string>();
             List<string> requiredDeclarations = new List<string>();
@@ -166,11 +163,6 @@ namespace AutoRest.Python.Model
             if (python3Mode)
             {
                 declarations.Add("*");
-            }
-
-            if (addCustomHeaderParameters)
-            {
-                declarations.Add("custom_headers=None");
             }
 
             declarations.Add("raw=False");
@@ -699,16 +691,10 @@ namespace AutoRest.Python.Model
         {
             get
             {
-                if (this.AddCustomHeader)
-                {
-                    var sb = new IndentedStringBuilder();
-                    sb.AppendLine("if custom_headers:").Indent().AppendLine("header_parameters.update(custom_headers)").Outdent();
-                    return sb.ToString();
-                }
-                else
-                {
-                    return string.Empty;
-                }
+                var sb = new IndentedStringBuilder();
+                sb.AppendLine("headers = kwargs.get('headers')");
+                sb.AppendLine("if headers:").Indent().AppendLine("header_parameters.update(headers)").Outdent();
+                return sb.ToString();
             }
         }
 

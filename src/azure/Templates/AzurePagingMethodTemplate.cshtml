@@ -8,7 +8,7 @@
 string methodName = Model.Name.ToPythonCase();
 }
     def @(methodName)(
-            self, @(Model.MethodParameterDeclaration(true, Python3Mode)), **kwargs):
+            self, @(Model.MethodParameterDeclaration(Python3Mode)), **kwargs):
         """@(WrapComment(string.Empty, Model.BuildSummaryAndDescriptionString()))
 @EmptyLine
 @if (Model.Deprecated)
@@ -23,7 +23,6 @@ string methodName = Model.Name.ToPythonCase();
 @:        @ParameterWrapComment(string.Empty, MethodPy.GetParameterDocumentationString(parameter))
 @:        @ParameterWrapComment(string.Empty, ":type " + parameter.Name + ": " + Model.GetDocumentationType(parameter.ModelType))
 }
-        @ParameterWrapComment(string.Empty, ":param dict custom_headers: headers that will be added to the request")
         @ParameterWrapComment(string.Empty, ":param bool raw: returns the direct response alongside the deserialized response")
         @ParameterWrapComment(string.Empty, ":return: An iterator like instance of " + Model.GetDocumentationTypeName(Model.PagedResponseContentClass))
         @ParameterWrapComment(string.Empty, string.Format(":rtype: {0}[{1}]", Model.GetReturnTypeDocumentation(Model.ReturnType.Body), Model.GetReturnTypeDocumentation(Model.PagedResponseContentClass)))
