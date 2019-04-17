@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-# from azure.core import PipelineClient  TODO
+from azure.core import PipelineClient
 from msrest import Serializer, Deserializer
 
 from ._configuration import AutoRestValidationTestConfiguration
@@ -18,7 +18,7 @@ from msrest.exceptions import HttpOperationError
 from . import models
 
 
-class AutoRestValidationTest(AutoRestValidationTestOperationsMixin):
+class AutoRestValidationTest(AutoRestValidationTestOperationsMixin, PipelineClient):
     """Test Infrastructure for AutoRest. No server backend exists for these tests.
 
 
@@ -30,7 +30,7 @@ class AutoRestValidationTest(AutoRestValidationTestOperationsMixin):
     def __init__(self, subscription_id, base_url=None, config=None, **kwargs):
 
         self._config = config or AutoRestValidationTestConfiguration(subscription_id, **kwargs)
-        self._client = PipelineClient(base_url=base_url, credentials=None, config=self._config, **kwargs)
+        super(AutoRestValidationTest, self).__init__(base_url=base_url, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '1.0.0'

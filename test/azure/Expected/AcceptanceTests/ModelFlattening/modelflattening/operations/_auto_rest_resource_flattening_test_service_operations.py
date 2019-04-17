@@ -15,18 +15,24 @@ import uuid
 
 
 class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
+    def _map_error(self, status_code, response, **config):
+        error_map = config.get("error_map")
+        if error_map is None:
+            return
+        error_type = error_map.get(status_code)
+        if error_type is None:
+            return
+        error = error_type(response=response)
+        raise error
 
     def put_array(
-            self, resource_array=None, custom_headers=None, raw=False, **operation_config):
+            self, resource_array=None, raw=False, **kwargs):
         """Put External Resource as an Array.
 
         :param resource_array: External Resource as an Array to put
         :type resource_array: list[~modelflattening.models.Resource]
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
@@ -41,12 +47,13 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct body
         if resource_array is not None:
@@ -55,8 +62,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
             body_content = None
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -67,14 +75,11 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     put_array.metadata = {'url': '/model-flatten/array'}
 
     def get_array(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get External Resource as an Array.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: list or ClientRawResponse if raw=true
         :rtype: list[~modelflattening.models.FlattenedProduct] or
          ~msrest.pipeline.ClientRawResponse
@@ -90,16 +95,18 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -116,18 +123,15 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     get_array.metadata = {'url': '/model-flatten/array'}
 
     def put_wrapped_array(
-            self, resource_array=None, custom_headers=None, raw=False, **operation_config):
+            self, resource_array=None, raw=False, **kwargs):
         """No need to have a route in Express server for this operation. Used to
         verify the type flattened is not removed if it's referenced in an
         array.
 
         :param resource_array: External Resource as an Array to put
         :type resource_array: list[~modelflattening.models.WrappedProduct]
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
@@ -142,12 +146,13 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct body
         if resource_array is not None:
@@ -156,8 +161,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
             body_content = None
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -168,16 +174,13 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     put_wrapped_array.metadata = {'url': '/model-flatten/wrappedarray'}
 
     def get_wrapped_array(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """No need to have a route in Express server for this operation. Used to
         verify the type flattened is not removed if it's referenced in an
         array.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: list or ClientRawResponse if raw=true
         :rtype: list[~modelflattening.models.ProductWrapper] or
          ~msrest.pipeline.ClientRawResponse
@@ -193,16 +196,18 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -219,17 +224,14 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     get_wrapped_array.metadata = {'url': '/model-flatten/wrappedarray'}
 
     def put_dictionary(
-            self, resource_dictionary=None, custom_headers=None, raw=False, **operation_config):
+            self, resource_dictionary=None, raw=False, **kwargs):
         """Put External Resource as a Dictionary.
 
         :param resource_dictionary: External Resource as a Dictionary to put
         :type resource_dictionary: dict[str,
          ~modelflattening.models.FlattenedProduct]
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
@@ -244,12 +246,13 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct body
         if resource_dictionary is not None:
@@ -258,8 +261,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
             body_content = None
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -270,14 +274,11 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     put_dictionary.metadata = {'url': '/model-flatten/dictionary'}
 
     def get_dictionary(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get External Resource as a Dictionary.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: dict or ClientRawResponse if raw=true
         :rtype: dict[str, ~modelflattening.models.FlattenedProduct] or
          ~msrest.pipeline.ClientRawResponse
@@ -293,16 +294,18 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -319,18 +322,15 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     get_dictionary.metadata = {'url': '/model-flatten/dictionary'}
 
     def put_resource_collection(
-            self, resource_complex_object=None, custom_headers=None, raw=False, **operation_config):
+            self, resource_complex_object=None, raw=False, **kwargs):
         """Put External Resource as a ResourceCollection.
 
         :param resource_complex_object: External Resource as a
          ResourceCollection to put
         :type resource_complex_object:
          ~modelflattening.models.ResourceCollection
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
@@ -345,12 +345,13 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct body
         if resource_complex_object is not None:
@@ -359,8 +360,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
             body_content = None
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -371,14 +373,11 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     put_resource_collection.metadata = {'url': '/model-flatten/resourcecollection'}
 
     def get_resource_collection(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get External Resource as a ResourceCollection.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: ResourceCollection or ClientRawResponse if raw=true
         :rtype: ~modelflattening.models.ResourceCollection or
          ~msrest.pipeline.ClientRawResponse
@@ -394,16 +393,18 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -420,16 +421,13 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     get_resource_collection.metadata = {'url': '/model-flatten/resourcecollection'}
 
     def put_simple_product(
-            self, simple_body_product=None, custom_headers=None, raw=False, **operation_config):
+            self, simple_body_product=None, raw=False, **kwargs):
         """Put Simple Product with client flattening true on the model.
 
         :param simple_body_product: Simple body product to put
         :type simple_body_product: ~modelflattening.models.SimpleProduct
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: SimpleProduct or ClientRawResponse if raw=true
         :rtype: ~modelflattening.models.SimpleProduct or
          ~msrest.pipeline.ClientRawResponse
@@ -446,12 +444,13 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct body
         if simple_body_product is not None:
@@ -460,8 +459,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
             body_content = None
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -478,7 +478,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     put_simple_product.metadata = {'url': '/model-flatten/customFlattening'}
 
     def post_flattened_simple_product(
-            self, product_id, max_product_display_name, description=None, generic_value=None, odatavalue=None, custom_headers=None, raw=False, **operation_config):
+            self, product_id, max_product_display_name, description=None, generic_value=None, odatavalue=None, raw=False, **kwargs):
         """Put Flattened Simple Product with client flattening true on the
         parameter.
 
@@ -494,11 +494,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         :type generic_value: str
         :param odatavalue: URL value.
         :type odatavalue: str
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: SimpleProduct or ClientRawResponse if raw=true
         :rtype: ~modelflattening.models.SimpleProduct or
          ~msrest.pipeline.ClientRawResponse
@@ -519,12 +516,13 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct body
         if simple_body_product is not None:
@@ -533,8 +531,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
             body_content = None
 
         # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.post(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -551,18 +550,15 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     post_flattened_simple_product.metadata = {'url': '/model-flatten/customFlattening'}
 
     def put_simple_product_with_grouping(
-            self, flatten_parameter_group, custom_headers=None, raw=False, **operation_config):
+            self, flatten_parameter_group, raw=False, **kwargs):
         """Put Simple Product with client flattening true on the model.
 
         :param flatten_parameter_group: Additional parameters for the
          operation
         :type flatten_parameter_group:
          ~modelflattening.models.FlattenParameterGroup
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: SimpleProduct or ClientRawResponse if raw=true
         :rtype: ~modelflattening.models.SimpleProduct or
          ~msrest.pipeline.ClientRawResponse
@@ -596,7 +592,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         path_format_arguments = {
             'name': self._serialize.url("name", name, 'str')
         }
-        url = self._client.format_url(url, **path_format_arguments)
+        url = self.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}
@@ -605,12 +601,13 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct body
         if simple_body_product is not None:
@@ -619,8 +616,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
             body_content = None
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)

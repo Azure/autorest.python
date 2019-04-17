@@ -37,14 +37,11 @@ class FlattencomplexOperations(object):
         self.config = config
 
     def get_valid(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: MyBaseType or ClientRawResponse if raw=true
         :rtype: ~bodycomplex.models.MyBaseType or
          ~msrest.pipeline.ClientRawResponse
@@ -60,12 +57,14 @@ class FlattencomplexOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise HttpOperationError(self._deserialize, response)

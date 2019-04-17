@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-# from azure.core import PipelineClient  TODO
+from azure.core import PipelineClient
 from msrest import Serializer, Deserializer
 
 from ._configuration import AutoRestHeadTestServiceConfiguration
@@ -33,7 +33,7 @@ class AutoRestHeadTestService(object):
             self, credentials, base_url=None, config=None, **kwargs):
 
         self._config = config or AutoRestHeadTestServiceConfiguration(credentials, **kwargs)
-        self._client = PipelineClient(base_url=base_url, credentials=credentials, config=self._config, **kwargs)
+        super(AutoRestHeadTestService, self).__init__(base_url=base_url, config=self._config, **kwargs)
 
         client_models = {}
         self.api_version = '1.0.0'
@@ -41,4 +41,4 @@ class AutoRestHeadTestService(object):
         self._deserialize = Deserializer(client_models)
 
         self.http_success = HttpSuccessOperations(
-            self._client, self._config, self._serialize, self._deserialize)
+            self, self._config, self._serialize, self._deserialize)

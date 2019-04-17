@@ -36,14 +36,11 @@ class BoolModelOperations:
         self.config = config
 
     async def get_true(
-            self, *, custom_headers=None, raw=False, **operation_config):
+            self, *, raw=False, **kwargs):
         """Get true Boolean value.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: bool or ClientRawResponse if raw=true
         :rtype: bool or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyboolean.models.ErrorException>`
@@ -57,12 +54,14 @@ class BoolModelOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -79,14 +78,11 @@ class BoolModelOperations:
     get_true.metadata = {'url': '/bool/true'}
 
     async def put_true(
-            self, *, custom_headers=None, raw=False, **operation_config):
+            self, *, raw=False, **kwargs):
         """Set Boolean value true.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyboolean.models.ErrorException>`
@@ -102,15 +98,17 @@ class BoolModelOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(bool_body, 'bool')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -121,14 +119,11 @@ class BoolModelOperations:
     put_true.metadata = {'url': '/bool/true'}
 
     async def get_false(
-            self, *, custom_headers=None, raw=False, **operation_config):
+            self, *, raw=False, **kwargs):
         """Get false Boolean value.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: bool or ClientRawResponse if raw=true
         :rtype: bool or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyboolean.models.ErrorException>`
@@ -142,12 +137,14 @@ class BoolModelOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -164,14 +161,11 @@ class BoolModelOperations:
     get_false.metadata = {'url': '/bool/false'}
 
     async def put_false(
-            self, *, custom_headers=None, raw=False, **operation_config):
+            self, *, raw=False, **kwargs):
         """Set Boolean value false.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyboolean.models.ErrorException>`
@@ -187,15 +181,17 @@ class BoolModelOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(bool_body, 'bool')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -206,14 +202,11 @@ class BoolModelOperations:
     put_false.metadata = {'url': '/bool/false'}
 
     async def get_null(
-            self, *, custom_headers=None, raw=False, **operation_config):
+            self, *, raw=False, **kwargs):
         """Get null Boolean value.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: bool or ClientRawResponse if raw=true
         :rtype: bool or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyboolean.models.ErrorException>`
@@ -227,12 +220,14 @@ class BoolModelOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -249,14 +244,11 @@ class BoolModelOperations:
     get_null.metadata = {'url': '/bool/null'}
 
     async def get_invalid(
-            self, *, custom_headers=None, raw=False, **operation_config):
+            self, *, raw=False, **kwargs):
         """Get invalid Boolean value.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: bool or ClientRawResponse if raw=true
         :rtype: bool or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyboolean.models.ErrorException>`
@@ -270,12 +262,14 @@ class BoolModelOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)

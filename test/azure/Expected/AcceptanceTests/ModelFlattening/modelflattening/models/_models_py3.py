@@ -41,8 +41,8 @@ class BaseProduct(Model):
         self.description = description
 
 
-class CloudError(Model):
-    """CloudError.
+class ClientRequestError(Model):
+    """ClientRequestError.
     """
 
     _attribute_map = {

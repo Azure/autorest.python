@@ -38,6 +38,8 @@ class AutoRestParameterizedCustomHostTestClientConfiguration(Configuration):
         self._configure(**kwargs)
 
         self.user_agent_policy.add_user_agent('autorestparameterizedcustomhosttestclient/{}'.format(VERSION))
+        self.generate_client_request_id = True
+        self.accept_language = None
 
         self.subscription_id = subscription_id
         self.dns_suffix = dns_suffix

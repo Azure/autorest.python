@@ -37,14 +37,11 @@ class XmlOperations:
         self.config = config
 
     async def get_complex_type_ref_no_meta(
-            self, *, custom_headers=None, raw=False, **operation_config):
+            self, *, raw=False, **kwargs):
         """Get a complex type that has a ref to a complex type with no XML node.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: RootWithRefAndNoMeta or ClientRawResponse if raw=true
         :rtype: ~xmlservice.models.RootWithRefAndNoMeta or
          ~msrest.pipeline.ClientRawResponse
@@ -60,12 +57,14 @@ class XmlOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/xml'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise HttpOperationError(self._deserialize, response)
@@ -82,16 +81,13 @@ class XmlOperations:
     get_complex_type_ref_no_meta.metadata = {'url': '/xml/complex-type-ref-no-meta'}
 
     async def put_complex_type_ref_no_meta(
-            self, model, *, custom_headers=None, raw=False, **operation_config):
+            self, model, *, raw=False, **kwargs):
         """Puts a complex type that has a ref to a complex type with no XML node.
 
         :param model:
         :type model: ~xmlservice.models.RootWithRefAndNoMeta
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
@@ -106,15 +102,17 @@ class XmlOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/xml; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(model, 'RootWithRefAndNoMeta')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [201]:
             raise HttpOperationError(self._deserialize, response)
@@ -125,14 +123,11 @@ class XmlOperations:
     put_complex_type_ref_no_meta.metadata = {'url': '/xml/complex-type-ref-no-meta'}
 
     async def get_complex_type_ref_with_meta(
-            self, *, custom_headers=None, raw=False, **operation_config):
+            self, *, raw=False, **kwargs):
         """Get a complex type that has a ref to a complex type with XML node.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: RootWithRefAndMeta or ClientRawResponse if raw=true
         :rtype: ~xmlservice.models.RootWithRefAndMeta or
          ~msrest.pipeline.ClientRawResponse
@@ -148,12 +143,14 @@ class XmlOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/xml'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise HttpOperationError(self._deserialize, response)
@@ -170,16 +167,13 @@ class XmlOperations:
     get_complex_type_ref_with_meta.metadata = {'url': '/xml/complex-type-ref-with-meta'}
 
     async def put_complex_type_ref_with_meta(
-            self, model, *, custom_headers=None, raw=False, **operation_config):
+            self, model, *, raw=False, **kwargs):
         """Puts a complex type that has a ref to a complex type with XML node.
 
         :param model:
         :type model: ~xmlservice.models.RootWithRefAndMeta
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
@@ -194,15 +188,17 @@ class XmlOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/xml; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(model, 'RootWithRefAndMeta')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [201]:
             raise HttpOperationError(self._deserialize, response)
@@ -213,14 +209,11 @@ class XmlOperations:
     put_complex_type_ref_with_meta.metadata = {'url': '/xml/complex-type-ref-with-meta'}
 
     async def get_simple(
-            self, *, custom_headers=None, raw=False, **operation_config):
+            self, *, raw=False, **kwargs):
         """Get a simple XML document.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: Slideshow or ClientRawResponse if raw=true
         :rtype: ~xmlservice.models.Slideshow or
          ~msrest.pipeline.ClientRawResponse
@@ -235,12 +228,14 @@ class XmlOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/xml'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -257,16 +252,13 @@ class XmlOperations:
     get_simple.metadata = {'url': '/xml/simple'}
 
     async def put_simple(
-            self, slideshow, *, custom_headers=None, raw=False, **operation_config):
+            self, slideshow, *, raw=False, **kwargs):
         """Put a simple XML document.
 
         :param slideshow:
         :type slideshow: ~xmlservice.models.Slideshow
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<xmlservice.models.ErrorException>`
@@ -280,15 +272,17 @@ class XmlOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/xml; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(slideshow, 'Slideshow')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [201]:
             raise models.ErrorException(self._deserialize, response)
@@ -299,14 +293,11 @@ class XmlOperations:
     put_simple.metadata = {'url': '/xml/simple'}
 
     async def get_wrapped_lists(
-            self, *, custom_headers=None, raw=False, **operation_config):
+            self, *, raw=False, **kwargs):
         """Get an XML document with multiple wrapped lists.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: AppleBarrel or ClientRawResponse if raw=true
         :rtype: ~xmlservice.models.AppleBarrel or
          ~msrest.pipeline.ClientRawResponse
@@ -322,12 +313,14 @@ class XmlOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/xml'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise HttpOperationError(self._deserialize, response)
@@ -344,16 +337,13 @@ class XmlOperations:
     get_wrapped_lists.metadata = {'url': '/xml/wrapped-lists'}
 
     async def put_wrapped_lists(
-            self, wrapped_lists, *, custom_headers=None, raw=False, **operation_config):
+            self, wrapped_lists, *, raw=False, **kwargs):
         """Put an XML document with multiple wrapped lists.
 
         :param wrapped_lists:
         :type wrapped_lists: ~xmlservice.models.AppleBarrel
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<xmlservice.models.ErrorException>`
@@ -367,15 +357,17 @@ class XmlOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/xml; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(wrapped_lists, 'AppleBarrel')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [201]:
             raise models.ErrorException(self._deserialize, response)
@@ -386,14 +378,11 @@ class XmlOperations:
     put_wrapped_lists.metadata = {'url': '/xml/wrapped-lists'}
 
     async def get_headers(
-            self, *, custom_headers=None, raw=False, **operation_config):
+            self, *, raw=False, **kwargs):
         """Get strongly-typed response headers.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
@@ -407,12 +396,14 @@ class XmlOperations:
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise HttpOperationError(self._deserialize, response)
@@ -426,14 +417,11 @@ class XmlOperations:
     get_headers.metadata = {'url': '/xml/headers'}
 
     async def get_empty_list(
-            self, *, custom_headers=None, raw=False, **operation_config):
+            self, *, raw=False, **kwargs):
         """Get an empty list.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: Slideshow or ClientRawResponse if raw=true
         :rtype: ~xmlservice.models.Slideshow or
          ~msrest.pipeline.ClientRawResponse
@@ -449,12 +437,14 @@ class XmlOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/xml'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise HttpOperationError(self._deserialize, response)
@@ -471,16 +461,13 @@ class XmlOperations:
     get_empty_list.metadata = {'url': '/xml/empty-list'}
 
     async def put_empty_list(
-            self, slideshow, *, custom_headers=None, raw=False, **operation_config):
+            self, slideshow, *, raw=False, **kwargs):
         """Puts an empty list.
 
         :param slideshow:
         :type slideshow: ~xmlservice.models.Slideshow
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
@@ -495,15 +482,17 @@ class XmlOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/xml; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(slideshow, 'Slideshow')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [201]:
             raise HttpOperationError(self._deserialize, response)
@@ -514,14 +503,11 @@ class XmlOperations:
     put_empty_list.metadata = {'url': '/xml/empty-list'}
 
     async def get_empty_wrapped_lists(
-            self, *, custom_headers=None, raw=False, **operation_config):
+            self, *, raw=False, **kwargs):
         """Gets some empty wrapped lists.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: AppleBarrel or ClientRawResponse if raw=true
         :rtype: ~xmlservice.models.AppleBarrel or
          ~msrest.pipeline.ClientRawResponse
@@ -537,12 +523,14 @@ class XmlOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/xml'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise HttpOperationError(self._deserialize, response)
@@ -559,16 +547,13 @@ class XmlOperations:
     get_empty_wrapped_lists.metadata = {'url': '/xml/empty-wrapped-lists'}
 
     async def put_empty_wrapped_lists(
-            self, apple_barrel, *, custom_headers=None, raw=False, **operation_config):
+            self, apple_barrel, *, raw=False, **kwargs):
         """Puts some empty wrapped lists.
 
         :param apple_barrel:
         :type apple_barrel: ~xmlservice.models.AppleBarrel
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
@@ -583,15 +568,17 @@ class XmlOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/xml; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(apple_barrel, 'AppleBarrel')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [201]:
             raise HttpOperationError(self._deserialize, response)
@@ -602,14 +589,11 @@ class XmlOperations:
     put_empty_wrapped_lists.metadata = {'url': '/xml/empty-wrapped-lists'}
 
     async def get_root_list(
-            self, *, custom_headers=None, raw=False, **operation_config):
+            self, *, raw=False, **kwargs):
         """Gets a list as the root element.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: list or ClientRawResponse if raw=true
         :rtype: list[~xmlservice.models.Banana] or
          ~msrest.pipeline.ClientRawResponse
@@ -625,12 +609,14 @@ class XmlOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/xml'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise HttpOperationError(self._deserialize, response)
@@ -647,16 +633,13 @@ class XmlOperations:
     get_root_list.metadata = {'url': '/xml/root-list'}
 
     async def put_root_list(
-            self, bananas, *, custom_headers=None, raw=False, **operation_config):
+            self, bananas, *, raw=False, **kwargs):
         """Puts a list as the root element.
 
         :param bananas:
         :type bananas: list[~xmlservice.models.Banana]
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
@@ -671,16 +654,18 @@ class XmlOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/xml; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         serialization_ctxt = {'xml': {'name': 'bananas', 'itemsName': 'bananas', 'wrapped': True}}
         body_content = self._serialize.body(bananas, '[Banana]', serialization_ctxt=serialization_ctxt)
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [201]:
             raise HttpOperationError(self._deserialize, response)
@@ -691,14 +676,11 @@ class XmlOperations:
     put_root_list.metadata = {'url': '/xml/root-list'}
 
     async def get_root_list_single_item(
-            self, *, custom_headers=None, raw=False, **operation_config):
+            self, *, raw=False, **kwargs):
         """Gets a list with a single item.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: list or ClientRawResponse if raw=true
         :rtype: list[~xmlservice.models.Banana] or
          ~msrest.pipeline.ClientRawResponse
@@ -714,12 +696,14 @@ class XmlOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/xml'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise HttpOperationError(self._deserialize, response)
@@ -736,16 +720,13 @@ class XmlOperations:
     get_root_list_single_item.metadata = {'url': '/xml/root-list-single-item'}
 
     async def put_root_list_single_item(
-            self, bananas, *, custom_headers=None, raw=False, **operation_config):
+            self, bananas, *, raw=False, **kwargs):
         """Puts a list with a single item.
 
         :param bananas:
         :type bananas: list[~xmlservice.models.Banana]
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
@@ -760,16 +741,18 @@ class XmlOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/xml; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         serialization_ctxt = {'xml': {'name': 'bananas', 'itemsName': 'bananas', 'wrapped': True}}
         body_content = self._serialize.body(bananas, '[Banana]', serialization_ctxt=serialization_ctxt)
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [201]:
             raise HttpOperationError(self._deserialize, response)
@@ -780,14 +763,11 @@ class XmlOperations:
     put_root_list_single_item.metadata = {'url': '/xml/root-list-single-item'}
 
     async def get_empty_root_list(
-            self, *, custom_headers=None, raw=False, **operation_config):
+            self, *, raw=False, **kwargs):
         """Gets an empty list as the root element.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: list or ClientRawResponse if raw=true
         :rtype: list[~xmlservice.models.Banana] or
          ~msrest.pipeline.ClientRawResponse
@@ -803,12 +783,14 @@ class XmlOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/xml'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise HttpOperationError(self._deserialize, response)
@@ -825,16 +807,13 @@ class XmlOperations:
     get_empty_root_list.metadata = {'url': '/xml/empty-root-list'}
 
     async def put_empty_root_list(
-            self, bananas, *, custom_headers=None, raw=False, **operation_config):
+            self, bananas, *, raw=False, **kwargs):
         """Puts an empty list as the root element.
 
         :param bananas:
         :type bananas: list[~xmlservice.models.Banana]
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
@@ -849,16 +828,18 @@ class XmlOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/xml; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         serialization_ctxt = {'xml': {'name': 'bananas', 'itemsName': 'bananas', 'wrapped': True}}
         body_content = self._serialize.body(bananas, '[Banana]', serialization_ctxt=serialization_ctxt)
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [201]:
             raise HttpOperationError(self._deserialize, response)
@@ -869,14 +850,11 @@ class XmlOperations:
     put_empty_root_list.metadata = {'url': '/xml/empty-root-list'}
 
     async def get_empty_child_element(
-            self, *, custom_headers=None, raw=False, **operation_config):
+            self, *, raw=False, **kwargs):
         """Gets an XML document with an empty child element.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: Banana or ClientRawResponse if raw=true
         :rtype: ~xmlservice.models.Banana or
          ~msrest.pipeline.ClientRawResponse
@@ -892,12 +870,14 @@ class XmlOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/xml'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise HttpOperationError(self._deserialize, response)
@@ -914,16 +894,13 @@ class XmlOperations:
     get_empty_child_element.metadata = {'url': '/xml/empty-child-element'}
 
     async def put_empty_child_element(
-            self, banana, *, custom_headers=None, raw=False, **operation_config):
+            self, banana, *, raw=False, **kwargs):
         """Puts a value with an empty child element.
 
         :param banana:
         :type banana: ~xmlservice.models.Banana
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
@@ -938,15 +915,17 @@ class XmlOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/xml; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(banana, 'Banana')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [201]:
             raise HttpOperationError(self._deserialize, response)
@@ -957,14 +936,11 @@ class XmlOperations:
     put_empty_child_element.metadata = {'url': '/xml/empty-child-element'}
 
     async def list_containers(
-            self, *, custom_headers=None, raw=False, **operation_config):
+            self, *, raw=False, **kwargs):
         """Lists containers in a storage account.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: ListContainersResponse or ClientRawResponse if raw=true
         :rtype: ~xmlservice.models.ListContainersResponse or
          ~msrest.pipeline.ClientRawResponse
@@ -983,12 +959,14 @@ class XmlOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/xml'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise HttpOperationError(self._deserialize, response)
@@ -1005,14 +983,11 @@ class XmlOperations:
     list_containers.metadata = {'url': '/xml/'}
 
     async def get_service_properties(
-            self, *, custom_headers=None, raw=False, **operation_config):
+            self, *, raw=False, **kwargs):
         """Gets storage service properties.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: StorageServiceProperties or ClientRawResponse if raw=true
         :rtype: ~xmlservice.models.StorageServiceProperties or
          ~msrest.pipeline.ClientRawResponse
@@ -1033,12 +1008,14 @@ class XmlOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/xml'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise HttpOperationError(self._deserialize, response)
@@ -1055,16 +1032,13 @@ class XmlOperations:
     get_service_properties.metadata = {'url': '/xml/'}
 
     async def put_service_properties(
-            self, properties, *, custom_headers=None, raw=False, **operation_config):
+            self, properties, *, raw=False, **kwargs):
         """Puts storage service properties.
 
         :param properties:
         :type properties: ~xmlservice.models.StorageServiceProperties
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
@@ -1084,15 +1058,17 @@ class XmlOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/xml; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(properties, 'StorageServiceProperties')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [201]:
             raise HttpOperationError(self._deserialize, response)
@@ -1103,14 +1079,11 @@ class XmlOperations:
     put_service_properties.metadata = {'url': '/xml/'}
 
     async def get_acls(
-            self, *, custom_headers=None, raw=False, **operation_config):
+            self, *, raw=False, **kwargs):
         """Gets storage ACLs for a container.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: list or ClientRawResponse if raw=true
         :rtype: list[~xmlservice.models.SignedIdentifier] or
          ~msrest.pipeline.ClientRawResponse
@@ -1131,12 +1104,14 @@ class XmlOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/xml'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise HttpOperationError(self._deserialize, response)
@@ -1153,16 +1128,13 @@ class XmlOperations:
     get_acls.metadata = {'url': '/xml/mycontainer'}
 
     async def put_acls(
-            self, properties, *, custom_headers=None, raw=False, **operation_config):
+            self, properties, *, raw=False, **kwargs):
         """Puts storage ACLs for a container.
 
         :param properties:
         :type properties: list[~xmlservice.models.SignedIdentifier]
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
@@ -1182,16 +1154,18 @@ class XmlOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/xml; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         serialization_ctxt = {'xml': {'name': 'SignedIdentifiers', 'itemsName': 'SignedIdentifiers', 'wrapped': True}}
         body_content = self._serialize.body(properties, '[SignedIdentifier]', serialization_ctxt=serialization_ctxt)
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [201]:
             raise HttpOperationError(self._deserialize, response)
@@ -1202,14 +1176,11 @@ class XmlOperations:
     put_acls.metadata = {'url': '/xml/mycontainer'}
 
     async def list_blobs(
-            self, *, custom_headers=None, raw=False, **operation_config):
+            self, *, raw=False, **kwargs):
         """Lists blobs in a storage container.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: ListBlobsResponse or ClientRawResponse if raw=true
         :rtype: ~xmlservice.models.ListBlobsResponse or
          ~msrest.pipeline.ClientRawResponse
@@ -1230,12 +1201,14 @@ class XmlOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/xml'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise HttpOperationError(self._deserialize, response)

@@ -36,14 +36,11 @@ class DatetimeModelOperations:
         self.config = config
 
     async def get_null(
-            self, *, custom_headers=None, raw=False, **operation_config):
+            self, *, raw=False, **kwargs):
         """Get null datetime value.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: datetime or ClientRawResponse if raw=true
         :rtype: datetime or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodydatetime.models.ErrorException>`
@@ -57,12 +54,14 @@ class DatetimeModelOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -79,14 +78,11 @@ class DatetimeModelOperations:
     get_null.metadata = {'url': '/datetime/null'}
 
     async def get_invalid(
-            self, *, custom_headers=None, raw=False, **operation_config):
+            self, *, raw=False, **kwargs):
         """Get invalid datetime value.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: datetime or ClientRawResponse if raw=true
         :rtype: datetime or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodydatetime.models.ErrorException>`
@@ -100,12 +96,14 @@ class DatetimeModelOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -122,14 +120,11 @@ class DatetimeModelOperations:
     get_invalid.metadata = {'url': '/datetime/invalid'}
 
     async def get_overflow(
-            self, *, custom_headers=None, raw=False, **operation_config):
+            self, *, raw=False, **kwargs):
         """Get overflow datetime value.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: datetime or ClientRawResponse if raw=true
         :rtype: datetime or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodydatetime.models.ErrorException>`
@@ -143,12 +138,14 @@ class DatetimeModelOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -165,14 +162,11 @@ class DatetimeModelOperations:
     get_overflow.metadata = {'url': '/datetime/overflow'}
 
     async def get_underflow(
-            self, *, custom_headers=None, raw=False, **operation_config):
+            self, *, raw=False, **kwargs):
         """Get underflow datetime value.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: datetime or ClientRawResponse if raw=true
         :rtype: datetime or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodydatetime.models.ErrorException>`
@@ -186,12 +180,14 @@ class DatetimeModelOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -208,16 +204,13 @@ class DatetimeModelOperations:
     get_underflow.metadata = {'url': '/datetime/underflow'}
 
     async def put_utc_max_date_time(
-            self, datetime_body, *, custom_headers=None, raw=False, **operation_config):
+            self, datetime_body, *, raw=False, **kwargs):
         """Put max datetime value 9999-12-31T23:59:59.9999999Z.
 
         :param datetime_body:
         :type datetime_body: datetime
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodydatetime.models.ErrorException>`
@@ -231,15 +224,17 @@ class DatetimeModelOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(datetime_body, 'iso-8601')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -250,14 +245,11 @@ class DatetimeModelOperations:
     put_utc_max_date_time.metadata = {'url': '/datetime/max/utc'}
 
     async def get_utc_lowercase_max_date_time(
-            self, *, custom_headers=None, raw=False, **operation_config):
+            self, *, raw=False, **kwargs):
         """Get max datetime value 9999-12-31t23:59:59.9999999z.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: datetime or ClientRawResponse if raw=true
         :rtype: datetime or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodydatetime.models.ErrorException>`
@@ -271,12 +263,14 @@ class DatetimeModelOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -293,14 +287,11 @@ class DatetimeModelOperations:
     get_utc_lowercase_max_date_time.metadata = {'url': '/datetime/max/utc/lowercase'}
 
     async def get_utc_uppercase_max_date_time(
-            self, *, custom_headers=None, raw=False, **operation_config):
+            self, *, raw=False, **kwargs):
         """Get max datetime value 9999-12-31T23:59:59.9999999Z.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: datetime or ClientRawResponse if raw=true
         :rtype: datetime or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodydatetime.models.ErrorException>`
@@ -314,12 +305,14 @@ class DatetimeModelOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -336,17 +329,14 @@ class DatetimeModelOperations:
     get_utc_uppercase_max_date_time.metadata = {'url': '/datetime/max/utc/uppercase'}
 
     async def put_local_positive_offset_max_date_time(
-            self, datetime_body, *, custom_headers=None, raw=False, **operation_config):
+            self, datetime_body, *, raw=False, **kwargs):
         """Put max datetime value with positive numoffset
         9999-12-31t23:59:59.9999999+14:00.
 
         :param datetime_body:
         :type datetime_body: datetime
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodydatetime.models.ErrorException>`
@@ -360,15 +350,17 @@ class DatetimeModelOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(datetime_body, 'iso-8601')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -379,15 +371,12 @@ class DatetimeModelOperations:
     put_local_positive_offset_max_date_time.metadata = {'url': '/datetime/max/localpositiveoffset'}
 
     async def get_local_positive_offset_lowercase_max_date_time(
-            self, *, custom_headers=None, raw=False, **operation_config):
+            self, *, raw=False, **kwargs):
         """Get max datetime value with positive num offset
         9999-12-31t23:59:59.9999999+14:00.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: datetime or ClientRawResponse if raw=true
         :rtype: datetime or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodydatetime.models.ErrorException>`
@@ -401,12 +390,14 @@ class DatetimeModelOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -423,15 +414,12 @@ class DatetimeModelOperations:
     get_local_positive_offset_lowercase_max_date_time.metadata = {'url': '/datetime/max/localpositiveoffset/lowercase'}
 
     async def get_local_positive_offset_uppercase_max_date_time(
-            self, *, custom_headers=None, raw=False, **operation_config):
+            self, *, raw=False, **kwargs):
         """Get max datetime value with positive num offset
         9999-12-31T23:59:59.9999999+14:00.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: datetime or ClientRawResponse if raw=true
         :rtype: datetime or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodydatetime.models.ErrorException>`
@@ -445,12 +433,14 @@ class DatetimeModelOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -467,17 +457,14 @@ class DatetimeModelOperations:
     get_local_positive_offset_uppercase_max_date_time.metadata = {'url': '/datetime/max/localpositiveoffset/uppercase'}
 
     async def put_local_negative_offset_max_date_time(
-            self, datetime_body, *, custom_headers=None, raw=False, **operation_config):
+            self, datetime_body, *, raw=False, **kwargs):
         """Put max datetime value with positive numoffset
         9999-12-31t23:59:59.9999999-14:00.
 
         :param datetime_body:
         :type datetime_body: datetime
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodydatetime.models.ErrorException>`
@@ -491,15 +478,17 @@ class DatetimeModelOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(datetime_body, 'iso-8601')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -510,15 +499,12 @@ class DatetimeModelOperations:
     put_local_negative_offset_max_date_time.metadata = {'url': '/datetime/max/localnegativeoffset'}
 
     async def get_local_negative_offset_uppercase_max_date_time(
-            self, *, custom_headers=None, raw=False, **operation_config):
+            self, *, raw=False, **kwargs):
         """Get max datetime value with positive num offset
         9999-12-31T23:59:59.9999999-14:00.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: datetime or ClientRawResponse if raw=true
         :rtype: datetime or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodydatetime.models.ErrorException>`
@@ -532,12 +518,14 @@ class DatetimeModelOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -554,15 +542,12 @@ class DatetimeModelOperations:
     get_local_negative_offset_uppercase_max_date_time.metadata = {'url': '/datetime/max/localnegativeoffset/uppercase'}
 
     async def get_local_negative_offset_lowercase_max_date_time(
-            self, *, custom_headers=None, raw=False, **operation_config):
+            self, *, raw=False, **kwargs):
         """Get max datetime value with positive num offset
         9999-12-31t23:59:59.9999999-14:00.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: datetime or ClientRawResponse if raw=true
         :rtype: datetime or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodydatetime.models.ErrorException>`
@@ -576,12 +561,14 @@ class DatetimeModelOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -598,16 +585,13 @@ class DatetimeModelOperations:
     get_local_negative_offset_lowercase_max_date_time.metadata = {'url': '/datetime/max/localnegativeoffset/lowercase'}
 
     async def put_utc_min_date_time(
-            self, datetime_body, *, custom_headers=None, raw=False, **operation_config):
+            self, datetime_body, *, raw=False, **kwargs):
         """Put min datetime value 0001-01-01T00:00:00Z.
 
         :param datetime_body:
         :type datetime_body: datetime
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodydatetime.models.ErrorException>`
@@ -621,15 +605,17 @@ class DatetimeModelOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(datetime_body, 'iso-8601')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -640,14 +626,11 @@ class DatetimeModelOperations:
     put_utc_min_date_time.metadata = {'url': '/datetime/min/utc'}
 
     async def get_utc_min_date_time(
-            self, *, custom_headers=None, raw=False, **operation_config):
+            self, *, raw=False, **kwargs):
         """Get min datetime value 0001-01-01T00:00:00Z.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: datetime or ClientRawResponse if raw=true
         :rtype: datetime or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodydatetime.models.ErrorException>`
@@ -661,12 +644,14 @@ class DatetimeModelOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -683,16 +668,13 @@ class DatetimeModelOperations:
     get_utc_min_date_time.metadata = {'url': '/datetime/min/utc'}
 
     async def put_local_positive_offset_min_date_time(
-            self, datetime_body, *, custom_headers=None, raw=False, **operation_config):
+            self, datetime_body, *, raw=False, **kwargs):
         """Put min datetime value 0001-01-01T00:00:00+14:00.
 
         :param datetime_body:
         :type datetime_body: datetime
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodydatetime.models.ErrorException>`
@@ -706,15 +688,17 @@ class DatetimeModelOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(datetime_body, 'iso-8601')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -725,14 +709,11 @@ class DatetimeModelOperations:
     put_local_positive_offset_min_date_time.metadata = {'url': '/datetime/min/localpositiveoffset'}
 
     async def get_local_positive_offset_min_date_time(
-            self, *, custom_headers=None, raw=False, **operation_config):
+            self, *, raw=False, **kwargs):
         """Get min datetime value 0001-01-01T00:00:00+14:00.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: datetime or ClientRawResponse if raw=true
         :rtype: datetime or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodydatetime.models.ErrorException>`
@@ -746,12 +727,14 @@ class DatetimeModelOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -768,16 +751,13 @@ class DatetimeModelOperations:
     get_local_positive_offset_min_date_time.metadata = {'url': '/datetime/min/localpositiveoffset'}
 
     async def put_local_negative_offset_min_date_time(
-            self, datetime_body, *, custom_headers=None, raw=False, **operation_config):
+            self, datetime_body, *, raw=False, **kwargs):
         """Put min datetime value 0001-01-01T00:00:00-14:00.
 
         :param datetime_body:
         :type datetime_body: datetime
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodydatetime.models.ErrorException>`
@@ -791,15 +771,17 @@ class DatetimeModelOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(datetime_body, 'iso-8601')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -810,14 +792,11 @@ class DatetimeModelOperations:
     put_local_negative_offset_min_date_time.metadata = {'url': '/datetime/min/localnegativeoffset'}
 
     async def get_local_negative_offset_min_date_time(
-            self, *, custom_headers=None, raw=False, **operation_config):
+            self, *, raw=False, **kwargs):
         """Get min datetime value 0001-01-01T00:00:00-14:00.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: datetime or ClientRawResponse if raw=true
         :rtype: datetime or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodydatetime.models.ErrorException>`
@@ -831,12 +810,14 @@ class DatetimeModelOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)

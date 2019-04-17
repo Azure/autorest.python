@@ -36,14 +36,11 @@ class ArrayOperations(object):
         self.config = config
 
     def get_null(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get null array value.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: list or ClientRawResponse if raw=true
         :rtype: list[int] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
@@ -57,12 +54,14 @@ class ArrayOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -79,14 +78,11 @@ class ArrayOperations(object):
     get_null.metadata = {'url': '/array/null'}
 
     def get_invalid(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get invalid array [1, 2, 3.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: list or ClientRawResponse if raw=true
         :rtype: list[int] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
@@ -100,12 +96,14 @@ class ArrayOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -122,14 +120,11 @@ class ArrayOperations(object):
     get_invalid.metadata = {'url': '/array/invalid'}
 
     def get_empty(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get empty array value [].
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: list or ClientRawResponse if raw=true
         :rtype: list[int] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
@@ -143,12 +138,14 @@ class ArrayOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -165,16 +162,13 @@ class ArrayOperations(object):
     get_empty.metadata = {'url': '/array/empty'}
 
     def put_empty(
-            self, array_body, custom_headers=None, raw=False, **operation_config):
+            self, array_body, raw=False, **kwargs):
         """Set array value empty [].
 
         :param array_body:
         :type array_body: list[str]
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
@@ -188,15 +182,17 @@ class ArrayOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(array_body, '[str]')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -207,14 +203,11 @@ class ArrayOperations(object):
     put_empty.metadata = {'url': '/array/empty'}
 
     def get_boolean_tfft(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get boolean array value [true, false, false, true].
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: list or ClientRawResponse if raw=true
         :rtype: list[bool] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
@@ -228,12 +221,14 @@ class ArrayOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -250,16 +245,13 @@ class ArrayOperations(object):
     get_boolean_tfft.metadata = {'url': '/array/prim/boolean/tfft'}
 
     def put_boolean_tfft(
-            self, array_body, custom_headers=None, raw=False, **operation_config):
+            self, array_body, raw=False, **kwargs):
         """Set array value empty [true, false, false, true].
 
         :param array_body:
         :type array_body: list[bool]
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
@@ -273,15 +265,17 @@ class ArrayOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(array_body, '[bool]')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -292,14 +286,11 @@ class ArrayOperations(object):
     put_boolean_tfft.metadata = {'url': '/array/prim/boolean/tfft'}
 
     def get_boolean_invalid_null(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get boolean array value [true, null, false].
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: list or ClientRawResponse if raw=true
         :rtype: list[bool] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
@@ -313,12 +304,14 @@ class ArrayOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -335,14 +328,11 @@ class ArrayOperations(object):
     get_boolean_invalid_null.metadata = {'url': '/array/prim/boolean/true.null.false'}
 
     def get_boolean_invalid_string(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get boolean array value [true, 'boolean', false].
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: list or ClientRawResponse if raw=true
         :rtype: list[bool] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
@@ -356,12 +346,14 @@ class ArrayOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -378,14 +370,11 @@ class ArrayOperations(object):
     get_boolean_invalid_string.metadata = {'url': '/array/prim/boolean/true.boolean.false'}
 
     def get_integer_valid(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get integer array value [1, -1, 3, 300].
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: list or ClientRawResponse if raw=true
         :rtype: list[int] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
@@ -399,12 +388,14 @@ class ArrayOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -421,16 +412,13 @@ class ArrayOperations(object):
     get_integer_valid.metadata = {'url': '/array/prim/integer/1.-1.3.300'}
 
     def put_integer_valid(
-            self, array_body, custom_headers=None, raw=False, **operation_config):
+            self, array_body, raw=False, **kwargs):
         """Set array value empty [1, -1, 3, 300].
 
         :param array_body:
         :type array_body: list[int]
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
@@ -444,15 +432,17 @@ class ArrayOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(array_body, '[int]')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -463,14 +453,11 @@ class ArrayOperations(object):
     put_integer_valid.metadata = {'url': '/array/prim/integer/1.-1.3.300'}
 
     def get_int_invalid_null(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get integer array value [1, null, 0].
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: list or ClientRawResponse if raw=true
         :rtype: list[int] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
@@ -484,12 +471,14 @@ class ArrayOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -506,14 +495,11 @@ class ArrayOperations(object):
     get_int_invalid_null.metadata = {'url': '/array/prim/integer/1.null.zero'}
 
     def get_int_invalid_string(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get integer array value [1, 'integer', 0].
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: list or ClientRawResponse if raw=true
         :rtype: list[int] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
@@ -527,12 +513,14 @@ class ArrayOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -549,14 +537,11 @@ class ArrayOperations(object):
     get_int_invalid_string.metadata = {'url': '/array/prim/integer/1.integer.0'}
 
     def get_long_valid(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get integer array value [1, -1, 3, 300].
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: list or ClientRawResponse if raw=true
         :rtype: list[long] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
@@ -570,12 +555,14 @@ class ArrayOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -592,16 +579,13 @@ class ArrayOperations(object):
     get_long_valid.metadata = {'url': '/array/prim/long/1.-1.3.300'}
 
     def put_long_valid(
-            self, array_body, custom_headers=None, raw=False, **operation_config):
+            self, array_body, raw=False, **kwargs):
         """Set array value empty [1, -1, 3, 300].
 
         :param array_body:
         :type array_body: list[long]
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
@@ -615,15 +599,17 @@ class ArrayOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(array_body, '[long]')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -634,14 +620,11 @@ class ArrayOperations(object):
     put_long_valid.metadata = {'url': '/array/prim/long/1.-1.3.300'}
 
     def get_long_invalid_null(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get long array value [1, null, 0].
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: list or ClientRawResponse if raw=true
         :rtype: list[long] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
@@ -655,12 +638,14 @@ class ArrayOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -677,14 +662,11 @@ class ArrayOperations(object):
     get_long_invalid_null.metadata = {'url': '/array/prim/long/1.null.zero'}
 
     def get_long_invalid_string(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get long array value [1, 'integer', 0].
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: list or ClientRawResponse if raw=true
         :rtype: list[long] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
@@ -698,12 +680,14 @@ class ArrayOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -720,14 +704,11 @@ class ArrayOperations(object):
     get_long_invalid_string.metadata = {'url': '/array/prim/long/1.integer.0'}
 
     def get_float_valid(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get float array value [0, -0.01, 1.2e20].
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: list or ClientRawResponse if raw=true
         :rtype: list[float] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
@@ -741,12 +722,14 @@ class ArrayOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -763,16 +746,13 @@ class ArrayOperations(object):
     get_float_valid.metadata = {'url': '/array/prim/float/0--0.01-1.2e20'}
 
     def put_float_valid(
-            self, array_body, custom_headers=None, raw=False, **operation_config):
+            self, array_body, raw=False, **kwargs):
         """Set array value [0, -0.01, 1.2e20].
 
         :param array_body:
         :type array_body: list[float]
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
@@ -786,15 +766,17 @@ class ArrayOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(array_body, '[float]')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -805,14 +787,11 @@ class ArrayOperations(object):
     put_float_valid.metadata = {'url': '/array/prim/float/0--0.01-1.2e20'}
 
     def get_float_invalid_null(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get float array value [0.0, null, -1.2e20].
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: list or ClientRawResponse if raw=true
         :rtype: list[float] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
@@ -826,12 +805,14 @@ class ArrayOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -848,14 +829,11 @@ class ArrayOperations(object):
     get_float_invalid_null.metadata = {'url': '/array/prim/float/0.0-null-1.2e20'}
 
     def get_float_invalid_string(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get boolean array value [1.0, 'number', 0.0].
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: list or ClientRawResponse if raw=true
         :rtype: list[float] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
@@ -869,12 +847,14 @@ class ArrayOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -891,14 +871,11 @@ class ArrayOperations(object):
     get_float_invalid_string.metadata = {'url': '/array/prim/float/1.number.0'}
 
     def get_double_valid(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get float array value [0, -0.01, 1.2e20].
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: list or ClientRawResponse if raw=true
         :rtype: list[float] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
@@ -912,12 +889,14 @@ class ArrayOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -934,16 +913,13 @@ class ArrayOperations(object):
     get_double_valid.metadata = {'url': '/array/prim/double/0--0.01-1.2e20'}
 
     def put_double_valid(
-            self, array_body, custom_headers=None, raw=False, **operation_config):
+            self, array_body, raw=False, **kwargs):
         """Set array value [0, -0.01, 1.2e20].
 
         :param array_body:
         :type array_body: list[float]
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
@@ -957,15 +933,17 @@ class ArrayOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(array_body, '[float]')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -976,14 +954,11 @@ class ArrayOperations(object):
     put_double_valid.metadata = {'url': '/array/prim/double/0--0.01-1.2e20'}
 
     def get_double_invalid_null(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get float array value [0.0, null, -1.2e20].
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: list or ClientRawResponse if raw=true
         :rtype: list[float] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
@@ -997,12 +972,14 @@ class ArrayOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -1019,14 +996,11 @@ class ArrayOperations(object):
     get_double_invalid_null.metadata = {'url': '/array/prim/double/0.0-null-1.2e20'}
 
     def get_double_invalid_string(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get boolean array value [1.0, 'number', 0.0].
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: list or ClientRawResponse if raw=true
         :rtype: list[float] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
@@ -1040,12 +1014,14 @@ class ArrayOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -1062,14 +1038,11 @@ class ArrayOperations(object):
     get_double_invalid_string.metadata = {'url': '/array/prim/double/1.number.0'}
 
     def get_string_valid(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get string array value ['foo1', 'foo2', 'foo3'].
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: list or ClientRawResponse if raw=true
         :rtype: list[str] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
@@ -1083,12 +1056,14 @@ class ArrayOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -1105,16 +1080,13 @@ class ArrayOperations(object):
     get_string_valid.metadata = {'url': '/array/prim/string/foo1.foo2.foo3'}
 
     def put_string_valid(
-            self, array_body, custom_headers=None, raw=False, **operation_config):
+            self, array_body, raw=False, **kwargs):
         """Set array value ['foo1', 'foo2', 'foo3'].
 
         :param array_body:
         :type array_body: list[str]
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
@@ -1128,15 +1100,17 @@ class ArrayOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(array_body, '[str]')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -1147,14 +1121,11 @@ class ArrayOperations(object):
     put_string_valid.metadata = {'url': '/array/prim/string/foo1.foo2.foo3'}
 
     def get_enum_valid(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get enum array value ['foo1', 'foo2', 'foo3'].
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: list or ClientRawResponse if raw=true
         :rtype: list[str or ~bodyarray.models.FooEnum] or
          ~msrest.pipeline.ClientRawResponse
@@ -1169,12 +1140,14 @@ class ArrayOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -1191,16 +1164,13 @@ class ArrayOperations(object):
     get_enum_valid.metadata = {'url': '/array/prim/enum/foo1.foo2.foo3'}
 
     def put_enum_valid(
-            self, array_body, custom_headers=None, raw=False, **operation_config):
+            self, array_body, raw=False, **kwargs):
         """Set array value ['foo1', 'foo2', 'foo3'].
 
         :param array_body:
         :type array_body: list[str or ~bodyarray.models.FooEnum]
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
@@ -1214,15 +1184,17 @@ class ArrayOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(array_body, '[FooEnum]')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -1233,14 +1205,11 @@ class ArrayOperations(object):
     put_enum_valid.metadata = {'url': '/array/prim/enum/foo1.foo2.foo3'}
 
     def get_string_enum_valid(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get enum array value ['foo1', 'foo2', 'foo3'].
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: list or ClientRawResponse if raw=true
         :rtype: list[str] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
@@ -1254,12 +1223,14 @@ class ArrayOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -1276,16 +1247,13 @@ class ArrayOperations(object):
     get_string_enum_valid.metadata = {'url': '/array/prim/string-enum/foo1.foo2.foo3'}
 
     def put_string_enum_valid(
-            self, array_body, custom_headers=None, raw=False, **operation_config):
+            self, array_body, raw=False, **kwargs):
         """Set array value ['foo1', 'foo2', 'foo3'].
 
         :param array_body:
         :type array_body: list[str]
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
@@ -1299,15 +1267,17 @@ class ArrayOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(array_body, '[str]')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -1318,14 +1288,11 @@ class ArrayOperations(object):
     put_string_enum_valid.metadata = {'url': '/array/prim/string-enum/foo1.foo2.foo3'}
 
     def get_string_with_null(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get string array value ['foo', null, 'foo2'].
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: list or ClientRawResponse if raw=true
         :rtype: list[str] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
@@ -1339,12 +1306,14 @@ class ArrayOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -1361,14 +1330,11 @@ class ArrayOperations(object):
     get_string_with_null.metadata = {'url': '/array/prim/string/foo.null.foo2'}
 
     def get_string_with_invalid(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get string array value ['foo', 123, 'foo2'].
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: list or ClientRawResponse if raw=true
         :rtype: list[str] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
@@ -1382,12 +1348,14 @@ class ArrayOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -1404,16 +1372,13 @@ class ArrayOperations(object):
     get_string_with_invalid.metadata = {'url': '/array/prim/string/foo.123.foo2'}
 
     def get_uuid_valid(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get uuid array value ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652',
         'd1399005-30f7-40d6-8da6-dd7c89ad34db',
         'f42f6aa1-a5bc-4ddf-907e-5f915de43205'].
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: list or ClientRawResponse if raw=true
         :rtype: list[str] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
@@ -1427,12 +1392,14 @@ class ArrayOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -1449,18 +1416,15 @@ class ArrayOperations(object):
     get_uuid_valid.metadata = {'url': '/array/prim/uuid/valid'}
 
     def put_uuid_valid(
-            self, array_body, custom_headers=None, raw=False, **operation_config):
+            self, array_body, raw=False, **kwargs):
         """Set array value  ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652',
         'd1399005-30f7-40d6-8da6-dd7c89ad34db',
         'f42f6aa1-a5bc-4ddf-907e-5f915de43205'].
 
         :param array_body:
         :type array_body: list[str]
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
@@ -1474,15 +1438,17 @@ class ArrayOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(array_body, '[str]')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -1493,14 +1459,11 @@ class ArrayOperations(object):
     put_uuid_valid.metadata = {'url': '/array/prim/uuid/valid'}
 
     def get_uuid_invalid_chars(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get uuid array value ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652', 'foo'].
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: list or ClientRawResponse if raw=true
         :rtype: list[str] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
@@ -1514,12 +1477,14 @@ class ArrayOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -1536,14 +1501,11 @@ class ArrayOperations(object):
     get_uuid_invalid_chars.metadata = {'url': '/array/prim/uuid/invalidchars'}
 
     def get_date_valid(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get integer array value ['2000-12-01', '1980-01-02', '1492-10-12'].
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: list or ClientRawResponse if raw=true
         :rtype: list[date] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
@@ -1557,12 +1519,14 @@ class ArrayOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -1579,16 +1543,13 @@ class ArrayOperations(object):
     get_date_valid.metadata = {'url': '/array/prim/date/valid'}
 
     def put_date_valid(
-            self, array_body, custom_headers=None, raw=False, **operation_config):
+            self, array_body, raw=False, **kwargs):
         """Set array value  ['2000-12-01', '1980-01-02', '1492-10-12'].
 
         :param array_body:
         :type array_body: list[date]
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
@@ -1602,15 +1563,17 @@ class ArrayOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(array_body, '[date]')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -1621,14 +1584,11 @@ class ArrayOperations(object):
     put_date_valid.metadata = {'url': '/array/prim/date/valid'}
 
     def get_date_invalid_null(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get date array value ['2012-01-01', null, '1776-07-04'].
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: list or ClientRawResponse if raw=true
         :rtype: list[date] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
@@ -1642,12 +1602,14 @@ class ArrayOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -1664,14 +1626,11 @@ class ArrayOperations(object):
     get_date_invalid_null.metadata = {'url': '/array/prim/date/invalidnull'}
 
     def get_date_invalid_chars(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get date array value ['2011-03-22', 'date'].
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: list or ClientRawResponse if raw=true
         :rtype: list[date] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
@@ -1685,12 +1644,14 @@ class ArrayOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -1707,15 +1668,12 @@ class ArrayOperations(object):
     get_date_invalid_chars.metadata = {'url': '/array/prim/date/invalidchars'}
 
     def get_date_time_valid(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get date-time array value ['2000-12-01t00:00:01z',
         '1980-01-02T00:11:35+01:00', '1492-10-12T10:15:01-08:00'].
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: list or ClientRawResponse if raw=true
         :rtype: list[datetime] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
@@ -1729,12 +1687,14 @@ class ArrayOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -1751,17 +1711,14 @@ class ArrayOperations(object):
     get_date_time_valid.metadata = {'url': '/array/prim/date-time/valid'}
 
     def put_date_time_valid(
-            self, array_body, custom_headers=None, raw=False, **operation_config):
+            self, array_body, raw=False, **kwargs):
         """Set array value  ['2000-12-01t00:00:01z', '1980-01-02T00:11:35+01:00',
         '1492-10-12T10:15:01-08:00'].
 
         :param array_body:
         :type array_body: list[datetime]
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
@@ -1775,15 +1732,17 @@ class ArrayOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(array_body, '[iso-8601]')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -1794,14 +1753,11 @@ class ArrayOperations(object):
     put_date_time_valid.metadata = {'url': '/array/prim/date-time/valid'}
 
     def get_date_time_invalid_null(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get date array value ['2000-12-01t00:00:01z', null].
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: list or ClientRawResponse if raw=true
         :rtype: list[datetime] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
@@ -1815,12 +1771,14 @@ class ArrayOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -1837,14 +1795,11 @@ class ArrayOperations(object):
     get_date_time_invalid_null.metadata = {'url': '/array/prim/date-time/invalidnull'}
 
     def get_date_time_invalid_chars(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get date array value ['2000-12-01t00:00:01z', 'date-time'].
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: list or ClientRawResponse if raw=true
         :rtype: list[datetime] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
@@ -1858,12 +1813,14 @@ class ArrayOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -1880,15 +1837,12 @@ class ArrayOperations(object):
     get_date_time_invalid_chars.metadata = {'url': '/array/prim/date-time/invalidchars'}
 
     def get_date_time_rfc1123_valid(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get date-time array value ['Fri, 01 Dec 2000 00:00:01 GMT', 'Wed, 02
         Jan 1980 00:11:35 GMT', 'Wed, 12 Oct 1492 10:15:01 GMT'].
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: list or ClientRawResponse if raw=true
         :rtype: list[datetime] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
@@ -1902,12 +1856,14 @@ class ArrayOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -1924,17 +1880,14 @@ class ArrayOperations(object):
     get_date_time_rfc1123_valid.metadata = {'url': '/array/prim/date-time-rfc1123/valid'}
 
     def put_date_time_rfc1123_valid(
-            self, array_body, custom_headers=None, raw=False, **operation_config):
+            self, array_body, raw=False, **kwargs):
         """Set array value  ['Fri, 01 Dec 2000 00:00:01 GMT', 'Wed, 02 Jan 1980
         00:11:35 GMT', 'Wed, 12 Oct 1492 10:15:01 GMT'].
 
         :param array_body:
         :type array_body: list[datetime]
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
@@ -1948,15 +1901,17 @@ class ArrayOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(array_body, '[rfc-1123]')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -1967,14 +1922,11 @@ class ArrayOperations(object):
     put_date_time_rfc1123_valid.metadata = {'url': '/array/prim/date-time-rfc1123/valid'}
 
     def get_duration_valid(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get duration array value ['P123DT22H14M12.011S', 'P5DT1H0M0S'].
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: list or ClientRawResponse if raw=true
         :rtype: list[timedelta] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
@@ -1988,12 +1940,14 @@ class ArrayOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -2010,16 +1964,13 @@ class ArrayOperations(object):
     get_duration_valid.metadata = {'url': '/array/prim/duration/valid'}
 
     def put_duration_valid(
-            self, array_body, custom_headers=None, raw=False, **operation_config):
+            self, array_body, raw=False, **kwargs):
         """Set array value  ['P123DT22H14M12.011S', 'P5DT1H0M0S'].
 
         :param array_body:
         :type array_body: list[timedelta]
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
@@ -2033,15 +1984,17 @@ class ArrayOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(array_body, '[duration]')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -2052,15 +2005,12 @@ class ArrayOperations(object):
     put_duration_valid.metadata = {'url': '/array/prim/duration/valid'}
 
     def get_byte_valid(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get byte array value [hex(FF FF FF FA), hex(01 02 03), hex (25, 29,
         43)] with each item encoded in base64.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: list or ClientRawResponse if raw=true
         :rtype: list[bytearray] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
@@ -2074,12 +2024,14 @@ class ArrayOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -2096,17 +2048,14 @@ class ArrayOperations(object):
     get_byte_valid.metadata = {'url': '/array/prim/byte/valid'}
 
     def put_byte_valid(
-            self, array_body, custom_headers=None, raw=False, **operation_config):
+            self, array_body, raw=False, **kwargs):
         """Put the array value [hex(FF FF FF FA), hex(01 02 03), hex (25, 29, 43)]
         with each elementencoded in base 64.
 
         :param array_body:
         :type array_body: list[bytearray]
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
@@ -2120,15 +2069,17 @@ class ArrayOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(array_body, '[bytearray]')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -2139,15 +2090,12 @@ class ArrayOperations(object):
     put_byte_valid.metadata = {'url': '/array/prim/byte/valid'}
 
     def get_byte_invalid_null(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get byte array value [hex(AB, AC, AD), null] with the first item base64
         encoded.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: list or ClientRawResponse if raw=true
         :rtype: list[bytearray] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
@@ -2161,12 +2109,14 @@ class ArrayOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -2183,15 +2133,12 @@ class ArrayOperations(object):
     get_byte_invalid_null.metadata = {'url': '/array/prim/byte/invalidnull'}
 
     def get_base64_url(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get array value ['a string that gets encoded with base64url', 'test
         string' 'Lorem ipsum'] with the items base64url encoded.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: list or ClientRawResponse if raw=true
         :rtype: list[bytes] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
@@ -2205,12 +2152,14 @@ class ArrayOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -2227,14 +2176,11 @@ class ArrayOperations(object):
     get_base64_url.metadata = {'url': '/array/prim/base64url/valid'}
 
     def get_complex_null(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get array of complex type null value.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: list or ClientRawResponse if raw=true
         :rtype: list[~bodyarray.models.Product] or
          ~msrest.pipeline.ClientRawResponse
@@ -2249,12 +2195,14 @@ class ArrayOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -2271,14 +2219,11 @@ class ArrayOperations(object):
     get_complex_null.metadata = {'url': '/array/complex/null'}
 
     def get_complex_empty(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get empty array of complex type [].
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: list or ClientRawResponse if raw=true
         :rtype: list[~bodyarray.models.Product] or
          ~msrest.pipeline.ClientRawResponse
@@ -2293,12 +2238,14 @@ class ArrayOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -2315,15 +2262,12 @@ class ArrayOperations(object):
     get_complex_empty.metadata = {'url': '/array/complex/empty'}
 
     def get_complex_item_null(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get array of complex type with null item [{'integer': 1 'string': '2'},
         null, {'integer': 5, 'string': '6'}].
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: list or ClientRawResponse if raw=true
         :rtype: list[~bodyarray.models.Product] or
          ~msrest.pipeline.ClientRawResponse
@@ -2338,12 +2282,14 @@ class ArrayOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -2360,15 +2306,12 @@ class ArrayOperations(object):
     get_complex_item_null.metadata = {'url': '/array/complex/itemnull'}
 
     def get_complex_item_empty(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get array of complex type with empty item [{'integer': 1 'string':
         '2'}, {}, {'integer': 5, 'string': '6'}].
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: list or ClientRawResponse if raw=true
         :rtype: list[~bodyarray.models.Product] or
          ~msrest.pipeline.ClientRawResponse
@@ -2383,12 +2326,14 @@ class ArrayOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -2405,15 +2350,12 @@ class ArrayOperations(object):
     get_complex_item_empty.metadata = {'url': '/array/complex/itemempty'}
 
     def get_complex_valid(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get array of complex type with [{'integer': 1 'string': '2'},
         {'integer': 3, 'string': '4'}, {'integer': 5, 'string': '6'}].
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: list or ClientRawResponse if raw=true
         :rtype: list[~bodyarray.models.Product] or
          ~msrest.pipeline.ClientRawResponse
@@ -2428,12 +2370,14 @@ class ArrayOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -2450,17 +2394,14 @@ class ArrayOperations(object):
     get_complex_valid.metadata = {'url': '/array/complex/valid'}
 
     def put_complex_valid(
-            self, array_body, custom_headers=None, raw=False, **operation_config):
+            self, array_body, raw=False, **kwargs):
         """Put an array of complex type with values [{'integer': 1 'string': '2'},
         {'integer': 3, 'string': '4'}, {'integer': 5, 'string': '6'}].
 
         :param array_body:
         :type array_body: list[~bodyarray.models.Product]
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
@@ -2474,15 +2415,17 @@ class ArrayOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(array_body, '[Product]')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -2493,14 +2436,11 @@ class ArrayOperations(object):
     put_complex_valid.metadata = {'url': '/array/complex/valid'}
 
     def get_array_null(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get a null array.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: list or ClientRawResponse if raw=true
         :rtype: list[list[str]] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
@@ -2514,12 +2454,14 @@ class ArrayOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -2536,14 +2478,11 @@ class ArrayOperations(object):
     get_array_null.metadata = {'url': '/array/array/null'}
 
     def get_array_empty(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get an empty array [].
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: list or ClientRawResponse if raw=true
         :rtype: list[list[str]] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
@@ -2557,12 +2496,14 @@ class ArrayOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -2579,15 +2520,12 @@ class ArrayOperations(object):
     get_array_empty.metadata = {'url': '/array/array/empty'}
 
     def get_array_item_null(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get an array of array of strings [['1', '2', '3'], null, ['7', '8',
         '9']].
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: list or ClientRawResponse if raw=true
         :rtype: list[list[str]] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
@@ -2601,12 +2539,14 @@ class ArrayOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -2623,15 +2563,12 @@ class ArrayOperations(object):
     get_array_item_null.metadata = {'url': '/array/array/itemnull'}
 
     def get_array_item_empty(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get an array of array of strings [['1', '2', '3'], [], ['7', '8',
         '9']].
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: list or ClientRawResponse if raw=true
         :rtype: list[list[str]] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
@@ -2645,12 +2582,14 @@ class ArrayOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -2667,15 +2606,12 @@ class ArrayOperations(object):
     get_array_item_empty.metadata = {'url': '/array/array/itemempty'}
 
     def get_array_valid(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get an array of array of strings [['1', '2', '3'], ['4', '5', '6'],
         ['7', '8', '9']].
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: list or ClientRawResponse if raw=true
         :rtype: list[list[str]] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
@@ -2689,12 +2625,14 @@ class ArrayOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -2711,17 +2649,14 @@ class ArrayOperations(object):
     get_array_valid.metadata = {'url': '/array/array/valid'}
 
     def put_array_valid(
-            self, array_body, custom_headers=None, raw=False, **operation_config):
+            self, array_body, raw=False, **kwargs):
         """Put An array of array of strings [['1', '2', '3'], ['4', '5', '6'],
         ['7', '8', '9']].
 
         :param array_body:
         :type array_body: list[list[str]]
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
@@ -2735,15 +2670,17 @@ class ArrayOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(array_body, '[[str]]')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -2754,14 +2691,11 @@ class ArrayOperations(object):
     put_array_valid.metadata = {'url': '/array/array/valid'}
 
     def get_dictionary_null(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get an array of Dictionaries with value null.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: list or ClientRawResponse if raw=true
         :rtype: list[dict[str, str]] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
@@ -2775,12 +2709,14 @@ class ArrayOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -2797,14 +2733,11 @@ class ArrayOperations(object):
     get_dictionary_null.metadata = {'url': '/array/dictionary/null'}
 
     def get_dictionary_empty(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get an array of Dictionaries of type <string, string> with value [].
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: list or ClientRawResponse if raw=true
         :rtype: list[dict[str, str]] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
@@ -2818,12 +2751,14 @@ class ArrayOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -2840,16 +2775,13 @@ class ArrayOperations(object):
     get_dictionary_empty.metadata = {'url': '/array/dictionary/empty'}
 
     def get_dictionary_item_null(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get an array of Dictionaries of type <string, string> with value [{'1':
         'one', '2': 'two', '3': 'three'}, null, {'7': 'seven', '8': 'eight',
         '9': 'nine'}].
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: list or ClientRawResponse if raw=true
         :rtype: list[dict[str, str]] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
@@ -2863,12 +2795,14 @@ class ArrayOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -2885,16 +2819,13 @@ class ArrayOperations(object):
     get_dictionary_item_null.metadata = {'url': '/array/dictionary/itemnull'}
 
     def get_dictionary_item_empty(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get an array of Dictionaries of type <string, string> with value [{'1':
         'one', '2': 'two', '3': 'three'}, {}, {'7': 'seven', '8': 'eight', '9':
         'nine'}].
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: list or ClientRawResponse if raw=true
         :rtype: list[dict[str, str]] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
@@ -2908,12 +2839,14 @@ class ArrayOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -2930,16 +2863,13 @@ class ArrayOperations(object):
     get_dictionary_item_empty.metadata = {'url': '/array/dictionary/itemempty'}
 
     def get_dictionary_valid(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get an array of Dictionaries of type <string, string> with value [{'1':
         'one', '2': 'two', '3': 'three'}, {'4': 'four', '5': 'five', '6':
         'six'}, {'7': 'seven', '8': 'eight', '9': 'nine'}].
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: list or ClientRawResponse if raw=true
         :rtype: list[dict[str, str]] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
@@ -2953,12 +2883,14 @@ class ArrayOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -2975,18 +2907,15 @@ class ArrayOperations(object):
     get_dictionary_valid.metadata = {'url': '/array/dictionary/valid'}
 
     def put_dictionary_valid(
-            self, array_body, custom_headers=None, raw=False, **operation_config):
+            self, array_body, raw=False, **kwargs):
         """Get an array of Dictionaries of type <string, string> with value [{'1':
         'one', '2': 'two', '3': 'three'}, {'4': 'four', '5': 'five', '6':
         'six'}, {'7': 'seven', '8': 'eight', '9': 'nine'}].
 
         :param array_body:
         :type array_body: list[dict[str, str]]
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
@@ -3000,15 +2929,17 @@ class ArrayOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(array_body, '[{str}]')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)

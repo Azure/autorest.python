@@ -36,14 +36,11 @@ class IntModelOperations(object):
         self.config = config
 
     def get_null(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get null Int value.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: int or ClientRawResponse if raw=true
         :rtype: int or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyinteger.models.ErrorException>`
@@ -57,12 +54,14 @@ class IntModelOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -79,14 +78,11 @@ class IntModelOperations(object):
     get_null.metadata = {'url': '/int/null'}
 
     def get_invalid(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get invalid Int value.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: int or ClientRawResponse if raw=true
         :rtype: int or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyinteger.models.ErrorException>`
@@ -100,12 +96,14 @@ class IntModelOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -122,14 +120,11 @@ class IntModelOperations(object):
     get_invalid.metadata = {'url': '/int/invalid'}
 
     def get_overflow_int32(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get overflow Int32 value.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: int or ClientRawResponse if raw=true
         :rtype: int or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyinteger.models.ErrorException>`
@@ -143,12 +138,14 @@ class IntModelOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -165,14 +162,11 @@ class IntModelOperations(object):
     get_overflow_int32.metadata = {'url': '/int/overflowint32'}
 
     def get_underflow_int32(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get underflow Int32 value.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: int or ClientRawResponse if raw=true
         :rtype: int or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyinteger.models.ErrorException>`
@@ -186,12 +180,14 @@ class IntModelOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -208,14 +204,11 @@ class IntModelOperations(object):
     get_underflow_int32.metadata = {'url': '/int/underflowint32'}
 
     def get_overflow_int64(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get overflow Int64 value.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: long or ClientRawResponse if raw=true
         :rtype: long or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyinteger.models.ErrorException>`
@@ -229,12 +222,14 @@ class IntModelOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -251,14 +246,11 @@ class IntModelOperations(object):
     get_overflow_int64.metadata = {'url': '/int/overflowint64'}
 
     def get_underflow_int64(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get underflow Int64 value.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: long or ClientRawResponse if raw=true
         :rtype: long or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyinteger.models.ErrorException>`
@@ -272,12 +264,14 @@ class IntModelOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -294,16 +288,13 @@ class IntModelOperations(object):
     get_underflow_int64.metadata = {'url': '/int/underflowint64'}
 
     def put_max32(
-            self, int_body, custom_headers=None, raw=False, **operation_config):
+            self, int_body, raw=False, **kwargs):
         """Put max int32 value.
 
         :param int_body:
         :type int_body: int
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyinteger.models.ErrorException>`
@@ -317,15 +308,17 @@ class IntModelOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(int_body, 'int')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -336,16 +329,13 @@ class IntModelOperations(object):
     put_max32.metadata = {'url': '/int/max/32'}
 
     def put_max64(
-            self, int_body, custom_headers=None, raw=False, **operation_config):
+            self, int_body, raw=False, **kwargs):
         """Put max int64 value.
 
         :param int_body:
         :type int_body: long
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyinteger.models.ErrorException>`
@@ -359,15 +349,17 @@ class IntModelOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(int_body, 'long')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -378,16 +370,13 @@ class IntModelOperations(object):
     put_max64.metadata = {'url': '/int/max/64'}
 
     def put_min32(
-            self, int_body, custom_headers=None, raw=False, **operation_config):
+            self, int_body, raw=False, **kwargs):
         """Put min int32 value.
 
         :param int_body:
         :type int_body: int
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyinteger.models.ErrorException>`
@@ -401,15 +390,17 @@ class IntModelOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(int_body, 'int')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -420,16 +411,13 @@ class IntModelOperations(object):
     put_min32.metadata = {'url': '/int/min/32'}
 
     def put_min64(
-            self, int_body, custom_headers=None, raw=False, **operation_config):
+            self, int_body, raw=False, **kwargs):
         """Put min int64 value.
 
         :param int_body:
         :type int_body: long
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyinteger.models.ErrorException>`
@@ -443,15 +431,17 @@ class IntModelOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(int_body, 'long')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -462,14 +452,11 @@ class IntModelOperations(object):
     put_min64.metadata = {'url': '/int/min/64'}
 
     def get_unix_time(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get datetime encoded as Unix time value.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: datetime or ClientRawResponse if raw=true
         :rtype: datetime or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyinteger.models.ErrorException>`
@@ -483,12 +470,14 @@ class IntModelOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -505,16 +494,13 @@ class IntModelOperations(object):
     get_unix_time.metadata = {'url': '/int/unixtime'}
 
     def put_unix_time_date(
-            self, int_body, custom_headers=None, raw=False, **operation_config):
+            self, int_body, raw=False, **kwargs):
         """Put datetime encoded as Unix time.
 
         :param int_body:
         :type int_body: datetime
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyinteger.models.ErrorException>`
@@ -528,15 +514,17 @@ class IntModelOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(int_body, 'unix-time')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -547,14 +535,11 @@ class IntModelOperations(object):
     put_unix_time_date.metadata = {'url': '/int/unixtime'}
 
     def get_invalid_unix_time(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get invalid Unix time value.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: datetime or ClientRawResponse if raw=true
         :rtype: datetime or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyinteger.models.ErrorException>`
@@ -568,12 +553,14 @@ class IntModelOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -590,14 +577,11 @@ class IntModelOperations(object):
     get_invalid_unix_time.metadata = {'url': '/int/invalidunixtime'}
 
     def get_null_unix_time(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get null Unix time value.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: datetime or ClientRawResponse if raw=true
         :rtype: datetime or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyinteger.models.ErrorException>`
@@ -611,12 +595,14 @@ class IntModelOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)

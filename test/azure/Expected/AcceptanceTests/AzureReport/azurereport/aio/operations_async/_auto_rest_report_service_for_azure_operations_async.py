@@ -15,9 +15,18 @@ import uuid
 
 
 class AutoRestReportServiceForAzureOperationsMixin:
+    def _map_error(self, status_code, response, **config):
+        error_map = config.get("error_map")
+        if error_map is None:
+            return
+        error_type = error_map.get(status_code)
+        if error_type is None:
+            return
+        error = error_type(response=response)
+        raise error
 
     async def get_report(
-            self, qualifier=None, *, custom_headers=None, raw=False, **operation_config):
+            self, qualifier=None, *, raw=False, **kwargs):
         """Get test coverage report.
 
         :param qualifier: If specified, qualifies the generated report further
@@ -25,11 +34,8 @@ class AutoRestReportServiceForAzureOperationsMixin:
          generators that run all tests several times, can distinguish the
          generated reports.
         :type qualifier: str
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: dict or ClientRawResponse if raw=true
         :rtype: dict[str, int] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<azurereport.models.ErrorException>`
@@ -45,16 +51,18 @@ class AutoRestReportServiceForAzureOperationsMixin:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)

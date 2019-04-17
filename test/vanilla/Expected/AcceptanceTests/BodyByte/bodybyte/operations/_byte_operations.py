@@ -36,14 +36,11 @@ class ByteOperations(object):
         self.config = config
 
     def get_null(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get null byte value.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: bytearray or ClientRawResponse if raw=true
         :rtype: bytearray or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodybyte.models.ErrorException>`
@@ -57,12 +54,14 @@ class ByteOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -79,14 +78,11 @@ class ByteOperations(object):
     get_null.metadata = {'url': '/byte/null'}
 
     def get_empty(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get empty byte value ''.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: bytearray or ClientRawResponse if raw=true
         :rtype: bytearray or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodybyte.models.ErrorException>`
@@ -100,12 +96,14 @@ class ByteOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -122,14 +120,11 @@ class ByteOperations(object):
     get_empty.metadata = {'url': '/byte/empty'}
 
     def get_non_ascii(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: bytearray or ClientRawResponse if raw=true
         :rtype: bytearray or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodybyte.models.ErrorException>`
@@ -143,12 +138,14 @@ class ByteOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -165,17 +162,14 @@ class ByteOperations(object):
     get_non_ascii.metadata = {'url': '/byte/nonAscii'}
 
     def put_non_ascii(
-            self, byte_body, custom_headers=None, raw=False, **operation_config):
+            self, byte_body, raw=False, **kwargs):
         """Put non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
 
         :param byte_body: Base64-encoded non-ascii byte string hex(FF FE FD FC
          FB FA F9 F8 F7 F6)
         :type byte_body: bytearray
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodybyte.models.ErrorException>`
@@ -189,15 +183,17 @@ class ByteOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(byte_body, 'bytearray')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -208,14 +204,11 @@ class ByteOperations(object):
     put_non_ascii.metadata = {'url': '/byte/nonAscii'}
 
     def get_invalid(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get invalid byte value ':::SWAGGER::::'.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: bytearray or ClientRawResponse if raw=true
         :rtype: bytearray or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodybyte.models.ErrorException>`
@@ -229,12 +222,14 @@ class ByteOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)

@@ -37,14 +37,11 @@ class DurationOperations(object):
         self.config = config
 
     def get_null(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get null duration value.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: timedelta or ClientRawResponse if raw=true
         :rtype: timedelta or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyduration.models.ErrorException>`
@@ -58,16 +55,18 @@ class DurationOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -84,16 +83,13 @@ class DurationOperations(object):
     get_null.metadata = {'url': '/duration/null'}
 
     def put_positive_duration(
-            self, duration_body, custom_headers=None, raw=False, **operation_config):
+            self, duration_body, raw=False, **kwargs):
         """Put a positive duration value.
 
         :param duration_body:
         :type duration_body: timedelta
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyduration.models.ErrorException>`
@@ -107,19 +103,21 @@ class DurationOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct body
         body_content = self._serialize.body(duration_body, 'duration')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -130,14 +128,11 @@ class DurationOperations(object):
     put_positive_duration.metadata = {'url': '/duration/positiveduration'}
 
     def get_positive_duration(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get a positive duration value.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: timedelta or ClientRawResponse if raw=true
         :rtype: timedelta or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyduration.models.ErrorException>`
@@ -151,16 +146,18 @@ class DurationOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -177,14 +174,11 @@ class DurationOperations(object):
     get_positive_duration.metadata = {'url': '/duration/positiveduration'}
 
     def get_invalid(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get an invalid duration value.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: timedelta or ClientRawResponse if raw=true
         :rtype: timedelta or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyduration.models.ErrorException>`
@@ -198,16 +192,18 @@ class DurationOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)

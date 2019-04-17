@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-# from azure.core import PipelineClient  TODO
+from azure.core import PipelineClient
 from msrest import Serializer, Deserializer
 
 from ._configuration import AutoRestHttpInfrastructureTestServiceConfiguration
@@ -49,7 +49,7 @@ class AutoRestHttpInfrastructureTestService(object):
     def __init__(self, base_url=None, config=None, **kwargs):
 
         self._config = config or AutoRestHttpInfrastructureTestServiceConfiguration(**kwargs)
-        self._client = PipelineClient(base_url=base_url, credentials=None, config=self._config, **kwargs)
+        super(AutoRestHttpInfrastructureTestService, self).__init__(base_url=base_url, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '1.0.0'
@@ -57,16 +57,16 @@ class AutoRestHttpInfrastructureTestService(object):
         self._deserialize = Deserializer(client_models)
 
         self.http_failure = HttpFailureOperations(
-            self._client, self._config, self._serialize, self._deserialize)
+            self, self._config, self._serialize, self._deserialize)
         self.http_success = HttpSuccessOperations(
-            self._client, self._config, self._serialize, self._deserialize)
+            self, self._config, self._serialize, self._deserialize)
         self.http_redirects = HttpRedirectsOperations(
-            self._client, self._config, self._serialize, self._deserialize)
+            self, self._config, self._serialize, self._deserialize)
         self.http_client_failure = HttpClientFailureOperations(
-            self._client, self._config, self._serialize, self._deserialize)
+            self, self._config, self._serialize, self._deserialize)
         self.http_server_failure = HttpServerFailureOperations(
-            self._client, self._config, self._serialize, self._deserialize)
+            self, self._config, self._serialize, self._deserialize)
         self.http_retry = HttpRetryOperations(
-            self._client, self._config, self._serialize, self._deserialize)
+            self, self._config, self._serialize, self._deserialize)
         self.multiple_responses = MultipleResponsesOperations(
-            self._client, self._config, self._serialize, self._deserialize)
+            self, self._config, self._serialize, self._deserialize)

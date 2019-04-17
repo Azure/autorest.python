@@ -58,8 +58,8 @@ class CheckNameAvailabilityResult(Model):
         self.message = kwargs.get('message', None)
 
 
-class CloudError(Model):
-    """CloudError.
+class ClientRequestError(Model):
+    """ClientRequestError.
     """
 
     _attribute_map = {

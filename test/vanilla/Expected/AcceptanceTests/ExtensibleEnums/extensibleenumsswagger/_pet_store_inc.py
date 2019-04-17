@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-# from azure.core import PipelineClient  TODO
+from azure.core import PipelineClient
 from msrest import Serializer, Deserializer
 
 from ._configuration import PetStoreIncConfiguration
@@ -31,7 +31,7 @@ class PetStoreInc(object):
     def __init__(self, base_url=None, config=None, **kwargs):
 
         self._config = config or PetStoreIncConfiguration(**kwargs)
-        self._client = PipelineClient(base_url=base_url, credentials=None, config=self._config, **kwargs)
+        super(PetStoreInc, self).__init__(base_url=base_url, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '2016-07-07'
@@ -39,4 +39,4 @@ class PetStoreInc(object):
         self._deserialize = Deserializer(client_models)
 
         self.pet = PetOperations(
-            self._client, self._config, self._serialize, self._deserialize)
+            self, self._config, self._serialize, self._deserialize)

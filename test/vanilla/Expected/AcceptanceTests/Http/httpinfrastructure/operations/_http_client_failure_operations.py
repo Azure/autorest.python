@@ -36,15 +36,12 @@ class HttpClientFailureOperations(object):
         self.config = config
 
     def head400(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Return 400 status code - should be represented in the client as an
         error.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: Error or ClientRawResponse if raw=true
         :rtype: ~httpinfrastructure.models.Error or
          ~msrest.pipeline.ClientRawResponse
@@ -59,12 +56,14 @@ class HttpClientFailureOperations(object):
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.head(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.head(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
@@ -75,15 +74,12 @@ class HttpClientFailureOperations(object):
     head400.metadata = {'url': '/http/failure/client/400'}
 
     def get400(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Return 400 status code - should be represented in the client as an
         error.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: Error or ClientRawResponse if raw=true
         :rtype: ~httpinfrastructure.models.Error or
          ~msrest.pipeline.ClientRawResponse
@@ -98,12 +94,14 @@ class HttpClientFailureOperations(object):
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
@@ -114,17 +112,14 @@ class HttpClientFailureOperations(object):
     get400.metadata = {'url': '/http/failure/client/400'}
 
     def put400(
-            self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
+            self, boolean_value=None, raw=False, **kwargs):
         """Return 400 status code - should be represented in the client as an
         error.
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: Error or ClientRawResponse if raw=true
         :rtype: ~httpinfrastructure.models.Error or
          ~msrest.pipeline.ClientRawResponse
@@ -140,8 +135,9 @@ class HttpClientFailureOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         if boolean_value is not None:
@@ -150,8 +146,9 @@ class HttpClientFailureOperations(object):
             body_content = None
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
@@ -162,17 +159,14 @@ class HttpClientFailureOperations(object):
     put400.metadata = {'url': '/http/failure/client/400'}
 
     def patch400(
-            self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
+            self, boolean_value=None, raw=False, **kwargs):
         """Return 400 status code - should be represented in the client as an
         error.
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: Error or ClientRawResponse if raw=true
         :rtype: ~httpinfrastructure.models.Error or
          ~msrest.pipeline.ClientRawResponse
@@ -188,8 +182,9 @@ class HttpClientFailureOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         if boolean_value is not None:
@@ -198,8 +193,9 @@ class HttpClientFailureOperations(object):
             body_content = None
 
         # Construct and send request
-        request = self._client.patch(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.patch(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
@@ -210,17 +206,14 @@ class HttpClientFailureOperations(object):
     patch400.metadata = {'url': '/http/failure/client/400'}
 
     def post400(
-            self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
+            self, boolean_value=None, raw=False, **kwargs):
         """Return 400 status code - should be represented in the client as an
         error.
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: Error or ClientRawResponse if raw=true
         :rtype: ~httpinfrastructure.models.Error or
          ~msrest.pipeline.ClientRawResponse
@@ -236,8 +229,9 @@ class HttpClientFailureOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         if boolean_value is not None:
@@ -246,8 +240,9 @@ class HttpClientFailureOperations(object):
             body_content = None
 
         # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.post(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
@@ -258,17 +253,14 @@ class HttpClientFailureOperations(object):
     post400.metadata = {'url': '/http/failure/client/400'}
 
     def delete400(
-            self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
+            self, boolean_value=None, raw=False, **kwargs):
         """Return 400 status code - should be represented in the client as an
         error.
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: Error or ClientRawResponse if raw=true
         :rtype: ~httpinfrastructure.models.Error or
          ~msrest.pipeline.ClientRawResponse
@@ -284,8 +276,9 @@ class HttpClientFailureOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         if boolean_value is not None:
@@ -294,8 +287,9 @@ class HttpClientFailureOperations(object):
             body_content = None
 
         # Construct and send request
-        request = self._client.delete(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.delete(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
@@ -306,15 +300,12 @@ class HttpClientFailureOperations(object):
     delete400.metadata = {'url': '/http/failure/client/400'}
 
     def head401(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Return 401 status code - should be represented in the client as an
         error.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: Error or ClientRawResponse if raw=true
         :rtype: ~httpinfrastructure.models.Error or
          ~msrest.pipeline.ClientRawResponse
@@ -329,12 +320,14 @@ class HttpClientFailureOperations(object):
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.head(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.head(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
@@ -345,15 +338,12 @@ class HttpClientFailureOperations(object):
     head401.metadata = {'url': '/http/failure/client/401'}
 
     def get402(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Return 402 status code - should be represented in the client as an
         error.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: Error or ClientRawResponse if raw=true
         :rtype: ~httpinfrastructure.models.Error or
          ~msrest.pipeline.ClientRawResponse
@@ -368,12 +358,14 @@ class HttpClientFailureOperations(object):
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
@@ -384,15 +376,12 @@ class HttpClientFailureOperations(object):
     get402.metadata = {'url': '/http/failure/client/402'}
 
     def get403(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Return 403 status code - should be represented in the client as an
         error.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: Error or ClientRawResponse if raw=true
         :rtype: ~httpinfrastructure.models.Error or
          ~msrest.pipeline.ClientRawResponse
@@ -407,12 +396,14 @@ class HttpClientFailureOperations(object):
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
@@ -423,17 +414,14 @@ class HttpClientFailureOperations(object):
     get403.metadata = {'url': '/http/failure/client/403'}
 
     def put404(
-            self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
+            self, boolean_value=None, raw=False, **kwargs):
         """Return 404 status code - should be represented in the client as an
         error.
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: Error or ClientRawResponse if raw=true
         :rtype: ~httpinfrastructure.models.Error or
          ~msrest.pipeline.ClientRawResponse
@@ -449,8 +437,9 @@ class HttpClientFailureOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         if boolean_value is not None:
@@ -459,8 +448,9 @@ class HttpClientFailureOperations(object):
             body_content = None
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
@@ -471,17 +461,14 @@ class HttpClientFailureOperations(object):
     put404.metadata = {'url': '/http/failure/client/404'}
 
     def patch405(
-            self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
+            self, boolean_value=None, raw=False, **kwargs):
         """Return 405 status code - should be represented in the client as an
         error.
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: Error or ClientRawResponse if raw=true
         :rtype: ~httpinfrastructure.models.Error or
          ~msrest.pipeline.ClientRawResponse
@@ -497,8 +484,9 @@ class HttpClientFailureOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         if boolean_value is not None:
@@ -507,8 +495,9 @@ class HttpClientFailureOperations(object):
             body_content = None
 
         # Construct and send request
-        request = self._client.patch(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.patch(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
@@ -519,17 +508,14 @@ class HttpClientFailureOperations(object):
     patch405.metadata = {'url': '/http/failure/client/405'}
 
     def post406(
-            self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
+            self, boolean_value=None, raw=False, **kwargs):
         """Return 406 status code - should be represented in the client as an
         error.
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: Error or ClientRawResponse if raw=true
         :rtype: ~httpinfrastructure.models.Error or
          ~msrest.pipeline.ClientRawResponse
@@ -545,8 +531,9 @@ class HttpClientFailureOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         if boolean_value is not None:
@@ -555,8 +542,9 @@ class HttpClientFailureOperations(object):
             body_content = None
 
         # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.post(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
@@ -567,17 +555,14 @@ class HttpClientFailureOperations(object):
     post406.metadata = {'url': '/http/failure/client/406'}
 
     def delete407(
-            self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
+            self, boolean_value=None, raw=False, **kwargs):
         """Return 407 status code - should be represented in the client as an
         error.
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: Error or ClientRawResponse if raw=true
         :rtype: ~httpinfrastructure.models.Error or
          ~msrest.pipeline.ClientRawResponse
@@ -593,8 +578,9 @@ class HttpClientFailureOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         if boolean_value is not None:
@@ -603,8 +589,9 @@ class HttpClientFailureOperations(object):
             body_content = None
 
         # Construct and send request
-        request = self._client.delete(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.delete(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
@@ -615,17 +602,14 @@ class HttpClientFailureOperations(object):
     delete407.metadata = {'url': '/http/failure/client/407'}
 
     def put409(
-            self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
+            self, boolean_value=None, raw=False, **kwargs):
         """Return 409 status code - should be represented in the client as an
         error.
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: Error or ClientRawResponse if raw=true
         :rtype: ~httpinfrastructure.models.Error or
          ~msrest.pipeline.ClientRawResponse
@@ -641,8 +625,9 @@ class HttpClientFailureOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         if boolean_value is not None:
@@ -651,8 +636,9 @@ class HttpClientFailureOperations(object):
             body_content = None
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
@@ -663,15 +649,12 @@ class HttpClientFailureOperations(object):
     put409.metadata = {'url': '/http/failure/client/409'}
 
     def head410(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Return 410 status code - should be represented in the client as an
         error.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: Error or ClientRawResponse if raw=true
         :rtype: ~httpinfrastructure.models.Error or
          ~msrest.pipeline.ClientRawResponse
@@ -686,12 +669,14 @@ class HttpClientFailureOperations(object):
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.head(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.head(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
@@ -702,15 +687,12 @@ class HttpClientFailureOperations(object):
     head410.metadata = {'url': '/http/failure/client/410'}
 
     def get411(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Return 411 status code - should be represented in the client as an
         error.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: Error or ClientRawResponse if raw=true
         :rtype: ~httpinfrastructure.models.Error or
          ~msrest.pipeline.ClientRawResponse
@@ -725,12 +707,14 @@ class HttpClientFailureOperations(object):
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
@@ -741,15 +725,12 @@ class HttpClientFailureOperations(object):
     get411.metadata = {'url': '/http/failure/client/411'}
 
     def get412(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Return 412 status code - should be represented in the client as an
         error.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: Error or ClientRawResponse if raw=true
         :rtype: ~httpinfrastructure.models.Error or
          ~msrest.pipeline.ClientRawResponse
@@ -764,12 +745,14 @@ class HttpClientFailureOperations(object):
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
@@ -780,17 +763,14 @@ class HttpClientFailureOperations(object):
     get412.metadata = {'url': '/http/failure/client/412'}
 
     def put413(
-            self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
+            self, boolean_value=None, raw=False, **kwargs):
         """Return 413 status code - should be represented in the client as an
         error.
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: Error or ClientRawResponse if raw=true
         :rtype: ~httpinfrastructure.models.Error or
          ~msrest.pipeline.ClientRawResponse
@@ -806,8 +786,9 @@ class HttpClientFailureOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         if boolean_value is not None:
@@ -816,8 +797,9 @@ class HttpClientFailureOperations(object):
             body_content = None
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
@@ -828,17 +810,14 @@ class HttpClientFailureOperations(object):
     put413.metadata = {'url': '/http/failure/client/413'}
 
     def patch414(
-            self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
+            self, boolean_value=None, raw=False, **kwargs):
         """Return 414 status code - should be represented in the client as an
         error.
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: Error or ClientRawResponse if raw=true
         :rtype: ~httpinfrastructure.models.Error or
          ~msrest.pipeline.ClientRawResponse
@@ -854,8 +833,9 @@ class HttpClientFailureOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         if boolean_value is not None:
@@ -864,8 +844,9 @@ class HttpClientFailureOperations(object):
             body_content = None
 
         # Construct and send request
-        request = self._client.patch(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.patch(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
@@ -876,17 +857,14 @@ class HttpClientFailureOperations(object):
     patch414.metadata = {'url': '/http/failure/client/414'}
 
     def post415(
-            self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
+            self, boolean_value=None, raw=False, **kwargs):
         """Return 415 status code - should be represented in the client as an
         error.
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: Error or ClientRawResponse if raw=true
         :rtype: ~httpinfrastructure.models.Error or
          ~msrest.pipeline.ClientRawResponse
@@ -902,8 +880,9 @@ class HttpClientFailureOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         if boolean_value is not None:
@@ -912,8 +891,9 @@ class HttpClientFailureOperations(object):
             body_content = None
 
         # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.post(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
@@ -924,15 +904,12 @@ class HttpClientFailureOperations(object):
     post415.metadata = {'url': '/http/failure/client/415'}
 
     def get416(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Return 416 status code - should be represented in the client as an
         error.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: Error or ClientRawResponse if raw=true
         :rtype: ~httpinfrastructure.models.Error or
          ~msrest.pipeline.ClientRawResponse
@@ -947,12 +924,14 @@ class HttpClientFailureOperations(object):
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
@@ -963,17 +942,14 @@ class HttpClientFailureOperations(object):
     get416.metadata = {'url': '/http/failure/client/416'}
 
     def delete417(
-            self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
+            self, boolean_value=None, raw=False, **kwargs):
         """Return 417 status code - should be represented in the client as an
         error.
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: Error or ClientRawResponse if raw=true
         :rtype: ~httpinfrastructure.models.Error or
          ~msrest.pipeline.ClientRawResponse
@@ -989,8 +965,9 @@ class HttpClientFailureOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         if boolean_value is not None:
@@ -999,8 +976,9 @@ class HttpClientFailureOperations(object):
             body_content = None
 
         # Construct and send request
-        request = self._client.delete(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.delete(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
@@ -1011,15 +989,12 @@ class HttpClientFailureOperations(object):
     delete417.metadata = {'url': '/http/failure/client/417'}
 
     def head429(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Return 429 status code - should be represented in the client as an
         error.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: Error or ClientRawResponse if raw=true
         :rtype: ~httpinfrastructure.models.Error or
          ~msrest.pipeline.ClientRawResponse
@@ -1034,12 +1009,14 @@ class HttpClientFailureOperations(object):
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.head(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.head(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)

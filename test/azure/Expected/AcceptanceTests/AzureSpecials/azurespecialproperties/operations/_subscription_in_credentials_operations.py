@@ -39,15 +39,12 @@ class SubscriptionInCredentialsOperations(object):
         self.config = config
 
     def post_method_global_valid(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """POST method with subscriptionId modeled in credentials.  Set the
         credential subscriptionId to '1234-5678-9012-3456' to succeed.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
@@ -56,25 +53,27 @@ class SubscriptionInCredentialsOperations(object):
         # Construct URL
         url = self.post_method_global_valid.metadata['url']
         path_format_arguments = {
-            'subscriptionId': self._serialize.url("self.config.subscription_id", self.config.subscription_id, 'str')
+            'subscriptionId': self._serialize.url("self._config.subscription_id", self._config.subscription_id, 'str')
         }
-        url = self._client.format_url(url, **path_format_arguments)
+        url = self.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}
 
         # Construct headers
         header_parameters = {}
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.post(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -85,16 +84,13 @@ class SubscriptionInCredentialsOperations(object):
     post_method_global_valid.metadata = {'url': '/azurespecials/subscriptionId/method/string/none/path/global/1234-5678-9012-3456/{subscriptionId}'}
 
     def post_method_global_null(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """POST method with subscriptionId modeled in credentials.  Set the
         credential subscriptionId to null, and client-side validation should
         prevent you from making this call.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
@@ -103,25 +99,27 @@ class SubscriptionInCredentialsOperations(object):
         # Construct URL
         url = self.post_method_global_null.metadata['url']
         path_format_arguments = {
-            'subscriptionId': self._serialize.url("self.config.subscription_id", self.config.subscription_id, 'str')
+            'subscriptionId': self._serialize.url("self._config.subscription_id", self._config.subscription_id, 'str')
         }
-        url = self._client.format_url(url, **path_format_arguments)
+        url = self.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}
 
         # Construct headers
         header_parameters = {}
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.post(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -132,15 +130,12 @@ class SubscriptionInCredentialsOperations(object):
     post_method_global_null.metadata = {'url': '/azurespecials/subscriptionId/method/string/none/path/global/null/{subscriptionId}'}
 
     def post_method_global_not_provided_valid(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """POST method with subscriptionId modeled in credentials.  Set the
         credential subscriptionId to '1234-5678-9012-3456' to succeed.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
@@ -149,9 +144,9 @@ class SubscriptionInCredentialsOperations(object):
         # Construct URL
         url = self.post_method_global_not_provided_valid.metadata['url']
         path_format_arguments = {
-            'subscriptionId': self._serialize.url("self.config.subscription_id", self.config.subscription_id, 'str')
+            'subscriptionId': self._serialize.url("self._config.subscription_id", self._config.subscription_id, 'str')
         }
-        url = self._client.format_url(url, **path_format_arguments)
+        url = self.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}
@@ -159,16 +154,18 @@ class SubscriptionInCredentialsOperations(object):
 
         # Construct headers
         header_parameters = {}
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.post(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -179,15 +176,12 @@ class SubscriptionInCredentialsOperations(object):
     post_method_global_not_provided_valid.metadata = {'url': '/azurespecials/subscriptionId/method/string/none/path/globalNotProvided/1234-5678-9012-3456/{subscriptionId}'}
 
     def post_path_global_valid(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """POST method with subscriptionId modeled in credentials.  Set the
         credential subscriptionId to '1234-5678-9012-3456' to succeed.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
@@ -196,25 +190,27 @@ class SubscriptionInCredentialsOperations(object):
         # Construct URL
         url = self.post_path_global_valid.metadata['url']
         path_format_arguments = {
-            'subscriptionId': self._serialize.url("self.config.subscription_id", self.config.subscription_id, 'str')
+            'subscriptionId': self._serialize.url("self._config.subscription_id", self._config.subscription_id, 'str')
         }
-        url = self._client.format_url(url, **path_format_arguments)
+        url = self.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}
 
         # Construct headers
         header_parameters = {}
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.post(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -225,15 +221,12 @@ class SubscriptionInCredentialsOperations(object):
     post_path_global_valid.metadata = {'url': '/azurespecials/subscriptionId/path/string/none/path/global/1234-5678-9012-3456/{subscriptionId}'}
 
     def post_swagger_global_valid(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """POST method with subscriptionId modeled in credentials.  Set the
         credential subscriptionId to '1234-5678-9012-3456' to succeed.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
@@ -242,25 +235,27 @@ class SubscriptionInCredentialsOperations(object):
         # Construct URL
         url = self.post_swagger_global_valid.metadata['url']
         path_format_arguments = {
-            'subscriptionId': self._serialize.url("self.config.subscription_id", self.config.subscription_id, 'str')
+            'subscriptionId': self._serialize.url("self._config.subscription_id", self._config.subscription_id, 'str')
         }
-        url = self._client.format_url(url, **path_format_arguments)
+        url = self.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}
 
         # Construct headers
         header_parameters = {}
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.post(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)

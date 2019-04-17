@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-# from azure.core import AsyncPipelineClient  TODO
+from azure.core import PipelineClient
 from msrest import Serializer, Deserializer
 
 from ._configuration_async import AutoRestParameterizedHostTestClientConfiguration
@@ -36,7 +36,7 @@ class AutoRestParameterizedHostTestClient:
             self, credentials, host, config=None, **kwargs):
 
         self._config = config or AutoRestParameterizedHostTestClientConfiguration(credentials, host, **kwargs)
-        self._client = AsyncPipelineClient(base_url=None, credentials=credentials, config=self._config, **kwargs)
+        super(AutoRestParameterizedHostTestClient, self).__init__(base_url=None, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '1.0.0'
@@ -44,4 +44,4 @@ class AutoRestParameterizedHostTestClient:
         self._deserialize = Deserializer(client_models)
 
         self.paths = PathsOperations(
-            self._client, self._config, self._serialize, self._deserialize)
+            self, self._config, self._serialize, self._deserialize)

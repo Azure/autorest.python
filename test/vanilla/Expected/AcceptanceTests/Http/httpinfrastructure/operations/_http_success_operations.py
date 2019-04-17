@@ -36,14 +36,11 @@ class HttpSuccessOperations(object):
         self.config = config
 
     def head200(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Return 200 status code if successful.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
@@ -57,12 +54,14 @@ class HttpSuccessOperations(object):
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.head(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.head(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -73,14 +72,11 @@ class HttpSuccessOperations(object):
     head200.metadata = {'url': '/http/success/200'}
 
     def get200(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get 200 success.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: bool or ClientRawResponse if raw=true
         :rtype: bool or ~msrest.pipeline.ClientRawResponse
         :raises:
@@ -95,12 +91,14 @@ class HttpSuccessOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -117,16 +115,13 @@ class HttpSuccessOperations(object):
     get200.metadata = {'url': '/http/success/200'}
 
     def put200(
-            self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
+            self, boolean_value=None, raw=False, **kwargs):
         """Put boolean value true returning 200 success.
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
@@ -141,8 +136,9 @@ class HttpSuccessOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         if boolean_value is not None:
@@ -151,8 +147,9 @@ class HttpSuccessOperations(object):
             body_content = None
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -163,16 +160,13 @@ class HttpSuccessOperations(object):
     put200.metadata = {'url': '/http/success/200'}
 
     def patch200(
-            self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
+            self, boolean_value=None, raw=False, **kwargs):
         """Patch true Boolean value in request returning 200.
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
@@ -187,8 +181,9 @@ class HttpSuccessOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         if boolean_value is not None:
@@ -197,8 +192,9 @@ class HttpSuccessOperations(object):
             body_content = None
 
         # Construct and send request
-        request = self._client.patch(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.patch(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -209,16 +205,13 @@ class HttpSuccessOperations(object):
     patch200.metadata = {'url': '/http/success/200'}
 
     def post200(
-            self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
+            self, boolean_value=None, raw=False, **kwargs):
         """Post bollean value true in request that returns a 200.
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
@@ -233,8 +226,9 @@ class HttpSuccessOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         if boolean_value is not None:
@@ -243,8 +237,9 @@ class HttpSuccessOperations(object):
             body_content = None
 
         # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.post(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -255,16 +250,13 @@ class HttpSuccessOperations(object):
     post200.metadata = {'url': '/http/success/200'}
 
     def delete200(
-            self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
+            self, boolean_value=None, raw=False, **kwargs):
         """Delete simple boolean value true returns 200.
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
@@ -279,8 +271,9 @@ class HttpSuccessOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         if boolean_value is not None:
@@ -289,8 +282,9 @@ class HttpSuccessOperations(object):
             body_content = None
 
         # Construct and send request
-        request = self._client.delete(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.delete(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -301,16 +295,13 @@ class HttpSuccessOperations(object):
     delete200.metadata = {'url': '/http/success/200'}
 
     def put201(
-            self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
+            self, boolean_value=None, raw=False, **kwargs):
         """Put true Boolean value in request returns 201.
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
@@ -325,8 +316,9 @@ class HttpSuccessOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         if boolean_value is not None:
@@ -335,8 +327,9 @@ class HttpSuccessOperations(object):
             body_content = None
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [201]:
             raise models.ErrorException(self._deserialize, response)
@@ -347,16 +340,13 @@ class HttpSuccessOperations(object):
     put201.metadata = {'url': '/http/success/201'}
 
     def post201(
-            self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
+            self, boolean_value=None, raw=False, **kwargs):
         """Post true Boolean value in request returns 201 (Created).
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
@@ -371,8 +361,9 @@ class HttpSuccessOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         if boolean_value is not None:
@@ -381,8 +372,9 @@ class HttpSuccessOperations(object):
             body_content = None
 
         # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.post(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [201]:
             raise models.ErrorException(self._deserialize, response)
@@ -393,16 +385,13 @@ class HttpSuccessOperations(object):
     post201.metadata = {'url': '/http/success/201'}
 
     def put202(
-            self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
+            self, boolean_value=None, raw=False, **kwargs):
         """Put true Boolean value in request returns 202 (Accepted).
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
@@ -417,8 +406,9 @@ class HttpSuccessOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         if boolean_value is not None:
@@ -427,8 +417,9 @@ class HttpSuccessOperations(object):
             body_content = None
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [202]:
             raise models.ErrorException(self._deserialize, response)
@@ -439,16 +430,13 @@ class HttpSuccessOperations(object):
     put202.metadata = {'url': '/http/success/202'}
 
     def patch202(
-            self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
+            self, boolean_value=None, raw=False, **kwargs):
         """Patch true Boolean value in request returns 202.
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
@@ -463,8 +451,9 @@ class HttpSuccessOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         if boolean_value is not None:
@@ -473,8 +462,9 @@ class HttpSuccessOperations(object):
             body_content = None
 
         # Construct and send request
-        request = self._client.patch(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.patch(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [202]:
             raise models.ErrorException(self._deserialize, response)
@@ -485,16 +475,13 @@ class HttpSuccessOperations(object):
     patch202.metadata = {'url': '/http/success/202'}
 
     def post202(
-            self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
+            self, boolean_value=None, raw=False, **kwargs):
         """Post true Boolean value in request returns 202 (Accepted).
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
@@ -509,8 +496,9 @@ class HttpSuccessOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         if boolean_value is not None:
@@ -519,8 +507,9 @@ class HttpSuccessOperations(object):
             body_content = None
 
         # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.post(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [202]:
             raise models.ErrorException(self._deserialize, response)
@@ -531,16 +520,13 @@ class HttpSuccessOperations(object):
     post202.metadata = {'url': '/http/success/202'}
 
     def delete202(
-            self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
+            self, boolean_value=None, raw=False, **kwargs):
         """Delete true Boolean value in request returns 202 (accepted).
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
@@ -555,8 +541,9 @@ class HttpSuccessOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         if boolean_value is not None:
@@ -565,8 +552,9 @@ class HttpSuccessOperations(object):
             body_content = None
 
         # Construct and send request
-        request = self._client.delete(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.delete(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [202]:
             raise models.ErrorException(self._deserialize, response)
@@ -577,14 +565,11 @@ class HttpSuccessOperations(object):
     delete202.metadata = {'url': '/http/success/202'}
 
     def head204(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Return 204 status code if successful.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
@@ -598,12 +583,14 @@ class HttpSuccessOperations(object):
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.head(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.head(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [204]:
             raise models.ErrorException(self._deserialize, response)
@@ -614,16 +601,13 @@ class HttpSuccessOperations(object):
     head204.metadata = {'url': '/http/success/204'}
 
     def put204(
-            self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
+            self, boolean_value=None, raw=False, **kwargs):
         """Put true Boolean value in request returns 204 (no content).
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
@@ -638,8 +622,9 @@ class HttpSuccessOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         if boolean_value is not None:
@@ -648,8 +633,9 @@ class HttpSuccessOperations(object):
             body_content = None
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [204]:
             raise models.ErrorException(self._deserialize, response)
@@ -660,16 +646,13 @@ class HttpSuccessOperations(object):
     put204.metadata = {'url': '/http/success/204'}
 
     def patch204(
-            self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
+            self, boolean_value=None, raw=False, **kwargs):
         """Patch true Boolean value in request returns 204 (no content).
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
@@ -684,8 +667,9 @@ class HttpSuccessOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         if boolean_value is not None:
@@ -694,8 +678,9 @@ class HttpSuccessOperations(object):
             body_content = None
 
         # Construct and send request
-        request = self._client.patch(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.patch(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [204]:
             raise models.ErrorException(self._deserialize, response)
@@ -706,16 +691,13 @@ class HttpSuccessOperations(object):
     patch204.metadata = {'url': '/http/success/204'}
 
     def post204(
-            self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
+            self, boolean_value=None, raw=False, **kwargs):
         """Post true Boolean value in request returns 204 (no content).
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
@@ -730,8 +712,9 @@ class HttpSuccessOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         if boolean_value is not None:
@@ -740,8 +723,9 @@ class HttpSuccessOperations(object):
             body_content = None
 
         # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.post(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [204]:
             raise models.ErrorException(self._deserialize, response)
@@ -752,16 +736,13 @@ class HttpSuccessOperations(object):
     post204.metadata = {'url': '/http/success/204'}
 
     def delete204(
-            self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
+            self, boolean_value=None, raw=False, **kwargs):
         """Delete true Boolean value in request returns 204 (no content).
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
@@ -776,8 +757,9 @@ class HttpSuccessOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         if boolean_value is not None:
@@ -786,8 +768,9 @@ class HttpSuccessOperations(object):
             body_content = None
 
         # Construct and send request
-        request = self._client.delete(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.delete(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [204]:
             raise models.ErrorException(self._deserialize, response)
@@ -798,14 +781,11 @@ class HttpSuccessOperations(object):
     delete204.metadata = {'url': '/http/success/204'}
 
     def head404(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Return 404 status code.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
@@ -819,12 +799,14 @@ class HttpSuccessOperations(object):
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.head(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.head(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [204, 404]:
             raise models.ErrorException(self._deserialize, response)

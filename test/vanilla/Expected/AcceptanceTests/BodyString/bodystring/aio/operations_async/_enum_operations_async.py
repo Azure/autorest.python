@@ -36,15 +36,12 @@ class EnumOperations:
         self.config = config
 
     async def get_not_expandable(
-            self, *, custom_headers=None, raw=False, **operation_config):
+            self, *, raw=False, **kwargs):
         """Get enum value 'red color' from enumeration of 'red color',
         'green-color', 'blue_color'.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: Colors or ClientRawResponse if raw=true
         :rtype: ~bodystring.models.Colors or
          ~msrest.pipeline.ClientRawResponse
@@ -59,12 +56,14 @@ class EnumOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -81,18 +80,15 @@ class EnumOperations:
     get_not_expandable.metadata = {'url': '/string/enum/notExpandable'}
 
     async def put_not_expandable(
-            self, string_body, *, custom_headers=None, raw=False, **operation_config):
+            self, string_body, *, raw=False, **kwargs):
         """Sends value 'red color' from enumeration of 'red color', 'green-color',
         'blue_color'.
 
         :param string_body: Possible values include: 'red color',
          'green-color', 'blue_color'
         :type string_body: str or ~bodystring.models.Colors
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodystring.models.ErrorException>`
@@ -106,15 +102,17 @@ class EnumOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(string_body, 'Colors')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -125,15 +123,12 @@ class EnumOperations:
     put_not_expandable.metadata = {'url': '/string/enum/notExpandable'}
 
     async def get_referenced(
-            self, *, custom_headers=None, raw=False, **operation_config):
+            self, *, raw=False, **kwargs):
         """Get enum value 'red color' from enumeration of 'red color',
         'green-color', 'blue_color'.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: Colors or ClientRawResponse if raw=true
         :rtype: ~bodystring.models.Colors or
          ~msrest.pipeline.ClientRawResponse
@@ -148,12 +143,14 @@ class EnumOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -170,18 +167,15 @@ class EnumOperations:
     get_referenced.metadata = {'url': '/string/enum/Referenced'}
 
     async def put_referenced(
-            self, enum_string_body, *, custom_headers=None, raw=False, **operation_config):
+            self, enum_string_body, *, raw=False, **kwargs):
         """Sends value 'red color' from enumeration of 'red color', 'green-color',
         'blue_color'.
 
         :param enum_string_body: Possible values include: 'red color',
          'green-color', 'blue_color'
         :type enum_string_body: str or ~bodystring.models.Colors
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodystring.models.ErrorException>`
@@ -195,15 +189,17 @@ class EnumOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(enum_string_body, 'Colors')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -214,14 +210,11 @@ class EnumOperations:
     put_referenced.metadata = {'url': '/string/enum/Referenced'}
 
     async def get_referenced_constant(
-            self, *, custom_headers=None, raw=False, **operation_config):
+            self, *, raw=False, **kwargs):
         """Get value 'green-color' from the constant.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: RefColorConstant or ClientRawResponse if raw=true
         :rtype: ~bodystring.models.RefColorConstant or
          ~msrest.pipeline.ClientRawResponse
@@ -236,12 +229,14 @@ class EnumOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -258,16 +253,13 @@ class EnumOperations:
     get_referenced_constant.metadata = {'url': '/string/enum/ReferencedConstant'}
 
     async def put_referenced_constant(
-            self, field1=None, *, custom_headers=None, raw=False, **operation_config):
+            self, field1=None, *, raw=False, **kwargs):
         """Sends value 'green-color' from a constant.
 
         :param field1: Sample string.
         :type field1: str
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodystring.models.ErrorException>`
@@ -283,15 +275,17 @@ class EnumOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(enum_string_body, 'RefColorConstant')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)

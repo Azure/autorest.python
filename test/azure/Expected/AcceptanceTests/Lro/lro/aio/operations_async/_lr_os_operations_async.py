@@ -11,7 +11,6 @@
 
 import uuid
 from msrest.pipeline import ClientRawResponse
-from msrestazure.azure_exceptions import CloudError
 from msrest.polling.async_poller import async_poller, AsyncNoPolling
 from msrestazure.polling.async_arm_polling import AsyncARMPolling
 
@@ -41,7 +40,7 @@ class LROsOperations:
 
 
     async def _put200_succeeded_initial(
-            self, product=None, *, custom_headers=None, raw=False, **operation_config):
+            self, product=None, *, raw=False, **kwargs):
         # Construct URL
         url = self.put200_succeeded.metadata['url']
 
@@ -52,12 +51,13 @@ class LROsOperations:
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct body
         if product is not None:
@@ -66,13 +66,12 @@ class LROsOperations:
             body_content = None
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200, 204]:
-            exp = CloudError(response)
-            exp.request_id = response.headers.get('x-ms-request-id')
-            raise exp
+            raise models.CloudErrorException(self._deserialize, response)
 
         deserialized = None
 
@@ -86,13 +85,12 @@ class LROsOperations:
         return deserialized
 
     async def put200_succeeded(
-            self, product=None, *, custom_headers=None, raw=False, polling=True, **operation_config):
+            self, product=None, *, raw=False, polling=True, **kwargs):
         """Long running put request, service returns a 200 to the initial request,
         with an entity that contains ProvisioningState=’Succeeded’.
 
         :param product: Product to put
         :type product: ~lro.models.Product
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for AsyncARMPolling, False for no polling, or a
@@ -101,13 +99,12 @@ class LROsOperations:
          raw==True
         :rtype: ~~lro.models.Product or
          ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
-        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
+        :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
         """
         raw_result = await self._put200_succeeded_initial(
             product=product,
-            custom_headers=custom_headers,
             raw=True,
-            **operation_config
+            **kwargs
         )
 
         def get_long_running_output(response):
@@ -119,18 +116,18 @@ class LROsOperations:
 
             return deserialized
 
-        lro_delay = operation_config.get(
+        lro_delay = kwargs.get(
             'long_running_operation_timeout',
             self.config.long_running_operation_timeout)
-        if polling is True: polling_method = AsyncARMPolling(lro_delay, **operation_config)
+        if polling is True: polling_method = AsyncARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self, raw_result, get_long_running_output, polling_method)
     put200_succeeded.metadata = {'url': '/lro/put/200/succeeded'}
 
 
     async def _put200_succeeded_no_state_initial(
-            self, product=None, *, custom_headers=None, raw=False, **operation_config):
+            self, product=None, *, raw=False, **kwargs):
         # Construct URL
         url = self.put200_succeeded_no_state.metadata['url']
 
@@ -141,12 +138,13 @@ class LROsOperations:
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct body
         if product is not None:
@@ -155,13 +153,12 @@ class LROsOperations:
             body_content = None
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
-            exp = CloudError(response)
-            exp.request_id = response.headers.get('x-ms-request-id')
-            raise exp
+            raise models.CloudErrorException(self._deserialize, response)
 
         deserialized = None
 
@@ -175,13 +172,12 @@ class LROsOperations:
         return deserialized
 
     async def put200_succeeded_no_state(
-            self, product=None, *, custom_headers=None, raw=False, polling=True, **operation_config):
+            self, product=None, *, raw=False, polling=True, **kwargs):
         """Long running put request, service returns a 200 to the initial request,
         with an entity that does not contain ProvisioningState=’Succeeded’.
 
         :param product: Product to put
         :type product: ~lro.models.Product
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for AsyncARMPolling, False for no polling, or a
@@ -190,13 +186,12 @@ class LROsOperations:
          raw==True
         :rtype: ~~lro.models.Product or
          ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
-        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
+        :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
         """
         raw_result = await self._put200_succeeded_no_state_initial(
             product=product,
-            custom_headers=custom_headers,
             raw=True,
-            **operation_config
+            **kwargs
         )
 
         def get_long_running_output(response):
@@ -208,18 +203,18 @@ class LROsOperations:
 
             return deserialized
 
-        lro_delay = operation_config.get(
+        lro_delay = kwargs.get(
             'long_running_operation_timeout',
             self.config.long_running_operation_timeout)
-        if polling is True: polling_method = AsyncARMPolling(lro_delay, **operation_config)
+        if polling is True: polling_method = AsyncARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self, raw_result, get_long_running_output, polling_method)
     put200_succeeded_no_state.metadata = {'url': '/lro/put/200/succeeded/nostate'}
 
 
     async def _put202_retry200_initial(
-            self, product=None, *, custom_headers=None, raw=False, **operation_config):
+            self, product=None, *, raw=False, **kwargs):
         # Construct URL
         url = self.put202_retry200.metadata['url']
 
@@ -230,12 +225,13 @@ class LROsOperations:
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct body
         if product is not None:
@@ -244,13 +240,12 @@ class LROsOperations:
             body_content = None
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [202]:
-            exp = CloudError(response)
-            exp.request_id = response.headers.get('x-ms-request-id')
-            raise exp
+            raise models.CloudErrorException(self._deserialize, response)
 
         deserialized = None
 
@@ -264,14 +259,13 @@ class LROsOperations:
         return deserialized
 
     async def put202_retry200(
-            self, product=None, *, custom_headers=None, raw=False, polling=True, **operation_config):
+            self, product=None, *, raw=False, polling=True, **kwargs):
         """Long running put request, service returns a 202 to the initial request,
         with a location header that points to a polling URL that returns a 200
         and an entity that doesn't contains ProvisioningState.
 
         :param product: Product to put
         :type product: ~lro.models.Product
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for AsyncARMPolling, False for no polling, or a
@@ -280,13 +274,12 @@ class LROsOperations:
          raw==True
         :rtype: ~~lro.models.Product or
          ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
-        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
+        :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
         """
         raw_result = await self._put202_retry200_initial(
             product=product,
-            custom_headers=custom_headers,
             raw=True,
-            **operation_config
+            **kwargs
         )
 
         def get_long_running_output(response):
@@ -298,18 +291,18 @@ class LROsOperations:
 
             return deserialized
 
-        lro_delay = operation_config.get(
+        lro_delay = kwargs.get(
             'long_running_operation_timeout',
             self.config.long_running_operation_timeout)
-        if polling is True: polling_method = AsyncARMPolling(lro_delay, **operation_config)
+        if polling is True: polling_method = AsyncARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self, raw_result, get_long_running_output, polling_method)
     put202_retry200.metadata = {'url': '/lro/put/202/retry/200'}
 
 
     async def _put201_creating_succeeded200_initial(
-            self, product=None, *, custom_headers=None, raw=False, **operation_config):
+            self, product=None, *, raw=False, **kwargs):
         # Construct URL
         url = self.put201_creating_succeeded200.metadata['url']
 
@@ -320,12 +313,13 @@ class LROsOperations:
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct body
         if product is not None:
@@ -334,13 +328,12 @@ class LROsOperations:
             body_content = None
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200, 201]:
-            exp = CloudError(response)
-            exp.request_id = response.headers.get('x-ms-request-id')
-            raise exp
+            raise models.CloudErrorException(self._deserialize, response)
 
         deserialized = None
 
@@ -356,7 +349,7 @@ class LROsOperations:
         return deserialized
 
     async def put201_creating_succeeded200(
-            self, product=None, *, custom_headers=None, raw=False, polling=True, **operation_config):
+            self, product=None, *, raw=False, polling=True, **kwargs):
         """Long running put request, service returns a 201 to the initial request,
         with an entity that contains ProvisioningState=’Creating’.  Polls
         return this value until the last poll returns a ‘200’ with
@@ -364,7 +357,6 @@ class LROsOperations:
 
         :param product: Product to put
         :type product: ~lro.models.Product
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for AsyncARMPolling, False for no polling, or a
@@ -373,13 +365,12 @@ class LROsOperations:
          raw==True
         :rtype: ~~lro.models.Product or
          ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
-        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
+        :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
         """
         raw_result = await self._put201_creating_succeeded200_initial(
             product=product,
-            custom_headers=custom_headers,
             raw=True,
-            **operation_config
+            **kwargs
         )
 
         def get_long_running_output(response):
@@ -391,18 +382,18 @@ class LROsOperations:
 
             return deserialized
 
-        lro_delay = operation_config.get(
+        lro_delay = kwargs.get(
             'long_running_operation_timeout',
             self.config.long_running_operation_timeout)
-        if polling is True: polling_method = AsyncARMPolling(lro_delay, **operation_config)
+        if polling is True: polling_method = AsyncARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self, raw_result, get_long_running_output, polling_method)
     put201_creating_succeeded200.metadata = {'url': '/lro/put/201/creating/succeeded/200'}
 
 
     async def _put200_updating_succeeded204_initial(
-            self, product=None, *, custom_headers=None, raw=False, **operation_config):
+            self, product=None, *, raw=False, **kwargs):
         # Construct URL
         url = self.put200_updating_succeeded204.metadata['url']
 
@@ -413,12 +404,13 @@ class LROsOperations:
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct body
         if product is not None:
@@ -427,13 +419,12 @@ class LROsOperations:
             body_content = None
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
-            exp = CloudError(response)
-            exp.request_id = response.headers.get('x-ms-request-id')
-            raise exp
+            raise models.CloudErrorException(self._deserialize, response)
 
         deserialized = None
 
@@ -447,7 +438,7 @@ class LROsOperations:
         return deserialized
 
     async def put200_updating_succeeded204(
-            self, product=None, *, custom_headers=None, raw=False, polling=True, **operation_config):
+            self, product=None, *, raw=False, polling=True, **kwargs):
         """Long running put request, service returns a 201 to the initial request,
         with an entity that contains ProvisioningState=’Updating’.  Polls
         return this value until the last poll returns a ‘200’ with
@@ -455,7 +446,6 @@ class LROsOperations:
 
         :param product: Product to put
         :type product: ~lro.models.Product
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for AsyncARMPolling, False for no polling, or a
@@ -464,13 +454,12 @@ class LROsOperations:
          raw==True
         :rtype: ~~lro.models.Product or
          ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
-        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
+        :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
         """
         raw_result = await self._put200_updating_succeeded204_initial(
             product=product,
-            custom_headers=custom_headers,
             raw=True,
-            **operation_config
+            **kwargs
         )
 
         def get_long_running_output(response):
@@ -482,18 +471,18 @@ class LROsOperations:
 
             return deserialized
 
-        lro_delay = operation_config.get(
+        lro_delay = kwargs.get(
             'long_running_operation_timeout',
             self.config.long_running_operation_timeout)
-        if polling is True: polling_method = AsyncARMPolling(lro_delay, **operation_config)
+        if polling is True: polling_method = AsyncARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self, raw_result, get_long_running_output, polling_method)
     put200_updating_succeeded204.metadata = {'url': '/lro/put/200/updating/succeeded/200'}
 
 
     async def _put201_creating_failed200_initial(
-            self, product=None, *, custom_headers=None, raw=False, **operation_config):
+            self, product=None, *, raw=False, **kwargs):
         # Construct URL
         url = self.put201_creating_failed200.metadata['url']
 
@@ -504,12 +493,13 @@ class LROsOperations:
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct body
         if product is not None:
@@ -518,13 +508,12 @@ class LROsOperations:
             body_content = None
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200, 201]:
-            exp = CloudError(response)
-            exp.request_id = response.headers.get('x-ms-request-id')
-            raise exp
+            raise models.CloudErrorException(self._deserialize, response)
 
         deserialized = None
 
@@ -540,7 +529,7 @@ class LROsOperations:
         return deserialized
 
     async def put201_creating_failed200(
-            self, product=None, *, custom_headers=None, raw=False, polling=True, **operation_config):
+            self, product=None, *, raw=False, polling=True, **kwargs):
         """Long running put request, service returns a 201 to the initial request,
         with an entity that contains ProvisioningState=’Created’.  Polls return
         this value until the last poll returns a ‘200’ with
@@ -548,7 +537,6 @@ class LROsOperations:
 
         :param product: Product to put
         :type product: ~lro.models.Product
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for AsyncARMPolling, False for no polling, or a
@@ -557,13 +545,12 @@ class LROsOperations:
          raw==True
         :rtype: ~~lro.models.Product or
          ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
-        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
+        :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
         """
         raw_result = await self._put201_creating_failed200_initial(
             product=product,
-            custom_headers=custom_headers,
             raw=True,
-            **operation_config
+            **kwargs
         )
 
         def get_long_running_output(response):
@@ -575,18 +562,18 @@ class LROsOperations:
 
             return deserialized
 
-        lro_delay = operation_config.get(
+        lro_delay = kwargs.get(
             'long_running_operation_timeout',
             self.config.long_running_operation_timeout)
-        if polling is True: polling_method = AsyncARMPolling(lro_delay, **operation_config)
+        if polling is True: polling_method = AsyncARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self, raw_result, get_long_running_output, polling_method)
     put201_creating_failed200.metadata = {'url': '/lro/put/201/created/failed/200'}
 
 
     async def _put200_acceptedcanceled200_initial(
-            self, product=None, *, custom_headers=None, raw=False, **operation_config):
+            self, product=None, *, raw=False, **kwargs):
         # Construct URL
         url = self.put200_acceptedcanceled200.metadata['url']
 
@@ -597,12 +584,13 @@ class LROsOperations:
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct body
         if product is not None:
@@ -611,13 +599,12 @@ class LROsOperations:
             body_content = None
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
-            exp = CloudError(response)
-            exp.request_id = response.headers.get('x-ms-request-id')
-            raise exp
+            raise models.CloudErrorException(self._deserialize, response)
 
         deserialized = None
 
@@ -631,7 +618,7 @@ class LROsOperations:
         return deserialized
 
     async def put200_acceptedcanceled200(
-            self, product=None, *, custom_headers=None, raw=False, polling=True, **operation_config):
+            self, product=None, *, raw=False, polling=True, **kwargs):
         """Long running put request, service returns a 201 to the initial request,
         with an entity that contains ProvisioningState=’Creating’.  Polls
         return this value until the last poll returns a ‘200’ with
@@ -639,7 +626,6 @@ class LROsOperations:
 
         :param product: Product to put
         :type product: ~lro.models.Product
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for AsyncARMPolling, False for no polling, or a
@@ -648,13 +634,12 @@ class LROsOperations:
          raw==True
         :rtype: ~~lro.models.Product or
          ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
-        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
+        :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
         """
         raw_result = await self._put200_acceptedcanceled200_initial(
             product=product,
-            custom_headers=custom_headers,
             raw=True,
-            **operation_config
+            **kwargs
         )
 
         def get_long_running_output(response):
@@ -666,18 +651,18 @@ class LROsOperations:
 
             return deserialized
 
-        lro_delay = operation_config.get(
+        lro_delay = kwargs.get(
             'long_running_operation_timeout',
             self.config.long_running_operation_timeout)
-        if polling is True: polling_method = AsyncARMPolling(lro_delay, **operation_config)
+        if polling is True: polling_method = AsyncARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self, raw_result, get_long_running_output, polling_method)
     put200_acceptedcanceled200.metadata = {'url': '/lro/put/200/accepted/canceled/200'}
 
 
     async def _put_no_header_in_retry_initial(
-            self, product=None, *, custom_headers=None, raw=False, **operation_config):
+            self, product=None, *, raw=False, **kwargs):
         # Construct URL
         url = self.put_no_header_in_retry.metadata['url']
 
@@ -688,12 +673,13 @@ class LROsOperations:
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct body
         if product is not None:
@@ -702,13 +688,12 @@ class LROsOperations:
             body_content = None
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [202]:
-            exp = CloudError(response)
-            exp.request_id = response.headers.get('x-ms-request-id')
-            raise exp
+            raise models.CloudErrorException(self._deserialize, response)
 
         deserialized = None
         header_dict = {}
@@ -727,14 +712,13 @@ class LROsOperations:
         return deserialized
 
     async def put_no_header_in_retry(
-            self, product=None, *, custom_headers=None, raw=False, polling=True, **operation_config):
+            self, product=None, *, raw=False, polling=True, **kwargs):
         """Long running put request, service returns a 202 to the initial request
         with location header. Subsequent calls to operation status do not
         contain location header.
 
         :param product: Product to put
         :type product: ~lro.models.Product
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for AsyncARMPolling, False for no polling, or a
@@ -743,13 +727,12 @@ class LROsOperations:
          raw==True
         :rtype: ~~lro.models.Product or
          ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
-        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
+        :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
         """
         raw_result = await self._put_no_header_in_retry_initial(
             product=product,
-            custom_headers=custom_headers,
             raw=True,
-            **operation_config
+            **kwargs
         )
 
         def get_long_running_output(response):
@@ -765,18 +748,18 @@ class LROsOperations:
 
             return deserialized
 
-        lro_delay = operation_config.get(
+        lro_delay = kwargs.get(
             'long_running_operation_timeout',
             self.config.long_running_operation_timeout)
-        if polling is True: polling_method = AsyncARMPolling(lro_delay, **operation_config)
+        if polling is True: polling_method = AsyncARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self, raw_result, get_long_running_output, polling_method)
     put_no_header_in_retry.metadata = {'url': '/lro/put/noheader/202/200'}
 
 
     async def _put_async_retry_succeeded_initial(
-            self, product=None, *, custom_headers=None, raw=False, **operation_config):
+            self, product=None, *, raw=False, **kwargs):
         # Construct URL
         url = self.put_async_retry_succeeded.metadata['url']
 
@@ -787,12 +770,13 @@ class LROsOperations:
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct body
         if product is not None:
@@ -801,13 +785,12 @@ class LROsOperations:
             body_content = None
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
-            exp = CloudError(response)
-            exp.request_id = response.headers.get('x-ms-request-id')
-            raise exp
+            raise models.CloudErrorException(self._deserialize, response)
 
         deserialized = None
         header_dict = {}
@@ -828,7 +811,7 @@ class LROsOperations:
         return deserialized
 
     async def put_async_retry_succeeded(
-            self, product=None, *, custom_headers=None, raw=False, polling=True, **operation_config):
+            self, product=None, *, raw=False, polling=True, **kwargs):
         """Long running put request, service returns a 200 to the initial request,
         with an entity that contains ProvisioningState=’Creating’. Poll the
         endpoint indicated in the Azure-AsyncOperation header for operation
@@ -836,7 +819,6 @@ class LROsOperations:
 
         :param product: Product to put
         :type product: ~lro.models.Product
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for AsyncARMPolling, False for no polling, or a
@@ -845,13 +827,12 @@ class LROsOperations:
          raw==True
         :rtype: ~~lro.models.Product or
          ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
-        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
+        :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
         """
         raw_result = await self._put_async_retry_succeeded_initial(
             product=product,
-            custom_headers=custom_headers,
             raw=True,
-            **operation_config
+            **kwargs
         )
 
         def get_long_running_output(response):
@@ -869,18 +850,18 @@ class LROsOperations:
 
             return deserialized
 
-        lro_delay = operation_config.get(
+        lro_delay = kwargs.get(
             'long_running_operation_timeout',
             self.config.long_running_operation_timeout)
-        if polling is True: polling_method = AsyncARMPolling(lro_delay, **operation_config)
+        if polling is True: polling_method = AsyncARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self, raw_result, get_long_running_output, polling_method)
     put_async_retry_succeeded.metadata = {'url': '/lro/putasync/retry/succeeded'}
 
 
     async def _put_async_no_retry_succeeded_initial(
-            self, product=None, *, custom_headers=None, raw=False, **operation_config):
+            self, product=None, *, raw=False, **kwargs):
         # Construct URL
         url = self.put_async_no_retry_succeeded.metadata['url']
 
@@ -891,12 +872,13 @@ class LROsOperations:
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct body
         if product is not None:
@@ -905,13 +887,12 @@ class LROsOperations:
             body_content = None
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
-            exp = CloudError(response)
-            exp.request_id = response.headers.get('x-ms-request-id')
-            raise exp
+            raise models.CloudErrorException(self._deserialize, response)
 
         deserialized = None
         header_dict = {}
@@ -931,7 +912,7 @@ class LROsOperations:
         return deserialized
 
     async def put_async_no_retry_succeeded(
-            self, product=None, *, custom_headers=None, raw=False, polling=True, **operation_config):
+            self, product=None, *, raw=False, polling=True, **kwargs):
         """Long running put request, service returns a 200 to the initial request,
         with an entity that contains ProvisioningState=’Creating’. Poll the
         endpoint indicated in the Azure-AsyncOperation header for operation
@@ -939,7 +920,6 @@ class LROsOperations:
 
         :param product: Product to put
         :type product: ~lro.models.Product
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for AsyncARMPolling, False for no polling, or a
@@ -948,13 +928,12 @@ class LROsOperations:
          raw==True
         :rtype: ~~lro.models.Product or
          ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
-        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
+        :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
         """
         raw_result = await self._put_async_no_retry_succeeded_initial(
             product=product,
-            custom_headers=custom_headers,
             raw=True,
-            **operation_config
+            **kwargs
         )
 
         def get_long_running_output(response):
@@ -971,18 +950,18 @@ class LROsOperations:
 
             return deserialized
 
-        lro_delay = operation_config.get(
+        lro_delay = kwargs.get(
             'long_running_operation_timeout',
             self.config.long_running_operation_timeout)
-        if polling is True: polling_method = AsyncARMPolling(lro_delay, **operation_config)
+        if polling is True: polling_method = AsyncARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self, raw_result, get_long_running_output, polling_method)
     put_async_no_retry_succeeded.metadata = {'url': '/lro/putasync/noretry/succeeded'}
 
 
     async def _put_async_retry_failed_initial(
-            self, product=None, *, custom_headers=None, raw=False, **operation_config):
+            self, product=None, *, raw=False, **kwargs):
         # Construct URL
         url = self.put_async_retry_failed.metadata['url']
 
@@ -993,12 +972,13 @@ class LROsOperations:
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct body
         if product is not None:
@@ -1007,13 +987,12 @@ class LROsOperations:
             body_content = None
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
-            exp = CloudError(response)
-            exp.request_id = response.headers.get('x-ms-request-id')
-            raise exp
+            raise models.CloudErrorException(self._deserialize, response)
 
         deserialized = None
         header_dict = {}
@@ -1034,7 +1013,7 @@ class LROsOperations:
         return deserialized
 
     async def put_async_retry_failed(
-            self, product=None, *, custom_headers=None, raw=False, polling=True, **operation_config):
+            self, product=None, *, raw=False, polling=True, **kwargs):
         """Long running put request, service returns a 200 to the initial request,
         with an entity that contains ProvisioningState=’Creating’. Poll the
         endpoint indicated in the Azure-AsyncOperation header for operation
@@ -1042,7 +1021,6 @@ class LROsOperations:
 
         :param product: Product to put
         :type product: ~lro.models.Product
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for AsyncARMPolling, False for no polling, or a
@@ -1051,13 +1029,12 @@ class LROsOperations:
          raw==True
         :rtype: ~~lro.models.Product or
          ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
-        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
+        :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
         """
         raw_result = await self._put_async_retry_failed_initial(
             product=product,
-            custom_headers=custom_headers,
             raw=True,
-            **operation_config
+            **kwargs
         )
 
         def get_long_running_output(response):
@@ -1075,18 +1052,18 @@ class LROsOperations:
 
             return deserialized
 
-        lro_delay = operation_config.get(
+        lro_delay = kwargs.get(
             'long_running_operation_timeout',
             self.config.long_running_operation_timeout)
-        if polling is True: polling_method = AsyncARMPolling(lro_delay, **operation_config)
+        if polling is True: polling_method = AsyncARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self, raw_result, get_long_running_output, polling_method)
     put_async_retry_failed.metadata = {'url': '/lro/putasync/retry/failed'}
 
 
     async def _put_async_no_retrycanceled_initial(
-            self, product=None, *, custom_headers=None, raw=False, **operation_config):
+            self, product=None, *, raw=False, **kwargs):
         # Construct URL
         url = self.put_async_no_retrycanceled.metadata['url']
 
@@ -1097,12 +1074,13 @@ class LROsOperations:
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct body
         if product is not None:
@@ -1111,13 +1089,12 @@ class LROsOperations:
             body_content = None
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
-            exp = CloudError(response)
-            exp.request_id = response.headers.get('x-ms-request-id')
-            raise exp
+            raise models.CloudErrorException(self._deserialize, response)
 
         deserialized = None
         header_dict = {}
@@ -1137,7 +1114,7 @@ class LROsOperations:
         return deserialized
 
     async def put_async_no_retrycanceled(
-            self, product=None, *, custom_headers=None, raw=False, polling=True, **operation_config):
+            self, product=None, *, raw=False, polling=True, **kwargs):
         """Long running put request, service returns a 200 to the initial request,
         with an entity that contains ProvisioningState=’Creating’. Poll the
         endpoint indicated in the Azure-AsyncOperation header for operation
@@ -1145,7 +1122,6 @@ class LROsOperations:
 
         :param product: Product to put
         :type product: ~lro.models.Product
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for AsyncARMPolling, False for no polling, or a
@@ -1154,13 +1130,12 @@ class LROsOperations:
          raw==True
         :rtype: ~~lro.models.Product or
          ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
-        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
+        :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
         """
         raw_result = await self._put_async_no_retrycanceled_initial(
             product=product,
-            custom_headers=custom_headers,
             raw=True,
-            **operation_config
+            **kwargs
         )
 
         def get_long_running_output(response):
@@ -1177,18 +1152,18 @@ class LROsOperations:
 
             return deserialized
 
-        lro_delay = operation_config.get(
+        lro_delay = kwargs.get(
             'long_running_operation_timeout',
             self.config.long_running_operation_timeout)
-        if polling is True: polling_method = AsyncARMPolling(lro_delay, **operation_config)
+        if polling is True: polling_method = AsyncARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self, raw_result, get_long_running_output, polling_method)
     put_async_no_retrycanceled.metadata = {'url': '/lro/putasync/noretry/canceled'}
 
 
     async def _put_async_no_header_in_retry_initial(
-            self, product=None, *, custom_headers=None, raw=False, **operation_config):
+            self, product=None, *, raw=False, **kwargs):
         # Construct URL
         url = self.put_async_no_header_in_retry.metadata['url']
 
@@ -1199,12 +1174,13 @@ class LROsOperations:
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct body
         if product is not None:
@@ -1213,13 +1189,12 @@ class LROsOperations:
             body_content = None
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [201]:
-            exp = CloudError(response)
-            exp.request_id = response.headers.get('x-ms-request-id')
-            raise exp
+            raise models.CloudErrorException(self._deserialize, response)
 
         deserialized = None
         header_dict = {}
@@ -1238,14 +1213,13 @@ class LROsOperations:
         return deserialized
 
     async def put_async_no_header_in_retry(
-            self, product=None, *, custom_headers=None, raw=False, polling=True, **operation_config):
+            self, product=None, *, raw=False, polling=True, **kwargs):
         """Long running put request, service returns a 202 to the initial request
         with Azure-AsyncOperation header. Subsequent calls to operation status
         do not contain Azure-AsyncOperation header.
 
         :param product: Product to put
         :type product: ~lro.models.Product
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for AsyncARMPolling, False for no polling, or a
@@ -1254,13 +1228,12 @@ class LROsOperations:
          raw==True
         :rtype: ~~lro.models.Product or
          ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
-        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
+        :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
         """
         raw_result = await self._put_async_no_header_in_retry_initial(
             product=product,
-            custom_headers=custom_headers,
             raw=True,
-            **operation_config
+            **kwargs
         )
 
         def get_long_running_output(response):
@@ -1276,18 +1249,18 @@ class LROsOperations:
 
             return deserialized
 
-        lro_delay = operation_config.get(
+        lro_delay = kwargs.get(
             'long_running_operation_timeout',
             self.config.long_running_operation_timeout)
-        if polling is True: polling_method = AsyncARMPolling(lro_delay, **operation_config)
+        if polling is True: polling_method = AsyncARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self, raw_result, get_long_running_output, polling_method)
     put_async_no_header_in_retry.metadata = {'url': '/lro/putasync/noheader/201/200'}
 
 
     async def _put_non_resource_initial(
-            self, sku=None, *, custom_headers=None, raw=False, **operation_config):
+            self, sku=None, *, raw=False, **kwargs):
         # Construct URL
         url = self.put_non_resource.metadata['url']
 
@@ -1298,12 +1271,13 @@ class LROsOperations:
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct body
         if sku is not None:
@@ -1312,13 +1286,12 @@ class LROsOperations:
             body_content = None
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [202]:
-            exp = CloudError(response)
-            exp.request_id = response.headers.get('x-ms-request-id')
-            raise exp
+            raise models.CloudErrorException(self._deserialize, response)
 
         deserialized = None
 
@@ -1332,12 +1305,11 @@ class LROsOperations:
         return deserialized
 
     async def put_non_resource(
-            self, sku=None, *, custom_headers=None, raw=False, polling=True, **operation_config):
+            self, sku=None, *, raw=False, polling=True, **kwargs):
         """Long running put request with non resource.
 
         :param sku: sku to put
         :type sku: ~lro.models.Sku
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for AsyncARMPolling, False for no polling, or a
@@ -1345,13 +1317,12 @@ class LROsOperations:
         :return: An instance of Sku or ClientRawResponse<Sku> if raw==True
         :rtype: ~~lro.models.Sku or
          ~msrest.pipeline.ClientRawResponse[~lro.models.Sku]
-        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
+        :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
         """
         raw_result = await self._put_non_resource_initial(
             sku=sku,
-            custom_headers=custom_headers,
             raw=True,
-            **operation_config
+            **kwargs
         )
 
         def get_long_running_output(response):
@@ -1363,18 +1334,18 @@ class LROsOperations:
 
             return deserialized
 
-        lro_delay = operation_config.get(
+        lro_delay = kwargs.get(
             'long_running_operation_timeout',
             self.config.long_running_operation_timeout)
-        if polling is True: polling_method = AsyncARMPolling(lro_delay, **operation_config)
+        if polling is True: polling_method = AsyncARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self, raw_result, get_long_running_output, polling_method)
     put_non_resource.metadata = {'url': '/lro/putnonresource/202/200'}
 
 
     async def _put_async_non_resource_initial(
-            self, sku=None, *, custom_headers=None, raw=False, **operation_config):
+            self, sku=None, *, raw=False, **kwargs):
         # Construct URL
         url = self.put_async_non_resource.metadata['url']
 
@@ -1385,12 +1356,13 @@ class LROsOperations:
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct body
         if sku is not None:
@@ -1399,13 +1371,12 @@ class LROsOperations:
             body_content = None
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [202]:
-            exp = CloudError(response)
-            exp.request_id = response.headers.get('x-ms-request-id')
-            raise exp
+            raise models.CloudErrorException(self._deserialize, response)
 
         deserialized = None
 
@@ -1419,12 +1390,11 @@ class LROsOperations:
         return deserialized
 
     async def put_async_non_resource(
-            self, sku=None, *, custom_headers=None, raw=False, polling=True, **operation_config):
+            self, sku=None, *, raw=False, polling=True, **kwargs):
         """Long running put request with non resource.
 
         :param sku: Sku to put
         :type sku: ~lro.models.Sku
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for AsyncARMPolling, False for no polling, or a
@@ -1432,13 +1402,12 @@ class LROsOperations:
         :return: An instance of Sku or ClientRawResponse<Sku> if raw==True
         :rtype: ~~lro.models.Sku or
          ~msrest.pipeline.ClientRawResponse[~lro.models.Sku]
-        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
+        :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
         """
         raw_result = await self._put_async_non_resource_initial(
             sku=sku,
-            custom_headers=custom_headers,
             raw=True,
-            **operation_config
+            **kwargs
         )
 
         def get_long_running_output(response):
@@ -1450,18 +1419,18 @@ class LROsOperations:
 
             return deserialized
 
-        lro_delay = operation_config.get(
+        lro_delay = kwargs.get(
             'long_running_operation_timeout',
             self.config.long_running_operation_timeout)
-        if polling is True: polling_method = AsyncARMPolling(lro_delay, **operation_config)
+        if polling is True: polling_method = AsyncARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self, raw_result, get_long_running_output, polling_method)
     put_async_non_resource.metadata = {'url': '/lro/putnonresourceasync/202/200'}
 
 
     async def _put_sub_resource_initial(
-            self, provisioning_state=None, *, custom_headers=None, raw=False, **operation_config):
+            self, provisioning_state=None, *, raw=False, **kwargs):
         product = None
         if provisioning_state is not None:
             product = models.SubProduct(provisioning_state=provisioning_state)
@@ -1476,12 +1445,13 @@ class LROsOperations:
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct body
         if product is not None:
@@ -1490,13 +1460,12 @@ class LROsOperations:
             body_content = None
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [202]:
-            exp = CloudError(response)
-            exp.request_id = response.headers.get('x-ms-request-id')
-            raise exp
+            raise models.CloudErrorException(self._deserialize, response)
 
         deserialized = None
 
@@ -1510,12 +1479,11 @@ class LROsOperations:
         return deserialized
 
     async def put_sub_resource(
-            self, provisioning_state=None, *, custom_headers=None, raw=False, polling=True, **operation_config):
+            self, provisioning_state=None, *, raw=False, polling=True, **kwargs):
         """Long running put request with sub resource.
 
         :param provisioning_state:
         :type provisioning_state: str
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for AsyncARMPolling, False for no polling, or a
@@ -1524,13 +1492,12 @@ class LROsOperations:
          raw==True
         :rtype: ~~lro.models.SubProduct or
          ~msrest.pipeline.ClientRawResponse[~lro.models.SubProduct]
-        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
+        :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
         """
         raw_result = await self._put_sub_resource_initial(
             provisioning_state=provisioning_state,
-            custom_headers=custom_headers,
             raw=True,
-            **operation_config
+            **kwargs
         )
 
         def get_long_running_output(response):
@@ -1542,18 +1509,18 @@ class LROsOperations:
 
             return deserialized
 
-        lro_delay = operation_config.get(
+        lro_delay = kwargs.get(
             'long_running_operation_timeout',
             self.config.long_running_operation_timeout)
-        if polling is True: polling_method = AsyncARMPolling(lro_delay, **operation_config)
+        if polling is True: polling_method = AsyncARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self, raw_result, get_long_running_output, polling_method)
     put_sub_resource.metadata = {'url': '/lro/putsubresource/202/200'}
 
 
     async def _put_async_sub_resource_initial(
-            self, provisioning_state=None, *, custom_headers=None, raw=False, **operation_config):
+            self, provisioning_state=None, *, raw=False, **kwargs):
         product = None
         if provisioning_state is not None:
             product = models.SubProduct(provisioning_state=provisioning_state)
@@ -1568,12 +1535,13 @@ class LROsOperations:
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct body
         if product is not None:
@@ -1582,13 +1550,12 @@ class LROsOperations:
             body_content = None
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [202]:
-            exp = CloudError(response)
-            exp.request_id = response.headers.get('x-ms-request-id')
-            raise exp
+            raise models.CloudErrorException(self._deserialize, response)
 
         deserialized = None
 
@@ -1602,12 +1569,11 @@ class LROsOperations:
         return deserialized
 
     async def put_async_sub_resource(
-            self, provisioning_state=None, *, custom_headers=None, raw=False, polling=True, **operation_config):
+            self, provisioning_state=None, *, raw=False, polling=True, **kwargs):
         """Long running put request with sub resource.
 
         :param provisioning_state:
         :type provisioning_state: str
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for AsyncARMPolling, False for no polling, or a
@@ -1616,13 +1582,12 @@ class LROsOperations:
          raw==True
         :rtype: ~~lro.models.SubProduct or
          ~msrest.pipeline.ClientRawResponse[~lro.models.SubProduct]
-        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
+        :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
         """
         raw_result = await self._put_async_sub_resource_initial(
             provisioning_state=provisioning_state,
-            custom_headers=custom_headers,
             raw=True,
-            **operation_config
+            **kwargs
         )
 
         def get_long_running_output(response):
@@ -1634,18 +1599,18 @@ class LROsOperations:
 
             return deserialized
 
-        lro_delay = operation_config.get(
+        lro_delay = kwargs.get(
             'long_running_operation_timeout',
             self.config.long_running_operation_timeout)
-        if polling is True: polling_method = AsyncARMPolling(lro_delay, **operation_config)
+        if polling is True: polling_method = AsyncARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self, raw_result, get_long_running_output, polling_method)
     put_async_sub_resource.metadata = {'url': '/lro/putsubresourceasync/202/200'}
 
 
     async def _delete_provisioning202_accepted200_succeeded_initial(
-            self, *, custom_headers=None, raw=False, **operation_config):
+            self, *, raw=False, **kwargs):
         # Construct URL
         url = self.delete_provisioning202_accepted200_succeeded.metadata['url']
 
@@ -1655,21 +1620,21 @@ class LROsOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct and send request
-        request = self._client.delete(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.delete(url, query_parameters, header_parameters)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200, 202]:
-            exp = CloudError(response)
-            exp.request_id = response.headers.get('x-ms-request-id')
-            raise exp
+            raise models.CloudErrorException(self._deserialize, response)
 
         deserialized = None
         header_dict = {}
@@ -1695,13 +1660,12 @@ class LROsOperations:
         return deserialized
 
     async def delete_provisioning202_accepted200_succeeded(
-            self, *, custom_headers=None, raw=False, polling=True, **operation_config):
+            self, *, raw=False, polling=True, **kwargs):
         """Long running delete request, service returns a 202 to the initial
         request, with an entity that contains ProvisioningState=’Accepted’.
         Polls return this value until the last poll returns a ‘200’ with
         ProvisioningState=’Succeeded’.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for AsyncARMPolling, False for no polling, or a
@@ -1710,12 +1674,11 @@ class LROsOperations:
          raw==True
         :rtype: ~~lro.models.Product or
          ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
-        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
+        :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
         """
         raw_result = await self._delete_provisioning202_accepted200_succeeded_initial(
-            custom_headers=custom_headers,
             raw=True,
-            **operation_config
+            **kwargs
         )
 
         def get_long_running_output(response):
@@ -1732,18 +1695,18 @@ class LROsOperations:
 
             return deserialized
 
-        lro_delay = operation_config.get(
+        lro_delay = kwargs.get(
             'long_running_operation_timeout',
             self.config.long_running_operation_timeout)
-        if polling is True: polling_method = AsyncARMPolling(lro_delay, **operation_config)
+        if polling is True: polling_method = AsyncARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self, raw_result, get_long_running_output, polling_method)
     delete_provisioning202_accepted200_succeeded.metadata = {'url': '/lro/delete/provisioning/202/accepted/200/succeeded'}
 
 
     async def _delete_provisioning202_deleting_failed200_initial(
-            self, *, custom_headers=None, raw=False, **operation_config):
+            self, *, raw=False, **kwargs):
         # Construct URL
         url = self.delete_provisioning202_deleting_failed200.metadata['url']
 
@@ -1753,21 +1716,21 @@ class LROsOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct and send request
-        request = self._client.delete(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.delete(url, query_parameters, header_parameters)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200, 202]:
-            exp = CloudError(response)
-            exp.request_id = response.headers.get('x-ms-request-id')
-            raise exp
+            raise models.CloudErrorException(self._deserialize, response)
 
         deserialized = None
         header_dict = {}
@@ -1793,13 +1756,12 @@ class LROsOperations:
         return deserialized
 
     async def delete_provisioning202_deleting_failed200(
-            self, *, custom_headers=None, raw=False, polling=True, **operation_config):
+            self, *, raw=False, polling=True, **kwargs):
         """Long running delete request, service returns a 202 to the initial
         request, with an entity that contains ProvisioningState=’Creating’.
         Polls return this value until the last poll returns a ‘200’ with
         ProvisioningState=’Failed’.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for AsyncARMPolling, False for no polling, or a
@@ -1808,12 +1770,11 @@ class LROsOperations:
          raw==True
         :rtype: ~~lro.models.Product or
          ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
-        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
+        :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
         """
         raw_result = await self._delete_provisioning202_deleting_failed200_initial(
-            custom_headers=custom_headers,
             raw=True,
-            **operation_config
+            **kwargs
         )
 
         def get_long_running_output(response):
@@ -1830,18 +1791,18 @@ class LROsOperations:
 
             return deserialized
 
-        lro_delay = operation_config.get(
+        lro_delay = kwargs.get(
             'long_running_operation_timeout',
             self.config.long_running_operation_timeout)
-        if polling is True: polling_method = AsyncARMPolling(lro_delay, **operation_config)
+        if polling is True: polling_method = AsyncARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self, raw_result, get_long_running_output, polling_method)
     delete_provisioning202_deleting_failed200.metadata = {'url': '/lro/delete/provisioning/202/deleting/200/failed'}
 
 
     async def _delete_provisioning202_deletingcanceled200_initial(
-            self, *, custom_headers=None, raw=False, **operation_config):
+            self, *, raw=False, **kwargs):
         # Construct URL
         url = self.delete_provisioning202_deletingcanceled200.metadata['url']
 
@@ -1851,21 +1812,21 @@ class LROsOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct and send request
-        request = self._client.delete(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.delete(url, query_parameters, header_parameters)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200, 202]:
-            exp = CloudError(response)
-            exp.request_id = response.headers.get('x-ms-request-id')
-            raise exp
+            raise models.CloudErrorException(self._deserialize, response)
 
         deserialized = None
         header_dict = {}
@@ -1891,13 +1852,12 @@ class LROsOperations:
         return deserialized
 
     async def delete_provisioning202_deletingcanceled200(
-            self, *, custom_headers=None, raw=False, polling=True, **operation_config):
+            self, *, raw=False, polling=True, **kwargs):
         """Long running delete request, service returns a 202 to the initial
         request, with an entity that contains ProvisioningState=’Creating’.
         Polls return this value until the last poll returns a ‘200’ with
         ProvisioningState=’Canceled’.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for AsyncARMPolling, False for no polling, or a
@@ -1906,12 +1866,11 @@ class LROsOperations:
          raw==True
         :rtype: ~~lro.models.Product or
          ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
-        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
+        :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
         """
         raw_result = await self._delete_provisioning202_deletingcanceled200_initial(
-            custom_headers=custom_headers,
             raw=True,
-            **operation_config
+            **kwargs
         )
 
         def get_long_running_output(response):
@@ -1928,18 +1887,18 @@ class LROsOperations:
 
             return deserialized
 
-        lro_delay = operation_config.get(
+        lro_delay = kwargs.get(
             'long_running_operation_timeout',
             self.config.long_running_operation_timeout)
-        if polling is True: polling_method = AsyncARMPolling(lro_delay, **operation_config)
+        if polling is True: polling_method = AsyncARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self, raw_result, get_long_running_output, polling_method)
     delete_provisioning202_deletingcanceled200.metadata = {'url': '/lro/delete/provisioning/202/deleting/200/canceled'}
 
 
     async def _delete204_succeeded_initial(
-            self, *, custom_headers=None, raw=False, **operation_config):
+            self, *, raw=False, **kwargs):
         # Construct URL
         url = self.delete204_succeeded.metadata['url']
 
@@ -1948,43 +1907,41 @@ class LROsOperations:
 
         # Construct headers
         header_parameters = {}
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct and send request
-        request = self._client.delete(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.delete(url, query_parameters, header_parameters)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [204]:
-            exp = CloudError(response)
-            exp.request_id = response.headers.get('x-ms-request-id')
-            raise exp
+            raise models.CloudErrorException(self._deserialize, response)
 
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             return client_raw_response
 
     async def delete204_succeeded(
-            self, *, custom_headers=None, raw=False, polling=True, **operation_config):
+            self, *, raw=False, polling=True, **kwargs):
         """Long running delete succeeds and returns right away.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for AsyncARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of None or ClientRawResponse<None> if raw==True
         :rtype: ~None or ~msrest.pipeline.ClientRawResponse[None]
-        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
+        :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
         """
         raw_result = await self._delete204_succeeded_initial(
-            custom_headers=custom_headers,
             raw=True,
-            **operation_config
+            **kwargs
         )
 
         def get_long_running_output(response):
@@ -1992,18 +1949,18 @@ class LROsOperations:
                 client_raw_response = ClientRawResponse(None, response)
                 return client_raw_response
 
-        lro_delay = operation_config.get(
+        lro_delay = kwargs.get(
             'long_running_operation_timeout',
             self.config.long_running_operation_timeout)
-        if polling is True: polling_method = AsyncARMPolling(lro_delay, **operation_config)
+        if polling is True: polling_method = AsyncARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self, raw_result, get_long_running_output, polling_method)
     delete204_succeeded.metadata = {'url': '/lro/delete/204/succeeded'}
 
 
     async def _delete202_retry200_initial(
-            self, *, custom_headers=None, raw=False, **operation_config):
+            self, *, raw=False, **kwargs):
         # Construct URL
         url = self.delete202_retry200.metadata['url']
 
@@ -2013,21 +1970,21 @@ class LROsOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct and send request
-        request = self._client.delete(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.delete(url, query_parameters, header_parameters)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200, 202]:
-            exp = CloudError(response)
-            exp.request_id = response.headers.get('x-ms-request-id')
-            raise exp
+            raise models.CloudErrorException(self._deserialize, response)
 
         deserialized = None
         header_dict = {}
@@ -2047,12 +2004,11 @@ class LROsOperations:
         return deserialized
 
     async def delete202_retry200(
-            self, *, custom_headers=None, raw=False, polling=True, **operation_config):
+            self, *, raw=False, polling=True, **kwargs):
         """Long running delete request, service returns a 202 to the initial
         request. Polls return this value until the last poll returns a ‘200’
         with ProvisioningState=’Succeeded’.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for AsyncARMPolling, False for no polling, or a
@@ -2061,12 +2017,11 @@ class LROsOperations:
          raw==True
         :rtype: ~~lro.models.Product or
          ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
-        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
+        :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
         """
         raw_result = await self._delete202_retry200_initial(
-            custom_headers=custom_headers,
             raw=True,
-            **operation_config
+            **kwargs
         )
 
         def get_long_running_output(response):
@@ -2083,18 +2038,18 @@ class LROsOperations:
 
             return deserialized
 
-        lro_delay = operation_config.get(
+        lro_delay = kwargs.get(
             'long_running_operation_timeout',
             self.config.long_running_operation_timeout)
-        if polling is True: polling_method = AsyncARMPolling(lro_delay, **operation_config)
+        if polling is True: polling_method = AsyncARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self, raw_result, get_long_running_output, polling_method)
     delete202_retry200.metadata = {'url': '/lro/delete/202/retry/200'}
 
 
     async def _delete202_no_retry204_initial(
-            self, *, custom_headers=None, raw=False, **operation_config):
+            self, *, raw=False, **kwargs):
         # Construct URL
         url = self.delete202_no_retry204.metadata['url']
 
@@ -2104,21 +2059,21 @@ class LROsOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct and send request
-        request = self._client.delete(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.delete(url, query_parameters, header_parameters)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200, 202]:
-            exp = CloudError(response)
-            exp.request_id = response.headers.get('x-ms-request-id')
-            raise exp
+            raise models.CloudErrorException(self._deserialize, response)
 
         deserialized = None
         header_dict = {}
@@ -2138,12 +2093,11 @@ class LROsOperations:
         return deserialized
 
     async def delete202_no_retry204(
-            self, *, custom_headers=None, raw=False, polling=True, **operation_config):
+            self, *, raw=False, polling=True, **kwargs):
         """Long running delete request, service returns a 202 to the initial
         request. Polls return this value until the last poll returns a ‘200’
         with ProvisioningState=’Succeeded’.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for AsyncARMPolling, False for no polling, or a
@@ -2152,12 +2106,11 @@ class LROsOperations:
          raw==True
         :rtype: ~~lro.models.Product or
          ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
-        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
+        :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
         """
         raw_result = await self._delete202_no_retry204_initial(
-            custom_headers=custom_headers,
             raw=True,
-            **operation_config
+            **kwargs
         )
 
         def get_long_running_output(response):
@@ -2174,18 +2127,18 @@ class LROsOperations:
 
             return deserialized
 
-        lro_delay = operation_config.get(
+        lro_delay = kwargs.get(
             'long_running_operation_timeout',
             self.config.long_running_operation_timeout)
-        if polling is True: polling_method = AsyncARMPolling(lro_delay, **operation_config)
+        if polling is True: polling_method = AsyncARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self, raw_result, get_long_running_output, polling_method)
     delete202_no_retry204.metadata = {'url': '/lro/delete/202/noretry/204'}
 
 
     async def _delete_no_header_in_retry_initial(
-            self, *, custom_headers=None, raw=False, **operation_config):
+            self, *, raw=False, **kwargs):
         # Construct URL
         url = self.delete_no_header_in_retry.metadata['url']
 
@@ -2194,21 +2147,21 @@ class LROsOperations:
 
         # Construct headers
         header_parameters = {}
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct and send request
-        request = self._client.delete(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.delete(url, query_parameters, header_parameters)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [202, 204]:
-            exp = CloudError(response)
-            exp.request_id = response.headers.get('x-ms-request-id')
-            raise exp
+            raise models.CloudErrorException(self._deserialize, response)
 
         if raw:
             client_raw_response = ClientRawResponse(None, response)
@@ -2219,24 +2172,22 @@ class LROsOperations:
             return client_raw_response
 
     async def delete_no_header_in_retry(
-            self, *, custom_headers=None, raw=False, polling=True, **operation_config):
+            self, *, raw=False, polling=True, **kwargs):
         """Long running delete request, service returns a location header in the
         initial request. Subsequent calls to operation status do not contain
         location header.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for AsyncARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of None or ClientRawResponse<None> if raw==True
         :rtype: ~None or ~msrest.pipeline.ClientRawResponse[None]
-        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
+        :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
         """
         raw_result = await self._delete_no_header_in_retry_initial(
-            custom_headers=custom_headers,
             raw=True,
-            **operation_config
+            **kwargs
         )
 
         def get_long_running_output(response):
@@ -2247,18 +2198,18 @@ class LROsOperations:
                 })
                 return client_raw_response
 
-        lro_delay = operation_config.get(
+        lro_delay = kwargs.get(
             'long_running_operation_timeout',
             self.config.long_running_operation_timeout)
-        if polling is True: polling_method = AsyncARMPolling(lro_delay, **operation_config)
+        if polling is True: polling_method = AsyncARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self, raw_result, get_long_running_output, polling_method)
     delete_no_header_in_retry.metadata = {'url': '/lro/delete/noheader'}
 
 
     async def _delete_async_no_header_in_retry_initial(
-            self, *, custom_headers=None, raw=False, **operation_config):
+            self, *, raw=False, **kwargs):
         # Construct URL
         url = self.delete_async_no_header_in_retry.metadata['url']
 
@@ -2267,21 +2218,21 @@ class LROsOperations:
 
         # Construct headers
         header_parameters = {}
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct and send request
-        request = self._client.delete(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.delete(url, query_parameters, header_parameters)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [202, 204]:
-            exp = CloudError(response)
-            exp.request_id = response.headers.get('x-ms-request-id')
-            raise exp
+            raise models.CloudErrorException(self._deserialize, response)
 
         if raw:
             client_raw_response = ClientRawResponse(None, response)
@@ -2292,24 +2243,22 @@ class LROsOperations:
             return client_raw_response
 
     async def delete_async_no_header_in_retry(
-            self, *, custom_headers=None, raw=False, polling=True, **operation_config):
+            self, *, raw=False, polling=True, **kwargs):
         """Long running delete request, service returns an Azure-AsyncOperation
         header in the initial request. Subsequent calls to operation status do
         not contain Azure-AsyncOperation header.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for AsyncARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of None or ClientRawResponse<None> if raw==True
         :rtype: ~None or ~msrest.pipeline.ClientRawResponse[None]
-        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
+        :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
         """
         raw_result = await self._delete_async_no_header_in_retry_initial(
-            custom_headers=custom_headers,
             raw=True,
-            **operation_config
+            **kwargs
         )
 
         def get_long_running_output(response):
@@ -2320,18 +2269,18 @@ class LROsOperations:
                 })
                 return client_raw_response
 
-        lro_delay = operation_config.get(
+        lro_delay = kwargs.get(
             'long_running_operation_timeout',
             self.config.long_running_operation_timeout)
-        if polling is True: polling_method = AsyncARMPolling(lro_delay, **operation_config)
+        if polling is True: polling_method = AsyncARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self, raw_result, get_long_running_output, polling_method)
     delete_async_no_header_in_retry.metadata = {'url': '/lro/deleteasync/noheader/202/204'}
 
 
     async def _delete_async_retry_succeeded_initial(
-            self, *, custom_headers=None, raw=False, **operation_config):
+            self, *, raw=False, **kwargs):
         # Construct URL
         url = self.delete_async_retry_succeeded.metadata['url']
 
@@ -2340,21 +2289,21 @@ class LROsOperations:
 
         # Construct headers
         header_parameters = {}
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct and send request
-        request = self._client.delete(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.delete(url, query_parameters, header_parameters)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [202]:
-            exp = CloudError(response)
-            exp.request_id = response.headers.get('x-ms-request-id')
-            raise exp
+            raise models.CloudErrorException(self._deserialize, response)
 
         if raw:
             client_raw_response = ClientRawResponse(None, response)
@@ -2367,24 +2316,22 @@ class LROsOperations:
             return client_raw_response
 
     async def delete_async_retry_succeeded(
-            self, *, custom_headers=None, raw=False, polling=True, **operation_config):
+            self, *, raw=False, polling=True, **kwargs):
         """Long running delete request, service returns a 202 to the initial
         request. Poll the endpoint indicated in the Azure-AsyncOperation header
         for operation status.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for AsyncARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of None or ClientRawResponse<None> if raw==True
         :rtype: ~None or ~msrest.pipeline.ClientRawResponse[None]
-        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
+        :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
         """
         raw_result = await self._delete_async_retry_succeeded_initial(
-            custom_headers=custom_headers,
             raw=True,
-            **operation_config
+            **kwargs
         )
 
         def get_long_running_output(response):
@@ -2397,18 +2344,18 @@ class LROsOperations:
                 })
                 return client_raw_response
 
-        lro_delay = operation_config.get(
+        lro_delay = kwargs.get(
             'long_running_operation_timeout',
             self.config.long_running_operation_timeout)
-        if polling is True: polling_method = AsyncARMPolling(lro_delay, **operation_config)
+        if polling is True: polling_method = AsyncARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self, raw_result, get_long_running_output, polling_method)
     delete_async_retry_succeeded.metadata = {'url': '/lro/deleteasync/retry/succeeded'}
 
 
     async def _delete_async_no_retry_succeeded_initial(
-            self, *, custom_headers=None, raw=False, **operation_config):
+            self, *, raw=False, **kwargs):
         # Construct URL
         url = self.delete_async_no_retry_succeeded.metadata['url']
 
@@ -2417,21 +2364,21 @@ class LROsOperations:
 
         # Construct headers
         header_parameters = {}
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct and send request
-        request = self._client.delete(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.delete(url, query_parameters, header_parameters)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [202]:
-            exp = CloudError(response)
-            exp.request_id = response.headers.get('x-ms-request-id')
-            raise exp
+            raise models.CloudErrorException(self._deserialize, response)
 
         if raw:
             client_raw_response = ClientRawResponse(None, response)
@@ -2444,24 +2391,22 @@ class LROsOperations:
             return client_raw_response
 
     async def delete_async_no_retry_succeeded(
-            self, *, custom_headers=None, raw=False, polling=True, **operation_config):
+            self, *, raw=False, polling=True, **kwargs):
         """Long running delete request, service returns a 202 to the initial
         request. Poll the endpoint indicated in the Azure-AsyncOperation header
         for operation status.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for AsyncARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of None or ClientRawResponse<None> if raw==True
         :rtype: ~None or ~msrest.pipeline.ClientRawResponse[None]
-        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
+        :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
         """
         raw_result = await self._delete_async_no_retry_succeeded_initial(
-            custom_headers=custom_headers,
             raw=True,
-            **operation_config
+            **kwargs
         )
 
         def get_long_running_output(response):
@@ -2474,18 +2419,18 @@ class LROsOperations:
                 })
                 return client_raw_response
 
-        lro_delay = operation_config.get(
+        lro_delay = kwargs.get(
             'long_running_operation_timeout',
             self.config.long_running_operation_timeout)
-        if polling is True: polling_method = AsyncARMPolling(lro_delay, **operation_config)
+        if polling is True: polling_method = AsyncARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self, raw_result, get_long_running_output, polling_method)
     delete_async_no_retry_succeeded.metadata = {'url': '/lro/deleteasync/noretry/succeeded'}
 
 
     async def _delete_async_retry_failed_initial(
-            self, *, custom_headers=None, raw=False, **operation_config):
+            self, *, raw=False, **kwargs):
         # Construct URL
         url = self.delete_async_retry_failed.metadata['url']
 
@@ -2494,21 +2439,21 @@ class LROsOperations:
 
         # Construct headers
         header_parameters = {}
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct and send request
-        request = self._client.delete(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.delete(url, query_parameters, header_parameters)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [202]:
-            exp = CloudError(response)
-            exp.request_id = response.headers.get('x-ms-request-id')
-            raise exp
+            raise models.CloudErrorException(self._deserialize, response)
 
         if raw:
             client_raw_response = ClientRawResponse(None, response)
@@ -2521,24 +2466,22 @@ class LROsOperations:
             return client_raw_response
 
     async def delete_async_retry_failed(
-            self, *, custom_headers=None, raw=False, polling=True, **operation_config):
+            self, *, raw=False, polling=True, **kwargs):
         """Long running delete request, service returns a 202 to the initial
         request. Poll the endpoint indicated in the Azure-AsyncOperation header
         for operation status.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for AsyncARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of None or ClientRawResponse<None> if raw==True
         :rtype: ~None or ~msrest.pipeline.ClientRawResponse[None]
-        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
+        :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
         """
         raw_result = await self._delete_async_retry_failed_initial(
-            custom_headers=custom_headers,
             raw=True,
-            **operation_config
+            **kwargs
         )
 
         def get_long_running_output(response):
@@ -2551,18 +2494,18 @@ class LROsOperations:
                 })
                 return client_raw_response
 
-        lro_delay = operation_config.get(
+        lro_delay = kwargs.get(
             'long_running_operation_timeout',
             self.config.long_running_operation_timeout)
-        if polling is True: polling_method = AsyncARMPolling(lro_delay, **operation_config)
+        if polling is True: polling_method = AsyncARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self, raw_result, get_long_running_output, polling_method)
     delete_async_retry_failed.metadata = {'url': '/lro/deleteasync/retry/failed'}
 
 
     async def _delete_async_retrycanceled_initial(
-            self, *, custom_headers=None, raw=False, **operation_config):
+            self, *, raw=False, **kwargs):
         # Construct URL
         url = self.delete_async_retrycanceled.metadata['url']
 
@@ -2571,21 +2514,21 @@ class LROsOperations:
 
         # Construct headers
         header_parameters = {}
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct and send request
-        request = self._client.delete(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.delete(url, query_parameters, header_parameters)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [202]:
-            exp = CloudError(response)
-            exp.request_id = response.headers.get('x-ms-request-id')
-            raise exp
+            raise models.CloudErrorException(self._deserialize, response)
 
         if raw:
             client_raw_response = ClientRawResponse(None, response)
@@ -2598,24 +2541,22 @@ class LROsOperations:
             return client_raw_response
 
     async def delete_async_retrycanceled(
-            self, *, custom_headers=None, raw=False, polling=True, **operation_config):
+            self, *, raw=False, polling=True, **kwargs):
         """Long running delete request, service returns a 202 to the initial
         request. Poll the endpoint indicated in the Azure-AsyncOperation header
         for operation status.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for AsyncARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of None or ClientRawResponse<None> if raw==True
         :rtype: ~None or ~msrest.pipeline.ClientRawResponse[None]
-        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
+        :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
         """
         raw_result = await self._delete_async_retrycanceled_initial(
-            custom_headers=custom_headers,
             raw=True,
-            **operation_config
+            **kwargs
         )
 
         def get_long_running_output(response):
@@ -2628,18 +2569,18 @@ class LROsOperations:
                 })
                 return client_raw_response
 
-        lro_delay = operation_config.get(
+        lro_delay = kwargs.get(
             'long_running_operation_timeout',
             self.config.long_running_operation_timeout)
-        if polling is True: polling_method = AsyncARMPolling(lro_delay, **operation_config)
+        if polling is True: polling_method = AsyncARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self, raw_result, get_long_running_output, polling_method)
     delete_async_retrycanceled.metadata = {'url': '/lro/deleteasync/retry/canceled'}
 
 
     async def _post200_with_payload_initial(
-            self, *, custom_headers=None, raw=False, **operation_config):
+            self, *, raw=False, **kwargs):
         # Construct URL
         url = self.post200_with_payload.metadata['url']
 
@@ -2649,21 +2590,21 @@ class LROsOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.post(url, query_parameters, header_parameters)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200, 202]:
-            exp = CloudError(response)
-            exp.request_id = response.headers.get('x-ms-request-id')
-            raise exp
+            raise models.CloudErrorException(self._deserialize, response)
 
         deserialized = None
 
@@ -2679,12 +2620,11 @@ class LROsOperations:
         return deserialized
 
     async def post200_with_payload(
-            self, *, custom_headers=None, raw=False, polling=True, **operation_config):
+            self, *, raw=False, polling=True, **kwargs):
         """Long running post request, service returns a 202 to the initial
         request, with 'Location' header. Poll returns a 200 with a response
         body after success.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for AsyncARMPolling, False for no polling, or a
@@ -2692,12 +2632,11 @@ class LROsOperations:
         :return: An instance of Sku or ClientRawResponse<Sku> if raw==True
         :rtype: ~~lro.models.Sku or
          ~msrest.pipeline.ClientRawResponse[~lro.models.Sku]
-        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
+        :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
         """
         raw_result = await self._post200_with_payload_initial(
-            custom_headers=custom_headers,
             raw=True,
-            **operation_config
+            **kwargs
         )
 
         def get_long_running_output(response):
@@ -2709,18 +2648,18 @@ class LROsOperations:
 
             return deserialized
 
-        lro_delay = operation_config.get(
+        lro_delay = kwargs.get(
             'long_running_operation_timeout',
             self.config.long_running_operation_timeout)
-        if polling is True: polling_method = AsyncARMPolling(lro_delay, **operation_config)
+        if polling is True: polling_method = AsyncARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self, raw_result, get_long_running_output, polling_method)
     post200_with_payload.metadata = {'url': '/lro/post/payload/200'}
 
 
     async def _post202_retry200_initial(
-            self, product=None, *, custom_headers=None, raw=False, **operation_config):
+            self, product=None, *, raw=False, **kwargs):
         # Construct URL
         url = self.post202_retry200.metadata['url']
 
@@ -2730,12 +2669,13 @@ class LROsOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct body
         if product is not None:
@@ -2744,13 +2684,12 @@ class LROsOperations:
             body_content = None
 
         # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.post(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [202]:
-            exp = CloudError(response)
-            exp.request_id = response.headers.get('x-ms-request-id')
-            raise exp
+            raise models.CloudErrorException(self._deserialize, response)
 
         if raw:
             client_raw_response = ClientRawResponse(None, response)
@@ -2762,27 +2701,25 @@ class LROsOperations:
             return client_raw_response
 
     async def post202_retry200(
-            self, product=None, *, custom_headers=None, raw=False, polling=True, **operation_config):
+            self, product=None, *, raw=False, polling=True, **kwargs):
         """Long running post request, service returns a 202 to the initial
         request, with 'Location' and 'Retry-After' headers, Polls return a 200
         with a response body after success.
 
         :param product: Product to put
         :type product: ~lro.models.Product
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for AsyncARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of None or ClientRawResponse<None> if raw==True
         :rtype: ~None or ~msrest.pipeline.ClientRawResponse[None]
-        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
+        :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
         """
         raw_result = await self._post202_retry200_initial(
             product=product,
-            custom_headers=custom_headers,
             raw=True,
-            **operation_config
+            **kwargs
         )
 
         def get_long_running_output(response):
@@ -2794,18 +2731,18 @@ class LROsOperations:
                 })
                 return client_raw_response
 
-        lro_delay = operation_config.get(
+        lro_delay = kwargs.get(
             'long_running_operation_timeout',
             self.config.long_running_operation_timeout)
-        if polling is True: polling_method = AsyncARMPolling(lro_delay, **operation_config)
+        if polling is True: polling_method = AsyncARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self, raw_result, get_long_running_output, polling_method)
     post202_retry200.metadata = {'url': '/lro/post/202/retry/200'}
 
 
     async def _post202_no_retry204_initial(
-            self, product=None, *, custom_headers=None, raw=False, **operation_config):
+            self, product=None, *, raw=False, **kwargs):
         # Construct URL
         url = self.post202_no_retry204.metadata['url']
 
@@ -2816,12 +2753,13 @@ class LROsOperations:
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct body
         if product is not None:
@@ -2830,13 +2768,12 @@ class LROsOperations:
             body_content = None
 
         # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.post(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [202]:
-            exp = CloudError(response)
-            exp.request_id = response.headers.get('x-ms-request-id')
-            raise exp
+            raise models.CloudErrorException(self._deserialize, response)
 
         deserialized = None
         header_dict = {}
@@ -2856,14 +2793,13 @@ class LROsOperations:
         return deserialized
 
     async def post202_no_retry204(
-            self, product=None, *, custom_headers=None, raw=False, polling=True, **operation_config):
+            self, product=None, *, raw=False, polling=True, **kwargs):
         """Long running post request, service returns a 202 to the initial
         request, with 'Location' header, 204 with noresponse body after
         success.
 
         :param product: Product to put
         :type product: ~lro.models.Product
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for AsyncARMPolling, False for no polling, or a
@@ -2872,13 +2808,12 @@ class LROsOperations:
          raw==True
         :rtype: ~~lro.models.Product or
          ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
-        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
+        :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
         """
         raw_result = await self._post202_no_retry204_initial(
             product=product,
-            custom_headers=custom_headers,
             raw=True,
-            **operation_config
+            **kwargs
         )
 
         def get_long_running_output(response):
@@ -2895,18 +2830,18 @@ class LROsOperations:
 
             return deserialized
 
-        lro_delay = operation_config.get(
+        lro_delay = kwargs.get(
             'long_running_operation_timeout',
             self.config.long_running_operation_timeout)
-        if polling is True: polling_method = AsyncARMPolling(lro_delay, **operation_config)
+        if polling is True: polling_method = AsyncARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self, raw_result, get_long_running_output, polling_method)
     post202_no_retry204.metadata = {'url': '/lro/post/202/noretry/204'}
 
 
     async def _post_double_headers_final_location_get_initial(
-            self, *, custom_headers=None, raw=False, **operation_config):
+            self, *, raw=False, **kwargs):
         # Construct URL
         url = self.post_double_headers_final_location_get.metadata['url']
 
@@ -2916,21 +2851,21 @@ class LROsOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.post(url, query_parameters, header_parameters)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [202]:
-            exp = CloudError(response)
-            exp.request_id = response.headers.get('x-ms-request-id')
-            raise exp
+            raise models.CloudErrorException(self._deserialize, response)
 
         deserialized = None
 
@@ -2944,12 +2879,11 @@ class LROsOperations:
         return deserialized
 
     async def post_double_headers_final_location_get(
-            self, *, custom_headers=None, raw=False, polling=True, **operation_config):
+            self, *, raw=False, polling=True, **kwargs):
         """Long running post request, service returns a 202 to the initial request
         with both Location and Azure-Async header. Poll Azure-Async and it's
         success. Should poll Location to get the final object.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for AsyncARMPolling, False for no polling, or a
@@ -2958,12 +2892,11 @@ class LROsOperations:
          raw==True
         :rtype: ~~lro.models.Product or
          ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
-        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
+        :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
         """
         raw_result = await self._post_double_headers_final_location_get_initial(
-            custom_headers=custom_headers,
             raw=True,
-            **operation_config
+            **kwargs
         )
 
         def get_long_running_output(response):
@@ -2975,18 +2908,18 @@ class LROsOperations:
 
             return deserialized
 
-        lro_delay = operation_config.get(
+        lro_delay = kwargs.get(
             'long_running_operation_timeout',
             self.config.long_running_operation_timeout)
-        if polling is True: polling_method = AsyncARMPolling(lro_delay, lro_options={'final-state-via': 'location'}, **operation_config)
+        if polling is True: polling_method = AsyncARMPolling(lro_delay, lro_options={'final-state-via': 'location'}, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self, raw_result, get_long_running_output, polling_method)
     post_double_headers_final_location_get.metadata = {'url': '/lro/LROPostDoubleHeadersFinalLocationGet'}
 
 
     async def _post_double_headers_final_azure_header_get_initial(
-            self, *, custom_headers=None, raw=False, **operation_config):
+            self, *, raw=False, **kwargs):
         # Construct URL
         url = self.post_double_headers_final_azure_header_get.metadata['url']
 
@@ -2996,21 +2929,21 @@ class LROsOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.post(url, query_parameters, header_parameters)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [202]:
-            exp = CloudError(response)
-            exp.request_id = response.headers.get('x-ms-request-id')
-            raise exp
+            raise models.CloudErrorException(self._deserialize, response)
 
         deserialized = None
 
@@ -3024,12 +2957,11 @@ class LROsOperations:
         return deserialized
 
     async def post_double_headers_final_azure_header_get(
-            self, *, custom_headers=None, raw=False, polling=True, **operation_config):
+            self, *, raw=False, polling=True, **kwargs):
         """Long running post request, service returns a 202 to the initial request
         with both Location and Azure-Async header. Poll Azure-Async and it's
         success. Should NOT poll Location to get the final object.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for AsyncARMPolling, False for no polling, or a
@@ -3038,12 +2970,11 @@ class LROsOperations:
          raw==True
         :rtype: ~~lro.models.Product or
          ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
-        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
+        :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
         """
         raw_result = await self._post_double_headers_final_azure_header_get_initial(
-            custom_headers=custom_headers,
             raw=True,
-            **operation_config
+            **kwargs
         )
 
         def get_long_running_output(response):
@@ -3055,18 +2986,18 @@ class LROsOperations:
 
             return deserialized
 
-        lro_delay = operation_config.get(
+        lro_delay = kwargs.get(
             'long_running_operation_timeout',
             self.config.long_running_operation_timeout)
-        if polling is True: polling_method = AsyncARMPolling(lro_delay, lro_options={'final-state-via': 'azure-async-operation'}, **operation_config)
+        if polling is True: polling_method = AsyncARMPolling(lro_delay, lro_options={'final-state-via': 'azure-async-operation'}, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self, raw_result, get_long_running_output, polling_method)
     post_double_headers_final_azure_header_get.metadata = {'url': '/lro/LROPostDoubleHeadersFinalAzureHeaderGet'}
 
 
     async def _post_double_headers_final_azure_header_get_default_initial(
-            self, *, custom_headers=None, raw=False, **operation_config):
+            self, *, raw=False, **kwargs):
         # Construct URL
         url = self.post_double_headers_final_azure_header_get_default.metadata['url']
 
@@ -3076,21 +3007,21 @@ class LROsOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.post(url, query_parameters, header_parameters)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [202]:
-            exp = CloudError(response)
-            exp.request_id = response.headers.get('x-ms-request-id')
-            raise exp
+            raise models.CloudErrorException(self._deserialize, response)
 
         deserialized = None
 
@@ -3104,13 +3035,12 @@ class LROsOperations:
         return deserialized
 
     async def post_double_headers_final_azure_header_get_default(
-            self, *, custom_headers=None, raw=False, polling=True, **operation_config):
+            self, *, raw=False, polling=True, **kwargs):
         """Long running post request, service returns a 202 to the initial request
         with both Location and Azure-Async header. Poll Azure-Async and it's
         success. Should NOT poll Location to get the final object if you
         support initial Autorest behavior.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for AsyncARMPolling, False for no polling, or a
@@ -3119,12 +3049,11 @@ class LROsOperations:
          raw==True
         :rtype: ~~lro.models.Product or
          ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
-        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
+        :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
         """
         raw_result = await self._post_double_headers_final_azure_header_get_default_initial(
-            custom_headers=custom_headers,
             raw=True,
-            **operation_config
+            **kwargs
         )
 
         def get_long_running_output(response):
@@ -3136,18 +3065,18 @@ class LROsOperations:
 
             return deserialized
 
-        lro_delay = operation_config.get(
+        lro_delay = kwargs.get(
             'long_running_operation_timeout',
             self.config.long_running_operation_timeout)
-        if polling is True: polling_method = AsyncARMPolling(lro_delay, **operation_config)
+        if polling is True: polling_method = AsyncARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self, raw_result, get_long_running_output, polling_method)
     post_double_headers_final_azure_header_get_default.metadata = {'url': '/lro/LROPostDoubleHeadersFinalAzureHeaderGetDefault'}
 
 
     async def _post_async_retry_succeeded_initial(
-            self, product=None, *, custom_headers=None, raw=False, **operation_config):
+            self, product=None, *, raw=False, **kwargs):
         # Construct URL
         url = self.post_async_retry_succeeded.metadata['url']
 
@@ -3158,12 +3087,13 @@ class LROsOperations:
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct body
         if product is not None:
@@ -3172,13 +3102,12 @@ class LROsOperations:
             body_content = None
 
         # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.post(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200, 202]:
-            exp = CloudError(response)
-            exp.request_id = response.headers.get('x-ms-request-id')
-            raise exp
+            raise models.CloudErrorException(self._deserialize, response)
 
         deserialized = None
         header_dict = {}
@@ -3199,7 +3128,7 @@ class LROsOperations:
         return deserialized
 
     async def post_async_retry_succeeded(
-            self, product=None, *, custom_headers=None, raw=False, polling=True, **operation_config):
+            self, product=None, *, raw=False, polling=True, **kwargs):
         """Long running post request, service returns a 202 to the initial
         request, with an entity that contains ProvisioningState=’Creating’.
         Poll the endpoint indicated in the Azure-AsyncOperation header for
@@ -3207,7 +3136,6 @@ class LROsOperations:
 
         :param product: Product to put
         :type product: ~lro.models.Product
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for AsyncARMPolling, False for no polling, or a
@@ -3216,13 +3144,12 @@ class LROsOperations:
          raw==True
         :rtype: ~~lro.models.Product or
          ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
-        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
+        :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
         """
         raw_result = await self._post_async_retry_succeeded_initial(
             product=product,
-            custom_headers=custom_headers,
             raw=True,
-            **operation_config
+            **kwargs
         )
 
         def get_long_running_output(response):
@@ -3240,18 +3167,18 @@ class LROsOperations:
 
             return deserialized
 
-        lro_delay = operation_config.get(
+        lro_delay = kwargs.get(
             'long_running_operation_timeout',
             self.config.long_running_operation_timeout)
-        if polling is True: polling_method = AsyncARMPolling(lro_delay, **operation_config)
+        if polling is True: polling_method = AsyncARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self, raw_result, get_long_running_output, polling_method)
     post_async_retry_succeeded.metadata = {'url': '/lro/postasync/retry/succeeded'}
 
 
     async def _post_async_no_retry_succeeded_initial(
-            self, product=None, *, custom_headers=None, raw=False, **operation_config):
+            self, product=None, *, raw=False, **kwargs):
         # Construct URL
         url = self.post_async_no_retry_succeeded.metadata['url']
 
@@ -3262,12 +3189,13 @@ class LROsOperations:
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct body
         if product is not None:
@@ -3276,13 +3204,12 @@ class LROsOperations:
             body_content = None
 
         # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.post(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200, 202]:
-            exp = CloudError(response)
-            exp.request_id = response.headers.get('x-ms-request-id')
-            raise exp
+            raise models.CloudErrorException(self._deserialize, response)
 
         deserialized = None
         header_dict = {}
@@ -3303,7 +3230,7 @@ class LROsOperations:
         return deserialized
 
     async def post_async_no_retry_succeeded(
-            self, product=None, *, custom_headers=None, raw=False, polling=True, **operation_config):
+            self, product=None, *, raw=False, polling=True, **kwargs):
         """Long running post request, service returns a 202 to the initial
         request, with an entity that contains ProvisioningState=’Creating’.
         Poll the endpoint indicated in the Azure-AsyncOperation header for
@@ -3311,7 +3238,6 @@ class LROsOperations:
 
         :param product: Product to put
         :type product: ~lro.models.Product
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for AsyncARMPolling, False for no polling, or a
@@ -3320,13 +3246,12 @@ class LROsOperations:
          raw==True
         :rtype: ~~lro.models.Product or
          ~msrest.pipeline.ClientRawResponse[~lro.models.Product]
-        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
+        :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
         """
         raw_result = await self._post_async_no_retry_succeeded_initial(
             product=product,
-            custom_headers=custom_headers,
             raw=True,
-            **operation_config
+            **kwargs
         )
 
         def get_long_running_output(response):
@@ -3344,18 +3269,18 @@ class LROsOperations:
 
             return deserialized
 
-        lro_delay = operation_config.get(
+        lro_delay = kwargs.get(
             'long_running_operation_timeout',
             self.config.long_running_operation_timeout)
-        if polling is True: polling_method = AsyncARMPolling(lro_delay, **operation_config)
+        if polling is True: polling_method = AsyncARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self, raw_result, get_long_running_output, polling_method)
     post_async_no_retry_succeeded.metadata = {'url': '/lro/postasync/noretry/succeeded'}
 
 
     async def _post_async_retry_failed_initial(
-            self, product=None, *, custom_headers=None, raw=False, **operation_config):
+            self, product=None, *, raw=False, **kwargs):
         # Construct URL
         url = self.post_async_retry_failed.metadata['url']
 
@@ -3365,12 +3290,13 @@ class LROsOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct body
         if product is not None:
@@ -3379,13 +3305,12 @@ class LROsOperations:
             body_content = None
 
         # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.post(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [202]:
-            exp = CloudError(response)
-            exp.request_id = response.headers.get('x-ms-request-id')
-            raise exp
+            raise models.CloudErrorException(self._deserialize, response)
 
         if raw:
             client_raw_response = ClientRawResponse(None, response)
@@ -3398,7 +3323,7 @@ class LROsOperations:
             return client_raw_response
 
     async def post_async_retry_failed(
-            self, product=None, *, custom_headers=None, raw=False, polling=True, **operation_config):
+            self, product=None, *, raw=False, polling=True, **kwargs):
         """Long running post request, service returns a 202 to the initial
         request, with an entity that contains ProvisioningState=’Creating’.
         Poll the endpoint indicated in the Azure-AsyncOperation header for
@@ -3406,20 +3331,18 @@ class LROsOperations:
 
         :param product: Product to put
         :type product: ~lro.models.Product
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for AsyncARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of None or ClientRawResponse<None> if raw==True
         :rtype: ~None or ~msrest.pipeline.ClientRawResponse[None]
-        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
+        :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
         """
         raw_result = await self._post_async_retry_failed_initial(
             product=product,
-            custom_headers=custom_headers,
             raw=True,
-            **operation_config
+            **kwargs
         )
 
         def get_long_running_output(response):
@@ -3432,18 +3355,18 @@ class LROsOperations:
                 })
                 return client_raw_response
 
-        lro_delay = operation_config.get(
+        lro_delay = kwargs.get(
             'long_running_operation_timeout',
             self.config.long_running_operation_timeout)
-        if polling is True: polling_method = AsyncARMPolling(lro_delay, **operation_config)
+        if polling is True: polling_method = AsyncARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self, raw_result, get_long_running_output, polling_method)
     post_async_retry_failed.metadata = {'url': '/lro/postasync/retry/failed'}
 
 
     async def _post_async_retrycanceled_initial(
-            self, product=None, *, custom_headers=None, raw=False, **operation_config):
+            self, product=None, *, raw=False, **kwargs):
         # Construct URL
         url = self.post_async_retrycanceled.metadata['url']
 
@@ -3453,12 +3376,13 @@ class LROsOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct body
         if product is not None:
@@ -3467,13 +3391,12 @@ class LROsOperations:
             body_content = None
 
         # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.post(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [202]:
-            exp = CloudError(response)
-            exp.request_id = response.headers.get('x-ms-request-id')
-            raise exp
+            raise models.CloudErrorException(self._deserialize, response)
 
         if raw:
             client_raw_response = ClientRawResponse(None, response)
@@ -3486,7 +3409,7 @@ class LROsOperations:
             return client_raw_response
 
     async def post_async_retrycanceled(
-            self, product=None, *, custom_headers=None, raw=False, polling=True, **operation_config):
+            self, product=None, *, raw=False, polling=True, **kwargs):
         """Long running post request, service returns a 202 to the initial
         request, with an entity that contains ProvisioningState=’Creating’.
         Poll the endpoint indicated in the Azure-AsyncOperation header for
@@ -3494,20 +3417,18 @@ class LROsOperations:
 
         :param product: Product to put
         :type product: ~lro.models.Product
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for AsyncARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of None or ClientRawResponse<None> if raw==True
         :rtype: ~None or ~msrest.pipeline.ClientRawResponse[None]
-        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
+        :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
         """
         raw_result = await self._post_async_retrycanceled_initial(
             product=product,
-            custom_headers=custom_headers,
             raw=True,
-            **operation_config
+            **kwargs
         )
 
         def get_long_running_output(response):
@@ -3520,11 +3441,11 @@ class LROsOperations:
                 })
                 return client_raw_response
 
-        lro_delay = operation_config.get(
+        lro_delay = kwargs.get(
             'long_running_operation_timeout',
             self.config.long_running_operation_timeout)
-        if polling is True: polling_method = AsyncARMPolling(lro_delay, **operation_config)
+        if polling is True: polling_method = AsyncARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self, raw_result, get_long_running_output, polling_method)
     post_async_retrycanceled.metadata = {'url': '/lro/postasync/retry/canceled'}

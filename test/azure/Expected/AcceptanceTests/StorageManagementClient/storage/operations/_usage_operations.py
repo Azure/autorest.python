@@ -11,7 +11,7 @@
 
 import uuid
 from msrest.pipeline import ClientRawResponse
-from msrestazure.azure_exceptions import CloudError
+from azure.core import ClientRequestError
 
 from .. import models
 
@@ -40,26 +40,23 @@ class UsageOperations(object):
         self.config = config
 
     def list(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Gets the current usage count and the limit for the resources under the
         subscription.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: UsageListResult or ClientRawResponse if raw=true
         :rtype: ~storage.models.UsageListResult or
          ~msrest.pipeline.ClientRawResponse
-        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
+        :raises: :class:`ClientRequestError<azure.core.ClientRequestError>`
         """
         # Construct URL
         url = self.list.metadata['url']
         path_format_arguments = {
-            'subscriptionId': self._serialize.url("self.config.subscription_id", self.config.subscription_id, 'str')
+            'subscriptionId': self._serialize.url("self._config.subscription_id", self._config.subscription_id, 'str')
         }
-        url = self._client.format_url(url, **path_format_arguments)
+        url = self.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}
@@ -68,20 +65,22 @@ class UsageOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
-            exp = CloudError(response)
-            exp.request_id = response.headers.get('x-ms-request-id')
+            error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
+            exp = ClientRequestError(response=response)
             raise exp
 
         deserialized = None

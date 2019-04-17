@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-# from azure.core import AsyncPipelineClient  TODO
+from azure.core import PipelineClient
 from msrest import Serializer, Deserializer
 
 from ._configuration_async import AutoRestComplexTestServiceConfiguration
@@ -56,7 +56,7 @@ class AutoRestComplexTestService:
             self, base_url=None, config=None, **kwargs):
 
         self._config = config or AutoRestComplexTestServiceConfiguration(**kwargs)
-        self._client = AsyncPipelineClient(base_url=base_url, credentials=None, config=self._config, **kwargs)
+        super(AutoRestComplexTestService, self).__init__(base_url=base_url, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '2016-02-29'
@@ -64,20 +64,20 @@ class AutoRestComplexTestService:
         self._deserialize = Deserializer(client_models)
 
         self.basic = BasicOperations(
-            self._client, self._config, self._serialize, self._deserialize)
+            self, self._config, self._serialize, self._deserialize)
         self.primitive = PrimitiveOperations(
-            self._client, self._config, self._serialize, self._deserialize)
+            self, self._config, self._serialize, self._deserialize)
         self.array = ArrayOperations(
-            self._client, self._config, self._serialize, self._deserialize)
+            self, self._config, self._serialize, self._deserialize)
         self.dictionary = DictionaryOperations(
-            self._client, self._config, self._serialize, self._deserialize)
+            self, self._config, self._serialize, self._deserialize)
         self.inheritance = InheritanceOperations(
-            self._client, self._config, self._serialize, self._deserialize)
+            self, self._config, self._serialize, self._deserialize)
         self.polymorphism = PolymorphismOperations(
-            self._client, self._config, self._serialize, self._deserialize)
+            self, self._config, self._serialize, self._deserialize)
         self.polymorphicrecursive = PolymorphicrecursiveOperations(
-            self._client, self._config, self._serialize, self._deserialize)
+            self, self._config, self._serialize, self._deserialize)
         self.readonlyproperty = ReadonlypropertyOperations(
-            self._client, self._config, self._serialize, self._deserialize)
+            self, self._config, self._serialize, self._deserialize)
         self.flattencomplex = FlattencomplexOperations(
-            self._client, self._config, self._serialize, self._deserialize)
+            self, self._config, self._serialize, self._deserialize)

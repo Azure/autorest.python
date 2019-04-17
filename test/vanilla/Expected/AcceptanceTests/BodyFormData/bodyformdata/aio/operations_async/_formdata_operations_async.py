@@ -36,7 +36,7 @@ class FormdataOperations:
         self.config = config
 
     async def upload_file(
-            self, file_content, file_name, *, custom_headers=None, raw=False, callback=None, **operation_config):
+            self, file_content, file_name, *, raw=False, callback=None, **kwargs):
         """Upload file.
 
         :param file_content: File to upload.
@@ -44,7 +44,6 @@ class FormdataOperations:
         :param file_name: File name to upload. Name has to be spelled exactly
          as written here.
         :type file_name: str
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
         :param callback: When specified, will be called with each chunk of
@@ -52,8 +51,6 @@ class FormdataOperations:
          bytes of the current chunk of data and the response object. If the
          data is uploading, response will be None.
         :type callback: Callable[Bytes, response=None]
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: object or ClientRawResponse if raw=true
         :rtype: Generator or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyformdata.models.ErrorException>`
@@ -68,8 +65,9 @@ class FormdataOperations:
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'multipart/form-data'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct form data
         form_data_content = {
@@ -78,13 +76,14 @@ class FormdataOperations:
         }
 
         # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters, form_content=form_data_content)
-        response = await self._client.async_send(request, stream=True, **operation_config)
+        request = self.post(url, query_parameters, header_parameters, form_content=form_data_content)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        deserialized = self._client.stream_download_async(response, callback)
+        deserialized = self.stream_download_async(response, callback)
 
         if raw:
             client_raw_response = ClientRawResponse(deserialized, response)
@@ -94,12 +93,11 @@ class FormdataOperations:
     upload_file.metadata = {'url': '/formdata/stream/uploadfile'}
 
     async def upload_file_via_body(
-            self, file_content, *, custom_headers=None, raw=False, callback=None, **operation_config):
+            self, file_content, *, raw=False, callback=None, **kwargs):
         """Upload file.
 
         :param file_content: File to upload.
         :type file_content: Generator
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
         :param callback: When specified, will be called with each chunk of
@@ -107,8 +105,6 @@ class FormdataOperations:
          bytes of the current chunk of data and the response object. If the
          data is uploading, response will be None.
         :type callback: Callable[Bytes, response=None]
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: object or ClientRawResponse if raw=true
         :rtype: Generator or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyformdata.models.ErrorException>`
@@ -123,20 +119,22 @@ class FormdataOperations:
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/octet-stream'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
-        body_content = self._client.stream_upload(file_content, callback)
+        body_content = self.stream_upload(file_content, callback)
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=True, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        deserialized = self._client.stream_download_async(response, callback)
+        deserialized = self.stream_download_async(response, callback)
 
         if raw:
             client_raw_response = ClientRawResponse(deserialized, response)

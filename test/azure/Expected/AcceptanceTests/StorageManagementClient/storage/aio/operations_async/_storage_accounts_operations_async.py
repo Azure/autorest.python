@@ -11,7 +11,7 @@
 
 import uuid
 from msrest.pipeline import ClientRawResponse
-from msrestazure.azure_exceptions import CloudError
+from azure.core import ClientRequestError
 from msrest.polling.async_poller import async_poller, AsyncNoPolling
 from msrestazure.polling.async_arm_polling import AsyncARMPolling
 
@@ -42,7 +42,7 @@ class StorageAccountsOperations:
         self.config = config
 
     async def check_name_availability(
-            self, account_name, *, custom_headers=None, raw=False, **operation_config):
+            self, account_name, *, raw=False, **kwargs):
         """Checks that account name is valid and is not in use.
 
         :param account_name: The name of the storage account within the
@@ -50,22 +50,19 @@ class StorageAccountsOperations:
          24 characters in length and use numbers and lower-case letters only.
         :type account_name:
          ~storage.models.StorageAccountCheckNameAvailabilityParameters
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: CheckNameAvailabilityResult or ClientRawResponse if raw=true
         :rtype: ~storage.models.CheckNameAvailabilityResult or
          ~msrest.pipeline.ClientRawResponse
-        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
+        :raises: :class:`ClientRequestError<azure.core.ClientRequestError>`
         """
         # Construct URL
         url = self.check_name_availability.metadata['url']
         path_format_arguments = {
-            'subscriptionId': self._serialize.url("self.config.subscription_id", self.config.subscription_id, 'str')
+            'subscriptionId': self._serialize.url("self._config.subscription_id", self._config.subscription_id, 'str')
         }
-        url = self._client.format_url(url, **path_format_arguments)
+        url = self.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}
@@ -75,23 +72,25 @@ class StorageAccountsOperations:
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct body
         body_content = self._serialize.body(account_name, 'StorageAccountCheckNameAvailabilityParameters')
 
         # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.post(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
-            exp = CloudError(response)
-            exp.request_id = response.headers.get('x-ms-request-id')
+            error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
+            exp = ClientRequestError(response=response)
             raise exp
 
         deserialized = None
@@ -107,15 +106,15 @@ class StorageAccountsOperations:
 
 
     async def _create_initial(
-            self, resource_group_name, account_name, parameters, *, custom_headers=None, raw=False, **operation_config):
+            self, resource_group_name, account_name, parameters, *, raw=False, **kwargs):
         # Construct URL
         url = self.create.metadata['url']
         path_format_arguments = {
             'resourceGroupName': self._serialize.url("resource_group_name", resource_group_name, 'str'),
             'accountName': self._serialize.url("account_name", account_name, 'str'),
-            'subscriptionId': self._serialize.url("self.config.subscription_id", self.config.subscription_id, 'str')
+            'subscriptionId': self._serialize.url("self._config.subscription_id", self._config.subscription_id, 'str')
         }
-        url = self._client.format_url(url, **path_format_arguments)
+        url = self.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}
@@ -125,23 +124,25 @@ class StorageAccountsOperations:
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct body
         body_content = self._serialize.body(parameters, 'StorageAccountCreateParameters')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200, 202]:
-            exp = CloudError(response)
-            exp.request_id = response.headers.get('x-ms-request-id')
+            error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
+            exp = ClientRequestError(response=response)
             raise exp
 
         deserialized = None
@@ -156,7 +157,7 @@ class StorageAccountsOperations:
         return deserialized
 
     async def create(
-            self, resource_group_name, account_name, parameters, *, custom_headers=None, raw=False, polling=True, **operation_config):
+            self, resource_group_name, account_name, parameters, *, raw=False, polling=True, **kwargs):
         """Asynchronously creates a new storage account with the specified
         parameters. Existing accounts cannot be updated with this API and
         should instead use the Update Storage Account API. If an account is
@@ -172,7 +173,6 @@ class StorageAccountsOperations:
         :type account_name: str
         :param parameters: The parameters to provide for the created account.
         :type parameters: ~storage.models.StorageAccountCreateParameters
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: The poller return type is ClientRawResponse, the
          direct response alongside the deserialized response
         :param polling: True for AsyncARMPolling, False for no polling, or a
@@ -181,15 +181,14 @@ class StorageAccountsOperations:
          ClientRawResponse<StorageAccount> if raw==True
         :rtype: ~~storage.models.StorageAccount or
          ~msrest.pipeline.ClientRawResponse[~storage.models.StorageAccount]
-        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
+        :raises: :class:`ClientRequestError<azure.core.ClientRequestError>`
         """
         raw_result = await self._create_initial(
             resource_group_name=resource_group_name,
             account_name=account_name,
             parameters=parameters,
-            custom_headers=custom_headers,
             raw=True,
-            **operation_config
+            **kwargs
         )
 
         def get_long_running_output(response):
@@ -201,17 +200,17 @@ class StorageAccountsOperations:
 
             return deserialized
 
-        lro_delay = operation_config.get(
+        lro_delay = kwargs.get(
             'long_running_operation_timeout',
             self.config.long_running_operation_timeout)
-        if polling is True: polling_method = AsyncARMPolling(lro_delay, **operation_config)
+        if polling is True: polling_method = AsyncARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self, raw_result, get_long_running_output, polling_method)
     create.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}'}
 
     async def delete(
-            self, resource_group_name, account_name, *, custom_headers=None, raw=False, **operation_config):
+            self, resource_group_name, account_name, *, raw=False, **kwargs):
         """Deletes a storage account in Microsoft Azure.
 
         :param resource_group_name: The name of the resource group within the
@@ -221,23 +220,20 @@ class StorageAccountsOperations:
          specified resource group. Storage account names must be between 3 and
          24 characters in length and use numbers and lower-case letters only.
         :type account_name: str
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
-        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
+        :raises: :class:`ClientRequestError<azure.core.ClientRequestError>`
         """
         # Construct URL
         url = self.delete.metadata['url']
         path_format_arguments = {
             'resourceGroupName': self._serialize.url("resource_group_name", resource_group_name, 'str'),
             'accountName': self._serialize.url("account_name", account_name, 'str'),
-            'subscriptionId': self._serialize.url("self.config.subscription_id", self.config.subscription_id, 'str')
+            'subscriptionId': self._serialize.url("self._config.subscription_id", self._config.subscription_id, 'str')
         }
-        url = self._client.format_url(url, **path_format_arguments)
+        url = self.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}
@@ -245,20 +241,22 @@ class StorageAccountsOperations:
 
         # Construct headers
         header_parameters = {}
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct and send request
-        request = self._client.delete(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.delete(url, query_parameters, header_parameters)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200, 204]:
-            exp = CloudError(response)
-            exp.request_id = response.headers.get('x-ms-request-id')
+            error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
+            exp = ClientRequestError(response=response)
             raise exp
 
         if raw:
@@ -267,7 +265,7 @@ class StorageAccountsOperations:
     delete.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}'}
 
     async def get_properties(
-            self, resource_group_name, account_name, *, custom_headers=None, raw=False, **operation_config):
+            self, resource_group_name, account_name, *, raw=False, **kwargs):
         """Returns the properties for the specified storage account including but
         not limited to name, account type, location, and account status. The
         ListKeys operation should be used to retrieve storage keys.
@@ -279,24 +277,21 @@ class StorageAccountsOperations:
          specified resource group. Storage account names must be between 3 and
          24 characters in length and use numbers and lower-case letters only.
         :type account_name: str
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: StorageAccount or ClientRawResponse if raw=true
         :rtype: ~storage.models.StorageAccount or
          ~msrest.pipeline.ClientRawResponse
-        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
+        :raises: :class:`ClientRequestError<azure.core.ClientRequestError>`
         """
         # Construct URL
         url = self.get_properties.metadata['url']
         path_format_arguments = {
             'resourceGroupName': self._serialize.url("resource_group_name", resource_group_name, 'str'),
             'accountName': self._serialize.url("account_name", account_name, 'str'),
-            'subscriptionId': self._serialize.url("self.config.subscription_id", self.config.subscription_id, 'str')
+            'subscriptionId': self._serialize.url("self._config.subscription_id", self._config.subscription_id, 'str')
         }
-        url = self._client.format_url(url, **path_format_arguments)
+        url = self.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}
@@ -305,20 +300,22 @@ class StorageAccountsOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
-            exp = CloudError(response)
-            exp.request_id = response.headers.get('x-ms-request-id')
+            error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
+            exp = ClientRequestError(response=response)
             raise exp
 
         deserialized = None
@@ -333,7 +330,7 @@ class StorageAccountsOperations:
     get_properties.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}'}
 
     async def update(
-            self, resource_group_name, account_name, parameters, *, custom_headers=None, raw=False, **operation_config):
+            self, resource_group_name, account_name, parameters, *, raw=False, **kwargs):
         """Updates the account type or tags for a storage account. It can also be
         used to add a custom domain (note that custom domains cannot be added
         via the Create operation). Only one custom domain is supported per
@@ -355,24 +352,21 @@ class StorageAccountsOperations:
         :param parameters: The parameters to update on the account. Note that
          only one property can be changed at a time using this API.
         :type parameters: ~storage.models.StorageAccountUpdateParameters
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: StorageAccount or ClientRawResponse if raw=true
         :rtype: ~storage.models.StorageAccount or
          ~msrest.pipeline.ClientRawResponse
-        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
+        :raises: :class:`ClientRequestError<azure.core.ClientRequestError>`
         """
         # Construct URL
         url = self.update.metadata['url']
         path_format_arguments = {
             'resourceGroupName': self._serialize.url("resource_group_name", resource_group_name, 'str'),
             'accountName': self._serialize.url("account_name", account_name, 'str'),
-            'subscriptionId': self._serialize.url("self.config.subscription_id", self.config.subscription_id, 'str')
+            'subscriptionId': self._serialize.url("self._config.subscription_id", self._config.subscription_id, 'str')
         }
-        url = self._client.format_url(url, **path_format_arguments)
+        url = self.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}
@@ -382,23 +376,25 @@ class StorageAccountsOperations:
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct body
         body_content = self._serialize.body(parameters, 'StorageAccountUpdateParameters')
 
         # Construct and send request
-        request = self._client.patch(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.patch(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
-            exp = CloudError(response)
-            exp.request_id = response.headers.get('x-ms-request-id')
+            error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
+            exp = ClientRequestError(response=response)
             raise exp
 
         deserialized = None
@@ -413,7 +409,7 @@ class StorageAccountsOperations:
     update.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}'}
 
     async def list_keys(
-            self, resource_group_name, account_name, *, custom_headers=None, raw=False, **operation_config):
+            self, resource_group_name, account_name, *, raw=False, **kwargs):
         """Lists the access keys for the specified storage account.
 
         :param resource_group_name: The name of the resource group within the
@@ -421,24 +417,21 @@ class StorageAccountsOperations:
         :type resource_group_name: str
         :param account_name: The name of the storage account.
         :type account_name: str
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: StorageAccountKeys or ClientRawResponse if raw=true
         :rtype: ~storage.models.StorageAccountKeys or
          ~msrest.pipeline.ClientRawResponse
-        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
+        :raises: :class:`ClientRequestError<azure.core.ClientRequestError>`
         """
         # Construct URL
         url = self.list_keys.metadata['url']
         path_format_arguments = {
             'resourceGroupName': self._serialize.url("resource_group_name", resource_group_name, 'str'),
             'accountName': self._serialize.url("account_name", account_name, 'str'),
-            'subscriptionId': self._serialize.url("self.config.subscription_id", self.config.subscription_id, 'str')
+            'subscriptionId': self._serialize.url("self._config.subscription_id", self._config.subscription_id, 'str')
         }
-        url = self._client.format_url(url, **path_format_arguments)
+        url = self.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}
@@ -447,20 +440,22 @@ class StorageAccountsOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.post(url, query_parameters, header_parameters)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
-            exp = CloudError(response)
-            exp.request_id = response.headers.get('x-ms-request-id')
+            error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
+            exp = ClientRequestError(response=response)
             raise exp
 
         deserialized = None
@@ -475,29 +470,26 @@ class StorageAccountsOperations:
     list_keys.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/listKeys'}
 
     def list(
-            self, *, custom_headers=None, raw=False, **operation_config):
+            self, *, raw=False, **kwargs):
         """Lists all the storage accounts available under the subscription. Note
         that storage keys are not returned; use the ListKeys operation for
         this.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: An iterator like instance of StorageAccount
         :rtype:
          ~storage.models.StorageAccountPaged[~storage.models.StorageAccount]
-        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
+        :raises: :class:`ClientRequestError<azure.core.ClientRequestError>`
         """
         def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
                 url = self.list.metadata['url']
                 path_format_arguments = {
-                    'subscriptionId': self._serialize.url("self.config.subscription_id", self.config.subscription_id, 'str')
+                    'subscriptionId': self._serialize.url("self._config.subscription_id", self._config.subscription_id, 'str')
                 }
-                url = self._client.format_url(url, **path_format_arguments)
+                url = self.format_url(url, **path_format_arguments)
 
                 # Construct parameters
                 query_parameters = {}
@@ -510,25 +502,27 @@ class StorageAccountsOperations:
             # Construct headers
             header_parameters = {}
             header_parameters['Accept'] = 'application/json'
-            if self.config.generate_client_request_id:
+            if self._config.generate_client_request_id:
                 header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-            if custom_headers:
-                header_parameters.update(custom_headers)
-            if self.config.accept_language is not None:
-                header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+            headers = kwargs.get('headers')
+            if headers:
+                header_parameters.update(headers)
+            if self._config.accept_language is not None:
+                header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
             # Construct and send request
-            request = self._client.get(url, query_parameters, header_parameters)
+            request = self.get(url, query_parameters, header_parameters)
             return request
 
         def internal_paging(next_link=None):
             request = prepare_request(next_link)
 
-            response = self._client.send(request, stream=False, **operation_config)
+            pipeline_response = self.pipeline.run(request)
+            response = pipeline_response.http_response.internal_response
 
             if response.status_code not in [200]:
-                exp = CloudError(response)
-                exp.request_id = response.headers.get('x-ms-request-id')
+                error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
+                exp = ClientRequestError(response=response)
                 raise exp
 
             return response
@@ -536,11 +530,12 @@ class StorageAccountsOperations:
         async def internal_paging_async(next_link=None):
             request = prepare_request(next_link)
 
-            response = await self._client.async_send(request, stream=False, **operation_config)
+            pipeline_response = await self.pipeline.run(request)
+            response = pipeline_response.http_response.internal_response
 
             if response.status_code not in [200]:
-                exp = CloudError(response)
-                exp.request_id = response.headers.get('x-ms-request-id')
+                error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
+                exp = ClientRequestError(response=response)
                 raise exp
 
             return response
@@ -556,7 +551,7 @@ class StorageAccountsOperations:
     list.metadata = {'url': '/subscriptions/{subscriptionId}/providers/Microsoft.Storage/storageAccounts'}
 
     def list_by_resource_group(
-            self, resource_group_name, *, custom_headers=None, raw=False, **operation_config):
+            self, resource_group_name, *, raw=False, **kwargs):
         """Lists all the storage accounts available under the given resource
         group. Note that storage keys are not returned; use the ListKeys
         operation for this.
@@ -564,15 +559,12 @@ class StorageAccountsOperations:
         :param resource_group_name: The name of the resource group within the
          user’s subscription.
         :type resource_group_name: str
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: An iterator like instance of StorageAccount
         :rtype:
          ~storage.models.StorageAccountPaged[~storage.models.StorageAccount]
-        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
+        :raises: :class:`ClientRequestError<azure.core.ClientRequestError>`
         """
         def prepare_request(next_link=None):
             if not next_link:
@@ -580,9 +572,9 @@ class StorageAccountsOperations:
                 url = self.list_by_resource_group.metadata['url']
                 path_format_arguments = {
                     'resourceGroupName': self._serialize.url("resource_group_name", resource_group_name, 'str'),
-                    'subscriptionId': self._serialize.url("self.config.subscription_id", self.config.subscription_id, 'str')
+                    'subscriptionId': self._serialize.url("self._config.subscription_id", self._config.subscription_id, 'str')
                 }
-                url = self._client.format_url(url, **path_format_arguments)
+                url = self.format_url(url, **path_format_arguments)
 
                 # Construct parameters
                 query_parameters = {}
@@ -595,25 +587,27 @@ class StorageAccountsOperations:
             # Construct headers
             header_parameters = {}
             header_parameters['Accept'] = 'application/json'
-            if self.config.generate_client_request_id:
+            if self._config.generate_client_request_id:
                 header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-            if custom_headers:
-                header_parameters.update(custom_headers)
-            if self.config.accept_language is not None:
-                header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+            headers = kwargs.get('headers')
+            if headers:
+                header_parameters.update(headers)
+            if self._config.accept_language is not None:
+                header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
             # Construct and send request
-            request = self._client.get(url, query_parameters, header_parameters)
+            request = self.get(url, query_parameters, header_parameters)
             return request
 
         def internal_paging(next_link=None):
             request = prepare_request(next_link)
 
-            response = self._client.send(request, stream=False, **operation_config)
+            pipeline_response = self.pipeline.run(request)
+            response = pipeline_response.http_response.internal_response
 
             if response.status_code not in [200]:
-                exp = CloudError(response)
-                exp.request_id = response.headers.get('x-ms-request-id')
+                error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
+                exp = ClientRequestError(response=response)
                 raise exp
 
             return response
@@ -621,11 +615,12 @@ class StorageAccountsOperations:
         async def internal_paging_async(next_link=None):
             request = prepare_request(next_link)
 
-            response = await self._client.async_send(request, stream=False, **operation_config)
+            pipeline_response = await self.pipeline.run(request)
+            response = pipeline_response.http_response.internal_response
 
             if response.status_code not in [200]:
-                exp = CloudError(response)
-                exp.request_id = response.headers.get('x-ms-request-id')
+                error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
+                exp = ClientRequestError(response=response)
                 raise exp
 
             return response
@@ -641,7 +636,7 @@ class StorageAccountsOperations:
     list_by_resource_group.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts'}
 
     async def regenerate_key(
-            self, resource_group_name, account_name, key_name=None, *, custom_headers=None, raw=False, **operation_config):
+            self, resource_group_name, account_name, key_name=None, *, raw=False, **kwargs):
         """Regenerates the access keys for the specified storage account.
 
         :param resource_group_name: The name of the resource group within the
@@ -653,15 +648,12 @@ class StorageAccountsOperations:
         :type account_name: str
         :param key_name: Possible values include: 'key1', 'key2'
         :type key_name: str or ~storage.models.KeyName
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: StorageAccountKeys or ClientRawResponse if raw=true
         :rtype: ~storage.models.StorageAccountKeys or
          ~msrest.pipeline.ClientRawResponse
-        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
+        :raises: :class:`ClientRequestError<azure.core.ClientRequestError>`
         """
         regenerate_key1 = models.StorageAccountRegenerateKeyParameters(key_name=key_name)
 
@@ -670,9 +662,9 @@ class StorageAccountsOperations:
         path_format_arguments = {
             'resourceGroupName': self._serialize.url("resource_group_name", resource_group_name, 'str'),
             'accountName': self._serialize.url("account_name", account_name, 'str'),
-            'subscriptionId': self._serialize.url("self.config.subscription_id", self.config.subscription_id, 'str')
+            'subscriptionId': self._serialize.url("self._config.subscription_id", self._config.subscription_id, 'str')
         }
-        url = self._client.format_url(url, **path_format_arguments)
+        url = self.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}
@@ -682,23 +674,25 @@ class StorageAccountsOperations:
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if self.config.generate_client_request_id:
+        if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if custom_headers:
-            header_parameters.update(custom_headers)
-        if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
+        if self._config.accept_language is not None:
+            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct body
         body_content = self._serialize.body(regenerate_key1, 'StorageAccountRegenerateKeyParameters')
 
         # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.post(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
-            exp = CloudError(response)
-            exp.request_id = response.headers.get('x-ms-request-id')
+            error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
+            exp = ClientRequestError(response=response)
             raise exp
 
         deserialized = None

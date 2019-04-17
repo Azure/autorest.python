@@ -36,14 +36,11 @@ class DictionaryOperations(object):
         self.config = config
 
     def get_null(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get null dictionary value.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: dict or ClientRawResponse if raw=true
         :rtype: dict[str, int] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
@@ -57,12 +54,14 @@ class DictionaryOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -79,14 +78,11 @@ class DictionaryOperations(object):
     get_null.metadata = {'url': '/dictionary/null'}
 
     def get_empty(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get empty dictionary value {}.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: dict or ClientRawResponse if raw=true
         :rtype: dict[str, int] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
@@ -100,12 +96,14 @@ class DictionaryOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -122,16 +120,13 @@ class DictionaryOperations(object):
     get_empty.metadata = {'url': '/dictionary/empty'}
 
     def put_empty(
-            self, array_body, custom_headers=None, raw=False, **operation_config):
+            self, array_body, raw=False, **kwargs):
         """Set dictionary value empty {}.
 
         :param array_body:
         :type array_body: dict[str, str]
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
@@ -145,15 +140,17 @@ class DictionaryOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(array_body, '{str}')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -164,14 +161,11 @@ class DictionaryOperations(object):
     put_empty.metadata = {'url': '/dictionary/empty'}
 
     def get_null_value(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get Dictionary with null value.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: dict or ClientRawResponse if raw=true
         :rtype: dict[str, str] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
@@ -185,12 +179,14 @@ class DictionaryOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -207,14 +203,11 @@ class DictionaryOperations(object):
     get_null_value.metadata = {'url': '/dictionary/nullvalue'}
 
     def get_null_key(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get Dictionary with null key.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: dict or ClientRawResponse if raw=true
         :rtype: dict[str, str] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
@@ -228,12 +221,14 @@ class DictionaryOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -250,14 +245,11 @@ class DictionaryOperations(object):
     get_null_key.metadata = {'url': '/dictionary/nullkey'}
 
     def get_empty_string_key(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get Dictionary with key as empty string.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: dict or ClientRawResponse if raw=true
         :rtype: dict[str, str] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
@@ -271,12 +263,14 @@ class DictionaryOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -293,14 +287,11 @@ class DictionaryOperations(object):
     get_empty_string_key.metadata = {'url': '/dictionary/keyemptystring'}
 
     def get_invalid(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get invalid Dictionary value.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: dict or ClientRawResponse if raw=true
         :rtype: dict[str, str] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
@@ -314,12 +305,14 @@ class DictionaryOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -336,15 +329,12 @@ class DictionaryOperations(object):
     get_invalid.metadata = {'url': '/dictionary/invalid'}
 
     def get_boolean_tfft(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get boolean dictionary value {"0": true, "1": false, "2": false, "3":
         true }.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: dict or ClientRawResponse if raw=true
         :rtype: dict[str, bool] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
@@ -358,12 +348,14 @@ class DictionaryOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -380,17 +372,14 @@ class DictionaryOperations(object):
     get_boolean_tfft.metadata = {'url': '/dictionary/prim/boolean/tfft'}
 
     def put_boolean_tfft(
-            self, array_body, custom_headers=None, raw=False, **operation_config):
+            self, array_body, raw=False, **kwargs):
         """Set dictionary value empty {"0": true, "1": false, "2": false, "3":
         true }.
 
         :param array_body:
         :type array_body: dict[str, bool]
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
@@ -404,15 +393,17 @@ class DictionaryOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(array_body, '{bool}')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -423,14 +414,11 @@ class DictionaryOperations(object):
     put_boolean_tfft.metadata = {'url': '/dictionary/prim/boolean/tfft'}
 
     def get_boolean_invalid_null(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get boolean dictionary value {"0": true, "1": null, "2": false }.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: dict or ClientRawResponse if raw=true
         :rtype: dict[str, bool] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
@@ -444,12 +432,14 @@ class DictionaryOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -466,14 +456,11 @@ class DictionaryOperations(object):
     get_boolean_invalid_null.metadata = {'url': '/dictionary/prim/boolean/true.null.false'}
 
     def get_boolean_invalid_string(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get boolean dictionary value '{"0": true, "1": "boolean", "2": false}'.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: dict or ClientRawResponse if raw=true
         :rtype: dict[str, bool] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
@@ -487,12 +474,14 @@ class DictionaryOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -509,14 +498,11 @@ class DictionaryOperations(object):
     get_boolean_invalid_string.metadata = {'url': '/dictionary/prim/boolean/true.boolean.false'}
 
     def get_integer_valid(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get integer dictionary value {"0": 1, "1": -1, "2": 3, "3": 300}.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: dict or ClientRawResponse if raw=true
         :rtype: dict[str, int] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
@@ -530,12 +516,14 @@ class DictionaryOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -552,16 +540,13 @@ class DictionaryOperations(object):
     get_integer_valid.metadata = {'url': '/dictionary/prim/integer/1.-1.3.300'}
 
     def put_integer_valid(
-            self, array_body, custom_headers=None, raw=False, **operation_config):
+            self, array_body, raw=False, **kwargs):
         """Set dictionary value empty {"0": 1, "1": -1, "2": 3, "3": 300}.
 
         :param array_body:
         :type array_body: dict[str, int]
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
@@ -575,15 +560,17 @@ class DictionaryOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(array_body, '{int}')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -594,14 +581,11 @@ class DictionaryOperations(object):
     put_integer_valid.metadata = {'url': '/dictionary/prim/integer/1.-1.3.300'}
 
     def get_int_invalid_null(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get integer dictionary value {"0": 1, "1": null, "2": 0}.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: dict or ClientRawResponse if raw=true
         :rtype: dict[str, int] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
@@ -615,12 +599,14 @@ class DictionaryOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -637,14 +623,11 @@ class DictionaryOperations(object):
     get_int_invalid_null.metadata = {'url': '/dictionary/prim/integer/1.null.zero'}
 
     def get_int_invalid_string(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get integer dictionary value {"0": 1, "1": "integer", "2": 0}.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: dict or ClientRawResponse if raw=true
         :rtype: dict[str, int] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
@@ -658,12 +641,14 @@ class DictionaryOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -680,14 +665,11 @@ class DictionaryOperations(object):
     get_int_invalid_string.metadata = {'url': '/dictionary/prim/integer/1.integer.0'}
 
     def get_long_valid(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get integer dictionary value {"0": 1, "1": -1, "2": 3, "3": 300}.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: dict or ClientRawResponse if raw=true
         :rtype: dict[str, long] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
@@ -701,12 +683,14 @@ class DictionaryOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -723,16 +707,13 @@ class DictionaryOperations(object):
     get_long_valid.metadata = {'url': '/dictionary/prim/long/1.-1.3.300'}
 
     def put_long_valid(
-            self, array_body, custom_headers=None, raw=False, **operation_config):
+            self, array_body, raw=False, **kwargs):
         """Set dictionary value empty {"0": 1, "1": -1, "2": 3, "3": 300}.
 
         :param array_body:
         :type array_body: dict[str, long]
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
@@ -746,15 +727,17 @@ class DictionaryOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(array_body, '{long}')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -765,14 +748,11 @@ class DictionaryOperations(object):
     put_long_valid.metadata = {'url': '/dictionary/prim/long/1.-1.3.300'}
 
     def get_long_invalid_null(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get long dictionary value {"0": 1, "1": null, "2": 0}.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: dict or ClientRawResponse if raw=true
         :rtype: dict[str, long] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
@@ -786,12 +766,14 @@ class DictionaryOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -808,14 +790,11 @@ class DictionaryOperations(object):
     get_long_invalid_null.metadata = {'url': '/dictionary/prim/long/1.null.zero'}
 
     def get_long_invalid_string(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get long dictionary value {"0": 1, "1": "integer", "2": 0}.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: dict or ClientRawResponse if raw=true
         :rtype: dict[str, long] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
@@ -829,12 +808,14 @@ class DictionaryOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -851,14 +832,11 @@ class DictionaryOperations(object):
     get_long_invalid_string.metadata = {'url': '/dictionary/prim/long/1.integer.0'}
 
     def get_float_valid(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get float dictionary value {"0": 0, "1": -0.01, "2": 1.2e20}.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: dict or ClientRawResponse if raw=true
         :rtype: dict[str, float] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
@@ -872,12 +850,14 @@ class DictionaryOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -894,16 +874,13 @@ class DictionaryOperations(object):
     get_float_valid.metadata = {'url': '/dictionary/prim/float/0--0.01-1.2e20'}
 
     def put_float_valid(
-            self, array_body, custom_headers=None, raw=False, **operation_config):
+            self, array_body, raw=False, **kwargs):
         """Set dictionary value {"0": 0, "1": -0.01, "2": 1.2e20}.
 
         :param array_body:
         :type array_body: dict[str, float]
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
@@ -917,15 +894,17 @@ class DictionaryOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(array_body, '{float}')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -936,14 +915,11 @@ class DictionaryOperations(object):
     put_float_valid.metadata = {'url': '/dictionary/prim/float/0--0.01-1.2e20'}
 
     def get_float_invalid_null(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get float dictionary value {"0": 0.0, "1": null, "2": 1.2e20}.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: dict or ClientRawResponse if raw=true
         :rtype: dict[str, float] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
@@ -957,12 +933,14 @@ class DictionaryOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -979,14 +957,11 @@ class DictionaryOperations(object):
     get_float_invalid_null.metadata = {'url': '/dictionary/prim/float/0.0-null-1.2e20'}
 
     def get_float_invalid_string(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get boolean dictionary value {"0": 1.0, "1": "number", "2": 0.0}.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: dict or ClientRawResponse if raw=true
         :rtype: dict[str, float] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
@@ -1000,12 +975,14 @@ class DictionaryOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -1022,14 +999,11 @@ class DictionaryOperations(object):
     get_float_invalid_string.metadata = {'url': '/dictionary/prim/float/1.number.0'}
 
     def get_double_valid(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get float dictionary value {"0": 0, "1": -0.01, "2": 1.2e20}.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: dict or ClientRawResponse if raw=true
         :rtype: dict[str, float] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
@@ -1043,12 +1017,14 @@ class DictionaryOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -1065,16 +1041,13 @@ class DictionaryOperations(object):
     get_double_valid.metadata = {'url': '/dictionary/prim/double/0--0.01-1.2e20'}
 
     def put_double_valid(
-            self, array_body, custom_headers=None, raw=False, **operation_config):
+            self, array_body, raw=False, **kwargs):
         """Set dictionary value {"0": 0, "1": -0.01, "2": 1.2e20}.
 
         :param array_body:
         :type array_body: dict[str, float]
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
@@ -1088,15 +1061,17 @@ class DictionaryOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(array_body, '{float}')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -1107,14 +1082,11 @@ class DictionaryOperations(object):
     put_double_valid.metadata = {'url': '/dictionary/prim/double/0--0.01-1.2e20'}
 
     def get_double_invalid_null(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get float dictionary value {"0": 0.0, "1": null, "2": 1.2e20}.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: dict or ClientRawResponse if raw=true
         :rtype: dict[str, float] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
@@ -1128,12 +1100,14 @@ class DictionaryOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -1150,14 +1124,11 @@ class DictionaryOperations(object):
     get_double_invalid_null.metadata = {'url': '/dictionary/prim/double/0.0-null-1.2e20'}
 
     def get_double_invalid_string(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get boolean dictionary value {"0": 1.0, "1": "number", "2": 0.0}.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: dict or ClientRawResponse if raw=true
         :rtype: dict[str, float] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
@@ -1171,12 +1142,14 @@ class DictionaryOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -1193,14 +1166,11 @@ class DictionaryOperations(object):
     get_double_invalid_string.metadata = {'url': '/dictionary/prim/double/1.number.0'}
 
     def get_string_valid(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get string dictionary value {"0": "foo1", "1": "foo2", "2": "foo3"}.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: dict or ClientRawResponse if raw=true
         :rtype: dict[str, str] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
@@ -1214,12 +1184,14 @@ class DictionaryOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -1236,16 +1208,13 @@ class DictionaryOperations(object):
     get_string_valid.metadata = {'url': '/dictionary/prim/string/foo1.foo2.foo3'}
 
     def put_string_valid(
-            self, array_body, custom_headers=None, raw=False, **operation_config):
+            self, array_body, raw=False, **kwargs):
         """Set dictionary value {"0": "foo1", "1": "foo2", "2": "foo3"}.
 
         :param array_body:
         :type array_body: dict[str, str]
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
@@ -1259,15 +1228,17 @@ class DictionaryOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(array_body, '{str}')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -1278,14 +1249,11 @@ class DictionaryOperations(object):
     put_string_valid.metadata = {'url': '/dictionary/prim/string/foo1.foo2.foo3'}
 
     def get_string_with_null(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get string dictionary value {"0": "foo", "1": null, "2": "foo2"}.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: dict or ClientRawResponse if raw=true
         :rtype: dict[str, str] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
@@ -1299,12 +1267,14 @@ class DictionaryOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -1321,14 +1291,11 @@ class DictionaryOperations(object):
     get_string_with_null.metadata = {'url': '/dictionary/prim/string/foo.null.foo2'}
 
     def get_string_with_invalid(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get string dictionary value {"0": "foo", "1": 123, "2": "foo2"}.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: dict or ClientRawResponse if raw=true
         :rtype: dict[str, str] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
@@ -1342,12 +1309,14 @@ class DictionaryOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -1364,15 +1333,12 @@ class DictionaryOperations(object):
     get_string_with_invalid.metadata = {'url': '/dictionary/prim/string/foo.123.foo2'}
 
     def get_date_valid(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get integer dictionary value {"0": "2000-12-01", "1": "1980-01-02",
         "2": "1492-10-12"}.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: dict or ClientRawResponse if raw=true
         :rtype: dict[str, date] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
@@ -1386,12 +1352,14 @@ class DictionaryOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -1408,17 +1376,14 @@ class DictionaryOperations(object):
     get_date_valid.metadata = {'url': '/dictionary/prim/date/valid'}
 
     def put_date_valid(
-            self, array_body, custom_headers=None, raw=False, **operation_config):
+            self, array_body, raw=False, **kwargs):
         """Set dictionary value  {"0": "2000-12-01", "1": "1980-01-02", "2":
         "1492-10-12"}.
 
         :param array_body:
         :type array_body: dict[str, date]
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
@@ -1432,15 +1397,17 @@ class DictionaryOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(array_body, '{date}')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -1451,15 +1418,12 @@ class DictionaryOperations(object):
     put_date_valid.metadata = {'url': '/dictionary/prim/date/valid'}
 
     def get_date_invalid_null(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get date dictionary value {"0": "2012-01-01", "1": null, "2":
         "1776-07-04"}.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: dict or ClientRawResponse if raw=true
         :rtype: dict[str, date] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
@@ -1473,12 +1437,14 @@ class DictionaryOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -1495,14 +1461,11 @@ class DictionaryOperations(object):
     get_date_invalid_null.metadata = {'url': '/dictionary/prim/date/invalidnull'}
 
     def get_date_invalid_chars(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get date dictionary value {"0": "2011-03-22", "1": "date"}.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: dict or ClientRawResponse if raw=true
         :rtype: dict[str, date] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
@@ -1516,12 +1479,14 @@ class DictionaryOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -1538,15 +1503,12 @@ class DictionaryOperations(object):
     get_date_invalid_chars.metadata = {'url': '/dictionary/prim/date/invalidchars'}
 
     def get_date_time_valid(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get date-time dictionary value {"0": "2000-12-01t00:00:01z", "1":
         "1980-01-02T00:11:35+01:00", "2": "1492-10-12T10:15:01-08:00"}.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: dict or ClientRawResponse if raw=true
         :rtype: dict[str, datetime] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
@@ -1560,12 +1522,14 @@ class DictionaryOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -1582,17 +1546,14 @@ class DictionaryOperations(object):
     get_date_time_valid.metadata = {'url': '/dictionary/prim/date-time/valid'}
 
     def put_date_time_valid(
-            self, array_body, custom_headers=None, raw=False, **operation_config):
+            self, array_body, raw=False, **kwargs):
         """Set dictionary value  {"0": "2000-12-01t00:00:01z", "1":
         "1980-01-02T00:11:35+01:00", "2": "1492-10-12T10:15:01-08:00"}.
 
         :param array_body:
         :type array_body: dict[str, datetime]
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
@@ -1606,15 +1567,17 @@ class DictionaryOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(array_body, '{iso-8601}')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -1625,14 +1588,11 @@ class DictionaryOperations(object):
     put_date_time_valid.metadata = {'url': '/dictionary/prim/date-time/valid'}
 
     def get_date_time_invalid_null(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get date dictionary value {"0": "2000-12-01t00:00:01z", "1": null}.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: dict or ClientRawResponse if raw=true
         :rtype: dict[str, datetime] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
@@ -1646,12 +1606,14 @@ class DictionaryOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -1668,15 +1630,12 @@ class DictionaryOperations(object):
     get_date_time_invalid_null.metadata = {'url': '/dictionary/prim/date-time/invalidnull'}
 
     def get_date_time_invalid_chars(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get date dictionary value {"0": "2000-12-01t00:00:01z", "1":
         "date-time"}.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: dict or ClientRawResponse if raw=true
         :rtype: dict[str, datetime] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
@@ -1690,12 +1649,14 @@ class DictionaryOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -1712,16 +1673,13 @@ class DictionaryOperations(object):
     get_date_time_invalid_chars.metadata = {'url': '/dictionary/prim/date-time/invalidchars'}
 
     def get_date_time_rfc1123_valid(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get date-time-rfc1123 dictionary value {"0": "Fri, 01 Dec 2000 00:00:01
         GMT", "1": "Wed, 02 Jan 1980 00:11:35 GMT", "2": "Wed, 12 Oct 1492
         10:15:01 GMT"}.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: dict or ClientRawResponse if raw=true
         :rtype: dict[str, datetime] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
@@ -1735,12 +1693,14 @@ class DictionaryOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -1757,17 +1717,14 @@ class DictionaryOperations(object):
     get_date_time_rfc1123_valid.metadata = {'url': '/dictionary/prim/date-time-rfc1123/valid'}
 
     def put_date_time_rfc1123_valid(
-            self, array_body, custom_headers=None, raw=False, **operation_config):
+            self, array_body, raw=False, **kwargs):
         """Set dictionary value empty {"0": "Fri, 01 Dec 2000 00:00:01 GMT", "1":
         "Wed, 02 Jan 1980 00:11:35 GMT", "2": "Wed, 12 Oct 1492 10:15:01 GMT"}.
 
         :param array_body:
         :type array_body: dict[str, datetime]
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
@@ -1781,15 +1738,17 @@ class DictionaryOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(array_body, '{rfc-1123}')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -1800,15 +1759,12 @@ class DictionaryOperations(object):
     put_date_time_rfc1123_valid.metadata = {'url': '/dictionary/prim/date-time-rfc1123/valid'}
 
     def get_duration_valid(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get duration dictionary value {"0": "P123DT22H14M12.011S", "1":
         "P5DT1H0M0S"}.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: dict or ClientRawResponse if raw=true
         :rtype: dict[str, timedelta] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
@@ -1822,12 +1778,14 @@ class DictionaryOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -1844,16 +1802,13 @@ class DictionaryOperations(object):
     get_duration_valid.metadata = {'url': '/dictionary/prim/duration/valid'}
 
     def put_duration_valid(
-            self, array_body, custom_headers=None, raw=False, **operation_config):
+            self, array_body, raw=False, **kwargs):
         """Set dictionary value  {"0": "P123DT22H14M12.011S", "1": "P5DT1H0M0S"}.
 
         :param array_body:
         :type array_body: dict[str, timedelta]
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
@@ -1867,15 +1822,17 @@ class DictionaryOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(array_body, '{duration}')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -1886,15 +1843,12 @@ class DictionaryOperations(object):
     put_duration_valid.metadata = {'url': '/dictionary/prim/duration/valid'}
 
     def get_byte_valid(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get byte dictionary value {"0": hex(FF FF FF FA), "1": hex(01 02 03),
         "2": hex (25, 29, 43)} with each item encoded in base64.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: dict or ClientRawResponse if raw=true
         :rtype: dict[str, bytearray] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
@@ -1908,12 +1862,14 @@ class DictionaryOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -1930,17 +1886,14 @@ class DictionaryOperations(object):
     get_byte_valid.metadata = {'url': '/dictionary/prim/byte/valid'}
 
     def put_byte_valid(
-            self, array_body, custom_headers=None, raw=False, **operation_config):
+            self, array_body, raw=False, **kwargs):
         """Put the dictionary value {"0": hex(FF FF FF FA), "1": hex(01 02 03),
         "2": hex (25, 29, 43)} with each elementencoded in base 64.
 
         :param array_body:
         :type array_body: dict[str, bytearray]
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
@@ -1954,15 +1907,17 @@ class DictionaryOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(array_body, '{bytearray}')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -1973,15 +1928,12 @@ class DictionaryOperations(object):
     put_byte_valid.metadata = {'url': '/dictionary/prim/byte/valid'}
 
     def get_byte_invalid_null(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get byte dictionary value {"0": hex(FF FF FF FA), "1": null} with the
         first item base64 encoded.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: dict or ClientRawResponse if raw=true
         :rtype: dict[str, bytearray] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
@@ -1995,12 +1947,14 @@ class DictionaryOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -2017,15 +1971,12 @@ class DictionaryOperations(object):
     get_byte_invalid_null.metadata = {'url': '/dictionary/prim/byte/invalidnull'}
 
     def get_base64_url(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get base64url dictionary value {"0": "a string that gets encoded with
         base64url", "1": "test string", "2": "Lorem ipsum"}.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: dict or ClientRawResponse if raw=true
         :rtype: dict[str, bytes] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
@@ -2039,12 +1990,14 @@ class DictionaryOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -2061,14 +2014,11 @@ class DictionaryOperations(object):
     get_base64_url.metadata = {'url': '/dictionary/prim/base64url/valid'}
 
     def get_complex_null(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get dictionary of complex type null value.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: dict or ClientRawResponse if raw=true
         :rtype: dict[str, ~bodydictionary.models.Widget] or
          ~msrest.pipeline.ClientRawResponse
@@ -2083,12 +2033,14 @@ class DictionaryOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -2105,14 +2057,11 @@ class DictionaryOperations(object):
     get_complex_null.metadata = {'url': '/dictionary/complex/null'}
 
     def get_complex_empty(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get empty dictionary of complex type {}.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: dict or ClientRawResponse if raw=true
         :rtype: dict[str, ~bodydictionary.models.Widget] or
          ~msrest.pipeline.ClientRawResponse
@@ -2127,12 +2076,14 @@ class DictionaryOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -2149,15 +2100,12 @@ class DictionaryOperations(object):
     get_complex_empty.metadata = {'url': '/dictionary/complex/empty'}
 
     def get_complex_item_null(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get dictionary of complex type with null item {"0": {"integer": 1,
         "string": "2"}, "1": null, "2": {"integer": 5, "string": "6"}}.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: dict or ClientRawResponse if raw=true
         :rtype: dict[str, ~bodydictionary.models.Widget] or
          ~msrest.pipeline.ClientRawResponse
@@ -2172,12 +2120,14 @@ class DictionaryOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -2194,15 +2144,12 @@ class DictionaryOperations(object):
     get_complex_item_null.metadata = {'url': '/dictionary/complex/itemnull'}
 
     def get_complex_item_empty(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get dictionary of complex type with empty item {"0": {"integer": 1,
         "string": "2"}, "1:" {}, "2": {"integer": 5, "string": "6"}}.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: dict or ClientRawResponse if raw=true
         :rtype: dict[str, ~bodydictionary.models.Widget] or
          ~msrest.pipeline.ClientRawResponse
@@ -2217,12 +2164,14 @@ class DictionaryOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -2239,16 +2188,13 @@ class DictionaryOperations(object):
     get_complex_item_empty.metadata = {'url': '/dictionary/complex/itemempty'}
 
     def get_complex_valid(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get dictionary of complex type with {"0": {"integer": 1, "string":
         "2"}, "1": {"integer": 3, "string": "4"}, "2": {"integer": 5, "string":
         "6"}}.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: dict or ClientRawResponse if raw=true
         :rtype: dict[str, ~bodydictionary.models.Widget] or
          ~msrest.pipeline.ClientRawResponse
@@ -2263,12 +2209,14 @@ class DictionaryOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -2285,18 +2233,15 @@ class DictionaryOperations(object):
     get_complex_valid.metadata = {'url': '/dictionary/complex/valid'}
 
     def put_complex_valid(
-            self, array_body, custom_headers=None, raw=False, **operation_config):
+            self, array_body, raw=False, **kwargs):
         """Put an dictionary of complex type with values {"0": {"integer": 1,
         "string": "2"}, "1": {"integer": 3, "string": "4"}, "2": {"integer": 5,
         "string": "6"}}.
 
         :param array_body:
         :type array_body: dict[str, ~bodydictionary.models.Widget]
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
@@ -2310,15 +2255,17 @@ class DictionaryOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(array_body, '{Widget}')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -2329,14 +2276,11 @@ class DictionaryOperations(object):
     put_complex_valid.metadata = {'url': '/dictionary/complex/valid'}
 
     def get_array_null(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get a null array.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: dict or ClientRawResponse if raw=true
         :rtype: dict[str, list[str]] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
@@ -2350,12 +2294,14 @@ class DictionaryOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -2372,14 +2318,11 @@ class DictionaryOperations(object):
     get_array_null.metadata = {'url': '/dictionary/array/null'}
 
     def get_array_empty(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get an empty dictionary {}.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: dict or ClientRawResponse if raw=true
         :rtype: dict[str, list[str]] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
@@ -2393,12 +2336,14 @@ class DictionaryOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -2415,15 +2360,12 @@ class DictionaryOperations(object):
     get_array_empty.metadata = {'url': '/dictionary/array/empty'}
 
     def get_array_item_null(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get an dictionary of array of strings {"0": ["1", "2", "3"], "1": null,
         "2": ["7", "8", "9"]}.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: dict or ClientRawResponse if raw=true
         :rtype: dict[str, list[str]] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
@@ -2437,12 +2379,14 @@ class DictionaryOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -2459,15 +2403,12 @@ class DictionaryOperations(object):
     get_array_item_null.metadata = {'url': '/dictionary/array/itemnull'}
 
     def get_array_item_empty(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get an array of array of strings [{"0": ["1", "2", "3"], "1": [], "2":
         ["7", "8", "9"]}.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: dict or ClientRawResponse if raw=true
         :rtype: dict[str, list[str]] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
@@ -2481,12 +2422,14 @@ class DictionaryOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -2503,15 +2446,12 @@ class DictionaryOperations(object):
     get_array_item_empty.metadata = {'url': '/dictionary/array/itemempty'}
 
     def get_array_valid(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get an array of array of strings {"0": ["1", "2", "3"], "1": ["4", "5",
         "6"], "2": ["7", "8", "9"]}.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: dict or ClientRawResponse if raw=true
         :rtype: dict[str, list[str]] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
@@ -2525,12 +2465,14 @@ class DictionaryOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -2547,17 +2489,14 @@ class DictionaryOperations(object):
     get_array_valid.metadata = {'url': '/dictionary/array/valid'}
 
     def put_array_valid(
-            self, array_body, custom_headers=None, raw=False, **operation_config):
+            self, array_body, raw=False, **kwargs):
         """Put An array of array of strings {"0": ["1", "2", "3"], "1": ["4", "5",
         "6"], "2": ["7", "8", "9"]}.
 
         :param array_body:
         :type array_body: dict[str, list[str]]
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
@@ -2571,15 +2510,17 @@ class DictionaryOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(array_body, '{[str]}')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -2590,14 +2531,11 @@ class DictionaryOperations(object):
     put_array_valid.metadata = {'url': '/dictionary/array/valid'}
 
     def get_dictionary_null(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get an dictionaries of dictionaries with value null.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: dict or ClientRawResponse if raw=true
         :rtype: dict[str, dict[str, str]] or
          ~msrest.pipeline.ClientRawResponse
@@ -2612,12 +2550,14 @@ class DictionaryOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -2634,15 +2574,12 @@ class DictionaryOperations(object):
     get_dictionary_null.metadata = {'url': '/dictionary/dictionary/null'}
 
     def get_dictionary_empty(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get an dictionaries of dictionaries of type <string, string> with value
         {}.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: dict or ClientRawResponse if raw=true
         :rtype: dict[str, dict[str, str]] or
          ~msrest.pipeline.ClientRawResponse
@@ -2657,12 +2594,14 @@ class DictionaryOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -2679,16 +2618,13 @@ class DictionaryOperations(object):
     get_dictionary_empty.metadata = {'url': '/dictionary/dictionary/empty'}
 
     def get_dictionary_item_null(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get an dictionaries of dictionaries of type <string, string> with value
         {"0": {"1": "one", "2": "two", "3": "three"}, "1": null, "2": {"7":
         "seven", "8": "eight", "9": "nine"}}.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: dict or ClientRawResponse if raw=true
         :rtype: dict[str, dict[str, str]] or
          ~msrest.pipeline.ClientRawResponse
@@ -2703,12 +2639,14 @@ class DictionaryOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -2725,16 +2663,13 @@ class DictionaryOperations(object):
     get_dictionary_item_null.metadata = {'url': '/dictionary/dictionary/itemnull'}
 
     def get_dictionary_item_empty(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get an dictionaries of dictionaries of type <string, string> with value
         {"0": {"1": "one", "2": "two", "3": "three"}, "1": {}, "2": {"7":
         "seven", "8": "eight", "9": "nine"}}.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: dict or ClientRawResponse if raw=true
         :rtype: dict[str, dict[str, str]] or
          ~msrest.pipeline.ClientRawResponse
@@ -2749,12 +2684,14 @@ class DictionaryOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -2771,16 +2708,13 @@ class DictionaryOperations(object):
     get_dictionary_item_empty.metadata = {'url': '/dictionary/dictionary/itemempty'}
 
     def get_dictionary_valid(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get an dictionaries of dictionaries of type <string, string> with value
         {"0": {"1": "one", "2": "two", "3": "three"}, "1": {"4": "four", "5":
         "five", "6": "six"}, "2": {"7": "seven", "8": "eight", "9": "nine"}}.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: dict or ClientRawResponse if raw=true
         :rtype: dict[str, dict[str, str]] or
          ~msrest.pipeline.ClientRawResponse
@@ -2795,12 +2729,14 @@ class DictionaryOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -2817,18 +2753,15 @@ class DictionaryOperations(object):
     get_dictionary_valid.metadata = {'url': '/dictionary/dictionary/valid'}
 
     def put_dictionary_valid(
-            self, array_body, custom_headers=None, raw=False, **operation_config):
+            self, array_body, raw=False, **kwargs):
         """Get an dictionaries of dictionaries of type <string, string> with value
         {"0": {"1": "one", "2": "two", "3": "three"}, "1": {"4": "four", "5":
         "five", "6": "six"}, "2": {"7": "seven", "8": "eight", "9": "nine"}}.
 
         :param array_body:
         :type array_body: dict[str, dict[str, str]]
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodydictionary.models.ErrorException>`
@@ -2842,15 +2775,17 @@ class DictionaryOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(array_body, '{{str}}')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)

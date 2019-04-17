@@ -42,14 +42,11 @@ class QueriesOperations(object):
         self.date_time_query = "2012-01-01T01:01:01Z"
 
     def get_boolean_true(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get true Boolean value on path.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<url.models.ErrorException>`
@@ -65,12 +62,14 @@ class QueriesOperations(object):
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -81,14 +80,11 @@ class QueriesOperations(object):
     get_boolean_true.metadata = {'url': '/queries/bool/true'}
 
     def get_boolean_false(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get false Boolean value on path.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<url.models.ErrorException>`
@@ -104,12 +100,14 @@ class QueriesOperations(object):
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -120,16 +118,13 @@ class QueriesOperations(object):
     get_boolean_false.metadata = {'url': '/queries/bool/false'}
 
     def get_boolean_null(
-            self, bool_query=None, custom_headers=None, raw=False, **operation_config):
+            self, bool_query=None, raw=False, **kwargs):
         """Get null Boolean value on query (query string should be absent).
 
         :param bool_query: null boolean value
         :type bool_query: bool
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<url.models.ErrorException>`
@@ -144,12 +139,14 @@ class QueriesOperations(object):
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -160,14 +157,11 @@ class QueriesOperations(object):
     get_boolean_null.metadata = {'url': '/queries/bool/null'}
 
     def get_int_one_million(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get '1000000' integer value.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<url.models.ErrorException>`
@@ -183,12 +177,14 @@ class QueriesOperations(object):
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -199,14 +195,11 @@ class QueriesOperations(object):
     get_int_one_million.metadata = {'url': '/queries/int/1000000'}
 
     def get_int_negative_one_million(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get '-1000000' integer value.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<url.models.ErrorException>`
@@ -222,12 +215,14 @@ class QueriesOperations(object):
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -238,16 +233,13 @@ class QueriesOperations(object):
     get_int_negative_one_million.metadata = {'url': '/queries/int/-1000000'}
 
     def get_int_null(
-            self, int_query=None, custom_headers=None, raw=False, **operation_config):
+            self, int_query=None, raw=False, **kwargs):
         """Get null integer value (no query parameter).
 
         :param int_query: null integer value
         :type int_query: int
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<url.models.ErrorException>`
@@ -262,12 +254,14 @@ class QueriesOperations(object):
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -278,14 +272,11 @@ class QueriesOperations(object):
     get_int_null.metadata = {'url': '/queries/int/null'}
 
     def get_ten_billion(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get '10000000000' 64 bit integer value.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<url.models.ErrorException>`
@@ -301,12 +292,14 @@ class QueriesOperations(object):
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -317,14 +310,11 @@ class QueriesOperations(object):
     get_ten_billion.metadata = {'url': '/queries/long/10000000000'}
 
     def get_negative_ten_billion(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get '-10000000000' 64 bit integer value.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<url.models.ErrorException>`
@@ -340,12 +330,14 @@ class QueriesOperations(object):
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -356,16 +348,13 @@ class QueriesOperations(object):
     get_negative_ten_billion.metadata = {'url': '/queries/long/-10000000000'}
 
     def get_long_null(
-            self, long_query=None, custom_headers=None, raw=False, **operation_config):
+            self, long_query=None, raw=False, **kwargs):
         """Get 'null 64 bit integer value (no query param in uri).
 
         :param long_query: null 64 bit integer value
         :type long_query: long
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<url.models.ErrorException>`
@@ -380,12 +369,14 @@ class QueriesOperations(object):
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -396,14 +387,11 @@ class QueriesOperations(object):
     get_long_null.metadata = {'url': '/queries/long/null'}
 
     def float_scientific_positive(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get '1.034E+20' numeric value.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<url.models.ErrorException>`
@@ -419,12 +407,14 @@ class QueriesOperations(object):
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -435,14 +425,11 @@ class QueriesOperations(object):
     float_scientific_positive.metadata = {'url': '/queries/float/1.034E+20'}
 
     def float_scientific_negative(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get '-1.034E-20' numeric value.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<url.models.ErrorException>`
@@ -458,12 +445,14 @@ class QueriesOperations(object):
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -474,16 +463,13 @@ class QueriesOperations(object):
     float_scientific_negative.metadata = {'url': '/queries/float/-1.034E-20'}
 
     def float_null(
-            self, float_query=None, custom_headers=None, raw=False, **operation_config):
+            self, float_query=None, raw=False, **kwargs):
         """Get null numeric value (no query parameter).
 
         :param float_query: null numeric value
         :type float_query: float
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<url.models.ErrorException>`
@@ -498,12 +484,14 @@ class QueriesOperations(object):
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -514,14 +502,11 @@ class QueriesOperations(object):
     float_null.metadata = {'url': '/queries/float/null'}
 
     def double_decimal_positive(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get '9999999.999' numeric value.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<url.models.ErrorException>`
@@ -537,12 +522,14 @@ class QueriesOperations(object):
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -553,14 +540,11 @@ class QueriesOperations(object):
     double_decimal_positive.metadata = {'url': '/queries/double/9999999.999'}
 
     def double_decimal_negative(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get '-9999999.999' numeric value.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<url.models.ErrorException>`
@@ -576,12 +560,14 @@ class QueriesOperations(object):
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -592,16 +578,13 @@ class QueriesOperations(object):
     double_decimal_negative.metadata = {'url': '/queries/double/-9999999.999'}
 
     def double_null(
-            self, double_query=None, custom_headers=None, raw=False, **operation_config):
+            self, double_query=None, raw=False, **kwargs):
         """Get null numeric value (no query parameter).
 
         :param double_query: null numeric value
         :type double_query: float
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<url.models.ErrorException>`
@@ -616,12 +599,14 @@ class QueriesOperations(object):
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -632,14 +617,11 @@ class QueriesOperations(object):
     double_null.metadata = {'url': '/queries/double/null'}
 
     def string_unicode(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<url.models.ErrorException>`
@@ -655,12 +637,14 @@ class QueriesOperations(object):
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -671,14 +655,11 @@ class QueriesOperations(object):
     string_unicode.metadata = {'url': '/queries/string/unicode/'}
 
     def string_url_encoded(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get 'begin!*'();:@ &=+$,/?#[]end.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<url.models.ErrorException>`
@@ -694,12 +675,14 @@ class QueriesOperations(object):
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -710,14 +693,11 @@ class QueriesOperations(object):
     string_url_encoded.metadata = {'url': '/queries/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend'}
 
     def string_empty(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get ''.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<url.models.ErrorException>`
@@ -733,12 +713,14 @@ class QueriesOperations(object):
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -749,16 +731,13 @@ class QueriesOperations(object):
     string_empty.metadata = {'url': '/queries/string/empty'}
 
     def string_null(
-            self, string_query=None, custom_headers=None, raw=False, **operation_config):
+            self, string_query=None, raw=False, **kwargs):
         """Get null (no query parameter in url).
 
         :param string_query: null string value
         :type string_query: str
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<url.models.ErrorException>`
@@ -773,12 +752,14 @@ class QueriesOperations(object):
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -789,17 +770,14 @@ class QueriesOperations(object):
     string_null.metadata = {'url': '/queries/string/null'}
 
     def enum_valid(
-            self, enum_query=None, custom_headers=None, raw=False, **operation_config):
+            self, enum_query=None, raw=False, **kwargs):
         """Get using uri with query parameter 'green color'.
 
         :param enum_query: 'green color' enum value. Possible values include:
          'red color', 'green color', 'blue color'
         :type enum_query: str or ~url.models.UriColor
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<url.models.ErrorException>`
@@ -814,12 +792,14 @@ class QueriesOperations(object):
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -830,17 +810,14 @@ class QueriesOperations(object):
     enum_valid.metadata = {'url': '/queries/enum/green%20color'}
 
     def enum_null(
-            self, enum_query=None, custom_headers=None, raw=False, **operation_config):
+            self, enum_query=None, raw=False, **kwargs):
         """Get null (no query parameter in url).
 
         :param enum_query: null string value. Possible values include: 'red
          color', 'green color', 'blue color'
         :type enum_query: str or ~url.models.UriColor
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<url.models.ErrorException>`
@@ -855,12 +832,14 @@ class QueriesOperations(object):
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -871,17 +850,14 @@ class QueriesOperations(object):
     enum_null.metadata = {'url': '/queries/enum/null'}
 
     def byte_multi_byte(
-            self, byte_query=None, custom_headers=None, raw=False, **operation_config):
+            self, byte_query=None, raw=False, **kwargs):
         """Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
 
         :param byte_query: '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte
          array
         :type byte_query: bytearray
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<url.models.ErrorException>`
@@ -896,12 +872,14 @@ class QueriesOperations(object):
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -912,14 +890,11 @@ class QueriesOperations(object):
     byte_multi_byte.metadata = {'url': '/queries/byte/multibyte'}
 
     def byte_empty(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get '' as byte array.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<url.models.ErrorException>`
@@ -933,12 +908,14 @@ class QueriesOperations(object):
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -949,16 +926,13 @@ class QueriesOperations(object):
     byte_empty.metadata = {'url': '/queries/byte/empty'}
 
     def byte_null(
-            self, byte_query=None, custom_headers=None, raw=False, **operation_config):
+            self, byte_query=None, raw=False, **kwargs):
         """Get null as byte array (no query parameters in uri).
 
         :param byte_query: null as byte array (no query parameters in uri)
         :type byte_query: bytearray
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<url.models.ErrorException>`
@@ -973,12 +947,14 @@ class QueriesOperations(object):
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -989,14 +965,11 @@ class QueriesOperations(object):
     byte_null.metadata = {'url': '/queries/byte/null'}
 
     def date_valid(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get '2012-01-01' as date.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<url.models.ErrorException>`
@@ -1010,12 +983,14 @@ class QueriesOperations(object):
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -1026,16 +1001,13 @@ class QueriesOperations(object):
     date_valid.metadata = {'url': '/queries/date/2012-01-01'}
 
     def date_null(
-            self, date_query=None, custom_headers=None, raw=False, **operation_config):
+            self, date_query=None, raw=False, **kwargs):
         """Get null as date - this should result in no query parameters in uri.
 
         :param date_query: null as date (no query parameters in uri)
         :type date_query: date
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<url.models.ErrorException>`
@@ -1050,12 +1022,14 @@ class QueriesOperations(object):
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -1066,14 +1040,11 @@ class QueriesOperations(object):
     date_null.metadata = {'url': '/queries/date/null'}
 
     def date_time_valid(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Get '2012-01-01T01:01:01Z' as date-time.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<url.models.ErrorException>`
@@ -1087,12 +1058,14 @@ class QueriesOperations(object):
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -1103,16 +1076,13 @@ class QueriesOperations(object):
     date_time_valid.metadata = {'url': '/queries/datetime/2012-01-01T01%3A01%3A01Z'}
 
     def date_time_null(
-            self, date_time_query=None, custom_headers=None, raw=False, **operation_config):
+            self, date_time_query=None, raw=False, **kwargs):
         """Get null as date-time, should result in no query parameters in uri.
 
         :param date_time_query: null as date-time (no query parameters)
         :type date_time_query: datetime
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<url.models.ErrorException>`
@@ -1127,12 +1097,14 @@ class QueriesOperations(object):
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -1143,18 +1115,15 @@ class QueriesOperations(object):
     date_time_null.metadata = {'url': '/queries/datetime/null'}
 
     def array_string_csv_valid(
-            self, array_query=None, custom_headers=None, raw=False, **operation_config):
+            self, array_query=None, raw=False, **kwargs):
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' ,
         null, ''] using the csv-array format.
 
         :param array_query: an array of string ['ArrayQuery1', 'begin!*'();:@
          &=+$,/?#[]end' , null, ''] using the csv-array format
         :type array_query: list[str]
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<url.models.ErrorException>`
@@ -1169,12 +1138,14 @@ class QueriesOperations(object):
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -1185,16 +1156,13 @@ class QueriesOperations(object):
     array_string_csv_valid.metadata = {'url': '/queries/array/csv/string/valid'}
 
     def array_string_csv_null(
-            self, array_query=None, custom_headers=None, raw=False, **operation_config):
+            self, array_query=None, raw=False, **kwargs):
         """Get a null array of string using the csv-array format.
 
         :param array_query: a null array of string using the csv-array format
         :type array_query: list[str]
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<url.models.ErrorException>`
@@ -1209,12 +1177,14 @@ class QueriesOperations(object):
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -1225,17 +1195,14 @@ class QueriesOperations(object):
     array_string_csv_null.metadata = {'url': '/queries/array/csv/string/null'}
 
     def array_string_csv_empty(
-            self, array_query=None, custom_headers=None, raw=False, **operation_config):
+            self, array_query=None, raw=False, **kwargs):
         """Get an empty array [] of string using the csv-array format.
 
         :param array_query: an empty array [] of string using the csv-array
          format
         :type array_query: list[str]
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<url.models.ErrorException>`
@@ -1250,12 +1217,14 @@ class QueriesOperations(object):
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -1266,18 +1235,15 @@ class QueriesOperations(object):
     array_string_csv_empty.metadata = {'url': '/queries/array/csv/string/empty'}
 
     def array_string_ssv_valid(
-            self, array_query=None, custom_headers=None, raw=False, **operation_config):
+            self, array_query=None, raw=False, **kwargs):
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' ,
         null, ''] using the ssv-array format.
 
         :param array_query: an array of string ['ArrayQuery1', 'begin!*'();:@
          &=+$,/?#[]end' , null, ''] using the ssv-array format
         :type array_query: list[str]
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<url.models.ErrorException>`
@@ -1292,12 +1258,14 @@ class QueriesOperations(object):
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -1308,18 +1276,15 @@ class QueriesOperations(object):
     array_string_ssv_valid.metadata = {'url': '/queries/array/ssv/string/valid'}
 
     def array_string_tsv_valid(
-            self, array_query=None, custom_headers=None, raw=False, **operation_config):
+            self, array_query=None, raw=False, **kwargs):
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' ,
         null, ''] using the tsv-array format.
 
         :param array_query: an array of string ['ArrayQuery1', 'begin!*'();:@
          &=+$,/?#[]end' , null, ''] using the tsv-array format
         :type array_query: list[str]
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<url.models.ErrorException>`
@@ -1334,12 +1299,14 @@ class QueriesOperations(object):
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -1350,18 +1317,15 @@ class QueriesOperations(object):
     array_string_tsv_valid.metadata = {'url': '/queries/array/tsv/string/valid'}
 
     def array_string_pipes_valid(
-            self, array_query=None, custom_headers=None, raw=False, **operation_config):
+            self, array_query=None, raw=False, **kwargs):
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' ,
         null, ''] using the pipes-array format.
 
         :param array_query: an array of string ['ArrayQuery1', 'begin!*'();:@
          &=+$,/?#[]end' , null, ''] using the pipes-array format
         :type array_query: list[str]
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<url.models.ErrorException>`
@@ -1376,12 +1340,14 @@ class QueriesOperations(object):
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)

@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-# from azure.core import AsyncPipelineClient  TODO
+from azure.core import PipelineClient
 from msrest import Serializer, Deserializer
 
 from ._configuration_async import StorageManagementClientConfiguration
@@ -41,7 +41,7 @@ class StorageManagementClient:
             self, credentials, subscription_id, base_url=None, config=None, **kwargs):
 
         self._config = config or StorageManagementClientConfiguration(credentials, subscription_id, **kwargs)
-        self._client = AsyncPipelineClient(base_url=base_url, credentials=credentials, config=self._config, **kwargs)
+        super(StorageManagementClient, self).__init__(base_url=base_url, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '2015-05-01-preview'
@@ -49,6 +49,6 @@ class StorageManagementClient:
         self._deserialize = Deserializer(client_models)
 
         self.storage_accounts = StorageAccountsOperations(
-            self._client, self._config, self._serialize, self._deserialize)
+            self, self._config, self._serialize, self._deserialize)
         self.usage = UsageOperations(
-            self._client, self._config, self._serialize, self._deserialize)
+            self, self._config, self._serialize, self._deserialize)

@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-# from azure.core import PipelineClient  TODO
+from azure.core import PipelineClient
 from msrest import Serializer, Deserializer
 
 from ._configuration import AutoRestParameterizedCustomHostTestClientConfiguration
@@ -34,7 +34,7 @@ class AutoRestParameterizedCustomHostTestClient(object):
     def __init__(self, subscription_id, dns_suffix, config=None, **kwargs):
 
         self._config = config or AutoRestParameterizedCustomHostTestClientConfiguration(subscription_id, dns_suffix, **kwargs)
-        self._client = PipelineClient(base_url=None, credentials=None, config=self._config, **kwargs)
+        super(AutoRestParameterizedCustomHostTestClient, self).__init__(base_url=None, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '1.0.0'
@@ -42,4 +42,4 @@ class AutoRestParameterizedCustomHostTestClient(object):
         self._deserialize = Deserializer(client_models)
 
         self.paths = PathsOperations(
-            self._client, self._config, self._serialize, self._deserialize)
+            self, self._config, self._serialize, self._deserialize)

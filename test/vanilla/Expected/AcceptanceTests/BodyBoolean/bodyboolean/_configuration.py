@@ -29,6 +29,8 @@ class AutoRestBoolTestServiceConfiguration(Configuration):
         self._configure(**kwargs)
 
         self.user_agent_policy.add_user_agent('autorestbooltestservice/{}'.format(VERSION))
+        self.generate_client_request_id = True
+        self.accept_language = None
 
     def _configure(self, **kwargs):
         self.connection = ConnectionConfiguration(**kwargs)

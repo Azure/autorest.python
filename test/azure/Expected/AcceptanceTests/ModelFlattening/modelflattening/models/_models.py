@@ -41,8 +41,8 @@ class BaseProduct(Model):
         self.description = kwargs.get('description', None)
 
 
-class CloudError(Model):
-    """CloudError.
+class ClientRequestError(Model):
+    """ClientRequestError.
     """
 
     _attribute_map = {

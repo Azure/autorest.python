@@ -36,17 +36,14 @@ class QueriesOperations:
         self.config = config
 
     async def array_string_multi_null(
-            self, array_query=None, *, custom_headers=None, raw=False, **operation_config):
+            self, array_query=None, *, raw=False, **kwargs):
         """Get a null array of string using the multi-array format.
 
         :param array_query: a null array of string using the multi-array
          format
         :type array_query: list[str]
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
@@ -62,12 +59,14 @@ class QueriesOperations:
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -78,17 +77,14 @@ class QueriesOperations:
     array_string_multi_null.metadata = {'url': '/queries/array/multi/string/null'}
 
     async def array_string_multi_empty(
-            self, array_query=None, *, custom_headers=None, raw=False, **operation_config):
+            self, array_query=None, *, raw=False, **kwargs):
         """Get an empty array [] of string using the multi-array format.
 
         :param array_query: an empty array [] of string using the multi-array
          format
         :type array_query: list[str]
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
@@ -104,12 +100,14 @@ class QueriesOperations:
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -120,18 +118,15 @@ class QueriesOperations:
     array_string_multi_empty.metadata = {'url': '/queries/array/multi/string/empty'}
 
     async def array_string_multi_valid(
-            self, array_query=None, *, custom_headers=None, raw=False, **operation_config):
+            self, array_query=None, *, raw=False, **kwargs):
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' ,
         null, ''] using the mult-array format.
 
         :param array_query: an array of string ['ArrayQuery1', 'begin!*'();:@
          &=+$,/?#[]end' , null, ''] using the mult-array format
         :type array_query: list[str]
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
@@ -147,12 +142,14 @@ class QueriesOperations:
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)

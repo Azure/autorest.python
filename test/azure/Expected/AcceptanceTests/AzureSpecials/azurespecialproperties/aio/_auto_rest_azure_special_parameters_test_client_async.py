@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-# from azure.core import AsyncPipelineClient  TODO
+from azure.core import PipelineClient
 from msrest import Serializer, Deserializer
 
 from ._configuration_async import AutoRestAzureSpecialParametersTestClientConfiguration
@@ -58,7 +58,7 @@ class AutoRestAzureSpecialParametersTestClient:
             self, credentials, subscription_id, base_url=None, config=None, **kwargs):
 
         self._config = config or AutoRestAzureSpecialParametersTestClientConfiguration(credentials, subscription_id, **kwargs)
-        self._client = AsyncPipelineClient(base_url=base_url, credentials=credentials, config=self._config, **kwargs)
+        super(AutoRestAzureSpecialParametersTestClient, self).__init__(base_url=base_url, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '2015-07-01-preview'
@@ -66,18 +66,18 @@ class AutoRestAzureSpecialParametersTestClient:
         self._deserialize = Deserializer(client_models)
 
         self.xms_client_request_id = XMsClientRequestIdOperations(
-            self._client, self._config, self._serialize, self._deserialize)
+            self, self._config, self._serialize, self._deserialize)
         self.subscription_in_credentials = SubscriptionInCredentialsOperations(
-            self._client, self._config, self._serialize, self._deserialize)
+            self, self._config, self._serialize, self._deserialize)
         self.subscription_in_method = SubscriptionInMethodOperations(
-            self._client, self._config, self._serialize, self._deserialize)
+            self, self._config, self._serialize, self._deserialize)
         self.api_version_default = ApiVersionDefaultOperations(
-            self._client, self._config, self._serialize, self._deserialize)
+            self, self._config, self._serialize, self._deserialize)
         self.api_version_local = ApiVersionLocalOperations(
-            self._client, self._config, self._serialize, self._deserialize)
+            self, self._config, self._serialize, self._deserialize)
         self.skip_url_encoding = SkipUrlEncodingOperations(
-            self._client, self._config, self._serialize, self._deserialize)
+            self, self._config, self._serialize, self._deserialize)
         self.odata = OdataOperations(
-            self._client, self._config, self._serialize, self._deserialize)
+            self, self._config, self._serialize, self._deserialize)
         self.header = HeaderOperations(
-            self._client, self._config, self._serialize, self._deserialize)
+            self, self._config, self._serialize, self._deserialize)

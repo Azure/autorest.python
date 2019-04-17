@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-# from azure.core import PipelineClient  TODO
+from azure.core import PipelineClient
 from msrest import Serializer, Deserializer
 
 from ._configuration import AutoRestLongRunningOperationTestServiceConfiguration
@@ -43,7 +43,7 @@ class AutoRestLongRunningOperationTestService(object):
             self, credentials, base_url=None, config=None, **kwargs):
 
         self._config = config or AutoRestLongRunningOperationTestServiceConfiguration(credentials, **kwargs)
-        self._client = PipelineClient(base_url=base_url, credentials=credentials, config=self._config, **kwargs)
+        super(AutoRestLongRunningOperationTestService, self).__init__(base_url=base_url, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '1.0.0'
@@ -51,10 +51,10 @@ class AutoRestLongRunningOperationTestService(object):
         self._deserialize = Deserializer(client_models)
 
         self.lr_os = LROsOperations(
-            self._client, self._config, self._serialize, self._deserialize)
+            self, self._config, self._serialize, self._deserialize)
         self.lro_retrys = LRORetrysOperations(
-            self._client, self._config, self._serialize, self._deserialize)
+            self, self._config, self._serialize, self._deserialize)
         self.lrosa_ds = LROSADsOperations(
-            self._client, self._config, self._serialize, self._deserialize)
+            self, self._config, self._serialize, self._deserialize)
         self.lr_os_custom_header = LROsCustomHeaderOperations(
-            self._client, self._config, self._serialize, self._deserialize)
+            self, self._config, self._serialize, self._deserialize)

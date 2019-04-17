@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-# from azure.core import PipelineClient  TODO
+from azure.core import PipelineClient
 from msrest import Serializer, Deserializer
 
 from ._configuration import AutoRestUrlTestServiceConfiguration
@@ -41,7 +41,7 @@ class AutoRestUrlTestService(object):
     def __init__(self, global_string_path, global_string_query=None, base_url=None, config=None, **kwargs):
 
         self._config = config or AutoRestUrlTestServiceConfiguration(global_string_path, global_string_query, **kwargs)
-        self._client = PipelineClient(base_url=base_url, credentials=None, config=self._config, **kwargs)
+        super(AutoRestUrlTestService, self).__init__(base_url=base_url, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '1.0.0'
@@ -49,8 +49,8 @@ class AutoRestUrlTestService(object):
         self._deserialize = Deserializer(client_models)
 
         self.paths = PathsOperations(
-            self._client, self._config, self._serialize, self._deserialize)
+            self, self._config, self._serialize, self._deserialize)
         self.queries = QueriesOperations(
-            self._client, self._config, self._serialize, self._deserialize)
+            self, self._config, self._serialize, self._deserialize)
         self.path_items = PathItemsOperations(
-            self._client, self._config, self._serialize, self._deserialize)
+            self, self._config, self._serialize, self._deserialize)

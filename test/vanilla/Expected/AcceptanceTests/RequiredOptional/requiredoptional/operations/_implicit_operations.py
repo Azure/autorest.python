@@ -36,16 +36,13 @@ class ImplicitOperations(object):
         self.config = config
 
     def get_required_path(
-            self, path_parameter, custom_headers=None, raw=False, **operation_config):
+            self, path_parameter, raw=False, **kwargs):
         """Test implicitly required path parameter.
 
         :param path_parameter:
         :type path_parameter: str
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: Error or ClientRawResponse if raw=true
         :rtype: ~requiredoptional.models.Error or
          ~msrest.pipeline.ClientRawResponse
@@ -57,19 +54,21 @@ class ImplicitOperations(object):
         path_format_arguments = {
             'pathParameter': self._serialize.url("path_parameter", path_parameter, 'str')
         }
-        url = self._client.format_url(url, **path_format_arguments)
+        url = self.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
@@ -80,16 +79,13 @@ class ImplicitOperations(object):
     get_required_path.metadata = {'url': '/reqopt/implicit/required/path/{pathParameter}'}
 
     def put_optional_query(
-            self, query_parameter=None, custom_headers=None, raw=False, **operation_config):
+            self, query_parameter=None, raw=False, **kwargs):
         """Test implicitly optional query parameter.
 
         :param query_parameter:
         :type query_parameter: str
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
@@ -105,12 +101,14 @@ class ImplicitOperations(object):
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -121,16 +119,13 @@ class ImplicitOperations(object):
     put_optional_query.metadata = {'url': '/reqopt/implicit/optional/query'}
 
     def put_optional_header(
-            self, query_parameter=None, custom_headers=None, raw=False, **operation_config):
+            self, query_parameter=None, raw=False, **kwargs):
         """Test implicitly optional header parameter.
 
         :param query_parameter:
         :type query_parameter: str
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
@@ -144,14 +139,16 @@ class ImplicitOperations(object):
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
         if query_parameter is not None:
             header_parameters['queryParameter'] = self._serialize.header("query_parameter", query_parameter, 'str')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -162,16 +159,13 @@ class ImplicitOperations(object):
     put_optional_header.metadata = {'url': '/reqopt/implicit/optional/header'}
 
     def put_optional_body(
-            self, body_parameter=None, custom_headers=None, raw=False, **operation_config):
+            self, body_parameter=None, raw=False, **kwargs):
         """Test implicitly optional body parameter.
 
         :param body_parameter:
         :type body_parameter: str
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
@@ -186,8 +180,9 @@ class ImplicitOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         if body_parameter is not None:
@@ -196,8 +191,9 @@ class ImplicitOperations(object):
             body_content = None
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -208,14 +204,11 @@ class ImplicitOperations(object):
     put_optional_body.metadata = {'url': '/reqopt/implicit/optional/body'}
 
     def get_required_global_path(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Test implicitly required path parameter.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: Error or ClientRawResponse if raw=true
         :rtype: ~requiredoptional.models.Error or
          ~msrest.pipeline.ClientRawResponse
@@ -225,21 +218,23 @@ class ImplicitOperations(object):
         # Construct URL
         url = self.get_required_global_path.metadata['url']
         path_format_arguments = {
-            'required-global-path': self._serialize.url("self.config.required_global_path", self.config.required_global_path, 'str')
+            'required-global-path': self._serialize.url("self._config.required_global_path", self._config.required_global_path, 'str')
         }
-        url = self._client.format_url(url, **path_format_arguments)
+        url = self.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
@@ -250,14 +245,11 @@ class ImplicitOperations(object):
     get_required_global_path.metadata = {'url': '/reqopt/global/required/path/{required-global-path}'}
 
     def get_required_global_query(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Test implicitly required query parameter.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: Error or ClientRawResponse if raw=true
         :rtype: ~requiredoptional.models.Error or
          ~msrest.pipeline.ClientRawResponse
@@ -269,16 +261,18 @@ class ImplicitOperations(object):
 
         # Construct parameters
         query_parameters = {}
-        query_parameters['required-global-query'] = self._serialize.query("self.config.required_global_query", self.config.required_global_query, 'str')
+        query_parameters['required-global-query'] = self._serialize.query("self._config.required_global_query", self._config.required_global_query, 'str')
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
@@ -289,14 +283,11 @@ class ImplicitOperations(object):
     get_required_global_query.metadata = {'url': '/reqopt/global/required/query'}
 
     def get_optional_global_query(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Test implicitly optional query parameter.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: Error or ClientRawResponse if raw=true
         :rtype: ~requiredoptional.models.Error or
          ~msrest.pipeline.ClientRawResponse
@@ -308,17 +299,19 @@ class ImplicitOperations(object):
 
         # Construct parameters
         query_parameters = {}
-        if self.config.optional_global_query is not None:
-            query_parameters['optional-global-query'] = self._serialize.query("self.config.optional_global_query", self.config.optional_global_query, 'int')
+        if self._config.optional_global_query is not None:
+            query_parameters['optional-global-query'] = self._serialize.query("self._config.optional_global_query", self._config.optional_global_query, 'int')
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)

@@ -13,6 +13,14 @@ from msrest.serialization import Model
 from msrest.exceptions import HttpOperationError
 
 
+class ClientRequestError(Model):
+    """ClientRequestError.
+    """
+
+    _attribute_map = {
+    }
+
+
 class CloudError(Model):
     """CloudError.
 

@@ -39,6 +39,8 @@ class AutoRestRequiredOptionalTestServiceConfiguration(Configuration):
         self._configure(**kwargs)
 
         self.user_agent_policy.add_user_agent('autorestrequiredoptionaltestservice/{}'.format(VERSION))
+        self.generate_client_request_id = True
+        self.accept_language = None
 
         self.required_global_path = required_global_path
         self.required_global_query = required_global_query

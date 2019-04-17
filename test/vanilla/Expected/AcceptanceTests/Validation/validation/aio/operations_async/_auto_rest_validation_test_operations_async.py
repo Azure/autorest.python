@@ -17,7 +17,7 @@ from ... import models
 class AutoRestValidationTestOperationsMixin:
 
     async def validation_of_method_parameters(
-            self, resource_group_name, id, *, custom_headers=None, raw=False, **operation_config):
+            self, resource_group_name, id, *, raw=False, **kwargs):
         """Validates input parameters on the method. See swagger for details.
 
         :param resource_group_name: Required string between 3 and 10 chars
@@ -25,11 +25,8 @@ class AutoRestValidationTestOperationsMixin:
         :type resource_group_name: str
         :param id: Required int multiple of 10 from 100 to 1000.
         :type id: int
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: Product or ClientRawResponse if raw=true
         :rtype: ~validation.models.Product or
          ~msrest.pipeline.ClientRawResponse
@@ -38,11 +35,11 @@ class AutoRestValidationTestOperationsMixin:
         # Construct URL
         url = self.validation_of_method_parameters.metadata['url']
         path_format_arguments = {
-            'subscriptionId': self._serialize.url("self.config.subscription_id", self.config.subscription_id, 'str'),
+            'subscriptionId': self._serialize.url("self._config.subscription_id", self._config.subscription_id, 'str'),
             'resourceGroupName': self._serialize.url("resource_group_name", resource_group_name, 'str', max_length=10, min_length=3, pattern=r'[a-zA-Z0-9]+'),
             'id': self._serialize.url("id", id, 'int', maximum=1000, minimum=100, multiple=10)
         }
-        url = self._client.format_url(url, **path_format_arguments)
+        url = self.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}
@@ -51,12 +48,14 @@ class AutoRestValidationTestOperationsMixin:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -73,7 +72,7 @@ class AutoRestValidationTestOperationsMixin:
     validation_of_method_parameters.metadata = {'url': '/fakepath/{subscriptionId}/{resourceGroupName}/{id}'}
 
     async def validation_of_body(
-            self, resource_group_name, id, body=None, *, custom_headers=None, raw=False, **operation_config):
+            self, resource_group_name, id, body=None, *, raw=False, **kwargs):
         """Validates body parameters on the method. See swagger for details.
 
         :param resource_group_name: Required string between 3 and 10 chars
@@ -83,11 +82,8 @@ class AutoRestValidationTestOperationsMixin:
         :type id: int
         :param body:
         :type body: ~validation.models.Product
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: Product or ClientRawResponse if raw=true
         :rtype: ~validation.models.Product or
          ~msrest.pipeline.ClientRawResponse
@@ -96,11 +92,11 @@ class AutoRestValidationTestOperationsMixin:
         # Construct URL
         url = self.validation_of_body.metadata['url']
         path_format_arguments = {
-            'subscriptionId': self._serialize.url("self.config.subscription_id", self.config.subscription_id, 'str'),
+            'subscriptionId': self._serialize.url("self._config.subscription_id", self._config.subscription_id, 'str'),
             'resourceGroupName': self._serialize.url("resource_group_name", resource_group_name, 'str', max_length=10, min_length=3, pattern=r'[a-zA-Z0-9]+'),
             'id': self._serialize.url("id", id, 'int', maximum=1000, minimum=100, multiple=10)
         }
-        url = self._client.format_url(url, **path_format_arguments)
+        url = self.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}
@@ -110,8 +106,9 @@ class AutoRestValidationTestOperationsMixin:
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         if body is not None:
@@ -120,8 +117,9 @@ class AutoRestValidationTestOperationsMixin:
             body_content = None
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -138,14 +136,11 @@ class AutoRestValidationTestOperationsMixin:
     validation_of_body.metadata = {'url': '/fakepath/{subscriptionId}/{resourceGroupName}/{id}'}
 
     async def get_with_constant_in_path(
-            self, *, custom_headers=None, raw=False, **operation_config):
+            self, *, raw=False, **kwargs):
         """
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
@@ -158,19 +153,21 @@ class AutoRestValidationTestOperationsMixin:
         path_format_arguments = {
             'constantParam': self._serialize.url("constant_param", constant_param, 'str')
         }
-        url = self._client.format_url(url, **path_format_arguments)
+        url = self.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise HttpOperationError(self._deserialize, response)
@@ -181,16 +178,13 @@ class AutoRestValidationTestOperationsMixin:
     get_with_constant_in_path.metadata = {'url': '/validation/constantsInPath/{constantParam}/value'}
 
     async def post_with_constant_in_body(
-            self, body=None, *, custom_headers=None, raw=False, **operation_config):
+            self, body=None, *, raw=False, **kwargs):
         """
 
         :param body:
         :type body: ~validation.models.Product
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: Product or ClientRawResponse if raw=true
         :rtype: ~validation.models.Product or
          ~msrest.pipeline.ClientRawResponse
@@ -204,7 +198,7 @@ class AutoRestValidationTestOperationsMixin:
         path_format_arguments = {
             'constantParam': self._serialize.url("constant_param", constant_param, 'str')
         }
-        url = self._client.format_url(url, **path_format_arguments)
+        url = self.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}
@@ -213,8 +207,9 @@ class AutoRestValidationTestOperationsMixin:
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         if body is not None:
@@ -223,8 +218,9 @@ class AutoRestValidationTestOperationsMixin:
             body_content = None
 
         # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.post(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise HttpOperationError(self._deserialize, response)

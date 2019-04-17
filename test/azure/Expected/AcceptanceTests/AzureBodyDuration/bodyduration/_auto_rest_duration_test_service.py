@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-# from azure.core import PipelineClient  TODO
+from azure.core import PipelineClient
 from msrest import Serializer, Deserializer
 
 from ._configuration import AutoRestDurationTestServiceConfiguration
@@ -34,7 +34,7 @@ class AutoRestDurationTestService(object):
             self, credentials, base_url=None, config=None, **kwargs):
 
         self._config = config or AutoRestDurationTestServiceConfiguration(credentials, **kwargs)
-        self._client = PipelineClient(base_url=base_url, credentials=credentials, config=self._config, **kwargs)
+        super(AutoRestDurationTestService, self).__init__(base_url=base_url, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '1.0.0'
@@ -42,4 +42,4 @@ class AutoRestDurationTestService(object):
         self._deserialize = Deserializer(client_models)
 
         self.duration = DurationOperations(
-            self._client, self._config, self._serialize, self._deserialize)
+            self, self._config, self._serialize, self._deserialize)

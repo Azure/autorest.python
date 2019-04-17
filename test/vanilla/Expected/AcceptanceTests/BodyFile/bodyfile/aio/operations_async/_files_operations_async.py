@@ -36,10 +36,9 @@ class FilesOperations:
         self.config = config
 
     async def get_file(
-            self, *, custom_headers=None, raw=False, callback=None, **operation_config):
+            self, *, raw=False, callback=None, **kwargs):
         """Get file.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
         :param callback: When specified, will be called with each chunk of
@@ -47,8 +46,6 @@ class FilesOperations:
          bytes of the current chunk of data and the response object. If the
          data is uploading, response will be None.
         :type callback: Callable[Bytes, response=None]
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: object or ClientRawResponse if raw=true
         :rtype: Generator or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyfile.models.ErrorException>`
@@ -62,17 +59,19 @@ class FilesOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=True, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        deserialized = self._client.stream_download_async(response, callback)
+        deserialized = self.stream_download_async(response, callback)
 
         if raw:
             client_raw_response = ClientRawResponse(deserialized, response)
@@ -82,10 +81,9 @@ class FilesOperations:
     get_file.metadata = {'url': '/files/stream/nonempty'}
 
     async def get_file_large(
-            self, *, custom_headers=None, raw=False, callback=None, **operation_config):
+            self, *, raw=False, callback=None, **kwargs):
         """Get a large file.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
         :param callback: When specified, will be called with each chunk of
@@ -93,8 +91,6 @@ class FilesOperations:
          bytes of the current chunk of data and the response object. If the
          data is uploading, response will be None.
         :type callback: Callable[Bytes, response=None]
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: object or ClientRawResponse if raw=true
         :rtype: Generator or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyfile.models.ErrorException>`
@@ -108,17 +104,19 @@ class FilesOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=True, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        deserialized = self._client.stream_download_async(response, callback)
+        deserialized = self.stream_download_async(response, callback)
 
         if raw:
             client_raw_response = ClientRawResponse(deserialized, response)
@@ -128,10 +126,9 @@ class FilesOperations:
     get_file_large.metadata = {'url': '/files/stream/verylarge'}
 
     async def get_empty_file(
-            self, *, custom_headers=None, raw=False, callback=None, **operation_config):
+            self, *, raw=False, callback=None, **kwargs):
         """Get empty file.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
         :param callback: When specified, will be called with each chunk of
@@ -139,8 +136,6 @@ class FilesOperations:
          bytes of the current chunk of data and the response object. If the
          data is uploading, response will be None.
         :type callback: Callable[Bytes, response=None]
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: object or ClientRawResponse if raw=true
         :rtype: Generator or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodyfile.models.ErrorException>`
@@ -154,17 +149,19 @@ class FilesOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=True, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        deserialized = self._client.stream_download_async(response, callback)
+        deserialized = self.stream_download_async(response, callback)
 
         if raw:
             client_raw_response = ClientRawResponse(deserialized, response)

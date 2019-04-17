@@ -37,7 +37,7 @@ class AvailabilitySetsOperations(object):
         self.config = config
 
     def update(
-            self, resource_group_name, avset, tags, custom_headers=None, raw=False, **operation_config):
+            self, resource_group_name, avset, tags, raw=False, **kwargs):
         """Updates the tags for an availability set.
 
         :param resource_group_name: The name of the resource group.
@@ -46,11 +46,8 @@ class AvailabilitySetsOperations(object):
         :type avset: str
         :param tags: A set of tags. A description about the set of tags.
         :type tags: dict[str, str]
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
@@ -64,7 +61,7 @@ class AvailabilitySetsOperations(object):
             'resourceGroupName': self._serialize.url("resource_group_name", resource_group_name, 'str'),
             'availabilitySetName': self._serialize.url("avset", avset, 'str', max_length=80)
         }
-        url = self._client.format_url(url, **path_format_arguments)
+        url = self.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}
@@ -72,15 +69,17 @@ class AvailabilitySetsOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(tags1, 'AvailabilitySetUpdateParameters')
 
         # Construct and send request
-        request = self._client.patch(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.patch(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise HttpOperationError(self._deserialize, response)

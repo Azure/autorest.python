@@ -16,7 +16,7 @@ from ... import models
 class AutoRestReportServiceOperationsMixin:
 
     async def get_report(
-            self, qualifier=None, *, custom_headers=None, raw=False, **operation_config):
+            self, qualifier=None, *, raw=False, **kwargs):
         """Get test coverage report.
 
         :param qualifier: If specified, qualifies the generated report further
@@ -24,11 +24,8 @@ class AutoRestReportServiceOperationsMixin:
          generators that run all tests several times, can distinguish the
          generated reports.
         :type qualifier: str
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: dict or ClientRawResponse if raw=true
         :rtype: dict[str, int] or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<report.models.ErrorException>`
@@ -44,12 +41,14 @@ class AutoRestReportServiceOperationsMixin:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)

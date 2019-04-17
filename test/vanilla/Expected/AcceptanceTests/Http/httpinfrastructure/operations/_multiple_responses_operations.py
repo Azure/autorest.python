@@ -37,14 +37,11 @@ class MultipleResponsesOperations(object):
         self.config = config
 
     def get200_model204_no_model_default_error200_valid(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Send a 200 response with valid payload: {'statusCode': '200'}.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: A or ClientRawResponse if raw=true
         :rtype: ~httpinfrastructure.models.A or
          ~msrest.pipeline.ClientRawResponse
@@ -60,12 +57,14 @@ class MultipleResponsesOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200, 204]:
             raise models.ErrorException(self._deserialize, response)
@@ -82,14 +81,11 @@ class MultipleResponsesOperations(object):
     get200_model204_no_model_default_error200_valid.metadata = {'url': '/http/payloads/200/A/204/none/default/Error/response/200/valid'}
 
     def get200_model204_no_model_default_error204_valid(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Send a 204 response with no payload.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: A or ClientRawResponse if raw=true
         :rtype: ~httpinfrastructure.models.A or
          ~msrest.pipeline.ClientRawResponse
@@ -105,12 +101,14 @@ class MultipleResponsesOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200, 204]:
             raise models.ErrorException(self._deserialize, response)
@@ -127,14 +125,11 @@ class MultipleResponsesOperations(object):
     get200_model204_no_model_default_error204_valid.metadata = {'url': '/http/payloads/200/A/204/none/default/Error/response/204/none'}
 
     def get200_model204_no_model_default_error201_invalid(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Send a 201 response with valid payload: {'statusCode': '201'}.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: A or ClientRawResponse if raw=true
         :rtype: ~httpinfrastructure.models.A or
          ~msrest.pipeline.ClientRawResponse
@@ -150,12 +145,14 @@ class MultipleResponsesOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200, 204]:
             raise models.ErrorException(self._deserialize, response)
@@ -172,14 +169,11 @@ class MultipleResponsesOperations(object):
     get200_model204_no_model_default_error201_invalid.metadata = {'url': '/http/payloads/200/A/204/none/default/Error/response/201/valid'}
 
     def get200_model204_no_model_default_error202_none(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Send a 202 response with no payload:.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: A or ClientRawResponse if raw=true
         :rtype: ~httpinfrastructure.models.A or
          ~msrest.pipeline.ClientRawResponse
@@ -195,12 +189,14 @@ class MultipleResponsesOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200, 204]:
             raise models.ErrorException(self._deserialize, response)
@@ -217,15 +213,12 @@ class MultipleResponsesOperations(object):
     get200_model204_no_model_default_error202_none.metadata = {'url': '/http/payloads/200/A/204/none/default/Error/response/202/none'}
 
     def get200_model204_no_model_default_error400_valid(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Send a 400 response with valid error payload: {'status': 400,
         'message': 'client error'}.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: A or ClientRawResponse if raw=true
         :rtype: ~httpinfrastructure.models.A or
          ~msrest.pipeline.ClientRawResponse
@@ -241,12 +234,14 @@ class MultipleResponsesOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200, 204]:
             raise models.ErrorException(self._deserialize, response)
@@ -263,14 +258,11 @@ class MultipleResponsesOperations(object):
     get200_model204_no_model_default_error400_valid.metadata = {'url': '/http/payloads/200/A/204/none/default/Error/response/400/valid'}
 
     def get200_model201_model_default_error200_valid(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Send a 200 response with valid payload: {'statusCode': '200'}.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: A or ClientRawResponse if raw=true
         :rtype: ~httpinfrastructure.models.A or
          ~msrest.pipeline.ClientRawResponse
@@ -286,12 +278,14 @@ class MultipleResponsesOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200, 201]:
             raise models.ErrorException(self._deserialize, response)
@@ -310,15 +304,12 @@ class MultipleResponsesOperations(object):
     get200_model201_model_default_error200_valid.metadata = {'url': '/http/payloads/200/A/201/B/default/Error/response/200/valid'}
 
     def get200_model201_model_default_error201_valid(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Send a 201 response with valid payload: {'statusCode': '201',
         'textStatusCode': 'Created'}.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: A or ClientRawResponse if raw=true
         :rtype: ~httpinfrastructure.models.A or
          ~msrest.pipeline.ClientRawResponse
@@ -334,12 +325,14 @@ class MultipleResponsesOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200, 201]:
             raise models.ErrorException(self._deserialize, response)
@@ -358,15 +351,12 @@ class MultipleResponsesOperations(object):
     get200_model201_model_default_error201_valid.metadata = {'url': '/http/payloads/200/A/201/B/default/Error/response/201/valid'}
 
     def get200_model201_model_default_error400_valid(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Send a 400 response with valid payload: {'code': '400', 'message':
         'client error'}.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: A or ClientRawResponse if raw=true
         :rtype: ~httpinfrastructure.models.A or
          ~msrest.pipeline.ClientRawResponse
@@ -382,12 +372,14 @@ class MultipleResponsesOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200, 201]:
             raise models.ErrorException(self._deserialize, response)
@@ -406,14 +398,11 @@ class MultipleResponsesOperations(object):
     get200_model201_model_default_error400_valid.metadata = {'url': '/http/payloads/200/A/201/B/default/Error/response/400/valid'}
 
     def get200_model_a201_model_c404_model_ddefault_error200_valid(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Send a 200 response with valid payload: {'statusCode': '200'}.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: object or ClientRawResponse if raw=true
         :rtype: object or ~msrest.pipeline.ClientRawResponse
         :raises:
@@ -428,12 +417,14 @@ class MultipleResponsesOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200, 201, 404]:
             raise models.ErrorException(self._deserialize, response)
@@ -454,14 +445,11 @@ class MultipleResponsesOperations(object):
     get200_model_a201_model_c404_model_ddefault_error200_valid.metadata = {'url': '/http/payloads/200/A/201/C/404/D/default/Error/response/200/valid'}
 
     def get200_model_a201_model_c404_model_ddefault_error201_valid(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Send a 200 response with valid payload: {'httpCode': '201'}.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: object or ClientRawResponse if raw=true
         :rtype: object or ~msrest.pipeline.ClientRawResponse
         :raises:
@@ -476,12 +464,14 @@ class MultipleResponsesOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200, 201, 404]:
             raise models.ErrorException(self._deserialize, response)
@@ -502,14 +492,11 @@ class MultipleResponsesOperations(object):
     get200_model_a201_model_c404_model_ddefault_error201_valid.metadata = {'url': '/http/payloads/200/A/201/C/404/D/default/Error/response/201/valid'}
 
     def get200_model_a201_model_c404_model_ddefault_error404_valid(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Send a 200 response with valid payload: {'httpStatusCode': '404'}.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: object or ClientRawResponse if raw=true
         :rtype: object or ~msrest.pipeline.ClientRawResponse
         :raises:
@@ -524,12 +511,14 @@ class MultipleResponsesOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200, 201, 404]:
             raise models.ErrorException(self._deserialize, response)
@@ -550,15 +539,12 @@ class MultipleResponsesOperations(object):
     get200_model_a201_model_c404_model_ddefault_error404_valid.metadata = {'url': '/http/payloads/200/A/201/C/404/D/default/Error/response/404/valid'}
 
     def get200_model_a201_model_c404_model_ddefault_error400_valid(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Send a 400 response with valid payload: {'code': '400', 'message':
         'client error'}.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: object or ClientRawResponse if raw=true
         :rtype: object or ~msrest.pipeline.ClientRawResponse
         :raises:
@@ -573,12 +559,14 @@ class MultipleResponsesOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200, 201, 404]:
             raise models.ErrorException(self._deserialize, response)
@@ -599,14 +587,11 @@ class MultipleResponsesOperations(object):
     get200_model_a201_model_c404_model_ddefault_error400_valid.metadata = {'url': '/http/payloads/200/A/201/C/404/D/default/Error/response/400/valid'}
 
     def get202_none204_none_default_error202_none(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Send a 202 response with no payload.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
@@ -620,12 +605,14 @@ class MultipleResponsesOperations(object):
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [202, 204]:
             raise models.ErrorException(self._deserialize, response)
@@ -636,14 +623,11 @@ class MultipleResponsesOperations(object):
     get202_none204_none_default_error202_none.metadata = {'url': '/http/payloads/202/none/204/none/default/Error/response/202/none'}
 
     def get202_none204_none_default_error204_none(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Send a 204 response with no payload.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
@@ -657,12 +641,14 @@ class MultipleResponsesOperations(object):
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [202, 204]:
             raise models.ErrorException(self._deserialize, response)
@@ -673,15 +659,12 @@ class MultipleResponsesOperations(object):
     get202_none204_none_default_error204_none.metadata = {'url': '/http/payloads/202/none/204/none/default/Error/response/204/none'}
 
     def get202_none204_none_default_error400_valid(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Send a 400 response with valid payload: {'code': '400', 'message':
         'client error'}.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
@@ -695,12 +678,14 @@ class MultipleResponsesOperations(object):
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [202, 204]:
             raise models.ErrorException(self._deserialize, response)
@@ -711,14 +696,11 @@ class MultipleResponsesOperations(object):
     get202_none204_none_default_error400_valid.metadata = {'url': '/http/payloads/202/none/204/none/default/Error/response/400/valid'}
 
     def get202_none204_none_default_none202_invalid(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Send a 202 response with an unexpected payload {'property': 'value'}.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
@@ -732,12 +714,14 @@ class MultipleResponsesOperations(object):
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [202, 204]:
             raise HttpOperationError(self._deserialize, response)
@@ -748,14 +732,11 @@ class MultipleResponsesOperations(object):
     get202_none204_none_default_none202_invalid.metadata = {'url': '/http/payloads/202/none/204/none/default/none/response/202/invalid'}
 
     def get202_none204_none_default_none204_none(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Send a 204 response with no payload.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
@@ -769,12 +750,14 @@ class MultipleResponsesOperations(object):
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [202, 204]:
             raise HttpOperationError(self._deserialize, response)
@@ -785,14 +768,11 @@ class MultipleResponsesOperations(object):
     get202_none204_none_default_none204_none.metadata = {'url': '/http/payloads/202/none/204/none/default/none/response/204/none'}
 
     def get202_none204_none_default_none400_none(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Send a 400 response with no payload.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
@@ -806,12 +786,14 @@ class MultipleResponsesOperations(object):
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [202, 204]:
             raise HttpOperationError(self._deserialize, response)
@@ -822,14 +804,11 @@ class MultipleResponsesOperations(object):
     get202_none204_none_default_none400_none.metadata = {'url': '/http/payloads/202/none/204/none/default/none/response/400/none'}
 
     def get202_none204_none_default_none400_invalid(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Send a 400 response with an unexpected payload {'property': 'value'}.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
@@ -843,12 +822,14 @@ class MultipleResponsesOperations(object):
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [202, 204]:
             raise HttpOperationError(self._deserialize, response)
@@ -859,14 +840,11 @@ class MultipleResponsesOperations(object):
     get202_none204_none_default_none400_invalid.metadata = {'url': '/http/payloads/202/none/204/none/default/none/response/400/invalid'}
 
     def get_default_model_a200_valid(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Send a 200 response with valid payload: {'statusCode': '200'}.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: A or ClientRawResponse if raw=true
         :rtype: ~httpinfrastructure.models.A or
          ~msrest.pipeline.ClientRawResponse
@@ -880,12 +858,14 @@ class MultipleResponsesOperations(object):
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code < 200 or response.status_code >= 300:
             raise models.AException(self._deserialize, response)
@@ -896,14 +876,11 @@ class MultipleResponsesOperations(object):
     get_default_model_a200_valid.metadata = {'url': '/http/payloads/default/A/response/200/valid'}
 
     def get_default_model_a200_none(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Send a 200 response with no payload.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: A or ClientRawResponse if raw=true
         :rtype: ~httpinfrastructure.models.A or
          ~msrest.pipeline.ClientRawResponse
@@ -917,12 +894,14 @@ class MultipleResponsesOperations(object):
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code < 200 or response.status_code >= 300:
             raise models.AException(self._deserialize, response)
@@ -933,14 +912,11 @@ class MultipleResponsesOperations(object):
     get_default_model_a200_none.metadata = {'url': '/http/payloads/default/A/response/200/none'}
 
     def get_default_model_a400_valid(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Send a 400 response with valid payload: {'statusCode': '400'}.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: A or ClientRawResponse if raw=true
         :rtype: ~httpinfrastructure.models.A or
          ~msrest.pipeline.ClientRawResponse
@@ -954,12 +930,14 @@ class MultipleResponsesOperations(object):
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code < 200 or response.status_code >= 300:
             raise models.AException(self._deserialize, response)
@@ -970,14 +948,11 @@ class MultipleResponsesOperations(object):
     get_default_model_a400_valid.metadata = {'url': '/http/payloads/default/A/response/400/valid'}
 
     def get_default_model_a400_none(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Send a 400 response with no payload.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: A or ClientRawResponse if raw=true
         :rtype: ~httpinfrastructure.models.A or
          ~msrest.pipeline.ClientRawResponse
@@ -991,12 +966,14 @@ class MultipleResponsesOperations(object):
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code < 200 or response.status_code >= 300:
             raise models.AException(self._deserialize, response)
@@ -1007,14 +984,11 @@ class MultipleResponsesOperations(object):
     get_default_model_a400_none.metadata = {'url': '/http/payloads/default/A/response/400/none'}
 
     def get_default_none200_invalid(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Send a 200 response with invalid payload: {'statusCode': '200'}.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
@@ -1028,12 +1002,14 @@ class MultipleResponsesOperations(object):
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code < 200 or response.status_code >= 300:
             raise HttpOperationError(self._deserialize, response)
@@ -1044,14 +1020,11 @@ class MultipleResponsesOperations(object):
     get_default_none200_invalid.metadata = {'url': '/http/payloads/default/none/response/200/invalid'}
 
     def get_default_none200_none(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Send a 200 response with no payload.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
@@ -1065,12 +1038,14 @@ class MultipleResponsesOperations(object):
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code < 200 or response.status_code >= 300:
             raise HttpOperationError(self._deserialize, response)
@@ -1081,14 +1056,11 @@ class MultipleResponsesOperations(object):
     get_default_none200_none.metadata = {'url': '/http/payloads/default/none/response/200/none'}
 
     def get_default_none400_invalid(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Send a 400 response with valid payload: {'statusCode': '400'}.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
@@ -1102,12 +1074,14 @@ class MultipleResponsesOperations(object):
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code < 200 or response.status_code >= 300:
             raise HttpOperationError(self._deserialize, response)
@@ -1118,14 +1092,11 @@ class MultipleResponsesOperations(object):
     get_default_none400_invalid.metadata = {'url': '/http/payloads/default/none/response/400/invalid'}
 
     def get_default_none400_none(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Send a 400 response with no payload.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
@@ -1139,12 +1110,14 @@ class MultipleResponsesOperations(object):
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code < 200 or response.status_code >= 300:
             raise HttpOperationError(self._deserialize, response)
@@ -1155,15 +1128,12 @@ class MultipleResponsesOperations(object):
     get_default_none400_none.metadata = {'url': '/http/payloads/default/none/response/400/none'}
 
     def get200_model_a200_none(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Send a 200 response with no payload, when a payload is expected -
         client should return a null object of thde type for model A.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: A or ClientRawResponse if raw=true
         :rtype: ~httpinfrastructure.models.A or
          ~msrest.pipeline.ClientRawResponse
@@ -1179,12 +1149,14 @@ class MultipleResponsesOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise HttpOperationError(self._deserialize, response)
@@ -1201,14 +1173,11 @@ class MultipleResponsesOperations(object):
     get200_model_a200_none.metadata = {'url': '/http/payloads/200/A/response/200/none'}
 
     def get200_model_a200_valid(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Send a 200 response with payload {'statusCode': '200'}.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: A or ClientRawResponse if raw=true
         :rtype: ~httpinfrastructure.models.A or
          ~msrest.pipeline.ClientRawResponse
@@ -1224,12 +1193,14 @@ class MultipleResponsesOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise HttpOperationError(self._deserialize, response)
@@ -1246,14 +1217,11 @@ class MultipleResponsesOperations(object):
     get200_model_a200_valid.metadata = {'url': '/http/payloads/200/A/response/200/valid'}
 
     def get200_model_a200_invalid(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Send a 200 response with invalid payload {'statusCodeInvalid': '200'}.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: A or ClientRawResponse if raw=true
         :rtype: ~httpinfrastructure.models.A or
          ~msrest.pipeline.ClientRawResponse
@@ -1269,12 +1237,14 @@ class MultipleResponsesOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise HttpOperationError(self._deserialize, response)
@@ -1291,15 +1261,12 @@ class MultipleResponsesOperations(object):
     get200_model_a200_invalid.metadata = {'url': '/http/payloads/200/A/response/200/invalid'}
 
     def get200_model_a400_none(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Send a 400 response with no payload client should treat as an http
         error with no error model.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: A or ClientRawResponse if raw=true
         :rtype: ~httpinfrastructure.models.A or
          ~msrest.pipeline.ClientRawResponse
@@ -1315,12 +1282,14 @@ class MultipleResponsesOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise HttpOperationError(self._deserialize, response)
@@ -1337,14 +1306,11 @@ class MultipleResponsesOperations(object):
     get200_model_a400_none.metadata = {'url': '/http/payloads/200/A/response/400/none'}
 
     def get200_model_a400_valid(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Send a 200 response with payload {'statusCode': '400'}.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: A or ClientRawResponse if raw=true
         :rtype: ~httpinfrastructure.models.A or
          ~msrest.pipeline.ClientRawResponse
@@ -1360,12 +1326,14 @@ class MultipleResponsesOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise HttpOperationError(self._deserialize, response)
@@ -1382,14 +1350,11 @@ class MultipleResponsesOperations(object):
     get200_model_a400_valid.metadata = {'url': '/http/payloads/200/A/response/400/valid'}
 
     def get200_model_a400_invalid(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Send a 200 response with invalid payload {'statusCodeInvalid': '400'}.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: A or ClientRawResponse if raw=true
         :rtype: ~httpinfrastructure.models.A or
          ~msrest.pipeline.ClientRawResponse
@@ -1405,12 +1370,14 @@ class MultipleResponsesOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise HttpOperationError(self._deserialize, response)
@@ -1427,14 +1394,11 @@ class MultipleResponsesOperations(object):
     get200_model_a400_invalid.metadata = {'url': '/http/payloads/200/A/response/400/invalid'}
 
     def get200_model_a202_valid(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Send a 202 response with payload {'statusCode': '202'}.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: A or ClientRawResponse if raw=true
         :rtype: ~httpinfrastructure.models.A or
          ~msrest.pipeline.ClientRawResponse
@@ -1450,12 +1414,14 @@ class MultipleResponsesOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise HttpOperationError(self._deserialize, response)

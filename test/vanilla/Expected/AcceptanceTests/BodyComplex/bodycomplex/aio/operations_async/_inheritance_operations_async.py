@@ -36,14 +36,11 @@ class InheritanceOperations:
         self.config = config
 
     async def get_valid(
-            self, *, custom_headers=None, raw=False, **operation_config):
+            self, *, raw=False, **kwargs):
         """Get complex types that extend others.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: Siamese or ClientRawResponse if raw=true
         :rtype: ~bodycomplex.models.Siamese or
          ~msrest.pipeline.ClientRawResponse
@@ -58,12 +55,14 @@ class InheritanceOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -80,7 +79,7 @@ class InheritanceOperations:
     get_valid.metadata = {'url': '/complex/inheritance/valid'}
 
     async def put_valid(
-            self, complex_body, *, custom_headers=None, raw=False, **operation_config):
+            self, complex_body, *, raw=False, **kwargs):
         """Put complex types that extend others.
 
         :param complex_body: Please put a siamese with id=2, name="Siameee",
@@ -88,11 +87,8 @@ class InheritanceOperations:
          "Potato" with id=1 and food="tomato", and the 2nd one named "Tomato"
          with id=-1 and food="french fries".
         :type complex_body: ~bodycomplex.models.Siamese
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
@@ -106,15 +102,17 @@ class InheritanceOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(complex_body, 'Siamese')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)

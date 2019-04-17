@@ -36,17 +36,14 @@ class ExplicitOperations:
         self.config = config
 
     async def post_required_integer_parameter(
-            self, body_parameter, *, custom_headers=None, raw=False, **operation_config):
+            self, body_parameter, *, raw=False, **kwargs):
         """Test explicitly required integer. Please put null and the client
         library should throw before the request is sent.
 
         :param body_parameter:
         :type body_parameter: int
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: Error or ClientRawResponse if raw=true
         :rtype: ~requiredoptional.models.Error or
          ~msrest.pipeline.ClientRawResponse
@@ -62,15 +59,17 @@ class ExplicitOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(body_parameter, 'int')
 
         # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.post(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
@@ -81,16 +80,13 @@ class ExplicitOperations:
     post_required_integer_parameter.metadata = {'url': '/reqopt/requied/integer/parameter'}
 
     async def post_optional_integer_parameter(
-            self, body_parameter=None, *, custom_headers=None, raw=False, **operation_config):
+            self, body_parameter=None, *, raw=False, **kwargs):
         """Test explicitly optional integer. Please put null.
 
         :param body_parameter:
         :type body_parameter: int
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
@@ -105,8 +101,9 @@ class ExplicitOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         if body_parameter is not None:
@@ -115,8 +112,9 @@ class ExplicitOperations:
             body_content = None
 
         # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.post(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -127,18 +125,15 @@ class ExplicitOperations:
     post_optional_integer_parameter.metadata = {'url': '/reqopt/optional/integer/parameter'}
 
     async def post_required_integer_property(
-            self, value, *, custom_headers=None, raw=False, **operation_config):
+            self, value, *, raw=False, **kwargs):
         """Test explicitly required integer. Please put a valid int-wrapper with
         'value' = null and the client library should throw before the request
         is sent.
 
         :param value:
         :type value: int
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: Error or ClientRawResponse if raw=true
         :rtype: ~requiredoptional.models.Error or
          ~msrest.pipeline.ClientRawResponse
@@ -156,15 +151,17 @@ class ExplicitOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(body_parameter, 'IntWrapper')
 
         # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.post(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
@@ -175,17 +172,14 @@ class ExplicitOperations:
     post_required_integer_property.metadata = {'url': '/reqopt/requied/integer/property'}
 
     async def post_optional_integer_property(
-            self, value=None, *, custom_headers=None, raw=False, **operation_config):
+            self, value=None, *, raw=False, **kwargs):
         """Test explicitly optional integer. Please put a valid int-wrapper with
         'value' = null.
 
         :param value:
         :type value: int
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
@@ -204,8 +198,9 @@ class ExplicitOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         if body_parameter is not None:
@@ -214,8 +209,9 @@ class ExplicitOperations:
             body_content = None
 
         # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.post(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -226,17 +222,14 @@ class ExplicitOperations:
     post_optional_integer_property.metadata = {'url': '/reqopt/optional/integer/property'}
 
     async def post_required_integer_header(
-            self, header_parameter, *, custom_headers=None, raw=False, **operation_config):
+            self, header_parameter, *, raw=False, **kwargs):
         """Test explicitly required integer. Please put a header 'headerParameter'
         => null and the client library should throw before the request is sent.
 
         :param header_parameter:
         :type header_parameter: int
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: Error or ClientRawResponse if raw=true
         :rtype: ~requiredoptional.models.Error or
          ~msrest.pipeline.ClientRawResponse
@@ -251,13 +244,15 @@ class ExplicitOperations:
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
         header_parameters['headerParameter'] = self._serialize.header("header_parameter", header_parameter, 'int')
 
         # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.post(url, query_parameters, header_parameters)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
@@ -268,17 +263,14 @@ class ExplicitOperations:
     post_required_integer_header.metadata = {'url': '/reqopt/requied/integer/header'}
 
     async def post_optional_integer_header(
-            self, header_parameter=None, *, custom_headers=None, raw=False, **operation_config):
+            self, header_parameter=None, *, raw=False, **kwargs):
         """Test explicitly optional integer. Please put a header 'headerParameter'
         => null.
 
         :param header_parameter:
         :type header_parameter: int
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
@@ -292,14 +284,16 @@ class ExplicitOperations:
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
         if header_parameter is not None:
             header_parameters['headerParameter'] = self._serialize.header("header_parameter", header_parameter, 'int')
 
         # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.post(url, query_parameters, header_parameters)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -310,17 +304,14 @@ class ExplicitOperations:
     post_optional_integer_header.metadata = {'url': '/reqopt/optional/integer/header'}
 
     async def post_required_string_parameter(
-            self, body_parameter, *, custom_headers=None, raw=False, **operation_config):
+            self, body_parameter, *, raw=False, **kwargs):
         """Test explicitly required string. Please put null and the client library
         should throw before the request is sent.
 
         :param body_parameter:
         :type body_parameter: str
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: Error or ClientRawResponse if raw=true
         :rtype: ~requiredoptional.models.Error or
          ~msrest.pipeline.ClientRawResponse
@@ -336,15 +327,17 @@ class ExplicitOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(body_parameter, 'str')
 
         # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.post(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
@@ -355,16 +348,13 @@ class ExplicitOperations:
     post_required_string_parameter.metadata = {'url': '/reqopt/requied/string/parameter'}
 
     async def post_optional_string_parameter(
-            self, body_parameter=None, *, custom_headers=None, raw=False, **operation_config):
+            self, body_parameter=None, *, raw=False, **kwargs):
         """Test explicitly optional string. Please put null.
 
         :param body_parameter:
         :type body_parameter: str
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
@@ -379,8 +369,9 @@ class ExplicitOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         if body_parameter is not None:
@@ -389,8 +380,9 @@ class ExplicitOperations:
             body_content = None
 
         # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.post(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -401,18 +393,15 @@ class ExplicitOperations:
     post_optional_string_parameter.metadata = {'url': '/reqopt/optional/string/parameter'}
 
     async def post_required_string_property(
-            self, value, *, custom_headers=None, raw=False, **operation_config):
+            self, value, *, raw=False, **kwargs):
         """Test explicitly required string. Please put a valid string-wrapper with
         'value' = null and the client library should throw before the request
         is sent.
 
         :param value:
         :type value: str
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: Error or ClientRawResponse if raw=true
         :rtype: ~requiredoptional.models.Error or
          ~msrest.pipeline.ClientRawResponse
@@ -430,15 +419,17 @@ class ExplicitOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(body_parameter, 'StringWrapper')
 
         # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.post(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
@@ -449,17 +440,14 @@ class ExplicitOperations:
     post_required_string_property.metadata = {'url': '/reqopt/requied/string/property'}
 
     async def post_optional_string_property(
-            self, value=None, *, custom_headers=None, raw=False, **operation_config):
+            self, value=None, *, raw=False, **kwargs):
         """Test explicitly optional integer. Please put a valid string-wrapper
         with 'value' = null.
 
         :param value:
         :type value: str
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
@@ -478,8 +466,9 @@ class ExplicitOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         if body_parameter is not None:
@@ -488,8 +477,9 @@ class ExplicitOperations:
             body_content = None
 
         # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.post(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -500,17 +490,14 @@ class ExplicitOperations:
     post_optional_string_property.metadata = {'url': '/reqopt/optional/string/property'}
 
     async def post_required_string_header(
-            self, header_parameter, *, custom_headers=None, raw=False, **operation_config):
+            self, header_parameter, *, raw=False, **kwargs):
         """Test explicitly required string. Please put a header 'headerParameter'
         => null and the client library should throw before the request is sent.
 
         :param header_parameter:
         :type header_parameter: str
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: Error or ClientRawResponse if raw=true
         :rtype: ~requiredoptional.models.Error or
          ~msrest.pipeline.ClientRawResponse
@@ -525,13 +512,15 @@ class ExplicitOperations:
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
         header_parameters['headerParameter'] = self._serialize.header("header_parameter", header_parameter, 'str')
 
         # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.post(url, query_parameters, header_parameters)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
@@ -542,17 +531,14 @@ class ExplicitOperations:
     post_required_string_header.metadata = {'url': '/reqopt/requied/string/header'}
 
     async def post_optional_string_header(
-            self, body_parameter=None, *, custom_headers=None, raw=False, **operation_config):
+            self, body_parameter=None, *, raw=False, **kwargs):
         """Test explicitly optional string. Please put a header 'headerParameter'
         => null.
 
         :param body_parameter:
         :type body_parameter: str
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
@@ -566,14 +552,16 @@ class ExplicitOperations:
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
         if body_parameter is not None:
             header_parameters['bodyParameter'] = self._serialize.header("body_parameter", body_parameter, 'str')
 
         # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.post(url, query_parameters, header_parameters)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -584,17 +572,14 @@ class ExplicitOperations:
     post_optional_string_header.metadata = {'url': '/reqopt/optional/string/header'}
 
     async def post_required_class_parameter(
-            self, body_parameter, *, custom_headers=None, raw=False, **operation_config):
+            self, body_parameter, *, raw=False, **kwargs):
         """Test explicitly required complex object. Please put null and the client
         library should throw before the request is sent.
 
         :param body_parameter:
         :type body_parameter: ~requiredoptional.models.Product
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: Error or ClientRawResponse if raw=true
         :rtype: ~requiredoptional.models.Error or
          ~msrest.pipeline.ClientRawResponse
@@ -610,15 +595,17 @@ class ExplicitOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(body_parameter, 'Product')
 
         # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.post(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
@@ -629,16 +616,13 @@ class ExplicitOperations:
     post_required_class_parameter.metadata = {'url': '/reqopt/requied/class/parameter'}
 
     async def post_optional_class_parameter(
-            self, body_parameter=None, *, custom_headers=None, raw=False, **operation_config):
+            self, body_parameter=None, *, raw=False, **kwargs):
         """Test explicitly optional complex object. Please put null.
 
         :param body_parameter:
         :type body_parameter: ~requiredoptional.models.Product
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
@@ -653,8 +637,9 @@ class ExplicitOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         if body_parameter is not None:
@@ -663,8 +648,9 @@ class ExplicitOperations:
             body_content = None
 
         # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.post(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -675,18 +661,15 @@ class ExplicitOperations:
     post_optional_class_parameter.metadata = {'url': '/reqopt/optional/class/parameter'}
 
     async def post_required_class_property(
-            self, value, *, custom_headers=None, raw=False, **operation_config):
+            self, value, *, raw=False, **kwargs):
         """Test explicitly required complex object. Please put a valid
         class-wrapper with 'value' = null and the client library should throw
         before the request is sent.
 
         :param value:
         :type value: ~requiredoptional.models.Product
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: Error or ClientRawResponse if raw=true
         :rtype: ~requiredoptional.models.Error or
          ~msrest.pipeline.ClientRawResponse
@@ -704,15 +687,17 @@ class ExplicitOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(body_parameter, 'ClassWrapper')
 
         # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.post(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
@@ -723,17 +708,14 @@ class ExplicitOperations:
     post_required_class_property.metadata = {'url': '/reqopt/requied/class/property'}
 
     async def post_optional_class_property(
-            self, value=None, *, custom_headers=None, raw=False, **operation_config):
+            self, value=None, *, raw=False, **kwargs):
         """Test explicitly optional complex object. Please put a valid
         class-wrapper with 'value' = null.
 
         :param value:
         :type value: ~requiredoptional.models.Product
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
@@ -752,8 +734,9 @@ class ExplicitOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         if body_parameter is not None:
@@ -762,8 +745,9 @@ class ExplicitOperations:
             body_content = None
 
         # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.post(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -774,17 +758,14 @@ class ExplicitOperations:
     post_optional_class_property.metadata = {'url': '/reqopt/optional/class/property'}
 
     async def post_required_array_parameter(
-            self, body_parameter, *, custom_headers=None, raw=False, **operation_config):
+            self, body_parameter, *, raw=False, **kwargs):
         """Test explicitly required array. Please put null and the client library
         should throw before the request is sent.
 
         :param body_parameter:
         :type body_parameter: list[str]
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: Error or ClientRawResponse if raw=true
         :rtype: ~requiredoptional.models.Error or
          ~msrest.pipeline.ClientRawResponse
@@ -800,15 +781,17 @@ class ExplicitOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(body_parameter, '[str]')
 
         # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.post(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
@@ -819,16 +802,13 @@ class ExplicitOperations:
     post_required_array_parameter.metadata = {'url': '/reqopt/requied/array/parameter'}
 
     async def post_optional_array_parameter(
-            self, body_parameter=None, *, custom_headers=None, raw=False, **operation_config):
+            self, body_parameter=None, *, raw=False, **kwargs):
         """Test explicitly optional array. Please put null.
 
         :param body_parameter:
         :type body_parameter: list[str]
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
@@ -843,8 +823,9 @@ class ExplicitOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         if body_parameter is not None:
@@ -853,8 +834,9 @@ class ExplicitOperations:
             body_content = None
 
         # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.post(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -865,18 +847,15 @@ class ExplicitOperations:
     post_optional_array_parameter.metadata = {'url': '/reqopt/optional/array/parameter'}
 
     async def post_required_array_property(
-            self, value, *, custom_headers=None, raw=False, **operation_config):
+            self, value, *, raw=False, **kwargs):
         """Test explicitly required array. Please put a valid array-wrapper with
         'value' = null and the client library should throw before the request
         is sent.
 
         :param value:
         :type value: list[str]
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: Error or ClientRawResponse if raw=true
         :rtype: ~requiredoptional.models.Error or
          ~msrest.pipeline.ClientRawResponse
@@ -894,15 +873,17 @@ class ExplicitOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(body_parameter, 'ArrayWrapper')
 
         # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.post(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
@@ -913,17 +894,14 @@ class ExplicitOperations:
     post_required_array_property.metadata = {'url': '/reqopt/requied/array/property'}
 
     async def post_optional_array_property(
-            self, value=None, *, custom_headers=None, raw=False, **operation_config):
+            self, value=None, *, raw=False, **kwargs):
         """Test explicitly optional array. Please put a valid array-wrapper with
         'value' = null.
 
         :param value:
         :type value: list[str]
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
@@ -942,8 +920,9 @@ class ExplicitOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         if body_parameter is not None:
@@ -952,8 +931,9 @@ class ExplicitOperations:
             body_content = None
 
         # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters, body_content)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.post(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -964,17 +944,14 @@ class ExplicitOperations:
     post_optional_array_property.metadata = {'url': '/reqopt/optional/array/property'}
 
     async def post_required_array_header(
-            self, header_parameter, *, custom_headers=None, raw=False, **operation_config):
+            self, header_parameter, *, raw=False, **kwargs):
         """Test explicitly required array. Please put a header 'headerParameter'
         => null and the client library should throw before the request is sent.
 
         :param header_parameter:
         :type header_parameter: list[str]
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: Error or ClientRawResponse if raw=true
         :rtype: ~requiredoptional.models.Error or
          ~msrest.pipeline.ClientRawResponse
@@ -989,13 +966,15 @@ class ExplicitOperations:
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
         header_parameters['headerParameter'] = self._serialize.header("header_parameter", header_parameter, '[str]', div=',')
 
         # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.post(url, query_parameters, header_parameters)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
@@ -1006,17 +985,14 @@ class ExplicitOperations:
     post_required_array_header.metadata = {'url': '/reqopt/requied/array/header'}
 
     async def post_optional_array_header(
-            self, header_parameter=None, *, custom_headers=None, raw=False, **operation_config):
+            self, header_parameter=None, *, raw=False, **kwargs):
         """Test explicitly optional integer. Please put a header 'headerParameter'
         => null.
 
         :param header_parameter:
         :type header_parameter: list[str]
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
@@ -1030,14 +1006,16 @@ class ExplicitOperations:
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
         if header_parameter is not None:
             header_parameters['headerParameter'] = self._serialize.header("header_parameter", header_parameter, '[str]', div=',')
 
         # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.post(url, query_parameters, header_parameters)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)

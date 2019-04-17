@@ -36,15 +36,12 @@ class HttpServerFailureOperations(object):
         self.config = config
 
     def head501(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Return 501 status code - should be represented in the client as an
         error.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: Error or ClientRawResponse if raw=true
         :rtype: ~httpinfrastructure.models.Error or
          ~msrest.pipeline.ClientRawResponse
@@ -59,12 +56,14 @@ class HttpServerFailureOperations(object):
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.head(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.head(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
@@ -75,15 +74,12 @@ class HttpServerFailureOperations(object):
     head501.metadata = {'url': '/http/failure/server/501'}
 
     def get501(
-            self, custom_headers=None, raw=False, **operation_config):
+            self, raw=False, **kwargs):
         """Return 501 status code - should be represented in the client as an
         error.
 
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: Error or ClientRawResponse if raw=true
         :rtype: ~httpinfrastructure.models.Error or
          ~msrest.pipeline.ClientRawResponse
@@ -98,12 +94,14 @@ class HttpServerFailureOperations(object):
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
@@ -114,17 +112,14 @@ class HttpServerFailureOperations(object):
     get501.metadata = {'url': '/http/failure/server/501'}
 
     def post505(
-            self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
+            self, boolean_value=None, raw=False, **kwargs):
         """Return 505 status code - should be represented in the client as an
         error.
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: Error or ClientRawResponse if raw=true
         :rtype: ~httpinfrastructure.models.Error or
          ~msrest.pipeline.ClientRawResponse
@@ -140,8 +135,9 @@ class HttpServerFailureOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         if boolean_value is not None:
@@ -150,8 +146,9 @@ class HttpServerFailureOperations(object):
             body_content = None
 
         # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.post(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
@@ -162,17 +159,14 @@ class HttpServerFailureOperations(object):
     post505.metadata = {'url': '/http/failure/server/505'}
 
     def delete505(
-            self, boolean_value=None, custom_headers=None, raw=False, **operation_config):
+            self, boolean_value=None, raw=False, **kwargs):
         """Return 505 status code - should be represented in the client as an
         error.
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: Error or ClientRawResponse if raw=true
         :rtype: ~httpinfrastructure.models.Error or
          ~msrest.pipeline.ClientRawResponse
@@ -188,8 +182,9 @@ class HttpServerFailureOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct body
         if boolean_value is not None:
@@ -198,8 +193,9 @@ class HttpServerFailureOperations(object):
             body_content = None
 
         # Construct and send request
-        request = self._client.delete(url, query_parameters, header_parameters, body_content)
-        response = self._client.send(request, stream=False, **operation_config)
+        request = self.delete(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)

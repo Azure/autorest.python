@@ -34,6 +34,8 @@ class AutoRestLongRunningOperationTestServiceConfiguration(Configuration):
 
         self.user_agent_policy.add_user_agent('autorestlongrunningoperationtestservice/{}'.format(VERSION))
         self.user_agent_policy.add_user_agent('Azure-SDK-For-Python')
+        self.generate_client_request_id = True
+        self.accept_language = None
 
         self.credentials = credentials
 

@@ -36,7 +36,7 @@ class PathItemsOperations:
         self.config = config
 
     async def get_all_with_values(
-            self, local_string_path, path_item_string_path, local_string_query=None, path_item_string_query=None, *, custom_headers=None, raw=False, **operation_config):
+            self, local_string_path, path_item_string_path, local_string_query=None, path_item_string_query=None, *, raw=False, **kwargs):
         """send globalStringPath='globalStringPath',
         pathItemStringPath='pathItemStringPath',
         localStringPath='localStringPath',
@@ -54,11 +54,8 @@ class PathItemsOperations:
         :param path_item_string_query: A string value 'pathItemStringQuery'
          that appears as a query parameter
         :type path_item_string_query: str
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<url.models.ErrorException>`
@@ -68,9 +65,9 @@ class PathItemsOperations:
         path_format_arguments = {
             'localStringPath': self._serialize.url("local_string_path", local_string_path, 'str'),
             'pathItemStringPath': self._serialize.url("path_item_string_path", path_item_string_path, 'str'),
-            'globalStringPath': self._serialize.url("self.config.global_string_path", self.config.global_string_path, 'str')
+            'globalStringPath': self._serialize.url("self._config.global_string_path", self._config.global_string_path, 'str')
         }
-        url = self._client.format_url(url, **path_format_arguments)
+        url = self.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}
@@ -78,17 +75,19 @@ class PathItemsOperations:
             query_parameters['localStringQuery'] = self._serialize.query("local_string_query", local_string_query, 'str')
         if path_item_string_query is not None:
             query_parameters['pathItemStringQuery'] = self._serialize.query("path_item_string_query", path_item_string_query, 'str')
-        if self.config.global_string_query is not None:
-            query_parameters['globalStringQuery'] = self._serialize.query("self.config.global_string_query", self.config.global_string_query, 'str')
+        if self._config.global_string_query is not None:
+            query_parameters['globalStringQuery'] = self._serialize.query("self._config.global_string_query", self._config.global_string_query, 'str')
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -99,7 +98,7 @@ class PathItemsOperations:
     get_all_with_values.metadata = {'url': '/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/pathItemStringQuery/localStringQuery'}
 
     async def get_global_query_null(
-            self, local_string_path, path_item_string_path, local_string_query=None, path_item_string_query=None, *, custom_headers=None, raw=False, **operation_config):
+            self, local_string_path, path_item_string_path, local_string_query=None, path_item_string_query=None, *, raw=False, **kwargs):
         """send globalStringPath='globalStringPath',
         pathItemStringPath='pathItemStringPath',
         localStringPath='localStringPath', globalStringQuery=null,
@@ -116,11 +115,8 @@ class PathItemsOperations:
         :param path_item_string_query: A string value 'pathItemStringQuery'
          that appears as a query parameter
         :type path_item_string_query: str
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<url.models.ErrorException>`
@@ -130,9 +126,9 @@ class PathItemsOperations:
         path_format_arguments = {
             'localStringPath': self._serialize.url("local_string_path", local_string_path, 'str'),
             'pathItemStringPath': self._serialize.url("path_item_string_path", path_item_string_path, 'str'),
-            'globalStringPath': self._serialize.url("self.config.global_string_path", self.config.global_string_path, 'str')
+            'globalStringPath': self._serialize.url("self._config.global_string_path", self._config.global_string_path, 'str')
         }
-        url = self._client.format_url(url, **path_format_arguments)
+        url = self.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}
@@ -140,17 +136,19 @@ class PathItemsOperations:
             query_parameters['localStringQuery'] = self._serialize.query("local_string_query", local_string_query, 'str')
         if path_item_string_query is not None:
             query_parameters['pathItemStringQuery'] = self._serialize.query("path_item_string_query", path_item_string_query, 'str')
-        if self.config.global_string_query is not None:
-            query_parameters['globalStringQuery'] = self._serialize.query("self.config.global_string_query", self.config.global_string_query, 'str')
+        if self._config.global_string_query is not None:
+            query_parameters['globalStringQuery'] = self._serialize.query("self._config.global_string_query", self._config.global_string_query, 'str')
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -161,7 +159,7 @@ class PathItemsOperations:
     get_global_query_null.metadata = {'url': '/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/localStringQuery'}
 
     async def get_global_and_local_query_null(
-            self, local_string_path, path_item_string_path, local_string_query=None, path_item_string_query=None, *, custom_headers=None, raw=False, **operation_config):
+            self, local_string_path, path_item_string_path, local_string_query=None, path_item_string_query=None, *, raw=False, **kwargs):
         """send globalStringPath=globalStringPath,
         pathItemStringPath='pathItemStringPath',
         localStringPath='localStringPath', globalStringQuery=null,
@@ -177,11 +175,8 @@ class PathItemsOperations:
         :param path_item_string_query: A string value 'pathItemStringQuery'
          that appears as a query parameter
         :type path_item_string_query: str
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<url.models.ErrorException>`
@@ -191,9 +186,9 @@ class PathItemsOperations:
         path_format_arguments = {
             'localStringPath': self._serialize.url("local_string_path", local_string_path, 'str'),
             'pathItemStringPath': self._serialize.url("path_item_string_path", path_item_string_path, 'str'),
-            'globalStringPath': self._serialize.url("self.config.global_string_path", self.config.global_string_path, 'str')
+            'globalStringPath': self._serialize.url("self._config.global_string_path", self._config.global_string_path, 'str')
         }
-        url = self._client.format_url(url, **path_format_arguments)
+        url = self.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}
@@ -201,17 +196,19 @@ class PathItemsOperations:
             query_parameters['localStringQuery'] = self._serialize.query("local_string_query", local_string_query, 'str')
         if path_item_string_query is not None:
             query_parameters['pathItemStringQuery'] = self._serialize.query("path_item_string_query", path_item_string_query, 'str')
-        if self.config.global_string_query is not None:
-            query_parameters['globalStringQuery'] = self._serialize.query("self.config.global_string_query", self.config.global_string_query, 'str')
+        if self._config.global_string_query is not None:
+            query_parameters['globalStringQuery'] = self._serialize.query("self._config.global_string_query", self._config.global_string_query, 'str')
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -222,7 +219,7 @@ class PathItemsOperations:
     get_global_and_local_query_null.metadata = {'url': '/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/null'}
 
     async def get_local_path_item_query_null(
-            self, local_string_path, path_item_string_path, local_string_query=None, path_item_string_query=None, *, custom_headers=None, raw=False, **operation_config):
+            self, local_string_path, path_item_string_path, local_string_query=None, path_item_string_query=None, *, raw=False, **kwargs):
         """send globalStringPath='globalStringPath',
         pathItemStringPath='pathItemStringPath',
         localStringPath='localStringPath',
@@ -238,11 +235,8 @@ class PathItemsOperations:
         :type local_string_query: str
         :param path_item_string_query: should contain value null
         :type path_item_string_query: str
-        :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`ErrorException<url.models.ErrorException>`
@@ -252,9 +246,9 @@ class PathItemsOperations:
         path_format_arguments = {
             'localStringPath': self._serialize.url("local_string_path", local_string_path, 'str'),
             'pathItemStringPath': self._serialize.url("path_item_string_path", path_item_string_path, 'str'),
-            'globalStringPath': self._serialize.url("self.config.global_string_path", self.config.global_string_path, 'str')
+            'globalStringPath': self._serialize.url("self._config.global_string_path", self._config.global_string_path, 'str')
         }
-        url = self._client.format_url(url, **path_format_arguments)
+        url = self.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}
@@ -262,17 +256,19 @@ class PathItemsOperations:
             query_parameters['localStringQuery'] = self._serialize.query("local_string_query", local_string_query, 'str')
         if path_item_string_query is not None:
             query_parameters['pathItemStringQuery'] = self._serialize.query("path_item_string_query", path_item_string_query, 'str')
-        if self.config.global_string_query is not None:
-            query_parameters['globalStringQuery'] = self._serialize.query("self.config.global_string_query", self.config.global_string_query, 'str')
+        if self._config.global_string_query is not None:
+            query_parameters['globalStringQuery'] = self._serialize.query("self._config.global_string_query", self._config.global_string_query, 'str')
 
         # Construct headers
         header_parameters = {}
-        if custom_headers:
-            header_parameters.update(custom_headers)
+        headers = kwargs.get('headers')
+        if headers:
+            header_parameters.update(headers)
 
         # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        response = await self._client.async_send(request, stream=False, **operation_config)
+        request = self.get(url, query_parameters, header_parameters)
+        pipeline_response = await self.pipeline.run(request)
+        response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)

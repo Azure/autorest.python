@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-# from azure.core import AsyncPipelineClient  TODO
+from azure.core import PipelineClient
 from msrest import Serializer, Deserializer
 
 from ._configuration_async import AutoRestSwaggerBATByteServiceConfiguration
@@ -31,7 +31,7 @@ class AutoRestSwaggerBATByteService:
             self, base_url=None, config=None, **kwargs):
 
         self._config = config or AutoRestSwaggerBATByteServiceConfiguration(**kwargs)
-        self._client = AsyncPipelineClient(base_url=base_url, credentials=None, config=self._config, **kwargs)
+        super(AutoRestSwaggerBATByteService, self).__init__(base_url=base_url, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '1.0.0'
@@ -39,4 +39,4 @@ class AutoRestSwaggerBATByteService:
         self._deserialize = Deserializer(client_models)
 
         self.byte = ByteOperations(
-            self._client, self._config, self._serialize, self._deserialize)
+            self, self._config, self._serialize, self._deserialize)

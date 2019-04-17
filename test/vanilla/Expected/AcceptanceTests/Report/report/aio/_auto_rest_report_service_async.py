@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-# from azure.core import AsyncPipelineClient  TODO
+from azure.core import PipelineClient
 from msrest import Serializer, Deserializer
 
 from ._configuration_async import AutoRestReportServiceConfiguration
@@ -17,7 +17,7 @@ from .operations_async import AutoRestReportServiceOperationsMixin
 from .. import models
 
 
-class AutoRestReportService(AutoRestReportServiceOperationsMixin):
+class AutoRestReportService(AutoRestReportServiceOperationsMixin, PipelineClient):
     """Test Infrastructure for AutoRest
 
 
@@ -28,7 +28,7 @@ class AutoRestReportService(AutoRestReportServiceOperationsMixin):
             self, base_url=None, config=None, **kwargs):
 
         self._config = config or AutoRestReportServiceConfiguration(**kwargs)
-        self._client = AsyncPipelineClient(base_url=base_url, credentials=None, config=self._config, **kwargs)
+        super(AutoRestReportService, self).__init__(base_url=base_url, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '1.0.0'
