@@ -17,7 +17,7 @@ from .operations import GroupOperations
 from . import models
 
 
-class MicrosoftAzureTestUrl(object):
+class MicrosoftAzureTestUrl(PipelineClient):
     """Some cool documentation.
 
 

@@ -26,7 +26,7 @@ from .operations import FlattencomplexOperations
 from . import models
 
 
-class AutoRestComplexTestService(object):
+class AutoRestComplexTestService(PipelineClient):
     """Test Infrastructure for AutoRest
 
 

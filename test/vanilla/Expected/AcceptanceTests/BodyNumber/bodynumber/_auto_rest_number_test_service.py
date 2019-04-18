@@ -17,7 +17,7 @@ from .operations import NumberOperations
 from . import models
 
 
-class AutoRestNumberTestService(object):
+class AutoRestNumberTestService(PipelineClient):
     """Test Infrastructure for AutoRest
 
 

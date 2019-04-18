@@ -47,7 +47,7 @@ bool hasClientLevelMethods = Model.MethodTemplateModels.Any( each => each.Method
 }
 else
 {
-@:class @(Model.Name)(object):
+@:class @(Model.Name)(PipelineClient):
 }
     """@Model.ServiceDocument
     @EmptyLine

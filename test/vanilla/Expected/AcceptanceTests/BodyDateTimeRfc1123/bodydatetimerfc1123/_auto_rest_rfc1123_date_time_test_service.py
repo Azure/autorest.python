@@ -17,7 +17,7 @@ from .operations import Datetimerfc1123Operations
 from . import models
 
 
-class AutoRestRFC1123DateTimeTestService(object):
+class AutoRestRFC1123DateTimeTestService(PipelineClient):
     """Test Infrastructure for AutoRest
 
 

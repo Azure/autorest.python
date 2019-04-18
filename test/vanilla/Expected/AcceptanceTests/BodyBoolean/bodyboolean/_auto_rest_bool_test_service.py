@@ -17,7 +17,7 @@ from .operations import BoolModelOperations
 from . import models
 
 
-class AutoRestBoolTestService(object):
+class AutoRestBoolTestService(PipelineClient):
     """Test Infrastructure for AutoRest
 
 

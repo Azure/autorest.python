@@ -17,7 +17,7 @@ from .operations import HeaderOperations
 from . import models
 
 
-class AutoRestSwaggerBATHeaderService(object):
+class AutoRestSwaggerBATHeaderService(PipelineClient):
     """Test Infrastructure for AutoRest
 
 

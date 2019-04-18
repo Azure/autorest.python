@@ -18,7 +18,7 @@ from .operations import PetOperations
 from . import models
 
 
-class PetStoreInc(object):
+class PetStoreInc(PipelineClient):
     """PetStore
 
 

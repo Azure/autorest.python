@@ -17,7 +17,7 @@ from .operations import QueriesOperations
 from . import models
 
 
-class AutoRestUrlMutliCollectionFormatTestService(object):
+class AutoRestUrlMutliCollectionFormatTestService(PipelineClient):
     """Test Infrastructure for AutoRest
 
 

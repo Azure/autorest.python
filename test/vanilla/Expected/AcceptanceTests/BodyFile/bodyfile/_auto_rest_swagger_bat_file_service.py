@@ -17,7 +17,7 @@ from .operations import FilesOperations
 from . import models
 
 
-class AutoRestSwaggerBATFileService(object):
+class AutoRestSwaggerBATFileService(PipelineClient):
     """Test Infrastructure for AutoRest Swagger BAT
 
 

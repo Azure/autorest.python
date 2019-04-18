@@ -24,7 +24,7 @@ from .operations import HeaderOperations
 from . import models
 
 
-class AutoRestAzureSpecialParametersTestClient(object):
+class AutoRestAzureSpecialParametersTestClient(PipelineClient):
     """Test Infrastructure for AutoRest
 
 

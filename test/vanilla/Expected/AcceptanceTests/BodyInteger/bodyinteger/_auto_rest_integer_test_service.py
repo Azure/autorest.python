@@ -17,7 +17,7 @@ from .operations import IntModelOperations
 from . import models
 
 
-class AutoRestIntegerTestService(object):
+class AutoRestIntegerTestService(PipelineClient):
     """Test Infrastructure for AutoRest
 
 

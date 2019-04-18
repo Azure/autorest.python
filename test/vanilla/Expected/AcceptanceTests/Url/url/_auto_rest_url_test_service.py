@@ -19,7 +19,7 @@ from .operations import PathItemsOperations
 from . import models
 
 
-class AutoRestUrlTestService(object):
+class AutoRestUrlTestService(PipelineClient):
     """Test Infrastructure for AutoRest
 
 

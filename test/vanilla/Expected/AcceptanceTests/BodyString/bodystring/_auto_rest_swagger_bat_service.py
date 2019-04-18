@@ -18,7 +18,7 @@ from .operations import EnumOperations
 from . import models
 
 
-class AutoRestSwaggerBATService(object):
+class AutoRestSwaggerBATService(PipelineClient):
     """Test Infrastructure for AutoRest Swagger BAT
 
 

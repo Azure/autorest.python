@@ -17,7 +17,7 @@ from .operations import DictionaryOperations
 from . import models
 
 
-class AutoRestSwaggerBATdictionaryService(object):
+class AutoRestSwaggerBATdictionaryService(PipelineClient):
     """Test Infrastructure for AutoRest Swagger BAT
 
 

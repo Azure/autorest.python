@@ -16,7 +16,7 @@ from ._configuration import AutoRestHeadTestServiceConfiguration
 from .operations import HttpSuccessOperations
 
 
-class AutoRestHeadTestService(object):
+class AutoRestHeadTestService(PipelineClient):
     """Test Infrastructure for AutoRest
 
 

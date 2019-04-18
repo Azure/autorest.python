@@ -17,7 +17,7 @@ from .operations import PagingOperations
 from . import models
 
 
-class AutoRestPagingTestService(object):
+class AutoRestPagingTestService(PipelineClient):
     """Long-running Operation for AutoRest
 
 

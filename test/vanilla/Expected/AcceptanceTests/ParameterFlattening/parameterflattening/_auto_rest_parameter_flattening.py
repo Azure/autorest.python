@@ -18,7 +18,7 @@ from .operations import AvailabilitySetsOperations
 from . import models
 
 
-class AutoRestParameterFlattening(object):
+class AutoRestParameterFlattening(PipelineClient):
     """Resource Flattening for AutoRest
 
 

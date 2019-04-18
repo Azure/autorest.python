@@ -18,7 +18,7 @@ from .operations import XmlOperations
 from . import models
 
 
-class AutoRestSwaggerBATXMLService(object):
+class AutoRestSwaggerBATXMLService(PipelineClient):
     """Test Infrastructure for AutoRest Swagger BAT
 
 

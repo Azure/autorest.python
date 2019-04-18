@@ -44,7 +44,7 @@ from msrest.exceptions import (
     SerializationError,
     ValidationError)
 
-from azure.core.exceptions import ConnectionError
+from azure.core.exceptions import ConnectError
 
 from custombaseurl.aio import AutoRestParameterizedHostTestClient
 from custombaseurl.models import Error, ErrorException
@@ -64,14 +64,14 @@ class TestCustomBaseUri(object):
         client = AutoRestParameterizedHostTestClient("host:3000")
         client.config.retry_policy.retries = 0
 
-        with pytest.raises(ConnectionError):
+        with pytest.raises(ConnectError):
             await client.paths.get_empty("bad")
 
         with pytest.raises(ValidationError):
             await client.paths.get_empty(None)
 
         client.config.host = "badhost:3000"
-        with pytest.raises(ConnectionError):
+        with pytest.raises(ConnectError):
             await client.paths.get_empty("local")
 
     @pytest.mark.asyncio

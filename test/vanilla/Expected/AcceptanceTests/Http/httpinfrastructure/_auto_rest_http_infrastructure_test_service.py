@@ -24,7 +24,7 @@ from .operations import MultipleResponsesOperations
 from . import models
 
 
-class AutoRestHttpInfrastructureTestService(object):
+class AutoRestHttpInfrastructureTestService(PipelineClient):
     """Test Infrastructure for AutoRest
 
 

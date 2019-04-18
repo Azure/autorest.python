@@ -20,7 +20,7 @@ from .operations import LROsCustomHeaderOperations
 from . import models
 
 
-class AutoRestLongRunningOperationTestService(object):
+class AutoRestLongRunningOperationTestService(PipelineClient):
     """Long-running Operation for AutoRest
 
 

@@ -17,7 +17,7 @@ from .operations import PathsOperations
 from . import models
 
 
-class AutoRestParameterizedCustomHostTestClient(object):
+class AutoRestParameterizedCustomHostTestClient(PipelineClient):
     """Test Infrastructure for AutoRest
 
 

@@ -17,7 +17,7 @@ from .operations import ArrayOperations
 from . import models
 
 
-class AutoRestSwaggerBATArrayService(object):
+class AutoRestSwaggerBATArrayService(PipelineClient):
     """Test Infrastructure for AutoRest Swagger BAT
 
 

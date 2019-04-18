@@ -18,7 +18,7 @@ from .operations import ExplicitOperations
 from . import models
 
 
-class AutoRestRequiredOptionalTestService(object):
+class AutoRestRequiredOptionalTestService(PipelineClient):
     """Test Infrastructure for AutoRest
 
 

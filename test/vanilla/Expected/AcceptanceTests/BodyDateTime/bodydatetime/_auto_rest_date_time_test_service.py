@@ -17,7 +17,7 @@ from .operations import DatetimeModelOperations
 from . import models
 
 
-class AutoRestDateTimeTestService(object):
+class AutoRestDateTimeTestService(PipelineClient):
     """Test Infrastructure for AutoRest
 
 

@@ -17,7 +17,7 @@ from .operations import FormdataOperations
 from . import models
 
 
-class AutoRestSwaggerBATFormDataService(object):
+class AutoRestSwaggerBATFormDataService(PipelineClient):
     """Test Infrastructure for AutoRest Swagger BAT
 
 

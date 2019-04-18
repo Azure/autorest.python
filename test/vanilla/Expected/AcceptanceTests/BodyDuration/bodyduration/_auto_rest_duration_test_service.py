@@ -17,7 +17,7 @@ from .operations import DurationOperations
 from . import models
 
 
-class AutoRestDurationTestService(object):
+class AutoRestDurationTestService(PipelineClient):
     """Test Infrastructure for AutoRest
 
 

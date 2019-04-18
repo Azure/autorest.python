@@ -17,7 +17,7 @@ from .operations import ParameterGroupingOperations
 from . import models
 
 
-class AutoRestParameterGroupingTestService(object):
+class AutoRestParameterGroupingTestService(PipelineClient):
     """Test Infrastructure for AutoRest
 
 

@@ -17,7 +17,7 @@ from .operations import PetsOperations
 from . import models
 
 
-class AdditionalPropertiesClient(object):
+class AdditionalPropertiesClient(PipelineClient):
     """Test Infrastructure for AutoRest
 
 

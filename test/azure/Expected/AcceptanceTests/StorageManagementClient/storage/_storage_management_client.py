@@ -18,7 +18,7 @@ from .operations import UsageOperations
 from . import models
 
 
-class StorageManagementClient(object):
+class StorageManagementClient(PipelineClient):
     """StorageManagementClient
 
 
