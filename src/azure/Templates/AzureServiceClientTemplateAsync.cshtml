@@ -79,8 +79,17 @@ else
     def __init__(
             self@(Model.RequiredConstructorParameters)@(Model.IsCustomBaseUri ? "" : ", base_url=None"), config=None, **kwargs):
 @EmptyLine
+@if (Model.IsCustomBaseUri)
+{
+@:        base_url = '@Model.BaseUrl'
+}
+else
+{
+@:        if not base_url:
+@:            base_url = '@Model.BaseUrl'
+}
         self._config = config or @(Model.Name)Configuration(@(Model.ConfigConstructorParameters)**kwargs)
-        super(@(Model.Name), self).__init__(base_url=@(!Model.IsCustomBaseUri? "base_url": PythonConstants.None), config=self._config, **kwargs)
+        super(@(Model.Name), self).__init__(base_url=base_url, config=self._config, **kwargs)
 @EmptyLine
 @if (Model.ModelTemplateModels.Any(each => !each.Extensions.ContainsKey(AzureExtensions.ExternalExtension)))
 {
