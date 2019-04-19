@@ -30,9 +30,9 @@ namespace AutoRest.Python.Azure.Model
                     m.Extensions.ContainsKey(AzureExtensions.LongRunningExtension) &&
                     (bool) m.Extensions[AzureExtensions.LongRunningExtension]);
 
-        public bool HasAnyClientRequestErrors =>
+        public bool HasAnyHttpRequestErrors =>
             MethodTemplateModels.Any(item =>
-                (item.DefaultResponse.Body == null) || (item.DefaultResponse.Body.Name == "ClientRequestError"));
+                (item.DefaultResponse.Body == null) || (item.DefaultResponse.Body.Name == "HttpRequestError"));
 
         public override string RequiredConstructorParameters
         {
