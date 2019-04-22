@@ -11,4 +11,4 @@
 
 from ._auto_rest_swagger_bat_form_data_service_async import AutoRestSwaggerBATFormDataService
 from ._configuration_async import AutoRestSwaggerBATFormDataServiceConfiguration
-__all__ = ['AutoRestSwaggerBATFormDataService']
+__all__ = ['AutoRestSwaggerBATFormDataService', 'AutoRestSwaggerBATFormDataServiceConfiguration']

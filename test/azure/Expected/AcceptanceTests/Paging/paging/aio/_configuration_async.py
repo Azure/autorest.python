@@ -32,8 +32,7 @@ class AutoRestPagingTestServiceConfiguration(Configuration):
         super(AutoRestPagingTestServiceConfiguration, self).__init__(**kwargs)
         self._configure(**kwargs)
 
-        self.user_agent_policy.add_user_agent('autorestpagingtestservice/{}'.format(VERSION))
-        self.user_agent_policy.add_user_agent('Azure-SDK-For-Python')
+        self.user_agent_policy.add_user_agent('azsdk-python-autorestpagingtestservice/{}'.format(VERSION))
         self.generate_client_request_id = True
         self.accept_language = None
 

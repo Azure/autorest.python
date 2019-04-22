@@ -11,4 +11,4 @@
 
 from ._auto_rest_long_running_operation_test_service_async import AutoRestLongRunningOperationTestService
 from ._configuration_async import AutoRestLongRunningOperationTestServiceConfiguration
-__all__ = ['AutoRestLongRunningOperationTestService']
+__all__ = ['AutoRestLongRunningOperationTestService', 'AutoRestLongRunningOperationTestServiceConfiguration']

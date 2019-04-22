@@ -11,4 +11,4 @@
 
 from ._auto_rest_url_mutli_collection_format_test_service_async import AutoRestUrlMutliCollectionFormatTestService
 from ._configuration_async import AutoRestUrlMutliCollectionFormatTestServiceConfiguration
-__all__ = ['AutoRestUrlMutliCollectionFormatTestService']
+__all__ = ['AutoRestUrlMutliCollectionFormatTestService', 'AutoRestUrlMutliCollectionFormatTestServiceConfiguration']

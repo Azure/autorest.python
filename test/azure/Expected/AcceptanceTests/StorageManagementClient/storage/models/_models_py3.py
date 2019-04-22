@@ -58,14 +58,6 @@ class CheckNameAvailabilityResult(Model):
         self.message = message
 
 
-class ClientRequestError(Model):
-    """ClientRequestError.
-    """
-
-    _attribute_map = {
-    }
-
-
 class CustomDomain(Model):
     """The custom domain assigned to this storage account. This can be set via
     Update.
@@ -137,6 +129,14 @@ class Foo(Model):
     def __init__(self, *, bar_point=None, **kwargs) -> None:
         super(Foo, self).__init__(**kwargs)
         self.bar_point = bar_point
+
+
+class HttpRequestError(Model):
+    """HttpRequestError.
+    """
+
+    _attribute_map = {
+    }
 
 
 class Resource(Model):

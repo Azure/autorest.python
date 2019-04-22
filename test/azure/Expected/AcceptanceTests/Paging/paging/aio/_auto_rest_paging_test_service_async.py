@@ -33,6 +33,8 @@ class AutoRestPagingTestService:
     def __init__(
             self, credentials, base_url=None, config=None, **kwargs):
 
+        if not base_url:
+            base_url = 'http://localhost:3000'
         self._config = config or AutoRestPagingTestServiceConfiguration(credentials, **kwargs)
         super(AutoRestPagingTestService, self).__init__(base_url=base_url, config=self._config, **kwargs)
 

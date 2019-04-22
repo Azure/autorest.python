@@ -60,7 +60,7 @@ class PolymorphismOperations:
 
         # Construct and send request
         request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self.pipeline.run(request)
+        pipeline_response = await self._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -139,7 +139,7 @@ class PolymorphismOperations:
 
         # Construct and send request
         request = self.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self.pipeline.run(request)
+        pipeline_response = await self._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -177,7 +177,7 @@ class PolymorphismOperations:
 
         # Construct and send request
         request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self.pipeline.run(request)
+        pipeline_response = await self._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -225,7 +225,7 @@ class PolymorphismOperations:
 
         # Construct and send request
         request = self.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self.pipeline.run(request)
+        pipeline_response = await self._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -268,7 +268,7 @@ class PolymorphismOperations:
 
         # Construct and send request
         request = self.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self.pipeline.run(request)
+        pipeline_response = await self._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -342,7 +342,7 @@ class PolymorphismOperations:
 
         # Construct and send request
         request = self.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self.pipeline.run(request)
+        pipeline_response = await self._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:

@@ -13,14 +13,6 @@ from msrest.serialization import Model
 from msrest.exceptions import HttpOperationError
 
 
-class ClientRequestError(Model):
-    """ClientRequestError.
-    """
-
-    _attribute_map = {
-    }
-
-
 class Error(Model):
     """Error.
 
@@ -51,6 +43,14 @@ class ErrorException(HttpOperationError):
     def __init__(self, deserialize, response, *args):
 
         super(ErrorException, self).__init__(deserialize, response, 'Error', *args)
+
+
+class HttpRequestError(Model):
+    """HttpRequestError.
+    """
+
+    _attribute_map = {
+    }
 
 
 class SampleResourceGroup(Model):

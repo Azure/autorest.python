@@ -13,14 +13,6 @@ from msrest.serialization import Model
 from msrest.exceptions import HttpOperationError
 
 
-class ClientRequestError(Model):
-    """ClientRequestError.
-    """
-
-    _attribute_map = {
-    }
-
-
 class Error(Model):
     """Error.
 
@@ -73,6 +65,14 @@ class FirstParameterGroup(Model):
         super(FirstParameterGroup, self).__init__(**kwargs)
         self.header_one = kwargs.get('header_one', None)
         self.query_one = kwargs.get('query_one', 30)
+
+
+class HttpRequestError(Model):
+    """HttpRequestError.
+    """
+
+    _attribute_map = {
+    }
 
 
 class ParameterGroupingPostMultiParamGroupsSecondParamGroup(Model):

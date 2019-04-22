@@ -13,14 +13,6 @@ from msrest.serialization import Model
 from msrest.exceptions import HttpOperationError
 
 
-class ClientRequestError(Model):
-    """ClientRequestError.
-    """
-
-    _attribute_map = {
-    }
-
-
 class Error(Model):
     """Error.
 
@@ -87,6 +79,14 @@ class HeaderCustomNamedRequestIdParamGroupingParameters(Model):
     def __init__(self, *, foo_client_request_id: str, **kwargs) -> None:
         super(HeaderCustomNamedRequestIdParamGroupingParameters, self).__init__(**kwargs)
         self.foo_client_request_id = foo_client_request_id
+
+
+class HttpRequestError(Model):
+    """HttpRequestError.
+    """
+
+    _attribute_map = {
+    }
 
 
 class OdataFilter(Model):

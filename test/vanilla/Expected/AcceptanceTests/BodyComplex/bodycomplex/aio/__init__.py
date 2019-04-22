@@ -11,4 +11,4 @@
 
 from ._auto_rest_complex_test_service_async import AutoRestComplexTestService
 from ._configuration_async import AutoRestComplexTestServiceConfiguration
-__all__ = ['AutoRestComplexTestService']
+__all__ = ['AutoRestComplexTestService', 'AutoRestComplexTestServiceConfiguration']

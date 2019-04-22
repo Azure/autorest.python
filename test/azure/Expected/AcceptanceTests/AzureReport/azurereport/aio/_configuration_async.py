@@ -32,8 +32,7 @@ class AutoRestReportServiceForAzureConfiguration(Configuration):
         super(AutoRestReportServiceForAzureConfiguration, self).__init__(**kwargs)
         self._configure(**kwargs)
 
-        self.user_agent_policy.add_user_agent('autorestreportserviceforazure/{}'.format(VERSION))
-        self.user_agent_policy.add_user_agent('Azure-SDK-For-Python')
+        self.user_agent_policy.add_user_agent('azsdk-python-autorestreportserviceforazure/{}'.format(VERSION))
         self.generate_client_request_id = True
         self.accept_language = None
 

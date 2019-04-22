@@ -11,7 +11,7 @@
 
 import uuid
 from msrest.pipeline import ClientRawResponse
-from azure.core import ClientRequestError
+from azure.core import HttpRequestError
 from msrest.polling.async_poller import async_poller, AsyncNoPolling
 from msrestazure.polling.async_arm_polling import AsyncARMPolling
 
@@ -47,7 +47,7 @@ class PagingOperations:
          deserialized response
         :return: An iterator like instance of Product
         :rtype: ~paging.models.ProductPaged[~paging.models.Product]
-        :raises: :class:`ClientRequestError<azure.core.ClientRequestError>`
+        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         def prepare_request(next_link=None):
             if not next_link:
@@ -79,12 +79,12 @@ class PagingOperations:
         def internal_paging(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = self.pipeline.run(request)
+            pipeline_response = self._pipeline.run(request)
             response = pipeline_response.http_response.internal_response
 
             if response.status_code not in [200]:
                 error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
-                exp = ClientRequestError(response=response)
+                exp = HttpRequestError(response=response)
                 raise exp
 
             return response
@@ -92,12 +92,12 @@ class PagingOperations:
         async def internal_paging_async(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self.pipeline.run(request)
+            pipeline_response = await self._pipeline.run(request)
             response = pipeline_response.http_response.internal_response
 
             if response.status_code not in [200]:
                 error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
-                exp = ClientRequestError(response=response)
+                exp = HttpRequestError(response=response)
                 raise exp
 
             return response
@@ -126,7 +126,7 @@ class PagingOperations:
          deserialized response
         :return: An iterator like instance of Product
         :rtype: ~paging.models.ProductPaged[~paging.models.Product]
-        :raises: :class:`ClientRequestError<azure.core.ClientRequestError>`
+        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         maxresults = None
         if paging_get_multiple_pages_options is not None:
@@ -171,12 +171,12 @@ class PagingOperations:
         def internal_paging(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = self.pipeline.run(request)
+            pipeline_response = self._pipeline.run(request)
             response = pipeline_response.http_response.internal_response
 
             if response.status_code not in [200]:
                 error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
-                exp = ClientRequestError(response=response)
+                exp = HttpRequestError(response=response)
                 raise exp
 
             return response
@@ -184,12 +184,12 @@ class PagingOperations:
         async def internal_paging_async(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self.pipeline.run(request)
+            pipeline_response = await self._pipeline.run(request)
             response = pipeline_response.http_response.internal_response
 
             if response.status_code not in [200]:
                 error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
-                exp = ClientRequestError(response=response)
+                exp = HttpRequestError(response=response)
                 raise exp
 
             return response
@@ -219,7 +219,7 @@ class PagingOperations:
          deserialized response
         :return: An iterator like instance of Product
         :rtype: ~paging.models.ProductPaged1[~paging.models.Product]
-        :raises: :class:`ClientRequestError<azure.core.ClientRequestError>`
+        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         maxresults = None
         if paging_get_odata_multiple_pages_options is not None:
@@ -264,12 +264,12 @@ class PagingOperations:
         def internal_paging(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = self.pipeline.run(request)
+            pipeline_response = self._pipeline.run(request)
             response = pipeline_response.http_response.internal_response
 
             if response.status_code not in [200]:
                 error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
-                exp = ClientRequestError(response=response)
+                exp = HttpRequestError(response=response)
                 raise exp
 
             return response
@@ -277,12 +277,12 @@ class PagingOperations:
         async def internal_paging_async(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self.pipeline.run(request)
+            pipeline_response = await self._pipeline.run(request)
             response = pipeline_response.http_response.internal_response
 
             if response.status_code not in [200]:
                 error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
-                exp = ClientRequestError(response=response)
+                exp = HttpRequestError(response=response)
                 raise exp
 
             return response
@@ -311,7 +311,7 @@ class PagingOperations:
          deserialized response
         :return: An iterator like instance of Product
         :rtype: ~paging.models.ProductPaged[~paging.models.Product]
-        :raises: :class:`ClientRequestError<azure.core.ClientRequestError>`
+        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         maxresults = None
         if paging_get_multiple_pages_with_offset_options is not None:
@@ -363,12 +363,12 @@ class PagingOperations:
         def internal_paging(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = self.pipeline.run(request)
+            pipeline_response = self._pipeline.run(request)
             response = pipeline_response.http_response.internal_response
 
             if response.status_code not in [200]:
                 error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
-                exp = ClientRequestError(response=response)
+                exp = HttpRequestError(response=response)
                 raise exp
 
             return response
@@ -376,12 +376,12 @@ class PagingOperations:
         async def internal_paging_async(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self.pipeline.run(request)
+            pipeline_response = await self._pipeline.run(request)
             response = pipeline_response.http_response.internal_response
 
             if response.status_code not in [200]:
                 error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
-                exp = ClientRequestError(response=response)
+                exp = HttpRequestError(response=response)
                 raise exp
 
             return response
@@ -405,7 +405,7 @@ class PagingOperations:
          deserialized response
         :return: An iterator like instance of Product
         :rtype: ~paging.models.ProductPaged[~paging.models.Product]
-        :raises: :class:`ClientRequestError<azure.core.ClientRequestError>`
+        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         def prepare_request(next_link=None):
             if not next_link:
@@ -437,12 +437,12 @@ class PagingOperations:
         def internal_paging(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = self.pipeline.run(request)
+            pipeline_response = self._pipeline.run(request)
             response = pipeline_response.http_response.internal_response
 
             if response.status_code not in [200]:
                 error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
-                exp = ClientRequestError(response=response)
+                exp = HttpRequestError(response=response)
                 raise exp
 
             return response
@@ -450,12 +450,12 @@ class PagingOperations:
         async def internal_paging_async(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self.pipeline.run(request)
+            pipeline_response = await self._pipeline.run(request)
             response = pipeline_response.http_response.internal_response
 
             if response.status_code not in [200]:
                 error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
-                exp = ClientRequestError(response=response)
+                exp = HttpRequestError(response=response)
                 raise exp
 
             return response
@@ -480,7 +480,7 @@ class PagingOperations:
          deserialized response
         :return: An iterator like instance of Product
         :rtype: ~paging.models.ProductPaged[~paging.models.Product]
-        :raises: :class:`ClientRequestError<azure.core.ClientRequestError>`
+        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         def prepare_request(next_link=None):
             if not next_link:
@@ -512,12 +512,12 @@ class PagingOperations:
         def internal_paging(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = self.pipeline.run(request)
+            pipeline_response = self._pipeline.run(request)
             response = pipeline_response.http_response.internal_response
 
             if response.status_code not in [200]:
                 error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
-                exp = ClientRequestError(response=response)
+                exp = HttpRequestError(response=response)
                 raise exp
 
             return response
@@ -525,12 +525,12 @@ class PagingOperations:
         async def internal_paging_async(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self.pipeline.run(request)
+            pipeline_response = await self._pipeline.run(request)
             response = pipeline_response.http_response.internal_response
 
             if response.status_code not in [200]:
                 error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
-                exp = ClientRequestError(response=response)
+                exp = HttpRequestError(response=response)
                 raise exp
 
             return response
@@ -553,7 +553,7 @@ class PagingOperations:
          deserialized response
         :return: An iterator like instance of Product
         :rtype: ~paging.models.ProductPaged[~paging.models.Product]
-        :raises: :class:`ClientRequestError<azure.core.ClientRequestError>`
+        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         def prepare_request(next_link=None):
             if not next_link:
@@ -585,12 +585,12 @@ class PagingOperations:
         def internal_paging(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = self.pipeline.run(request)
+            pipeline_response = self._pipeline.run(request)
             response = pipeline_response.http_response.internal_response
 
             if response.status_code not in [200]:
                 error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
-                exp = ClientRequestError(response=response)
+                exp = HttpRequestError(response=response)
                 raise exp
 
             return response
@@ -598,12 +598,12 @@ class PagingOperations:
         async def internal_paging_async(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self.pipeline.run(request)
+            pipeline_response = await self._pipeline.run(request)
             response = pipeline_response.http_response.internal_response
 
             if response.status_code not in [200]:
                 error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
-                exp = ClientRequestError(response=response)
+                exp = HttpRequestError(response=response)
                 raise exp
 
             return response
@@ -626,7 +626,7 @@ class PagingOperations:
          deserialized response
         :return: An iterator like instance of Product
         :rtype: ~paging.models.ProductPaged[~paging.models.Product]
-        :raises: :class:`ClientRequestError<azure.core.ClientRequestError>`
+        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         def prepare_request(next_link=None):
             if not next_link:
@@ -658,12 +658,12 @@ class PagingOperations:
         def internal_paging(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = self.pipeline.run(request)
+            pipeline_response = self._pipeline.run(request)
             response = pipeline_response.http_response.internal_response
 
             if response.status_code not in [200]:
                 error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
-                exp = ClientRequestError(response=response)
+                exp = HttpRequestError(response=response)
                 raise exp
 
             return response
@@ -671,12 +671,12 @@ class PagingOperations:
         async def internal_paging_async(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self.pipeline.run(request)
+            pipeline_response = await self._pipeline.run(request)
             response = pipeline_response.http_response.internal_response
 
             if response.status_code not in [200]:
                 error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
-                exp = ClientRequestError(response=response)
+                exp = HttpRequestError(response=response)
                 raise exp
 
             return response
@@ -699,7 +699,7 @@ class PagingOperations:
          deserialized response
         :return: An iterator like instance of Product
         :rtype: ~paging.models.ProductPaged[~paging.models.Product]
-        :raises: :class:`ClientRequestError<azure.core.ClientRequestError>`
+        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         def prepare_request(next_link=None):
             if not next_link:
@@ -731,12 +731,12 @@ class PagingOperations:
         def internal_paging(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = self.pipeline.run(request)
+            pipeline_response = self._pipeline.run(request)
             response = pipeline_response.http_response.internal_response
 
             if response.status_code not in [200]:
                 error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
-                exp = ClientRequestError(response=response)
+                exp = HttpRequestError(response=response)
                 raise exp
 
             return response
@@ -744,12 +744,12 @@ class PagingOperations:
         async def internal_paging_async(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self.pipeline.run(request)
+            pipeline_response = await self._pipeline.run(request)
             response = pipeline_response.http_response.internal_response
 
             if response.status_code not in [200]:
                 error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
-                exp = ClientRequestError(response=response)
+                exp = HttpRequestError(response=response)
                 raise exp
 
             return response
@@ -776,7 +776,7 @@ class PagingOperations:
          deserialized response
         :return: An iterator like instance of Product
         :rtype: ~paging.models.ProductPaged1[~paging.models.Product]
-        :raises: :class:`ClientRequestError<azure.core.ClientRequestError>`
+        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         def prepare_request(next_link=None):
             if not next_link:
@@ -819,12 +819,12 @@ class PagingOperations:
         def internal_paging(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = self.pipeline.run(request)
+            pipeline_response = self._pipeline.run(request)
             response = pipeline_response.http_response.internal_response
 
             if response.status_code not in [200]:
                 error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
-                exp = ClientRequestError(response=response)
+                exp = HttpRequestError(response=response)
                 raise exp
 
             return response
@@ -832,12 +832,12 @@ class PagingOperations:
         async def internal_paging_async(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self.pipeline.run(request)
+            pipeline_response = await self._pipeline.run(request)
             response = pipeline_response.http_response.internal_response
 
             if response.status_code not in [200]:
                 error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
-                exp = ClientRequestError(response=response)
+                exp = HttpRequestError(response=response)
                 raise exp
 
             return response
@@ -863,7 +863,7 @@ class PagingOperations:
          deserialized response
         :return: An iterator like instance of Product
         :rtype: ~paging.models.ProductPaged1[~paging.models.Product]
-        :raises: :class:`ClientRequestError<azure.core.ClientRequestError>`
+        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         api_version = None
         if custom_parameter_group is not None:
@@ -913,12 +913,12 @@ class PagingOperations:
         def internal_paging(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = self.pipeline.run(request)
+            pipeline_response = self._pipeline.run(request)
             response = pipeline_response.http_response.internal_response
 
             if response.status_code not in [200]:
                 error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
-                exp = ClientRequestError(response=response)
+                exp = HttpRequestError(response=response)
                 raise exp
 
             return response
@@ -926,12 +926,12 @@ class PagingOperations:
         async def internal_paging_async(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self.pipeline.run(request)
+            pipeline_response = await self._pipeline.run(request)
             response = pipeline_response.http_response.internal_response
 
             if response.status_code not in [200]:
                 error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
-                exp = ClientRequestError(response=response)
+                exp = HttpRequestError(response=response)
                 raise exp
 
             return response
@@ -981,12 +981,12 @@ class PagingOperations:
 
         # Construct and send request
         request = self.post(url, query_parameters, header_parameters)
-        pipeline_response = await self.pipeline.run(request)
+        pipeline_response = await self._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [202]:
             error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
-            exp = ClientRequestError(response=response)
+            exp = HttpRequestError(response=response)
             raise exp
 
         deserialized = None
@@ -1019,7 +1019,7 @@ class PagingOperations:
          ClientRawResponse<ProductResult> if raw==True
         :rtype: ~~paging.models.ProductResult or
          ~msrest.pipeline.ClientRawResponse[~paging.models.ProductResult]
-        :raises: :class:`ClientRequestError<azure.core.ClientRequestError>`
+        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         raw_result = await self._get_multiple_pages_lro_initial(
             client_request_id=client_request_id,

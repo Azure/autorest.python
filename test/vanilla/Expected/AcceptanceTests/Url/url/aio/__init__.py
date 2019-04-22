@@ -11,4 +11,4 @@
 
 from ._auto_rest_url_test_service_async import AutoRestUrlTestService
 from ._configuration_async import AutoRestUrlTestServiceConfiguration
-__all__ = ['AutoRestUrlTestService']
+__all__ = ['AutoRestUrlTestService', 'AutoRestUrlTestServiceConfiguration']

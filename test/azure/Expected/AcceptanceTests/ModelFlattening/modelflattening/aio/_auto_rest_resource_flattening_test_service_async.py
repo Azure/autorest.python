@@ -30,6 +30,8 @@ class AutoRestResourceFlatteningTestService(AutoRestResourceFlatteningTestServic
     def __init__(
             self, credentials, base_url=None, config=None, **kwargs):
 
+        if not base_url:
+            base_url = 'http://localhost:3000'
         self._config = config or AutoRestResourceFlatteningTestServiceConfiguration(credentials, **kwargs)
         super(AutoRestResourceFlatteningTestService, self).__init__(base_url=base_url, config=self._config, **kwargs)
 

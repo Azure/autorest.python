@@ -11,4 +11,4 @@
 
 from ._auto_rest_swagger_batxml_service_async import AutoRestSwaggerBATXMLService
 from ._configuration_async import AutoRestSwaggerBATXMLServiceConfiguration
-__all__ = ['AutoRestSwaggerBATXMLService']
+__all__ = ['AutoRestSwaggerBATXMLService', 'AutoRestSwaggerBATXMLServiceConfiguration']

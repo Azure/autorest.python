@@ -11,4 +11,4 @@
 
 from ._auto_rest_parameter_flattening_async import AutoRestParameterFlattening
 from ._configuration_async import AutoRestParameterFlatteningConfiguration
-__all__ = ['AutoRestParameterFlattening']
+__all__ = ['AutoRestParameterFlattening', 'AutoRestParameterFlatteningConfiguration']

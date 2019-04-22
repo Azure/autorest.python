@@ -11,7 +11,7 @@
 
 import uuid
 from msrest.pipeline import ClientRawResponse
-from azure.core import ClientRequestError
+from azure.core import HttpRequestError
 
 from .. import models
 
@@ -49,7 +49,7 @@ class UsageOperations(object):
         :return: UsageListResult or ClientRawResponse if raw=true
         :rtype: ~storage.models.UsageListResult or
          ~msrest.pipeline.ClientRawResponse
-        :raises: :class:`ClientRequestError<azure.core.ClientRequestError>`
+        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         # Construct URL
         url = self.list.metadata['url']
@@ -75,12 +75,12 @@ class UsageOperations(object):
 
         # Construct and send request
         request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = self.pipeline.run(request)
+        pipeline_response = self._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
-            exp = ClientRequestError(response=response)
+            exp = HttpRequestError(response=response)
             raise exp
 
         deserialized = None

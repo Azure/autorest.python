@@ -11,4 +11,4 @@
 
 from ._auto_rest_report_service_async import AutoRestReportService
 from ._configuration_async import AutoRestReportServiceConfiguration
-__all__ = ['AutoRestReportService']
+__all__ = ['AutoRestReportService', 'AutoRestReportServiceConfiguration']

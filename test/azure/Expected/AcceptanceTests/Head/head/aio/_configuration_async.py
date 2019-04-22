@@ -32,8 +32,7 @@ class AutoRestHeadTestServiceConfiguration(Configuration):
         super(AutoRestHeadTestServiceConfiguration, self).__init__(**kwargs)
         self._configure(**kwargs)
 
-        self.user_agent_policy.add_user_agent('autorestheadtestservice/{}'.format(VERSION))
-        self.user_agent_policy.add_user_agent('Azure-SDK-For-Python')
+        self.user_agent_policy.add_user_agent('azsdk-python-autorestheadtestservice/{}'.format(VERSION))
         self.generate_client_request_id = True
         self.accept_language = None
 

@@ -11,7 +11,7 @@
 
 import uuid
 from msrest.pipeline import ClientRawResponse
-from azure.core import ClientRequestError
+from azure.core import HttpRequestError
 
 
 class HeadExceptionOperations:
@@ -41,7 +41,7 @@ class HeadExceptionOperations:
          deserialized response
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
-        :raises: :class:`ClientRequestError<azure.core.ClientRequestError>`
+        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         # Construct URL
         url = self.head200.metadata['url']
@@ -61,12 +61,12 @@ class HeadExceptionOperations:
 
         # Construct and send request
         request = self.head(url, query_parameters, header_parameters)
-        pipeline_response = await self.pipeline.run(request)
+        pipeline_response = await self._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
-            exp = ClientRequestError(response=response)
+            exp = HttpRequestError(response=response)
             raise exp
 
         if raw:
@@ -82,7 +82,7 @@ class HeadExceptionOperations:
          deserialized response
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
-        :raises: :class:`ClientRequestError<azure.core.ClientRequestError>`
+        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         # Construct URL
         url = self.head204.metadata['url']
@@ -102,12 +102,12 @@ class HeadExceptionOperations:
 
         # Construct and send request
         request = self.head(url, query_parameters, header_parameters)
-        pipeline_response = await self.pipeline.run(request)
+        pipeline_response = await self._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [204]:
             error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
-            exp = ClientRequestError(response=response)
+            exp = HttpRequestError(response=response)
             raise exp
 
         if raw:
@@ -123,7 +123,7 @@ class HeadExceptionOperations:
          deserialized response
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
-        :raises: :class:`ClientRequestError<azure.core.ClientRequestError>`
+        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         # Construct URL
         url = self.head404.metadata['url']
@@ -143,12 +143,12 @@ class HeadExceptionOperations:
 
         # Construct and send request
         request = self.head(url, query_parameters, header_parameters)
-        pipeline_response = await self.pipeline.run(request)
+        pipeline_response = await self._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [204]:
             error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
-            exp = ClientRequestError(response=response)
+            exp = HttpRequestError(response=response)
             raise exp
 
         if raw:

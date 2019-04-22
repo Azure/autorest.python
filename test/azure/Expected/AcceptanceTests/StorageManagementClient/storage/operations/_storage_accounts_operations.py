@@ -11,7 +11,7 @@
 
 import uuid
 from msrest.pipeline import ClientRawResponse
-from azure.core import ClientRequestError
+from azure.core import HttpRequestError
 from msrest.polling import LROPoller, NoPolling
 from msrestazure.polling.arm_polling import ARMPolling
 
@@ -55,7 +55,7 @@ class StorageAccountsOperations(object):
         :return: CheckNameAvailabilityResult or ClientRawResponse if raw=true
         :rtype: ~storage.models.CheckNameAvailabilityResult or
          ~msrest.pipeline.ClientRawResponse
-        :raises: :class:`ClientRequestError<azure.core.ClientRequestError>`
+        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         # Construct URL
         url = self.check_name_availability.metadata['url']
@@ -85,12 +85,12 @@ class StorageAccountsOperations(object):
 
         # Construct and send request
         request = self.post(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self.pipeline.run(request)
+        pipeline_response = self._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
-            exp = ClientRequestError(response=response)
+            exp = HttpRequestError(response=response)
             raise exp
 
         deserialized = None
@@ -137,12 +137,12 @@ class StorageAccountsOperations(object):
 
         # Construct and send request
         request = self.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self.pipeline.run(request)
+        pipeline_response = self._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200, 202]:
             error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
-            exp = ClientRequestError(response=response)
+            exp = HttpRequestError(response=response)
             raise exp
 
         deserialized = None
@@ -183,7 +183,7 @@ class StorageAccountsOperations(object):
          ~msrestazure.azure_operation.AzureOperationPoller[~storage.models.StorageAccount]
          or
          ~msrestazure.azure_operation.AzureOperationPoller[~msrest.pipeline.ClientRawResponse[~storage.models.StorageAccount]]
-        :raises: :class:`ClientRequestError<azure.core.ClientRequestError>`
+        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         raw_result = self._create_initial(
             resource_group_name=resource_group_name,
@@ -226,7 +226,7 @@ class StorageAccountsOperations(object):
          deserialized response
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
-        :raises: :class:`ClientRequestError<azure.core.ClientRequestError>`
+        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         # Construct URL
         url = self.delete.metadata['url']
@@ -253,12 +253,12 @@ class StorageAccountsOperations(object):
 
         # Construct and send request
         request = self.delete(url, query_parameters, header_parameters)
-        pipeline_response = self.pipeline.run(request)
+        pipeline_response = self._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200, 204]:
             error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
-            exp = ClientRequestError(response=response)
+            exp = HttpRequestError(response=response)
             raise exp
 
         if raw:
@@ -284,7 +284,7 @@ class StorageAccountsOperations(object):
         :return: StorageAccount or ClientRawResponse if raw=true
         :rtype: ~storage.models.StorageAccount or
          ~msrest.pipeline.ClientRawResponse
-        :raises: :class:`ClientRequestError<azure.core.ClientRequestError>`
+        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         # Construct URL
         url = self.get_properties.metadata['url']
@@ -312,12 +312,12 @@ class StorageAccountsOperations(object):
 
         # Construct and send request
         request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = self.pipeline.run(request)
+        pipeline_response = self._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
-            exp = ClientRequestError(response=response)
+            exp = HttpRequestError(response=response)
             raise exp
 
         deserialized = None
@@ -359,7 +359,7 @@ class StorageAccountsOperations(object):
         :return: StorageAccount or ClientRawResponse if raw=true
         :rtype: ~storage.models.StorageAccount or
          ~msrest.pipeline.ClientRawResponse
-        :raises: :class:`ClientRequestError<azure.core.ClientRequestError>`
+        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         # Construct URL
         url = self.update.metadata['url']
@@ -391,12 +391,12 @@ class StorageAccountsOperations(object):
 
         # Construct and send request
         request = self.patch(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self.pipeline.run(request)
+        pipeline_response = self._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
-            exp = ClientRequestError(response=response)
+            exp = HttpRequestError(response=response)
             raise exp
 
         deserialized = None
@@ -424,7 +424,7 @@ class StorageAccountsOperations(object):
         :return: StorageAccountKeys or ClientRawResponse if raw=true
         :rtype: ~storage.models.StorageAccountKeys or
          ~msrest.pipeline.ClientRawResponse
-        :raises: :class:`ClientRequestError<azure.core.ClientRequestError>`
+        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         # Construct URL
         url = self.list_keys.metadata['url']
@@ -452,12 +452,12 @@ class StorageAccountsOperations(object):
 
         # Construct and send request
         request = self.post(url, query_parameters, header_parameters)
-        pipeline_response = self.pipeline.run(request)
+        pipeline_response = self._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
-            exp = ClientRequestError(response=response)
+            exp = HttpRequestError(response=response)
             raise exp
 
         deserialized = None
@@ -482,7 +482,7 @@ class StorageAccountsOperations(object):
         :return: An iterator like instance of StorageAccount
         :rtype:
          ~storage.models.StorageAccountPaged[~storage.models.StorageAccount]
-        :raises: :class:`ClientRequestError<azure.core.ClientRequestError>`
+        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         def prepare_request(next_link=None):
             if not next_link:
@@ -519,12 +519,12 @@ class StorageAccountsOperations(object):
         def internal_paging(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = self.pipeline.run(request)
+            pipeline_response = self._pipeline.run(request)
             response = pipeline_response.http_response.internal_response
 
             if response.status_code not in [200]:
                 error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
-                exp = ClientRequestError(response=response)
+                exp = HttpRequestError(response=response)
                 raise exp
 
             return response
@@ -552,7 +552,7 @@ class StorageAccountsOperations(object):
         :return: An iterator like instance of StorageAccount
         :rtype:
          ~storage.models.StorageAccountPaged[~storage.models.StorageAccount]
-        :raises: :class:`ClientRequestError<azure.core.ClientRequestError>`
+        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         def prepare_request(next_link=None):
             if not next_link:
@@ -590,12 +590,12 @@ class StorageAccountsOperations(object):
         def internal_paging(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = self.pipeline.run(request)
+            pipeline_response = self._pipeline.run(request)
             response = pipeline_response.http_response.internal_response
 
             if response.status_code not in [200]:
                 error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
-                exp = ClientRequestError(response=response)
+                exp = HttpRequestError(response=response)
                 raise exp
 
             return response
@@ -627,7 +627,7 @@ class StorageAccountsOperations(object):
         :return: StorageAccountKeys or ClientRawResponse if raw=true
         :rtype: ~storage.models.StorageAccountKeys or
          ~msrest.pipeline.ClientRawResponse
-        :raises: :class:`ClientRequestError<azure.core.ClientRequestError>`
+        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         regenerate_key1 = models.StorageAccountRegenerateKeyParameters(key_name=key_name)
 
@@ -661,12 +661,12 @@ class StorageAccountsOperations(object):
 
         # Construct and send request
         request = self.post(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self.pipeline.run(request)
+        pipeline_response = self._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
             error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
-            exp = ClientRequestError(response=response)
+            exp = HttpRequestError(response=response)
             raise exp
 
         deserialized = None

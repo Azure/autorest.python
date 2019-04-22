@@ -41,14 +41,6 @@ class BaseProduct(Model):
         self.description = description
 
 
-class ClientRequestError(Model):
-    """ClientRequestError.
-    """
-
-    _attribute_map = {
-    }
-
-
 class Error(Model):
     """Error.
 
@@ -241,6 +233,14 @@ class GenericUrl(Model):
     def __init__(self, *, generic_value: str=None, **kwargs) -> None:
         super(GenericUrl, self).__init__(**kwargs)
         self.generic_value = generic_value
+
+
+class HttpRequestError(Model):
+    """HttpRequestError.
+    """
+
+    _attribute_map = {
+    }
 
 
 class ProductWrapper(Model):

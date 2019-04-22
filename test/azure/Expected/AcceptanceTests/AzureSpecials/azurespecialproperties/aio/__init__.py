@@ -11,4 +11,4 @@
 
 from ._auto_rest_azure_special_parameters_test_client_async import AutoRestAzureSpecialParametersTestClient
 from ._configuration_async import AutoRestAzureSpecialParametersTestClientConfiguration
-__all__ = ['AutoRestAzureSpecialParametersTestClient']
+__all__ = ['AutoRestAzureSpecialParametersTestClient', 'AutoRestAzureSpecialParametersTestClientConfiguration']
