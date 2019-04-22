@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from azure.core import PipelineClient
+from azure.core import AsyncPipelineClient
 from msrest import Serializer, Deserializer
 
 from ._configuration_async import AutoRestRFC1123DateTimeTestServiceConfiguration
@@ -17,7 +17,7 @@ from .operations_async import Datetimerfc1123Operations
 from .. import models
 
 
-class AutoRestRFC1123DateTimeTestService:
+class AutoRestRFC1123DateTimeTestService(AsyncPipelineClient):
     """Test Infrastructure for AutoRest
 
 

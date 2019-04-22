@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from azure.core import PipelineClient
+from azure.core import AsyncPipelineClient
 from msrest import Serializer, Deserializer
 
 from ._configuration_async import AutoRestSwaggerBATByteServiceConfiguration
@@ -17,7 +17,7 @@ from .operations_async import ByteOperations
 from .. import models
 
 
-class AutoRestSwaggerBATByteService:
+class AutoRestSwaggerBATByteService(AsyncPipelineClient):
     """Test Infrastructure for AutoRest Swagger BAT
 
 

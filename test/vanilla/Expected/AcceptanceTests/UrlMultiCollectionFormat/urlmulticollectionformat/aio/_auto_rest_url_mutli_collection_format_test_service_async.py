@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from azure.core import PipelineClient
+from azure.core import AsyncPipelineClient
 from msrest import Serializer, Deserializer
 
 from ._configuration_async import AutoRestUrlMutliCollectionFormatTestServiceConfiguration
@@ -17,7 +17,7 @@ from .operations_async import QueriesOperations
 from .. import models
 
 
-class AutoRestUrlMutliCollectionFormatTestService:
+class AutoRestUrlMutliCollectionFormatTestService(AsyncPipelineClient):
     """Test Infrastructure for AutoRest
 
 

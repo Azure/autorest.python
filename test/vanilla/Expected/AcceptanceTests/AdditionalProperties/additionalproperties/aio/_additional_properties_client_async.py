@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from azure.core import PipelineClient
+from azure.core import AsyncPipelineClient
 from msrest import Serializer, Deserializer
 
 from ._configuration_async import AdditionalPropertiesClientConfiguration
@@ -17,7 +17,7 @@ from .operations_async import PetsOperations
 from .. import models
 
 
-class AdditionalPropertiesClient:
+class AdditionalPropertiesClient(AsyncPipelineClient):
     """Test Infrastructure for AutoRest
 
 

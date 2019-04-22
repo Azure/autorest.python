@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from azure.core import PipelineClient
+from azure.core import AsyncPipelineClient
 from msrest import Serializer, Deserializer
 
 from ._configuration_async import PetStoreIncConfiguration
@@ -18,7 +18,7 @@ from .operations_async import PetOperations
 from .. import models
 
 
-class PetStoreInc:
+class PetStoreInc(AsyncPipelineClient):
     """PetStore
 
 

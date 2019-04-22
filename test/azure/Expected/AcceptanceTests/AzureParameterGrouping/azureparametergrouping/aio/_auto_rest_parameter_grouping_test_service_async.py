@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from azure.core import PipelineClient
+from azure.core import AsyncPipelineClient
 from msrest import Serializer, Deserializer
 
 from ._configuration_async import AutoRestParameterGroupingTestServiceConfiguration
@@ -17,7 +17,7 @@ from .operations_async import ParameterGroupingOperations
 from .. import models
 
 
-class AutoRestParameterGroupingTestService:
+class AutoRestParameterGroupingTestService(AsyncPipelineClient):
     """Test Infrastructure for AutoRest
 
 

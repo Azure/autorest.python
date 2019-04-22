@@ -18,7 +18,7 @@ string clientName = Model.Name;
 {
 @:import warnings
 }
-from azure.core import PipelineClient
+from azure.core import AsyncPipelineClient
 from msrest import Serializer, Deserializer
 @EmptyLine
 from ._configuration_async import @(Model.Name)Configuration
@@ -48,11 +48,11 @@ bool hasClientLevelMethods = Model.MethodTemplateModels.Any( each => each.Method
 @EmptyLine
 @if (hasClientLevelMethods)
 {
-@:class @(clientName)(@(Model.Name)OperationsMixin, PipelineClient):
+@:class @(Model.Name)(@(Model.Name)OperationsMixin, AsyncPipelineClient):
 }
 else
 {
-@:class @(clientName):
+@:class @(Model.Name)(AsyncPipelineClient):
 }
     """@Model.ServiceDocument
 @EmptyLine

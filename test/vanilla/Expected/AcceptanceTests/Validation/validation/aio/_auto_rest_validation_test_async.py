@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from azure.core import PipelineClient
+from azure.core import AsyncPipelineClient
 from msrest import Serializer, Deserializer
 
 from ._configuration_async import AutoRestValidationTestConfiguration
@@ -18,7 +18,7 @@ from msrest.exceptions import HttpOperationError
 from .. import models
 
 
-class AutoRestValidationTest(AutoRestValidationTestOperationsMixin, PipelineClient):
+class AutoRestValidationTest(AutoRestValidationTestOperationsMixin, AsyncPipelineClient):
     """Test Infrastructure for AutoRest. No server backend exists for these tests.
 
 

@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from azure.core import PipelineClient
+from azure.core import AsyncPipelineClient
 from msrest import Serializer, Deserializer
 
 from ._configuration_async import StorageManagementClientConfiguration
@@ -18,7 +18,7 @@ from .operations_async import UsageOperations
 from .. import models
 
 
-class StorageManagementClient:
+class StorageManagementClient(AsyncPipelineClient):
     """StorageManagementClient
 
 

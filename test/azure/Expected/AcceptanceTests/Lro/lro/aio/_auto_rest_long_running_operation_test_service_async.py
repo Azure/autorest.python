@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from azure.core import PipelineClient
+from azure.core import AsyncPipelineClient
 from msrest import Serializer, Deserializer
 
 from ._configuration_async import AutoRestLongRunningOperationTestServiceConfiguration
@@ -20,7 +20,7 @@ from .operations_async import LROsCustomHeaderOperations
 from .. import models
 
 
-class AutoRestLongRunningOperationTestService:
+class AutoRestLongRunningOperationTestService(AsyncPipelineClient):
     """Long-running Operation for AutoRest
 
 

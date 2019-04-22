@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from azure.core import PipelineClient
+from azure.core import AsyncPipelineClient
 from msrest import Serializer, Deserializer
 
 from ._configuration_async import AutoRestPagingTestServiceConfiguration
@@ -17,7 +17,7 @@ from .operations_async import PagingOperations
 from .. import models
 
 
-class AutoRestPagingTestService:
+class AutoRestPagingTestService(AsyncPipelineClient):
     """Long-running Operation for AutoRest
 
 

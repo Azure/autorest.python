@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from azure.core import PipelineClient
+from azure.core import AsyncPipelineClient
 from msrest import Serializer, Deserializer
 
 from ._configuration_async import AutoRestResourceFlatteningTestServiceConfiguration
@@ -17,7 +17,7 @@ from .operations_async import AutoRestResourceFlatteningTestServiceOperationsMix
 from .. import models
 
 
-class AutoRestResourceFlatteningTestService(AutoRestResourceFlatteningTestServiceOperationsMixin, PipelineClient):
+class AutoRestResourceFlatteningTestService(AutoRestResourceFlatteningTestServiceOperationsMixin, AsyncPipelineClient):
     """Resource Flattening for AutoRest
 
 

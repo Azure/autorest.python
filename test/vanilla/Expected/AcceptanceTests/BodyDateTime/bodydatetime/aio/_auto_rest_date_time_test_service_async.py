@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from azure.core import PipelineClient
+from azure.core import AsyncPipelineClient
 from msrest import Serializer, Deserializer
 
 from ._configuration_async import AutoRestDateTimeTestServiceConfiguration
@@ -17,7 +17,7 @@ from .operations_async import DatetimeModelOperations
 from .. import models
 
 
-class AutoRestDateTimeTestService:
+class AutoRestDateTimeTestService(AsyncPipelineClient):
     """Test Infrastructure for AutoRest
 
 

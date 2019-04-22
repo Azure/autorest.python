@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from azure.core import PipelineClient
+from azure.core import AsyncPipelineClient
 from msrest import Serializer, Deserializer
 
 from ._configuration_async import AutoRestParameterFlatteningConfiguration
@@ -18,7 +18,7 @@ from .operations_async import AvailabilitySetsOperations
 from .. import models
 
 
-class AutoRestParameterFlattening:
+class AutoRestParameterFlattening(AsyncPipelineClient):
     """Resource Flattening for AutoRest
 
 
