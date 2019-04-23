@@ -81,8 +81,17 @@ else
     def __init__(
             self@(Model.RequiredConstructorParameters)@(Model.IsCustomBaseUri ? "" : ", base_url=None"), config=None, **kwargs):
 @EmptyLine
+@if (Model.IsCustomBaseUri)
+{
+@:        base_url = '@Model.BaseUrl'
+}
+else
+{
+@:        if not base_url:
+@:            base_url = '@Model.BaseUrl'
+}
         self._config = config or @(Model.Name)Configuration(@(Model.ConfigConstructorParameters)**kwargs)
-        self._client = AsyncPipelineClient(base_url=@(!Model.IsCustomBaseUri? "base_url": PythonConstants.None), config=self._config, **kwargs)
+        self._client = AsyncPipelineClient(base_url=base_url, config=self._config, **kwargs)
 @EmptyLine
 @if (Model.ModelTemplateModels.Any())
 {
@@ -108,3 +117,10 @@ else
         @:self.@(((string) methodGroup.Name).ToPythonCase()) = @((string) methodGroup.TypeName)(
             @:self._client, self._config, self._serialize, self._deserialize)
 }
+@EmptyLine
+    async def __aenter__(self):
+        await self._client.__aenter__()
+        return self
+
+    async def __aexit__(self, *exc_details):
+        await self._client.__aexit__(*exc_details)

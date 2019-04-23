@@ -61,7 +61,7 @@ class @((string) Model.TypeName):
         @:@property.Name = @property.DefaultValue
 }
 @EmptyLine
-        self.config = config
+        self._config = config
 @foreach (var method in Model.MethodTemplateModels)
 {
 @EmptyLine

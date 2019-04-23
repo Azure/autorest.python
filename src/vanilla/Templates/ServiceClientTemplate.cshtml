@@ -76,8 +76,17 @@ else
 @EmptyLine
     def __init__(self@(Model.RequiredConstructorParameters)@(Model.IsCustomBaseUri ? "" : ", base_url=None"), config=None, **kwargs):
 @EmptyLine
+@if (Model.IsCustomBaseUri)
+{
+@:        base_url = '@Model.BaseUrl'
+}
+else
+{
+@:        if not base_url:
+@:            base_url = '@Model.BaseUrl'
+}
         self._config = config or @(Model.Name)Configuration(@(Model.ConfigConstructorParameters)**kwargs)
-        self._client = PipelineClient(base_url=@(!Model.IsCustomBaseUri? "base_url": PythonConstants.None), config=self._config, **kwargs)
+        self._client = PipelineClient(base_url=base_url, config=self._config, **kwargs)
 
 @EmptyLine
 @if (Model.ModelTemplateModels.Any())
@@ -104,3 +113,10 @@ else
         @:self.@(((string) methodGroup.Name).ToPythonCase()) = @((string) methodGroup.TypeName)(
             @:self._client, self._config, self._serialize, self._deserialize)
 }
+@EmptyLine
+    def __enter__(self):
+        self._client.__enter__()
+        return self
+
+    def __exit__(self, *exc_details):
+        self._client.__exit__(*exc_details)

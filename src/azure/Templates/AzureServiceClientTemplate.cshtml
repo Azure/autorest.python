@@ -108,3 +108,10 @@ else
         @:self.@(((string) methodGroup.Name).ToPythonCase()) = @((string) methodGroup.TypeName)(
             @:self._client, self._config, self._serialize, self._deserialize)
 }
+@EmptyLine
+    def __enter__(self):
+        self._client.__enter__()
+        return self
+
+    def __exit__(self, *exc_details):
+        self._client.__exit__(*exc_details)

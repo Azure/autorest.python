@@ -82,7 +82,6 @@ string defKeyword = AsyncMode? "async def" : "def";
     {
       if (parameter.Location == ParameterLocation.Body && parameter.ModelType.IsPrimaryType(KnownPrimaryType.Stream))
       {
-        @:body_content = self.stream_upload(@parameter.Name, callback)
         break;
       }
     }

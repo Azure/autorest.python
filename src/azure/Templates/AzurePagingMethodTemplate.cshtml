@@ -111,7 +111,7 @@ else
         def internal_paging(next_link=None):
             request = prepare_request(next_link)
 @EmptyLine
-            pipeline_response = self._pipeline.run(request)
+            pipeline_response = self._client._pipeline.run(request)
             response = pipeline_response.http_response.internal_response        
 @EmptyLine
             if @Model.FailureStatusCodePredicate:
@@ -124,7 +124,7 @@ else
 @:        async def internal_paging_async(next_link=None):
 @:            request = prepare_request(next_link)
 @EmptyLine
-            @:pipeline_response = await self._pipeline.run(request)
+            @:pipeline_response = await self._client._pipeline.run(request)
             @:response = pipeline_response.http_response.internal_response        
 @EmptyLine
 @:            if @Model.FailureStatusCodePredicate:

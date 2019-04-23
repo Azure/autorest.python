@@ -49,7 +49,7 @@ class @((string) Model.TypeName)(object):
         self._serialize = serializer
         self._deserialize = deserializer
 @EmptyLine
-        self.config = config
+        self._config = config
 @foreach(var property in Model.ConstantProperties)
 {
         @:@property.Name = @property.DefaultValue

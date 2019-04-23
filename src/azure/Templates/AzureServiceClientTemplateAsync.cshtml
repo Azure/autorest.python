@@ -111,3 +111,10 @@ else
         @:self.@(((string) methodGroup.Name).ToPythonCase()) = @((string) methodGroup.TypeName)(
             @:self._client, self._config, self._serialize, self._deserialize)
 }
+@EmptyLine
+    async def __aenter__(self):
+        await self._client.__aenter__()
+        return self
+
+    async def __aexit__(self, *exc_details):
+        await self._client.__aexit__(*exc_details)
