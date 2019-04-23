@@ -48,11 +48,11 @@ bool hasClientLevelMethods = Model.MethodTemplateModels.Any( each => each.Method
 @EmptyLine
 @if (hasClientLevelMethods)
 {
-@:class @(Model.Name)(@(Model.Name)OperationsMixin, AsyncPipelineClient):
+@:class @(Model.Name)(@(Model.Name)OperationsMixin):
 }
 else
 {
-@:class @(Model.Name)(AsyncPipelineClient):
+@:class @(Model.Name)(object):
 }
     """@Model.ServiceDocument
 @EmptyLine
@@ -82,7 +82,7 @@ else
             self@(Model.RequiredConstructorParameters)@(Model.IsCustomBaseUri ? "" : ", base_url=None"), config=None, **kwargs):
 @EmptyLine
         self._config = config or @(Model.Name)Configuration(@(Model.ConfigConstructorParameters)**kwargs)
-        super(@(Model.Name), self).__init__(base_url=@(!Model.IsCustomBaseUri? "base_url": PythonConstants.None), config=self._config, **kwargs)
+        self._client = AsyncPipelineClient(base_url=@(!Model.IsCustomBaseUri? "base_url": PythonConstants.None), config=self._config, **kwargs)
 @EmptyLine
 @if (Model.ModelTemplateModels.Any())
 {
@@ -106,5 +106,5 @@ else
 @foreach (var methodGroup in Model.MethodGroupModels)
 {
         @:self.@(((string) methodGroup.Name).ToPythonCase()) = @((string) methodGroup.TypeName)(
-            @:self, self._config, self._serialize, self._deserialize)
+            @:self._client, self._config, self._serialize, self._deserialize)
 }

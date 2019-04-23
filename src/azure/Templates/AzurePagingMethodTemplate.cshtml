@@ -100,11 +100,11 @@ else
             # Construct and send request
 @if (Model.RequestBody != null)
 {
-            @:request = self.@(MethodPy.GetHttpFunction(Model.HttpMethod))(url, query_parameters, header_parameters, body_content)
+            @:request = self._client.@(MethodPy.GetHttpFunction(Model.HttpMethod))(url, query_parameters, header_parameters, body_content)
 }
 else
 {
-            @:request = self.@(MethodPy.GetHttpFunction(Model.HttpMethod))(url, query_parameters, header_parameters)
+            @:request = self._client.@(MethodPy.GetHttpFunction(Model.HttpMethod))(url, query_parameters, header_parameters)
 }
             return request
 @EmptyLine

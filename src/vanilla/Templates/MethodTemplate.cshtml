@@ -131,15 +131,15 @@ else if (Model.IsFormData)
         # Construct and send request
 @if (Model.RequestBody != null)
 {
-        @:request = self.@(MethodPy.GetHttpFunction(Model.HttpMethod))(url, query_parameters, header_parameters, body_content)
+        @:request = self._client.@(MethodPy.GetHttpFunction(Model.HttpMethod))(url, query_parameters, header_parameters, body_content)
 }
 else if (Model.IsFormData)
 {
-        @:request = self.@(MethodPy.GetHttpFunction(Model.HttpMethod))(url, query_parameters, header_parameters, form_content=form_data_content)
+        @:request = self._client.@(MethodPy.GetHttpFunction(Model.HttpMethod))(url, query_parameters, header_parameters, form_content=form_data_content)
 }
 else
 {
-        @:request = self.@(MethodPy.GetHttpFunction(Model.HttpMethod))(url, query_parameters, header_parameters)
+        @:request = self._client.@(MethodPy.GetHttpFunction(Model.HttpMethod))(url, query_parameters, header_parameters)
 }
 @{string streamParameter = "stream="+(Model.IsStreamResponse?"True":"False");}
 @{string sendCall = Model.GetSendCall(AsyncMode);}
