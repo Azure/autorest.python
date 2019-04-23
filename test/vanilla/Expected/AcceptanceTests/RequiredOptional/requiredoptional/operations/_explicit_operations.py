@@ -33,7 +33,7 @@ class ExplicitOperations(object):
         self._serialize = serializer
         self._deserialize = deserializer
 
-        self.config = config
+        self._config = config
 
     def post_required_integer_parameter(
             self, body_parameter, raw=False, **kwargs):
@@ -67,8 +67,8 @@ class ExplicitOperations(object):
         body_content = self._serialize.body(body_parameter, 'int')
 
         # Construct and send request
-        request = self.post(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._pipeline.run(request)
+        request = self._client.post(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code < 200 or response.status_code >= 300:
@@ -112,8 +112,8 @@ class ExplicitOperations(object):
             body_content = None
 
         # Construct and send request
-        request = self.post(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._pipeline.run(request)
+        request = self._client.post(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -159,8 +159,8 @@ class ExplicitOperations(object):
         body_content = self._serialize.body(body_parameter, 'IntWrapper')
 
         # Construct and send request
-        request = self.post(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._pipeline.run(request)
+        request = self._client.post(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code < 200 or response.status_code >= 300:
@@ -209,8 +209,8 @@ class ExplicitOperations(object):
             body_content = None
 
         # Construct and send request
-        request = self.post(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._pipeline.run(request)
+        request = self._client.post(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -250,8 +250,8 @@ class ExplicitOperations(object):
         header_parameters['headerParameter'] = self._serialize.header("header_parameter", header_parameter, 'int')
 
         # Construct and send request
-        request = self.post(url, query_parameters, header_parameters)
-        pipeline_response = self._pipeline.run(request)
+        request = self._client.post(url, query_parameters, header_parameters)
+        pipeline_response = self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code < 200 or response.status_code >= 300:
@@ -291,8 +291,8 @@ class ExplicitOperations(object):
             header_parameters['headerParameter'] = self._serialize.header("header_parameter", header_parameter, 'int')
 
         # Construct and send request
-        request = self.post(url, query_parameters, header_parameters)
-        pipeline_response = self._pipeline.run(request)
+        request = self._client.post(url, query_parameters, header_parameters)
+        pipeline_response = self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -335,8 +335,8 @@ class ExplicitOperations(object):
         body_content = self._serialize.body(body_parameter, 'str')
 
         # Construct and send request
-        request = self.post(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._pipeline.run(request)
+        request = self._client.post(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code < 200 or response.status_code >= 300:
@@ -380,8 +380,8 @@ class ExplicitOperations(object):
             body_content = None
 
         # Construct and send request
-        request = self.post(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._pipeline.run(request)
+        request = self._client.post(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -427,8 +427,8 @@ class ExplicitOperations(object):
         body_content = self._serialize.body(body_parameter, 'StringWrapper')
 
         # Construct and send request
-        request = self.post(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._pipeline.run(request)
+        request = self._client.post(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code < 200 or response.status_code >= 300:
@@ -477,8 +477,8 @@ class ExplicitOperations(object):
             body_content = None
 
         # Construct and send request
-        request = self.post(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._pipeline.run(request)
+        request = self._client.post(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -518,8 +518,8 @@ class ExplicitOperations(object):
         header_parameters['headerParameter'] = self._serialize.header("header_parameter", header_parameter, 'str')
 
         # Construct and send request
-        request = self.post(url, query_parameters, header_parameters)
-        pipeline_response = self._pipeline.run(request)
+        request = self._client.post(url, query_parameters, header_parameters)
+        pipeline_response = self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code < 200 or response.status_code >= 300:
@@ -559,8 +559,8 @@ class ExplicitOperations(object):
             header_parameters['bodyParameter'] = self._serialize.header("body_parameter", body_parameter, 'str')
 
         # Construct and send request
-        request = self.post(url, query_parameters, header_parameters)
-        pipeline_response = self._pipeline.run(request)
+        request = self._client.post(url, query_parameters, header_parameters)
+        pipeline_response = self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -603,8 +603,8 @@ class ExplicitOperations(object):
         body_content = self._serialize.body(body_parameter, 'Product')
 
         # Construct and send request
-        request = self.post(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._pipeline.run(request)
+        request = self._client.post(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code < 200 or response.status_code >= 300:
@@ -648,8 +648,8 @@ class ExplicitOperations(object):
             body_content = None
 
         # Construct and send request
-        request = self.post(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._pipeline.run(request)
+        request = self._client.post(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -695,8 +695,8 @@ class ExplicitOperations(object):
         body_content = self._serialize.body(body_parameter, 'ClassWrapper')
 
         # Construct and send request
-        request = self.post(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._pipeline.run(request)
+        request = self._client.post(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code < 200 or response.status_code >= 300:
@@ -745,8 +745,8 @@ class ExplicitOperations(object):
             body_content = None
 
         # Construct and send request
-        request = self.post(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._pipeline.run(request)
+        request = self._client.post(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -789,8 +789,8 @@ class ExplicitOperations(object):
         body_content = self._serialize.body(body_parameter, '[str]')
 
         # Construct and send request
-        request = self.post(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._pipeline.run(request)
+        request = self._client.post(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code < 200 or response.status_code >= 300:
@@ -834,8 +834,8 @@ class ExplicitOperations(object):
             body_content = None
 
         # Construct and send request
-        request = self.post(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._pipeline.run(request)
+        request = self._client.post(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -881,8 +881,8 @@ class ExplicitOperations(object):
         body_content = self._serialize.body(body_parameter, 'ArrayWrapper')
 
         # Construct and send request
-        request = self.post(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._pipeline.run(request)
+        request = self._client.post(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code < 200 or response.status_code >= 300:
@@ -931,8 +931,8 @@ class ExplicitOperations(object):
             body_content = None
 
         # Construct and send request
-        request = self.post(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._pipeline.run(request)
+        request = self._client.post(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -972,8 +972,8 @@ class ExplicitOperations(object):
         header_parameters['headerParameter'] = self._serialize.header("header_parameter", header_parameter, '[str]', div=',')
 
         # Construct and send request
-        request = self.post(url, query_parameters, header_parameters)
-        pipeline_response = self._pipeline.run(request)
+        request = self._client.post(url, query_parameters, header_parameters)
+        pipeline_response = self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code < 200 or response.status_code >= 300:
@@ -1013,8 +1013,8 @@ class ExplicitOperations(object):
             header_parameters['headerParameter'] = self._serialize.header("header_parameter", header_parameter, '[str]', div=',')
 
         # Construct and send request
-        request = self.post(url, query_parameters, header_parameters)
-        pipeline_response = self._pipeline.run(request)
+        request = self._client.post(url, query_parameters, header_parameters)
+        pipeline_response = self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:

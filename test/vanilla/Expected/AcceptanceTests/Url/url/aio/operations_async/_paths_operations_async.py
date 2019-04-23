@@ -36,7 +36,7 @@ class PathsOperations:
         self._serialize = serializer
         self._deserialize = deserializer
 
-        self.config = config
+        self._config = config
         self.byte_path = bytearray("", encoding="utf-8")
         self.date_path = "2012-01-01"
         self.date_time_path = "2012-01-01T01:01:01Z"
@@ -58,7 +58,7 @@ class PathsOperations:
         path_format_arguments = {
             'boolPath': self._serialize.url("bool_path", bool_path, 'bool')
         }
-        url = self.format_url(url, **path_format_arguments)
+        url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}
@@ -70,8 +70,8 @@ class PathsOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -99,7 +99,7 @@ class PathsOperations:
         path_format_arguments = {
             'boolPath': self._serialize.url("bool_path", bool_path, 'bool')
         }
-        url = self.format_url(url, **path_format_arguments)
+        url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}
@@ -111,8 +111,8 @@ class PathsOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -140,7 +140,7 @@ class PathsOperations:
         path_format_arguments = {
             'intPath': self._serialize.url("int_path", int_path, 'int')
         }
-        url = self.format_url(url, **path_format_arguments)
+        url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}
@@ -152,8 +152,8 @@ class PathsOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -181,7 +181,7 @@ class PathsOperations:
         path_format_arguments = {
             'intPath': self._serialize.url("int_path", int_path, 'int')
         }
-        url = self.format_url(url, **path_format_arguments)
+        url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}
@@ -193,8 +193,8 @@ class PathsOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -222,7 +222,7 @@ class PathsOperations:
         path_format_arguments = {
             'longPath': self._serialize.url("long_path", long_path, 'long')
         }
-        url = self.format_url(url, **path_format_arguments)
+        url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}
@@ -234,8 +234,8 @@ class PathsOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -263,7 +263,7 @@ class PathsOperations:
         path_format_arguments = {
             'longPath': self._serialize.url("long_path", long_path, 'long')
         }
-        url = self.format_url(url, **path_format_arguments)
+        url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}
@@ -275,8 +275,8 @@ class PathsOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -304,7 +304,7 @@ class PathsOperations:
         path_format_arguments = {
             'floatPath': self._serialize.url("float_path", float_path, 'float')
         }
-        url = self.format_url(url, **path_format_arguments)
+        url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}
@@ -316,8 +316,8 @@ class PathsOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -345,7 +345,7 @@ class PathsOperations:
         path_format_arguments = {
             'floatPath': self._serialize.url("float_path", float_path, 'float')
         }
-        url = self.format_url(url, **path_format_arguments)
+        url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}
@@ -357,8 +357,8 @@ class PathsOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -386,7 +386,7 @@ class PathsOperations:
         path_format_arguments = {
             'doublePath': self._serialize.url("double_path", double_path, 'float')
         }
-        url = self.format_url(url, **path_format_arguments)
+        url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}
@@ -398,8 +398,8 @@ class PathsOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -427,7 +427,7 @@ class PathsOperations:
         path_format_arguments = {
             'doublePath': self._serialize.url("double_path", double_path, 'float')
         }
-        url = self.format_url(url, **path_format_arguments)
+        url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}
@@ -439,8 +439,8 @@ class PathsOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -468,7 +468,7 @@ class PathsOperations:
         path_format_arguments = {
             'stringPath': self._serialize.url("string_path", string_path, 'str')
         }
-        url = self.format_url(url, **path_format_arguments)
+        url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}
@@ -480,8 +480,8 @@ class PathsOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -509,7 +509,7 @@ class PathsOperations:
         path_format_arguments = {
             'stringPath': self._serialize.url("string_path", string_path, 'str')
         }
-        url = self.format_url(url, **path_format_arguments)
+        url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}
@@ -521,8 +521,8 @@ class PathsOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -550,7 +550,7 @@ class PathsOperations:
         path_format_arguments = {
             'stringPath': self._serialize.url("string_path", string_path, 'str')
         }
-        url = self.format_url(url, **path_format_arguments)
+        url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}
@@ -562,8 +562,8 @@ class PathsOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -591,7 +591,7 @@ class PathsOperations:
         path_format_arguments = {
             'stringPath': self._serialize.url("string_path", string_path, 'str')
         }
-        url = self.format_url(url, **path_format_arguments)
+        url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}
@@ -603,8 +603,8 @@ class PathsOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [400]:
@@ -633,7 +633,7 @@ class PathsOperations:
         path_format_arguments = {
             'enumPath': self._serialize.url("enum_path", enum_path, 'UriColor')
         }
-        url = self.format_url(url, **path_format_arguments)
+        url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}
@@ -645,8 +645,8 @@ class PathsOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -676,7 +676,7 @@ class PathsOperations:
         path_format_arguments = {
             'enumPath': self._serialize.url("enum_path", enum_path, 'UriColor')
         }
-        url = self.format_url(url, **path_format_arguments)
+        url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}
@@ -688,8 +688,8 @@ class PathsOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [400]:
@@ -718,7 +718,7 @@ class PathsOperations:
         path_format_arguments = {
             'bytePath': self._serialize.url("byte_path", byte_path, 'bytearray')
         }
-        url = self.format_url(url, **path_format_arguments)
+        url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}
@@ -730,8 +730,8 @@ class PathsOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -757,7 +757,7 @@ class PathsOperations:
         path_format_arguments = {
             'bytePath': self._serialize.url("self.byte_path", self.byte_path, 'bytearray')
         }
-        url = self.format_url(url, **path_format_arguments)
+        url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}
@@ -769,8 +769,8 @@ class PathsOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -798,7 +798,7 @@ class PathsOperations:
         path_format_arguments = {
             'bytePath': self._serialize.url("byte_path", byte_path, 'bytearray')
         }
-        url = self.format_url(url, **path_format_arguments)
+        url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}
@@ -810,8 +810,8 @@ class PathsOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [400]:
@@ -837,7 +837,7 @@ class PathsOperations:
         path_format_arguments = {
             'datePath': self._serialize.url("self.date_path", self.date_path, 'date')
         }
-        url = self.format_url(url, **path_format_arguments)
+        url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}
@@ -849,8 +849,8 @@ class PathsOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -879,7 +879,7 @@ class PathsOperations:
         path_format_arguments = {
             'datePath': self._serialize.url("date_path", date_path, 'date')
         }
-        url = self.format_url(url, **path_format_arguments)
+        url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}
@@ -891,8 +891,8 @@ class PathsOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [400]:
@@ -918,7 +918,7 @@ class PathsOperations:
         path_format_arguments = {
             'dateTimePath': self._serialize.url("self.date_time_path", self.date_time_path, 'iso-8601')
         }
-        url = self.format_url(url, **path_format_arguments)
+        url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}
@@ -930,8 +930,8 @@ class PathsOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -960,7 +960,7 @@ class PathsOperations:
         path_format_arguments = {
             'dateTimePath': self._serialize.url("date_time_path", date_time_path, 'iso-8601')
         }
-        url = self.format_url(url, **path_format_arguments)
+        url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}
@@ -972,8 +972,8 @@ class PathsOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [400]:
@@ -1001,7 +1001,7 @@ class PathsOperations:
         path_format_arguments = {
             'base64UrlPath': self._serialize.url("base64_url_path", base64_url_path, 'base64')
         }
-        url = self.format_url(url, **path_format_arguments)
+        url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}
@@ -1013,8 +1013,8 @@ class PathsOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -1044,7 +1044,7 @@ class PathsOperations:
         path_format_arguments = {
             'arrayPath': self._serialize.url("array_path", array_path, '[str]', div=',')
         }
-        url = self.format_url(url, **path_format_arguments)
+        url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}
@@ -1056,8 +1056,8 @@ class PathsOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -1085,7 +1085,7 @@ class PathsOperations:
         path_format_arguments = {
             'unixTimeUrlPath': self._serialize.url("unix_time_url_path", unix_time_url_path, 'unix-time')
         }
-        url = self.format_url(url, **path_format_arguments)
+        url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}
@@ -1097,8 +1097,8 @@ class PathsOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:

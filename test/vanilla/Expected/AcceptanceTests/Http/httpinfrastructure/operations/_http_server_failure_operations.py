@@ -33,7 +33,7 @@ class HttpServerFailureOperations(object):
         self._serialize = serializer
         self._deserialize = deserializer
 
-        self.config = config
+        self._config = config
 
     def head501(
             self, raw=False, **kwargs):
@@ -61,8 +61,8 @@ class HttpServerFailureOperations(object):
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.head(url, query_parameters, header_parameters)
-        pipeline_response = self._pipeline.run(request)
+        request = self._client.head(url, query_parameters, header_parameters)
+        pipeline_response = self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code < 200 or response.status_code >= 300:
@@ -99,8 +99,8 @@ class HttpServerFailureOperations(object):
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code < 200 or response.status_code >= 300:
@@ -146,8 +146,8 @@ class HttpServerFailureOperations(object):
             body_content = None
 
         # Construct and send request
-        request = self.post(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._pipeline.run(request)
+        request = self._client.post(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code < 200 or response.status_code >= 300:
@@ -193,8 +193,8 @@ class HttpServerFailureOperations(object):
             body_content = None
 
         # Construct and send request
-        request = self.delete(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._pipeline.run(request)
+        request = self._client.delete(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code < 200 or response.status_code >= 300:

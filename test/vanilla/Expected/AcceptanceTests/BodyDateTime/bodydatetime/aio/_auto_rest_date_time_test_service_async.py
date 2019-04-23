@@ -17,7 +17,7 @@ from .operations_async import DatetimeModelOperations
 from .. import models
 
 
-class AutoRestDateTimeTestService(AsyncPipelineClient):
+class AutoRestDateTimeTestService(object):
     """Test Infrastructure for AutoRest
 
 
@@ -30,8 +30,10 @@ class AutoRestDateTimeTestService(AsyncPipelineClient):
     def __init__(
             self, base_url=None, config=None, **kwargs):
 
+        if not base_url:
+            base_url = 'http://localhost:3000'
         self._config = config or AutoRestDateTimeTestServiceConfiguration(**kwargs)
-        super(AutoRestDateTimeTestService, self).__init__(base_url=base_url, config=self._config, **kwargs)
+        self._client = AsyncPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '1.0.0'
@@ -39,4 +41,10 @@ class AutoRestDateTimeTestService(AsyncPipelineClient):
         self._deserialize = Deserializer(client_models)
 
         self.datetime_model = DatetimeModelOperations(
-            self, self._config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize)
+
+    async def __aenter__(self):
+        await self._client.__aenter__()
+        return self
+    async def __aexit__(self, *exc_details):
+        await self._client.__aexit__(*exc_details)

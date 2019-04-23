@@ -118,7 +118,7 @@ class TestXmsRequestClientId(object):
 
         cred = BasicTokenAuthentication({"access_token":123})
         client = AutoRestAzureSpecialParametersTestClient(cred, validSubscription, base_url="http://localhost:3000")
-        client.config.generate_client_request_id = False
+        client._config.generate_client_request_id = False
         await client.xms_client_request_id.get()
 
 

@@ -33,7 +33,7 @@ class PrimitiveOperations:
         self._serialize = serializer
         self._deserialize = deserializer
 
-        self.config = config
+        self._config = config
 
     async def get_int(
             self, *, raw=False, **kwargs):
@@ -60,8 +60,8 @@ class PrimitiveOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -107,8 +107,8 @@ class PrimitiveOperations:
         body_content = self._serialize.body(complex_body, 'IntWrapper')
 
         # Construct and send request
-        request = self.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -144,8 +144,8 @@ class PrimitiveOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -191,8 +191,8 @@ class PrimitiveOperations:
         body_content = self._serialize.body(complex_body, 'LongWrapper')
 
         # Construct and send request
-        request = self.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -228,8 +228,8 @@ class PrimitiveOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -275,8 +275,8 @@ class PrimitiveOperations:
         body_content = self._serialize.body(complex_body, 'FloatWrapper')
 
         # Construct and send request
-        request = self.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -312,8 +312,8 @@ class PrimitiveOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -360,8 +360,8 @@ class PrimitiveOperations:
         body_content = self._serialize.body(complex_body, 'DoubleWrapper')
 
         # Construct and send request
-        request = self.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -397,8 +397,8 @@ class PrimitiveOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -444,8 +444,8 @@ class PrimitiveOperations:
         body_content = self._serialize.body(complex_body, 'BooleanWrapper')
 
         # Construct and send request
-        request = self.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -481,8 +481,8 @@ class PrimitiveOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -528,8 +528,8 @@ class PrimitiveOperations:
         body_content = self._serialize.body(complex_body, 'StringWrapper')
 
         # Construct and send request
-        request = self.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -565,8 +565,8 @@ class PrimitiveOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -612,8 +612,8 @@ class PrimitiveOperations:
         body_content = self._serialize.body(complex_body, 'DateWrapper')
 
         # Construct and send request
-        request = self.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -649,8 +649,8 @@ class PrimitiveOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -697,8 +697,8 @@ class PrimitiveOperations:
         body_content = self._serialize.body(complex_body, 'DatetimeWrapper')
 
         # Construct and send request
-        request = self.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -734,8 +734,8 @@ class PrimitiveOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -782,8 +782,8 @@ class PrimitiveOperations:
         body_content = self._serialize.body(complex_body, 'Datetimerfc1123Wrapper')
 
         # Construct and send request
-        request = self.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -819,8 +819,8 @@ class PrimitiveOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -868,8 +868,8 @@ class PrimitiveOperations:
         body_content = self._serialize.body(complex_body, 'DurationWrapper')
 
         # Construct and send request
-        request = self.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -905,8 +905,8 @@ class PrimitiveOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -954,8 +954,8 @@ class PrimitiveOperations:
         body_content = self._serialize.body(complex_body, 'ByteWrapper')
 
         # Construct and send request
-        request = self.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:

@@ -17,7 +17,7 @@ from .operations import PathsOperations
 from . import models
 
 
-class AutoRestParameterizedCustomHostTestClient(PipelineClient):
+class AutoRestParameterizedCustomHostTestClient(object):
     """Test Infrastructure for AutoRest
 
 
@@ -33,8 +33,9 @@ class AutoRestParameterizedCustomHostTestClient(PipelineClient):
 
     def __init__(self, subscription_id, dns_suffix, config=None, **kwargs):
 
+        base_url = '{vault}{secret}{dnsSuffix}'
         self._config = config or AutoRestParameterizedCustomHostTestClientConfiguration(subscription_id, dns_suffix, **kwargs)
-        super(AutoRestParameterizedCustomHostTestClient, self).__init__(base_url=None, config=self._config, **kwargs)
+        self._client = PipelineClient(base_url=base_url, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '1.0.0'
@@ -42,4 +43,10 @@ class AutoRestParameterizedCustomHostTestClient(PipelineClient):
         self._deserialize = Deserializer(client_models)
 
         self.paths = PathsOperations(
-            self, self._config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize)
+
+    def __enter__(self):
+        self._client.__enter__()
+        return self
+    def __exit__(self, *exc_details):
+        self._client.__exit__(*exc_details)

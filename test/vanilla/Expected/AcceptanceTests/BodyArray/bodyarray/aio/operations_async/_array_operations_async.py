@@ -33,7 +33,7 @@ class ArrayOperations:
         self._serialize = serializer
         self._deserialize = deserializer
 
-        self.config = config
+        self._config = config
 
     async def get_null(
             self, *, raw=False, **kwargs):
@@ -59,8 +59,8 @@ class ArrayOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -101,8 +101,8 @@ class ArrayOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -143,8 +143,8 @@ class ArrayOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -190,8 +190,8 @@ class ArrayOperations:
         body_content = self._serialize.body(array_body, '[str]')
 
         # Construct and send request
-        request = self.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -226,8 +226,8 @@ class ArrayOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -273,8 +273,8 @@ class ArrayOperations:
         body_content = self._serialize.body(array_body, '[bool]')
 
         # Construct and send request
-        request = self.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -309,8 +309,8 @@ class ArrayOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -351,8 +351,8 @@ class ArrayOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -393,8 +393,8 @@ class ArrayOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -440,8 +440,8 @@ class ArrayOperations:
         body_content = self._serialize.body(array_body, '[int]')
 
         # Construct and send request
-        request = self.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -476,8 +476,8 @@ class ArrayOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -518,8 +518,8 @@ class ArrayOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -560,8 +560,8 @@ class ArrayOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -607,8 +607,8 @@ class ArrayOperations:
         body_content = self._serialize.body(array_body, '[long]')
 
         # Construct and send request
-        request = self.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -643,8 +643,8 @@ class ArrayOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -685,8 +685,8 @@ class ArrayOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -727,8 +727,8 @@ class ArrayOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -774,8 +774,8 @@ class ArrayOperations:
         body_content = self._serialize.body(array_body, '[float]')
 
         # Construct and send request
-        request = self.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -810,8 +810,8 @@ class ArrayOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -852,8 +852,8 @@ class ArrayOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -894,8 +894,8 @@ class ArrayOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -941,8 +941,8 @@ class ArrayOperations:
         body_content = self._serialize.body(array_body, '[float]')
 
         # Construct and send request
-        request = self.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -977,8 +977,8 @@ class ArrayOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -1019,8 +1019,8 @@ class ArrayOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -1061,8 +1061,8 @@ class ArrayOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -1108,8 +1108,8 @@ class ArrayOperations:
         body_content = self._serialize.body(array_body, '[str]')
 
         # Construct and send request
-        request = self.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -1145,8 +1145,8 @@ class ArrayOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -1192,8 +1192,8 @@ class ArrayOperations:
         body_content = self._serialize.body(array_body, '[FooEnum]')
 
         # Construct and send request
-        request = self.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -1228,8 +1228,8 @@ class ArrayOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -1275,8 +1275,8 @@ class ArrayOperations:
         body_content = self._serialize.body(array_body, '[str]')
 
         # Construct and send request
-        request = self.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -1311,8 +1311,8 @@ class ArrayOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -1353,8 +1353,8 @@ class ArrayOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -1397,8 +1397,8 @@ class ArrayOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -1446,8 +1446,8 @@ class ArrayOperations:
         body_content = self._serialize.body(array_body, '[str]')
 
         # Construct and send request
-        request = self.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -1482,8 +1482,8 @@ class ArrayOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -1524,8 +1524,8 @@ class ArrayOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -1571,8 +1571,8 @@ class ArrayOperations:
         body_content = self._serialize.body(array_body, '[date]')
 
         # Construct and send request
-        request = self.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -1607,8 +1607,8 @@ class ArrayOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -1649,8 +1649,8 @@ class ArrayOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -1692,8 +1692,8 @@ class ArrayOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -1740,8 +1740,8 @@ class ArrayOperations:
         body_content = self._serialize.body(array_body, '[iso-8601]')
 
         # Construct and send request
-        request = self.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -1776,8 +1776,8 @@ class ArrayOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -1818,8 +1818,8 @@ class ArrayOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -1861,8 +1861,8 @@ class ArrayOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -1909,8 +1909,8 @@ class ArrayOperations:
         body_content = self._serialize.body(array_body, '[rfc-1123]')
 
         # Construct and send request
-        request = self.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -1945,8 +1945,8 @@ class ArrayOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -1992,8 +1992,8 @@ class ArrayOperations:
         body_content = self._serialize.body(array_body, '[duration]')
 
         # Construct and send request
-        request = self.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -2029,8 +2029,8 @@ class ArrayOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -2077,8 +2077,8 @@ class ArrayOperations:
         body_content = self._serialize.body(array_body, '[bytearray]')
 
         # Construct and send request
-        request = self.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -2114,8 +2114,8 @@ class ArrayOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -2157,8 +2157,8 @@ class ArrayOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -2200,8 +2200,8 @@ class ArrayOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -2243,8 +2243,8 @@ class ArrayOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -2287,8 +2287,8 @@ class ArrayOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -2331,8 +2331,8 @@ class ArrayOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -2375,8 +2375,8 @@ class ArrayOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -2423,8 +2423,8 @@ class ArrayOperations:
         body_content = self._serialize.body(array_body, '[Product]')
 
         # Construct and send request
-        request = self.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -2459,8 +2459,8 @@ class ArrayOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -2501,8 +2501,8 @@ class ArrayOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -2544,8 +2544,8 @@ class ArrayOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -2587,8 +2587,8 @@ class ArrayOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -2630,8 +2630,8 @@ class ArrayOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -2678,8 +2678,8 @@ class ArrayOperations:
         body_content = self._serialize.body(array_body, '[[str]]')
 
         # Construct and send request
-        request = self.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -2714,8 +2714,8 @@ class ArrayOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -2756,8 +2756,8 @@ class ArrayOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -2800,8 +2800,8 @@ class ArrayOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -2844,8 +2844,8 @@ class ArrayOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -2888,8 +2888,8 @@ class ArrayOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -2937,8 +2937,8 @@ class ArrayOperations:
         body_content = self._serialize.body(array_body, '[{str}]')
 
         # Construct and send request
-        request = self.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:

@@ -34,7 +34,7 @@ class BasicOperations(object):
         self._serialize = serializer
         self._deserialize = deserializer
 
-        self.config = config
+        self._config = config
         self.api_version = "2016-02-29"
 
     def get_valid(
@@ -62,8 +62,8 @@ class BasicOperations(object):
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -110,8 +110,8 @@ class BasicOperations(object):
         body_content = self._serialize.body(complex_body, 'Basic')
 
         # Construct and send request
-        request = self.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._pipeline.run(request)
+        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -147,8 +147,8 @@ class BasicOperations(object):
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -190,8 +190,8 @@ class BasicOperations(object):
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -233,8 +233,8 @@ class BasicOperations(object):
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -277,8 +277,8 @@ class BasicOperations(object):
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:

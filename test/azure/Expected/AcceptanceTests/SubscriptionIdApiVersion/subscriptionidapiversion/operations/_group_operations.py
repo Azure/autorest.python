@@ -36,7 +36,7 @@ class GroupOperations(object):
         self._deserialize = deserializer
         self.api_version = "2014-04-01-preview"
 
-        self.config = config
+        self._config = config
 
     def get_sample_resource_group(
             self, resource_group_name, raw=False, **kwargs):
@@ -59,7 +59,7 @@ class GroupOperations(object):
             'subscriptionId': self._serialize.url("self._config.subscription_id", self._config.subscription_id, 'str'),
             'resourceGroupName': self._serialize.url("resource_group_name", resource_group_name, 'str')
         }
-        url = self.format_url(url, **path_format_arguments)
+        url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}
@@ -77,8 +77,8 @@ class GroupOperations(object):
             header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:

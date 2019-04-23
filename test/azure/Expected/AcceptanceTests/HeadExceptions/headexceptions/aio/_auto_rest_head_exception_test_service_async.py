@@ -16,7 +16,7 @@ from ._configuration_async import AutoRestHeadExceptionTestServiceConfiguration
 from .operations_async import HeadExceptionOperations
 
 
-class AutoRestHeadExceptionTestService(AsyncPipelineClient):
+class AutoRestHeadExceptionTestService(object):
     """Test Infrastructure for AutoRest
 
 
@@ -35,7 +35,7 @@ class AutoRestHeadExceptionTestService(AsyncPipelineClient):
         if not base_url:
             base_url = 'http://localhost:3000'
         self._config = config or AutoRestHeadExceptionTestServiceConfiguration(credentials, **kwargs)
-        super(AutoRestHeadExceptionTestService, self).__init__(base_url=base_url, config=self._config, **kwargs)
+        self._client = AsyncPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
         client_models = {}
         self.api_version = '1.0.0'
@@ -43,4 +43,10 @@ class AutoRestHeadExceptionTestService(AsyncPipelineClient):
         self._deserialize = Deserializer(client_models)
 
         self.head_exception = HeadExceptionOperations(
-            self, self._config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize)
+
+    async def __aenter__(self):
+        await self._client.__aenter__()
+        return self
+    async def __aexit__(self, *exc_details):
+        await self._client.__aexit__(*exc_details)

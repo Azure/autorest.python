@@ -37,7 +37,7 @@ class UsageOperations:
         self._deserialize = deserializer
         self.api_version = "2015-05-01-preview"
 
-        self.config = config
+        self._config = config
 
     async def list(
             self, *, raw=False, **kwargs):
@@ -56,7 +56,7 @@ class UsageOperations:
         path_format_arguments = {
             'subscriptionId': self._serialize.url("self._config.subscription_id", self._config.subscription_id, 'str')
         }
-        url = self.format_url(url, **path_format_arguments)
+        url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}
@@ -74,8 +74,8 @@ class UsageOperations:
             header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:

@@ -59,7 +59,7 @@ def paging_client():
 
 @pytest.fixture()
 def special_paging_client(paging_client, test_session_callback):
-    paging_client.config.session_configuration_callback = test_session_callback
+    paging_client._config.session_configuration_callback = test_session_callback
     return paging_client
 
 

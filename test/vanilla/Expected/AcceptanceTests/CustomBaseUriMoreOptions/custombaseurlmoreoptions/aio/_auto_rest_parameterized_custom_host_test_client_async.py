@@ -17,7 +17,7 @@ from .operations_async import PathsOperations
 from .. import models
 
 
-class AutoRestParameterizedCustomHostTestClient(AsyncPipelineClient):
+class AutoRestParameterizedCustomHostTestClient(object):
     """Test Infrastructure for AutoRest
 
 
@@ -34,8 +34,9 @@ class AutoRestParameterizedCustomHostTestClient(AsyncPipelineClient):
     def __init__(
             self, subscription_id, dns_suffix, config=None, **kwargs):
 
+        base_url = '{vault}{secret}{dnsSuffix}'
         self._config = config or AutoRestParameterizedCustomHostTestClientConfiguration(subscription_id, dns_suffix, **kwargs)
-        super(AutoRestParameterizedCustomHostTestClient, self).__init__(base_url=None, config=self._config, **kwargs)
+        self._client = AsyncPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '1.0.0'
@@ -43,4 +44,10 @@ class AutoRestParameterizedCustomHostTestClient(AsyncPipelineClient):
         self._deserialize = Deserializer(client_models)
 
         self.paths = PathsOperations(
-            self, self._config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize)
+
+    async def __aenter__(self):
+        await self._client.__aenter__()
+        return self
+    async def __aexit__(self, *exc_details):
+        await self._client.__aexit__(*exc_details)

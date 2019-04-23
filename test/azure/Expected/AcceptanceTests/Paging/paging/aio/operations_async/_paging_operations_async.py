@@ -37,7 +37,7 @@ class PagingOperations:
         self._serialize = serializer
         self._deserialize = deserializer
 
-        self.config = config
+        self._config = config
 
     def get_single_pages(
             self, *, raw=False, **kwargs):
@@ -73,13 +73,13 @@ class PagingOperations:
                 header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
             # Construct and send request
-            request = self.get(url, query_parameters, header_parameters)
+            request = self._client.get(url, query_parameters, header_parameters)
             return request
 
         def internal_paging(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = self._pipeline.run(request)
+            pipeline_response = self._client._pipeline.run(request)
             response = pipeline_response.http_response.internal_response
 
             if response.status_code not in [200]:
@@ -92,7 +92,7 @@ class PagingOperations:
         async def internal_paging_async(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self._pipeline.run(request)
+            pipeline_response = await self._client._pipeline.run(request)
             response = pipeline_response.http_response.internal_response
 
             if response.status_code not in [200]:
@@ -165,13 +165,13 @@ class PagingOperations:
                 header_parameters['timeout'] = self._serialize.header("timeout", timeout, 'int')
 
             # Construct and send request
-            request = self.get(url, query_parameters, header_parameters)
+            request = self._client.get(url, query_parameters, header_parameters)
             return request
 
         def internal_paging(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = self._pipeline.run(request)
+            pipeline_response = self._client._pipeline.run(request)
             response = pipeline_response.http_response.internal_response
 
             if response.status_code not in [200]:
@@ -184,7 +184,7 @@ class PagingOperations:
         async def internal_paging_async(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self._pipeline.run(request)
+            pipeline_response = await self._client._pipeline.run(request)
             response = pipeline_response.http_response.internal_response
 
             if response.status_code not in [200]:
@@ -258,13 +258,13 @@ class PagingOperations:
                 header_parameters['timeout'] = self._serialize.header("timeout", timeout, 'int')
 
             # Construct and send request
-            request = self.get(url, query_parameters, header_parameters)
+            request = self._client.get(url, query_parameters, header_parameters)
             return request
 
         def internal_paging(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = self._pipeline.run(request)
+            pipeline_response = self._client._pipeline.run(request)
             response = pipeline_response.http_response.internal_response
 
             if response.status_code not in [200]:
@@ -277,7 +277,7 @@ class PagingOperations:
         async def internal_paging_async(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self._pipeline.run(request)
+            pipeline_response = await self._client._pipeline.run(request)
             response = pipeline_response.http_response.internal_response
 
             if response.status_code not in [200]:
@@ -330,7 +330,7 @@ class PagingOperations:
                 path_format_arguments = {
                     'offset': self._serialize.url("offset", offset, 'int')
                 }
-                url = self.format_url(url, **path_format_arguments)
+                url = self._client.format_url(url, **path_format_arguments)
 
                 # Construct parameters
                 query_parameters = {}
@@ -357,13 +357,13 @@ class PagingOperations:
                 header_parameters['timeout'] = self._serialize.header("timeout", timeout, 'int')
 
             # Construct and send request
-            request = self.get(url, query_parameters, header_parameters)
+            request = self._client.get(url, query_parameters, header_parameters)
             return request
 
         def internal_paging(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = self._pipeline.run(request)
+            pipeline_response = self._client._pipeline.run(request)
             response = pipeline_response.http_response.internal_response
 
             if response.status_code not in [200]:
@@ -376,7 +376,7 @@ class PagingOperations:
         async def internal_paging_async(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self._pipeline.run(request)
+            pipeline_response = await self._client._pipeline.run(request)
             response = pipeline_response.http_response.internal_response
 
             if response.status_code not in [200]:
@@ -431,13 +431,13 @@ class PagingOperations:
                 header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
             # Construct and send request
-            request = self.get(url, query_parameters, header_parameters)
+            request = self._client.get(url, query_parameters, header_parameters)
             return request
 
         def internal_paging(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = self._pipeline.run(request)
+            pipeline_response = self._client._pipeline.run(request)
             response = pipeline_response.http_response.internal_response
 
             if response.status_code not in [200]:
@@ -450,7 +450,7 @@ class PagingOperations:
         async def internal_paging_async(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self._pipeline.run(request)
+            pipeline_response = await self._client._pipeline.run(request)
             response = pipeline_response.http_response.internal_response
 
             if response.status_code not in [200]:
@@ -506,13 +506,13 @@ class PagingOperations:
                 header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
             # Construct and send request
-            request = self.get(url, query_parameters, header_parameters)
+            request = self._client.get(url, query_parameters, header_parameters)
             return request
 
         def internal_paging(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = self._pipeline.run(request)
+            pipeline_response = self._client._pipeline.run(request)
             response = pipeline_response.http_response.internal_response
 
             if response.status_code not in [200]:
@@ -525,7 +525,7 @@ class PagingOperations:
         async def internal_paging_async(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self._pipeline.run(request)
+            pipeline_response = await self._client._pipeline.run(request)
             response = pipeline_response.http_response.internal_response
 
             if response.status_code not in [200]:
@@ -579,13 +579,13 @@ class PagingOperations:
                 header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
             # Construct and send request
-            request = self.get(url, query_parameters, header_parameters)
+            request = self._client.get(url, query_parameters, header_parameters)
             return request
 
         def internal_paging(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = self._pipeline.run(request)
+            pipeline_response = self._client._pipeline.run(request)
             response = pipeline_response.http_response.internal_response
 
             if response.status_code not in [200]:
@@ -598,7 +598,7 @@ class PagingOperations:
         async def internal_paging_async(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self._pipeline.run(request)
+            pipeline_response = await self._client._pipeline.run(request)
             response = pipeline_response.http_response.internal_response
 
             if response.status_code not in [200]:
@@ -652,13 +652,13 @@ class PagingOperations:
                 header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
             # Construct and send request
-            request = self.get(url, query_parameters, header_parameters)
+            request = self._client.get(url, query_parameters, header_parameters)
             return request
 
         def internal_paging(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = self._pipeline.run(request)
+            pipeline_response = self._client._pipeline.run(request)
             response = pipeline_response.http_response.internal_response
 
             if response.status_code not in [200]:
@@ -671,7 +671,7 @@ class PagingOperations:
         async def internal_paging_async(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self._pipeline.run(request)
+            pipeline_response = await self._client._pipeline.run(request)
             response = pipeline_response.http_response.internal_response
 
             if response.status_code not in [200]:
@@ -725,13 +725,13 @@ class PagingOperations:
                 header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
             # Construct and send request
-            request = self.get(url, query_parameters, header_parameters)
+            request = self._client.get(url, query_parameters, header_parameters)
             return request
 
         def internal_paging(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = self._pipeline.run(request)
+            pipeline_response = self._client._pipeline.run(request)
             response = pipeline_response.http_response.internal_response
 
             if response.status_code not in [200]:
@@ -744,7 +744,7 @@ class PagingOperations:
         async def internal_paging_async(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self._pipeline.run(request)
+            pipeline_response = await self._client._pipeline.run(request)
             response = pipeline_response.http_response.internal_response
 
             if response.status_code not in [200]:
@@ -785,7 +785,7 @@ class PagingOperations:
                 path_format_arguments = {
                     'tenant': self._serialize.url("tenant", tenant, 'str')
                 }
-                url = self.format_url(url, **path_format_arguments)
+                url = self._client.format_url(url, **path_format_arguments)
 
                 # Construct parameters
                 query_parameters = {}
@@ -797,7 +797,7 @@ class PagingOperations:
                     'tenant': self._serialize.url("tenant", tenant, 'str'),
                     'nextLink': self._serialize.url("next_link", next_link, 'str', skip_quote=True)
                 }
-                url = self.format_url(url, **path_format_arguments)
+                url = self._client.format_url(url, **path_format_arguments)
                 query_parameters = {}
                 query_parameters['api_version'] = self._serialize.query("api_version", api_version, 'str')
 
@@ -813,13 +813,13 @@ class PagingOperations:
                 header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
             # Construct and send request
-            request = self.get(url, query_parameters, header_parameters)
+            request = self._client.get(url, query_parameters, header_parameters)
             return request
 
         def internal_paging(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = self._pipeline.run(request)
+            pipeline_response = self._client._pipeline.run(request)
             response = pipeline_response.http_response.internal_response
 
             if response.status_code not in [200]:
@@ -832,7 +832,7 @@ class PagingOperations:
         async def internal_paging_async(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self._pipeline.run(request)
+            pipeline_response = await self._client._pipeline.run(request)
             response = pipeline_response.http_response.internal_response
 
             if response.status_code not in [200]:
@@ -879,7 +879,7 @@ class PagingOperations:
                 path_format_arguments = {
                     'tenant': self._serialize.url("tenant", tenant, 'str')
                 }
-                url = self.format_url(url, **path_format_arguments)
+                url = self._client.format_url(url, **path_format_arguments)
 
                 # Construct parameters
                 query_parameters = {}
@@ -891,7 +891,7 @@ class PagingOperations:
                     'tenant': self._serialize.url("tenant", tenant, 'str'),
                     'nextLink': self._serialize.url("next_link", next_link, 'str', skip_quote=True)
                 }
-                url = self.format_url(url, **path_format_arguments)
+                url = self._client.format_url(url, **path_format_arguments)
                 query_parameters = {}
                 query_parameters['api_version'] = self._serialize.query("api_version", api_version, 'str')
 
@@ -907,13 +907,13 @@ class PagingOperations:
                 header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
             # Construct and send request
-            request = self.get(url, query_parameters, header_parameters)
+            request = self._client.get(url, query_parameters, header_parameters)
             return request
 
         def internal_paging(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = self._pipeline.run(request)
+            pipeline_response = self._client._pipeline.run(request)
             response = pipeline_response.http_response.internal_response
 
             if response.status_code not in [200]:
@@ -926,7 +926,7 @@ class PagingOperations:
         async def internal_paging_async(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self._pipeline.run(request)
+            pipeline_response = await self._client._pipeline.run(request)
             response = pipeline_response.http_response.internal_response
 
             if response.status_code not in [200]:
@@ -980,8 +980,8 @@ class PagingOperations:
             header_parameters['timeout'] = self._serialize.header("timeout", timeout, 'int')
 
         # Construct and send request
-        request = self.post(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.post(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [202]:

@@ -17,7 +17,7 @@ from .operations_async import PathsOperations
 from .. import models
 
 
-class AutoRestParameterizedHostTestClient(AsyncPipelineClient):
+class AutoRestParameterizedHostTestClient(object):
     """Test Infrastructure for AutoRest
 
 
@@ -32,8 +32,9 @@ class AutoRestParameterizedHostTestClient(AsyncPipelineClient):
     def __init__(
             self, host, config=None, **kwargs):
 
+        base_url = 'http://{accountName}{host}'
         self._config = config or AutoRestParameterizedHostTestClientConfiguration(host, **kwargs)
-        super(AutoRestParameterizedHostTestClient, self).__init__(base_url=None, config=self._config, **kwargs)
+        self._client = AsyncPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '1.0.0'
@@ -41,4 +42,10 @@ class AutoRestParameterizedHostTestClient(AsyncPipelineClient):
         self._deserialize = Deserializer(client_models)
 
         self.paths = PathsOperations(
-            self, self._config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize)
+
+    async def __aenter__(self):
+        await self._client.__aenter__()
+        return self
+    async def __aexit__(self, *exc_details):
+        await self._client.__aexit__(*exc_details)

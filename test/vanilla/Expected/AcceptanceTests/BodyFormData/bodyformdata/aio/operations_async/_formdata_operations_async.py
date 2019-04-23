@@ -33,7 +33,7 @@ class FormdataOperations:
         self._serialize = serializer
         self._deserialize = deserializer
 
-        self.config = config
+        self._config = config
 
     async def upload_file(
             self, file_content, file_name, *, raw=False, callback=None, **kwargs):
@@ -76,8 +76,8 @@ class FormdataOperations:
         }
 
         # Construct and send request
-        request = self.post(url, query_parameters, header_parameters, form_content=form_data_content)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.post(url, query_parameters, header_parameters, form_content=form_data_content)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -124,11 +124,10 @@ class FormdataOperations:
             header_parameters.update(headers)
 
         # Construct body
-        body_content = self.stream_upload(file_content, callback)
 
         # Construct and send request
-        request = self.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:

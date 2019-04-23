@@ -20,7 +20,7 @@ from .operations import LROsCustomHeaderOperations
 from . import models
 
 
-class AutoRestLongRunningOperationTestService(PipelineClient):
+class AutoRestLongRunningOperationTestService(object):
     """Long-running Operation for AutoRest
 
 
@@ -45,7 +45,7 @@ class AutoRestLongRunningOperationTestService(PipelineClient):
         if not base_url:
             base_url = 'http://localhost:3000'
         self._config = config or AutoRestLongRunningOperationTestServiceConfiguration(credentials, **kwargs)
-        super(AutoRestLongRunningOperationTestService, self).__init__(base_url=base_url, config=self._config, **kwargs)
+        self._client = PipelineClient(base_url=base_url, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '1.0.0'
@@ -53,10 +53,16 @@ class AutoRestLongRunningOperationTestService(PipelineClient):
         self._deserialize = Deserializer(client_models)
 
         self.lr_os = LROsOperations(
-            self, self._config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize)
         self.lro_retrys = LRORetrysOperations(
-            self, self._config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize)
         self.lrosa_ds = LROSADsOperations(
-            self, self._config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize)
         self.lr_os_custom_header = LROsCustomHeaderOperations(
-            self, self._config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize)
+
+    def __enter__(self):
+        self._client.__enter__()
+        return self
+    def __exit__(self, *exc_details):
+        self._client.__exit__(*exc_details)

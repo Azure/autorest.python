@@ -31,7 +31,7 @@ class HttpSuccessOperations(object):
         self._serialize = serializer
         self._deserialize = deserializer
 
-        self.config = config
+        self._config = config
 
     def head200(
             self, raw=False, **kwargs):
@@ -60,8 +60,8 @@ class HttpSuccessOperations(object):
             header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct and send request
-        request = self.head(url, query_parameters, header_parameters)
-        pipeline_response = self._pipeline.run(request)
+        request = self._client.head(url, query_parameters, header_parameters)
+        pipeline_response = self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200, 404]:
@@ -103,8 +103,8 @@ class HttpSuccessOperations(object):
             header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct and send request
-        request = self.head(url, query_parameters, header_parameters)
-        pipeline_response = self._pipeline.run(request)
+        request = self._client.head(url, query_parameters, header_parameters)
+        pipeline_response = self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [204, 404]:
@@ -146,8 +146,8 @@ class HttpSuccessOperations(object):
             header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct and send request
-        request = self.head(url, query_parameters, header_parameters)
-        pipeline_response = self._pipeline.run(request)
+        request = self._client.head(url, query_parameters, header_parameters)
+        pipeline_response = self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [204, 404]:

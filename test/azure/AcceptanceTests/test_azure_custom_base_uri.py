@@ -65,14 +65,14 @@ class TestCustomBaseUri(object):
     def test_custom_base_uri_negative(self):
         cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
         client = AutoRestParameterizedHostTestClient(cred, host="host:3000")
-        client.config.retry_policy.retries = 0
+        client._config.retry_policy.retries = 0
         with pytest.raises(ConnectError):
             client.paths.get_empty("bad")
 
         with pytest.raises(ValidationError):
             client.paths.get_empty(None)
 
-        client.config.host = "badhost:3000"
+        client._config.host = "badhost:3000"
         with pytest.raises(ConnectError):
             client.paths.get_empty("local")
 

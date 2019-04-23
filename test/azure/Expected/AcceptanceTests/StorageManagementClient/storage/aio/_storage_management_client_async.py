@@ -18,7 +18,7 @@ from .operations_async import UsageOperations
 from .. import models
 
 
-class StorageManagementClient(AsyncPipelineClient):
+class StorageManagementClient(object):
     """StorageManagementClient
 
 
@@ -43,7 +43,7 @@ class StorageManagementClient(AsyncPipelineClient):
         if not base_url:
             base_url = 'https://management.azure.com'
         self._config = config or StorageManagementClientConfiguration(credentials, subscription_id, **kwargs)
-        super(StorageManagementClient, self).__init__(base_url=base_url, config=self._config, **kwargs)
+        self._client = AsyncPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '2015-05-01-preview'
@@ -51,6 +51,12 @@ class StorageManagementClient(AsyncPipelineClient):
         self._deserialize = Deserializer(client_models)
 
         self.storage_accounts = StorageAccountsOperations(
-            self, self._config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize)
         self.usage = UsageOperations(
-            self, self._config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize)
+
+    async def __aenter__(self):
+        await self._client.__aenter__()
+        return self
+    async def __aexit__(self, *exc_details):
+        await self._client.__aexit__(*exc_details)

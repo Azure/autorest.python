@@ -59,7 +59,7 @@ def client():
 
 @pytest.fixture()
 def special_client(client, test_session_callback):
-    client.config.session_configuration_callback = test_session_callback
+    client._config.session_configuration_callback = test_session_callback
     return client
 
 class TestHttp(object):

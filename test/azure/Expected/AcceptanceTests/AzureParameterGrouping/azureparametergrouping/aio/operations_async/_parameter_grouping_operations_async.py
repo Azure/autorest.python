@@ -34,7 +34,7 @@ class ParameterGroupingOperations:
         self._serialize = serializer
         self._deserialize = deserializer
 
-        self.config = config
+        self._config = config
 
     async def post_required(
             self, parameter_grouping_post_required_parameters, *, raw=False, **kwargs):
@@ -69,7 +69,7 @@ class ParameterGroupingOperations:
         path_format_arguments = {
             'path': self._serialize.url("path", path, 'str')
         }
-        url = self.format_url(url, **path_format_arguments)
+        url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}
@@ -93,8 +93,8 @@ class ParameterGroupingOperations:
         body_content = self._serialize.body(body, 'int')
 
         # Construct and send request
-        request = self.post(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.post(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -148,8 +148,8 @@ class ParameterGroupingOperations:
             header_parameters['customHeader'] = self._serialize.header("custom_header", custom_header, 'str')
 
         # Construct and send request
-        request = self.post(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.post(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -216,8 +216,8 @@ class ParameterGroupingOperations:
             header_parameters['header-two'] = self._serialize.header("header_two", header_two, 'str')
 
         # Construct and send request
-        request = self.post(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.post(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -270,8 +270,8 @@ class ParameterGroupingOperations:
             header_parameters['header-one'] = self._serialize.header("header_one", header_one, 'str')
 
         # Construct and send request
-        request = self.post(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.post(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:

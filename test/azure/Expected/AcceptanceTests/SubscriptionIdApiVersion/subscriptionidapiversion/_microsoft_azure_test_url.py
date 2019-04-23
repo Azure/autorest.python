@@ -17,7 +17,7 @@ from .operations import GroupOperations
 from . import models
 
 
-class MicrosoftAzureTestUrl(PipelineClient):
+class MicrosoftAzureTestUrl(object):
     """Some cool documentation.
 
 
@@ -38,7 +38,7 @@ class MicrosoftAzureTestUrl(PipelineClient):
         if not base_url:
             base_url = 'https://management.azure.com'
         self._config = config or MicrosoftAzureTestUrlConfiguration(credentials, subscription_id, **kwargs)
-        super(MicrosoftAzureTestUrl, self).__init__(base_url=base_url, config=self._config, **kwargs)
+        self._client = PipelineClient(base_url=base_url, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '2014-04-01-preview'
@@ -46,4 +46,10 @@ class MicrosoftAzureTestUrl(PipelineClient):
         self._deserialize = Deserializer(client_models)
 
         self.group = GroupOperations(
-            self, self._config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize)
+
+    def __enter__(self):
+        self._client.__enter__()
+        return self
+    def __exit__(self, *exc_details):
+        self._client.__exit__(*exc_details)

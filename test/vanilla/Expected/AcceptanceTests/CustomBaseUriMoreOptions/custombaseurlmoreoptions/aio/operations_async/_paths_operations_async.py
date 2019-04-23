@@ -33,7 +33,7 @@ class PathsOperations:
         self._serialize = serializer
         self._deserialize = deserializer
 
-        self.config = config
+        self._config = config
 
     async def get_empty(
             self, vault, secret, key_name, key_version="v1", *, raw=False, **kwargs):
@@ -63,7 +63,7 @@ class PathsOperations:
             'keyName': self._serialize.url("key_name", key_name, 'str'),
             'subscriptionId': self._serialize.url("self._config.subscription_id", self._config.subscription_id, 'str')
         }
-        url = self.format_url(url, **path_format_arguments)
+        url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}
@@ -77,8 +77,8 @@ class PathsOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:

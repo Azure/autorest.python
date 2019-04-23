@@ -33,7 +33,7 @@ class PathItemsOperations:
         self._serialize = serializer
         self._deserialize = deserializer
 
-        self.config = config
+        self._config = config
 
     async def get_all_with_values(
             self, local_string_path, path_item_string_path, local_string_query=None, path_item_string_query=None, *, raw=False, **kwargs):
@@ -67,7 +67,7 @@ class PathItemsOperations:
             'pathItemStringPath': self._serialize.url("path_item_string_path", path_item_string_path, 'str'),
             'globalStringPath': self._serialize.url("self._config.global_string_path", self._config.global_string_path, 'str')
         }
-        url = self.format_url(url, **path_format_arguments)
+        url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}
@@ -85,8 +85,8 @@ class PathItemsOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -128,7 +128,7 @@ class PathItemsOperations:
             'pathItemStringPath': self._serialize.url("path_item_string_path", path_item_string_path, 'str'),
             'globalStringPath': self._serialize.url("self._config.global_string_path", self._config.global_string_path, 'str')
         }
-        url = self.format_url(url, **path_format_arguments)
+        url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}
@@ -146,8 +146,8 @@ class PathItemsOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -188,7 +188,7 @@ class PathItemsOperations:
             'pathItemStringPath': self._serialize.url("path_item_string_path", path_item_string_path, 'str'),
             'globalStringPath': self._serialize.url("self._config.global_string_path", self._config.global_string_path, 'str')
         }
-        url = self.format_url(url, **path_format_arguments)
+        url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}
@@ -206,8 +206,8 @@ class PathItemsOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
@@ -248,7 +248,7 @@ class PathItemsOperations:
             'pathItemStringPath': self._serialize.url("path_item_string_path", path_item_string_path, 'str'),
             'globalStringPath': self._serialize.url("self._config.global_string_path", self._config.global_string_path, 'str')
         }
-        url = self.format_url(url, **path_format_arguments)
+        url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}
@@ -266,8 +266,8 @@ class PathItemsOperations:
             header_parameters.update(headers)
 
         # Construct and send request
-        request = self.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:

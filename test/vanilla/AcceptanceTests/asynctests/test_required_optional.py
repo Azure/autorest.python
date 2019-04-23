@@ -57,8 +57,8 @@ class TestRequiredOptional(object):
     @pytest.mark.asyncio
     async def test_required_optional(self, client):
 
-        client.config.required_global_path = "required_path"
-        client.config.required_global_query = "required_query"
+        client._config.required_global_path = "required_path"
+        client._config.required_global_query = "required_query"
 
         await client.implicit.put_optional_query(None)
         await client.implicit.put_optional_body(None)
@@ -84,8 +84,8 @@ class TestRequiredOptional(object):
     @pytest.mark.asyncio
     async def test_required_optional_negative(self, client):
 
-        client.config.required_global_path = None
-        client.config.required_global_query = None
+        client._config.required_global_path = None
+        client._config.required_global_query = None
 
         with pytest.raises(ValidationError):
             await client.implicit.get_required_path(None)

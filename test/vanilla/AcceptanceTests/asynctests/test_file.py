@@ -56,7 +56,7 @@ class TestFile(object):
 
     @pytest.mark.asyncio
     async def test_files_yada(self, client):
-        client.config.connection.data_block_size = 1000
+        client._config.connection.data_block_size = 1000
 
         def test_callback(data, response, progress=[0]):
             assert len(data) > 0
@@ -85,7 +85,7 @@ class TestFile(object):
                 sample_data = hash(data.read())
             assert sample_data ==  hash(file_handle.getvalue())
 
-        client.config.connection.data_block_size = 4096
+        client._config.connection.data_block_size = 4096
         file_length = 0
         with io.BytesIO() as file_handle:
             stream = await client.files.get_empty_file(callback=test_callback)

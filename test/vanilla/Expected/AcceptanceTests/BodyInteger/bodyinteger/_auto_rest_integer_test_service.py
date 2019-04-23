@@ -17,7 +17,7 @@ from .operations import IntModelOperations
 from . import models
 
 
-class AutoRestIntegerTestService(PipelineClient):
+class AutoRestIntegerTestService(object):
     """Test Infrastructure for AutoRest
 
 
@@ -29,8 +29,10 @@ class AutoRestIntegerTestService(PipelineClient):
 
     def __init__(self, base_url=None, config=None, **kwargs):
 
+        if not base_url:
+            base_url = 'http://localhost:3000'
         self._config = config or AutoRestIntegerTestServiceConfiguration(**kwargs)
-        super(AutoRestIntegerTestService, self).__init__(base_url=base_url, config=self._config, **kwargs)
+        self._client = PipelineClient(base_url=base_url, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '1.0.0'
@@ -38,4 +40,10 @@ class AutoRestIntegerTestService(PipelineClient):
         self._deserialize = Deserializer(client_models)
 
         self.int_model = IntModelOperations(
-            self, self._config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize)
+
+    def __enter__(self):
+        self._client.__enter__()
+        return self
+    def __exit__(self, *exc_details):
+        self._client.__exit__(*exc_details)

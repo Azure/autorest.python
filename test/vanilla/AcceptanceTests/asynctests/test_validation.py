@@ -63,7 +63,7 @@ class TestValidation(object):
         await client.get_with_constant_in_path()
 
         body = Product(child=ChildProduct())
-        product = await client.post_with_constant_in_body(body=body)
+        product = client.post_with_constant_in_body(body=body)
         assert product is not None
 
     @pytest.mark.asyncio

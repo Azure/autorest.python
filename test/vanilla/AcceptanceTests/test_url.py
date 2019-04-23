@@ -62,7 +62,7 @@ class TestUrl(object):
 
     def test_url_path(self, client):
 
-        client.config.global_string_path = ''
+        client._config.global_string_path = ''
 
         client.paths.byte_empty()
 
@@ -111,7 +111,7 @@ class TestUrl(object):
 
     def test_url_query(self, client, multi_client):
 
-        client.config.global_string_path = ''
+        client._config.global_string_path = ''
 
         client.queries.byte_empty()
         u_bytes = bytearray(u"\u554A\u9F44\u4E02\u72DB\u72DC\uF9F1\uF92C\uF9F1\uFA0C\uFA29", encoding='utf-8')
@@ -155,20 +155,20 @@ class TestUrl(object):
 
     def test_url_mixed(self, client):
 
-        client.config.global_string_path = "globalStringPath"
-        client.config.global_string_query = "globalStringQuery"
+        client._config.global_string_path = "globalStringPath"
+        client._config.global_string_query = "globalStringQuery"
 
         client.path_items.get_all_with_values("localStringPath", "pathItemStringPath",
                 "localStringQuery", "pathItemStringQuery")
 
-        client.config.global_string_query = None
+        client._config.global_string_query = None
         client.path_items.get_global_and_local_query_null("localStringPath", "pathItemStringPath",
                 None, "pathItemStringQuery")
 
         client.path_items.get_global_query_null("localStringPath", "pathItemStringPath",
                 "localStringQuery", "pathItemStringQuery")
 
-        client.config.global_string_query = "globalStringQuery"
+        client._config.global_string_query = "globalStringQuery"
         client.path_items.get_local_path_item_query_null("localStringPath", "pathItemStringPath",
                 None, None)
 

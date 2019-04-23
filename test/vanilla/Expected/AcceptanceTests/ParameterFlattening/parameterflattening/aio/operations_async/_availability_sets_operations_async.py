@@ -34,7 +34,7 @@ class AvailabilitySetsOperations:
         self._serialize = serializer
         self._deserialize = deserializer
 
-        self.config = config
+        self._config = config
 
     async def update(
             self, resource_group_name, avset, tags, *, raw=False, **kwargs):
@@ -61,7 +61,7 @@ class AvailabilitySetsOperations:
             'resourceGroupName': self._serialize.url("resource_group_name", resource_group_name, 'str'),
             'availabilitySetName': self._serialize.url("avset", avset, 'str', max_length=80)
         }
-        url = self.format_url(url, **path_format_arguments)
+        url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}
@@ -77,8 +77,8 @@ class AvailabilitySetsOperations:
         body_content = self._serialize.body(tags1, 'AvailabilitySetUpdateParameters')
 
         # Construct and send request
-        request = self.patch(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._pipeline.run(request)
+        request = self._client.patch(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self._client._pipeline.run(request)
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:

@@ -26,7 +26,7 @@ from .operations import FlattencomplexOperations
 from . import models
 
 
-class AutoRestComplexTestService(PipelineClient):
+class AutoRestComplexTestService(object):
     """Test Infrastructure for AutoRest
 
 
@@ -54,8 +54,10 @@ class AutoRestComplexTestService(PipelineClient):
 
     def __init__(self, base_url=None, config=None, **kwargs):
 
+        if not base_url:
+            base_url = 'http://localhost:3000'
         self._config = config or AutoRestComplexTestServiceConfiguration(**kwargs)
-        super(AutoRestComplexTestService, self).__init__(base_url=base_url, config=self._config, **kwargs)
+        self._client = PipelineClient(base_url=base_url, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '2016-02-29'
@@ -63,20 +65,26 @@ class AutoRestComplexTestService(PipelineClient):
         self._deserialize = Deserializer(client_models)
 
         self.basic = BasicOperations(
-            self, self._config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize)
         self.primitive = PrimitiveOperations(
-            self, self._config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize)
         self.array = ArrayOperations(
-            self, self._config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize)
         self.dictionary = DictionaryOperations(
-            self, self._config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize)
         self.inheritance = InheritanceOperations(
-            self, self._config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize)
         self.polymorphism = PolymorphismOperations(
-            self, self._config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize)
         self.polymorphicrecursive = PolymorphicrecursiveOperations(
-            self, self._config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize)
         self.readonlyproperty = ReadonlypropertyOperations(
-            self, self._config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize)
         self.flattencomplex = FlattencomplexOperations(
-            self, self._config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize)
+
+    def __enter__(self):
+        self._client.__enter__()
+        return self
+    def __exit__(self, *exc_details):
+        self._client.__exit__(*exc_details)
