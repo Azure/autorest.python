@@ -65,22 +65,7 @@ namespace AutoRest.Python.Model
                 return "response.status_code < 200 or response.status_code >= 300";
             }
         }
-
-        public virtual bool NeedsCallback
-        {
-            get
-            {
-                if (IsStreamResponse || IsStreamRequestBody)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-        }
-
+        
         public virtual string ExceptionDocumentation
         {
             get
@@ -158,11 +143,6 @@ namespace AutoRest.Python.Model
                         parameter.Name,
                         parameter.DefaultValue));
                 }
-            }
-
-            if (this.NeedsCallback)
-            {
-                declarations.Add("callback=None");
             }
 
             if (requiredDeclarations.Any())
