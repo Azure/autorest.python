@@ -124,6 +124,7 @@ class FormdataOperations(object):
             header_parameters.update(headers)
 
         # Construct body
+        body_content = file_content
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
