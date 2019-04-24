@@ -160,12 +160,6 @@ namespace AutoRest.Python.Model
                 }
             }
 
-            if (python3Mode)
-            {
-                declarations.Add("*");
-            }
-
-            declarations.Add("raw=False");
             if (this.NeedsCallback)
             {
                 declarations.Add("callback=None");
@@ -359,24 +353,12 @@ namespace AutoRest.Python.Model
             return builder.ToString();
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "addheaders"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "ClientRawResponse"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "clientrawresponse"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Globalization", "CA1303:Do not pass literals as localized parameters", MessageId = "AutoRest.Core.Utilities.IndentedStringBuilder.AppendLine(System.String)")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "addheaders"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Globalization", "CA1303:Do not pass literals as localized parameters", MessageId = "AutoRest.Core.Utilities.IndentedStringBuilder.AppendLine(System.String)")]
         public virtual string ReturnEmptyResponse
         {
             get
             {
-                var builder = new IndentedStringBuilder("    ");
-                builder.AppendLine("if raw:").Indent().
-                    AppendLine("client_raw_response = ClientRawResponse(None, response)");
-                if (this.ReturnType.Headers != null)
-                {
-                    builder.AppendLine("client_raw_response.add_headers({").Indent();
-                    AddHeaderDictionary(builder, (Core.Model.CompositeType)ReturnType.Headers);
-                    builder.Outdent().AppendLine("})");
-                }
-                builder.AppendLine("return client_raw_response").
-                    Outdent();
-
-                return builder.ToString();
+                return string.Empty;
             }
         }
 
@@ -416,7 +398,7 @@ namespace AutoRest.Python.Model
             }
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Globalization", "CA1303:Do not pass literals as localized parameters", MessageId = "AutoRest.Core.Utilities.IndentedStringBuilder.AppendLine(System.String)"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "addheaders"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "headerdict"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "clientrawresponse")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Globalization", "CA1303:Do not pass literals as localized parameters", MessageId = "AutoRest.Core.Utilities.IndentedStringBuilder.AppendLine(System.String)"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "addheaders"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "headerdict")]
         public virtual string AddResponseHeader()
         {
             if (HasResponseHeader)

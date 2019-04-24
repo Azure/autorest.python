@@ -25,14 +25,13 @@ string defKeyword = AsyncMode? "async def" : "def";
 @:        @ParameterWrapComment(string.Empty, MethodPy.GetParameterDocumentationString(parameter))
 @:        @ParameterWrapComment(string.Empty, ":type " + parameter.Name + ": " + Model.GetDocumentationType(parameter.ModelType))
 }
-        @ParameterWrapComment(string.Empty, ":param bool raw: returns the direct response alongside the deserialized response")
 @if (Model.NeedsCallback)
 {
 @:        @ParameterWrapComment(string.Empty, ":param callback: When specified, will be called with each chunk of data that is streamed. The callback should take two arguments, the bytes of the current chunk of data and the response object. If the data is uploading, response will be None.")
 @:        @ParameterWrapComment(string.Empty, ":type callback: Callable[Bytes, response=None]")
 }
-        @ParameterWrapComment(string.Empty, string.Format(":return: {0} or ClientRawResponse if raw=true", Model.GetDocumentationTypeName(Model.ReturnType.Body)))
-        @ParameterWrapComment(string.Empty, string.Format(":rtype: {0} or ~msrest.pipeline.ClientRawResponse", Model.GetReturnTypeDocumentation(Model.ReturnType.Body)))
+        @ParameterWrapComment(string.Empty, string.Format(":return: {0}", Model.GetDocumentationTypeName(Model.ReturnType.Body)))
+        @ParameterWrapComment(string.Empty, string.Format(":rtype: {0}", Model.GetReturnTypeDocumentation(Model.ReturnType.Body)))
         @ParameterWrapComment(string.Empty, string.Format(":raises: {0}", Model.ExceptionDocumentation))
         """
 @if (Model.Deprecated)
@@ -169,11 +168,6 @@ else
             @:@Model.AddIndividualResponseHeader(responsePair.Key)
   }
 }
-@EmptyLine
-        @:if raw:
-            @:client_raw_response = ClientRawResponse(deserialized, response)
-            @:@Model.AddResponseHeader()
-            @:return client_raw_response
 @EmptyLine
         @:return deserialized
 }

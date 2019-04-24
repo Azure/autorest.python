@@ -106,27 +106,11 @@ else
             @:@Model.AddIndividualResponseHeader(responsePair.Key)
   }
 @EmptyLine
-        @:if raw:
-            @:client_raw_response = ClientRawResponse(deserialized, response)
-@if (Model.HasResponseHeader)
-{
-            @:@Model.AddResponseHeader()
-}
-            @:return client_raw_response
-@EmptyLine
         @:return deserialized
 }
 else
 {
-@* Bypass @:@Model.ReturnEmptyResponse, since the HEAD extensions bothers me here*@
-        @:if raw:
-            @:client_raw_response = ClientRawResponse(None, response)
-@if (Model.HasResponseHeader)
-{
-            @:@Model.AddIndividualResponseHeader(null)
-            @:@Model.AddResponseHeader()
-}
-            @:return client_raw_response
+            @:return ''
 }
 @EmptyLine
     @(defKeyword) @(methodName)(
@@ -146,18 +130,17 @@ else
 @:        @ParameterWrapComment(MethodPy.GetParameterDocumentationString(parameter))
 @:        @ParameterWrapComment(":type " + parameter.Name + ": " + Model.GetDocumentationType(parameter.ModelType))
 }
-        @ParameterWrapComment(":param bool raw: The poller return type is ClientRawResponse, the direct response alongside the deserialized response")
 @if (AsyncMode)
 {
 @:        @ParameterWrapComment(":param polling: True for AsyncARMPolling, False for no polling, or a polling object for personal polling strategy")
-@:        @ParameterWrapComment(":return: An instance of " + Model.GetDocumentationTypeName(Model.ReturnType.Body) + " or ClientRawResponse<" + Model.GetDocumentationTypeName(Model.ReturnType.Body) + "> if raw==True")
-@:        @ParameterWrapComment(string.Format(":rtype: ~{0} or ~msrest.pipeline.ClientRawResponse[{0}]", Model.GetReturnTypeDocumentation(Model.ReturnType.Body)))
+@:        @ParameterWrapComment(":return: An instance of " + Model.GetDocumentationTypeName(Model.ReturnType.Body))
+@:        @ParameterWrapComment(string.Format(":rtype: ~{0}", Model.GetReturnTypeDocumentation(Model.ReturnType.Body)))
 }
 else
 {
 @:        @ParameterWrapComment(":param polling: True for ARMPolling, False for no polling, or a polling object for personal polling strategy")
-@:        @ParameterWrapComment(":return: An instance of LROPoller that returns " + Model.GetDocumentationTypeName(Model.ReturnType.Body) + " or ClientRawResponse<" + Model.GetDocumentationTypeName(Model.ReturnType.Body) + "> if raw==True")
-@:        @ParameterWrapComment(string.Format(":rtype: ~msrestazure.azure_operation.AzureOperationPoller[{0}] or ~msrestazure.azure_operation.AzureOperationPoller[~msrest.pipeline.ClientRawResponse[{0}]]", Model.GetReturnTypeDocumentation(Model.ReturnType.Body)))
+@:        @ParameterWrapComment(":return: An instance of LROPoller that returns " + Model.GetDocumentationTypeName(Model.ReturnType.Body))
+@:        @ParameterWrapComment(string.Format(":rtype: ~msrestazure.azure_operation.AzureOperationPoller[{0}]", Model.GetReturnTypeDocumentation(Model.ReturnType.Body)))
 }
         @ParameterWrapComment(string.Format(":raises: {0}", Model.ExceptionDocumentation))
         """
@@ -189,11 +172,6 @@ else
             @:@Model.AddIndividualResponseHeader(null)
   }
             @:deserialized = self._deserialize('@Model.ReturnType.Body.ToPythonRuntimeTypeString()', response)
-@EmptyLine
-            @:if raw:
-                @:client_raw_response = ClientRawResponse(deserialized, response)
-                @:@Model.AddResponseHeader()
-                @:return client_raw_response
 @EmptyLine
             @:return deserialized
 }

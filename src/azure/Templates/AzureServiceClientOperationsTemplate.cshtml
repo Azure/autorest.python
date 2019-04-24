@@ -17,7 +17,6 @@
 {
 @:import warnings
 }
-from msrest.pipeline import ClientRawResponse
 @if(Model.HasAnyHttpRequestErrors)
 {
 @:from azure.core import HttpRequestError

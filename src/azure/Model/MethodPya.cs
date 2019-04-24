@@ -95,7 +95,7 @@ namespace AutoRest.Python.Azure.Model
             }
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "addheaders"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "ClientRawResponse"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "clientrawresponse"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Globalization", "CA1303:Do not pass literals as localized parameters", MessageId = "AutoRest.Core.Utilities.IndentedStringBuilder.AppendLine(System.String)")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "addheaders"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Globalization", "CA1303:Do not pass literals as localized parameters", MessageId = "AutoRest.Core.Utilities.IndentedStringBuilder.AppendLine(System.String)")]
         public override string ReturnEmptyResponse
         {
             get
@@ -105,16 +105,6 @@ namespace AutoRest.Python.Azure.Model
                     HttpStatusCode code = this.Responses.Keys.FirstOrDefault(AzureExtensions.HttpHeadStatusCodeSuccessFunc);
                     var builder = new IndentedStringBuilder("    ");
                     builder.AppendFormat("deserialized = (response.status_code == {0})", (int)code).AppendLine();
-                    builder.AppendLine("if raw:").Indent().
-                        AppendLine("client_raw_response = ClientRawResponse(deserialized, response)");
-                    if (this.Responses[code].Headers != null)
-                    {
-                        builder.AppendLine("client_raw_response.add_headers({").Indent();
-                        AddHeaderDictionary(builder, (CompositeType)this.Responses[code].Headers);
-                        builder.AppendLine("})").Outdent();
-                    }
-                    builder.AppendLine("return client_raw_response").
-                        Outdent();
                     builder.AppendLine("return deserialized");
 
                     return builder.ToString();

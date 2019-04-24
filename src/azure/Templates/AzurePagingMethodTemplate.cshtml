@@ -23,7 +23,6 @@ string methodName = Model.Name.ToPythonCase();
 @:        @ParameterWrapComment(string.Empty, MethodPy.GetParameterDocumentationString(parameter))
 @:        @ParameterWrapComment(string.Empty, ":type " + parameter.Name + ": " + Model.GetDocumentationType(parameter.ModelType))
 }
-        @ParameterWrapComment(string.Empty, ":param bool raw: returns the direct response alongside the deserialized response")
         @ParameterWrapComment(string.Empty, ":return: An iterator like instance of " + Model.GetDocumentationTypeName(Model.PagedResponseContentClass))
         @ParameterWrapComment(string.Empty, string.Format(":rtype: {0}[{1}]", Model.GetReturnTypeDocumentation(Model.ReturnType.Body), Model.GetReturnTypeDocumentation(Model.PagedResponseContentClass)))
         @ParameterWrapComment(string.Empty, string.Format(":raises: {0}", Model.ExceptionDocumentation))
@@ -135,8 +134,6 @@ else
 }
         # Deserialize response
         header_dict = None
-        if raw:
-            @Model.AddIndividualResponseHeader(null)
 @if(AsyncMode)
 {
         @:deserialized = models.@(Model.PagedResponseClass.Name)(
