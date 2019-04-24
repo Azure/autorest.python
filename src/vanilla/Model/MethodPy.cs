@@ -170,7 +170,10 @@ namespace AutoRest.Python.Model
                 combinedDeclarations.Add(string.Join(", ", requiredDeclarations));
             }
             combinedDeclarations.Add(string.Join(", ", declarations));
-            return string.Join(", ", combinedDeclarations);
+            if (declarations.Count == 0)
+                return string.Empty;
+            string ret = string.Join(", ", combinedDeclarations);
+            return  ret + ",";
         }
 
         private string BuildSerializeDataCall(Parameter parameter, string functionName)

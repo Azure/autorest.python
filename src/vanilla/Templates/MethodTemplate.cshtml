@@ -11,7 +11,7 @@ string methodName = Model.Name.ToPythonCase();
 string defKeyword = AsyncMode? "async def" : "def";
 }
     @(defKeyword) @(methodName)(
-            self, @(Model.MethodParameterDeclaration(Python3Mode)), **kwargs):
+            self, @(Model.MethodParameterDeclaration(Python3Mode)) **kwargs):
         """@(WrapComment(string.Empty, Model.BuildSummaryAndDescriptionString()))
 @EmptyLine
 @if (Model.Deprecated)
