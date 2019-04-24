@@ -36,7 +36,7 @@ class FlattencomplexOperations:
         self._config = config
 
     async def get_valid(
-            self,  **kwargs):
+            self, **kwargs):
         """
 
         :return: MyBaseType

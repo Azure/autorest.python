@@ -53,48 +53,6 @@ import pytest
 
 class TestXmsRequestClientId(object):
 
-    @pytest.mark.asyncio
-    async def test_xms_request_client_id(self):
-
-        validSubscription = '1234-5678-9012-3456'
-        validClientId = '9C4D50EE-2D56-4CD3-8152-34347DC9F2B0'
-
-        cred = BasicTokenAuthentication({"access_token":123})
-        client = AutoRestAzureSpecialParametersTestClient(cred, validSubscription, base_url="http://localhost:3000")
-
-        custom_headers = {"x-ms-client-request-id": validClientId }
-
-        result1 = await client.xms_client_request_id.get(custom_headers = custom_headers, raw=True)
-        #TODO: should we put the x-ms-request-id into response header of swagger spec?
-        assert "123" ==  result1.response.headers.get("x-ms-request-id")
-
-        result2 = await client.xms_client_request_id.param_get(validClientId, raw=True)
-        assert "123" ==  result2.response.headers.get("x-ms-request-id")
-
-    @pytest.mark.asyncio
-    async def test_custom_named_request_id(self):
-
-        validSubscription = '1234-5678-9012-3456'
-        expectedRequestId = '9C4D50EE-2D56-4CD3-8152-34347DC9F2B0'
-
-        cred = BasicTokenAuthentication({"access_token":123})
-        client = AutoRestAzureSpecialParametersTestClient(cred, validSubscription, base_url="http://localhost:3000")
-
-        response = await client.header.custom_named_request_id(expectedRequestId, raw=True)
-        assert "123" ==  response.response.headers.get("foo-request-id")
-
-    @pytest.mark.asyncio
-    async def test_custom_named_request_id_param_grouping(self):
-
-        validSubscription = '1234-5678-9012-3456'
-        expectedRequestId = '9C4D50EE-2D56-4CD3-8152-34347DC9F2B0'
-
-        cred = BasicTokenAuthentication({"access_token":123})
-        client = AutoRestAzureSpecialParametersTestClient(cred, validSubscription, base_url="http://localhost:3000")
-
-        group = models.HeaderCustomNamedRequestIdParamGroupingParameters(foo_client_request_id=expectedRequestId)
-        response = await client.header.custom_named_request_id_param_grouping(group, raw=True)
-        assert "123" ==  response.response.headers.get("foo-request-id")
 
     @pytest.mark.asyncio
     async def test_client_request_id_in_exception(self):

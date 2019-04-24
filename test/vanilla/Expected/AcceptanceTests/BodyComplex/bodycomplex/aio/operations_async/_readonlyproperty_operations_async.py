@@ -35,7 +35,7 @@ class ReadonlypropertyOperations:
         self._config = config
 
     async def get_valid(
-            self,  **kwargs):
+            self, **kwargs):
         """Get complex types that have readonly properties.
 
         :return: ReadonlyObj

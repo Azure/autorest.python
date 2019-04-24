@@ -35,7 +35,7 @@ class HttpClientFailureOperations(object):
         self._config = config
 
     def head400(
-            self,  **kwargs):
+            self, **kwargs):
         """Return 400 status code - should be represented in the client as an
         error.
 
@@ -67,7 +67,7 @@ class HttpClientFailureOperations(object):
     head400.metadata = {'url': '/http/failure/client/400'}
 
     def get400(
-            self,  **kwargs):
+            self, **kwargs):
         """Return 400 status code - should be represented in the client as an
         error.
 
@@ -263,7 +263,7 @@ class HttpClientFailureOperations(object):
     delete400.metadata = {'url': '/http/failure/client/400'}
 
     def head401(
-            self,  **kwargs):
+            self, **kwargs):
         """Return 401 status code - should be represented in the client as an
         error.
 
@@ -295,7 +295,7 @@ class HttpClientFailureOperations(object):
     head401.metadata = {'url': '/http/failure/client/401'}
 
     def get402(
-            self,  **kwargs):
+            self, **kwargs):
         """Return 402 status code - should be represented in the client as an
         error.
 
@@ -327,7 +327,7 @@ class HttpClientFailureOperations(object):
     get402.metadata = {'url': '/http/failure/client/402'}
 
     def get403(
-            self,  **kwargs):
+            self, **kwargs):
         """Return 403 status code - should be represented in the client as an
         error.
 
@@ -564,7 +564,7 @@ class HttpClientFailureOperations(object):
     put409.metadata = {'url': '/http/failure/client/409'}
 
     def head410(
-            self,  **kwargs):
+            self, **kwargs):
         """Return 410 status code - should be represented in the client as an
         error.
 
@@ -596,7 +596,7 @@ class HttpClientFailureOperations(object):
     head410.metadata = {'url': '/http/failure/client/410'}
 
     def get411(
-            self,  **kwargs):
+            self, **kwargs):
         """Return 411 status code - should be represented in the client as an
         error.
 
@@ -628,7 +628,7 @@ class HttpClientFailureOperations(object):
     get411.metadata = {'url': '/http/failure/client/411'}
 
     def get412(
-            self,  **kwargs):
+            self, **kwargs):
         """Return 412 status code - should be represented in the client as an
         error.
 
@@ -783,7 +783,7 @@ class HttpClientFailureOperations(object):
     post415.metadata = {'url': '/http/failure/client/415'}
 
     def get416(
-            self,  **kwargs):
+            self, **kwargs):
         """Return 416 status code - should be represented in the client as an
         error.
 
@@ -856,7 +856,7 @@ class HttpClientFailureOperations(object):
     delete417.metadata = {'url': '/http/failure/client/417'}
 
     def head429(
-            self,  **kwargs):
+            self, **kwargs):
         """Return 429 status code - should be represented in the client as an
         error.
 

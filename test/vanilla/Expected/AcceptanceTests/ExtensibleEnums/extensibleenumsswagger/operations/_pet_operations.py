@@ -36,7 +36,7 @@ class PetOperations(object):
         self._config = config
 
     def get_by_pet_id(
-            self,  **kwargs):
+            self, pet_id, **kwargs):
         """
 
         :param pet_id: Pet id

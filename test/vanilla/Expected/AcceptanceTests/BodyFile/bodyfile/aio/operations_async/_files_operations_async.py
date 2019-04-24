@@ -35,7 +35,7 @@ class FilesOperations:
         self._config = config
 
     async def get_file(
-            self,  **kwargs):
+            self, **kwargs):
         """Get file.
 
         :return: object
@@ -69,7 +69,7 @@ class FilesOperations:
     get_file.metadata = {'url': '/files/stream/nonempty'}
 
     async def get_file_large(
-            self,  **kwargs):
+            self, **kwargs):
         """Get a large file.
 
         :return: object
@@ -103,7 +103,7 @@ class FilesOperations:
     get_file_large.metadata = {'url': '/files/stream/verylarge'}
 
     async def get_empty_file(
-            self,  **kwargs):
+            self, **kwargs):
         """Get empty file.
 
         :return: object

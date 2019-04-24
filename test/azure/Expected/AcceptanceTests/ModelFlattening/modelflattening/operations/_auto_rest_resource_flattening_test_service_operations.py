@@ -69,7 +69,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     put_array.metadata = {'url': '/model-flatten/array'}
 
     def get_array(
-            self,  **kwargs):
+            self, **kwargs):
         """Get External Resource as an Array.
 
         :return: list
@@ -156,7 +156,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     put_wrapped_array.metadata = {'url': '/model-flatten/wrappedarray'}
 
     def get_wrapped_array(
-            self,  **kwargs):
+            self, **kwargs):
         """No need to have a route in Express server for this operation. Used to
         verify the type flattened is not removed if it's referenced in an
         array.
@@ -244,7 +244,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     put_dictionary.metadata = {'url': '/model-flatten/dictionary'}
 
     def get_dictionary(
-            self,  **kwargs):
+            self, **kwargs):
         """Get External Resource as a Dictionary.
 
         :return: dict
@@ -331,7 +331,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     put_resource_collection.metadata = {'url': '/model-flatten/resourcecollection'}
 
     def get_resource_collection(
-            self,  **kwargs):
+            self, **kwargs):
         """Get External Resource as a ResourceCollection.
 
         :return: ResourceCollection
@@ -487,7 +487,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     post_flattened_simple_product.metadata = {'url': '/model-flatten/customFlattening'}
 
     def put_simple_product_with_grouping(
-            self,  **kwargs):
+            self, flatten_parameter_group, **kwargs):
         """Put Simple Product with client flattening true on the model.
 
         :param flatten_parameter_group: Additional parameters for the

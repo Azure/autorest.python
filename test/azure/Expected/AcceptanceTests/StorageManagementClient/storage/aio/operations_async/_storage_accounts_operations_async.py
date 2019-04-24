@@ -41,7 +41,7 @@ class StorageAccountsOperations:
         self._config = config
 
     async def check_name_availability(
-            self,  **kwargs):
+            self, account_name, **kwargs):
         """Checks that account name is valid and is not in use.
 
         :param account_name: The name of the storage account within the
@@ -98,7 +98,7 @@ class StorageAccountsOperations:
 
 
     async def _create_initial(
-            self,  **kwargs):
+            self, resource_group_name, account_name, parameters, **kwargs):
         # Construct URL
         url = self.create.metadata['url']
         path_format_arguments = {
@@ -145,7 +145,7 @@ class StorageAccountsOperations:
         return deserialized
 
     async def create(
-            self,  polling=True, **kwargs):
+            self, resource_group_name, account_name, parameters,  polling=True, **kwargs):
         """Asynchronously creates a new storage account with the specified
         parameters. Existing accounts cannot be updated with this API and
         should instead use the Update Storage Account API. If an account is
@@ -171,7 +171,6 @@ class StorageAccountsOperations:
             resource_group_name=resource_group_name,
             account_name=account_name,
             parameters=parameters,
-            raw=True,
             **kwargs
         )
 
@@ -190,7 +189,7 @@ class StorageAccountsOperations:
     create.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}'}
 
     async def delete(
-            self,  **kwargs):
+            self, resource_group_name, account_name, **kwargs):
         """Deletes a storage account in Microsoft Azure.
 
         :param resource_group_name: The name of the resource group within the
@@ -240,7 +239,7 @@ class StorageAccountsOperations:
     delete.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}'}
 
     async def get_properties(
-            self,  **kwargs):
+            self, resource_group_name, account_name, **kwargs):
         """Returns the properties for the specified storage account including but
         not limited to name, account type, location, and account status. The
         ListKeys operation should be used to retrieve storage keys.
@@ -298,7 +297,7 @@ class StorageAccountsOperations:
     get_properties.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}'}
 
     async def update(
-            self,  **kwargs):
+            self, resource_group_name, account_name, parameters, **kwargs):
         """Updates the account type or tags for a storage account. It can also be
         used to add a custom domain (note that custom domains cannot be added
         via the Create operation). Only one custom domain is supported per
@@ -370,7 +369,7 @@ class StorageAccountsOperations:
     update.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}'}
 
     async def list_keys(
-            self,  **kwargs):
+            self, resource_group_name, account_name, **kwargs):
         """Lists the access keys for the specified storage account.
 
         :param resource_group_name: The name of the resource group within the
@@ -424,7 +423,7 @@ class StorageAccountsOperations:
     list_keys.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/listKeys'}
 
     def list(
-            self,  **kwargs):
+            self, **kwargs):
         """Lists all the storage accounts available under the subscription. Note
         that storage keys are not returned; use the ListKeys operation for
         this.
@@ -501,7 +500,7 @@ class StorageAccountsOperations:
     list.metadata = {'url': '/subscriptions/{subscriptionId}/providers/Microsoft.Storage/storageAccounts'}
 
     def list_by_resource_group(
-            self,  **kwargs):
+            self, resource_group_name, **kwargs):
         """Lists all the storage accounts available under the given resource
         group. Note that storage keys are not returned; use the ListKeys
         operation for this.

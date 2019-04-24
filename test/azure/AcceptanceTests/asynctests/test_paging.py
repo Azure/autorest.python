@@ -107,18 +107,6 @@ async def test_paging_happy_path(special_paging_client):
     assert pages.next_link is None
     assert len(items) == 10
 
-    pages = paging_client.paging.get_single_pages(raw=True)
-    items = [i async for i in pages]
-    assert pages.next_link is None
-    assert len(items) == 1
-    assert items == pages.raw.output
-
-    pages = paging_client.paging.get_multiple_pages(raw=True)
-    assert pages.next_link is not None
-    items = [i async for i in pages]
-    assert len(items) == 10
-    assert pages.raw.response is not None
-
     options = PagingGetMultiplePagesWithOffsetOptions(offset=100)
     pages = paging_client.paging.get_multiple_pages_with_offset(paging_get_multiple_pages_with_offset_options=options)
     assert pages.next_link is not None
@@ -126,15 +114,6 @@ async def test_paging_happy_path(special_paging_client):
     assert len(items) == 10
     assert items[-1].properties.id == 110
 
-    pages = paging_client.paging.get_multiple_pages_retry_first(raw=True)
-    assert pages.next_link is not None
-    items = [i async for i in pages]
-    assert len(items) == 10
-
-    pages = paging_client.paging.get_multiple_pages_retry_second(raw=True)
-    assert pages.next_link is not None
-    items = [i async for i in pages]
-    assert len(items) == 10
 
 
 @pytest.mark.asyncio
@@ -154,17 +133,17 @@ async def test_paging_sad_path(paging_client):
     with pytest.raises(CloudError):
         [i async for i in pages]
 
-    pages = paging_client.paging.get_single_pages_failure(raw=True)
+    pages = paging_client.paging.get_single_pages_failure()
     with pytest.raises(CloudError):
         [i async for i in pages]
 
-    pages = paging_client.paging.get_multiple_pages_failure(raw=True)
+    pages = paging_client.paging.get_multiple_pages_failure()
     assert pages.next_link is not None
 
     with pytest.raises(CloudError):
         [i async for i in pages]
 
-    pages = paging_client.paging.get_multiple_pages_failure_uri(raw=True)
+    pages = paging_client.paging.get_multiple_pages_failure_uri()
 
     with pytest.raises(CloudError):
         [i async for i in pages]

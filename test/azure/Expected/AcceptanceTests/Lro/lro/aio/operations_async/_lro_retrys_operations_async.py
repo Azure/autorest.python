@@ -82,7 +82,7 @@ class LRORetrysOperations:
         return deserialized
 
     async def put201_creating_succeeded200(
-            self, product=None, polling=True, **kwargs):
+            self, product=None,  polling=True, **kwargs):
         """Long running put request, service returns a 500, then a 201 to the
         initial request, with an entity that contains
         ProvisioningState=’Creating’.  Polls return this value until the last
@@ -98,7 +98,6 @@ class LRORetrysOperations:
         """
         raw_result = await self._put201_creating_succeeded200_initial(
             product=product,
-            raw=True,
             **kwargs
         )
 
@@ -165,7 +164,7 @@ class LRORetrysOperations:
         return deserialized
 
     async def put_async_relative_retry_succeeded(
-            self, product=None, polling=True, **kwargs):
+            self, product=None,  polling=True, **kwargs):
         """Long running put request, service returns a 500, then a 200 to the
         initial request, with an entity that contains
         ProvisioningState=’Creating’. Poll the endpoint indicated in the
@@ -181,7 +180,6 @@ class LRORetrysOperations:
         """
         raw_result = await self._put_async_relative_retry_succeeded_initial(
             product=product,
-            raw=True,
             **kwargs
         )
 
@@ -206,7 +204,7 @@ class LRORetrysOperations:
 
 
     async def _delete_provisioning202_accepted200_succeeded_initial(
-            self,  **kwargs):
+            self, **kwargs):
         # Construct URL
         url = self.delete_provisioning202_accepted200_succeeded.metadata['url']
 
@@ -264,7 +262,6 @@ class LRORetrysOperations:
         :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
         """
         raw_result = await self._delete_provisioning202_accepted200_succeeded_initial(
-            raw=True,
             **kwargs
         )
 
@@ -288,7 +285,7 @@ class LRORetrysOperations:
 
 
     async def _delete202_retry200_initial(
-            self,  **kwargs):
+            self, **kwargs):
         # Construct URL
         url = self.delete202_retry200.metadata['url']
 
@@ -328,7 +325,6 @@ class LRORetrysOperations:
         :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
         """
         raw_result = await self._delete202_retry200_initial(
-            raw=True,
             **kwargs
         )
 
@@ -345,7 +341,7 @@ class LRORetrysOperations:
 
 
     async def _delete_async_relative_retry_succeeded_initial(
-            self,  **kwargs):
+            self, **kwargs):
         # Construct URL
         url = self.delete_async_relative_retry_succeeded.metadata['url']
 
@@ -385,7 +381,6 @@ class LRORetrysOperations:
         :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
         """
         raw_result = await self._delete_async_relative_retry_succeeded_initial(
-            raw=True,
             **kwargs
         )
 
@@ -437,7 +432,7 @@ class LRORetrysOperations:
             return ''
 
     async def post202_retry200(
-            self, product=None, polling=True, **kwargs):
+            self, product=None,  polling=True, **kwargs):
         """Long running post request, service returns a 500, then a 202 to the
         initial request, with 'Location' and 'Retry-After' headers, Polls
         return a 200 with a response body after success.
@@ -452,7 +447,6 @@ class LRORetrysOperations:
         """
         raw_result = await self._post202_retry200_initial(
             product=product,
-            raw=True,
             **kwargs
         )
 
@@ -504,7 +498,7 @@ class LRORetrysOperations:
             return ''
 
     async def post_async_relative_retry_succeeded(
-            self, product=None, polling=True, **kwargs):
+            self, product=None,  polling=True, **kwargs):
         """Long running post request, service returns a 500, then a 202 to the
         initial request, with an entity that contains
         ProvisioningState=’Creating’. Poll the endpoint indicated in the
@@ -520,7 +514,6 @@ class LRORetrysOperations:
         """
         raw_result = await self._post_async_relative_retry_succeeded_initial(
             product=product,
-            raw=True,
             **kwargs
         )
 

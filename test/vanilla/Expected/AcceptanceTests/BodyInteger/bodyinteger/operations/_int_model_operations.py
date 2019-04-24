@@ -35,7 +35,7 @@ class IntModelOperations(object):
         self._config = config
 
     def get_null(
-            self,  **kwargs):
+            self, **kwargs):
         """Get null Int value.
 
         :return: int
@@ -71,7 +71,7 @@ class IntModelOperations(object):
     get_null.metadata = {'url': '/int/null'}
 
     def get_invalid(
-            self,  **kwargs):
+            self, **kwargs):
         """Get invalid Int value.
 
         :return: int
@@ -107,7 +107,7 @@ class IntModelOperations(object):
     get_invalid.metadata = {'url': '/int/invalid'}
 
     def get_overflow_int32(
-            self,  **kwargs):
+            self, **kwargs):
         """Get overflow Int32 value.
 
         :return: int
@@ -143,7 +143,7 @@ class IntModelOperations(object):
     get_overflow_int32.metadata = {'url': '/int/overflowint32'}
 
     def get_underflow_int32(
-            self,  **kwargs):
+            self, **kwargs):
         """Get underflow Int32 value.
 
         :return: int
@@ -179,7 +179,7 @@ class IntModelOperations(object):
     get_underflow_int32.metadata = {'url': '/int/underflowint32'}
 
     def get_overflow_int64(
-            self,  **kwargs):
+            self, **kwargs):
         """Get overflow Int64 value.
 
         :return: long
@@ -215,7 +215,7 @@ class IntModelOperations(object):
     get_overflow_int64.metadata = {'url': '/int/overflowint64'}
 
     def get_underflow_int64(
-            self,  **kwargs):
+            self, **kwargs):
         """Get underflow Int64 value.
 
         :return: long
@@ -251,7 +251,7 @@ class IntModelOperations(object):
     get_underflow_int64.metadata = {'url': '/int/underflowint64'}
 
     def put_max32(
-            self,  **kwargs):
+            self, int_body, **kwargs):
         """Put max int32 value.
 
         :param int_body:
@@ -287,7 +287,7 @@ class IntModelOperations(object):
     put_max32.metadata = {'url': '/int/max/32'}
 
     def put_max64(
-            self,  **kwargs):
+            self, int_body, **kwargs):
         """Put max int64 value.
 
         :param int_body:
@@ -323,7 +323,7 @@ class IntModelOperations(object):
     put_max64.metadata = {'url': '/int/max/64'}
 
     def put_min32(
-            self,  **kwargs):
+            self, int_body, **kwargs):
         """Put min int32 value.
 
         :param int_body:
@@ -359,7 +359,7 @@ class IntModelOperations(object):
     put_min32.metadata = {'url': '/int/min/32'}
 
     def put_min64(
-            self,  **kwargs):
+            self, int_body, **kwargs):
         """Put min int64 value.
 
         :param int_body:
@@ -395,7 +395,7 @@ class IntModelOperations(object):
     put_min64.metadata = {'url': '/int/min/64'}
 
     def get_unix_time(
-            self,  **kwargs):
+            self, **kwargs):
         """Get datetime encoded as Unix time value.
 
         :return: datetime
@@ -431,7 +431,7 @@ class IntModelOperations(object):
     get_unix_time.metadata = {'url': '/int/unixtime'}
 
     def put_unix_time_date(
-            self,  **kwargs):
+            self, int_body, **kwargs):
         """Put datetime encoded as Unix time.
 
         :param int_body:
@@ -467,7 +467,7 @@ class IntModelOperations(object):
     put_unix_time_date.metadata = {'url': '/int/unixtime'}
 
     def get_invalid_unix_time(
-            self,  **kwargs):
+            self, **kwargs):
         """Get invalid Unix time value.
 
         :return: datetime
@@ -503,7 +503,7 @@ class IntModelOperations(object):
     get_invalid_unix_time.metadata = {'url': '/int/invalidunixtime'}
 
     def get_null_unix_time(
-            self,  **kwargs):
+            self, **kwargs):
         """Get null Unix time value.
 
         :return: datetime

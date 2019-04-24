@@ -35,7 +35,7 @@ class HttpSuccessOperations:
         self._config = config
 
     async def head200(
-            self,  **kwargs):
+            self, **kwargs):
         """Return 200 status code if successful.
 
         :return: None
@@ -66,7 +66,7 @@ class HttpSuccessOperations:
     head200.metadata = {'url': '/http/success/200'}
 
     async def get200(
-            self,  **kwargs):
+            self, **kwargs):
         """Get 200 success.
 
         :return: bool
@@ -503,7 +503,7 @@ class HttpSuccessOperations:
     delete202.metadata = {'url': '/http/success/202'}
 
     async def head204(
-            self,  **kwargs):
+            self, **kwargs):
         """Return 204 status code if successful.
 
         :return: None
@@ -694,7 +694,7 @@ class HttpSuccessOperations:
     delete204.metadata = {'url': '/http/success/204'}
 
     async def head404(
-            self,  **kwargs):
+            self, **kwargs):
         """Return 404 status code.
 
         :return: None

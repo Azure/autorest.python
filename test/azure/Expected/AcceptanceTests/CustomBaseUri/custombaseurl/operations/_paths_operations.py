@@ -36,7 +36,7 @@ class PathsOperations(object):
         self._config = config
 
     def get_empty(
-            self,  **kwargs):
+            self, account_name, **kwargs):
         """Get a 200 to test a valid base uri.
 
         :param account_name: Account Name

@@ -39,7 +39,7 @@ class UsageOperations(object):
         self._config = config
 
     def list(
-            self,  **kwargs):
+            self, **kwargs):
         """Gets the current usage count and the limit for the resources under the
         subscription.
 

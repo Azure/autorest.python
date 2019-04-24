@@ -37,7 +37,7 @@ class XMsClientRequestIdOperations(object):
         self._config = config
 
     def get(
-            self,  **kwargs):
+            self, **kwargs):
         """Get method that overwrites x-ms-client-request header with value
         9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
 
@@ -74,7 +74,7 @@ class XMsClientRequestIdOperations(object):
     get.metadata = {'url': '/azurespecials/overwrite/x-ms-client-request-id/method/'}
 
     def param_get(
-            self,  **kwargs):
+            self, x_ms_client_request_id, **kwargs):
         """Get method that overwrites x-ms-client-request header with value
         9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
 

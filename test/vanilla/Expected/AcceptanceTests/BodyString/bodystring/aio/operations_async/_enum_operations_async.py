@@ -35,7 +35,7 @@ class EnumOperations:
         self._config = config
 
     async def get_not_expandable(
-            self,  **kwargs):
+            self, **kwargs):
         """Get enum value 'red color' from enumeration of 'red color',
         'green-color', 'blue_color'.
 
@@ -72,7 +72,7 @@ class EnumOperations:
     get_not_expandable.metadata = {'url': '/string/enum/notExpandable'}
 
     async def put_not_expandable(
-            self,  **kwargs):
+            self, string_body, **kwargs):
         """Sends value 'red color' from enumeration of 'red color', 'green-color',
         'blue_color'.
 
@@ -110,7 +110,7 @@ class EnumOperations:
     put_not_expandable.metadata = {'url': '/string/enum/notExpandable'}
 
     async def get_referenced(
-            self,  **kwargs):
+            self, **kwargs):
         """Get enum value 'red color' from enumeration of 'red color',
         'green-color', 'blue_color'.
 
@@ -147,7 +147,7 @@ class EnumOperations:
     get_referenced.metadata = {'url': '/string/enum/Referenced'}
 
     async def put_referenced(
-            self,  **kwargs):
+            self, enum_string_body, **kwargs):
         """Sends value 'red color' from enumeration of 'red color', 'green-color',
         'blue_color'.
 
@@ -185,7 +185,7 @@ class EnumOperations:
     put_referenced.metadata = {'url': '/string/enum/Referenced'}
 
     async def get_referenced_constant(
-            self,  **kwargs):
+            self, **kwargs):
         """Get value 'green-color' from the constant.
 
         :return: RefColorConstant

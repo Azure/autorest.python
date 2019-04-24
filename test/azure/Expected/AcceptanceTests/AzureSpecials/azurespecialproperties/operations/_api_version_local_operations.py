@@ -38,7 +38,7 @@ class ApiVersionLocalOperations(object):
         self._config = config
 
     def get_method_local_valid(
-            self,  **kwargs):
+            self, **kwargs):
         """Get method with api-version modeled in the method.  pass in api-version
         = '2.0' to succeed.
 
@@ -116,7 +116,7 @@ class ApiVersionLocalOperations(object):
     get_method_local_null.metadata = {'url': '/azurespecials/apiVersion/method/string/none/query/local/null'}
 
     def get_path_local_valid(
-            self,  **kwargs):
+            self, **kwargs):
         """Get method with api-version modeled in the method.  pass in api-version
         = '2.0' to succeed.
 
@@ -153,7 +153,7 @@ class ApiVersionLocalOperations(object):
     get_path_local_valid.metadata = {'url': '/azurespecials/apiVersion/path/string/none/query/local/2.0'}
 
     def get_swagger_local_valid(
-            self,  **kwargs):
+            self, **kwargs):
         """Get method with api-version modeled in the method.  pass in api-version
         = '2.0' to succeed.
 

@@ -35,7 +35,7 @@ class PolymorphismOperations(object):
         self._config = config
 
     def get_valid(
-            self,  **kwargs):
+            self, **kwargs):
         """Get complex types that are polymorphic.
 
         :return: Fish
@@ -71,7 +71,7 @@ class PolymorphismOperations(object):
     get_valid.metadata = {'url': '/complex/polymorphism/valid'}
 
     def put_valid(
-            self,  **kwargs):
+            self, complex_body, **kwargs):
         """Put complex types that are polymorphic.
 
         :param complex_body: Please put a salmon that looks like this:
@@ -139,7 +139,7 @@ class PolymorphismOperations(object):
     put_valid.metadata = {'url': '/complex/polymorphism/valid'}
 
     def get_complicated(
-            self,  **kwargs):
+            self, **kwargs):
         """Get complex types that are polymorphic, but not at the root of the
         hierarchy; also have additional properties.
 
@@ -176,7 +176,7 @@ class PolymorphismOperations(object):
     get_complicated.metadata = {'url': '/complex/polymorphism/complicated'}
 
     def put_complicated(
-            self,  **kwargs):
+            self, complex_body, **kwargs):
         """Put complex types that are polymorphic, but not at the root of the
         hierarchy; also have additional properties.
 
@@ -213,7 +213,7 @@ class PolymorphismOperations(object):
     put_complicated.metadata = {'url': '/complex/polymorphism/complicated'}
 
     def put_missing_discriminator(
-            self,  **kwargs):
+            self, complex_body, **kwargs):
         """Put complex types that are polymorphic, omitting the discriminator.
 
         :param complex_body:
@@ -255,7 +255,7 @@ class PolymorphismOperations(object):
     put_missing_discriminator.metadata = {'url': '/complex/polymorphism/missingdiscriminator'}
 
     def put_valid_missing_required(
-            self,  **kwargs):
+            self, complex_body, **kwargs):
         """Put complex types that are polymorphic, attempting to omit required
         'birthday' field - the request should not be allowed from the client.
 

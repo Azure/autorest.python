@@ -38,7 +38,7 @@ class SubscriptionInCredentialsOperations(object):
         self._config = config
 
     def post_method_global_valid(
-            self,  **kwargs):
+            self, **kwargs):
         """POST method with subscriptionId modeled in credentials.  Set the
         credential subscriptionId to '1234-5678-9012-3456' to succeed.
 
@@ -78,7 +78,7 @@ class SubscriptionInCredentialsOperations(object):
     post_method_global_valid.metadata = {'url': '/azurespecials/subscriptionId/method/string/none/path/global/1234-5678-9012-3456/{subscriptionId}'}
 
     def post_method_global_null(
-            self,  **kwargs):
+            self, **kwargs):
         """POST method with subscriptionId modeled in credentials.  Set the
         credential subscriptionId to null, and client-side validation should
         prevent you from making this call.
@@ -119,7 +119,7 @@ class SubscriptionInCredentialsOperations(object):
     post_method_global_null.metadata = {'url': '/azurespecials/subscriptionId/method/string/none/path/global/null/{subscriptionId}'}
 
     def post_method_global_not_provided_valid(
-            self,  **kwargs):
+            self, **kwargs):
         """POST method with subscriptionId modeled in credentials.  Set the
         credential subscriptionId to '1234-5678-9012-3456' to succeed.
 
@@ -160,7 +160,7 @@ class SubscriptionInCredentialsOperations(object):
     post_method_global_not_provided_valid.metadata = {'url': '/azurespecials/subscriptionId/method/string/none/path/globalNotProvided/1234-5678-9012-3456/{subscriptionId}'}
 
     def post_path_global_valid(
-            self,  **kwargs):
+            self, **kwargs):
         """POST method with subscriptionId modeled in credentials.  Set the
         credential subscriptionId to '1234-5678-9012-3456' to succeed.
 
@@ -200,7 +200,7 @@ class SubscriptionInCredentialsOperations(object):
     post_path_global_valid.metadata = {'url': '/azurespecials/subscriptionId/path/string/none/path/global/1234-5678-9012-3456/{subscriptionId}'}
 
     def post_swagger_global_valid(
-            self,  **kwargs):
+            self, **kwargs):
         """POST method with subscriptionId modeled in credentials.  Set the
         credential subscriptionId to '1234-5678-9012-3456' to succeed.
 

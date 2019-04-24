@@ -35,7 +35,7 @@ class StringOperations:
         self._config = config
 
     async def get_null(
-            self,  **kwargs):
+            self, **kwargs):
         """Get null string value value.
 
         :return: enum
@@ -110,7 +110,7 @@ class StringOperations:
     put_null.metadata = {'url': '/string/null'}
 
     async def get_empty(
-            self,  **kwargs):
+            self, **kwargs):
         """Get empty string value value ''.
 
         :return: enum
@@ -146,7 +146,7 @@ class StringOperations:
     get_empty.metadata = {'url': '/string/empty'}
 
     async def put_empty(
-            self,  **kwargs):
+            self, **kwargs):
         """Set string value empty ''.
 
         :return: None
@@ -182,7 +182,7 @@ class StringOperations:
     put_empty.metadata = {'url': '/string/empty'}
 
     async def get_mbcs(
-            self,  **kwargs):
+            self, **kwargs):
         """Get mbcs string value
         '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'.
 
@@ -219,7 +219,7 @@ class StringOperations:
     get_mbcs.metadata = {'url': '/string/mbcs'}
 
     async def put_mbcs(
-            self,  **kwargs):
+            self, **kwargs):
         """Set string value mbcs
         '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'.
 
@@ -256,7 +256,7 @@ class StringOperations:
     put_mbcs.metadata = {'url': '/string/mbcs'}
 
     async def get_whitespace(
-            self,  **kwargs):
+            self, **kwargs):
         """Get string value with leading and trailing whitespace
         '<tab><space><space>Now is the time for all good men to come to the aid
         of their country<tab><space><space>'.
@@ -294,7 +294,7 @@ class StringOperations:
     get_whitespace.metadata = {'url': '/string/whitespace'}
 
     async def put_whitespace(
-            self,  **kwargs):
+            self, **kwargs):
         """Set String value with leading and trailing whitespace
         '<tab><space><space>Now is the time for all good men to come to the aid
         of their country<tab><space><space>'.
@@ -332,7 +332,7 @@ class StringOperations:
     put_whitespace.metadata = {'url': '/string/whitespace'}
 
     async def get_not_provided(
-            self,  **kwargs):
+            self, **kwargs):
         """Get String value when no string value is sent in response payload.
 
         :return: str
@@ -368,7 +368,7 @@ class StringOperations:
     get_not_provided.metadata = {'url': '/string/notProvided'}
 
     async def get_base64_encoded(
-            self,  **kwargs):
+            self, **kwargs):
         """Get value that is base64 encoded.
 
         :return: bytes
@@ -404,7 +404,7 @@ class StringOperations:
     get_base64_encoded.metadata = {'url': '/string/base64Encoding'}
 
     async def get_base64_url_encoded(
-            self,  **kwargs):
+            self, **kwargs):
         """Get value that is base64url encoded.
 
         :return: bytes
@@ -440,7 +440,7 @@ class StringOperations:
     get_base64_url_encoded.metadata = {'url': '/string/base64UrlEncoding'}
 
     async def put_base64_url_encoded(
-            self,  **kwargs):
+            self, string_body, **kwargs):
         """Put value that is base64url encoded.
 
         :param string_body:
@@ -476,7 +476,7 @@ class StringOperations:
     put_base64_url_encoded.metadata = {'url': '/string/base64UrlEncoding'}
 
     async def get_null_base64_url_encoded(
-            self,  **kwargs):
+            self, **kwargs):
         """Get null value that is expected to be base64url encoded.
 
         :return: bytes

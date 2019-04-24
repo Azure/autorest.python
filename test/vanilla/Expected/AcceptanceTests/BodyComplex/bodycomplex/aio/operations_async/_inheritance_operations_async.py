@@ -35,7 +35,7 @@ class InheritanceOperations:
         self._config = config
 
     async def get_valid(
-            self,  **kwargs):
+            self, **kwargs):
         """Get complex types that extend others.
 
         :return: Siamese
@@ -71,7 +71,7 @@ class InheritanceOperations:
     get_valid.metadata = {'url': '/complex/inheritance/valid'}
 
     async def put_valid(
-            self,  **kwargs):
+            self, complex_body, **kwargs):
         """Put complex types that extend others.
 
         :param complex_body: Please put a siamese with id=2, name="Siameee",

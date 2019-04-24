@@ -36,7 +36,7 @@ class XmlOperations:
         self._config = config
 
     async def get_complex_type_ref_no_meta(
-            self,  **kwargs):
+            self, **kwargs):
         """Get a complex type that has a ref to a complex type with no XML node.
 
         :return: RootWithRefAndNoMeta
@@ -72,7 +72,7 @@ class XmlOperations:
     get_complex_type_ref_no_meta.metadata = {'url': '/xml/complex-type-ref-no-meta'}
 
     async def put_complex_type_ref_no_meta(
-            self,  **kwargs):
+            self, model, **kwargs):
         """Puts a complex type that has a ref to a complex type with no XML node.
 
         :param model:
@@ -108,7 +108,7 @@ class XmlOperations:
     put_complex_type_ref_no_meta.metadata = {'url': '/xml/complex-type-ref-no-meta'}
 
     async def get_complex_type_ref_with_meta(
-            self,  **kwargs):
+            self, **kwargs):
         """Get a complex type that has a ref to a complex type with XML node.
 
         :return: RootWithRefAndMeta
@@ -144,7 +144,7 @@ class XmlOperations:
     get_complex_type_ref_with_meta.metadata = {'url': '/xml/complex-type-ref-with-meta'}
 
     async def put_complex_type_ref_with_meta(
-            self,  **kwargs):
+            self, model, **kwargs):
         """Puts a complex type that has a ref to a complex type with XML node.
 
         :param model:
@@ -180,7 +180,7 @@ class XmlOperations:
     put_complex_type_ref_with_meta.metadata = {'url': '/xml/complex-type-ref-with-meta'}
 
     async def get_simple(
-            self,  **kwargs):
+            self, **kwargs):
         """Get a simple XML document.
 
         :return: Slideshow
@@ -216,7 +216,7 @@ class XmlOperations:
     get_simple.metadata = {'url': '/xml/simple'}
 
     async def put_simple(
-            self,  **kwargs):
+            self, slideshow, **kwargs):
         """Put a simple XML document.
 
         :param slideshow:
@@ -252,7 +252,7 @@ class XmlOperations:
     put_simple.metadata = {'url': '/xml/simple'}
 
     async def get_wrapped_lists(
-            self,  **kwargs):
+            self, **kwargs):
         """Get an XML document with multiple wrapped lists.
 
         :return: AppleBarrel
@@ -288,7 +288,7 @@ class XmlOperations:
     get_wrapped_lists.metadata = {'url': '/xml/wrapped-lists'}
 
     async def put_wrapped_lists(
-            self,  **kwargs):
+            self, wrapped_lists, **kwargs):
         """Put an XML document with multiple wrapped lists.
 
         :param wrapped_lists:
@@ -324,7 +324,7 @@ class XmlOperations:
     put_wrapped_lists.metadata = {'url': '/xml/wrapped-lists'}
 
     async def get_headers(
-            self,  **kwargs):
+            self, **kwargs):
         """Get strongly-typed response headers.
 
         :return: None
@@ -354,7 +354,7 @@ class XmlOperations:
     get_headers.metadata = {'url': '/xml/headers'}
 
     async def get_empty_list(
-            self,  **kwargs):
+            self, **kwargs):
         """Get an empty list.
 
         :return: Slideshow
@@ -390,7 +390,7 @@ class XmlOperations:
     get_empty_list.metadata = {'url': '/xml/empty-list'}
 
     async def put_empty_list(
-            self,  **kwargs):
+            self, slideshow, **kwargs):
         """Puts an empty list.
 
         :param slideshow:
@@ -426,7 +426,7 @@ class XmlOperations:
     put_empty_list.metadata = {'url': '/xml/empty-list'}
 
     async def get_empty_wrapped_lists(
-            self,  **kwargs):
+            self, **kwargs):
         """Gets some empty wrapped lists.
 
         :return: AppleBarrel
@@ -462,7 +462,7 @@ class XmlOperations:
     get_empty_wrapped_lists.metadata = {'url': '/xml/empty-wrapped-lists'}
 
     async def put_empty_wrapped_lists(
-            self,  **kwargs):
+            self, apple_barrel, **kwargs):
         """Puts some empty wrapped lists.
 
         :param apple_barrel:
@@ -498,7 +498,7 @@ class XmlOperations:
     put_empty_wrapped_lists.metadata = {'url': '/xml/empty-wrapped-lists'}
 
     async def get_root_list(
-            self,  **kwargs):
+            self, **kwargs):
         """Gets a list as the root element.
 
         :return: list
@@ -534,7 +534,7 @@ class XmlOperations:
     get_root_list.metadata = {'url': '/xml/root-list'}
 
     async def put_root_list(
-            self,  **kwargs):
+            self, bananas, **kwargs):
         """Puts a list as the root element.
 
         :param bananas:
@@ -571,7 +571,7 @@ class XmlOperations:
     put_root_list.metadata = {'url': '/xml/root-list'}
 
     async def get_root_list_single_item(
-            self,  **kwargs):
+            self, **kwargs):
         """Gets a list with a single item.
 
         :return: list
@@ -607,7 +607,7 @@ class XmlOperations:
     get_root_list_single_item.metadata = {'url': '/xml/root-list-single-item'}
 
     async def put_root_list_single_item(
-            self,  **kwargs):
+            self, bananas, **kwargs):
         """Puts a list with a single item.
 
         :param bananas:
@@ -644,7 +644,7 @@ class XmlOperations:
     put_root_list_single_item.metadata = {'url': '/xml/root-list-single-item'}
 
     async def get_empty_root_list(
-            self,  **kwargs):
+            self, **kwargs):
         """Gets an empty list as the root element.
 
         :return: list
@@ -680,7 +680,7 @@ class XmlOperations:
     get_empty_root_list.metadata = {'url': '/xml/empty-root-list'}
 
     async def put_empty_root_list(
-            self,  **kwargs):
+            self, bananas, **kwargs):
         """Puts an empty list as the root element.
 
         :param bananas:
@@ -717,7 +717,7 @@ class XmlOperations:
     put_empty_root_list.metadata = {'url': '/xml/empty-root-list'}
 
     async def get_empty_child_element(
-            self,  **kwargs):
+            self, **kwargs):
         """Gets an XML document with an empty child element.
 
         :return: Banana
@@ -753,7 +753,7 @@ class XmlOperations:
     get_empty_child_element.metadata = {'url': '/xml/empty-child-element'}
 
     async def put_empty_child_element(
-            self,  **kwargs):
+            self, banana, **kwargs):
         """Puts a value with an empty child element.
 
         :param banana:
@@ -789,7 +789,7 @@ class XmlOperations:
     put_empty_child_element.metadata = {'url': '/xml/empty-child-element'}
 
     async def list_containers(
-            self,  **kwargs):
+            self, **kwargs):
         """Lists containers in a storage account.
 
         :return: ListContainersResponse
@@ -828,7 +828,7 @@ class XmlOperations:
     list_containers.metadata = {'url': '/xml/'}
 
     async def get_service_properties(
-            self,  **kwargs):
+            self, **kwargs):
         """Gets storage service properties.
 
         :return: StorageServiceProperties
@@ -869,7 +869,7 @@ class XmlOperations:
     get_service_properties.metadata = {'url': '/xml/'}
 
     async def put_service_properties(
-            self,  **kwargs):
+            self, properties, **kwargs):
         """Puts storage service properties.
 
         :param properties:
@@ -910,7 +910,7 @@ class XmlOperations:
     put_service_properties.metadata = {'url': '/xml/'}
 
     async def get_acls(
-            self,  **kwargs):
+            self, **kwargs):
         """Gets storage ACLs for a container.
 
         :return: list
@@ -951,7 +951,7 @@ class XmlOperations:
     get_acls.metadata = {'url': '/xml/mycontainer'}
 
     async def put_acls(
-            self,  **kwargs):
+            self, properties, **kwargs):
         """Puts storage ACLs for a container.
 
         :param properties:
@@ -993,7 +993,7 @@ class XmlOperations:
     put_acls.metadata = {'url': '/xml/mycontainer'}
 
     async def list_blobs(
-            self,  **kwargs):
+            self, **kwargs):
         """Lists blobs in a storage container.
 
         :return: ListBlobsResponse

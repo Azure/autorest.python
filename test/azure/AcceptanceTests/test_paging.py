@@ -105,19 +105,7 @@ def test_paging_happy_path(special_paging_client):
     assert pages.next_link is None
     assert len(items) == 10
 
-    pages = paging_client.paging.get_single_pages(raw=True)
-    items = [i for i in pages]
-    assert pages.next_link is None
-    assert len(items) == 1
-    assert items == pages.raw.output
-
-    pages = paging_client.paging.get_multiple_pages(raw=True)
-    assert pages.next_link is not None
-    items = [i for i in pages]
-    assert len(items) == 10
-    assert pages.raw.response is not None
-
-    options = PagingGetMultiplePagesWithOffsetOptions(offset=100)
+   options = PagingGetMultiplePagesWithOffsetOptions(offset=100)
     pages = paging_client.paging.get_multiple_pages_with_offset(paging_get_multiple_pages_with_offset_options=options)
     assert pages.next_link is not None
     items = [i for i in pages]
@@ -138,21 +126,6 @@ def test_paging_sad_path(paging_client):
         list(pages)
 
     pages = paging_client.paging.get_multiple_pages_failure_uri()
-    with pytest.raises(CloudError):
-        list(pages)
-
-    pages = paging_client.paging.get_single_pages_failure(raw=True)
-    with pytest.raises(CloudError):
-        list(pages)
-
-    pages = paging_client.paging.get_multiple_pages_failure(raw=True)
-    assert pages.next_link is not None
-
-    with pytest.raises(CloudError):
-        list(pages)
-
-    pages = paging_client.paging.get_multiple_pages_failure_uri(raw=True)
-
     with pytest.raises(CloudError):
         list(pages)
 

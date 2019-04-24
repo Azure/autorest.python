@@ -35,7 +35,7 @@ class ExplicitOperations(object):
         self._config = config
 
     def post_required_integer_parameter(
-            self,  **kwargs):
+            self, body_parameter, **kwargs):
         """Test explicitly required integer. Please put null and the client
         library should throw before the request is sent.
 
@@ -113,7 +113,7 @@ class ExplicitOperations(object):
     post_optional_integer_parameter.metadata = {'url': '/reqopt/optional/integer/parameter'}
 
     def post_required_integer_property(
-            self,  **kwargs):
+            self, value, **kwargs):
         """Test explicitly required integer. Please put a valid int-wrapper with
         'value' = null and the client library should throw before the request
         is sent.
@@ -199,7 +199,7 @@ class ExplicitOperations(object):
     post_optional_integer_property.metadata = {'url': '/reqopt/optional/integer/property'}
 
     def post_required_integer_header(
-            self,  **kwargs):
+            self, header_parameter, **kwargs):
         """Test explicitly required integer. Please put a header 'headerParameter'
         => null and the client library should throw before the request is sent.
 
@@ -270,7 +270,7 @@ class ExplicitOperations(object):
     post_optional_integer_header.metadata = {'url': '/reqopt/optional/integer/header'}
 
     def post_required_string_parameter(
-            self,  **kwargs):
+            self, body_parameter, **kwargs):
         """Test explicitly required string. Please put null and the client library
         should throw before the request is sent.
 
@@ -348,7 +348,7 @@ class ExplicitOperations(object):
     post_optional_string_parameter.metadata = {'url': '/reqopt/optional/string/parameter'}
 
     def post_required_string_property(
-            self,  **kwargs):
+            self, value, **kwargs):
         """Test explicitly required string. Please put a valid string-wrapper with
         'value' = null and the client library should throw before the request
         is sent.
@@ -434,7 +434,7 @@ class ExplicitOperations(object):
     post_optional_string_property.metadata = {'url': '/reqopt/optional/string/property'}
 
     def post_required_string_header(
-            self,  **kwargs):
+            self, header_parameter, **kwargs):
         """Test explicitly required string. Please put a header 'headerParameter'
         => null and the client library should throw before the request is sent.
 
@@ -505,7 +505,7 @@ class ExplicitOperations(object):
     post_optional_string_header.metadata = {'url': '/reqopt/optional/string/header'}
 
     def post_required_class_parameter(
-            self,  **kwargs):
+            self, body_parameter, **kwargs):
         """Test explicitly required complex object. Please put null and the client
         library should throw before the request is sent.
 
@@ -583,7 +583,7 @@ class ExplicitOperations(object):
     post_optional_class_parameter.metadata = {'url': '/reqopt/optional/class/parameter'}
 
     def post_required_class_property(
-            self,  **kwargs):
+            self, value, **kwargs):
         """Test explicitly required complex object. Please put a valid
         class-wrapper with 'value' = null and the client library should throw
         before the request is sent.
@@ -669,7 +669,7 @@ class ExplicitOperations(object):
     post_optional_class_property.metadata = {'url': '/reqopt/optional/class/property'}
 
     def post_required_array_parameter(
-            self,  **kwargs):
+            self, body_parameter, **kwargs):
         """Test explicitly required array. Please put null and the client library
         should throw before the request is sent.
 
@@ -747,7 +747,7 @@ class ExplicitOperations(object):
     post_optional_array_parameter.metadata = {'url': '/reqopt/optional/array/parameter'}
 
     def post_required_array_property(
-            self,  **kwargs):
+            self, value, **kwargs):
         """Test explicitly required array. Please put a valid array-wrapper with
         'value' = null and the client library should throw before the request
         is sent.
@@ -833,7 +833,7 @@ class ExplicitOperations(object):
     post_optional_array_property.metadata = {'url': '/reqopt/optional/array/property'}
 
     def post_required_array_header(
-            self,  **kwargs):
+            self, header_parameter, **kwargs):
         """Test explicitly required array. Please put a header 'headerParameter'
         => null and the client library should throw before the request is sent.
 

@@ -38,7 +38,7 @@ class GroupOperations:
         self._config = config
 
     async def get_sample_resource_group(
-            self,  **kwargs):
+            self, resource_group_name, **kwargs):
         """Provides a resouce group with name 'testgroup101' and location 'West
         US'.
 

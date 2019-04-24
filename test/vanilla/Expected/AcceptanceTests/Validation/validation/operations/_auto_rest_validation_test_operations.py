@@ -16,7 +16,7 @@ from .. import models
 class AutoRestValidationTestOperationsMixin(object):
 
     def validation_of_method_parameters(
-            self,  **kwargs):
+            self, resource_group_name, id, **kwargs):
         """Validates input parameters on the method. See swagger for details.
 
         :param resource_group_name: Required string between 3 and 10 chars
@@ -121,7 +121,7 @@ class AutoRestValidationTestOperationsMixin(object):
     validation_of_body.metadata = {'url': '/fakepath/{subscriptionId}/{resourceGroupName}/{id}'}
 
     def get_with_constant_in_path(
-            self,  **kwargs):
+            self, **kwargs):
         """
 
         :return: None

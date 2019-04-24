@@ -37,7 +37,7 @@ class BasicOperations:
         self.api_version = "2016-02-29"
 
     async def get_valid(
-            self,  **kwargs):
+            self, **kwargs):
         """Get complex type {id: 2, name: 'abc', color: 'YELLOW'}.
 
         :return: Basic
@@ -73,7 +73,7 @@ class BasicOperations:
     get_valid.metadata = {'url': '/complex/basic/valid'}
 
     async def put_valid(
-            self,  **kwargs):
+            self, complex_body, **kwargs):
         """Please put {id: 2, name: 'abc', color: 'Magenta'}.
 
         :param complex_body: Please put {id: 2, name: 'abc', color: 'Magenta'}
@@ -110,7 +110,7 @@ class BasicOperations:
     put_valid.metadata = {'url': '/complex/basic/valid'}
 
     async def get_invalid(
-            self,  **kwargs):
+            self, **kwargs):
         """Get a basic complex type that is invalid for the local strong type.
 
         :return: Basic
@@ -146,7 +146,7 @@ class BasicOperations:
     get_invalid.metadata = {'url': '/complex/basic/invalid'}
 
     async def get_empty(
-            self,  **kwargs):
+            self, **kwargs):
         """Get a basic complex type that is empty.
 
         :return: Basic
@@ -182,7 +182,7 @@ class BasicOperations:
     get_empty.metadata = {'url': '/complex/basic/empty'}
 
     async def get_null(
-            self,  **kwargs):
+            self, **kwargs):
         """Get a basic complex type whose properties are null.
 
         :return: Basic
@@ -218,7 +218,7 @@ class BasicOperations:
     get_null.metadata = {'url': '/complex/basic/null'}
 
     async def get_not_provided(
-            self,  **kwargs):
+            self, **kwargs):
         """Get a basic complex type while the server doesn't provide a response
         payload.
 

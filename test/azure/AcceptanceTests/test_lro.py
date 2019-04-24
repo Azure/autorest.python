@@ -135,11 +135,6 @@ class TestLro:
         assert "Succeeded" ==  process.provisioning_state
 
         # Test manual poller
-        raw_process = client.lr_os.put201_creating_succeeded200(product, raw=True, polling=False).result()
-        poller = LROPoller(client, raw_process, Product, ARMPolling(timeout=0))
-        process = poller.result()
-        assert "Succeeded" ==  process.provisioning_state
-
         self.assertRaisesWithMessage("Operation failed with status: 200. Details: Resource state Failed",
             client.lr_os.put201_creating_failed200, product)
 
@@ -161,19 +156,6 @@ class TestLro:
 
         process = self.lro_result(client.lr_os.put200_acceptedcanceled200, product, polling=False)
         assert "Accepted" ==  process.provisioning_state
-
-        # Testing nopolling and raw at the same time
-        process = self.lro_result(client.lr_os.put201_creating_succeeded200, product, raw=True, polling=False)
-        assert "Creating" ==  process.output.provisioning_state
-
-        process = self.lro_result(client.lr_os.put201_creating_failed200, product, raw=True, polling=False)
-        assert "Created" ==  process.output.provisioning_state
-
-        process = self.lro_result(client.lr_os.put200_updating_succeeded204, product, raw=True, polling=False)
-        assert "Updating" ==  process.output.provisioning_state
-
-        process = self.lro_result(client.lr_os.put200_acceptedcanceled200, product, raw=True, polling=False)
-        assert "Accepted" ==  process.output.provisioning_state
 
         process = self.lro_result(client.lr_os.put_no_header_in_retry, product)
         assert "Succeeded" ==  process.provisioning_state

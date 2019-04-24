@@ -35,7 +35,7 @@ class PetsOperations:
         self._config = config
 
     async def create_ap_true(
-            self,  **kwargs):
+            self, create_parameters, **kwargs):
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
@@ -78,7 +78,7 @@ class PetsOperations:
     create_ap_true.metadata = {'url': '/additionalProperties/true'}
 
     async def create_cat_ap_true(
-            self,  **kwargs):
+            self, create_parameters, **kwargs):
         """Create a CatAPTrue which contains more properties than what is defined.
 
         :param create_parameters:
@@ -121,7 +121,7 @@ class PetsOperations:
     create_cat_ap_true.metadata = {'url': '/additionalProperties/true-subclass'}
 
     async def create_ap_object(
-            self,  **kwargs):
+            self, create_parameters, **kwargs):
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
@@ -164,7 +164,7 @@ class PetsOperations:
     create_ap_object.metadata = {'url': '/additionalProperties/type/object'}
 
     async def create_ap_string(
-            self,  **kwargs):
+            self, create_parameters, **kwargs):
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
@@ -207,7 +207,7 @@ class PetsOperations:
     create_ap_string.metadata = {'url': '/additionalProperties/type/string'}
 
     async def create_ap_in_properties(
-            self,  **kwargs):
+            self, create_parameters, **kwargs):
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
@@ -251,7 +251,7 @@ class PetsOperations:
     create_ap_in_properties.metadata = {'url': '/additionalProperties/in/properties'}
 
     async def create_ap_in_properties_with_ap_string(
-            self,  **kwargs):
+            self, create_parameters, **kwargs):
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:

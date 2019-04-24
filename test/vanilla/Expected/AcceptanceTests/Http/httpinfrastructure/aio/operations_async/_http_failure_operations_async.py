@@ -36,7 +36,7 @@ class HttpFailureOperations:
         self._config = config
 
     async def get_empty_error(
-            self,  **kwargs):
+            self, **kwargs):
         """Get empty error form server.
 
         :return: bool
@@ -73,7 +73,7 @@ class HttpFailureOperations:
     get_empty_error.metadata = {'url': '/http/failure/emptybody/error'}
 
     async def get_no_model_error(
-            self,  **kwargs):
+            self, **kwargs):
         """Get empty error form server.
 
         :return: bool
@@ -109,7 +109,7 @@ class HttpFailureOperations:
     get_no_model_error.metadata = {'url': '/http/failure/nomodel/error'}
 
     async def get_no_model_empty(
-            self,  **kwargs):
+            self, **kwargs):
         """Get empty response from server.
 
         :return: bool

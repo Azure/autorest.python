@@ -82,24 +82,6 @@ class TestFormData(object):
                 result.write(r)
             assert result.getvalue().decode() ==  test_string
 
-    @pytest.mark.asyncio
-    async def test_file_upload_stream_raw(self, client):
-
-        def test_callback(data, response, progress = [0]):
-            assert len(data) > 0
-            progress[0] += len(data)
-            total = float(response.headers.get('Content-Length', 100))
-            print("Progress... {}%".format(int(progress[0]*100/total)))
-            assert response is not None
-
-        test_string = "Upload file test case"
-        test_bytes = bytearray(test_string, encoding='utf-8')
-        result = io.BytesIO()
-        with io.BytesIO(test_bytes) as stream_data:
-            resp = await client.formdata.upload_file(stream_data, "UploadFile.txt", raw=True)
-            async for r in resp.output:
-                result.write(r)
-            assert result.getvalue().decode() ==  test_string
 
     @pytest.mark.asyncio
     async def test_file_upload_file_stream(self, client, dummy_file):
@@ -119,23 +101,6 @@ class TestFormData(object):
                 result.write(r)
             assert result.getvalue().decode() ==  "Test file"
 
-    @pytest.mark.asyncio
-    async def test_file_upload_file_stream_raw(self, client, dummy_file):
-
-        def test_callback(data, response, progress = [0]):
-            assert len(data) > 0
-            progress[0] += len(data)
-            total = float(response.headers.get('Content-Length', 100))
-            print("Progress... {}%".format(int(progress[0]*100/total)))
-            assert response is not None
-
-        name = os.path.basename(dummy_file)
-        result = io.BytesIO()
-        with open(dummy_file, 'rb') as upload_data:
-            resp = await client.formdata.upload_file(upload_data, name, raw=True, callback=test_callback)
-            async for r in resp.output:
-                result.write(r)
-            assert result.getvalue().decode() ==  "Test file"
 
     @pytest.mark.asyncio
     async def test_file_body_upload(self, client, dummy_file):
@@ -154,25 +119,6 @@ class TestFormData(object):
 
         result = io.BytesIO()
         with io.BytesIO(test_bytes) as stream_data:
-            resp = await client.formdata.upload_file_via_body(stream_data, callback=test_callback)
-            async for r in resp:
-                result.write(r)
-            assert result.getvalue().decode() ==  test_string
-
-        result = io.BytesIO()
-        with open(dummy_file, 'rb') as upload_data:
-            resp = await client.formdata.upload_file_via_body(upload_data, callback=test_callback)
-            async for r in resp:
-                result.write(r)
-            assert result.getvalue().decode() ==  "Test file"
-
-    @pytest.mark.asyncio
-    async def test_file_body_upload_raw(self, client, dummy_file):
-
-        test_string = "Upload file test case"
-        test_bytes = bytearray(test_string, encoding='utf-8')
-        result = io.BytesIO()
-        with io.BytesIO(test_bytes) as stream_data:
             resp = await client.formdata.upload_file_via_body(stream_data)
             async for r in resp:
                 result.write(r)
@@ -180,7 +126,8 @@ class TestFormData(object):
 
         result = io.BytesIO()
         with open(dummy_file, 'rb') as upload_data:
-            resp = await client.formdata.upload_file_via_body(upload_data, raw=True)
-            async for r in resp.output:
+            resp = await client.formdata.upload_file_via_body(upload_data)
+            async for r in resp:
                 result.write(r)
-            assert result.getvalue().decode() == "Test file"
+            assert result.getvalue().decode() ==  "Test file"
+

@@ -35,7 +35,7 @@ class PathsOperations:
         self._config = config
 
     async def get_empty(
-            self,  **kwargs):
+            self, account_name, **kwargs):
         """Get a 200 to test a valid base uri.
 
         :param account_name: Account Name

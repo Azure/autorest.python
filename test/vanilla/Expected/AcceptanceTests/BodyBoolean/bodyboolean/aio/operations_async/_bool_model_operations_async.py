@@ -35,7 +35,7 @@ class BoolModelOperations:
         self._config = config
 
     async def get_true(
-            self,  **kwargs):
+            self, **kwargs):
         """Get true Boolean value.
 
         :return: bool
@@ -71,7 +71,7 @@ class BoolModelOperations:
     get_true.metadata = {'url': '/bool/true'}
 
     async def put_true(
-            self,  **kwargs):
+            self, **kwargs):
         """Set Boolean value true.
 
         :return: None
@@ -107,7 +107,7 @@ class BoolModelOperations:
     put_true.metadata = {'url': '/bool/true'}
 
     async def get_false(
-            self,  **kwargs):
+            self, **kwargs):
         """Get false Boolean value.
 
         :return: bool
@@ -143,7 +143,7 @@ class BoolModelOperations:
     get_false.metadata = {'url': '/bool/false'}
 
     async def put_false(
-            self,  **kwargs):
+            self, **kwargs):
         """Set Boolean value false.
 
         :return: None
@@ -179,7 +179,7 @@ class BoolModelOperations:
     put_false.metadata = {'url': '/bool/false'}
 
     async def get_null(
-            self,  **kwargs):
+            self, **kwargs):
         """Get null Boolean value.
 
         :return: bool
@@ -215,7 +215,7 @@ class BoolModelOperations:
     get_null.metadata = {'url': '/bool/null'}
 
     async def get_invalid(
-            self,  **kwargs):
+            self, **kwargs):
         """Get invalid Boolean value.
 
         :return: bool

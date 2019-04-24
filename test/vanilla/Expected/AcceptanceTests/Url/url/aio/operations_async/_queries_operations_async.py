@@ -41,7 +41,7 @@ class QueriesOperations:
         self.date_time_query = "2012-01-01T01:01:01Z"
 
     async def get_boolean_true(
-            self,  **kwargs):
+            self, **kwargs):
         """Get true Boolean value on path.
 
         :return: None
@@ -74,7 +74,7 @@ class QueriesOperations:
     get_boolean_true.metadata = {'url': '/queries/bool/true'}
 
     async def get_boolean_false(
-            self,  **kwargs):
+            self, **kwargs):
         """Get false Boolean value on path.
 
         :return: None
@@ -141,7 +141,7 @@ class QueriesOperations:
     get_boolean_null.metadata = {'url': '/queries/bool/null'}
 
     async def get_int_one_million(
-            self,  **kwargs):
+            self, **kwargs):
         """Get '1000000' integer value.
 
         :return: None
@@ -174,7 +174,7 @@ class QueriesOperations:
     get_int_one_million.metadata = {'url': '/queries/int/1000000'}
 
     async def get_int_negative_one_million(
-            self,  **kwargs):
+            self, **kwargs):
         """Get '-1000000' integer value.
 
         :return: None
@@ -241,7 +241,7 @@ class QueriesOperations:
     get_int_null.metadata = {'url': '/queries/int/null'}
 
     async def get_ten_billion(
-            self,  **kwargs):
+            self, **kwargs):
         """Get '10000000000' 64 bit integer value.
 
         :return: None
@@ -274,7 +274,7 @@ class QueriesOperations:
     get_ten_billion.metadata = {'url': '/queries/long/10000000000'}
 
     async def get_negative_ten_billion(
-            self,  **kwargs):
+            self, **kwargs):
         """Get '-10000000000' 64 bit integer value.
 
         :return: None
@@ -341,7 +341,7 @@ class QueriesOperations:
     get_long_null.metadata = {'url': '/queries/long/null'}
 
     async def float_scientific_positive(
-            self,  **kwargs):
+            self, **kwargs):
         """Get '1.034E+20' numeric value.
 
         :return: None
@@ -374,7 +374,7 @@ class QueriesOperations:
     float_scientific_positive.metadata = {'url': '/queries/float/1.034E+20'}
 
     async def float_scientific_negative(
-            self,  **kwargs):
+            self, **kwargs):
         """Get '-1.034E-20' numeric value.
 
         :return: None
@@ -441,7 +441,7 @@ class QueriesOperations:
     float_null.metadata = {'url': '/queries/float/null'}
 
     async def double_decimal_positive(
-            self,  **kwargs):
+            self, **kwargs):
         """Get '9999999.999' numeric value.
 
         :return: None
@@ -474,7 +474,7 @@ class QueriesOperations:
     double_decimal_positive.metadata = {'url': '/queries/double/9999999.999'}
 
     async def double_decimal_negative(
-            self,  **kwargs):
+            self, **kwargs):
         """Get '-9999999.999' numeric value.
 
         :return: None
@@ -541,7 +541,7 @@ class QueriesOperations:
     double_null.metadata = {'url': '/queries/double/null'}
 
     async def string_unicode(
-            self,  **kwargs):
+            self, **kwargs):
         """Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value.
 
         :return: None
@@ -574,7 +574,7 @@ class QueriesOperations:
     string_unicode.metadata = {'url': '/queries/string/unicode/'}
 
     async def string_url_encoded(
-            self,  **kwargs):
+            self, **kwargs):
         """Get 'begin!*'();:@ &=+$,/?#[]end.
 
         :return: None
@@ -607,7 +607,7 @@ class QueriesOperations:
     string_url_encoded.metadata = {'url': '/queries/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend'}
 
     async def string_empty(
-            self,  **kwargs):
+            self, **kwargs):
         """Get ''.
 
         :return: None
@@ -779,7 +779,7 @@ class QueriesOperations:
     byte_multi_byte.metadata = {'url': '/queries/byte/multibyte'}
 
     async def byte_empty(
-            self,  **kwargs):
+            self, **kwargs):
         """Get '' as byte array.
 
         :return: None
@@ -844,7 +844,7 @@ class QueriesOperations:
     byte_null.metadata = {'url': '/queries/byte/null'}
 
     async def date_valid(
-            self,  **kwargs):
+            self, **kwargs):
         """Get '2012-01-01' as date.
 
         :return: None
@@ -909,7 +909,7 @@ class QueriesOperations:
     date_null.metadata = {'url': '/queries/date/null'}
 
     async def date_time_valid(
-            self,  **kwargs):
+            self, **kwargs):
         """Get '2012-01-01T01:01:01Z' as date-time.
 
         :return: None

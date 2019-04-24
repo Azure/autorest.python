@@ -80,7 +80,7 @@ class LROsOperations(object):
         return deserialized
 
     def put200_succeeded(
-            self, product=None, polling=True, **kwargs):
+            self, product=None,  polling=True, **kwargs):
         """Long running put request, service returns a 200 to the initial request,
         with an entity that contains ProvisioningState=’Succeeded’.
 
@@ -95,7 +95,6 @@ class LROsOperations(object):
         """
         raw_result = self._put200_succeeded_initial(
             product=product,
-            raw=True,
             **kwargs
         )
 
@@ -156,7 +155,7 @@ class LROsOperations(object):
         return deserialized
 
     def put200_succeeded_no_state(
-            self, product=None, polling=True, **kwargs):
+            self, product=None,  polling=True, **kwargs):
         """Long running put request, service returns a 200 to the initial request,
         with an entity that does not contain ProvisioningState=’Succeeded’.
 
@@ -171,7 +170,6 @@ class LROsOperations(object):
         """
         raw_result = self._put200_succeeded_no_state_initial(
             product=product,
-            raw=True,
             **kwargs
         )
 
@@ -232,7 +230,7 @@ class LROsOperations(object):
         return deserialized
 
     def put202_retry200(
-            self, product=None, polling=True, **kwargs):
+            self, product=None,  polling=True, **kwargs):
         """Long running put request, service returns a 202 to the initial request,
         with a location header that points to a polling URL that returns a 200
         and an entity that doesn't contains ProvisioningState.
@@ -248,7 +246,6 @@ class LROsOperations(object):
         """
         raw_result = self._put202_retry200_initial(
             product=product,
-            raw=True,
             **kwargs
         )
 
@@ -311,7 +308,7 @@ class LROsOperations(object):
         return deserialized
 
     def put201_creating_succeeded200(
-            self, product=None, polling=True, **kwargs):
+            self, product=None,  polling=True, **kwargs):
         """Long running put request, service returns a 201 to the initial request,
         with an entity that contains ProvisioningState=’Creating’.  Polls
         return this value until the last poll returns a ‘200’ with
@@ -328,7 +325,6 @@ class LROsOperations(object):
         """
         raw_result = self._put201_creating_succeeded200_initial(
             product=product,
-            raw=True,
             **kwargs
         )
 
@@ -389,7 +385,7 @@ class LROsOperations(object):
         return deserialized
 
     def put200_updating_succeeded204(
-            self, product=None, polling=True, **kwargs):
+            self, product=None,  polling=True, **kwargs):
         """Long running put request, service returns a 201 to the initial request,
         with an entity that contains ProvisioningState=’Updating’.  Polls
         return this value until the last poll returns a ‘200’ with
@@ -406,7 +402,6 @@ class LROsOperations(object):
         """
         raw_result = self._put200_updating_succeeded204_initial(
             product=product,
-            raw=True,
             **kwargs
         )
 
@@ -469,7 +464,7 @@ class LROsOperations(object):
         return deserialized
 
     def put201_creating_failed200(
-            self, product=None, polling=True, **kwargs):
+            self, product=None,  polling=True, **kwargs):
         """Long running put request, service returns a 201 to the initial request,
         with an entity that contains ProvisioningState=’Created’.  Polls return
         this value until the last poll returns a ‘200’ with
@@ -486,7 +481,6 @@ class LROsOperations(object):
         """
         raw_result = self._put201_creating_failed200_initial(
             product=product,
-            raw=True,
             **kwargs
         )
 
@@ -547,7 +541,7 @@ class LROsOperations(object):
         return deserialized
 
     def put200_acceptedcanceled200(
-            self, product=None, polling=True, **kwargs):
+            self, product=None,  polling=True, **kwargs):
         """Long running put request, service returns a 201 to the initial request,
         with an entity that contains ProvisioningState=’Creating’.  Polls
         return this value until the last poll returns a ‘200’ with
@@ -564,7 +558,6 @@ class LROsOperations(object):
         """
         raw_result = self._put200_acceptedcanceled200_initial(
             product=product,
-            raw=True,
             **kwargs
         )
 
@@ -629,7 +622,7 @@ class LROsOperations(object):
         return deserialized
 
     def put_no_header_in_retry(
-            self, product=None, polling=True, **kwargs):
+            self, product=None,  polling=True, **kwargs):
         """Long running put request, service returns a 202 to the initial request
         with location header. Subsequent calls to operation status do not
         contain location header.
@@ -645,7 +638,6 @@ class LROsOperations(object):
         """
         raw_result = self._put_no_header_in_retry_initial(
             product=product,
-            raw=True,
             **kwargs
         )
 
@@ -715,7 +707,7 @@ class LROsOperations(object):
         return deserialized
 
     def put_async_retry_succeeded(
-            self, product=None, polling=True, **kwargs):
+            self, product=None,  polling=True, **kwargs):
         """Long running put request, service returns a 200 to the initial request,
         with an entity that contains ProvisioningState=’Creating’. Poll the
         endpoint indicated in the Azure-AsyncOperation header for operation
@@ -732,7 +724,6 @@ class LROsOperations(object):
         """
         raw_result = self._put_async_retry_succeeded_initial(
             product=product,
-            raw=True,
             **kwargs
         )
 
@@ -803,7 +794,7 @@ class LROsOperations(object):
         return deserialized
 
     def put_async_no_retry_succeeded(
-            self, product=None, polling=True, **kwargs):
+            self, product=None,  polling=True, **kwargs):
         """Long running put request, service returns a 200 to the initial request,
         with an entity that contains ProvisioningState=’Creating’. Poll the
         endpoint indicated in the Azure-AsyncOperation header for operation
@@ -820,7 +811,6 @@ class LROsOperations(object):
         """
         raw_result = self._put_async_no_retry_succeeded_initial(
             product=product,
-            raw=True,
             **kwargs
         )
 
@@ -891,7 +881,7 @@ class LROsOperations(object):
         return deserialized
 
     def put_async_retry_failed(
-            self, product=None, polling=True, **kwargs):
+            self, product=None,  polling=True, **kwargs):
         """Long running put request, service returns a 200 to the initial request,
         with an entity that contains ProvisioningState=’Creating’. Poll the
         endpoint indicated in the Azure-AsyncOperation header for operation
@@ -908,7 +898,6 @@ class LROsOperations(object):
         """
         raw_result = self._put_async_retry_failed_initial(
             product=product,
-            raw=True,
             **kwargs
         )
 
@@ -979,7 +968,7 @@ class LROsOperations(object):
         return deserialized
 
     def put_async_no_retrycanceled(
-            self, product=None, polling=True, **kwargs):
+            self, product=None,  polling=True, **kwargs):
         """Long running put request, service returns a 200 to the initial request,
         with an entity that contains ProvisioningState=’Creating’. Poll the
         endpoint indicated in the Azure-AsyncOperation header for operation
@@ -996,7 +985,6 @@ class LROsOperations(object):
         """
         raw_result = self._put_async_no_retrycanceled_initial(
             product=product,
-            raw=True,
             **kwargs
         )
 
@@ -1065,7 +1053,7 @@ class LROsOperations(object):
         return deserialized
 
     def put_async_no_header_in_retry(
-            self, product=None, polling=True, **kwargs):
+            self, product=None,  polling=True, **kwargs):
         """Long running put request, service returns a 202 to the initial request
         with Azure-AsyncOperation header. Subsequent calls to operation status
         do not contain Azure-AsyncOperation header.
@@ -1081,7 +1069,6 @@ class LROsOperations(object):
         """
         raw_result = self._put_async_no_header_in_retry_initial(
             product=product,
-            raw=True,
             **kwargs
         )
 
@@ -1145,7 +1132,7 @@ class LROsOperations(object):
         return deserialized
 
     def put_non_resource(
-            self, sku=None, polling=True, **kwargs):
+            self, sku=None,  polling=True, **kwargs):
         """Long running put request with non resource.
 
         :param sku: sku to put
@@ -1159,7 +1146,6 @@ class LROsOperations(object):
         """
         raw_result = self._put_non_resource_initial(
             sku=sku,
-            raw=True,
             **kwargs
         )
 
@@ -1220,7 +1206,7 @@ class LROsOperations(object):
         return deserialized
 
     def put_async_non_resource(
-            self, sku=None, polling=True, **kwargs):
+            self, sku=None,  polling=True, **kwargs):
         """Long running put request with non resource.
 
         :param sku: Sku to put
@@ -1234,7 +1220,6 @@ class LROsOperations(object):
         """
         raw_result = self._put_async_non_resource_initial(
             sku=sku,
-            raw=True,
             **kwargs
         )
 
@@ -1299,7 +1284,7 @@ class LROsOperations(object):
         return deserialized
 
     def put_sub_resource(
-            self, provisioning_state=None, polling=True, **kwargs):
+            self, provisioning_state=None,  polling=True, **kwargs):
         """Long running put request with sub resource.
 
         :param provisioning_state:
@@ -1313,7 +1298,6 @@ class LROsOperations(object):
         """
         raw_result = self._put_sub_resource_initial(
             provisioning_state=provisioning_state,
-            raw=True,
             **kwargs
         )
 
@@ -1378,7 +1362,7 @@ class LROsOperations(object):
         return deserialized
 
     def put_async_sub_resource(
-            self, provisioning_state=None, polling=True, **kwargs):
+            self, provisioning_state=None,  polling=True, **kwargs):
         """Long running put request with sub resource.
 
         :param provisioning_state:
@@ -1392,7 +1376,6 @@ class LROsOperations(object):
         """
         raw_result = self._put_async_sub_resource_initial(
             provisioning_state=provisioning_state,
-            raw=True,
             **kwargs
         )
 
@@ -1412,7 +1395,7 @@ class LROsOperations(object):
 
 
     def _delete_provisioning202_accepted200_succeeded_initial(
-            self,  **kwargs):
+            self, **kwargs):
         # Construct URL
         url = self.delete_provisioning202_accepted200_succeeded.metadata['url']
 
@@ -1471,7 +1454,6 @@ class LROsOperations(object):
         :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
         """
         raw_result = self._delete_provisioning202_accepted200_succeeded_initial(
-            raw=True,
             **kwargs
         )
 
@@ -1495,7 +1477,7 @@ class LROsOperations(object):
 
 
     def _delete_provisioning202_deleting_failed200_initial(
-            self,  **kwargs):
+            self, **kwargs):
         # Construct URL
         url = self.delete_provisioning202_deleting_failed200.metadata['url']
 
@@ -1554,7 +1536,6 @@ class LROsOperations(object):
         :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
         """
         raw_result = self._delete_provisioning202_deleting_failed200_initial(
-            raw=True,
             **kwargs
         )
 
@@ -1578,7 +1559,7 @@ class LROsOperations(object):
 
 
     def _delete_provisioning202_deletingcanceled200_initial(
-            self,  **kwargs):
+            self, **kwargs):
         # Construct URL
         url = self.delete_provisioning202_deletingcanceled200.metadata['url']
 
@@ -1637,7 +1618,6 @@ class LROsOperations(object):
         :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
         """
         raw_result = self._delete_provisioning202_deletingcanceled200_initial(
-            raw=True,
             **kwargs
         )
 
@@ -1661,7 +1641,7 @@ class LROsOperations(object):
 
 
     def _delete204_succeeded_initial(
-            self,  **kwargs):
+            self, **kwargs):
         # Construct URL
         url = self.delete204_succeeded.metadata['url']
 
@@ -1699,7 +1679,6 @@ class LROsOperations(object):
         :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
         """
         raw_result = self._delete204_succeeded_initial(
-            raw=True,
             **kwargs
         )
 
@@ -1716,7 +1695,7 @@ class LROsOperations(object):
 
 
     def _delete202_retry200_initial(
-            self,  **kwargs):
+            self, **kwargs):
         # Construct URL
         url = self.delete202_retry200.metadata['url']
 
@@ -1768,7 +1747,6 @@ class LROsOperations(object):
         :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
         """
         raw_result = self._delete202_retry200_initial(
-            raw=True,
             **kwargs
         )
 
@@ -1792,7 +1770,7 @@ class LROsOperations(object):
 
 
     def _delete202_no_retry204_initial(
-            self,  **kwargs):
+            self, **kwargs):
         # Construct URL
         url = self.delete202_no_retry204.metadata['url']
 
@@ -1844,7 +1822,6 @@ class LROsOperations(object):
         :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
         """
         raw_result = self._delete202_no_retry204_initial(
-            raw=True,
             **kwargs
         )
 
@@ -1868,7 +1845,7 @@ class LROsOperations(object):
 
 
     def _delete_no_header_in_retry_initial(
-            self,  **kwargs):
+            self, **kwargs):
         # Construct URL
         url = self.delete_no_header_in_retry.metadata['url']
 
@@ -1908,7 +1885,6 @@ class LROsOperations(object):
         :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
         """
         raw_result = self._delete_no_header_in_retry_initial(
-            raw=True,
             **kwargs
         )
 
@@ -1925,7 +1901,7 @@ class LROsOperations(object):
 
 
     def _delete_async_no_header_in_retry_initial(
-            self,  **kwargs):
+            self, **kwargs):
         # Construct URL
         url = self.delete_async_no_header_in_retry.metadata['url']
 
@@ -1965,7 +1941,6 @@ class LROsOperations(object):
         :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
         """
         raw_result = self._delete_async_no_header_in_retry_initial(
-            raw=True,
             **kwargs
         )
 
@@ -1982,7 +1957,7 @@ class LROsOperations(object):
 
 
     def _delete_async_retry_succeeded_initial(
-            self,  **kwargs):
+            self, **kwargs):
         # Construct URL
         url = self.delete_async_retry_succeeded.metadata['url']
 
@@ -2022,7 +1997,6 @@ class LROsOperations(object):
         :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
         """
         raw_result = self._delete_async_retry_succeeded_initial(
-            raw=True,
             **kwargs
         )
 
@@ -2039,7 +2013,7 @@ class LROsOperations(object):
 
 
     def _delete_async_no_retry_succeeded_initial(
-            self,  **kwargs):
+            self, **kwargs):
         # Construct URL
         url = self.delete_async_no_retry_succeeded.metadata['url']
 
@@ -2079,7 +2053,6 @@ class LROsOperations(object):
         :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
         """
         raw_result = self._delete_async_no_retry_succeeded_initial(
-            raw=True,
             **kwargs
         )
 
@@ -2096,7 +2069,7 @@ class LROsOperations(object):
 
 
     def _delete_async_retry_failed_initial(
-            self,  **kwargs):
+            self, **kwargs):
         # Construct URL
         url = self.delete_async_retry_failed.metadata['url']
 
@@ -2136,7 +2109,6 @@ class LROsOperations(object):
         :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
         """
         raw_result = self._delete_async_retry_failed_initial(
-            raw=True,
             **kwargs
         )
 
@@ -2153,7 +2125,7 @@ class LROsOperations(object):
 
 
     def _delete_async_retrycanceled_initial(
-            self,  **kwargs):
+            self, **kwargs):
         # Construct URL
         url = self.delete_async_retrycanceled.metadata['url']
 
@@ -2193,7 +2165,6 @@ class LROsOperations(object):
         :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
         """
         raw_result = self._delete_async_retrycanceled_initial(
-            raw=True,
             **kwargs
         )
 
@@ -2210,7 +2181,7 @@ class LROsOperations(object):
 
 
     def _post200_with_payload_initial(
-            self,  **kwargs):
+            self, **kwargs):
         # Construct URL
         url = self.post200_with_payload.metadata['url']
 
@@ -2259,7 +2230,6 @@ class LROsOperations(object):
         :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
         """
         raw_result = self._post200_with_payload_initial(
-            raw=True,
             **kwargs
         )
 
@@ -2314,7 +2284,7 @@ class LROsOperations(object):
             return ''
 
     def post202_retry200(
-            self, product=None, polling=True, **kwargs):
+            self, product=None,  polling=True, **kwargs):
         """Long running post request, service returns a 202 to the initial
         request, with 'Location' and 'Retry-After' headers, Polls return a 200
         with a response body after success.
@@ -2329,7 +2299,6 @@ class LROsOperations(object):
         """
         raw_result = self._post202_retry200_initial(
             product=product,
-            raw=True,
             **kwargs
         )
 
@@ -2392,7 +2361,7 @@ class LROsOperations(object):
         return deserialized
 
     def post202_no_retry204(
-            self, product=None, polling=True, **kwargs):
+            self, product=None,  polling=True, **kwargs):
         """Long running post request, service returns a 202 to the initial
         request, with 'Location' header, 204 with noresponse body after
         success.
@@ -2408,7 +2377,6 @@ class LROsOperations(object):
         """
         raw_result = self._post202_no_retry204_initial(
             product=product,
-            raw=True,
             **kwargs
         )
 
@@ -2432,7 +2400,7 @@ class LROsOperations(object):
 
 
     def _post_double_headers_final_location_get_initial(
-            self,  **kwargs):
+            self, **kwargs):
         # Construct URL
         url = self.post_double_headers_final_location_get.metadata['url']
 
@@ -2479,7 +2447,6 @@ class LROsOperations(object):
         :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
         """
         raw_result = self._post_double_headers_final_location_get_initial(
-            raw=True,
             **kwargs
         )
 
@@ -2499,7 +2466,7 @@ class LROsOperations(object):
 
 
     def _post_double_headers_final_azure_header_get_initial(
-            self,  **kwargs):
+            self, **kwargs):
         # Construct URL
         url = self.post_double_headers_final_azure_header_get.metadata['url']
 
@@ -2546,7 +2513,6 @@ class LROsOperations(object):
         :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
         """
         raw_result = self._post_double_headers_final_azure_header_get_initial(
-            raw=True,
             **kwargs
         )
 
@@ -2566,7 +2532,7 @@ class LROsOperations(object):
 
 
     def _post_double_headers_final_azure_header_get_default_initial(
-            self,  **kwargs):
+            self, **kwargs):
         # Construct URL
         url = self.post_double_headers_final_azure_header_get_default.metadata['url']
 
@@ -2614,7 +2580,6 @@ class LROsOperations(object):
         :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
         """
         raw_result = self._post_double_headers_final_azure_header_get_default_initial(
-            raw=True,
             **kwargs
         )
 
@@ -2681,7 +2646,7 @@ class LROsOperations(object):
         return deserialized
 
     def post_async_retry_succeeded(
-            self, product=None, polling=True, **kwargs):
+            self, product=None,  polling=True, **kwargs):
         """Long running post request, service returns a 202 to the initial
         request, with an entity that contains ProvisioningState=’Creating’.
         Poll the endpoint indicated in the Azure-AsyncOperation header for
@@ -2698,7 +2663,6 @@ class LROsOperations(object):
         """
         raw_result = self._post_async_retry_succeeded_initial(
             product=product,
-            raw=True,
             **kwargs
         )
 
@@ -2770,7 +2734,7 @@ class LROsOperations(object):
         return deserialized
 
     def post_async_no_retry_succeeded(
-            self, product=None, polling=True, **kwargs):
+            self, product=None,  polling=True, **kwargs):
         """Long running post request, service returns a 202 to the initial
         request, with an entity that contains ProvisioningState=’Creating’.
         Poll the endpoint indicated in the Azure-AsyncOperation header for
@@ -2787,7 +2751,6 @@ class LROsOperations(object):
         """
         raw_result = self._post_async_no_retry_succeeded_initial(
             product=product,
-            raw=True,
             **kwargs
         )
 
@@ -2847,7 +2810,7 @@ class LROsOperations(object):
             return ''
 
     def post_async_retry_failed(
-            self, product=None, polling=True, **kwargs):
+            self, product=None,  polling=True, **kwargs):
         """Long running post request, service returns a 202 to the initial
         request, with an entity that contains ProvisioningState=’Creating’.
         Poll the endpoint indicated in the Azure-AsyncOperation header for
@@ -2863,7 +2826,6 @@ class LROsOperations(object):
         """
         raw_result = self._post_async_retry_failed_initial(
             product=product,
-            raw=True,
             **kwargs
         )
 
@@ -2915,7 +2877,7 @@ class LROsOperations(object):
             return ''
 
     def post_async_retrycanceled(
-            self, product=None, polling=True, **kwargs):
+            self, product=None,  polling=True, **kwargs):
         """Long running post request, service returns a 202 to the initial
         request, with an entity that contains ProvisioningState=’Creating’.
         Poll the endpoint indicated in the Azure-AsyncOperation header for
@@ -2931,7 +2893,6 @@ class LROsOperations(object):
         """
         raw_result = self._post_async_retrycanceled_initial(
             product=product,
-            raw=True,
             **kwargs
         )
 

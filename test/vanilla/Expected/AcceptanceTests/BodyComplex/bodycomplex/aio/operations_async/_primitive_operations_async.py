@@ -35,7 +35,7 @@ class PrimitiveOperations:
         self._config = config
 
     async def get_int(
-            self,  **kwargs):
+            self, **kwargs):
         """Get complex types with integer properties.
 
         :return: IntWrapper
@@ -71,7 +71,7 @@ class PrimitiveOperations:
     get_int.metadata = {'url': '/complex/primitive/integer'}
 
     async def put_int(
-            self,  **kwargs):
+            self, complex_body, **kwargs):
         """Put complex types with integer properties.
 
         :param complex_body: Please put -1 and 2
@@ -107,7 +107,7 @@ class PrimitiveOperations:
     put_int.metadata = {'url': '/complex/primitive/integer'}
 
     async def get_long(
-            self,  **kwargs):
+            self, **kwargs):
         """Get complex types with long properties.
 
         :return: LongWrapper
@@ -143,7 +143,7 @@ class PrimitiveOperations:
     get_long.metadata = {'url': '/complex/primitive/long'}
 
     async def put_long(
-            self,  **kwargs):
+            self, complex_body, **kwargs):
         """Put complex types with long properties.
 
         :param complex_body: Please put 1099511627775 and -999511627788
@@ -179,7 +179,7 @@ class PrimitiveOperations:
     put_long.metadata = {'url': '/complex/primitive/long'}
 
     async def get_float(
-            self,  **kwargs):
+            self, **kwargs):
         """Get complex types with float properties.
 
         :return: FloatWrapper
@@ -215,7 +215,7 @@ class PrimitiveOperations:
     get_float.metadata = {'url': '/complex/primitive/float'}
 
     async def put_float(
-            self,  **kwargs):
+            self, complex_body, **kwargs):
         """Put complex types with float properties.
 
         :param complex_body: Please put 1.05 and -0.003
@@ -251,7 +251,7 @@ class PrimitiveOperations:
     put_float.metadata = {'url': '/complex/primitive/float'}
 
     async def get_double(
-            self,  **kwargs):
+            self, **kwargs):
         """Get complex types with double properties.
 
         :return: DoubleWrapper
@@ -287,7 +287,7 @@ class PrimitiveOperations:
     get_double.metadata = {'url': '/complex/primitive/double'}
 
     async def put_double(
-            self,  **kwargs):
+            self, complex_body, **kwargs):
         """Put complex types with double properties.
 
         :param complex_body: Please put 3e-100 and
@@ -324,7 +324,7 @@ class PrimitiveOperations:
     put_double.metadata = {'url': '/complex/primitive/double'}
 
     async def get_bool(
-            self,  **kwargs):
+            self, **kwargs):
         """Get complex types with bool properties.
 
         :return: BooleanWrapper
@@ -360,7 +360,7 @@ class PrimitiveOperations:
     get_bool.metadata = {'url': '/complex/primitive/bool'}
 
     async def put_bool(
-            self,  **kwargs):
+            self, complex_body, **kwargs):
         """Put complex types with bool properties.
 
         :param complex_body: Please put true and false
@@ -396,7 +396,7 @@ class PrimitiveOperations:
     put_bool.metadata = {'url': '/complex/primitive/bool'}
 
     async def get_string(
-            self,  **kwargs):
+            self, **kwargs):
         """Get complex types with string properties.
 
         :return: StringWrapper
@@ -432,7 +432,7 @@ class PrimitiveOperations:
     get_string.metadata = {'url': '/complex/primitive/string'}
 
     async def put_string(
-            self,  **kwargs):
+            self, complex_body, **kwargs):
         """Put complex types with string properties.
 
         :param complex_body: Please put 'goodrequest', '', and null
@@ -468,7 +468,7 @@ class PrimitiveOperations:
     put_string.metadata = {'url': '/complex/primitive/string'}
 
     async def get_date(
-            self,  **kwargs):
+            self, **kwargs):
         """Get complex types with date properties.
 
         :return: DateWrapper
@@ -504,7 +504,7 @@ class PrimitiveOperations:
     get_date.metadata = {'url': '/complex/primitive/date'}
 
     async def put_date(
-            self,  **kwargs):
+            self, complex_body, **kwargs):
         """Put complex types with date properties.
 
         :param complex_body: Please put '0001-01-01' and '2016-02-29'
@@ -540,7 +540,7 @@ class PrimitiveOperations:
     put_date.metadata = {'url': '/complex/primitive/date'}
 
     async def get_date_time(
-            self,  **kwargs):
+            self, **kwargs):
         """Get complex types with datetime properties.
 
         :return: DatetimeWrapper
@@ -576,7 +576,7 @@ class PrimitiveOperations:
     get_date_time.metadata = {'url': '/complex/primitive/datetime'}
 
     async def put_date_time(
-            self,  **kwargs):
+            self, complex_body, **kwargs):
         """Put complex types with datetime properties.
 
         :param complex_body: Please put '0001-01-01T12:00:00-04:00' and
@@ -613,7 +613,7 @@ class PrimitiveOperations:
     put_date_time.metadata = {'url': '/complex/primitive/datetime'}
 
     async def get_date_time_rfc1123(
-            self,  **kwargs):
+            self, **kwargs):
         """Get complex types with datetimeRfc1123 properties.
 
         :return: Datetimerfc1123Wrapper
@@ -649,7 +649,7 @@ class PrimitiveOperations:
     get_date_time_rfc1123.metadata = {'url': '/complex/primitive/datetimerfc1123'}
 
     async def put_date_time_rfc1123(
-            self,  **kwargs):
+            self, complex_body, **kwargs):
         """Put complex types with datetimeRfc1123 properties.
 
         :param complex_body: Please put 'Mon, 01 Jan 0001 12:00:00 GMT' and
@@ -686,7 +686,7 @@ class PrimitiveOperations:
     put_date_time_rfc1123.metadata = {'url': '/complex/primitive/datetimerfc1123'}
 
     async def get_duration(
-            self,  **kwargs):
+            self, **kwargs):
         """Get complex types with duration properties.
 
         :return: DurationWrapper
@@ -760,7 +760,7 @@ class PrimitiveOperations:
     put_duration.metadata = {'url': '/complex/primitive/duration'}
 
     async def get_byte(
-            self,  **kwargs):
+            self, **kwargs):
         """Get complex types with byte properties.
 
         :return: ByteWrapper

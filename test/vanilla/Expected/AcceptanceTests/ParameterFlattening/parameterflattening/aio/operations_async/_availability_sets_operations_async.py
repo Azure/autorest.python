@@ -36,7 +36,7 @@ class AvailabilitySetsOperations:
         self._config = config
 
     async def update(
-            self,  **kwargs):
+            self, resource_group_name, avset, tags, **kwargs):
         """Updates the tags for an availability set.
 
         :param resource_group_name: The name of the resource group.

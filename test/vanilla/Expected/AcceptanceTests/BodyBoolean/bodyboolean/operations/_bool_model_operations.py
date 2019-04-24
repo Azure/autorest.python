@@ -35,7 +35,7 @@ class BoolModelOperations(object):
         self._config = config
 
     def get_true(
-            self,  **kwargs):
+            self, **kwargs):
         """Get true Boolean value.
 
         :return: bool
@@ -71,7 +71,7 @@ class BoolModelOperations(object):
     get_true.metadata = {'url': '/bool/true'}
 
     def put_true(
-            self,  **kwargs):
+            self, **kwargs):
         """Set Boolean value true.
 
         :return: None
@@ -107,7 +107,7 @@ class BoolModelOperations(object):
     put_true.metadata = {'url': '/bool/true'}
 
     def get_false(
-            self,  **kwargs):
+            self, **kwargs):
         """Get false Boolean value.
 
         :return: bool
@@ -143,7 +143,7 @@ class BoolModelOperations(object):
     get_false.metadata = {'url': '/bool/false'}
 
     def put_false(
-            self,  **kwargs):
+            self, **kwargs):
         """Set Boolean value false.
 
         :return: None
@@ -179,7 +179,7 @@ class BoolModelOperations(object):
     put_false.metadata = {'url': '/bool/false'}
 
     def get_null(
-            self,  **kwargs):
+            self, **kwargs):
         """Get null Boolean value.
 
         :return: bool
@@ -215,7 +215,7 @@ class BoolModelOperations(object):
     get_null.metadata = {'url': '/bool/null'}
 
     def get_invalid(
-            self,  **kwargs):
+            self, **kwargs):
         """Get invalid Boolean value.
 
         :return: bool

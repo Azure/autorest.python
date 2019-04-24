@@ -35,7 +35,7 @@ class Datetimerfc1123Operations:
         self._config = config
 
     async def get_null(
-            self,  **kwargs):
+            self, **kwargs):
         """Get null datetime value.
 
         :return: datetime
@@ -72,7 +72,7 @@ class Datetimerfc1123Operations:
     get_null.metadata = {'url': '/datetimerfc1123/null'}
 
     async def get_invalid(
-            self,  **kwargs):
+            self, **kwargs):
         """Get invalid datetime value.
 
         :return: datetime
@@ -109,7 +109,7 @@ class Datetimerfc1123Operations:
     get_invalid.metadata = {'url': '/datetimerfc1123/invalid'}
 
     async def get_overflow(
-            self,  **kwargs):
+            self, **kwargs):
         """Get overflow datetime value.
 
         :return: datetime
@@ -146,7 +146,7 @@ class Datetimerfc1123Operations:
     get_overflow.metadata = {'url': '/datetimerfc1123/overflow'}
 
     async def get_underflow(
-            self,  **kwargs):
+            self, **kwargs):
         """Get underflow datetime value.
 
         :return: datetime
@@ -183,7 +183,7 @@ class Datetimerfc1123Operations:
     get_underflow.metadata = {'url': '/datetimerfc1123/underflow'}
 
     async def put_utc_max_date_time(
-            self,  **kwargs):
+            self, datetime_body, **kwargs):
         """Put max datetime value Fri, 31 Dec 9999 23:59:59 GMT.
 
         :param datetime_body:
@@ -220,7 +220,7 @@ class Datetimerfc1123Operations:
     put_utc_max_date_time.metadata = {'url': '/datetimerfc1123/max'}
 
     async def get_utc_lowercase_max_date_time(
-            self,  **kwargs):
+            self, **kwargs):
         """Get max datetime value fri, 31 dec 9999 23:59:59 gmt.
 
         :return: datetime
@@ -257,7 +257,7 @@ class Datetimerfc1123Operations:
     get_utc_lowercase_max_date_time.metadata = {'url': '/datetimerfc1123/max/lowercase'}
 
     async def get_utc_uppercase_max_date_time(
-            self,  **kwargs):
+            self, **kwargs):
         """Get max datetime value FRI, 31 DEC 9999 23:59:59 GMT.
 
         :return: datetime
@@ -294,7 +294,7 @@ class Datetimerfc1123Operations:
     get_utc_uppercase_max_date_time.metadata = {'url': '/datetimerfc1123/max/uppercase'}
 
     async def put_utc_min_date_time(
-            self,  **kwargs):
+            self, datetime_body, **kwargs):
         """Put min datetime value Mon, 1 Jan 0001 00:00:00 GMT.
 
         :param datetime_body:
@@ -331,7 +331,7 @@ class Datetimerfc1123Operations:
     put_utc_min_date_time.metadata = {'url': '/datetimerfc1123/min'}
 
     async def get_utc_min_date_time(
-            self,  **kwargs):
+            self, **kwargs):
         """Get min datetime value Mon, 1 Jan 0001 00:00:00 GMT.
 
         :return: datetime

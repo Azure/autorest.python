@@ -35,7 +35,7 @@ class DictionaryOperations:
         self._config = config
 
     async def get_valid(
-            self,  **kwargs):
+            self, **kwargs):
         """Get complex types with dictionary property.
 
         :return: DictionaryWrapper
@@ -109,7 +109,7 @@ class DictionaryOperations:
     put_valid.metadata = {'url': '/complex/dictionary/typed/valid'}
 
     async def get_empty(
-            self,  **kwargs):
+            self, **kwargs):
         """Get complex types with dictionary property which is empty.
 
         :return: DictionaryWrapper
@@ -183,7 +183,7 @@ class DictionaryOperations:
     put_empty.metadata = {'url': '/complex/dictionary/typed/empty'}
 
     async def get_null(
-            self,  **kwargs):
+            self, **kwargs):
         """Get complex types with dictionary property which is null.
 
         :return: DictionaryWrapper
@@ -219,7 +219,7 @@ class DictionaryOperations:
     get_null.metadata = {'url': '/complex/dictionary/typed/null'}
 
     async def get_not_provided(
-            self,  **kwargs):
+            self, **kwargs):
         """Get complex types with dictionary property while server doesn't provide
         a response payload.
 

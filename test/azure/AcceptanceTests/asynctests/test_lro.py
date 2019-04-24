@@ -131,10 +131,6 @@ class TestLro:
         product = Product(location="West US")
 
         # Test manual poller
-        raw_process = await client.lr_os.put201_creating_succeeded200(product, raw=True, polling=False)
-        process = await async_poller(client, raw_process, Product, AsyncARMPolling(timeout=0))
-        assert "Succeeded" == process.provisioning_state
-
         process = await self.lro_result(client.lr_os.put201_creating_succeeded200, product)
         assert "Succeeded" == process.provisioning_state
 
@@ -159,19 +155,6 @@ class TestLro:
 
         process = await self.lro_result(client.lr_os.put200_acceptedcanceled200, product, polling=False)
         assert "Accepted" == process.provisioning_state
-
-        # Testing nopolling and raw at the same time
-        process = await self.lro_result(client.lr_os.put201_creating_succeeded200, product, raw=True, polling=False)
-        assert "Creating" == process.output.provisioning_state
-
-        process = await self.lro_result(client.lr_os.put201_creating_failed200, product, raw=True, polling=False)
-        assert "Created" == process.output.provisioning_state
-
-        process = await self.lro_result(client.lr_os.put200_updating_succeeded204, product, raw=True, polling=False)
-        assert "Updating" == process.output.provisioning_state
-
-        process = await self.lro_result(client.lr_os.put200_acceptedcanceled200, product, raw=True, polling=False)
-        assert "Accepted" == process.output.provisioning_state
 
         process = await self.lro_result(client.lr_os.put_no_header_in_retry, product)
         assert "Succeeded" == process.provisioning_state

@@ -107,47 +107,6 @@ class TestFile(object):
 
         #assert file_length ==  3000 * 1024 * 1024
 
-    @pytest.mark.asyncio
-    async def test_files_raw(self, client):
-
-        def test_callback(data, response, progress=[0]):
-            assert len(data) > 0
-            assert response is not None
-            assert not response._content_consumed
-            total = float(response.headers.get('Content-Length', 0))
-            if total:
-                progress[0] += len(data)
-                print("Downloading... {}%".format(int(progress[0]*100/total)))
-
-        file_length = 0
-        with io.BytesIO() as file_handle:
-            response = await client.files.get_file(raw=True, callback=test_callback)
-            stream = response.output
-
-            async for data in stream:
-                file_length += len(data)
-                file_handle.write(data)
-
-            assert file_length !=  0
-
-            sample_file = realpath(
-                join(cwd, pardir, pardir, pardir, pardir,
-                     "node_modules", "@microsoft.azure", "autorest.testserver", "routes", "sample.png"))
-
-            with open(sample_file, 'rb') as data:
-                sample_data = hash(data.read())
-            assert sample_data ==  hash(file_handle.getvalue())
-
-        file_length = 0
-        with io.BytesIO() as file_handle:
-            response = await client.files.get_empty_file(raw=True, callback=test_callback)
-            stream = response.output
-
-            async for data in stream:
-                file_length += len(data)
-                file_handle.write(data)
-
-            assert file_length ==  0
 
 if __name__ == '__main__':
     unittest.main()

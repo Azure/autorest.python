@@ -36,7 +36,7 @@ class SubscriptionInMethodOperations(object):
         self._config = config
 
     def post_method_local_valid(
-            self,  **kwargs):
+            self, subscription_id, **kwargs):
         """POST method with subscriptionId modeled in the method.  pass in
         subscription id = '1234-5678-9012-3456' to succeed.
 
@@ -79,7 +79,7 @@ class SubscriptionInMethodOperations(object):
     post_method_local_valid.metadata = {'url': '/azurespecials/subscriptionId/method/string/none/path/local/1234-5678-9012-3456/{subscriptionId}'}
 
     def post_method_local_null(
-            self,  **kwargs):
+            self, subscription_id, **kwargs):
         """POST method with subscriptionId modeled in the method.  pass in
         subscription id = null, client-side validation should prevent you from
         making this call.
@@ -123,7 +123,7 @@ class SubscriptionInMethodOperations(object):
     post_method_local_null.metadata = {'url': '/azurespecials/subscriptionId/method/string/none/path/local/null/{subscriptionId}'}
 
     def post_path_local_valid(
-            self,  **kwargs):
+            self, subscription_id, **kwargs):
         """POST method with subscriptionId modeled in the method.  pass in
         subscription id = '1234-5678-9012-3456' to succeed.
 
@@ -166,7 +166,7 @@ class SubscriptionInMethodOperations(object):
     post_path_local_valid.metadata = {'url': '/azurespecials/subscriptionId/path/string/none/path/local/1234-5678-9012-3456/{subscriptionId}'}
 
     def post_swagger_local_valid(
-            self,  **kwargs):
+            self, subscription_id, **kwargs):
         """POST method with subscriptionId modeled in the method.  pass in
         subscription id = '1234-5678-9012-3456' to succeed.
 

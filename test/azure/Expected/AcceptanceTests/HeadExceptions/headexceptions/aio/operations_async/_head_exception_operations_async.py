@@ -33,7 +33,7 @@ class HeadExceptionOperations:
         self._config = config
 
     async def head200(
-            self,  **kwargs):
+            self, **kwargs):
         """Return 200 status code if successful.
 
         :return: None
@@ -69,7 +69,7 @@ class HeadExceptionOperations:
     head200.metadata = {'url': '/http/success/200'}
 
     async def head204(
-            self,  **kwargs):
+            self, **kwargs):
         """Return 204 status code if successful.
 
         :return: None
@@ -105,7 +105,7 @@ class HeadExceptionOperations:
     head204.metadata = {'url': '/http/success/204'}
 
     async def head404(
-            self,  **kwargs):
+            self, **kwargs):
         """Return 404 status code if successful.
 
         :return: None

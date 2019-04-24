@@ -39,7 +39,7 @@ class PagingOperations(object):
         self._config = config
 
     def get_single_pages(
-            self,  **kwargs):
+            self, **kwargs):
         """A paging operation that finishes on the first call without a nextlink.
 
         :return: An iterator like instance of Product
@@ -324,7 +324,7 @@ class PagingOperations(object):
     get_multiple_pages_with_offset.metadata = {'url': '/paging/multiple/withpath/{offset}'}
 
     def get_multiple_pages_retry_first(
-            self,  **kwargs):
+            self, **kwargs):
         """A paging operation that fails on the first call with 500 and then
         retries and then get a response including a nextLink that has 10 pages.
 
@@ -380,7 +380,7 @@ class PagingOperations(object):
     get_multiple_pages_retry_first.metadata = {'url': '/paging/multiple/retryfirst'}
 
     def get_multiple_pages_retry_second(
-            self,  **kwargs):
+            self, **kwargs):
         """A paging operation that includes a nextLink that has 10 pages, of which
         the 2nd call fails first with 500. The client should retry and finish
         all 10 pages eventually.
@@ -437,7 +437,7 @@ class PagingOperations(object):
     get_multiple_pages_retry_second.metadata = {'url': '/paging/multiple/retrysecond'}
 
     def get_single_pages_failure(
-            self,  **kwargs):
+            self, **kwargs):
         """A paging operation that receives a 400 on the first call.
 
         :return: An iterator like instance of Product
@@ -492,7 +492,7 @@ class PagingOperations(object):
     get_single_pages_failure.metadata = {'url': '/paging/single/failure'}
 
     def get_multiple_pages_failure(
-            self,  **kwargs):
+            self, **kwargs):
         """A paging operation that receives a 400 on the second call.
 
         :return: An iterator like instance of Product
@@ -547,7 +547,7 @@ class PagingOperations(object):
     get_multiple_pages_failure.metadata = {'url': '/paging/multiple/failure'}
 
     def get_multiple_pages_failure_uri(
-            self,  **kwargs):
+            self, **kwargs):
         """A paging operation that receives an invalid nextLink.
 
         :return: An iterator like instance of Product
@@ -602,7 +602,7 @@ class PagingOperations(object):
     get_multiple_pages_failure_uri.metadata = {'url': '/paging/multiple/failureuri'}
 
     def get_multiple_pages_fragment_next_link(
-            self,  **kwargs):
+            self, api_version, tenant, **kwargs):
         """A paging operation that doesn't return a full URL, just a fragment.
 
         :param api_version: Sets the api version to use.
@@ -672,7 +672,7 @@ class PagingOperations(object):
     get_multiple_pages_fragment_next_link.metadata = {'url': '/paging/multiple/fragment/{tenant}'}
 
     def get_multiple_pages_fragment_with_grouping_next_link(
-            self,  **kwargs):
+            self, custom_parameter_group, **kwargs):
         """A paging operation that doesn't return a full URL, just a fragment with
         parameters grouped.
 
@@ -798,7 +798,7 @@ class PagingOperations(object):
         return deserialized
 
     def get_multiple_pages_lro(
-            self, client_request_id=None, paging_get_multiple_pages_lro_options=None, polling=True, **kwargs):
+            self, client_request_id=None, paging_get_multiple_pages_lro_options=None,  polling=True, **kwargs):
         """A long-running paging operation that includes a nextLink that has 10
         pages.
 
@@ -818,7 +818,6 @@ class PagingOperations(object):
         raw_result = self._get_multiple_pages_lro_initial(
             client_request_id=client_request_id,
             paging_get_multiple_pages_lro_options=paging_get_multiple_pages_lro_options,
-            raw=True,
             **kwargs
         )
 

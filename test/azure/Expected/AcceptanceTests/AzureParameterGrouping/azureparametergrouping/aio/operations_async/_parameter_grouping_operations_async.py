@@ -36,7 +36,7 @@ class ParameterGroupingOperations:
         self._config = config
 
     async def post_required(
-            self,  **kwargs):
+            self, parameter_grouping_post_required_parameters, **kwargs):
         """Post a bunch of required parameters grouped.
 
         :param parameter_grouping_post_required_parameters: Additional

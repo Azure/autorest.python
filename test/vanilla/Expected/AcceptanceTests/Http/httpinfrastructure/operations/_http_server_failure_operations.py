@@ -35,7 +35,7 @@ class HttpServerFailureOperations(object):
         self._config = config
 
     def head501(
-            self,  **kwargs):
+            self, **kwargs):
         """Return 501 status code - should be represented in the client as an
         error.
 
@@ -67,7 +67,7 @@ class HttpServerFailureOperations(object):
     head501.metadata = {'url': '/http/failure/server/501'}
 
     def get501(
-            self,  **kwargs):
+            self, **kwargs):
         """Return 501 status code - should be represented in the client as an
         error.
 

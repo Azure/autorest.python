@@ -35,7 +35,7 @@ class HttpRedirectsOperations(object):
         self._config = config
 
     def head300(
-            self,  **kwargs):
+            self, **kwargs):
         """Return 300 status code and redirect to /http/success/200.
 
         :return: None
@@ -66,7 +66,7 @@ class HttpRedirectsOperations(object):
     head300.metadata = {'url': '/http/redirect/300'}
 
     def get300(
-            self,  **kwargs):
+            self, **kwargs):
         """Return 300 status code and redirect to /http/success/200.
 
         :return: list
@@ -107,7 +107,7 @@ class HttpRedirectsOperations(object):
     get300.metadata = {'url': '/http/redirect/300'}
 
     def head301(
-            self,  **kwargs):
+            self, **kwargs):
         """Return 301 status code and redirect to /http/success/200.
 
         :return: None
@@ -138,7 +138,7 @@ class HttpRedirectsOperations(object):
     head301.metadata = {'url': '/http/redirect/301'}
 
     def get301(
-            self,  **kwargs):
+            self, **kwargs):
         """Return 301 status code and redirect to /http/success/200.
 
         :return: None
@@ -211,7 +211,7 @@ class HttpRedirectsOperations(object):
     put301.metadata = {'url': '/http/redirect/301'}
 
     def head302(
-            self,  **kwargs):
+            self, **kwargs):
         """Return 302 status code and redirect to /http/success/200.
 
         :return: None
@@ -242,7 +242,7 @@ class HttpRedirectsOperations(object):
     head302.metadata = {'url': '/http/redirect/302'}
 
     def get302(
-            self,  **kwargs):
+            self, **kwargs):
         """Return 302 status code and redirect to /http/success/200.
 
         :return: None
@@ -357,7 +357,7 @@ class HttpRedirectsOperations(object):
     post303.metadata = {'url': '/http/redirect/303'}
 
     def head307(
-            self,  **kwargs):
+            self, **kwargs):
         """Redirect with 307, resulting in a 200 success.
 
         :return: None
@@ -388,7 +388,7 @@ class HttpRedirectsOperations(object):
     head307.metadata = {'url': '/http/redirect/307'}
 
     def get307(
-            self,  **kwargs):
+            self, **kwargs):
         """Redirect get with 307, resulting in a 200 success.
 
         :return: None

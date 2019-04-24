@@ -35,7 +35,7 @@ class DatetimeModelOperations(object):
         self._config = config
 
     def get_null(
-            self,  **kwargs):
+            self, **kwargs):
         """Get null datetime value.
 
         :return: datetime
@@ -71,7 +71,7 @@ class DatetimeModelOperations(object):
     get_null.metadata = {'url': '/datetime/null'}
 
     def get_invalid(
-            self,  **kwargs):
+            self, **kwargs):
         """Get invalid datetime value.
 
         :return: datetime
@@ -107,7 +107,7 @@ class DatetimeModelOperations(object):
     get_invalid.metadata = {'url': '/datetime/invalid'}
 
     def get_overflow(
-            self,  **kwargs):
+            self, **kwargs):
         """Get overflow datetime value.
 
         :return: datetime
@@ -143,7 +143,7 @@ class DatetimeModelOperations(object):
     get_overflow.metadata = {'url': '/datetime/overflow'}
 
     def get_underflow(
-            self,  **kwargs):
+            self, **kwargs):
         """Get underflow datetime value.
 
         :return: datetime
@@ -179,7 +179,7 @@ class DatetimeModelOperations(object):
     get_underflow.metadata = {'url': '/datetime/underflow'}
 
     def put_utc_max_date_time(
-            self,  **kwargs):
+            self, datetime_body, **kwargs):
         """Put max datetime value 9999-12-31T23:59:59.9999999Z.
 
         :param datetime_body:
@@ -215,7 +215,7 @@ class DatetimeModelOperations(object):
     put_utc_max_date_time.metadata = {'url': '/datetime/max/utc'}
 
     def get_utc_lowercase_max_date_time(
-            self,  **kwargs):
+            self, **kwargs):
         """Get max datetime value 9999-12-31t23:59:59.9999999z.
 
         :return: datetime
@@ -251,7 +251,7 @@ class DatetimeModelOperations(object):
     get_utc_lowercase_max_date_time.metadata = {'url': '/datetime/max/utc/lowercase'}
 
     def get_utc_uppercase_max_date_time(
-            self,  **kwargs):
+            self, **kwargs):
         """Get max datetime value 9999-12-31T23:59:59.9999999Z.
 
         :return: datetime
@@ -287,7 +287,7 @@ class DatetimeModelOperations(object):
     get_utc_uppercase_max_date_time.metadata = {'url': '/datetime/max/utc/uppercase'}
 
     def put_local_positive_offset_max_date_time(
-            self,  **kwargs):
+            self, datetime_body, **kwargs):
         """Put max datetime value with positive numoffset
         9999-12-31t23:59:59.9999999+14:00.
 
@@ -324,7 +324,7 @@ class DatetimeModelOperations(object):
     put_local_positive_offset_max_date_time.metadata = {'url': '/datetime/max/localpositiveoffset'}
 
     def get_local_positive_offset_lowercase_max_date_time(
-            self,  **kwargs):
+            self, **kwargs):
         """Get max datetime value with positive num offset
         9999-12-31t23:59:59.9999999+14:00.
 
@@ -361,7 +361,7 @@ class DatetimeModelOperations(object):
     get_local_positive_offset_lowercase_max_date_time.metadata = {'url': '/datetime/max/localpositiveoffset/lowercase'}
 
     def get_local_positive_offset_uppercase_max_date_time(
-            self,  **kwargs):
+            self, **kwargs):
         """Get max datetime value with positive num offset
         9999-12-31T23:59:59.9999999+14:00.
 
@@ -398,7 +398,7 @@ class DatetimeModelOperations(object):
     get_local_positive_offset_uppercase_max_date_time.metadata = {'url': '/datetime/max/localpositiveoffset/uppercase'}
 
     def put_local_negative_offset_max_date_time(
-            self,  **kwargs):
+            self, datetime_body, **kwargs):
         """Put max datetime value with positive numoffset
         9999-12-31t23:59:59.9999999-14:00.
 
@@ -435,7 +435,7 @@ class DatetimeModelOperations(object):
     put_local_negative_offset_max_date_time.metadata = {'url': '/datetime/max/localnegativeoffset'}
 
     def get_local_negative_offset_uppercase_max_date_time(
-            self,  **kwargs):
+            self, **kwargs):
         """Get max datetime value with positive num offset
         9999-12-31T23:59:59.9999999-14:00.
 
@@ -472,7 +472,7 @@ class DatetimeModelOperations(object):
     get_local_negative_offset_uppercase_max_date_time.metadata = {'url': '/datetime/max/localnegativeoffset/uppercase'}
 
     def get_local_negative_offset_lowercase_max_date_time(
-            self,  **kwargs):
+            self, **kwargs):
         """Get max datetime value with positive num offset
         9999-12-31t23:59:59.9999999-14:00.
 
@@ -509,7 +509,7 @@ class DatetimeModelOperations(object):
     get_local_negative_offset_lowercase_max_date_time.metadata = {'url': '/datetime/max/localnegativeoffset/lowercase'}
 
     def put_utc_min_date_time(
-            self,  **kwargs):
+            self, datetime_body, **kwargs):
         """Put min datetime value 0001-01-01T00:00:00Z.
 
         :param datetime_body:
@@ -545,7 +545,7 @@ class DatetimeModelOperations(object):
     put_utc_min_date_time.metadata = {'url': '/datetime/min/utc'}
 
     def get_utc_min_date_time(
-            self,  **kwargs):
+            self, **kwargs):
         """Get min datetime value 0001-01-01T00:00:00Z.
 
         :return: datetime
@@ -581,7 +581,7 @@ class DatetimeModelOperations(object):
     get_utc_min_date_time.metadata = {'url': '/datetime/min/utc'}
 
     def put_local_positive_offset_min_date_time(
-            self,  **kwargs):
+            self, datetime_body, **kwargs):
         """Put min datetime value 0001-01-01T00:00:00+14:00.
 
         :param datetime_body:
@@ -617,7 +617,7 @@ class DatetimeModelOperations(object):
     put_local_positive_offset_min_date_time.metadata = {'url': '/datetime/min/localpositiveoffset'}
 
     def get_local_positive_offset_min_date_time(
-            self,  **kwargs):
+            self, **kwargs):
         """Get min datetime value 0001-01-01T00:00:00+14:00.
 
         :return: datetime
@@ -653,7 +653,7 @@ class DatetimeModelOperations(object):
     get_local_positive_offset_min_date_time.metadata = {'url': '/datetime/min/localpositiveoffset'}
 
     def put_local_negative_offset_min_date_time(
-            self,  **kwargs):
+            self, datetime_body, **kwargs):
         """Put min datetime value 0001-01-01T00:00:00-14:00.
 
         :param datetime_body:
@@ -689,7 +689,7 @@ class DatetimeModelOperations(object):
     put_local_negative_offset_min_date_time.metadata = {'url': '/datetime/min/localnegativeoffset'}
 
     def get_local_negative_offset_min_date_time(
-            self,  **kwargs):
+            self, **kwargs):
         """Get min datetime value 0001-01-01T00:00:00-14:00.
 
         :return: datetime

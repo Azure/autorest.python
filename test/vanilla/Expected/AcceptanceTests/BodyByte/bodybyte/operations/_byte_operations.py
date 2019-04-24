@@ -35,7 +35,7 @@ class ByteOperations(object):
         self._config = config
 
     def get_null(
-            self,  **kwargs):
+            self, **kwargs):
         """Get null byte value.
 
         :return: bytearray
@@ -71,7 +71,7 @@ class ByteOperations(object):
     get_null.metadata = {'url': '/byte/null'}
 
     def get_empty(
-            self,  **kwargs):
+            self, **kwargs):
         """Get empty byte value ''.
 
         :return: bytearray
@@ -107,7 +107,7 @@ class ByteOperations(object):
     get_empty.metadata = {'url': '/byte/empty'}
 
     def get_non_ascii(
-            self,  **kwargs):
+            self, **kwargs):
         """Get non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
 
         :return: bytearray
@@ -143,7 +143,7 @@ class ByteOperations(object):
     get_non_ascii.metadata = {'url': '/byte/nonAscii'}
 
     def put_non_ascii(
-            self,  **kwargs):
+            self, byte_body, **kwargs):
         """Put non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
 
         :param byte_body: Base64-encoded non-ascii byte string hex(FF FE FD FC
@@ -180,7 +180,7 @@ class ByteOperations(object):
     put_non_ascii.metadata = {'url': '/byte/nonAscii'}
 
     def get_invalid(
-            self,  **kwargs):
+            self, **kwargs):
         """Get invalid byte value ':::SWAGGER::::'.
 
         :return: bytearray

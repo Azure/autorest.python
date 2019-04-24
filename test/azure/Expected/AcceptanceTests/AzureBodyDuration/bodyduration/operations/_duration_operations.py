@@ -36,7 +36,7 @@ class DurationOperations(object):
         self._config = config
 
     def get_null(
-            self,  **kwargs):
+            self, **kwargs):
         """Get null duration value.
 
         :return: timedelta
@@ -76,7 +76,7 @@ class DurationOperations(object):
     get_null.metadata = {'url': '/duration/null'}
 
     def put_positive_duration(
-            self,  **kwargs):
+            self, duration_body, **kwargs):
         """Put a positive duration value.
 
         :param duration_body:
@@ -116,7 +116,7 @@ class DurationOperations(object):
     put_positive_duration.metadata = {'url': '/duration/positiveduration'}
 
     def get_positive_duration(
-            self,  **kwargs):
+            self, **kwargs):
         """Get a positive duration value.
 
         :return: timedelta
@@ -156,7 +156,7 @@ class DurationOperations(object):
     get_positive_duration.metadata = {'url': '/duration/positiveduration'}
 
     def get_invalid(
-            self,  **kwargs):
+            self, **kwargs):
         """Get an invalid duration value.
 
         :return: timedelta

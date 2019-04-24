@@ -35,7 +35,7 @@ class FormdataOperations(object):
         self._config = config
 
     def upload_file(
-            self,  **kwargs):
+            self, file_content, file_name, **kwargs):
         """Upload file.
 
         :param file_content: File to upload.
@@ -81,7 +81,7 @@ class FormdataOperations(object):
     upload_file.metadata = {'url': '/formdata/stream/uploadfile'}
 
     def upload_file_via_body(
-            self,  **kwargs):
+            self, file_content, **kwargs):
         """Upload file.
 
         :param file_content: File to upload.

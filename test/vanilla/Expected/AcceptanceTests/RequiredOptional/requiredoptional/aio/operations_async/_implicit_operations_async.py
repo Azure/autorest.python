@@ -35,7 +35,7 @@ class ImplicitOperations:
         self._config = config
 
     async def get_required_path(
-            self,  **kwargs):
+            self, path_parameter, **kwargs):
         """Test implicitly required path parameter.
 
         :param path_parameter:
@@ -182,7 +182,7 @@ class ImplicitOperations:
     put_optional_body.metadata = {'url': '/reqopt/implicit/optional/body'}
 
     async def get_required_global_path(
-            self,  **kwargs):
+            self, **kwargs):
         """Test implicitly required path parameter.
 
         :return: Error
@@ -217,7 +217,7 @@ class ImplicitOperations:
     get_required_global_path.metadata = {'url': '/reqopt/global/required/path/{required-global-path}'}
 
     async def get_required_global_query(
-            self,  **kwargs):
+            self, **kwargs):
         """Test implicitly required query parameter.
 
         :return: Error
@@ -249,7 +249,7 @@ class ImplicitOperations:
     get_required_global_query.metadata = {'url': '/reqopt/global/required/query'}
 
     async def get_optional_global_query(
-            self,  **kwargs):
+            self, **kwargs):
         """Test implicitly optional query parameter.
 
         :return: Error

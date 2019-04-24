@@ -86,7 +86,7 @@ class LROsCustomHeaderOperations(object):
         return deserialized
 
     def put_async_retry_succeeded(
-            self, product=None, polling=True, **kwargs):
+            self, product=None,  polling=True, **kwargs):
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is
         required message header for all requests. Long running put request,
         service returns a 200 to the initial request, with an entity that
@@ -104,7 +104,6 @@ class LROsCustomHeaderOperations(object):
         """
         raw_result = self._put_async_retry_succeeded_initial(
             product=product,
-            raw=True,
             **kwargs
         )
 
@@ -172,7 +171,7 @@ class LROsCustomHeaderOperations(object):
         return deserialized
 
     def put201_creating_succeeded200(
-            self, product=None, polling=True, **kwargs):
+            self, product=None,  polling=True, **kwargs):
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is
         required message header for all requests. Long running put request,
         service returns a 201 to the initial request, with an entity that
@@ -190,7 +189,6 @@ class LROsCustomHeaderOperations(object):
         """
         raw_result = self._put201_creating_succeeded200_initial(
             product=product,
-            raw=True,
             **kwargs
         )
 
@@ -245,7 +243,7 @@ class LROsCustomHeaderOperations(object):
             return ''
 
     def post202_retry200(
-            self, product=None, polling=True, **kwargs):
+            self, product=None,  polling=True, **kwargs):
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is
         required message header for all requests. Long running post request,
         service returns a 202 to the initial request, with 'Location' and
@@ -262,7 +260,6 @@ class LROsCustomHeaderOperations(object):
         """
         raw_result = self._post202_retry200_initial(
             product=product,
-            raw=True,
             **kwargs
         )
 
@@ -314,7 +311,7 @@ class LROsCustomHeaderOperations(object):
             return ''
 
     def post_async_retry_succeeded(
-            self, product=None, polling=True, **kwargs):
+            self, product=None,  polling=True, **kwargs):
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is
         required message header for all requests. Long running post request,
         service returns a 202 to the initial request, with an entity that
@@ -331,7 +328,6 @@ class LROsCustomHeaderOperations(object):
         """
         raw_result = self._post_async_retry_succeeded_initial(
             product=product,
-            raw=True,
             **kwargs
         )
 

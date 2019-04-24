@@ -35,7 +35,7 @@ class DateModelOperations:
         self._config = config
 
     async def get_null(
-            self,  **kwargs):
+            self, **kwargs):
         """Get null date value.
 
         :return: date
@@ -71,7 +71,7 @@ class DateModelOperations:
     get_null.metadata = {'url': '/date/null'}
 
     async def get_invalid_date(
-            self,  **kwargs):
+            self, **kwargs):
         """Get invalid date value.
 
         :return: date
@@ -107,7 +107,7 @@ class DateModelOperations:
     get_invalid_date.metadata = {'url': '/date/invaliddate'}
 
     async def get_overflow_date(
-            self,  **kwargs):
+            self, **kwargs):
         """Get overflow date value.
 
         :return: date
@@ -143,7 +143,7 @@ class DateModelOperations:
     get_overflow_date.metadata = {'url': '/date/overflowdate'}
 
     async def get_underflow_date(
-            self,  **kwargs):
+            self, **kwargs):
         """Get underflow date value.
 
         :return: date
@@ -179,7 +179,7 @@ class DateModelOperations:
     get_underflow_date.metadata = {'url': '/date/underflowdate'}
 
     async def put_max_date(
-            self,  **kwargs):
+            self, date_body, **kwargs):
         """Put max date value 9999-12-31.
 
         :param date_body:
@@ -215,7 +215,7 @@ class DateModelOperations:
     put_max_date.metadata = {'url': '/date/max'}
 
     async def get_max_date(
-            self,  **kwargs):
+            self, **kwargs):
         """Get max date value 9999-12-31.
 
         :return: date
@@ -251,7 +251,7 @@ class DateModelOperations:
     get_max_date.metadata = {'url': '/date/max'}
 
     async def put_min_date(
-            self,  **kwargs):
+            self, date_body, **kwargs):
         """Put min date value 0000-01-01.
 
         :param date_body:
@@ -287,7 +287,7 @@ class DateModelOperations:
     put_min_date.metadata = {'url': '/date/min'}
 
     async def get_min_date(
-            self,  **kwargs):
+            self, **kwargs):
         """Get min date value 0000-01-01.
 
         :return: date

@@ -35,7 +35,7 @@ class HttpRetryOperations(object):
         self._config = config
 
     def head408(
-            self,  **kwargs):
+            self, **kwargs):
         """Return 408 status code, then 200 after retry.
 
         :return: None
@@ -146,7 +146,7 @@ class HttpRetryOperations(object):
     patch500.metadata = {'url': '/http/retry/500'}
 
     def get502(
-            self,  **kwargs):
+            self, **kwargs):
         """Return 502 status code, then 200 after retry.
 
         :return: None

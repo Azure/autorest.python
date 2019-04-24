@@ -36,7 +36,7 @@ class MultipleResponsesOperations(object):
         self._config = config
 
     def get200_model204_no_model_default_error200_valid(
-            self,  **kwargs):
+            self, **kwargs):
         """Send a 200 response with valid payload: {'statusCode': '200'}.
 
         :return: A
@@ -73,7 +73,7 @@ class MultipleResponsesOperations(object):
     get200_model204_no_model_default_error200_valid.metadata = {'url': '/http/payloads/200/A/204/none/default/Error/response/200/valid'}
 
     def get200_model204_no_model_default_error204_valid(
-            self,  **kwargs):
+            self, **kwargs):
         """Send a 204 response with no payload.
 
         :return: A
@@ -110,7 +110,7 @@ class MultipleResponsesOperations(object):
     get200_model204_no_model_default_error204_valid.metadata = {'url': '/http/payloads/200/A/204/none/default/Error/response/204/none'}
 
     def get200_model204_no_model_default_error201_invalid(
-            self,  **kwargs):
+            self, **kwargs):
         """Send a 201 response with valid payload: {'statusCode': '201'}.
 
         :return: A
@@ -147,7 +147,7 @@ class MultipleResponsesOperations(object):
     get200_model204_no_model_default_error201_invalid.metadata = {'url': '/http/payloads/200/A/204/none/default/Error/response/201/valid'}
 
     def get200_model204_no_model_default_error202_none(
-            self,  **kwargs):
+            self, **kwargs):
         """Send a 202 response with no payload:.
 
         :return: A
@@ -184,7 +184,7 @@ class MultipleResponsesOperations(object):
     get200_model204_no_model_default_error202_none.metadata = {'url': '/http/payloads/200/A/204/none/default/Error/response/202/none'}
 
     def get200_model204_no_model_default_error400_valid(
-            self,  **kwargs):
+            self, **kwargs):
         """Send a 400 response with valid error payload: {'status': 400,
         'message': 'client error'}.
 
@@ -222,7 +222,7 @@ class MultipleResponsesOperations(object):
     get200_model204_no_model_default_error400_valid.metadata = {'url': '/http/payloads/200/A/204/none/default/Error/response/400/valid'}
 
     def get200_model201_model_default_error200_valid(
-            self,  **kwargs):
+            self, **kwargs):
         """Send a 200 response with valid payload: {'statusCode': '200'}.
 
         :return: A
@@ -261,7 +261,7 @@ class MultipleResponsesOperations(object):
     get200_model201_model_default_error200_valid.metadata = {'url': '/http/payloads/200/A/201/B/default/Error/response/200/valid'}
 
     def get200_model201_model_default_error201_valid(
-            self,  **kwargs):
+            self, **kwargs):
         """Send a 201 response with valid payload: {'statusCode': '201',
         'textStatusCode': 'Created'}.
 
@@ -301,7 +301,7 @@ class MultipleResponsesOperations(object):
     get200_model201_model_default_error201_valid.metadata = {'url': '/http/payloads/200/A/201/B/default/Error/response/201/valid'}
 
     def get200_model201_model_default_error400_valid(
-            self,  **kwargs):
+            self, **kwargs):
         """Send a 400 response with valid payload: {'code': '400', 'message':
         'client error'}.
 
@@ -341,7 +341,7 @@ class MultipleResponsesOperations(object):
     get200_model201_model_default_error400_valid.metadata = {'url': '/http/payloads/200/A/201/B/default/Error/response/400/valid'}
 
     def get200_model_a201_model_c404_model_ddefault_error200_valid(
-            self,  **kwargs):
+            self, **kwargs):
         """Send a 200 response with valid payload: {'statusCode': '200'}.
 
         :return: object
@@ -382,7 +382,7 @@ class MultipleResponsesOperations(object):
     get200_model_a201_model_c404_model_ddefault_error200_valid.metadata = {'url': '/http/payloads/200/A/201/C/404/D/default/Error/response/200/valid'}
 
     def get200_model_a201_model_c404_model_ddefault_error201_valid(
-            self,  **kwargs):
+            self, **kwargs):
         """Send a 200 response with valid payload: {'httpCode': '201'}.
 
         :return: object
@@ -423,7 +423,7 @@ class MultipleResponsesOperations(object):
     get200_model_a201_model_c404_model_ddefault_error201_valid.metadata = {'url': '/http/payloads/200/A/201/C/404/D/default/Error/response/201/valid'}
 
     def get200_model_a201_model_c404_model_ddefault_error404_valid(
-            self,  **kwargs):
+            self, **kwargs):
         """Send a 200 response with valid payload: {'httpStatusCode': '404'}.
 
         :return: object
@@ -464,7 +464,7 @@ class MultipleResponsesOperations(object):
     get200_model_a201_model_c404_model_ddefault_error404_valid.metadata = {'url': '/http/payloads/200/A/201/C/404/D/default/Error/response/404/valid'}
 
     def get200_model_a201_model_c404_model_ddefault_error400_valid(
-            self,  **kwargs):
+            self, **kwargs):
         """Send a 400 response with valid payload: {'code': '400', 'message':
         'client error'}.
 
@@ -506,7 +506,7 @@ class MultipleResponsesOperations(object):
     get200_model_a201_model_c404_model_ddefault_error400_valid.metadata = {'url': '/http/payloads/200/A/201/C/404/D/default/Error/response/400/valid'}
 
     def get202_none204_none_default_error202_none(
-            self,  **kwargs):
+            self, **kwargs):
         """Send a 202 response with no payload.
 
         :return: None
@@ -537,7 +537,7 @@ class MultipleResponsesOperations(object):
     get202_none204_none_default_error202_none.metadata = {'url': '/http/payloads/202/none/204/none/default/Error/response/202/none'}
 
     def get202_none204_none_default_error204_none(
-            self,  **kwargs):
+            self, **kwargs):
         """Send a 204 response with no payload.
 
         :return: None
@@ -568,7 +568,7 @@ class MultipleResponsesOperations(object):
     get202_none204_none_default_error204_none.metadata = {'url': '/http/payloads/202/none/204/none/default/Error/response/204/none'}
 
     def get202_none204_none_default_error400_valid(
-            self,  **kwargs):
+            self, **kwargs):
         """Send a 400 response with valid payload: {'code': '400', 'message':
         'client error'}.
 
@@ -600,7 +600,7 @@ class MultipleResponsesOperations(object):
     get202_none204_none_default_error400_valid.metadata = {'url': '/http/payloads/202/none/204/none/default/Error/response/400/valid'}
 
     def get202_none204_none_default_none202_invalid(
-            self,  **kwargs):
+            self, **kwargs):
         """Send a 202 response with an unexpected payload {'property': 'value'}.
 
         :return: None
@@ -630,7 +630,7 @@ class MultipleResponsesOperations(object):
     get202_none204_none_default_none202_invalid.metadata = {'url': '/http/payloads/202/none/204/none/default/none/response/202/invalid'}
 
     def get202_none204_none_default_none204_none(
-            self,  **kwargs):
+            self, **kwargs):
         """Send a 204 response with no payload.
 
         :return: None
@@ -660,7 +660,7 @@ class MultipleResponsesOperations(object):
     get202_none204_none_default_none204_none.metadata = {'url': '/http/payloads/202/none/204/none/default/none/response/204/none'}
 
     def get202_none204_none_default_none400_none(
-            self,  **kwargs):
+            self, **kwargs):
         """Send a 400 response with no payload.
 
         :return: None
@@ -690,7 +690,7 @@ class MultipleResponsesOperations(object):
     get202_none204_none_default_none400_none.metadata = {'url': '/http/payloads/202/none/204/none/default/none/response/400/none'}
 
     def get202_none204_none_default_none400_invalid(
-            self,  **kwargs):
+            self, **kwargs):
         """Send a 400 response with an unexpected payload {'property': 'value'}.
 
         :return: None
@@ -720,7 +720,7 @@ class MultipleResponsesOperations(object):
     get202_none204_none_default_none400_invalid.metadata = {'url': '/http/payloads/202/none/204/none/default/none/response/400/invalid'}
 
     def get_default_model_a200_valid(
-            self,  **kwargs):
+            self, **kwargs):
         """Send a 200 response with valid payload: {'statusCode': '200'}.
 
         :return: A
@@ -750,7 +750,7 @@ class MultipleResponsesOperations(object):
     get_default_model_a200_valid.metadata = {'url': '/http/payloads/default/A/response/200/valid'}
 
     def get_default_model_a200_none(
-            self,  **kwargs):
+            self, **kwargs):
         """Send a 200 response with no payload.
 
         :return: A
@@ -780,7 +780,7 @@ class MultipleResponsesOperations(object):
     get_default_model_a200_none.metadata = {'url': '/http/payloads/default/A/response/200/none'}
 
     def get_default_model_a400_valid(
-            self,  **kwargs):
+            self, **kwargs):
         """Send a 400 response with valid payload: {'statusCode': '400'}.
 
         :return: A
@@ -810,7 +810,7 @@ class MultipleResponsesOperations(object):
     get_default_model_a400_valid.metadata = {'url': '/http/payloads/default/A/response/400/valid'}
 
     def get_default_model_a400_none(
-            self,  **kwargs):
+            self, **kwargs):
         """Send a 400 response with no payload.
 
         :return: A
@@ -840,7 +840,7 @@ class MultipleResponsesOperations(object):
     get_default_model_a400_none.metadata = {'url': '/http/payloads/default/A/response/400/none'}
 
     def get_default_none200_invalid(
-            self,  **kwargs):
+            self, **kwargs):
         """Send a 200 response with invalid payload: {'statusCode': '200'}.
 
         :return: None
@@ -870,7 +870,7 @@ class MultipleResponsesOperations(object):
     get_default_none200_invalid.metadata = {'url': '/http/payloads/default/none/response/200/invalid'}
 
     def get_default_none200_none(
-            self,  **kwargs):
+            self, **kwargs):
         """Send a 200 response with no payload.
 
         :return: None
@@ -900,7 +900,7 @@ class MultipleResponsesOperations(object):
     get_default_none200_none.metadata = {'url': '/http/payloads/default/none/response/200/none'}
 
     def get_default_none400_invalid(
-            self,  **kwargs):
+            self, **kwargs):
         """Send a 400 response with valid payload: {'statusCode': '400'}.
 
         :return: None
@@ -930,7 +930,7 @@ class MultipleResponsesOperations(object):
     get_default_none400_invalid.metadata = {'url': '/http/payloads/default/none/response/400/invalid'}
 
     def get_default_none400_none(
-            self,  **kwargs):
+            self, **kwargs):
         """Send a 400 response with no payload.
 
         :return: None
@@ -960,7 +960,7 @@ class MultipleResponsesOperations(object):
     get_default_none400_none.metadata = {'url': '/http/payloads/default/none/response/400/none'}
 
     def get200_model_a200_none(
-            self,  **kwargs):
+            self, **kwargs):
         """Send a 200 response with no payload, when a payload is expected -
         client should return a null object of thde type for model A.
 
@@ -997,7 +997,7 @@ class MultipleResponsesOperations(object):
     get200_model_a200_none.metadata = {'url': '/http/payloads/200/A/response/200/none'}
 
     def get200_model_a200_valid(
-            self,  **kwargs):
+            self, **kwargs):
         """Send a 200 response with payload {'statusCode': '200'}.
 
         :return: A
@@ -1033,7 +1033,7 @@ class MultipleResponsesOperations(object):
     get200_model_a200_valid.metadata = {'url': '/http/payloads/200/A/response/200/valid'}
 
     def get200_model_a200_invalid(
-            self,  **kwargs):
+            self, **kwargs):
         """Send a 200 response with invalid payload {'statusCodeInvalid': '200'}.
 
         :return: A
@@ -1069,7 +1069,7 @@ class MultipleResponsesOperations(object):
     get200_model_a200_invalid.metadata = {'url': '/http/payloads/200/A/response/200/invalid'}
 
     def get200_model_a400_none(
-            self,  **kwargs):
+            self, **kwargs):
         """Send a 400 response with no payload client should treat as an http
         error with no error model.
 
@@ -1106,7 +1106,7 @@ class MultipleResponsesOperations(object):
     get200_model_a400_none.metadata = {'url': '/http/payloads/200/A/response/400/none'}
 
     def get200_model_a400_valid(
-            self,  **kwargs):
+            self, **kwargs):
         """Send a 200 response with payload {'statusCode': '400'}.
 
         :return: A
@@ -1142,7 +1142,7 @@ class MultipleResponsesOperations(object):
     get200_model_a400_valid.metadata = {'url': '/http/payloads/200/A/response/400/valid'}
 
     def get200_model_a400_invalid(
-            self,  **kwargs):
+            self, **kwargs):
         """Send a 200 response with invalid payload {'statusCodeInvalid': '400'}.
 
         :return: A
@@ -1178,7 +1178,7 @@ class MultipleResponsesOperations(object):
     get200_model_a400_invalid.metadata = {'url': '/http/payloads/200/A/response/400/invalid'}
 
     def get200_model_a202_valid(
-            self,  **kwargs):
+            self, **kwargs):
         """Send a 202 response with payload {'statusCode': '202'}.
 
         :return: A

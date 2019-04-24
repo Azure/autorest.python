@@ -36,7 +36,7 @@ class PetOperations:
         self._config = config
 
     async def get_by_pet_id(
-            self,  **kwargs):
+            self, pet_id, **kwargs):
         """
 
         :param pet_id: Pet id

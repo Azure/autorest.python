@@ -35,7 +35,7 @@ class PolymorphicrecursiveOperations:
         self._config = config
 
     async def get_valid(
-            self,  **kwargs):
+            self, **kwargs):
         """Get complex types that are polymorphic and have recursive references.
 
         :return: Fish
@@ -71,7 +71,7 @@ class PolymorphicrecursiveOperations:
     get_valid.metadata = {'url': '/complex/polymorphicrecursive/valid'}
 
     async def put_valid(
-            self,  **kwargs):
+            self, complex_body, **kwargs):
         """Put complex types that are polymorphic and have recursive references.
 
         :param complex_body: Please put a salmon that looks like this:

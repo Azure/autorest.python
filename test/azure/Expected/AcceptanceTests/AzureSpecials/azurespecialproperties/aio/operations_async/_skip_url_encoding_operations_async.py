@@ -40,7 +40,7 @@ class SkipUrlEncodingOperations:
         self._config = config
 
     async def get_method_path_valid(
-            self,  **kwargs):
+            self, unencoded_path_param, **kwargs):
         """Get method with unencoded path parameter with value
         'path1/path2/path3'.
 
@@ -83,7 +83,7 @@ class SkipUrlEncodingOperations:
     get_method_path_valid.metadata = {'url': '/azurespecials/skipUrlEncoding/method/path/valid/{unencodedPathParam}'}
 
     async def get_path_path_valid(
-            self,  **kwargs):
+            self, unencoded_path_param, **kwargs):
         """Get method with unencoded path parameter with value
         'path1/path2/path3'.
 
@@ -126,7 +126,7 @@ class SkipUrlEncodingOperations:
     get_path_path_valid.metadata = {'url': '/azurespecials/skipUrlEncoding/path/path/valid/{unencodedPathParam}'}
 
     async def get_swagger_path_valid(
-            self,  **kwargs):
+            self, **kwargs):
         """Get method with unencoded path parameter with value
         'path1/path2/path3'.
 
@@ -166,7 +166,7 @@ class SkipUrlEncodingOperations:
     get_swagger_path_valid.metadata = {'url': '/azurespecials/skipUrlEncoding/swagger/path/valid/{unencodedPathParam}'}
 
     async def get_method_query_valid(
-            self,  **kwargs):
+            self, q1, **kwargs):
         """Get method with unencoded query parameter with value
         'value1&q2=value2&q3=value3'.
 
@@ -245,7 +245,7 @@ class SkipUrlEncodingOperations:
     get_method_query_null.metadata = {'url': '/azurespecials/skipUrlEncoding/method/query/null'}
 
     async def get_path_query_valid(
-            self,  **kwargs):
+            self, q1, **kwargs):
         """Get method with unencoded query parameter with value
         'value1&q2=value2&q3=value3'.
 
@@ -285,7 +285,7 @@ class SkipUrlEncodingOperations:
     get_path_query_valid.metadata = {'url': '/azurespecials/skipUrlEncoding/path/query/valid'}
 
     async def get_swagger_query_valid(
-            self,  **kwargs):
+            self, **kwargs):
         """Get method with unencoded query parameter with value
         'value1&q2=value2&q3=value3'.
 

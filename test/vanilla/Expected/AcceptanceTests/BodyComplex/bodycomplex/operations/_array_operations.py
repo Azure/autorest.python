@@ -35,7 +35,7 @@ class ArrayOperations(object):
         self._config = config
 
     def get_valid(
-            self,  **kwargs):
+            self, **kwargs):
         """Get complex types with array property.
 
         :return: ArrayWrapper
@@ -109,7 +109,7 @@ class ArrayOperations(object):
     put_valid.metadata = {'url': '/complex/array/valid'}
 
     def get_empty(
-            self,  **kwargs):
+            self, **kwargs):
         """Get complex types with array property which is empty.
 
         :return: ArrayWrapper
@@ -183,7 +183,7 @@ class ArrayOperations(object):
     put_empty.metadata = {'url': '/complex/array/empty'}
 
     def get_not_provided(
-            self,  **kwargs):
+            self, **kwargs):
         """Get complex types with array property while server doesn't provide a
         response payload.
 
