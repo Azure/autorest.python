@@ -86,7 +86,7 @@ else
 }
 @{string sendCall = Model.GetSendCall(AsyncMode);}
         pipeline_response = @(sendCall)(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 @EmptyLine
         if @Model.FailureStatusCodePredicate:
             @Model.RaisedException

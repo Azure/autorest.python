@@ -111,7 +111,7 @@ else
             request = prepare_request(next_link)
 @EmptyLine
             pipeline_response = self._client._pipeline.run(request)
-            response = pipeline_response.http_response.internal_response        
+            response = pipeline_response.http_response
 @EmptyLine
             if @Model.FailureStatusCodePredicate:
                 @Model.RaisedException
@@ -124,7 +124,7 @@ else
 @:            request = prepare_request(next_link)
 @EmptyLine
             @:pipeline_response = await self._client._pipeline.run(request)
-            @:response = pipeline_response.http_response.internal_response        
+            @:response = pipeline_response.http_response
 @EmptyLine
 @:            if @Model.FailureStatusCodePredicate:
 @:                @Model.RaisedException
