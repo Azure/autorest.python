@@ -150,10 +150,12 @@ namespace AutoRest.Python.Model
                 combinedDeclarations.Add(string.Join(", ", requiredDeclarations));
             }
             combinedDeclarations.Add(string.Join(", ", declarations));
-            if (combinedDeclarations.Count == 0)
+            if (declarations.Count == 0 && requiredDeclarations.Count == 0)
                 return string.Empty;
             string ret = string.Join(", ", combinedDeclarations);
-            return  ret + ",";
+            if (declarations.Count != 0)
+                ret += ",";
+            return  ret;
         }
 
         private string BuildSerializeDataCall(Parameter parameter, string functionName)
