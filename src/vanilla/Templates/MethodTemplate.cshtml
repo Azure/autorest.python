@@ -151,7 +151,7 @@ else
   }
 if (Model.IsStreamResponse)
 {
-        @:deserialized = self.stream_download@(AsyncMode?"_async":"")(response)
+        @:deserialized = @(AsyncMode?"await":"") response.stream_download@(AsyncMode?"_async":"")(response)
 }
 else
 {
