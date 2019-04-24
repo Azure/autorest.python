@@ -82,6 +82,7 @@ string defKeyword = AsyncMode? "async def" : "def";
     {
       if (parameter.Location == ParameterLocation.Body && parameter.ModelType.IsPrimaryType(KnownPrimaryType.Stream))
       {
+        @:body_content = @parameter.Name
         break;
       }
     }
