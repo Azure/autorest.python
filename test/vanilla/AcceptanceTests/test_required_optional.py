@@ -64,7 +64,7 @@ class TestRequiredOptional(object):
         client.implicit.put_optional_body(None)
         client.implicit.put_optional_header(None)
 
-        client.implicit.get_optional_global_query(None)
+        client.implicit.get_optional_global_query()
 
         client.explicit.post_optional_integer_parameter(None)
         client.explicit.post_optional_integer_property(None)

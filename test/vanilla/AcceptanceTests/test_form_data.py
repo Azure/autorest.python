@@ -114,7 +114,7 @@ class TestFormData(object):
 
         result = io.BytesIO()
         with io.BytesIO(test_bytes) as stream_data:
-            resp = client.formdata.upload_file_via_body(stream_data, callback=test_callback)
+            resp = client.formdata.upload_file_via_body(stream_data)
             for r in resp:
                 result.write(r)
             assert result.getvalue().decode() ==  test_string

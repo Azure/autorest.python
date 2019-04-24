@@ -43,12 +43,14 @@ sys.path.append(join(tests, "Head"))
 sys.path.append(join(tests, "HeadExceptions"))
 
 from msrest.serialization import Deserializer
-from msrest.exceptions import DeserializationError, HttpOperationError
+from msrest.exceptions import DeserializationError
 from msrest.authentication import BasicTokenAuthentication
 from msrestazure.azure_exceptions import CloudError, CloudErrorData
 
 from head.aio import AutoRestHeadTestService
 from headexceptions.aio import AutoRestHeadExceptionTestService
+
+from azure.core import HttpRequestError
 
 import pytest
 

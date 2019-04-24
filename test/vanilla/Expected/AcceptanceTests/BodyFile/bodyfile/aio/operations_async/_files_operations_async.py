@@ -63,7 +63,7 @@ class FilesOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        deserialized = self.stream_download_async(response)
+        deserialized = await response.stream_download_async(response)
 
         return deserialized
     get_file.metadata = {'url': '/files/stream/nonempty'}
@@ -97,7 +97,7 @@ class FilesOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        deserialized = self.stream_download_async(response)
+        deserialized = await response.stream_download_async(response)
 
         return deserialized
     get_file_large.metadata = {'url': '/files/stream/verylarge'}
@@ -131,7 +131,7 @@ class FilesOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        deserialized = self.stream_download_async(response)
+        deserialized = await response.stream_download_async(response)
 
         return deserialized
     get_empty_file.metadata = {'url': '/files/stream/empty'}

@@ -71,7 +71,7 @@ class TestFile(object):
 
         file_length = 0
         with io.BytesIO() as file_handle:
-            stream = client.files.get_file(callback=test_callback)
+            stream = client.files.get_file()
 
             for data in stream:
                 file_length += len(data)
@@ -90,7 +90,7 @@ class TestFile(object):
         client._config.connection.data_block_size = 4096
         file_length = 0
         with io.BytesIO() as file_handle:
-            stream = client.files.get_empty_file(callback=test_callback)
+            stream = client.files.get_empty_file()
 
             for data in stream:
                 file_length += len(data)
@@ -103,7 +103,7 @@ class TestFile(object):
 
         file_length = 0
         # client._client.add_hook('response', add_headers)
-        stream = client.files.get_file_large(callback=test_callback)
+        stream = client.files.get_file_large()
         #for data in stream:
         #    file_length += len(data)
 

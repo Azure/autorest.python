@@ -77,7 +77,7 @@ class TestFormData(object):
         test_bytes = bytearray(test_string, encoding='utf-8')
         result = io.BytesIO()
         with io.BytesIO(test_bytes) as stream_data:
-            resp = await client.formdata.upload_file(stream_data, "UploadFile.txt", callback=test_callback)
+            resp = await client.formdata.upload_file(stream_data, "UploadFile.txt")
             async for r in resp:
                 result.write(r)
             assert result.getvalue().decode() ==  test_string
@@ -96,7 +96,7 @@ class TestFormData(object):
         name = os.path.basename(dummy_file)
         result = io.BytesIO()
         with open(dummy_file, 'rb') as upload_data:
-            resp = await client.formdata.upload_file(upload_data, name, callback=test_callback)
+            resp = await client.formdata.upload_file(upload_data, name)
             async for r in resp:
                 result.write(r)
             assert result.getvalue().decode() ==  "Test file"
