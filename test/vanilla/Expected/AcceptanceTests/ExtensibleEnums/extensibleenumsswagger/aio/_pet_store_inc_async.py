@@ -13,7 +13,7 @@ from azure.core import AsyncPipelineClient
 from msrest import Serializer, Deserializer
 
 from ._configuration_async import PetStoreIncConfiguration
-from msrest.exceptions import HttpOperationError
+from azure.core import HttpRequestError
 from .operations_async import PetOperations
 from .. import models
 

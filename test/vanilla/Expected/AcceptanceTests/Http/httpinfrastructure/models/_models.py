@@ -10,7 +10,7 @@
 # --------------------------------------------------------------------------
 
 from msrest.serialization import Model
-from msrest.exceptions import HttpOperationError
+from azure.core import HttpRequestError
 
 
 class A(Model):
@@ -29,7 +29,7 @@ class A(Model):
         self.status_code = kwargs.get('status_code', None)
 
 
-class AException(HttpOperationError):
+class AException(HttpRequestError):
     """Server responsed with exception of type: 'A'.
 
     :param deserialize: A deserializer
@@ -38,7 +38,11 @@ class AException(HttpOperationError):
 
     def __init__(self, deserialize, response, *args):
 
-        super(AException, self).__init__(deserialize, response, 'A', *args)
+      model_name = 'A'
+      self.error = deserialize(model_name, response)
+      if self.error is None:
+          self.error = deserialize.dependencies[model_name]()
+      super(AException, self).__init__(response=response)
 
 
 class B(A):
@@ -112,7 +116,7 @@ class Error(Model):
         self.message = kwargs.get('message', None)
 
 
-class ErrorException(HttpOperationError):
+class ErrorException(HttpRequestError):
     """Server responsed with exception of type: 'Error'.
 
     :param deserialize: A deserializer
@@ -121,4 +125,8 @@ class ErrorException(HttpOperationError):
 
     def __init__(self, deserialize, response, *args):
 
-        super(ErrorException, self).__init__(deserialize, response, 'Error', *args)
+      model_name = 'Error'
+      self.error = deserialize(model_name, response)
+      if self.error is None:
+          self.error = deserialize.dependencies[model_name]()
+      super(ErrorException, self).__init__(response=response)

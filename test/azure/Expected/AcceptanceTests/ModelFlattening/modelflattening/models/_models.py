@@ -10,7 +10,7 @@
 # --------------------------------------------------------------------------
 
 from msrest.serialization import Model
-from msrest.exceptions import HttpOperationError
+from azure.core import HttpRequestError
 
 
 class BaseProduct(Model):
@@ -65,7 +65,7 @@ class Error(Model):
         self.parent_error = kwargs.get('parent_error', None)
 
 
-class ErrorException(HttpOperationError):
+class ErrorException(HttpRequestError):
     """Server responsed with exception of type: 'Error'.
 
     :param deserialize: A deserializer
@@ -74,7 +74,11 @@ class ErrorException(HttpOperationError):
 
     def __init__(self, deserialize, response, *args):
 
-        super(ErrorException, self).__init__(deserialize, response, 'Error', *args)
+      model_name = 'Error'
+      self.error = deserialize(model_name, response)
+      if self.error is None:
+          self.error = deserialize.dependencies[model_name]()
+      super(ErrorException, self).__init__(response=response)
 
 
 class Resource(Model):

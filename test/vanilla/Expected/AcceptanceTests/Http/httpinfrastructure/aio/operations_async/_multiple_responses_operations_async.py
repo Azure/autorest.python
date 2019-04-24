@@ -10,7 +10,7 @@
 # --------------------------------------------------------------------------
 
 from msrest.pipeline import ClientRawResponse
-from msrest.exceptions import HttpOperationError
+from azure.core import HttpRequestError
 
 from ... import models
 
@@ -703,8 +703,7 @@ class MultipleResponsesOperations:
          deserialized response
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
-        :raises:
-         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         # Construct URL
         url = self.get202_none204_none_default_none202_invalid.metadata['url']
@@ -724,7 +723,7 @@ class MultipleResponsesOperations:
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [202, 204]:
-            raise HttpOperationError(self._deserialize, response)
+            raise HttpRequestError(response=response)
 
         if raw:
             client_raw_response = ClientRawResponse(None, response)
@@ -739,8 +738,7 @@ class MultipleResponsesOperations:
          deserialized response
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
-        :raises:
-         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         # Construct URL
         url = self.get202_none204_none_default_none204_none.metadata['url']
@@ -760,7 +758,7 @@ class MultipleResponsesOperations:
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [202, 204]:
-            raise HttpOperationError(self._deserialize, response)
+            raise HttpRequestError(response=response)
 
         if raw:
             client_raw_response = ClientRawResponse(None, response)
@@ -775,8 +773,7 @@ class MultipleResponsesOperations:
          deserialized response
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
-        :raises:
-         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         # Construct URL
         url = self.get202_none204_none_default_none400_none.metadata['url']
@@ -796,7 +793,7 @@ class MultipleResponsesOperations:
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [202, 204]:
-            raise HttpOperationError(self._deserialize, response)
+            raise HttpRequestError(response=response)
 
         if raw:
             client_raw_response = ClientRawResponse(None, response)
@@ -811,8 +808,7 @@ class MultipleResponsesOperations:
          deserialized response
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
-        :raises:
-         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         # Construct URL
         url = self.get202_none204_none_default_none400_invalid.metadata['url']
@@ -832,7 +828,7 @@ class MultipleResponsesOperations:
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [202, 204]:
-            raise HttpOperationError(self._deserialize, response)
+            raise HttpRequestError(response=response)
 
         if raw:
             client_raw_response = ClientRawResponse(None, response)
@@ -991,8 +987,7 @@ class MultipleResponsesOperations:
          deserialized response
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
-        :raises:
-         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         # Construct URL
         url = self.get_default_none200_invalid.metadata['url']
@@ -1012,7 +1007,7 @@ class MultipleResponsesOperations:
         response = pipeline_response.http_response.internal_response
 
         if response.status_code < 200 or response.status_code >= 300:
-            raise HttpOperationError(self._deserialize, response)
+            raise HttpRequestError(response=response)
 
         if raw:
             client_raw_response = ClientRawResponse(None, response)
@@ -1027,8 +1022,7 @@ class MultipleResponsesOperations:
          deserialized response
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
-        :raises:
-         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         # Construct URL
         url = self.get_default_none200_none.metadata['url']
@@ -1048,7 +1042,7 @@ class MultipleResponsesOperations:
         response = pipeline_response.http_response.internal_response
 
         if response.status_code < 200 or response.status_code >= 300:
-            raise HttpOperationError(self._deserialize, response)
+            raise HttpRequestError(response=response)
 
         if raw:
             client_raw_response = ClientRawResponse(None, response)
@@ -1063,8 +1057,7 @@ class MultipleResponsesOperations:
          deserialized response
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
-        :raises:
-         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         # Construct URL
         url = self.get_default_none400_invalid.metadata['url']
@@ -1084,7 +1077,7 @@ class MultipleResponsesOperations:
         response = pipeline_response.http_response.internal_response
 
         if response.status_code < 200 or response.status_code >= 300:
-            raise HttpOperationError(self._deserialize, response)
+            raise HttpRequestError(response=response)
 
         if raw:
             client_raw_response = ClientRawResponse(None, response)
@@ -1099,8 +1092,7 @@ class MultipleResponsesOperations:
          deserialized response
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
-        :raises:
-         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         # Construct URL
         url = self.get_default_none400_none.metadata['url']
@@ -1120,7 +1112,7 @@ class MultipleResponsesOperations:
         response = pipeline_response.http_response.internal_response
 
         if response.status_code < 200 or response.status_code >= 300:
-            raise HttpOperationError(self._deserialize, response)
+            raise HttpRequestError(response=response)
 
         if raw:
             client_raw_response = ClientRawResponse(None, response)
@@ -1137,8 +1129,7 @@ class MultipleResponsesOperations:
         :return: A or ClientRawResponse if raw=true
         :rtype: ~httpinfrastructure.models.A or
          ~msrest.pipeline.ClientRawResponse
-        :raises:
-         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         # Construct URL
         url = self.get200_model_a200_none.metadata['url']
@@ -1159,7 +1150,7 @@ class MultipleResponsesOperations:
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
-            raise HttpOperationError(self._deserialize, response)
+            raise HttpRequestError(response=response)
 
         deserialized = None
         if response.status_code == 200:
@@ -1181,8 +1172,7 @@ class MultipleResponsesOperations:
         :return: A or ClientRawResponse if raw=true
         :rtype: ~httpinfrastructure.models.A or
          ~msrest.pipeline.ClientRawResponse
-        :raises:
-         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         # Construct URL
         url = self.get200_model_a200_valid.metadata['url']
@@ -1203,7 +1193,7 @@ class MultipleResponsesOperations:
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
-            raise HttpOperationError(self._deserialize, response)
+            raise HttpRequestError(response=response)
 
         deserialized = None
         if response.status_code == 200:
@@ -1225,8 +1215,7 @@ class MultipleResponsesOperations:
         :return: A or ClientRawResponse if raw=true
         :rtype: ~httpinfrastructure.models.A or
          ~msrest.pipeline.ClientRawResponse
-        :raises:
-         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         # Construct URL
         url = self.get200_model_a200_invalid.metadata['url']
@@ -1247,7 +1236,7 @@ class MultipleResponsesOperations:
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
-            raise HttpOperationError(self._deserialize, response)
+            raise HttpRequestError(response=response)
 
         deserialized = None
         if response.status_code == 200:
@@ -1270,8 +1259,7 @@ class MultipleResponsesOperations:
         :return: A or ClientRawResponse if raw=true
         :rtype: ~httpinfrastructure.models.A or
          ~msrest.pipeline.ClientRawResponse
-        :raises:
-         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         # Construct URL
         url = self.get200_model_a400_none.metadata['url']
@@ -1292,7 +1280,7 @@ class MultipleResponsesOperations:
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
-            raise HttpOperationError(self._deserialize, response)
+            raise HttpRequestError(response=response)
 
         deserialized = None
         if response.status_code == 200:
@@ -1314,8 +1302,7 @@ class MultipleResponsesOperations:
         :return: A or ClientRawResponse if raw=true
         :rtype: ~httpinfrastructure.models.A or
          ~msrest.pipeline.ClientRawResponse
-        :raises:
-         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         # Construct URL
         url = self.get200_model_a400_valid.metadata['url']
@@ -1336,7 +1323,7 @@ class MultipleResponsesOperations:
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
-            raise HttpOperationError(self._deserialize, response)
+            raise HttpRequestError(response=response)
 
         deserialized = None
         if response.status_code == 200:
@@ -1358,8 +1345,7 @@ class MultipleResponsesOperations:
         :return: A or ClientRawResponse if raw=true
         :rtype: ~httpinfrastructure.models.A or
          ~msrest.pipeline.ClientRawResponse
-        :raises:
-         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         # Construct URL
         url = self.get200_model_a400_invalid.metadata['url']
@@ -1380,7 +1366,7 @@ class MultipleResponsesOperations:
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
-            raise HttpOperationError(self._deserialize, response)
+            raise HttpRequestError(response=response)
 
         deserialized = None
         if response.status_code == 200:
@@ -1402,8 +1388,7 @@ class MultipleResponsesOperations:
         :return: A or ClientRawResponse if raw=true
         :rtype: ~httpinfrastructure.models.A or
          ~msrest.pipeline.ClientRawResponse
-        :raises:
-         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         # Construct URL
         url = self.get200_model_a202_valid.metadata['url']
@@ -1424,7 +1409,7 @@ class MultipleResponsesOperations:
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
-            raise HttpOperationError(self._deserialize, response)
+            raise HttpRequestError(response=response)
 
         deserialized = None
         if response.status_code == 200:

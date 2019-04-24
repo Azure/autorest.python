@@ -10,7 +10,7 @@
 # --------------------------------------------------------------------------
 
 from msrest.pipeline import ClientRawResponse
-from msrest.exceptions import HttpOperationError
+from azure.core import HttpRequestError
 
 from ... import models
 
@@ -45,8 +45,7 @@ class XmlOperations:
         :return: RootWithRefAndNoMeta or ClientRawResponse if raw=true
         :rtype: ~xmlservice.models.RootWithRefAndNoMeta or
          ~msrest.pipeline.ClientRawResponse
-        :raises:
-         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         # Construct URL
         url = self.get_complex_type_ref_no_meta.metadata['url']
@@ -67,7 +66,7 @@ class XmlOperations:
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
-            raise HttpOperationError(self._deserialize, response)
+            raise HttpRequestError(response=response)
 
         deserialized = None
         if response.status_code == 200:
@@ -90,8 +89,7 @@ class XmlOperations:
          deserialized response
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
-        :raises:
-         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         # Construct URL
         url = self.put_complex_type_ref_no_meta.metadata['url']
@@ -115,7 +113,7 @@ class XmlOperations:
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [201]:
-            raise HttpOperationError(self._deserialize, response)
+            raise HttpRequestError(response=response)
 
         if raw:
             client_raw_response = ClientRawResponse(None, response)
@@ -131,8 +129,7 @@ class XmlOperations:
         :return: RootWithRefAndMeta or ClientRawResponse if raw=true
         :rtype: ~xmlservice.models.RootWithRefAndMeta or
          ~msrest.pipeline.ClientRawResponse
-        :raises:
-         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         # Construct URL
         url = self.get_complex_type_ref_with_meta.metadata['url']
@@ -153,7 +150,7 @@ class XmlOperations:
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
-            raise HttpOperationError(self._deserialize, response)
+            raise HttpRequestError(response=response)
 
         deserialized = None
         if response.status_code == 200:
@@ -176,8 +173,7 @@ class XmlOperations:
          deserialized response
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
-        :raises:
-         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         # Construct URL
         url = self.put_complex_type_ref_with_meta.metadata['url']
@@ -201,7 +197,7 @@ class XmlOperations:
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [201]:
-            raise HttpOperationError(self._deserialize, response)
+            raise HttpRequestError(response=response)
 
         if raw:
             client_raw_response = ClientRawResponse(None, response)
@@ -301,8 +297,7 @@ class XmlOperations:
         :return: AppleBarrel or ClientRawResponse if raw=true
         :rtype: ~xmlservice.models.AppleBarrel or
          ~msrest.pipeline.ClientRawResponse
-        :raises:
-         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         # Construct URL
         url = self.get_wrapped_lists.metadata['url']
@@ -323,7 +318,7 @@ class XmlOperations:
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
-            raise HttpOperationError(self._deserialize, response)
+            raise HttpRequestError(response=response)
 
         deserialized = None
         if response.status_code == 200:
@@ -385,8 +380,7 @@ class XmlOperations:
          deserialized response
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
-        :raises:
-         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         # Construct URL
         url = self.get_headers.metadata['url']
@@ -406,7 +400,7 @@ class XmlOperations:
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
-            raise HttpOperationError(self._deserialize, response)
+            raise HttpRequestError(response=response)
 
         if raw:
             client_raw_response = ClientRawResponse(None, response)
@@ -425,8 +419,7 @@ class XmlOperations:
         :return: Slideshow or ClientRawResponse if raw=true
         :rtype: ~xmlservice.models.Slideshow or
          ~msrest.pipeline.ClientRawResponse
-        :raises:
-         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         # Construct URL
         url = self.get_empty_list.metadata['url']
@@ -447,7 +440,7 @@ class XmlOperations:
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
-            raise HttpOperationError(self._deserialize, response)
+            raise HttpRequestError(response=response)
 
         deserialized = None
         if response.status_code == 200:
@@ -470,8 +463,7 @@ class XmlOperations:
          deserialized response
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
-        :raises:
-         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         # Construct URL
         url = self.put_empty_list.metadata['url']
@@ -495,7 +487,7 @@ class XmlOperations:
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [201]:
-            raise HttpOperationError(self._deserialize, response)
+            raise HttpRequestError(response=response)
 
         if raw:
             client_raw_response = ClientRawResponse(None, response)
@@ -511,8 +503,7 @@ class XmlOperations:
         :return: AppleBarrel or ClientRawResponse if raw=true
         :rtype: ~xmlservice.models.AppleBarrel or
          ~msrest.pipeline.ClientRawResponse
-        :raises:
-         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         # Construct URL
         url = self.get_empty_wrapped_lists.metadata['url']
@@ -533,7 +524,7 @@ class XmlOperations:
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
-            raise HttpOperationError(self._deserialize, response)
+            raise HttpRequestError(response=response)
 
         deserialized = None
         if response.status_code == 200:
@@ -556,8 +547,7 @@ class XmlOperations:
          deserialized response
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
-        :raises:
-         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         # Construct URL
         url = self.put_empty_wrapped_lists.metadata['url']
@@ -581,7 +571,7 @@ class XmlOperations:
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [201]:
-            raise HttpOperationError(self._deserialize, response)
+            raise HttpRequestError(response=response)
 
         if raw:
             client_raw_response = ClientRawResponse(None, response)
@@ -597,8 +587,7 @@ class XmlOperations:
         :return: list or ClientRawResponse if raw=true
         :rtype: list[~xmlservice.models.Banana] or
          ~msrest.pipeline.ClientRawResponse
-        :raises:
-         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         # Construct URL
         url = self.get_root_list.metadata['url']
@@ -619,7 +608,7 @@ class XmlOperations:
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
-            raise HttpOperationError(self._deserialize, response)
+            raise HttpRequestError(response=response)
 
         deserialized = None
         if response.status_code == 200:
@@ -642,8 +631,7 @@ class XmlOperations:
          deserialized response
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
-        :raises:
-         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         # Construct URL
         url = self.put_root_list.metadata['url']
@@ -668,7 +656,7 @@ class XmlOperations:
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [201]:
-            raise HttpOperationError(self._deserialize, response)
+            raise HttpRequestError(response=response)
 
         if raw:
             client_raw_response = ClientRawResponse(None, response)
@@ -684,8 +672,7 @@ class XmlOperations:
         :return: list or ClientRawResponse if raw=true
         :rtype: list[~xmlservice.models.Banana] or
          ~msrest.pipeline.ClientRawResponse
-        :raises:
-         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         # Construct URL
         url = self.get_root_list_single_item.metadata['url']
@@ -706,7 +693,7 @@ class XmlOperations:
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
-            raise HttpOperationError(self._deserialize, response)
+            raise HttpRequestError(response=response)
 
         deserialized = None
         if response.status_code == 200:
@@ -729,8 +716,7 @@ class XmlOperations:
          deserialized response
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
-        :raises:
-         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         # Construct URL
         url = self.put_root_list_single_item.metadata['url']
@@ -755,7 +741,7 @@ class XmlOperations:
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [201]:
-            raise HttpOperationError(self._deserialize, response)
+            raise HttpRequestError(response=response)
 
         if raw:
             client_raw_response = ClientRawResponse(None, response)
@@ -771,8 +757,7 @@ class XmlOperations:
         :return: list or ClientRawResponse if raw=true
         :rtype: list[~xmlservice.models.Banana] or
          ~msrest.pipeline.ClientRawResponse
-        :raises:
-         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         # Construct URL
         url = self.get_empty_root_list.metadata['url']
@@ -793,7 +778,7 @@ class XmlOperations:
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
-            raise HttpOperationError(self._deserialize, response)
+            raise HttpRequestError(response=response)
 
         deserialized = None
         if response.status_code == 200:
@@ -816,8 +801,7 @@ class XmlOperations:
          deserialized response
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
-        :raises:
-         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         # Construct URL
         url = self.put_empty_root_list.metadata['url']
@@ -842,7 +826,7 @@ class XmlOperations:
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [201]:
-            raise HttpOperationError(self._deserialize, response)
+            raise HttpRequestError(response=response)
 
         if raw:
             client_raw_response = ClientRawResponse(None, response)
@@ -858,8 +842,7 @@ class XmlOperations:
         :return: Banana or ClientRawResponse if raw=true
         :rtype: ~xmlservice.models.Banana or
          ~msrest.pipeline.ClientRawResponse
-        :raises:
-         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         # Construct URL
         url = self.get_empty_child_element.metadata['url']
@@ -880,7 +863,7 @@ class XmlOperations:
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
-            raise HttpOperationError(self._deserialize, response)
+            raise HttpRequestError(response=response)
 
         deserialized = None
         if response.status_code == 200:
@@ -903,8 +886,7 @@ class XmlOperations:
          deserialized response
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
-        :raises:
-         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         # Construct URL
         url = self.put_empty_child_element.metadata['url']
@@ -928,7 +910,7 @@ class XmlOperations:
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [201]:
-            raise HttpOperationError(self._deserialize, response)
+            raise HttpRequestError(response=response)
 
         if raw:
             client_raw_response = ClientRawResponse(None, response)
@@ -944,8 +926,7 @@ class XmlOperations:
         :return: ListContainersResponse or ClientRawResponse if raw=true
         :rtype: ~xmlservice.models.ListContainersResponse or
          ~msrest.pipeline.ClientRawResponse
-        :raises:
-         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         comp = "list"
 
@@ -969,7 +950,7 @@ class XmlOperations:
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
-            raise HttpOperationError(self._deserialize, response)
+            raise HttpRequestError(response=response)
 
         deserialized = None
         if response.status_code == 200:
@@ -991,8 +972,7 @@ class XmlOperations:
         :return: StorageServiceProperties or ClientRawResponse if raw=true
         :rtype: ~xmlservice.models.StorageServiceProperties or
          ~msrest.pipeline.ClientRawResponse
-        :raises:
-         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         comp = "properties"
         restype = "service"
@@ -1018,7 +998,7 @@ class XmlOperations:
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
-            raise HttpOperationError(self._deserialize, response)
+            raise HttpRequestError(response=response)
 
         deserialized = None
         if response.status_code == 200:
@@ -1041,8 +1021,7 @@ class XmlOperations:
          deserialized response
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
-        :raises:
-         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         comp = "properties"
         restype = "service"
@@ -1071,7 +1050,7 @@ class XmlOperations:
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [201]:
-            raise HttpOperationError(self._deserialize, response)
+            raise HttpRequestError(response=response)
 
         if raw:
             client_raw_response = ClientRawResponse(None, response)
@@ -1087,8 +1066,7 @@ class XmlOperations:
         :return: list or ClientRawResponse if raw=true
         :rtype: list[~xmlservice.models.SignedIdentifier] or
          ~msrest.pipeline.ClientRawResponse
-        :raises:
-         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         comp = "acl"
         restype = "container"
@@ -1114,7 +1092,7 @@ class XmlOperations:
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
-            raise HttpOperationError(self._deserialize, response)
+            raise HttpRequestError(response=response)
 
         deserialized = None
         if response.status_code == 200:
@@ -1137,8 +1115,7 @@ class XmlOperations:
          deserialized response
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
-        :raises:
-         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         comp = "acl"
         restype = "container"
@@ -1168,7 +1145,7 @@ class XmlOperations:
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [201]:
-            raise HttpOperationError(self._deserialize, response)
+            raise HttpRequestError(response=response)
 
         if raw:
             client_raw_response = ClientRawResponse(None, response)
@@ -1184,8 +1161,7 @@ class XmlOperations:
         :return: ListBlobsResponse or ClientRawResponse if raw=true
         :rtype: ~xmlservice.models.ListBlobsResponse or
          ~msrest.pipeline.ClientRawResponse
-        :raises:
-         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         comp = "list"
         restype = "container"
@@ -1211,7 +1187,7 @@ class XmlOperations:
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
-            raise HttpOperationError(self._deserialize, response)
+            raise HttpRequestError(response=response)
 
         deserialized = None
         if response.status_code == 200:

@@ -13,7 +13,7 @@ from azure.core import AsyncPipelineClient
 from msrest import Serializer, Deserializer
 
 from ._configuration_async import AutoRestSwaggerBATXMLServiceConfiguration
-from msrest.exceptions import HttpOperationError
+from azure.core import HttpRequestError
 from .operations_async import XmlOperations
 from .. import models
 

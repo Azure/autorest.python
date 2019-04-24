@@ -10,7 +10,7 @@
 # --------------------------------------------------------------------------
 
 from msrest.pipeline import ClientRawResponse
-from msrest.exceptions import HttpOperationError
+from azure.core import HttpRequestError
 
 from ... import models
 
@@ -87,8 +87,7 @@ class HttpFailureOperations:
          deserialized response
         :return: bool or ClientRawResponse if raw=true
         :rtype: bool or ~msrest.pipeline.ClientRawResponse
-        :raises:
-         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         # Construct URL
         url = self.get_no_model_error.metadata['url']
@@ -109,7 +108,7 @@ class HttpFailureOperations:
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
-            raise HttpOperationError(self._deserialize, response)
+            raise HttpRequestError(response=response)
 
         deserialized = None
         if response.status_code == 200:
@@ -130,8 +129,7 @@ class HttpFailureOperations:
          deserialized response
         :return: bool or ClientRawResponse if raw=true
         :rtype: bool or ~msrest.pipeline.ClientRawResponse
-        :raises:
-         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         # Construct URL
         url = self.get_no_model_empty.metadata['url']
@@ -152,7 +150,7 @@ class HttpFailureOperations:
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
-            raise HttpOperationError(self._deserialize, response)
+            raise HttpRequestError(response=response)
 
         deserialized = None
         if response.status_code == 200:

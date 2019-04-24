@@ -10,7 +10,7 @@
 # --------------------------------------------------------------------------
 
 from msrest.pipeline import ClientRawResponse
-from msrest.exceptions import HttpOperationError
+from azure.core import HttpRequestError
 
 from ... import models
 
@@ -50,8 +50,7 @@ class AvailabilitySetsOperations:
          deserialized response
         :return: None or ClientRawResponse if raw=true
         :rtype: None or ~msrest.pipeline.ClientRawResponse
-        :raises:
-         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         tags1 = models.AvailabilitySetUpdateParameters(tags=tags)
 
@@ -82,7 +81,7 @@ class AvailabilitySetsOperations:
         response = pipeline_response.http_response.internal_response
 
         if response.status_code not in [200]:
-            raise HttpOperationError(self._deserialize, response)
+            raise HttpRequestError(response=response)
 
         if raw:
             client_raw_response = ClientRawResponse(None, response)
