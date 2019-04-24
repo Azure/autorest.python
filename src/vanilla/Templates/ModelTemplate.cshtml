@@ -171,7 +171,7 @@ else
 @:      model_name = '@(currModel.Name)'
 @:      self.error = deserialize(model_name, response)
 @:      if self.error is None:
-@:      self.error = deserialize.dependencies[model_name]()
+@:          self.error = deserialize.dependencies[model_name]()
 @:      super(@(currModel.ExceptionTypeDefinitionName), self).__init__(response=response)
 }
 </text>
