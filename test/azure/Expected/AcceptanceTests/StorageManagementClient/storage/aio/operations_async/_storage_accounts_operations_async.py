@@ -82,7 +82,7 @@ class StorageAccountsOperations:
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters, body_content)
         pipeline_response = await self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code not in [200]:
             error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
@@ -130,7 +130,7 @@ class StorageAccountsOperations:
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
         pipeline_response = await self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code not in [200, 202]:
             error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
@@ -229,7 +229,7 @@ class StorageAccountsOperations:
         # Construct and send request
         request = self._client.delete(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code not in [200, 204]:
             error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
@@ -282,7 +282,7 @@ class StorageAccountsOperations:
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code not in [200]:
             error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
@@ -354,7 +354,7 @@ class StorageAccountsOperations:
         # Construct and send request
         request = self._client.patch(url, query_parameters, header_parameters, body_content)
         pipeline_response = await self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code not in [200]:
             error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
@@ -408,7 +408,7 @@ class StorageAccountsOperations:
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code not in [200]:
             error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
@@ -469,7 +469,7 @@ class StorageAccountsOperations:
             request = prepare_request(next_link)
 
             pipeline_response = self._client._pipeline.run(request)
-            response = pipeline_response.http_response.internal_response
+            response = pipeline_response.http_response
 
             if response.status_code not in [200]:
                 error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
@@ -482,7 +482,7 @@ class StorageAccountsOperations:
             request = prepare_request(next_link)
 
             pipeline_response = await self._client._pipeline.run(request)
-            response = pipeline_response.http_response.internal_response
+            response = pipeline_response.http_response
 
             if response.status_code not in [200]:
                 error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
@@ -550,7 +550,7 @@ class StorageAccountsOperations:
             request = prepare_request(next_link)
 
             pipeline_response = self._client._pipeline.run(request)
-            response = pipeline_response.http_response.internal_response
+            response = pipeline_response.http_response
 
             if response.status_code not in [200]:
                 error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
@@ -563,7 +563,7 @@ class StorageAccountsOperations:
             request = prepare_request(next_link)
 
             pipeline_response = await self._client._pipeline.run(request)
-            response = pipeline_response.http_response.internal_response
+            response = pipeline_response.http_response
 
             if response.status_code not in [200]:
                 error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
@@ -630,7 +630,7 @@ class StorageAccountsOperations:
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters, body_content)
         pipeline_response = await self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code not in [200]:
             error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))

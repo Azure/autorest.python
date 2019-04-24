@@ -72,7 +72,7 @@ class UsageOperations:
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code not in [200]:
             error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))

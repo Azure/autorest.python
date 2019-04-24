@@ -70,7 +70,7 @@ class FormdataOperations(object):
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters, form_content=form_data_content)
         pipeline_response = self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -110,7 +110,7 @@ class FormdataOperations(object):
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
         pipeline_response = self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)

@@ -66,7 +66,7 @@ class QueriesOperations:
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -99,7 +99,7 @@ class QueriesOperations:
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -133,7 +133,7 @@ class QueriesOperations:
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -166,7 +166,7 @@ class QueriesOperations:
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -199,7 +199,7 @@ class QueriesOperations:
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -233,7 +233,7 @@ class QueriesOperations:
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -266,7 +266,7 @@ class QueriesOperations:
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -299,7 +299,7 @@ class QueriesOperations:
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -333,7 +333,7 @@ class QueriesOperations:
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -366,7 +366,7 @@ class QueriesOperations:
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -399,7 +399,7 @@ class QueriesOperations:
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -433,7 +433,7 @@ class QueriesOperations:
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -466,7 +466,7 @@ class QueriesOperations:
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -499,7 +499,7 @@ class QueriesOperations:
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -533,7 +533,7 @@ class QueriesOperations:
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -566,7 +566,7 @@ class QueriesOperations:
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -599,7 +599,7 @@ class QueriesOperations:
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -632,7 +632,7 @@ class QueriesOperations:
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -666,7 +666,7 @@ class QueriesOperations:
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -701,7 +701,7 @@ class QueriesOperations:
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -736,7 +736,7 @@ class QueriesOperations:
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -771,7 +771,7 @@ class QueriesOperations:
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -802,7 +802,7 @@ class QueriesOperations:
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -836,7 +836,7 @@ class QueriesOperations:
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -867,7 +867,7 @@ class QueriesOperations:
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -901,7 +901,7 @@ class QueriesOperations:
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -932,7 +932,7 @@ class QueriesOperations:
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -966,7 +966,7 @@ class QueriesOperations:
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -1002,7 +1002,7 @@ class QueriesOperations:
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -1036,7 +1036,7 @@ class QueriesOperations:
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -1071,7 +1071,7 @@ class QueriesOperations:
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -1107,7 +1107,7 @@ class QueriesOperations:
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -1143,7 +1143,7 @@ class QueriesOperations:
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
@@ -1179,7 +1179,7 @@ class QueriesOperations:
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)

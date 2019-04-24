@@ -60,7 +60,7 @@ class MultipleResponsesOperations:
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code not in [200, 204]:
             raise models.ErrorException(self._deserialize, response)
@@ -97,7 +97,7 @@ class MultipleResponsesOperations:
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code not in [200, 204]:
             raise models.ErrorException(self._deserialize, response)
@@ -134,7 +134,7 @@ class MultipleResponsesOperations:
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code not in [200, 204]:
             raise models.ErrorException(self._deserialize, response)
@@ -171,7 +171,7 @@ class MultipleResponsesOperations:
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code not in [200, 204]:
             raise models.ErrorException(self._deserialize, response)
@@ -209,7 +209,7 @@ class MultipleResponsesOperations:
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code not in [200, 204]:
             raise models.ErrorException(self._deserialize, response)
@@ -246,7 +246,7 @@ class MultipleResponsesOperations:
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code not in [200, 201]:
             raise models.ErrorException(self._deserialize, response)
@@ -286,7 +286,7 @@ class MultipleResponsesOperations:
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code not in [200, 201]:
             raise models.ErrorException(self._deserialize, response)
@@ -326,7 +326,7 @@ class MultipleResponsesOperations:
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code not in [200, 201]:
             raise models.ErrorException(self._deserialize, response)
@@ -365,7 +365,7 @@ class MultipleResponsesOperations:
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code not in [200, 201, 404]:
             raise models.ErrorException(self._deserialize, response)
@@ -406,7 +406,7 @@ class MultipleResponsesOperations:
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code not in [200, 201, 404]:
             raise models.ErrorException(self._deserialize, response)
@@ -447,7 +447,7 @@ class MultipleResponsesOperations:
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code not in [200, 201, 404]:
             raise models.ErrorException(self._deserialize, response)
@@ -489,7 +489,7 @@ class MultipleResponsesOperations:
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code not in [200, 201, 404]:
             raise models.ErrorException(self._deserialize, response)
@@ -529,7 +529,7 @@ class MultipleResponsesOperations:
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code not in [202, 204]:
             raise models.ErrorException(self._deserialize, response)
@@ -560,7 +560,7 @@ class MultipleResponsesOperations:
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code not in [202, 204]:
             raise models.ErrorException(self._deserialize, response)
@@ -592,7 +592,7 @@ class MultipleResponsesOperations:
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code not in [202, 204]:
             raise models.ErrorException(self._deserialize, response)
@@ -622,7 +622,7 @@ class MultipleResponsesOperations:
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code not in [202, 204]:
             raise HttpRequestError(response=response)
@@ -652,7 +652,7 @@ class MultipleResponsesOperations:
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code not in [202, 204]:
             raise HttpRequestError(response=response)
@@ -682,7 +682,7 @@ class MultipleResponsesOperations:
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code not in [202, 204]:
             raise HttpRequestError(response=response)
@@ -712,7 +712,7 @@ class MultipleResponsesOperations:
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code not in [202, 204]:
             raise HttpRequestError(response=response)
@@ -742,7 +742,7 @@ class MultipleResponsesOperations:
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
             raise models.AException(self._deserialize, response)
@@ -772,7 +772,7 @@ class MultipleResponsesOperations:
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
             raise models.AException(self._deserialize, response)
@@ -802,7 +802,7 @@ class MultipleResponsesOperations:
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
             raise models.AException(self._deserialize, response)
@@ -832,7 +832,7 @@ class MultipleResponsesOperations:
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
             raise models.AException(self._deserialize, response)
@@ -862,7 +862,7 @@ class MultipleResponsesOperations:
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
             raise HttpRequestError(response=response)
@@ -892,7 +892,7 @@ class MultipleResponsesOperations:
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
             raise HttpRequestError(response=response)
@@ -922,7 +922,7 @@ class MultipleResponsesOperations:
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
             raise HttpRequestError(response=response)
@@ -952,7 +952,7 @@ class MultipleResponsesOperations:
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
             raise HttpRequestError(response=response)
@@ -984,7 +984,7 @@ class MultipleResponsesOperations:
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code not in [200]:
             raise HttpRequestError(response=response)
@@ -1020,7 +1020,7 @@ class MultipleResponsesOperations:
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code not in [200]:
             raise HttpRequestError(response=response)
@@ -1056,7 +1056,7 @@ class MultipleResponsesOperations:
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code not in [200]:
             raise HttpRequestError(response=response)
@@ -1093,7 +1093,7 @@ class MultipleResponsesOperations:
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code not in [200]:
             raise HttpRequestError(response=response)
@@ -1129,7 +1129,7 @@ class MultipleResponsesOperations:
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code not in [200]:
             raise HttpRequestError(response=response)
@@ -1165,7 +1165,7 @@ class MultipleResponsesOperations:
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code not in [200]:
             raise HttpRequestError(response=response)
@@ -1201,7 +1201,7 @@ class MultipleResponsesOperations:
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code not in [200]:
             raise HttpRequestError(response=response)

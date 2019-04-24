@@ -59,7 +59,7 @@ class HeadExceptionOperations(object):
         # Construct and send request
         request = self._client.head(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code not in [200]:
             error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
@@ -95,7 +95,7 @@ class HeadExceptionOperations(object):
         # Construct and send request
         request = self._client.head(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code not in [204]:
             error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
@@ -131,7 +131,7 @@ class HeadExceptionOperations(object):
         # Construct and send request
         request = self._client.head(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code not in [204]:
             error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))

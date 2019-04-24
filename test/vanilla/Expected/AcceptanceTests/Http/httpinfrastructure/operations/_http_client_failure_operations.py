@@ -59,7 +59,7 @@ class HttpClientFailureOperations(object):
         # Construct and send request
         request = self._client.head(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
@@ -91,7 +91,7 @@ class HttpClientFailureOperations(object):
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
@@ -132,7 +132,7 @@ class HttpClientFailureOperations(object):
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
         pipeline_response = self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
@@ -173,7 +173,7 @@ class HttpClientFailureOperations(object):
         # Construct and send request
         request = self._client.patch(url, query_parameters, header_parameters, body_content)
         pipeline_response = self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
@@ -214,7 +214,7 @@ class HttpClientFailureOperations(object):
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters, body_content)
         pipeline_response = self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
@@ -255,7 +255,7 @@ class HttpClientFailureOperations(object):
         # Construct and send request
         request = self._client.delete(url, query_parameters, header_parameters, body_content)
         pipeline_response = self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
@@ -287,7 +287,7 @@ class HttpClientFailureOperations(object):
         # Construct and send request
         request = self._client.head(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
@@ -319,7 +319,7 @@ class HttpClientFailureOperations(object):
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
@@ -351,7 +351,7 @@ class HttpClientFailureOperations(object):
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
@@ -392,7 +392,7 @@ class HttpClientFailureOperations(object):
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
         pipeline_response = self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
@@ -433,7 +433,7 @@ class HttpClientFailureOperations(object):
         # Construct and send request
         request = self._client.patch(url, query_parameters, header_parameters, body_content)
         pipeline_response = self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
@@ -474,7 +474,7 @@ class HttpClientFailureOperations(object):
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters, body_content)
         pipeline_response = self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
@@ -515,7 +515,7 @@ class HttpClientFailureOperations(object):
         # Construct and send request
         request = self._client.delete(url, query_parameters, header_parameters, body_content)
         pipeline_response = self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
@@ -556,7 +556,7 @@ class HttpClientFailureOperations(object):
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
         pipeline_response = self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
@@ -588,7 +588,7 @@ class HttpClientFailureOperations(object):
         # Construct and send request
         request = self._client.head(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
@@ -620,7 +620,7 @@ class HttpClientFailureOperations(object):
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
@@ -652,7 +652,7 @@ class HttpClientFailureOperations(object):
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
@@ -693,7 +693,7 @@ class HttpClientFailureOperations(object):
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
         pipeline_response = self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
@@ -734,7 +734,7 @@ class HttpClientFailureOperations(object):
         # Construct and send request
         request = self._client.patch(url, query_parameters, header_parameters, body_content)
         pipeline_response = self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
@@ -775,7 +775,7 @@ class HttpClientFailureOperations(object):
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters, body_content)
         pipeline_response = self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
@@ -807,7 +807,7 @@ class HttpClientFailureOperations(object):
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
@@ -848,7 +848,7 @@ class HttpClientFailureOperations(object):
         # Construct and send request
         request = self._client.delete(url, query_parameters, header_parameters, body_content)
         pipeline_response = self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
@@ -880,7 +880,7 @@ class HttpClientFailureOperations(object):
         # Construct and send request
         request = self._client.head(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request)
-        response = pipeline_response.http_response.internal_response
+        response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
