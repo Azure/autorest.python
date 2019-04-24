@@ -154,7 +154,7 @@ namespace AutoRest.Python.Model
                 return string.Empty;
             string ret = string.Join(", ", combinedDeclarations);
             if (declarations.Count != 0)
-                ret += ",";
+                ret += ", ";
             return  ret;
         }
 

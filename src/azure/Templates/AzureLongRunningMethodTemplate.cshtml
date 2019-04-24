@@ -13,7 +13,7 @@ string methodName = Model.Name.ToPythonCase();
 string initialMethodName = "_" + methodName + "_initial";
 }
     @(defKeyword) @(initialMethodName)(
-            self, @(Model.MethodParameterDeclaration(Python3Mode)) **kwargs):
+            self, @(Model.MethodParameterDeclaration(Python3Mode))**kwargs):
         @Model.BuildInputMappings()
 @if (Model.InputParameterTransformation.Any())
 {
@@ -160,7 +160,6 @@ else
 {
 @:            @parameter.Name=@parameter.Name,
 }
-            raw=True,
             **kwargs
         )
 @EmptyLine
