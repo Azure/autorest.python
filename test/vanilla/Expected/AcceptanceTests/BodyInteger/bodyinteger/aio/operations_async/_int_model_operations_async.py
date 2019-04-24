@@ -9,7 +9,6 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.pipeline import ClientRawResponse
 
 from ... import models
 
@@ -36,13 +35,11 @@ class IntModelOperations:
         self._config = config
 
     async def get_null(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Get null Int value.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: int or ClientRawResponse if raw=true
-        :rtype: int or ~msrest.pipeline.ClientRawResponse
+        :return: int
+        :rtype: int
         :raises: :class:`ErrorException<bodyinteger.models.ErrorException>`
         """
         # Construct URL
@@ -70,21 +67,15 @@ class IntModelOperations:
         if response.status_code == 200:
             deserialized = self._deserialize('int', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_null.metadata = {'url': '/int/null'}
 
     async def get_invalid(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Get invalid Int value.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: int or ClientRawResponse if raw=true
-        :rtype: int or ~msrest.pipeline.ClientRawResponse
+        :return: int
+        :rtype: int
         :raises: :class:`ErrorException<bodyinteger.models.ErrorException>`
         """
         # Construct URL
@@ -112,21 +103,15 @@ class IntModelOperations:
         if response.status_code == 200:
             deserialized = self._deserialize('int', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_invalid.metadata = {'url': '/int/invalid'}
 
     async def get_overflow_int32(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Get overflow Int32 value.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: int or ClientRawResponse if raw=true
-        :rtype: int or ~msrest.pipeline.ClientRawResponse
+        :return: int
+        :rtype: int
         :raises: :class:`ErrorException<bodyinteger.models.ErrorException>`
         """
         # Construct URL
@@ -154,21 +139,15 @@ class IntModelOperations:
         if response.status_code == 200:
             deserialized = self._deserialize('int', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_overflow_int32.metadata = {'url': '/int/overflowint32'}
 
     async def get_underflow_int32(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Get underflow Int32 value.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: int or ClientRawResponse if raw=true
-        :rtype: int or ~msrest.pipeline.ClientRawResponse
+        :return: int
+        :rtype: int
         :raises: :class:`ErrorException<bodyinteger.models.ErrorException>`
         """
         # Construct URL
@@ -196,21 +175,15 @@ class IntModelOperations:
         if response.status_code == 200:
             deserialized = self._deserialize('int', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_underflow_int32.metadata = {'url': '/int/underflowint32'}
 
     async def get_overflow_int64(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Get overflow Int64 value.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: long or ClientRawResponse if raw=true
-        :rtype: long or ~msrest.pipeline.ClientRawResponse
+        :return: long
+        :rtype: long
         :raises: :class:`ErrorException<bodyinteger.models.ErrorException>`
         """
         # Construct URL
@@ -238,21 +211,15 @@ class IntModelOperations:
         if response.status_code == 200:
             deserialized = self._deserialize('long', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_overflow_int64.metadata = {'url': '/int/overflowint64'}
 
     async def get_underflow_int64(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Get underflow Int64 value.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: long or ClientRawResponse if raw=true
-        :rtype: long or ~msrest.pipeline.ClientRawResponse
+        :return: long
+        :rtype: long
         :raises: :class:`ErrorException<bodyinteger.models.ErrorException>`
         """
         # Construct URL
@@ -280,23 +247,17 @@ class IntModelOperations:
         if response.status_code == 200:
             deserialized = self._deserialize('long', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_underflow_int64.metadata = {'url': '/int/underflowint64'}
 
     async def put_max32(
-            self, int_body, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Put max int32 value.
 
         :param int_body:
         :type int_body: int
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<bodyinteger.models.ErrorException>`
         """
         # Construct URL
@@ -323,21 +284,16 @@ class IntModelOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put_max32.metadata = {'url': '/int/max/32'}
 
     async def put_max64(
-            self, int_body, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Put max int64 value.
 
         :param int_body:
         :type int_body: long
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<bodyinteger.models.ErrorException>`
         """
         # Construct URL
@@ -364,21 +320,16 @@ class IntModelOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put_max64.metadata = {'url': '/int/max/64'}
 
     async def put_min32(
-            self, int_body, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Put min int32 value.
 
         :param int_body:
         :type int_body: int
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<bodyinteger.models.ErrorException>`
         """
         # Construct URL
@@ -405,21 +356,16 @@ class IntModelOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put_min32.metadata = {'url': '/int/min/32'}
 
     async def put_min64(
-            self, int_body, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Put min int64 value.
 
         :param int_body:
         :type int_body: long
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<bodyinteger.models.ErrorException>`
         """
         # Construct URL
@@ -446,19 +392,14 @@ class IntModelOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put_min64.metadata = {'url': '/int/min/64'}
 
     async def get_unix_time(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Get datetime encoded as Unix time value.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: datetime or ClientRawResponse if raw=true
-        :rtype: datetime or ~msrest.pipeline.ClientRawResponse
+        :return: datetime
+        :rtype: datetime
         :raises: :class:`ErrorException<bodyinteger.models.ErrorException>`
         """
         # Construct URL
@@ -486,23 +427,17 @@ class IntModelOperations:
         if response.status_code == 200:
             deserialized = self._deserialize('unix-time', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_unix_time.metadata = {'url': '/int/unixtime'}
 
     async def put_unix_time_date(
-            self, int_body, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Put datetime encoded as Unix time.
 
         :param int_body:
         :type int_body: datetime
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<bodyinteger.models.ErrorException>`
         """
         # Construct URL
@@ -529,19 +464,14 @@ class IntModelOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put_unix_time_date.metadata = {'url': '/int/unixtime'}
 
     async def get_invalid_unix_time(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Get invalid Unix time value.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: datetime or ClientRawResponse if raw=true
-        :rtype: datetime or ~msrest.pipeline.ClientRawResponse
+        :return: datetime
+        :rtype: datetime
         :raises: :class:`ErrorException<bodyinteger.models.ErrorException>`
         """
         # Construct URL
@@ -569,21 +499,15 @@ class IntModelOperations:
         if response.status_code == 200:
             deserialized = self._deserialize('unix-time', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_invalid_unix_time.metadata = {'url': '/int/invalidunixtime'}
 
     async def get_null_unix_time(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Get null Unix time value.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: datetime or ClientRawResponse if raw=true
-        :rtype: datetime or ~msrest.pipeline.ClientRawResponse
+        :return: datetime
+        :rtype: datetime
         :raises: :class:`ErrorException<bodyinteger.models.ErrorException>`
         """
         # Construct URL
@@ -610,10 +534,6 @@ class IntModelOperations:
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('unix-time', response)
-
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
 
         return deserialized
     get_null_unix_time.metadata = {'url': '/int/nullunixtime'}

@@ -9,7 +9,6 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.pipeline import ClientRawResponse
 
 from .. import models
 
@@ -36,16 +35,13 @@ class PetsOperations(object):
         self._config = config
 
     def create_ap_true(
-            self, create_parameters, raw=False, **kwargs):
+            self,  **kwargs):
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
         :type create_parameters: ~additionalproperties.models.PetAPTrue
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: PetAPTrue or ClientRawResponse if raw=true
-        :rtype: ~additionalproperties.models.PetAPTrue or
-         ~msrest.pipeline.ClientRawResponse
+        :return: PetAPTrue
+        :rtype: ~additionalproperties.models.PetAPTrue
         :raises:
          :class:`ErrorException<additionalproperties.models.ErrorException>`
         """
@@ -78,24 +74,17 @@ class PetsOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('PetAPTrue', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     create_ap_true.metadata = {'url': '/additionalProperties/true'}
 
     def create_cat_ap_true(
-            self, create_parameters, raw=False, **kwargs):
+            self,  **kwargs):
         """Create a CatAPTrue which contains more properties than what is defined.
 
         :param create_parameters:
         :type create_parameters: ~additionalproperties.models.CatAPTrue
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: CatAPTrue or ClientRawResponse if raw=true
-        :rtype: ~additionalproperties.models.CatAPTrue or
-         ~msrest.pipeline.ClientRawResponse
+        :return: CatAPTrue
+        :rtype: ~additionalproperties.models.CatAPTrue
         :raises:
          :class:`ErrorException<additionalproperties.models.ErrorException>`
         """
@@ -128,24 +117,17 @@ class PetsOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('CatAPTrue', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     create_cat_ap_true.metadata = {'url': '/additionalProperties/true-subclass'}
 
     def create_ap_object(
-            self, create_parameters, raw=False, **kwargs):
+            self,  **kwargs):
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
         :type create_parameters: ~additionalproperties.models.PetAPObject
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: PetAPObject or ClientRawResponse if raw=true
-        :rtype: ~additionalproperties.models.PetAPObject or
-         ~msrest.pipeline.ClientRawResponse
+        :return: PetAPObject
+        :rtype: ~additionalproperties.models.PetAPObject
         :raises:
          :class:`ErrorException<additionalproperties.models.ErrorException>`
         """
@@ -178,24 +160,17 @@ class PetsOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('PetAPObject', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     create_ap_object.metadata = {'url': '/additionalProperties/type/object'}
 
     def create_ap_string(
-            self, create_parameters, raw=False, **kwargs):
+            self,  **kwargs):
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
         :type create_parameters: ~additionalproperties.models.PetAPString
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: PetAPString or ClientRawResponse if raw=true
-        :rtype: ~additionalproperties.models.PetAPString or
-         ~msrest.pipeline.ClientRawResponse
+        :return: PetAPString
+        :rtype: ~additionalproperties.models.PetAPString
         :raises:
          :class:`ErrorException<additionalproperties.models.ErrorException>`
         """
@@ -228,25 +203,18 @@ class PetsOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('PetAPString', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     create_ap_string.metadata = {'url': '/additionalProperties/type/string'}
 
     def create_ap_in_properties(
-            self, create_parameters, raw=False, **kwargs):
+            self,  **kwargs):
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
         :type create_parameters:
          ~additionalproperties.models.PetAPInProperties
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: PetAPInProperties or ClientRawResponse if raw=true
-        :rtype: ~additionalproperties.models.PetAPInProperties or
-         ~msrest.pipeline.ClientRawResponse
+        :return: PetAPInProperties
+        :rtype: ~additionalproperties.models.PetAPInProperties
         :raises:
          :class:`ErrorException<additionalproperties.models.ErrorException>`
         """
@@ -279,26 +247,18 @@ class PetsOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('PetAPInProperties', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     create_ap_in_properties.metadata = {'url': '/additionalProperties/in/properties'}
 
     def create_ap_in_properties_with_ap_string(
-            self, create_parameters, raw=False, **kwargs):
+            self,  **kwargs):
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
         :type create_parameters:
          ~additionalproperties.models.PetAPInPropertiesWithAPString
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: PetAPInPropertiesWithAPString or ClientRawResponse if
-         raw=true
-        :rtype: ~additionalproperties.models.PetAPInPropertiesWithAPString or
-         ~msrest.pipeline.ClientRawResponse
+        :return: PetAPInPropertiesWithAPString
+        :rtype: ~additionalproperties.models.PetAPInPropertiesWithAPString
         :raises:
          :class:`ErrorException<additionalproperties.models.ErrorException>`
         """
@@ -330,10 +290,6 @@ class PetsOperations(object):
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('PetAPInPropertiesWithAPString', response)
-
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
 
         return deserialized
     create_ap_in_properties_with_ap_string.metadata = {'url': '/additionalProperties/in/properties/with/additionalProperties/string'}

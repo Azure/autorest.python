@@ -9,7 +9,6 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.pipeline import ClientRawResponse
 
 from ... import models
 
@@ -36,18 +35,11 @@ class FilesOperations:
         self._config = config
 
     async def get_file(
-            self, *, raw=False, callback=None, **kwargs):
+            self,  **kwargs):
         """Get file.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :param callback: When specified, will be called with each chunk of
-         data that is streamed. The callback should take two arguments, the
-         bytes of the current chunk of data and the response object. If the
-         data is uploading, response will be None.
-        :type callback: Callable[Bytes, response=None]
-        :return: object or ClientRawResponse if raw=true
-        :rtype: Generator or ~msrest.pipeline.ClientRawResponse
+        :return: object
+        :rtype: Generator
         :raises: :class:`ErrorException<bodyfile.models.ErrorException>`
         """
         # Construct URL
@@ -71,28 +63,17 @@ class FilesOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        deserialized = self.stream_download_async(response, callback)
-
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
+        deserialized = self.stream_download_async(response)
 
         return deserialized
     get_file.metadata = {'url': '/files/stream/nonempty'}
 
     async def get_file_large(
-            self, *, raw=False, callback=None, **kwargs):
+            self,  **kwargs):
         """Get a large file.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :param callback: When specified, will be called with each chunk of
-         data that is streamed. The callback should take two arguments, the
-         bytes of the current chunk of data and the response object. If the
-         data is uploading, response will be None.
-        :type callback: Callable[Bytes, response=None]
-        :return: object or ClientRawResponse if raw=true
-        :rtype: Generator or ~msrest.pipeline.ClientRawResponse
+        :return: object
+        :rtype: Generator
         :raises: :class:`ErrorException<bodyfile.models.ErrorException>`
         """
         # Construct URL
@@ -116,28 +97,17 @@ class FilesOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        deserialized = self.stream_download_async(response, callback)
-
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
+        deserialized = self.stream_download_async(response)
 
         return deserialized
     get_file_large.metadata = {'url': '/files/stream/verylarge'}
 
     async def get_empty_file(
-            self, *, raw=False, callback=None, **kwargs):
+            self,  **kwargs):
         """Get empty file.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :param callback: When specified, will be called with each chunk of
-         data that is streamed. The callback should take two arguments, the
-         bytes of the current chunk of data and the response object. If the
-         data is uploading, response will be None.
-        :type callback: Callable[Bytes, response=None]
-        :return: object or ClientRawResponse if raw=true
-        :rtype: Generator or ~msrest.pipeline.ClientRawResponse
+        :return: object
+        :rtype: Generator
         :raises: :class:`ErrorException<bodyfile.models.ErrorException>`
         """
         # Construct URL
@@ -161,11 +131,7 @@ class FilesOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        deserialized = self.stream_download_async(response, callback)
-
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
+        deserialized = self.stream_download_async(response)
 
         return deserialized
     get_empty_file.metadata = {'url': '/files/stream/empty'}

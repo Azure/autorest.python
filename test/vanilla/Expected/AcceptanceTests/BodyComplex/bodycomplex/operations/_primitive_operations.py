@@ -9,7 +9,6 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.pipeline import ClientRawResponse
 
 from .. import models
 
@@ -36,14 +35,11 @@ class PrimitiveOperations(object):
         self._config = config
 
     def get_int(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get complex types with integer properties.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: IntWrapper or ClientRawResponse if raw=true
-        :rtype: ~bodycomplex.models.IntWrapper or
-         ~msrest.pipeline.ClientRawResponse
+        :return: IntWrapper
+        :rtype: ~bodycomplex.models.IntWrapper
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
@@ -71,23 +67,17 @@ class PrimitiveOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('IntWrapper', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_int.metadata = {'url': '/complex/primitive/integer'}
 
     def put_int(
-            self, complex_body, raw=False, **kwargs):
+            self,  **kwargs):
         """Put complex types with integer properties.
 
         :param complex_body: Please put -1 and 2
         :type complex_body: ~bodycomplex.models.IntWrapper
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
@@ -114,20 +104,14 @@ class PrimitiveOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put_int.metadata = {'url': '/complex/primitive/integer'}
 
     def get_long(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get complex types with long properties.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: LongWrapper or ClientRawResponse if raw=true
-        :rtype: ~bodycomplex.models.LongWrapper or
-         ~msrest.pipeline.ClientRawResponse
+        :return: LongWrapper
+        :rtype: ~bodycomplex.models.LongWrapper
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
@@ -155,23 +139,17 @@ class PrimitiveOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('LongWrapper', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_long.metadata = {'url': '/complex/primitive/long'}
 
     def put_long(
-            self, complex_body, raw=False, **kwargs):
+            self,  **kwargs):
         """Put complex types with long properties.
 
         :param complex_body: Please put 1099511627775 and -999511627788
         :type complex_body: ~bodycomplex.models.LongWrapper
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
@@ -198,20 +176,14 @@ class PrimitiveOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put_long.metadata = {'url': '/complex/primitive/long'}
 
     def get_float(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get complex types with float properties.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: FloatWrapper or ClientRawResponse if raw=true
-        :rtype: ~bodycomplex.models.FloatWrapper or
-         ~msrest.pipeline.ClientRawResponse
+        :return: FloatWrapper
+        :rtype: ~bodycomplex.models.FloatWrapper
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
@@ -239,23 +211,17 @@ class PrimitiveOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('FloatWrapper', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_float.metadata = {'url': '/complex/primitive/float'}
 
     def put_float(
-            self, complex_body, raw=False, **kwargs):
+            self,  **kwargs):
         """Put complex types with float properties.
 
         :param complex_body: Please put 1.05 and -0.003
         :type complex_body: ~bodycomplex.models.FloatWrapper
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
@@ -282,20 +248,14 @@ class PrimitiveOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put_float.metadata = {'url': '/complex/primitive/float'}
 
     def get_double(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get complex types with double properties.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: DoubleWrapper or ClientRawResponse if raw=true
-        :rtype: ~bodycomplex.models.DoubleWrapper or
-         ~msrest.pipeline.ClientRawResponse
+        :return: DoubleWrapper
+        :rtype: ~bodycomplex.models.DoubleWrapper
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
@@ -323,24 +283,18 @@ class PrimitiveOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('DoubleWrapper', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_double.metadata = {'url': '/complex/primitive/double'}
 
     def put_double(
-            self, complex_body, raw=False, **kwargs):
+            self,  **kwargs):
         """Put complex types with double properties.
 
         :param complex_body: Please put 3e-100 and
          -0.000000000000000000000000000000000000000000000000000000005
         :type complex_body: ~bodycomplex.models.DoubleWrapper
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
@@ -367,20 +321,14 @@ class PrimitiveOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put_double.metadata = {'url': '/complex/primitive/double'}
 
     def get_bool(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get complex types with bool properties.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: BooleanWrapper or ClientRawResponse if raw=true
-        :rtype: ~bodycomplex.models.BooleanWrapper or
-         ~msrest.pipeline.ClientRawResponse
+        :return: BooleanWrapper
+        :rtype: ~bodycomplex.models.BooleanWrapper
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
@@ -408,23 +356,17 @@ class PrimitiveOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('BooleanWrapper', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_bool.metadata = {'url': '/complex/primitive/bool'}
 
     def put_bool(
-            self, complex_body, raw=False, **kwargs):
+            self,  **kwargs):
         """Put complex types with bool properties.
 
         :param complex_body: Please put true and false
         :type complex_body: ~bodycomplex.models.BooleanWrapper
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
@@ -451,20 +393,14 @@ class PrimitiveOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put_bool.metadata = {'url': '/complex/primitive/bool'}
 
     def get_string(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get complex types with string properties.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: StringWrapper or ClientRawResponse if raw=true
-        :rtype: ~bodycomplex.models.StringWrapper or
-         ~msrest.pipeline.ClientRawResponse
+        :return: StringWrapper
+        :rtype: ~bodycomplex.models.StringWrapper
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
@@ -492,23 +428,17 @@ class PrimitiveOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('StringWrapper', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_string.metadata = {'url': '/complex/primitive/string'}
 
     def put_string(
-            self, complex_body, raw=False, **kwargs):
+            self,  **kwargs):
         """Put complex types with string properties.
 
         :param complex_body: Please put 'goodrequest', '', and null
         :type complex_body: ~bodycomplex.models.StringWrapper
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
@@ -535,20 +465,14 @@ class PrimitiveOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put_string.metadata = {'url': '/complex/primitive/string'}
 
     def get_date(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get complex types with date properties.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: DateWrapper or ClientRawResponse if raw=true
-        :rtype: ~bodycomplex.models.DateWrapper or
-         ~msrest.pipeline.ClientRawResponse
+        :return: DateWrapper
+        :rtype: ~bodycomplex.models.DateWrapper
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
@@ -576,23 +500,17 @@ class PrimitiveOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('DateWrapper', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_date.metadata = {'url': '/complex/primitive/date'}
 
     def put_date(
-            self, complex_body, raw=False, **kwargs):
+            self,  **kwargs):
         """Put complex types with date properties.
 
         :param complex_body: Please put '0001-01-01' and '2016-02-29'
         :type complex_body: ~bodycomplex.models.DateWrapper
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
@@ -619,20 +537,14 @@ class PrimitiveOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put_date.metadata = {'url': '/complex/primitive/date'}
 
     def get_date_time(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get complex types with datetime properties.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: DatetimeWrapper or ClientRawResponse if raw=true
-        :rtype: ~bodycomplex.models.DatetimeWrapper or
-         ~msrest.pipeline.ClientRawResponse
+        :return: DatetimeWrapper
+        :rtype: ~bodycomplex.models.DatetimeWrapper
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
@@ -660,24 +572,18 @@ class PrimitiveOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('DatetimeWrapper', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_date_time.metadata = {'url': '/complex/primitive/datetime'}
 
     def put_date_time(
-            self, complex_body, raw=False, **kwargs):
+            self,  **kwargs):
         """Put complex types with datetime properties.
 
         :param complex_body: Please put '0001-01-01T12:00:00-04:00' and
          '2015-05-18T11:38:00-08:00'
         :type complex_body: ~bodycomplex.models.DatetimeWrapper
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
@@ -704,20 +610,14 @@ class PrimitiveOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put_date_time.metadata = {'url': '/complex/primitive/datetime'}
 
     def get_date_time_rfc1123(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get complex types with datetimeRfc1123 properties.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: Datetimerfc1123Wrapper or ClientRawResponse if raw=true
-        :rtype: ~bodycomplex.models.Datetimerfc1123Wrapper or
-         ~msrest.pipeline.ClientRawResponse
+        :return: Datetimerfc1123Wrapper
+        :rtype: ~bodycomplex.models.Datetimerfc1123Wrapper
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
@@ -745,24 +645,18 @@ class PrimitiveOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('Datetimerfc1123Wrapper', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_date_time_rfc1123.metadata = {'url': '/complex/primitive/datetimerfc1123'}
 
     def put_date_time_rfc1123(
-            self, complex_body, raw=False, **kwargs):
+            self,  **kwargs):
         """Put complex types with datetimeRfc1123 properties.
 
         :param complex_body: Please put 'Mon, 01 Jan 0001 12:00:00 GMT' and
          'Mon, 18 May 2015 11:38:00 GMT'
         :type complex_body: ~bodycomplex.models.Datetimerfc1123Wrapper
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
@@ -789,20 +683,14 @@ class PrimitiveOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put_date_time_rfc1123.metadata = {'url': '/complex/primitive/datetimerfc1123'}
 
     def get_duration(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get complex types with duration properties.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: DurationWrapper or ClientRawResponse if raw=true
-        :rtype: ~bodycomplex.models.DurationWrapper or
-         ~msrest.pipeline.ClientRawResponse
+        :return: DurationWrapper
+        :rtype: ~bodycomplex.models.DurationWrapper
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
@@ -830,23 +718,17 @@ class PrimitiveOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('DurationWrapper', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_duration.metadata = {'url': '/complex/primitive/duration'}
 
     def put_duration(
-            self, field=None, raw=False, **kwargs):
+            self, field=None, **kwargs):
         """Put complex types with duration properties.
 
         :param field:
         :type field: timedelta
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         complex_body = models.DurationWrapper(field=field)
@@ -875,20 +757,14 @@ class PrimitiveOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put_duration.metadata = {'url': '/complex/primitive/duration'}
 
     def get_byte(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get complex types with byte properties.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: ByteWrapper or ClientRawResponse if raw=true
-        :rtype: ~bodycomplex.models.ByteWrapper or
-         ~msrest.pipeline.ClientRawResponse
+        :return: ByteWrapper
+        :rtype: ~bodycomplex.models.ByteWrapper
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
@@ -916,23 +792,17 @@ class PrimitiveOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('ByteWrapper', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_byte.metadata = {'url': '/complex/primitive/byte'}
 
     def put_byte(
-            self, field=None, raw=False, **kwargs):
+            self, field=None, **kwargs):
         """Put complex types with byte properties.
 
         :param field:
         :type field: bytearray
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         complex_body = models.ByteWrapper(field=field)
@@ -961,7 +831,4 @@ class PrimitiveOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put_byte.metadata = {'url': '/complex/primitive/byte'}

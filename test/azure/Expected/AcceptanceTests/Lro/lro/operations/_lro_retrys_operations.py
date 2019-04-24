@@ -10,7 +10,6 @@
 # --------------------------------------------------------------------------
 
 import uuid
-from msrest.pipeline import ClientRawResponse
 from msrest.polling import LROPoller, NoPolling
 from msrestazure.polling.arm_polling import ARMPolling
 
@@ -40,7 +39,7 @@ class LRORetrysOperations(object):
 
 
     def _put201_creating_succeeded200_initial(
-            self, product=None, raw=False, **kwargs):
+            self, product=None, **kwargs):
         # Construct URL
         url = self.put201_creating_succeeded200.metadata['url']
 
@@ -80,14 +79,10 @@ class LRORetrysOperations(object):
         if response.status_code == 201:
             deserialized = self._deserialize('Product', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
 
     def put201_creating_succeeded200(
-            self, product=None, raw=False, polling=True, **kwargs):
+            self, product=None, polling=True, **kwargs):
         """Long running put request, service returns a 500, then a 201 to the
         initial request, with an entity that contains
         ProvisioningState=’Creating’.  Polls return this value until the last
@@ -95,16 +90,11 @@ class LRORetrysOperations(object):
 
         :param product: Product to put
         :type product: ~lro.models.Product
-        :param bool raw: The poller return type is ClientRawResponse, the
-         direct response alongside the deserialized response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
-        :return: An instance of LROPoller that returns Product or
-         ClientRawResponse<Product> if raw==True
+        :return: An instance of LROPoller that returns Product
         :rtype:
          ~msrestazure.azure_operation.AzureOperationPoller[~lro.models.Product]
-         or
-         ~msrestazure.azure_operation.AzureOperationPoller[~msrest.pipeline.ClientRawResponse[~lro.models.Product]]
         :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
         """
         raw_result = self._put201_creating_succeeded200_initial(
@@ -115,10 +105,6 @@ class LRORetrysOperations(object):
 
         def get_long_running_output(response):
             deserialized = self._deserialize('Product', response)
-
-            if raw:
-                client_raw_response = ClientRawResponse(deserialized, response)
-                return client_raw_response
 
             return deserialized
 
@@ -133,7 +119,7 @@ class LRORetrysOperations(object):
 
 
     def _put_async_relative_retry_succeeded_initial(
-            self, product=None, raw=False, **kwargs):
+            self, product=None, **kwargs):
         # Construct URL
         url = self.put_async_relative_retry_succeeded.metadata['url']
 
@@ -177,15 +163,10 @@ class LRORetrysOperations(object):
                 'Retry-After': 'int',
             }
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            client_raw_response.add_headers(header_dict)
-            return client_raw_response
-
         return deserialized
 
     def put_async_relative_retry_succeeded(
-            self, product=None, raw=False, polling=True, **kwargs):
+            self, product=None, polling=True, **kwargs):
         """Long running put request, service returns a 500, then a 200 to the
         initial request, with an entity that contains
         ProvisioningState=’Creating’. Poll the endpoint indicated in the
@@ -193,16 +174,11 @@ class LRORetrysOperations(object):
 
         :param product: Product to put
         :type product: ~lro.models.Product
-        :param bool raw: The poller return type is ClientRawResponse, the
-         direct response alongside the deserialized response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
-        :return: An instance of LROPoller that returns Product or
-         ClientRawResponse<Product> if raw==True
+        :return: An instance of LROPoller that returns Product
         :rtype:
          ~msrestazure.azure_operation.AzureOperationPoller[~lro.models.Product]
-         or
-         ~msrestazure.azure_operation.AzureOperationPoller[~msrest.pipeline.ClientRawResponse[~lro.models.Product]]
         :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
         """
         raw_result = self._put_async_relative_retry_succeeded_initial(
@@ -219,11 +195,6 @@ class LRORetrysOperations(object):
             }
             deserialized = self._deserialize('Product', response)
 
-            if raw:
-                client_raw_response = ClientRawResponse(deserialized, response)
-                client_raw_response.add_headers(header_dict)
-                return client_raw_response
-
             return deserialized
 
         lro_delay = kwargs.get(
@@ -237,7 +208,7 @@ class LRORetrysOperations(object):
 
 
     def _delete_provisioning202_accepted200_succeeded_initial(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         # Construct URL
         url = self.delete_provisioning202_accepted200_succeeded.metadata['url']
 
@@ -279,30 +250,20 @@ class LRORetrysOperations(object):
                 'Retry-After': 'int',
             }
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            client_raw_response.add_headers(header_dict)
-            return client_raw_response
-
         return deserialized
 
     def delete_provisioning202_accepted200_succeeded(
-            self, raw=False, polling=True, **kwargs):
+            self,  polling=True, **kwargs):
         """Long running delete request, service returns a 500, then a  202 to the
         initial request, with an entity that contains
         ProvisioningState=’Accepted’.  Polls return this value until the last
         poll returns a ‘200’ with ProvisioningState=’Succeeded’.
 
-        :param bool raw: The poller return type is ClientRawResponse, the
-         direct response alongside the deserialized response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
-        :return: An instance of LROPoller that returns Product or
-         ClientRawResponse<Product> if raw==True
+        :return: An instance of LROPoller that returns Product
         :rtype:
          ~msrestazure.azure_operation.AzureOperationPoller[~lro.models.Product]
-         or
-         ~msrestazure.azure_operation.AzureOperationPoller[~msrest.pipeline.ClientRawResponse[~lro.models.Product]]
         :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
         """
         raw_result = self._delete_provisioning202_accepted200_succeeded_initial(
@@ -317,11 +278,6 @@ class LRORetrysOperations(object):
             }
             deserialized = self._deserialize('Product', response)
 
-            if raw:
-                client_raw_response = ClientRawResponse(deserialized, response)
-                client_raw_response.add_headers(header_dict)
-                return client_raw_response
-
             return deserialized
 
         lro_delay = kwargs.get(
@@ -335,7 +291,7 @@ class LRORetrysOperations(object):
 
 
     def _delete202_retry200_initial(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         # Construct URL
         url = self.delete202_retry200.metadata['url']
 
@@ -360,29 +316,18 @@ class LRORetrysOperations(object):
         if response.status_code not in [202]:
             raise models.CloudErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            header_dict = {
-                'Location': 'str',
-                'Retry-After': 'int',
-            }
-            client_raw_response.add_headers(header_dict)
-            return client_raw_response
+            return ''
 
     def delete202_retry200(
-            self, raw=False, polling=True, **kwargs):
+            self,  polling=True, **kwargs):
         """Long running delete request, service returns a 500, then a 202 to the
         initial request. Polls return this value until the last poll returns a
         ‘200’ with ProvisioningState=’Succeeded’.
 
-        :param bool raw: The poller return type is ClientRawResponse, the
-         direct response alongside the deserialized response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
-        :return: An instance of LROPoller that returns None or
-         ClientRawResponse<None> if raw==True
-        :rtype: ~msrestazure.azure_operation.AzureOperationPoller[None] or
-         ~msrestazure.azure_operation.AzureOperationPoller[~msrest.pipeline.ClientRawResponse[None]]
+        :return: An instance of LROPoller that returns None
+        :rtype: ~msrestazure.azure_operation.AzureOperationPoller[None]
         :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
         """
         raw_result = self._delete202_retry200_initial(
@@ -391,13 +336,6 @@ class LRORetrysOperations(object):
         )
 
         def get_long_running_output(response):
-            if raw:
-                client_raw_response = ClientRawResponse(None, response)
-                client_raw_response.add_headers({
-                    'Location': 'str',
-                    'Retry-After': 'int',
-                })
-                return client_raw_response
 
         lro_delay = kwargs.get(
             'long_running_operation_timeout',
@@ -410,7 +348,7 @@ class LRORetrysOperations(object):
 
 
     def _delete_async_relative_retry_succeeded_initial(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         # Construct URL
         url = self.delete_async_relative_retry_succeeded.metadata['url']
 
@@ -435,30 +373,18 @@ class LRORetrysOperations(object):
         if response.status_code not in [202]:
             raise models.CloudErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            header_dict = {
-                'Azure-AsyncOperation': 'str',
-                'Location': 'str',
-                'Retry-After': 'int',
-            }
-            client_raw_response.add_headers(header_dict)
-            return client_raw_response
+            return ''
 
     def delete_async_relative_retry_succeeded(
-            self, raw=False, polling=True, **kwargs):
+            self,  polling=True, **kwargs):
         """Long running delete request, service returns a 500, then a 202 to the
         initial request. Poll the endpoint indicated in the
         Azure-AsyncOperation header for operation status.
 
-        :param bool raw: The poller return type is ClientRawResponse, the
-         direct response alongside the deserialized response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
-        :return: An instance of LROPoller that returns None or
-         ClientRawResponse<None> if raw==True
-        :rtype: ~msrestazure.azure_operation.AzureOperationPoller[None] or
-         ~msrestazure.azure_operation.AzureOperationPoller[~msrest.pipeline.ClientRawResponse[None]]
+        :return: An instance of LROPoller that returns None
+        :rtype: ~msrestazure.azure_operation.AzureOperationPoller[None]
         :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
         """
         raw_result = self._delete_async_relative_retry_succeeded_initial(
@@ -467,14 +393,6 @@ class LRORetrysOperations(object):
         )
 
         def get_long_running_output(response):
-            if raw:
-                client_raw_response = ClientRawResponse(None, response)
-                client_raw_response.add_headers({
-                    'Azure-AsyncOperation': 'str',
-                    'Location': 'str',
-                    'Retry-After': 'int',
-                })
-                return client_raw_response
 
         lro_delay = kwargs.get(
             'long_running_operation_timeout',
@@ -487,7 +405,7 @@ class LRORetrysOperations(object):
 
 
     def _post202_retry200_initial(
-            self, product=None, raw=False, **kwargs):
+            self, product=None, **kwargs):
         # Construct URL
         url = self.post202_retry200.metadata['url']
 
@@ -519,31 +437,20 @@ class LRORetrysOperations(object):
         if response.status_code not in [202]:
             raise models.CloudErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            header_dict = {
-                'Location': 'str',
-                'Retry-After': 'int',
-            }
-            client_raw_response.add_headers(header_dict)
-            return client_raw_response
+            return ''
 
     def post202_retry200(
-            self, product=None, raw=False, polling=True, **kwargs):
+            self, product=None, polling=True, **kwargs):
         """Long running post request, service returns a 500, then a 202 to the
         initial request, with 'Location' and 'Retry-After' headers, Polls
         return a 200 with a response body after success.
 
         :param product: Product to put
         :type product: ~lro.models.Product
-        :param bool raw: The poller return type is ClientRawResponse, the
-         direct response alongside the deserialized response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
-        :return: An instance of LROPoller that returns None or
-         ClientRawResponse<None> if raw==True
-        :rtype: ~msrestazure.azure_operation.AzureOperationPoller[None] or
-         ~msrestazure.azure_operation.AzureOperationPoller[~msrest.pipeline.ClientRawResponse[None]]
+        :return: An instance of LROPoller that returns None
+        :rtype: ~msrestazure.azure_operation.AzureOperationPoller[None]
         :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
         """
         raw_result = self._post202_retry200_initial(
@@ -553,13 +460,6 @@ class LRORetrysOperations(object):
         )
 
         def get_long_running_output(response):
-            if raw:
-                client_raw_response = ClientRawResponse(None, response)
-                client_raw_response.add_headers({
-                    'Location': 'str',
-                    'Retry-After': 'int',
-                })
-                return client_raw_response
 
         lro_delay = kwargs.get(
             'long_running_operation_timeout',
@@ -572,7 +472,7 @@ class LRORetrysOperations(object):
 
 
     def _post_async_relative_retry_succeeded_initial(
-            self, product=None, raw=False, **kwargs):
+            self, product=None, **kwargs):
         # Construct URL
         url = self.post_async_relative_retry_succeeded.metadata['url']
 
@@ -604,18 +504,10 @@ class LRORetrysOperations(object):
         if response.status_code not in [202]:
             raise models.CloudErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            header_dict = {
-                'Azure-AsyncOperation': 'str',
-                'Location': 'str',
-                'Retry-After': 'int',
-            }
-            client_raw_response.add_headers(header_dict)
-            return client_raw_response
+            return ''
 
     def post_async_relative_retry_succeeded(
-            self, product=None, raw=False, polling=True, **kwargs):
+            self, product=None, polling=True, **kwargs):
         """Long running post request, service returns a 500, then a 202 to the
         initial request, with an entity that contains
         ProvisioningState=’Creating’. Poll the endpoint indicated in the
@@ -623,14 +515,10 @@ class LRORetrysOperations(object):
 
         :param product: Product to put
         :type product: ~lro.models.Product
-        :param bool raw: The poller return type is ClientRawResponse, the
-         direct response alongside the deserialized response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
-        :return: An instance of LROPoller that returns None or
-         ClientRawResponse<None> if raw==True
-        :rtype: ~msrestazure.azure_operation.AzureOperationPoller[None] or
-         ~msrestazure.azure_operation.AzureOperationPoller[~msrest.pipeline.ClientRawResponse[None]]
+        :return: An instance of LROPoller that returns None
+        :rtype: ~msrestazure.azure_operation.AzureOperationPoller[None]
         :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
         """
         raw_result = self._post_async_relative_retry_succeeded_initial(
@@ -640,14 +528,6 @@ class LRORetrysOperations(object):
         )
 
         def get_long_running_output(response):
-            if raw:
-                client_raw_response = ClientRawResponse(None, response)
-                client_raw_response.add_headers({
-                    'Azure-AsyncOperation': 'str',
-                    'Location': 'str',
-                    'Retry-After': 'int',
-                })
-                return client_raw_response
 
         lro_delay = kwargs.get(
             'long_running_operation_timeout',

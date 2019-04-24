@@ -9,7 +9,6 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.pipeline import ClientRawResponse
 
 from ... import models
 
@@ -36,7 +35,7 @@ class PathsOperations:
         self._config = config
 
     async def get_empty(
-            self, vault, secret, key_name, key_version="v1", *, raw=False, **kwargs):
+            self, vault, secret, key_name, key_version="v1", **kwargs):
         """Get a 200 to test a valid base uri.
 
         :param vault: The vault name, e.g. https://myvault
@@ -47,10 +46,8 @@ class PathsOperations:
         :type key_name: str
         :param key_version: The key version. Default value 'v1'.
         :type key_version: str
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises:
          :class:`ErrorException<custombaseurlmoreoptions.models.ErrorException>`
         """
@@ -84,7 +81,4 @@ class PathsOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     get_empty.metadata = {'url': '/customuri/{subscriptionId}/{keyName}'}

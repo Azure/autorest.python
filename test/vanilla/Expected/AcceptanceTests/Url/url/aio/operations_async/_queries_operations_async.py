@@ -9,7 +9,6 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.pipeline import ClientRawResponse
 
 from ... import models
 
@@ -42,13 +41,11 @@ class QueriesOperations:
         self.date_time_query = "2012-01-01T01:01:01Z"
 
     async def get_boolean_true(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Get true Boolean value on path.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         bool_query = True
@@ -74,19 +71,14 @@ class QueriesOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     get_boolean_true.metadata = {'url': '/queries/bool/true'}
 
     async def get_boolean_false(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Get false Boolean value on path.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         bool_query = False
@@ -112,21 +104,16 @@ class QueriesOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     get_boolean_false.metadata = {'url': '/queries/bool/false'}
 
     async def get_boolean_null(
-            self, bool_query=None, *, raw=False, **kwargs):
+            self, bool_query=None, **kwargs):
         """Get null Boolean value on query (query string should be absent).
 
         :param bool_query: null boolean value
         :type bool_query: bool
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
@@ -151,19 +138,14 @@ class QueriesOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     get_boolean_null.metadata = {'url': '/queries/bool/null'}
 
     async def get_int_one_million(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Get '1000000' integer value.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         int_query = 1000000
@@ -189,19 +171,14 @@ class QueriesOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     get_int_one_million.metadata = {'url': '/queries/int/1000000'}
 
     async def get_int_negative_one_million(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Get '-1000000' integer value.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         int_query = -1000000
@@ -227,21 +204,16 @@ class QueriesOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     get_int_negative_one_million.metadata = {'url': '/queries/int/-1000000'}
 
     async def get_int_null(
-            self, int_query=None, *, raw=False, **kwargs):
+            self, int_query=None, **kwargs):
         """Get null integer value (no query parameter).
 
         :param int_query: null integer value
         :type int_query: int
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
@@ -266,19 +238,14 @@ class QueriesOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     get_int_null.metadata = {'url': '/queries/int/null'}
 
     async def get_ten_billion(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Get '10000000000' 64 bit integer value.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         long_query = 10000000000
@@ -304,19 +271,14 @@ class QueriesOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     get_ten_billion.metadata = {'url': '/queries/long/10000000000'}
 
     async def get_negative_ten_billion(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Get '-10000000000' 64 bit integer value.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         long_query = -10000000000
@@ -342,21 +304,16 @@ class QueriesOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     get_negative_ten_billion.metadata = {'url': '/queries/long/-10000000000'}
 
     async def get_long_null(
-            self, long_query=None, *, raw=False, **kwargs):
+            self, long_query=None, **kwargs):
         """Get 'null 64 bit integer value (no query param in uri).
 
         :param long_query: null 64 bit integer value
         :type long_query: long
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
@@ -381,19 +338,14 @@ class QueriesOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     get_long_null.metadata = {'url': '/queries/long/null'}
 
     async def float_scientific_positive(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Get '1.034E+20' numeric value.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         float_query = 1.034E+20
@@ -419,19 +371,14 @@ class QueriesOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     float_scientific_positive.metadata = {'url': '/queries/float/1.034E+20'}
 
     async def float_scientific_negative(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Get '-1.034E-20' numeric value.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         float_query = -1.034E-20
@@ -457,21 +404,16 @@ class QueriesOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     float_scientific_negative.metadata = {'url': '/queries/float/-1.034E-20'}
 
     async def float_null(
-            self, float_query=None, *, raw=False, **kwargs):
+            self, float_query=None, **kwargs):
         """Get null numeric value (no query parameter).
 
         :param float_query: null numeric value
         :type float_query: float
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
@@ -496,19 +438,14 @@ class QueriesOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     float_null.metadata = {'url': '/queries/float/null'}
 
     async def double_decimal_positive(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Get '9999999.999' numeric value.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         double_query = 9999999.999
@@ -534,19 +471,14 @@ class QueriesOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     double_decimal_positive.metadata = {'url': '/queries/double/9999999.999'}
 
     async def double_decimal_negative(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Get '-9999999.999' numeric value.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         double_query = -9999999.999
@@ -572,21 +504,16 @@ class QueriesOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     double_decimal_negative.metadata = {'url': '/queries/double/-9999999.999'}
 
     async def double_null(
-            self, double_query=None, *, raw=False, **kwargs):
+            self, double_query=None, **kwargs):
         """Get null numeric value (no query parameter).
 
         :param double_query: null numeric value
         :type double_query: float
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
@@ -611,19 +538,14 @@ class QueriesOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     double_null.metadata = {'url': '/queries/double/null'}
 
     async def string_unicode(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         string_query = "啊齄丂狛狜隣郎隣兀﨩"
@@ -649,19 +571,14 @@ class QueriesOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     string_unicode.metadata = {'url': '/queries/string/unicode/'}
 
     async def string_url_encoded(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Get 'begin!*'();:@ &=+$,/?#[]end.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         string_query = "begin!*'();:@ &=+$,/?#[]end"
@@ -687,19 +604,14 @@ class QueriesOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     string_url_encoded.metadata = {'url': '/queries/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend'}
 
     async def string_empty(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Get ''.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         string_query = ""
@@ -725,21 +637,16 @@ class QueriesOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     string_empty.metadata = {'url': '/queries/string/empty'}
 
     async def string_null(
-            self, string_query=None, *, raw=False, **kwargs):
+            self, string_query=None, **kwargs):
         """Get null (no query parameter in url).
 
         :param string_query: null string value
         :type string_query: str
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
@@ -764,22 +671,17 @@ class QueriesOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     string_null.metadata = {'url': '/queries/string/null'}
 
     async def enum_valid(
-            self, enum_query=None, *, raw=False, **kwargs):
+            self, enum_query=None, **kwargs):
         """Get using uri with query parameter 'green color'.
 
         :param enum_query: 'green color' enum value. Possible values include:
          'red color', 'green color', 'blue color'
         :type enum_query: str or ~url.models.UriColor
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
@@ -804,22 +706,17 @@ class QueriesOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     enum_valid.metadata = {'url': '/queries/enum/green%20color'}
 
     async def enum_null(
-            self, enum_query=None, *, raw=False, **kwargs):
+            self, enum_query=None, **kwargs):
         """Get null (no query parameter in url).
 
         :param enum_query: null string value. Possible values include: 'red
          color', 'green color', 'blue color'
         :type enum_query: str or ~url.models.UriColor
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
@@ -844,22 +741,17 @@ class QueriesOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     enum_null.metadata = {'url': '/queries/enum/null'}
 
     async def byte_multi_byte(
-            self, byte_query=None, *, raw=False, **kwargs):
+            self, byte_query=None, **kwargs):
         """Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
 
         :param byte_query: '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte
          array
         :type byte_query: bytearray
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
@@ -884,19 +776,14 @@ class QueriesOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     byte_multi_byte.metadata = {'url': '/queries/byte/multibyte'}
 
     async def byte_empty(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Get '' as byte array.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
@@ -920,21 +807,16 @@ class QueriesOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     byte_empty.metadata = {'url': '/queries/byte/empty'}
 
     async def byte_null(
-            self, byte_query=None, *, raw=False, **kwargs):
+            self, byte_query=None, **kwargs):
         """Get null as byte array (no query parameters in uri).
 
         :param byte_query: null as byte array (no query parameters in uri)
         :type byte_query: bytearray
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
@@ -959,19 +841,14 @@ class QueriesOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     byte_null.metadata = {'url': '/queries/byte/null'}
 
     async def date_valid(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Get '2012-01-01' as date.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
@@ -995,21 +872,16 @@ class QueriesOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     date_valid.metadata = {'url': '/queries/date/2012-01-01'}
 
     async def date_null(
-            self, date_query=None, *, raw=False, **kwargs):
+            self, date_query=None, **kwargs):
         """Get null as date - this should result in no query parameters in uri.
 
         :param date_query: null as date (no query parameters in uri)
         :type date_query: date
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
@@ -1034,19 +906,14 @@ class QueriesOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     date_null.metadata = {'url': '/queries/date/null'}
 
     async def date_time_valid(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Get '2012-01-01T01:01:01Z' as date-time.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
@@ -1070,21 +937,16 @@ class QueriesOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     date_time_valid.metadata = {'url': '/queries/datetime/2012-01-01T01%3A01%3A01Z'}
 
     async def date_time_null(
-            self, date_time_query=None, *, raw=False, **kwargs):
+            self, date_time_query=None, **kwargs):
         """Get null as date-time, should result in no query parameters in uri.
 
         :param date_time_query: null as date-time (no query parameters)
         :type date_time_query: datetime
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
@@ -1109,23 +971,18 @@ class QueriesOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     date_time_null.metadata = {'url': '/queries/datetime/null'}
 
     async def array_string_csv_valid(
-            self, array_query=None, *, raw=False, **kwargs):
+            self, array_query=None, **kwargs):
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' ,
         null, ''] using the csv-array format.
 
         :param array_query: an array of string ['ArrayQuery1', 'begin!*'();:@
          &=+$,/?#[]end' , null, ''] using the csv-array format
         :type array_query: list[str]
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
@@ -1150,21 +1007,16 @@ class QueriesOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     array_string_csv_valid.metadata = {'url': '/queries/array/csv/string/valid'}
 
     async def array_string_csv_null(
-            self, array_query=None, *, raw=False, **kwargs):
+            self, array_query=None, **kwargs):
         """Get a null array of string using the csv-array format.
 
         :param array_query: a null array of string using the csv-array format
         :type array_query: list[str]
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
@@ -1189,22 +1041,17 @@ class QueriesOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     array_string_csv_null.metadata = {'url': '/queries/array/csv/string/null'}
 
     async def array_string_csv_empty(
-            self, array_query=None, *, raw=False, **kwargs):
+            self, array_query=None, **kwargs):
         """Get an empty array [] of string using the csv-array format.
 
         :param array_query: an empty array [] of string using the csv-array
          format
         :type array_query: list[str]
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
@@ -1229,23 +1076,18 @@ class QueriesOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     array_string_csv_empty.metadata = {'url': '/queries/array/csv/string/empty'}
 
     async def array_string_ssv_valid(
-            self, array_query=None, *, raw=False, **kwargs):
+            self, array_query=None, **kwargs):
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' ,
         null, ''] using the ssv-array format.
 
         :param array_query: an array of string ['ArrayQuery1', 'begin!*'();:@
          &=+$,/?#[]end' , null, ''] using the ssv-array format
         :type array_query: list[str]
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
@@ -1270,23 +1112,18 @@ class QueriesOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     array_string_ssv_valid.metadata = {'url': '/queries/array/ssv/string/valid'}
 
     async def array_string_tsv_valid(
-            self, array_query=None, *, raw=False, **kwargs):
+            self, array_query=None, **kwargs):
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' ,
         null, ''] using the tsv-array format.
 
         :param array_query: an array of string ['ArrayQuery1', 'begin!*'();:@
          &=+$,/?#[]end' , null, ''] using the tsv-array format
         :type array_query: list[str]
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
@@ -1311,23 +1148,18 @@ class QueriesOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     array_string_tsv_valid.metadata = {'url': '/queries/array/tsv/string/valid'}
 
     async def array_string_pipes_valid(
-            self, array_query=None, *, raw=False, **kwargs):
+            self, array_query=None, **kwargs):
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' ,
         null, ''] using the pipes-array format.
 
         :param array_query: an array of string ['ArrayQuery1', 'begin!*'();:@
          &=+$,/?#[]end' , null, ''] using the pipes-array format
         :type array_query: list[str]
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
@@ -1352,7 +1184,4 @@ class QueriesOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     array_string_pipes_valid.metadata = {'url': '/queries/array/pipes/string/valid'}

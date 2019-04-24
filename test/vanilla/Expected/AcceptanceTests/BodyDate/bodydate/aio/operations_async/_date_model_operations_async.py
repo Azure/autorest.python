@@ -9,7 +9,6 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.pipeline import ClientRawResponse
 
 from ... import models
 
@@ -36,13 +35,11 @@ class DateModelOperations:
         self._config = config
 
     async def get_null(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Get null date value.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: date or ClientRawResponse if raw=true
-        :rtype: date or ~msrest.pipeline.ClientRawResponse
+        :return: date
+        :rtype: date
         :raises: :class:`ErrorException<bodydate.models.ErrorException>`
         """
         # Construct URL
@@ -70,21 +67,15 @@ class DateModelOperations:
         if response.status_code == 200:
             deserialized = self._deserialize('date', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_null.metadata = {'url': '/date/null'}
 
     async def get_invalid_date(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Get invalid date value.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: date or ClientRawResponse if raw=true
-        :rtype: date or ~msrest.pipeline.ClientRawResponse
+        :return: date
+        :rtype: date
         :raises: :class:`ErrorException<bodydate.models.ErrorException>`
         """
         # Construct URL
@@ -112,21 +103,15 @@ class DateModelOperations:
         if response.status_code == 200:
             deserialized = self._deserialize('date', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_invalid_date.metadata = {'url': '/date/invaliddate'}
 
     async def get_overflow_date(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Get overflow date value.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: date or ClientRawResponse if raw=true
-        :rtype: date or ~msrest.pipeline.ClientRawResponse
+        :return: date
+        :rtype: date
         :raises: :class:`ErrorException<bodydate.models.ErrorException>`
         """
         # Construct URL
@@ -154,21 +139,15 @@ class DateModelOperations:
         if response.status_code == 200:
             deserialized = self._deserialize('date', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_overflow_date.metadata = {'url': '/date/overflowdate'}
 
     async def get_underflow_date(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Get underflow date value.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: date or ClientRawResponse if raw=true
-        :rtype: date or ~msrest.pipeline.ClientRawResponse
+        :return: date
+        :rtype: date
         :raises: :class:`ErrorException<bodydate.models.ErrorException>`
         """
         # Construct URL
@@ -196,23 +175,17 @@ class DateModelOperations:
         if response.status_code == 200:
             deserialized = self._deserialize('date', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_underflow_date.metadata = {'url': '/date/underflowdate'}
 
     async def put_max_date(
-            self, date_body, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Put max date value 9999-12-31.
 
         :param date_body:
         :type date_body: date
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<bodydate.models.ErrorException>`
         """
         # Construct URL
@@ -239,19 +212,14 @@ class DateModelOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put_max_date.metadata = {'url': '/date/max'}
 
     async def get_max_date(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Get max date value 9999-12-31.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: date or ClientRawResponse if raw=true
-        :rtype: date or ~msrest.pipeline.ClientRawResponse
+        :return: date
+        :rtype: date
         :raises: :class:`ErrorException<bodydate.models.ErrorException>`
         """
         # Construct URL
@@ -279,23 +247,17 @@ class DateModelOperations:
         if response.status_code == 200:
             deserialized = self._deserialize('date', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_max_date.metadata = {'url': '/date/max'}
 
     async def put_min_date(
-            self, date_body, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Put min date value 0000-01-01.
 
         :param date_body:
         :type date_body: date
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<bodydate.models.ErrorException>`
         """
         # Construct URL
@@ -322,19 +284,14 @@ class DateModelOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put_min_date.metadata = {'url': '/date/min'}
 
     async def get_min_date(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Get min date value 0000-01-01.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: date or ClientRawResponse if raw=true
-        :rtype: date or ~msrest.pipeline.ClientRawResponse
+        :return: date
+        :rtype: date
         :raises: :class:`ErrorException<bodydate.models.ErrorException>`
         """
         # Construct URL
@@ -361,10 +318,6 @@ class DateModelOperations:
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('date', response)
-
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
 
         return deserialized
     get_min_date.metadata = {'url': '/date/min'}

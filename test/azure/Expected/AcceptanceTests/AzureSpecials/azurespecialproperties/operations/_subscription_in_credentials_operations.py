@@ -10,7 +10,6 @@
 # --------------------------------------------------------------------------
 
 import uuid
-from msrest.pipeline import ClientRawResponse
 
 from .. import models
 
@@ -39,14 +38,12 @@ class SubscriptionInCredentialsOperations(object):
         self._config = config
 
     def post_method_global_valid(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """POST method with subscriptionId modeled in credentials.  Set the
         credential subscriptionId to '1234-5678-9012-3456' to succeed.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises:
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
         """
@@ -78,21 +75,16 @@ class SubscriptionInCredentialsOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     post_method_global_valid.metadata = {'url': '/azurespecials/subscriptionId/method/string/none/path/global/1234-5678-9012-3456/{subscriptionId}'}
 
     def post_method_global_null(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """POST method with subscriptionId modeled in credentials.  Set the
         credential subscriptionId to null, and client-side validation should
         prevent you from making this call.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises:
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
         """
@@ -124,20 +116,15 @@ class SubscriptionInCredentialsOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     post_method_global_null.metadata = {'url': '/azurespecials/subscriptionId/method/string/none/path/global/null/{subscriptionId}'}
 
     def post_method_global_not_provided_valid(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """POST method with subscriptionId modeled in credentials.  Set the
         credential subscriptionId to '1234-5678-9012-3456' to succeed.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises:
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
         """
@@ -170,20 +157,15 @@ class SubscriptionInCredentialsOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     post_method_global_not_provided_valid.metadata = {'url': '/azurespecials/subscriptionId/method/string/none/path/globalNotProvided/1234-5678-9012-3456/{subscriptionId}'}
 
     def post_path_global_valid(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """POST method with subscriptionId modeled in credentials.  Set the
         credential subscriptionId to '1234-5678-9012-3456' to succeed.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises:
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
         """
@@ -215,20 +197,15 @@ class SubscriptionInCredentialsOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     post_path_global_valid.metadata = {'url': '/azurespecials/subscriptionId/path/string/none/path/global/1234-5678-9012-3456/{subscriptionId}'}
 
     def post_swagger_global_valid(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """POST method with subscriptionId modeled in credentials.  Set the
         credential subscriptionId to '1234-5678-9012-3456' to succeed.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises:
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
         """
@@ -260,7 +237,4 @@ class SubscriptionInCredentialsOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     post_swagger_global_valid.metadata = {'url': '/azurespecials/subscriptionId/swagger/string/none/path/global/1234-5678-9012-3456/{subscriptionId}'}

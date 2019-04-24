@@ -10,7 +10,6 @@
 # --------------------------------------------------------------------------
 
 import uuid
-from msrest.pipeline import ClientRawResponse
 
 from .. import models
 
@@ -39,17 +38,14 @@ class GroupOperations(object):
         self._config = config
 
     def get_sample_resource_group(
-            self, resource_group_name, raw=False, **kwargs):
+            self,  **kwargs):
         """Provides a resouce group with name 'testgroup101' and location 'West
         US'.
 
         :param resource_group_name: Resource Group name 'testgroup101'.
         :type resource_group_name: str
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: SampleResourceGroup or ClientRawResponse if raw=true
-        :rtype: ~subscriptionidapiversion.models.SampleResourceGroup or
-         ~msrest.pipeline.ClientRawResponse
+        :return: SampleResourceGroup
+        :rtype: ~subscriptionidapiversion.models.SampleResourceGroup
         :raises:
          :class:`ErrorException<subscriptionidapiversion.models.ErrorException>`
         """
@@ -87,10 +83,6 @@ class GroupOperations(object):
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('SampleResourceGroup', response)
-
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
 
         return deserialized
     get_sample_resource_group.metadata = {'url': '/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}'}

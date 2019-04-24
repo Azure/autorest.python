@@ -9,7 +9,6 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.pipeline import ClientRawResponse
 
 from .. import models
 
@@ -36,13 +35,11 @@ class ArrayOperations(object):
         self._config = config
 
     def get_null(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get null array value.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: list or ClientRawResponse if raw=true
-        :rtype: list[int] or ~msrest.pipeline.ClientRawResponse
+        :return: list
+        :rtype: list[int]
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
@@ -70,21 +67,15 @@ class ArrayOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('[int]', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_null.metadata = {'url': '/array/null'}
 
     def get_invalid(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get invalid array [1, 2, 3.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: list or ClientRawResponse if raw=true
-        :rtype: list[int] or ~msrest.pipeline.ClientRawResponse
+        :return: list
+        :rtype: list[int]
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
@@ -112,21 +103,15 @@ class ArrayOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('[int]', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_invalid.metadata = {'url': '/array/invalid'}
 
     def get_empty(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get empty array value [].
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: list or ClientRawResponse if raw=true
-        :rtype: list[int] or ~msrest.pipeline.ClientRawResponse
+        :return: list
+        :rtype: list[int]
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
@@ -154,23 +139,17 @@ class ArrayOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('[int]', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_empty.metadata = {'url': '/array/empty'}
 
     def put_empty(
-            self, array_body, raw=False, **kwargs):
+            self,  **kwargs):
         """Set array value empty [].
 
         :param array_body:
         :type array_body: list[str]
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
@@ -197,19 +176,14 @@ class ArrayOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put_empty.metadata = {'url': '/array/empty'}
 
     def get_boolean_tfft(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get boolean array value [true, false, false, true].
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: list or ClientRawResponse if raw=true
-        :rtype: list[bool] or ~msrest.pipeline.ClientRawResponse
+        :return: list
+        :rtype: list[bool]
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
@@ -237,23 +211,17 @@ class ArrayOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('[bool]', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_boolean_tfft.metadata = {'url': '/array/prim/boolean/tfft'}
 
     def put_boolean_tfft(
-            self, array_body, raw=False, **kwargs):
+            self,  **kwargs):
         """Set array value empty [true, false, false, true].
 
         :param array_body:
         :type array_body: list[bool]
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
@@ -280,19 +248,14 @@ class ArrayOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put_boolean_tfft.metadata = {'url': '/array/prim/boolean/tfft'}
 
     def get_boolean_invalid_null(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get boolean array value [true, null, false].
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: list or ClientRawResponse if raw=true
-        :rtype: list[bool] or ~msrest.pipeline.ClientRawResponse
+        :return: list
+        :rtype: list[bool]
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
@@ -320,21 +283,15 @@ class ArrayOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('[bool]', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_boolean_invalid_null.metadata = {'url': '/array/prim/boolean/true.null.false'}
 
     def get_boolean_invalid_string(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get boolean array value [true, 'boolean', false].
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: list or ClientRawResponse if raw=true
-        :rtype: list[bool] or ~msrest.pipeline.ClientRawResponse
+        :return: list
+        :rtype: list[bool]
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
@@ -362,21 +319,15 @@ class ArrayOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('[bool]', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_boolean_invalid_string.metadata = {'url': '/array/prim/boolean/true.boolean.false'}
 
     def get_integer_valid(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get integer array value [1, -1, 3, 300].
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: list or ClientRawResponse if raw=true
-        :rtype: list[int] or ~msrest.pipeline.ClientRawResponse
+        :return: list
+        :rtype: list[int]
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
@@ -404,23 +355,17 @@ class ArrayOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('[int]', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_integer_valid.metadata = {'url': '/array/prim/integer/1.-1.3.300'}
 
     def put_integer_valid(
-            self, array_body, raw=False, **kwargs):
+            self,  **kwargs):
         """Set array value empty [1, -1, 3, 300].
 
         :param array_body:
         :type array_body: list[int]
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
@@ -447,19 +392,14 @@ class ArrayOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put_integer_valid.metadata = {'url': '/array/prim/integer/1.-1.3.300'}
 
     def get_int_invalid_null(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get integer array value [1, null, 0].
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: list or ClientRawResponse if raw=true
-        :rtype: list[int] or ~msrest.pipeline.ClientRawResponse
+        :return: list
+        :rtype: list[int]
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
@@ -487,21 +427,15 @@ class ArrayOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('[int]', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_int_invalid_null.metadata = {'url': '/array/prim/integer/1.null.zero'}
 
     def get_int_invalid_string(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get integer array value [1, 'integer', 0].
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: list or ClientRawResponse if raw=true
-        :rtype: list[int] or ~msrest.pipeline.ClientRawResponse
+        :return: list
+        :rtype: list[int]
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
@@ -529,21 +463,15 @@ class ArrayOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('[int]', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_int_invalid_string.metadata = {'url': '/array/prim/integer/1.integer.0'}
 
     def get_long_valid(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get integer array value [1, -1, 3, 300].
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: list or ClientRawResponse if raw=true
-        :rtype: list[long] or ~msrest.pipeline.ClientRawResponse
+        :return: list
+        :rtype: list[long]
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
@@ -571,23 +499,17 @@ class ArrayOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('[long]', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_long_valid.metadata = {'url': '/array/prim/long/1.-1.3.300'}
 
     def put_long_valid(
-            self, array_body, raw=False, **kwargs):
+            self,  **kwargs):
         """Set array value empty [1, -1, 3, 300].
 
         :param array_body:
         :type array_body: list[long]
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
@@ -614,19 +536,14 @@ class ArrayOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put_long_valid.metadata = {'url': '/array/prim/long/1.-1.3.300'}
 
     def get_long_invalid_null(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get long array value [1, null, 0].
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: list or ClientRawResponse if raw=true
-        :rtype: list[long] or ~msrest.pipeline.ClientRawResponse
+        :return: list
+        :rtype: list[long]
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
@@ -654,21 +571,15 @@ class ArrayOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('[long]', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_long_invalid_null.metadata = {'url': '/array/prim/long/1.null.zero'}
 
     def get_long_invalid_string(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get long array value [1, 'integer', 0].
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: list or ClientRawResponse if raw=true
-        :rtype: list[long] or ~msrest.pipeline.ClientRawResponse
+        :return: list
+        :rtype: list[long]
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
@@ -696,21 +607,15 @@ class ArrayOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('[long]', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_long_invalid_string.metadata = {'url': '/array/prim/long/1.integer.0'}
 
     def get_float_valid(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get float array value [0, -0.01, 1.2e20].
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: list or ClientRawResponse if raw=true
-        :rtype: list[float] or ~msrest.pipeline.ClientRawResponse
+        :return: list
+        :rtype: list[float]
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
@@ -738,23 +643,17 @@ class ArrayOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('[float]', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_float_valid.metadata = {'url': '/array/prim/float/0--0.01-1.2e20'}
 
     def put_float_valid(
-            self, array_body, raw=False, **kwargs):
+            self,  **kwargs):
         """Set array value [0, -0.01, 1.2e20].
 
         :param array_body:
         :type array_body: list[float]
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
@@ -781,19 +680,14 @@ class ArrayOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put_float_valid.metadata = {'url': '/array/prim/float/0--0.01-1.2e20'}
 
     def get_float_invalid_null(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get float array value [0.0, null, -1.2e20].
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: list or ClientRawResponse if raw=true
-        :rtype: list[float] or ~msrest.pipeline.ClientRawResponse
+        :return: list
+        :rtype: list[float]
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
@@ -821,21 +715,15 @@ class ArrayOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('[float]', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_float_invalid_null.metadata = {'url': '/array/prim/float/0.0-null-1.2e20'}
 
     def get_float_invalid_string(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get boolean array value [1.0, 'number', 0.0].
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: list or ClientRawResponse if raw=true
-        :rtype: list[float] or ~msrest.pipeline.ClientRawResponse
+        :return: list
+        :rtype: list[float]
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
@@ -863,21 +751,15 @@ class ArrayOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('[float]', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_float_invalid_string.metadata = {'url': '/array/prim/float/1.number.0'}
 
     def get_double_valid(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get float array value [0, -0.01, 1.2e20].
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: list or ClientRawResponse if raw=true
-        :rtype: list[float] or ~msrest.pipeline.ClientRawResponse
+        :return: list
+        :rtype: list[float]
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
@@ -905,23 +787,17 @@ class ArrayOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('[float]', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_double_valid.metadata = {'url': '/array/prim/double/0--0.01-1.2e20'}
 
     def put_double_valid(
-            self, array_body, raw=False, **kwargs):
+            self,  **kwargs):
         """Set array value [0, -0.01, 1.2e20].
 
         :param array_body:
         :type array_body: list[float]
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
@@ -948,19 +824,14 @@ class ArrayOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put_double_valid.metadata = {'url': '/array/prim/double/0--0.01-1.2e20'}
 
     def get_double_invalid_null(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get float array value [0.0, null, -1.2e20].
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: list or ClientRawResponse if raw=true
-        :rtype: list[float] or ~msrest.pipeline.ClientRawResponse
+        :return: list
+        :rtype: list[float]
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
@@ -988,21 +859,15 @@ class ArrayOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('[float]', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_double_invalid_null.metadata = {'url': '/array/prim/double/0.0-null-1.2e20'}
 
     def get_double_invalid_string(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get boolean array value [1.0, 'number', 0.0].
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: list or ClientRawResponse if raw=true
-        :rtype: list[float] or ~msrest.pipeline.ClientRawResponse
+        :return: list
+        :rtype: list[float]
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
@@ -1030,21 +895,15 @@ class ArrayOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('[float]', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_double_invalid_string.metadata = {'url': '/array/prim/double/1.number.0'}
 
     def get_string_valid(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get string array value ['foo1', 'foo2', 'foo3'].
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: list or ClientRawResponse if raw=true
-        :rtype: list[str] or ~msrest.pipeline.ClientRawResponse
+        :return: list
+        :rtype: list[str]
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
@@ -1072,23 +931,17 @@ class ArrayOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('[str]', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_string_valid.metadata = {'url': '/array/prim/string/foo1.foo2.foo3'}
 
     def put_string_valid(
-            self, array_body, raw=False, **kwargs):
+            self,  **kwargs):
         """Set array value ['foo1', 'foo2', 'foo3'].
 
         :param array_body:
         :type array_body: list[str]
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
@@ -1115,20 +968,14 @@ class ArrayOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put_string_valid.metadata = {'url': '/array/prim/string/foo1.foo2.foo3'}
 
     def get_enum_valid(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get enum array value ['foo1', 'foo2', 'foo3'].
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: list or ClientRawResponse if raw=true
-        :rtype: list[str or ~bodyarray.models.FooEnum] or
-         ~msrest.pipeline.ClientRawResponse
+        :return: list
+        :rtype: list[str or ~bodyarray.models.FooEnum]
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
@@ -1156,23 +1003,17 @@ class ArrayOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('[FooEnum]', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_enum_valid.metadata = {'url': '/array/prim/enum/foo1.foo2.foo3'}
 
     def put_enum_valid(
-            self, array_body, raw=False, **kwargs):
+            self,  **kwargs):
         """Set array value ['foo1', 'foo2', 'foo3'].
 
         :param array_body:
         :type array_body: list[str or ~bodyarray.models.FooEnum]
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
@@ -1199,19 +1040,14 @@ class ArrayOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put_enum_valid.metadata = {'url': '/array/prim/enum/foo1.foo2.foo3'}
 
     def get_string_enum_valid(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get enum array value ['foo1', 'foo2', 'foo3'].
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: list or ClientRawResponse if raw=true
-        :rtype: list[str] or ~msrest.pipeline.ClientRawResponse
+        :return: list
+        :rtype: list[str]
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
@@ -1239,23 +1075,17 @@ class ArrayOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('[str]', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_string_enum_valid.metadata = {'url': '/array/prim/string-enum/foo1.foo2.foo3'}
 
     def put_string_enum_valid(
-            self, array_body, raw=False, **kwargs):
+            self,  **kwargs):
         """Set array value ['foo1', 'foo2', 'foo3'].
 
         :param array_body:
         :type array_body: list[str]
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
@@ -1282,19 +1112,14 @@ class ArrayOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put_string_enum_valid.metadata = {'url': '/array/prim/string-enum/foo1.foo2.foo3'}
 
     def get_string_with_null(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get string array value ['foo', null, 'foo2'].
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: list or ClientRawResponse if raw=true
-        :rtype: list[str] or ~msrest.pipeline.ClientRawResponse
+        :return: list
+        :rtype: list[str]
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
@@ -1322,21 +1147,15 @@ class ArrayOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('[str]', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_string_with_null.metadata = {'url': '/array/prim/string/foo.null.foo2'}
 
     def get_string_with_invalid(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get string array value ['foo', 123, 'foo2'].
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: list or ClientRawResponse if raw=true
-        :rtype: list[str] or ~msrest.pipeline.ClientRawResponse
+        :return: list
+        :rtype: list[str]
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
@@ -1364,23 +1183,17 @@ class ArrayOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('[str]', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_string_with_invalid.metadata = {'url': '/array/prim/string/foo.123.foo2'}
 
     def get_uuid_valid(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get uuid array value ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652',
         'd1399005-30f7-40d6-8da6-dd7c89ad34db',
         'f42f6aa1-a5bc-4ddf-907e-5f915de43205'].
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: list or ClientRawResponse if raw=true
-        :rtype: list[str] or ~msrest.pipeline.ClientRawResponse
+        :return: list
+        :rtype: list[str]
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
@@ -1408,25 +1221,19 @@ class ArrayOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('[str]', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_uuid_valid.metadata = {'url': '/array/prim/uuid/valid'}
 
     def put_uuid_valid(
-            self, array_body, raw=False, **kwargs):
+            self,  **kwargs):
         """Set array value  ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652',
         'd1399005-30f7-40d6-8da6-dd7c89ad34db',
         'f42f6aa1-a5bc-4ddf-907e-5f915de43205'].
 
         :param array_body:
         :type array_body: list[str]
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
@@ -1453,19 +1260,14 @@ class ArrayOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put_uuid_valid.metadata = {'url': '/array/prim/uuid/valid'}
 
     def get_uuid_invalid_chars(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get uuid array value ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652', 'foo'].
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: list or ClientRawResponse if raw=true
-        :rtype: list[str] or ~msrest.pipeline.ClientRawResponse
+        :return: list
+        :rtype: list[str]
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
@@ -1493,21 +1295,15 @@ class ArrayOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('[str]', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_uuid_invalid_chars.metadata = {'url': '/array/prim/uuid/invalidchars'}
 
     def get_date_valid(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get integer array value ['2000-12-01', '1980-01-02', '1492-10-12'].
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: list or ClientRawResponse if raw=true
-        :rtype: list[date] or ~msrest.pipeline.ClientRawResponse
+        :return: list
+        :rtype: list[date]
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
@@ -1535,23 +1331,17 @@ class ArrayOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('[date]', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_date_valid.metadata = {'url': '/array/prim/date/valid'}
 
     def put_date_valid(
-            self, array_body, raw=False, **kwargs):
+            self,  **kwargs):
         """Set array value  ['2000-12-01', '1980-01-02', '1492-10-12'].
 
         :param array_body:
         :type array_body: list[date]
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
@@ -1578,19 +1368,14 @@ class ArrayOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put_date_valid.metadata = {'url': '/array/prim/date/valid'}
 
     def get_date_invalid_null(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get date array value ['2012-01-01', null, '1776-07-04'].
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: list or ClientRawResponse if raw=true
-        :rtype: list[date] or ~msrest.pipeline.ClientRawResponse
+        :return: list
+        :rtype: list[date]
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
@@ -1618,21 +1403,15 @@ class ArrayOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('[date]', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_date_invalid_null.metadata = {'url': '/array/prim/date/invalidnull'}
 
     def get_date_invalid_chars(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get date array value ['2011-03-22', 'date'].
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: list or ClientRawResponse if raw=true
-        :rtype: list[date] or ~msrest.pipeline.ClientRawResponse
+        :return: list
+        :rtype: list[date]
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
@@ -1660,22 +1439,16 @@ class ArrayOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('[date]', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_date_invalid_chars.metadata = {'url': '/array/prim/date/invalidchars'}
 
     def get_date_time_valid(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get date-time array value ['2000-12-01t00:00:01z',
         '1980-01-02T00:11:35+01:00', '1492-10-12T10:15:01-08:00'].
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: list or ClientRawResponse if raw=true
-        :rtype: list[datetime] or ~msrest.pipeline.ClientRawResponse
+        :return: list
+        :rtype: list[datetime]
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
@@ -1703,24 +1476,18 @@ class ArrayOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('[iso-8601]', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_date_time_valid.metadata = {'url': '/array/prim/date-time/valid'}
 
     def put_date_time_valid(
-            self, array_body, raw=False, **kwargs):
+            self,  **kwargs):
         """Set array value  ['2000-12-01t00:00:01z', '1980-01-02T00:11:35+01:00',
         '1492-10-12T10:15:01-08:00'].
 
         :param array_body:
         :type array_body: list[datetime]
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
@@ -1747,19 +1514,14 @@ class ArrayOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put_date_time_valid.metadata = {'url': '/array/prim/date-time/valid'}
 
     def get_date_time_invalid_null(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get date array value ['2000-12-01t00:00:01z', null].
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: list or ClientRawResponse if raw=true
-        :rtype: list[datetime] or ~msrest.pipeline.ClientRawResponse
+        :return: list
+        :rtype: list[datetime]
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
@@ -1787,21 +1549,15 @@ class ArrayOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('[iso-8601]', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_date_time_invalid_null.metadata = {'url': '/array/prim/date-time/invalidnull'}
 
     def get_date_time_invalid_chars(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get date array value ['2000-12-01t00:00:01z', 'date-time'].
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: list or ClientRawResponse if raw=true
-        :rtype: list[datetime] or ~msrest.pipeline.ClientRawResponse
+        :return: list
+        :rtype: list[datetime]
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
@@ -1829,22 +1585,16 @@ class ArrayOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('[iso-8601]', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_date_time_invalid_chars.metadata = {'url': '/array/prim/date-time/invalidchars'}
 
     def get_date_time_rfc1123_valid(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get date-time array value ['Fri, 01 Dec 2000 00:00:01 GMT', 'Wed, 02
         Jan 1980 00:11:35 GMT', 'Wed, 12 Oct 1492 10:15:01 GMT'].
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: list or ClientRawResponse if raw=true
-        :rtype: list[datetime] or ~msrest.pipeline.ClientRawResponse
+        :return: list
+        :rtype: list[datetime]
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
@@ -1872,24 +1622,18 @@ class ArrayOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('[rfc-1123]', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_date_time_rfc1123_valid.metadata = {'url': '/array/prim/date-time-rfc1123/valid'}
 
     def put_date_time_rfc1123_valid(
-            self, array_body, raw=False, **kwargs):
+            self,  **kwargs):
         """Set array value  ['Fri, 01 Dec 2000 00:00:01 GMT', 'Wed, 02 Jan 1980
         00:11:35 GMT', 'Wed, 12 Oct 1492 10:15:01 GMT'].
 
         :param array_body:
         :type array_body: list[datetime]
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
@@ -1916,19 +1660,14 @@ class ArrayOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put_date_time_rfc1123_valid.metadata = {'url': '/array/prim/date-time-rfc1123/valid'}
 
     def get_duration_valid(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get duration array value ['P123DT22H14M12.011S', 'P5DT1H0M0S'].
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: list or ClientRawResponse if raw=true
-        :rtype: list[timedelta] or ~msrest.pipeline.ClientRawResponse
+        :return: list
+        :rtype: list[timedelta]
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
@@ -1956,23 +1695,17 @@ class ArrayOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('[duration]', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_duration_valid.metadata = {'url': '/array/prim/duration/valid'}
 
     def put_duration_valid(
-            self, array_body, raw=False, **kwargs):
+            self,  **kwargs):
         """Set array value  ['P123DT22H14M12.011S', 'P5DT1H0M0S'].
 
         :param array_body:
         :type array_body: list[timedelta]
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
@@ -1999,20 +1732,15 @@ class ArrayOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put_duration_valid.metadata = {'url': '/array/prim/duration/valid'}
 
     def get_byte_valid(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get byte array value [hex(FF FF FF FA), hex(01 02 03), hex (25, 29,
         43)] with each item encoded in base64.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: list or ClientRawResponse if raw=true
-        :rtype: list[bytearray] or ~msrest.pipeline.ClientRawResponse
+        :return: list
+        :rtype: list[bytearray]
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
@@ -2040,24 +1768,18 @@ class ArrayOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('[bytearray]', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_byte_valid.metadata = {'url': '/array/prim/byte/valid'}
 
     def put_byte_valid(
-            self, array_body, raw=False, **kwargs):
+            self,  **kwargs):
         """Put the array value [hex(FF FF FF FA), hex(01 02 03), hex (25, 29, 43)]
         with each elementencoded in base 64.
 
         :param array_body:
         :type array_body: list[bytearray]
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
@@ -2084,20 +1806,15 @@ class ArrayOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put_byte_valid.metadata = {'url': '/array/prim/byte/valid'}
 
     def get_byte_invalid_null(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get byte array value [hex(AB, AC, AD), null] with the first item base64
         encoded.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: list or ClientRawResponse if raw=true
-        :rtype: list[bytearray] or ~msrest.pipeline.ClientRawResponse
+        :return: list
+        :rtype: list[bytearray]
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
@@ -2125,22 +1842,16 @@ class ArrayOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('[bytearray]', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_byte_invalid_null.metadata = {'url': '/array/prim/byte/invalidnull'}
 
     def get_base64_url(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get array value ['a string that gets encoded with base64url', 'test
         string' 'Lorem ipsum'] with the items base64url encoded.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: list or ClientRawResponse if raw=true
-        :rtype: list[bytes] or ~msrest.pipeline.ClientRawResponse
+        :return: list
+        :rtype: list[bytes]
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
@@ -2168,22 +1879,15 @@ class ArrayOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('[base64]', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_base64_url.metadata = {'url': '/array/prim/base64url/valid'}
 
     def get_complex_null(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get array of complex type null value.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: list or ClientRawResponse if raw=true
-        :rtype: list[~bodyarray.models.Product] or
-         ~msrest.pipeline.ClientRawResponse
+        :return: list
+        :rtype: list[~bodyarray.models.Product]
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
@@ -2211,22 +1915,15 @@ class ArrayOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('[Product]', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_complex_null.metadata = {'url': '/array/complex/null'}
 
     def get_complex_empty(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get empty array of complex type [].
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: list or ClientRawResponse if raw=true
-        :rtype: list[~bodyarray.models.Product] or
-         ~msrest.pipeline.ClientRawResponse
+        :return: list
+        :rtype: list[~bodyarray.models.Product]
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
@@ -2254,23 +1951,16 @@ class ArrayOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('[Product]', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_complex_empty.metadata = {'url': '/array/complex/empty'}
 
     def get_complex_item_null(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get array of complex type with null item [{'integer': 1 'string': '2'},
         null, {'integer': 5, 'string': '6'}].
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: list or ClientRawResponse if raw=true
-        :rtype: list[~bodyarray.models.Product] or
-         ~msrest.pipeline.ClientRawResponse
+        :return: list
+        :rtype: list[~bodyarray.models.Product]
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
@@ -2298,23 +1988,16 @@ class ArrayOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('[Product]', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_complex_item_null.metadata = {'url': '/array/complex/itemnull'}
 
     def get_complex_item_empty(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get array of complex type with empty item [{'integer': 1 'string':
         '2'}, {}, {'integer': 5, 'string': '6'}].
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: list or ClientRawResponse if raw=true
-        :rtype: list[~bodyarray.models.Product] or
-         ~msrest.pipeline.ClientRawResponse
+        :return: list
+        :rtype: list[~bodyarray.models.Product]
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
@@ -2342,23 +2025,16 @@ class ArrayOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('[Product]', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_complex_item_empty.metadata = {'url': '/array/complex/itemempty'}
 
     def get_complex_valid(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get array of complex type with [{'integer': 1 'string': '2'},
         {'integer': 3, 'string': '4'}, {'integer': 5, 'string': '6'}].
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: list or ClientRawResponse if raw=true
-        :rtype: list[~bodyarray.models.Product] or
-         ~msrest.pipeline.ClientRawResponse
+        :return: list
+        :rtype: list[~bodyarray.models.Product]
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
@@ -2386,24 +2062,18 @@ class ArrayOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('[Product]', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_complex_valid.metadata = {'url': '/array/complex/valid'}
 
     def put_complex_valid(
-            self, array_body, raw=False, **kwargs):
+            self,  **kwargs):
         """Put an array of complex type with values [{'integer': 1 'string': '2'},
         {'integer': 3, 'string': '4'}, {'integer': 5, 'string': '6'}].
 
         :param array_body:
         :type array_body: list[~bodyarray.models.Product]
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
@@ -2430,19 +2100,14 @@ class ArrayOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put_complex_valid.metadata = {'url': '/array/complex/valid'}
 
     def get_array_null(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get a null array.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: list or ClientRawResponse if raw=true
-        :rtype: list[list[str]] or ~msrest.pipeline.ClientRawResponse
+        :return: list
+        :rtype: list[list[str]]
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
@@ -2470,21 +2135,15 @@ class ArrayOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('[[str]]', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_array_null.metadata = {'url': '/array/array/null'}
 
     def get_array_empty(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get an empty array [].
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: list or ClientRawResponse if raw=true
-        :rtype: list[list[str]] or ~msrest.pipeline.ClientRawResponse
+        :return: list
+        :rtype: list[list[str]]
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
@@ -2512,22 +2171,16 @@ class ArrayOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('[[str]]', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_array_empty.metadata = {'url': '/array/array/empty'}
 
     def get_array_item_null(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get an array of array of strings [['1', '2', '3'], null, ['7', '8',
         '9']].
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: list or ClientRawResponse if raw=true
-        :rtype: list[list[str]] or ~msrest.pipeline.ClientRawResponse
+        :return: list
+        :rtype: list[list[str]]
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
@@ -2555,22 +2208,16 @@ class ArrayOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('[[str]]', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_array_item_null.metadata = {'url': '/array/array/itemnull'}
 
     def get_array_item_empty(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get an array of array of strings [['1', '2', '3'], [], ['7', '8',
         '9']].
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: list or ClientRawResponse if raw=true
-        :rtype: list[list[str]] or ~msrest.pipeline.ClientRawResponse
+        :return: list
+        :rtype: list[list[str]]
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
@@ -2598,22 +2245,16 @@ class ArrayOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('[[str]]', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_array_item_empty.metadata = {'url': '/array/array/itemempty'}
 
     def get_array_valid(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get an array of array of strings [['1', '2', '3'], ['4', '5', '6'],
         ['7', '8', '9']].
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: list or ClientRawResponse if raw=true
-        :rtype: list[list[str]] or ~msrest.pipeline.ClientRawResponse
+        :return: list
+        :rtype: list[list[str]]
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
@@ -2641,24 +2282,18 @@ class ArrayOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('[[str]]', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_array_valid.metadata = {'url': '/array/array/valid'}
 
     def put_array_valid(
-            self, array_body, raw=False, **kwargs):
+            self,  **kwargs):
         """Put An array of array of strings [['1', '2', '3'], ['4', '5', '6'],
         ['7', '8', '9']].
 
         :param array_body:
         :type array_body: list[list[str]]
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
@@ -2685,19 +2320,14 @@ class ArrayOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put_array_valid.metadata = {'url': '/array/array/valid'}
 
     def get_dictionary_null(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get an array of Dictionaries with value null.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: list or ClientRawResponse if raw=true
-        :rtype: list[dict[str, str]] or ~msrest.pipeline.ClientRawResponse
+        :return: list
+        :rtype: list[dict[str, str]]
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
@@ -2725,21 +2355,15 @@ class ArrayOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('[{str}]', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_dictionary_null.metadata = {'url': '/array/dictionary/null'}
 
     def get_dictionary_empty(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get an array of Dictionaries of type <string, string> with value [].
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: list or ClientRawResponse if raw=true
-        :rtype: list[dict[str, str]] or ~msrest.pipeline.ClientRawResponse
+        :return: list
+        :rtype: list[dict[str, str]]
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
@@ -2767,23 +2391,17 @@ class ArrayOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('[{str}]', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_dictionary_empty.metadata = {'url': '/array/dictionary/empty'}
 
     def get_dictionary_item_null(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get an array of Dictionaries of type <string, string> with value [{'1':
         'one', '2': 'two', '3': 'three'}, null, {'7': 'seven', '8': 'eight',
         '9': 'nine'}].
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: list or ClientRawResponse if raw=true
-        :rtype: list[dict[str, str]] or ~msrest.pipeline.ClientRawResponse
+        :return: list
+        :rtype: list[dict[str, str]]
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
@@ -2811,23 +2429,17 @@ class ArrayOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('[{str}]', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_dictionary_item_null.metadata = {'url': '/array/dictionary/itemnull'}
 
     def get_dictionary_item_empty(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get an array of Dictionaries of type <string, string> with value [{'1':
         'one', '2': 'two', '3': 'three'}, {}, {'7': 'seven', '8': 'eight', '9':
         'nine'}].
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: list or ClientRawResponse if raw=true
-        :rtype: list[dict[str, str]] or ~msrest.pipeline.ClientRawResponse
+        :return: list
+        :rtype: list[dict[str, str]]
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
@@ -2855,23 +2467,17 @@ class ArrayOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('[{str}]', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_dictionary_item_empty.metadata = {'url': '/array/dictionary/itemempty'}
 
     def get_dictionary_valid(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get an array of Dictionaries of type <string, string> with value [{'1':
         'one', '2': 'two', '3': 'three'}, {'4': 'four', '5': 'five', '6':
         'six'}, {'7': 'seven', '8': 'eight', '9': 'nine'}].
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: list or ClientRawResponse if raw=true
-        :rtype: list[dict[str, str]] or ~msrest.pipeline.ClientRawResponse
+        :return: list
+        :rtype: list[dict[str, str]]
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
@@ -2899,25 +2505,19 @@ class ArrayOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('[{str}]', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_dictionary_valid.metadata = {'url': '/array/dictionary/valid'}
 
     def put_dictionary_valid(
-            self, array_body, raw=False, **kwargs):
+            self,  **kwargs):
         """Get an array of Dictionaries of type <string, string> with value [{'1':
         'one', '2': 'two', '3': 'three'}, {'4': 'four', '5': 'five', '6':
         'six'}, {'7': 'seven', '8': 'eight', '9': 'nine'}].
 
         :param array_body:
         :type array_body: list[dict[str, str]]
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<bodyarray.models.ErrorException>`
         """
         # Construct URL
@@ -2944,7 +2544,4 @@ class ArrayOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put_dictionary_valid.metadata = {'url': '/array/dictionary/valid'}

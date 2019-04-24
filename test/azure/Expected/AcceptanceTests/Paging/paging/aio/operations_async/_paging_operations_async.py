@@ -10,7 +10,6 @@
 # --------------------------------------------------------------------------
 
 import uuid
-from msrest.pipeline import ClientRawResponse
 from azure.core import HttpRequestError
 from msrest.polling.async_poller import async_poller, AsyncNoPolling
 from msrestazure.polling.async_arm_polling import AsyncARMPolling
@@ -40,11 +39,9 @@ class PagingOperations:
         self._config = config
 
     def get_single_pages(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """A paging operation that finishes on the first call without a nextlink.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
         :return: An iterator like instance of Product
         :rtype: ~paging.models.ProductPaged[~paging.models.Product]
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
@@ -104,8 +101,6 @@ class PagingOperations:
 
         # Deserialize response
         header_dict = None
-        if raw:
-            header_dict = {}
         deserialized = models.ProductPaged(
             internal_paging, self._deserialize.dependencies, header_dict, async_command=internal_paging_async)
 
@@ -113,7 +108,7 @@ class PagingOperations:
     get_single_pages.metadata = {'url': '/paging/single'}
 
     def get_multiple_pages(
-            self, client_request_id=None, paging_get_multiple_pages_options=None, *, raw=False, **kwargs):
+            self, client_request_id=None, paging_get_multiple_pages_options=None, **kwargs):
         """A paging operation that includes a nextLink that has 10 pages.
 
         :param client_request_id:
@@ -122,8 +117,6 @@ class PagingOperations:
          the operation
         :type paging_get_multiple_pages_options:
          ~paging.models.PagingGetMultiplePagesOptions
-        :param bool raw: returns the direct response alongside the
-         deserialized response
         :return: An iterator like instance of Product
         :rtype: ~paging.models.ProductPaged[~paging.models.Product]
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
@@ -196,8 +189,6 @@ class PagingOperations:
 
         # Deserialize response
         header_dict = None
-        if raw:
-            header_dict = {}
         deserialized = models.ProductPaged(
             internal_paging, self._deserialize.dependencies, header_dict, async_command=internal_paging_async)
 
@@ -205,7 +196,7 @@ class PagingOperations:
     get_multiple_pages.metadata = {'url': '/paging/multiple'}
 
     def get_odata_multiple_pages(
-            self, client_request_id=None, paging_get_odata_multiple_pages_options=None, *, raw=False, **kwargs):
+            self, client_request_id=None, paging_get_odata_multiple_pages_options=None, **kwargs):
         """A paging operation that includes a nextLink in odata format that has 10
         pages.
 
@@ -215,8 +206,6 @@ class PagingOperations:
          for the operation
         :type paging_get_odata_multiple_pages_options:
          ~paging.models.PagingGetOdataMultiplePagesOptions
-        :param bool raw: returns the direct response alongside the
-         deserialized response
         :return: An iterator like instance of Product
         :rtype: ~paging.models.ProductPaged1[~paging.models.Product]
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
@@ -289,8 +278,6 @@ class PagingOperations:
 
         # Deserialize response
         header_dict = None
-        if raw:
-            header_dict = {}
         deserialized = models.ProductPaged1(
             internal_paging, self._deserialize.dependencies, header_dict, async_command=internal_paging_async)
 
@@ -298,7 +285,7 @@ class PagingOperations:
     get_odata_multiple_pages.metadata = {'url': '/paging/multiple/odata'}
 
     def get_multiple_pages_with_offset(
-            self, paging_get_multiple_pages_with_offset_options, client_request_id=None, *, raw=False, **kwargs):
+            self, paging_get_multiple_pages_with_offset_options, client_request_id=None, **kwargs):
         """A paging operation that includes a nextLink that has 10 pages.
 
         :param paging_get_multiple_pages_with_offset_options: Additional
@@ -307,8 +294,6 @@ class PagingOperations:
          ~paging.models.PagingGetMultiplePagesWithOffsetOptions
         :param client_request_id:
         :type client_request_id: str
-        :param bool raw: returns the direct response alongside the
-         deserialized response
         :return: An iterator like instance of Product
         :rtype: ~paging.models.ProductPaged[~paging.models.Product]
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
@@ -388,8 +373,6 @@ class PagingOperations:
 
         # Deserialize response
         header_dict = None
-        if raw:
-            header_dict = {}
         deserialized = models.ProductPaged(
             internal_paging, self._deserialize.dependencies, header_dict, async_command=internal_paging_async)
 
@@ -397,12 +380,10 @@ class PagingOperations:
     get_multiple_pages_with_offset.metadata = {'url': '/paging/multiple/withpath/{offset}'}
 
     def get_multiple_pages_retry_first(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """A paging operation that fails on the first call with 500 and then
         retries and then get a response including a nextLink that has 10 pages.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
         :return: An iterator like instance of Product
         :rtype: ~paging.models.ProductPaged[~paging.models.Product]
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
@@ -462,8 +443,6 @@ class PagingOperations:
 
         # Deserialize response
         header_dict = None
-        if raw:
-            header_dict = {}
         deserialized = models.ProductPaged(
             internal_paging, self._deserialize.dependencies, header_dict, async_command=internal_paging_async)
 
@@ -471,13 +450,11 @@ class PagingOperations:
     get_multiple_pages_retry_first.metadata = {'url': '/paging/multiple/retryfirst'}
 
     def get_multiple_pages_retry_second(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """A paging operation that includes a nextLink that has 10 pages, of which
         the 2nd call fails first with 500. The client should retry and finish
         all 10 pages eventually.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
         :return: An iterator like instance of Product
         :rtype: ~paging.models.ProductPaged[~paging.models.Product]
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
@@ -537,8 +514,6 @@ class PagingOperations:
 
         # Deserialize response
         header_dict = None
-        if raw:
-            header_dict = {}
         deserialized = models.ProductPaged(
             internal_paging, self._deserialize.dependencies, header_dict, async_command=internal_paging_async)
 
@@ -546,11 +521,9 @@ class PagingOperations:
     get_multiple_pages_retry_second.metadata = {'url': '/paging/multiple/retrysecond'}
 
     def get_single_pages_failure(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """A paging operation that receives a 400 on the first call.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
         :return: An iterator like instance of Product
         :rtype: ~paging.models.ProductPaged[~paging.models.Product]
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
@@ -610,8 +583,6 @@ class PagingOperations:
 
         # Deserialize response
         header_dict = None
-        if raw:
-            header_dict = {}
         deserialized = models.ProductPaged(
             internal_paging, self._deserialize.dependencies, header_dict, async_command=internal_paging_async)
 
@@ -619,11 +590,9 @@ class PagingOperations:
     get_single_pages_failure.metadata = {'url': '/paging/single/failure'}
 
     def get_multiple_pages_failure(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """A paging operation that receives a 400 on the second call.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
         :return: An iterator like instance of Product
         :rtype: ~paging.models.ProductPaged[~paging.models.Product]
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
@@ -683,8 +652,6 @@ class PagingOperations:
 
         # Deserialize response
         header_dict = None
-        if raw:
-            header_dict = {}
         deserialized = models.ProductPaged(
             internal_paging, self._deserialize.dependencies, header_dict, async_command=internal_paging_async)
 
@@ -692,11 +659,9 @@ class PagingOperations:
     get_multiple_pages_failure.metadata = {'url': '/paging/multiple/failure'}
 
     def get_multiple_pages_failure_uri(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """A paging operation that receives an invalid nextLink.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
         :return: An iterator like instance of Product
         :rtype: ~paging.models.ProductPaged[~paging.models.Product]
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
@@ -756,8 +721,6 @@ class PagingOperations:
 
         # Deserialize response
         header_dict = None
-        if raw:
-            header_dict = {}
         deserialized = models.ProductPaged(
             internal_paging, self._deserialize.dependencies, header_dict, async_command=internal_paging_async)
 
@@ -765,15 +728,13 @@ class PagingOperations:
     get_multiple_pages_failure_uri.metadata = {'url': '/paging/multiple/failureuri'}
 
     def get_multiple_pages_fragment_next_link(
-            self, api_version, tenant, *, raw=False, **kwargs):
+            self,  **kwargs):
         """A paging operation that doesn't return a full URL, just a fragment.
 
         :param api_version: Sets the api version to use.
         :type api_version: str
         :param tenant: Sets the tenant to use.
         :type tenant: str
-        :param bool raw: returns the direct response alongside the
-         deserialized response
         :return: An iterator like instance of Product
         :rtype: ~paging.models.ProductPaged1[~paging.models.Product]
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
@@ -844,8 +805,6 @@ class PagingOperations:
 
         # Deserialize response
         header_dict = None
-        if raw:
-            header_dict = {}
         deserialized = models.ProductPaged1(
             internal_paging, self._deserialize.dependencies, header_dict, async_command=internal_paging_async)
 
@@ -853,14 +812,12 @@ class PagingOperations:
     get_multiple_pages_fragment_next_link.metadata = {'url': '/paging/multiple/fragment/{tenant}'}
 
     def get_multiple_pages_fragment_with_grouping_next_link(
-            self, custom_parameter_group, *, raw=False, **kwargs):
+            self,  **kwargs):
         """A paging operation that doesn't return a full URL, just a fragment with
         parameters grouped.
 
         :param custom_parameter_group: Additional parameters for the operation
         :type custom_parameter_group: ~paging.models.CustomParameterGroup
-        :param bool raw: returns the direct response alongside the
-         deserialized response
         :return: An iterator like instance of Product
         :rtype: ~paging.models.ProductPaged1[~paging.models.Product]
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
@@ -938,8 +895,6 @@ class PagingOperations:
 
         # Deserialize response
         header_dict = None
-        if raw:
-            header_dict = {}
         deserialized = models.ProductPaged1(
             internal_paging, self._deserialize.dependencies, header_dict, async_command=internal_paging_async)
 
@@ -948,7 +903,7 @@ class PagingOperations:
 
 
     async def _get_multiple_pages_lro_initial(
-            self, client_request_id=None, paging_get_multiple_pages_lro_options=None, *, raw=False, **kwargs):
+            self, client_request_id=None, paging_get_multiple_pages_lro_options=None, **kwargs):
         maxresults = None
         if paging_get_multiple_pages_lro_options is not None:
             maxresults = paging_get_multiple_pages_lro_options.maxresults
@@ -994,14 +949,10 @@ class PagingOperations:
         if response.status_code == 202:
             deserialized = self._deserialize('ProductResult', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
 
     async def get_multiple_pages_lro(
-            self, client_request_id=None, paging_get_multiple_pages_lro_options=None, *, raw=False, polling=True, **kwargs):
+            self, client_request_id=None, paging_get_multiple_pages_lro_options=None, polling=True, **kwargs):
         """A long-running paging operation that includes a nextLink that has 10
         pages.
 
@@ -1011,14 +962,10 @@ class PagingOperations:
          for the operation
         :type paging_get_multiple_pages_lro_options:
          ~paging.models.PagingGetMultiplePagesLroOptions
-        :param bool raw: The poller return type is ClientRawResponse, the
-         direct response alongside the deserialized response
         :param polling: True for AsyncARMPolling, False for no polling, or a
          polling object for personal polling strategy
-        :return: An instance of ProductResult or
-         ClientRawResponse<ProductResult> if raw==True
-        :rtype: ~~paging.models.ProductResult or
-         ~msrest.pipeline.ClientRawResponse[~paging.models.ProductResult]
+        :return: An instance of ProductResult
+        :rtype: ~~paging.models.ProductResult
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         raw_result = await self._get_multiple_pages_lro_initial(
@@ -1030,10 +977,6 @@ class PagingOperations:
 
         def get_long_running_output(response):
             deserialized = self._deserialize('ProductResult', response)
-
-            if raw:
-                client_raw_response = ClientRawResponse(deserialized, response)
-                return client_raw_response
 
             return deserialized
 

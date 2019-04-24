@@ -9,7 +9,6 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.pipeline import ClientRawResponse
 from azure.core import HttpRequestError
 from ... import models
 
@@ -17,7 +16,7 @@ from ... import models
 class AutoRestValidationTestOperationsMixin:
 
     async def validation_of_method_parameters(
-            self, resource_group_name, id, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Validates input parameters on the method. See swagger for details.
 
         :param resource_group_name: Required string between 3 and 10 chars
@@ -25,11 +24,8 @@ class AutoRestValidationTestOperationsMixin:
         :type resource_group_name: str
         :param id: Required int multiple of 10 from 100 to 1000.
         :type id: int
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: Product or ClientRawResponse if raw=true
-        :rtype: ~validation.models.Product or
-         ~msrest.pipeline.ClientRawResponse
+        :return: Product
+        :rtype: ~validation.models.Product
         :raises: :class:`ErrorException<validation.models.ErrorException>`
         """
         # Construct URL
@@ -64,15 +60,11 @@ class AutoRestValidationTestOperationsMixin:
         if response.status_code == 200:
             deserialized = self._deserialize('Product', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     validation_of_method_parameters.metadata = {'url': '/fakepath/{subscriptionId}/{resourceGroupName}/{id}'}
 
     async def validation_of_body(
-            self, resource_group_name, id, body=None, *, raw=False, **kwargs):
+            self, resource_group_name, id, body=None, **kwargs):
         """Validates body parameters on the method. See swagger for details.
 
         :param resource_group_name: Required string between 3 and 10 chars
@@ -82,11 +74,8 @@ class AutoRestValidationTestOperationsMixin:
         :type id: int
         :param body:
         :type body: ~validation.models.Product
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: Product or ClientRawResponse if raw=true
-        :rtype: ~validation.models.Product or
-         ~msrest.pipeline.ClientRawResponse
+        :return: Product
+        :rtype: ~validation.models.Product
         :raises: :class:`ErrorException<validation.models.ErrorException>`
         """
         # Construct URL
@@ -128,21 +117,15 @@ class AutoRestValidationTestOperationsMixin:
         if response.status_code == 200:
             deserialized = self._deserialize('Product', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     validation_of_body.metadata = {'url': '/fakepath/{subscriptionId}/{resourceGroupName}/{id}'}
 
     async def get_with_constant_in_path(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         constant_param = "constant"
@@ -171,22 +154,16 @@ class AutoRestValidationTestOperationsMixin:
         if response.status_code not in [200]:
             raise HttpRequestError(response=response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     get_with_constant_in_path.metadata = {'url': '/validation/constantsInPath/{constantParam}/value'}
 
     async def post_with_constant_in_body(
-            self, body=None, *, raw=False, **kwargs):
+            self, body=None, **kwargs):
         """
 
         :param body:
         :type body: ~validation.models.Product
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: Product or ClientRawResponse if raw=true
-        :rtype: ~validation.models.Product or
-         ~msrest.pipeline.ClientRawResponse
+        :return: Product
+        :rtype: ~validation.models.Product
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         constant_param = "constant"
@@ -226,10 +203,6 @@ class AutoRestValidationTestOperationsMixin:
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('Product', response)
-
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
 
         return deserialized
     post_with_constant_in_body.metadata = {'url': '/validation/constantsInPath/{constantParam}/value'}

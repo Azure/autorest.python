@@ -10,7 +10,6 @@
 # --------------------------------------------------------------------------
 
 import uuid
-from msrest.pipeline import ClientRawResponse
 
 from .. import models
 
@@ -37,16 +36,14 @@ class HeaderOperations(object):
         self._config = config
 
     def custom_named_request_id(
-            self, foo_client_request_id, raw=False, **kwargs):
+            self,  **kwargs):
         """Send foo-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in
         the header of the request.
 
         :param foo_client_request_id: The fooRequestId
         :type foo_client_request_id: str
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises:
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
         """
@@ -75,16 +72,10 @@ class HeaderOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            client_raw_response.add_headers({
-                'foo-request-id': 'str',
-            })
-            return client_raw_response
     custom_named_request_id.metadata = {'url': '/azurespecials/customNamedRequestId'}
 
     def custom_named_request_id_param_grouping(
-            self, header_custom_named_request_id_param_grouping_parameters, raw=False, **kwargs):
+            self,  **kwargs):
         """Send foo-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in
         the header of the request, via a parameter group.
 
@@ -92,10 +83,8 @@ class HeaderOperations(object):
          Additional parameters for the operation
         :type header_custom_named_request_id_param_grouping_parameters:
          ~azurespecialproperties.models.HeaderCustomNamedRequestIdParamGroupingParameters
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises:
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
         """
@@ -128,25 +117,17 @@ class HeaderOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            client_raw_response.add_headers({
-                'foo-request-id': 'str',
-            })
-            return client_raw_response
     custom_named_request_id_param_grouping.metadata = {'url': '/azurespecials/customNamedRequestIdParamGrouping'}
 
     def custom_named_request_id_head(
-            self, foo_client_request_id, raw=False, **kwargs):
+            self,  **kwargs):
         """Send foo-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in
         the header of the request.
 
         :param foo_client_request_id: The fooRequestId
         :type foo_client_request_id: str
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: bool or ClientRawResponse if raw=true
-        :rtype: bool or ~msrest.pipeline.ClientRawResponse
+        :return: bool
+        :rtype: bool
         :raises:
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
         """
@@ -176,11 +157,5 @@ class HeaderOperations(object):
             raise models.ErrorException(self._deserialize, response)
 
         deserialized = (response.status_code == 200)
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            client_raw_response.add_headers({
-                'foo-request-id': 'str',
-                })
-            return client_raw_response
         return deserialized
     custom_named_request_id_head.metadata = {'url': '/azurespecials/customNamedRequestIdHead'}

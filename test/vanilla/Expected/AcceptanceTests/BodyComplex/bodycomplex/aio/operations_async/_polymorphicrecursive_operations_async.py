@@ -9,7 +9,6 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.pipeline import ClientRawResponse
 
 from ... import models
 
@@ -36,13 +35,11 @@ class PolymorphicrecursiveOperations:
         self._config = config
 
     async def get_valid(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Get complex types that are polymorphic and have recursive references.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: Fish or ClientRawResponse if raw=true
-        :rtype: ~bodycomplex.models.Fish or ~msrest.pipeline.ClientRawResponse
+        :return: Fish
+        :rtype: ~bodycomplex.models.Fish
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
@@ -70,15 +67,11 @@ class PolymorphicrecursiveOperations:
         if response.status_code == 200:
             deserialized = self._deserialize('Fish', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_valid.metadata = {'url': '/complex/polymorphicrecursive/valid'}
 
     async def put_valid(
-            self, complex_body, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Put complex types that are polymorphic and have recursive references.
 
         :param complex_body: Please put a salmon that looks like this:
@@ -135,10 +128,8 @@ class PolymorphicrecursiveOperations:
          ]
          }
         :type complex_body: ~bodycomplex.models.Fish
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
@@ -165,7 +156,4 @@ class PolymorphicrecursiveOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put_valid.metadata = {'url': '/complex/polymorphicrecursive/valid'}

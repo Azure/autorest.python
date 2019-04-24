@@ -9,7 +9,6 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.pipeline import ClientRawResponse
 
 from .. import models
 
@@ -36,13 +35,11 @@ class Datetimerfc1123Operations(object):
         self._config = config
 
     def get_null(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get null datetime value.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: datetime or ClientRawResponse if raw=true
-        :rtype: datetime or ~msrest.pipeline.ClientRawResponse
+        :return: datetime
+        :rtype: datetime
         :raises:
          :class:`ErrorException<bodydatetimerfc1123.models.ErrorException>`
         """
@@ -71,21 +68,15 @@ class Datetimerfc1123Operations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('rfc-1123', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_null.metadata = {'url': '/datetimerfc1123/null'}
 
     def get_invalid(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get invalid datetime value.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: datetime or ClientRawResponse if raw=true
-        :rtype: datetime or ~msrest.pipeline.ClientRawResponse
+        :return: datetime
+        :rtype: datetime
         :raises:
          :class:`ErrorException<bodydatetimerfc1123.models.ErrorException>`
         """
@@ -114,21 +105,15 @@ class Datetimerfc1123Operations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('rfc-1123', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_invalid.metadata = {'url': '/datetimerfc1123/invalid'}
 
     def get_overflow(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get overflow datetime value.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: datetime or ClientRawResponse if raw=true
-        :rtype: datetime or ~msrest.pipeline.ClientRawResponse
+        :return: datetime
+        :rtype: datetime
         :raises:
          :class:`ErrorException<bodydatetimerfc1123.models.ErrorException>`
         """
@@ -157,21 +142,15 @@ class Datetimerfc1123Operations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('rfc-1123', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_overflow.metadata = {'url': '/datetimerfc1123/overflow'}
 
     def get_underflow(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get underflow datetime value.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: datetime or ClientRawResponse if raw=true
-        :rtype: datetime or ~msrest.pipeline.ClientRawResponse
+        :return: datetime
+        :rtype: datetime
         :raises:
          :class:`ErrorException<bodydatetimerfc1123.models.ErrorException>`
         """
@@ -200,23 +179,17 @@ class Datetimerfc1123Operations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('rfc-1123', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_underflow.metadata = {'url': '/datetimerfc1123/underflow'}
 
     def put_utc_max_date_time(
-            self, datetime_body, raw=False, **kwargs):
+            self,  **kwargs):
         """Put max datetime value Fri, 31 Dec 9999 23:59:59 GMT.
 
         :param datetime_body:
         :type datetime_body: datetime
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises:
          :class:`ErrorException<bodydatetimerfc1123.models.ErrorException>`
         """
@@ -244,19 +217,14 @@ class Datetimerfc1123Operations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put_utc_max_date_time.metadata = {'url': '/datetimerfc1123/max'}
 
     def get_utc_lowercase_max_date_time(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get max datetime value fri, 31 dec 9999 23:59:59 gmt.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: datetime or ClientRawResponse if raw=true
-        :rtype: datetime or ~msrest.pipeline.ClientRawResponse
+        :return: datetime
+        :rtype: datetime
         :raises:
          :class:`ErrorException<bodydatetimerfc1123.models.ErrorException>`
         """
@@ -285,21 +253,15 @@ class Datetimerfc1123Operations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('rfc-1123', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_utc_lowercase_max_date_time.metadata = {'url': '/datetimerfc1123/max/lowercase'}
 
     def get_utc_uppercase_max_date_time(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get max datetime value FRI, 31 DEC 9999 23:59:59 GMT.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: datetime or ClientRawResponse if raw=true
-        :rtype: datetime or ~msrest.pipeline.ClientRawResponse
+        :return: datetime
+        :rtype: datetime
         :raises:
          :class:`ErrorException<bodydatetimerfc1123.models.ErrorException>`
         """
@@ -328,23 +290,17 @@ class Datetimerfc1123Operations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('rfc-1123', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_utc_uppercase_max_date_time.metadata = {'url': '/datetimerfc1123/max/uppercase'}
 
     def put_utc_min_date_time(
-            self, datetime_body, raw=False, **kwargs):
+            self,  **kwargs):
         """Put min datetime value Mon, 1 Jan 0001 00:00:00 GMT.
 
         :param datetime_body:
         :type datetime_body: datetime
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises:
          :class:`ErrorException<bodydatetimerfc1123.models.ErrorException>`
         """
@@ -372,19 +328,14 @@ class Datetimerfc1123Operations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put_utc_min_date_time.metadata = {'url': '/datetimerfc1123/min'}
 
     def get_utc_min_date_time(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get min datetime value Mon, 1 Jan 0001 00:00:00 GMT.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: datetime or ClientRawResponse if raw=true
-        :rtype: datetime or ~msrest.pipeline.ClientRawResponse
+        :return: datetime
+        :rtype: datetime
         :raises:
          :class:`ErrorException<bodydatetimerfc1123.models.ErrorException>`
         """
@@ -412,10 +363,6 @@ class Datetimerfc1123Operations(object):
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('rfc-1123', response)
-
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
 
         return deserialized
     get_utc_min_date_time.metadata = {'url': '/datetimerfc1123/min'}

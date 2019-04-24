@@ -9,7 +9,6 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.pipeline import ClientRawResponse
 from azure.core import HttpRequestError
 
 from .. import models
@@ -37,16 +36,13 @@ class PetOperations(object):
         self._config = config
 
     def get_by_pet_id(
-            self, pet_id, raw=False, **kwargs):
+            self,  **kwargs):
         """
 
         :param pet_id: Pet id
         :type pet_id: str
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: Pet or ClientRawResponse if raw=true
-        :rtype: ~extensibleenumsswagger.models.Pet or
-         ~msrest.pipeline.ClientRawResponse
+        :return: Pet
+        :rtype: ~extensibleenumsswagger.models.Pet
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         # Construct URL
@@ -78,24 +74,17 @@ class PetOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('Pet', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_by_pet_id.metadata = {'url': '/extensibleenums/pet/{petId}'}
 
     def add_pet(
-            self, pet_param=None, raw=False, **kwargs):
+            self, pet_param=None, **kwargs):
         """
 
         :param pet_param:
         :type pet_param: ~extensibleenumsswagger.models.Pet
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: Pet or ClientRawResponse if raw=true
-        :rtype: ~extensibleenumsswagger.models.Pet or
-         ~msrest.pipeline.ClientRawResponse
+        :return: Pet
+        :rtype: ~extensibleenumsswagger.models.Pet
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         # Construct URL
@@ -129,10 +118,6 @@ class PetOperations(object):
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('Pet', response)
-
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
 
         return deserialized
     add_pet.metadata = {'url': '/extensibleenums/pet/addPet'}

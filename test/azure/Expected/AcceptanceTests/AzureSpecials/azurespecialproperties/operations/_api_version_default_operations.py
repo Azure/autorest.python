@@ -10,7 +10,6 @@
 # --------------------------------------------------------------------------
 
 import uuid
-from msrest.pipeline import ClientRawResponse
 
 from .. import models
 
@@ -39,13 +38,11 @@ class ApiVersionDefaultOperations(object):
         self._config = config
 
     def get_method_global_valid(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """GET method with api-version modeled in global settings.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises:
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
         """
@@ -74,19 +71,14 @@ class ApiVersionDefaultOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     get_method_global_valid.metadata = {'url': '/azurespecials/apiVersion/method/string/none/query/global/2015-07-01-preview'}
 
     def get_method_global_not_provided_valid(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """GET method with api-version modeled in global settings.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises:
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
         """
@@ -115,19 +107,14 @@ class ApiVersionDefaultOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     get_method_global_not_provided_valid.metadata = {'url': '/azurespecials/apiVersion/method/string/none/query/globalNotProvided/2015-07-01-preview'}
 
     def get_path_global_valid(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """GET method with api-version modeled in global settings.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises:
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
         """
@@ -156,19 +143,14 @@ class ApiVersionDefaultOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     get_path_global_valid.metadata = {'url': '/azurespecials/apiVersion/path/string/none/query/global/2015-07-01-preview'}
 
     def get_swagger_global_valid(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """GET method with api-version modeled in global settings.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises:
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
         """
@@ -197,7 +179,4 @@ class ApiVersionDefaultOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     get_swagger_global_valid.metadata = {'url': '/azurespecials/apiVersion/swagger/string/none/query/global/2015-07-01-preview'}

@@ -9,7 +9,6 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.pipeline import ClientRawResponse
 
 from ... import models
 
@@ -36,13 +35,11 @@ class PolymorphismOperations:
         self._config = config
 
     async def get_valid(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Get complex types that are polymorphic.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: Fish or ClientRawResponse if raw=true
-        :rtype: ~bodycomplex.models.Fish or ~msrest.pipeline.ClientRawResponse
+        :return: Fish
+        :rtype: ~bodycomplex.models.Fish
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
@@ -70,15 +67,11 @@ class PolymorphismOperations:
         if response.status_code == 200:
             deserialized = self._deserialize('Fish', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_valid.metadata = {'url': '/complex/polymorphism/valid'}
 
     async def put_valid(
-            self, complex_body, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Put complex types that are polymorphic.
 
         :param complex_body: Please put a salmon that looks like this:
@@ -115,10 +108,8 @@ class PolymorphismOperations:
          ]
          };
         :type complex_body: ~bodycomplex.models.Fish
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
@@ -145,21 +136,15 @@ class PolymorphismOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put_valid.metadata = {'url': '/complex/polymorphism/valid'}
 
     async def get_complicated(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Get complex types that are polymorphic, but not at the root of the
         hierarchy; also have additional properties.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: Salmon or ClientRawResponse if raw=true
-        :rtype: ~bodycomplex.models.Salmon or
-         ~msrest.pipeline.ClientRawResponse
+        :return: Salmon
+        :rtype: ~bodycomplex.models.Salmon
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
@@ -187,24 +172,18 @@ class PolymorphismOperations:
         if response.status_code == 200:
             deserialized = self._deserialize('Salmon', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_complicated.metadata = {'url': '/complex/polymorphism/complicated'}
 
     async def put_complicated(
-            self, complex_body, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Put complex types that are polymorphic, but not at the root of the
         hierarchy; also have additional properties.
 
         :param complex_body:
         :type complex_body: ~bodycomplex.models.Salmon
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
@@ -231,22 +210,16 @@ class PolymorphismOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put_complicated.metadata = {'url': '/complex/polymorphism/complicated'}
 
     async def put_missing_discriminator(
-            self, complex_body, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Put complex types that are polymorphic, omitting the discriminator.
 
         :param complex_body:
         :type complex_body: ~bodycomplex.models.Salmon
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: Salmon or ClientRawResponse if raw=true
-        :rtype: ~bodycomplex.models.Salmon or
-         ~msrest.pipeline.ClientRawResponse
+        :return: Salmon
+        :rtype: ~bodycomplex.models.Salmon
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
@@ -278,15 +251,11 @@ class PolymorphismOperations:
         if response.status_code == 200:
             deserialized = self._deserialize('Salmon', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     put_missing_discriminator.metadata = {'url': '/complex/polymorphism/missingdiscriminator'}
 
     async def put_valid_missing_required(
-            self, complex_body, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Put complex types that are polymorphic, attempting to omit required
         'birthday' field - the request should not be allowed from the client.
 
@@ -318,10 +287,8 @@ class PolymorphismOperations:
          ]
          }
         :type complex_body: ~bodycomplex.models.Fish
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
@@ -348,7 +315,4 @@ class PolymorphismOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put_valid_missing_required.metadata = {'url': '/complex/polymorphism/missingrequired/invalid'}

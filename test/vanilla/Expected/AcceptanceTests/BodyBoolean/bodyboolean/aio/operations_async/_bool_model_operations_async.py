@@ -9,7 +9,6 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.pipeline import ClientRawResponse
 
 from ... import models
 
@@ -36,13 +35,11 @@ class BoolModelOperations:
         self._config = config
 
     async def get_true(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Get true Boolean value.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: bool or ClientRawResponse if raw=true
-        :rtype: bool or ~msrest.pipeline.ClientRawResponse
+        :return: bool
+        :rtype: bool
         :raises: :class:`ErrorException<bodyboolean.models.ErrorException>`
         """
         # Construct URL
@@ -70,21 +67,15 @@ class BoolModelOperations:
         if response.status_code == 200:
             deserialized = self._deserialize('bool', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_true.metadata = {'url': '/bool/true'}
 
     async def put_true(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Set Boolean value true.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<bodyboolean.models.ErrorException>`
         """
         bool_body = True
@@ -113,19 +104,14 @@ class BoolModelOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put_true.metadata = {'url': '/bool/true'}
 
     async def get_false(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Get false Boolean value.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: bool or ClientRawResponse if raw=true
-        :rtype: bool or ~msrest.pipeline.ClientRawResponse
+        :return: bool
+        :rtype: bool
         :raises: :class:`ErrorException<bodyboolean.models.ErrorException>`
         """
         # Construct URL
@@ -153,21 +139,15 @@ class BoolModelOperations:
         if response.status_code == 200:
             deserialized = self._deserialize('bool', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_false.metadata = {'url': '/bool/false'}
 
     async def put_false(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Set Boolean value false.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<bodyboolean.models.ErrorException>`
         """
         bool_body = False
@@ -196,19 +176,14 @@ class BoolModelOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put_false.metadata = {'url': '/bool/false'}
 
     async def get_null(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Get null Boolean value.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: bool or ClientRawResponse if raw=true
-        :rtype: bool or ~msrest.pipeline.ClientRawResponse
+        :return: bool
+        :rtype: bool
         :raises: :class:`ErrorException<bodyboolean.models.ErrorException>`
         """
         # Construct URL
@@ -236,21 +211,15 @@ class BoolModelOperations:
         if response.status_code == 200:
             deserialized = self._deserialize('bool', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_null.metadata = {'url': '/bool/null'}
 
     async def get_invalid(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Get invalid Boolean value.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: bool or ClientRawResponse if raw=true
-        :rtype: bool or ~msrest.pipeline.ClientRawResponse
+        :return: bool
+        :rtype: bool
         :raises: :class:`ErrorException<bodyboolean.models.ErrorException>`
         """
         # Construct URL
@@ -277,10 +246,6 @@ class BoolModelOperations:
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('bool', response)
-
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
 
         return deserialized
     get_invalid.metadata = {'url': '/bool/invalid'}

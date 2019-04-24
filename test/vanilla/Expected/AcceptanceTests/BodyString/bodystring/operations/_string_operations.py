@@ -9,7 +9,6 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.pipeline import ClientRawResponse
 
 from .. import models
 
@@ -36,13 +35,11 @@ class StringOperations(object):
         self._config = config
 
     def get_null(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get null string value value.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: enum or ClientRawResponse if raw=true
-        :rtype: str or ~msrest.pipeline.ClientRawResponse
+        :return: enum
+        :rtype: str
         :raises: :class:`ErrorException<bodystring.models.ErrorException>`
         """
         # Construct URL
@@ -70,23 +67,17 @@ class StringOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('str', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_null.metadata = {'url': '/string/null'}
 
     def put_null(
-            self, string_body=None, raw=False, **kwargs):
+            self, string_body=None, **kwargs):
         """Set string value null.
 
         :param string_body: Possible values include: ''
         :type string_body: str
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<bodystring.models.ErrorException>`
         """
         # Construct URL
@@ -116,19 +107,14 @@ class StringOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put_null.metadata = {'url': '/string/null'}
 
     def get_empty(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get empty string value value ''.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: enum or ClientRawResponse if raw=true
-        :rtype: str or ~msrest.pipeline.ClientRawResponse
+        :return: enum
+        :rtype: str
         :raises: :class:`ErrorException<bodystring.models.ErrorException>`
         """
         # Construct URL
@@ -156,21 +142,15 @@ class StringOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('str', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_empty.metadata = {'url': '/string/empty'}
 
     def put_empty(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Set string value empty ''.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<bodystring.models.ErrorException>`
         """
         string_body = ""
@@ -199,20 +179,15 @@ class StringOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put_empty.metadata = {'url': '/string/empty'}
 
     def get_mbcs(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get mbcs string value
         '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: enum or ClientRawResponse if raw=true
-        :rtype: str or ~msrest.pipeline.ClientRawResponse
+        :return: enum
+        :rtype: str
         :raises: :class:`ErrorException<bodystring.models.ErrorException>`
         """
         # Construct URL
@@ -240,22 +215,16 @@ class StringOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('str', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_mbcs.metadata = {'url': '/string/mbcs'}
 
     def put_mbcs(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Set string value mbcs
         '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<bodystring.models.ErrorException>`
         """
         string_body = "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€"
@@ -284,21 +253,16 @@ class StringOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put_mbcs.metadata = {'url': '/string/mbcs'}
 
     def get_whitespace(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get string value with leading and trailing whitespace
         '<tab><space><space>Now is the time for all good men to come to the aid
         of their country<tab><space><space>'.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: enum or ClientRawResponse if raw=true
-        :rtype: str or ~msrest.pipeline.ClientRawResponse
+        :return: enum
+        :rtype: str
         :raises: :class:`ErrorException<bodystring.models.ErrorException>`
         """
         # Construct URL
@@ -326,23 +290,17 @@ class StringOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('str', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_whitespace.metadata = {'url': '/string/whitespace'}
 
     def put_whitespace(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Set String value with leading and trailing whitespace
         '<tab><space><space>Now is the time for all good men to come to the aid
         of their country<tab><space><space>'.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<bodystring.models.ErrorException>`
         """
         string_body = "    Now is the time for all good men to come to the aid of their country    "
@@ -371,19 +329,14 @@ class StringOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put_whitespace.metadata = {'url': '/string/whitespace'}
 
     def get_not_provided(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get String value when no string value is sent in response payload.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: str or ClientRawResponse if raw=true
-        :rtype: str or ~msrest.pipeline.ClientRawResponse
+        :return: str
+        :rtype: str
         :raises: :class:`ErrorException<bodystring.models.ErrorException>`
         """
         # Construct URL
@@ -411,21 +364,15 @@ class StringOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('str', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_not_provided.metadata = {'url': '/string/notProvided'}
 
     def get_base64_encoded(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get value that is base64 encoded.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: bytes or ClientRawResponse if raw=true
-        :rtype: bytes or ~msrest.pipeline.ClientRawResponse
+        :return: bytes
+        :rtype: bytes
         :raises: :class:`ErrorException<bodystring.models.ErrorException>`
         """
         # Construct URL
@@ -453,21 +400,15 @@ class StringOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('base64', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_base64_encoded.metadata = {'url': '/string/base64Encoding'}
 
     def get_base64_url_encoded(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get value that is base64url encoded.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: bytes or ClientRawResponse if raw=true
-        :rtype: bytes or ~msrest.pipeline.ClientRawResponse
+        :return: bytes
+        :rtype: bytes
         :raises: :class:`ErrorException<bodystring.models.ErrorException>`
         """
         # Construct URL
@@ -495,23 +436,17 @@ class StringOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('base64', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_base64_url_encoded.metadata = {'url': '/string/base64UrlEncoding'}
 
     def put_base64_url_encoded(
-            self, string_body, raw=False, **kwargs):
+            self,  **kwargs):
         """Put value that is base64url encoded.
 
         :param string_body:
         :type string_body: bytes
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<bodystring.models.ErrorException>`
         """
         # Construct URL
@@ -538,19 +473,14 @@ class StringOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put_base64_url_encoded.metadata = {'url': '/string/base64UrlEncoding'}
 
     def get_null_base64_url_encoded(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get null value that is expected to be base64url encoded.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: bytes or ClientRawResponse if raw=true
-        :rtype: bytes or ~msrest.pipeline.ClientRawResponse
+        :return: bytes
+        :rtype: bytes
         :raises: :class:`ErrorException<bodystring.models.ErrorException>`
         """
         # Construct URL
@@ -577,10 +507,6 @@ class StringOperations(object):
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('base64', response)
-
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
 
         return deserialized
     get_null_base64_url_encoded.metadata = {'url': '/string/nullBase64UrlEncoding'}

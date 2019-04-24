@@ -9,7 +9,6 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.pipeline import ClientRawResponse
 
 from ... import models
 
@@ -36,7 +35,7 @@ class FormdataOperations:
         self._config = config
 
     async def upload_file(
-            self, file_content, file_name, *, raw=False, callback=None, **kwargs):
+            self,  **kwargs):
         """Upload file.
 
         :param file_content: File to upload.
@@ -44,15 +43,8 @@ class FormdataOperations:
         :param file_name: File name to upload. Name has to be spelled exactly
          as written here.
         :type file_name: str
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :param callback: When specified, will be called with each chunk of
-         data that is streamed. The callback should take two arguments, the
-         bytes of the current chunk of data and the response object. If the
-         data is uploading, response will be None.
-        :type callback: Callable[Bytes, response=None]
-        :return: object or ClientRawResponse if raw=true
-        :rtype: Generator or ~msrest.pipeline.ClientRawResponse
+        :return: object
+        :rtype: Generator
         :raises: :class:`ErrorException<bodyformdata.models.ErrorException>`
         """
         # Construct URL
@@ -83,30 +75,19 @@ class FormdataOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        deserialized = self.stream_download_async(response, callback)
-
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
+        deserialized = self.stream_download_async(response)
 
         return deserialized
     upload_file.metadata = {'url': '/formdata/stream/uploadfile'}
 
     async def upload_file_via_body(
-            self, file_content, *, raw=False, callback=None, **kwargs):
+            self,  **kwargs):
         """Upload file.
 
         :param file_content: File to upload.
         :type file_content: Generator
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :param callback: When specified, will be called with each chunk of
-         data that is streamed. The callback should take two arguments, the
-         bytes of the current chunk of data and the response object. If the
-         data is uploading, response will be None.
-        :type callback: Callable[Bytes, response=None]
-        :return: object or ClientRawResponse if raw=true
-        :rtype: Generator or ~msrest.pipeline.ClientRawResponse
+        :return: object
+        :rtype: Generator
         :raises: :class:`ErrorException<bodyformdata.models.ErrorException>`
         """
         # Construct URL
@@ -134,11 +115,7 @@ class FormdataOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        deserialized = self.stream_download_async(response, callback)
-
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
+        deserialized = self.stream_download_async(response)
 
         return deserialized
     upload_file_via_body.metadata = {'url': '/formdata/stream/uploadfile'}

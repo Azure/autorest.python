@@ -9,7 +9,6 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.pipeline import ClientRawResponse
 
 from ... import models
 
@@ -36,15 +35,12 @@ class HttpClientFailureOperations:
         self._config = config
 
     async def head400(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Return 400 status code - should be represented in the client as an
         error.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: Error or ClientRawResponse if raw=true
-        :rtype: ~httpinfrastructure.models.Error or
-         ~msrest.pipeline.ClientRawResponse
+        :return: Error
+        :rtype: ~httpinfrastructure.models.Error
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
@@ -68,21 +64,15 @@ class HttpClientFailureOperations:
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     head400.metadata = {'url': '/http/failure/client/400'}
 
     async def get400(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Return 400 status code - should be represented in the client as an
         error.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: Error or ClientRawResponse if raw=true
-        :rtype: ~httpinfrastructure.models.Error or
-         ~msrest.pipeline.ClientRawResponse
+        :return: Error
+        :rtype: ~httpinfrastructure.models.Error
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
@@ -106,23 +96,17 @@ class HttpClientFailureOperations:
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     get400.metadata = {'url': '/http/failure/client/400'}
 
     async def put400(
-            self, boolean_value=None, *, raw=False, **kwargs):
+            self, boolean_value=None, **kwargs):
         """Return 400 status code - should be represented in the client as an
         error.
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: Error or ClientRawResponse if raw=true
-        :rtype: ~httpinfrastructure.models.Error or
-         ~msrest.pipeline.ClientRawResponse
+        :return: Error
+        :rtype: ~httpinfrastructure.models.Error
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
@@ -153,23 +137,17 @@ class HttpClientFailureOperations:
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put400.metadata = {'url': '/http/failure/client/400'}
 
     async def patch400(
-            self, boolean_value=None, *, raw=False, **kwargs):
+            self, boolean_value=None, **kwargs):
         """Return 400 status code - should be represented in the client as an
         error.
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: Error or ClientRawResponse if raw=true
-        :rtype: ~httpinfrastructure.models.Error or
-         ~msrest.pipeline.ClientRawResponse
+        :return: Error
+        :rtype: ~httpinfrastructure.models.Error
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
@@ -200,23 +178,17 @@ class HttpClientFailureOperations:
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     patch400.metadata = {'url': '/http/failure/client/400'}
 
     async def post400(
-            self, boolean_value=None, *, raw=False, **kwargs):
+            self, boolean_value=None, **kwargs):
         """Return 400 status code - should be represented in the client as an
         error.
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: Error or ClientRawResponse if raw=true
-        :rtype: ~httpinfrastructure.models.Error or
-         ~msrest.pipeline.ClientRawResponse
+        :return: Error
+        :rtype: ~httpinfrastructure.models.Error
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
@@ -247,23 +219,17 @@ class HttpClientFailureOperations:
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     post400.metadata = {'url': '/http/failure/client/400'}
 
     async def delete400(
-            self, boolean_value=None, *, raw=False, **kwargs):
+            self, boolean_value=None, **kwargs):
         """Return 400 status code - should be represented in the client as an
         error.
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: Error or ClientRawResponse if raw=true
-        :rtype: ~httpinfrastructure.models.Error or
-         ~msrest.pipeline.ClientRawResponse
+        :return: Error
+        :rtype: ~httpinfrastructure.models.Error
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
@@ -294,21 +260,15 @@ class HttpClientFailureOperations:
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     delete400.metadata = {'url': '/http/failure/client/400'}
 
     async def head401(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Return 401 status code - should be represented in the client as an
         error.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: Error or ClientRawResponse if raw=true
-        :rtype: ~httpinfrastructure.models.Error or
-         ~msrest.pipeline.ClientRawResponse
+        :return: Error
+        :rtype: ~httpinfrastructure.models.Error
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
@@ -332,21 +292,15 @@ class HttpClientFailureOperations:
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     head401.metadata = {'url': '/http/failure/client/401'}
 
     async def get402(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Return 402 status code - should be represented in the client as an
         error.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: Error or ClientRawResponse if raw=true
-        :rtype: ~httpinfrastructure.models.Error or
-         ~msrest.pipeline.ClientRawResponse
+        :return: Error
+        :rtype: ~httpinfrastructure.models.Error
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
@@ -370,21 +324,15 @@ class HttpClientFailureOperations:
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     get402.metadata = {'url': '/http/failure/client/402'}
 
     async def get403(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Return 403 status code - should be represented in the client as an
         error.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: Error or ClientRawResponse if raw=true
-        :rtype: ~httpinfrastructure.models.Error or
-         ~msrest.pipeline.ClientRawResponse
+        :return: Error
+        :rtype: ~httpinfrastructure.models.Error
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
@@ -408,23 +356,17 @@ class HttpClientFailureOperations:
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     get403.metadata = {'url': '/http/failure/client/403'}
 
     async def put404(
-            self, boolean_value=None, *, raw=False, **kwargs):
+            self, boolean_value=None, **kwargs):
         """Return 404 status code - should be represented in the client as an
         error.
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: Error or ClientRawResponse if raw=true
-        :rtype: ~httpinfrastructure.models.Error or
-         ~msrest.pipeline.ClientRawResponse
+        :return: Error
+        :rtype: ~httpinfrastructure.models.Error
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
@@ -455,23 +397,17 @@ class HttpClientFailureOperations:
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put404.metadata = {'url': '/http/failure/client/404'}
 
     async def patch405(
-            self, boolean_value=None, *, raw=False, **kwargs):
+            self, boolean_value=None, **kwargs):
         """Return 405 status code - should be represented in the client as an
         error.
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: Error or ClientRawResponse if raw=true
-        :rtype: ~httpinfrastructure.models.Error or
-         ~msrest.pipeline.ClientRawResponse
+        :return: Error
+        :rtype: ~httpinfrastructure.models.Error
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
@@ -502,23 +438,17 @@ class HttpClientFailureOperations:
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     patch405.metadata = {'url': '/http/failure/client/405'}
 
     async def post406(
-            self, boolean_value=None, *, raw=False, **kwargs):
+            self, boolean_value=None, **kwargs):
         """Return 406 status code - should be represented in the client as an
         error.
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: Error or ClientRawResponse if raw=true
-        :rtype: ~httpinfrastructure.models.Error or
-         ~msrest.pipeline.ClientRawResponse
+        :return: Error
+        :rtype: ~httpinfrastructure.models.Error
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
@@ -549,23 +479,17 @@ class HttpClientFailureOperations:
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     post406.metadata = {'url': '/http/failure/client/406'}
 
     async def delete407(
-            self, boolean_value=None, *, raw=False, **kwargs):
+            self, boolean_value=None, **kwargs):
         """Return 407 status code - should be represented in the client as an
         error.
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: Error or ClientRawResponse if raw=true
-        :rtype: ~httpinfrastructure.models.Error or
-         ~msrest.pipeline.ClientRawResponse
+        :return: Error
+        :rtype: ~httpinfrastructure.models.Error
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
@@ -596,23 +520,17 @@ class HttpClientFailureOperations:
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     delete407.metadata = {'url': '/http/failure/client/407'}
 
     async def put409(
-            self, boolean_value=None, *, raw=False, **kwargs):
+            self, boolean_value=None, **kwargs):
         """Return 409 status code - should be represented in the client as an
         error.
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: Error or ClientRawResponse if raw=true
-        :rtype: ~httpinfrastructure.models.Error or
-         ~msrest.pipeline.ClientRawResponse
+        :return: Error
+        :rtype: ~httpinfrastructure.models.Error
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
@@ -643,21 +561,15 @@ class HttpClientFailureOperations:
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put409.metadata = {'url': '/http/failure/client/409'}
 
     async def head410(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Return 410 status code - should be represented in the client as an
         error.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: Error or ClientRawResponse if raw=true
-        :rtype: ~httpinfrastructure.models.Error or
-         ~msrest.pipeline.ClientRawResponse
+        :return: Error
+        :rtype: ~httpinfrastructure.models.Error
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
@@ -681,21 +593,15 @@ class HttpClientFailureOperations:
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     head410.metadata = {'url': '/http/failure/client/410'}
 
     async def get411(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Return 411 status code - should be represented in the client as an
         error.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: Error or ClientRawResponse if raw=true
-        :rtype: ~httpinfrastructure.models.Error or
-         ~msrest.pipeline.ClientRawResponse
+        :return: Error
+        :rtype: ~httpinfrastructure.models.Error
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
@@ -719,21 +625,15 @@ class HttpClientFailureOperations:
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     get411.metadata = {'url': '/http/failure/client/411'}
 
     async def get412(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Return 412 status code - should be represented in the client as an
         error.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: Error or ClientRawResponse if raw=true
-        :rtype: ~httpinfrastructure.models.Error or
-         ~msrest.pipeline.ClientRawResponse
+        :return: Error
+        :rtype: ~httpinfrastructure.models.Error
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
@@ -757,23 +657,17 @@ class HttpClientFailureOperations:
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     get412.metadata = {'url': '/http/failure/client/412'}
 
     async def put413(
-            self, boolean_value=None, *, raw=False, **kwargs):
+            self, boolean_value=None, **kwargs):
         """Return 413 status code - should be represented in the client as an
         error.
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: Error or ClientRawResponse if raw=true
-        :rtype: ~httpinfrastructure.models.Error or
-         ~msrest.pipeline.ClientRawResponse
+        :return: Error
+        :rtype: ~httpinfrastructure.models.Error
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
@@ -804,23 +698,17 @@ class HttpClientFailureOperations:
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put413.metadata = {'url': '/http/failure/client/413'}
 
     async def patch414(
-            self, boolean_value=None, *, raw=False, **kwargs):
+            self, boolean_value=None, **kwargs):
         """Return 414 status code - should be represented in the client as an
         error.
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: Error or ClientRawResponse if raw=true
-        :rtype: ~httpinfrastructure.models.Error or
-         ~msrest.pipeline.ClientRawResponse
+        :return: Error
+        :rtype: ~httpinfrastructure.models.Error
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
@@ -851,23 +739,17 @@ class HttpClientFailureOperations:
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     patch414.metadata = {'url': '/http/failure/client/414'}
 
     async def post415(
-            self, boolean_value=None, *, raw=False, **kwargs):
+            self, boolean_value=None, **kwargs):
         """Return 415 status code - should be represented in the client as an
         error.
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: Error or ClientRawResponse if raw=true
-        :rtype: ~httpinfrastructure.models.Error or
-         ~msrest.pipeline.ClientRawResponse
+        :return: Error
+        :rtype: ~httpinfrastructure.models.Error
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
@@ -898,21 +780,15 @@ class HttpClientFailureOperations:
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     post415.metadata = {'url': '/http/failure/client/415'}
 
     async def get416(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Return 416 status code - should be represented in the client as an
         error.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: Error or ClientRawResponse if raw=true
-        :rtype: ~httpinfrastructure.models.Error or
-         ~msrest.pipeline.ClientRawResponse
+        :return: Error
+        :rtype: ~httpinfrastructure.models.Error
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
@@ -936,23 +812,17 @@ class HttpClientFailureOperations:
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     get416.metadata = {'url': '/http/failure/client/416'}
 
     async def delete417(
-            self, boolean_value=None, *, raw=False, **kwargs):
+            self, boolean_value=None, **kwargs):
         """Return 417 status code - should be represented in the client as an
         error.
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: Error or ClientRawResponse if raw=true
-        :rtype: ~httpinfrastructure.models.Error or
-         ~msrest.pipeline.ClientRawResponse
+        :return: Error
+        :rtype: ~httpinfrastructure.models.Error
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
@@ -983,21 +853,15 @@ class HttpClientFailureOperations:
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     delete417.metadata = {'url': '/http/failure/client/417'}
 
     async def head429(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Return 429 status code - should be represented in the client as an
         error.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: Error or ClientRawResponse if raw=true
-        :rtype: ~httpinfrastructure.models.Error or
-         ~msrest.pipeline.ClientRawResponse
+        :return: Error
+        :rtype: ~httpinfrastructure.models.Error
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
@@ -1021,7 +885,4 @@ class HttpClientFailureOperations:
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     head429.metadata = {'url': '/http/failure/client/429'}

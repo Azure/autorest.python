@@ -9,7 +9,6 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.pipeline import ClientRawResponse
 
 from ... import models
 
@@ -36,16 +35,14 @@ class QueriesOperations:
         self._config = config
 
     async def array_string_multi_null(
-            self, array_query=None, *, raw=False, **kwargs):
+            self, array_query=None, **kwargs):
         """Get a null array of string using the multi-array format.
 
         :param array_query: a null array of string using the multi-array
          format
         :type array_query: list[str]
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises:
          :class:`ErrorException<urlmulticollectionformat.models.ErrorException>`
         """
@@ -71,22 +68,17 @@ class QueriesOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     array_string_multi_null.metadata = {'url': '/queries/array/multi/string/null'}
 
     async def array_string_multi_empty(
-            self, array_query=None, *, raw=False, **kwargs):
+            self, array_query=None, **kwargs):
         """Get an empty array [] of string using the multi-array format.
 
         :param array_query: an empty array [] of string using the multi-array
          format
         :type array_query: list[str]
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises:
          :class:`ErrorException<urlmulticollectionformat.models.ErrorException>`
         """
@@ -112,23 +104,18 @@ class QueriesOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     array_string_multi_empty.metadata = {'url': '/queries/array/multi/string/empty'}
 
     async def array_string_multi_valid(
-            self, array_query=None, *, raw=False, **kwargs):
+            self, array_query=None, **kwargs):
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' ,
         null, ''] using the mult-array format.
 
         :param array_query: an array of string ['ArrayQuery1', 'begin!*'();:@
          &=+$,/?#[]end' , null, ''] using the mult-array format
         :type array_query: list[str]
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises:
          :class:`ErrorException<urlmulticollectionformat.models.ErrorException>`
         """
@@ -154,7 +141,4 @@ class QueriesOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     array_string_multi_valid.metadata = {'url': '/queries/array/multi/string/valid'}

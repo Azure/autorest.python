@@ -10,7 +10,6 @@
 # --------------------------------------------------------------------------
 
 import uuid
-from msrest.pipeline import ClientRawResponse
 
 from .. import models
 
@@ -37,17 +36,15 @@ class ParameterGroupingOperations(object):
         self._config = config
 
     def post_required(
-            self, parameter_grouping_post_required_parameters, raw=False, **kwargs):
+            self,  **kwargs):
         """Post a bunch of required parameters grouped.
 
         :param parameter_grouping_post_required_parameters: Additional
          parameters for the operation
         :type parameter_grouping_post_required_parameters:
          ~azureparametergrouping.models.ParameterGroupingPostRequiredParameters
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises:
          :class:`ErrorException<azureparametergrouping.models.ErrorException>`
         """
@@ -100,23 +97,18 @@ class ParameterGroupingOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     post_required.metadata = {'url': '/parameterGrouping/postRequired/{path}'}
 
     def post_optional(
-            self, parameter_grouping_post_optional_parameters=None, raw=False, **kwargs):
+            self, parameter_grouping_post_optional_parameters=None, **kwargs):
         """Post a bunch of optional parameters grouped.
 
         :param parameter_grouping_post_optional_parameters: Additional
          parameters for the operation
         :type parameter_grouping_post_optional_parameters:
          ~azureparametergrouping.models.ParameterGroupingPostOptionalParameters
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises:
          :class:`ErrorException<azureparametergrouping.models.ErrorException>`
         """
@@ -155,13 +147,10 @@ class ParameterGroupingOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     post_optional.metadata = {'url': '/parameterGrouping/postOptional'}
 
     def post_multi_param_groups(
-            self, first_parameter_group=None, parameter_grouping_post_multi_param_groups_second_param_group=None, raw=False, **kwargs):
+            self, first_parameter_group=None, parameter_grouping_post_multi_param_groups_second_param_group=None, **kwargs):
         """Post parameters from multiple different parameter groups.
 
         :param first_parameter_group: Additional parameters for the operation
@@ -171,10 +160,8 @@ class ParameterGroupingOperations(object):
          Additional parameters for the operation
         :type parameter_grouping_post_multi_param_groups_second_param_group:
          ~azureparametergrouping.models.ParameterGroupingPostMultiParamGroupsSecondParamGroup
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises:
          :class:`ErrorException<azureparametergrouping.models.ErrorException>`
         """
@@ -223,22 +210,17 @@ class ParameterGroupingOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     post_multi_param_groups.metadata = {'url': '/parameterGrouping/postMultipleParameterGroups'}
 
     def post_shared_parameter_group_object(
-            self, first_parameter_group=None, raw=False, **kwargs):
+            self, first_parameter_group=None, **kwargs):
         """Post parameters with a shared parameter group object.
 
         :param first_parameter_group: Additional parameters for the operation
         :type first_parameter_group:
          ~azureparametergrouping.models.FirstParameterGroup
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises:
          :class:`ErrorException<azureparametergrouping.models.ErrorException>`
         """
@@ -277,7 +259,4 @@ class ParameterGroupingOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     post_shared_parameter_group_object.metadata = {'url': '/parameterGrouping/sharedParameterGroupObject'}

@@ -10,7 +10,6 @@
 # --------------------------------------------------------------------------
 
 import uuid
-from msrest.pipeline import ClientRawResponse
 from azure.core import HttpRequestError
 
 
@@ -34,13 +33,11 @@ class HttpSuccessOperations(object):
         self._config = config
 
     def head200(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Return 200 status code if successful.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: bool or ClientRawResponse if raw=true
-        :rtype: bool or ~msrest.pipeline.ClientRawResponse
+        :return: bool
+        :rtype: bool
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         # Construct URL
@@ -70,20 +67,15 @@ class HttpSuccessOperations(object):
             raise exp
 
         deserialized = (response.status_code == 200)
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
         return deserialized
     head200.metadata = {'url': '/http/success/200'}
 
     def head204(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Return 204 status code if successful.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: bool or ClientRawResponse if raw=true
-        :rtype: bool or ~msrest.pipeline.ClientRawResponse
+        :return: bool
+        :rtype: bool
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         # Construct URL
@@ -113,20 +105,15 @@ class HttpSuccessOperations(object):
             raise exp
 
         deserialized = (response.status_code == 204)
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
         return deserialized
     head204.metadata = {'url': '/http/success/204'}
 
     def head404(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Return 404 status code if successful.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: bool or ClientRawResponse if raw=true
-        :rtype: bool or ~msrest.pipeline.ClientRawResponse
+        :return: bool
+        :rtype: bool
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         # Construct URL
@@ -156,8 +143,5 @@ class HttpSuccessOperations(object):
             raise exp
 
         deserialized = (response.status_code == 204)
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
         return deserialized
     head404.metadata = {'url': '/http/success/404'}

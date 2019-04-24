@@ -10,7 +10,6 @@
 # --------------------------------------------------------------------------
 
 import uuid
-from msrest.pipeline import ClientRawResponse
 
 from .. import models
 
@@ -41,17 +40,15 @@ class SkipUrlEncodingOperations(object):
         self._config = config
 
     def get_method_path_valid(
-            self, unencoded_path_param, raw=False, **kwargs):
+            self,  **kwargs):
         """Get method with unencoded path parameter with value
         'path1/path2/path3'.
 
         :param unencoded_path_param: Unencoded path parameter with value
          'path1/path2/path3'
         :type unencoded_path_param: str
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises:
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
         """
@@ -83,23 +80,18 @@ class SkipUrlEncodingOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     get_method_path_valid.metadata = {'url': '/azurespecials/skipUrlEncoding/method/path/valid/{unencodedPathParam}'}
 
     def get_path_path_valid(
-            self, unencoded_path_param, raw=False, **kwargs):
+            self,  **kwargs):
         """Get method with unencoded path parameter with value
         'path1/path2/path3'.
 
         :param unencoded_path_param: Unencoded path parameter with value
          'path1/path2/path3'
         :type unencoded_path_param: str
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises:
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
         """
@@ -131,20 +123,15 @@ class SkipUrlEncodingOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     get_path_path_valid.metadata = {'url': '/azurespecials/skipUrlEncoding/path/path/valid/{unencodedPathParam}'}
 
     def get_swagger_path_valid(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get method with unencoded path parameter with value
         'path1/path2/path3'.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises:
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
         """
@@ -176,23 +163,18 @@ class SkipUrlEncodingOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     get_swagger_path_valid.metadata = {'url': '/azurespecials/skipUrlEncoding/swagger/path/valid/{unencodedPathParam}'}
 
     def get_method_query_valid(
-            self, q1, raw=False, **kwargs):
+            self,  **kwargs):
         """Get method with unencoded query parameter with value
         'value1&q2=value2&q3=value3'.
 
         :param q1: Unencoded query parameter with value
          'value1&q2=value2&q3=value3'
         :type q1: str
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises:
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
         """
@@ -221,21 +203,16 @@ class SkipUrlEncodingOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     get_method_query_valid.metadata = {'url': '/azurespecials/skipUrlEncoding/method/query/valid'}
 
     def get_method_query_null(
-            self, q1=None, raw=False, **kwargs):
+            self, q1=None, **kwargs):
         """Get method with unencoded query parameter with value null.
 
         :param q1: Unencoded query parameter with value null
         :type q1: str
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises:
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
         """
@@ -265,23 +242,18 @@ class SkipUrlEncodingOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     get_method_query_null.metadata = {'url': '/azurespecials/skipUrlEncoding/method/query/null'}
 
     def get_path_query_valid(
-            self, q1, raw=False, **kwargs):
+            self,  **kwargs):
         """Get method with unencoded query parameter with value
         'value1&q2=value2&q3=value3'.
 
         :param q1: Unencoded query parameter with value
          'value1&q2=value2&q3=value3'
         :type q1: str
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises:
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
         """
@@ -310,20 +282,15 @@ class SkipUrlEncodingOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     get_path_query_valid.metadata = {'url': '/azurespecials/skipUrlEncoding/path/query/valid'}
 
     def get_swagger_query_valid(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get method with unencoded query parameter with value
         'value1&q2=value2&q3=value3'.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises:
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
         """
@@ -352,7 +319,4 @@ class SkipUrlEncodingOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     get_swagger_query_valid.metadata = {'url': '/azurespecials/skipUrlEncoding/swagger/query/valid'}

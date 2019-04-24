@@ -10,7 +10,6 @@
 # --------------------------------------------------------------------------
 
 import uuid
-from msrest.pipeline import ClientRawResponse
 
 from ... import models
 
@@ -37,13 +36,11 @@ class DurationOperations:
         self._config = config
 
     async def get_null(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Get null duration value.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: timedelta or ClientRawResponse if raw=true
-        :rtype: timedelta or ~msrest.pipeline.ClientRawResponse
+        :return: timedelta
+        :rtype: timedelta
         :raises: :class:`ErrorException<bodyduration.models.ErrorException>`
         """
         # Construct URL
@@ -75,23 +72,17 @@ class DurationOperations:
         if response.status_code == 200:
             deserialized = self._deserialize('duration', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_null.metadata = {'url': '/duration/null'}
 
     async def put_positive_duration(
-            self, duration_body, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Put a positive duration value.
 
         :param duration_body:
         :type duration_body: timedelta
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<bodyduration.models.ErrorException>`
         """
         # Construct URL
@@ -122,19 +113,14 @@ class DurationOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put_positive_duration.metadata = {'url': '/duration/positiveduration'}
 
     async def get_positive_duration(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Get a positive duration value.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: timedelta or ClientRawResponse if raw=true
-        :rtype: timedelta or ~msrest.pipeline.ClientRawResponse
+        :return: timedelta
+        :rtype: timedelta
         :raises: :class:`ErrorException<bodyduration.models.ErrorException>`
         """
         # Construct URL
@@ -166,21 +152,15 @@ class DurationOperations:
         if response.status_code == 200:
             deserialized = self._deserialize('duration', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_positive_duration.metadata = {'url': '/duration/positiveduration'}
 
     async def get_invalid(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Get an invalid duration value.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: timedelta or ClientRawResponse if raw=true
-        :rtype: timedelta or ~msrest.pipeline.ClientRawResponse
+        :return: timedelta
+        :rtype: timedelta
         :raises: :class:`ErrorException<bodyduration.models.ErrorException>`
         """
         # Construct URL
@@ -211,10 +191,6 @@ class DurationOperations:
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('duration', response)
-
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
 
         return deserialized
     get_invalid.metadata = {'url': '/duration/invalid'}

@@ -9,7 +9,6 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.pipeline import ClientRawResponse
 from azure.core import HttpRequestError
 
 from ... import models
@@ -37,14 +36,11 @@ class XmlOperations:
         self._config = config
 
     async def get_complex_type_ref_no_meta(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Get a complex type that has a ref to a complex type with no XML node.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: RootWithRefAndNoMeta or ClientRawResponse if raw=true
-        :rtype: ~xmlservice.models.RootWithRefAndNoMeta or
-         ~msrest.pipeline.ClientRawResponse
+        :return: RootWithRefAndNoMeta
+        :rtype: ~xmlservice.models.RootWithRefAndNoMeta
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         # Construct URL
@@ -72,23 +68,17 @@ class XmlOperations:
         if response.status_code == 200:
             deserialized = self._deserialize('RootWithRefAndNoMeta', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_complex_type_ref_no_meta.metadata = {'url': '/xml/complex-type-ref-no-meta'}
 
     async def put_complex_type_ref_no_meta(
-            self, model, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Puts a complex type that has a ref to a complex type with no XML node.
 
         :param model:
         :type model: ~xmlservice.models.RootWithRefAndNoMeta
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         # Construct URL
@@ -115,20 +105,14 @@ class XmlOperations:
         if response.status_code not in [201]:
             raise HttpRequestError(response=response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put_complex_type_ref_no_meta.metadata = {'url': '/xml/complex-type-ref-no-meta'}
 
     async def get_complex_type_ref_with_meta(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Get a complex type that has a ref to a complex type with XML node.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: RootWithRefAndMeta or ClientRawResponse if raw=true
-        :rtype: ~xmlservice.models.RootWithRefAndMeta or
-         ~msrest.pipeline.ClientRawResponse
+        :return: RootWithRefAndMeta
+        :rtype: ~xmlservice.models.RootWithRefAndMeta
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         # Construct URL
@@ -156,23 +140,17 @@ class XmlOperations:
         if response.status_code == 200:
             deserialized = self._deserialize('RootWithRefAndMeta', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_complex_type_ref_with_meta.metadata = {'url': '/xml/complex-type-ref-with-meta'}
 
     async def put_complex_type_ref_with_meta(
-            self, model, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Puts a complex type that has a ref to a complex type with XML node.
 
         :param model:
         :type model: ~xmlservice.models.RootWithRefAndMeta
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         # Construct URL
@@ -199,20 +177,14 @@ class XmlOperations:
         if response.status_code not in [201]:
             raise HttpRequestError(response=response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put_complex_type_ref_with_meta.metadata = {'url': '/xml/complex-type-ref-with-meta'}
 
     async def get_simple(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Get a simple XML document.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: Slideshow or ClientRawResponse if raw=true
-        :rtype: ~xmlservice.models.Slideshow or
-         ~msrest.pipeline.ClientRawResponse
+        :return: Slideshow
+        :rtype: ~xmlservice.models.Slideshow
         :raises: :class:`ErrorException<xmlservice.models.ErrorException>`
         """
         # Construct URL
@@ -240,23 +212,17 @@ class XmlOperations:
         if response.status_code == 200:
             deserialized = self._deserialize('Slideshow', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_simple.metadata = {'url': '/xml/simple'}
 
     async def put_simple(
-            self, slideshow, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Put a simple XML document.
 
         :param slideshow:
         :type slideshow: ~xmlservice.models.Slideshow
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<xmlservice.models.ErrorException>`
         """
         # Construct URL
@@ -283,20 +249,14 @@ class XmlOperations:
         if response.status_code not in [201]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put_simple.metadata = {'url': '/xml/simple'}
 
     async def get_wrapped_lists(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Get an XML document with multiple wrapped lists.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: AppleBarrel or ClientRawResponse if raw=true
-        :rtype: ~xmlservice.models.AppleBarrel or
-         ~msrest.pipeline.ClientRawResponse
+        :return: AppleBarrel
+        :rtype: ~xmlservice.models.AppleBarrel
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         # Construct URL
@@ -324,23 +284,17 @@ class XmlOperations:
         if response.status_code == 200:
             deserialized = self._deserialize('AppleBarrel', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_wrapped_lists.metadata = {'url': '/xml/wrapped-lists'}
 
     async def put_wrapped_lists(
-            self, wrapped_lists, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Put an XML document with multiple wrapped lists.
 
         :param wrapped_lists:
         :type wrapped_lists: ~xmlservice.models.AppleBarrel
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<xmlservice.models.ErrorException>`
         """
         # Construct URL
@@ -367,19 +321,14 @@ class XmlOperations:
         if response.status_code not in [201]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put_wrapped_lists.metadata = {'url': '/xml/wrapped-lists'}
 
     async def get_headers(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Get strongly-typed response headers.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         # Construct URL
@@ -402,23 +351,14 @@ class XmlOperations:
         if response.status_code not in [200]:
             raise HttpRequestError(response=response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            client_raw_response.add_headers({
-                'Custom-Header': 'str',
-            })
-            return client_raw_response
     get_headers.metadata = {'url': '/xml/headers'}
 
     async def get_empty_list(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Get an empty list.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: Slideshow or ClientRawResponse if raw=true
-        :rtype: ~xmlservice.models.Slideshow or
-         ~msrest.pipeline.ClientRawResponse
+        :return: Slideshow
+        :rtype: ~xmlservice.models.Slideshow
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         # Construct URL
@@ -446,23 +386,17 @@ class XmlOperations:
         if response.status_code == 200:
             deserialized = self._deserialize('Slideshow', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_empty_list.metadata = {'url': '/xml/empty-list'}
 
     async def put_empty_list(
-            self, slideshow, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Puts an empty list.
 
         :param slideshow:
         :type slideshow: ~xmlservice.models.Slideshow
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         # Construct URL
@@ -489,20 +423,14 @@ class XmlOperations:
         if response.status_code not in [201]:
             raise HttpRequestError(response=response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put_empty_list.metadata = {'url': '/xml/empty-list'}
 
     async def get_empty_wrapped_lists(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Gets some empty wrapped lists.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: AppleBarrel or ClientRawResponse if raw=true
-        :rtype: ~xmlservice.models.AppleBarrel or
-         ~msrest.pipeline.ClientRawResponse
+        :return: AppleBarrel
+        :rtype: ~xmlservice.models.AppleBarrel
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         # Construct URL
@@ -530,23 +458,17 @@ class XmlOperations:
         if response.status_code == 200:
             deserialized = self._deserialize('AppleBarrel', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_empty_wrapped_lists.metadata = {'url': '/xml/empty-wrapped-lists'}
 
     async def put_empty_wrapped_lists(
-            self, apple_barrel, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Puts some empty wrapped lists.
 
         :param apple_barrel:
         :type apple_barrel: ~xmlservice.models.AppleBarrel
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         # Construct URL
@@ -573,20 +495,14 @@ class XmlOperations:
         if response.status_code not in [201]:
             raise HttpRequestError(response=response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put_empty_wrapped_lists.metadata = {'url': '/xml/empty-wrapped-lists'}
 
     async def get_root_list(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Gets a list as the root element.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: list or ClientRawResponse if raw=true
-        :rtype: list[~xmlservice.models.Banana] or
-         ~msrest.pipeline.ClientRawResponse
+        :return: list
+        :rtype: list[~xmlservice.models.Banana]
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         # Construct URL
@@ -614,23 +530,17 @@ class XmlOperations:
         if response.status_code == 200:
             deserialized = self._deserialize('[Banana]', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_root_list.metadata = {'url': '/xml/root-list'}
 
     async def put_root_list(
-            self, bananas, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Puts a list as the root element.
 
         :param bananas:
         :type bananas: list[~xmlservice.models.Banana]
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         # Construct URL
@@ -658,20 +568,14 @@ class XmlOperations:
         if response.status_code not in [201]:
             raise HttpRequestError(response=response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put_root_list.metadata = {'url': '/xml/root-list'}
 
     async def get_root_list_single_item(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Gets a list with a single item.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: list or ClientRawResponse if raw=true
-        :rtype: list[~xmlservice.models.Banana] or
-         ~msrest.pipeline.ClientRawResponse
+        :return: list
+        :rtype: list[~xmlservice.models.Banana]
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         # Construct URL
@@ -699,23 +603,17 @@ class XmlOperations:
         if response.status_code == 200:
             deserialized = self._deserialize('[Banana]', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_root_list_single_item.metadata = {'url': '/xml/root-list-single-item'}
 
     async def put_root_list_single_item(
-            self, bananas, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Puts a list with a single item.
 
         :param bananas:
         :type bananas: list[~xmlservice.models.Banana]
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         # Construct URL
@@ -743,20 +641,14 @@ class XmlOperations:
         if response.status_code not in [201]:
             raise HttpRequestError(response=response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put_root_list_single_item.metadata = {'url': '/xml/root-list-single-item'}
 
     async def get_empty_root_list(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Gets an empty list as the root element.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: list or ClientRawResponse if raw=true
-        :rtype: list[~xmlservice.models.Banana] or
-         ~msrest.pipeline.ClientRawResponse
+        :return: list
+        :rtype: list[~xmlservice.models.Banana]
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         # Construct URL
@@ -784,23 +676,17 @@ class XmlOperations:
         if response.status_code == 200:
             deserialized = self._deserialize('[Banana]', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_empty_root_list.metadata = {'url': '/xml/empty-root-list'}
 
     async def put_empty_root_list(
-            self, bananas, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Puts an empty list as the root element.
 
         :param bananas:
         :type bananas: list[~xmlservice.models.Banana]
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         # Construct URL
@@ -828,20 +714,14 @@ class XmlOperations:
         if response.status_code not in [201]:
             raise HttpRequestError(response=response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put_empty_root_list.metadata = {'url': '/xml/empty-root-list'}
 
     async def get_empty_child_element(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Gets an XML document with an empty child element.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: Banana or ClientRawResponse if raw=true
-        :rtype: ~xmlservice.models.Banana or
-         ~msrest.pipeline.ClientRawResponse
+        :return: Banana
+        :rtype: ~xmlservice.models.Banana
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         # Construct URL
@@ -869,23 +749,17 @@ class XmlOperations:
         if response.status_code == 200:
             deserialized = self._deserialize('Banana', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_empty_child_element.metadata = {'url': '/xml/empty-child-element'}
 
     async def put_empty_child_element(
-            self, banana, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Puts a value with an empty child element.
 
         :param banana:
         :type banana: ~xmlservice.models.Banana
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         # Construct URL
@@ -912,20 +786,14 @@ class XmlOperations:
         if response.status_code not in [201]:
             raise HttpRequestError(response=response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put_empty_child_element.metadata = {'url': '/xml/empty-child-element'}
 
     async def list_containers(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Lists containers in a storage account.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: ListContainersResponse or ClientRawResponse if raw=true
-        :rtype: ~xmlservice.models.ListContainersResponse or
-         ~msrest.pipeline.ClientRawResponse
+        :return: ListContainersResponse
+        :rtype: ~xmlservice.models.ListContainersResponse
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         comp = "list"
@@ -956,22 +824,15 @@ class XmlOperations:
         if response.status_code == 200:
             deserialized = self._deserialize('ListContainersResponse', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     list_containers.metadata = {'url': '/xml/'}
 
     async def get_service_properties(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Gets storage service properties.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: StorageServiceProperties or ClientRawResponse if raw=true
-        :rtype: ~xmlservice.models.StorageServiceProperties or
-         ~msrest.pipeline.ClientRawResponse
+        :return: StorageServiceProperties
+        :rtype: ~xmlservice.models.StorageServiceProperties
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         comp = "properties"
@@ -1004,23 +865,17 @@ class XmlOperations:
         if response.status_code == 200:
             deserialized = self._deserialize('StorageServiceProperties', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_service_properties.metadata = {'url': '/xml/'}
 
     async def put_service_properties(
-            self, properties, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Puts storage service properties.
 
         :param properties:
         :type properties: ~xmlservice.models.StorageServiceProperties
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         comp = "properties"
@@ -1052,20 +907,14 @@ class XmlOperations:
         if response.status_code not in [201]:
             raise HttpRequestError(response=response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put_service_properties.metadata = {'url': '/xml/'}
 
     async def get_acls(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Gets storage ACLs for a container.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: list or ClientRawResponse if raw=true
-        :rtype: list[~xmlservice.models.SignedIdentifier] or
-         ~msrest.pipeline.ClientRawResponse
+        :return: list
+        :rtype: list[~xmlservice.models.SignedIdentifier]
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         comp = "acl"
@@ -1098,23 +947,17 @@ class XmlOperations:
         if response.status_code == 200:
             deserialized = self._deserialize('[SignedIdentifier]', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_acls.metadata = {'url': '/xml/mycontainer'}
 
     async def put_acls(
-            self, properties, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Puts storage ACLs for a container.
 
         :param properties:
         :type properties: list[~xmlservice.models.SignedIdentifier]
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         comp = "acl"
@@ -1147,20 +990,14 @@ class XmlOperations:
         if response.status_code not in [201]:
             raise HttpRequestError(response=response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put_acls.metadata = {'url': '/xml/mycontainer'}
 
     async def list_blobs(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Lists blobs in a storage container.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: ListBlobsResponse or ClientRawResponse if raw=true
-        :rtype: ~xmlservice.models.ListBlobsResponse or
-         ~msrest.pipeline.ClientRawResponse
+        :return: ListBlobsResponse
+        :rtype: ~xmlservice.models.ListBlobsResponse
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         comp = "list"
@@ -1192,10 +1029,6 @@ class XmlOperations:
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('ListBlobsResponse', response)
-
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
 
         return deserialized
     list_blobs.metadata = {'url': '/xml/mycontainer'}

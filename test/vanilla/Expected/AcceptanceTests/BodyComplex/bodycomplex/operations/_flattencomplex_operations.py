@@ -9,7 +9,6 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.pipeline import ClientRawResponse
 from azure.core import HttpRequestError
 
 from .. import models
@@ -37,14 +36,11 @@ class FlattencomplexOperations(object):
         self._config = config
 
     def get_valid(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: MyBaseType or ClientRawResponse if raw=true
-        :rtype: ~bodycomplex.models.MyBaseType or
-         ~msrest.pipeline.ClientRawResponse
+        :return: MyBaseType
+        :rtype: ~bodycomplex.models.MyBaseType
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         # Construct URL
@@ -71,10 +67,6 @@ class FlattencomplexOperations(object):
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('MyBaseType', response)
-
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
 
         return deserialized
     get_valid.metadata = {'url': '/complex/flatten/valid'}

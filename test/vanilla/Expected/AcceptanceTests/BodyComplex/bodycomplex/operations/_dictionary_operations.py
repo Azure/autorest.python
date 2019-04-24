@@ -9,7 +9,6 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.pipeline import ClientRawResponse
 
 from .. import models
 
@@ -36,14 +35,11 @@ class DictionaryOperations(object):
         self._config = config
 
     def get_valid(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get complex types with dictionary property.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: DictionaryWrapper or ClientRawResponse if raw=true
-        :rtype: ~bodycomplex.models.DictionaryWrapper or
-         ~msrest.pipeline.ClientRawResponse
+        :return: DictionaryWrapper
+        :rtype: ~bodycomplex.models.DictionaryWrapper
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
@@ -71,23 +67,17 @@ class DictionaryOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('DictionaryWrapper', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_valid.metadata = {'url': '/complex/dictionary/typed/valid'}
 
     def put_valid(
-            self, default_program=None, raw=False, **kwargs):
+            self, default_program=None, **kwargs):
         """Put complex types with dictionary property.
 
         :param default_program:
         :type default_program: dict[str, str]
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         complex_body = models.DictionaryWrapper(default_program=default_program)
@@ -116,20 +106,14 @@ class DictionaryOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put_valid.metadata = {'url': '/complex/dictionary/typed/valid'}
 
     def get_empty(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get complex types with dictionary property which is empty.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: DictionaryWrapper or ClientRawResponse if raw=true
-        :rtype: ~bodycomplex.models.DictionaryWrapper or
-         ~msrest.pipeline.ClientRawResponse
+        :return: DictionaryWrapper
+        :rtype: ~bodycomplex.models.DictionaryWrapper
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
@@ -157,23 +141,17 @@ class DictionaryOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('DictionaryWrapper', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_empty.metadata = {'url': '/complex/dictionary/typed/empty'}
 
     def put_empty(
-            self, default_program=None, raw=False, **kwargs):
+            self, default_program=None, **kwargs):
         """Put complex types with dictionary property which is empty.
 
         :param default_program:
         :type default_program: dict[str, str]
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         complex_body = models.DictionaryWrapper(default_program=default_program)
@@ -202,20 +180,14 @@ class DictionaryOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put_empty.metadata = {'url': '/complex/dictionary/typed/empty'}
 
     def get_null(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get complex types with dictionary property which is null.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: DictionaryWrapper or ClientRawResponse if raw=true
-        :rtype: ~bodycomplex.models.DictionaryWrapper or
-         ~msrest.pipeline.ClientRawResponse
+        :return: DictionaryWrapper
+        :rtype: ~bodycomplex.models.DictionaryWrapper
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
@@ -243,23 +215,16 @@ class DictionaryOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('DictionaryWrapper', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_null.metadata = {'url': '/complex/dictionary/typed/null'}
 
     def get_not_provided(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get complex types with dictionary property while server doesn't provide
         a response payload.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: DictionaryWrapper or ClientRawResponse if raw=true
-        :rtype: ~bodycomplex.models.DictionaryWrapper or
-         ~msrest.pipeline.ClientRawResponse
+        :return: DictionaryWrapper
+        :rtype: ~bodycomplex.models.DictionaryWrapper
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
@@ -286,10 +251,6 @@ class DictionaryOperations(object):
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('DictionaryWrapper', response)
-
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
 
         return deserialized
     get_not_provided.metadata = {'url': '/complex/dictionary/typed/notprovided'}

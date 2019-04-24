@@ -9,7 +9,6 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.pipeline import ClientRawResponse
 from azure.core import HttpRequestError
 
 from ... import models
@@ -37,7 +36,7 @@ class AvailabilitySetsOperations:
         self._config = config
 
     async def update(
-            self, resource_group_name, avset, tags, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Updates the tags for an availability set.
 
         :param resource_group_name: The name of the resource group.
@@ -46,10 +45,8 @@ class AvailabilitySetsOperations:
         :type avset: str
         :param tags: A set of tags. A description about the set of tags.
         :type tags: dict[str, str]
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         tags1 = models.AvailabilitySetUpdateParameters(tags=tags)
@@ -83,7 +80,4 @@ class AvailabilitySetsOperations:
         if response.status_code not in [200]:
             raise HttpRequestError(response=response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     update.metadata = {'url': '/parameterFlattening/{resourceGroupName}/{availabilitySetName}'}

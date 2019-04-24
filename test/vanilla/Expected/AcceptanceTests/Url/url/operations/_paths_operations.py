@@ -9,7 +9,6 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.pipeline import ClientRawResponse
 
 from .. import models
 
@@ -42,13 +41,11 @@ class PathsOperations(object):
         self.date_time_path = "2012-01-01T01:01:01Z"
 
     def get_boolean_true(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get true Boolean value on path.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         bool_path = True
@@ -77,19 +74,14 @@ class PathsOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     get_boolean_true.metadata = {'url': '/paths/bool/true/{boolPath}'}
 
     def get_boolean_false(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get false Boolean value on path.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         bool_path = False
@@ -118,19 +110,14 @@ class PathsOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     get_boolean_false.metadata = {'url': '/paths/bool/false/{boolPath}'}
 
     def get_int_one_million(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get '1000000' integer value.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         int_path = 1000000
@@ -159,19 +146,14 @@ class PathsOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     get_int_one_million.metadata = {'url': '/paths/int/1000000/{intPath}'}
 
     def get_int_negative_one_million(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get '-1000000' integer value.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         int_path = -1000000
@@ -200,19 +182,14 @@ class PathsOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     get_int_negative_one_million.metadata = {'url': '/paths/int/-1000000/{intPath}'}
 
     def get_ten_billion(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get '10000000000' 64 bit integer value.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         long_path = 10000000000
@@ -241,19 +218,14 @@ class PathsOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     get_ten_billion.metadata = {'url': '/paths/long/10000000000/{longPath}'}
 
     def get_negative_ten_billion(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get '-10000000000' 64 bit integer value.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         long_path = -10000000000
@@ -282,19 +254,14 @@ class PathsOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     get_negative_ten_billion.metadata = {'url': '/paths/long/-10000000000/{longPath}'}
 
     def float_scientific_positive(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get '1.034E+20' numeric value.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         float_path = 1.034E+20
@@ -323,19 +290,14 @@ class PathsOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     float_scientific_positive.metadata = {'url': '/paths/float/1.034E+20/{floatPath}'}
 
     def float_scientific_negative(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get '-1.034E-20' numeric value.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         float_path = -1.034E-20
@@ -364,19 +326,14 @@ class PathsOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     float_scientific_negative.metadata = {'url': '/paths/float/-1.034E-20/{floatPath}'}
 
     def double_decimal_positive(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get '9999999.999' numeric value.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         double_path = 9999999.999
@@ -405,19 +362,14 @@ class PathsOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     double_decimal_positive.metadata = {'url': '/paths/double/9999999.999/{doublePath}'}
 
     def double_decimal_negative(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get '-9999999.999' numeric value.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         double_path = -9999999.999
@@ -446,19 +398,14 @@ class PathsOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     double_decimal_negative.metadata = {'url': '/paths/double/-9999999.999/{doublePath}'}
 
     def string_unicode(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         string_path = "啊齄丂狛狜隣郎隣兀﨩"
@@ -487,19 +434,14 @@ class PathsOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     string_unicode.metadata = {'url': '/paths/string/unicode/{stringPath}'}
 
     def string_url_encoded(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get 'begin!*'();:@ &=+$,/?#[]end.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         string_path = "begin!*'();:@ &=+$,/?#[]end"
@@ -528,19 +470,14 @@ class PathsOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     string_url_encoded.metadata = {'url': '/paths/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend/{stringPath}'}
 
     def string_empty(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get ''.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         string_path = ""
@@ -569,21 +506,16 @@ class PathsOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     string_empty.metadata = {'url': '/paths/string/empty/{stringPath}'}
 
     def string_null(
-            self, string_path, raw=False, **kwargs):
+            self,  **kwargs):
         """Get null (should throw).
 
         :param string_path: null string value
         :type string_path: str
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
@@ -610,22 +542,17 @@ class PathsOperations(object):
         if response.status_code not in [400]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     string_null.metadata = {'url': '/paths/string/null/{stringPath}'}
 
     def enum_valid(
-            self, enum_path, raw=False, **kwargs):
+            self,  **kwargs):
         """Get using uri with 'green color' in path parameter.
 
         :param enum_path: send the value green. Possible values include: 'red
          color', 'green color', 'blue color'
         :type enum_path: str or ~url.models.UriColor
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
@@ -652,23 +579,18 @@ class PathsOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     enum_valid.metadata = {'url': '/paths/enum/green%20color/{enumPath}'}
 
     def enum_null(
-            self, enum_path, raw=False, **kwargs):
+            self,  **kwargs):
         """Get null (should throw on the client before the request is sent on
         wire).
 
         :param enum_path: send null should throw. Possible values include:
          'red color', 'green color', 'blue color'
         :type enum_path: str or ~url.models.UriColor
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
@@ -695,22 +617,17 @@ class PathsOperations(object):
         if response.status_code not in [400]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     enum_null.metadata = {'url': '/paths/string/null/{enumPath}'}
 
     def byte_multi_byte(
-            self, byte_path, raw=False, **kwargs):
+            self,  **kwargs):
         """Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
 
         :param byte_path: '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte
          array
         :type byte_path: bytearray
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
@@ -737,19 +654,14 @@ class PathsOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     byte_multi_byte.metadata = {'url': '/paths/byte/multibyte/{bytePath}'}
 
     def byte_empty(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get '' as byte array.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
@@ -776,21 +688,16 @@ class PathsOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     byte_empty.metadata = {'url': '/paths/byte/empty/{bytePath}'}
 
     def byte_null(
-            self, byte_path, raw=False, **kwargs):
+            self,  **kwargs):
         """Get null as byte array (should throw).
 
         :param byte_path: null as byte array (should throw)
         :type byte_path: bytearray
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
@@ -817,19 +724,14 @@ class PathsOperations(object):
         if response.status_code not in [400]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     byte_null.metadata = {'url': '/paths/byte/null/{bytePath}'}
 
     def date_valid(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get '2012-01-01' as date.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
@@ -856,22 +758,17 @@ class PathsOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     date_valid.metadata = {'url': '/paths/date/2012-01-01/{datePath}'}
 
     def date_null(
-            self, date_path, raw=False, **kwargs):
+            self,  **kwargs):
         """Get null as date - this should throw or be unusable on the client side,
         depending on date representation.
 
         :param date_path: null as date (should throw)
         :type date_path: date
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
@@ -898,19 +795,14 @@ class PathsOperations(object):
         if response.status_code not in [400]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     date_null.metadata = {'url': '/paths/date/null/{datePath}'}
 
     def date_time_valid(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get '2012-01-01T01:01:01Z' as date-time.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
@@ -937,22 +829,17 @@ class PathsOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     date_time_valid.metadata = {'url': '/paths/datetime/2012-01-01T01%3A01%3A01Z/{dateTimePath}'}
 
     def date_time_null(
-            self, date_time_path, raw=False, **kwargs):
+            self,  **kwargs):
         """Get null as date-time, should be disallowed or throw depending on
         representation of date-time.
 
         :param date_time_path: null as date-time
         :type date_time_path: datetime
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
@@ -979,21 +866,16 @@ class PathsOperations(object):
         if response.status_code not in [400]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     date_time_null.metadata = {'url': '/paths/datetime/null/{dateTimePath}'}
 
     def base64_url(
-            self, base64_url_path, raw=False, **kwargs):
+            self,  **kwargs):
         """Get 'lorem' encoded value as 'bG9yZW0' (base64url).
 
         :param base64_url_path: base64url encoded value
         :type base64_url_path: bytes
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
@@ -1020,23 +902,18 @@ class PathsOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     base64_url.metadata = {'url': '/paths/string/bG9yZW0/{base64UrlPath}'}
 
     def array_csv_in_path(
-            self, array_path, raw=False, **kwargs):
+            self,  **kwargs):
         """Get an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' ,
         null, ''] using the csv-array format.
 
         :param array_path: an array of string ['ArrayPath1', 'begin!*'();:@
          &=+$,/?#[]end' , null, ''] using the csv-array format
         :type array_path: list[str]
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
@@ -1063,21 +940,16 @@ class PathsOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     array_csv_in_path.metadata = {'url': '/paths/array/ArrayPath1%2cbegin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend%2c%2c/{arrayPath}'}
 
     def unix_time_url(
-            self, unix_time_url_path, raw=False, **kwargs):
+            self,  **kwargs):
         """Get the date 2016-04-13 encoded value as '1460505600' (Unix time).
 
         :param unix_time_url_path: Unix time encoded value
         :type unix_time_url_path: datetime
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
@@ -1104,7 +976,4 @@ class PathsOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     unix_time_url.metadata = {'url': '/paths/int/1460505600/{unixTimeUrlPath}'}

@@ -9,7 +9,6 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.pipeline import ClientRawResponse
 
 from .. import models
 
@@ -36,16 +35,13 @@ class ImplicitOperations(object):
         self._config = config
 
     def get_required_path(
-            self, path_parameter, raw=False, **kwargs):
+            self,  **kwargs):
         """Test implicitly required path parameter.
 
         :param path_parameter:
         :type path_parameter: str
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: Error or ClientRawResponse if raw=true
-        :rtype: ~requiredoptional.models.Error or
-         ~msrest.pipeline.ClientRawResponse
+        :return: Error
+        :rtype: ~requiredoptional.models.Error
         :raises:
          :class:`ErrorException<requiredoptional.models.ErrorException>`
         """
@@ -73,21 +69,16 @@ class ImplicitOperations(object):
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     get_required_path.metadata = {'url': '/reqopt/implicit/required/path/{pathParameter}'}
 
     def put_optional_query(
-            self, query_parameter=None, raw=False, **kwargs):
+            self, query_parameter=None, **kwargs):
         """Test implicitly optional query parameter.
 
         :param query_parameter:
         :type query_parameter: str
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises:
          :class:`ErrorException<requiredoptional.models.ErrorException>`
         """
@@ -113,21 +104,16 @@ class ImplicitOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put_optional_query.metadata = {'url': '/reqopt/implicit/optional/query'}
 
     def put_optional_header(
-            self, query_parameter=None, raw=False, **kwargs):
+            self, query_parameter=None, **kwargs):
         """Test implicitly optional header parameter.
 
         :param query_parameter:
         :type query_parameter: str
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises:
          :class:`ErrorException<requiredoptional.models.ErrorException>`
         """
@@ -153,21 +139,16 @@ class ImplicitOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put_optional_header.metadata = {'url': '/reqopt/implicit/optional/header'}
 
     def put_optional_body(
-            self, body_parameter=None, raw=False, **kwargs):
+            self, body_parameter=None, **kwargs):
         """Test implicitly optional body parameter.
 
         :param body_parameter:
         :type body_parameter: str
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises:
          :class:`ErrorException<requiredoptional.models.ErrorException>`
         """
@@ -198,20 +179,14 @@ class ImplicitOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put_optional_body.metadata = {'url': '/reqopt/implicit/optional/body'}
 
     def get_required_global_path(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Test implicitly required path parameter.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: Error or ClientRawResponse if raw=true
-        :rtype: ~requiredoptional.models.Error or
-         ~msrest.pipeline.ClientRawResponse
+        :return: Error
+        :rtype: ~requiredoptional.models.Error
         :raises:
          :class:`ErrorException<requiredoptional.models.ErrorException>`
         """
@@ -239,20 +214,14 @@ class ImplicitOperations(object):
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     get_required_global_path.metadata = {'url': '/reqopt/global/required/path/{required-global-path}'}
 
     def get_required_global_query(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Test implicitly required query parameter.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: Error or ClientRawResponse if raw=true
-        :rtype: ~requiredoptional.models.Error or
-         ~msrest.pipeline.ClientRawResponse
+        :return: Error
+        :rtype: ~requiredoptional.models.Error
         :raises:
          :class:`ErrorException<requiredoptional.models.ErrorException>`
         """
@@ -277,20 +246,14 @@ class ImplicitOperations(object):
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     get_required_global_query.metadata = {'url': '/reqopt/global/required/query'}
 
     def get_optional_global_query(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Test implicitly optional query parameter.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: Error or ClientRawResponse if raw=true
-        :rtype: ~requiredoptional.models.Error or
-         ~msrest.pipeline.ClientRawResponse
+        :return: Error
+        :rtype: ~requiredoptional.models.Error
         :raises:
          :class:`ErrorException<requiredoptional.models.ErrorException>`
         """
@@ -316,7 +279,4 @@ class ImplicitOperations(object):
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     get_optional_global_query.metadata = {'url': '/reqopt/global/optional/query'}

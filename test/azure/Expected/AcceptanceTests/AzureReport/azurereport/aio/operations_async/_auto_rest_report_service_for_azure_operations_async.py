@@ -9,7 +9,6 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.pipeline import ClientRawResponse
 from ... import models
 import uuid
 
@@ -26,7 +25,7 @@ class AutoRestReportServiceForAzureOperationsMixin:
         raise error
 
     async def get_report(
-            self, qualifier=None, *, raw=False, **kwargs):
+            self, qualifier=None, **kwargs):
         """Get test coverage report.
 
         :param qualifier: If specified, qualifies the generated report further
@@ -34,10 +33,8 @@ class AutoRestReportServiceForAzureOperationsMixin:
          generators that run all tests several times, can distinguish the
          generated reports.
         :type qualifier: str
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: dict or ClientRawResponse if raw=true
-        :rtype: dict[str, int] or ~msrest.pipeline.ClientRawResponse
+        :return: dict
+        :rtype: dict[str, int]
         :raises: :class:`ErrorException<azurereport.models.ErrorException>`
         """
         # Construct URL
@@ -70,10 +67,6 @@ class AutoRestReportServiceForAzureOperationsMixin:
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('{int}', response)
-
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
 
         return deserialized
     get_report.metadata = {'url': '/report/azure'}

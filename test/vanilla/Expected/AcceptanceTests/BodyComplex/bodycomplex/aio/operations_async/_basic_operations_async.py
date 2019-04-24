@@ -9,7 +9,6 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.pipeline import ClientRawResponse
 
 from ... import models
 
@@ -38,14 +37,11 @@ class BasicOperations:
         self.api_version = "2016-02-29"
 
     async def get_valid(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Get complex type {id: 2, name: 'abc', color: 'YELLOW'}.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: Basic or ClientRawResponse if raw=true
-        :rtype: ~bodycomplex.models.Basic or
-         ~msrest.pipeline.ClientRawResponse
+        :return: Basic
+        :rtype: ~bodycomplex.models.Basic
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
@@ -73,23 +69,17 @@ class BasicOperations:
         if response.status_code == 200:
             deserialized = self._deserialize('Basic', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_valid.metadata = {'url': '/complex/basic/valid'}
 
     async def put_valid(
-            self, complex_body, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Please put {id: 2, name: 'abc', color: 'Magenta'}.
 
         :param complex_body: Please put {id: 2, name: 'abc', color: 'Magenta'}
         :type complex_body: ~bodycomplex.models.Basic
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
@@ -117,20 +107,14 @@ class BasicOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put_valid.metadata = {'url': '/complex/basic/valid'}
 
     async def get_invalid(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Get a basic complex type that is invalid for the local strong type.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: Basic or ClientRawResponse if raw=true
-        :rtype: ~bodycomplex.models.Basic or
-         ~msrest.pipeline.ClientRawResponse
+        :return: Basic
+        :rtype: ~bodycomplex.models.Basic
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
@@ -158,22 +142,15 @@ class BasicOperations:
         if response.status_code == 200:
             deserialized = self._deserialize('Basic', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_invalid.metadata = {'url': '/complex/basic/invalid'}
 
     async def get_empty(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Get a basic complex type that is empty.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: Basic or ClientRawResponse if raw=true
-        :rtype: ~bodycomplex.models.Basic or
-         ~msrest.pipeline.ClientRawResponse
+        :return: Basic
+        :rtype: ~bodycomplex.models.Basic
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
@@ -201,22 +178,15 @@ class BasicOperations:
         if response.status_code == 200:
             deserialized = self._deserialize('Basic', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_empty.metadata = {'url': '/complex/basic/empty'}
 
     async def get_null(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Get a basic complex type whose properties are null.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: Basic or ClientRawResponse if raw=true
-        :rtype: ~bodycomplex.models.Basic or
-         ~msrest.pipeline.ClientRawResponse
+        :return: Basic
+        :rtype: ~bodycomplex.models.Basic
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
@@ -244,23 +214,16 @@ class BasicOperations:
         if response.status_code == 200:
             deserialized = self._deserialize('Basic', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_null.metadata = {'url': '/complex/basic/null'}
 
     async def get_not_provided(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Get a basic complex type while the server doesn't provide a response
         payload.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: Basic or ClientRawResponse if raw=true
-        :rtype: ~bodycomplex.models.Basic or
-         ~msrest.pipeline.ClientRawResponse
+        :return: Basic
+        :rtype: ~bodycomplex.models.Basic
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
@@ -287,10 +250,6 @@ class BasicOperations:
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('Basic', response)
-
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
 
         return deserialized
     get_not_provided.metadata = {'url': '/complex/basic/notprovided'}

@@ -9,7 +9,6 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.pipeline import ClientRawResponse
 
 from ... import models
 
@@ -36,13 +35,11 @@ class ByteOperations:
         self._config = config
 
     async def get_null(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Get null byte value.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: bytearray or ClientRawResponse if raw=true
-        :rtype: bytearray or ~msrest.pipeline.ClientRawResponse
+        :return: bytearray
+        :rtype: bytearray
         :raises: :class:`ErrorException<bodybyte.models.ErrorException>`
         """
         # Construct URL
@@ -70,21 +67,15 @@ class ByteOperations:
         if response.status_code == 200:
             deserialized = self._deserialize('bytearray', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_null.metadata = {'url': '/byte/null'}
 
     async def get_empty(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Get empty byte value ''.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: bytearray or ClientRawResponse if raw=true
-        :rtype: bytearray or ~msrest.pipeline.ClientRawResponse
+        :return: bytearray
+        :rtype: bytearray
         :raises: :class:`ErrorException<bodybyte.models.ErrorException>`
         """
         # Construct URL
@@ -112,21 +103,15 @@ class ByteOperations:
         if response.status_code == 200:
             deserialized = self._deserialize('bytearray', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_empty.metadata = {'url': '/byte/empty'}
 
     async def get_non_ascii(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Get non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: bytearray or ClientRawResponse if raw=true
-        :rtype: bytearray or ~msrest.pipeline.ClientRawResponse
+        :return: bytearray
+        :rtype: bytearray
         :raises: :class:`ErrorException<bodybyte.models.ErrorException>`
         """
         # Construct URL
@@ -154,24 +139,18 @@ class ByteOperations:
         if response.status_code == 200:
             deserialized = self._deserialize('bytearray', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_non_ascii.metadata = {'url': '/byte/nonAscii'}
 
     async def put_non_ascii(
-            self, byte_body, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Put non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
 
         :param byte_body: Base64-encoded non-ascii byte string hex(FF FE FD FC
          FB FA F9 F8 F7 F6)
         :type byte_body: bytearray
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<bodybyte.models.ErrorException>`
         """
         # Construct URL
@@ -198,19 +177,14 @@ class ByteOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put_non_ascii.metadata = {'url': '/byte/nonAscii'}
 
     async def get_invalid(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Get invalid byte value ':::SWAGGER::::'.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: bytearray or ClientRawResponse if raw=true
-        :rtype: bytearray or ~msrest.pipeline.ClientRawResponse
+        :return: bytearray
+        :rtype: bytearray
         :raises: :class:`ErrorException<bodybyte.models.ErrorException>`
         """
         # Construct URL
@@ -237,10 +211,6 @@ class ByteOperations:
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('bytearray', response)
-
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
 
         return deserialized
     get_invalid.metadata = {'url': '/byte/invalid'}

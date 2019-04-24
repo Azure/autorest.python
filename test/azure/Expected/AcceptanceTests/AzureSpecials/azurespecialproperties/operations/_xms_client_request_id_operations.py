@@ -10,7 +10,6 @@
 # --------------------------------------------------------------------------
 
 import uuid
-from msrest.pipeline import ClientRawResponse
 from azure.core import HttpRequestError
 
 from .. import models
@@ -38,14 +37,12 @@ class XMsClientRequestIdOperations(object):
         self._config = config
 
     def get(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get method that overwrites x-ms-client-request header with value
         9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         # Construct URL
@@ -74,23 +71,18 @@ class XMsClientRequestIdOperations(object):
             exp = HttpRequestError(response=response)
             raise exp
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     get.metadata = {'url': '/azurespecials/overwrite/x-ms-client-request-id/method/'}
 
     def param_get(
-            self, x_ms_client_request_id, raw=False, **kwargs):
+            self,  **kwargs):
         """Get method that overwrites x-ms-client-request header with value
         9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
 
         :param x_ms_client_request_id: This should appear as a method
          parameter, use value '9C4D50EE-2D56-4CD3-8152-34347DC9F2B0'
         :type x_ms_client_request_id: str
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises:
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
         """
@@ -119,7 +111,4 @@ class XMsClientRequestIdOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     param_get.metadata = {'url': '/azurespecials/overwrite/x-ms-client-request-id/via-param/method/'}

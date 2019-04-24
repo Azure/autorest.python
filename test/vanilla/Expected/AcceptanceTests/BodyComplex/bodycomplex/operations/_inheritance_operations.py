@@ -9,7 +9,6 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.pipeline import ClientRawResponse
 
 from .. import models
 
@@ -36,14 +35,11 @@ class InheritanceOperations(object):
         self._config = config
 
     def get_valid(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get complex types that extend others.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: Siamese or ClientRawResponse if raw=true
-        :rtype: ~bodycomplex.models.Siamese or
-         ~msrest.pipeline.ClientRawResponse
+        :return: Siamese
+        :rtype: ~bodycomplex.models.Siamese
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
@@ -71,15 +67,11 @@ class InheritanceOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('Siamese', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_valid.metadata = {'url': '/complex/inheritance/valid'}
 
     def put_valid(
-            self, complex_body, raw=False, **kwargs):
+            self,  **kwargs):
         """Put complex types that extend others.
 
         :param complex_body: Please put a siamese with id=2, name="Siameee",
@@ -87,10 +79,8 @@ class InheritanceOperations(object):
          "Potato" with id=1 and food="tomato", and the 2nd one named "Tomato"
          with id=-1 and food="french fries".
         :type complex_body: ~bodycomplex.models.Siamese
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
@@ -117,7 +107,4 @@ class InheritanceOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put_valid.metadata = {'url': '/complex/inheritance/valid'}

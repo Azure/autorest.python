@@ -10,7 +10,6 @@
 # --------------------------------------------------------------------------
 
 import uuid
-from msrest.pipeline import ClientRawResponse
 from azure.core import HttpRequestError
 
 from ... import models
@@ -40,15 +39,12 @@ class UsageOperations:
         self._config = config
 
     async def list(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Gets the current usage count and the limit for the resources under the
         subscription.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: UsageListResult or ClientRawResponse if raw=true
-        :rtype: ~storage.models.UsageListResult or
-         ~msrest.pipeline.ClientRawResponse
+        :return: UsageListResult
+        :rtype: ~storage.models.UsageListResult
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         # Construct URL
@@ -86,10 +82,6 @@ class UsageOperations:
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('UsageListResult', response)
-
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
 
         return deserialized
     list.metadata = {'url': '/subscriptions/{subscriptionId}/providers/Microsoft.Storage/usages'}

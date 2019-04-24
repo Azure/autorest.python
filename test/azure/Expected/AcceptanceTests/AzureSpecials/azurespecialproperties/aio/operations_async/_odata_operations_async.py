@@ -10,7 +10,6 @@
 # --------------------------------------------------------------------------
 
 import uuid
-from msrest.pipeline import ClientRawResponse
 
 from ... import models
 
@@ -37,7 +36,7 @@ class OdataOperations:
         self._config = config
 
     async def get_with_filter(
-            self, filter=None, top=None, orderby=None, *, raw=False, **kwargs):
+            self, filter=None, top=None, orderby=None, **kwargs):
         """Specify filter parameter with value '$filter=id gt 5 and name eq
         'foo'&$orderby=id&$top=10'.
 
@@ -48,10 +47,8 @@ class OdataOperations:
         :type top: int
         :param orderby: The orderby parameter with value id.
         :type orderby: str
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises:
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
         """
@@ -85,7 +82,4 @@ class OdataOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     get_with_filter.metadata = {'url': '/azurespecials/odata/filter'}

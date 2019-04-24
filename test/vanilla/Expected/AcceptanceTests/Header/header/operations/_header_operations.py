@@ -9,7 +9,6 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.pipeline import ClientRawResponse
 
 from .. import models
 
@@ -36,16 +35,14 @@ class HeaderOperations(object):
         self._config = config
 
     def param_existing_key(
-            self, user_agent, raw=False, **kwargs):
+            self,  **kwargs):
         """Send a post request with header value "User-Agent": "overwrite".
 
         :param user_agent: Send a post request with header value "User-Agent":
          "overwrite"
         :type user_agent: str
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
@@ -69,19 +66,14 @@ class HeaderOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     param_existing_key.metadata = {'url': '/header/param/existingkey'}
 
     def response_existing_key(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get a response with header value "User-Agent": "overwrite".
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
@@ -104,25 +96,17 @@ class HeaderOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            client_raw_response.add_headers({
-                'User-Agent': 'str',
-            })
-            return client_raw_response
     response_existing_key.metadata = {'url': '/header/response/existingkey'}
 
     def param_protected_key(
-            self, content_type, raw=False, **kwargs):
+            self,  **kwargs):
         """Send a post request with header value "Content-Type": "text/html".
 
         :param content_type: Send a post request with header value
          "Content-Type": "text/html"
         :type content_type: str
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
@@ -146,19 +130,14 @@ class HeaderOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     param_protected_key.metadata = {'url': '/header/param/protectedkey'}
 
     def response_protected_key(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get a response with header value "Content-Type": "text/html".
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
@@ -181,16 +160,10 @@ class HeaderOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            client_raw_response.add_headers({
-                'Content-Type': 'str',
-            })
-            return client_raw_response
     response_protected_key.metadata = {'url': '/header/response/protectedkey'}
 
     def param_integer(
-            self, scenario, value, raw=False, **kwargs):
+            self,  **kwargs):
         """Send a post request with header values "scenario": "positive", "value":
         1 or "scenario": "negative", "value": -2 .
 
@@ -199,10 +172,8 @@ class HeaderOperations(object):
         :type scenario: str
         :param value: Send a post request with header values 1 or -2
         :type value: int
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
@@ -227,22 +198,17 @@ class HeaderOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     param_integer.metadata = {'url': '/header/param/prim/integer'}
 
     def response_integer(
-            self, scenario, raw=False, **kwargs):
+            self,  **kwargs):
         """Get a response with header value "value": 1 or -2.
 
         :param scenario: Send a post request with header values "scenario":
          "positive" or "negative"
         :type scenario: str
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
@@ -266,16 +232,10 @@ class HeaderOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            client_raw_response.add_headers({
-                'value': 'int',
-            })
-            return client_raw_response
     response_integer.metadata = {'url': '/header/response/prim/integer'}
 
     def param_long(
-            self, scenario, value, raw=False, **kwargs):
+            self,  **kwargs):
         """Send a post request with header values "scenario": "positive", "value":
         105 or "scenario": "negative", "value": -2 .
 
@@ -284,10 +244,8 @@ class HeaderOperations(object):
         :type scenario: str
         :param value: Send a post request with header values 105 or -2
         :type value: long
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
@@ -312,22 +270,17 @@ class HeaderOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     param_long.metadata = {'url': '/header/param/prim/long'}
 
     def response_long(
-            self, scenario, raw=False, **kwargs):
+            self,  **kwargs):
         """Get a response with header value "value": 105 or -2.
 
         :param scenario: Send a post request with header values "scenario":
          "positive" or "negative"
         :type scenario: str
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
@@ -351,16 +304,10 @@ class HeaderOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            client_raw_response.add_headers({
-                'value': 'long',
-            })
-            return client_raw_response
     response_long.metadata = {'url': '/header/response/prim/long'}
 
     def param_float(
-            self, scenario, value, raw=False, **kwargs):
+            self,  **kwargs):
         """Send a post request with header values "scenario": "positive", "value":
         0.07 or "scenario": "negative", "value": -3.0.
 
@@ -369,10 +316,8 @@ class HeaderOperations(object):
         :type scenario: str
         :param value: Send a post request with header values 0.07 or -3.0
         :type value: float
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
@@ -397,22 +342,17 @@ class HeaderOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     param_float.metadata = {'url': '/header/param/prim/float'}
 
     def response_float(
-            self, scenario, raw=False, **kwargs):
+            self,  **kwargs):
         """Get a response with header value "value": 0.07 or -3.0.
 
         :param scenario: Send a post request with header values "scenario":
          "positive" or "negative"
         :type scenario: str
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
@@ -436,16 +376,10 @@ class HeaderOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            client_raw_response.add_headers({
-                'value': 'float',
-            })
-            return client_raw_response
     response_float.metadata = {'url': '/header/response/prim/float'}
 
     def param_double(
-            self, scenario, value, raw=False, **kwargs):
+            self,  **kwargs):
         """Send a post request with header values "scenario": "positive", "value":
         7e120 or "scenario": "negative", "value": -3.0.
 
@@ -454,10 +388,8 @@ class HeaderOperations(object):
         :type scenario: str
         :param value: Send a post request with header values 7e120 or -3.0
         :type value: float
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
@@ -482,22 +414,17 @@ class HeaderOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     param_double.metadata = {'url': '/header/param/prim/double'}
 
     def response_double(
-            self, scenario, raw=False, **kwargs):
+            self,  **kwargs):
         """Get a response with header value "value": 7e120 or -3.0.
 
         :param scenario: Send a post request with header values "scenario":
          "positive" or "negative"
         :type scenario: str
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
@@ -521,16 +448,10 @@ class HeaderOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            client_raw_response.add_headers({
-                'value': 'float',
-            })
-            return client_raw_response
     response_double.metadata = {'url': '/header/response/prim/double'}
 
     def param_bool(
-            self, scenario, value, raw=False, **kwargs):
+            self,  **kwargs):
         """Send a post request with header values "scenario": "true", "value":
         true or "scenario": "false", "value": false.
 
@@ -539,10 +460,8 @@ class HeaderOperations(object):
         :type scenario: str
         :param value: Send a post request with header values true or false
         :type value: bool
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
@@ -567,22 +486,17 @@ class HeaderOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     param_bool.metadata = {'url': '/header/param/prim/bool'}
 
     def response_bool(
-            self, scenario, raw=False, **kwargs):
+            self,  **kwargs):
         """Get a response with header value "value": true or false.
 
         :param scenario: Send a post request with header values "scenario":
          "true" or "false"
         :type scenario: str
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
@@ -606,16 +520,10 @@ class HeaderOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            client_raw_response.add_headers({
-                'value': 'bool',
-            })
-            return client_raw_response
     response_bool.metadata = {'url': '/header/response/prim/bool'}
 
     def param_string(
-            self, scenario, value=None, raw=False, **kwargs):
+            self, scenario, value=None, **kwargs):
         """Send a post request with header values "scenario": "valid", "value":
         "The quick brown fox jumps over the lazy dog" or "scenario": "null",
         "value": null or "scenario": "empty", "value": "".
@@ -626,10 +534,8 @@ class HeaderOperations(object):
         :param value: Send a post request with header values "The quick brown
          fox jumps over the lazy dog" or null or ""
         :type value: str
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
@@ -655,23 +561,18 @@ class HeaderOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     param_string.metadata = {'url': '/header/param/prim/string'}
 
     def response_string(
-            self, scenario, raw=False, **kwargs):
+            self,  **kwargs):
         """Get a response with header values "The quick brown fox jumps over the
         lazy dog" or null or "".
 
         :param scenario: Send a post request with header values "scenario":
          "valid" or "null" or "empty"
         :type scenario: str
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
@@ -695,16 +596,10 @@ class HeaderOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            client_raw_response.add_headers({
-                'value': 'str',
-            })
-            return client_raw_response
     response_string.metadata = {'url': '/header/response/prim/string'}
 
     def param_date(
-            self, scenario, value, raw=False, **kwargs):
+            self,  **kwargs):
         """Send a post request with header values "scenario": "valid", "value":
         "2010-01-01" or "scenario": "min", "value": "0001-01-01".
 
@@ -714,10 +609,8 @@ class HeaderOperations(object):
         :param value: Send a post request with header values "2010-01-01" or
          "0001-01-01"
         :type value: date
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
@@ -742,22 +635,17 @@ class HeaderOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     param_date.metadata = {'url': '/header/param/prim/date'}
 
     def response_date(
-            self, scenario, raw=False, **kwargs):
+            self,  **kwargs):
         """Get a response with header values "2010-01-01" or "0001-01-01".
 
         :param scenario: Send a post request with header values "scenario":
          "valid" or "min"
         :type scenario: str
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
@@ -781,16 +669,10 @@ class HeaderOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            client_raw_response.add_headers({
-                'value': 'date',
-            })
-            return client_raw_response
     response_date.metadata = {'url': '/header/response/prim/date'}
 
     def param_datetime(
-            self, scenario, value, raw=False, **kwargs):
+            self,  **kwargs):
         """Send a post request with header values "scenario": "valid", "value":
         "2010-01-01T12:34:56Z" or "scenario": "min", "value":
         "0001-01-01T00:00:00Z".
@@ -801,10 +683,8 @@ class HeaderOperations(object):
         :param value: Send a post request with header values
          "2010-01-01T12:34:56Z" or "0001-01-01T00:00:00Z"
         :type value: datetime
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
@@ -829,23 +709,18 @@ class HeaderOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     param_datetime.metadata = {'url': '/header/param/prim/datetime'}
 
     def response_datetime(
-            self, scenario, raw=False, **kwargs):
+            self,  **kwargs):
         """Get a response with header values "2010-01-01T12:34:56Z" or
         "0001-01-01T00:00:00Z".
 
         :param scenario: Send a post request with header values "scenario":
          "valid" or "min"
         :type scenario: str
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
@@ -869,16 +744,10 @@ class HeaderOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            client_raw_response.add_headers({
-                'value': 'iso-8601',
-            })
-            return client_raw_response
     response_datetime.metadata = {'url': '/header/response/prim/datetime'}
 
     def param_datetime_rfc1123(
-            self, scenario, value=None, raw=False, **kwargs):
+            self, scenario, value=None, **kwargs):
         """Send a post request with header values "scenario": "valid", "value":
         "Wed, 01 Jan 2010 12:34:56 GMT" or "scenario": "min", "value": "Mon, 01
         Jan 0001 00:00:00 GMT".
@@ -889,10 +758,8 @@ class HeaderOperations(object):
         :param value: Send a post request with header values "Wed, 01 Jan 2010
          12:34:56 GMT" or "Mon, 01 Jan 0001 00:00:00 GMT"
         :type value: datetime
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
@@ -918,23 +785,18 @@ class HeaderOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     param_datetime_rfc1123.metadata = {'url': '/header/param/prim/datetimerfc1123'}
 
     def response_datetime_rfc1123(
-            self, scenario, raw=False, **kwargs):
+            self,  **kwargs):
         """Get a response with header values "Wed, 01 Jan 2010 12:34:56 GMT" or
         "Mon, 01 Jan 0001 00:00:00 GMT".
 
         :param scenario: Send a post request with header values "scenario":
          "valid" or "min"
         :type scenario: str
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
@@ -958,16 +820,10 @@ class HeaderOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            client_raw_response.add_headers({
-                'value': 'rfc-1123',
-            })
-            return client_raw_response
     response_datetime_rfc1123.metadata = {'url': '/header/response/prim/datetimerfc1123'}
 
     def param_duration(
-            self, scenario, value, raw=False, **kwargs):
+            self,  **kwargs):
         """Send a post request with header values "scenario": "valid", "value":
         "P123DT22H14M12.011S".
 
@@ -977,10 +833,8 @@ class HeaderOperations(object):
         :param value: Send a post request with header values
          "P123DT22H14M12.011S"
         :type value: timedelta
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
@@ -1005,22 +859,17 @@ class HeaderOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     param_duration.metadata = {'url': '/header/param/prim/duration'}
 
     def response_duration(
-            self, scenario, raw=False, **kwargs):
+            self,  **kwargs):
         """Get a response with header values "P123DT22H14M12.011S".
 
         :param scenario: Send a post request with header values "scenario":
          "valid"
         :type scenario: str
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
@@ -1044,16 +893,10 @@ class HeaderOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            client_raw_response.add_headers({
-                'value': 'duration',
-            })
-            return client_raw_response
     response_duration.metadata = {'url': '/header/response/prim/duration'}
 
     def param_byte(
-            self, scenario, value, raw=False, **kwargs):
+            self,  **kwargs):
         """Send a post request with header values "scenario": "valid", "value":
         "啊齄丂狛狜隣郎隣兀﨩".
 
@@ -1062,10 +905,8 @@ class HeaderOperations(object):
         :type scenario: str
         :param value: Send a post request with header values "啊齄丂狛狜隣郎隣兀﨩"
         :type value: bytearray
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
@@ -1090,22 +931,17 @@ class HeaderOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     param_byte.metadata = {'url': '/header/param/prim/byte'}
 
     def response_byte(
-            self, scenario, raw=False, **kwargs):
+            self,  **kwargs):
         """Get a response with header values "啊齄丂狛狜隣郎隣兀﨩".
 
         :param scenario: Send a post request with header values "scenario":
          "valid"
         :type scenario: str
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
@@ -1129,16 +965,10 @@ class HeaderOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            client_raw_response.add_headers({
-                'value': 'bytearray',
-            })
-            return client_raw_response
     response_byte.metadata = {'url': '/header/response/prim/byte'}
 
     def param_enum(
-            self, scenario, value=None, raw=False, **kwargs):
+            self, scenario, value=None, **kwargs):
         """Send a post request with header values "scenario": "valid", "value":
         "GREY" or "scenario": "null", "value": null.
 
@@ -1148,10 +978,8 @@ class HeaderOperations(object):
         :param value: Send a post request with header values 'GREY'. Possible
          values include: 'White', 'black', 'GREY'
         :type value: str or ~header.models.GreyscaleColors
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
@@ -1177,22 +1005,17 @@ class HeaderOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     param_enum.metadata = {'url': '/header/param/prim/enum'}
 
     def response_enum(
-            self, scenario, raw=False, **kwargs):
+            self,  **kwargs):
         """Get a response with header values "GREY" or null.
 
         :param scenario: Send a post request with header values "scenario":
          "valid" or "null" or "empty"
         :type scenario: str
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
@@ -1216,23 +1039,15 @@ class HeaderOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            client_raw_response.add_headers({
-                'value': models.GreyscaleColors,
-            })
-            return client_raw_response
     response_enum.metadata = {'url': '/header/response/prim/enum'}
 
     def custom_request_id(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Send x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in
         the header of the request.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
         # Construct URL
@@ -1255,7 +1070,4 @@ class HeaderOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     custom_request_id.metadata = {'url': '/header/custom/x-ms-client-request-id/9C4D50EE-2D56-4CD3-8152-34347DC9F2B0'}

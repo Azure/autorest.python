@@ -9,7 +9,6 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.pipeline import ClientRawResponse
 
 from .. import models
 
@@ -36,15 +35,12 @@ class EnumOperations(object):
         self._config = config
 
     def get_not_expandable(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get enum value 'red color' from enumeration of 'red color',
         'green-color', 'blue_color'.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: Colors or ClientRawResponse if raw=true
-        :rtype: ~bodystring.models.Colors or
-         ~msrest.pipeline.ClientRawResponse
+        :return: Colors
+        :rtype: ~bodystring.models.Colors
         :raises: :class:`ErrorException<bodystring.models.ErrorException>`
         """
         # Construct URL
@@ -72,25 +68,19 @@ class EnumOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('Colors', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_not_expandable.metadata = {'url': '/string/enum/notExpandable'}
 
     def put_not_expandable(
-            self, string_body, raw=False, **kwargs):
+            self,  **kwargs):
         """Sends value 'red color' from enumeration of 'red color', 'green-color',
         'blue_color'.
 
         :param string_body: Possible values include: 'red color',
          'green-color', 'blue_color'
         :type string_body: str or ~bodystring.models.Colors
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<bodystring.models.ErrorException>`
         """
         # Construct URL
@@ -117,21 +107,15 @@ class EnumOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put_not_expandable.metadata = {'url': '/string/enum/notExpandable'}
 
     def get_referenced(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get enum value 'red color' from enumeration of 'red color',
         'green-color', 'blue_color'.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: Colors or ClientRawResponse if raw=true
-        :rtype: ~bodystring.models.Colors or
-         ~msrest.pipeline.ClientRawResponse
+        :return: Colors
+        :rtype: ~bodystring.models.Colors
         :raises: :class:`ErrorException<bodystring.models.ErrorException>`
         """
         # Construct URL
@@ -159,25 +143,19 @@ class EnumOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('Colors', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_referenced.metadata = {'url': '/string/enum/Referenced'}
 
     def put_referenced(
-            self, enum_string_body, raw=False, **kwargs):
+            self,  **kwargs):
         """Sends value 'red color' from enumeration of 'red color', 'green-color',
         'blue_color'.
 
         :param enum_string_body: Possible values include: 'red color',
          'green-color', 'blue_color'
         :type enum_string_body: str or ~bodystring.models.Colors
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<bodystring.models.ErrorException>`
         """
         # Construct URL
@@ -204,20 +182,14 @@ class EnumOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put_referenced.metadata = {'url': '/string/enum/Referenced'}
 
     def get_referenced_constant(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get value 'green-color' from the constant.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: RefColorConstant or ClientRawResponse if raw=true
-        :rtype: ~bodystring.models.RefColorConstant or
-         ~msrest.pipeline.ClientRawResponse
+        :return: RefColorConstant
+        :rtype: ~bodystring.models.RefColorConstant
         :raises: :class:`ErrorException<bodystring.models.ErrorException>`
         """
         # Construct URL
@@ -245,23 +217,17 @@ class EnumOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('RefColorConstant', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_referenced_constant.metadata = {'url': '/string/enum/ReferencedConstant'}
 
     def put_referenced_constant(
-            self, field1=None, raw=False, **kwargs):
+            self, field1=None, **kwargs):
         """Sends value 'green-color' from a constant.
 
         :param field1: Sample string.
         :type field1: str
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<bodystring.models.ErrorException>`
         """
         enum_string_body = models.RefColorConstant(field1=field1)
@@ -290,7 +256,4 @@ class EnumOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put_referenced_constant.metadata = {'url': '/string/enum/ReferencedConstant'}

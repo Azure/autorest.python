@@ -10,7 +10,6 @@
 # --------------------------------------------------------------------------
 
 import uuid
-from msrest.pipeline import ClientRawResponse
 
 from ... import models
 
@@ -39,14 +38,12 @@ class ApiVersionLocalOperations:
         self._config = config
 
     async def get_method_local_valid(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Get method with api-version modeled in the method.  pass in api-version
         = '2.0' to succeed.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises:
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
         """
@@ -75,23 +72,18 @@ class ApiVersionLocalOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     get_method_local_valid.metadata = {'url': '/azurespecials/apiVersion/method/string/none/query/local/2.0'}
 
     async def get_method_local_null(
-            self, api_version=None, *, raw=False, **kwargs):
+            self, api_version=None, **kwargs):
         """Get method with api-version modeled in the method.  pass in api-version
         = null to succeed.
 
         :param api_version: This should appear as a method parameter, use
          value null, this should result in no serialized parameter
         :type api_version: str
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises:
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
         """
@@ -121,20 +113,15 @@ class ApiVersionLocalOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     get_method_local_null.metadata = {'url': '/azurespecials/apiVersion/method/string/none/query/local/null'}
 
     async def get_path_local_valid(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Get method with api-version modeled in the method.  pass in api-version
         = '2.0' to succeed.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises:
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
         """
@@ -163,20 +150,15 @@ class ApiVersionLocalOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     get_path_local_valid.metadata = {'url': '/azurespecials/apiVersion/path/string/none/query/local/2.0'}
 
     async def get_swagger_local_valid(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Get method with api-version modeled in the method.  pass in api-version
         = '2.0' to succeed.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises:
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
         """
@@ -205,7 +187,4 @@ class ApiVersionLocalOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     get_swagger_local_valid.metadata = {'url': '/azurespecials/apiVersion/swagger/string/none/query/local/2.0'}

@@ -9,7 +9,6 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.pipeline import ClientRawResponse
 
 from ... import models
 
@@ -36,13 +35,11 @@ class HttpRetryOperations:
         self._config = config
 
     async def head408(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Return 408 status code, then 200 after retry.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
@@ -66,21 +63,16 @@ class HttpRetryOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     head408.metadata = {'url': '/http/retry/408'}
 
     async def put500(
-            self, boolean_value=None, *, raw=False, **kwargs):
+            self, boolean_value=None, **kwargs):
         """Return 500 status code, then 200 after retry.
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
@@ -111,21 +103,16 @@ class HttpRetryOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put500.metadata = {'url': '/http/retry/500'}
 
     async def patch500(
-            self, boolean_value=None, *, raw=False, **kwargs):
+            self, boolean_value=None, **kwargs):
         """Return 500 status code, then 200 after retry.
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
@@ -156,19 +143,14 @@ class HttpRetryOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     patch500.metadata = {'url': '/http/retry/500'}
 
     async def get502(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Return 502 status code, then 200 after retry.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
@@ -192,21 +174,16 @@ class HttpRetryOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     get502.metadata = {'url': '/http/retry/502'}
 
     async def post503(
-            self, boolean_value=None, *, raw=False, **kwargs):
+            self, boolean_value=None, **kwargs):
         """Return 503 status code, then 200 after retry.
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
@@ -237,21 +214,16 @@ class HttpRetryOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     post503.metadata = {'url': '/http/retry/503'}
 
     async def delete503(
-            self, boolean_value=None, *, raw=False, **kwargs):
+            self, boolean_value=None, **kwargs):
         """Return 503 status code, then 200 after retry.
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
@@ -282,21 +254,16 @@ class HttpRetryOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     delete503.metadata = {'url': '/http/retry/503'}
 
     async def put504(
-            self, boolean_value=None, *, raw=False, **kwargs):
+            self, boolean_value=None, **kwargs):
         """Return 504 status code, then 200 after retry.
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
@@ -327,21 +294,16 @@ class HttpRetryOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put504.metadata = {'url': '/http/retry/504'}
 
     async def patch504(
-            self, boolean_value=None, *, raw=False, **kwargs):
+            self, boolean_value=None, **kwargs):
         """Return 504 status code, then 200 after retry.
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
@@ -372,7 +334,4 @@ class HttpRetryOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     patch504.metadata = {'url': '/http/retry/504'}

@@ -9,7 +9,6 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.pipeline import ClientRawResponse
 
 from .. import models
 
@@ -36,14 +35,11 @@ class ArrayOperations(object):
         self._config = config
 
     def get_valid(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get complex types with array property.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: ArrayWrapper or ClientRawResponse if raw=true
-        :rtype: ~bodycomplex.models.ArrayWrapper or
-         ~msrest.pipeline.ClientRawResponse
+        :return: ArrayWrapper
+        :rtype: ~bodycomplex.models.ArrayWrapper
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
@@ -71,23 +67,17 @@ class ArrayOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('ArrayWrapper', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_valid.metadata = {'url': '/complex/array/valid'}
 
     def put_valid(
-            self, array=None, raw=False, **kwargs):
+            self, array=None, **kwargs):
         """Put complex types with array property.
 
         :param array:
         :type array: list[str]
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         complex_body = models.ArrayWrapper(array=array)
@@ -116,20 +106,14 @@ class ArrayOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put_valid.metadata = {'url': '/complex/array/valid'}
 
     def get_empty(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get complex types with array property which is empty.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: ArrayWrapper or ClientRawResponse if raw=true
-        :rtype: ~bodycomplex.models.ArrayWrapper or
-         ~msrest.pipeline.ClientRawResponse
+        :return: ArrayWrapper
+        :rtype: ~bodycomplex.models.ArrayWrapper
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
@@ -157,23 +141,17 @@ class ArrayOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('ArrayWrapper', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_empty.metadata = {'url': '/complex/array/empty'}
 
     def put_empty(
-            self, array=None, raw=False, **kwargs):
+            self, array=None, **kwargs):
         """Put complex types with array property which is empty.
 
         :param array:
         :type array: list[str]
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         complex_body = models.ArrayWrapper(array=array)
@@ -202,21 +180,15 @@ class ArrayOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put_empty.metadata = {'url': '/complex/array/empty'}
 
     def get_not_provided(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Get complex types with array property while server doesn't provide a
         response payload.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: ArrayWrapper or ClientRawResponse if raw=true
-        :rtype: ~bodycomplex.models.ArrayWrapper or
-         ~msrest.pipeline.ClientRawResponse
+        :return: ArrayWrapper
+        :rtype: ~bodycomplex.models.ArrayWrapper
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
@@ -243,10 +215,6 @@ class ArrayOperations(object):
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('ArrayWrapper', response)
-
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
 
         return deserialized
     get_not_provided.metadata = {'url': '/complex/array/notprovided'}

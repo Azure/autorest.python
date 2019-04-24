@@ -10,7 +10,6 @@
 # --------------------------------------------------------------------------
 
 import uuid
-from msrest.pipeline import ClientRawResponse
 from msrest.polling import LROPoller, NoPolling
 from msrestazure.polling.arm_polling import ARMPolling
 
@@ -40,7 +39,7 @@ class LROsCustomHeaderOperations(object):
 
 
     def _put_async_retry_succeeded_initial(
-            self, product=None, raw=False, **kwargs):
+            self, product=None, **kwargs):
         # Construct URL
         url = self.put_async_retry_succeeded.metadata['url']
 
@@ -84,15 +83,10 @@ class LROsCustomHeaderOperations(object):
                 'Retry-After': 'int',
             }
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            client_raw_response.add_headers(header_dict)
-            return client_raw_response
-
         return deserialized
 
     def put_async_retry_succeeded(
-            self, product=None, raw=False, polling=True, **kwargs):
+            self, product=None, polling=True, **kwargs):
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is
         required message header for all requests. Long running put request,
         service returns a 200 to the initial request, with an entity that
@@ -101,16 +95,11 @@ class LROsCustomHeaderOperations(object):
 
         :param product: Product to put
         :type product: ~lro.models.Product
-        :param bool raw: The poller return type is ClientRawResponse, the
-         direct response alongside the deserialized response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
-        :return: An instance of LROPoller that returns Product or
-         ClientRawResponse<Product> if raw==True
+        :return: An instance of LROPoller that returns Product
         :rtype:
          ~msrestazure.azure_operation.AzureOperationPoller[~lro.models.Product]
-         or
-         ~msrestazure.azure_operation.AzureOperationPoller[~msrest.pipeline.ClientRawResponse[~lro.models.Product]]
         :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
         """
         raw_result = self._put_async_retry_succeeded_initial(
@@ -127,11 +116,6 @@ class LROsCustomHeaderOperations(object):
             }
             deserialized = self._deserialize('Product', response)
 
-            if raw:
-                client_raw_response = ClientRawResponse(deserialized, response)
-                client_raw_response.add_headers(header_dict)
-                return client_raw_response
-
             return deserialized
 
         lro_delay = kwargs.get(
@@ -145,7 +129,7 @@ class LROsCustomHeaderOperations(object):
 
 
     def _put201_creating_succeeded200_initial(
-            self, product=None, raw=False, **kwargs):
+            self, product=None, **kwargs):
         # Construct URL
         url = self.put201_creating_succeeded200.metadata['url']
 
@@ -185,14 +169,10 @@ class LROsCustomHeaderOperations(object):
         if response.status_code == 201:
             deserialized = self._deserialize('Product', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
 
     def put201_creating_succeeded200(
-            self, product=None, raw=False, polling=True, **kwargs):
+            self, product=None, polling=True, **kwargs):
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is
         required message header for all requests. Long running put request,
         service returns a 201 to the initial request, with an entity that
@@ -201,16 +181,11 @@ class LROsCustomHeaderOperations(object):
 
         :param product: Product to put
         :type product: ~lro.models.Product
-        :param bool raw: The poller return type is ClientRawResponse, the
-         direct response alongside the deserialized response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
-        :return: An instance of LROPoller that returns Product or
-         ClientRawResponse<Product> if raw==True
+        :return: An instance of LROPoller that returns Product
         :rtype:
          ~msrestazure.azure_operation.AzureOperationPoller[~lro.models.Product]
-         or
-         ~msrestazure.azure_operation.AzureOperationPoller[~msrest.pipeline.ClientRawResponse[~lro.models.Product]]
         :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
         """
         raw_result = self._put201_creating_succeeded200_initial(
@@ -221,10 +196,6 @@ class LROsCustomHeaderOperations(object):
 
         def get_long_running_output(response):
             deserialized = self._deserialize('Product', response)
-
-            if raw:
-                client_raw_response = ClientRawResponse(deserialized, response)
-                return client_raw_response
 
             return deserialized
 
@@ -239,7 +210,7 @@ class LROsCustomHeaderOperations(object):
 
 
     def _post202_retry200_initial(
-            self, product=None, raw=False, **kwargs):
+            self, product=None, **kwargs):
         # Construct URL
         url = self.post202_retry200.metadata['url']
 
@@ -271,17 +242,10 @@ class LROsCustomHeaderOperations(object):
         if response.status_code not in [202]:
             raise models.CloudErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            header_dict = {
-                'Location': 'str',
-                'Retry-After': 'int',
-            }
-            client_raw_response.add_headers(header_dict)
-            return client_raw_response
+            return ''
 
     def post202_retry200(
-            self, product=None, raw=False, polling=True, **kwargs):
+            self, product=None, polling=True, **kwargs):
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is
         required message header for all requests. Long running post request,
         service returns a 202 to the initial request, with 'Location' and
@@ -290,14 +254,10 @@ class LROsCustomHeaderOperations(object):
 
         :param product: Product to put
         :type product: ~lro.models.Product
-        :param bool raw: The poller return type is ClientRawResponse, the
-         direct response alongside the deserialized response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
-        :return: An instance of LROPoller that returns None or
-         ClientRawResponse<None> if raw==True
-        :rtype: ~msrestazure.azure_operation.AzureOperationPoller[None] or
-         ~msrestazure.azure_operation.AzureOperationPoller[~msrest.pipeline.ClientRawResponse[None]]
+        :return: An instance of LROPoller that returns None
+        :rtype: ~msrestazure.azure_operation.AzureOperationPoller[None]
         :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
         """
         raw_result = self._post202_retry200_initial(
@@ -307,13 +267,6 @@ class LROsCustomHeaderOperations(object):
         )
 
         def get_long_running_output(response):
-            if raw:
-                client_raw_response = ClientRawResponse(None, response)
-                client_raw_response.add_headers({
-                    'Location': 'str',
-                    'Retry-After': 'int',
-                })
-                return client_raw_response
 
         lro_delay = kwargs.get(
             'long_running_operation_timeout',
@@ -326,7 +279,7 @@ class LROsCustomHeaderOperations(object):
 
 
     def _post_async_retry_succeeded_initial(
-            self, product=None, raw=False, **kwargs):
+            self, product=None, **kwargs):
         # Construct URL
         url = self.post_async_retry_succeeded.metadata['url']
 
@@ -358,18 +311,10 @@ class LROsCustomHeaderOperations(object):
         if response.status_code not in [202]:
             raise models.CloudErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            header_dict = {
-                'Azure-AsyncOperation': 'str',
-                'Location': 'str',
-                'Retry-After': 'int',
-            }
-            client_raw_response.add_headers(header_dict)
-            return client_raw_response
+            return ''
 
     def post_async_retry_succeeded(
-            self, product=None, raw=False, polling=True, **kwargs):
+            self, product=None, polling=True, **kwargs):
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is
         required message header for all requests. Long running post request,
         service returns a 202 to the initial request, with an entity that
@@ -378,14 +323,10 @@ class LROsCustomHeaderOperations(object):
 
         :param product: Product to put
         :type product: ~lro.models.Product
-        :param bool raw: The poller return type is ClientRawResponse, the
-         direct response alongside the deserialized response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
-        :return: An instance of LROPoller that returns None or
-         ClientRawResponse<None> if raw==True
-        :rtype: ~msrestazure.azure_operation.AzureOperationPoller[None] or
-         ~msrestazure.azure_operation.AzureOperationPoller[~msrest.pipeline.ClientRawResponse[None]]
+        :return: An instance of LROPoller that returns None
+        :rtype: ~msrestazure.azure_operation.AzureOperationPoller[None]
         :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
         """
         raw_result = self._post_async_retry_succeeded_initial(
@@ -395,14 +336,6 @@ class LROsCustomHeaderOperations(object):
         )
 
         def get_long_running_output(response):
-            if raw:
-                client_raw_response = ClientRawResponse(None, response)
-                client_raw_response.add_headers({
-                    'Azure-AsyncOperation': 'str',
-                    'Location': 'str',
-                    'Retry-After': 'int',
-                })
-                return client_raw_response
 
         lro_delay = kwargs.get(
             'long_running_operation_timeout',

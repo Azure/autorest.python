@@ -10,7 +10,6 @@
 # --------------------------------------------------------------------------
 
 import uuid
-from msrest.pipeline import ClientRawResponse
 
 from ... import models
 
@@ -37,15 +36,13 @@ class PathsOperations:
         self._config = config
 
     async def get_empty(
-            self, account_name, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Get a 200 to test a valid base uri.
 
         :param account_name: Account Name
         :type account_name: str
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<custombaseurl.models.ErrorException>`
         """
         # Construct URL
@@ -77,7 +74,4 @@ class PathsOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     get_empty.metadata = {'url': '/customuri'}

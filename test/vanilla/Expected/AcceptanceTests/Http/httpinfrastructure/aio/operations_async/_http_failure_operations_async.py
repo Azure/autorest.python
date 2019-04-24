@@ -9,7 +9,6 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.pipeline import ClientRawResponse
 from azure.core import HttpRequestError
 
 from ... import models
@@ -37,13 +36,11 @@ class HttpFailureOperations:
         self._config = config
 
     async def get_empty_error(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Get empty error form server.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: bool or ClientRawResponse if raw=true
-        :rtype: bool or ~msrest.pipeline.ClientRawResponse
+        :return: bool
+        :rtype: bool
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
@@ -72,21 +69,15 @@ class HttpFailureOperations:
         if response.status_code == 200:
             deserialized = self._deserialize('bool', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_empty_error.metadata = {'url': '/http/failure/emptybody/error'}
 
     async def get_no_model_error(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Get empty error form server.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: bool or ClientRawResponse if raw=true
-        :rtype: bool or ~msrest.pipeline.ClientRawResponse
+        :return: bool
+        :rtype: bool
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         # Construct URL
@@ -114,21 +105,15 @@ class HttpFailureOperations:
         if response.status_code == 200:
             deserialized = self._deserialize('bool', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_no_model_error.metadata = {'url': '/http/failure/nomodel/error'}
 
     async def get_no_model_empty(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Get empty response from server.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: bool or ClientRawResponse if raw=true
-        :rtype: bool or ~msrest.pipeline.ClientRawResponse
+        :return: bool
+        :rtype: bool
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         # Construct URL
@@ -155,10 +140,6 @@ class HttpFailureOperations:
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('bool', response)
-
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
 
         return deserialized
     get_no_model_empty.metadata = {'url': '/http/failure/nomodel/empty'}

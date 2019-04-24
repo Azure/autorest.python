@@ -9,7 +9,6 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.pipeline import ClientRawResponse
 
 from .. import models
 
@@ -36,15 +35,12 @@ class HttpServerFailureOperations(object):
         self._config = config
 
     def head501(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Return 501 status code - should be represented in the client as an
         error.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: Error or ClientRawResponse if raw=true
-        :rtype: ~httpinfrastructure.models.Error or
-         ~msrest.pipeline.ClientRawResponse
+        :return: Error
+        :rtype: ~httpinfrastructure.models.Error
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
@@ -68,21 +64,15 @@ class HttpServerFailureOperations(object):
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     head501.metadata = {'url': '/http/failure/server/501'}
 
     def get501(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Return 501 status code - should be represented in the client as an
         error.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: Error or ClientRawResponse if raw=true
-        :rtype: ~httpinfrastructure.models.Error or
-         ~msrest.pipeline.ClientRawResponse
+        :return: Error
+        :rtype: ~httpinfrastructure.models.Error
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
@@ -106,23 +96,17 @@ class HttpServerFailureOperations(object):
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     get501.metadata = {'url': '/http/failure/server/501'}
 
     def post505(
-            self, boolean_value=None, raw=False, **kwargs):
+            self, boolean_value=None, **kwargs):
         """Return 505 status code - should be represented in the client as an
         error.
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: Error or ClientRawResponse if raw=true
-        :rtype: ~httpinfrastructure.models.Error or
-         ~msrest.pipeline.ClientRawResponse
+        :return: Error
+        :rtype: ~httpinfrastructure.models.Error
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
@@ -153,23 +137,17 @@ class HttpServerFailureOperations(object):
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     post505.metadata = {'url': '/http/failure/server/505'}
 
     def delete505(
-            self, boolean_value=None, raw=False, **kwargs):
+            self, boolean_value=None, **kwargs):
         """Return 505 status code - should be represented in the client as an
         error.
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: Error or ClientRawResponse if raw=true
-        :rtype: ~httpinfrastructure.models.Error or
-         ~msrest.pipeline.ClientRawResponse
+        :return: Error
+        :rtype: ~httpinfrastructure.models.Error
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
@@ -200,7 +178,4 @@ class HttpServerFailureOperations(object):
         if response.status_code < 200 or response.status_code >= 300:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     delete505.metadata = {'url': '/http/failure/server/505'}

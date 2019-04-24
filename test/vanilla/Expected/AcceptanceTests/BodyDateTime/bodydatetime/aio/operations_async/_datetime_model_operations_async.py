@@ -9,7 +9,6 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.pipeline import ClientRawResponse
 
 from ... import models
 
@@ -36,13 +35,11 @@ class DatetimeModelOperations:
         self._config = config
 
     async def get_null(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Get null datetime value.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: datetime or ClientRawResponse if raw=true
-        :rtype: datetime or ~msrest.pipeline.ClientRawResponse
+        :return: datetime
+        :rtype: datetime
         :raises: :class:`ErrorException<bodydatetime.models.ErrorException>`
         """
         # Construct URL
@@ -70,21 +67,15 @@ class DatetimeModelOperations:
         if response.status_code == 200:
             deserialized = self._deserialize('iso-8601', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_null.metadata = {'url': '/datetime/null'}
 
     async def get_invalid(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Get invalid datetime value.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: datetime or ClientRawResponse if raw=true
-        :rtype: datetime or ~msrest.pipeline.ClientRawResponse
+        :return: datetime
+        :rtype: datetime
         :raises: :class:`ErrorException<bodydatetime.models.ErrorException>`
         """
         # Construct URL
@@ -112,21 +103,15 @@ class DatetimeModelOperations:
         if response.status_code == 200:
             deserialized = self._deserialize('iso-8601', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_invalid.metadata = {'url': '/datetime/invalid'}
 
     async def get_overflow(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Get overflow datetime value.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: datetime or ClientRawResponse if raw=true
-        :rtype: datetime or ~msrest.pipeline.ClientRawResponse
+        :return: datetime
+        :rtype: datetime
         :raises: :class:`ErrorException<bodydatetime.models.ErrorException>`
         """
         # Construct URL
@@ -154,21 +139,15 @@ class DatetimeModelOperations:
         if response.status_code == 200:
             deserialized = self._deserialize('iso-8601', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_overflow.metadata = {'url': '/datetime/overflow'}
 
     async def get_underflow(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Get underflow datetime value.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: datetime or ClientRawResponse if raw=true
-        :rtype: datetime or ~msrest.pipeline.ClientRawResponse
+        :return: datetime
+        :rtype: datetime
         :raises: :class:`ErrorException<bodydatetime.models.ErrorException>`
         """
         # Construct URL
@@ -196,23 +175,17 @@ class DatetimeModelOperations:
         if response.status_code == 200:
             deserialized = self._deserialize('iso-8601', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_underflow.metadata = {'url': '/datetime/underflow'}
 
     async def put_utc_max_date_time(
-            self, datetime_body, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Put max datetime value 9999-12-31T23:59:59.9999999Z.
 
         :param datetime_body:
         :type datetime_body: datetime
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<bodydatetime.models.ErrorException>`
         """
         # Construct URL
@@ -239,19 +212,14 @@ class DatetimeModelOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put_utc_max_date_time.metadata = {'url': '/datetime/max/utc'}
 
     async def get_utc_lowercase_max_date_time(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Get max datetime value 9999-12-31t23:59:59.9999999z.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: datetime or ClientRawResponse if raw=true
-        :rtype: datetime or ~msrest.pipeline.ClientRawResponse
+        :return: datetime
+        :rtype: datetime
         :raises: :class:`ErrorException<bodydatetime.models.ErrorException>`
         """
         # Construct URL
@@ -279,21 +247,15 @@ class DatetimeModelOperations:
         if response.status_code == 200:
             deserialized = self._deserialize('iso-8601', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_utc_lowercase_max_date_time.metadata = {'url': '/datetime/max/utc/lowercase'}
 
     async def get_utc_uppercase_max_date_time(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Get max datetime value 9999-12-31T23:59:59.9999999Z.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: datetime or ClientRawResponse if raw=true
-        :rtype: datetime or ~msrest.pipeline.ClientRawResponse
+        :return: datetime
+        :rtype: datetime
         :raises: :class:`ErrorException<bodydatetime.models.ErrorException>`
         """
         # Construct URL
@@ -321,24 +283,18 @@ class DatetimeModelOperations:
         if response.status_code == 200:
             deserialized = self._deserialize('iso-8601', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_utc_uppercase_max_date_time.metadata = {'url': '/datetime/max/utc/uppercase'}
 
     async def put_local_positive_offset_max_date_time(
-            self, datetime_body, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Put max datetime value with positive numoffset
         9999-12-31t23:59:59.9999999+14:00.
 
         :param datetime_body:
         :type datetime_body: datetime
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<bodydatetime.models.ErrorException>`
         """
         # Construct URL
@@ -365,20 +321,15 @@ class DatetimeModelOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put_local_positive_offset_max_date_time.metadata = {'url': '/datetime/max/localpositiveoffset'}
 
     async def get_local_positive_offset_lowercase_max_date_time(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Get max datetime value with positive num offset
         9999-12-31t23:59:59.9999999+14:00.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: datetime or ClientRawResponse if raw=true
-        :rtype: datetime or ~msrest.pipeline.ClientRawResponse
+        :return: datetime
+        :rtype: datetime
         :raises: :class:`ErrorException<bodydatetime.models.ErrorException>`
         """
         # Construct URL
@@ -406,22 +357,16 @@ class DatetimeModelOperations:
         if response.status_code == 200:
             deserialized = self._deserialize('iso-8601', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_local_positive_offset_lowercase_max_date_time.metadata = {'url': '/datetime/max/localpositiveoffset/lowercase'}
 
     async def get_local_positive_offset_uppercase_max_date_time(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Get max datetime value with positive num offset
         9999-12-31T23:59:59.9999999+14:00.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: datetime or ClientRawResponse if raw=true
-        :rtype: datetime or ~msrest.pipeline.ClientRawResponse
+        :return: datetime
+        :rtype: datetime
         :raises: :class:`ErrorException<bodydatetime.models.ErrorException>`
         """
         # Construct URL
@@ -449,24 +394,18 @@ class DatetimeModelOperations:
         if response.status_code == 200:
             deserialized = self._deserialize('iso-8601', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_local_positive_offset_uppercase_max_date_time.metadata = {'url': '/datetime/max/localpositiveoffset/uppercase'}
 
     async def put_local_negative_offset_max_date_time(
-            self, datetime_body, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Put max datetime value with positive numoffset
         9999-12-31t23:59:59.9999999-14:00.
 
         :param datetime_body:
         :type datetime_body: datetime
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<bodydatetime.models.ErrorException>`
         """
         # Construct URL
@@ -493,20 +432,15 @@ class DatetimeModelOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put_local_negative_offset_max_date_time.metadata = {'url': '/datetime/max/localnegativeoffset'}
 
     async def get_local_negative_offset_uppercase_max_date_time(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Get max datetime value with positive num offset
         9999-12-31T23:59:59.9999999-14:00.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: datetime or ClientRawResponse if raw=true
-        :rtype: datetime or ~msrest.pipeline.ClientRawResponse
+        :return: datetime
+        :rtype: datetime
         :raises: :class:`ErrorException<bodydatetime.models.ErrorException>`
         """
         # Construct URL
@@ -534,22 +468,16 @@ class DatetimeModelOperations:
         if response.status_code == 200:
             deserialized = self._deserialize('iso-8601', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_local_negative_offset_uppercase_max_date_time.metadata = {'url': '/datetime/max/localnegativeoffset/uppercase'}
 
     async def get_local_negative_offset_lowercase_max_date_time(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Get max datetime value with positive num offset
         9999-12-31t23:59:59.9999999-14:00.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: datetime or ClientRawResponse if raw=true
-        :rtype: datetime or ~msrest.pipeline.ClientRawResponse
+        :return: datetime
+        :rtype: datetime
         :raises: :class:`ErrorException<bodydatetime.models.ErrorException>`
         """
         # Construct URL
@@ -577,23 +505,17 @@ class DatetimeModelOperations:
         if response.status_code == 200:
             deserialized = self._deserialize('iso-8601', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_local_negative_offset_lowercase_max_date_time.metadata = {'url': '/datetime/max/localnegativeoffset/lowercase'}
 
     async def put_utc_min_date_time(
-            self, datetime_body, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Put min datetime value 0001-01-01T00:00:00Z.
 
         :param datetime_body:
         :type datetime_body: datetime
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<bodydatetime.models.ErrorException>`
         """
         # Construct URL
@@ -620,19 +542,14 @@ class DatetimeModelOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put_utc_min_date_time.metadata = {'url': '/datetime/min/utc'}
 
     async def get_utc_min_date_time(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Get min datetime value 0001-01-01T00:00:00Z.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: datetime or ClientRawResponse if raw=true
-        :rtype: datetime or ~msrest.pipeline.ClientRawResponse
+        :return: datetime
+        :rtype: datetime
         :raises: :class:`ErrorException<bodydatetime.models.ErrorException>`
         """
         # Construct URL
@@ -660,23 +577,17 @@ class DatetimeModelOperations:
         if response.status_code == 200:
             deserialized = self._deserialize('iso-8601', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_utc_min_date_time.metadata = {'url': '/datetime/min/utc'}
 
     async def put_local_positive_offset_min_date_time(
-            self, datetime_body, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Put min datetime value 0001-01-01T00:00:00+14:00.
 
         :param datetime_body:
         :type datetime_body: datetime
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<bodydatetime.models.ErrorException>`
         """
         # Construct URL
@@ -703,19 +614,14 @@ class DatetimeModelOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put_local_positive_offset_min_date_time.metadata = {'url': '/datetime/min/localpositiveoffset'}
 
     async def get_local_positive_offset_min_date_time(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Get min datetime value 0001-01-01T00:00:00+14:00.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: datetime or ClientRawResponse if raw=true
-        :rtype: datetime or ~msrest.pipeline.ClientRawResponse
+        :return: datetime
+        :rtype: datetime
         :raises: :class:`ErrorException<bodydatetime.models.ErrorException>`
         """
         # Construct URL
@@ -743,23 +649,17 @@ class DatetimeModelOperations:
         if response.status_code == 200:
             deserialized = self._deserialize('iso-8601', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_local_positive_offset_min_date_time.metadata = {'url': '/datetime/min/localpositiveoffset'}
 
     async def put_local_negative_offset_min_date_time(
-            self, datetime_body, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Put min datetime value 0001-01-01T00:00:00-14:00.
 
         :param datetime_body:
         :type datetime_body: datetime
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<bodydatetime.models.ErrorException>`
         """
         # Construct URL
@@ -786,19 +686,14 @@ class DatetimeModelOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put_local_negative_offset_min_date_time.metadata = {'url': '/datetime/min/localnegativeoffset'}
 
     async def get_local_negative_offset_min_date_time(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Get min datetime value 0001-01-01T00:00:00-14:00.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: datetime or ClientRawResponse if raw=true
-        :rtype: datetime or ~msrest.pipeline.ClientRawResponse
+        :return: datetime
+        :rtype: datetime
         :raises: :class:`ErrorException<bodydatetime.models.ErrorException>`
         """
         # Construct URL
@@ -825,10 +720,6 @@ class DatetimeModelOperations:
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('iso-8601', response)
-
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
 
         return deserialized
     get_local_negative_offset_min_date_time.metadata = {'url': '/datetime/min/localnegativeoffset'}

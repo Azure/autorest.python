@@ -10,7 +10,6 @@
 # --------------------------------------------------------------------------
 
 import uuid
-from msrest.pipeline import ClientRawResponse
 from azure.core import HttpRequestError
 from msrest.polling import LROPoller, NoPolling
 from msrestazure.polling.arm_polling import ARMPolling
@@ -42,7 +41,7 @@ class StorageAccountsOperations(object):
         self._config = config
 
     def check_name_availability(
-            self, account_name, raw=False, **kwargs):
+            self,  **kwargs):
         """Checks that account name is valid and is not in use.
 
         :param account_name: The name of the storage account within the
@@ -50,11 +49,8 @@ class StorageAccountsOperations(object):
          24 characters in length and use numbers and lower-case letters only.
         :type account_name:
          ~storage.models.StorageAccountCheckNameAvailabilityParameters
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: CheckNameAvailabilityResult or ClientRawResponse if raw=true
-        :rtype: ~storage.models.CheckNameAvailabilityResult or
-         ~msrest.pipeline.ClientRawResponse
+        :return: CheckNameAvailabilityResult
+        :rtype: ~storage.models.CheckNameAvailabilityResult
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         # Construct URL
@@ -97,16 +93,12 @@ class StorageAccountsOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('CheckNameAvailabilityResult', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     check_name_availability.metadata = {'url': '/subscriptions/{subscriptionId}/providers/Microsoft.Storage/checkNameAvailability'}
 
 
     def _create_initial(
-            self, resource_group_name, account_name, parameters, raw=False, **kwargs):
+            self,  **kwargs):
         # Construct URL
         url = self.create.metadata['url']
         path_format_arguments = {
@@ -150,14 +142,10 @@ class StorageAccountsOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('StorageAccount', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
 
     def create(
-            self, resource_group_name, account_name, parameters, raw=False, polling=True, **kwargs):
+            self,  polling=True, **kwargs):
         """Asynchronously creates a new storage account with the specified
         parameters. Existing accounts cannot be updated with this API and
         should instead use the Update Storage Account API. If an account is
@@ -173,16 +161,11 @@ class StorageAccountsOperations(object):
         :type account_name: str
         :param parameters: The parameters to provide for the created account.
         :type parameters: ~storage.models.StorageAccountCreateParameters
-        :param bool raw: The poller return type is ClientRawResponse, the
-         direct response alongside the deserialized response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
-        :return: An instance of LROPoller that returns StorageAccount or
-         ClientRawResponse<StorageAccount> if raw==True
+        :return: An instance of LROPoller that returns StorageAccount
         :rtype:
          ~msrestazure.azure_operation.AzureOperationPoller[~storage.models.StorageAccount]
-         or
-         ~msrestazure.azure_operation.AzureOperationPoller[~msrest.pipeline.ClientRawResponse[~storage.models.StorageAccount]]
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         raw_result = self._create_initial(
@@ -196,10 +179,6 @@ class StorageAccountsOperations(object):
         def get_long_running_output(response):
             deserialized = self._deserialize('StorageAccount', response)
 
-            if raw:
-                client_raw_response = ClientRawResponse(deserialized, response)
-                return client_raw_response
-
             return deserialized
 
         lro_delay = kwargs.get(
@@ -212,7 +191,7 @@ class StorageAccountsOperations(object):
     create.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}'}
 
     def delete(
-            self, resource_group_name, account_name, raw=False, **kwargs):
+            self,  **kwargs):
         """Deletes a storage account in Microsoft Azure.
 
         :param resource_group_name: The name of the resource group within the
@@ -222,10 +201,8 @@ class StorageAccountsOperations(object):
          specified resource group. Storage account names must be between 3 and
          24 characters in length and use numbers and lower-case letters only.
         :type account_name: str
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         # Construct URL
@@ -261,13 +238,10 @@ class StorageAccountsOperations(object):
             exp = HttpRequestError(response=response)
             raise exp
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     delete.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}'}
 
     def get_properties(
-            self, resource_group_name, account_name, raw=False, **kwargs):
+            self,  **kwargs):
         """Returns the properties for the specified storage account including but
         not limited to name, account type, location, and account status. The
         ListKeys operation should be used to retrieve storage keys.
@@ -279,11 +253,8 @@ class StorageAccountsOperations(object):
          specified resource group. Storage account names must be between 3 and
          24 characters in length and use numbers and lower-case letters only.
         :type account_name: str
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: StorageAccount or ClientRawResponse if raw=true
-        :rtype: ~storage.models.StorageAccount or
-         ~msrest.pipeline.ClientRawResponse
+        :return: StorageAccount
+        :rtype: ~storage.models.StorageAccount
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         # Construct URL
@@ -324,15 +295,11 @@ class StorageAccountsOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('StorageAccount', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_properties.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}'}
 
     def update(
-            self, resource_group_name, account_name, parameters, raw=False, **kwargs):
+            self,  **kwargs):
         """Updates the account type or tags for a storage account. It can also be
         used to add a custom domain (note that custom domains cannot be added
         via the Create operation). Only one custom domain is supported per
@@ -354,11 +321,8 @@ class StorageAccountsOperations(object):
         :param parameters: The parameters to update on the account. Note that
          only one property can be changed at a time using this API.
         :type parameters: ~storage.models.StorageAccountUpdateParameters
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: StorageAccount or ClientRawResponse if raw=true
-        :rtype: ~storage.models.StorageAccount or
-         ~msrest.pipeline.ClientRawResponse
+        :return: StorageAccount
+        :rtype: ~storage.models.StorageAccount
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         # Construct URL
@@ -403,15 +367,11 @@ class StorageAccountsOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('StorageAccount', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     update.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}'}
 
     def list_keys(
-            self, resource_group_name, account_name, raw=False, **kwargs):
+            self,  **kwargs):
         """Lists the access keys for the specified storage account.
 
         :param resource_group_name: The name of the resource group within the
@@ -419,11 +379,8 @@ class StorageAccountsOperations(object):
         :type resource_group_name: str
         :param account_name: The name of the storage account.
         :type account_name: str
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: StorageAccountKeys or ClientRawResponse if raw=true
-        :rtype: ~storage.models.StorageAccountKeys or
-         ~msrest.pipeline.ClientRawResponse
+        :return: StorageAccountKeys
+        :rtype: ~storage.models.StorageAccountKeys
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         # Construct URL
@@ -464,21 +421,15 @@ class StorageAccountsOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('StorageAccountKeys', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     list_keys.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/listKeys'}
 
     def list(
-            self, raw=False, **kwargs):
+            self,  **kwargs):
         """Lists all the storage accounts available under the subscription. Note
         that storage keys are not returned; use the ListKeys operation for
         this.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
         :return: An iterator like instance of StorageAccount
         :rtype:
          ~storage.models.StorageAccountPaged[~storage.models.StorageAccount]
@@ -531,15 +482,13 @@ class StorageAccountsOperations(object):
 
         # Deserialize response
         header_dict = None
-        if raw:
-            header_dict = {}
         deserialized = models.StorageAccountPaged(internal_paging, self._deserialize.dependencies, header_dict)
 
         return deserialized
     list.metadata = {'url': '/subscriptions/{subscriptionId}/providers/Microsoft.Storage/storageAccounts'}
 
     def list_by_resource_group(
-            self, resource_group_name, raw=False, **kwargs):
+            self,  **kwargs):
         """Lists all the storage accounts available under the given resource
         group. Note that storage keys are not returned; use the ListKeys
         operation for this.
@@ -547,8 +496,6 @@ class StorageAccountsOperations(object):
         :param resource_group_name: The name of the resource group within the
          user’s subscription.
         :type resource_group_name: str
-        :param bool raw: returns the direct response alongside the
-         deserialized response
         :return: An iterator like instance of StorageAccount
         :rtype:
          ~storage.models.StorageAccountPaged[~storage.models.StorageAccount]
@@ -602,15 +549,13 @@ class StorageAccountsOperations(object):
 
         # Deserialize response
         header_dict = None
-        if raw:
-            header_dict = {}
         deserialized = models.StorageAccountPaged(internal_paging, self._deserialize.dependencies, header_dict)
 
         return deserialized
     list_by_resource_group.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts'}
 
     def regenerate_key(
-            self, resource_group_name, account_name, key_name=None, raw=False, **kwargs):
+            self, resource_group_name, account_name, key_name=None, **kwargs):
         """Regenerates the access keys for the specified storage account.
 
         :param resource_group_name: The name of the resource group within the
@@ -622,11 +567,8 @@ class StorageAccountsOperations(object):
         :type account_name: str
         :param key_name: Possible values include: 'key1', 'key2'
         :type key_name: str or ~storage.models.KeyName
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: StorageAccountKeys or ClientRawResponse if raw=true
-        :rtype: ~storage.models.StorageAccountKeys or
-         ~msrest.pipeline.ClientRawResponse
+        :return: StorageAccountKeys
+        :rtype: ~storage.models.StorageAccountKeys
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
         regenerate_key1 = models.StorageAccountRegenerateKeyParameters(key_name=key_name)
@@ -672,10 +614,6 @@ class StorageAccountsOperations(object):
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('StorageAccountKeys', response)
-
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
 
         return deserialized
     regenerate_key.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/regenerateKey'}

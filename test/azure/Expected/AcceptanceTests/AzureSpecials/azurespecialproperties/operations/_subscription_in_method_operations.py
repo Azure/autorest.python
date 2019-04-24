@@ -10,7 +10,6 @@
 # --------------------------------------------------------------------------
 
 import uuid
-from msrest.pipeline import ClientRawResponse
 
 from .. import models
 
@@ -37,17 +36,15 @@ class SubscriptionInMethodOperations(object):
         self._config = config
 
     def post_method_local_valid(
-            self, subscription_id, raw=False, **kwargs):
+            self,  **kwargs):
         """POST method with subscriptionId modeled in the method.  pass in
         subscription id = '1234-5678-9012-3456' to succeed.
 
         :param subscription_id: This should appear as a method parameter, use
          value '1234-5678-9012-3456'
         :type subscription_id: str
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises:
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
         """
@@ -79,13 +76,10 @@ class SubscriptionInMethodOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     post_method_local_valid.metadata = {'url': '/azurespecials/subscriptionId/method/string/none/path/local/1234-5678-9012-3456/{subscriptionId}'}
 
     def post_method_local_null(
-            self, subscription_id, raw=False, **kwargs):
+            self,  **kwargs):
         """POST method with subscriptionId modeled in the method.  pass in
         subscription id = null, client-side validation should prevent you from
         making this call.
@@ -93,10 +87,8 @@ class SubscriptionInMethodOperations(object):
         :param subscription_id: This should appear as a method parameter, use
          value null, client-side validation should prvenet the call
         :type subscription_id: str
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises:
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
         """
@@ -128,23 +120,18 @@ class SubscriptionInMethodOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     post_method_local_null.metadata = {'url': '/azurespecials/subscriptionId/method/string/none/path/local/null/{subscriptionId}'}
 
     def post_path_local_valid(
-            self, subscription_id, raw=False, **kwargs):
+            self,  **kwargs):
         """POST method with subscriptionId modeled in the method.  pass in
         subscription id = '1234-5678-9012-3456' to succeed.
 
         :param subscription_id: Should appear as a method parameter -use value
          '1234-5678-9012-3456'
         :type subscription_id: str
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises:
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
         """
@@ -176,23 +163,18 @@ class SubscriptionInMethodOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     post_path_local_valid.metadata = {'url': '/azurespecials/subscriptionId/path/string/none/path/local/1234-5678-9012-3456/{subscriptionId}'}
 
     def post_swagger_local_valid(
-            self, subscription_id, raw=False, **kwargs):
+            self,  **kwargs):
         """POST method with subscriptionId modeled in the method.  pass in
         subscription id = '1234-5678-9012-3456' to succeed.
 
         :param subscription_id: The subscriptionId, which appears in the path,
          the value is always '1234-5678-9012-3456'
         :type subscription_id: str
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises:
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
         """
@@ -224,7 +206,4 @@ class SubscriptionInMethodOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     post_swagger_local_valid.metadata = {'url': '/azurespecials/subscriptionId/swagger/string/none/path/local/1234-5678-9012-3456/{subscriptionId}'}

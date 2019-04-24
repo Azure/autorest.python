@@ -9,7 +9,6 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.pipeline import ClientRawResponse
 
 from ... import models
 
@@ -36,14 +35,11 @@ class ReadonlypropertyOperations:
         self._config = config
 
     async def get_valid(
-            self, *, raw=False, **kwargs):
+            self,  **kwargs):
         """Get complex types that have readonly properties.
 
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: ReadonlyObj or ClientRawResponse if raw=true
-        :rtype: ~bodycomplex.models.ReadonlyObj or
-         ~msrest.pipeline.ClientRawResponse
+        :return: ReadonlyObj
+        :rtype: ~bodycomplex.models.ReadonlyObj
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         # Construct URL
@@ -71,23 +67,17 @@ class ReadonlypropertyOperations:
         if response.status_code == 200:
             deserialized = self._deserialize('ReadonlyObj', response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
         return deserialized
     get_valid.metadata = {'url': '/complex/readonlyproperty/valid'}
 
     async def put_valid(
-            self, size=None, *, raw=False, **kwargs):
+            self, size=None, **kwargs):
         """Put complex types that have readonly properties.
 
         :param size:
         :type size: int
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
         complex_body = models.ReadonlyObj(size=size)
@@ -116,7 +106,4 @@ class ReadonlypropertyOperations:
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     put_valid.metadata = {'url': '/complex/readonlyproperty/valid'}

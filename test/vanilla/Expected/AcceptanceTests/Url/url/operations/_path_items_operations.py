@@ -9,7 +9,6 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.pipeline import ClientRawResponse
 
 from .. import models
 
@@ -36,7 +35,7 @@ class PathItemsOperations(object):
         self._config = config
 
     def get_all_with_values(
-            self, local_string_path, path_item_string_path, local_string_query=None, path_item_string_query=None, raw=False, **kwargs):
+            self, local_string_path, path_item_string_path, local_string_query=None, path_item_string_query=None, **kwargs):
         """send globalStringPath='globalStringPath',
         pathItemStringPath='pathItemStringPath',
         localStringPath='localStringPath',
@@ -54,10 +53,8 @@ class PathItemsOperations(object):
         :param path_item_string_query: A string value 'pathItemStringQuery'
          that appears as a query parameter
         :type path_item_string_query: str
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
@@ -92,13 +89,10 @@ class PathItemsOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     get_all_with_values.metadata = {'url': '/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/pathItemStringQuery/localStringQuery'}
 
     def get_global_query_null(
-            self, local_string_path, path_item_string_path, local_string_query=None, path_item_string_query=None, raw=False, **kwargs):
+            self, local_string_path, path_item_string_path, local_string_query=None, path_item_string_query=None, **kwargs):
         """send globalStringPath='globalStringPath',
         pathItemStringPath='pathItemStringPath',
         localStringPath='localStringPath', globalStringQuery=null,
@@ -115,10 +109,8 @@ class PathItemsOperations(object):
         :param path_item_string_query: A string value 'pathItemStringQuery'
          that appears as a query parameter
         :type path_item_string_query: str
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
@@ -153,13 +145,10 @@ class PathItemsOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     get_global_query_null.metadata = {'url': '/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/localStringQuery'}
 
     def get_global_and_local_query_null(
-            self, local_string_path, path_item_string_path, local_string_query=None, path_item_string_query=None, raw=False, **kwargs):
+            self, local_string_path, path_item_string_path, local_string_query=None, path_item_string_query=None, **kwargs):
         """send globalStringPath=globalStringPath,
         pathItemStringPath='pathItemStringPath',
         localStringPath='localStringPath', globalStringQuery=null,
@@ -175,10 +164,8 @@ class PathItemsOperations(object):
         :param path_item_string_query: A string value 'pathItemStringQuery'
          that appears as a query parameter
         :type path_item_string_query: str
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
@@ -213,13 +200,10 @@ class PathItemsOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     get_global_and_local_query_null.metadata = {'url': '/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/null'}
 
     def get_local_path_item_query_null(
-            self, local_string_path, path_item_string_path, local_string_query=None, path_item_string_query=None, raw=False, **kwargs):
+            self, local_string_path, path_item_string_path, local_string_query=None, path_item_string_query=None, **kwargs):
         """send globalStringPath='globalStringPath',
         pathItemStringPath='pathItemStringPath',
         localStringPath='localStringPath',
@@ -235,10 +219,8 @@ class PathItemsOperations(object):
         :type local_string_query: str
         :param path_item_string_query: should contain value null
         :type path_item_string_query: str
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :return: None or ClientRawResponse if raw=true
-        :rtype: None or ~msrest.pipeline.ClientRawResponse
+        :return: None
+        :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
         # Construct URL
@@ -273,7 +255,4 @@ class PathItemsOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        if raw:
-            client_raw_response = ClientRawResponse(None, response)
-            return client_raw_response
     get_local_path_item_query_null.metadata = {'url': '/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/null/null'}
