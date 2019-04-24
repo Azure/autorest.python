@@ -14,7 +14,7 @@
 from msrest.pipeline import ClientRawResponse
 @if (Model.HasAnyDefaultExceptions)
 {
-@:from msrest.exceptions import HttpOperationError
+@:from azure.core import HttpRequestError
 }
 @if (Model.HasAnyModel)
 {

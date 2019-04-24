@@ -31,7 +31,7 @@ bool hasClientLevelMethods = Model.MethodTemplateModels.Any( each => each.Method
 }
 @if (Model.HasAnyDefaultExceptions)
 {
-@:from msrest.exceptions import HttpOperationError
+@:from azure.core import HttpRequestError
 }
 @if (Model.MethodGroupModels.Any())
 {
