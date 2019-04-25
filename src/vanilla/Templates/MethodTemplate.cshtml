@@ -165,8 +165,8 @@ else
   }
 }
 @EmptyLine
-        @:if kwargs.get('cls'):
-            @:return kwargs['cls'](response, deserialized, @Model.AddResponseHeader())
+        @:if cls:
+            @:return cls(response, deserialized, @Model.AddResponseHeader())
 @EmptyLine
         @:return deserialized
 }

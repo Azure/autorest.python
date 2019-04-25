@@ -166,7 +166,7 @@ else
 @:    :param response: Server response to be deserialized.
 @:    """
 @EmptyLine
-    @:def __init__(self, deserialize, response, *args):
+    @:def __init__(self, response, deserialize, *args):
 @EmptyLine
 @:      model_name = '@(currModel.Name)'
 @:      self.error = deserialize(model_name, response)

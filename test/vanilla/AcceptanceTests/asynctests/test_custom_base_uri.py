@@ -63,7 +63,7 @@ class TestCustomBaseUri(object):
     async def test_custom_base_uri_negative(self):
         config = AutoRestParameterizedHostTestClientConfiguration("host:3000")
         config.retry_policy.total_retries = 0
-        client = AutoRestParameterizedHostTestClient(config=config)
+        client = AutoRestParameterizedHostTestClient("host:3000", config=config)
 
         with pytest.raises(ConnectError):
             await client.paths.get_empty("bad")
@@ -72,7 +72,7 @@ class TestCustomBaseUri(object):
             await client.paths.get_empty(None)
 
         config.host = "badhost:3000"
-        client = AutoRestParameterizedHostTestClient(config=config)
+        client = AutoRestParameterizedHostTestClient("host:3000", config=config)
         with pytest.raises(ConnectError):
             await client.paths.get_empty("local")
 

@@ -72,7 +72,7 @@ class TestCustomBaseUri(object):
         config = AutoRestParameterizedHostTestClientConfiguration("host:3000")
         config.retry_policy.total_retries = 0
         client = AutoRestParameterizedHostTestClient("badhost:3000", config=config)
-        #with pytest.raises(ConnectError):
+        #with pytest.raises(ConnectError):  # TODO: Why not failing?
         client.paths.get_empty("local")
 
     def test_custom_base_uri_more_optiopns(self):

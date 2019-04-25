@@ -65,7 +65,7 @@ namespace AutoRest.Python.Model
                 return "response.status_code < 200 or response.status_code >= 300";
             }
         }
-        
+
         public virtual string ExceptionDocumentation
         {
             get
@@ -109,11 +109,11 @@ namespace AutoRest.Python.Model
                     Core.Model.CompositeType compType = body as Core.Model.CompositeType;
                     if (compType != null)
                     {
-                        return string.Format(CultureInfo.InvariantCulture, "raise models.{0}(self._deserialize, response)", compType.GetExceptionDefineType());
+                        return string.Format(CultureInfo.InvariantCulture, "raise models.{0}(response, self._deserialize)", compType.GetExceptionDefineType());
                     }
                     else
                     {
-                        return string.Format(CultureInfo.InvariantCulture, "raise HttpRequestError(response=response, message='{0}')", body.ToPythonRuntimeTypeString());
+                        return string.Format(CultureInfo.InvariantCulture, "raise HttpRequestError(response)", body.ToPythonRuntimeTypeString());
                     }
                 }
             }
@@ -145,17 +145,19 @@ namespace AutoRest.Python.Model
                 }
             }
 
+            if (python3Mode)
+            {
+                declarations.Add("*");
+            }
+
+            declarations.Add("cls=None");
+
             if (requiredDeclarations.Any())
             {
                 combinedDeclarations.Add(string.Join(", ", requiredDeclarations));
             }
             combinedDeclarations.Add(string.Join(", ", declarations));
-            if (declarations.Count == 0 && requiredDeclarations.Count == 0)
-                return string.Empty;
-            string ret = string.Join(", ", combinedDeclarations);
-            if (declarations.Count != 0)
-                ret += ", ";
-            return  ret;
+            return string.Join(", ", combinedDeclarations);
         }
 
         private string BuildSerializeDataCall(Parameter parameter, string functionName)
@@ -344,7 +346,7 @@ namespace AutoRest.Python.Model
             get
             {
                 var builder = new IndentedStringBuilder("    ");
-                builder.AppendLine("if kwargs.get('cls'):").Indent();
+                builder.AppendLine("if cls:").Indent();
                 if (this.ReturnType.Headers != null)
                 {
                     builder.AppendLine("response_headers = {").Indent();
@@ -355,7 +357,7 @@ namespace AutoRest.Python.Model
                 {
                     builder.AppendLine("response_headers = {}");
                 }
-                builder.AppendLine("return kwargs['cls'](response, None, response_headers)").
+                builder.AppendLine("return cls(response, None, response_headers)").
                     Outdent();
 
                 return builder.ToString();
@@ -403,13 +405,11 @@ namespace AutoRest.Python.Model
         {
             if (HasResponseHeader)
             {
-                var builder = new IndentedStringBuilder("    ");
-                builder.AppendLine("client_raw_response.add_headers(header_dict)");
-                return builder.ToString();
+                return "header_dict";
             }
             else
             {
-                return string.Empty;
+                return PythonConstants.None;
             }
         }
 
@@ -430,11 +430,11 @@ namespace AutoRest.Python.Model
                 var enumType = prop.ModelType as EnumType;
                 if (CodeModel.EnumTypes.Contains(prop.ModelType) && !enumType.ModelAsString)
                 {
-                    builder.AppendLine(String.Format(CultureInfo.InvariantCulture, "'{0}': models.{1},", prop.SerializedName, prop.ModelType.ToPythonRuntimeTypeString()));
+                    builder.AppendLine(String.Format(CultureInfo.InvariantCulture, "'{0}': self._deserialize(models.{1}, response.headers.get('{0}')),", prop.SerializedName, prop.ModelType.ToPythonRuntimeTypeString()));
                 }
                 else
                 {
-                    builder.AppendLine(String.Format(CultureInfo.InvariantCulture, "'{0}': '{1}',", prop.SerializedName, prop.ModelType.ToPythonRuntimeTypeString()));
+                    builder.AppendLine(String.Format(CultureInfo.InvariantCulture, "'{0}': self._deserialize('{1}', response.headers.get('{0}')),", prop.SerializedName, prop.ModelType.ToPythonRuntimeTypeString()));
                 }
             }
         }
@@ -673,10 +673,11 @@ namespace AutoRest.Python.Model
         {
             get
             {
-                var sb = new IndentedStringBuilder();
-                sb.AppendLine("headers = kwargs.get('headers')");
-                sb.AppendLine("if headers:").Indent().AppendLine("header_parameters.update(headers)").Outdent();
-                return sb.ToString();
+                //var sb = new IndentedStringBuilder();
+                //sb.AppendLine("headers = kwargs.get('headers')");
+                //sb.AppendLine("if headers:").Indent().AppendLine("header_parameters.update(headers)").Outdent();
+                //return sb.ToString();
+                return string.Empty;
             }
         }
 
