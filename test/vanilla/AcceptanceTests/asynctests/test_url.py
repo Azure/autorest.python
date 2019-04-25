@@ -48,20 +48,13 @@ from url.models import UriColor
 
 import pytest
 
-@pytest.fixture
-def client():
-    return AutoRestUrlTestService('', base_url="http://localhost:3000")
-
-@pytest.fixture
-def multi_client():
-    return AutoRestUrlMutliCollectionFormatTestService("http://localhost:3000")
 
 class TestUrl(object):
 
     @pytest.mark.asyncio
-    async def test_url_path(self, client):
+    async def test_url_path(self):
 
-        client._config.global_string_path = ''
+        client = AutoRestUrlTestService(global_string_path='', base_url="http://localhost:3000")
 
         await client.paths.byte_empty()
 
@@ -109,9 +102,10 @@ class TestUrl(object):
         await client.paths.base64_url("lorem".encode())
 
     @pytest.mark.asyncio
-    async def test_url_query(self, client, multi_client):
+    async def test_url_query(self):
 
-        client._config.global_string_path = ''
+        client = AutoRestUrlTestService(global_string_path='', base_url="http://localhost:3000")
+        multi_client = AutoRestUrlMutliCollectionFormatTestService("http://localhost:3000")
 
         await client.queries.byte_empty()
         u_bytes = bytearray(u"\u554A\u9F44\u4E02\u72DB\u72DC\uF9F1\uF92C\uF9F1\uFA0C\uFA29", encoding='utf-8')
@@ -154,21 +148,19 @@ class TestUrl(object):
         await multi_client.queries.array_string_multi_valid(test_array)
 
     @pytest.mark.asyncio
-    async def test_url_mixed(self, client):
+    async def test_url_mixed(self):
 
-        client._config.global_string_path = "globalStringPath"
-        client._config.global_string_query = "globalStringQuery"
+        client = AutoRestUrlTestService(global_string_path="globalStringPath", global_string_query=None, base_url="http://localhost:3000")
 
         await client.path_items.get_all_with_values("localStringPath", "pathItemStringPath",
                 "localStringQuery", "pathItemStringQuery")
 
-        client._config.global_string_query = None
         await client.path_items.get_global_and_local_query_null("localStringPath", "pathItemStringPath",
                 None, "pathItemStringQuery")
 
         await client.path_items.get_global_query_null("localStringPath", "pathItemStringPath",
                 "localStringQuery", "pathItemStringQuery")
 
-        client._config.global_string_query = "globalStringQuery"
+        client = AutoRestUrlTestService(global_string_path="globalStringPath", global_string_query="globalStringQuery", base_url="http://localhost:3000")
         await client.path_items.get_local_path_item_query_null("localStringPath", "pathItemStringPath",
                 None, None)

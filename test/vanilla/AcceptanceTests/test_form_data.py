@@ -40,7 +40,7 @@ sys.path.append(join(tests, "BodyFormData"))
 
 from msrest.exceptions import DeserializationError
 
-from bodyformdata import AutoRestSwaggerBATFormDataService
+from bodyformdata import AutoRestSwaggerBATFormDataService, AutoRestSwaggerBATFormDataServiceConfiguration
 
 import pytest
 
@@ -54,23 +54,16 @@ def dummy_file():
 
 @pytest.fixture
 def client():
-    with AutoRestSwaggerBATFormDataService(base_url="http://localhost:3000") as client:
-        client._config.connection.data_block_size = 2
-        client._config.retry_policy.retries = 50  # Be agressive on this test, sometimes testserver DDOS :-p
-        client._config.retry_policy.backoff_factor = 1.6
+    config = AutoRestSwaggerBATFormDataServiceConfiguration()
+    config.connection.data_block_size = 2
+    config.retry_policy.total_retries = 50  # Be agressive on this test, sometimes testserver DDOS :-p
+    config.retry_policy.backoff_factor = 1.6
+    with AutoRestSwaggerBATFormDataService(base_url="http://localhost:3000", config=config) as client:
         yield client    
 
 class TestFormData(object):
 
     def test_file_upload_stream(self, client):
-
-        def test_callback(data, response, progress = [0]):
-            assert len(data) > 0
-            progress[0] += len(data)
-            total = float(response.headers.get('Content-Length', 100))
-            print("Progress... {}%".format(int(progress[0]*100/total)))
-            assert response is not None
-
 
         test_string = "Upload file test case"
         test_bytes = bytearray(test_string, encoding='utf-8')
@@ -81,14 +74,21 @@ class TestFormData(object):
                 result.write(r)
             assert result.getvalue().decode() ==  test_string
 
-    def test_file_upload_file_stream(self, client, dummy_file):
+    def test_file_upload_stream_raw(self, client):
 
-        def test_callback(data, response, progress = [0]):
-            assert len(data) > 0
-            progress[0] += len(data)
-            total = float(response.headers.get('Content-Length', 100))
-            print("Progress... {}%".format(int(progress[0]*100/total)))
-            assert response is not None
+        def test_callback(response, data, headers):
+            return data
+
+        test_string = "Upload file test case"
+        test_bytes = bytearray(test_string, encoding='utf-8')
+        result = io.BytesIO()
+        with io.BytesIO(test_bytes) as stream_data:
+            stream = client.formdata.upload_file(stream_data, "UploadFile.txt", cls=test_callback)
+            for data in stream:
+                result.write(data)
+            assert result.getvalue().decode() ==  test_string
+
+    def test_file_upload_file_stream(self, client, dummy_file):
 
         name = os.path.basename(dummy_file)
         result = io.BytesIO()
@@ -98,19 +98,23 @@ class TestFormData(object):
                 result.write(r)
             assert result.getvalue().decode() ==  "Test file"
 
+    def test_file_upload_file_stream_raw(self, client, dummy_file):
+
+        def test_callback(response, data, headers):
+            return data
+
+        name = os.path.basename(dummy_file)
+        result = io.BytesIO()
+        with open(dummy_file, 'rb') as upload_data:
+            stream = client.formdata.upload_file(upload_data, name, cls=test_callback)
+            for data in stream:
+                result.write(data)
+            assert result.getvalue().decode() ==  "Test file"
+
     def test_file_body_upload(self, client, dummy_file):
 
         test_string = "Upload file test case"
         test_bytes = bytearray(test_string, encoding='utf-8')
-
-        def test_callback(data, response, progress = [0]):
-            assert len(data) > 0
-            progress[0] += len(data)
-            total = float(len(test_bytes))
-            if response:
-                print("Downloading... {}%".format(int(progress[0]*100/total)))
-            else:
-                print("Uploading... {}%".format(int(progress[0]*100/total)))
 
         result = io.BytesIO()
         with io.BytesIO(test_bytes) as stream_data:
@@ -125,3 +129,33 @@ class TestFormData(object):
             for r in resp:
                 result.write(r)
             assert result.getvalue().decode() ==  "Test file"
+
+    def test_file_body_upload_generator(self, client, dummy_file):
+
+        test_string = "Upload file test case"
+        test_bytes = bytearray(test_string, encoding='utf-8')
+
+        def stream_upload(data, length, block_size):
+            progress = 0
+            while True:
+                block = data.read(block_size)  
+                progress += len(block)
+                print("Progress... {}%".format(int(progress*100/length)))
+                if not block:
+                    break
+                yield block
+
+        result = io.BytesIO()
+        with io.BytesIO(test_bytes) as stream_data:
+            resp = client.formdata.upload_file_via_body(stream_data)
+            for r in resp:
+                result.write(r)
+            assert result.getvalue().decode() ==  test_string
+
+        result = io.BytesIO()
+        with open(dummy_file, 'rb') as upload_data:
+            streamed_upload = stream_upload(upload_data, len(test_string), 2)
+            response = client.formdata.upload_file_via_body(streamed_upload)
+            for data in response:
+                result.write(data)
+            assert result.getvalue().decode() == "Test file"

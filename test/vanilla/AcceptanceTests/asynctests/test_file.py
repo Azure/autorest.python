@@ -56,7 +56,7 @@ class TestFile(object):
 
     @pytest.mark.asyncio
     async def test_files_yada(self, client):
-        client._config.connection.data_block_size = 1000
+        client.config.connection.data_block_size = 1000
 
         def test_callback(data, response, progress=[0]):
             assert len(data) > 0
@@ -69,7 +69,7 @@ class TestFile(object):
 
         file_length = 0
         with io.BytesIO() as file_handle:
-            stream = await client.files.get_file()
+            stream = await client.files.get_file(callback=test_callback)
 
             async for data in stream:
                 file_length += len(data)
@@ -85,10 +85,10 @@ class TestFile(object):
                 sample_data = hash(data.read())
             assert sample_data ==  hash(file_handle.getvalue())
 
-        client._config.connection.data_block_size = 4096
+        client.config.connection.data_block_size = 4096
         file_length = 0
         with io.BytesIO() as file_handle:
-            stream = await client.files.get_empty_file()
+            stream = await client.files.get_empty_file(callback=test_callback)
 
             async for data in stream:
                 file_length += len(data)
@@ -101,12 +101,53 @@ class TestFile(object):
 
         file_length = 0
         # client._client.add_hook('response', add_headers)
-        stream = await client.files.get_file_large()
+        stream = await client.files.get_file_large(callback=test_callback)
         #for data in stream:
         #    file_length += len(data)
 
         #assert file_length ==  3000 * 1024 * 1024
 
+    @pytest.mark.asyncio
+    async def test_files_raw(self, client):
+
+        def test_callback(data, response, progress=[0]):
+            assert len(data) > 0
+            assert response is not None
+            assert not response._content_consumed
+            total = float(response.headers.get('Content-Length', 0))
+            if total:
+                progress[0] += len(data)
+                print("Downloading... {}%".format(int(progress[0]*100/total)))
+
+        file_length = 0
+        with io.BytesIO() as file_handle:
+            response = await client.files.get_file(raw=True, callback=test_callback)
+            stream = response.output
+
+            async for data in stream:
+                file_length += len(data)
+                file_handle.write(data)
+
+            assert file_length !=  0
+
+            sample_file = realpath(
+                join(cwd, pardir, pardir, pardir, pardir,
+                     "node_modules", "@microsoft.azure", "autorest.testserver", "routes", "sample.png"))
+
+            with open(sample_file, 'rb') as data:
+                sample_data = hash(data.read())
+            assert sample_data ==  hash(file_handle.getvalue())
+
+        file_length = 0
+        with io.BytesIO() as file_handle:
+            response = await client.files.get_empty_file(raw=True, callback=test_callback)
+            stream = response.output
+
+            async for data in stream:
+                file_length += len(data)
+                file_handle.write(data)
+
+            assert file_length ==  0
 
 if __name__ == '__main__':
     unittest.main()

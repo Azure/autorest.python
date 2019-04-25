@@ -42,13 +42,12 @@ log_level = int(os.environ.get('PythonLogLevel', 30))
 tests = realpath(join(cwd, pardir, "Expected", "AcceptanceTests"))
 sys.path.append(join(tests, "Http"))
 
+from azure.core.exceptions import HttpRequestError
 from msrest.exceptions import DeserializationError
 
 from httpinfrastructure import AutoRestHttpInfrastructureTestService
 from httpinfrastructure.models import (
     A, B, C, D, ErrorException)
-
-from azure.core import HttpRequestError
 
 import pytest
 
@@ -59,17 +58,15 @@ def client():
     with AutoRestHttpInfrastructureTestService(base_url="http://localhost:3000") as client:
         yield client
 
-@pytest.fixture()
-def special_client(client, test_session_callback):
-    client._config.session_configuration_callback = test_session_callback
-    return client
 
 class TestHttp(object):
 
     def assertStatus(self, code, func, *args, **kwargs):
-        kwargs['raw'] = True
-        raw = func(*args, **kwargs)
-        raw.response.status_code == code
+        def return_status(response, data, headers):
+            return response.status_code
+        kwargs['cls'] = return_status
+        status_code = func(*args, **kwargs)
+        assert status_code == code
 
     def assertRaisesWithMessage(self, msg, func, *args, **kwargs):
         try:
@@ -112,7 +109,7 @@ class TestHttp(object):
 
         except HttpRequestError as err:
             assert err.response.status_code == code
-            assert msg in err.response.content.decode("utf-8")
+            assert msg in err.response.text()
 
     def test_response_modeling(self, client):
 
@@ -206,8 +203,7 @@ class TestHttp(object):
         self.assertRaisesWithStatus(202,
             client.multiple_responses.get200_model_a202_valid)
 
-    def test_server_error_status_codes(self, special_client):
-        client = special_client
+    def test_server_error_status_codes(self, client):
 
         self.assertRaisesWithStatus(requests.codes.not_implemented,
             client.http_server_failure.head501)
@@ -319,10 +315,7 @@ class TestHttp(object):
 
     def test_redirect_status_codes(self, client):
 
-        # requests does NOT redirect on 300. We is ok with the HTTP
-        # spec that is fuzzy about this. Let's keep it that way for now.
-        self.assertStatus(300, client.http_redirects.get300)
-
+        self.assertStatus(200, client.http_redirects.get300)
         self.assertStatus(200, client.http_redirects.head302)
         self.assertStatus(200, client.http_redirects.head301)
         self.assertStatus(200, client.http_redirects.get301)
