@@ -10,8 +10,7 @@
 string methodName = Model.Name.ToPythonCase();
 string defKeyword = AsyncMode? "async def" : "def";
 }
-    @(defKeyword) @(methodName)(
-            self, @(Model.MethodParameterDeclaration(Python3Mode))**kwargs):
+    @(defKeyword) @(methodName)(self, @(Model.MethodParameterDeclaration(Python3Mode)), **kwargs):
         """@(WrapComment(string.Empty, Model.BuildSummaryAndDescriptionString()))
 @EmptyLine
 @if (Model.Deprecated)
@@ -25,7 +24,8 @@ string defKeyword = AsyncMode? "async def" : "def";
 @:        @ParameterWrapComment(string.Empty, MethodPy.GetParameterDocumentationString(parameter))
 @:        @ParameterWrapComment(string.Empty, ":type " + parameter.Name + ": " + Model.GetDocumentationType(parameter.ModelType))
 }
-        @ParameterWrapComment(string.Empty, string.Format(":return: {0}", Model.GetDocumentationTypeName(Model.ReturnType.Body)))
+        @ParameterWrapComment(string.Empty, ":param callable cls: A custom type or function that will be passed the direct response")
+        @ParameterWrapComment(string.Empty, string.Format(":return: {0} or the result of cls(response)", Model.GetDocumentationTypeName(Model.ReturnType.Body)))
         @ParameterWrapComment(string.Empty, string.Format(":rtype: {0}", Model.GetReturnTypeDocumentation(Model.ReturnType.Body)))
         @ParameterWrapComment(string.Empty, string.Format(":raises: {0}", Model.ExceptionDocumentation))
         """
@@ -70,18 +70,7 @@ string defKeyword = AsyncMode? "async def" : "def";
 @if (Model.RequestBody != null)
 {
         @:# Construct body
-  if (Model.IsStreamRequestBody)
-  {
-    foreach (var parameter in Model.LocalParameters)
-    {
-      if (parameter.Location == ParameterLocation.Body && parameter.ModelType.IsPrimaryType(KnownPrimaryType.Stream))
-      {
-        @:body_content = @parameter.Name
-        break;
-      }
-    }
-  }
-  else
+@if (!Model.IsStreamRequestBody)
   {
         // Right now, just generate the serialization context if it's a sequence type. Could be smarter later
         string serializationContext = "";
@@ -123,21 +112,33 @@ else if (Model.IsFormData)
 @EmptyLine
 }
         # Construct and send request
-@if (Model.RequestBody != null)
-{
-        @:request = self._client.@(MethodPy.GetHttpFunction(Model.HttpMethod))(url, query_parameters, header_parameters, body_content)
-}
-else if (Model.IsFormData)
+@if (Model.IsFormData)
 {
         @:request = self._client.@(MethodPy.GetHttpFunction(Model.HttpMethod))(url, query_parameters, header_parameters, form_content=form_data_content)
+}
+else if (Model.IsStreamRequestBody)
+{
+  foreach (var parameter in Model.LocalParameters)
+  {
+    if (parameter.Location == ParameterLocation.Body && parameter.ModelType.IsPrimaryType(KnownPrimaryType.Stream))
+    {
+        @:request = self._client.@(MethodPy.GetHttpFunction(Model.HttpMethod))(url, query_parameters, header_parameters, stream_content=@parameter.Name)
+        break;
+    }
+  }
+}
+else if (Model.RequestBody != null)
+{
+        @:request = self._client.@(MethodPy.GetHttpFunction(Model.HttpMethod))(url, query_parameters, header_parameters, body_content)
 }
 else
 {
         @:request = self._client.@(MethodPy.GetHttpFunction(Model.HttpMethod))(url, query_parameters, header_parameters)
 }
+
 @{string streamParameter = "stream="+(Model.IsStreamResponse?"True":"False");}
 @{string sendCall = Model.GetSendCall(AsyncMode);}
-        pipeline_response = @(sendCall)(request)
+        pipeline_response = @(sendCall)(request, @(streamParameter), **kwargs)
         response = pipeline_response.http_response
 @EmptyLine
         if @Model.FailureStatusCodePredicate:
@@ -151,7 +152,7 @@ else
   }
 if (Model.IsStreamResponse)
 {
-        @:deserialized = @(AsyncMode?"await":"") response.stream_download@(AsyncMode?"_async":"")(response)
+        @:deserialized = response.stream_download()
 }
 else
 {
@@ -163,6 +164,9 @@ else
             @:@Model.AddIndividualResponseHeader(responsePair.Key)
   }
 }
+@EmptyLine
+        @:if kwargs.get('cls'):
+            @:return kwargs['cls'](response, deserialized, @Model.AddResponseHeader())
 @EmptyLine
         @:return deserialized
 }

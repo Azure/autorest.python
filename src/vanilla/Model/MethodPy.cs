@@ -343,7 +343,22 @@ namespace AutoRest.Python.Model
         {
             get
             {
-                return string.Empty;
+                var builder = new IndentedStringBuilder("    ");
+                builder.AppendLine("if kwargs.get('cls'):").Indent();
+                if (this.ReturnType.Headers != null)
+                {
+                    builder.AppendLine("response_headers = {").Indent();
+                    AddHeaderDictionary(builder, (Core.Model.CompositeType)ReturnType.Headers);
+                    builder.Outdent().AppendLine("}");
+                }
+                else
+                {
+                    builder.AppendLine("response_headers = {}");
+                }
+                builder.AppendLine("return kwargs['cls'](response, None, response_headers)").
+                    Outdent();
+
+                return builder.ToString();
             }
         }
 
