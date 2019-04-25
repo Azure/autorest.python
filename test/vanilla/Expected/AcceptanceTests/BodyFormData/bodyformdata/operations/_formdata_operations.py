@@ -75,7 +75,7 @@ class FormdataOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        deserialized =  response.stream_download(response)
+        deserialized =  response.stream_download()
 
         return deserialized
     upload_file.metadata = {'url': '/formdata/stream/uploadfile'}
@@ -115,7 +115,7 @@ class FormdataOperations(object):
         if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
-        deserialized =  response.stream_download(response)
+        deserialized =  response.stream_download()
 
         return deserialized
     upload_file_via_body.metadata = {'url': '/formdata/stream/uploadfile'}
