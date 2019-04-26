@@ -62,7 +62,6 @@ def client():
 class TestHttp(object):
 
     async def assertStatus(self, code, func, *args, **kwargs):
-        kwargs['raw'] = True
         raw = await func(*args, **kwargs)
         raw.response.status_code == code
 
