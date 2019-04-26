@@ -65,7 +65,7 @@ class TestFile(object):
             with io.BytesIO() as file_handle:
                 stream = await client.files.get_file()
                 total = len(stream)
-                assert not stream.response._content_consumed
+                assert not stream.internal_response._content_consumed
 
                 async for data in stream:
                     assert 0 < len(data) <= stream.block_size
@@ -90,7 +90,7 @@ class TestFile(object):
             with io.BytesIO() as file_handle:
                 stream = await client.files.get_empty_file()
                 assert len(stream) == 0
-                assert not stream.response._content_consumed
+                assert not stream.internal_response._content_consumed
 
                 for data in stream:
                     file_length += len(data)
@@ -137,7 +137,7 @@ class TestFile(object):
     #     client.config.connection.data_block_size = 4096
     #     file_length = 0
     #     with io.BytesIO() as file_handle:
-    #         stream = await client.files.get_empty_file(callback=test_callback)
+    #         stream = await client.files.get_empty_file()
 
     #         async for data in stream:
     #             file_length += len(data)
@@ -150,7 +150,7 @@ class TestFile(object):
 
     #     file_length = 0
     #     # client._client.add_hook('response', add_headers)
-    #     stream = await client.files.get_file_large(callback=test_callback)
+    #     stream = await client.files.get_file_large()
     #     #for data in stream:
     #     #    file_length += len(data)
 
@@ -170,7 +170,7 @@ class TestFile(object):
 
     #     file_length = 0
     #     with io.BytesIO() as file_handle:
-    #         response = await client.files.get_file(cls=None)
+    #         response = await client.files.get_file(cls=callback)
     #         stream = response.output
 
     #         async for data in stream:
@@ -189,7 +189,7 @@ class TestFile(object):
 
     #     file_length = 0
     #     with io.BytesIO() as file_handle:
-    #         response = await client.files.get_empty_file(cls=None)
+    #         response = await client.files.get_empty_file(cls=callback)
     #         stream = response.output
 
     #         async for data in stream:
