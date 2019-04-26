@@ -34,11 +34,12 @@ class Datetimerfc1123Operations:
 
         self._config = config
 
-    async def get_null(
-            self, **kwargs):
+    async def get_null(self, *, cls=None, **kwargs):
         """Get null datetime value.
 
-        :return: datetime
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: datetime or the result of cls(response)
         :rtype: datetime
         :raises:
          :class:`ErrorException<bodydatetimerfc1123.models.ErrorException>`
@@ -52,30 +53,31 @@ class Datetimerfc1123Operations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('rfc-1123', response)
 
+        if cls:
+            return cls(response, deserialized, None)
+
         return deserialized
     get_null.metadata = {'url': '/datetimerfc1123/null'}
 
-    async def get_invalid(
-            self, **kwargs):
+    async def get_invalid(self, *, cls=None, **kwargs):
         """Get invalid datetime value.
 
-        :return: datetime
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: datetime or the result of cls(response)
         :rtype: datetime
         :raises:
          :class:`ErrorException<bodydatetimerfc1123.models.ErrorException>`
@@ -89,30 +91,31 @@ class Datetimerfc1123Operations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('rfc-1123', response)
 
+        if cls:
+            return cls(response, deserialized, None)
+
         return deserialized
     get_invalid.metadata = {'url': '/datetimerfc1123/invalid'}
 
-    async def get_overflow(
-            self, **kwargs):
+    async def get_overflow(self, *, cls=None, **kwargs):
         """Get overflow datetime value.
 
-        :return: datetime
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: datetime or the result of cls(response)
         :rtype: datetime
         :raises:
          :class:`ErrorException<bodydatetimerfc1123.models.ErrorException>`
@@ -126,30 +129,31 @@ class Datetimerfc1123Operations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('rfc-1123', response)
 
+        if cls:
+            return cls(response, deserialized, None)
+
         return deserialized
     get_overflow.metadata = {'url': '/datetimerfc1123/overflow'}
 
-    async def get_underflow(
-            self, **kwargs):
+    async def get_underflow(self, *, cls=None, **kwargs):
         """Get underflow datetime value.
 
-        :return: datetime
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: datetime or the result of cls(response)
         :rtype: datetime
         :raises:
          :class:`ErrorException<bodydatetimerfc1123.models.ErrorException>`
@@ -163,32 +167,33 @@ class Datetimerfc1123Operations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('rfc-1123', response)
 
+        if cls:
+            return cls(response, deserialized, None)
+
         return deserialized
     get_underflow.metadata = {'url': '/datetimerfc1123/underflow'}
 
-    async def put_utc_max_date_time(
-            self, datetime_body, **kwargs):
+    async def put_utc_max_date_time(self, datetime_body, *, cls=None, **kwargs):
         """Put max datetime value Fri, 31 Dec 9999 23:59:59 GMT.
 
         :param datetime_body:
         :type datetime_body: datetime
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises:
          :class:`ErrorException<bodydatetimerfc1123.models.ErrorException>`
@@ -202,28 +207,29 @@ class Datetimerfc1123Operations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(datetime_body, 'rfc-1123')
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     put_utc_max_date_time.metadata = {'url': '/datetimerfc1123/max'}
 
-    async def get_utc_lowercase_max_date_time(
-            self, **kwargs):
+    async def get_utc_lowercase_max_date_time(self, *, cls=None, **kwargs):
         """Get max datetime value fri, 31 dec 9999 23:59:59 gmt.
 
-        :return: datetime
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: datetime or the result of cls(response)
         :rtype: datetime
         :raises:
          :class:`ErrorException<bodydatetimerfc1123.models.ErrorException>`
@@ -237,30 +243,31 @@ class Datetimerfc1123Operations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('rfc-1123', response)
 
+        if cls:
+            return cls(response, deserialized, None)
+
         return deserialized
     get_utc_lowercase_max_date_time.metadata = {'url': '/datetimerfc1123/max/lowercase'}
 
-    async def get_utc_uppercase_max_date_time(
-            self, **kwargs):
+    async def get_utc_uppercase_max_date_time(self, *, cls=None, **kwargs):
         """Get max datetime value FRI, 31 DEC 9999 23:59:59 GMT.
 
-        :return: datetime
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: datetime or the result of cls(response)
         :rtype: datetime
         :raises:
          :class:`ErrorException<bodydatetimerfc1123.models.ErrorException>`
@@ -274,32 +281,33 @@ class Datetimerfc1123Operations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('rfc-1123', response)
 
+        if cls:
+            return cls(response, deserialized, None)
+
         return deserialized
     get_utc_uppercase_max_date_time.metadata = {'url': '/datetimerfc1123/max/uppercase'}
 
-    async def put_utc_min_date_time(
-            self, datetime_body, **kwargs):
+    async def put_utc_min_date_time(self, datetime_body, *, cls=None, **kwargs):
         """Put min datetime value Mon, 1 Jan 0001 00:00:00 GMT.
 
         :param datetime_body:
         :type datetime_body: datetime
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises:
          :class:`ErrorException<bodydatetimerfc1123.models.ErrorException>`
@@ -313,28 +321,29 @@ class Datetimerfc1123Operations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(datetime_body, 'rfc-1123')
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     put_utc_min_date_time.metadata = {'url': '/datetimerfc1123/min'}
 
-    async def get_utc_min_date_time(
-            self, **kwargs):
+    async def get_utc_min_date_time(self, *, cls=None, **kwargs):
         """Get min datetime value Mon, 1 Jan 0001 00:00:00 GMT.
 
-        :return: datetime
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: datetime or the result of cls(response)
         :rtype: datetime
         :raises:
          :class:`ErrorException<bodydatetimerfc1123.models.ErrorException>`
@@ -348,21 +357,21 @@ class Datetimerfc1123Operations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('rfc-1123', response)
+
+        if cls:
+            return cls(response, deserialized, None)
 
         return deserialized
     get_utc_min_date_time.metadata = {'url': '/datetimerfc1123/min'}

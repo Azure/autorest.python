@@ -34,11 +34,12 @@ class PolymorphismOperations:
 
         self._config = config
 
-    async def get_valid(
-            self, **kwargs):
+    async def get_valid(self, *, cls=None, **kwargs):
         """Get complex types that are polymorphic.
 
-        :return: Fish
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: Fish or the result of cls(response)
         :rtype: ~bodycomplex.models.Fish
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
@@ -51,27 +52,26 @@ class PolymorphismOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('Fish', response)
 
+        if cls:
+            return cls(response, deserialized, None)
+
         return deserialized
     get_valid.metadata = {'url': '/complex/polymorphism/valid'}
 
-    async def put_valid(
-            self, complex_body, **kwargs):
+    async def put_valid(self, complex_body, *, cls=None, **kwargs):
         """Put complex types that are polymorphic.
 
         :param complex_body: Please put a salmon that looks like this:
@@ -108,7 +108,9 @@ class PolymorphismOperations:
          ]
          };
         :type complex_body: ~bodycomplex.models.Fish
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
@@ -121,29 +123,30 @@ class PolymorphismOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(complex_body, 'Fish')
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     put_valid.metadata = {'url': '/complex/polymorphism/valid'}
 
-    async def get_complicated(
-            self, **kwargs):
+    async def get_complicated(self, *, cls=None, **kwargs):
         """Get complex types that are polymorphic, but not at the root of the
         hierarchy; also have additional properties.
 
-        :return: Salmon
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: Salmon or the result of cls(response)
         :rtype: ~bodycomplex.models.Salmon
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
@@ -156,33 +159,34 @@ class PolymorphismOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('Salmon', response)
 
+        if cls:
+            return cls(response, deserialized, None)
+
         return deserialized
     get_complicated.metadata = {'url': '/complex/polymorphism/complicated'}
 
-    async def put_complicated(
-            self, complex_body, **kwargs):
+    async def put_complicated(self, complex_body, *, cls=None, **kwargs):
         """Put complex types that are polymorphic, but not at the root of the
         hierarchy; also have additional properties.
 
         :param complex_body:
         :type complex_body: ~bodycomplex.models.Salmon
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
@@ -195,30 +199,31 @@ class PolymorphismOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(complex_body, 'Salmon')
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     put_complicated.metadata = {'url': '/complex/polymorphism/complicated'}
 
-    async def put_missing_discriminator(
-            self, complex_body, **kwargs):
+    async def put_missing_discriminator(self, complex_body, *, cls=None, **kwargs):
         """Put complex types that are polymorphic, omitting the discriminator.
 
         :param complex_body:
         :type complex_body: ~bodycomplex.models.Salmon
-        :return: Salmon
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: Salmon or the result of cls(response)
         :rtype: ~bodycomplex.models.Salmon
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
@@ -232,30 +237,29 @@ class PolymorphismOperations:
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(complex_body, 'Salmon')
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('Salmon', response)
 
+        if cls:
+            return cls(response, deserialized, None)
+
         return deserialized
     put_missing_discriminator.metadata = {'url': '/complex/polymorphism/missingdiscriminator'}
 
-    async def put_valid_missing_required(
-            self, complex_body, **kwargs):
+    async def put_valid_missing_required(self, complex_body, *, cls=None, **kwargs):
         """Put complex types that are polymorphic, attempting to omit required
         'birthday' field - the request should not be allowed from the client.
 
@@ -287,7 +291,9 @@ class PolymorphismOperations:
          ]
          }
         :type complex_body: ~bodycomplex.models.Fish
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
@@ -300,19 +306,19 @@ class PolymorphismOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(complex_body, 'Fish')
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     put_valid_missing_required.metadata = {'url': '/complex/polymorphism/missingrequired/invalid'}

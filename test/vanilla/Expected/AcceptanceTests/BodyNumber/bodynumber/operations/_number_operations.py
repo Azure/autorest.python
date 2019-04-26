@@ -34,11 +34,12 @@ class NumberOperations(object):
 
         self._config = config
 
-    def get_null(
-            self, **kwargs):
+    def get_null(self, cls=None, **kwargs):
         """Get null Number value.
 
-        :return: float
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: float or the result of cls(response)
         :rtype: float
         :raises: :class:`ErrorException<bodynumber.models.ErrorException>`
         """
@@ -51,30 +52,31 @@ class NumberOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('float', response)
 
+        if cls:
+            return cls(response, deserialized, None)
+
         return deserialized
     get_null.metadata = {'url': '/number/null'}
 
-    def get_invalid_float(
-            self, **kwargs):
+    def get_invalid_float(self, cls=None, **kwargs):
         """Get invalid float Number value.
 
-        :return: float
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: float or the result of cls(response)
         :rtype: float
         :raises: :class:`ErrorException<bodynumber.models.ErrorException>`
         """
@@ -87,30 +89,31 @@ class NumberOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('float', response)
 
+        if cls:
+            return cls(response, deserialized, None)
+
         return deserialized
     get_invalid_float.metadata = {'url': '/number/invalidfloat'}
 
-    def get_invalid_double(
-            self, **kwargs):
+    def get_invalid_double(self, cls=None, **kwargs):
         """Get invalid double Number value.
 
-        :return: float
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: float or the result of cls(response)
         :rtype: float
         :raises: :class:`ErrorException<bodynumber.models.ErrorException>`
         """
@@ -123,30 +126,31 @@ class NumberOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('float', response)
 
+        if cls:
+            return cls(response, deserialized, None)
+
         return deserialized
     get_invalid_double.metadata = {'url': '/number/invaliddouble'}
 
-    def get_invalid_decimal(
-            self, **kwargs):
+    def get_invalid_decimal(self, cls=None, **kwargs):
         """Get invalid decimal Number value.
 
-        :return: decimal.Decimal
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: decimal.Decimal or the result of cls(response)
         :rtype: decimal.Decimal
         :raises: :class:`ErrorException<bodynumber.models.ErrorException>`
         """
@@ -159,32 +163,33 @@ class NumberOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('decimal', response)
 
+        if cls:
+            return cls(response, deserialized, None)
+
         return deserialized
     get_invalid_decimal.metadata = {'url': '/number/invaliddecimal'}
 
-    def put_big_float(
-            self, number_body, **kwargs):
+    def put_big_float(self, number_body, cls=None, **kwargs):
         """Put big float value 3.402823e+20.
 
         :param number_body:
         :type number_body: float
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<bodynumber.models.ErrorException>`
         """
@@ -197,28 +202,29 @@ class NumberOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(number_body, 'float')
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     put_big_float.metadata = {'url': '/number/big/float/3.402823e+20'}
 
-    def get_big_float(
-            self, **kwargs):
+    def get_big_float(self, cls=None, **kwargs):
         """Get big float value 3.402823e+20.
 
-        :return: float
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: float or the result of cls(response)
         :rtype: float
         :raises: :class:`ErrorException<bodynumber.models.ErrorException>`
         """
@@ -231,32 +237,33 @@ class NumberOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('float', response)
 
+        if cls:
+            return cls(response, deserialized, None)
+
         return deserialized
     get_big_float.metadata = {'url': '/number/big/float/3.402823e+20'}
 
-    def put_big_double(
-            self, number_body, **kwargs):
+    def put_big_double(self, number_body, cls=None, **kwargs):
         """Put big double value 2.5976931e+101.
 
         :param number_body:
         :type number_body: float
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<bodynumber.models.ErrorException>`
         """
@@ -269,28 +276,29 @@ class NumberOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(number_body, 'float')
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     put_big_double.metadata = {'url': '/number/big/double/2.5976931e+101'}
 
-    def get_big_double(
-            self, **kwargs):
+    def get_big_double(self, cls=None, **kwargs):
         """Get big double value 2.5976931e+101.
 
-        :return: float
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: float or the result of cls(response)
         :rtype: float
         :raises: :class:`ErrorException<bodynumber.models.ErrorException>`
         """
@@ -303,30 +311,31 @@ class NumberOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('float', response)
 
+        if cls:
+            return cls(response, deserialized, None)
+
         return deserialized
     get_big_double.metadata = {'url': '/number/big/double/2.5976931e+101'}
 
-    def put_big_double_positive_decimal(
-            self, **kwargs):
+    def put_big_double_positive_decimal(self, cls=None, **kwargs):
         """Put big double value 99999999.99.
 
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<bodynumber.models.ErrorException>`
         """
@@ -341,28 +350,29 @@ class NumberOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(number_body, 'float')
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     put_big_double_positive_decimal.metadata = {'url': '/number/big/double/99999999.99'}
 
-    def get_big_double_positive_decimal(
-            self, **kwargs):
+    def get_big_double_positive_decimal(self, cls=None, **kwargs):
         """Get big double value 99999999.99.
 
-        :return: float
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: float or the result of cls(response)
         :rtype: float
         :raises: :class:`ErrorException<bodynumber.models.ErrorException>`
         """
@@ -375,30 +385,31 @@ class NumberOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('float', response)
 
+        if cls:
+            return cls(response, deserialized, None)
+
         return deserialized
     get_big_double_positive_decimal.metadata = {'url': '/number/big/double/99999999.99'}
 
-    def put_big_double_negative_decimal(
-            self, **kwargs):
+    def put_big_double_negative_decimal(self, cls=None, **kwargs):
         """Put big double value -99999999.99.
 
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<bodynumber.models.ErrorException>`
         """
@@ -413,28 +424,29 @@ class NumberOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(number_body, 'float')
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     put_big_double_negative_decimal.metadata = {'url': '/number/big/double/-99999999.99'}
 
-    def get_big_double_negative_decimal(
-            self, **kwargs):
+    def get_big_double_negative_decimal(self, cls=None, **kwargs):
         """Get big double value -99999999.99.
 
-        :return: float
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: float or the result of cls(response)
         :rtype: float
         :raises: :class:`ErrorException<bodynumber.models.ErrorException>`
         """
@@ -447,32 +459,33 @@ class NumberOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('float', response)
 
+        if cls:
+            return cls(response, deserialized, None)
+
         return deserialized
     get_big_double_negative_decimal.metadata = {'url': '/number/big/double/-99999999.99'}
 
-    def put_big_decimal(
-            self, number_body, **kwargs):
+    def put_big_decimal(self, number_body, cls=None, **kwargs):
         """Put big decimal value 2.5976931e+101.
 
         :param number_body:
         :type number_body: decimal.Decimal
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<bodynumber.models.ErrorException>`
         """
@@ -485,28 +498,29 @@ class NumberOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(number_body, 'decimal')
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     put_big_decimal.metadata = {'url': '/number/big/decimal/2.5976931e+101'}
 
-    def get_big_decimal(
-            self, **kwargs):
+    def get_big_decimal(self, cls=None, **kwargs):
         """Get big decimal value 2.5976931e+101.
 
-        :return: decimal.Decimal
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: decimal.Decimal or the result of cls(response)
         :rtype: decimal.Decimal
         :raises: :class:`ErrorException<bodynumber.models.ErrorException>`
         """
@@ -519,30 +533,31 @@ class NumberOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('decimal', response)
 
+        if cls:
+            return cls(response, deserialized, None)
+
         return deserialized
     get_big_decimal.metadata = {'url': '/number/big/decimal/2.5976931e+101'}
 
-    def put_big_decimal_positive_decimal(
-            self, **kwargs):
+    def put_big_decimal_positive_decimal(self, cls=None, **kwargs):
         """Put big decimal value 99999999.99.
 
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<bodynumber.models.ErrorException>`
         """
@@ -557,28 +572,29 @@ class NumberOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(number_body, 'decimal')
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     put_big_decimal_positive_decimal.metadata = {'url': '/number/big/decimal/99999999.99'}
 
-    def get_big_decimal_positive_decimal(
-            self, **kwargs):
+    def get_big_decimal_positive_decimal(self, cls=None, **kwargs):
         """Get big decimal value 99999999.99.
 
-        :return: decimal.Decimal
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: decimal.Decimal or the result of cls(response)
         :rtype: decimal.Decimal
         :raises: :class:`ErrorException<bodynumber.models.ErrorException>`
         """
@@ -591,30 +607,31 @@ class NumberOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('decimal', response)
 
+        if cls:
+            return cls(response, deserialized, None)
+
         return deserialized
     get_big_decimal_positive_decimal.metadata = {'url': '/number/big/decimal/99999999.99'}
 
-    def put_big_decimal_negative_decimal(
-            self, **kwargs):
+    def put_big_decimal_negative_decimal(self, cls=None, **kwargs):
         """Put big decimal value -99999999.99.
 
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<bodynumber.models.ErrorException>`
         """
@@ -629,28 +646,29 @@ class NumberOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(number_body, 'decimal')
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     put_big_decimal_negative_decimal.metadata = {'url': '/number/big/decimal/-99999999.99'}
 
-    def get_big_decimal_negative_decimal(
-            self, **kwargs):
+    def get_big_decimal_negative_decimal(self, cls=None, **kwargs):
         """Get big decimal value -99999999.99.
 
-        :return: decimal.Decimal
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: decimal.Decimal or the result of cls(response)
         :rtype: decimal.Decimal
         :raises: :class:`ErrorException<bodynumber.models.ErrorException>`
         """
@@ -663,32 +681,33 @@ class NumberOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('decimal', response)
 
+        if cls:
+            return cls(response, deserialized, None)
+
         return deserialized
     get_big_decimal_negative_decimal.metadata = {'url': '/number/big/decimal/-99999999.99'}
 
-    def put_small_float(
-            self, number_body, **kwargs):
+    def put_small_float(self, number_body, cls=None, **kwargs):
         """Put small float value 3.402823e-20.
 
         :param number_body:
         :type number_body: float
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<bodynumber.models.ErrorException>`
         """
@@ -701,28 +720,29 @@ class NumberOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(number_body, 'float')
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     put_small_float.metadata = {'url': '/number/small/float/3.402823e-20'}
 
-    def get_small_float(
-            self, **kwargs):
+    def get_small_float(self, cls=None, **kwargs):
         """Get big double value 3.402823e-20.
 
-        :return: float
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: float or the result of cls(response)
         :rtype: float
         :raises: :class:`ErrorException<bodynumber.models.ErrorException>`
         """
@@ -735,32 +755,33 @@ class NumberOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('float', response)
 
+        if cls:
+            return cls(response, deserialized, None)
+
         return deserialized
     get_small_float.metadata = {'url': '/number/small/float/3.402823e-20'}
 
-    def put_small_double(
-            self, number_body, **kwargs):
+    def put_small_double(self, number_body, cls=None, **kwargs):
         """Put small double value 2.5976931e-101.
 
         :param number_body:
         :type number_body: float
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<bodynumber.models.ErrorException>`
         """
@@ -773,28 +794,29 @@ class NumberOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(number_body, 'float')
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     put_small_double.metadata = {'url': '/number/small/double/2.5976931e-101'}
 
-    def get_small_double(
-            self, **kwargs):
+    def get_small_double(self, cls=None, **kwargs):
         """Get big double value 2.5976931e-101.
 
-        :return: float
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: float or the result of cls(response)
         :rtype: float
         :raises: :class:`ErrorException<bodynumber.models.ErrorException>`
         """
@@ -807,32 +829,33 @@ class NumberOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('float', response)
 
+        if cls:
+            return cls(response, deserialized, None)
+
         return deserialized
     get_small_double.metadata = {'url': '/number/small/double/2.5976931e-101'}
 
-    def put_small_decimal(
-            self, number_body, **kwargs):
+    def put_small_decimal(self, number_body, cls=None, **kwargs):
         """Put small decimal value 2.5976931e-101.
 
         :param number_body:
         :type number_body: decimal.Decimal
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<bodynumber.models.ErrorException>`
         """
@@ -845,28 +868,29 @@ class NumberOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(number_body, 'decimal')
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     put_small_decimal.metadata = {'url': '/number/small/decimal/2.5976931e-101'}
 
-    def get_small_decimal(
-            self, **kwargs):
+    def get_small_decimal(self, cls=None, **kwargs):
         """Get small decimal value 2.5976931e-101.
 
-        :return: decimal.Decimal
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: decimal.Decimal or the result of cls(response)
         :rtype: decimal.Decimal
         :raises: :class:`ErrorException<bodynumber.models.ErrorException>`
         """
@@ -879,21 +903,21 @@ class NumberOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('decimal', response)
+
+        if cls:
+            return cls(response, deserialized, None)
 
         return deserialized
     get_small_decimal.metadata = {'url': '/number/small/decimal/2.5976931e-101'}

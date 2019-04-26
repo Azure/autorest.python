@@ -39,7 +39,7 @@ class PagingOperations:
         self._config = config
 
     def get_single_pages(
-            self, **kwargs):
+            self, *, cls=None, **kwargs):
         """A paging operation that finishes on the first call without a nextlink.
 
         :return: An iterator like instance of Product
@@ -63,9 +63,6 @@ class PagingOperations:
             header_parameters['Accept'] = 'application/json'
             if self._config.generate_client_request_id:
                 header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-            headers = kwargs.get('headers')
-            if headers:
-                header_parameters.update(headers)
             if self._config.accept_language is not None:
                 header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
@@ -108,7 +105,7 @@ class PagingOperations:
     get_single_pages.metadata = {'url': '/paging/single'}
 
     def get_multiple_pages(
-            self, client_request_id=None, paging_get_multiple_pages_options=None, **kwargs):
+            self, client_request_id=None, paging_get_multiple_pages_options=None, *, cls=None, **kwargs):
         """A paging operation that includes a nextLink that has 10 pages.
 
         :param client_request_id:
@@ -145,9 +142,6 @@ class PagingOperations:
             header_parameters['Accept'] = 'application/json'
             if self._config.generate_client_request_id:
                 header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-            headers = kwargs.get('headers')
-            if headers:
-                header_parameters.update(headers)
             if client_request_id is not None:
                 header_parameters['client-request-id'] = self._serialize.header("client_request_id", client_request_id, 'str')
             if self._config.accept_language is not None:
@@ -196,7 +190,7 @@ class PagingOperations:
     get_multiple_pages.metadata = {'url': '/paging/multiple'}
 
     def get_odata_multiple_pages(
-            self, client_request_id=None, paging_get_odata_multiple_pages_options=None, **kwargs):
+            self, client_request_id=None, paging_get_odata_multiple_pages_options=None, *, cls=None, **kwargs):
         """A paging operation that includes a nextLink in odata format that has 10
         pages.
 
@@ -234,9 +228,6 @@ class PagingOperations:
             header_parameters['Accept'] = 'application/json'
             if self._config.generate_client_request_id:
                 header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-            headers = kwargs.get('headers')
-            if headers:
-                header_parameters.update(headers)
             if client_request_id is not None:
                 header_parameters['client-request-id'] = self._serialize.header("client_request_id", client_request_id, 'str')
             if self._config.accept_language is not None:
@@ -285,7 +276,7 @@ class PagingOperations:
     get_odata_multiple_pages.metadata = {'url': '/paging/multiple/odata'}
 
     def get_multiple_pages_with_offset(
-            self, paging_get_multiple_pages_with_offset_options, client_request_id=None, **kwargs):
+            self, paging_get_multiple_pages_with_offset_options, client_request_id=None, *, cls=None, **kwargs):
         """A paging operation that includes a nextLink that has 10 pages.
 
         :param paging_get_multiple_pages_with_offset_options: Additional
@@ -329,9 +320,6 @@ class PagingOperations:
             header_parameters['Accept'] = 'application/json'
             if self._config.generate_client_request_id:
                 header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-            headers = kwargs.get('headers')
-            if headers:
-                header_parameters.update(headers)
             if client_request_id is not None:
                 header_parameters['client-request-id'] = self._serialize.header("client_request_id", client_request_id, 'str')
             if self._config.accept_language is not None:
@@ -380,7 +368,7 @@ class PagingOperations:
     get_multiple_pages_with_offset.metadata = {'url': '/paging/multiple/withpath/{offset}'}
 
     def get_multiple_pages_retry_first(
-            self, **kwargs):
+            self, *, cls=None, **kwargs):
         """A paging operation that fails on the first call with 500 and then
         retries and then get a response including a nextLink that has 10 pages.
 
@@ -405,9 +393,6 @@ class PagingOperations:
             header_parameters['Accept'] = 'application/json'
             if self._config.generate_client_request_id:
                 header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-            headers = kwargs.get('headers')
-            if headers:
-                header_parameters.update(headers)
             if self._config.accept_language is not None:
                 header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
@@ -450,7 +435,7 @@ class PagingOperations:
     get_multiple_pages_retry_first.metadata = {'url': '/paging/multiple/retryfirst'}
 
     def get_multiple_pages_retry_second(
-            self, **kwargs):
+            self, *, cls=None, **kwargs):
         """A paging operation that includes a nextLink that has 10 pages, of which
         the 2nd call fails first with 500. The client should retry and finish
         all 10 pages eventually.
@@ -476,9 +461,6 @@ class PagingOperations:
             header_parameters['Accept'] = 'application/json'
             if self._config.generate_client_request_id:
                 header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-            headers = kwargs.get('headers')
-            if headers:
-                header_parameters.update(headers)
             if self._config.accept_language is not None:
                 header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
@@ -521,7 +503,7 @@ class PagingOperations:
     get_multiple_pages_retry_second.metadata = {'url': '/paging/multiple/retrysecond'}
 
     def get_single_pages_failure(
-            self, **kwargs):
+            self, *, cls=None, **kwargs):
         """A paging operation that receives a 400 on the first call.
 
         :return: An iterator like instance of Product
@@ -545,9 +527,6 @@ class PagingOperations:
             header_parameters['Accept'] = 'application/json'
             if self._config.generate_client_request_id:
                 header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-            headers = kwargs.get('headers')
-            if headers:
-                header_parameters.update(headers)
             if self._config.accept_language is not None:
                 header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
@@ -590,7 +569,7 @@ class PagingOperations:
     get_single_pages_failure.metadata = {'url': '/paging/single/failure'}
 
     def get_multiple_pages_failure(
-            self, **kwargs):
+            self, *, cls=None, **kwargs):
         """A paging operation that receives a 400 on the second call.
 
         :return: An iterator like instance of Product
@@ -614,9 +593,6 @@ class PagingOperations:
             header_parameters['Accept'] = 'application/json'
             if self._config.generate_client_request_id:
                 header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-            headers = kwargs.get('headers')
-            if headers:
-                header_parameters.update(headers)
             if self._config.accept_language is not None:
                 header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
@@ -659,7 +635,7 @@ class PagingOperations:
     get_multiple_pages_failure.metadata = {'url': '/paging/multiple/failure'}
 
     def get_multiple_pages_failure_uri(
-            self, **kwargs):
+            self, *, cls=None, **kwargs):
         """A paging operation that receives an invalid nextLink.
 
         :return: An iterator like instance of Product
@@ -683,9 +659,6 @@ class PagingOperations:
             header_parameters['Accept'] = 'application/json'
             if self._config.generate_client_request_id:
                 header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-            headers = kwargs.get('headers')
-            if headers:
-                header_parameters.update(headers)
             if self._config.accept_language is not None:
                 header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
@@ -728,7 +701,7 @@ class PagingOperations:
     get_multiple_pages_failure_uri.metadata = {'url': '/paging/multiple/failureuri'}
 
     def get_multiple_pages_fragment_next_link(
-            self, api_version, tenant, **kwargs):
+            self, api_version, tenant, *, cls=None, **kwargs):
         """A paging operation that doesn't return a full URL, just a fragment.
 
         :param api_version: Sets the api version to use.
@@ -767,9 +740,6 @@ class PagingOperations:
             header_parameters['Accept'] = 'application/json'
             if self._config.generate_client_request_id:
                 header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-            headers = kwargs.get('headers')
-            if headers:
-                header_parameters.update(headers)
             if self._config.accept_language is not None:
                 header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
@@ -812,7 +782,7 @@ class PagingOperations:
     get_multiple_pages_fragment_next_link.metadata = {'url': '/paging/multiple/fragment/{tenant}'}
 
     def get_multiple_pages_fragment_with_grouping_next_link(
-            self, custom_parameter_group, **kwargs):
+            self, custom_parameter_group, *, cls=None, **kwargs):
         """A paging operation that doesn't return a full URL, just a fragment with
         parameters grouped.
 
@@ -857,9 +827,6 @@ class PagingOperations:
             header_parameters['Accept'] = 'application/json'
             if self._config.generate_client_request_id:
                 header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-            headers = kwargs.get('headers')
-            if headers:
-                header_parameters.update(headers)
             if self._config.accept_language is not None:
                 header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
@@ -903,7 +870,7 @@ class PagingOperations:
 
 
     async def _get_multiple_pages_lro_initial(
-            self, client_request_id=None, paging_get_multiple_pages_lro_options=None, **kwargs):
+            self, client_request_id=None, paging_get_multiple_pages_lro_options=None, *, cls=None, **kwargs):
         maxresults = None
         if paging_get_multiple_pages_lro_options is not None:
             maxresults = paging_get_multiple_pages_lro_options.maxresults
@@ -922,9 +889,6 @@ class PagingOperations:
         header_parameters['Accept'] = 'application/json'
         if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
         if client_request_id is not None:
             header_parameters['client-request-id'] = self._serialize.header("client_request_id", client_request_id, 'str')
         if self._config.accept_language is not None:
@@ -952,7 +916,7 @@ class PagingOperations:
         return deserialized
 
     async def get_multiple_pages_lro(
-            self, client_request_id=None, paging_get_multiple_pages_lro_options=None,  polling=True, **kwargs):
+            self, client_request_id=None, paging_get_multiple_pages_lro_options=None, *, cls=None, polling=True, **kwargs):
         """A long-running paging operation that includes a nextLink that has 10
         pages.
 
@@ -981,7 +945,7 @@ class PagingOperations:
 
         lro_delay = kwargs.get(
             'long_running_operation_timeout',
-            self.config.long_running_operation_timeout)
+            self._config.long_running_operation_timeout)
         if polling is True: polling_method = AsyncARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling

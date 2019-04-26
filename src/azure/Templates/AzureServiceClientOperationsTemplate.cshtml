@@ -19,7 +19,7 @@
 }
 @if(Model.HasAnyHttpRequestErrors)
 {
-@:from azure.core import HttpRequestError
+@:from azure.core.exceptions import HttpRequestError, map_error
 }
 @if (Model.HasAnyLongRunOperation)
 {
@@ -34,16 +34,7 @@ import uuid
 @EmptyLine
 @EmptyLine
 class @(Model.Name)OperationsMixin(object):
-    def _map_error(self, status_code, response, **config):
-        error_map = config.get("error_map")
-        if error_map is None:
-            return
-        error_type = error_map.get(status_code)
-        if error_type is None:
-            return
-        error = error_type(response=response)
-        raise error
-        
+
 @foreach (var method in Model.MethodTemplateModels.Where(each => each.MethodGroup.IsCodeModelMethodGroup))
 {
 @EmptyLine

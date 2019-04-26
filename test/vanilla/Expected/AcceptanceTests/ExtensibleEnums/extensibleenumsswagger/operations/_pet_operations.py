@@ -35,13 +35,14 @@ class PetOperations(object):
 
         self._config = config
 
-    def get_by_pet_id(
-            self, pet_id, **kwargs):
+    def get_by_pet_id(self, pet_id, cls=None, **kwargs):
         """
 
         :param pet_id: Pet id
         :type pet_id: str
-        :return: Pet
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: Pet or the result of cls(response)
         :rtype: ~extensibleenumsswagger.models.Pet
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
@@ -58,13 +59,10 @@ class PetOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -74,16 +72,20 @@ class PetOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('Pet', response)
 
+        if cls:
+            return cls(response, deserialized, None)
+
         return deserialized
     get_by_pet_id.metadata = {'url': '/extensibleenums/pet/{petId}'}
 
-    def add_pet(
-            self, pet_param=None, **kwargs):
+    def add_pet(self, pet_param=None, cls=None, **kwargs):
         """
 
         :param pet_param:
         :type pet_param: ~extensibleenumsswagger.models.Pet
-        :return: Pet
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: Pet or the result of cls(response)
         :rtype: ~extensibleenumsswagger.models.Pet
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
@@ -97,9 +99,6 @@ class PetOperations(object):
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         if pet_param is not None:
@@ -109,7 +108,7 @@ class PetOperations(object):
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -118,6 +117,9 @@ class PetOperations(object):
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('Pet', response)
+
+        if cls:
+            return cls(response, deserialized, None)
 
         return deserialized
     add_pet.metadata = {'url': '/extensibleenums/pet/addPet'}

@@ -41,7 +41,6 @@ tests = realpath(join(cwd, pardir, "Expected", "AcceptanceTests"))
 sys.path.append(join(tests, "BodyInteger"))
 
 from msrest.serialization import Deserializer
-from msrest.exceptions import DeserializationError
 from azure.core.exceptions import DecodeError
 
 from bodyinteger.aio import AutoRestIntegerTestService

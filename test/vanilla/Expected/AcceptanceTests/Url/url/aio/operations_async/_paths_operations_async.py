@@ -40,11 +40,12 @@ class PathsOperations:
         self.date_path = "2012-01-01"
         self.date_time_path = "2012-01-01T01:01:01Z"
 
-    async def get_boolean_true(
-            self, **kwargs):
+    async def get_boolean_true(self, *, cls=None, **kwargs):
         """Get true Boolean value on path.
 
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
@@ -62,25 +63,26 @@ class PathsOperations:
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     get_boolean_true.metadata = {'url': '/paths/bool/true/{boolPath}'}
 
-    async def get_boolean_false(
-            self, **kwargs):
+    async def get_boolean_false(self, *, cls=None, **kwargs):
         """Get false Boolean value on path.
 
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
@@ -98,25 +100,26 @@ class PathsOperations:
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     get_boolean_false.metadata = {'url': '/paths/bool/false/{boolPath}'}
 
-    async def get_int_one_million(
-            self, **kwargs):
+    async def get_int_one_million(self, *, cls=None, **kwargs):
         """Get '1000000' integer value.
 
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
@@ -134,25 +137,26 @@ class PathsOperations:
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     get_int_one_million.metadata = {'url': '/paths/int/1000000/{intPath}'}
 
-    async def get_int_negative_one_million(
-            self, **kwargs):
+    async def get_int_negative_one_million(self, *, cls=None, **kwargs):
         """Get '-1000000' integer value.
 
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
@@ -170,25 +174,26 @@ class PathsOperations:
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     get_int_negative_one_million.metadata = {'url': '/paths/int/-1000000/{intPath}'}
 
-    async def get_ten_billion(
-            self, **kwargs):
+    async def get_ten_billion(self, *, cls=None, **kwargs):
         """Get '10000000000' 64 bit integer value.
 
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
@@ -206,25 +211,26 @@ class PathsOperations:
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     get_ten_billion.metadata = {'url': '/paths/long/10000000000/{longPath}'}
 
-    async def get_negative_ten_billion(
-            self, **kwargs):
+    async def get_negative_ten_billion(self, *, cls=None, **kwargs):
         """Get '-10000000000' 64 bit integer value.
 
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
@@ -242,25 +248,26 @@ class PathsOperations:
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     get_negative_ten_billion.metadata = {'url': '/paths/long/-10000000000/{longPath}'}
 
-    async def float_scientific_positive(
-            self, **kwargs):
+    async def float_scientific_positive(self, *, cls=None, **kwargs):
         """Get '1.034E+20' numeric value.
 
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
@@ -278,25 +285,26 @@ class PathsOperations:
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     float_scientific_positive.metadata = {'url': '/paths/float/1.034E+20/{floatPath}'}
 
-    async def float_scientific_negative(
-            self, **kwargs):
+    async def float_scientific_negative(self, *, cls=None, **kwargs):
         """Get '-1.034E-20' numeric value.
 
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
@@ -314,25 +322,26 @@ class PathsOperations:
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     float_scientific_negative.metadata = {'url': '/paths/float/-1.034E-20/{floatPath}'}
 
-    async def double_decimal_positive(
-            self, **kwargs):
+    async def double_decimal_positive(self, *, cls=None, **kwargs):
         """Get '9999999.999' numeric value.
 
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
@@ -350,25 +359,26 @@ class PathsOperations:
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     double_decimal_positive.metadata = {'url': '/paths/double/9999999.999/{doublePath}'}
 
-    async def double_decimal_negative(
-            self, **kwargs):
+    async def double_decimal_negative(self, *, cls=None, **kwargs):
         """Get '-9999999.999' numeric value.
 
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
@@ -386,25 +396,26 @@ class PathsOperations:
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     double_decimal_negative.metadata = {'url': '/paths/double/-9999999.999/{doublePath}'}
 
-    async def string_unicode(
-            self, **kwargs):
+    async def string_unicode(self, *, cls=None, **kwargs):
         """Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value.
 
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
@@ -422,25 +433,26 @@ class PathsOperations:
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     string_unicode.metadata = {'url': '/paths/string/unicode/{stringPath}'}
 
-    async def string_url_encoded(
-            self, **kwargs):
+    async def string_url_encoded(self, *, cls=None, **kwargs):
         """Get 'begin!*'();:@ &=+$,/?#[]end.
 
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
@@ -458,25 +470,26 @@ class PathsOperations:
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     string_url_encoded.metadata = {'url': '/paths/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend/{stringPath}'}
 
-    async def string_empty(
-            self, **kwargs):
+    async def string_empty(self, *, cls=None, **kwargs):
         """Get ''.
 
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
@@ -494,27 +507,28 @@ class PathsOperations:
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     string_empty.metadata = {'url': '/paths/string/empty/{stringPath}'}
 
-    async def string_null(
-            self, string_path, **kwargs):
+    async def string_null(self, string_path, *, cls=None, **kwargs):
         """Get null (should throw).
 
         :param string_path: null string value
         :type string_path: str
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
@@ -530,28 +544,29 @@ class PathsOperations:
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [400]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     string_null.metadata = {'url': '/paths/string/null/{stringPath}'}
 
-    async def enum_valid(
-            self, enum_path, **kwargs):
+    async def enum_valid(self, enum_path, *, cls=None, **kwargs):
         """Get using uri with 'green color' in path parameter.
 
         :param enum_path: send the value green. Possible values include: 'red
          color', 'green color', 'blue color'
         :type enum_path: str or ~url.models.UriColor
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
@@ -567,29 +582,30 @@ class PathsOperations:
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     enum_valid.metadata = {'url': '/paths/enum/green%20color/{enumPath}'}
 
-    async def enum_null(
-            self, enum_path, **kwargs):
+    async def enum_null(self, enum_path, *, cls=None, **kwargs):
         """Get null (should throw on the client before the request is sent on
         wire).
 
         :param enum_path: send null should throw. Possible values include:
          'red color', 'green color', 'blue color'
         :type enum_path: str or ~url.models.UriColor
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
@@ -605,28 +621,29 @@ class PathsOperations:
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [400]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     enum_null.metadata = {'url': '/paths/string/null/{enumPath}'}
 
-    async def byte_multi_byte(
-            self, byte_path, **kwargs):
+    async def byte_multi_byte(self, byte_path, *, cls=None, **kwargs):
         """Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
 
         :param byte_path: '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte
          array
         :type byte_path: bytearray
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
@@ -642,25 +659,26 @@ class PathsOperations:
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     byte_multi_byte.metadata = {'url': '/paths/byte/multibyte/{bytePath}'}
 
-    async def byte_empty(
-            self, **kwargs):
+    async def byte_empty(self, *, cls=None, **kwargs):
         """Get '' as byte array.
 
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
@@ -676,27 +694,28 @@ class PathsOperations:
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     byte_empty.metadata = {'url': '/paths/byte/empty/{bytePath}'}
 
-    async def byte_null(
-            self, byte_path, **kwargs):
+    async def byte_null(self, byte_path, *, cls=None, **kwargs):
         """Get null as byte array (should throw).
 
         :param byte_path: null as byte array (should throw)
         :type byte_path: bytearray
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
@@ -712,25 +731,26 @@ class PathsOperations:
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [400]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     byte_null.metadata = {'url': '/paths/byte/null/{bytePath}'}
 
-    async def date_valid(
-            self, **kwargs):
+    async def date_valid(self, *, cls=None, **kwargs):
         """Get '2012-01-01' as date.
 
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
@@ -746,28 +766,29 @@ class PathsOperations:
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     date_valid.metadata = {'url': '/paths/date/2012-01-01/{datePath}'}
 
-    async def date_null(
-            self, date_path, **kwargs):
+    async def date_null(self, date_path, *, cls=None, **kwargs):
         """Get null as date - this should throw or be unusable on the client side,
         depending on date representation.
 
         :param date_path: null as date (should throw)
         :type date_path: date
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
@@ -783,25 +804,26 @@ class PathsOperations:
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [400]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     date_null.metadata = {'url': '/paths/date/null/{datePath}'}
 
-    async def date_time_valid(
-            self, **kwargs):
+    async def date_time_valid(self, *, cls=None, **kwargs):
         """Get '2012-01-01T01:01:01Z' as date-time.
 
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
@@ -817,28 +839,29 @@ class PathsOperations:
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     date_time_valid.metadata = {'url': '/paths/datetime/2012-01-01T01%3A01%3A01Z/{dateTimePath}'}
 
-    async def date_time_null(
-            self, date_time_path, **kwargs):
+    async def date_time_null(self, date_time_path, *, cls=None, **kwargs):
         """Get null as date-time, should be disallowed or throw depending on
         representation of date-time.
 
         :param date_time_path: null as date-time
         :type date_time_path: datetime
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
@@ -854,27 +877,28 @@ class PathsOperations:
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [400]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     date_time_null.metadata = {'url': '/paths/datetime/null/{dateTimePath}'}
 
-    async def base64_url(
-            self, base64_url_path, **kwargs):
+    async def base64_url(self, base64_url_path, *, cls=None, **kwargs):
         """Get 'lorem' encoded value as 'bG9yZW0' (base64url).
 
         :param base64_url_path: base64url encoded value
         :type base64_url_path: bytes
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
@@ -890,29 +914,30 @@ class PathsOperations:
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     base64_url.metadata = {'url': '/paths/string/bG9yZW0/{base64UrlPath}'}
 
-    async def array_csv_in_path(
-            self, array_path, **kwargs):
+    async def array_csv_in_path(self, array_path, *, cls=None, **kwargs):
         """Get an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' ,
         null, ''] using the csv-array format.
 
         :param array_path: an array of string ['ArrayPath1', 'begin!*'();:@
          &=+$,/?#[]end' , null, ''] using the csv-array format
         :type array_path: list[str]
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
@@ -928,27 +953,28 @@ class PathsOperations:
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     array_csv_in_path.metadata = {'url': '/paths/array/ArrayPath1%2cbegin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend%2c%2c/{arrayPath}'}
 
-    async def unix_time_url(
-            self, unix_time_url_path, **kwargs):
+    async def unix_time_url(self, unix_time_url_path, *, cls=None, **kwargs):
         """Get the date 2016-04-13 encoded value as '1460505600' (Unix time).
 
         :param unix_time_url_path: Unix time encoded value
         :type unix_time_url_path: datetime
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
@@ -964,16 +990,16 @@ class PathsOperations:
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     unix_time_url.metadata = {'url': '/paths/int/1460505600/{unixTimeUrlPath}'}

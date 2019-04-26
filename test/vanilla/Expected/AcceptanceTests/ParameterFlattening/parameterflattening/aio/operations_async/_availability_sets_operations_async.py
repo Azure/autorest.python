@@ -35,8 +35,7 @@ class AvailabilitySetsOperations:
 
         self._config = config
 
-    async def update(
-            self, resource_group_name, avset, tags, **kwargs):
+    async def update(self, resource_group_name, avset, tags, *, cls=None, **kwargs):
         """Updates the tags for an availability set.
 
         :param resource_group_name: The name of the resource group.
@@ -45,7 +44,9 @@ class AvailabilitySetsOperations:
         :type avset: str
         :param tags: A set of tags. A description about the set of tags.
         :type tags: dict[str, str]
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
@@ -65,19 +66,19 @@ class AvailabilitySetsOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(tags1, 'AvailabilitySetUpdateParameters')
 
         # Construct and send request
         request = self._client.patch(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
             raise HttpRequestError(response=response)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     update.metadata = {'url': '/parameterFlattening/{resourceGroupName}/{availabilitySetName}'}

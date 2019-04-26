@@ -34,8 +34,7 @@ class PathItemsOperations:
 
         self._config = config
 
-    async def get_all_with_values(
-            self, local_string_path, path_item_string_path, local_string_query=None, path_item_string_query=None, **kwargs):
+    async def get_all_with_values(self, local_string_path, path_item_string_path, local_string_query=None, path_item_string_query=None, *, cls=None, **kwargs):
         """send globalStringPath='globalStringPath',
         pathItemStringPath='pathItemStringPath',
         localStringPath='localStringPath',
@@ -53,7 +52,9 @@ class PathItemsOperations:
         :param path_item_string_query: A string value 'pathItemStringQuery'
          that appears as a query parameter
         :type path_item_string_query: str
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
@@ -77,22 +78,21 @@ class PathItemsOperations:
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     get_all_with_values.metadata = {'url': '/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/pathItemStringQuery/localStringQuery'}
 
-    async def get_global_query_null(
-            self, local_string_path, path_item_string_path, local_string_query=None, path_item_string_query=None, **kwargs):
+    async def get_global_query_null(self, local_string_path, path_item_string_path, local_string_query=None, path_item_string_query=None, *, cls=None, **kwargs):
         """send globalStringPath='globalStringPath',
         pathItemStringPath='pathItemStringPath',
         localStringPath='localStringPath', globalStringQuery=null,
@@ -109,7 +109,9 @@ class PathItemsOperations:
         :param path_item_string_query: A string value 'pathItemStringQuery'
          that appears as a query parameter
         :type path_item_string_query: str
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
@@ -133,22 +135,21 @@ class PathItemsOperations:
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     get_global_query_null.metadata = {'url': '/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/localStringQuery'}
 
-    async def get_global_and_local_query_null(
-            self, local_string_path, path_item_string_path, local_string_query=None, path_item_string_query=None, **kwargs):
+    async def get_global_and_local_query_null(self, local_string_path, path_item_string_path, local_string_query=None, path_item_string_query=None, *, cls=None, **kwargs):
         """send globalStringPath=globalStringPath,
         pathItemStringPath='pathItemStringPath',
         localStringPath='localStringPath', globalStringQuery=null,
@@ -164,7 +165,9 @@ class PathItemsOperations:
         :param path_item_string_query: A string value 'pathItemStringQuery'
          that appears as a query parameter
         :type path_item_string_query: str
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
@@ -188,22 +191,21 @@ class PathItemsOperations:
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     get_global_and_local_query_null.metadata = {'url': '/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/null'}
 
-    async def get_local_path_item_query_null(
-            self, local_string_path, path_item_string_path, local_string_query=None, path_item_string_query=None, **kwargs):
+    async def get_local_path_item_query_null(self, local_string_path, path_item_string_path, local_string_query=None, path_item_string_query=None, *, cls=None, **kwargs):
         """send globalStringPath='globalStringPath',
         pathItemStringPath='pathItemStringPath',
         localStringPath='localStringPath',
@@ -219,7 +221,9 @@ class PathItemsOperations:
         :type local_string_query: str
         :param path_item_string_query: should contain value null
         :type path_item_string_query: str
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<url.models.ErrorException>`
         """
@@ -243,16 +247,16 @@ class PathItemsOperations:
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     get_local_path_item_query_null.metadata = {'url': '/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/null/null'}

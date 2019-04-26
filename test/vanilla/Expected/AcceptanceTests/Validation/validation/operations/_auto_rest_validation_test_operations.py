@@ -15,8 +15,7 @@ from .. import models
 
 class AutoRestValidationTestOperationsMixin(object):
 
-    def validation_of_method_parameters(
-            self, resource_group_name, id, **kwargs):
+    def validation_of_method_parameters(self, resource_group_name, id, cls=None, **kwargs):
         """Validates input parameters on the method. See swagger for details.
 
         :param resource_group_name: Required string between 3 and 10 chars
@@ -24,7 +23,9 @@ class AutoRestValidationTestOperationsMixin(object):
         :type resource_group_name: str
         :param id: Required int multiple of 10 from 100 to 1000.
         :type id: int
-        :return: Product
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: Product or the result of cls(response)
         :rtype: ~validation.models.Product
         :raises: :class:`ErrorException<validation.models.ErrorException>`
         """
@@ -44,27 +45,26 @@ class AutoRestValidationTestOperationsMixin(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('Product', response)
 
+        if cls:
+            return cls(response, deserialized, None)
+
         return deserialized
     validation_of_method_parameters.metadata = {'url': '/fakepath/{subscriptionId}/{resourceGroupName}/{id}'}
 
-    def validation_of_body(
-            self, resource_group_name, id, body=None, **kwargs):
+    def validation_of_body(self, resource_group_name, id, body=None, cls=None, **kwargs):
         """Validates body parameters on the method. See swagger for details.
 
         :param resource_group_name: Required string between 3 and 10 chars
@@ -74,7 +74,9 @@ class AutoRestValidationTestOperationsMixin(object):
         :type id: int
         :param body:
         :type body: ~validation.models.Product
-        :return: Product
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: Product or the result of cls(response)
         :rtype: ~validation.models.Product
         :raises: :class:`ErrorException<validation.models.ErrorException>`
         """
@@ -95,9 +97,6 @@ class AutoRestValidationTestOperationsMixin(object):
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         if body is not None:
@@ -107,24 +106,28 @@ class AutoRestValidationTestOperationsMixin(object):
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('Product', response)
 
+        if cls:
+            return cls(response, deserialized, None)
+
         return deserialized
     validation_of_body.metadata = {'url': '/fakepath/{subscriptionId}/{resourceGroupName}/{id}'}
 
-    def get_with_constant_in_path(
-            self, **kwargs):
+    def get_with_constant_in_path(self, cls=None, **kwargs):
         """
 
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
@@ -142,27 +145,28 @@ class AutoRestValidationTestOperationsMixin(object):
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
             raise HttpRequestError(response=response)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     get_with_constant_in_path.metadata = {'url': '/validation/constantsInPath/{constantParam}/value'}
 
-    def post_with_constant_in_body(
-            self, body=None, **kwargs):
+    def post_with_constant_in_body(self, body=None, cls=None, **kwargs):
         """
 
         :param body:
         :type body: ~validation.models.Product
-        :return: Product
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: Product or the result of cls(response)
         :rtype: ~validation.models.Product
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
@@ -182,9 +186,6 @@ class AutoRestValidationTestOperationsMixin(object):
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         if body is not None:
@@ -194,7 +195,7 @@ class AutoRestValidationTestOperationsMixin(object):
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -203,6 +204,9 @@ class AutoRestValidationTestOperationsMixin(object):
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('Product', response)
+
+        if cls:
+            return cls(response, deserialized, None)
 
         return deserialized
     post_with_constant_in_body.metadata = {'url': '/validation/constantsInPath/{constantParam}/value'}

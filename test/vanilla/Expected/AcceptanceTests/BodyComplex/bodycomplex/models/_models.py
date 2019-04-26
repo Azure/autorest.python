@@ -430,7 +430,7 @@ class ErrorException(HttpRequestError):
     :param response: Server response to be deserialized.
     """
 
-    def __init__(self, deserialize, response, *args):
+    def __init__(self, response, deserialize, *args):
 
       model_name = 'Error'
       self.error = deserialize(model_name, response)

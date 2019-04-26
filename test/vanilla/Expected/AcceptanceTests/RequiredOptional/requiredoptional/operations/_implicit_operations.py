@@ -34,13 +34,14 @@ class ImplicitOperations(object):
 
         self._config = config
 
-    def get_required_path(
-            self, path_parameter, **kwargs):
+    def get_required_path(self, path_parameter, cls=None, **kwargs):
         """Test implicitly required path parameter.
 
         :param path_parameter:
         :type path_parameter: str
-        :return: Error
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: Error or the result of cls(response)
         :rtype: ~requiredoptional.models.Error
         :raises:
          :class:`ErrorException<requiredoptional.models.ErrorException>`
@@ -57,27 +58,28 @@ class ImplicitOperations(object):
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     get_required_path.metadata = {'url': '/reqopt/implicit/required/path/{pathParameter}'}
 
-    def put_optional_query(
-            self, query_parameter=None, **kwargs):
+    def put_optional_query(self, query_parameter=None, cls=None, **kwargs):
         """Test implicitly optional query parameter.
 
         :param query_parameter:
         :type query_parameter: str
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises:
          :class:`ErrorException<requiredoptional.models.ErrorException>`
@@ -92,27 +94,28 @@ class ImplicitOperations(object):
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     put_optional_query.metadata = {'url': '/reqopt/implicit/optional/query'}
 
-    def put_optional_header(
-            self, query_parameter=None, **kwargs):
+    def put_optional_header(self, query_parameter=None, cls=None, **kwargs):
         """Test implicitly optional header parameter.
 
         :param query_parameter:
         :type query_parameter: str
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises:
          :class:`ErrorException<requiredoptional.models.ErrorException>`
@@ -125,29 +128,30 @@ class ImplicitOperations(object):
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
         if query_parameter is not None:
             header_parameters['queryParameter'] = self._serialize.header("query_parameter", query_parameter, 'str')
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     put_optional_header.metadata = {'url': '/reqopt/implicit/optional/header'}
 
-    def put_optional_body(
-            self, body_parameter=None, **kwargs):
+    def put_optional_body(self, body_parameter=None, cls=None, **kwargs):
         """Test implicitly optional body parameter.
 
         :param body_parameter:
         :type body_parameter: str
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises:
          :class:`ErrorException<requiredoptional.models.ErrorException>`
@@ -161,9 +165,6 @@ class ImplicitOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         if body_parameter is not None:
@@ -173,19 +174,23 @@ class ImplicitOperations(object):
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     put_optional_body.metadata = {'url': '/reqopt/implicit/optional/body'}
 
-    def get_required_global_path(
-            self, **kwargs):
+    def get_required_global_path(self, cls=None, **kwargs):
         """Test implicitly required path parameter.
 
-        :return: Error
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: Error or the result of cls(response)
         :rtype: ~requiredoptional.models.Error
         :raises:
          :class:`ErrorException<requiredoptional.models.ErrorException>`
@@ -202,25 +207,26 @@ class ImplicitOperations(object):
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     get_required_global_path.metadata = {'url': '/reqopt/global/required/path/{required-global-path}'}
 
-    def get_required_global_query(
-            self, **kwargs):
+    def get_required_global_query(self, cls=None, **kwargs):
         """Test implicitly required query parameter.
 
-        :return: Error
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: Error or the result of cls(response)
         :rtype: ~requiredoptional.models.Error
         :raises:
          :class:`ErrorException<requiredoptional.models.ErrorException>`
@@ -234,25 +240,26 @@ class ImplicitOperations(object):
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     get_required_global_query.metadata = {'url': '/reqopt/global/required/query'}
 
-    def get_optional_global_query(
-            self, **kwargs):
+    def get_optional_global_query(self, cls=None, **kwargs):
         """Test implicitly optional query parameter.
 
-        :return: Error
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: Error or the result of cls(response)
         :rtype: ~requiredoptional.models.Error
         :raises:
          :class:`ErrorException<requiredoptional.models.ErrorException>`
@@ -267,16 +274,16 @@ class ImplicitOperations(object):
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     get_optional_global_query.metadata = {'url': '/reqopt/global/optional/query'}

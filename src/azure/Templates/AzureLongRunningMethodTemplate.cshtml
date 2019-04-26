@@ -13,7 +13,7 @@ string methodName = Model.Name.ToPythonCase();
 string initialMethodName = "_" + methodName + "_initial";
 }
     @(defKeyword) @(initialMethodName)(
-            self, @(Model.MethodParameterDeclaration(Python3Mode))**kwargs):
+            self, @(Model.MethodParameterDeclaration(Python3Mode)), **kwargs):
         @Model.BuildInputMappings()
 @if (Model.InputParameterTransformation.Any())
 {
@@ -114,7 +114,7 @@ else
 }
 @EmptyLine
     @(defKeyword) @(methodName)(
-            self, @(Model.MethodParameterDeclaration(Python3Mode)) polling=True, **kwargs):
+            self, @(Model.MethodParameterDeclaration(Python3Mode)), polling=True, **kwargs):
         """@(WrapComment(string.Empty, Model.BuildSummaryAndDescriptionString()))
 @*need to fix comment here for long running function*@
 @EmptyLine

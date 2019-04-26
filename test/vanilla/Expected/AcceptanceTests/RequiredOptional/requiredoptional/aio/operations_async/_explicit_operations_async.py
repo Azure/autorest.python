@@ -34,14 +34,15 @@ class ExplicitOperations:
 
         self._config = config
 
-    async def post_required_integer_parameter(
-            self, body_parameter, **kwargs):
+    async def post_required_integer_parameter(self, body_parameter, *, cls=None, **kwargs):
         """Test explicitly required integer. Please put null and the client
         library should throw before the request is sent.
 
         :param body_parameter:
         :type body_parameter: int
-        :return: Error
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: Error or the result of cls(response)
         :rtype: ~requiredoptional.models.Error
         :raises:
          :class:`ErrorException<requiredoptional.models.ErrorException>`
@@ -55,30 +56,31 @@ class ExplicitOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(body_parameter, 'int')
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     post_required_integer_parameter.metadata = {'url': '/reqopt/requied/integer/parameter'}
 
-    async def post_optional_integer_parameter(
-            self, body_parameter=None, **kwargs):
+    async def post_optional_integer_parameter(self, body_parameter=None, *, cls=None, **kwargs):
         """Test explicitly optional integer. Please put null.
 
         :param body_parameter:
         :type body_parameter: int
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises:
          :class:`ErrorException<requiredoptional.models.ErrorException>`
@@ -92,9 +94,6 @@ class ExplicitOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         if body_parameter is not None:
@@ -104,23 +103,27 @@ class ExplicitOperations:
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     post_optional_integer_parameter.metadata = {'url': '/reqopt/optional/integer/parameter'}
 
-    async def post_required_integer_property(
-            self, value, **kwargs):
+    async def post_required_integer_property(self, value, *, cls=None, **kwargs):
         """Test explicitly required integer. Please put a valid int-wrapper with
         'value' = null and the client library should throw before the request
         is sent.
 
         :param value:
         :type value: int
-        :return: Error
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: Error or the result of cls(response)
         :rtype: ~requiredoptional.models.Error
         :raises:
          :class:`ErrorException<requiredoptional.models.ErrorException>`
@@ -136,31 +139,32 @@ class ExplicitOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(body_parameter, 'IntWrapper')
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     post_required_integer_property.metadata = {'url': '/reqopt/requied/integer/property'}
 
-    async def post_optional_integer_property(
-            self, value=None, **kwargs):
+    async def post_optional_integer_property(self, value=None, *, cls=None, **kwargs):
         """Test explicitly optional integer. Please put a valid int-wrapper with
         'value' = null.
 
         :param value:
         :type value: int
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises:
          :class:`ErrorException<requiredoptional.models.ErrorException>`
@@ -178,9 +182,6 @@ class ExplicitOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         if body_parameter is not None:
@@ -190,22 +191,26 @@ class ExplicitOperations:
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     post_optional_integer_property.metadata = {'url': '/reqopt/optional/integer/property'}
 
-    async def post_required_integer_header(
-            self, header_parameter, **kwargs):
+    async def post_required_integer_header(self, header_parameter, *, cls=None, **kwargs):
         """Test explicitly required integer. Please put a header 'headerParameter'
         => null and the client library should throw before the request is sent.
 
         :param header_parameter:
         :type header_parameter: int
-        :return: Error
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: Error or the result of cls(response)
         :rtype: ~requiredoptional.models.Error
         :raises:
          :class:`ErrorException<requiredoptional.models.ErrorException>`
@@ -218,29 +223,30 @@ class ExplicitOperations:
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
         header_parameters['headerParameter'] = self._serialize.header("header_parameter", header_parameter, 'int')
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     post_required_integer_header.metadata = {'url': '/reqopt/requied/integer/header'}
 
-    async def post_optional_integer_header(
-            self, header_parameter=None, **kwargs):
+    async def post_optional_integer_header(self, header_parameter=None, *, cls=None, **kwargs):
         """Test explicitly optional integer. Please put a header 'headerParameter'
         => null.
 
         :param header_parameter:
         :type header_parameter: int
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises:
          :class:`ErrorException<requiredoptional.models.ErrorException>`
@@ -253,30 +259,31 @@ class ExplicitOperations:
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
         if header_parameter is not None:
             header_parameters['headerParameter'] = self._serialize.header("header_parameter", header_parameter, 'int')
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     post_optional_integer_header.metadata = {'url': '/reqopt/optional/integer/header'}
 
-    async def post_required_string_parameter(
-            self, body_parameter, **kwargs):
+    async def post_required_string_parameter(self, body_parameter, *, cls=None, **kwargs):
         """Test explicitly required string. Please put null and the client library
         should throw before the request is sent.
 
         :param body_parameter:
         :type body_parameter: str
-        :return: Error
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: Error or the result of cls(response)
         :rtype: ~requiredoptional.models.Error
         :raises:
          :class:`ErrorException<requiredoptional.models.ErrorException>`
@@ -290,30 +297,31 @@ class ExplicitOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(body_parameter, 'str')
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     post_required_string_parameter.metadata = {'url': '/reqopt/requied/string/parameter'}
 
-    async def post_optional_string_parameter(
-            self, body_parameter=None, **kwargs):
+    async def post_optional_string_parameter(self, body_parameter=None, *, cls=None, **kwargs):
         """Test explicitly optional string. Please put null.
 
         :param body_parameter:
         :type body_parameter: str
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises:
          :class:`ErrorException<requiredoptional.models.ErrorException>`
@@ -327,9 +335,6 @@ class ExplicitOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         if body_parameter is not None:
@@ -339,23 +344,27 @@ class ExplicitOperations:
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     post_optional_string_parameter.metadata = {'url': '/reqopt/optional/string/parameter'}
 
-    async def post_required_string_property(
-            self, value, **kwargs):
+    async def post_required_string_property(self, value, *, cls=None, **kwargs):
         """Test explicitly required string. Please put a valid string-wrapper with
         'value' = null and the client library should throw before the request
         is sent.
 
         :param value:
         :type value: str
-        :return: Error
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: Error or the result of cls(response)
         :rtype: ~requiredoptional.models.Error
         :raises:
          :class:`ErrorException<requiredoptional.models.ErrorException>`
@@ -371,31 +380,32 @@ class ExplicitOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(body_parameter, 'StringWrapper')
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     post_required_string_property.metadata = {'url': '/reqopt/requied/string/property'}
 
-    async def post_optional_string_property(
-            self, value=None, **kwargs):
+    async def post_optional_string_property(self, value=None, *, cls=None, **kwargs):
         """Test explicitly optional integer. Please put a valid string-wrapper
         with 'value' = null.
 
         :param value:
         :type value: str
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises:
          :class:`ErrorException<requiredoptional.models.ErrorException>`
@@ -413,9 +423,6 @@ class ExplicitOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         if body_parameter is not None:
@@ -425,22 +432,26 @@ class ExplicitOperations:
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     post_optional_string_property.metadata = {'url': '/reqopt/optional/string/property'}
 
-    async def post_required_string_header(
-            self, header_parameter, **kwargs):
+    async def post_required_string_header(self, header_parameter, *, cls=None, **kwargs):
         """Test explicitly required string. Please put a header 'headerParameter'
         => null and the client library should throw before the request is sent.
 
         :param header_parameter:
         :type header_parameter: str
-        :return: Error
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: Error or the result of cls(response)
         :rtype: ~requiredoptional.models.Error
         :raises:
          :class:`ErrorException<requiredoptional.models.ErrorException>`
@@ -453,29 +464,30 @@ class ExplicitOperations:
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
         header_parameters['headerParameter'] = self._serialize.header("header_parameter", header_parameter, 'str')
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     post_required_string_header.metadata = {'url': '/reqopt/requied/string/header'}
 
-    async def post_optional_string_header(
-            self, body_parameter=None, **kwargs):
+    async def post_optional_string_header(self, body_parameter=None, *, cls=None, **kwargs):
         """Test explicitly optional string. Please put a header 'headerParameter'
         => null.
 
         :param body_parameter:
         :type body_parameter: str
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises:
          :class:`ErrorException<requiredoptional.models.ErrorException>`
@@ -488,30 +500,31 @@ class ExplicitOperations:
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
         if body_parameter is not None:
             header_parameters['bodyParameter'] = self._serialize.header("body_parameter", body_parameter, 'str')
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     post_optional_string_header.metadata = {'url': '/reqopt/optional/string/header'}
 
-    async def post_required_class_parameter(
-            self, body_parameter, **kwargs):
+    async def post_required_class_parameter(self, body_parameter, *, cls=None, **kwargs):
         """Test explicitly required complex object. Please put null and the client
         library should throw before the request is sent.
 
         :param body_parameter:
         :type body_parameter: ~requiredoptional.models.Product
-        :return: Error
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: Error or the result of cls(response)
         :rtype: ~requiredoptional.models.Error
         :raises:
          :class:`ErrorException<requiredoptional.models.ErrorException>`
@@ -525,30 +538,31 @@ class ExplicitOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(body_parameter, 'Product')
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     post_required_class_parameter.metadata = {'url': '/reqopt/requied/class/parameter'}
 
-    async def post_optional_class_parameter(
-            self, body_parameter=None, **kwargs):
+    async def post_optional_class_parameter(self, body_parameter=None, *, cls=None, **kwargs):
         """Test explicitly optional complex object. Please put null.
 
         :param body_parameter:
         :type body_parameter: ~requiredoptional.models.Product
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises:
          :class:`ErrorException<requiredoptional.models.ErrorException>`
@@ -562,9 +576,6 @@ class ExplicitOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         if body_parameter is not None:
@@ -574,23 +585,27 @@ class ExplicitOperations:
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     post_optional_class_parameter.metadata = {'url': '/reqopt/optional/class/parameter'}
 
-    async def post_required_class_property(
-            self, value, **kwargs):
+    async def post_required_class_property(self, value, *, cls=None, **kwargs):
         """Test explicitly required complex object. Please put a valid
         class-wrapper with 'value' = null and the client library should throw
         before the request is sent.
 
         :param value:
         :type value: ~requiredoptional.models.Product
-        :return: Error
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: Error or the result of cls(response)
         :rtype: ~requiredoptional.models.Error
         :raises:
          :class:`ErrorException<requiredoptional.models.ErrorException>`
@@ -606,31 +621,32 @@ class ExplicitOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(body_parameter, 'ClassWrapper')
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     post_required_class_property.metadata = {'url': '/reqopt/requied/class/property'}
 
-    async def post_optional_class_property(
-            self, value=None, **kwargs):
+    async def post_optional_class_property(self, value=None, *, cls=None, **kwargs):
         """Test explicitly optional complex object. Please put a valid
         class-wrapper with 'value' = null.
 
         :param value:
         :type value: ~requiredoptional.models.Product
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises:
          :class:`ErrorException<requiredoptional.models.ErrorException>`
@@ -648,9 +664,6 @@ class ExplicitOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         if body_parameter is not None:
@@ -660,22 +673,26 @@ class ExplicitOperations:
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     post_optional_class_property.metadata = {'url': '/reqopt/optional/class/property'}
 
-    async def post_required_array_parameter(
-            self, body_parameter, **kwargs):
+    async def post_required_array_parameter(self, body_parameter, *, cls=None, **kwargs):
         """Test explicitly required array. Please put null and the client library
         should throw before the request is sent.
 
         :param body_parameter:
         :type body_parameter: list[str]
-        :return: Error
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: Error or the result of cls(response)
         :rtype: ~requiredoptional.models.Error
         :raises:
          :class:`ErrorException<requiredoptional.models.ErrorException>`
@@ -689,30 +706,31 @@ class ExplicitOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(body_parameter, '[str]')
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     post_required_array_parameter.metadata = {'url': '/reqopt/requied/array/parameter'}
 
-    async def post_optional_array_parameter(
-            self, body_parameter=None, **kwargs):
+    async def post_optional_array_parameter(self, body_parameter=None, *, cls=None, **kwargs):
         """Test explicitly optional array. Please put null.
 
         :param body_parameter:
         :type body_parameter: list[str]
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises:
          :class:`ErrorException<requiredoptional.models.ErrorException>`
@@ -726,9 +744,6 @@ class ExplicitOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         if body_parameter is not None:
@@ -738,23 +753,27 @@ class ExplicitOperations:
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     post_optional_array_parameter.metadata = {'url': '/reqopt/optional/array/parameter'}
 
-    async def post_required_array_property(
-            self, value, **kwargs):
+    async def post_required_array_property(self, value, *, cls=None, **kwargs):
         """Test explicitly required array. Please put a valid array-wrapper with
         'value' = null and the client library should throw before the request
         is sent.
 
         :param value:
         :type value: list[str]
-        :return: Error
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: Error or the result of cls(response)
         :rtype: ~requiredoptional.models.Error
         :raises:
          :class:`ErrorException<requiredoptional.models.ErrorException>`
@@ -770,31 +789,32 @@ class ExplicitOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(body_parameter, 'ArrayWrapper')
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     post_required_array_property.metadata = {'url': '/reqopt/requied/array/property'}
 
-    async def post_optional_array_property(
-            self, value=None, **kwargs):
+    async def post_optional_array_property(self, value=None, *, cls=None, **kwargs):
         """Test explicitly optional array. Please put a valid array-wrapper with
         'value' = null.
 
         :param value:
         :type value: list[str]
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises:
          :class:`ErrorException<requiredoptional.models.ErrorException>`
@@ -812,9 +832,6 @@ class ExplicitOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         if body_parameter is not None:
@@ -824,22 +841,26 @@ class ExplicitOperations:
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     post_optional_array_property.metadata = {'url': '/reqopt/optional/array/property'}
 
-    async def post_required_array_header(
-            self, header_parameter, **kwargs):
+    async def post_required_array_header(self, header_parameter, *, cls=None, **kwargs):
         """Test explicitly required array. Please put a header 'headerParameter'
         => null and the client library should throw before the request is sent.
 
         :param header_parameter:
         :type header_parameter: list[str]
-        :return: Error
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: Error or the result of cls(response)
         :rtype: ~requiredoptional.models.Error
         :raises:
          :class:`ErrorException<requiredoptional.models.ErrorException>`
@@ -852,29 +873,30 @@ class ExplicitOperations:
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
         header_parameters['headerParameter'] = self._serialize.header("header_parameter", header_parameter, '[str]', div=',')
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     post_required_array_header.metadata = {'url': '/reqopt/requied/array/header'}
 
-    async def post_optional_array_header(
-            self, header_parameter=None, **kwargs):
+    async def post_optional_array_header(self, header_parameter=None, *, cls=None, **kwargs):
         """Test explicitly optional integer. Please put a header 'headerParameter'
         => null.
 
         :param header_parameter:
         :type header_parameter: list[str]
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises:
          :class:`ErrorException<requiredoptional.models.ErrorException>`
@@ -887,18 +909,18 @@ class ExplicitOperations:
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
         if header_parameter is not None:
             header_parameters['headerParameter'] = self._serialize.header("header_parameter", header_parameter, '[str]', div=',')
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     post_optional_array_header.metadata = {'url': '/reqopt/optional/array/header'}

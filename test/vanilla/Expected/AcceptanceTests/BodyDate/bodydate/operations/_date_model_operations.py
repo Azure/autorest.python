@@ -34,11 +34,12 @@ class DateModelOperations(object):
 
         self._config = config
 
-    def get_null(
-            self, **kwargs):
+    def get_null(self, cls=None, **kwargs):
         """Get null date value.
 
-        :return: date
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: date or the result of cls(response)
         :rtype: date
         :raises: :class:`ErrorException<bodydate.models.ErrorException>`
         """
@@ -51,30 +52,31 @@ class DateModelOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('date', response)
 
+        if cls:
+            return cls(response, deserialized, None)
+
         return deserialized
     get_null.metadata = {'url': '/date/null'}
 
-    def get_invalid_date(
-            self, **kwargs):
+    def get_invalid_date(self, cls=None, **kwargs):
         """Get invalid date value.
 
-        :return: date
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: date or the result of cls(response)
         :rtype: date
         :raises: :class:`ErrorException<bodydate.models.ErrorException>`
         """
@@ -87,30 +89,31 @@ class DateModelOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('date', response)
 
+        if cls:
+            return cls(response, deserialized, None)
+
         return deserialized
     get_invalid_date.metadata = {'url': '/date/invaliddate'}
 
-    def get_overflow_date(
-            self, **kwargs):
+    def get_overflow_date(self, cls=None, **kwargs):
         """Get overflow date value.
 
-        :return: date
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: date or the result of cls(response)
         :rtype: date
         :raises: :class:`ErrorException<bodydate.models.ErrorException>`
         """
@@ -123,30 +126,31 @@ class DateModelOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('date', response)
 
+        if cls:
+            return cls(response, deserialized, None)
+
         return deserialized
     get_overflow_date.metadata = {'url': '/date/overflowdate'}
 
-    def get_underflow_date(
-            self, **kwargs):
+    def get_underflow_date(self, cls=None, **kwargs):
         """Get underflow date value.
 
-        :return: date
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: date or the result of cls(response)
         :rtype: date
         :raises: :class:`ErrorException<bodydate.models.ErrorException>`
         """
@@ -159,32 +163,33 @@ class DateModelOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('date', response)
 
+        if cls:
+            return cls(response, deserialized, None)
+
         return deserialized
     get_underflow_date.metadata = {'url': '/date/underflowdate'}
 
-    def put_max_date(
-            self, date_body, **kwargs):
+    def put_max_date(self, date_body, cls=None, **kwargs):
         """Put max date value 9999-12-31.
 
         :param date_body:
         :type date_body: date
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<bodydate.models.ErrorException>`
         """
@@ -197,28 +202,29 @@ class DateModelOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(date_body, 'date')
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     put_max_date.metadata = {'url': '/date/max'}
 
-    def get_max_date(
-            self, **kwargs):
+    def get_max_date(self, cls=None, **kwargs):
         """Get max date value 9999-12-31.
 
-        :return: date
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: date or the result of cls(response)
         :rtype: date
         :raises: :class:`ErrorException<bodydate.models.ErrorException>`
         """
@@ -231,32 +237,33 @@ class DateModelOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('date', response)
 
+        if cls:
+            return cls(response, deserialized, None)
+
         return deserialized
     get_max_date.metadata = {'url': '/date/max'}
 
-    def put_min_date(
-            self, date_body, **kwargs):
+    def put_min_date(self, date_body, cls=None, **kwargs):
         """Put min date value 0000-01-01.
 
         :param date_body:
         :type date_body: date
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<bodydate.models.ErrorException>`
         """
@@ -269,28 +276,29 @@ class DateModelOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(date_body, 'date')
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     put_min_date.metadata = {'url': '/date/min'}
 
-    def get_min_date(
-            self, **kwargs):
+    def get_min_date(self, cls=None, **kwargs):
         """Get min date value 0000-01-01.
 
-        :return: date
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: date or the result of cls(response)
         :rtype: date
         :raises: :class:`ErrorException<bodydate.models.ErrorException>`
         """
@@ -303,21 +311,21 @@ class DateModelOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('date', response)
+
+        if cls:
+            return cls(response, deserialized, None)
 
         return deserialized
     get_min_date.metadata = {'url': '/date/min'}

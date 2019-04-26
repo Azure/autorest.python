@@ -39,7 +39,7 @@ class LROsCustomHeaderOperations(object):
 
 
     def _put_async_retry_succeeded_initial(
-            self, product=None, **kwargs):
+            self, product=None, cls=None, **kwargs):
         # Construct URL
         url = self.put_async_retry_succeeded.metadata['url']
 
@@ -52,9 +52,6 @@ class LROsCustomHeaderOperations(object):
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
         if self._config.accept_language is not None:
             header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
@@ -70,7 +67,7 @@ class LROsCustomHeaderOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.CloudErrorException(self._deserialize, response)
+            raise models.CloudErrorException(response, self._deserialize)
 
         deserialized = None
         header_dict = {}
@@ -78,15 +75,15 @@ class LROsCustomHeaderOperations(object):
         if response.status_code == 200:
             deserialized = self._deserialize('Product', response)
             header_dict = {
-                'Azure-AsyncOperation': 'str',
-                'Location': 'str',
-                'Retry-After': 'int',
+                'Azure-AsyncOperation': self._deserialize('str', response.headers.get('Azure-AsyncOperation')),
+                'Location': self._deserialize('str', response.headers.get('Location')),
+                'Retry-After': self._deserialize('int', response.headers.get('Retry-After')),
             }
 
         return deserialized
 
     def put_async_retry_succeeded(
-            self, product=None,  polling=True, **kwargs):
+            self, product=None, cls=None, polling=True, **kwargs):
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is
         required message header for all requests. Long running put request,
         service returns a 200 to the initial request, with an entity that
@@ -109,9 +106,9 @@ class LROsCustomHeaderOperations(object):
 
         def get_long_running_output(response):
             header_dict = {
-                'Azure-AsyncOperation': 'str',
-                'Location': 'str',
-                'Retry-After': 'int',
+                'Azure-AsyncOperation': self._deserialize('str', response.headers.get('Azure-AsyncOperation')),
+                'Location': self._deserialize('str', response.headers.get('Location')),
+                'Retry-After': self._deserialize('int', response.headers.get('Retry-After')),
             }
             deserialized = self._deserialize('Product', response)
 
@@ -119,7 +116,7 @@ class LROsCustomHeaderOperations(object):
 
         lro_delay = kwargs.get(
             'long_running_operation_timeout',
-            self.config.long_running_operation_timeout)
+            self._config.long_running_operation_timeout)
         if polling is True: polling_method = ARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
@@ -128,7 +125,7 @@ class LROsCustomHeaderOperations(object):
 
 
     def _put201_creating_succeeded200_initial(
-            self, product=None, **kwargs):
+            self, product=None, cls=None, **kwargs):
         # Construct URL
         url = self.put201_creating_succeeded200.metadata['url']
 
@@ -141,9 +138,6 @@ class LROsCustomHeaderOperations(object):
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
         if self._config.accept_language is not None:
             header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
@@ -159,7 +153,7 @@ class LROsCustomHeaderOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 201]:
-            raise models.CloudErrorException(self._deserialize, response)
+            raise models.CloudErrorException(response, self._deserialize)
 
         deserialized = None
 
@@ -171,7 +165,7 @@ class LROsCustomHeaderOperations(object):
         return deserialized
 
     def put201_creating_succeeded200(
-            self, product=None,  polling=True, **kwargs):
+            self, product=None, cls=None, polling=True, **kwargs):
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is
         required message header for all requests. Long running put request,
         service returns a 201 to the initial request, with an entity that
@@ -199,7 +193,7 @@ class LROsCustomHeaderOperations(object):
 
         lro_delay = kwargs.get(
             'long_running_operation_timeout',
-            self.config.long_running_operation_timeout)
+            self._config.long_running_operation_timeout)
         if polling is True: polling_method = ARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
@@ -208,7 +202,7 @@ class LROsCustomHeaderOperations(object):
 
 
     def _post202_retry200_initial(
-            self, product=None, **kwargs):
+            self, product=None, cls=None, **kwargs):
         # Construct URL
         url = self.post202_retry200.metadata['url']
 
@@ -220,9 +214,6 @@ class LROsCustomHeaderOperations(object):
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
         if self._config.accept_language is not None:
             header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
@@ -238,12 +229,12 @@ class LROsCustomHeaderOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
-            raise models.CloudErrorException(self._deserialize, response)
+            raise models.CloudErrorException(response, self._deserialize)
 
             return ''
 
     def post202_retry200(
-            self, product=None,  polling=True, **kwargs):
+            self, product=None, cls=None, polling=True, **kwargs):
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is
         required message header for all requests. Long running post request,
         service returns a 202 to the initial request, with 'Location' and
@@ -264,10 +255,16 @@ class LROsCustomHeaderOperations(object):
         )
 
         def get_long_running_output(response):
+            if cls:
+                response_headers = {
+                    'Location': self._deserialize('str', response.headers.get('Location')),
+                    'Retry-After': self._deserialize('int', response.headers.get('Retry-After')),
+                }
+                return cls(response, None, response_headers)
 
         lro_delay = kwargs.get(
             'long_running_operation_timeout',
-            self.config.long_running_operation_timeout)
+            self._config.long_running_operation_timeout)
         if polling is True: polling_method = ARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
@@ -276,7 +273,7 @@ class LROsCustomHeaderOperations(object):
 
 
     def _post_async_retry_succeeded_initial(
-            self, product=None, **kwargs):
+            self, product=None, cls=None, **kwargs):
         # Construct URL
         url = self.post_async_retry_succeeded.metadata['url']
 
@@ -288,9 +285,6 @@ class LROsCustomHeaderOperations(object):
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
         if self._config.accept_language is not None:
             header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
@@ -306,12 +300,12 @@ class LROsCustomHeaderOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
-            raise models.CloudErrorException(self._deserialize, response)
+            raise models.CloudErrorException(response, self._deserialize)
 
             return ''
 
     def post_async_retry_succeeded(
-            self, product=None,  polling=True, **kwargs):
+            self, product=None, cls=None, polling=True, **kwargs):
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is
         required message header for all requests. Long running post request,
         service returns a 202 to the initial request, with an entity that
@@ -332,10 +326,17 @@ class LROsCustomHeaderOperations(object):
         )
 
         def get_long_running_output(response):
+            if cls:
+                response_headers = {
+                    'Azure-AsyncOperation': self._deserialize('str', response.headers.get('Azure-AsyncOperation')),
+                    'Location': self._deserialize('str', response.headers.get('Location')),
+                    'Retry-After': self._deserialize('int', response.headers.get('Retry-After')),
+                }
+                return cls(response, None, response_headers)
 
         lro_delay = kwargs.get(
             'long_running_operation_timeout',
-            self.config.long_running_operation_timeout)
+            self._config.long_running_operation_timeout)
         if polling is True: polling_method = ARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling

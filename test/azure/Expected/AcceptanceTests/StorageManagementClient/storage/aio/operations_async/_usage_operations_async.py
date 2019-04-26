@@ -38,12 +38,13 @@ class UsageOperations:
 
         self._config = config
 
-    async def list(
-            self, **kwargs):
+    async def list(self, *, cls=None, **kwargs):
         """Gets the current usage count and the limit for the resources under the
         subscription.
 
-        :return: UsageListResult
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: UsageListResult or the result of cls(response)
         :rtype: ~storage.models.UsageListResult
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
@@ -63,15 +64,12 @@ class UsageOperations:
         header_parameters['Accept'] = 'application/json'
         if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
         if self._config.accept_language is not None:
             header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -82,6 +80,9 @@ class UsageOperations:
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('UsageListResult', response)
+
+        if cls:
+            return cls(response, deserialized, None)
 
         return deserialized
     list.metadata = {'url': '/subscriptions/{subscriptionId}/providers/Microsoft.Storage/usages'}

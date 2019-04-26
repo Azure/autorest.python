@@ -35,11 +35,12 @@ class FlattencomplexOperations(object):
 
         self._config = config
 
-    def get_valid(
-            self, **kwargs):
+    def get_valid(self, cls=None, **kwargs):
         """
 
-        :return: MyBaseType
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: MyBaseType or the result of cls(response)
         :rtype: ~bodycomplex.models.MyBaseType
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
@@ -52,13 +53,10 @@ class FlattencomplexOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -67,6 +65,9 @@ class FlattencomplexOperations(object):
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('MyBaseType', response)
+
+        if cls:
+            return cls(response, deserialized, None)
 
         return deserialized
     get_valid.metadata = {'url': '/complex/flatten/valid'}

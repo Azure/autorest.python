@@ -34,11 +34,12 @@ class ArrayOperations:
 
         self._config = config
 
-    async def get_valid(
-            self, **kwargs):
+    async def get_valid(self, *, cls=None, **kwargs):
         """Get complex types with array property.
 
-        :return: ArrayWrapper
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: ArrayWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.ArrayWrapper
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
@@ -51,32 +52,33 @@ class ArrayOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('ArrayWrapper', response)
 
+        if cls:
+            return cls(response, deserialized, None)
+
         return deserialized
     get_valid.metadata = {'url': '/complex/array/valid'}
 
-    async def put_valid(
-            self, array=None, **kwargs):
+    async def put_valid(self, array=None, *, cls=None, **kwargs):
         """Put complex types with array property.
 
         :param array:
         :type array: list[str]
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
@@ -91,28 +93,29 @@ class ArrayOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(complex_body, 'ArrayWrapper')
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     put_valid.metadata = {'url': '/complex/array/valid'}
 
-    async def get_empty(
-            self, **kwargs):
+    async def get_empty(self, *, cls=None, **kwargs):
         """Get complex types with array property which is empty.
 
-        :return: ArrayWrapper
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: ArrayWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.ArrayWrapper
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
@@ -125,32 +128,33 @@ class ArrayOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('ArrayWrapper', response)
 
+        if cls:
+            return cls(response, deserialized, None)
+
         return deserialized
     get_empty.metadata = {'url': '/complex/array/empty'}
 
-    async def put_empty(
-            self, array=None, **kwargs):
+    async def put_empty(self, array=None, *, cls=None, **kwargs):
         """Put complex types with array property which is empty.
 
         :param array:
         :type array: list[str]
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
@@ -165,29 +169,30 @@ class ArrayOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(complex_body, 'ArrayWrapper')
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     put_empty.metadata = {'url': '/complex/array/empty'}
 
-    async def get_not_provided(
-            self, **kwargs):
+    async def get_not_provided(self, *, cls=None, **kwargs):
         """Get complex types with array property while server doesn't provide a
         response payload.
 
-        :return: ArrayWrapper
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: ArrayWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.ArrayWrapper
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
@@ -200,21 +205,21 @@ class ArrayOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('ArrayWrapper', response)
+
+        if cls:
+            return cls(response, deserialized, None)
 
         return deserialized
     get_not_provided.metadata = {'url': '/complex/array/notprovided'}
