@@ -108,6 +108,7 @@ else
             return request
 @EmptyLine
         def internal_paging(next_link=None):
+            error_map = kwargs.pop('error_map', None)
             request = prepare_request(next_link)
 @EmptyLine
             pipeline_response = self._client._pipeline.run(request)
@@ -121,6 +122,7 @@ else
 @if(AsyncMode)
 {
 @:        async def internal_paging_async(next_link=None):
+@:            error_map = kwargs.pop('error_map', None)
 @:            request = prepare_request(next_link)
 @EmptyLine
             @:pipeline_response = await self._client._pipeline.run(request)
