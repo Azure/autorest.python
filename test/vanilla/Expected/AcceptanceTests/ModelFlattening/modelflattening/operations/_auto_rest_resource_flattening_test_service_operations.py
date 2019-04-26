@@ -14,13 +14,14 @@ from .. import models
 
 class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
 
-    def put_array(
-            self, resource_array=None, **kwargs):
+    def put_array(self, resource_array=None, cls=None, **kwargs):
         """Put External Resource as an Array.
 
         :param resource_array: External Resource as an Array to put
         :type resource_array: list[~modelflattening.models.Resource]
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises:
          :class:`ErrorException<modelflattening.models.ErrorException>`
@@ -34,9 +35,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         if resource_array is not None:
@@ -46,19 +44,23 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     put_array.metadata = {'url': '/model-flatten/array'}
 
-    def get_array(
-            self, **kwargs):
+    def get_array(self, cls=None, **kwargs):
         """Get External Resource as an Array.
 
-        :return: list
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: list or the result of cls(response)
         :rtype: list[~modelflattening.models.FlattenedProduct]
         :raises:
          :class:`ErrorException<modelflattening.models.ErrorException>`
@@ -72,34 +74,35 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('[FlattenedProduct]', response)
 
+        if cls:
+            return cls(response, deserialized, None)
+
         return deserialized
     get_array.metadata = {'url': '/model-flatten/array'}
 
-    def put_wrapped_array(
-            self, resource_array=None, **kwargs):
+    def put_wrapped_array(self, resource_array=None, cls=None, **kwargs):
         """No need to have a route in Express server for this operation. Used to
         verify the type flattened is not removed if it's referenced in an
         array.
 
         :param resource_array: External Resource as an Array to put
         :type resource_array: list[~modelflattening.models.WrappedProduct]
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises:
          :class:`ErrorException<modelflattening.models.ErrorException>`
@@ -113,9 +116,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         if resource_array is not None:
@@ -125,21 +125,25 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     put_wrapped_array.metadata = {'url': '/model-flatten/wrappedarray'}
 
-    def get_wrapped_array(
-            self, **kwargs):
+    def get_wrapped_array(self, cls=None, **kwargs):
         """No need to have a route in Express server for this operation. Used to
         verify the type flattened is not removed if it's referenced in an
         array.
 
-        :return: list
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: list or the result of cls(response)
         :rtype: list[~modelflattening.models.ProductWrapper]
         :raises:
          :class:`ErrorException<modelflattening.models.ErrorException>`
@@ -153,33 +157,34 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('[ProductWrapper]', response)
 
+        if cls:
+            return cls(response, deserialized, None)
+
         return deserialized
     get_wrapped_array.metadata = {'url': '/model-flatten/wrappedarray'}
 
-    def put_dictionary(
-            self, resource_dictionary=None, **kwargs):
+    def put_dictionary(self, resource_dictionary=None, cls=None, **kwargs):
         """Put External Resource as a Dictionary.
 
         :param resource_dictionary: External Resource as a Dictionary to put
         :type resource_dictionary: dict[str,
          ~modelflattening.models.FlattenedProduct]
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises:
          :class:`ErrorException<modelflattening.models.ErrorException>`
@@ -193,9 +198,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         if resource_dictionary is not None:
@@ -205,19 +207,23 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     put_dictionary.metadata = {'url': '/model-flatten/dictionary'}
 
-    def get_dictionary(
-            self, **kwargs):
+    def get_dictionary(self, cls=None, **kwargs):
         """Get External Resource as a Dictionary.
 
-        :return: dict
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: dict or the result of cls(response)
         :rtype: dict[str, ~modelflattening.models.FlattenedProduct]
         :raises:
          :class:`ErrorException<modelflattening.models.ErrorException>`
@@ -231,34 +237,35 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('{FlattenedProduct}', response)
 
+        if cls:
+            return cls(response, deserialized, None)
+
         return deserialized
     get_dictionary.metadata = {'url': '/model-flatten/dictionary'}
 
-    def put_resource_collection(
-            self, resource_complex_object=None, **kwargs):
+    def put_resource_collection(self, resource_complex_object=None, cls=None, **kwargs):
         """Put External Resource as a ResourceCollection.
 
         :param resource_complex_object: External Resource as a
          ResourceCollection to put
         :type resource_complex_object:
          ~modelflattening.models.ResourceCollection
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises:
          :class:`ErrorException<modelflattening.models.ErrorException>`
@@ -272,9 +279,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         if resource_complex_object is not None:
@@ -284,19 +288,23 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     put_resource_collection.metadata = {'url': '/model-flatten/resourcecollection'}
 
-    def get_resource_collection(
-            self, **kwargs):
+    def get_resource_collection(self, cls=None, **kwargs):
         """Get External Resource as a ResourceCollection.
 
-        :return: ResourceCollection
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: ResourceCollection or the result of cls(response)
         :rtype: ~modelflattening.models.ResourceCollection
         :raises:
          :class:`ErrorException<modelflattening.models.ErrorException>`
@@ -310,32 +318,33 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('ResourceCollection', response)
 
+        if cls:
+            return cls(response, deserialized, None)
+
         return deserialized
     get_resource_collection.metadata = {'url': '/model-flatten/resourcecollection'}
 
-    def put_simple_product(
-            self, simple_body_product=None, **kwargs):
+    def put_simple_product(self, simple_body_product=None, cls=None, **kwargs):
         """Put Simple Product with client flattening true on the model.
 
         :param simple_body_product: Simple body product to put
         :type simple_body_product: ~modelflattening.models.SimpleProduct
-        :return: SimpleProduct
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: SimpleProduct or the result of cls(response)
         :rtype: ~modelflattening.models.SimpleProduct
         :raises:
          :class:`ErrorException<modelflattening.models.ErrorException>`
@@ -350,9 +359,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         if simple_body_product is not None:
@@ -362,21 +368,23 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('SimpleProduct', response)
 
+        if cls:
+            return cls(response, deserialized, None)
+
         return deserialized
     put_simple_product.metadata = {'url': '/model-flatten/customFlattening'}
 
-    def post_flattened_simple_product(
-            self, product_id, max_product_display_name, description=None, generic_value=None, odatavalue=None, **kwargs):
+    def post_flattened_simple_product(self, product_id, max_product_display_name, description=None, generic_value=None, odatavalue=None, cls=None, **kwargs):
         """Put Flattened Simple Product with client flattening true on the
         parameter.
 
@@ -392,7 +400,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         :type generic_value: str
         :param odatavalue: URL value.
         :type odatavalue: str
-        :return: SimpleProduct
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: SimpleProduct or the result of cls(response)
         :rtype: ~modelflattening.models.SimpleProduct
         :raises:
          :class:`ErrorException<modelflattening.models.ErrorException>`
@@ -411,9 +421,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         if simple_body_product is not None:
@@ -423,28 +430,32 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('SimpleProduct', response)
 
+        if cls:
+            return cls(response, deserialized, None)
+
         return deserialized
     post_flattened_simple_product.metadata = {'url': '/model-flatten/customFlattening'}
 
-    def put_simple_product_with_grouping(
-            self, flatten_parameter_group, **kwargs):
+    def put_simple_product_with_grouping(self, flatten_parameter_group, cls=None, **kwargs):
         """Put Simple Product with client flattening true on the model.
 
         :param flatten_parameter_group: Additional parameters for the
          operation
         :type flatten_parameter_group:
          ~modelflattening.models.FlattenParameterGroup
-        :return: SimpleProduct
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: SimpleProduct or the result of cls(response)
         :rtype: ~modelflattening.models.SimpleProduct
         :raises:
          :class:`ErrorException<modelflattening.models.ErrorException>`
@@ -485,9 +496,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         if simple_body_product is not None:
@@ -497,15 +505,18 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('SimpleProduct', response)
+
+        if cls:
+            return cls(response, deserialized, None)
 
         return deserialized
     put_simple_product_with_grouping.metadata = {'url': '/model-flatten/customFlattening/parametergrouping/{name}/'}

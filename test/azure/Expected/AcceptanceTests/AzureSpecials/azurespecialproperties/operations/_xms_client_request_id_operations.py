@@ -36,12 +36,13 @@ class XMsClientRequestIdOperations(object):
 
         self._config = config
 
-    def get(
-            self, **kwargs):
+    def get(self, cls=None, **kwargs):
         """Get method that overwrites x-ms-client-request header with value
         9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
 
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
@@ -55,15 +56,12 @@ class XMsClientRequestIdOperations(object):
         header_parameters = {}
         if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
         if self._config.accept_language is not None:
             header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -71,17 +69,21 @@ class XMsClientRequestIdOperations(object):
             exp = HttpRequestError(response=response)
             raise exp
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     get.metadata = {'url': '/azurespecials/overwrite/x-ms-client-request-id/method/'}
 
-    def param_get(
-            self, x_ms_client_request_id, **kwargs):
+    def param_get(self, x_ms_client_request_id, cls=None, **kwargs):
         """Get method that overwrites x-ms-client-request header with value
         9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
 
         :param x_ms_client_request_id: This should appear as a method
          parameter, use value '9C4D50EE-2D56-4CD3-8152-34347DC9F2B0'
         :type x_ms_client_request_id: str
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises:
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
@@ -96,19 +98,19 @@ class XMsClientRequestIdOperations(object):
         header_parameters = {}
         if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
         header_parameters['x-ms-client-request-id'] = self._serialize.header("x_ms_client_request_id", x_ms_client_request_id, 'str')
         if self._config.accept_language is not None:
             header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     param_get.metadata = {'url': '/azurespecials/overwrite/x-ms-client-request-id/via-param/method/'}

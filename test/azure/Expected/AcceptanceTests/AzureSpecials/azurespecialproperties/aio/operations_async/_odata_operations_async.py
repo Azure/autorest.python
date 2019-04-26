@@ -35,8 +35,7 @@ class OdataOperations:
 
         self._config = config
 
-    async def get_with_filter(
-            self, filter=None, top=None, orderby=None, **kwargs):
+    async def get_with_filter(self, filter=None, top=None, orderby=None, *, cls=None, **kwargs):
         """Specify filter parameter with value '$filter=id gt 5 and name eq
         'foo'&$orderby=id&$top=10'.
 
@@ -47,7 +46,9 @@ class OdataOperations:
         :type top: int
         :param orderby: The orderby parameter with value id.
         :type orderby: str
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises:
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
@@ -68,18 +69,18 @@ class OdataOperations:
         header_parameters = {}
         if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
         if self._config.accept_language is not None:
             header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     get_with_filter.metadata = {'url': '/azurespecials/odata/filter'}

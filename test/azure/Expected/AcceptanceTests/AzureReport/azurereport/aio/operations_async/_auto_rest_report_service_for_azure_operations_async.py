@@ -24,8 +24,7 @@ class AutoRestReportServiceForAzureOperationsMixin:
         error = error_type(response=response)
         raise error
 
-    async def get_report(
-            self, qualifier=None, **kwargs):
+    async def get_report(self, qualifier=None, *, cls=None, **kwargs):
         """Get test coverage report.
 
         :param qualifier: If specified, qualifies the generated report further
@@ -33,7 +32,9 @@ class AutoRestReportServiceForAzureOperationsMixin:
          generators that run all tests several times, can distinguish the
          generated reports.
         :type qualifier: str
-        :return: dict
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: dict or the result of cls(response)
         :rtype: dict[str, int]
         :raises: :class:`ErrorException<azurereport.models.ErrorException>`
         """
@@ -50,23 +51,23 @@ class AutoRestReportServiceForAzureOperationsMixin:
         header_parameters['Accept'] = 'application/json'
         if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
         if self._config.accept_language is not None:
             header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('{int}', response)
+
+        if cls:
+            return cls(response, deserialized, None)
 
         return deserialized
     get_report.metadata = {'url': '/report/azure'}

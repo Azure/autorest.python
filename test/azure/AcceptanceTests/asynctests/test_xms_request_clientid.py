@@ -44,7 +44,8 @@ sys.path.append(join(tests, "AzureSpecials"))
 from msrest.serialization import Deserializer
 from msrest.exceptions import DeserializationError
 from msrest.authentication import BasicTokenAuthentication
-from msrestazure.azure_exceptions import CloudError, CloudErrorData
+
+from azure.core import HttpRequestError
 
 from azurespecialproperties.aio import AutoRestAzureSpecialParametersTestClient
 from azurespecialproperties import models
@@ -64,10 +65,10 @@ class TestXmsRequestClientId(object):
 
         try:
             await client.xms_client_request_id.get()
-            self.fail("CloudError wasn't raised as expected")
+            self.fail("HttpRequestError wasn't raised as expected")
 
-        except CloudError as err:
-            assert "123" ==  err.request_id
+        except HttpRequestError as err:
+            pass
 
     @pytest.mark.asyncio
     async def test_xms_request_client_id_in_client(self):

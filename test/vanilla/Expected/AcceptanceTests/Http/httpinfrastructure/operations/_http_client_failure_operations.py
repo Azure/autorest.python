@@ -34,12 +34,13 @@ class HttpClientFailureOperations(object):
 
         self._config = config
 
-    def head400(
-            self, **kwargs):
+    def head400(self, cls=None, **kwargs):
         """Return 400 status code - should be represented in the client as an
         error.
 
-        :return: Error
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: Error or the result of cls(response)
         :rtype: ~httpinfrastructure.models.Error
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
@@ -52,26 +53,27 @@ class HttpClientFailureOperations(object):
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.head(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     head400.metadata = {'url': '/http/failure/client/400'}
 
-    def get400(
-            self, **kwargs):
+    def get400(self, cls=None, **kwargs):
         """Return 400 status code - should be represented in the client as an
         error.
 
-        :return: Error
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: Error or the result of cls(response)
         :rtype: ~httpinfrastructure.models.Error
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
@@ -84,28 +86,29 @@ class HttpClientFailureOperations(object):
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     get400.metadata = {'url': '/http/failure/client/400'}
 
-    def put400(
-            self, boolean_value=None, **kwargs):
+    def put400(self, boolean_value=None, cls=None, **kwargs):
         """Return 400 status code - should be represented in the client as an
         error.
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :return: Error
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: Error or the result of cls(response)
         :rtype: ~httpinfrastructure.models.Error
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
@@ -119,9 +122,6 @@ class HttpClientFailureOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         if boolean_value is not None:
@@ -131,22 +131,26 @@ class HttpClientFailureOperations(object):
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     put400.metadata = {'url': '/http/failure/client/400'}
 
-    def patch400(
-            self, boolean_value=None, **kwargs):
+    def patch400(self, boolean_value=None, cls=None, **kwargs):
         """Return 400 status code - should be represented in the client as an
         error.
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :return: Error
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: Error or the result of cls(response)
         :rtype: ~httpinfrastructure.models.Error
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
@@ -160,9 +164,6 @@ class HttpClientFailureOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         if boolean_value is not None:
@@ -172,22 +173,26 @@ class HttpClientFailureOperations(object):
 
         # Construct and send request
         request = self._client.patch(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     patch400.metadata = {'url': '/http/failure/client/400'}
 
-    def post400(
-            self, boolean_value=None, **kwargs):
+    def post400(self, boolean_value=None, cls=None, **kwargs):
         """Return 400 status code - should be represented in the client as an
         error.
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :return: Error
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: Error or the result of cls(response)
         :rtype: ~httpinfrastructure.models.Error
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
@@ -201,9 +206,6 @@ class HttpClientFailureOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         if boolean_value is not None:
@@ -213,22 +215,26 @@ class HttpClientFailureOperations(object):
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     post400.metadata = {'url': '/http/failure/client/400'}
 
-    def delete400(
-            self, boolean_value=None, **kwargs):
+    def delete400(self, boolean_value=None, cls=None, **kwargs):
         """Return 400 status code - should be represented in the client as an
         error.
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :return: Error
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: Error or the result of cls(response)
         :rtype: ~httpinfrastructure.models.Error
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
@@ -242,9 +248,6 @@ class HttpClientFailureOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         if boolean_value is not None:
@@ -254,20 +257,24 @@ class HttpClientFailureOperations(object):
 
         # Construct and send request
         request = self._client.delete(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     delete400.metadata = {'url': '/http/failure/client/400'}
 
-    def head401(
-            self, **kwargs):
+    def head401(self, cls=None, **kwargs):
         """Return 401 status code - should be represented in the client as an
         error.
 
-        :return: Error
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: Error or the result of cls(response)
         :rtype: ~httpinfrastructure.models.Error
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
@@ -280,26 +287,27 @@ class HttpClientFailureOperations(object):
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.head(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     head401.metadata = {'url': '/http/failure/client/401'}
 
-    def get402(
-            self, **kwargs):
+    def get402(self, cls=None, **kwargs):
         """Return 402 status code - should be represented in the client as an
         error.
 
-        :return: Error
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: Error or the result of cls(response)
         :rtype: ~httpinfrastructure.models.Error
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
@@ -312,26 +320,27 @@ class HttpClientFailureOperations(object):
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     get402.metadata = {'url': '/http/failure/client/402'}
 
-    def get403(
-            self, **kwargs):
+    def get403(self, cls=None, **kwargs):
         """Return 403 status code - should be represented in the client as an
         error.
 
-        :return: Error
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: Error or the result of cls(response)
         :rtype: ~httpinfrastructure.models.Error
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
@@ -344,28 +353,29 @@ class HttpClientFailureOperations(object):
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     get403.metadata = {'url': '/http/failure/client/403'}
 
-    def put404(
-            self, boolean_value=None, **kwargs):
+    def put404(self, boolean_value=None, cls=None, **kwargs):
         """Return 404 status code - should be represented in the client as an
         error.
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :return: Error
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: Error or the result of cls(response)
         :rtype: ~httpinfrastructure.models.Error
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
@@ -379,9 +389,6 @@ class HttpClientFailureOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         if boolean_value is not None:
@@ -391,22 +398,26 @@ class HttpClientFailureOperations(object):
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     put404.metadata = {'url': '/http/failure/client/404'}
 
-    def patch405(
-            self, boolean_value=None, **kwargs):
+    def patch405(self, boolean_value=None, cls=None, **kwargs):
         """Return 405 status code - should be represented in the client as an
         error.
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :return: Error
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: Error or the result of cls(response)
         :rtype: ~httpinfrastructure.models.Error
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
@@ -420,9 +431,6 @@ class HttpClientFailureOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         if boolean_value is not None:
@@ -432,22 +440,26 @@ class HttpClientFailureOperations(object):
 
         # Construct and send request
         request = self._client.patch(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     patch405.metadata = {'url': '/http/failure/client/405'}
 
-    def post406(
-            self, boolean_value=None, **kwargs):
+    def post406(self, boolean_value=None, cls=None, **kwargs):
         """Return 406 status code - should be represented in the client as an
         error.
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :return: Error
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: Error or the result of cls(response)
         :rtype: ~httpinfrastructure.models.Error
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
@@ -461,9 +473,6 @@ class HttpClientFailureOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         if boolean_value is not None:
@@ -473,22 +482,26 @@ class HttpClientFailureOperations(object):
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     post406.metadata = {'url': '/http/failure/client/406'}
 
-    def delete407(
-            self, boolean_value=None, **kwargs):
+    def delete407(self, boolean_value=None, cls=None, **kwargs):
         """Return 407 status code - should be represented in the client as an
         error.
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :return: Error
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: Error or the result of cls(response)
         :rtype: ~httpinfrastructure.models.Error
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
@@ -502,9 +515,6 @@ class HttpClientFailureOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         if boolean_value is not None:
@@ -514,22 +524,26 @@ class HttpClientFailureOperations(object):
 
         # Construct and send request
         request = self._client.delete(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     delete407.metadata = {'url': '/http/failure/client/407'}
 
-    def put409(
-            self, boolean_value=None, **kwargs):
+    def put409(self, boolean_value=None, cls=None, **kwargs):
         """Return 409 status code - should be represented in the client as an
         error.
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :return: Error
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: Error or the result of cls(response)
         :rtype: ~httpinfrastructure.models.Error
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
@@ -543,9 +557,6 @@ class HttpClientFailureOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         if boolean_value is not None:
@@ -555,20 +566,24 @@ class HttpClientFailureOperations(object):
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     put409.metadata = {'url': '/http/failure/client/409'}
 
-    def head410(
-            self, **kwargs):
+    def head410(self, cls=None, **kwargs):
         """Return 410 status code - should be represented in the client as an
         error.
 
-        :return: Error
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: Error or the result of cls(response)
         :rtype: ~httpinfrastructure.models.Error
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
@@ -581,26 +596,27 @@ class HttpClientFailureOperations(object):
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.head(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     head410.metadata = {'url': '/http/failure/client/410'}
 
-    def get411(
-            self, **kwargs):
+    def get411(self, cls=None, **kwargs):
         """Return 411 status code - should be represented in the client as an
         error.
 
-        :return: Error
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: Error or the result of cls(response)
         :rtype: ~httpinfrastructure.models.Error
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
@@ -613,26 +629,27 @@ class HttpClientFailureOperations(object):
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     get411.metadata = {'url': '/http/failure/client/411'}
 
-    def get412(
-            self, **kwargs):
+    def get412(self, cls=None, **kwargs):
         """Return 412 status code - should be represented in the client as an
         error.
 
-        :return: Error
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: Error or the result of cls(response)
         :rtype: ~httpinfrastructure.models.Error
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
@@ -645,28 +662,29 @@ class HttpClientFailureOperations(object):
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     get412.metadata = {'url': '/http/failure/client/412'}
 
-    def put413(
-            self, boolean_value=None, **kwargs):
+    def put413(self, boolean_value=None, cls=None, **kwargs):
         """Return 413 status code - should be represented in the client as an
         error.
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :return: Error
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: Error or the result of cls(response)
         :rtype: ~httpinfrastructure.models.Error
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
@@ -680,9 +698,6 @@ class HttpClientFailureOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         if boolean_value is not None:
@@ -692,22 +707,26 @@ class HttpClientFailureOperations(object):
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     put413.metadata = {'url': '/http/failure/client/413'}
 
-    def patch414(
-            self, boolean_value=None, **kwargs):
+    def patch414(self, boolean_value=None, cls=None, **kwargs):
         """Return 414 status code - should be represented in the client as an
         error.
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :return: Error
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: Error or the result of cls(response)
         :rtype: ~httpinfrastructure.models.Error
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
@@ -721,9 +740,6 @@ class HttpClientFailureOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         if boolean_value is not None:
@@ -733,22 +749,26 @@ class HttpClientFailureOperations(object):
 
         # Construct and send request
         request = self._client.patch(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     patch414.metadata = {'url': '/http/failure/client/414'}
 
-    def post415(
-            self, boolean_value=None, **kwargs):
+    def post415(self, boolean_value=None, cls=None, **kwargs):
         """Return 415 status code - should be represented in the client as an
         error.
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :return: Error
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: Error or the result of cls(response)
         :rtype: ~httpinfrastructure.models.Error
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
@@ -762,9 +782,6 @@ class HttpClientFailureOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         if boolean_value is not None:
@@ -774,20 +791,24 @@ class HttpClientFailureOperations(object):
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     post415.metadata = {'url': '/http/failure/client/415'}
 
-    def get416(
-            self, **kwargs):
+    def get416(self, cls=None, **kwargs):
         """Return 416 status code - should be represented in the client as an
         error.
 
-        :return: Error
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: Error or the result of cls(response)
         :rtype: ~httpinfrastructure.models.Error
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
@@ -800,28 +821,29 @@ class HttpClientFailureOperations(object):
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     get416.metadata = {'url': '/http/failure/client/416'}
 
-    def delete417(
-            self, boolean_value=None, **kwargs):
+    def delete417(self, boolean_value=None, cls=None, **kwargs):
         """Return 417 status code - should be represented in the client as an
         error.
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :return: Error
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: Error or the result of cls(response)
         :rtype: ~httpinfrastructure.models.Error
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
@@ -835,9 +857,6 @@ class HttpClientFailureOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         if boolean_value is not None:
@@ -847,20 +866,24 @@ class HttpClientFailureOperations(object):
 
         # Construct and send request
         request = self._client.delete(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     delete417.metadata = {'url': '/http/failure/client/417'}
 
-    def head429(
-            self, **kwargs):
+    def head429(self, cls=None, **kwargs):
         """Return 429 status code - should be represented in the client as an
         error.
 
-        :return: Error
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: Error or the result of cls(response)
         :rtype: ~httpinfrastructure.models.Error
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
@@ -873,16 +896,16 @@ class HttpClientFailureOperations(object):
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.head(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     head429.metadata = {'url': '/http/failure/client/429'}

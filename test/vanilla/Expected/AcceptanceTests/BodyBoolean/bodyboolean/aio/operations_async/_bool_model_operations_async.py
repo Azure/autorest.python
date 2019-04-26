@@ -34,11 +34,12 @@ class BoolModelOperations:
 
         self._config = config
 
-    async def get_true(
-            self, **kwargs):
+    async def get_true(self, *, cls=None, **kwargs):
         """Get true Boolean value.
 
-        :return: bool
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: bool or the result of cls(response)
         :rtype: bool
         :raises: :class:`ErrorException<bodyboolean.models.ErrorException>`
         """
@@ -51,30 +52,31 @@ class BoolModelOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('bool', response)
 
+        if cls:
+            return cls(response, deserialized, None)
+
         return deserialized
     get_true.metadata = {'url': '/bool/true'}
 
-    async def put_true(
-            self, **kwargs):
+    async def put_true(self, *, cls=None, **kwargs):
         """Set Boolean value true.
 
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<bodyboolean.models.ErrorException>`
         """
@@ -89,28 +91,29 @@ class BoolModelOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(bool_body, 'bool')
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     put_true.metadata = {'url': '/bool/true'}
 
-    async def get_false(
-            self, **kwargs):
+    async def get_false(self, *, cls=None, **kwargs):
         """Get false Boolean value.
 
-        :return: bool
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: bool or the result of cls(response)
         :rtype: bool
         :raises: :class:`ErrorException<bodyboolean.models.ErrorException>`
         """
@@ -123,30 +126,31 @@ class BoolModelOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('bool', response)
 
+        if cls:
+            return cls(response, deserialized, None)
+
         return deserialized
     get_false.metadata = {'url': '/bool/false'}
 
-    async def put_false(
-            self, **kwargs):
+    async def put_false(self, *, cls=None, **kwargs):
         """Set Boolean value false.
 
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<bodyboolean.models.ErrorException>`
         """
@@ -161,28 +165,29 @@ class BoolModelOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(bool_body, 'bool')
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     put_false.metadata = {'url': '/bool/false'}
 
-    async def get_null(
-            self, **kwargs):
+    async def get_null(self, *, cls=None, **kwargs):
         """Get null Boolean value.
 
-        :return: bool
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: bool or the result of cls(response)
         :rtype: bool
         :raises: :class:`ErrorException<bodyboolean.models.ErrorException>`
         """
@@ -195,30 +200,31 @@ class BoolModelOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('bool', response)
 
+        if cls:
+            return cls(response, deserialized, None)
+
         return deserialized
     get_null.metadata = {'url': '/bool/null'}
 
-    async def get_invalid(
-            self, **kwargs):
+    async def get_invalid(self, *, cls=None, **kwargs):
         """Get invalid Boolean value.
 
-        :return: bool
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: bool or the result of cls(response)
         :rtype: bool
         :raises: :class:`ErrorException<bodyboolean.models.ErrorException>`
         """
@@ -231,21 +237,21 @@ class BoolModelOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('bool', response)
+
+        if cls:
+            return cls(response, deserialized, None)
 
         return deserialized
     get_invalid.metadata = {'url': '/bool/invalid'}

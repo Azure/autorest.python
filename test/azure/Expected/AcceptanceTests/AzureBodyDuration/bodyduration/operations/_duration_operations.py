@@ -35,11 +35,12 @@ class DurationOperations(object):
 
         self._config = config
 
-    def get_null(
-            self, **kwargs):
+    def get_null(self, cls=None, **kwargs):
         """Get null duration value.
 
-        :return: timedelta
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: timedelta or the result of cls(response)
         :rtype: timedelta
         :raises: :class:`ErrorException<bodyduration.models.ErrorException>`
         """
@@ -54,34 +55,35 @@ class DurationOperations(object):
         header_parameters['Accept'] = 'application/json'
         if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
         if self._config.accept_language is not None:
             header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('duration', response)
 
+        if cls:
+            return cls(response, deserialized, None)
+
         return deserialized
     get_null.metadata = {'url': '/duration/null'}
 
-    def put_positive_duration(
-            self, duration_body, **kwargs):
+    def put_positive_duration(self, duration_body, cls=None, **kwargs):
         """Put a positive duration value.
 
         :param duration_body:
         :type duration_body: timedelta
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<bodyduration.models.ErrorException>`
         """
@@ -96,9 +98,6 @@ class DurationOperations(object):
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
         if self._config.accept_language is not None:
             header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
@@ -107,19 +106,23 @@ class DurationOperations(object):
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     put_positive_duration.metadata = {'url': '/duration/positiveduration'}
 
-    def get_positive_duration(
-            self, **kwargs):
+    def get_positive_duration(self, cls=None, **kwargs):
         """Get a positive duration value.
 
-        :return: timedelta
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: timedelta or the result of cls(response)
         :rtype: timedelta
         :raises: :class:`ErrorException<bodyduration.models.ErrorException>`
         """
@@ -134,32 +137,33 @@ class DurationOperations(object):
         header_parameters['Accept'] = 'application/json'
         if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
         if self._config.accept_language is not None:
             header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('duration', response)
 
+        if cls:
+            return cls(response, deserialized, None)
+
         return deserialized
     get_positive_duration.metadata = {'url': '/duration/positiveduration'}
 
-    def get_invalid(
-            self, **kwargs):
+    def get_invalid(self, cls=None, **kwargs):
         """Get an invalid duration value.
 
-        :return: timedelta
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: timedelta or the result of cls(response)
         :rtype: timedelta
         :raises: :class:`ErrorException<bodyduration.models.ErrorException>`
         """
@@ -174,23 +178,23 @@ class DurationOperations(object):
         header_parameters['Accept'] = 'application/json'
         if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
         if self._config.accept_language is not None:
             header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('duration', response)
+
+        if cls:
+            return cls(response, deserialized, None)
 
         return deserialized
     get_invalid.metadata = {'url': '/duration/invalid'}

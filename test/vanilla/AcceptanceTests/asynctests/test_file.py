@@ -170,7 +170,7 @@ class TestFile(object):
 
     #     file_length = 0
     #     with io.BytesIO() as file_handle:
-    #         response = await client.files.get_file(raw=True, callback=test_callback)
+    #         response = await client.files.get_file(cls=None)
     #         stream = response.output
 
     #         async for data in stream:
@@ -189,7 +189,7 @@ class TestFile(object):
 
     #     file_length = 0
     #     with io.BytesIO() as file_handle:
-    #         response = await client.files.get_empty_file(raw=True, callback=test_callback)
+    #         response = await client.files.get_empty_file(cls=None)
     #         stream = response.output
 
     #         async for data in stream:

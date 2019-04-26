@@ -35,11 +35,12 @@ class HttpFailureOperations:
 
         self._config = config
 
-    async def get_empty_error(
-            self, **kwargs):
+    async def get_empty_error(self, *, cls=None, **kwargs):
         """Get empty error form server.
 
-        :return: bool
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: bool or the result of cls(response)
         :rtype: bool
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
@@ -53,30 +54,31 @@ class HttpFailureOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('bool', response)
 
+        if cls:
+            return cls(response, deserialized, None)
+
         return deserialized
     get_empty_error.metadata = {'url': '/http/failure/emptybody/error'}
 
-    async def get_no_model_error(
-            self, **kwargs):
+    async def get_no_model_error(self, *, cls=None, **kwargs):
         """Get empty error form server.
 
-        :return: bool
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: bool or the result of cls(response)
         :rtype: bool
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
@@ -89,13 +91,10 @@ class HttpFailureOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -105,14 +104,18 @@ class HttpFailureOperations:
         if response.status_code == 200:
             deserialized = self._deserialize('bool', response)
 
+        if cls:
+            return cls(response, deserialized, None)
+
         return deserialized
     get_no_model_error.metadata = {'url': '/http/failure/nomodel/error'}
 
-    async def get_no_model_empty(
-            self, **kwargs):
+    async def get_no_model_empty(self, *, cls=None, **kwargs):
         """Get empty response from server.
 
-        :return: bool
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: bool or the result of cls(response)
         :rtype: bool
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
@@ -125,13 +128,10 @@ class HttpFailureOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -140,6 +140,9 @@ class HttpFailureOperations:
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('bool', response)
+
+        if cls:
+            return cls(response, deserialized, None)
 
         return deserialized
     get_no_model_empty.metadata = {'url': '/http/failure/nomodel/empty'}

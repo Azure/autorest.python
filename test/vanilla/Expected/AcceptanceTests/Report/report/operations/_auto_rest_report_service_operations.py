@@ -14,8 +14,7 @@ from .. import models
 
 class AutoRestReportServiceOperationsMixin(object):
 
-    def get_report(
-            self, qualifier=None, **kwargs):
+    def get_report(self, qualifier=None, cls=None, **kwargs):
         """Get test coverage report.
 
         :param qualifier: If specified, qualifies the generated report further
@@ -23,7 +22,9 @@ class AutoRestReportServiceOperationsMixin(object):
          generators that run all tests several times, can distinguish the
          generated reports.
         :type qualifier: str
-        :return: dict
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: dict or the result of cls(response)
         :rtype: dict[str, int]
         :raises: :class:`ErrorException<report.models.ErrorException>`
         """
@@ -38,21 +39,21 @@ class AutoRestReportServiceOperationsMixin(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('{int}', response)
+
+        if cls:
+            return cls(response, deserialized, None)
 
         return deserialized
     get_report.metadata = {'url': '/report'}

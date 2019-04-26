@@ -34,8 +34,7 @@ class FormdataOperations:
 
         self._config = config
 
-    async def upload_file(
-            self, file_content, file_name, **kwargs):
+    async def upload_file(self, file_content, file_name, *, cls=None, **kwargs):
         """Upload file.
 
         :param file_content: File to upload.
@@ -43,7 +42,9 @@ class FormdataOperations:
         :param file_name: File name to upload. Name has to be spelled exactly
          as written here.
         :type file_name: str
-        :return: object
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: object or the result of cls(response)
         :rtype: Generator
         :raises: :class:`ErrorException<bodyformdata.models.ErrorException>`
         """
@@ -57,9 +58,6 @@ class FormdataOperations:
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'multipart/form-data'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct form data
         form_data_content = {
@@ -69,24 +67,28 @@ class FormdataOperations:
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters, form_content=form_data_content)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=True, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
-        deserialized = await response.stream_download_async(response)
+        deserialized = response.stream_download()
+
+        if cls:
+            return cls(response, deserialized, None)
 
         return deserialized
     upload_file.metadata = {'url': '/formdata/stream/uploadfile'}
 
-    async def upload_file_via_body(
-            self, file_content, **kwargs):
+    async def upload_file_via_body(self, file_content, *, cls=None, **kwargs):
         """Upload file.
 
         :param file_content: File to upload.
         :type file_content: Generator
-        :return: object
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: object or the result of cls(response)
         :rtype: Generator
         :raises: :class:`ErrorException<bodyformdata.models.ErrorException>`
         """
@@ -100,22 +102,21 @@ class FormdataOperations:
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/octet-stream'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
-        body_content = file_content
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._client._pipeline.run(request)
+        request = self._client.put(url, query_parameters, header_parameters, stream_content=file_content)
+        pipeline_response = await self._client._pipeline.run(request, stream=True, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
-        deserialized = await response.stream_download_async(response)
+        deserialized = response.stream_download()
+
+        if cls:
+            return cls(response, deserialized, None)
 
         return deserialized
     upload_file_via_body.metadata = {'url': '/formdata/stream/uploadfile'}

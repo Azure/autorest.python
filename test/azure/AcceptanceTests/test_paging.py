@@ -43,11 +43,12 @@ sys.path.append(join(tests, "Paging"))
 
 from msrest.serialization import Deserializer
 from msrest.exceptions import DeserializationError
-from msrestazure.azure_exceptions import CloudError
 from msrest.authentication import BasicTokenAuthentication
 
 from paging import AutoRestPagingTestService
 from paging.models import PagingGetMultiplePagesWithOffsetOptions
+
+from azure.core import HttpRequestError
 
 import pytest
 
@@ -116,17 +117,17 @@ def test_paging_happy_path(special_paging_client):
 def test_paging_sad_path(paging_client):
 
     pages = paging_client.paging.get_single_pages_failure()
-    with pytest.raises(CloudError):
+    with pytest.raises(HttpRequestError):
         list(pages)
 
     pages = paging_client.paging.get_multiple_pages_failure()
     assert pages.next_link is not None
 
-    with pytest.raises(CloudError):
+    with pytest.raises(HttpRequestError):
         list(pages)
 
     pages = paging_client.paging.get_multiple_pages_failure_uri()
-    with pytest.raises(CloudError):
+    with pytest.raises(HttpRequestError):
         list(pages)
 
 def test_paging_fragment_path(paging_client):

@@ -37,14 +37,15 @@ class GroupOperations(object):
 
         self._config = config
 
-    def get_sample_resource_group(
-            self, resource_group_name, **kwargs):
+    def get_sample_resource_group(self, resource_group_name, cls=None, **kwargs):
         """Provides a resouce group with name 'testgroup101' and location 'West
         US'.
 
         :param resource_group_name: Resource Group name 'testgroup101'.
         :type resource_group_name: str
-        :return: SampleResourceGroup
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: SampleResourceGroup or the result of cls(response)
         :rtype: ~subscriptionidapiversion.models.SampleResourceGroup
         :raises:
          :class:`ErrorException<subscriptionidapiversion.models.ErrorException>`
@@ -66,23 +67,23 @@ class GroupOperations(object):
         header_parameters['Accept'] = 'application/json'
         if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
         if self._config.accept_language is not None:
             header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('SampleResourceGroup', response)
+
+        if cls:
+            return cls(response, deserialized, None)
 
         return deserialized
     get_sample_resource_group.metadata = {'url': '/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}'}

@@ -34,13 +34,14 @@ class PathsOperations:
 
         self._config = config
 
-    async def get_empty(
-            self, account_name, **kwargs):
+    async def get_empty(self, account_name, *, cls=None, **kwargs):
         """Get a 200 to test a valid base uri.
 
         :param account_name: Account Name
         :type account_name: str
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<custombaseurl.models.ErrorException>`
         """
@@ -57,16 +58,16 @@ class PathsOperations:
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     get_empty.metadata = {'url': '/customuri'}

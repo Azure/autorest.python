@@ -34,11 +34,12 @@ class FilesOperations:
 
         self._config = config
 
-    async def get_file(
-            self, **kwargs):
+    async def get_file(self, *, cls=None, **kwargs):
         """Get file.
 
-        :return: object
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: object or the result of cls(response)
         :rtype: Generator
         :raises: :class:`ErrorException<bodyfile.models.ErrorException>`
         """
@@ -51,28 +52,29 @@ class FilesOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=True, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
-        deserialized = await response.stream_download_async(response)
+        deserialized = response.stream_download()
+
+        if cls:
+            return cls(response, deserialized, None)
 
         return deserialized
     get_file.metadata = {'url': '/files/stream/nonempty'}
 
-    async def get_file_large(
-            self, **kwargs):
+    async def get_file_large(self, *, cls=None, **kwargs):
         """Get a large file.
 
-        :return: object
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: object or the result of cls(response)
         :rtype: Generator
         :raises: :class:`ErrorException<bodyfile.models.ErrorException>`
         """
@@ -85,28 +87,29 @@ class FilesOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=True, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
-        deserialized = await response.stream_download_async(response)
+        deserialized = response.stream_download()
+
+        if cls:
+            return cls(response, deserialized, None)
 
         return deserialized
     get_file_large.metadata = {'url': '/files/stream/verylarge'}
 
-    async def get_empty_file(
-            self, **kwargs):
+    async def get_empty_file(self, *, cls=None, **kwargs):
         """Get empty file.
 
-        :return: object
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: object or the result of cls(response)
         :rtype: Generator
         :raises: :class:`ErrorException<bodyfile.models.ErrorException>`
         """
@@ -119,19 +122,19 @@ class FilesOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=True, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
-        deserialized = await response.stream_download_async(response)
+        deserialized = response.stream_download()
+
+        if cls:
+            return cls(response, deserialized, None)
 
         return deserialized
     get_empty_file.metadata = {'url': '/files/stream/empty'}

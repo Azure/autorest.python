@@ -35,14 +35,15 @@ class HeaderOperations:
 
         self._config = config
 
-    async def custom_named_request_id(
-            self, foo_client_request_id, **kwargs):
+    async def custom_named_request_id(self, foo_client_request_id, *, cls=None, **kwargs):
         """Send foo-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in
         the header of the request.
 
         :param foo_client_request_id: The fooRequestId
         :type foo_client_request_id: str
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises:
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
@@ -57,25 +58,26 @@ class HeaderOperations:
         header_parameters = {}
         if self._config.generate_client_request_id:
             header_parameters['foo-client-request-id'] = str(uuid.uuid1())
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
         header_parameters['foo-client-request-id'] = self._serialize.header("foo_client_request_id", foo_client_request_id, 'str')
         if self._config.accept_language is not None:
             header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {
+                'foo-request-id': self._deserialize('str', response.headers.get('foo-request-id')),
+            }
+            return cls(response, None, response_headers)
     custom_named_request_id.metadata = {'url': '/azurespecials/customNamedRequestId'}
 
-    async def custom_named_request_id_param_grouping(
-            self, header_custom_named_request_id_param_grouping_parameters, **kwargs):
+    async def custom_named_request_id_param_grouping(self, header_custom_named_request_id_param_grouping_parameters, *, cls=None, **kwargs):
         """Send foo-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in
         the header of the request, via a parameter group.
 
@@ -83,7 +85,9 @@ class HeaderOperations:
          Additional parameters for the operation
         :type header_custom_named_request_id_param_grouping_parameters:
          ~azurespecialproperties.models.HeaderCustomNamedRequestIdParamGroupingParameters
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises:
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
@@ -102,31 +106,34 @@ class HeaderOperations:
         header_parameters = {}
         if self._config.generate_client_request_id:
             header_parameters['foo-client-request-id'] = str(uuid.uuid1())
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
         if self._config.accept_language is not None:
             header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
         header_parameters['foo-client-request-id'] = self._serialize.header("foo_client_request_id", foo_client_request_id, 'str')
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {
+                'foo-request-id': self._deserialize('str', response.headers.get('foo-request-id')),
+            }
+            return cls(response, None, response_headers)
     custom_named_request_id_param_grouping.metadata = {'url': '/azurespecials/customNamedRequestIdParamGrouping'}
 
-    async def custom_named_request_id_head(
-            self, foo_client_request_id, **kwargs):
+    async def custom_named_request_id_head(self, foo_client_request_id, *, cls=None, **kwargs):
         """Send foo-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in
         the header of the request.
 
         :param foo_client_request_id: The fooRequestId
         :type foo_client_request_id: str
-        :return: bool
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: bool or the result of cls(response)
         :rtype: bool
         :raises:
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
@@ -141,20 +148,17 @@ class HeaderOperations:
         header_parameters = {}
         if self._config.generate_client_request_id:
             header_parameters['foo-client-request-id'] = str(uuid.uuid1())
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
         header_parameters['foo-client-request-id'] = self._serialize.header("foo_client_request_id", foo_client_request_id, 'str')
         if self._config.accept_language is not None:
             header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct and send request
         request = self._client.head(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 404]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = (response.status_code == 200)
         return deserialized

@@ -34,14 +34,15 @@ class HeaderOperations(object):
 
         self._config = config
 
-    def param_existing_key(
-            self, user_agent, **kwargs):
+    def param_existing_key(self, user_agent, cls=None, **kwargs):
         """Send a post request with header value "User-Agent": "overwrite".
 
         :param user_agent: Send a post request with header value "User-Agent":
          "overwrite"
         :type user_agent: str
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
@@ -53,26 +54,27 @@ class HeaderOperations(object):
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
         header_parameters['User-Agent'] = self._serialize.header("user_agent", user_agent, 'str')
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     param_existing_key.metadata = {'url': '/header/param/existingkey'}
 
-    def response_existing_key(
-            self, **kwargs):
+    def response_existing_key(self, cls=None, **kwargs):
         """Get a response with header value "User-Agent": "overwrite".
 
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
@@ -84,28 +86,31 @@ class HeaderOperations(object):
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {
+                'User-Agent': self._deserialize('str', response.headers.get('User-Agent')),
+            }
+            return cls(response, None, response_headers)
     response_existing_key.metadata = {'url': '/header/response/existingkey'}
 
-    def param_protected_key(
-            self, content_type, **kwargs):
+    def param_protected_key(self, content_type, cls=None, **kwargs):
         """Send a post request with header value "Content-Type": "text/html".
 
         :param content_type: Send a post request with header value
          "Content-Type": "text/html"
         :type content_type: str
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
@@ -117,26 +122,27 @@ class HeaderOperations(object):
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     param_protected_key.metadata = {'url': '/header/param/protectedkey'}
 
-    def response_protected_key(
-            self, **kwargs):
+    def response_protected_key(self, cls=None, **kwargs):
         """Get a response with header value "Content-Type": "text/html".
 
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
@@ -148,22 +154,23 @@ class HeaderOperations(object):
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {
+                'Content-Type': self._deserialize('str', response.headers.get('Content-Type')),
+            }
+            return cls(response, None, response_headers)
     response_protected_key.metadata = {'url': '/header/response/protectedkey'}
 
-    def param_integer(
-            self, scenario, value, **kwargs):
+    def param_integer(self, scenario, value, cls=None, **kwargs):
         """Send a post request with header values "scenario": "positive", "value":
         1 or "scenario": "negative", "value": -2 .
 
@@ -172,7 +179,9 @@ class HeaderOperations(object):
         :type scenario: str
         :param value: Send a post request with header values 1 or -2
         :type value: int
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
@@ -184,30 +193,31 @@ class HeaderOperations(object):
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
         header_parameters['value'] = self._serialize.header("value", value, 'int')
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     param_integer.metadata = {'url': '/header/param/prim/integer'}
 
-    def response_integer(
-            self, scenario, **kwargs):
+    def response_integer(self, scenario, cls=None, **kwargs):
         """Get a response with header value "value": 1 or -2.
 
         :param scenario: Send a post request with header values "scenario":
          "positive" or "negative"
         :type scenario: str
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
@@ -219,23 +229,24 @@ class HeaderOperations(object):
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {
+                'value': self._deserialize('int', response.headers.get('value')),
+            }
+            return cls(response, None, response_headers)
     response_integer.metadata = {'url': '/header/response/prim/integer'}
 
-    def param_long(
-            self, scenario, value, **kwargs):
+    def param_long(self, scenario, value, cls=None, **kwargs):
         """Send a post request with header values "scenario": "positive", "value":
         105 or "scenario": "negative", "value": -2 .
 
@@ -244,7 +255,9 @@ class HeaderOperations(object):
         :type scenario: str
         :param value: Send a post request with header values 105 or -2
         :type value: long
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
@@ -256,30 +269,31 @@ class HeaderOperations(object):
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
         header_parameters['value'] = self._serialize.header("value", value, 'long')
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     param_long.metadata = {'url': '/header/param/prim/long'}
 
-    def response_long(
-            self, scenario, **kwargs):
+    def response_long(self, scenario, cls=None, **kwargs):
         """Get a response with header value "value": 105 or -2.
 
         :param scenario: Send a post request with header values "scenario":
          "positive" or "negative"
         :type scenario: str
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
@@ -291,23 +305,24 @@ class HeaderOperations(object):
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {
+                'value': self._deserialize('long', response.headers.get('value')),
+            }
+            return cls(response, None, response_headers)
     response_long.metadata = {'url': '/header/response/prim/long'}
 
-    def param_float(
-            self, scenario, value, **kwargs):
+    def param_float(self, scenario, value, cls=None, **kwargs):
         """Send a post request with header values "scenario": "positive", "value":
         0.07 or "scenario": "negative", "value": -3.0.
 
@@ -316,7 +331,9 @@ class HeaderOperations(object):
         :type scenario: str
         :param value: Send a post request with header values 0.07 or -3.0
         :type value: float
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
@@ -328,30 +345,31 @@ class HeaderOperations(object):
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
         header_parameters['value'] = self._serialize.header("value", value, 'float')
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     param_float.metadata = {'url': '/header/param/prim/float'}
 
-    def response_float(
-            self, scenario, **kwargs):
+    def response_float(self, scenario, cls=None, **kwargs):
         """Get a response with header value "value": 0.07 or -3.0.
 
         :param scenario: Send a post request with header values "scenario":
          "positive" or "negative"
         :type scenario: str
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
@@ -363,23 +381,24 @@ class HeaderOperations(object):
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {
+                'value': self._deserialize('float', response.headers.get('value')),
+            }
+            return cls(response, None, response_headers)
     response_float.metadata = {'url': '/header/response/prim/float'}
 
-    def param_double(
-            self, scenario, value, **kwargs):
+    def param_double(self, scenario, value, cls=None, **kwargs):
         """Send a post request with header values "scenario": "positive", "value":
         7e120 or "scenario": "negative", "value": -3.0.
 
@@ -388,7 +407,9 @@ class HeaderOperations(object):
         :type scenario: str
         :param value: Send a post request with header values 7e120 or -3.0
         :type value: float
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
@@ -400,30 +421,31 @@ class HeaderOperations(object):
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
         header_parameters['value'] = self._serialize.header("value", value, 'float')
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     param_double.metadata = {'url': '/header/param/prim/double'}
 
-    def response_double(
-            self, scenario, **kwargs):
+    def response_double(self, scenario, cls=None, **kwargs):
         """Get a response with header value "value": 7e120 or -3.0.
 
         :param scenario: Send a post request with header values "scenario":
          "positive" or "negative"
         :type scenario: str
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
@@ -435,23 +457,24 @@ class HeaderOperations(object):
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {
+                'value': self._deserialize('float', response.headers.get('value')),
+            }
+            return cls(response, None, response_headers)
     response_double.metadata = {'url': '/header/response/prim/double'}
 
-    def param_bool(
-            self, scenario, value, **kwargs):
+    def param_bool(self, scenario, value, cls=None, **kwargs):
         """Send a post request with header values "scenario": "true", "value":
         true or "scenario": "false", "value": false.
 
@@ -460,7 +483,9 @@ class HeaderOperations(object):
         :type scenario: str
         :param value: Send a post request with header values true or false
         :type value: bool
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
@@ -472,30 +497,31 @@ class HeaderOperations(object):
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
         header_parameters['value'] = self._serialize.header("value", value, 'bool')
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     param_bool.metadata = {'url': '/header/param/prim/bool'}
 
-    def response_bool(
-            self, scenario, **kwargs):
+    def response_bool(self, scenario, cls=None, **kwargs):
         """Get a response with header value "value": true or false.
 
         :param scenario: Send a post request with header values "scenario":
          "true" or "false"
         :type scenario: str
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
@@ -507,23 +533,24 @@ class HeaderOperations(object):
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {
+                'value': self._deserialize('bool', response.headers.get('value')),
+            }
+            return cls(response, None, response_headers)
     response_bool.metadata = {'url': '/header/response/prim/bool'}
 
-    def param_string(
-            self, scenario, value=None, **kwargs):
+    def param_string(self, scenario, value=None, cls=None, **kwargs):
         """Send a post request with header values "scenario": "valid", "value":
         "The quick brown fox jumps over the lazy dog" or "scenario": "null",
         "value": null or "scenario": "empty", "value": "".
@@ -534,7 +561,9 @@ class HeaderOperations(object):
         :param value: Send a post request with header values "The quick brown
          fox jumps over the lazy dog" or null or ""
         :type value: str
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
@@ -546,32 +575,33 @@ class HeaderOperations(object):
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
         if value is not None:
             header_parameters['value'] = self._serialize.header("value", value, 'str')
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     param_string.metadata = {'url': '/header/param/prim/string'}
 
-    def response_string(
-            self, scenario, **kwargs):
+    def response_string(self, scenario, cls=None, **kwargs):
         """Get a response with header values "The quick brown fox jumps over the
         lazy dog" or null or "".
 
         :param scenario: Send a post request with header values "scenario":
          "valid" or "null" or "empty"
         :type scenario: str
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
@@ -583,23 +613,24 @@ class HeaderOperations(object):
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {
+                'value': self._deserialize('str', response.headers.get('value')),
+            }
+            return cls(response, None, response_headers)
     response_string.metadata = {'url': '/header/response/prim/string'}
 
-    def param_date(
-            self, scenario, value, **kwargs):
+    def param_date(self, scenario, value, cls=None, **kwargs):
         """Send a post request with header values "scenario": "valid", "value":
         "2010-01-01" or "scenario": "min", "value": "0001-01-01".
 
@@ -609,7 +640,9 @@ class HeaderOperations(object):
         :param value: Send a post request with header values "2010-01-01" or
          "0001-01-01"
         :type value: date
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
@@ -621,30 +654,31 @@ class HeaderOperations(object):
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
         header_parameters['value'] = self._serialize.header("value", value, 'date')
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     param_date.metadata = {'url': '/header/param/prim/date'}
 
-    def response_date(
-            self, scenario, **kwargs):
+    def response_date(self, scenario, cls=None, **kwargs):
         """Get a response with header values "2010-01-01" or "0001-01-01".
 
         :param scenario: Send a post request with header values "scenario":
          "valid" or "min"
         :type scenario: str
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
@@ -656,23 +690,24 @@ class HeaderOperations(object):
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {
+                'value': self._deserialize('date', response.headers.get('value')),
+            }
+            return cls(response, None, response_headers)
     response_date.metadata = {'url': '/header/response/prim/date'}
 
-    def param_datetime(
-            self, scenario, value, **kwargs):
+    def param_datetime(self, scenario, value, cls=None, **kwargs):
         """Send a post request with header values "scenario": "valid", "value":
         "2010-01-01T12:34:56Z" or "scenario": "min", "value":
         "0001-01-01T00:00:00Z".
@@ -683,7 +718,9 @@ class HeaderOperations(object):
         :param value: Send a post request with header values
          "2010-01-01T12:34:56Z" or "0001-01-01T00:00:00Z"
         :type value: datetime
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
@@ -695,31 +732,32 @@ class HeaderOperations(object):
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
         header_parameters['value'] = self._serialize.header("value", value, 'iso-8601')
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     param_datetime.metadata = {'url': '/header/param/prim/datetime'}
 
-    def response_datetime(
-            self, scenario, **kwargs):
+    def response_datetime(self, scenario, cls=None, **kwargs):
         """Get a response with header values "2010-01-01T12:34:56Z" or
         "0001-01-01T00:00:00Z".
 
         :param scenario: Send a post request with header values "scenario":
          "valid" or "min"
         :type scenario: str
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
@@ -731,23 +769,24 @@ class HeaderOperations(object):
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {
+                'value': self._deserialize('iso-8601', response.headers.get('value')),
+            }
+            return cls(response, None, response_headers)
     response_datetime.metadata = {'url': '/header/response/prim/datetime'}
 
-    def param_datetime_rfc1123(
-            self, scenario, value=None, **kwargs):
+    def param_datetime_rfc1123(self, scenario, value=None, cls=None, **kwargs):
         """Send a post request with header values "scenario": "valid", "value":
         "Wed, 01 Jan 2010 12:34:56 GMT" or "scenario": "min", "value": "Mon, 01
         Jan 0001 00:00:00 GMT".
@@ -758,7 +797,9 @@ class HeaderOperations(object):
         :param value: Send a post request with header values "Wed, 01 Jan 2010
          12:34:56 GMT" or "Mon, 01 Jan 0001 00:00:00 GMT"
         :type value: datetime
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
@@ -770,32 +811,33 @@ class HeaderOperations(object):
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
         if value is not None:
             header_parameters['value'] = self._serialize.header("value", value, 'rfc-1123')
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     param_datetime_rfc1123.metadata = {'url': '/header/param/prim/datetimerfc1123'}
 
-    def response_datetime_rfc1123(
-            self, scenario, **kwargs):
+    def response_datetime_rfc1123(self, scenario, cls=None, **kwargs):
         """Get a response with header values "Wed, 01 Jan 2010 12:34:56 GMT" or
         "Mon, 01 Jan 0001 00:00:00 GMT".
 
         :param scenario: Send a post request with header values "scenario":
          "valid" or "min"
         :type scenario: str
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
@@ -807,23 +849,24 @@ class HeaderOperations(object):
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {
+                'value': self._deserialize('rfc-1123', response.headers.get('value')),
+            }
+            return cls(response, None, response_headers)
     response_datetime_rfc1123.metadata = {'url': '/header/response/prim/datetimerfc1123'}
 
-    def param_duration(
-            self, scenario, value, **kwargs):
+    def param_duration(self, scenario, value, cls=None, **kwargs):
         """Send a post request with header values "scenario": "valid", "value":
         "P123DT22H14M12.011S".
 
@@ -833,7 +876,9 @@ class HeaderOperations(object):
         :param value: Send a post request with header values
          "P123DT22H14M12.011S"
         :type value: timedelta
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
@@ -845,30 +890,31 @@ class HeaderOperations(object):
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
         header_parameters['value'] = self._serialize.header("value", value, 'duration')
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     param_duration.metadata = {'url': '/header/param/prim/duration'}
 
-    def response_duration(
-            self, scenario, **kwargs):
+    def response_duration(self, scenario, cls=None, **kwargs):
         """Get a response with header values "P123DT22H14M12.011S".
 
         :param scenario: Send a post request with header values "scenario":
          "valid"
         :type scenario: str
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
@@ -880,23 +926,24 @@ class HeaderOperations(object):
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {
+                'value': self._deserialize('duration', response.headers.get('value')),
+            }
+            return cls(response, None, response_headers)
     response_duration.metadata = {'url': '/header/response/prim/duration'}
 
-    def param_byte(
-            self, scenario, value, **kwargs):
+    def param_byte(self, scenario, value, cls=None, **kwargs):
         """Send a post request with header values "scenario": "valid", "value":
         "啊齄丂狛狜隣郎隣兀﨩".
 
@@ -905,7 +952,9 @@ class HeaderOperations(object):
         :type scenario: str
         :param value: Send a post request with header values "啊齄丂狛狜隣郎隣兀﨩"
         :type value: bytearray
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
@@ -917,30 +966,31 @@ class HeaderOperations(object):
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
         header_parameters['value'] = self._serialize.header("value", value, 'bytearray')
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     param_byte.metadata = {'url': '/header/param/prim/byte'}
 
-    def response_byte(
-            self, scenario, **kwargs):
+    def response_byte(self, scenario, cls=None, **kwargs):
         """Get a response with header values "啊齄丂狛狜隣郎隣兀﨩".
 
         :param scenario: Send a post request with header values "scenario":
          "valid"
         :type scenario: str
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
@@ -952,23 +1002,24 @@ class HeaderOperations(object):
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {
+                'value': self._deserialize('bytearray', response.headers.get('value')),
+            }
+            return cls(response, None, response_headers)
     response_byte.metadata = {'url': '/header/response/prim/byte'}
 
-    def param_enum(
-            self, scenario, value=None, **kwargs):
+    def param_enum(self, scenario, value=None, cls=None, **kwargs):
         """Send a post request with header values "scenario": "valid", "value":
         "GREY" or "scenario": "null", "value": null.
 
@@ -978,7 +1029,9 @@ class HeaderOperations(object):
         :param value: Send a post request with header values 'GREY'. Possible
          values include: 'White', 'black', 'GREY'
         :type value: str or ~header.models.GreyscaleColors
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
@@ -990,31 +1043,32 @@ class HeaderOperations(object):
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
         if value is not None:
             header_parameters['value'] = self._serialize.header("value", value, 'GreyscaleColors')
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     param_enum.metadata = {'url': '/header/param/prim/enum'}
 
-    def response_enum(
-            self, scenario, **kwargs):
+    def response_enum(self, scenario, cls=None, **kwargs):
         """Get a response with header values "GREY" or null.
 
         :param scenario: Send a post request with header values "scenario":
          "valid" or "null" or "empty"
         :type scenario: str
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
@@ -1026,27 +1080,30 @@ class HeaderOperations(object):
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {
+                'value': self._deserialize(models.GreyscaleColors, response.headers.get('value')),
+            }
+            return cls(response, None, response_headers)
     response_enum.metadata = {'url': '/header/response/prim/enum'}
 
-    def custom_request_id(
-            self, **kwargs):
+    def custom_request_id(self, cls=None, **kwargs):
         """Send x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in
         the header of the request.
 
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
@@ -1058,16 +1115,16 @@ class HeaderOperations(object):
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     custom_request_id.metadata = {'url': '/header/custom/x-ms-client-request-id/9C4D50EE-2D56-4CD3-8152-34347DC9F2B0'}

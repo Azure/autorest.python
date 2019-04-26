@@ -34,11 +34,12 @@ class IntModelOperations:
 
         self._config = config
 
-    async def get_null(
-            self, **kwargs):
+    async def get_null(self, *, cls=None, **kwargs):
         """Get null Int value.
 
-        :return: int
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: int or the result of cls(response)
         :rtype: int
         :raises: :class:`ErrorException<bodyinteger.models.ErrorException>`
         """
@@ -51,30 +52,31 @@ class IntModelOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('int', response)
 
+        if cls:
+            return cls(response, deserialized, None)
+
         return deserialized
     get_null.metadata = {'url': '/int/null'}
 
-    async def get_invalid(
-            self, **kwargs):
+    async def get_invalid(self, *, cls=None, **kwargs):
         """Get invalid Int value.
 
-        :return: int
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: int or the result of cls(response)
         :rtype: int
         :raises: :class:`ErrorException<bodyinteger.models.ErrorException>`
         """
@@ -87,30 +89,31 @@ class IntModelOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('int', response)
 
+        if cls:
+            return cls(response, deserialized, None)
+
         return deserialized
     get_invalid.metadata = {'url': '/int/invalid'}
 
-    async def get_overflow_int32(
-            self, **kwargs):
+    async def get_overflow_int32(self, *, cls=None, **kwargs):
         """Get overflow Int32 value.
 
-        :return: int
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: int or the result of cls(response)
         :rtype: int
         :raises: :class:`ErrorException<bodyinteger.models.ErrorException>`
         """
@@ -123,30 +126,31 @@ class IntModelOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('int', response)
 
+        if cls:
+            return cls(response, deserialized, None)
+
         return deserialized
     get_overflow_int32.metadata = {'url': '/int/overflowint32'}
 
-    async def get_underflow_int32(
-            self, **kwargs):
+    async def get_underflow_int32(self, *, cls=None, **kwargs):
         """Get underflow Int32 value.
 
-        :return: int
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: int or the result of cls(response)
         :rtype: int
         :raises: :class:`ErrorException<bodyinteger.models.ErrorException>`
         """
@@ -159,30 +163,31 @@ class IntModelOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('int', response)
 
+        if cls:
+            return cls(response, deserialized, None)
+
         return deserialized
     get_underflow_int32.metadata = {'url': '/int/underflowint32'}
 
-    async def get_overflow_int64(
-            self, **kwargs):
+    async def get_overflow_int64(self, *, cls=None, **kwargs):
         """Get overflow Int64 value.
 
-        :return: long
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: long or the result of cls(response)
         :rtype: long
         :raises: :class:`ErrorException<bodyinteger.models.ErrorException>`
         """
@@ -195,30 +200,31 @@ class IntModelOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('long', response)
 
+        if cls:
+            return cls(response, deserialized, None)
+
         return deserialized
     get_overflow_int64.metadata = {'url': '/int/overflowint64'}
 
-    async def get_underflow_int64(
-            self, **kwargs):
+    async def get_underflow_int64(self, *, cls=None, **kwargs):
         """Get underflow Int64 value.
 
-        :return: long
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: long or the result of cls(response)
         :rtype: long
         :raises: :class:`ErrorException<bodyinteger.models.ErrorException>`
         """
@@ -231,32 +237,33 @@ class IntModelOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('long', response)
 
+        if cls:
+            return cls(response, deserialized, None)
+
         return deserialized
     get_underflow_int64.metadata = {'url': '/int/underflowint64'}
 
-    async def put_max32(
-            self, int_body, **kwargs):
+    async def put_max32(self, int_body, *, cls=None, **kwargs):
         """Put max int32 value.
 
         :param int_body:
         :type int_body: int
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<bodyinteger.models.ErrorException>`
         """
@@ -269,30 +276,31 @@ class IntModelOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(int_body, 'int')
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     put_max32.metadata = {'url': '/int/max/32'}
 
-    async def put_max64(
-            self, int_body, **kwargs):
+    async def put_max64(self, int_body, *, cls=None, **kwargs):
         """Put max int64 value.
 
         :param int_body:
         :type int_body: long
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<bodyinteger.models.ErrorException>`
         """
@@ -305,30 +313,31 @@ class IntModelOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(int_body, 'long')
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     put_max64.metadata = {'url': '/int/max/64'}
 
-    async def put_min32(
-            self, int_body, **kwargs):
+    async def put_min32(self, int_body, *, cls=None, **kwargs):
         """Put min int32 value.
 
         :param int_body:
         :type int_body: int
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<bodyinteger.models.ErrorException>`
         """
@@ -341,30 +350,31 @@ class IntModelOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(int_body, 'int')
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     put_min32.metadata = {'url': '/int/min/32'}
 
-    async def put_min64(
-            self, int_body, **kwargs):
+    async def put_min64(self, int_body, *, cls=None, **kwargs):
         """Put min int64 value.
 
         :param int_body:
         :type int_body: long
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<bodyinteger.models.ErrorException>`
         """
@@ -377,28 +387,29 @@ class IntModelOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(int_body, 'long')
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     put_min64.metadata = {'url': '/int/min/64'}
 
-    async def get_unix_time(
-            self, **kwargs):
+    async def get_unix_time(self, *, cls=None, **kwargs):
         """Get datetime encoded as Unix time value.
 
-        :return: datetime
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: datetime or the result of cls(response)
         :rtype: datetime
         :raises: :class:`ErrorException<bodyinteger.models.ErrorException>`
         """
@@ -411,32 +422,33 @@ class IntModelOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('unix-time', response)
 
+        if cls:
+            return cls(response, deserialized, None)
+
         return deserialized
     get_unix_time.metadata = {'url': '/int/unixtime'}
 
-    async def put_unix_time_date(
-            self, int_body, **kwargs):
+    async def put_unix_time_date(self, int_body, *, cls=None, **kwargs):
         """Put datetime encoded as Unix time.
 
         :param int_body:
         :type int_body: datetime
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<bodyinteger.models.ErrorException>`
         """
@@ -449,28 +461,29 @@ class IntModelOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(int_body, 'unix-time')
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     put_unix_time_date.metadata = {'url': '/int/unixtime'}
 
-    async def get_invalid_unix_time(
-            self, **kwargs):
+    async def get_invalid_unix_time(self, *, cls=None, **kwargs):
         """Get invalid Unix time value.
 
-        :return: datetime
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: datetime or the result of cls(response)
         :rtype: datetime
         :raises: :class:`ErrorException<bodyinteger.models.ErrorException>`
         """
@@ -483,30 +496,31 @@ class IntModelOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('unix-time', response)
 
+        if cls:
+            return cls(response, deserialized, None)
+
         return deserialized
     get_invalid_unix_time.metadata = {'url': '/int/invalidunixtime'}
 
-    async def get_null_unix_time(
-            self, **kwargs):
+    async def get_null_unix_time(self, *, cls=None, **kwargs):
         """Get null Unix time value.
 
-        :return: datetime
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: datetime or the result of cls(response)
         :rtype: datetime
         :raises: :class:`ErrorException<bodyinteger.models.ErrorException>`
         """
@@ -519,21 +533,21 @@ class IntModelOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('unix-time', response)
+
+        if cls:
+            return cls(response, deserialized, None)
 
         return deserialized
     get_null_unix_time.metadata = {'url': '/int/nullunixtime'}

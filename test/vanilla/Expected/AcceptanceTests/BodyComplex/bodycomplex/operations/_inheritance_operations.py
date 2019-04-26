@@ -34,11 +34,12 @@ class InheritanceOperations(object):
 
         self._config = config
 
-    def get_valid(
-            self, **kwargs):
+    def get_valid(self, cls=None, **kwargs):
         """Get complex types that extend others.
 
-        :return: Siamese
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: Siamese or the result of cls(response)
         :rtype: ~bodycomplex.models.Siamese
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
@@ -51,27 +52,26 @@ class InheritanceOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('Siamese', response)
 
+        if cls:
+            return cls(response, deserialized, None)
+
         return deserialized
     get_valid.metadata = {'url': '/complex/inheritance/valid'}
 
-    def put_valid(
-            self, complex_body, **kwargs):
+    def put_valid(self, complex_body, cls=None, **kwargs):
         """Put complex types that extend others.
 
         :param complex_body: Please put a siamese with id=2, name="Siameee",
@@ -79,7 +79,9 @@ class InheritanceOperations(object):
          "Potato" with id=1 and food="tomato", and the 2nd one named "Tomato"
          with id=-1 and food="french fries".
         :type complex_body: ~bodycomplex.models.Siamese
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
@@ -92,19 +94,19 @@ class InheritanceOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         body_content = self._serialize.body(complex_body, 'Siamese')
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     put_valid.metadata = {'url': '/complex/inheritance/valid'}

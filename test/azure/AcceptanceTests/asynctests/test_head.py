@@ -45,12 +45,11 @@ sys.path.append(join(tests, "HeadExceptions"))
 from msrest.serialization import Deserializer
 from msrest.exceptions import DeserializationError
 from msrest.authentication import BasicTokenAuthentication
-from msrestazure.azure_exceptions import CloudError, CloudErrorData
 
 from head.aio import AutoRestHeadTestService
 from headexceptions.aio import AutoRestHeadExceptionTestService
 
-from azure.core import HttpRequestError
+from azure.core import HttpRequestError, HttpRequestError
 
 import pytest
 
@@ -74,7 +73,7 @@ class TestHead(object):
 
         await client.head_exception.head200()
         await client.head_exception.head204()
-        with pytest.raises(CloudError):
+        with pytest.raises(HttpRequestError):
             await client.head_exception.head404()
 
 

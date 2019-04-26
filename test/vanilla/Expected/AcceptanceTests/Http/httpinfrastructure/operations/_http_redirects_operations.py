@@ -34,11 +34,12 @@ class HttpRedirectsOperations(object):
 
         self._config = config
 
-    def head300(
-            self, **kwargs):
+    def head300(self, cls=None, **kwargs):
         """Return 300 status code and redirect to /http/success/200.
 
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
@@ -51,25 +52,28 @@ class HttpRedirectsOperations(object):
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.head(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 300]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {
+                'Location': self._deserialize('str', response.headers.get('Location')),
+            }
+            return cls(response, None, response_headers)
     head300.metadata = {'url': '/http/redirect/300'}
 
-    def get300(
-            self, **kwargs):
+    def get300(self, cls=None, **kwargs):
         """Return 300 status code and redirect to /http/success/200.
 
-        :return: list
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: list or the result of cls(response)
         :rtype: list[str]
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
@@ -83,34 +87,35 @@ class HttpRedirectsOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 300]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         header_dict = {}
         deserialized = None
         if response.status_code == 300:
             deserialized = self._deserialize('[str]', response)
             header_dict = {
-                'Location': 'str',
+                'Location': self._deserialize('str', response.headers.get('Location')),
             }
+
+        if cls:
+            return cls(response, deserialized, header_dict)
 
         return deserialized
     get300.metadata = {'url': '/http/redirect/300'}
 
-    def head301(
-            self, **kwargs):
+    def head301(self, cls=None, **kwargs):
         """Return 301 status code and redirect to /http/success/200.
 
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
@@ -123,25 +128,28 @@ class HttpRedirectsOperations(object):
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.head(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 301]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {
+                'Location': self._deserialize('str', response.headers.get('Location')),
+            }
+            return cls(response, None, response_headers)
     head301.metadata = {'url': '/http/redirect/301'}
 
-    def get301(
-            self, **kwargs):
+    def get301(self, cls=None, **kwargs):
         """Return 301 status code and redirect to /http/success/200.
 
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
@@ -154,29 +162,32 @@ class HttpRedirectsOperations(object):
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 301]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {
+                'Location': self._deserialize('str', response.headers.get('Location')),
+            }
+            return cls(response, None, response_headers)
     get301.metadata = {'url': '/http/redirect/301'}
 
-    def put301(
-            self, boolean_value=None, **kwargs):
+    def put301(self, boolean_value=None, cls=None, **kwargs):
         """Put true Boolean value in request returns 301.  This request should not
         be automatically redirected, but should return the received 301 to the
         caller for evaluation.
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
@@ -190,9 +201,6 @@ class HttpRedirectsOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         if boolean_value is not None:
@@ -202,19 +210,25 @@ class HttpRedirectsOperations(object):
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [301]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {
+                'Location': self._deserialize('str', response.headers.get('Location')),
+            }
+            return cls(response, None, response_headers)
     put301.metadata = {'url': '/http/redirect/301'}
 
-    def head302(
-            self, **kwargs):
+    def head302(self, cls=None, **kwargs):
         """Return 302 status code and redirect to /http/success/200.
 
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
@@ -227,25 +241,28 @@ class HttpRedirectsOperations(object):
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.head(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 302]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {
+                'Location': self._deserialize('str', response.headers.get('Location')),
+            }
+            return cls(response, None, response_headers)
     head302.metadata = {'url': '/http/redirect/302'}
 
-    def get302(
-            self, **kwargs):
+    def get302(self, cls=None, **kwargs):
         """Return 302 status code and redirect to /http/success/200.
 
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
@@ -258,29 +275,32 @@ class HttpRedirectsOperations(object):
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 302]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {
+                'Location': self._deserialize('str', response.headers.get('Location')),
+            }
+            return cls(response, None, response_headers)
     get302.metadata = {'url': '/http/redirect/302'}
 
-    def patch302(
-            self, boolean_value=None, **kwargs):
+    def patch302(self, boolean_value=None, cls=None, **kwargs):
         """Patch true Boolean value in request returns 302.  This request should
         not be automatically redirected, but should return the received 302 to
         the caller for evaluation.
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
@@ -294,9 +314,6 @@ class HttpRedirectsOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         if boolean_value is not None:
@@ -306,23 +323,29 @@ class HttpRedirectsOperations(object):
 
         # Construct and send request
         request = self._client.patch(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [302]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {
+                'Location': self._deserialize('str', response.headers.get('Location')),
+            }
+            return cls(response, None, response_headers)
     patch302.metadata = {'url': '/http/redirect/302'}
 
-    def post303(
-            self, boolean_value=None, **kwargs):
+    def post303(self, boolean_value=None, cls=None, **kwargs):
         """Post true Boolean value in request returns 303.  This request should be
         automatically redirected usign a get, ultimately returning a 200 status
         code.
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
@@ -336,9 +359,6 @@ class HttpRedirectsOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         if boolean_value is not None:
@@ -348,19 +368,25 @@ class HttpRedirectsOperations(object):
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 303]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {
+                'Location': self._deserialize('str', response.headers.get('Location')),
+            }
+            return cls(response, None, response_headers)
     post303.metadata = {'url': '/http/redirect/303'}
 
-    def head307(
-            self, **kwargs):
+    def head307(self, cls=None, **kwargs):
         """Redirect with 307, resulting in a 200 success.
 
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
@@ -373,25 +399,28 @@ class HttpRedirectsOperations(object):
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.head(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 307]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {
+                'Location': self._deserialize('str', response.headers.get('Location')),
+            }
+            return cls(response, None, response_headers)
     head307.metadata = {'url': '/http/redirect/307'}
 
-    def get307(
-            self, **kwargs):
+    def get307(self, cls=None, **kwargs):
         """Redirect get with 307, resulting in a 200 success.
 
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
@@ -404,27 +433,30 @@ class HttpRedirectsOperations(object):
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 307]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {
+                'Location': self._deserialize('str', response.headers.get('Location')),
+            }
+            return cls(response, None, response_headers)
     get307.metadata = {'url': '/http/redirect/307'}
 
-    def put307(
-            self, boolean_value=None, **kwargs):
+    def put307(self, boolean_value=None, cls=None, **kwargs):
         """Put redirected with 307, resulting in a 200 after redirect.
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
@@ -438,9 +470,6 @@ class HttpRedirectsOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         if boolean_value is not None:
@@ -450,21 +479,27 @@ class HttpRedirectsOperations(object):
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 307]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {
+                'Location': self._deserialize('str', response.headers.get('Location')),
+            }
+            return cls(response, None, response_headers)
     put307.metadata = {'url': '/http/redirect/307'}
 
-    def patch307(
-            self, boolean_value=None, **kwargs):
+    def patch307(self, boolean_value=None, cls=None, **kwargs):
         """Patch redirected with 307, resulting in a 200 after redirect.
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
@@ -478,9 +513,6 @@ class HttpRedirectsOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         if boolean_value is not None:
@@ -490,21 +522,27 @@ class HttpRedirectsOperations(object):
 
         # Construct and send request
         request = self._client.patch(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 307]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {
+                'Location': self._deserialize('str', response.headers.get('Location')),
+            }
+            return cls(response, None, response_headers)
     patch307.metadata = {'url': '/http/redirect/307'}
 
-    def post307(
-            self, boolean_value=None, **kwargs):
+    def post307(self, boolean_value=None, cls=None, **kwargs):
         """Post redirected with 307, resulting in a 200 after redirect.
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
@@ -518,9 +556,6 @@ class HttpRedirectsOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         if boolean_value is not None:
@@ -530,21 +565,27 @@ class HttpRedirectsOperations(object):
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 307]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {
+                'Location': self._deserialize('str', response.headers.get('Location')),
+            }
+            return cls(response, None, response_headers)
     post307.metadata = {'url': '/http/redirect/307'}
 
-    def delete307(
-            self, boolean_value=None, **kwargs):
+    def delete307(self, boolean_value=None, cls=None, **kwargs):
         """Delete redirected with 307, resulting in a 200 after redirect.
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
@@ -558,9 +599,6 @@ class HttpRedirectsOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         if boolean_value is not None:
@@ -570,10 +608,15 @@ class HttpRedirectsOperations(object):
 
         # Construct and send request
         request = self._client.delete(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 307]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {
+                'Location': self._deserialize('str', response.headers.get('Location')),
+            }
+            return cls(response, None, response_headers)
     delete307.metadata = {'url': '/http/redirect/307'}

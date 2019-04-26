@@ -35,15 +35,16 @@ class ParameterGroupingOperations(object):
 
         self._config = config
 
-    def post_required(
-            self, parameter_grouping_post_required_parameters, **kwargs):
+    def post_required(self, parameter_grouping_post_required_parameters, cls=None, **kwargs):
         """Post a bunch of required parameters grouped.
 
         :param parameter_grouping_post_required_parameters: Additional
          parameters for the operation
         :type parameter_grouping_post_required_parameters:
          ~azureparametergrouping.models.ParameterGroupingPostRequiredParameters
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises:
          :class:`ErrorException<azureparametergrouping.models.ErrorException>`
@@ -78,9 +79,6 @@ class ParameterGroupingOperations(object):
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
         if self._config.accept_language is not None:
             header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
         if custom_header is not None:
@@ -91,23 +89,27 @@ class ParameterGroupingOperations(object):
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     post_required.metadata = {'url': '/parameterGrouping/postRequired/{path}'}
 
-    def post_optional(
-            self, parameter_grouping_post_optional_parameters=None, **kwargs):
+    def post_optional(self, parameter_grouping_post_optional_parameters=None, cls=None, **kwargs):
         """Post a bunch of optional parameters grouped.
 
         :param parameter_grouping_post_optional_parameters: Additional
          parameters for the operation
         :type parameter_grouping_post_optional_parameters:
          ~azureparametergrouping.models.ParameterGroupingPostOptionalParameters
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises:
          :class:`ErrorException<azureparametergrouping.models.ErrorException>`
@@ -131,9 +133,6 @@ class ParameterGroupingOperations(object):
         header_parameters = {}
         if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
         if self._config.accept_language is not None:
             header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
         if custom_header is not None:
@@ -141,16 +140,18 @@ class ParameterGroupingOperations(object):
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     post_optional.metadata = {'url': '/parameterGrouping/postOptional'}
 
-    def post_multi_param_groups(
-            self, first_parameter_group=None, parameter_grouping_post_multi_param_groups_second_param_group=None, **kwargs):
+    def post_multi_param_groups(self, first_parameter_group=None, parameter_grouping_post_multi_param_groups_second_param_group=None, cls=None, **kwargs):
         """Post parameters from multiple different parameter groups.
 
         :param first_parameter_group: Additional parameters for the operation
@@ -160,7 +161,9 @@ class ParameterGroupingOperations(object):
          Additional parameters for the operation
         :type parameter_grouping_post_multi_param_groups_second_param_group:
          ~azureparametergrouping.models.ParameterGroupingPostMultiParamGroupsSecondParamGroup
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises:
          :class:`ErrorException<azureparametergrouping.models.ErrorException>`
@@ -192,9 +195,6 @@ class ParameterGroupingOperations(object):
         header_parameters = {}
         if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
         if self._config.accept_language is not None:
             header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
         if header_one is not None:
@@ -204,22 +204,26 @@ class ParameterGroupingOperations(object):
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     post_multi_param_groups.metadata = {'url': '/parameterGrouping/postMultipleParameterGroups'}
 
-    def post_shared_parameter_group_object(
-            self, first_parameter_group=None, **kwargs):
+    def post_shared_parameter_group_object(self, first_parameter_group=None, cls=None, **kwargs):
         """Post parameters with a shared parameter group object.
 
         :param first_parameter_group: Additional parameters for the operation
         :type first_parameter_group:
          ~azureparametergrouping.models.FirstParameterGroup
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises:
          :class:`ErrorException<azureparametergrouping.models.ErrorException>`
@@ -243,9 +247,6 @@ class ParameterGroupingOperations(object):
         header_parameters = {}
         if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
         if self._config.accept_language is not None:
             header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
         if header_one is not None:
@@ -253,10 +254,13 @@ class ParameterGroupingOperations(object):
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     post_shared_parameter_group_object.metadata = {'url': '/parameterGrouping/sharedParameterGroupObject'}

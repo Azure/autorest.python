@@ -34,11 +34,12 @@ class HttpSuccessOperations(object):
 
         self._config = config
 
-    def head200(
-            self, **kwargs):
+    def head200(self, cls=None, **kwargs):
         """Return 200 status code if successful.
 
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
@@ -51,25 +52,26 @@ class HttpSuccessOperations(object):
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.head(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     head200.metadata = {'url': '/http/success/200'}
 
-    def get200(
-            self, **kwargs):
+    def get200(self, cls=None, **kwargs):
         """Get 200 success.
 
-        :return: bool
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: bool or the result of cls(response)
         :rtype: bool
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
@@ -83,32 +85,33 @@ class HttpSuccessOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('bool', response)
 
+        if cls:
+            return cls(response, deserialized, None)
+
         return deserialized
     get200.metadata = {'url': '/http/success/200'}
 
-    def put200(
-            self, boolean_value=None, **kwargs):
+    def put200(self, boolean_value=None, cls=None, **kwargs):
         """Put boolean value true returning 200 success.
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
@@ -122,9 +125,6 @@ class HttpSuccessOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         if boolean_value is not None:
@@ -134,21 +134,25 @@ class HttpSuccessOperations(object):
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     put200.metadata = {'url': '/http/success/200'}
 
-    def patch200(
-            self, boolean_value=None, **kwargs):
+    def patch200(self, boolean_value=None, cls=None, **kwargs):
         """Patch true Boolean value in request returning 200.
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
@@ -162,9 +166,6 @@ class HttpSuccessOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         if boolean_value is not None:
@@ -174,21 +175,25 @@ class HttpSuccessOperations(object):
 
         # Construct and send request
         request = self._client.patch(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     patch200.metadata = {'url': '/http/success/200'}
 
-    def post200(
-            self, boolean_value=None, **kwargs):
+    def post200(self, boolean_value=None, cls=None, **kwargs):
         """Post bollean value true in request that returns a 200.
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
@@ -202,9 +207,6 @@ class HttpSuccessOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         if boolean_value is not None:
@@ -214,21 +216,25 @@ class HttpSuccessOperations(object):
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     post200.metadata = {'url': '/http/success/200'}
 
-    def delete200(
-            self, boolean_value=None, **kwargs):
+    def delete200(self, boolean_value=None, cls=None, **kwargs):
         """Delete simple boolean value true returns 200.
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
@@ -242,9 +248,6 @@ class HttpSuccessOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         if boolean_value is not None:
@@ -254,21 +257,25 @@ class HttpSuccessOperations(object):
 
         # Construct and send request
         request = self._client.delete(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     delete200.metadata = {'url': '/http/success/200'}
 
-    def put201(
-            self, boolean_value=None, **kwargs):
+    def put201(self, boolean_value=None, cls=None, **kwargs):
         """Put true Boolean value in request returns 201.
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
@@ -282,9 +289,6 @@ class HttpSuccessOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         if boolean_value is not None:
@@ -294,21 +298,25 @@ class HttpSuccessOperations(object):
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [201]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     put201.metadata = {'url': '/http/success/201'}
 
-    def post201(
-            self, boolean_value=None, **kwargs):
+    def post201(self, boolean_value=None, cls=None, **kwargs):
         """Post true Boolean value in request returns 201 (Created).
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
@@ -322,9 +330,6 @@ class HttpSuccessOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         if boolean_value is not None:
@@ -334,21 +339,25 @@ class HttpSuccessOperations(object):
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [201]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     post201.metadata = {'url': '/http/success/201'}
 
-    def put202(
-            self, boolean_value=None, **kwargs):
+    def put202(self, boolean_value=None, cls=None, **kwargs):
         """Put true Boolean value in request returns 202 (Accepted).
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
@@ -362,9 +371,6 @@ class HttpSuccessOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         if boolean_value is not None:
@@ -374,21 +380,25 @@ class HttpSuccessOperations(object):
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     put202.metadata = {'url': '/http/success/202'}
 
-    def patch202(
-            self, boolean_value=None, **kwargs):
+    def patch202(self, boolean_value=None, cls=None, **kwargs):
         """Patch true Boolean value in request returns 202.
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
@@ -402,9 +412,6 @@ class HttpSuccessOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         if boolean_value is not None:
@@ -414,21 +421,25 @@ class HttpSuccessOperations(object):
 
         # Construct and send request
         request = self._client.patch(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     patch202.metadata = {'url': '/http/success/202'}
 
-    def post202(
-            self, boolean_value=None, **kwargs):
+    def post202(self, boolean_value=None, cls=None, **kwargs):
         """Post true Boolean value in request returns 202 (Accepted).
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
@@ -442,9 +453,6 @@ class HttpSuccessOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         if boolean_value is not None:
@@ -454,21 +462,25 @@ class HttpSuccessOperations(object):
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     post202.metadata = {'url': '/http/success/202'}
 
-    def delete202(
-            self, boolean_value=None, **kwargs):
+    def delete202(self, boolean_value=None, cls=None, **kwargs):
         """Delete true Boolean value in request returns 202 (accepted).
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
@@ -482,9 +494,6 @@ class HttpSuccessOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         if boolean_value is not None:
@@ -494,19 +503,23 @@ class HttpSuccessOperations(object):
 
         # Construct and send request
         request = self._client.delete(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     delete202.metadata = {'url': '/http/success/202'}
 
-    def head204(
-            self, **kwargs):
+    def head204(self, cls=None, **kwargs):
         """Return 204 status code if successful.
 
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
@@ -519,27 +532,28 @@ class HttpSuccessOperations(object):
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.head(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     head204.metadata = {'url': '/http/success/204'}
 
-    def put204(
-            self, boolean_value=None, **kwargs):
+    def put204(self, boolean_value=None, cls=None, **kwargs):
         """Put true Boolean value in request returns 204 (no content).
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
@@ -553,9 +567,6 @@ class HttpSuccessOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         if boolean_value is not None:
@@ -565,21 +576,25 @@ class HttpSuccessOperations(object):
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     put204.metadata = {'url': '/http/success/204'}
 
-    def patch204(
-            self, boolean_value=None, **kwargs):
+    def patch204(self, boolean_value=None, cls=None, **kwargs):
         """Patch true Boolean value in request returns 204 (no content).
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
@@ -593,9 +608,6 @@ class HttpSuccessOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         if boolean_value is not None:
@@ -605,21 +617,25 @@ class HttpSuccessOperations(object):
 
         # Construct and send request
         request = self._client.patch(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     patch204.metadata = {'url': '/http/success/204'}
 
-    def post204(
-            self, boolean_value=None, **kwargs):
+    def post204(self, boolean_value=None, cls=None, **kwargs):
         """Post true Boolean value in request returns 204 (no content).
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
@@ -633,9 +649,6 @@ class HttpSuccessOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         if boolean_value is not None:
@@ -645,21 +658,25 @@ class HttpSuccessOperations(object):
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     post204.metadata = {'url': '/http/success/204'}
 
-    def delete204(
-            self, boolean_value=None, **kwargs):
+    def delete204(self, boolean_value=None, cls=None, **kwargs):
         """Delete true Boolean value in request returns 204 (no content).
 
         :param boolean_value: Simple boolean value true
         :type boolean_value: bool
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
@@ -673,9 +690,6 @@ class HttpSuccessOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct body
         if boolean_value is not None:
@@ -685,19 +699,23 @@ class HttpSuccessOperations(object):
 
         # Construct and send request
         request = self._client.delete(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     delete204.metadata = {'url': '/http/success/204'}
 
-    def head404(
-            self, **kwargs):
+    def head404(self, cls=None, **kwargs):
         """Return 404 status code.
 
-        :return: None
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
         :rtype: None
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
@@ -710,16 +728,16 @@ class HttpSuccessOperations(object):
 
         # Construct headers
         header_parameters = {}
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
 
         # Construct and send request
         request = self._client.head(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [204, 404]:
-            raise models.ErrorException(self._deserialize, response)
+            raise models.ErrorException(response, self._deserialize)
 
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
     head404.metadata = {'url': '/http/success/404'}

@@ -32,11 +32,12 @@ class HttpSuccessOperations:
 
         self._config = config
 
-    async def head200(
-            self, **kwargs):
+    async def head200(self, *, cls=None, **kwargs):
         """Return 200 status code if successful.
 
-        :return: bool
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: bool or the result of cls(response)
         :rtype: bool
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
@@ -50,15 +51,12 @@ class HttpSuccessOperations:
         header_parameters = {}
         if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
         if self._config.accept_language is not None:
             header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct and send request
         request = self._client.head(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 404]:
@@ -70,11 +68,12 @@ class HttpSuccessOperations:
         return deserialized
     head200.metadata = {'url': '/http/success/200'}
 
-    async def head204(
-            self, **kwargs):
+    async def head204(self, *, cls=None, **kwargs):
         """Return 204 status code if successful.
 
-        :return: bool
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: bool or the result of cls(response)
         :rtype: bool
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
@@ -88,15 +87,12 @@ class HttpSuccessOperations:
         header_parameters = {}
         if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
         if self._config.accept_language is not None:
             header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct and send request
         request = self._client.head(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [204, 404]:
@@ -108,11 +104,12 @@ class HttpSuccessOperations:
         return deserialized
     head204.metadata = {'url': '/http/success/204'}
 
-    async def head404(
-            self, **kwargs):
+    async def head404(self, *, cls=None, **kwargs):
         """Return 404 status code if successful.
 
-        :return: bool
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: bool or the result of cls(response)
         :rtype: bool
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
@@ -126,15 +123,12 @@ class HttpSuccessOperations:
         header_parameters = {}
         if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        headers = kwargs.get('headers')
-        if headers:
-            header_parameters.update(headers)
         if self._config.accept_language is not None:
             header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct and send request
         request = self._client.head(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [204, 404]:
