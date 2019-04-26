@@ -82,7 +82,7 @@ class TestRequiredOptional(object):
 
         client = AutoRestRequiredOptionalTestService(
             required_global_path=None,
-            equired_global_query=None,
+            required_global_query=None,
             base_url="http://localhost:3000")
 
         with pytest.raises(ValidationError):
