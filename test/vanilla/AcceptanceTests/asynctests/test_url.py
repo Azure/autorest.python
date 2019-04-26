@@ -150,11 +150,12 @@ class TestUrl(object):
     @pytest.mark.asyncio
     async def test_url_mixed(self):
 
-        client = AutoRestUrlTestService(global_string_path="globalStringPath", global_string_query=None, base_url="http://localhost:3000")
+        client = AutoRestUrlTestService(global_string_path="globalStringPath", global_string_query='globalStringQuery', base_url="http://localhost:3000")
 
         await client.path_items.get_all_with_values("localStringPath", "pathItemStringPath",
                 "localStringQuery", "pathItemStringQuery")
 
+        client = AutoRestUrlTestService(global_string_path="globalStringPath", global_string_query=None, base_url="http://localhost:3000")
         await client.path_items.get_global_and_local_query_null("localStringPath", "pathItemStringPath",
                 None, "pathItemStringQuery")
 

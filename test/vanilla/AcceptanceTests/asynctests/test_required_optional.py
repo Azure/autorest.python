@@ -81,9 +81,11 @@ class TestRequiredOptional(object):
     async def test_required_optional_negative(self):
 
         client = AutoRestRequiredOptionalTestService(
-            required_global_path=None,
-            equired_global_query=None,
+            required_global_path="None",
+            required_global_query="None",
             base_url="http://localhost:3000")
+        client._config.required_global_path=None
+        client._config.required_global_query=None
 
         with pytest.raises(ValidationError):
             await client.implicit.get_required_path(None)

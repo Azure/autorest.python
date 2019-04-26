@@ -75,5 +75,5 @@ class TestInteger(object):
         assert unix_date.utctimetuple() == (await client.int_model.get_unix_time()).utctimetuple()
         assert await client.int_model.get_null_unix_time() is None
 
-        with pytest.raises(DeserializationError):
+        with pytest.raises(DecodeError):
             await client.int_model.get_invalid_unix_time()
