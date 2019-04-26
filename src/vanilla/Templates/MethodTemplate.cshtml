@@ -33,6 +33,7 @@ string defKeyword = AsyncMode? "async def" : "def";
 {
 @:        warnings.warn('Method @methodName is deprecated', DeprecationWarning)
 }
+        error_map = kwargs.pop('error_map', None)
         @Model.BuildInputMappings()
 @if (Model.InputParameterTransformation.Any())
 {

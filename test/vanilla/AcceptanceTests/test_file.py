@@ -64,7 +64,7 @@ class TestFile(object):
             with io.BytesIO() as file_handle:
                 stream = client.files.get_file()
                 total = len(stream)
-                assert not stream.internal_response._content_consumed
+                assert not stream.response._content_consumed
 
                 for data in stream:
                     assert 0 < len(data) <= stream.block_size
@@ -89,7 +89,7 @@ class TestFile(object):
             with io.BytesIO() as file_handle:
                 stream = client.files.get_empty_file()
                 assert len(stream) == 0
-                assert not stream.internal_response._content_consumed
+                assert not stream.response._content_consumed
 
                 for data in stream:
                     file_length += len(data)

@@ -16,7 +16,7 @@ import uuid
 }
 @if (Model.HasAnyHttpRequestErrors)
 {
-@:from azure.core import HttpRequestError
+@:from azure.core.exceptions import HttpRequestError, map_error
 }
 @if (Model.HasAnyLongRunOperation)
 {

@@ -99,23 +99,27 @@ namespace AutoRest.Python.Model
             get
             {
                 IModelType body = DefaultResponse.Body;
+                var sb = new IndentedStringBuilder();
+                sb.AppendLine("map_error(status_code=response.status_code, response=response, error_map=error_map)");
 
                 if (body == null)
                 {
-                    return "raise HttpRequestError(response=response)";
+                    sb.AppendLine("raise HttpRequestError(response=response)");
                 }
                 else
                 {
                     Core.Model.CompositeType compType = body as Core.Model.CompositeType;
                     if (compType != null)
                     {
-                        return string.Format(CultureInfo.InvariantCulture, "raise models.{0}(response, self._deserialize)", compType.GetExceptionDefineType());
+                        
+                        sb.AppendLine(string.Format(CultureInfo.InvariantCulture, "raise models.{0}(response, self._deserialize)", compType.GetExceptionDefineType()));
                     }
                     else
                     {
-                        return string.Format(CultureInfo.InvariantCulture, "raise HttpRequestError(response)", body.ToPythonRuntimeTypeString());
+                        sb.AppendLine(string.Format(CultureInfo.InvariantCulture, "raise HttpRequestError(response)", body.ToPythonRuntimeTypeString()));
                     }
                 }
+                return sb.ToString();
             }
         }
 

@@ -71,9 +71,8 @@ namespace AutoRest.Python.Azure.Model
                 if (DefaultResponse.Body == null || DefaultResponse.Body.Name == "HttpRequestError")
                 {
                     var sb = new IndentedStringBuilder();
-                    sb.AppendLine("error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))");
-                    sb.AppendLine("exp = HttpRequestError(response=response)");
-                    sb.AppendLine("raise exp");
+                    sb.AppendLine("map_error(status_code=response.status_code, response=response, error_map=error_map)");
+                    sb.AppendLine("raise HttpRequestError(response=response)");
                     return sb.ToString();
                 }
 
