@@ -38,6 +38,7 @@ log_level = int(os.environ.get('PythonLogLevel', 30))
 tests = realpath(join(cwd, pardir, "Expected", "AcceptanceTests"))
 sys.path.append(join(tests, "BodyDictionary"))
 
+from azure.core.exceptions import DecodeError
 from msrest.exceptions import DeserializationError
 
 from bodydictionary.aio import AutoRestSwaggerBATdictionaryService
@@ -195,12 +196,12 @@ class TestDictionary(object):
 
         assert await client.dictionary.get_null() is None
 
-        with pytest.raises(DeserializationError):
+        with pytest.raises(DecodeError):
             await client.dictionary.get_invalid()
 
         # {null:"val1"} is not standard JSON format. C# might work and expects this test to pass,
         # but we fail and we're happy with it.
-        with pytest.raises(DeserializationError):
+        with pytest.raises(DecodeError):
             await client.dictionary.get_null_key()
         assert {"key1":None} ==  await client.dictionary.get_null_value()
         assert {"":"val1"} ==  await client.dictionary.get_empty_string_key()
