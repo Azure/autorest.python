@@ -62,9 +62,11 @@ def client():
 class TestHttp(object):
 
     async def assertStatus(self, code, func, *args, **kwargs):
-        kwargs['raw'] = True
-        raw = await func(*args, **kwargs)
-        raw.response.status_code == code
+        def return_status(response, data, headers):
+            return response.status_code
+        kwargs['cls'] = return_status
+        status_code = await func(*args, **kwargs)
+        assert status_code == code
 
     async def assertRaisesWithMessage(self, msg, func, *args, **kwargs):
         try:
@@ -107,7 +109,7 @@ class TestHttp(object):
 
         except HttpRequestError as err:
             assert err.response.status_code == code
-            assert msg in err.response.content.decode("utf-8")
+            assert msg in err.response.text()
 
     @pytest.mark.asyncio
     async def test_response_modeling(self, client):
@@ -319,7 +321,7 @@ class TestHttp(object):
 
         # requests does NOT redirect on 300. We is ok with the HTTP
         # spec that is fuzzy about this. Let's keep it that way for now.
-        await self.assertStatus(300, client.http_redirects.get300)
+        await self.assertStatus(200, client.http_redirects.get300)
 
         await self.assertStatus(200, client.http_redirects.head302)
         await self.assertStatus(200, client.http_redirects.head301)
