@@ -9,6 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
+from azure.core.exceptions import map_error
 
 from .. import models
 
@@ -46,6 +47,7 @@ class PetsOperations(object):
         :raises:
          :class:`ErrorException<additionalproperties.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.create_ap_true.metadata['url']
 
@@ -66,6 +68,7 @@ class PetsOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
@@ -90,6 +93,7 @@ class PetsOperations(object):
         :raises:
          :class:`ErrorException<additionalproperties.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.create_cat_ap_true.metadata['url']
 
@@ -110,6 +114,7 @@ class PetsOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
@@ -134,6 +139,7 @@ class PetsOperations(object):
         :raises:
          :class:`ErrorException<additionalproperties.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.create_ap_object.metadata['url']
 
@@ -154,6 +160,7 @@ class PetsOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
@@ -178,6 +185,7 @@ class PetsOperations(object):
         :raises:
          :class:`ErrorException<additionalproperties.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.create_ap_string.metadata['url']
 
@@ -198,6 +206,7 @@ class PetsOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
@@ -223,6 +232,7 @@ class PetsOperations(object):
         :raises:
          :class:`ErrorException<additionalproperties.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.create_ap_in_properties.metadata['url']
 
@@ -243,6 +253,7 @@ class PetsOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
@@ -268,6 +279,7 @@ class PetsOperations(object):
         :raises:
          :class:`ErrorException<additionalproperties.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.create_ap_in_properties_with_ap_string.metadata['url']
 
@@ -288,6 +300,7 @@ class PetsOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         deserialized = None

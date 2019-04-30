@@ -13,6 +13,7 @@ from azure.core import PipelineClient
 from msrest import Serializer, Deserializer
 
 from ._configuration import AutoRestRFC1123DateTimeTestServiceConfiguration
+from azure.core.exceptions import map_error
 from .operations import Datetimerfc1123Operations
 from . import models
 

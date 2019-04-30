@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from azure.core import HttpRequestError
+from azure.core.exceptions import HttpRequestError, map_error
 
 from ... import models
 
@@ -46,6 +46,7 @@ class PetOperations:
         :rtype: ~extensibleenumsswagger.models.Pet
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get_by_pet_id.metadata['url']
         path_format_arguments = {
@@ -66,6 +67,7 @@ class PetOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpRequestError(response=response)
 
         deserialized = None
@@ -89,6 +91,7 @@ class PetOperations:
         :rtype: ~extensibleenumsswagger.models.Pet
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.add_pet.metadata['url']
 
@@ -112,6 +115,7 @@ class PetOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpRequestError(response=response)
 
         deserialized = None

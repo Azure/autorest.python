@@ -10,7 +10,7 @@
 # --------------------------------------------------------------------------
 
 import uuid
-from azure.core import HttpRequestError
+from azure.core.exceptions import HttpRequestError, map_error
 
 from .. import models
 
@@ -48,6 +48,7 @@ class UsageOperations(object):
         :rtype: ~storage.models.UsageListResult
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.list.metadata['url']
         path_format_arguments = {
@@ -73,9 +74,8 @@ class UsageOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
-            exp = HttpRequestError(response=response)
-            raise exp
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpRequestError(response=response)
 
         deserialized = None
         if response.status_code == 200:

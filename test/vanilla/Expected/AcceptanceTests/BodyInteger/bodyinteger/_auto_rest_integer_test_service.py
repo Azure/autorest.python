@@ -13,6 +13,7 @@ from azure.core import PipelineClient
 from msrest import Serializer, Deserializer
 
 from ._configuration import AutoRestIntegerTestServiceConfiguration
+from azure.core.exceptions import map_error
 from .operations import IntModelOperations
 from . import models
 

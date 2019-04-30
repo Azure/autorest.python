@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from azure.core import HttpRequestError
+from azure.core.exceptions import HttpRequestError, map_error
 from ... import models
 
 
@@ -29,6 +29,7 @@ class AutoRestValidationTestOperationsMixin:
         :rtype: ~validation.models.Product
         :raises: :class:`ErrorException<validation.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.validation_of_method_parameters.metadata['url']
         path_format_arguments = {
@@ -52,6 +53,7 @@ class AutoRestValidationTestOperationsMixin:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
@@ -80,6 +82,7 @@ class AutoRestValidationTestOperationsMixin:
         :rtype: ~validation.models.Product
         :raises: :class:`ErrorException<validation.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.validation_of_body.metadata['url']
         path_format_arguments = {
@@ -110,6 +113,7 @@ class AutoRestValidationTestOperationsMixin:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
@@ -131,6 +135,7 @@ class AutoRestValidationTestOperationsMixin:
         :rtype: None
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
+        error_map = kwargs.pop('error_map', None)
         constant_param = "constant"
 
         # Construct URL
@@ -152,6 +157,7 @@ class AutoRestValidationTestOperationsMixin:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpRequestError(response=response)
 
         if cls:
@@ -170,6 +176,7 @@ class AutoRestValidationTestOperationsMixin:
         :rtype: ~validation.models.Product
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
+        error_map = kwargs.pop('error_map', None)
         constant_param = "constant"
 
         # Construct URL
@@ -199,6 +206,7 @@ class AutoRestValidationTestOperationsMixin:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpRequestError(response=response)
 
         deserialized = None

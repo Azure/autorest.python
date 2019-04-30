@@ -9,6 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
+from azure.core.exceptions import map_error
 
 from ... import models
 
@@ -43,6 +44,7 @@ class DateModelOperations:
         :rtype: date
         :raises: :class:`ErrorException<bodydate.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get_null.metadata['url']
 
@@ -59,6 +61,7 @@ class DateModelOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
@@ -80,6 +83,7 @@ class DateModelOperations:
         :rtype: date
         :raises: :class:`ErrorException<bodydate.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get_invalid_date.metadata['url']
 
@@ -96,6 +100,7 @@ class DateModelOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
@@ -117,6 +122,7 @@ class DateModelOperations:
         :rtype: date
         :raises: :class:`ErrorException<bodydate.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get_overflow_date.metadata['url']
 
@@ -133,6 +139,7 @@ class DateModelOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
@@ -154,6 +161,7 @@ class DateModelOperations:
         :rtype: date
         :raises: :class:`ErrorException<bodydate.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get_underflow_date.metadata['url']
 
@@ -170,6 +178,7 @@ class DateModelOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
@@ -193,6 +202,7 @@ class DateModelOperations:
         :rtype: None
         :raises: :class:`ErrorException<bodydate.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.put_max_date.metadata['url']
 
@@ -212,6 +222,7 @@ class DateModelOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -228,6 +239,7 @@ class DateModelOperations:
         :rtype: date
         :raises: :class:`ErrorException<bodydate.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get_max_date.metadata['url']
 
@@ -244,6 +256,7 @@ class DateModelOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
@@ -267,6 +280,7 @@ class DateModelOperations:
         :rtype: None
         :raises: :class:`ErrorException<bodydate.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.put_min_date.metadata['url']
 
@@ -286,6 +300,7 @@ class DateModelOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -302,6 +317,7 @@ class DateModelOperations:
         :rtype: date
         :raises: :class:`ErrorException<bodydate.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get_min_date.metadata['url']
 
@@ -318,6 +334,7 @@ class DateModelOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         deserialized = None

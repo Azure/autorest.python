@@ -10,6 +10,7 @@
 # --------------------------------------------------------------------------
 
 import uuid
+from azure.core.exceptions import map_error
 
 from ... import models
 
@@ -48,6 +49,7 @@ class ApiVersionLocalOperations:
         :raises:
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get_method_local_valid.metadata['url']
 
@@ -68,6 +70,7 @@ class ApiVersionLocalOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -89,6 +92,7 @@ class ApiVersionLocalOperations:
         :raises:
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get_method_local_null.metadata['url']
 
@@ -110,6 +114,7 @@ class ApiVersionLocalOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -128,6 +133,7 @@ class ApiVersionLocalOperations:
         :raises:
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get_path_local_valid.metadata['url']
 
@@ -148,6 +154,7 @@ class ApiVersionLocalOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -166,6 +173,7 @@ class ApiVersionLocalOperations:
         :raises:
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get_swagger_local_valid.metadata['url']
 
@@ -186,6 +194,7 @@ class ApiVersionLocalOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:

@@ -9,6 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
+from azure.core.exceptions import map_error
 
 from .. import models
 
@@ -43,6 +44,7 @@ class DatetimeModelOperations(object):
         :rtype: datetime
         :raises: :class:`ErrorException<bodydatetime.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get_null.metadata['url']
 
@@ -59,6 +61,7 @@ class DatetimeModelOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
@@ -80,6 +83,7 @@ class DatetimeModelOperations(object):
         :rtype: datetime
         :raises: :class:`ErrorException<bodydatetime.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get_invalid.metadata['url']
 
@@ -96,6 +100,7 @@ class DatetimeModelOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
@@ -117,6 +122,7 @@ class DatetimeModelOperations(object):
         :rtype: datetime
         :raises: :class:`ErrorException<bodydatetime.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get_overflow.metadata['url']
 
@@ -133,6 +139,7 @@ class DatetimeModelOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
@@ -154,6 +161,7 @@ class DatetimeModelOperations(object):
         :rtype: datetime
         :raises: :class:`ErrorException<bodydatetime.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get_underflow.metadata['url']
 
@@ -170,6 +178,7 @@ class DatetimeModelOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
@@ -193,6 +202,7 @@ class DatetimeModelOperations(object):
         :rtype: None
         :raises: :class:`ErrorException<bodydatetime.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.put_utc_max_date_time.metadata['url']
 
@@ -212,6 +222,7 @@ class DatetimeModelOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -228,6 +239,7 @@ class DatetimeModelOperations(object):
         :rtype: datetime
         :raises: :class:`ErrorException<bodydatetime.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get_utc_lowercase_max_date_time.metadata['url']
 
@@ -244,6 +256,7 @@ class DatetimeModelOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
@@ -265,6 +278,7 @@ class DatetimeModelOperations(object):
         :rtype: datetime
         :raises: :class:`ErrorException<bodydatetime.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get_utc_uppercase_max_date_time.metadata['url']
 
@@ -281,6 +295,7 @@ class DatetimeModelOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
@@ -305,6 +320,7 @@ class DatetimeModelOperations(object):
         :rtype: None
         :raises: :class:`ErrorException<bodydatetime.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.put_local_positive_offset_max_date_time.metadata['url']
 
@@ -324,6 +340,7 @@ class DatetimeModelOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -341,6 +358,7 @@ class DatetimeModelOperations(object):
         :rtype: datetime
         :raises: :class:`ErrorException<bodydatetime.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get_local_positive_offset_lowercase_max_date_time.metadata['url']
 
@@ -357,6 +375,7 @@ class DatetimeModelOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
@@ -379,6 +398,7 @@ class DatetimeModelOperations(object):
         :rtype: datetime
         :raises: :class:`ErrorException<bodydatetime.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get_local_positive_offset_uppercase_max_date_time.metadata['url']
 
@@ -395,6 +415,7 @@ class DatetimeModelOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
@@ -419,6 +440,7 @@ class DatetimeModelOperations(object):
         :rtype: None
         :raises: :class:`ErrorException<bodydatetime.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.put_local_negative_offset_max_date_time.metadata['url']
 
@@ -438,6 +460,7 @@ class DatetimeModelOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -455,6 +478,7 @@ class DatetimeModelOperations(object):
         :rtype: datetime
         :raises: :class:`ErrorException<bodydatetime.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get_local_negative_offset_uppercase_max_date_time.metadata['url']
 
@@ -471,6 +495,7 @@ class DatetimeModelOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
@@ -493,6 +518,7 @@ class DatetimeModelOperations(object):
         :rtype: datetime
         :raises: :class:`ErrorException<bodydatetime.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get_local_negative_offset_lowercase_max_date_time.metadata['url']
 
@@ -509,6 +535,7 @@ class DatetimeModelOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
@@ -532,6 +559,7 @@ class DatetimeModelOperations(object):
         :rtype: None
         :raises: :class:`ErrorException<bodydatetime.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.put_utc_min_date_time.metadata['url']
 
@@ -551,6 +579,7 @@ class DatetimeModelOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -567,6 +596,7 @@ class DatetimeModelOperations(object):
         :rtype: datetime
         :raises: :class:`ErrorException<bodydatetime.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get_utc_min_date_time.metadata['url']
 
@@ -583,6 +613,7 @@ class DatetimeModelOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
@@ -606,6 +637,7 @@ class DatetimeModelOperations(object):
         :rtype: None
         :raises: :class:`ErrorException<bodydatetime.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.put_local_positive_offset_min_date_time.metadata['url']
 
@@ -625,6 +657,7 @@ class DatetimeModelOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -641,6 +674,7 @@ class DatetimeModelOperations(object):
         :rtype: datetime
         :raises: :class:`ErrorException<bodydatetime.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get_local_positive_offset_min_date_time.metadata['url']
 
@@ -657,6 +691,7 @@ class DatetimeModelOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
@@ -680,6 +715,7 @@ class DatetimeModelOperations(object):
         :rtype: None
         :raises: :class:`ErrorException<bodydatetime.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.put_local_negative_offset_min_date_time.metadata['url']
 
@@ -699,6 +735,7 @@ class DatetimeModelOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -715,6 +752,7 @@ class DatetimeModelOperations(object):
         :rtype: datetime
         :raises: :class:`ErrorException<bodydatetime.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get_local_negative_offset_min_date_time.metadata['url']
 
@@ -731,6 +769,7 @@ class DatetimeModelOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         deserialized = None

@@ -10,7 +10,7 @@
 # --------------------------------------------------------------------------
 
 import uuid
-from azure.core import HttpRequestError
+from azure.core.exceptions import HttpRequestError, map_error
 
 
 class HeadExceptionOperations:
@@ -41,6 +41,7 @@ class HeadExceptionOperations:
         :rtype: None
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.head200.metadata['url']
 
@@ -60,9 +61,8 @@ class HeadExceptionOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
-            exp = HttpRequestError(response=response)
-            raise exp
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpRequestError(response=response)
 
         if cls:
             response_headers = {}
@@ -78,6 +78,7 @@ class HeadExceptionOperations:
         :rtype: None
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.head204.metadata['url']
 
@@ -97,9 +98,8 @@ class HeadExceptionOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
-            exp = HttpRequestError(response=response)
-            raise exp
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpRequestError(response=response)
 
         if cls:
             response_headers = {}
@@ -115,6 +115,7 @@ class HeadExceptionOperations:
         :rtype: None
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.head404.metadata['url']
 
@@ -134,9 +135,8 @@ class HeadExceptionOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
-            exp = HttpRequestError(response=response)
-            raise exp
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpRequestError(response=response)
 
         if cls:
             response_headers = {}

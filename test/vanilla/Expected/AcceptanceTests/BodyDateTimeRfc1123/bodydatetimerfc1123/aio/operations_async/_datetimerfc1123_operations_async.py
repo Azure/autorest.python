@@ -9,6 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
+from azure.core.exceptions import map_error
 
 from ... import models
 
@@ -44,6 +45,7 @@ class Datetimerfc1123Operations:
         :raises:
          :class:`ErrorException<bodydatetimerfc1123.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get_null.metadata['url']
 
@@ -60,6 +62,7 @@ class Datetimerfc1123Operations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
@@ -82,6 +85,7 @@ class Datetimerfc1123Operations:
         :raises:
          :class:`ErrorException<bodydatetimerfc1123.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get_invalid.metadata['url']
 
@@ -98,6 +102,7 @@ class Datetimerfc1123Operations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
@@ -120,6 +125,7 @@ class Datetimerfc1123Operations:
         :raises:
          :class:`ErrorException<bodydatetimerfc1123.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get_overflow.metadata['url']
 
@@ -136,6 +142,7 @@ class Datetimerfc1123Operations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
@@ -158,6 +165,7 @@ class Datetimerfc1123Operations:
         :raises:
          :class:`ErrorException<bodydatetimerfc1123.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get_underflow.metadata['url']
 
@@ -174,6 +182,7 @@ class Datetimerfc1123Operations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
@@ -198,6 +207,7 @@ class Datetimerfc1123Operations:
         :raises:
          :class:`ErrorException<bodydatetimerfc1123.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.put_utc_max_date_time.metadata['url']
 
@@ -217,6 +227,7 @@ class Datetimerfc1123Operations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -234,6 +245,7 @@ class Datetimerfc1123Operations:
         :raises:
          :class:`ErrorException<bodydatetimerfc1123.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get_utc_lowercase_max_date_time.metadata['url']
 
@@ -250,6 +262,7 @@ class Datetimerfc1123Operations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
@@ -272,6 +285,7 @@ class Datetimerfc1123Operations:
         :raises:
          :class:`ErrorException<bodydatetimerfc1123.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get_utc_uppercase_max_date_time.metadata['url']
 
@@ -288,6 +302,7 @@ class Datetimerfc1123Operations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
@@ -312,6 +327,7 @@ class Datetimerfc1123Operations:
         :raises:
          :class:`ErrorException<bodydatetimerfc1123.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.put_utc_min_date_time.metadata['url']
 
@@ -331,6 +347,7 @@ class Datetimerfc1123Operations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -348,6 +365,7 @@ class Datetimerfc1123Operations:
         :raises:
          :class:`ErrorException<bodydatetimerfc1123.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get_utc_min_date_time.metadata['url']
 
@@ -364,6 +382,7 @@ class Datetimerfc1123Operations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         deserialized = None

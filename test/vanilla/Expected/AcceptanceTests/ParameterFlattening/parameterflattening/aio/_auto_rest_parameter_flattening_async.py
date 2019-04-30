@@ -13,7 +13,7 @@ from azure.core import AsyncPipelineClient
 from msrest import Serializer, Deserializer
 
 from ._configuration_async import AutoRestParameterFlatteningConfiguration
-from azure.core import HttpRequestError
+from azure.core.exceptions import HttpRequestError, map_error
 from .operations_async import AvailabilitySetsOperations
 from .. import models
 

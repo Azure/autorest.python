@@ -10,7 +10,7 @@
 # --------------------------------------------------------------------------
 
 import uuid
-from azure.core import HttpRequestError
+from azure.core.exceptions import HttpRequestError, map_error
 
 from .. import models
 
@@ -46,6 +46,7 @@ class XMsClientRequestIdOperations(object):
         :rtype: None
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get.metadata['url']
 
@@ -65,9 +66,8 @@ class XMsClientRequestIdOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
-            exp = HttpRequestError(response=response)
-            raise exp
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpRequestError(response=response)
 
         if cls:
             response_headers = {}
@@ -88,6 +88,7 @@ class XMsClientRequestIdOperations(object):
         :raises:
          :class:`ErrorException<azurespecialproperties.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.param_get.metadata['url']
 
@@ -108,6 +109,7 @@ class XMsClientRequestIdOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:

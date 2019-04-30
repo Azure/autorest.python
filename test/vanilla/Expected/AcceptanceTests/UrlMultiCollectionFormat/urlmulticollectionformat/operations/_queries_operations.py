@@ -9,6 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
+from azure.core.exceptions import map_error
 
 from .. import models
 
@@ -47,6 +48,7 @@ class QueriesOperations(object):
         :raises:
          :class:`ErrorException<urlmulticollectionformat.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.array_string_multi_null.metadata['url']
 
@@ -64,6 +66,7 @@ class QueriesOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -84,6 +87,7 @@ class QueriesOperations(object):
         :raises:
          :class:`ErrorException<urlmulticollectionformat.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.array_string_multi_empty.metadata['url']
 
@@ -101,6 +105,7 @@ class QueriesOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -122,6 +127,7 @@ class QueriesOperations(object):
         :raises:
          :class:`ErrorException<urlmulticollectionformat.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.array_string_multi_valid.metadata['url']
 
@@ -139,6 +145,7 @@ class QueriesOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:

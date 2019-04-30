@@ -9,6 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
+from azure.core.exceptions import map_error
 
 from ... import models
 
@@ -47,6 +48,7 @@ class ExplicitOperations:
         :raises:
          :class:`ErrorException<requiredoptional.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.post_required_integer_parameter.metadata['url']
 
@@ -66,6 +68,7 @@ class ExplicitOperations:
         response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -85,6 +88,7 @@ class ExplicitOperations:
         :raises:
          :class:`ErrorException<requiredoptional.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.post_optional_integer_parameter.metadata['url']
 
@@ -107,6 +111,7 @@ class ExplicitOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -128,6 +133,7 @@ class ExplicitOperations:
         :raises:
          :class:`ErrorException<requiredoptional.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         body_parameter = models.IntWrapper(value=value)
 
         # Construct URL
@@ -149,6 +155,7 @@ class ExplicitOperations:
         response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -169,6 +176,7 @@ class ExplicitOperations:
         :raises:
          :class:`ErrorException<requiredoptional.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         body_parameter = None
         if value is not None:
             body_parameter = models.IntOptionalWrapper(value=value)
@@ -195,6 +203,7 @@ class ExplicitOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -215,6 +224,7 @@ class ExplicitOperations:
         :raises:
          :class:`ErrorException<requiredoptional.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.post_required_integer_header.metadata['url']
 
@@ -231,6 +241,7 @@ class ExplicitOperations:
         response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -251,6 +262,7 @@ class ExplicitOperations:
         :raises:
          :class:`ErrorException<requiredoptional.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.post_optional_integer_header.metadata['url']
 
@@ -268,6 +280,7 @@ class ExplicitOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -288,6 +301,7 @@ class ExplicitOperations:
         :raises:
          :class:`ErrorException<requiredoptional.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.post_required_string_parameter.metadata['url']
 
@@ -307,6 +321,7 @@ class ExplicitOperations:
         response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -326,6 +341,7 @@ class ExplicitOperations:
         :raises:
          :class:`ErrorException<requiredoptional.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.post_optional_string_parameter.metadata['url']
 
@@ -348,6 +364,7 @@ class ExplicitOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -369,6 +386,7 @@ class ExplicitOperations:
         :raises:
          :class:`ErrorException<requiredoptional.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         body_parameter = models.StringWrapper(value=value)
 
         # Construct URL
@@ -390,6 +408,7 @@ class ExplicitOperations:
         response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -410,6 +429,7 @@ class ExplicitOperations:
         :raises:
          :class:`ErrorException<requiredoptional.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         body_parameter = None
         if value is not None:
             body_parameter = models.StringOptionalWrapper(value=value)
@@ -436,6 +456,7 @@ class ExplicitOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -456,6 +477,7 @@ class ExplicitOperations:
         :raises:
          :class:`ErrorException<requiredoptional.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.post_required_string_header.metadata['url']
 
@@ -472,6 +494,7 @@ class ExplicitOperations:
         response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -492,6 +515,7 @@ class ExplicitOperations:
         :raises:
          :class:`ErrorException<requiredoptional.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.post_optional_string_header.metadata['url']
 
@@ -509,6 +533,7 @@ class ExplicitOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -529,6 +554,7 @@ class ExplicitOperations:
         :raises:
          :class:`ErrorException<requiredoptional.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.post_required_class_parameter.metadata['url']
 
@@ -548,6 +574,7 @@ class ExplicitOperations:
         response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -567,6 +594,7 @@ class ExplicitOperations:
         :raises:
          :class:`ErrorException<requiredoptional.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.post_optional_class_parameter.metadata['url']
 
@@ -589,6 +617,7 @@ class ExplicitOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -610,6 +639,7 @@ class ExplicitOperations:
         :raises:
          :class:`ErrorException<requiredoptional.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         body_parameter = models.ClassWrapper(value=value)
 
         # Construct URL
@@ -631,6 +661,7 @@ class ExplicitOperations:
         response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -651,6 +682,7 @@ class ExplicitOperations:
         :raises:
          :class:`ErrorException<requiredoptional.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         body_parameter = None
         if value is not None:
             body_parameter = models.ClassOptionalWrapper(value=value)
@@ -677,6 +709,7 @@ class ExplicitOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -697,6 +730,7 @@ class ExplicitOperations:
         :raises:
          :class:`ErrorException<requiredoptional.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.post_required_array_parameter.metadata['url']
 
@@ -716,6 +750,7 @@ class ExplicitOperations:
         response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -735,6 +770,7 @@ class ExplicitOperations:
         :raises:
          :class:`ErrorException<requiredoptional.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.post_optional_array_parameter.metadata['url']
 
@@ -757,6 +793,7 @@ class ExplicitOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -778,6 +815,7 @@ class ExplicitOperations:
         :raises:
          :class:`ErrorException<requiredoptional.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         body_parameter = models.ArrayWrapper(value=value)
 
         # Construct URL
@@ -799,6 +837,7 @@ class ExplicitOperations:
         response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -819,6 +858,7 @@ class ExplicitOperations:
         :raises:
          :class:`ErrorException<requiredoptional.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         body_parameter = None
         if value is not None:
             body_parameter = models.ArrayOptionalWrapper(value=value)
@@ -845,6 +885,7 @@ class ExplicitOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -865,6 +906,7 @@ class ExplicitOperations:
         :raises:
          :class:`ErrorException<requiredoptional.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.post_required_array_header.metadata['url']
 
@@ -881,6 +923,7 @@ class ExplicitOperations:
         response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -901,6 +944,7 @@ class ExplicitOperations:
         :raises:
          :class:`ErrorException<requiredoptional.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.post_optional_array_header.metadata['url']
 
@@ -918,6 +962,7 @@ class ExplicitOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:

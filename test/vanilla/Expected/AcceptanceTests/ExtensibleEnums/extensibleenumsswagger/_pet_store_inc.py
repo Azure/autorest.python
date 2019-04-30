@@ -13,7 +13,7 @@ from azure.core import PipelineClient
 from msrest import Serializer, Deserializer
 
 from ._configuration import PetStoreIncConfiguration
-from azure.core import HttpRequestError
+from azure.core.exceptions import HttpRequestError, map_error
 from .operations import PetOperations
 from . import models
 

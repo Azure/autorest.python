@@ -14,6 +14,7 @@ from msrest import Serializer, Deserializer
 
 from ._configuration_async import AutoRestResourceFlatteningTestServiceConfiguration
 from .operations_async import AutoRestResourceFlatteningTestServiceOperationsMixin
+from azure.core.exceptions import map_error
 from .. import models
 
 

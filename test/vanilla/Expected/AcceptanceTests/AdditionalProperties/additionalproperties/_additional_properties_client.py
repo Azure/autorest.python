@@ -13,6 +13,7 @@ from azure.core import PipelineClient
 from msrest import Serializer, Deserializer
 
 from ._configuration import AdditionalPropertiesClientConfiguration
+from azure.core.exceptions import map_error
 from .operations import PetsOperations
 from . import models
 

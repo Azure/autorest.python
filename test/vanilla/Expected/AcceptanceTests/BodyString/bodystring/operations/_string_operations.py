@@ -9,6 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
+from azure.core.exceptions import map_error
 
 from .. import models
 
@@ -43,6 +44,7 @@ class StringOperations(object):
         :rtype: str
         :raises: :class:`ErrorException<bodystring.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get_null.metadata['url']
 
@@ -59,6 +61,7 @@ class StringOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
@@ -82,6 +85,7 @@ class StringOperations(object):
         :rtype: None
         :raises: :class:`ErrorException<bodystring.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.put_null.metadata['url']
 
@@ -104,6 +108,7 @@ class StringOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -120,6 +125,7 @@ class StringOperations(object):
         :rtype: str
         :raises: :class:`ErrorException<bodystring.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get_empty.metadata['url']
 
@@ -136,6 +142,7 @@ class StringOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
@@ -157,6 +164,7 @@ class StringOperations(object):
         :rtype: None
         :raises: :class:`ErrorException<bodystring.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         string_body = ""
 
         # Construct URL
@@ -178,6 +186,7 @@ class StringOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -195,6 +204,7 @@ class StringOperations(object):
         :rtype: str
         :raises: :class:`ErrorException<bodystring.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get_mbcs.metadata['url']
 
@@ -211,6 +221,7 @@ class StringOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
@@ -233,6 +244,7 @@ class StringOperations(object):
         :rtype: None
         :raises: :class:`ErrorException<bodystring.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         string_body = "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€"
 
         # Construct URL
@@ -254,6 +266,7 @@ class StringOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -272,6 +285,7 @@ class StringOperations(object):
         :rtype: str
         :raises: :class:`ErrorException<bodystring.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get_whitespace.metadata['url']
 
@@ -288,6 +302,7 @@ class StringOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
@@ -311,6 +326,7 @@ class StringOperations(object):
         :rtype: None
         :raises: :class:`ErrorException<bodystring.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         string_body = "    Now is the time for all good men to come to the aid of their country    "
 
         # Construct URL
@@ -332,6 +348,7 @@ class StringOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -348,6 +365,7 @@ class StringOperations(object):
         :rtype: str
         :raises: :class:`ErrorException<bodystring.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get_not_provided.metadata['url']
 
@@ -364,6 +382,7 @@ class StringOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
@@ -385,6 +404,7 @@ class StringOperations(object):
         :rtype: bytes
         :raises: :class:`ErrorException<bodystring.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get_base64_encoded.metadata['url']
 
@@ -401,6 +421,7 @@ class StringOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
@@ -422,6 +443,7 @@ class StringOperations(object):
         :rtype: bytes
         :raises: :class:`ErrorException<bodystring.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get_base64_url_encoded.metadata['url']
 
@@ -438,6 +460,7 @@ class StringOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
@@ -461,6 +484,7 @@ class StringOperations(object):
         :rtype: None
         :raises: :class:`ErrorException<bodystring.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.put_base64_url_encoded.metadata['url']
 
@@ -480,6 +504,7 @@ class StringOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -496,6 +521,7 @@ class StringOperations(object):
         :rtype: bytes
         :raises: :class:`ErrorException<bodystring.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get_null_base64_url_encoded.metadata['url']
 
@@ -512,6 +538,7 @@ class StringOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         deserialized = None

@@ -10,7 +10,7 @@
 # --------------------------------------------------------------------------
 
 import uuid
-from azure.core import HttpRequestError
+from azure.core.exceptions import HttpRequestError, map_error
 from msrest.polling.async_poller import async_poller, AsyncNoPolling
 from msrestazure.polling.async_arm_polling import AsyncARMPolling
 
@@ -54,6 +54,7 @@ class StorageAccountsOperations:
         :rtype: ~storage.models.CheckNameAvailabilityResult
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.check_name_availability.metadata['url']
         path_format_arguments = {
@@ -83,9 +84,8 @@ class StorageAccountsOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
-            exp = HttpRequestError(response=response)
-            raise exp
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpRequestError(response=response)
 
         deserialized = None
         if response.status_code == 200:
@@ -131,9 +131,8 @@ class StorageAccountsOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 202]:
-            error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
-            exp = HttpRequestError(response=response)
-            raise exp
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpRequestError(response=response)
 
         deserialized = None
 
@@ -202,6 +201,7 @@ class StorageAccountsOperations:
         :rtype: None
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.delete.metadata['url']
         path_format_arguments = {
@@ -228,9 +228,8 @@ class StorageAccountsOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 204]:
-            error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
-            exp = HttpRequestError(response=response)
-            raise exp
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpRequestError(response=response)
 
         if cls:
             response_headers = {}
@@ -255,6 +254,7 @@ class StorageAccountsOperations:
         :rtype: ~storage.models.StorageAccount
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get_properties.metadata['url']
         path_format_arguments = {
@@ -282,9 +282,8 @@ class StorageAccountsOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
-            exp = HttpRequestError(response=response)
-            raise exp
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpRequestError(response=response)
 
         deserialized = None
         if response.status_code == 200:
@@ -324,6 +323,7 @@ class StorageAccountsOperations:
         :rtype: ~storage.models.StorageAccount
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.update.metadata['url']
         path_format_arguments = {
@@ -355,9 +355,8 @@ class StorageAccountsOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
-            exp = HttpRequestError(response=response)
-            raise exp
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpRequestError(response=response)
 
         deserialized = None
         if response.status_code == 200:
@@ -383,6 +382,7 @@ class StorageAccountsOperations:
         :rtype: ~storage.models.StorageAccountKeys
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.list_keys.metadata['url']
         path_format_arguments = {
@@ -410,9 +410,8 @@ class StorageAccountsOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
-            exp = HttpRequestError(response=response)
-            raise exp
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpRequestError(response=response)
 
         deserialized = None
         if response.status_code == 200:
@@ -465,28 +464,28 @@ class StorageAccountsOperations:
             return request
 
         def internal_paging(next_link=None):
+            error_map = kwargs.pop('error_map', None)
             request = prepare_request(next_link)
 
             pipeline_response = self._client._pipeline.run(request)
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
-                exp = HttpRequestError(response=response)
-                raise exp
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpRequestError(response=response)
 
             return response
 
         async def internal_paging_async(next_link=None):
+            error_map = kwargs.pop('error_map', None)
             request = prepare_request(next_link)
 
             pipeline_response = await self._client._pipeline.run(request)
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
-                exp = HttpRequestError(response=response)
-                raise exp
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpRequestError(response=response)
 
             return response
 
@@ -543,28 +542,28 @@ class StorageAccountsOperations:
             return request
 
         def internal_paging(next_link=None):
+            error_map = kwargs.pop('error_map', None)
             request = prepare_request(next_link)
 
             pipeline_response = self._client._pipeline.run(request)
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
-                exp = HttpRequestError(response=response)
-                raise exp
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpRequestError(response=response)
 
             return response
 
         async def internal_paging_async(next_link=None):
+            error_map = kwargs.pop('error_map', None)
             request = prepare_request(next_link)
 
             pipeline_response = await self._client._pipeline.run(request)
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
-                exp = HttpRequestError(response=response)
-                raise exp
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpRequestError(response=response)
 
             return response
 
@@ -594,6 +593,7 @@ class StorageAccountsOperations:
         :rtype: ~storage.models.StorageAccountKeys
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
+        error_map = kwargs.pop('error_map', None)
         regenerate_key1 = models.StorageAccountRegenerateKeyParameters(key_name=key_name)
 
         # Construct URL
@@ -627,9 +627,8 @@ class StorageAccountsOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
-            exp = HttpRequestError(response=response)
-            raise exp
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpRequestError(response=response)
 
         deserialized = None
         if response.status_code == 200:

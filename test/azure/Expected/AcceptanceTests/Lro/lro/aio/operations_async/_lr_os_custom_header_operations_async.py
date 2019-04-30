@@ -10,6 +10,7 @@
 # --------------------------------------------------------------------------
 
 import uuid
+from azure.core.exceptions import map_error
 from msrest.polling.async_poller import async_poller, AsyncNoPolling
 from msrestazure.polling.async_arm_polling import AsyncARMPolling
 
@@ -67,6 +68,7 @@ class LROsCustomHeaderOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
         deserialized = None
@@ -152,6 +154,7 @@ class LROsCustomHeaderOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 201]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
         deserialized = None
@@ -227,6 +230,7 @@ class LROsCustomHeaderOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
             return ''
@@ -298,6 +302,7 @@ class LROsCustomHeaderOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
             return ''

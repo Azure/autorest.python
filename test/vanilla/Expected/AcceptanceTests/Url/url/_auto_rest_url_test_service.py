@@ -13,6 +13,7 @@ from azure.core import PipelineClient
 from msrest import Serializer, Deserializer
 
 from ._configuration import AutoRestUrlTestServiceConfiguration
+from azure.core.exceptions import map_error
 from .operations import PathsOperations
 from .operations import QueriesOperations
 from .operations import PathItemsOperations

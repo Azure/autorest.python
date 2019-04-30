@@ -9,6 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
+from azure.core.exceptions import map_error
 
 from .. import models
 
@@ -45,6 +46,7 @@ class HttpServerFailureOperations(object):
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.head501.metadata['url']
 
@@ -60,6 +62,7 @@ class HttpServerFailureOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -78,6 +81,7 @@ class HttpServerFailureOperations(object):
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get501.metadata['url']
 
@@ -93,6 +97,7 @@ class HttpServerFailureOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -113,6 +118,7 @@ class HttpServerFailureOperations(object):
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.post505.metadata['url']
 
@@ -135,6 +141,7 @@ class HttpServerFailureOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -155,6 +162,7 @@ class HttpServerFailureOperations(object):
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.delete505.metadata['url']
 
@@ -177,6 +185,7 @@ class HttpServerFailureOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:

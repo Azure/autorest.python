@@ -9,6 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
+from azure.core.exceptions import map_error
 
 from .. import models
 
@@ -43,6 +44,7 @@ class PolymorphismOperations(object):
         :rtype: ~bodycomplex.models.Fish
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get_valid.metadata['url']
 
@@ -59,6 +61,7 @@ class PolymorphismOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
@@ -114,6 +117,7 @@ class PolymorphismOperations(object):
         :rtype: None
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.put_valid.metadata['url']
 
@@ -133,6 +137,7 @@ class PolymorphismOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -150,6 +155,7 @@ class PolymorphismOperations(object):
         :rtype: ~bodycomplex.models.Salmon
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get_complicated.metadata['url']
 
@@ -166,6 +172,7 @@ class PolymorphismOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
@@ -190,6 +197,7 @@ class PolymorphismOperations(object):
         :rtype: None
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.put_complicated.metadata['url']
 
@@ -209,6 +217,7 @@ class PolymorphismOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -227,6 +236,7 @@ class PolymorphismOperations(object):
         :rtype: ~bodycomplex.models.Salmon
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.put_missing_discriminator.metadata['url']
 
@@ -247,6 +257,7 @@ class PolymorphismOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
@@ -297,6 +308,7 @@ class PolymorphismOperations(object):
         :rtype: None
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.put_valid_missing_required.metadata['url']
 
@@ -316,6 +328,7 @@ class PolymorphismOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:

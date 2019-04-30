@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from azure.core import HttpRequestError
+from azure.core.exceptions import HttpRequestError, map_error
 
 from ... import models
 
@@ -45,6 +45,7 @@ class MultipleResponsesOperations:
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get200_model204_no_model_default_error200_valid.metadata['url']
 
@@ -61,6 +62,7 @@ class MultipleResponsesOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 204]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
@@ -83,6 +85,7 @@ class MultipleResponsesOperations:
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get200_model204_no_model_default_error204_valid.metadata['url']
 
@@ -99,6 +102,7 @@ class MultipleResponsesOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 204]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
@@ -121,6 +125,7 @@ class MultipleResponsesOperations:
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get200_model204_no_model_default_error201_invalid.metadata['url']
 
@@ -137,6 +142,7 @@ class MultipleResponsesOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 204]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
@@ -159,6 +165,7 @@ class MultipleResponsesOperations:
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get200_model204_no_model_default_error202_none.metadata['url']
 
@@ -175,6 +182,7 @@ class MultipleResponsesOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 204]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
@@ -198,6 +206,7 @@ class MultipleResponsesOperations:
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get200_model204_no_model_default_error400_valid.metadata['url']
 
@@ -214,6 +223,7 @@ class MultipleResponsesOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 204]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
@@ -236,6 +246,7 @@ class MultipleResponsesOperations:
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get200_model201_model_default_error200_valid.metadata['url']
 
@@ -252,6 +263,7 @@ class MultipleResponsesOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 201]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
@@ -277,6 +289,7 @@ class MultipleResponsesOperations:
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get200_model201_model_default_error201_valid.metadata['url']
 
@@ -293,6 +306,7 @@ class MultipleResponsesOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 201]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
@@ -318,6 +332,7 @@ class MultipleResponsesOperations:
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get200_model201_model_default_error400_valid.metadata['url']
 
@@ -334,6 +349,7 @@ class MultipleResponsesOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 201]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
@@ -358,6 +374,7 @@ class MultipleResponsesOperations:
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get200_model_a201_model_c404_model_ddefault_error200_valid.metadata['url']
 
@@ -374,6 +391,7 @@ class MultipleResponsesOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 201, 404]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
@@ -400,6 +418,7 @@ class MultipleResponsesOperations:
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get200_model_a201_model_c404_model_ddefault_error201_valid.metadata['url']
 
@@ -416,6 +435,7 @@ class MultipleResponsesOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 201, 404]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
@@ -442,6 +462,7 @@ class MultipleResponsesOperations:
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get200_model_a201_model_c404_model_ddefault_error404_valid.metadata['url']
 
@@ -458,6 +479,7 @@ class MultipleResponsesOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 201, 404]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
@@ -485,6 +507,7 @@ class MultipleResponsesOperations:
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get200_model_a201_model_c404_model_ddefault_error400_valid.metadata['url']
 
@@ -501,6 +524,7 @@ class MultipleResponsesOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 201, 404]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
@@ -527,6 +551,7 @@ class MultipleResponsesOperations:
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get202_none204_none_default_error202_none.metadata['url']
 
@@ -542,6 +567,7 @@ class MultipleResponsesOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [202, 204]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -559,6 +585,7 @@ class MultipleResponsesOperations:
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get202_none204_none_default_error204_none.metadata['url']
 
@@ -574,6 +601,7 @@ class MultipleResponsesOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [202, 204]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -592,6 +620,7 @@ class MultipleResponsesOperations:
         :raises:
          :class:`ErrorException<httpinfrastructure.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get202_none204_none_default_error400_valid.metadata['url']
 
@@ -607,6 +636,7 @@ class MultipleResponsesOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [202, 204]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -623,6 +653,7 @@ class MultipleResponsesOperations:
         :rtype: None
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get202_none204_none_default_none202_invalid.metadata['url']
 
@@ -638,6 +669,7 @@ class MultipleResponsesOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [202, 204]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpRequestError(response=response)
 
         if cls:
@@ -654,6 +686,7 @@ class MultipleResponsesOperations:
         :rtype: None
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get202_none204_none_default_none204_none.metadata['url']
 
@@ -669,6 +702,7 @@ class MultipleResponsesOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [202, 204]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpRequestError(response=response)
 
         if cls:
@@ -685,6 +719,7 @@ class MultipleResponsesOperations:
         :rtype: None
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get202_none204_none_default_none400_none.metadata['url']
 
@@ -700,6 +735,7 @@ class MultipleResponsesOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [202, 204]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpRequestError(response=response)
 
         if cls:
@@ -716,6 +752,7 @@ class MultipleResponsesOperations:
         :rtype: None
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get202_none204_none_default_none400_invalid.metadata['url']
 
@@ -731,6 +768,7 @@ class MultipleResponsesOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [202, 204]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpRequestError(response=response)
 
         if cls:
@@ -747,6 +785,7 @@ class MultipleResponsesOperations:
         :rtype: ~httpinfrastructure.models.A
         :raises: :class:`AException<httpinfrastructure.models.AException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get_default_model_a200_valid.metadata['url']
 
@@ -762,6 +801,7 @@ class MultipleResponsesOperations:
         response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.AException(response, self._deserialize)
 
         if cls:
@@ -778,6 +818,7 @@ class MultipleResponsesOperations:
         :rtype: ~httpinfrastructure.models.A
         :raises: :class:`AException<httpinfrastructure.models.AException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get_default_model_a200_none.metadata['url']
 
@@ -793,6 +834,7 @@ class MultipleResponsesOperations:
         response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.AException(response, self._deserialize)
 
         if cls:
@@ -809,6 +851,7 @@ class MultipleResponsesOperations:
         :rtype: ~httpinfrastructure.models.A
         :raises: :class:`AException<httpinfrastructure.models.AException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get_default_model_a400_valid.metadata['url']
 
@@ -824,6 +867,7 @@ class MultipleResponsesOperations:
         response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.AException(response, self._deserialize)
 
         if cls:
@@ -840,6 +884,7 @@ class MultipleResponsesOperations:
         :rtype: ~httpinfrastructure.models.A
         :raises: :class:`AException<httpinfrastructure.models.AException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get_default_model_a400_none.metadata['url']
 
@@ -855,6 +900,7 @@ class MultipleResponsesOperations:
         response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.AException(response, self._deserialize)
 
         if cls:
@@ -871,6 +917,7 @@ class MultipleResponsesOperations:
         :rtype: None
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get_default_none200_invalid.metadata['url']
 
@@ -886,6 +933,7 @@ class MultipleResponsesOperations:
         response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpRequestError(response=response)
 
         if cls:
@@ -902,6 +950,7 @@ class MultipleResponsesOperations:
         :rtype: None
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get_default_none200_none.metadata['url']
 
@@ -917,6 +966,7 @@ class MultipleResponsesOperations:
         response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpRequestError(response=response)
 
         if cls:
@@ -933,6 +983,7 @@ class MultipleResponsesOperations:
         :rtype: None
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get_default_none400_invalid.metadata['url']
 
@@ -948,6 +999,7 @@ class MultipleResponsesOperations:
         response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpRequestError(response=response)
 
         if cls:
@@ -964,6 +1016,7 @@ class MultipleResponsesOperations:
         :rtype: None
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get_default_none400_none.metadata['url']
 
@@ -979,6 +1032,7 @@ class MultipleResponsesOperations:
         response = pipeline_response.http_response
 
         if response.status_code < 200 or response.status_code >= 300:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpRequestError(response=response)
 
         if cls:
@@ -996,6 +1050,7 @@ class MultipleResponsesOperations:
         :rtype: ~httpinfrastructure.models.A
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get200_model_a200_none.metadata['url']
 
@@ -1012,6 +1067,7 @@ class MultipleResponsesOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpRequestError(response=response)
 
         deserialized = None
@@ -1033,6 +1089,7 @@ class MultipleResponsesOperations:
         :rtype: ~httpinfrastructure.models.A
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get200_model_a200_valid.metadata['url']
 
@@ -1049,6 +1106,7 @@ class MultipleResponsesOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpRequestError(response=response)
 
         deserialized = None
@@ -1070,6 +1128,7 @@ class MultipleResponsesOperations:
         :rtype: ~httpinfrastructure.models.A
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get200_model_a200_invalid.metadata['url']
 
@@ -1086,6 +1145,7 @@ class MultipleResponsesOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpRequestError(response=response)
 
         deserialized = None
@@ -1108,6 +1168,7 @@ class MultipleResponsesOperations:
         :rtype: ~httpinfrastructure.models.A
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get200_model_a400_none.metadata['url']
 
@@ -1124,6 +1185,7 @@ class MultipleResponsesOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpRequestError(response=response)
 
         deserialized = None
@@ -1145,6 +1207,7 @@ class MultipleResponsesOperations:
         :rtype: ~httpinfrastructure.models.A
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get200_model_a400_valid.metadata['url']
 
@@ -1161,6 +1224,7 @@ class MultipleResponsesOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpRequestError(response=response)
 
         deserialized = None
@@ -1182,6 +1246,7 @@ class MultipleResponsesOperations:
         :rtype: ~httpinfrastructure.models.A
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get200_model_a400_invalid.metadata['url']
 
@@ -1198,6 +1263,7 @@ class MultipleResponsesOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpRequestError(response=response)
 
         deserialized = None
@@ -1219,6 +1285,7 @@ class MultipleResponsesOperations:
         :rtype: ~httpinfrastructure.models.A
         :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get200_model_a202_valid.metadata['url']
 
@@ -1235,6 +1302,7 @@ class MultipleResponsesOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpRequestError(response=response)
 
         deserialized = None

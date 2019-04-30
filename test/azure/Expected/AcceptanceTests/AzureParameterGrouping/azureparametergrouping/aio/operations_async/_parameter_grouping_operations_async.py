@@ -10,6 +10,7 @@
 # --------------------------------------------------------------------------
 
 import uuid
+from azure.core.exceptions import map_error
 
 from ... import models
 
@@ -49,6 +50,7 @@ class ParameterGroupingOperations:
         :raises:
          :class:`ErrorException<azureparametergrouping.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         body = None
         if parameter_grouping_post_required_parameters is not None:
             body = parameter_grouping_post_required_parameters.body
@@ -93,6 +95,7 @@ class ParameterGroupingOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -114,6 +117,7 @@ class ParameterGroupingOperations:
         :raises:
          :class:`ErrorException<azureparametergrouping.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         custom_header = None
         if parameter_grouping_post_optional_parameters is not None:
             custom_header = parameter_grouping_post_optional_parameters.custom_header
@@ -144,6 +148,7 @@ class ParameterGroupingOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -168,6 +173,7 @@ class ParameterGroupingOperations:
         :raises:
          :class:`ErrorException<azureparametergrouping.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         header_one = None
         if first_parameter_group is not None:
             header_one = first_parameter_group.header_one
@@ -208,6 +214,7 @@ class ParameterGroupingOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -228,6 +235,7 @@ class ParameterGroupingOperations:
         :raises:
          :class:`ErrorException<azureparametergrouping.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         header_one = None
         if first_parameter_group is not None:
             header_one = first_parameter_group.header_one
@@ -258,6 +266,7 @@ class ParameterGroupingOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:

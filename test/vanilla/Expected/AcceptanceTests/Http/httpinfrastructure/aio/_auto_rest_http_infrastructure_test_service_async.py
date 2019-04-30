@@ -13,7 +13,7 @@ from azure.core import AsyncPipelineClient
 from msrest import Serializer, Deserializer
 
 from ._configuration_async import AutoRestHttpInfrastructureTestServiceConfiguration
-from azure.core import HttpRequestError
+from azure.core.exceptions import HttpRequestError, map_error
 from .operations_async import HttpFailureOperations
 from .operations_async import HttpSuccessOperations
 from .operations_async import HttpRedirectsOperations

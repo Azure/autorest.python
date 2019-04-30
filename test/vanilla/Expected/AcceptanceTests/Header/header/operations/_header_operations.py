@@ -9,6 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
+from azure.core.exceptions import map_error
 
 from .. import models
 
@@ -46,6 +47,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.param_existing_key.metadata['url']
 
@@ -62,6 +64,7 @@ class HeaderOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -78,6 +81,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.response_existing_key.metadata['url']
 
@@ -93,6 +97,7 @@ class HeaderOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -114,6 +119,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.param_protected_key.metadata['url']
 
@@ -130,6 +136,7 @@ class HeaderOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -146,6 +153,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.response_protected_key.metadata['url']
 
@@ -161,6 +169,7 @@ class HeaderOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -185,6 +194,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.param_integer.metadata['url']
 
@@ -202,6 +212,7 @@ class HeaderOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -221,6 +232,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.response_integer.metadata['url']
 
@@ -237,6 +249,7 @@ class HeaderOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -261,6 +274,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.param_long.metadata['url']
 
@@ -278,6 +292,7 @@ class HeaderOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -297,6 +312,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.response_long.metadata['url']
 
@@ -313,6 +329,7 @@ class HeaderOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -337,6 +354,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.param_float.metadata['url']
 
@@ -354,6 +372,7 @@ class HeaderOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -373,6 +392,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.response_float.metadata['url']
 
@@ -389,6 +409,7 @@ class HeaderOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -413,6 +434,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.param_double.metadata['url']
 
@@ -430,6 +452,7 @@ class HeaderOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -449,6 +472,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.response_double.metadata['url']
 
@@ -465,6 +489,7 @@ class HeaderOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -489,6 +514,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.param_bool.metadata['url']
 
@@ -506,6 +532,7 @@ class HeaderOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -525,6 +552,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.response_bool.metadata['url']
 
@@ -541,6 +569,7 @@ class HeaderOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -567,6 +596,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.param_string.metadata['url']
 
@@ -585,6 +615,7 @@ class HeaderOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -605,6 +636,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.response_string.metadata['url']
 
@@ -621,6 +653,7 @@ class HeaderOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -646,6 +679,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.param_date.metadata['url']
 
@@ -663,6 +697,7 @@ class HeaderOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -682,6 +717,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.response_date.metadata['url']
 
@@ -698,6 +734,7 @@ class HeaderOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -724,6 +761,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.param_datetime.metadata['url']
 
@@ -741,6 +779,7 @@ class HeaderOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -761,6 +800,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.response_datetime.metadata['url']
 
@@ -777,6 +817,7 @@ class HeaderOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -803,6 +844,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.param_datetime_rfc1123.metadata['url']
 
@@ -821,6 +863,7 @@ class HeaderOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -841,6 +884,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.response_datetime_rfc1123.metadata['url']
 
@@ -857,6 +901,7 @@ class HeaderOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -882,6 +927,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.param_duration.metadata['url']
 
@@ -899,6 +945,7 @@ class HeaderOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -918,6 +965,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.response_duration.metadata['url']
 
@@ -934,6 +982,7 @@ class HeaderOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -958,6 +1007,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.param_byte.metadata['url']
 
@@ -975,6 +1025,7 @@ class HeaderOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -994,6 +1045,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.response_byte.metadata['url']
 
@@ -1010,6 +1062,7 @@ class HeaderOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -1035,6 +1088,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.param_enum.metadata['url']
 
@@ -1053,6 +1107,7 @@ class HeaderOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -1072,6 +1127,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.response_enum.metadata['url']
 
@@ -1088,6 +1144,7 @@ class HeaderOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -1107,6 +1164,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: :class:`ErrorException<header.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.custom_request_id.metadata['url']
 
@@ -1122,6 +1180,7 @@ class HeaderOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:

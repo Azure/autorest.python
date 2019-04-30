@@ -13,6 +13,7 @@ from azure.core import AsyncPipelineClient
 from msrest import Serializer, Deserializer
 
 from ._configuration_async import AutoRestNumberTestServiceConfiguration
+from azure.core.exceptions import map_error
 from .operations_async import NumberOperations
 from .. import models
 

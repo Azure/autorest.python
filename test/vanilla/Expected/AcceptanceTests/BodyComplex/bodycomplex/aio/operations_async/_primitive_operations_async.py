@@ -9,6 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
+from azure.core.exceptions import map_error
 
 from ... import models
 
@@ -43,6 +44,7 @@ class PrimitiveOperations:
         :rtype: ~bodycomplex.models.IntWrapper
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get_int.metadata['url']
 
@@ -59,6 +61,7 @@ class PrimitiveOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
@@ -82,6 +85,7 @@ class PrimitiveOperations:
         :rtype: None
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.put_int.metadata['url']
 
@@ -101,6 +105,7 @@ class PrimitiveOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -117,6 +122,7 @@ class PrimitiveOperations:
         :rtype: ~bodycomplex.models.LongWrapper
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get_long.metadata['url']
 
@@ -133,6 +139,7 @@ class PrimitiveOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
@@ -156,6 +163,7 @@ class PrimitiveOperations:
         :rtype: None
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.put_long.metadata['url']
 
@@ -175,6 +183,7 @@ class PrimitiveOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -191,6 +200,7 @@ class PrimitiveOperations:
         :rtype: ~bodycomplex.models.FloatWrapper
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get_float.metadata['url']
 
@@ -207,6 +217,7 @@ class PrimitiveOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
@@ -230,6 +241,7 @@ class PrimitiveOperations:
         :rtype: None
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.put_float.metadata['url']
 
@@ -249,6 +261,7 @@ class PrimitiveOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -265,6 +278,7 @@ class PrimitiveOperations:
         :rtype: ~bodycomplex.models.DoubleWrapper
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get_double.metadata['url']
 
@@ -281,6 +295,7 @@ class PrimitiveOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
@@ -305,6 +320,7 @@ class PrimitiveOperations:
         :rtype: None
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.put_double.metadata['url']
 
@@ -324,6 +340,7 @@ class PrimitiveOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -340,6 +357,7 @@ class PrimitiveOperations:
         :rtype: ~bodycomplex.models.BooleanWrapper
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get_bool.metadata['url']
 
@@ -356,6 +374,7 @@ class PrimitiveOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
@@ -379,6 +398,7 @@ class PrimitiveOperations:
         :rtype: None
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.put_bool.metadata['url']
 
@@ -398,6 +418,7 @@ class PrimitiveOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -414,6 +435,7 @@ class PrimitiveOperations:
         :rtype: ~bodycomplex.models.StringWrapper
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get_string.metadata['url']
 
@@ -430,6 +452,7 @@ class PrimitiveOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
@@ -453,6 +476,7 @@ class PrimitiveOperations:
         :rtype: None
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.put_string.metadata['url']
 
@@ -472,6 +496,7 @@ class PrimitiveOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -488,6 +513,7 @@ class PrimitiveOperations:
         :rtype: ~bodycomplex.models.DateWrapper
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get_date.metadata['url']
 
@@ -504,6 +530,7 @@ class PrimitiveOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
@@ -527,6 +554,7 @@ class PrimitiveOperations:
         :rtype: None
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.put_date.metadata['url']
 
@@ -546,6 +574,7 @@ class PrimitiveOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -562,6 +591,7 @@ class PrimitiveOperations:
         :rtype: ~bodycomplex.models.DatetimeWrapper
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get_date_time.metadata['url']
 
@@ -578,6 +608,7 @@ class PrimitiveOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
@@ -602,6 +633,7 @@ class PrimitiveOperations:
         :rtype: None
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.put_date_time.metadata['url']
 
@@ -621,6 +653,7 @@ class PrimitiveOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -637,6 +670,7 @@ class PrimitiveOperations:
         :rtype: ~bodycomplex.models.Datetimerfc1123Wrapper
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get_date_time_rfc1123.metadata['url']
 
@@ -653,6 +687,7 @@ class PrimitiveOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
@@ -677,6 +712,7 @@ class PrimitiveOperations:
         :rtype: None
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.put_date_time_rfc1123.metadata['url']
 
@@ -696,6 +732,7 @@ class PrimitiveOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -712,6 +749,7 @@ class PrimitiveOperations:
         :rtype: ~bodycomplex.models.DurationWrapper
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get_duration.metadata['url']
 
@@ -728,6 +766,7 @@ class PrimitiveOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
@@ -751,6 +790,7 @@ class PrimitiveOperations:
         :rtype: None
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         complex_body = models.DurationWrapper(field=field)
 
         # Construct URL
@@ -772,6 +812,7 @@ class PrimitiveOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -788,6 +829,7 @@ class PrimitiveOperations:
         :rtype: ~bodycomplex.models.ByteWrapper
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get_byte.metadata['url']
 
@@ -804,6 +846,7 @@ class PrimitiveOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
@@ -827,6 +870,7 @@ class PrimitiveOperations:
         :rtype: None
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         complex_body = models.ByteWrapper(field=field)
 
         # Construct URL
@@ -848,6 +892,7 @@ class PrimitiveOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:

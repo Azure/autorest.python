@@ -14,7 +14,7 @@ from msrest import Serializer, Deserializer
 
 from ._configuration_async import AutoRestValidationTestConfiguration
 from .operations_async import AutoRestValidationTestOperationsMixin
-from azure.core import HttpRequestError
+from azure.core.exceptions import HttpRequestError, map_error
 from .. import models
 
 

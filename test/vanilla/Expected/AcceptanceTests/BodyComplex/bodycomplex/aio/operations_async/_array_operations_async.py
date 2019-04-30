@@ -9,6 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
+from azure.core.exceptions import map_error
 
 from ... import models
 
@@ -43,6 +44,7 @@ class ArrayOperations:
         :rtype: ~bodycomplex.models.ArrayWrapper
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get_valid.metadata['url']
 
@@ -59,6 +61,7 @@ class ArrayOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
@@ -82,6 +85,7 @@ class ArrayOperations:
         :rtype: None
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         complex_body = models.ArrayWrapper(array=array)
 
         # Construct URL
@@ -103,6 +107,7 @@ class ArrayOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -119,6 +124,7 @@ class ArrayOperations:
         :rtype: ~bodycomplex.models.ArrayWrapper
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get_empty.metadata['url']
 
@@ -135,6 +141,7 @@ class ArrayOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
@@ -158,6 +165,7 @@ class ArrayOperations:
         :rtype: None
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         complex_body = models.ArrayWrapper(array=array)
 
         # Construct URL
@@ -179,6 +187,7 @@ class ArrayOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -196,6 +205,7 @@ class ArrayOperations:
         :rtype: ~bodycomplex.models.ArrayWrapper
         :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get_not_provided.metadata['url']
 
@@ -212,6 +222,7 @@ class ArrayOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         deserialized = None

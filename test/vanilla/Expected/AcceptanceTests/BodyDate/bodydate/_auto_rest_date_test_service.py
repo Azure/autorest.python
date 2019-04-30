@@ -13,6 +13,7 @@ from azure.core import PipelineClient
 from msrest import Serializer, Deserializer
 
 from ._configuration import AutoRestDateTestServiceConfiguration
+from azure.core.exceptions import map_error
 from .operations import DateModelOperations
 from . import models
 

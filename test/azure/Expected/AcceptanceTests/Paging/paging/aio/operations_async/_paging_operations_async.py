@@ -10,7 +10,7 @@
 # --------------------------------------------------------------------------
 
 import uuid
-from azure.core import HttpRequestError
+from azure.core.exceptions import HttpRequestError, map_error
 from msrest.polling.async_poller import async_poller, AsyncNoPolling
 from msrestazure.polling.async_arm_polling import AsyncARMPolling
 
@@ -71,28 +71,28 @@ class PagingOperations:
             return request
 
         def internal_paging(next_link=None):
+            error_map = kwargs.pop('error_map', None)
             request = prepare_request(next_link)
 
             pipeline_response = self._client._pipeline.run(request)
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
-                exp = HttpRequestError(response=response)
-                raise exp
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpRequestError(response=response)
 
             return response
 
         async def internal_paging_async(next_link=None):
+            error_map = kwargs.pop('error_map', None)
             request = prepare_request(next_link)
 
             pipeline_response = await self._client._pipeline.run(request)
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
-                exp = HttpRequestError(response=response)
-                raise exp
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpRequestError(response=response)
 
             return response
 
@@ -156,28 +156,28 @@ class PagingOperations:
             return request
 
         def internal_paging(next_link=None):
+            error_map = kwargs.pop('error_map', None)
             request = prepare_request(next_link)
 
             pipeline_response = self._client._pipeline.run(request)
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
-                exp = HttpRequestError(response=response)
-                raise exp
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpRequestError(response=response)
 
             return response
 
         async def internal_paging_async(next_link=None):
+            error_map = kwargs.pop('error_map', None)
             request = prepare_request(next_link)
 
             pipeline_response = await self._client._pipeline.run(request)
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
-                exp = HttpRequestError(response=response)
-                raise exp
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpRequestError(response=response)
 
             return response
 
@@ -242,28 +242,28 @@ class PagingOperations:
             return request
 
         def internal_paging(next_link=None):
+            error_map = kwargs.pop('error_map', None)
             request = prepare_request(next_link)
 
             pipeline_response = self._client._pipeline.run(request)
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
-                exp = HttpRequestError(response=response)
-                raise exp
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpRequestError(response=response)
 
             return response
 
         async def internal_paging_async(next_link=None):
+            error_map = kwargs.pop('error_map', None)
             request = prepare_request(next_link)
 
             pipeline_response = await self._client._pipeline.run(request)
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
-                exp = HttpRequestError(response=response)
-                raise exp
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpRequestError(response=response)
 
             return response
 
@@ -334,28 +334,28 @@ class PagingOperations:
             return request
 
         def internal_paging(next_link=None):
+            error_map = kwargs.pop('error_map', None)
             request = prepare_request(next_link)
 
             pipeline_response = self._client._pipeline.run(request)
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
-                exp = HttpRequestError(response=response)
-                raise exp
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpRequestError(response=response)
 
             return response
 
         async def internal_paging_async(next_link=None):
+            error_map = kwargs.pop('error_map', None)
             request = prepare_request(next_link)
 
             pipeline_response = await self._client._pipeline.run(request)
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
-                exp = HttpRequestError(response=response)
-                raise exp
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpRequestError(response=response)
 
             return response
 
@@ -401,28 +401,28 @@ class PagingOperations:
             return request
 
         def internal_paging(next_link=None):
+            error_map = kwargs.pop('error_map', None)
             request = prepare_request(next_link)
 
             pipeline_response = self._client._pipeline.run(request)
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
-                exp = HttpRequestError(response=response)
-                raise exp
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpRequestError(response=response)
 
             return response
 
         async def internal_paging_async(next_link=None):
+            error_map = kwargs.pop('error_map', None)
             request = prepare_request(next_link)
 
             pipeline_response = await self._client._pipeline.run(request)
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
-                exp = HttpRequestError(response=response)
-                raise exp
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpRequestError(response=response)
 
             return response
 
@@ -469,28 +469,28 @@ class PagingOperations:
             return request
 
         def internal_paging(next_link=None):
+            error_map = kwargs.pop('error_map', None)
             request = prepare_request(next_link)
 
             pipeline_response = self._client._pipeline.run(request)
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
-                exp = HttpRequestError(response=response)
-                raise exp
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpRequestError(response=response)
 
             return response
 
         async def internal_paging_async(next_link=None):
+            error_map = kwargs.pop('error_map', None)
             request = prepare_request(next_link)
 
             pipeline_response = await self._client._pipeline.run(request)
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
-                exp = HttpRequestError(response=response)
-                raise exp
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpRequestError(response=response)
 
             return response
 
@@ -535,28 +535,28 @@ class PagingOperations:
             return request
 
         def internal_paging(next_link=None):
+            error_map = kwargs.pop('error_map', None)
             request = prepare_request(next_link)
 
             pipeline_response = self._client._pipeline.run(request)
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
-                exp = HttpRequestError(response=response)
-                raise exp
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpRequestError(response=response)
 
             return response
 
         async def internal_paging_async(next_link=None):
+            error_map = kwargs.pop('error_map', None)
             request = prepare_request(next_link)
 
             pipeline_response = await self._client._pipeline.run(request)
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
-                exp = HttpRequestError(response=response)
-                raise exp
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpRequestError(response=response)
 
             return response
 
@@ -601,28 +601,28 @@ class PagingOperations:
             return request
 
         def internal_paging(next_link=None):
+            error_map = kwargs.pop('error_map', None)
             request = prepare_request(next_link)
 
             pipeline_response = self._client._pipeline.run(request)
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
-                exp = HttpRequestError(response=response)
-                raise exp
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpRequestError(response=response)
 
             return response
 
         async def internal_paging_async(next_link=None):
+            error_map = kwargs.pop('error_map', None)
             request = prepare_request(next_link)
 
             pipeline_response = await self._client._pipeline.run(request)
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
-                exp = HttpRequestError(response=response)
-                raise exp
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpRequestError(response=response)
 
             return response
 
@@ -667,28 +667,28 @@ class PagingOperations:
             return request
 
         def internal_paging(next_link=None):
+            error_map = kwargs.pop('error_map', None)
             request = prepare_request(next_link)
 
             pipeline_response = self._client._pipeline.run(request)
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
-                exp = HttpRequestError(response=response)
-                raise exp
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpRequestError(response=response)
 
             return response
 
         async def internal_paging_async(next_link=None):
+            error_map = kwargs.pop('error_map', None)
             request = prepare_request(next_link)
 
             pipeline_response = await self._client._pipeline.run(request)
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
-                exp = HttpRequestError(response=response)
-                raise exp
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpRequestError(response=response)
 
             return response
 
@@ -748,28 +748,28 @@ class PagingOperations:
             return request
 
         def internal_paging(next_link=None):
+            error_map = kwargs.pop('error_map', None)
             request = prepare_request(next_link)
 
             pipeline_response = self._client._pipeline.run(request)
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
-                exp = HttpRequestError(response=response)
-                raise exp
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpRequestError(response=response)
 
             return response
 
         async def internal_paging_async(next_link=None):
+            error_map = kwargs.pop('error_map', None)
             request = prepare_request(next_link)
 
             pipeline_response = await self._client._pipeline.run(request)
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
-                exp = HttpRequestError(response=response)
-                raise exp
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpRequestError(response=response)
 
             return response
 
@@ -835,28 +835,28 @@ class PagingOperations:
             return request
 
         def internal_paging(next_link=None):
+            error_map = kwargs.pop('error_map', None)
             request = prepare_request(next_link)
 
             pipeline_response = self._client._pipeline.run(request)
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
-                exp = HttpRequestError(response=response)
-                raise exp
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpRequestError(response=response)
 
             return response
 
         async def internal_paging_async(next_link=None):
+            error_map = kwargs.pop('error_map', None)
             request = prepare_request(next_link)
 
             pipeline_response = await self._client._pipeline.run(request)
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
-                exp = HttpRequestError(response=response)
-                raise exp
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpRequestError(response=response)
 
             return response
 
@@ -904,9 +904,8 @@ class PagingOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
-            error = self._map_error(status_code=response.status_code, response=response, error_map=kwargs.get('error_map'))
-            exp = HttpRequestError(response=response)
-            raise exp
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpRequestError(response=response)
 
         deserialized = None
 

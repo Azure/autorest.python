@@ -9,6 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
+from azure.core.exceptions import map_error
 
 from .. import models
 
@@ -44,6 +45,7 @@ class EnumOperations(object):
         :rtype: ~bodystring.models.Colors
         :raises: :class:`ErrorException<bodystring.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get_not_expandable.metadata['url']
 
@@ -60,6 +62,7 @@ class EnumOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
@@ -85,6 +88,7 @@ class EnumOperations(object):
         :rtype: None
         :raises: :class:`ErrorException<bodystring.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.put_not_expandable.metadata['url']
 
@@ -104,6 +108,7 @@ class EnumOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -121,6 +126,7 @@ class EnumOperations(object):
         :rtype: ~bodystring.models.Colors
         :raises: :class:`ErrorException<bodystring.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get_referenced.metadata['url']
 
@@ -137,6 +143,7 @@ class EnumOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
@@ -162,6 +169,7 @@ class EnumOperations(object):
         :rtype: None
         :raises: :class:`ErrorException<bodystring.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.put_referenced.metadata['url']
 
@@ -181,6 +189,7 @@ class EnumOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:
@@ -197,6 +206,7 @@ class EnumOperations(object):
         :rtype: ~bodystring.models.RefColorConstant
         :raises: :class:`ErrorException<bodystring.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get_referenced_constant.metadata['url']
 
@@ -213,6 +223,7 @@ class EnumOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
@@ -236,6 +247,7 @@ class EnumOperations(object):
         :rtype: None
         :raises: :class:`ErrorException<bodystring.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         enum_string_body = models.RefColorConstant(field1=field1)
 
         # Construct URL
@@ -257,6 +269,7 @@ class EnumOperations(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         if cls:

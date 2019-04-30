@@ -14,15 +14,6 @@ import uuid
 
 
 class AutoRestReportServiceForAzureOperationsMixin(object):
-    def _map_error(self, status_code, response, **config):
-        error_map = config.get("error_map")
-        if error_map is None:
-            return
-        error_type = error_map.get(status_code)
-        if error_type is None:
-            return
-        error = error_type(response=response)
-        raise error
 
     def get_report(self, qualifier=None, cls=None, **kwargs):
         """Get test coverage report.
@@ -38,6 +29,7 @@ class AutoRestReportServiceForAzureOperationsMixin(object):
         :rtype: dict[str, int]
         :raises: :class:`ErrorException<azurereport.models.ErrorException>`
         """
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.get_report.metadata['url']
 
@@ -60,6 +52,7 @@ class AutoRestReportServiceForAzureOperationsMixin(object):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
         deserialized = None
