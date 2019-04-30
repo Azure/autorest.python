@@ -21,6 +21,10 @@
 {
 @:from azure.core.exceptions import HttpRequestError, map_error
 }
+else
+{
+@:from azure.core.exceptions import map_error
+}
 @if (Model.HasAnyLongRunOperation)
 {
 @:from msrest.polling.async_poller import async_poller, AsyncNoPolling
