@@ -147,14 +147,15 @@ class TestFormData(object):
 
         result = io.BytesIO()
         with io.BytesIO(test_bytes) as stream_data:
-            resp = client.formdata.upload_file_via_body(stream_data)
+            streamed_upload = stream_upload(stream_data, len(test_string), 2)
+            resp = client.formdata.upload_file_via_body(streamed_upload)
             for r in resp:
                 result.write(r)
             assert result.getvalue().decode() ==  test_string
 
         result = io.BytesIO()
         with open(dummy_file, 'rb') as upload_data:
-            streamed_upload = stream_upload(upload_data, len(test_string), 2)
+            streamed_upload = stream_upload(upload_data, len("Test file"), 2)
             response = client.formdata.upload_file_via_body(streamed_upload)
             for data in response:
                 result.write(data)

@@ -84,7 +84,7 @@ class TestFormData(object):
         result = io.BytesIO()
         with io.BytesIO(test_bytes) as stream_data:
             resp = await client.formdata.upload_file(stream_data, "UploadFile.txt", cls=test_callback)
-            async for data in stream:
+            async for data in resp:
                 result.write(data)
             assert result.getvalue().decode() ==  test_string
 
@@ -100,6 +100,7 @@ class TestFormData(object):
 
     @pytest.mark.asyncio
     async def test_file_upload_file_stream_raw(self, client, dummy_file):
+
         def test_callback(response, data, headers):
             return data
 
@@ -107,13 +108,12 @@ class TestFormData(object):
         result = io.BytesIO()
         with open(dummy_file, 'rb') as upload_data:
             resp = await client.formdata.upload_file(upload_data, name, cls=test_callback)
-            async for data in stream:
+            async for data in resp:
                 result.write(data)
             assert result.getvalue().decode() ==  "Test file"
 
     @pytest.mark.asyncio
     async def test_file_body_upload(self, client, dummy_file):
-
         test_string = "Upload file test case"
         test_bytes = bytearray(test_string, encoding='utf-8')
 
@@ -133,11 +133,10 @@ class TestFormData(object):
 
     @pytest.mark.asyncio
     async def test_file_body_upload_generator(self, client, dummy_file):
-
         test_string = "Upload file test case"
         test_bytes = bytearray(test_string, encoding='utf-8')
 
-        def stream_upload(data, length, block_size):
+        async def stream_upload(data, length, block_size):
             progress = 0
             while True:
                 block = data.read(block_size)  
@@ -149,14 +148,15 @@ class TestFormData(object):
 
         result = io.BytesIO()
         with io.BytesIO(test_bytes) as stream_data:
-            resp = await client.formdata.upload_file_via_body(stream_data)
+            streamed_upload = stream_upload(stream_data, len(test_string), 2)
+            resp = await client.formdata.upload_file_via_body(streamed_upload)
             async for r in resp:
                 result.write(r)
             assert result.getvalue().decode() ==  test_string
 
         result = io.BytesIO()
         with open(dummy_file, 'rb') as upload_data:
-            streamed_upload = stream_upload(upload_data, len(test_string), 2)
+            streamed_upload = stream_upload(upload_data, len("Test file"), 2)
             response = await client.formdata.upload_file_via_body(streamed_upload)
             async for data in response:
                 result.write(data)
