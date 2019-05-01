@@ -9,6 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
+from azure.core.exceptions import map_error
 from .. import models
 import uuid
 
