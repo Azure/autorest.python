@@ -143,6 +143,10 @@ else
         response = pipeline_response.http_response
 @EmptyLine
         if @Model.FailureStatusCodePredicate:
+@if((AsyncMode) && (Model.IsStreamResponse))
+{
+            @:await response.load_body()
+}
             @Model.RaisedException
 @EmptyLine
 @if (Model.HasAnyResponse)

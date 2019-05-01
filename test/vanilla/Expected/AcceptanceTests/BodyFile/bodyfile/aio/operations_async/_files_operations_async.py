@@ -61,6 +61,7 @@ class FilesOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            await response.load_body()
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
@@ -98,6 +99,7 @@ class FilesOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            await response.load_body()
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
@@ -135,6 +137,7 @@ class FilesOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            await response.load_body()
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
