@@ -48,7 +48,7 @@ from msrest.exceptions import (
 )
 from msrest.authentication import BasicTokenAuthentication
 
-from azure.core.exceptions import ServiceResponseError
+from azure.core.exceptions import ServiceRequestError
 
 from custombaseurl import AutoRestParameterizedHostTestClient
 from custombaseurl.models import Error, ErrorException
@@ -66,14 +66,14 @@ class TestCustomBaseUri(object):
         cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
         client = AutoRestParameterizedHostTestClient(cred, host="host:3000")
         client._config.retry_policy.retries = 0
-        with pytest.raises(ServiceResponseError):
+        with pytest.raises(ServiceRequestError):
             client.paths.get_empty("bad")
 
         with pytest.raises(ValidationError):
             client.paths.get_empty(None)
 
         client._config.host = "badhost:3000"
-        with pytest.raises(ServiceResponseError):
+        with pytest.raises(ServiceRequestError):
             client.paths.get_empty("local")
 
 if __name__ == '__main__':
