@@ -55,24 +55,24 @@ namespace AutoRest.Python.Azure.Model
         {
             get
             {
-                if (DefaultResponse.Body == null || DefaultResponse.Body.Name == "HttpRequestError")
+                if (DefaultResponse.Body == null || DefaultResponse.Body.Name == "HttpResponseError")
                 {
-                    return ":class:`HttpRequestError<azure.core.HttpRequestError>`";
+                    return ":class:`HttpResponseError<azure.core.HttpResponseError>`";
                 }
                 return base.ExceptionDocumentation;
             }
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "exp"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Globalization", "CA1303:Do not pass literals as localized parameters", MessageId = "AutoRest.Core.Utilities.IndentedStringBuilder.AppendLine(System.String)"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "HttpRequestError")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "exp"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Globalization", "CA1303:Do not pass literals as localized parameters", MessageId = "AutoRest.Core.Utilities.IndentedStringBuilder.AppendLine(System.String)"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "HttpResponseError")]
         public override string RaisedException
         {
             get
             {
-                if (DefaultResponse.Body == null || DefaultResponse.Body.Name == "HttpRequestError")
+                if (DefaultResponse.Body == null || DefaultResponse.Body.Name == "HttpResponseError")
                 {
                     var sb = new IndentedStringBuilder();
                     sb.AppendLine("map_error(status_code=response.status_code, response=response, error_map=error_map)");
-                    sb.AppendLine("raise HttpRequestError(response=response)");
+                    sb.AppendLine("raise HttpResponseError(response=response)");
                     return sb.ToString();
                 }
 

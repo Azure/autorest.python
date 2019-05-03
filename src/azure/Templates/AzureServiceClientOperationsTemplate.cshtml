@@ -17,9 +17,9 @@
 {
 @:import warnings
 }
-@if(Model.HasAnyHttpRequestErrors)
+@if(Model.HasAnyHttpResponseErrors)
 {
-@:from azure.core.exceptions import HttpRequestError, map_error
+@:from azure.core.exceptions import HttpResponseError, map_error
 }
 else
 {

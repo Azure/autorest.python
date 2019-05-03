@@ -10,7 +10,7 @@
 # --------------------------------------------------------------------------
 
 from msrest.serialization import Model
-from azure.core import HttpRequestError
+from azure.core import HttpResponseError
 
 
 class Error(Model):
@@ -33,7 +33,7 @@ class Error(Model):
         self.message = kwargs.get('message', None)
 
 
-class ErrorException(HttpRequestError):
+class ErrorException(HttpResponseError):
     """Server responsed with exception of type: 'Error'.
 
     :param deserialize: A deserializer
@@ -71,8 +71,8 @@ class FirstParameterGroup(Model):
         self.query_one = kwargs.get('query_one', 30)
 
 
-class HttpRequestError(Model):
-    """HttpRequestError.
+class HttpResponseError(Model):
+    """HttpResponseError.
     """
 
     _attribute_map = {

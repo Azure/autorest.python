@@ -40,8 +40,8 @@ class CustomParameterGroup(Model):
         self.tenant = kwargs.get('tenant', None)
 
 
-class HttpRequestError(Model):
-    """HttpRequestError.
+class HttpResponseError(Model):
+    """HttpResponseError.
     """
 
     _attribute_map = {

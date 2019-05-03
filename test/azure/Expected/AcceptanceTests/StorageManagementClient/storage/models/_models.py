@@ -131,8 +131,8 @@ class Foo(Model):
         self.bar_point = kwargs.get('bar_point', None)
 
 
-class HttpRequestError(Model):
-    """HttpRequestError.
+class HttpResponseError(Model):
+    """HttpResponseError.
     """
 
     _attribute_map = {

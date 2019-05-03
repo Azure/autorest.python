@@ -44,7 +44,7 @@ from msrest.exceptions import (
     SerializationError,
     ValidationError)
 
-from azure.core.exceptions import ConnectError
+from azure.core.exceptions import ServiceResponseError
 
 from custombaseurl import AutoRestParameterizedHostTestClient, AutoRestParameterizedHostTestClientConfiguration
 from custombaseurl.models import Error, ErrorException
@@ -63,7 +63,7 @@ class TestCustomBaseUri(object):
         config.retry_policy.total_retries = 0
         client = AutoRestParameterizedHostTestClient("host:3000", config=config)
 
-        with pytest.raises(ConnectError):
+        with pytest.raises(ServiceResponseError):
             client.paths.get_empty("bad")
 
         with pytest.raises(ValidationError):
@@ -72,7 +72,7 @@ class TestCustomBaseUri(object):
         config = AutoRestParameterizedHostTestClientConfiguration("host:3000")
         config.retry_policy.total_retries = 0
         client = AutoRestParameterizedHostTestClient("badhost:3000", config=config)
-        #with pytest.raises(ConnectError):  # TODO: Why not failing?
+        #with pytest.raises(ServiceResponseError):  # TODO: Why not failing?
         client.paths.get_empty("local")
 
     def test_custom_base_uri_more_optiopns(self):

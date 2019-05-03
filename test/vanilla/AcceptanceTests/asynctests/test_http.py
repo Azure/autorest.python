@@ -42,7 +42,7 @@ log_level = int(os.environ.get('PythonLogLevel', 30))
 tests = realpath(join(cwd, pardir, "Expected", "AcceptanceTests"))
 sys.path.append(join(tests, "Http"))
 
-from azure.core.exceptions import HttpRequestError
+from azure.core.exceptions import HttpResponseError
 from msrest.exceptions import DeserializationError
 
 from httpinfrastructure.aio import AutoRestHttpInfrastructureTestService, AutoRestHttpInfrastructureTestServiceConfiguration
@@ -73,7 +73,7 @@ class TestHttp(object):
             await func(*args, **kwargs)
             pytest.fail()
 
-        except HttpRequestError as err:
+        except HttpResponseError as err:
             assert err.message == msg
 
     async def assertRaisesWithModel(self, code, model, func, *args, **kwargs):
@@ -81,7 +81,7 @@ class TestHttp(object):
             await func(*args, **kwargs)
             pytest.fail()
 
-        except HttpRequestError as err:
+        except HttpResponseError as err:
             assert isinstance(err.error, model)
             assert err.response.status_code == code
 
@@ -90,7 +90,7 @@ class TestHttp(object):
             await func(*args, **kwargs)
             pytest.fail()
 
-        except HttpRequestError as err:
+        except HttpResponseError as err:
             assert err.response.status_code == code
 
     async def assertRaisesWithStatusAndMessage(self, code, msg, func, *args, **kwargs):
@@ -98,7 +98,7 @@ class TestHttp(object):
             await func(*args, **kwargs)
             pytest.fail()
 
-        except HttpRequestError as err:
+        except HttpResponseError as err:
             assert err.message == msg
             assert err.response.status_code == code
 
@@ -107,7 +107,7 @@ class TestHttp(object):
             await func(*args, **kwargs)
             pytest.fail()
 
-        except HttpRequestError as err:
+        except HttpResponseError as err:
             assert err.response.status_code == code
             assert msg in err.response.text()
 

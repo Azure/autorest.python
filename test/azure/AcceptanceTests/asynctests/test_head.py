@@ -49,7 +49,7 @@ from msrest.authentication import BasicTokenAuthentication
 from head.aio import AutoRestHeadTestService
 from headexceptions.aio import AutoRestHeadExceptionTestService
 
-from azure.core import HttpRequestError, HttpRequestError
+from azure.core import HttpResponseError
 
 import pytest
 
@@ -73,7 +73,7 @@ class TestHead(object):
 
         await client.head_exception.head200()
         await client.head_exception.head204()
-        with pytest.raises(HttpRequestError):
+        with pytest.raises(HttpResponseError):
             await client.head_exception.head404()
 
 

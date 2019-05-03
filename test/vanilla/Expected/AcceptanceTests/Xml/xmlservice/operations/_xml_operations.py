@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from azure.core.exceptions import HttpRequestError, map_error
+from azure.core.exceptions import HttpResponseError, map_error
 
 from .. import models
 
@@ -42,7 +42,7 @@ class XmlOperations(object):
          direct response
         :return: RootWithRefAndNoMeta or the result of cls(response)
         :rtype: ~xmlservice.models.RootWithRefAndNoMeta
-        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
+        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL
@@ -62,7 +62,7 @@ class XmlOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpRequestError(response=response)
+            raise HttpResponseError(response=response)
 
         deserialized = None
         if response.status_code == 200:
@@ -83,7 +83,7 @@ class XmlOperations(object):
          direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
+        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL
@@ -106,7 +106,7 @@ class XmlOperations(object):
 
         if response.status_code not in [201]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpRequestError(response=response)
+            raise HttpResponseError(response=response)
 
         if cls:
             response_headers = {}
@@ -120,7 +120,7 @@ class XmlOperations(object):
          direct response
         :return: RootWithRefAndMeta or the result of cls(response)
         :rtype: ~xmlservice.models.RootWithRefAndMeta
-        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
+        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL
@@ -140,7 +140,7 @@ class XmlOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpRequestError(response=response)
+            raise HttpResponseError(response=response)
 
         deserialized = None
         if response.status_code == 200:
@@ -161,7 +161,7 @@ class XmlOperations(object):
          direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
+        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL
@@ -184,7 +184,7 @@ class XmlOperations(object):
 
         if response.status_code not in [201]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpRequestError(response=response)
+            raise HttpResponseError(response=response)
 
         if cls:
             response_headers = {}
@@ -276,7 +276,7 @@ class XmlOperations(object):
          direct response
         :return: AppleBarrel or the result of cls(response)
         :rtype: ~xmlservice.models.AppleBarrel
-        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
+        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL
@@ -296,7 +296,7 @@ class XmlOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpRequestError(response=response)
+            raise HttpResponseError(response=response)
 
         deserialized = None
         if response.status_code == 200:
@@ -354,7 +354,7 @@ class XmlOperations(object):
          direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
+        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL
@@ -373,7 +373,7 @@ class XmlOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpRequestError(response=response)
+            raise HttpResponseError(response=response)
 
         if cls:
             response_headers = {
@@ -389,7 +389,7 @@ class XmlOperations(object):
          direct response
         :return: Slideshow or the result of cls(response)
         :rtype: ~xmlservice.models.Slideshow
-        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
+        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL
@@ -409,7 +409,7 @@ class XmlOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpRequestError(response=response)
+            raise HttpResponseError(response=response)
 
         deserialized = None
         if response.status_code == 200:
@@ -430,7 +430,7 @@ class XmlOperations(object):
          direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
+        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL
@@ -453,7 +453,7 @@ class XmlOperations(object):
 
         if response.status_code not in [201]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpRequestError(response=response)
+            raise HttpResponseError(response=response)
 
         if cls:
             response_headers = {}
@@ -467,7 +467,7 @@ class XmlOperations(object):
          direct response
         :return: AppleBarrel or the result of cls(response)
         :rtype: ~xmlservice.models.AppleBarrel
-        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
+        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL
@@ -487,7 +487,7 @@ class XmlOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpRequestError(response=response)
+            raise HttpResponseError(response=response)
 
         deserialized = None
         if response.status_code == 200:
@@ -508,7 +508,7 @@ class XmlOperations(object):
          direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
+        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL
@@ -531,7 +531,7 @@ class XmlOperations(object):
 
         if response.status_code not in [201]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpRequestError(response=response)
+            raise HttpResponseError(response=response)
 
         if cls:
             response_headers = {}
@@ -545,7 +545,7 @@ class XmlOperations(object):
          direct response
         :return: list or the result of cls(response)
         :rtype: list[~xmlservice.models.Banana]
-        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
+        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL
@@ -565,7 +565,7 @@ class XmlOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpRequestError(response=response)
+            raise HttpResponseError(response=response)
 
         deserialized = None
         if response.status_code == 200:
@@ -586,7 +586,7 @@ class XmlOperations(object):
          direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
+        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL
@@ -610,7 +610,7 @@ class XmlOperations(object):
 
         if response.status_code not in [201]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpRequestError(response=response)
+            raise HttpResponseError(response=response)
 
         if cls:
             response_headers = {}
@@ -624,7 +624,7 @@ class XmlOperations(object):
          direct response
         :return: list or the result of cls(response)
         :rtype: list[~xmlservice.models.Banana]
-        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
+        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL
@@ -644,7 +644,7 @@ class XmlOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpRequestError(response=response)
+            raise HttpResponseError(response=response)
 
         deserialized = None
         if response.status_code == 200:
@@ -665,7 +665,7 @@ class XmlOperations(object):
          direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
+        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL
@@ -689,7 +689,7 @@ class XmlOperations(object):
 
         if response.status_code not in [201]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpRequestError(response=response)
+            raise HttpResponseError(response=response)
 
         if cls:
             response_headers = {}
@@ -703,7 +703,7 @@ class XmlOperations(object):
          direct response
         :return: list or the result of cls(response)
         :rtype: list[~xmlservice.models.Banana]
-        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
+        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL
@@ -723,7 +723,7 @@ class XmlOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpRequestError(response=response)
+            raise HttpResponseError(response=response)
 
         deserialized = None
         if response.status_code == 200:
@@ -744,7 +744,7 @@ class XmlOperations(object):
          direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
+        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL
@@ -768,7 +768,7 @@ class XmlOperations(object):
 
         if response.status_code not in [201]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpRequestError(response=response)
+            raise HttpResponseError(response=response)
 
         if cls:
             response_headers = {}
@@ -782,7 +782,7 @@ class XmlOperations(object):
          direct response
         :return: Banana or the result of cls(response)
         :rtype: ~xmlservice.models.Banana
-        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
+        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL
@@ -802,7 +802,7 @@ class XmlOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpRequestError(response=response)
+            raise HttpResponseError(response=response)
 
         deserialized = None
         if response.status_code == 200:
@@ -823,7 +823,7 @@ class XmlOperations(object):
          direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
+        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL
@@ -846,7 +846,7 @@ class XmlOperations(object):
 
         if response.status_code not in [201]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpRequestError(response=response)
+            raise HttpResponseError(response=response)
 
         if cls:
             response_headers = {}
@@ -860,7 +860,7 @@ class XmlOperations(object):
          direct response
         :return: ListContainersResponse or the result of cls(response)
         :rtype: ~xmlservice.models.ListContainersResponse
-        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
+        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
         """
         error_map = kwargs.pop('error_map', None)
         comp = "list"
@@ -883,7 +883,7 @@ class XmlOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpRequestError(response=response)
+            raise HttpResponseError(response=response)
 
         deserialized = None
         if response.status_code == 200:
@@ -902,7 +902,7 @@ class XmlOperations(object):
          direct response
         :return: StorageServiceProperties or the result of cls(response)
         :rtype: ~xmlservice.models.StorageServiceProperties
-        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
+        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
         """
         error_map = kwargs.pop('error_map', None)
         comp = "properties"
@@ -927,7 +927,7 @@ class XmlOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpRequestError(response=response)
+            raise HttpResponseError(response=response)
 
         deserialized = None
         if response.status_code == 200:
@@ -948,7 +948,7 @@ class XmlOperations(object):
          direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
+        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
         """
         error_map = kwargs.pop('error_map', None)
         comp = "properties"
@@ -976,7 +976,7 @@ class XmlOperations(object):
 
         if response.status_code not in [201]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpRequestError(response=response)
+            raise HttpResponseError(response=response)
 
         if cls:
             response_headers = {}
@@ -990,7 +990,7 @@ class XmlOperations(object):
          direct response
         :return: list or the result of cls(response)
         :rtype: list[~xmlservice.models.SignedIdentifier]
-        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
+        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
         """
         error_map = kwargs.pop('error_map', None)
         comp = "acl"
@@ -1015,7 +1015,7 @@ class XmlOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpRequestError(response=response)
+            raise HttpResponseError(response=response)
 
         deserialized = None
         if response.status_code == 200:
@@ -1036,7 +1036,7 @@ class XmlOperations(object):
          direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
+        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
         """
         error_map = kwargs.pop('error_map', None)
         comp = "acl"
@@ -1065,7 +1065,7 @@ class XmlOperations(object):
 
         if response.status_code not in [201]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpRequestError(response=response)
+            raise HttpResponseError(response=response)
 
         if cls:
             response_headers = {}
@@ -1079,7 +1079,7 @@ class XmlOperations(object):
          direct response
         :return: ListBlobsResponse or the result of cls(response)
         :rtype: ~xmlservice.models.ListBlobsResponse
-        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
+        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
         """
         error_map = kwargs.pop('error_map', None)
         comp = "list"
@@ -1104,7 +1104,7 @@ class XmlOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpRequestError(response=response)
+            raise HttpResponseError(response=response)
 
         deserialized = None
         if response.status_code == 200:

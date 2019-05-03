@@ -10,7 +10,7 @@
 # --------------------------------------------------------------------------
 
 import uuid
-from azure.core.exceptions import HttpRequestError, map_error
+from azure.core.exceptions import HttpResponseError, map_error
 
 from .. import models
 
@@ -44,7 +44,7 @@ class XMsClientRequestIdOperations(object):
          direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
+        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL
@@ -67,7 +67,7 @@ class XMsClientRequestIdOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpRequestError(response=response)
+            raise HttpResponseError(response=response)
 
         if cls:
             response_headers = {}

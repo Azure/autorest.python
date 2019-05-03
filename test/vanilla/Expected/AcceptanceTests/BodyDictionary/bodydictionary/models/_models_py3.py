@@ -10,7 +10,7 @@
 # --------------------------------------------------------------------------
 
 from msrest.serialization import Model
-from azure.core import HttpRequestError
+from azure.core import HttpResponseError
 
 
 class Error(Model):
@@ -33,7 +33,7 @@ class Error(Model):
         self.message = message
 
 
-class ErrorException(HttpRequestError):
+class ErrorException(HttpResponseError):
     """Server responsed with exception of type: 'Error'.
 
     :param deserialize: A deserializer

@@ -13,7 +13,7 @@ from azure.core import PipelineClient
 from msrest import Serializer, Deserializer
 
 from ._configuration import AutoRestSwaggerBATXMLServiceConfiguration
-from azure.core.exceptions import HttpRequestError, map_error
+from azure.core.exceptions import HttpResponseError, map_error
 from .operations import XmlOperations
 from . import models
 

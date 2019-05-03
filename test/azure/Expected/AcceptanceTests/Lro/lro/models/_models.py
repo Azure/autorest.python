@@ -10,7 +10,7 @@
 # --------------------------------------------------------------------------
 
 from msrest.serialization import Model
-from azure.core import HttpRequestError
+from azure.core import HttpResponseError
 
 
 class CloudError(Model):
@@ -33,7 +33,7 @@ class CloudError(Model):
         self.message = kwargs.get('message', None)
 
 
-class CloudErrorException(HttpRequestError):
+class CloudErrorException(HttpResponseError):
     """Server responsed with exception of type: 'CloudError'.
 
     :param deserialize: A deserializer
@@ -49,8 +49,8 @@ class CloudErrorException(HttpRequestError):
       super(CloudErrorException, self).__init__(response=response)
 
 
-class HttpRequestError(Model):
-    """HttpRequestError.
+class HttpResponseError(Model):
+    """HttpResponseError.
     """
 
     _attribute_map = {

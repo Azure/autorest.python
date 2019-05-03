@@ -13,7 +13,7 @@
 }
 @if (Model.HasAnyDefaultExceptions)
 {
-@:from azure.core.exceptions import HttpRequestError, map_error
+@:from azure.core.exceptions import HttpResponseError, map_error
 }
 else
 {

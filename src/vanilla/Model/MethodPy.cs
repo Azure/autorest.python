@@ -73,7 +73,7 @@ namespace AutoRest.Python.Model
                 IModelType body = DefaultResponse.Body;
                 if (body == null)
                 {
-                    return ":class:`HttpRequestError<azure.core.HttpRequestError>`";
+                    return ":class:`HttpResponseError<azure.core.HttpResponseError>`";
                 }
                 else
                 {
@@ -88,7 +88,7 @@ namespace AutoRest.Python.Model
                     }
                     else
                     {
-                        return ":class:`HttpRequestError<azure.core.HttpRequestError>`";
+                        return ":class:`HttpResponseError<azure.core.HttpResponseError>`";
                     }
                 }
             }
@@ -104,7 +104,7 @@ namespace AutoRest.Python.Model
 
                 if (body == null)
                 {
-                    sb.AppendLine("raise HttpRequestError(response=response)");
+                    sb.AppendLine("raise HttpResponseError(response=response)");
                 }
                 else
                 {
@@ -116,7 +116,7 @@ namespace AutoRest.Python.Model
                     }
                     else
                     {
-                        sb.AppendLine(string.Format(CultureInfo.InvariantCulture, "raise HttpRequestError(response)", body.ToPythonRuntimeTypeString()));
+                        sb.AppendLine(string.Format(CultureInfo.InvariantCulture, "raise HttpResponseError(response)", body.ToPythonRuntimeTypeString()));
                     }
                 }
                 return sb.ToString();

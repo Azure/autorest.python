@@ -10,7 +10,7 @@
 # --------------------------------------------------------------------------
 
 import uuid
-from azure.core.exceptions import HttpRequestError, map_error
+from azure.core.exceptions import HttpResponseError, map_error
 
 
 class HttpSuccessOperations(object):
@@ -39,7 +39,7 @@ class HttpSuccessOperations(object):
          direct response
         :return: bool or the result of cls(response)
         :rtype: bool
-        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
+        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL
@@ -62,7 +62,7 @@ class HttpSuccessOperations(object):
 
         if response.status_code not in [200, 404]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpRequestError(response=response)
+            raise HttpResponseError(response=response)
 
         deserialized = (response.status_code == 200)
         return deserialized
@@ -75,7 +75,7 @@ class HttpSuccessOperations(object):
          direct response
         :return: bool or the result of cls(response)
         :rtype: bool
-        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
+        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL
@@ -98,7 +98,7 @@ class HttpSuccessOperations(object):
 
         if response.status_code not in [204, 404]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpRequestError(response=response)
+            raise HttpResponseError(response=response)
 
         deserialized = (response.status_code == 204)
         return deserialized
@@ -111,7 +111,7 @@ class HttpSuccessOperations(object):
          direct response
         :return: bool or the result of cls(response)
         :rtype: bool
-        :raises: :class:`HttpRequestError<azure.core.HttpRequestError>`
+        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL
@@ -134,7 +134,7 @@ class HttpSuccessOperations(object):
 
         if response.status_code not in [204, 404]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpRequestError(response=response)
+            raise HttpResponseError(response=response)
 
         deserialized = (response.status_code == 204)
         return deserialized
