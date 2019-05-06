@@ -11,7 +11,7 @@
 
 import uuid
 from azure.core.exceptions import HttpResponseError, map_error
-from msrest.polling import LROPoller, NoPolling
+from azure.core.polling import LROPoller, NoPolling
 from msrestazure.polling.arm_polling import ARMPolling
 
 from .. import models
