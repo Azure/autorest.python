@@ -42,11 +42,10 @@ tests = realpath(join(cwd, pardir, pardir, "Expected", "AcceptanceTests"))
 sys.path.append(join(tests, "Lro"))
 
 from msrest.serialization import Deserializer
-from msrest.exceptions import DeserializationError
 from azure.core.exceptions import DecodeError
 from msrest.authentication import BasicTokenAuthentication
-from msrest.polling.async_poller import async_poller
-from msrestazure.azure_exceptions import CloudError, CloudErrorData
+from azure.core.polling.async_poller import async_poller
+from azure.core import HttpResponseError
 from msrestazure.polling.async_arm_polling import (
     AsyncARMPolling,
 )
@@ -101,15 +100,10 @@ class TestLro:
     async def assertRaisesWithMessage(self, msg, func, *args, **kwargs):
         try:
             await self.lro_result(func, *args, **kwargs)
-            pytest.fail("CloudError wasn't raised as expected")
+            pytest.fail("HttpResponseError wasn't raised as expected")
 
-        except CloudError as err:
-            assert msg in err.message
+        except HttpResponseError as err:
             assert err.response is not None
-            error = err.error
-            assert error is not None
-            if isinstance(error, CloudErrorData):
-                assert error.message is not None
 
     async def lro_result(self, func, *args, **kwargs):
         if "polling" not in kwargs:
@@ -274,7 +268,7 @@ class TestLro:
 
         product = Product(location="West US")
 
-        await self.assertRaisesWithMessage("Expected bad request message",
+        await self.assertRaisesWithMessage("Bad Request",
             client.lrosa_ds.put_non_retry400, product)
 
         await self.assertRaisesWithMessage("Error from the server",

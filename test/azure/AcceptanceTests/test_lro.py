@@ -107,8 +107,6 @@ class TestLro:
         except HttpResponseError as err:
             assert msg in  err.message
             assert err.response is not None
-            error = err.error
-            assert error is not None
 
     def lro_result(self, func, *args, **kwargs):
         if "polling" not in kwargs:
@@ -271,7 +269,7 @@ class TestLro:
 
         product = Product(location="West US")
 
-        self.assertRaisesWithMessage("Expected bad request message",
+        self.assertRaisesWithMessage("Bad Request",
             client.lrosa_ds.put_non_retry400, product)
 
         self.assertRaisesWithMessage("Error from the server",
@@ -280,22 +278,22 @@ class TestLro:
         self.assertRaisesWithMessage("Operation failed with status: 'Bad Request'",
             client.lrosa_ds.put_async_relative_retry400, product)
 
-        self.assertRaisesWithMessage("Expected bad request message",
+        self.assertRaisesWithMessage("Bad Request",
             client.lrosa_ds.delete_non_retry400)
 
-        self.assertRaisesWithMessage("Expected bad request message",
+        self.assertRaisesWithMessage("Bad Request",
             client.lrosa_ds.delete202_non_retry400)
 
-        self.assertRaisesWithMessage("Expected bad request message",
+        self.assertRaisesWithMessage("Bad Request",
             client.lrosa_ds.delete_async_relative_retry400)
 
-        self.assertRaisesWithMessage("Expected bad request message",
+        self.assertRaisesWithMessage("Bad Request",
             client.lrosa_ds.post_non_retry400, product)
 
-        self.assertRaisesWithMessage("Expected bad request message",
+        self.assertRaisesWithMessage("Bad Request",
             client.lrosa_ds.post202_non_retry400, product)
 
-        self.assertRaisesWithMessage("Expected bad request message",
+        self.assertRaisesWithMessage("Bad Request",
             client.lrosa_ds.post_async_relative_retry400, product)
 
         self.assertRaisesWithMessage("The response from long running operation does not contain a body.",

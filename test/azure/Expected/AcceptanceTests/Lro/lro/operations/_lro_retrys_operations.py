@@ -10,7 +10,7 @@
 # --------------------------------------------------------------------------
 
 import uuid
-from azure.core.exceptions import map_error
+from azure.core.exceptions import HttpResponseError, map_error
 from azure.core.polling import LROPoller, NoPolling
 from msrestazure.polling.arm_polling import ARMPolling
 
@@ -70,7 +70,7 @@ class LRORetrysOperations(object):
 
         if response.status_code not in [200, 201]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.CloudErrorException(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = None
 
@@ -95,7 +95,7 @@ class LRORetrysOperations(object):
         :return: An instance of LROPoller that returns Product
         :rtype:
          ~msrestazure.azure_operation.AzureOperationPoller[~lro.models.Product]
-        :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
+        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
         """
         raw_result = self._put201_creating_succeeded200_initial(
             product=product,
@@ -148,7 +148,7 @@ class LRORetrysOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.CloudErrorException(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = None
         header_dict = {}
@@ -177,7 +177,7 @@ class LRORetrysOperations(object):
         :return: An instance of LROPoller that returns Product
         :rtype:
          ~msrestazure.azure_operation.AzureOperationPoller[~lro.models.Product]
-        :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
+        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
         """
         raw_result = self._put_async_relative_retry_succeeded_initial(
             product=product,
@@ -228,7 +228,7 @@ class LRORetrysOperations(object):
 
         if response.status_code not in [200, 202]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.CloudErrorException(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = None
         header_dict = {}
@@ -260,7 +260,7 @@ class LRORetrysOperations(object):
         :return: An instance of LROPoller that returns Product
         :rtype:
          ~msrestazure.azure_operation.AzureOperationPoller[~lro.models.Product]
-        :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
+        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
         """
         raw_result = self._delete_provisioning202_accepted200_succeeded_initial(
             **kwargs
@@ -308,7 +308,7 @@ class LRORetrysOperations(object):
 
         if response.status_code not in [202]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.CloudErrorException(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
             return ''
 
@@ -322,7 +322,7 @@ class LRORetrysOperations(object):
          polling object for personal polling strategy
         :return: An instance of LROPoller that returns None
         :rtype: ~msrestazure.azure_operation.AzureOperationPoller[None]
-        :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
+        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
         """
         raw_result = self._delete202_retry200_initial(
             **kwargs
@@ -369,7 +369,7 @@ class LRORetrysOperations(object):
 
         if response.status_code not in [202]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.CloudErrorException(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
             return ''
 
@@ -383,7 +383,7 @@ class LRORetrysOperations(object):
          polling object for personal polling strategy
         :return: An instance of LROPoller that returns None
         :rtype: ~msrestazure.azure_operation.AzureOperationPoller[None]
-        :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
+        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
         """
         raw_result = self._delete_async_relative_retry_succeeded_initial(
             **kwargs
@@ -438,7 +438,7 @@ class LRORetrysOperations(object):
 
         if response.status_code not in [202]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.CloudErrorException(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
             return ''
 
@@ -454,7 +454,7 @@ class LRORetrysOperations(object):
          polling object for personal polling strategy
         :return: An instance of LROPoller that returns None
         :rtype: ~msrestazure.azure_operation.AzureOperationPoller[None]
-        :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
+        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
         """
         raw_result = self._post202_retry200_initial(
             product=product,
@@ -509,7 +509,7 @@ class LRORetrysOperations(object):
 
         if response.status_code not in [202]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.CloudErrorException(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
             return ''
 
@@ -526,7 +526,7 @@ class LRORetrysOperations(object):
          polling object for personal polling strategy
         :return: An instance of LROPoller that returns None
         :rtype: ~msrestazure.azure_operation.AzureOperationPoller[None]
-        :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
+        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
         """
         raw_result = self._post_async_relative_retry_succeeded_initial(
             product=product,
