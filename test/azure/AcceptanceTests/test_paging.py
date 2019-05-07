@@ -106,7 +106,7 @@ def test_paging_happy_path(special_paging_client):
     assert pages.next_link is None
     assert len(items) == 10
 
-   options = PagingGetMultiplePagesWithOffsetOptions(offset=100)
+    options = PagingGetMultiplePagesWithOffsetOptions(offset=100)
     pages = paging_client.paging.get_multiple_pages_with_offset(paging_get_multiple_pages_with_offset_options=options)
     assert pages.next_link is not None
     items = [i for i in pages]

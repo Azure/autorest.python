@@ -53,7 +53,7 @@ import pytest
 
 class TestXmsRequestClientId(object):
 
-   def test_client_request_id_in_exception(self):
+    def test_client_request_id_in_exception(self):
         validSubscription = '1234-5678-9012-3456'
         expectedRequestId = '9C4D50EE-2D56-4CD3-8152-34347DC9F2B0'
 
@@ -65,7 +65,7 @@ class TestXmsRequestClientId(object):
             pytest.fail("CloudError wasn't raised as expected")
 
         except CloudError as err:
-            assert "123" ==  err.request_id
+            assert "123" == err.request_id
 
     def test_xms_request_client_id_in_client(self):
         validSubscription = '1234-5678-9012-3456'
