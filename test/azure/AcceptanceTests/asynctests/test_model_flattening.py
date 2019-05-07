@@ -42,7 +42,6 @@ sys.path.append(join(tests, "ModelFlattening"))
 
 from msrest.serialization import Deserializer
 from msrest.authentication import Authentication
-from msrest.exceptions import DeserializationError
 
 from modelflattening.aio import AutoRestResourceFlatteningTestService
 from modelflattening.models import (

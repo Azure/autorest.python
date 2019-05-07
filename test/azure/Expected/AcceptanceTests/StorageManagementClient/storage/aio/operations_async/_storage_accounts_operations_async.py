@@ -100,6 +100,7 @@ class StorageAccountsOperations:
 
     async def _create_initial(
             self, resource_group_name, account_name, parameters, *, cls=None, **kwargs):
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.create.metadata['url']
         path_format_arguments = {
@@ -490,9 +491,8 @@ class StorageAccountsOperations:
             return response
 
         # Deserialize response
-        header_dict = None
         deserialized = models.StorageAccountPaged(
-            internal_paging, self._deserialize.dependencies, header_dict, async_command=internal_paging_async)
+            internal_paging, self._deserialize, async_command=internal_paging_async)
 
         return deserialized
     list.metadata = {'url': '/subscriptions/{subscriptionId}/providers/Microsoft.Storage/storageAccounts'}
@@ -568,9 +568,8 @@ class StorageAccountsOperations:
             return response
 
         # Deserialize response
-        header_dict = None
         deserialized = models.StorageAccountPaged(
-            internal_paging, self._deserialize.dependencies, header_dict, async_command=internal_paging_async)
+            internal_paging, self._deserialize, async_command=internal_paging_async)
 
         return deserialized
     list_by_resource_group.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts'}

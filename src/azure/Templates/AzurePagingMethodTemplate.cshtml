@@ -135,15 +135,14 @@ else
 @EmptyLine
 }
         # Deserialize response
-        header_dict = None
 @if(AsyncMode)
 {
         @:deserialized = models.@(Model.PagedResponseClass.Name)(
-            @:internal_paging, self._deserialize.dependencies, header_dict, async_command=internal_paging_async)
+            @:internal_paging, self._deserialize, async_command=internal_paging_async)
 }
 else
 {
-        @:deserialized = models.@(Model.PagedResponseClass.Name)(internal_paging, self._deserialize.dependencies, header_dict)
+        @:deserialized = models.@(Model.PagedResponseClass.Name)(internal_paging, self._deserialize)
 }
 @EmptyLine
         return deserialized

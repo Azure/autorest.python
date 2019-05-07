@@ -41,6 +41,7 @@ class LRORetrysOperations:
 
     async def _put201_creating_succeeded200_initial(
             self, product=None, *, cls=None, **kwargs):
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.put201_creating_succeeded200.metadata['url']
 
@@ -117,6 +118,7 @@ class LRORetrysOperations:
 
     async def _put_async_relative_retry_succeeded_initial(
             self, product=None, *, cls=None, **kwargs):
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.put_async_relative_retry_succeeded.metadata['url']
 
@@ -202,6 +204,7 @@ class LRORetrysOperations:
 
     async def _delete_provisioning202_accepted200_succeeded_initial(
             self, *, cls=None, **kwargs):
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.delete_provisioning202_accepted200_succeeded.metadata['url']
 
@@ -281,6 +284,7 @@ class LRORetrysOperations:
 
     async def _delete202_retry200_initial(
             self, *, cls=None, **kwargs):
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.delete202_retry200.metadata['url']
 
@@ -341,6 +345,7 @@ class LRORetrysOperations:
 
     async def _delete_async_relative_retry_succeeded_initial(
             self, *, cls=None, **kwargs):
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.delete_async_relative_retry_succeeded.metadata['url']
 
@@ -402,6 +407,7 @@ class LRORetrysOperations:
 
     async def _post202_retry200_initial(
             self, product=None, *, cls=None, **kwargs):
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.post202_retry200.metadata['url']
 
@@ -472,6 +478,7 @@ class LRORetrysOperations:
 
     async def _post_async_relative_retry_succeeded_initial(
             self, product=None, *, cls=None, **kwargs):
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.post_async_relative_retry_succeeded.metadata['url']
 

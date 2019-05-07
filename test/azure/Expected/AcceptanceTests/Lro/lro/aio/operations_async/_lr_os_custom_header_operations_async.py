@@ -41,6 +41,7 @@ class LROsCustomHeaderOperations:
 
     async def _put_async_retry_succeeded_initial(
             self, product=None, *, cls=None, **kwargs):
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.put_async_retry_succeeded.metadata['url']
 
@@ -127,6 +128,7 @@ class LROsCustomHeaderOperations:
 
     async def _put201_creating_succeeded200_initial(
             self, product=None, *, cls=None, **kwargs):
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.put201_creating_succeeded200.metadata['url']
 
@@ -204,6 +206,7 @@ class LROsCustomHeaderOperations:
 
     async def _post202_retry200_initial(
             self, product=None, *, cls=None, **kwargs):
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.post202_retry200.metadata['url']
 
@@ -276,6 +279,7 @@ class LROsCustomHeaderOperations:
 
     async def _post_async_retry_succeeded_initial(
             self, product=None, *, cls=None, **kwargs):
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.post_async_retry_succeeded.metadata['url']
 

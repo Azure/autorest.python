@@ -97,9 +97,8 @@ class PagingOperations:
             return response
 
         # Deserialize response
-        header_dict = None
         deserialized = models.ProductPaged(
-            internal_paging, self._deserialize.dependencies, header_dict, async_command=internal_paging_async)
+            internal_paging, self._deserialize, async_command=internal_paging_async)
 
         return deserialized
     get_single_pages.metadata = {'url': '/paging/single'}
@@ -182,9 +181,8 @@ class PagingOperations:
             return response
 
         # Deserialize response
-        header_dict = None
         deserialized = models.ProductPaged(
-            internal_paging, self._deserialize.dependencies, header_dict, async_command=internal_paging_async)
+            internal_paging, self._deserialize, async_command=internal_paging_async)
 
         return deserialized
     get_multiple_pages.metadata = {'url': '/paging/multiple'}
@@ -268,9 +266,8 @@ class PagingOperations:
             return response
 
         # Deserialize response
-        header_dict = None
         deserialized = models.ProductPaged1(
-            internal_paging, self._deserialize.dependencies, header_dict, async_command=internal_paging_async)
+            internal_paging, self._deserialize, async_command=internal_paging_async)
 
         return deserialized
     get_odata_multiple_pages.metadata = {'url': '/paging/multiple/odata'}
@@ -360,9 +357,8 @@ class PagingOperations:
             return response
 
         # Deserialize response
-        header_dict = None
         deserialized = models.ProductPaged(
-            internal_paging, self._deserialize.dependencies, header_dict, async_command=internal_paging_async)
+            internal_paging, self._deserialize, async_command=internal_paging_async)
 
         return deserialized
     get_multiple_pages_with_offset.metadata = {'url': '/paging/multiple/withpath/{offset}'}
@@ -427,9 +423,8 @@ class PagingOperations:
             return response
 
         # Deserialize response
-        header_dict = None
         deserialized = models.ProductPaged(
-            internal_paging, self._deserialize.dependencies, header_dict, async_command=internal_paging_async)
+            internal_paging, self._deserialize, async_command=internal_paging_async)
 
         return deserialized
     get_multiple_pages_retry_first.metadata = {'url': '/paging/multiple/retryfirst'}
@@ -495,9 +490,8 @@ class PagingOperations:
             return response
 
         # Deserialize response
-        header_dict = None
         deserialized = models.ProductPaged(
-            internal_paging, self._deserialize.dependencies, header_dict, async_command=internal_paging_async)
+            internal_paging, self._deserialize, async_command=internal_paging_async)
 
         return deserialized
     get_multiple_pages_retry_second.metadata = {'url': '/paging/multiple/retrysecond'}
@@ -561,9 +555,8 @@ class PagingOperations:
             return response
 
         # Deserialize response
-        header_dict = None
         deserialized = models.ProductPaged(
-            internal_paging, self._deserialize.dependencies, header_dict, async_command=internal_paging_async)
+            internal_paging, self._deserialize, async_command=internal_paging_async)
 
         return deserialized
     get_single_pages_failure.metadata = {'url': '/paging/single/failure'}
@@ -627,9 +620,8 @@ class PagingOperations:
             return response
 
         # Deserialize response
-        header_dict = None
         deserialized = models.ProductPaged(
-            internal_paging, self._deserialize.dependencies, header_dict, async_command=internal_paging_async)
+            internal_paging, self._deserialize, async_command=internal_paging_async)
 
         return deserialized
     get_multiple_pages_failure.metadata = {'url': '/paging/multiple/failure'}
@@ -693,9 +685,8 @@ class PagingOperations:
             return response
 
         # Deserialize response
-        header_dict = None
         deserialized = models.ProductPaged(
-            internal_paging, self._deserialize.dependencies, header_dict, async_command=internal_paging_async)
+            internal_paging, self._deserialize, async_command=internal_paging_async)
 
         return deserialized
     get_multiple_pages_failure_uri.metadata = {'url': '/paging/multiple/failureuri'}
@@ -774,9 +765,8 @@ class PagingOperations:
             return response
 
         # Deserialize response
-        header_dict = None
         deserialized = models.ProductPaged1(
-            internal_paging, self._deserialize.dependencies, header_dict, async_command=internal_paging_async)
+            internal_paging, self._deserialize, async_command=internal_paging_async)
 
         return deserialized
     get_multiple_pages_fragment_next_link.metadata = {'url': '/paging/multiple/fragment/{tenant}'}
@@ -861,9 +851,8 @@ class PagingOperations:
             return response
 
         # Deserialize response
-        header_dict = None
         deserialized = models.ProductPaged1(
-            internal_paging, self._deserialize.dependencies, header_dict, async_command=internal_paging_async)
+            internal_paging, self._deserialize, async_command=internal_paging_async)
 
         return deserialized
     get_multiple_pages_fragment_with_grouping_next_link.metadata = {'url': '/paging/multiple/fragmentwithgrouping/{tenant}'}
@@ -871,6 +860,7 @@ class PagingOperations:
 
     async def _get_multiple_pages_lro_initial(
             self, client_request_id=None, paging_get_multiple_pages_lro_options=None, *, cls=None, **kwargs):
+        error_map = kwargs.pop('error_map', None)
         maxresults = None
         if paging_get_multiple_pages_lro_options is not None:
             maxresults = paging_get_multiple_pages_lro_options.maxresults

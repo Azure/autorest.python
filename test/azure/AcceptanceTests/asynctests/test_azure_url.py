@@ -42,7 +42,6 @@ tests = realpath(join(cwd, pardir, "Expected", "AcceptanceTests"))
 sys.path.append(join(tests, "SubscriptionIdApiVersion"))
 
 from msrest.serialization import Deserializer
-from msrest.exceptions import DeserializationError
 from msrest.authentication import BasicTokenAuthentication
 
 from subscriptionidapiversion.aio import MicrosoftAzureTestUrl

@@ -44,7 +44,6 @@ tests = realpath(join(cwd, pardir, "Expected", "AcceptanceTests"))
 sys.path.append(join(tests, "AzureReport"))
 
 from msrest.authentication import BasicTokenAuthentication
-from msrest.exceptions import DeserializationError
 
 from azurereport import AutoRestReportServiceForAzure
 

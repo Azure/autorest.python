@@ -43,7 +43,6 @@ sys.path.append(join(tests, "Head"))
 sys.path.append(join(tests, "HeadExceptions"))
 
 from msrest.serialization import Deserializer
-from msrest.exceptions import DeserializationError
 from msrest.authentication import BasicTokenAuthentication
 
 from head import AutoRestHeadTestService

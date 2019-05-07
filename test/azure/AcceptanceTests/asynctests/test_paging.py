@@ -42,7 +42,6 @@ tests = realpath(join(cwd, pardir, pardir, "Expected", "AcceptanceTests"))
 sys.path.append(join(tests, "Paging"))
 
 from msrest.serialization import Deserializer
-from msrest.exceptions import DeserializationError
 from msrest.authentication import BasicTokenAuthentication
 
 from paging.aio import AutoRestPagingTestService
@@ -81,14 +80,6 @@ async def test_paging_happy_path(special_paging_client):
     items = [i async for i in pages]
     assert pages.next_link is None
     assert len(items) == 10
-
-    pages.reset()
-    more_items = [i async for i in pages]
-    eq = [e for e in items if e not in more_items]
-    assert len(eq) == 0
-
-    with pytest.raises(StopIteration):
-        next(pages)
 
     pages = paging_client.paging.get_odata_multiple_pages()
     assert pages.next_link is not None

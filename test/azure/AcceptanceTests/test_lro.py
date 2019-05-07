@@ -42,11 +42,10 @@ tests = realpath(join(cwd, pardir, "Expected", "AcceptanceTests"))
 sys.path.append(join(tests, "Lro"))
 
 from msrest.serialization import Deserializer
-from msrest.exceptions import DeserializationError
 from azure.core.exceptions import DecodeError
 from msrest.authentication import BasicTokenAuthentication
-from msrest.polling import LROPoller
-from msrestazure.azure_exceptions import CloudError, CloudErrorData
+from azure.core.polling import LROPoller
+from azure.core import HttpResponseError
 from msrestazure.polling.arm_polling import ARMPolling
 
 from lro import AutoRestLongRunningOperationTestService
@@ -103,15 +102,13 @@ class TestLro:
     def assertRaisesWithMessage(self, msg, func, *args, **kwargs):
         try:
             self.lro_result(func, *args, **kwargs)
-            pytest.fail("CloudError wasn't raised as expected")
+            pytest.fail("HttpResponseError wasn't raised as expected")
 
-        except CloudError as err:
+        except HttpResponseError as err:
             assert msg in  err.message
             assert err.response is not None
             error = err.error
             assert error is not None
-            if isinstance(error, CloudErrorData):
-                assert error.message is not None
 
     def lro_result(self, func, *args, **kwargs):
         if "polling" not in kwargs:

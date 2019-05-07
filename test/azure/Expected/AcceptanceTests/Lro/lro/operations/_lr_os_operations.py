@@ -41,6 +41,7 @@ class LROsOperations(object):
 
     def _put200_succeeded_initial(
             self, product=None, cls=None, **kwargs):
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.put200_succeeded.metadata['url']
 
@@ -114,6 +115,7 @@ class LROsOperations(object):
 
     def _put200_succeeded_no_state_initial(
             self, product=None, cls=None, **kwargs):
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.put200_succeeded_no_state.metadata['url']
 
@@ -187,6 +189,7 @@ class LROsOperations(object):
 
     def _put202_retry200_initial(
             self, product=None, cls=None, **kwargs):
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.put202_retry200.metadata['url']
 
@@ -261,6 +264,7 @@ class LROsOperations(object):
 
     def _put201_creating_succeeded200_initial(
             self, product=None, cls=None, **kwargs):
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.put201_creating_succeeded200.metadata['url']
 
@@ -338,6 +342,7 @@ class LROsOperations(object):
 
     def _put200_updating_succeeded204_initial(
             self, product=None, cls=None, **kwargs):
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.put200_updating_succeeded204.metadata['url']
 
@@ -413,6 +418,7 @@ class LROsOperations(object):
 
     def _put201_creating_failed200_initial(
             self, product=None, cls=None, **kwargs):
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.put201_creating_failed200.metadata['url']
 
@@ -490,6 +496,7 @@ class LROsOperations(object):
 
     def _put200_acceptedcanceled200_initial(
             self, product=None, cls=None, **kwargs):
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.put200_acceptedcanceled200.metadata['url']
 
@@ -565,6 +572,7 @@ class LROsOperations(object):
 
     def _put_no_header_in_retry_initial(
             self, product=None, cls=None, **kwargs):
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.put_no_header_in_retry.metadata['url']
 
@@ -646,6 +654,7 @@ class LROsOperations(object):
 
     def _put_async_retry_succeeded_initial(
             self, product=None, cls=None, **kwargs):
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.put_async_retry_succeeded.metadata['url']
 
@@ -732,6 +741,7 @@ class LROsOperations(object):
 
     def _put_async_no_retry_succeeded_initial(
             self, product=None, cls=None, **kwargs):
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.put_async_no_retry_succeeded.metadata['url']
 
@@ -816,6 +826,7 @@ class LROsOperations(object):
 
     def _put_async_retry_failed_initial(
             self, product=None, cls=None, **kwargs):
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.put_async_retry_failed.metadata['url']
 
@@ -902,6 +913,7 @@ class LROsOperations(object):
 
     def _put_async_no_retrycanceled_initial(
             self, product=None, cls=None, **kwargs):
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.put_async_no_retrycanceled.metadata['url']
 
@@ -986,6 +998,7 @@ class LROsOperations(object):
 
     def _put_async_no_header_in_retry_initial(
             self, product=None, cls=None, **kwargs):
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.put_async_no_header_in_retry.metadata['url']
 
@@ -1067,6 +1080,7 @@ class LROsOperations(object):
 
     def _put_non_resource_initial(
             self, sku=None, cls=None, **kwargs):
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.put_non_resource.metadata['url']
 
@@ -1139,6 +1153,7 @@ class LROsOperations(object):
 
     def _put_async_non_resource_initial(
             self, sku=None, cls=None, **kwargs):
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.put_async_non_resource.metadata['url']
 
@@ -1211,6 +1226,7 @@ class LROsOperations(object):
 
     def _put_sub_resource_initial(
             self, provisioning_state=None, cls=None, **kwargs):
+        error_map = kwargs.pop('error_map', None)
         product = None
         if provisioning_state is not None:
             product = models.SubProduct(provisioning_state=provisioning_state)
@@ -1287,6 +1303,7 @@ class LROsOperations(object):
 
     def _put_async_sub_resource_initial(
             self, provisioning_state=None, cls=None, **kwargs):
+        error_map = kwargs.pop('error_map', None)
         product = None
         if provisioning_state is not None:
             product = models.SubProduct(provisioning_state=provisioning_state)
@@ -1363,6 +1380,7 @@ class LROsOperations(object):
 
     def _delete_provisioning202_accepted200_succeeded_initial(
             self, cls=None, **kwargs):
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.delete_provisioning202_accepted200_succeeded.metadata['url']
 
@@ -1443,6 +1461,7 @@ class LROsOperations(object):
 
     def _delete_provisioning202_deleting_failed200_initial(
             self, cls=None, **kwargs):
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.delete_provisioning202_deleting_failed200.metadata['url']
 
@@ -1523,6 +1542,7 @@ class LROsOperations(object):
 
     def _delete_provisioning202_deletingcanceled200_initial(
             self, cls=None, **kwargs):
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.delete_provisioning202_deletingcanceled200.metadata['url']
 
@@ -1603,6 +1623,7 @@ class LROsOperations(object):
 
     def _delete204_succeeded_initial(
             self, cls=None, **kwargs):
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.delete204_succeeded.metadata['url']
 
@@ -1658,6 +1679,7 @@ class LROsOperations(object):
 
     def _delete202_retry200_initial(
             self, cls=None, **kwargs):
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.delete202_retry200.metadata['url']
 
@@ -1731,6 +1753,7 @@ class LROsOperations(object):
 
     def _delete202_no_retry204_initial(
             self, cls=None, **kwargs):
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.delete202_no_retry204.metadata['url']
 
@@ -1804,6 +1827,7 @@ class LROsOperations(object):
 
     def _delete_no_header_in_retry_initial(
             self, cls=None, **kwargs):
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.delete_no_header_in_retry.metadata['url']
 
@@ -1863,6 +1887,7 @@ class LROsOperations(object):
 
     def _delete_async_no_header_in_retry_initial(
             self, cls=None, **kwargs):
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.delete_async_no_header_in_retry.metadata['url']
 
@@ -1922,6 +1947,7 @@ class LROsOperations(object):
 
     def _delete_async_retry_succeeded_initial(
             self, cls=None, **kwargs):
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.delete_async_retry_succeeded.metadata['url']
 
@@ -1983,6 +2009,7 @@ class LROsOperations(object):
 
     def _delete_async_no_retry_succeeded_initial(
             self, cls=None, **kwargs):
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.delete_async_no_retry_succeeded.metadata['url']
 
@@ -2044,6 +2071,7 @@ class LROsOperations(object):
 
     def _delete_async_retry_failed_initial(
             self, cls=None, **kwargs):
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.delete_async_retry_failed.metadata['url']
 
@@ -2105,6 +2133,7 @@ class LROsOperations(object):
 
     def _delete_async_retrycanceled_initial(
             self, cls=None, **kwargs):
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.delete_async_retrycanceled.metadata['url']
 
@@ -2166,6 +2195,7 @@ class LROsOperations(object):
 
     def _post200_with_payload_initial(
             self, cls=None, **kwargs):
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.post200_with_payload.metadata['url']
 
@@ -2232,6 +2262,7 @@ class LROsOperations(object):
 
     def _post202_retry200_initial(
             self, product=None, cls=None, **kwargs):
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.post202_retry200.metadata['url']
 
@@ -2302,6 +2333,7 @@ class LROsOperations(object):
 
     def _post202_no_retry204_initial(
             self, product=None, cls=None, **kwargs):
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.post202_no_retry204.metadata['url']
 
@@ -2385,6 +2417,7 @@ class LROsOperations(object):
 
     def _post_double_headers_final_location_get_initial(
             self, cls=None, **kwargs):
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.post_double_headers_final_location_get.metadata['url']
 
@@ -2449,6 +2482,7 @@ class LROsOperations(object):
 
     def _post_double_headers_final_azure_header_get_initial(
             self, cls=None, **kwargs):
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.post_double_headers_final_azure_header_get.metadata['url']
 
@@ -2513,6 +2547,7 @@ class LROsOperations(object):
 
     def _post_double_headers_final_azure_header_get_default_initial(
             self, cls=None, **kwargs):
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.post_double_headers_final_azure_header_get_default.metadata['url']
 
@@ -2578,6 +2613,7 @@ class LROsOperations(object):
 
     def _post_async_retry_succeeded_initial(
             self, product=None, cls=None, **kwargs):
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.post_async_retry_succeeded.metadata['url']
 
@@ -2664,6 +2700,7 @@ class LROsOperations(object):
 
     def _post_async_no_retry_succeeded_initial(
             self, product=None, cls=None, **kwargs):
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.post_async_no_retry_succeeded.metadata['url']
 
@@ -2750,6 +2787,7 @@ class LROsOperations(object):
 
     def _post_async_retry_failed_initial(
             self, product=None, cls=None, **kwargs):
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.post_async_retry_failed.metadata['url']
 
@@ -2822,6 +2860,7 @@ class LROsOperations(object):
 
     def _post_async_retrycanceled_initial(
             self, product=None, cls=None, **kwargs):
+        error_map = kwargs.pop('error_map', None)
         # Construct URL
         url = self.post_async_retrycanceled.metadata['url']
 
