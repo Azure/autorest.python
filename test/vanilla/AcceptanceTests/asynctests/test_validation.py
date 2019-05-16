@@ -66,6 +66,8 @@ class TestValidation(object):
         product = await client.post_with_constant_in_body(body=body)
         assert product is not None
 
+        await client._client.close()
+
     @pytest.mark.asyncio
     async def test_validation(self):
         client = AutoRestValidationTest(
@@ -141,3 +143,5 @@ class TestValidation(object):
         except ValidationError as err:
             assert err.rule == "pattern"
             assert err.target == "self.api_version"
+
+        await client._client.close()
