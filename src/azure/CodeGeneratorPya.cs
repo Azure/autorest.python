@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoRest.Core.Model;
+using AutoRest.Core;
 using AutoRest.Extensions.Azure;
 using AutoRest.Python.Model;
 using AutoRest.Python.Azure.Model;
@@ -72,8 +73,18 @@ namespace AutoRest.Python.Azure
                 await Write(serviceClientTemplateOpAsync, Path.Combine(folderName, "aio", "operations_async", "_" + codeModel.Name.ToPythonCase() + "_operations_async.py"));
             }
 
-            var versionTemplate = new VersionTemplate { Model = codeModel, };
-            await Write(versionTemplate, Path.Combine(folderName, "version.py"));
+            // do we need to write out the version template file?
+            var versionPath = Path.Combine(folderName, "version.py");
+
+            // protect the version file
+            await Settings.Instance.Host.ProtectFiles(versionPath);
+
+            if( true != await Settings.Instance.Host.GetValue<bool?>("keep-version-file")  ||  string.IsNullOrEmpty(await Settings.Instance.Host.ReadFile(versionPath)) ) {
+                var versionTemplate = new VersionTemplate { Model = codeModel };
+                // if they didn't say to keep the old file (or it was not there/empty), write it out.
+                await Write(versionTemplate, versionPath);
+            }
+
 
             //Models
             var models = codeModel.ModelTemplateModels.Where(each => !each.Extensions.ContainsKey(AzureExtensions.ExternalExtension));

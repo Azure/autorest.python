@@ -1,5 +1,8 @@
 # Change Log
 
+### 2019-05-21 - 4.0.70
+
+- Beta version of --keep-version-file for ARM generator
 
 ### 2019-02-13 - 4.0.67
 
