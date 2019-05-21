@@ -152,6 +152,50 @@ class PolymorphismOperations:
             return client_raw_response
     put_valid.metadata = {'url': '/complex/polymorphism/valid'}
 
+    async def get_dot_syntax(
+            self, *, custom_headers=None, raw=False, **operation_config):
+        """Get complex types that are polymorphic, JSON key contains a dot.
+
+        :param dict custom_headers: headers that will be added to the request
+        :param bool raw: returns the direct response alongside the
+         deserialized response
+        :param operation_config: :ref:`Operation configuration
+         overrides<msrest:optionsforoperations>`.
+        :return: DotFish or ClientRawResponse if raw=true
+        :rtype: ~bodycomplex.models.DotFish or
+         ~msrest.pipeline.ClientRawResponse
+        :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
+        """
+        # Construct URL
+        url = self.get_dot_syntax.metadata['url']
+
+        # Construct parameters
+        query_parameters = {}
+
+        # Construct headers
+        header_parameters = {}
+        header_parameters['Accept'] = 'application/json'
+        if custom_headers:
+            header_parameters.update(custom_headers)
+
+        # Construct and send request
+        request = self._client.get(url, query_parameters, header_parameters)
+        response = await self._client.async_send(request, stream=False, **operation_config)
+
+        if response.status_code not in [200]:
+            raise models.ErrorException(self._deserialize, response)
+
+        deserialized = None
+        if response.status_code == 200:
+            deserialized = self._deserialize('DotFish', response)
+
+        if raw:
+            client_raw_response = ClientRawResponse(deserialized, response)
+            return client_raw_response
+
+        return deserialized
+    get_dot_syntax.metadata = {'url': '/complex/polymorphism/dotsyntax'}
+
     async def get_complicated(
             self, *, custom_headers=None, raw=False, **operation_config):
         """Get complex types that are polymorphic, but not at the root of the
