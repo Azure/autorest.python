@@ -1247,7 +1247,7 @@ class HeaderOperations:
         if raw:
             client_raw_response = ClientRawResponse(None, response)
             client_raw_response.add_headers({
-                'value': models.GreyscaleColors,
+                'value': 'str',
             })
             return client_raw_response
     response_enum.metadata = {'url': '/header/response/prim/enum'}
