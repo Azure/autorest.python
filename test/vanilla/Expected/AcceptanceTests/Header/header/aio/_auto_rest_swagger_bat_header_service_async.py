@@ -24,7 +24,7 @@ class AutoRestSwaggerBATHeaderService(SDKClientAsync):
     :vartype config: AutoRestSwaggerBATHeaderServiceConfiguration
 
     :ivar header: Header operations
-    :vartype header: header.operations.HeaderOperations
+    :vartype header: header.aio.operations_async.HeaderOperations
 
     :param str base_url: Service URL
     """

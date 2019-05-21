@@ -25,7 +25,7 @@ class PetStoreInc(SDKClientAsync):
     :vartype config: PetStoreIncConfiguration
 
     :ivar pet: Pet operations
-    :vartype pet: extensibleenumsswagger.operations.PetOperations
+    :vartype pet: extensibleenumsswagger.aio.operations_async.PetOperations
 
     :param str base_url: Service URL
     """

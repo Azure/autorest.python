@@ -55,6 +55,7 @@ namespace AutoRest.Python.Azure
             return codeModel;
         }
 
+
         private void TransformPagingMethods(CodeModelPya codeModel)
         {
             foreach (var methodGroup in codeModel.Operations)

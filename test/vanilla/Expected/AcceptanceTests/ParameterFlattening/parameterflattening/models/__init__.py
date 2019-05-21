@@ -10,9 +10,9 @@
 # --------------------------------------------------------------------------
 
 try:
-    from .availability_set_update_parameters_py3 import AvailabilitySetUpdateParameters
+    from ._models_py3 import AvailabilitySetUpdateParameters
 except (SyntaxError, ImportError):
-    from .availability_set_update_parameters import AvailabilitySetUpdateParameters
+    from ._models import AvailabilitySetUpdateParameters
 
 __all__ = [
     'AvailabilitySetUpdateParameters',

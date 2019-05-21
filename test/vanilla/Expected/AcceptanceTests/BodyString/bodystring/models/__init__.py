@@ -10,12 +10,12 @@
 # --------------------------------------------------------------------------
 
 try:
-    from .error_py3 import Error, ErrorException
-    from .ref_color_constant_py3 import RefColorConstant
+    from ._models_py3 import Error, ErrorException
+    from ._models_py3 import RefColorConstant
 except (SyntaxError, ImportError):
-    from .error import Error, ErrorException
-    from .ref_color_constant import RefColorConstant
-from .auto_rest_swagger_bat_service_enums import (
+    from ._models import Error, ErrorException
+    from ._models import RefColorConstant
+from ._auto_rest_swagger_bat_service_enums import (
     Colors,
 )
 

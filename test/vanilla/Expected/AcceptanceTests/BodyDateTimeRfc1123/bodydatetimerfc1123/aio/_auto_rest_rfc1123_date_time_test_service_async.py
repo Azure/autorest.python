@@ -24,7 +24,7 @@ class AutoRestRFC1123DateTimeTestService(SDKClientAsync):
     :vartype config: AutoRestRFC1123DateTimeTestServiceConfiguration
 
     :ivar datetimerfc1123: Datetimerfc1123 operations
-    :vartype datetimerfc1123: bodydatetimerfc1123.operations.Datetimerfc1123Operations
+    :vartype datetimerfc1123: bodydatetimerfc1123.aio.operations_async.Datetimerfc1123Operations
 
     :param str base_url: Service URL
     """

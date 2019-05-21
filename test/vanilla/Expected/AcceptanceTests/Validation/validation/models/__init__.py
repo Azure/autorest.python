@@ -10,23 +10,23 @@
 # --------------------------------------------------------------------------
 
 try:
-    from .child_product_py3 import ChildProduct
-    from .constant_product_py3 import ConstantProduct
-    from .product_py3 import Product
-    from .error_py3 import Error, ErrorException
+    from ._models_py3 import ChildProduct
+    from ._models_py3 import ConstantProduct
+    from ._models_py3 import Error, ErrorException
+    from ._models_py3 import Product
 except (SyntaxError, ImportError):
-    from .child_product import ChildProduct
-    from .constant_product import ConstantProduct
-    from .product import Product
-    from .error import Error, ErrorException
-from .auto_rest_validation_test_enums import (
+    from ._models import ChildProduct
+    from ._models import ConstantProduct
+    from ._models import Error, ErrorException
+    from ._models import Product
+from ._auto_rest_validation_test_enums import (
     EnumConst,
 )
 
 __all__ = [
     'ChildProduct',
     'ConstantProduct',
-    'Product',
     'Error', 'ErrorException',
+    'Product',
     'EnumConst',
 ]

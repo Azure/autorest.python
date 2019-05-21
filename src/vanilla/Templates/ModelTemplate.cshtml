@@ -4,84 +4,79 @@
 @using AutoRest.Core.Model
 @using AutoRest.Python
 @using AutoRest.Python.Model
-@inherits AutoRest.Python.PythonTemplate<AutoRest.Python.Model.CompositeTypePy>
+@inherits AutoRest.Python.PythonTemplate<System.Collections.Generic.List<AutoRest.Python.Model.CompositeTypePy>>
 # coding=utf-8
 # --------------------------------------------------------------------------
 @Header("# ").TrimMultilineHeader()
 # --------------------------------------------------------------------------
 @EmptyLine
-@if(Model.ComplexConstants.Any())
-{
-    foreach(var property in Model.ComplexConstants.Values)
-    {
-@:from .@property.Name.ToPythonCase() import @property.Name
-    }
-}
-@if (Model.BaseModelType != null && Python3Mode)
-{
-@:from .@Model.BaseModelType.Name.ToPythonCase()_py3 import @Model.BaseModelType.Name
-}
-else if(Model.BaseModelType != null && !Python3Mode)
-{
-@:from .@Model.BaseModelType.Name.ToPythonCase() import @Model.BaseModelType.Name
-}
-else
-{
-@:from msrest.serialization import Model
-}
-@if (Model.IsException)
+from msrest.serialization import Model
+@foreach(var currModel in Model) {
+<text>
+@if (currModel.IsException)
 {
 @:from msrest.exceptions import HttpOperationError
+break;
+}
+</text>
 }
 @EmptyLine
 @EmptyLine
-@if (Model.BaseModelType != null)
+@{bool first_model = true; }
+@foreach(var currModel in Model){
+<text>
+@if (!first_model) {
+@EmptyLine
+@EmptyLine
+}
+@{first_model = false;}
+@if (currModel.BaseModelType != null)
 {
-@:class @(Model.Name)(@Model.BaseModelType.Name):
+@:class @(currModel.Name)(@currModel.BaseModelType.Name):
 }
 else
 {
-@:class @(Model.Name)(Model):
+@:class @(currModel.Name)(Model):
 }
-    """@(WrapComment(string.Empty, Model.BuildSummaryAndDescriptionString()))
-@if (Model.SubModelTypes.Any())
+    """@(WrapComment(string.Empty, currModel.BuildSummaryAndDescriptionString()))
+@if (currModel.SubModelTypes.Any())
 {
 @EmptyLine
-@:    @WrapComment(string.Empty, "You probably want to use the sub-classes and not this class directly. Known sub-classes are: " + Model.SubModelTypeAsString)
+@:    @WrapComment(string.Empty, "You probably want to use the sub-classes and not this class directly. Known sub-classes are: " + currModel.SubModelTypeAsString)
 }
-@if (Model.ReadOnlyAttributes.Any())
+@if (currModel.ReadOnlyAttributes.Any())
 {
 @EmptyLine
 @:    @WrapComment(string.Empty, "Variables are only populated by the server, and will be ignored when sending a request.")
 }
-@if (Model.RequiredFieldsList.Any())
+@if (currModel.RequiredFieldsList.Any())
 {
 @EmptyLine
 @:    @WrapComment(string.Empty, "All required parameters must be populated in order to send to Azure.")
 }
-@if (Model.ComposedProperties.Any())
+@if (currModel.ComposedProperties.Any())
 {
 @EmptyLine
-    foreach (var property in Model.ComposedProperties)
+    foreach (var property in currModel.ComposedProperties)
     {
 @:    @ParameterWrapComment(string.Empty, CompositeTypePy.GetPropertyDocumentationString(property))
         if (property.IsConstant || property.IsReadOnly)
         {
-@:    @ParameterWrapComment(string.Empty, ":vartype " + property.Name + ": " + Model.GetPropertyDocumentationType(property.ModelType))
+@:    @ParameterWrapComment(string.Empty, ":vartype " + property.Name + ": " + currModel.GetPropertyDocumentationType(property.ModelType))
     }
         else
         {
-@:    @ParameterWrapComment(string.Empty, ":type " + property.Name + ": " + Model.GetPropertyDocumentationType(property.ModelType))
+@:    @ParameterWrapComment(string.Empty, ":type " + property.Name + ": " + currModel.GetPropertyDocumentationType(property.ModelType))
         }
     }
 }
-    """ 
-@if (Model.Validators.Any() || Model.RequiredFieldsList.Any())
+    """
+@if (currModel.Validators.Any() || currModel.RequiredFieldsList.Any())
 {
 <text>
     @EmptyLine
     _validation = {
-    @foreach (var validator in Model.Validators)
+    @foreach (var validator in currModel.Validators)
     {
         @:@(validator)
     }
@@ -89,83 +84,83 @@ else
 </text>
 }
 @{
-    var mapAttrList = new List<Property>(Model.ComposedProperties);
+    var mapAttrList = new List<Property>(currModel.ComposedProperties);
 @EmptyLine
     @:_attribute_map = {
     if (mapAttrList.Count > 0)
     {
-      for (int i = 0; i < mapAttrList.Count; i++) 
+      for (int i = 0; i < mapAttrList.Count; i++)
       {
-        @:@(Model.InitializeProperty(mapAttrList[i]))
+        @:@(currModel.InitializeProperty(mapAttrList[i]))
       }
     }
     @:}
 }
-@if(Model.CodeModel.ShouldGenerateXmlSerialization)
+@if(currModel.CodeModel.ShouldGenerateXmlSerialization)
 {
     @:_xml_map = {
-        @:@(Model.InitializeXmlProperty())
+        @:@(currModel.InitializeXmlProperty())
     @:}
 }
-@if (Model.SubModelTypes.Any())
+@if (currModel.SubModelTypes.Any())
 {
 <text>
 @EmptyLine
     _subtype_map = {
-        '@Model.PolymorphicDiscriminatorProperty.Name': {@Model.SubModelTypeList}
+        '@currModel.PolymorphicDiscriminatorProperty.Name': {@currModel.SubModelTypeList}
     }
 </text>
 }
-@foreach(var property in Model.Properties)
+@foreach(var property in currModel.Properties)
 {
     if (property.IsConstant)
     {
 @EmptyLine
-    @:@(Model.InitializeProperty(String.Empty, property, false))
+    @:@(currModel.InitializeProperty(String.Empty, property, false))
     }
 }
-@if (Model.NeedsConstructor)
-{ 
+@if (currModel.NeedsConstructor)
+{
 @EmptyLine
 @if (Python3Mode)
 {
-    @:def __init__(self@(Model.ModelParameterDeclaration())) -> None: 
-    if (Model.HasParent)
+    @:def __init__(self@(currModel.ModelParameterDeclaration())) -> None:
+    if (currModel.HasParent)
     {
-        @:super(@(Model.Name), self).__init__(@(Model.SuperParameterDeclaration()))
+        @:super(@(currModel.Name), self).__init__(@(currModel.SuperParameterDeclaration()))
     }
     else
     {
-        @:super(@(Model.Name), self).__init__(**kwargs)
-    }    
+        @:super(@(currModel.Name), self).__init__(**kwargs)
+    }
 }
 else
 {
     @:def __init__(self, **kwargs):
-    @:    super(@(Model.Name), self).__init__(**kwargs)
+    @:    super(@(currModel.Name), self).__init__(**kwargs)
 }
-    var propertyList = new List<Property>(Model.Properties);
+    var propertyList = new List<Property>(currModel.Properties);
     if (propertyList.Count > 0)
     {
         for (int i = 0; i < propertyList.Count; i++)
         {
             if (!propertyList[i].IsConstant)
             {
-        @:@(Model.InitializeProperty("self", propertyList[i], !Python3Mode))
+        @:@(currModel.InitializeProperty("self", propertyList[i], !Python3Mode))
             }
 	    }
 	}
-    if (Model.NeedsPolymorphicConverter)
+    if (currModel.NeedsPolymorphicConverter)
     {
-        @:self.@Model.PolymorphicDiscriminatorProperty.Name = '@Model.SerializedName'
+        @:self.@currModel.PolymorphicDiscriminatorProperty.Name = '@currModel.SerializedName'
     }
 }
-@if (Model.IsException)
+@if (currModel.IsException)
 {
 @EmptyLine
 @EmptyLine
-@:class @(Model.ExceptionTypeDefinitionName)(HttpOperationError):
-@:    """Server responsed with exception of type: '@(Model.Name)'.
+@:class @(currModel.ExceptionTypeDefinitionName)(HttpOperationError):
+@:    """Server responsed with exception of type: '@(currModel.Name)'.
 @EmptyLine
 @:    :param deserialize: A deserializer
 @:    :param response: Server response to be deserialized.
@@ -173,6 +168,7 @@ else
 @EmptyLine
     @:def __init__(self, deserialize, response, *args):
 @EmptyLine
-        @:super(@(Model.ExceptionTypeDefinitionName), self).__init__(deserialize, response, '@(Model.Name)', *args)
+        @:super(@(currModel.ExceptionTypeDefinitionName), self).__init__(deserialize, response, '@(currModel.Name)', *args)
 }
-
+</text>
+}

@@ -44,7 +44,7 @@ from msrest.exceptions import DeserializationError, ValidationError
 
 from url.aio import AutoRestUrlTestService
 from urlmulticollectionformat.aio import AutoRestUrlMutliCollectionFormatTestService
-from url.models.auto_rest_url_test_service_enums import UriColor
+from url.models import UriColor
 
 import pytest
 

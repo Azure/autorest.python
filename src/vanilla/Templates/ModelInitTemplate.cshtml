@@ -8,19 +8,19 @@
 # --------------------------------------------------------------------------
 @EmptyLine
 try:
-@foreach (var modelType in Model.ModelTypes)
+@foreach (var modelType in Model.ModelTypes.OrderBy(o => o.ClassName))
   {
-@:    from .@(modelType.Name.ToPythonCase())_py3 import @modelType.Name@Model.GetExceptionNameIfExist(modelType, false)
+@:    from ._models_py3 import @modelType.Name@Model.GetExceptionNameIfExist(modelType, false)
   }
 except (SyntaxError, ImportError):
-@foreach (var modelType in Model.ModelTypes)
+@foreach (var modelType in Model.ModelTypes.OrderBy(o => o.ClassName))
   {
-@:    from .@(modelType.Name.ToPythonCase()) import @modelType.Name@Model.GetExceptionNameIfExist(modelType, false)
+@:    from ._models import @modelType.Name@Model.GetExceptionNameIfExist(modelType, false)
   }
 @if (Model.EnumTypes.Any())
   {
-@:from .@(Model.Name.ToPythonCase())_enums import (
-  foreach (var enumType in @Model.EnumTypes)
+@:from ._@(Model.Name.ToPythonCase())_enums import (
+  foreach (var enumType in @Model.EnumTypes.OrderBy(o => o.ClassName))
     {
     @:@(enumType.Name),
     }
@@ -28,7 +28,7 @@ except (SyntaxError, ImportError):
   }
 @EmptyLine
 __all__ = [
-@foreach (var modelType in Model.ModelTypes)
+@foreach (var modelType in Model.ModelTypes.OrderBy(o => o.ClassName))
   {
 @:    '@modelType.Name'@Model.GetExceptionNameIfExist(modelType, true),
   }

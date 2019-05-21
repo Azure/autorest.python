@@ -25,7 +25,7 @@ class AutoRestSwaggerBATXMLService(SDKClientAsync):
     :vartype config: AutoRestSwaggerBATXMLServiceConfiguration
 
     :ivar xml: Xml operations
-    :vartype xml: xmlservice.operations.XmlOperations
+    :vartype xml: xmlservice.aio.operations_async.XmlOperations
 
     :param str base_url: Service URL
     """

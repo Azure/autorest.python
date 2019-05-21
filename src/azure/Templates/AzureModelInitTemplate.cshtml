@@ -9,32 +9,32 @@
 # --------------------------------------------------------------------------
 @EmptyLine
 try:
-@foreach (var modelType in Model.ModelTypes)
+@foreach (var modelType in Model.ModelTypes.OrderBy(o => o.ClassName))
   {
     if (modelType.Extensions.ContainsKey(AzureExtensions.ExternalExtension) &&
       (bool)modelType.Extensions[AzureExtensions.ExternalExtension])
     {
       continue;
     }
-@:    from .@(modelType.Name.ToPythonCase())_py3 import @modelType.Name@Model.GetExceptionNameIfExist(modelType, false)
+@:    from ._models_py3 import @modelType.Name@Model.GetExceptionNameIfExist(modelType, false)
   }
 except (SyntaxError, ImportError):
-@foreach (var modelType in Model.ModelTypes)
+@foreach (var modelType in Model.ModelTypes.OrderBy(o => o.ClassName))
   {
     if (modelType.Extensions.ContainsKey(AzureExtensions.ExternalExtension) &&
       (bool)modelType.Extensions[AzureExtensions.ExternalExtension])
     {
       continue;
     }
-@:    from .@(modelType.Name.ToPythonCase()) import @modelType.Name@Model.GetExceptionNameIfExist(modelType, false)
+@:    from ._models import @modelType.Name@Model.GetExceptionNameIfExist(modelType, false)
   }
-@foreach (var pagedName in Model.PagedClasses)
+@foreach (var pagedName in Model.PagedClasses.OrderBy(o => o))
   {
-@:from .@pagedName.ToPythonCase() import @pagedName
+@:from ._paged_models import @pagedName
   }
 @if (Model.EnumTypes.Any())
   {
-@:from .@(Model.Name.ToPythonCase())_enums import (
+@:from ._@(Model.Name.ToPythonCase())_enums import (
     foreach (var enumType in @Model.EnumTypes)
     {
     @:@(enumType.Name),
@@ -43,7 +43,7 @@ except (SyntaxError, ImportError):
   }
 @EmptyLine
 __all__ = [
-@foreach (var modelType in Model.ModelTypes)
+@foreach (var modelType in Model.ModelTypes.OrderBy(o => o.ClassName))
   {
     if (modelType.Extensions.ContainsKey(AzureExtensions.ExternalExtension) &&
       (bool)modelType.Extensions[AzureExtensions.ExternalExtension])
