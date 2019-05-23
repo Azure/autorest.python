@@ -13,8 +13,8 @@ from msrest.serialization import Model
 from azure.core import HttpResponseError
 
 
-class HttpResponseError(Model):
-    """HttpResponseError.
+class CloudError(Model):
+    """CloudError.
 
     :param status:
     :type status: int
@@ -28,13 +28,13 @@ class HttpResponseError(Model):
     }
 
     def __init__(self, **kwargs):
-        super(HttpResponseError, self).__init__(**kwargs)
+        super(CloudError, self).__init__(**kwargs)
         self.status = kwargs.get('status', None)
         self.message = kwargs.get('message', None)
 
 
-class HttpResponseErrorException(HttpResponseError):
-    """Server responsed with exception of type: 'HttpResponseError'.
+class CloudErrorException(HttpResponseError):
+    """Server responsed with exception of type: 'CloudError'.
 
     :param deserialize: A deserializer
     :param response: Server response to be deserialized.
@@ -42,11 +42,19 @@ class HttpResponseErrorException(HttpResponseError):
 
     def __init__(self, response, deserialize, *args):
 
-      model_name = 'HttpResponseError'
+      model_name = 'CloudError'
       self.error = deserialize(model_name, response)
       if self.error is None:
           self.error = deserialize.dependencies[model_name]()
-      super(HttpResponseErrorException, self).__init__(response=response)
+      super(CloudErrorException, self).__init__(response=response)
+
+
+class HttpResponseError(Model):
+    """HttpResponseError.
+    """
+
+    _attribute_map = {
+    }
 
 
 class OperationResult(Model):

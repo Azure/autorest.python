@@ -145,6 +145,45 @@ class PolymorphismOperations:
             return cls(response, None, response_headers)
     put_valid.metadata = {'url': '/complex/polymorphism/valid'}
 
+    async def get_dot_syntax(self, *, cls=None, **kwargs):
+        """Get complex types that are polymorphic, JSON key contains a dot.
+
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: DotFish or the result of cls(response)
+        :rtype: ~bodycomplex.models.DotFish
+        :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
+        """
+        error_map = kwargs.pop('error_map', None)
+        # Construct URL
+        url = self.get_dot_syntax.metadata['url']
+
+        # Construct parameters
+        query_parameters = {}
+
+        # Construct headers
+        header_parameters = {}
+        header_parameters['Accept'] = 'application/json'
+
+        # Construct and send request
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise models.ErrorException(response, self._deserialize)
+
+        deserialized = None
+        if response.status_code == 200:
+            deserialized = self._deserialize('DotFish', response)
+
+        if cls:
+            return cls(response, deserialized, None)
+
+        return deserialized
+    get_dot_syntax.metadata = {'url': '/complex/polymorphism/dotsyntax'}
+
     async def get_complicated(self, *, cls=None, **kwargs):
         """Get complex types that are polymorphic, but not at the root of the
         hierarchy; also have additional properties.

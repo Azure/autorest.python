@@ -364,6 +364,72 @@ class Dog(Pet):
         self.food = kwargs.get('food', None)
 
 
+class DotFish(Model):
+    """DotFish.
+
+    You probably want to use the sub-classes and not this class directly. Known
+    sub-classes are: DotSalmon
+
+    All required parameters must be populated in order to send to Azure.
+
+    :param species:
+    :type species: str
+    :param fishtype: Required. Constant filled by server.
+    :type fishtype: str
+    """
+
+    _validation = {
+        'fishtype': {'required': True},
+    }
+
+    _attribute_map = {
+        'species': {'key': 'species', 'type': 'str'},
+        'fishtype': {'key': 'fish\\.type', 'type': 'str'},
+    }
+
+    _subtype_map = {
+        'fishtype': {'DotSalmon': 'DotSalmon'}
+    }
+
+    def __init__(self, **kwargs):
+        super(DotFish, self).__init__(**kwargs)
+        self.species = kwargs.get('species', None)
+        self.fishtype = None
+
+
+class DotSalmon(DotFish):
+    """DotSalmon.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :param species:
+    :type species: str
+    :param fishtype: Required. Constant filled by server.
+    :type fishtype: str
+    :param location:
+    :type location: str
+    :param iswild:
+    :type iswild: bool
+    """
+
+    _validation = {
+        'fishtype': {'required': True},
+    }
+
+    _attribute_map = {
+        'species': {'key': 'species', 'type': 'str'},
+        'fishtype': {'key': 'fish\\.type', 'type': 'str'},
+        'location': {'key': 'location', 'type': 'str'},
+        'iswild': {'key': 'iswild', 'type': 'bool'},
+    }
+
+    def __init__(self, **kwargs):
+        super(DotSalmon, self).__init__(**kwargs)
+        self.location = kwargs.get('location', None)
+        self.iswild = kwargs.get('iswild', None)
+        self.fishtype = 'DotSalmon'
+
+
 class DoubleWrapper(Model):
     """DoubleWrapper.
 

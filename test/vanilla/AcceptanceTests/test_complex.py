@@ -424,3 +424,8 @@ class TestComplex(object):
         )
         # Not raise is enough of a test
         client.polymorphism.put_missing_discriminator(regular_salmon)
+
+        # Dot syntax
+        dot_salmon = client.polymorphism.get_dot_syntax()
+        assert dot_salmon.fishtype == "DotSalmon"
+        assert dot_salmon.location == "sweden"

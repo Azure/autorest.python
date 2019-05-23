@@ -10,7 +10,7 @@
 # --------------------------------------------------------------------------
 
 import uuid
-from azure.core.exceptions import HttpResponseError, map_error
+from azure.core.exceptions import map_error
 from azure.core.polling import LROPoller, NoPolling
 from msrestazure.polling.arm_polling import ARMPolling
 
@@ -70,7 +70,7 @@ class LROsCustomHeaderOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            raise models.CloudErrorException(response, self._deserialize)
 
         deserialized = None
         header_dict = {}
@@ -100,7 +100,7 @@ class LROsCustomHeaderOperations(object):
         :return: An instance of LROPoller that returns Product
         :rtype:
          ~msrestazure.azure_operation.AzureOperationPoller[~lro.models.Product]
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
         """
         raw_result = self._put_async_retry_succeeded_initial(
             product=product,
@@ -158,7 +158,7 @@ class LROsCustomHeaderOperations(object):
 
         if response.status_code not in [200, 201]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            raise models.CloudErrorException(response, self._deserialize)
 
         deserialized = None
 
@@ -184,7 +184,7 @@ class LROsCustomHeaderOperations(object):
         :return: An instance of LROPoller that returns Product
         :rtype:
          ~msrestazure.azure_operation.AzureOperationPoller[~lro.models.Product]
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
         """
         raw_result = self._put201_creating_succeeded200_initial(
             product=product,
@@ -236,7 +236,7 @@ class LROsCustomHeaderOperations(object):
 
         if response.status_code not in [202]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            raise models.CloudErrorException(response, self._deserialize)
 
             return ''
 
@@ -254,7 +254,7 @@ class LROsCustomHeaderOperations(object):
          polling object for personal polling strategy
         :return: An instance of LROPoller that returns None
         :rtype: ~msrestazure.azure_operation.AzureOperationPoller[None]
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
         """
         raw_result = self._post202_retry200_initial(
             product=product,
@@ -309,7 +309,7 @@ class LROsCustomHeaderOperations(object):
 
         if response.status_code not in [202]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            raise models.CloudErrorException(response, self._deserialize)
 
             return ''
 
@@ -327,7 +327,7 @@ class LROsCustomHeaderOperations(object):
          polling object for personal polling strategy
         :return: An instance of LROPoller that returns None
         :rtype: ~msrestazure.azure_operation.AzureOperationPoller[None]
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
         """
         raw_result = self._post_async_retry_succeeded_initial(
             product=product,
