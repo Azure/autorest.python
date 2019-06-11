@@ -157,7 +157,7 @@ else
   }
 if (Model.IsStreamResponse)
 {
-        @:deserialized = response.stream_download()
+        @:deserialized = response.stream_download(self._client._pipeline)
 }
 else
 {

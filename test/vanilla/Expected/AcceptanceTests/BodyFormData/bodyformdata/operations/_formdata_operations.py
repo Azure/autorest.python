@@ -76,7 +76,7 @@ class FormdataOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
-        deserialized = response.stream_download()
+        deserialized = response.stream_download(self._client._pipeline)
 
         if cls:
             return cls(response, deserialized, None)
@@ -118,7 +118,7 @@ class FormdataOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
-        deserialized = response.stream_download()
+        deserialized = response.stream_download(self._client._pipeline)
 
         if cls:
             return cls(response, deserialized, None)
