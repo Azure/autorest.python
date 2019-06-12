@@ -13,6 +13,14 @@ from msrest.serialization import Model
 from azure.core import HttpResponseError
 
 
+class CloudError(Model):
+    """CloudError.
+    """
+
+    _attribute_map = {
+    }
+
+
 class Error(Model):
     """Error.
 
@@ -69,14 +77,6 @@ class FirstParameterGroup(Model):
         super(FirstParameterGroup, self).__init__(**kwargs)
         self.header_one = kwargs.get('header_one', None)
         self.query_one = kwargs.get('query_one', 30)
-
-
-class HttpResponseError(Model):
-    """HttpResponseError.
-    """
-
-    _attribute_map = {
-    }
 
 
 class ParameterGroupingPostMultiParamGroupsSecondParamGroup(Model):

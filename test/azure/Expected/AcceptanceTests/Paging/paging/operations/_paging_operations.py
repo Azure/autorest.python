@@ -10,7 +10,7 @@
 # --------------------------------------------------------------------------
 
 import uuid
-from azure.core.exceptions import HttpResponseError, map_error
+from azure.core.exceptions import map_error
 from azure.core.polling import LROPoller, NoPolling
 from msrestazure.polling.arm_polling import ARMPolling
 
@@ -44,7 +44,8 @@ class PagingOperations(object):
 
         :return: An iterator like instance of Product
         :rtype: ~paging.models.ProductPaged[~paging.models.Product]
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises:
+         :class:`CloudErrorException<paging.models.CloudErrorException>`
         """
         def prepare_request(next_link=None):
             if not next_link:
@@ -79,7 +80,7 @@ class PagingOperations(object):
 
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response)
+                raise models.CloudErrorException(response, self._deserialize)
 
             return response
 
@@ -101,7 +102,8 @@ class PagingOperations(object):
          ~paging.models.PagingGetMultiplePagesOptions
         :return: An iterator like instance of Product
         :rtype: ~paging.models.ProductPaged[~paging.models.Product]
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises:
+         :class:`CloudErrorException<paging.models.CloudErrorException>`
         """
         maxresults = None
         if paging_get_multiple_pages_options is not None:
@@ -149,7 +151,7 @@ class PagingOperations(object):
 
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response)
+                raise models.CloudErrorException(response, self._deserialize)
 
             return response
 
@@ -172,7 +174,8 @@ class PagingOperations(object):
          ~paging.models.PagingGetOdataMultiplePagesOptions
         :return: An iterator like instance of Product
         :rtype: ~paging.models.ProductPaged1[~paging.models.Product]
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises:
+         :class:`CloudErrorException<paging.models.CloudErrorException>`
         """
         maxresults = None
         if paging_get_odata_multiple_pages_options is not None:
@@ -220,7 +223,7 @@ class PagingOperations(object):
 
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response)
+                raise models.CloudErrorException(response, self._deserialize)
 
             return response
 
@@ -242,7 +245,8 @@ class PagingOperations(object):
         :type client_request_id: str
         :return: An iterator like instance of Product
         :rtype: ~paging.models.ProductPaged[~paging.models.Product]
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises:
+         :class:`CloudErrorException<paging.models.CloudErrorException>`
         """
         maxresults = None
         if paging_get_multiple_pages_with_offset_options is not None:
@@ -297,7 +301,7 @@ class PagingOperations(object):
 
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response)
+                raise models.CloudErrorException(response, self._deserialize)
 
             return response
 
@@ -314,7 +318,8 @@ class PagingOperations(object):
 
         :return: An iterator like instance of Product
         :rtype: ~paging.models.ProductPaged[~paging.models.Product]
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises:
+         :class:`CloudErrorException<paging.models.CloudErrorException>`
         """
         def prepare_request(next_link=None):
             if not next_link:
@@ -349,7 +354,7 @@ class PagingOperations(object):
 
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response)
+                raise models.CloudErrorException(response, self._deserialize)
 
             return response
 
@@ -367,7 +372,8 @@ class PagingOperations(object):
 
         :return: An iterator like instance of Product
         :rtype: ~paging.models.ProductPaged[~paging.models.Product]
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises:
+         :class:`CloudErrorException<paging.models.CloudErrorException>`
         """
         def prepare_request(next_link=None):
             if not next_link:
@@ -402,7 +408,7 @@ class PagingOperations(object):
 
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response)
+                raise models.CloudErrorException(response, self._deserialize)
 
             return response
 
@@ -418,7 +424,8 @@ class PagingOperations(object):
 
         :return: An iterator like instance of Product
         :rtype: ~paging.models.ProductPaged[~paging.models.Product]
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises:
+         :class:`CloudErrorException<paging.models.CloudErrorException>`
         """
         def prepare_request(next_link=None):
             if not next_link:
@@ -453,7 +460,7 @@ class PagingOperations(object):
 
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response)
+                raise models.CloudErrorException(response, self._deserialize)
 
             return response
 
@@ -469,7 +476,8 @@ class PagingOperations(object):
 
         :return: An iterator like instance of Product
         :rtype: ~paging.models.ProductPaged[~paging.models.Product]
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises:
+         :class:`CloudErrorException<paging.models.CloudErrorException>`
         """
         def prepare_request(next_link=None):
             if not next_link:
@@ -504,7 +512,7 @@ class PagingOperations(object):
 
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response)
+                raise models.CloudErrorException(response, self._deserialize)
 
             return response
 
@@ -520,7 +528,8 @@ class PagingOperations(object):
 
         :return: An iterator like instance of Product
         :rtype: ~paging.models.ProductPaged[~paging.models.Product]
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises:
+         :class:`CloudErrorException<paging.models.CloudErrorException>`
         """
         def prepare_request(next_link=None):
             if not next_link:
@@ -555,7 +564,7 @@ class PagingOperations(object):
 
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response)
+                raise models.CloudErrorException(response, self._deserialize)
 
             return response
 
@@ -575,7 +584,8 @@ class PagingOperations(object):
         :type tenant: str
         :return: An iterator like instance of Product
         :rtype: ~paging.models.ProductPaged1[~paging.models.Product]
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises:
+         :class:`CloudErrorException<paging.models.CloudErrorException>`
         """
         def prepare_request(next_link=None):
             if not next_link:
@@ -621,7 +631,7 @@ class PagingOperations(object):
 
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response)
+                raise models.CloudErrorException(response, self._deserialize)
 
             return response
 
@@ -640,7 +650,8 @@ class PagingOperations(object):
         :type custom_parameter_group: ~paging.models.CustomParameterGroup
         :return: An iterator like instance of Product
         :rtype: ~paging.models.ProductPaged1[~paging.models.Product]
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises:
+         :class:`CloudErrorException<paging.models.CloudErrorException>`
         """
         api_version = None
         if custom_parameter_group is not None:
@@ -693,7 +704,7 @@ class PagingOperations(object):
 
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response)
+                raise models.CloudErrorException(response, self._deserialize)
 
             return response
 
@@ -741,7 +752,7 @@ class PagingOperations(object):
 
         if response.status_code not in [202]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            raise models.CloudErrorException(response, self._deserialize)
 
         deserialized = None
 
@@ -766,7 +777,8 @@ class PagingOperations(object):
         :return: An instance of LROPoller that returns ProductResult
         :rtype:
          ~msrestazure.azure_operation.AzureOperationPoller[~paging.models.ProductResult]
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises:
+         :class:`CloudErrorException<paging.models.CloudErrorException>`
         """
         raw_result = self._get_multiple_pages_lro_initial(
             client_request_id=client_request_id,

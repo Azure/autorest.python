@@ -50,6 +50,8 @@ namespace AutoRest.Python
                 await Write(setupTemplate, "setup.py");
             }
 
+            var noAsync = await Settings.Instance.Host.GetValue<bool?>("no-async");
+
             var folderName = codeModel.NoNamespaceFolders?"":Path.Combine(codeModel.Namespace.Split('.'));
             var serviceClientInitTemplate = new ServiceClientInitTemplate { Model = codeModel };
             await Write(serviceClientInitTemplate, Path.Combine(folderName, "__init__.py"));
@@ -57,27 +59,14 @@ namespace AutoRest.Python
             var configurationTemplate = new ConfigurationTemplate { Model = codeModel };
             await Write(configurationTemplate, Path.Combine(folderName, "_configuration.py"));
 
-            var serviceClientInitTemplateAsync = new ServiceClientInitTemplateAsync { Model = codeModel };
-            await Write(serviceClientInitTemplateAsync, Path.Combine(folderName, "aio", "__init__.py"));
-
-            var configurationTemplateAsync = new ConfigurationTemplateAsync { Model = codeModel };
-            await Write(configurationTemplateAsync, Path.Combine(folderName, "aio", "_configuration_async.py"));
-
             // Writing service client
             var serviceClientTemplate = new ServiceClientTemplate { Model = codeModel };
             await Write(serviceClientTemplate, Path.Combine(folderName, "_" + codeModel.Name.ToPythonCase() + ".py"));
 
-            var serviceClientAsyncTemplate = new ServiceClientTemplateAsync { Model = codeModel };
-            await Write(serviceClientAsyncTemplate, Path.Combine(folderName, "aio", "_" + codeModel.Name.ToPythonCase() + "_async.py"));
-
-            // If async method at the client level, create another file
             if(codeModel.MethodTemplateModels.Any( each => each.MethodGroup.IsCodeModelMethodGroup))
             {
                 var serviceClientOpTemplate = new ServiceClientOperationsTemplate { Model = codeModel };
                 await Write(serviceClientOpTemplate, Path.Combine(folderName, "operations", "_" + codeModel.Name.ToPythonCase() + "_operations.py"));
-
-                var serviceClientOpTemplateAsync = new ServiceClientOperationsTemplateAsync { Model = codeModel };
-                await Write(serviceClientOpTemplateAsync, Path.Combine(folderName, "aio", "operations_async", "_" + codeModel.Name.ToPythonCase() + "_operations_async.py"));
             }
 
             // do we need to write out the version template file?
@@ -112,13 +101,6 @@ namespace AutoRest.Python
                 };
                 await Write(methodGroupIndexTemplate, Path.Combine(folderName, "operations", "__init__.py"));
 
-                var methodGroupIndexTemplateAsync = new MethodGroupInitTemplate
-                {
-                    Model = codeModel,
-                    AsyncMode = true
-                };
-                await Write(methodGroupIndexTemplateAsync, Path.Combine(folderName, "aio", "operations_async", "__init__.py"));
-
                 foreach (var methodGroupModel in codeModel.MethodGroupModels)
                 {
                     var methodGroupTemplate = new MethodGroupTemplate
@@ -126,12 +108,6 @@ namespace AutoRest.Python
                         Model = methodGroupModel
                     };
                     await Write(methodGroupTemplate, Path.Combine(folderName, "operations", "_" + ((string) methodGroupModel.TypeName).ToPythonCase() + ".py"));
-                    // Build a Py3 version that import the Py2 one
-                    var methodGroupTemplatePy3 = new MethodGroupTemplateAsync
-                    {
-                        Model = methodGroupModel
-                    };
-                    await Write(methodGroupTemplatePy3, Path.Combine(folderName, "aio", "operations_async", "_" + ((string) methodGroupModel.TypeName).ToPythonCase() + "_async.py"));
                 }
             }
 
@@ -140,6 +116,48 @@ namespace AutoRest.Python
             {
                 var enumTemplate = new EnumTemplate { Model = codeModel.EnumTypes };
                 await Write(enumTemplate, Path.Combine(folderName, "models", "_" + codeModel.Name.ToPythonCase() + "_enums.py"));
+            }
+
+            // Async
+            if (noAsync != true)
+            {
+                var serviceClientInitTemplateAsync = new ServiceClientInitTemplateAsync { Model = codeModel };
+                await Write(serviceClientInitTemplateAsync, Path.Combine(folderName, "aio", "__init__.py"));
+
+                var configurationTemplateAsync = new ConfigurationTemplateAsync { Model = codeModel };
+                await Write(configurationTemplateAsync, Path.Combine(folderName, "aio", "_configuration_async.py"));
+
+                // Writing AIO service client
+                var serviceClientAsyncTemplate = new ServiceClientTemplateAsync { Model = codeModel };
+                await Write(serviceClientAsyncTemplate, Path.Combine(folderName, "aio", "_" + codeModel.Name.ToPythonCase() + "_async.py"));
+
+                if(codeModel.MethodTemplateModels.Any( each => each.MethodGroup.IsCodeModelMethodGroup))
+                {
+                    var serviceClientOpTemplateAsync = new ServiceClientOperationsTemplateAsync { Model = codeModel };
+                    await Write(serviceClientOpTemplateAsync, Path.Combine(folderName, "aio", "operations_async", "_" + codeModel.Name.ToPythonCase() + "_operations_async.py"));
+                }
+
+                //MethodGroups
+                if (codeModel.MethodGroupModels.Any() || codeModel.MethodTemplateModels.Any( each => each.MethodGroup.IsCodeModelMethodGroup))
+                {
+                    var methodGroupIndexTemplateAsync = new MethodGroupInitTemplate
+                    {
+                        Model = codeModel,
+                        AsyncMode = true
+                    };
+                    await Write(methodGroupIndexTemplateAsync, Path.Combine(folderName, "aio", "operations_async", "__init__.py"));
+
+                    foreach (var methodGroupModel in codeModel.MethodGroupModels)
+                    {
+                        // Build a Py3 version that import the Py2 one
+                        var methodGroupTemplatePy3 = new MethodGroupTemplateAsync
+                        {
+                            Model = methodGroupModel
+                        };
+                        await Write(methodGroupTemplatePy3, Path.Combine(folderName, "aio", "operations_async", "_" + ((string) methodGroupModel.TypeName).ToPythonCase() + "_async.py"));
+                    }
+                }
+
             }
         }
 

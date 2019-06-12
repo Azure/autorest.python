@@ -1,5 +1,9 @@
 # Change Log
 
+### 2019-06-12 - 4.0.71
+
+- no-async flag to skip async code generation
+
 ### 2019-05-21 - 4.0.70
 
 - Beta version of --keep-version-file for ARM generator

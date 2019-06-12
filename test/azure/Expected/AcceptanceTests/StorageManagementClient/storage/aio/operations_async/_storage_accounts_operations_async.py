@@ -10,7 +10,7 @@
 # --------------------------------------------------------------------------
 
 import uuid
-from azure.core.exceptions import HttpResponseError, map_error
+from azure.core.exceptions import map_error
 from azure.core.polling.async_poller import async_poller, AsyncNoPolling
 from msrestazure.polling.async_arm_polling import AsyncARMPolling
 
@@ -52,7 +52,8 @@ class StorageAccountsOperations:
          direct response
         :return: CheckNameAvailabilityResult or the result of cls(response)
         :rtype: ~storage.models.CheckNameAvailabilityResult
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises:
+         :class:`CloudErrorException<storage.models.CloudErrorException>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL
@@ -85,7 +86,7 @@ class StorageAccountsOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            raise models.CloudErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
@@ -133,7 +134,7 @@ class StorageAccountsOperations:
 
         if response.status_code not in [200, 202]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            raise models.CloudErrorException(response, self._deserialize)
 
         deserialized = None
 
@@ -163,7 +164,8 @@ class StorageAccountsOperations:
          polling object for personal polling strategy
         :return: An instance of StorageAccount
         :rtype: ~~storage.models.StorageAccount
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises:
+         :class:`CloudErrorException<storage.models.CloudErrorException>`
         """
         raw_result = await self._create_initial(
             resource_group_name=resource_group_name,
@@ -200,7 +202,8 @@ class StorageAccountsOperations:
          direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises:
+         :class:`CloudErrorException<storage.models.CloudErrorException>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL
@@ -230,7 +233,7 @@ class StorageAccountsOperations:
 
         if response.status_code not in [200, 204]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            raise models.CloudErrorException(response, self._deserialize)
 
         if cls:
             response_headers = {}
@@ -253,7 +256,8 @@ class StorageAccountsOperations:
          direct response
         :return: StorageAccount or the result of cls(response)
         :rtype: ~storage.models.StorageAccount
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises:
+         :class:`CloudErrorException<storage.models.CloudErrorException>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL
@@ -284,7 +288,7 @@ class StorageAccountsOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            raise models.CloudErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
@@ -322,7 +326,8 @@ class StorageAccountsOperations:
          direct response
         :return: StorageAccount or the result of cls(response)
         :rtype: ~storage.models.StorageAccount
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises:
+         :class:`CloudErrorException<storage.models.CloudErrorException>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL
@@ -357,7 +362,7 @@ class StorageAccountsOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            raise models.CloudErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
@@ -381,7 +386,8 @@ class StorageAccountsOperations:
          direct response
         :return: StorageAccountKeys or the result of cls(response)
         :rtype: ~storage.models.StorageAccountKeys
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises:
+         :class:`CloudErrorException<storage.models.CloudErrorException>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL
@@ -412,7 +418,7 @@ class StorageAccountsOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            raise models.CloudErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
@@ -433,7 +439,8 @@ class StorageAccountsOperations:
         :return: An iterator like instance of StorageAccount
         :rtype:
          ~storage.models.StorageAccountPaged[~storage.models.StorageAccount]
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises:
+         :class:`CloudErrorException<storage.models.CloudErrorException>`
         """
         def prepare_request(next_link=None):
             if not next_link:
@@ -473,7 +480,7 @@ class StorageAccountsOperations:
 
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response)
+                raise models.CloudErrorException(response, self._deserialize)
 
             return response
 
@@ -486,7 +493,7 @@ class StorageAccountsOperations:
 
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response)
+                raise models.CloudErrorException(response, self._deserialize)
 
             return response
 
@@ -509,7 +516,8 @@ class StorageAccountsOperations:
         :return: An iterator like instance of StorageAccount
         :rtype:
          ~storage.models.StorageAccountPaged[~storage.models.StorageAccount]
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises:
+         :class:`CloudErrorException<storage.models.CloudErrorException>`
         """
         def prepare_request(next_link=None):
             if not next_link:
@@ -550,7 +558,7 @@ class StorageAccountsOperations:
 
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response)
+                raise models.CloudErrorException(response, self._deserialize)
 
             return response
 
@@ -563,7 +571,7 @@ class StorageAccountsOperations:
 
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response)
+                raise models.CloudErrorException(response, self._deserialize)
 
             return response
 
@@ -590,7 +598,8 @@ class StorageAccountsOperations:
          direct response
         :return: StorageAccountKeys or the result of cls(response)
         :rtype: ~storage.models.StorageAccountKeys
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises:
+         :class:`CloudErrorException<storage.models.CloudErrorException>`
         """
         error_map = kwargs.pop('error_map', None)
         regenerate_key1 = models.StorageAccountRegenerateKeyParameters(key_name=key_name)
@@ -627,7 +636,7 @@ class StorageAccountsOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            raise models.CloudErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:

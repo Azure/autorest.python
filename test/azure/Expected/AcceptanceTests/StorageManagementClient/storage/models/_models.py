@@ -58,6 +58,14 @@ class CheckNameAvailabilityResult(Model):
         self.message = kwargs.get('message', None)
 
 
+class CloudError(Model):
+    """CloudError.
+    """
+
+    _attribute_map = {
+    }
+
+
 class CustomDomain(Model):
     """The custom domain assigned to this storage account. This can be set via
     Update.
@@ -129,14 +137,6 @@ class Foo(Model):
     def __init__(self, **kwargs):
         super(Foo, self).__init__(**kwargs)
         self.bar_point = kwargs.get('bar_point', None)
-
-
-class HttpResponseError(Model):
-    """HttpResponseError.
-    """
-
-    _attribute_map = {
-    }
 
 
 class Resource(Model):

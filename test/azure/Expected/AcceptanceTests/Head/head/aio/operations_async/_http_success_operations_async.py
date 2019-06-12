@@ -10,7 +10,7 @@
 # --------------------------------------------------------------------------
 
 import uuid
-from azure.core.exceptions import HttpResponseError, map_error
+from azure.core.exceptions import map_error
 
 
 class HttpSuccessOperations:
@@ -39,7 +39,7 @@ class HttpSuccessOperations:
          direct response
         :return: bool or the result of cls(response)
         :rtype: bool
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises: :class:`CloudErrorException<head.models.CloudErrorException>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL
@@ -62,7 +62,7 @@ class HttpSuccessOperations:
 
         if response.status_code not in [200, 404]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            raise models.CloudErrorException(response, self._deserialize)
 
         deserialized = (response.status_code == 200)
         return deserialized
@@ -75,7 +75,7 @@ class HttpSuccessOperations:
          direct response
         :return: bool or the result of cls(response)
         :rtype: bool
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises: :class:`CloudErrorException<head.models.CloudErrorException>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL
@@ -98,7 +98,7 @@ class HttpSuccessOperations:
 
         if response.status_code not in [204, 404]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            raise models.CloudErrorException(response, self._deserialize)
 
         deserialized = (response.status_code == 204)
         return deserialized
@@ -111,7 +111,7 @@ class HttpSuccessOperations:
          direct response
         :return: bool or the result of cls(response)
         :rtype: bool
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises: :class:`CloudErrorException<head.models.CloudErrorException>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL
@@ -134,7 +134,7 @@ class HttpSuccessOperations:
 
         if response.status_code not in [204, 404]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            raise models.CloudErrorException(response, self._deserialize)
 
         deserialized = (response.status_code == 204)
         return deserialized

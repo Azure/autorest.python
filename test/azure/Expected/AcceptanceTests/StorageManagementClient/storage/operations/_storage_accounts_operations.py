@@ -10,7 +10,7 @@
 # --------------------------------------------------------------------------
 
 import uuid
-from azure.core.exceptions import HttpResponseError, map_error
+from azure.core.exceptions import map_error
 from azure.core.polling import LROPoller, NoPolling
 from msrestazure.polling.arm_polling import ARMPolling
 
@@ -52,7 +52,8 @@ class StorageAccountsOperations(object):
          direct response
         :return: CheckNameAvailabilityResult or the result of cls(response)
         :rtype: ~storage.models.CheckNameAvailabilityResult
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises:
+         :class:`CloudErrorException<storage.models.CloudErrorException>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL
@@ -85,7 +86,7 @@ class StorageAccountsOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            raise models.CloudErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
@@ -133,7 +134,7 @@ class StorageAccountsOperations(object):
 
         if response.status_code not in [200, 202]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            raise models.CloudErrorException(response, self._deserialize)
 
         deserialized = None
 
@@ -164,7 +165,8 @@ class StorageAccountsOperations(object):
         :return: An instance of LROPoller that returns StorageAccount
         :rtype:
          ~msrestazure.azure_operation.AzureOperationPoller[~storage.models.StorageAccount]
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises:
+         :class:`CloudErrorException<storage.models.CloudErrorException>`
         """
         raw_result = self._create_initial(
             resource_group_name=resource_group_name,
@@ -201,7 +203,8 @@ class StorageAccountsOperations(object):
          direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises:
+         :class:`CloudErrorException<storage.models.CloudErrorException>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL
@@ -231,7 +234,7 @@ class StorageAccountsOperations(object):
 
         if response.status_code not in [200, 204]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            raise models.CloudErrorException(response, self._deserialize)
 
         if cls:
             response_headers = {}
@@ -254,7 +257,8 @@ class StorageAccountsOperations(object):
          direct response
         :return: StorageAccount or the result of cls(response)
         :rtype: ~storage.models.StorageAccount
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises:
+         :class:`CloudErrorException<storage.models.CloudErrorException>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL
@@ -285,7 +289,7 @@ class StorageAccountsOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            raise models.CloudErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
@@ -323,7 +327,8 @@ class StorageAccountsOperations(object):
          direct response
         :return: StorageAccount or the result of cls(response)
         :rtype: ~storage.models.StorageAccount
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises:
+         :class:`CloudErrorException<storage.models.CloudErrorException>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL
@@ -358,7 +363,7 @@ class StorageAccountsOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            raise models.CloudErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
@@ -382,7 +387,8 @@ class StorageAccountsOperations(object):
          direct response
         :return: StorageAccountKeys or the result of cls(response)
         :rtype: ~storage.models.StorageAccountKeys
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises:
+         :class:`CloudErrorException<storage.models.CloudErrorException>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL
@@ -413,7 +419,7 @@ class StorageAccountsOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            raise models.CloudErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:
@@ -434,7 +440,8 @@ class StorageAccountsOperations(object):
         :return: An iterator like instance of StorageAccount
         :rtype:
          ~storage.models.StorageAccountPaged[~storage.models.StorageAccount]
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises:
+         :class:`CloudErrorException<storage.models.CloudErrorException>`
         """
         def prepare_request(next_link=None):
             if not next_link:
@@ -474,7 +481,7 @@ class StorageAccountsOperations(object):
 
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response)
+                raise models.CloudErrorException(response, self._deserialize)
 
             return response
 
@@ -496,7 +503,8 @@ class StorageAccountsOperations(object):
         :return: An iterator like instance of StorageAccount
         :rtype:
          ~storage.models.StorageAccountPaged[~storage.models.StorageAccount]
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises:
+         :class:`CloudErrorException<storage.models.CloudErrorException>`
         """
         def prepare_request(next_link=None):
             if not next_link:
@@ -537,7 +545,7 @@ class StorageAccountsOperations(object):
 
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response)
+                raise models.CloudErrorException(response, self._deserialize)
 
             return response
 
@@ -563,7 +571,8 @@ class StorageAccountsOperations(object):
          direct response
         :return: StorageAccountKeys or the result of cls(response)
         :rtype: ~storage.models.StorageAccountKeys
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises:
+         :class:`CloudErrorException<storage.models.CloudErrorException>`
         """
         error_map = kwargs.pop('error_map', None)
         regenerate_key1 = models.StorageAccountRegenerateKeyParameters(key_name=key_name)
@@ -600,7 +609,7 @@ class StorageAccountsOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            raise models.CloudErrorException(response, self._deserialize)
 
         deserialized = None
         if response.status_code == 200:

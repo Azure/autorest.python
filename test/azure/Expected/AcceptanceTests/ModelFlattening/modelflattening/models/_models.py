@@ -41,6 +41,14 @@ class BaseProduct(Model):
         self.description = kwargs.get('description', None)
 
 
+class CloudError(Model):
+    """CloudError.
+    """
+
+    _attribute_map = {
+    }
+
+
 class Error(Model):
     """Error.
 
@@ -237,14 +245,6 @@ class GenericUrl(Model):
     def __init__(self, **kwargs):
         super(GenericUrl, self).__init__(**kwargs)
         self.generic_value = kwargs.get('generic_value', None)
-
-
-class HttpResponseError(Model):
-    """HttpResponseError.
-    """
-
-    _attribute_map = {
-    }
 
 
 class ProductWrapper(Model):
