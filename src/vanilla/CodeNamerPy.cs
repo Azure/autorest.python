@@ -68,7 +68,7 @@ namespace AutoRest.Python
             //we will only insert if there are more than 2 consecutive upper cases, because 2 upper cases
             //most likely means one single word. 
             var nextNonUpperCaseCharLocation = m.Index + matchedStr.Length;
-            return (matchedStr.Length > 2) && (nextNonUpperCaseCharLocation < name.Length) &&
+            return (matchedStr.Length > 2) && ((name.Length - nextNonUpperCaseCharLocation) > 1) &&
                    char.IsLetter(name[nextNonUpperCaseCharLocation]);
         }
 
