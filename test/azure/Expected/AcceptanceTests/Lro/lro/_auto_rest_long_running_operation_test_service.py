@@ -24,12 +24,12 @@ class AutoRestLongRunningOperationTestService(object):
     """Long-running Operation for AutoRest
 
 
-    :ivar lr_os: LROs operations
-    :vartype lr_os: lro.operations.LROsOperations
+    :ivar lros: LROs operations
+    :vartype lros: lro.operations.LROsOperations
     :ivar lro_retrys: LRORetrys operations
     :vartype lro_retrys: lro.operations.LRORetrysOperations
-    :ivar lrosa_ds: LROSADs operations
-    :vartype lrosa_ds: lro.operations.LROSADsOperations
+    :ivar lrosads: LROSADs operations
+    :vartype lrosads: lro.operations.LROSADsOperations
     :ivar lr_os_custom_header: LROsCustomHeader operations
     :vartype lr_os_custom_header: lro.operations.LROsCustomHeaderOperations
 
@@ -52,11 +52,11 @@ class AutoRestLongRunningOperationTestService(object):
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
 
-        self.lr_os = LROsOperations(
+        self.lros = LROsOperations(
             self._client, self._config, self._serialize, self._deserialize)
         self.lro_retrys = LRORetrysOperations(
             self._client, self._config, self._serialize, self._deserialize)
-        self.lrosa_ds = LROSADsOperations(
+        self.lrosads = LROSADsOperations(
             self._client, self._config, self._serialize, self._deserialize)
         self.lr_os_custom_header = LROsCustomHeaderOperations(
             self._client, self._config, self._serialize, self._deserialize)

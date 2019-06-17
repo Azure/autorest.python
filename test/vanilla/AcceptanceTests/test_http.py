@@ -337,7 +337,7 @@ class TestHttp(object):
 
     def test_success_status_codes(self, client):
 
-        self.assertRaisesWithMessage("Operation returned an invalid status code 'Bad Request'",
+        self.assertRaisesWithMessage("Operation returned an invalid status 'Bad Request'",
             client.http_failure.get_empty_error)
         self.assertRaisesWithStatusAndResponseContains(requests.codes.bad_request, "NoErrorModel",
             client.http_failure.get_no_model_error)
