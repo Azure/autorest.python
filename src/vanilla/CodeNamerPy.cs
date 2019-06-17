@@ -66,7 +66,9 @@ namespace AutoRest.Python
         {
             //For name like "SQLConnection", we will insert an extra '_' between "SQL" and "Connection"
             //we will only insert if there are more than 2 consecutive upper cases, because 2 upper cases
-            //most likely means one single word. 
+            //most likely means one single word.
+            //We also do not want to insert if there is only 1 trailing lowercase character after the final
+            //capital, as this is likely a plural (e.g. IncludeAPIs -> include_apis, not include_ap_is)
             var nextNonUpperCaseCharLocation = m.Index + matchedStr.Length;
             return (matchedStr.Length > 2) && ((name.Length - nextNonUpperCaseCharLocation) > 1) &&
                    char.IsLetter(name[nextNonUpperCaseCharLocation]);
