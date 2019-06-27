@@ -185,7 +185,7 @@ class StorageAccountsOperations:
         if polling is True: polling_method = AsyncARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     create.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}'}
 
     async def delete(self, resource_group_name, account_name, *, cls=None, **kwargs):

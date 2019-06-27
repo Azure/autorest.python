@@ -108,7 +108,7 @@ class LROsOperations:
         if polling is True: polling_method = AsyncARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     put200_succeeded.metadata = {'url': '/lro/put/200/succeeded'}
 
 
@@ -181,7 +181,7 @@ class LROsOperations:
         if polling is True: polling_method = AsyncARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     put200_succeeded_no_state.metadata = {'url': '/lro/put/200/succeeded/nostate'}
 
 
@@ -255,7 +255,7 @@ class LROsOperations:
         if polling is True: polling_method = AsyncARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     put202_retry200.metadata = {'url': '/lro/put/202/retry/200'}
 
 
@@ -332,7 +332,7 @@ class LROsOperations:
         if polling is True: polling_method = AsyncARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     put201_creating_succeeded200.metadata = {'url': '/lro/put/201/creating/succeeded/200'}
 
 
@@ -407,7 +407,7 @@ class LROsOperations:
         if polling is True: polling_method = AsyncARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     put200_updating_succeeded204.metadata = {'url': '/lro/put/200/updating/succeeded/200'}
 
 
@@ -484,7 +484,7 @@ class LROsOperations:
         if polling is True: polling_method = AsyncARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     put201_creating_failed200.metadata = {'url': '/lro/put/201/created/failed/200'}
 
 
@@ -559,7 +559,7 @@ class LROsOperations:
         if polling is True: polling_method = AsyncARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     put200_acceptedcanceled200.metadata = {'url': '/lro/put/200/accepted/canceled/200'}
 
 
@@ -640,7 +640,7 @@ class LROsOperations:
         if polling is True: polling_method = AsyncARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     put_no_header_in_retry.metadata = {'url': '/lro/put/noheader/202/200'}
 
 
@@ -726,7 +726,7 @@ class LROsOperations:
         if polling is True: polling_method = AsyncARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     put_async_retry_succeeded.metadata = {'url': '/lro/putasync/retry/succeeded'}
 
 
@@ -810,7 +810,7 @@ class LROsOperations:
         if polling is True: polling_method = AsyncARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     put_async_no_retry_succeeded.metadata = {'url': '/lro/putasync/noretry/succeeded'}
 
 
@@ -896,7 +896,7 @@ class LROsOperations:
         if polling is True: polling_method = AsyncARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     put_async_retry_failed.metadata = {'url': '/lro/putasync/retry/failed'}
 
 
@@ -980,7 +980,7 @@ class LROsOperations:
         if polling is True: polling_method = AsyncARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     put_async_no_retrycanceled.metadata = {'url': '/lro/putasync/noretry/canceled'}
 
 
@@ -1061,7 +1061,7 @@ class LROsOperations:
         if polling is True: polling_method = AsyncARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     put_async_no_header_in_retry.metadata = {'url': '/lro/putasync/noheader/201/200'}
 
 
@@ -1133,7 +1133,7 @@ class LROsOperations:
         if polling is True: polling_method = AsyncARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     put_non_resource.metadata = {'url': '/lro/putnonresource/202/200'}
 
 
@@ -1205,7 +1205,7 @@ class LROsOperations:
         if polling is True: polling_method = AsyncARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     put_async_non_resource.metadata = {'url': '/lro/putnonresourceasync/202/200'}
 
 
@@ -1281,7 +1281,7 @@ class LROsOperations:
         if polling is True: polling_method = AsyncARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     put_sub_resource.metadata = {'url': '/lro/putsubresource/202/200'}
 
 
@@ -1357,7 +1357,7 @@ class LROsOperations:
         if polling is True: polling_method = AsyncARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     put_async_sub_resource.metadata = {'url': '/lro/putsubresourceasync/202/200'}
 
 
@@ -1437,7 +1437,7 @@ class LROsOperations:
         if polling is True: polling_method = AsyncARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     delete_provisioning202_accepted200_succeeded.metadata = {'url': '/lro/delete/provisioning/202/accepted/200/succeeded'}
 
 
@@ -1517,7 +1517,7 @@ class LROsOperations:
         if polling is True: polling_method = AsyncARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     delete_provisioning202_deleting_failed200.metadata = {'url': '/lro/delete/provisioning/202/deleting/200/failed'}
 
 
@@ -1597,7 +1597,7 @@ class LROsOperations:
         if polling is True: polling_method = AsyncARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     delete_provisioning202_deletingcanceled200.metadata = {'url': '/lro/delete/provisioning/202/deleting/200/canceled'}
 
 
@@ -1653,7 +1653,7 @@ class LROsOperations:
         if polling is True: polling_method = AsyncARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     delete204_succeeded.metadata = {'url': '/lro/delete/204/succeeded'}
 
 
@@ -1726,7 +1726,7 @@ class LROsOperations:
         if polling is True: polling_method = AsyncARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     delete202_retry200.metadata = {'url': '/lro/delete/202/retry/200'}
 
 
@@ -1799,7 +1799,7 @@ class LROsOperations:
         if polling is True: polling_method = AsyncARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     delete202_no_retry204.metadata = {'url': '/lro/delete/202/noretry/204'}
 
 
@@ -1859,7 +1859,7 @@ class LROsOperations:
         if polling is True: polling_method = AsyncARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     delete_no_header_in_retry.metadata = {'url': '/lro/delete/noheader'}
 
 
@@ -1919,7 +1919,7 @@ class LROsOperations:
         if polling is True: polling_method = AsyncARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     delete_async_no_header_in_retry.metadata = {'url': '/lro/deleteasync/noheader/202/204'}
 
 
@@ -1981,7 +1981,7 @@ class LROsOperations:
         if polling is True: polling_method = AsyncARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     delete_async_retry_succeeded.metadata = {'url': '/lro/deleteasync/retry/succeeded'}
 
 
@@ -2043,7 +2043,7 @@ class LROsOperations:
         if polling is True: polling_method = AsyncARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     delete_async_no_retry_succeeded.metadata = {'url': '/lro/deleteasync/noretry/succeeded'}
 
 
@@ -2105,7 +2105,7 @@ class LROsOperations:
         if polling is True: polling_method = AsyncARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     delete_async_retry_failed.metadata = {'url': '/lro/deleteasync/retry/failed'}
 
 
@@ -2167,7 +2167,7 @@ class LROsOperations:
         if polling is True: polling_method = AsyncARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     delete_async_retrycanceled.metadata = {'url': '/lro/deleteasync/retry/canceled'}
 
 
@@ -2233,7 +2233,7 @@ class LROsOperations:
         if polling is True: polling_method = AsyncARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     post200_with_payload.metadata = {'url': '/lro/post/payload/200'}
 
 
@@ -2304,7 +2304,7 @@ class LROsOperations:
         if polling is True: polling_method = AsyncARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     post202_retry200.metadata = {'url': '/lro/post/202/retry/200'}
 
 
@@ -2387,7 +2387,7 @@ class LROsOperations:
         if polling is True: polling_method = AsyncARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     post202_no_retry204.metadata = {'url': '/lro/post/202/noretry/204'}
 
 
@@ -2451,7 +2451,7 @@ class LROsOperations:
         if polling is True: polling_method = AsyncARMPolling(lro_delay, lro_options={'final-state-via': 'location'}, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     post_double_headers_final_location_get.metadata = {'url': '/lro/LROPostDoubleHeadersFinalLocationGet'}
 
 
@@ -2515,7 +2515,7 @@ class LROsOperations:
         if polling is True: polling_method = AsyncARMPolling(lro_delay, lro_options={'final-state-via': 'azure-async-operation'}, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     post_double_headers_final_azure_header_get.metadata = {'url': '/lro/LROPostDoubleHeadersFinalAzureHeaderGet'}
 
 
@@ -2580,7 +2580,7 @@ class LROsOperations:
         if polling is True: polling_method = AsyncARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     post_double_headers_final_azure_header_get_default.metadata = {'url': '/lro/LROPostDoubleHeadersFinalAzureHeaderGetDefault'}
 
 
@@ -2666,7 +2666,7 @@ class LROsOperations:
         if polling is True: polling_method = AsyncARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     post_async_retry_succeeded.metadata = {'url': '/lro/postasync/retry/succeeded'}
 
 
@@ -2752,7 +2752,7 @@ class LROsOperations:
         if polling is True: polling_method = AsyncARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     post_async_no_retry_succeeded.metadata = {'url': '/lro/postasync/noretry/succeeded'}
 
 
@@ -2825,7 +2825,7 @@ class LROsOperations:
         if polling is True: polling_method = AsyncARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     post_async_retry_failed.metadata = {'url': '/lro/postasync/retry/failed'}
 
 
@@ -2898,5 +2898,5 @@ class LROsOperations:
         if polling is True: polling_method = AsyncARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     post_async_retrycanceled.metadata = {'url': '/lro/postasync/retry/canceled'}
