@@ -5,3 +5,4 @@ pytest-asyncio;python_full_version>="3.5.2"
 azure-core>=1.0.0b1
 git+https://github.com/Azure/azure-sdk-for-python@azure_mgmt_core#subdirectory=sdk/core/azure-mgmt-core&egg=azure-mgmt-core
 msrest>=0.6.2
+aiohttp
