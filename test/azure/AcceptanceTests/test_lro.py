@@ -46,7 +46,7 @@ from azure.core.exceptions import DecodeError
 from msrest.authentication import BasicTokenAuthentication
 from azure.core.polling import LROPoller
 from azure.core import HttpResponseError
-from msrestazure.polling.arm_polling import ARMPolling
+from azure.mgmt.core.polling.arm_polling import ARMPolling
 
 from lro import AutoRestLongRunningOperationTestService
 from lro.models import *  # pylint: disable=W0614

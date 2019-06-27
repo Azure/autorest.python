@@ -46,7 +46,7 @@ from azure.core.exceptions import DecodeError
 from msrest.authentication import BasicTokenAuthentication
 from azure.core.polling.async_poller import async_poller
 from azure.core import HttpResponseError
-from msrestazure.polling.async_arm_polling import (
+from azure.mgmt.core.polling.async_arm_polling import (
     AsyncARMPolling,
 )
 from lro.aio import AutoRestLongRunningOperationTestService

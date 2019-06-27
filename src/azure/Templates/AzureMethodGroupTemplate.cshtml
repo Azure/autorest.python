@@ -25,7 +25,7 @@ else
 @if (Model.HasAnyLongRunOperation)
 {
 @:from azure.core.polling import LROPoller, NoPolling
-@:from msrestazure.polling.arm_polling import ARMPolling
+@:from azure.mgmt.core.polling.arm_polling import ARMPolling
 }
 @if (Model.HasAnyModel)
 {

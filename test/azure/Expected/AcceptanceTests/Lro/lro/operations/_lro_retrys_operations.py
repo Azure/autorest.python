@@ -12,7 +12,7 @@
 import uuid
 from azure.core.exceptions import map_error
 from azure.core.polling import LROPoller, NoPolling
-from msrestazure.polling.arm_polling import ARMPolling
+from azure.mgmt.core.polling.arm_polling import ARMPolling
 
 from .. import models
 
