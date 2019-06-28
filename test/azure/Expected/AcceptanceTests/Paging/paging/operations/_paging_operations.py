@@ -759,6 +759,9 @@ class PagingOperations(object):
         if response.status_code == 202:
             deserialized = self._deserialize('ProductResult', response)
 
+        if cls:
+            return cls(response, deserialized, None)
+
         return deserialized
 
     def get_multiple_pages_lro(
@@ -772,6 +775,8 @@ class PagingOperations(object):
          for the operation
         :type paging_get_multiple_pages_lro_options:
          ~paging.models.PagingGetMultiplePagesLroOptions
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of LROPoller that returns ProductResult

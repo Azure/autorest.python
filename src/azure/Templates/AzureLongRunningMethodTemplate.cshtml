@@ -107,11 +107,15 @@ else
             @:@Model.AddIndividualResponseHeader(responsePair.Key)
   }
 @EmptyLine
+        @:if cls:
+            @:return cls(response, deserialized, @Model.AddResponseHeader())
+@EmptyLine
         @:return deserialized
 }
 else
 {
-            @:return ''
+        @:if cls:
+            @:return cls(response, None, @Model.AddResponseHeader())
 }
 @EmptyLine
     @(defKeyword) @(methodName)(
@@ -133,12 +137,14 @@ else
 }
 @if (AsyncMode)
 {
+@:        @ParameterWrapComment(":param callable cls: A custom type or function that will be passed the direct response")
 @:        @ParameterWrapComment(":param polling: True for AsyncARMPolling, False for no polling, or a polling object for personal polling strategy")
 @:        @ParameterWrapComment(":return: An instance of " + Model.GetDocumentationTypeName(Model.ReturnType.Body))
 @:        @ParameterWrapComment(string.Format(":rtype: ~{0}", Model.GetReturnTypeDocumentation(Model.ReturnType.Body)))
 }
 else
 {
+@:        @ParameterWrapComment(":param callable cls: A custom type or function that will be passed the direct response")
 @:        @ParameterWrapComment(":param polling: True for ARMPolling, False for no polling, or a polling object for personal polling strategy")
 @:        @ParameterWrapComment(":return: An instance of LROPoller that returns " + Model.GetDocumentationTypeName(Model.ReturnType.Body))
 @:        @ParameterWrapComment(string.Format(":rtype: ~msrestazure.azure_operation.AzureOperationPoller[{0}]", Model.GetReturnTypeDocumentation(Model.ReturnType.Body)))

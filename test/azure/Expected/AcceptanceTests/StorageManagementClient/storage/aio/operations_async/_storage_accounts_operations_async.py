@@ -141,6 +141,9 @@ class StorageAccountsOperations:
         if response.status_code == 200:
             deserialized = self._deserialize('StorageAccount', response)
 
+        if cls:
+            return cls(response, deserialized, None)
+
         return deserialized
 
     async def create(
@@ -160,6 +163,8 @@ class StorageAccountsOperations:
         :type account_name: str
         :param parameters: The parameters to provide for the created account.
         :type parameters: ~storage.models.StorageAccountCreateParameters
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param polling: True for AsyncARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of StorageAccount

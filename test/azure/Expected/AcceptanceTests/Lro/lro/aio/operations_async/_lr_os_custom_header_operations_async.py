@@ -83,6 +83,9 @@ class LROsCustomHeaderOperations:
                 'Retry-After': self._deserialize('int', response.headers.get('Retry-After')),
             }
 
+        if cls:
+            return cls(response, deserialized, header_dict)
+
         return deserialized
 
     async def put_async_retry_succeeded(
@@ -95,6 +98,8 @@ class LROsCustomHeaderOperations:
 
         :param product: Product to put
         :type product: ~lro.models.Product
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param polling: True for AsyncARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of Product
@@ -166,6 +171,9 @@ class LROsCustomHeaderOperations:
         if response.status_code == 201:
             deserialized = self._deserialize('Product', response)
 
+        if cls:
+            return cls(response, deserialized, None)
+
         return deserialized
 
     async def put201_creating_succeeded200(
@@ -178,6 +186,8 @@ class LROsCustomHeaderOperations:
 
         :param product: Product to put
         :type product: ~lro.models.Product
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param polling: True for AsyncARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of Product
@@ -236,7 +246,8 @@ class LROsCustomHeaderOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-            return ''
+        if cls:
+            return cls(response, None, header_dict)
 
     async def post202_retry200(
             self, product=None, *, cls=None, polling=True, **kwargs):
@@ -248,6 +259,8 @@ class LROsCustomHeaderOperations:
 
         :param product: Product to put
         :type product: ~lro.models.Product
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param polling: True for AsyncARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of None
@@ -309,7 +322,8 @@ class LROsCustomHeaderOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-            return ''
+        if cls:
+            return cls(response, None, header_dict)
 
     async def post_async_retry_succeeded(
             self, product=None, *, cls=None, polling=True, **kwargs):
@@ -321,6 +335,8 @@ class LROsCustomHeaderOperations:
 
         :param product: Product to put
         :type product: ~lro.models.Product
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param polling: True for AsyncARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of None

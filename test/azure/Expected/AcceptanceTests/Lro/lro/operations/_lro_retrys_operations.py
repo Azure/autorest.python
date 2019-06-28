@@ -79,6 +79,9 @@ class LRORetrysOperations(object):
         if response.status_code == 201:
             deserialized = self._deserialize('Product', response)
 
+        if cls:
+            return cls(response, deserialized, None)
+
         return deserialized
 
     def put201_creating_succeeded200(
@@ -90,6 +93,8 @@ class LRORetrysOperations(object):
 
         :param product: Product to put
         :type product: ~lro.models.Product
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of LROPoller that returns Product
@@ -161,6 +166,9 @@ class LRORetrysOperations(object):
                 'Retry-After': self._deserialize('int', response.headers.get('Retry-After')),
             }
 
+        if cls:
+            return cls(response, deserialized, header_dict)
+
         return deserialized
 
     def put_async_relative_retry_succeeded(
@@ -172,6 +180,8 @@ class LRORetrysOperations(object):
 
         :param product: Product to put
         :type product: ~lro.models.Product
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of LROPoller that returns Product
@@ -246,6 +256,9 @@ class LRORetrysOperations(object):
                 'Retry-After': self._deserialize('int', response.headers.get('Retry-After')),
             }
 
+        if cls:
+            return cls(response, deserialized, header_dict)
+
         return deserialized
 
     def delete_provisioning202_accepted200_succeeded(
@@ -255,6 +268,8 @@ class LRORetrysOperations(object):
         ProvisioningState=’Accepted’.  Polls return this value until the last
         poll returns a ‘200’ with ProvisioningState=’Succeeded’.
 
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of LROPoller that returns Product
@@ -310,7 +325,8 @@ class LRORetrysOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-            return ''
+        if cls:
+            return cls(response, None, header_dict)
 
     def delete202_retry200(
             self, cls=None, polling=True, **kwargs):
@@ -318,6 +334,8 @@ class LRORetrysOperations(object):
         initial request. Polls return this value until the last poll returns a
         ‘200’ with ProvisioningState=’Succeeded’.
 
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of LROPoller that returns None
@@ -371,7 +389,8 @@ class LRORetrysOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-            return ''
+        if cls:
+            return cls(response, None, header_dict)
 
     def delete_async_relative_retry_succeeded(
             self, cls=None, polling=True, **kwargs):
@@ -379,6 +398,8 @@ class LRORetrysOperations(object):
         initial request. Poll the endpoint indicated in the
         Azure-AsyncOperation header for operation status.
 
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of LROPoller that returns None
@@ -440,7 +461,8 @@ class LRORetrysOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-            return ''
+        if cls:
+            return cls(response, None, header_dict)
 
     def post202_retry200(
             self, product=None, cls=None, polling=True, **kwargs):
@@ -450,6 +472,8 @@ class LRORetrysOperations(object):
 
         :param product: Product to put
         :type product: ~lro.models.Product
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of LROPoller that returns None
@@ -511,7 +535,8 @@ class LRORetrysOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-            return ''
+        if cls:
+            return cls(response, None, header_dict)
 
     def post_async_relative_retry_succeeded(
             self, product=None, cls=None, polling=True, **kwargs):
@@ -522,6 +547,8 @@ class LRORetrysOperations(object):
 
         :param product: Product to put
         :type product: ~lro.models.Product
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of LROPoller that returns None

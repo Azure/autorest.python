@@ -79,6 +79,9 @@ class LROSADsOperations:
         if response.status_code == 201:
             deserialized = self._deserialize('Product', response)
 
+        if cls:
+            return cls(response, deserialized, None)
+
         return deserialized
 
     async def put_non_retry400(
@@ -87,6 +90,8 @@ class LROSADsOperations:
 
         :param product: Product to put
         :type product: ~lro.models.Product
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param polling: True for AsyncARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of Product
@@ -153,6 +158,9 @@ class LROSADsOperations:
         if response.status_code == 201:
             deserialized = self._deserialize('Product', response)
 
+        if cls:
+            return cls(response, deserialized, None)
+
         return deserialized
 
     async def put_non_retry201_creating400(
@@ -162,6 +170,8 @@ class LROSADsOperations:
 
         :param product: Product to put
         :type product: ~lro.models.Product
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param polling: True for AsyncARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of Product
@@ -228,6 +238,9 @@ class LROSADsOperations:
         if response.status_code == 201:
             deserialized = self._deserialize('Product', response)
 
+        if cls:
+            return cls(response, deserialized, None)
+
         return deserialized
 
     async def put_non_retry201_creating400_invalid_json(
@@ -237,6 +250,8 @@ class LROSADsOperations:
 
         :param product: Product to put
         :type product: ~lro.models.Product
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param polling: True for AsyncARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of Product
@@ -307,6 +322,9 @@ class LROSADsOperations:
                 'Retry-After': self._deserialize('int', response.headers.get('Retry-After')),
             }
 
+        if cls:
+            return cls(response, deserialized, header_dict)
+
         return deserialized
 
     async def put_async_relative_retry400(
@@ -317,6 +335,8 @@ class LROSADsOperations:
 
         :param product: Product to put
         :type product: ~lro.models.Product
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param polling: True for AsyncARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of Product
@@ -373,12 +393,15 @@ class LROSADsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-            return ''
+        if cls:
+            return cls(response, None, header_dict)
 
     async def delete_non_retry400(
             self, *, cls=None, polling=True, **kwargs):
         """Long running delete request, service returns a 400 with an error body.
 
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param polling: True for AsyncARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of None
@@ -432,13 +455,16 @@ class LROSADsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-            return ''
+        if cls:
+            return cls(response, None, header_dict)
 
     async def delete202_non_retry400(
             self, *, cls=None, polling=True, **kwargs):
         """Long running delete request, service returns a 202 with a location
         header.
 
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param polling: True for AsyncARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of None
@@ -492,7 +518,8 @@ class LROSADsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-            return ''
+        if cls:
+            return cls(response, None, header_dict)
 
     async def delete_async_relative_retry400(
             self, *, cls=None, polling=True, **kwargs):
@@ -500,6 +527,8 @@ class LROSADsOperations:
         request. Poll the endpoint indicated in the Azure-AsyncOperation header
         for operation status.
 
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param polling: True for AsyncARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of None
@@ -561,7 +590,8 @@ class LROSADsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-            return ''
+        if cls:
+            return cls(response, None, header_dict)
 
     async def post_non_retry400(
             self, product=None, *, cls=None, polling=True, **kwargs):
@@ -569,6 +599,8 @@ class LROSADsOperations:
 
         :param product: Product to put
         :type product: ~lro.models.Product
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param polling: True for AsyncARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of None
@@ -630,7 +662,8 @@ class LROSADsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-            return ''
+        if cls:
+            return cls(response, None, header_dict)
 
     async def post202_non_retry400(
             self, product=None, *, cls=None, polling=True, **kwargs):
@@ -639,6 +672,8 @@ class LROSADsOperations:
 
         :param product: Product to put
         :type product: ~lro.models.Product
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param polling: True for AsyncARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of None
@@ -700,7 +735,8 @@ class LROSADsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-            return ''
+        if cls:
+            return cls(response, None, header_dict)
 
     async def post_async_relative_retry400(
             self, product=None, *, cls=None, polling=True, **kwargs):
@@ -710,6 +746,8 @@ class LROSADsOperations:
 
         :param product: Product to put
         :type product: ~lro.models.Product
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param polling: True for AsyncARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of None
@@ -780,6 +818,9 @@ class LROSADsOperations:
         if response.status_code == 201:
             deserialized = self._deserialize('Product', response)
 
+        if cls:
+            return cls(response, deserialized, None)
+
         return deserialized
 
     async def put_error201_no_provisioning_state_payload(
@@ -789,6 +830,8 @@ class LROSADsOperations:
 
         :param product: Product to put
         :type product: ~lro.models.Product
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param polling: True for AsyncARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of Product
@@ -859,6 +902,9 @@ class LROSADsOperations:
                 'Retry-After': self._deserialize('int', response.headers.get('Retry-After')),
             }
 
+        if cls:
+            return cls(response, deserialized, header_dict)
+
         return deserialized
 
     async def put_async_relative_retry_no_status(
@@ -870,6 +916,8 @@ class LROSADsOperations:
 
         :param product: Product to put
         :type product: ~lro.models.Product
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param polling: True for AsyncARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of Product
@@ -945,6 +993,9 @@ class LROSADsOperations:
                 'Retry-After': self._deserialize('int', response.headers.get('Retry-After')),
             }
 
+        if cls:
+            return cls(response, deserialized, header_dict)
+
         return deserialized
 
     async def put_async_relative_retry_no_status_payload(
@@ -956,6 +1007,8 @@ class LROSADsOperations:
 
         :param product: Product to put
         :type product: ~lro.models.Product
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param polling: True for AsyncARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of Product
@@ -1012,13 +1065,16 @@ class LROSADsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-            return ''
+        if cls:
+            return cls(response, None, None)
 
     async def delete204_succeeded(
             self, *, cls=None, polling=True, **kwargs):
         """Long running delete request, service returns a 204 to the initial
         request, indicating success.
 
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param polling: True for AsyncARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of None
@@ -1069,7 +1125,8 @@ class LROSADsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-            return ''
+        if cls:
+            return cls(response, None, header_dict)
 
     async def delete_async_relative_retry_no_status(
             self, *, cls=None, polling=True, **kwargs):
@@ -1077,6 +1134,8 @@ class LROSADsOperations:
         request. Poll the endpoint indicated in the Azure-AsyncOperation header
         for operation status.
 
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param polling: True for AsyncARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of None
@@ -1138,7 +1197,8 @@ class LROSADsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-            return ''
+        if cls:
+            return cls(response, None, header_dict)
 
     async def post202_no_location(
             self, product=None, *, cls=None, polling=True, **kwargs):
@@ -1147,6 +1207,8 @@ class LROSADsOperations:
 
         :param product: Product to put
         :type product: ~lro.models.Product
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param polling: True for AsyncARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of None
@@ -1208,7 +1270,8 @@ class LROSADsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-            return ''
+        if cls:
+            return cls(response, None, header_dict)
 
     async def post_async_relative_retry_no_payload(
             self, product=None, *, cls=None, polling=True, **kwargs):
@@ -1219,6 +1282,8 @@ class LROSADsOperations:
 
         :param product: Product to put
         :type product: ~lro.models.Product
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param polling: True for AsyncARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of None
@@ -1287,6 +1352,9 @@ class LROSADsOperations:
         if response.status_code == 200:
             deserialized = self._deserialize('Product', response)
 
+        if cls:
+            return cls(response, deserialized, None)
+
         return deserialized
 
     async def put200_invalid_json(
@@ -1296,6 +1364,8 @@ class LROSADsOperations:
 
         :param product: Product to put
         :type product: ~lro.models.Product
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param polling: True for AsyncARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of Product
@@ -1366,6 +1436,9 @@ class LROSADsOperations:
                 'Retry-After': self._deserialize('int', response.headers.get('Retry-After')),
             }
 
+        if cls:
+            return cls(response, deserialized, header_dict)
+
         return deserialized
 
     async def put_async_relative_retry_invalid_header(
@@ -1376,6 +1449,8 @@ class LROSADsOperations:
 
         :param product: Product to put
         :type product: ~lro.models.Product
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param polling: True for AsyncARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of Product
@@ -1451,6 +1526,9 @@ class LROSADsOperations:
                 'Retry-After': self._deserialize('int', response.headers.get('Retry-After')),
             }
 
+        if cls:
+            return cls(response, deserialized, header_dict)
+
         return deserialized
 
     async def put_async_relative_retry_invalid_json_polling(
@@ -1462,6 +1540,8 @@ class LROSADsOperations:
 
         :param product: Product to put
         :type product: ~lro.models.Product
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param polling: True for AsyncARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of Product
@@ -1518,7 +1598,8 @@ class LROSADsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-            return ''
+        if cls:
+            return cls(response, None, header_dict)
 
     async def delete202_retry_invalid_header(
             self, *, cls=None, polling=True, **kwargs):
@@ -1526,6 +1607,8 @@ class LROSADsOperations:
         request receing a reponse with an invalid 'Location' and 'Retry-After'
         headers.
 
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param polling: True for AsyncARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of None
@@ -1579,7 +1662,8 @@ class LROSADsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-            return ''
+        if cls:
+            return cls(response, None, header_dict)
 
     async def delete_async_relative_retry_invalid_header(
             self, *, cls=None, polling=True, **kwargs):
@@ -1587,6 +1671,8 @@ class LROSADsOperations:
         request. The endpoint indicated in the Azure-AsyncOperation header is
         invalid.
 
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param polling: True for AsyncARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of None
@@ -1641,7 +1727,8 @@ class LROSADsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-            return ''
+        if cls:
+            return cls(response, None, header_dict)
 
     async def delete_async_relative_retry_invalid_json_polling(
             self, *, cls=None, polling=True, **kwargs):
@@ -1649,6 +1736,8 @@ class LROSADsOperations:
         request. Poll the endpoint indicated in the Azure-AsyncOperation header
         for operation status.
 
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param polling: True for AsyncARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of None
@@ -1710,7 +1799,8 @@ class LROSADsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-            return ''
+        if cls:
+            return cls(response, None, header_dict)
 
     async def post202_retry_invalid_header(
             self, product=None, *, cls=None, polling=True, **kwargs):
@@ -1719,6 +1809,8 @@ class LROSADsOperations:
 
         :param product: Product to put
         :type product: ~lro.models.Product
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param polling: True for AsyncARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of None
@@ -1780,7 +1872,8 @@ class LROSADsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-            return ''
+        if cls:
+            return cls(response, None, header_dict)
 
     async def post_async_relative_retry_invalid_header(
             self, product=None, *, cls=None, polling=True, **kwargs):
@@ -1790,6 +1883,8 @@ class LROSADsOperations:
 
         :param product: Product to put
         :type product: ~lro.models.Product
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param polling: True for AsyncARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of None
@@ -1852,7 +1947,8 @@ class LROSADsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-            return ''
+        if cls:
+            return cls(response, None, header_dict)
 
     async def post_async_relative_retry_invalid_json_polling(
             self, product=None, *, cls=None, polling=True, **kwargs):
@@ -1863,6 +1959,8 @@ class LROSADsOperations:
 
         :param product: Product to put
         :type product: ~lro.models.Product
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param polling: True for AsyncARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of None
