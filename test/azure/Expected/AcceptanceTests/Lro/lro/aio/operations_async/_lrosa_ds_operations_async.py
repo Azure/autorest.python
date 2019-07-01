@@ -72,17 +72,13 @@ class LROSADsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-        deserialized = None
 
         if response.status_code == 200:
-            deserialized = self._deserialize('Product', response)
+            self._deserialize('Product', response)
         if response.status_code == 201:
-            deserialized = self._deserialize('Product', response)
+            self._deserialize('Product', response)
 
-        if cls:
-            return cls(response, deserialized, None)
-
-        return deserialized
+        return response
 
     async def put_non_retry400(
             self, product=None, *, cls=None, polling=True, **kwargs):
@@ -151,17 +147,13 @@ class LROSADsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-        deserialized = None
 
         if response.status_code == 200:
-            deserialized = self._deserialize('Product', response)
+            self._deserialize('Product', response)
         if response.status_code == 201:
-            deserialized = self._deserialize('Product', response)
+            self._deserialize('Product', response)
 
-        if cls:
-            return cls(response, deserialized, None)
-
-        return deserialized
+        return response
 
     async def put_non_retry201_creating400(
             self, product=None, *, cls=None, polling=True, **kwargs):
@@ -231,17 +223,13 @@ class LROSADsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-        deserialized = None
 
         if response.status_code == 200:
-            deserialized = self._deserialize('Product', response)
+            self._deserialize('Product', response)
         if response.status_code == 201:
-            deserialized = self._deserialize('Product', response)
+            self._deserialize('Product', response)
 
-        if cls:
-            return cls(response, deserialized, None)
-
-        return deserialized
+        return response
 
     async def put_non_retry201_creating400_invalid_json(
             self, product=None, *, cls=None, polling=True, **kwargs):
@@ -311,21 +299,17 @@ class LROSADsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-        deserialized = None
         header_dict = {}
 
         if response.status_code == 200:
-            deserialized = self._deserialize('Product', response)
+            self._deserialize('Product', response)
             header_dict = {
                 'Azure-AsyncOperation': self._deserialize('str', response.headers.get('Azure-AsyncOperation')),
                 'Location': self._deserialize('str', response.headers.get('Location')),
                 'Retry-After': self._deserialize('int', response.headers.get('Retry-After')),
             }
 
-        if cls:
-            return cls(response, deserialized, header_dict)
-
-        return deserialized
+        return response
 
     async def put_async_relative_retry400(
             self, product=None, *, cls=None, polling=True, **kwargs):
@@ -393,8 +377,7 @@ class LROSADsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-        if cls:
-            return cls(response, None, header_dict)
+        return response
 
     async def delete_non_retry400(
             self, *, cls=None, polling=True, **kwargs):
@@ -455,8 +438,7 @@ class LROSADsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-        if cls:
-            return cls(response, None, header_dict)
+        return response
 
     async def delete202_non_retry400(
             self, *, cls=None, polling=True, **kwargs):
@@ -518,8 +500,7 @@ class LROSADsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-        if cls:
-            return cls(response, None, header_dict)
+        return response
 
     async def delete_async_relative_retry400(
             self, *, cls=None, polling=True, **kwargs):
@@ -590,8 +571,7 @@ class LROSADsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-        if cls:
-            return cls(response, None, header_dict)
+        return response
 
     async def post_non_retry400(
             self, product=None, *, cls=None, polling=True, **kwargs):
@@ -662,8 +642,7 @@ class LROSADsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-        if cls:
-            return cls(response, None, header_dict)
+        return response
 
     async def post202_non_retry400(
             self, product=None, *, cls=None, polling=True, **kwargs):
@@ -735,8 +714,7 @@ class LROSADsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-        if cls:
-            return cls(response, None, header_dict)
+        return response
 
     async def post_async_relative_retry400(
             self, product=None, *, cls=None, polling=True, **kwargs):
@@ -811,17 +789,13 @@ class LROSADsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-        deserialized = None
 
         if response.status_code == 200:
-            deserialized = self._deserialize('Product', response)
+            self._deserialize('Product', response)
         if response.status_code == 201:
-            deserialized = self._deserialize('Product', response)
+            self._deserialize('Product', response)
 
-        if cls:
-            return cls(response, deserialized, None)
-
-        return deserialized
+        return response
 
     async def put_error201_no_provisioning_state_payload(
             self, product=None, *, cls=None, polling=True, **kwargs):
@@ -891,21 +865,17 @@ class LROSADsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-        deserialized = None
         header_dict = {}
 
         if response.status_code == 200:
-            deserialized = self._deserialize('Product', response)
+            self._deserialize('Product', response)
             header_dict = {
                 'Azure-AsyncOperation': self._deserialize('str', response.headers.get('Azure-AsyncOperation')),
                 'Location': self._deserialize('str', response.headers.get('Location')),
                 'Retry-After': self._deserialize('int', response.headers.get('Retry-After')),
             }
 
-        if cls:
-            return cls(response, deserialized, header_dict)
-
-        return deserialized
+        return response
 
     async def put_async_relative_retry_no_status(
             self, product=None, *, cls=None, polling=True, **kwargs):
@@ -982,21 +952,17 @@ class LROSADsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-        deserialized = None
         header_dict = {}
 
         if response.status_code == 200:
-            deserialized = self._deserialize('Product', response)
+            self._deserialize('Product', response)
             header_dict = {
                 'Azure-AsyncOperation': self._deserialize('str', response.headers.get('Azure-AsyncOperation')),
                 'Location': self._deserialize('str', response.headers.get('Location')),
                 'Retry-After': self._deserialize('int', response.headers.get('Retry-After')),
             }
 
-        if cls:
-            return cls(response, deserialized, header_dict)
-
-        return deserialized
+        return response
 
     async def put_async_relative_retry_no_status_payload(
             self, product=None, *, cls=None, polling=True, **kwargs):
@@ -1065,8 +1031,7 @@ class LROSADsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-        if cls:
-            return cls(response, None, None)
+        return response
 
     async def delete204_succeeded(
             self, *, cls=None, polling=True, **kwargs):
@@ -1125,8 +1090,7 @@ class LROSADsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-        if cls:
-            return cls(response, None, header_dict)
+        return response
 
     async def delete_async_relative_retry_no_status(
             self, *, cls=None, polling=True, **kwargs):
@@ -1197,8 +1161,7 @@ class LROSADsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-        if cls:
-            return cls(response, None, header_dict)
+        return response
 
     async def post202_no_location(
             self, product=None, *, cls=None, polling=True, **kwargs):
@@ -1270,8 +1233,7 @@ class LROSADsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-        if cls:
-            return cls(response, None, header_dict)
+        return response
 
     async def post_async_relative_retry_no_payload(
             self, product=None, *, cls=None, polling=True, **kwargs):
@@ -1347,15 +1309,11 @@ class LROSADsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-        deserialized = None
 
         if response.status_code == 200:
-            deserialized = self._deserialize('Product', response)
+            self._deserialize('Product', response)
 
-        if cls:
-            return cls(response, deserialized, None)
-
-        return deserialized
+        return response
 
     async def put200_invalid_json(
             self, product=None, *, cls=None, polling=True, **kwargs):
@@ -1425,21 +1383,17 @@ class LROSADsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-        deserialized = None
         header_dict = {}
 
         if response.status_code == 200:
-            deserialized = self._deserialize('Product', response)
+            self._deserialize('Product', response)
             header_dict = {
                 'Azure-AsyncOperation': self._deserialize('str', response.headers.get('Azure-AsyncOperation')),
                 'Location': self._deserialize('str', response.headers.get('Location')),
                 'Retry-After': self._deserialize('int', response.headers.get('Retry-After')),
             }
 
-        if cls:
-            return cls(response, deserialized, header_dict)
-
-        return deserialized
+        return response
 
     async def put_async_relative_retry_invalid_header(
             self, product=None, *, cls=None, polling=True, **kwargs):
@@ -1515,21 +1469,17 @@ class LROSADsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-        deserialized = None
         header_dict = {}
 
         if response.status_code == 200:
-            deserialized = self._deserialize('Product', response)
+            self._deserialize('Product', response)
             header_dict = {
                 'Azure-AsyncOperation': self._deserialize('str', response.headers.get('Azure-AsyncOperation')),
                 'Location': self._deserialize('str', response.headers.get('Location')),
                 'Retry-After': self._deserialize('int', response.headers.get('Retry-After')),
             }
 
-        if cls:
-            return cls(response, deserialized, header_dict)
-
-        return deserialized
+        return response
 
     async def put_async_relative_retry_invalid_json_polling(
             self, product=None, *, cls=None, polling=True, **kwargs):
@@ -1598,8 +1548,7 @@ class LROSADsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-        if cls:
-            return cls(response, None, header_dict)
+        return response
 
     async def delete202_retry_invalid_header(
             self, *, cls=None, polling=True, **kwargs):
@@ -1662,8 +1611,7 @@ class LROSADsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-        if cls:
-            return cls(response, None, header_dict)
+        return response
 
     async def delete_async_relative_retry_invalid_header(
             self, *, cls=None, polling=True, **kwargs):
@@ -1727,8 +1675,7 @@ class LROSADsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-        if cls:
-            return cls(response, None, header_dict)
+        return response
 
     async def delete_async_relative_retry_invalid_json_polling(
             self, *, cls=None, polling=True, **kwargs):
@@ -1799,8 +1746,7 @@ class LROSADsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-        if cls:
-            return cls(response, None, header_dict)
+        return response
 
     async def post202_retry_invalid_header(
             self, product=None, *, cls=None, polling=True, **kwargs):
@@ -1872,8 +1818,7 @@ class LROSADsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-        if cls:
-            return cls(response, None, header_dict)
+        return response
 
     async def post_async_relative_retry_invalid_header(
             self, product=None, *, cls=None, polling=True, **kwargs):
@@ -1947,8 +1892,7 @@ class LROSADsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-        if cls:
-            return cls(response, None, header_dict)
+        return response
 
     async def post_async_relative_retry_invalid_json_polling(
             self, product=None, *, cls=None, polling=True, **kwargs):

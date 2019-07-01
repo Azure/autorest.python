@@ -72,17 +72,13 @@ class LRORetrysOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-        deserialized = None
 
         if response.status_code == 200:
-            deserialized = self._deserialize('Product', response)
+            self._deserialize('Product', response)
         if response.status_code == 201:
-            deserialized = self._deserialize('Product', response)
+            self._deserialize('Product', response)
 
-        if cls:
-            return cls(response, deserialized, None)
-
-        return deserialized
+        return response
 
     async def put201_creating_succeeded200(
             self, product=None, *, cls=None, polling=True, **kwargs):
@@ -154,21 +150,17 @@ class LRORetrysOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-        deserialized = None
         header_dict = {}
 
         if response.status_code == 200:
-            deserialized = self._deserialize('Product', response)
+            self._deserialize('Product', response)
             header_dict = {
                 'Azure-AsyncOperation': self._deserialize('str', response.headers.get('Azure-AsyncOperation')),
                 'Location': self._deserialize('str', response.headers.get('Location')),
                 'Retry-After': self._deserialize('int', response.headers.get('Retry-After')),
             }
 
-        if cls:
-            return cls(response, deserialized, header_dict)
-
-        return deserialized
+        return response
 
     async def put_async_relative_retry_succeeded(
             self, product=None, *, cls=None, polling=True, **kwargs):
@@ -238,26 +230,22 @@ class LRORetrysOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-        deserialized = None
         header_dict = {}
 
         if response.status_code == 200:
-            deserialized = self._deserialize('Product', response)
+            self._deserialize('Product', response)
             header_dict = {
                 'Location': self._deserialize('str', response.headers.get('Location')),
                 'Retry-After': self._deserialize('int', response.headers.get('Retry-After')),
             }
         if response.status_code == 202:
-            deserialized = self._deserialize('Product', response)
+            self._deserialize('Product', response)
             header_dict = {
                 'Location': self._deserialize('str', response.headers.get('Location')),
                 'Retry-After': self._deserialize('int', response.headers.get('Retry-After')),
             }
 
-        if cls:
-            return cls(response, deserialized, header_dict)
-
-        return deserialized
+        return response
 
     async def delete_provisioning202_accepted200_succeeded(
             self, *, cls=None, polling=True, **kwargs):
@@ -322,8 +310,7 @@ class LRORetrysOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-        if cls:
-            return cls(response, None, header_dict)
+        return response
 
     async def delete202_retry200(
             self, *, cls=None, polling=True, **kwargs):
@@ -386,8 +373,7 @@ class LRORetrysOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-        if cls:
-            return cls(response, None, header_dict)
+        return response
 
     async def delete_async_relative_retry_succeeded(
             self, *, cls=None, polling=True, **kwargs):
@@ -458,8 +444,7 @@ class LRORetrysOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-        if cls:
-            return cls(response, None, header_dict)
+        return response
 
     async def post202_retry200(
             self, product=None, *, cls=None, polling=True, **kwargs):
@@ -532,8 +517,7 @@ class LRORetrysOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-        if cls:
-            return cls(response, None, header_dict)
+        return response
 
     async def post_async_relative_retry_succeeded(
             self, product=None, *, cls=None, polling=True, **kwargs):

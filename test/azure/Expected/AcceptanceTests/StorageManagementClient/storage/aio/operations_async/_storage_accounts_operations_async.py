@@ -136,15 +136,11 @@ class StorageAccountsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-        deserialized = None
 
         if response.status_code == 200:
-            deserialized = self._deserialize('StorageAccount', response)
+            self._deserialize('StorageAccount', response)
 
-        if cls:
-            return cls(response, deserialized, None)
-
-        return deserialized
+        return response
 
     async def create(
             self, resource_group_name, account_name, parameters, *, cls=None, polling=True, **kwargs):

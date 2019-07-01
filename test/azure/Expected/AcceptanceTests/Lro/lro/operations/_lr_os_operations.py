@@ -72,15 +72,11 @@ class LROsOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-        deserialized = None
 
         if response.status_code == 200:
-            deserialized = self._deserialize('Product', response)
+            self._deserialize('Product', response)
 
-        if cls:
-            return cls(response, deserialized, None)
-
-        return deserialized
+        return response
 
     def put200_succeeded(
             self, product=None, cls=None, polling=True, **kwargs):
@@ -151,15 +147,11 @@ class LROsOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-        deserialized = None
 
         if response.status_code == 200:
-            deserialized = self._deserialize('Product', response)
+            self._deserialize('Product', response)
 
-        if cls:
-            return cls(response, deserialized, None)
-
-        return deserialized
+        return response
 
     def put200_succeeded_no_state(
             self, product=None, cls=None, polling=True, **kwargs):
@@ -230,15 +222,11 @@ class LROsOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-        deserialized = None
 
         if response.status_code == 202:
-            deserialized = self._deserialize('Product', response)
+            self._deserialize('Product', response)
 
-        if cls:
-            return cls(response, deserialized, None)
-
-        return deserialized
+        return response
 
     def put202_retry200(
             self, product=None, cls=None, polling=True, **kwargs):
@@ -310,17 +298,13 @@ class LROsOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-        deserialized = None
 
         if response.status_code == 200:
-            deserialized = self._deserialize('Product', response)
+            self._deserialize('Product', response)
         if response.status_code == 201:
-            deserialized = self._deserialize('Product', response)
+            self._deserialize('Product', response)
 
-        if cls:
-            return cls(response, deserialized, None)
-
-        return deserialized
+        return response
 
     def put201_creating_succeeded200(
             self, product=None, cls=None, polling=True, **kwargs):
@@ -393,15 +377,11 @@ class LROsOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-        deserialized = None
 
         if response.status_code == 200:
-            deserialized = self._deserialize('Product', response)
+            self._deserialize('Product', response)
 
-        if cls:
-            return cls(response, deserialized, None)
-
-        return deserialized
+        return response
 
     def put200_updating_succeeded204(
             self, product=None, cls=None, polling=True, **kwargs):
@@ -474,17 +454,13 @@ class LROsOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-        deserialized = None
 
         if response.status_code == 200:
-            deserialized = self._deserialize('Product', response)
+            self._deserialize('Product', response)
         if response.status_code == 201:
-            deserialized = self._deserialize('Product', response)
+            self._deserialize('Product', response)
 
-        if cls:
-            return cls(response, deserialized, None)
-
-        return deserialized
+        return response
 
     def put201_creating_failed200(
             self, product=None, cls=None, polling=True, **kwargs):
@@ -557,15 +533,11 @@ class LROsOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-        deserialized = None
 
         if response.status_code == 200:
-            deserialized = self._deserialize('Product', response)
+            self._deserialize('Product', response)
 
-        if cls:
-            return cls(response, deserialized, None)
-
-        return deserialized
+        return response
 
     def put200_acceptedcanceled200(
             self, product=None, cls=None, polling=True, **kwargs):
@@ -638,19 +610,15 @@ class LROsOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-        deserialized = None
         header_dict = {}
 
         if response.status_code == 202:
-            deserialized = self._deserialize('Product', response)
+            self._deserialize('Product', response)
             header_dict = {
                 'location': self._deserialize('str', response.headers.get('location')),
             }
 
-        if cls:
-            return cls(response, deserialized, header_dict)
-
-        return deserialized
+        return response
 
     def put_no_header_in_retry(
             self, product=None, cls=None, polling=True, **kwargs):
@@ -725,21 +693,17 @@ class LROsOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-        deserialized = None
         header_dict = {}
 
         if response.status_code == 200:
-            deserialized = self._deserialize('Product', response)
+            self._deserialize('Product', response)
             header_dict = {
                 'Azure-AsyncOperation': self._deserialize('str', response.headers.get('Azure-AsyncOperation')),
                 'Location': self._deserialize('str', response.headers.get('Location')),
                 'Retry-After': self._deserialize('int', response.headers.get('Retry-After')),
             }
 
-        if cls:
-            return cls(response, deserialized, header_dict)
-
-        return deserialized
+        return response
 
     def put_async_retry_succeeded(
             self, product=None, cls=None, polling=True, **kwargs):
@@ -817,20 +781,16 @@ class LROsOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-        deserialized = None
         header_dict = {}
 
         if response.status_code == 200:
-            deserialized = self._deserialize('Product', response)
+            self._deserialize('Product', response)
             header_dict = {
                 'Azure-AsyncOperation': self._deserialize('str', response.headers.get('Azure-AsyncOperation')),
                 'Location': self._deserialize('str', response.headers.get('Location')),
             }
 
-        if cls:
-            return cls(response, deserialized, header_dict)
-
-        return deserialized
+        return response
 
     def put_async_no_retry_succeeded(
             self, product=None, cls=None, polling=True, **kwargs):
@@ -907,21 +867,17 @@ class LROsOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-        deserialized = None
         header_dict = {}
 
         if response.status_code == 200:
-            deserialized = self._deserialize('Product', response)
+            self._deserialize('Product', response)
             header_dict = {
                 'Azure-AsyncOperation': self._deserialize('str', response.headers.get('Azure-AsyncOperation')),
                 'Location': self._deserialize('str', response.headers.get('Location')),
                 'Retry-After': self._deserialize('int', response.headers.get('Retry-After')),
             }
 
-        if cls:
-            return cls(response, deserialized, header_dict)
-
-        return deserialized
+        return response
 
     def put_async_retry_failed(
             self, product=None, cls=None, polling=True, **kwargs):
@@ -999,20 +955,16 @@ class LROsOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-        deserialized = None
         header_dict = {}
 
         if response.status_code == 200:
-            deserialized = self._deserialize('Product', response)
+            self._deserialize('Product', response)
             header_dict = {
                 'Azure-AsyncOperation': self._deserialize('str', response.headers.get('Azure-AsyncOperation')),
                 'Location': self._deserialize('str', response.headers.get('Location')),
             }
 
-        if cls:
-            return cls(response, deserialized, header_dict)
-
-        return deserialized
+        return response
 
     def put_async_no_retrycanceled(
             self, product=None, cls=None, polling=True, **kwargs):
@@ -1089,19 +1041,15 @@ class LROsOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-        deserialized = None
         header_dict = {}
 
         if response.status_code == 201:
-            deserialized = self._deserialize('Product', response)
+            self._deserialize('Product', response)
             header_dict = {
                 'Azure-AsyncOperation': self._deserialize('str', response.headers.get('Azure-AsyncOperation')),
             }
 
-        if cls:
-            return cls(response, deserialized, header_dict)
-
-        return deserialized
+        return response
 
     def put_async_no_header_in_retry(
             self, product=None, cls=None, polling=True, **kwargs):
@@ -1176,15 +1124,11 @@ class LROsOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-        deserialized = None
 
         if response.status_code == 202:
-            deserialized = self._deserialize('Sku', response)
+            self._deserialize('Sku', response)
 
-        if cls:
-            return cls(response, deserialized, None)
-
-        return deserialized
+        return response
 
     def put_non_resource(
             self, sku=None, cls=None, polling=True, **kwargs):
@@ -1254,15 +1198,11 @@ class LROsOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-        deserialized = None
 
         if response.status_code == 202:
-            deserialized = self._deserialize('Sku', response)
+            self._deserialize('Sku', response)
 
-        if cls:
-            return cls(response, deserialized, None)
-
-        return deserialized
+        return response
 
     def put_async_non_resource(
             self, sku=None, cls=None, polling=True, **kwargs):
@@ -1336,15 +1276,11 @@ class LROsOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-        deserialized = None
 
         if response.status_code == 202:
-            deserialized = self._deserialize('SubProduct', response)
+            self._deserialize('SubProduct', response)
 
-        if cls:
-            return cls(response, deserialized, None)
-
-        return deserialized
+        return response
 
     def put_sub_resource(
             self, provisioning_state=None, cls=None, polling=True, **kwargs):
@@ -1418,15 +1354,11 @@ class LROsOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-        deserialized = None
 
         if response.status_code == 202:
-            deserialized = self._deserialize('SubProduct', response)
+            self._deserialize('SubProduct', response)
 
-        if cls:
-            return cls(response, deserialized, None)
-
-        return deserialized
+        return response
 
     def put_async_sub_resource(
             self, provisioning_state=None, cls=None, polling=True, **kwargs):
@@ -1489,26 +1421,22 @@ class LROsOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-        deserialized = None
         header_dict = {}
 
         if response.status_code == 200:
-            deserialized = self._deserialize('Product', response)
+            self._deserialize('Product', response)
             header_dict = {
                 'Location': self._deserialize('str', response.headers.get('Location')),
                 'Retry-After': self._deserialize('int', response.headers.get('Retry-After')),
             }
         if response.status_code == 202:
-            deserialized = self._deserialize('Product', response)
+            self._deserialize('Product', response)
             header_dict = {
                 'Location': self._deserialize('str', response.headers.get('Location')),
                 'Retry-After': self._deserialize('int', response.headers.get('Retry-After')),
             }
 
-        if cls:
-            return cls(response, deserialized, header_dict)
-
-        return deserialized
+        return response
 
     def delete_provisioning202_accepted200_succeeded(
             self, cls=None, polling=True, **kwargs):
@@ -1575,26 +1503,22 @@ class LROsOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-        deserialized = None
         header_dict = {}
 
         if response.status_code == 200:
-            deserialized = self._deserialize('Product', response)
+            self._deserialize('Product', response)
             header_dict = {
                 'Location': self._deserialize('str', response.headers.get('Location')),
                 'Retry-After': self._deserialize('int', response.headers.get('Retry-After')),
             }
         if response.status_code == 202:
-            deserialized = self._deserialize('Product', response)
+            self._deserialize('Product', response)
             header_dict = {
                 'Location': self._deserialize('str', response.headers.get('Location')),
                 'Retry-After': self._deserialize('int', response.headers.get('Retry-After')),
             }
 
-        if cls:
-            return cls(response, deserialized, header_dict)
-
-        return deserialized
+        return response
 
     def delete_provisioning202_deleting_failed200(
             self, cls=None, polling=True, **kwargs):
@@ -1661,26 +1585,22 @@ class LROsOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-        deserialized = None
         header_dict = {}
 
         if response.status_code == 200:
-            deserialized = self._deserialize('Product', response)
+            self._deserialize('Product', response)
             header_dict = {
                 'Location': self._deserialize('str', response.headers.get('Location')),
                 'Retry-After': self._deserialize('int', response.headers.get('Retry-After')),
             }
         if response.status_code == 202:
-            deserialized = self._deserialize('Product', response)
+            self._deserialize('Product', response)
             header_dict = {
                 'Location': self._deserialize('str', response.headers.get('Location')),
                 'Retry-After': self._deserialize('int', response.headers.get('Retry-After')),
             }
 
-        if cls:
-            return cls(response, deserialized, header_dict)
-
-        return deserialized
+        return response
 
     def delete_provisioning202_deletingcanceled200(
             self, cls=None, polling=True, **kwargs):
@@ -1746,8 +1666,7 @@ class LROsOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-        if cls:
-            return cls(response, None, None)
+        return response
 
     def delete204_succeeded(
             self, cls=None, polling=True, **kwargs):
@@ -1806,20 +1725,16 @@ class LROsOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-        deserialized = None
         header_dict = {}
 
         if response.status_code == 200:
-            deserialized = self._deserialize('Product', response)
+            self._deserialize('Product', response)
             header_dict = {
                 'Location': self._deserialize('str', response.headers.get('Location')),
                 'Retry-After': self._deserialize('int', response.headers.get('Retry-After')),
             }
 
-        if cls:
-            return cls(response, deserialized, header_dict)
-
-        return deserialized
+        return response
 
     def delete202_retry200(
             self, cls=None, polling=True, **kwargs):
@@ -1885,20 +1800,16 @@ class LROsOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-        deserialized = None
         header_dict = {}
 
         if response.status_code == 200:
-            deserialized = self._deserialize('Product', response)
+            self._deserialize('Product', response)
             header_dict = {
                 'Location': self._deserialize('str', response.headers.get('Location')),
                 'Retry-After': self._deserialize('int', response.headers.get('Retry-After')),
             }
 
-        if cls:
-            return cls(response, deserialized, header_dict)
-
-        return deserialized
+        return response
 
     def delete202_no_retry204(
             self, cls=None, polling=True, **kwargs):
@@ -1963,8 +1874,7 @@ class LROsOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-        if cls:
-            return cls(response, None, header_dict)
+        return response
 
     def delete_no_header_in_retry(
             self, cls=None, polling=True, **kwargs):
@@ -2026,8 +1936,7 @@ class LROsOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-        if cls:
-            return cls(response, None, header_dict)
+        return response
 
     def delete_async_no_header_in_retry(
             self, cls=None, polling=True, **kwargs):
@@ -2089,8 +1998,7 @@ class LROsOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-        if cls:
-            return cls(response, None, header_dict)
+        return response
 
     def delete_async_retry_succeeded(
             self, cls=None, polling=True, **kwargs):
@@ -2154,8 +2062,7 @@ class LROsOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-        if cls:
-            return cls(response, None, header_dict)
+        return response
 
     def delete_async_no_retry_succeeded(
             self, cls=None, polling=True, **kwargs):
@@ -2219,8 +2126,7 @@ class LROsOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-        if cls:
-            return cls(response, None, header_dict)
+        return response
 
     def delete_async_retry_failed(
             self, cls=None, polling=True, **kwargs):
@@ -2284,8 +2190,7 @@ class LROsOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-        if cls:
-            return cls(response, None, header_dict)
+        return response
 
     def delete_async_retrycanceled(
             self, cls=None, polling=True, **kwargs):
@@ -2350,17 +2255,13 @@ class LROsOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-        deserialized = None
 
         if response.status_code == 200:
-            deserialized = self._deserialize('Sku', response)
+            self._deserialize('Sku', response)
         if response.status_code == 202:
-            deserialized = self._deserialize('Sku', response)
+            self._deserialize('Sku', response)
 
-        if cls:
-            return cls(response, deserialized, None)
-
-        return deserialized
+        return response
 
     def post200_with_payload(
             self, cls=None, polling=True, **kwargs):
@@ -2428,8 +2329,7 @@ class LROsOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-        if cls:
-            return cls(response, None, header_dict)
+        return response
 
     def post202_retry200(
             self, product=None, cls=None, polling=True, **kwargs):
@@ -2503,20 +2403,16 @@ class LROsOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-        deserialized = None
         header_dict = {}
 
         if response.status_code == 202:
-            deserialized = self._deserialize('Product', response)
+            self._deserialize('Product', response)
             header_dict = {
                 'Location': self._deserialize('str', response.headers.get('Location')),
                 'Retry-After': self._deserialize('int', response.headers.get('Retry-After')),
             }
 
-        if cls:
-            return cls(response, deserialized, header_dict)
-
-        return deserialized
+        return response
 
     def post202_no_retry204(
             self, product=None, cls=None, polling=True, **kwargs):
@@ -2585,15 +2481,11 @@ class LROsOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-        deserialized = None
 
         if response.status_code == 202:
-            deserialized = self._deserialize('Product', response)
+            self._deserialize('Product', response)
 
-        if cls:
-            return cls(response, deserialized, None)
-
-        return deserialized
+        return response
 
     def post_double_headers_final_location_get(
             self, cls=None, polling=True, **kwargs):
@@ -2655,15 +2547,11 @@ class LROsOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-        deserialized = None
 
         if response.status_code == 202:
-            deserialized = self._deserialize('Product', response)
+            self._deserialize('Product', response)
 
-        if cls:
-            return cls(response, deserialized, None)
-
-        return deserialized
+        return response
 
     def post_double_headers_final_azure_header_get(
             self, cls=None, polling=True, **kwargs):
@@ -2725,15 +2613,11 @@ class LROsOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-        deserialized = None
 
         if response.status_code == 202:
-            deserialized = self._deserialize('Product', response)
+            self._deserialize('Product', response)
 
-        if cls:
-            return cls(response, deserialized, None)
-
-        return deserialized
+        return response
 
     def post_double_headers_final_azure_header_get_default(
             self, cls=None, polling=True, **kwargs):
@@ -2803,21 +2687,17 @@ class LROsOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-        deserialized = None
         header_dict = {}
 
         if response.status_code == 200:
-            deserialized = self._deserialize('Product', response)
+            self._deserialize('Product', response)
             header_dict = {
                 'Azure-AsyncOperation': self._deserialize('str', response.headers.get('Azure-AsyncOperation')),
                 'Location': self._deserialize('str', response.headers.get('Location')),
                 'Retry-After': self._deserialize('int', response.headers.get('Retry-After')),
             }
 
-        if cls:
-            return cls(response, deserialized, header_dict)
-
-        return deserialized
+        return response
 
     def post_async_retry_succeeded(
             self, product=None, cls=None, polling=True, **kwargs):
@@ -2895,21 +2775,17 @@ class LROsOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-        deserialized = None
         header_dict = {}
 
         if response.status_code == 200:
-            deserialized = self._deserialize('Product', response)
+            self._deserialize('Product', response)
             header_dict = {
                 'Azure-AsyncOperation': self._deserialize('str', response.headers.get('Azure-AsyncOperation')),
                 'Location': self._deserialize('str', response.headers.get('Location')),
                 'Retry-After': self._deserialize('int', response.headers.get('Retry-After')),
             }
 
-        if cls:
-            return cls(response, deserialized, header_dict)
-
-        return deserialized
+        return response
 
     def post_async_no_retry_succeeded(
             self, product=None, cls=None, polling=True, **kwargs):
@@ -2986,8 +2862,7 @@ class LROsOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-        if cls:
-            return cls(response, None, header_dict)
+        return response
 
     def post_async_retry_failed(
             self, product=None, cls=None, polling=True, **kwargs):
@@ -3062,8 +2937,7 @@ class LROsOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-        if cls:
-            return cls(response, None, header_dict)
+        return response
 
     def post_async_retrycanceled(
             self, product=None, cls=None, polling=True, **kwargs):

@@ -908,15 +908,11 @@ class PagingOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.CloudErrorException(response, self._deserialize)
 
-        deserialized = None
 
         if response.status_code == 202:
-            deserialized = self._deserialize('ProductResult', response)
+            self._deserialize('ProductResult', response)
 
-        if cls:
-            return cls(response, deserialized, None)
-
-        return deserialized
+        return response
 
     async def get_multiple_pages_lro(
             self, client_request_id=None, paging_get_multiple_pages_lro_options=None, *, cls=None, polling=True, **kwargs):

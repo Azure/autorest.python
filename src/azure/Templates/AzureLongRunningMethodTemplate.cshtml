@@ -91,10 +91,9 @@ else
 @EmptyLine
         if @Model.FailureStatusCodePredicate:
             @Model.RaisedException
-@EmptyLine
 @if (Model.HasAnyResponse)
 {
-        @:deserialized = None
+@EmptyLine
   if (Model.HasResponseHeader)
   {
         @:header_dict = {}
@@ -103,20 +102,12 @@ else
   foreach (var responsePair in Model.Responses.Where(r => r.Value.Body != null))
   {
         @:if response.status_code == @MethodPy.GetStatusCodeReference(responsePair.Key):
-            @:deserialized = self._deserialize('@responsePair.Value.Body.ToPythonRuntimeTypeString()', response)
+            @:self._deserialize('@responsePair.Value.Body.ToPythonRuntimeTypeString()', response)
             @:@Model.AddIndividualResponseHeader(responsePair.Key)
   }
-@EmptyLine
-        @:if cls:
-            @:return cls(response, deserialized, @Model.AddResponseHeader())
-@EmptyLine
-        @:return deserialized
 }
-else
-{
-        @:if cls:
-            @:return cls(response, None, @Model.AddResponseHeader())
-}
+@EmptyLine
+        return response
 @EmptyLine
     @(defKeyword) @(methodName)(
             self, @(Model.MethodParameterDeclaration(Python3Mode)), polling=True, **kwargs):
