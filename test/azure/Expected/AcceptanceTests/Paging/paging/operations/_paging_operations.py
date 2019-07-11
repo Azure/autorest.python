@@ -64,8 +64,6 @@ class PagingOperations(object):
             header_parameters['Accept'] = 'application/json'
             if self._config.generate_client_request_id:
                 header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-            if self._config.accept_language is not None:
-                header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
             # Construct and send request
             request = self._client.get(url, query_parameters, header_parameters)
@@ -131,8 +129,6 @@ class PagingOperations(object):
                 header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
             if client_request_id is not None:
                 header_parameters['client-request-id'] = self._serialize.header("client_request_id", client_request_id, 'str')
-            if self._config.accept_language is not None:
-                header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
             if maxresults is not None:
                 header_parameters['maxresults'] = self._serialize.header("maxresults", maxresults, 'int')
             if timeout is not None:
@@ -203,8 +199,6 @@ class PagingOperations(object):
                 header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
             if client_request_id is not None:
                 header_parameters['client-request-id'] = self._serialize.header("client_request_id", client_request_id, 'str')
-            if self._config.accept_language is not None:
-                header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
             if maxresults is not None:
                 header_parameters['maxresults'] = self._serialize.header("maxresults", maxresults, 'int')
             if timeout is not None:
@@ -281,8 +275,6 @@ class PagingOperations(object):
                 header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
             if client_request_id is not None:
                 header_parameters['client-request-id'] = self._serialize.header("client_request_id", client_request_id, 'str')
-            if self._config.accept_language is not None:
-                header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
             if maxresults is not None:
                 header_parameters['maxresults'] = self._serialize.header("maxresults", maxresults, 'int')
             if timeout is not None:
@@ -338,8 +330,6 @@ class PagingOperations(object):
             header_parameters['Accept'] = 'application/json'
             if self._config.generate_client_request_id:
                 header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-            if self._config.accept_language is not None:
-                header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
             # Construct and send request
             request = self._client.get(url, query_parameters, header_parameters)
@@ -392,8 +382,6 @@ class PagingOperations(object):
             header_parameters['Accept'] = 'application/json'
             if self._config.generate_client_request_id:
                 header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-            if self._config.accept_language is not None:
-                header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
             # Construct and send request
             request = self._client.get(url, query_parameters, header_parameters)
@@ -444,8 +432,6 @@ class PagingOperations(object):
             header_parameters['Accept'] = 'application/json'
             if self._config.generate_client_request_id:
                 header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-            if self._config.accept_language is not None:
-                header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
             # Construct and send request
             request = self._client.get(url, query_parameters, header_parameters)
@@ -496,8 +482,6 @@ class PagingOperations(object):
             header_parameters['Accept'] = 'application/json'
             if self._config.generate_client_request_id:
                 header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-            if self._config.accept_language is not None:
-                header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
             # Construct and send request
             request = self._client.get(url, query_parameters, header_parameters)
@@ -548,8 +532,6 @@ class PagingOperations(object):
             header_parameters['Accept'] = 'application/json'
             if self._config.generate_client_request_id:
                 header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-            if self._config.accept_language is not None:
-                header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
             # Construct and send request
             request = self._client.get(url, query_parameters, header_parameters)
@@ -615,8 +597,6 @@ class PagingOperations(object):
             header_parameters['Accept'] = 'application/json'
             if self._config.generate_client_request_id:
                 header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-            if self._config.accept_language is not None:
-                header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
             # Construct and send request
             request = self._client.get(url, query_parameters, header_parameters)
@@ -688,8 +668,6 @@ class PagingOperations(object):
             header_parameters['Accept'] = 'application/json'
             if self._config.generate_client_request_id:
                 header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-            if self._config.accept_language is not None:
-                header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
             # Construct and send request
             request = self._client.get(url, query_parameters, header_parameters)
@@ -738,8 +716,6 @@ class PagingOperations(object):
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
         if client_request_id is not None:
             header_parameters['client-request-id'] = self._serialize.header("client_request_id", client_request_id, 'str')
-        if self._config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
         if maxresults is not None:
             header_parameters['maxresults'] = self._serialize.header("maxresults", maxresults, 'int')
         if timeout is not None:

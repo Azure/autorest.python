@@ -37,7 +37,6 @@ class AutoRestUrlTestServiceConfiguration(Configuration):
 
         self.user_agent_policy.add_user_agent('autoresturltestservice/{}'.format(VERSION))
         self.generate_client_request_id = True
-        self.accept_language = None
 
         self.global_string_path = global_string_path
         self.global_string_query = global_string_query
