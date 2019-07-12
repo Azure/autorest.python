@@ -24,7 +24,6 @@
 #
 # --------------------------------------------------------------------------
 
-import unittest
 import subprocess
 import sys
 import isodate
@@ -42,11 +41,13 @@ tests = realpath(join(cwd, pardir, "Expected", "AcceptanceTests"))
 sys.path.append(join(tests, "Lro"))
 
 from msrest.serialization import Deserializer
-from azure.core.exceptions import DecodeError
 from msrest.authentication import BasicTokenAuthentication
+
+from azure.core.exceptions import DecodeError
 from azure.core.polling import LROPoller
-from azure.core import HttpResponseError
+
 from azure.mgmt.core.polling.arm_polling import ARMPolling
+from azure.mgmt.core.exceptions import ARMError
 
 from lro import AutoRestLongRunningOperationTestService
 from lro.models import *  # pylint: disable=W0614
@@ -81,7 +82,7 @@ class AutorestTestARMPolling(ARMPolling):
         }
         header_parameters.update(self._polling_cookie(self._response))
         request = self._client.get(status_link, headers=header_parameters)
-        return self._client._pipeline.run(request, **self._operation_config).http_response
+        return self._client._pipeline.run(request, stream=False, **self._operation_config).http_response
 
 @pytest.fixture()
 def client():
@@ -94,7 +95,7 @@ def client():
 @pytest.fixture()
 def special_client(client, test_session_callback):
     client._config.session_configuration_callback = test_session_callback
-    return client
+    yield client
 
 
 class TestLro:
@@ -104,9 +105,24 @@ class TestLro:
             self.lro_result(func, *args, **kwargs)
             pytest.fail("HttpResponseError wasn't raised as expected")
 
-        except HttpResponseError as err:
-            assert msg in  err.message
+        except ARMError as err:
             assert err.response is not None
+            print("BODY: "+err.response.text())
+
+            try:
+                msg, internal_msg = msg
+            except ValueError:
+                internal_msg = None
+
+            # Autorest testserver doesn't respect ARM spec
+            # The point of this file is NOT to test if LRO return
+            # type are compatible with ARM spec.
+            # So, we hack a little the system and check if we have the expected
+            # message in the JSON body.
+            # We should have more testserver on valid ARM errors....
+            assert msg in err.message or msg in (err.odata_json or {}).get("message", "")
+            if internal_msg:
+                assert internal_msg in str(err.inner_exception)
 
     def lro_result(self, func, *args, **kwargs):
         if "polling" not in kwargs:
@@ -130,13 +146,15 @@ class TestLro:
         assert "Succeeded" ==  process.provisioning_state
 
         # Test manual poller
-        self.assertRaisesWithMessage("Operation failed with status: 200. Details: Resource state Failed",
+        self.assertRaisesWithMessage(
+            ("Operation returned an invalid status 'OK'", "failed"),
             client.lr_os.put201_creating_failed200, product)
 
         process = self.lro_result(client.lr_os.put200_updating_succeeded204, product)
         assert "Succeeded" ==  process.provisioning_state
 
-        self.assertRaisesWithMessage("Operation failed with status: 200. Details: Resource state Canceled",
+        self.assertRaisesWithMessage(
+            ("Operation returned an invalid status 'OK'", "canceled"),
             client.lr_os.put200_acceptedcanceled200, product)
 
         # Testing nopolling
@@ -188,10 +206,12 @@ class TestLro:
         process = self.lro_result(client.lr_os.put_async_no_retry_succeeded, product)
         assert "Succeeded" ==  process.provisioning_state
 
-        self.assertRaisesWithMessage("Operation failed with status: 200. Details: Resource state Failed",
+        self.assertRaisesWithMessage(
+            ("Operation returned an invalid status 'OK'", "failed"),
             client.lr_os.put_async_retry_failed, product)
 
-        self.assertRaisesWithMessage("Operation failed with status: 200. Details: Resource state Canceled",
+        self.assertRaisesWithMessage(
+            ("Operation returned an invalid status 'OK'", "canceled"),
             client.lr_os.put_async_no_retrycanceled, product)
 
         assert self.lro_result(client.lr_os.delete204_succeeded) is None
@@ -203,10 +223,12 @@ class TestLro:
 
         assert self.lro_result(client.lr_os.delete_async_no_header_in_retry) is None
 
-        self.assertRaisesWithMessage("Operation failed with status: 200. Details: Resource state Canceled",
+        self.assertRaisesWithMessage(
+            ("Operation returned an invalid status 'OK'", "canceled"),
             client.lr_os.delete_async_retrycanceled)
 
-        self.assertRaisesWithMessage("Operation failed with status: 200. Details: Resource state Failed",
+        self.assertRaisesWithMessage(
+            ("Operation returned an invalid status 'OK'", "failed"),
             client.lr_os.delete_async_retry_failed)
 
         assert self.lro_result(client.lr_os.delete_async_retry_succeeded) is None
@@ -225,7 +247,8 @@ class TestLro:
         self.assertRaisesWithMessage("Internal Server Error",
             client.lr_os.post_async_retry_failed)
 
-        self.assertRaisesWithMessage("Operation failed with status: 200. Details: Resource state Canceled",
+        self.assertRaisesWithMessage(
+            ("Operation returned an invalid status 'OK'", "canceled"),
             client.lr_os.post_async_retrycanceled)
 
         prod = self.lro_result(client.lr_os.post_async_retry_succeeded)
@@ -236,6 +259,11 @@ class TestLro:
 
         sku = self.lro_result(client.lr_os.post200_with_payload)
         assert sku.id ==  '1'
+
+    def test_lro_retrys(self, special_client):
+        client = special_client
+
+        product = Product(location="West US")
 
         process = self.lro_result(client.lro_retrys.put201_creating_succeeded200, product)
         assert 'Succeeded' ==  process.provisioning_state
@@ -251,18 +279,21 @@ class TestLro:
         assert self.lro_result(client.lro_retrys.post202_retry200, product) is None
         assert self.lro_result(client.lro_retrys.post_async_relative_retry_succeeded, product) is None
 
+    def test_lro_custom_headers(self, client):
+        product = Product(location="West US")
+
         custom_headers = {"x-ms-client-request-id": '9C4D50EE-2D56-4CD3-8152-34347DC9F2B0'}
 
-        process = self.lro_result(client.lr_os_custom_header.put_async_retry_succeeded, product, custom_headers)
+        process = self.lro_result(client.lr_os_custom_header.put_async_retry_succeeded, product, headers=custom_headers)
         assert process is not None
 
-        process = self.lro_result(client.lr_os_custom_header.post_async_retry_succeeded, product, custom_headers)
+        process = self.lro_result(client.lr_os_custom_header.post_async_retry_succeeded, product, headers=custom_headers)
         assert process is None
 
-        process = self.lro_result(client.lr_os_custom_header.put201_creating_succeeded200, product, custom_headers)
+        process = self.lro_result(client.lr_os_custom_header.put201_creating_succeeded200, product, headers=custom_headers)
         assert process is not None
 
-        process = self.lro_result(client.lr_os_custom_header.post202_retry200, product, custom_headers)
+        process = self.lro_result(client.lr_os_custom_header.post202_retry200, product, headers=custom_headers)
         assert process is None
 
     def test_lro_sad_paths(self, client):
@@ -275,7 +306,7 @@ class TestLro:
         self.assertRaisesWithMessage("Error from the server",
             client.lrosa_ds.put_non_retry201_creating400, product)
 
-        self.assertRaisesWithMessage("Operation failed with status: 'Bad Request'",
+        self.assertRaisesWithMessage("Operation returned an invalid status 'Bad Request'",
             client.lrosa_ds.put_async_relative_retry400, product)
 
         self.assertRaisesWithMessage("Bad Request",
@@ -345,6 +376,3 @@ class TestLro:
 
         with pytest.raises(DecodeError):
             self.lro_result(client.lrosa_ds.put_non_retry201_creating400_invalid_json, product)
-
-if __name__ == '__main__':
-    unittest.main()
