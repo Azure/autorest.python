@@ -45,11 +45,14 @@ from msrest.authentication import BasicTokenAuthentication
 
 from azure.core.exceptions import DecodeError
 from azure.core.polling import LROPoller
+from azure.core.pipeline.policies import ContentDecodePolicy
+from azure.core.pipeline.transport import RequestsTransport
+from azure.core.pipeline import Pipeline
 
 from azure.mgmt.core.polling.arm_polling import ARMPolling
 from azure.mgmt.core.exceptions import ARMError
 
-from lro import AutoRestLongRunningOperationTestService
+from lro import AutoRestLongRunningOperationTestService, AutoRestLongRunningOperationTestServiceConfiguration
 from lro.models import *  # pylint: disable=W0614
 
 
@@ -85,17 +88,27 @@ class AutorestTestARMPolling(ARMPolling):
         return self._client._pipeline.run(request, stream=False, **self._operation_config).http_response
 
 @pytest.fixture()
-def client():
+def client(cookie_policy):
     """Create a AutoRestLongRunningOperationTestService client with test server credentials."""
     cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
-    with AutoRestLongRunningOperationTestService(cred, base_url="http://localhost:3000") as client:
+    config = AutoRestLongRunningOperationTestServiceConfiguration(cred)
+    policies = [
+        config.headers_policy,
+        config.user_agent_policy,
+        config.authentication_policy,
+        ContentDecodePolicy(),
+        config.redirect_policy,
+        config.retry_policy,
+        config.custom_hook_policy,
+        config.logging_policy,
+        cookie_policy
+    ]
+    transport = RequestsTransport(config)
+    pipeline = Pipeline(transport, policies)
+
+    with AutoRestLongRunningOperationTestService(cred, base_url="http://localhost:3000", pipeline=pipeline) as client:
         client._config.long_running_operation_timeout = 0 # In theory pointless, since we use AutorestTestARMPolling
         yield client
-
-@pytest.fixture()
-def special_client(client, test_session_callback):
-    client._config.session_configuration_callback = test_session_callback
-    yield client
 
 
 class TestLro:
@@ -136,10 +149,7 @@ class TestLro:
         product = client.lr_os.post_double_headers_final_azure_header_get().result()
         assert product.id == "100"
 
-    def test_lro_happy_paths(self, special_client):
-
-        client = special_client
-
+    def test_lro_happy_paths(self, client):
         product = Product(location="West US")
 
         process = self.lro_result(client.lr_os.put201_creating_succeeded200, product)
@@ -260,9 +270,7 @@ class TestLro:
         sku = self.lro_result(client.lr_os.post200_with_payload)
         assert sku.id ==  '1'
 
-    def test_lro_retrys(self, special_client):
-        client = special_client
-
+    def test_lro_retrys(self, client):
         product = Product(location="West US")
 
         process = self.lro_result(client.lro_retrys.put201_creating_succeeded200, product)
