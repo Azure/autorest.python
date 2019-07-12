@@ -125,7 +125,7 @@ class StorageAccountsOperations:
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False)
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 202]:

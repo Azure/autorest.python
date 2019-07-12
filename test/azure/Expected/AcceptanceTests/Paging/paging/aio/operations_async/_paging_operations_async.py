@@ -867,7 +867,7 @@ class PagingOperations:
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False)
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
