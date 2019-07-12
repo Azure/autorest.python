@@ -11,6 +11,7 @@
 
 import uuid
 from azure.core.exceptions import map_error
+from azure.mgmt.core.exceptions import ARMError
 from azure.core.polling.async_poller import async_poller, AsyncNoPolling
 from azure.mgmt.core.polling.async_arm_polling import AsyncARMPolling
 
@@ -68,7 +69,7 @@ class LROSADsOperations:
 
         if response.status_code not in [200, 201]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.CloudErrorException(response, self._deserialize)
+            raise ARMError(response=response)
 
 
         if response.status_code == 200:
@@ -90,7 +91,7 @@ class LROSADsOperations:
          polling object for personal polling strategy
         :return: An instance of Product
         :rtype: ~~lro.models.Product
-        :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
+        :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
         raw_result = await self._put_non_retry400_initial(
             product=product,
@@ -141,7 +142,7 @@ class LROSADsOperations:
 
         if response.status_code not in [200, 201]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.CloudErrorException(response, self._deserialize)
+            raise ARMError(response=response)
 
 
         if response.status_code == 200:
@@ -164,7 +165,7 @@ class LROSADsOperations:
          polling object for personal polling strategy
         :return: An instance of Product
         :rtype: ~~lro.models.Product
-        :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
+        :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
         raw_result = await self._put_non_retry201_creating400_initial(
             product=product,
@@ -215,7 +216,7 @@ class LROSADsOperations:
 
         if response.status_code not in [200, 201]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.CloudErrorException(response, self._deserialize)
+            raise ARMError(response=response)
 
 
         if response.status_code == 200:
@@ -238,7 +239,7 @@ class LROSADsOperations:
          polling object for personal polling strategy
         :return: An instance of Product
         :rtype: ~~lro.models.Product
-        :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
+        :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
         raw_result = await self._put_non_retry201_creating400_invalid_json_initial(
             product=product,
@@ -289,7 +290,7 @@ class LROSADsOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.CloudErrorException(response, self._deserialize)
+            raise ARMError(response=response)
 
         header_dict = {}
 
@@ -317,7 +318,7 @@ class LROSADsOperations:
          polling object for personal polling strategy
         :return: An instance of Product
         :rtype: ~~lro.models.Product
-        :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
+        :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
         raw_result = await self._put_async_relative_retry400_initial(
             product=product,
@@ -365,7 +366,7 @@ class LROSADsOperations:
 
         if response.status_code not in [202]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.CloudErrorException(response, self._deserialize)
+            raise ARMError(response=response)
 
         return response
 
@@ -379,7 +380,7 @@ class LROSADsOperations:
          polling object for personal polling strategy
         :return: An instance of None
         :rtype: ~None
-        :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
+        :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
         raw_result = await self._delete_non_retry400_initial(
             **kwargs
@@ -424,7 +425,7 @@ class LROSADsOperations:
 
         if response.status_code not in [202]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.CloudErrorException(response, self._deserialize)
+            raise ARMError(response=response)
 
         return response
 
@@ -439,7 +440,7 @@ class LROSADsOperations:
          polling object for personal polling strategy
         :return: An instance of None
         :rtype: ~None
-        :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
+        :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
         raw_result = await self._delete202_non_retry400_initial(
             **kwargs
@@ -484,7 +485,7 @@ class LROSADsOperations:
 
         if response.status_code not in [202]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.CloudErrorException(response, self._deserialize)
+            raise ARMError(response=response)
 
         return response
 
@@ -500,7 +501,7 @@ class LROSADsOperations:
          polling object for personal polling strategy
         :return: An instance of None
         :rtype: ~None
-        :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
+        :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
         raw_result = await self._delete_async_relative_retry400_initial(
             **kwargs
@@ -553,7 +554,7 @@ class LROSADsOperations:
 
         if response.status_code not in [202]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.CloudErrorException(response, self._deserialize)
+            raise ARMError(response=response)
 
         return response
 
@@ -569,7 +570,7 @@ class LROSADsOperations:
          polling object for personal polling strategy
         :return: An instance of None
         :rtype: ~None
-        :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
+        :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
         raw_result = await self._post_non_retry400_initial(
             product=product,
@@ -622,7 +623,7 @@ class LROSADsOperations:
 
         if response.status_code not in [202]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.CloudErrorException(response, self._deserialize)
+            raise ARMError(response=response)
 
         return response
 
@@ -639,7 +640,7 @@ class LROSADsOperations:
          polling object for personal polling strategy
         :return: An instance of None
         :rtype: ~None
-        :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
+        :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
         raw_result = await self._post202_non_retry400_initial(
             product=product,
@@ -692,7 +693,7 @@ class LROSADsOperations:
 
         if response.status_code not in [202]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.CloudErrorException(response, self._deserialize)
+            raise ARMError(response=response)
 
         return response
 
@@ -710,7 +711,7 @@ class LROSADsOperations:
          polling object for personal polling strategy
         :return: An instance of None
         :rtype: ~None
-        :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
+        :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
         raw_result = await self._post_async_relative_retry400_initial(
             product=product,
@@ -765,7 +766,7 @@ class LROSADsOperations:
 
         if response.status_code not in [200, 201]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.CloudErrorException(response, self._deserialize)
+            raise ARMError(response=response)
 
 
         if response.status_code == 200:
@@ -788,7 +789,7 @@ class LROSADsOperations:
          polling object for personal polling strategy
         :return: An instance of Product
         :rtype: ~~lro.models.Product
-        :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
+        :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
         raw_result = await self._put_error201_no_provisioning_state_payload_initial(
             product=product,
@@ -839,7 +840,7 @@ class LROSADsOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.CloudErrorException(response, self._deserialize)
+            raise ARMError(response=response)
 
         header_dict = {}
 
@@ -868,7 +869,7 @@ class LROSADsOperations:
          polling object for personal polling strategy
         :return: An instance of Product
         :rtype: ~~lro.models.Product
-        :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
+        :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
         raw_result = await self._put_async_relative_retry_no_status_initial(
             product=product,
@@ -924,7 +925,7 @@ class LROSADsOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.CloudErrorException(response, self._deserialize)
+            raise ARMError(response=response)
 
         header_dict = {}
 
@@ -953,7 +954,7 @@ class LROSADsOperations:
          polling object for personal polling strategy
         :return: An instance of Product
         :rtype: ~~lro.models.Product
-        :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
+        :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
         raw_result = await self._put_async_relative_retry_no_status_payload_initial(
             product=product,
@@ -1001,7 +1002,7 @@ class LROSADsOperations:
 
         if response.status_code not in [204]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.CloudErrorException(response, self._deserialize)
+            raise ARMError(response=response)
 
         return response
 
@@ -1016,7 +1017,7 @@ class LROSADsOperations:
          polling object for personal polling strategy
         :return: An instance of None
         :rtype: ~None
-        :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
+        :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
         raw_result = await self._delete204_succeeded_initial(
             **kwargs
@@ -1058,7 +1059,7 @@ class LROSADsOperations:
 
         if response.status_code not in [202]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.CloudErrorException(response, self._deserialize)
+            raise ARMError(response=response)
 
         return response
 
@@ -1074,7 +1075,7 @@ class LROSADsOperations:
          polling object for personal polling strategy
         :return: An instance of None
         :rtype: ~None
-        :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
+        :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
         raw_result = await self._delete_async_relative_retry_no_status_initial(
             **kwargs
@@ -1127,7 +1128,7 @@ class LROSADsOperations:
 
         if response.status_code not in [202]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.CloudErrorException(response, self._deserialize)
+            raise ARMError(response=response)
 
         return response
 
@@ -1144,7 +1145,7 @@ class LROSADsOperations:
          polling object for personal polling strategy
         :return: An instance of None
         :rtype: ~None
-        :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
+        :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
         raw_result = await self._post202_no_location_initial(
             product=product,
@@ -1197,7 +1198,7 @@ class LROSADsOperations:
 
         if response.status_code not in [202]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.CloudErrorException(response, self._deserialize)
+            raise ARMError(response=response)
 
         return response
 
@@ -1216,7 +1217,7 @@ class LROSADsOperations:
          polling object for personal polling strategy
         :return: An instance of None
         :rtype: ~None
-        :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
+        :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
         raw_result = await self._post_async_relative_retry_no_payload_initial(
             product=product,
@@ -1271,7 +1272,7 @@ class LROSADsOperations:
 
         if response.status_code not in [200, 204]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.CloudErrorException(response, self._deserialize)
+            raise ARMError(response=response)
 
 
         if response.status_code == 200:
@@ -1292,7 +1293,7 @@ class LROSADsOperations:
          polling object for personal polling strategy
         :return: An instance of Product
         :rtype: ~~lro.models.Product
-        :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
+        :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
         raw_result = await self._put200_invalid_json_initial(
             product=product,
@@ -1343,7 +1344,7 @@ class LROSADsOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.CloudErrorException(response, self._deserialize)
+            raise ARMError(response=response)
 
         header_dict = {}
 
@@ -1371,7 +1372,7 @@ class LROSADsOperations:
          polling object for personal polling strategy
         :return: An instance of Product
         :rtype: ~~lro.models.Product
-        :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
+        :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
         raw_result = await self._put_async_relative_retry_invalid_header_initial(
             product=product,
@@ -1427,7 +1428,7 @@ class LROSADsOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.CloudErrorException(response, self._deserialize)
+            raise ARMError(response=response)
 
         header_dict = {}
 
@@ -1456,7 +1457,7 @@ class LROSADsOperations:
          polling object for personal polling strategy
         :return: An instance of Product
         :rtype: ~~lro.models.Product
-        :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
+        :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
         raw_result = await self._put_async_relative_retry_invalid_json_polling_initial(
             product=product,
@@ -1504,7 +1505,7 @@ class LROSADsOperations:
 
         if response.status_code not in [202]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.CloudErrorException(response, self._deserialize)
+            raise ARMError(response=response)
 
         return response
 
@@ -1520,7 +1521,7 @@ class LROSADsOperations:
          polling object for personal polling strategy
         :return: An instance of None
         :rtype: ~None
-        :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
+        :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
         raw_result = await self._delete202_retry_invalid_header_initial(
             **kwargs
@@ -1565,7 +1566,7 @@ class LROSADsOperations:
 
         if response.status_code not in [202]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.CloudErrorException(response, self._deserialize)
+            raise ARMError(response=response)
 
         return response
 
@@ -1581,7 +1582,7 @@ class LROSADsOperations:
          polling object for personal polling strategy
         :return: An instance of None
         :rtype: ~None
-        :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
+        :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
         raw_result = await self._delete_async_relative_retry_invalid_header_initial(
             **kwargs
@@ -1627,7 +1628,7 @@ class LROSADsOperations:
 
         if response.status_code not in [202]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.CloudErrorException(response, self._deserialize)
+            raise ARMError(response=response)
 
         return response
 
@@ -1643,7 +1644,7 @@ class LROSADsOperations:
          polling object for personal polling strategy
         :return: An instance of None
         :rtype: ~None
-        :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
+        :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
         raw_result = await self._delete_async_relative_retry_invalid_json_polling_initial(
             **kwargs
@@ -1696,7 +1697,7 @@ class LROSADsOperations:
 
         if response.status_code not in [202]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.CloudErrorException(response, self._deserialize)
+            raise ARMError(response=response)
 
         return response
 
@@ -1713,7 +1714,7 @@ class LROSADsOperations:
          polling object for personal polling strategy
         :return: An instance of None
         :rtype: ~None
-        :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
+        :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
         raw_result = await self._post202_retry_invalid_header_initial(
             product=product,
@@ -1766,7 +1767,7 @@ class LROSADsOperations:
 
         if response.status_code not in [202]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.CloudErrorException(response, self._deserialize)
+            raise ARMError(response=response)
 
         return response
 
@@ -1784,7 +1785,7 @@ class LROSADsOperations:
          polling object for personal polling strategy
         :return: An instance of None
         :rtype: ~None
-        :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
+        :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
         raw_result = await self._post_async_relative_retry_invalid_header_initial(
             product=product,
@@ -1838,7 +1839,7 @@ class LROSADsOperations:
 
         if response.status_code not in [202]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.CloudErrorException(response, self._deserialize)
+            raise ARMError(response=response)
 
         return response
 
@@ -1857,7 +1858,7 @@ class LROSADsOperations:
          polling object for personal polling strategy
         :return: An instance of None
         :rtype: ~None
-        :raises: :class:`CloudErrorException<lro.models.CloudErrorException>`
+        :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
         raw_result = await self._post_async_relative_retry_invalid_json_polling_initial(
             product=product,

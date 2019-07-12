@@ -21,6 +21,11 @@
 {
 @:from azure.core.exceptions import HttpResponseError, map_error
 }
+else if (Model.HasAnyCloudErrors)
+{
+@:from azure.core.exceptions import map_error
+@:from azure.mgmt.core.exceptions import ARMError
+}
 else
 {
 @:from azure.core.exceptions import map_error

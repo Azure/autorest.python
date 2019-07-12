@@ -11,6 +11,7 @@
 
 import uuid
 from azure.core.exceptions import map_error
+from azure.mgmt.core.exceptions import ARMError
 
 from ... import models
 
@@ -46,8 +47,7 @@ class UsageOperations:
          direct response
         :return: UsageListResult or the result of cls(response)
         :rtype: ~storage.models.UsageListResult
-        :raises:
-         :class:`CloudErrorException<storage.models.CloudErrorException>`
+        :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL
@@ -74,7 +74,7 @@ class UsageOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.CloudErrorException(response, self._deserialize)
+            raise ARMError(response=response)
 
         deserialized = None
         if response.status_code == 200:
