@@ -60,23 +60,23 @@ class TestCustomBaseUri(object):
     @pytest.mark.asyncio
     async def test_custom_base_uri_positive(self):
         cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
-        client = AutoRestParameterizedHostTestClient(cred, host="host:3000")
-        await client.paths.get_empty("local")
+        async with AutoRestParameterizedHostTestClient(cred, host="host:3000") as client:
+            await client.paths.get_empty("local")
 
     @pytest.mark.asyncio
     async def test_custom_base_uri_negative(self):
         cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
-        client = AutoRestParameterizedHostTestClient(cred, host="host:3000")
-        client._config.retry_policy.retries = 0
-        with pytest.raises(ServiceRequestError):
-            await client.paths.get_empty("bad")
+        async with AutoRestParameterizedHostTestClient(cred, host="host:3000") as client:
+            client._config.retry_policy.retries = 0
+            with pytest.raises(ServiceRequestError):
+                await client.paths.get_empty("bad")
 
-        with pytest.raises(ValidationError):
-            await client.paths.get_empty(None)
+            with pytest.raises(ValidationError):
+                await client.paths.get_empty(None)
 
-        client._config.host = "badhost:3000"
-        with pytest.raises(ServiceRequestError):
-            await client.paths.get_empty("local")
+            client._config.host = "badhost:3000"
+            with pytest.raises(ServiceRequestError):
+                await client.paths.get_empty("local")
 
 if __name__ == '__main__':
 

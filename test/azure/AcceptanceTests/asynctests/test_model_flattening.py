@@ -54,10 +54,11 @@ from modelflattening.models import (
 import pytest
 
 @pytest.fixture()
-def client():
+async def client():
     # This is the same client of the "vanilla" one, generated with "azure" because it's the
     # only test that use client level method, and I want to test Azure works too on that.
-    return AutoRestResourceFlatteningTestService(Authentication(), base_url="http://localhost:3000")
+    async with AutoRestResourceFlatteningTestService(Authentication(), base_url="http://localhost:3000") as client:
+        yield client
 
 class TestModelFlatteningTests(object):
 

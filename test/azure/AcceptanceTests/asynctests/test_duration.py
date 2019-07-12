@@ -55,16 +55,16 @@ class TestDuration(object):
     async def test_duration(self):
 
         cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
-        client = AutoRestDurationTestService(cred, base_url="http://localhost:3000")
+        async with AutoRestDurationTestService(cred, base_url="http://localhost:3000") as client:
 
-        assert await client.duration.get_null() is None
+            assert await client.duration.get_null() is None
 
-        with pytest.raises(DeserializationError):
-            await client.duration.get_invalid()
+            with pytest.raises(DeserializationError):
+                await client.duration.get_invalid()
 
-        await client.duration.get_positive_duration()
-        delta = timedelta(days=123, hours=22, minutes=14, seconds=12, milliseconds=11)
-        await client.duration.put_positive_duration(delta)
+            await client.duration.get_positive_duration()
+            delta = timedelta(days=123, hours=22, minutes=14, seconds=12, milliseconds=11)
+            await client.duration.put_positive_duration(delta)
 
 
 if __name__ == '__main__':

@@ -58,22 +58,22 @@ class TestHead(object):
     async def test_head(self):
 
         cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
-        client = AutoRestHeadTestService(cred, base_url="http://localhost:3000")
+        async with AutoRestHeadTestService(cred, base_url="http://localhost:3000") as client:
 
-        assert await client.http_success.head200()
-        assert await client.http_success.head204()
-        assert not await client.http_success.head404()
+            assert await client.http_success.head200()
+            assert await client.http_success.head204()
+            assert not await client.http_success.head404()
 
     @pytest.mark.asyncio
     async def test_head_exception(self):
 
         cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
-        client = AutoRestHeadExceptionTestService(cred, base_url="http://localhost:3000")
+        async with AutoRestHeadExceptionTestService(cred, base_url="http://localhost:3000") as client:
 
-        await client.head_exception.head200()
-        await client.head_exception.head204()
-        with pytest.raises(HttpResponseError):
-            await client.head_exception.head404()
+            await client.head_exception.head200()
+            await client.head_exception.head204()
+            with pytest.raises(HttpResponseError):
+                await client.head_exception.head404()
 
 
 if __name__ == '__main__':

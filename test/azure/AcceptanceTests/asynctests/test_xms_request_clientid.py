@@ -59,14 +59,14 @@ class TestXmsRequestClientId(object):
         expectedRequestId = '9C4D50EE-2D56-4CD3-8152-34347DC9F2B0'
 
         cred = BasicTokenAuthentication({"access_token":123})
-        client = AutoRestAzureSpecialParametersTestClient(cred, validSubscription, base_url="http://localhost:3000")
+        async with AutoRestAzureSpecialParametersTestClient(cred, validSubscription, base_url="http://localhost:3000") as client:
 
-        try:
-            await client.xms_client_request_id.get()
-            self.fail("HttpResponseError wasn't raised as expected")
+            try:
+                await client.xms_client_request_id.get()
+                self.fail("HttpResponseError wasn't raised as expected")
 
-        except HttpResponseError as err:
-            pass
+            except HttpResponseError as err:
+                pass
 
     @pytest.mark.asyncio
     async def test_xms_request_client_id_in_client(self):
@@ -74,9 +74,9 @@ class TestXmsRequestClientId(object):
         expectedRequestId = '9C4D50EE-2D56-4CD3-8152-34347DC9F2B0'
 
         cred = BasicTokenAuthentication({"access_token":123})
-        client = AutoRestAzureSpecialParametersTestClient(cred, validSubscription, base_url="http://localhost:3000")
-        client._config.generate_client_request_id = False
-        await client.xms_client_request_id.get()
+        async with AutoRestAzureSpecialParametersTestClient(cred, validSubscription, base_url="http://localhost:3000") as client:
+            client._config.generate_client_request_id = False
+            await client.xms_client_request_id.get()
 
 
 if __name__ == '__main__':

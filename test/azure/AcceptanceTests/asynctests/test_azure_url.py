@@ -57,11 +57,11 @@ class TestAzureUrl(object):
         sub_id = str(uuid4())
 
         cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
-        client = MicrosoftAzureTestUrl(cred, sub_id, base_url="http://localhost:3000")
+        async with MicrosoftAzureTestUrl(cred, sub_id, base_url="http://localhost:3000") as client:
 
-        group = await client.group.get_sample_resource_group("testgoup101")
-        assert group.name ==  "testgroup101"
-        assert group.location ==  "West US"
+            group = await client.group.get_sample_resource_group("testgoup101")
+            assert group.name ==  "testgroup101"
+            assert group.location ==  "West US"
 
 
 if __name__ == '__main__':
