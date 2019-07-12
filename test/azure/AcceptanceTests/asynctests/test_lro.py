@@ -92,11 +92,6 @@ async def client():
         client._config.long_running_operation_timeout = 0 # In theory pointless, since we use AutorestTestARMPolling
         yield client
 
-@pytest.fixture()
-async def special_client(client, test_session_callback):
-    client._config.session_configuration_callback = test_session_callback
-    yield client
-
 
 class TestAsyncLro:
 
@@ -138,9 +133,7 @@ class TestAsyncLro:
         assert product.id == "100"
 
     @pytest.mark.asyncio
-    async def test_lro_happy_paths(self, special_client):
-        client = special_client
-
+    async def test_lro_happy_paths(self, client):
         product = Product(location="West US")
 
         process = await self.lro_result(client.lr_os.put201_creating_succeeded200, product)
@@ -262,8 +255,8 @@ class TestAsyncLro:
         assert sku.id ==  '1'
 
     @pytest.mark.asyncio
-    async def test_lro_retrys(self, special_client):
-        client = special_client
+    async def test_lro_retrys(self, client):
+
         product = Product(location="West US")
 
         process = await self.lro_result(client.lro_retrys.put201_creating_succeeded200, product)
