@@ -126,132 +126,132 @@ class TestAsyncLro:
 
     @pytest.mark.asyncio
     async def test_lro_post_issue(self, client):
-        product = await client.lr_os.post_double_headers_final_location_get()
+        product = await client.lros.post_double_headers_final_location_get()
         assert product.id == "100"
 
-        product = await client.lr_os.post_double_headers_final_azure_header_get()
+        product = await client.lros.post_double_headers_final_azure_header_get()
         assert product.id == "100"
 
     @pytest.mark.asyncio
     async def test_lro_happy_paths(self, client):
         product = Product(location="West US")
 
-        process = await self.lro_result(client.lr_os.put201_creating_succeeded200, product)
+        process = await self.lro_result(client.lros.put201_creating_succeeded200, product)
         assert "Succeeded" ==  process.provisioning_state
 
         # Test manual poller
         await self.assertRaisesWithMessage(
             ("Operation returned an invalid status 'OK'", "failed"),
-            client.lr_os.put201_creating_failed200, product)
+            client.lros.put201_creating_failed200, product)
 
-        process = await self.lro_result(client.lr_os.put200_updating_succeeded204, product)
+        process = await self.lro_result(client.lros.put200_updating_succeeded204, product)
         assert "Succeeded" == process.provisioning_state
 
         await self.assertRaisesWithMessage(
             ("Operation returned an invalid status 'OK'", "canceled"),
-            client.lr_os.put200_acceptedcanceled200, product)
+            client.lros.put200_acceptedcanceled200, product)
 
         # Testing nopolling
-        process = await self.lro_result(client.lr_os.put201_creating_succeeded200, product, polling=False)
+        process = await self.lro_result(client.lros.put201_creating_succeeded200, product, polling=False)
         assert "Creating" == process.provisioning_state
 
-        process = await self.lro_result(client.lr_os.put201_creating_failed200, product, polling=False)
+        process = await self.lro_result(client.lros.put201_creating_failed200, product, polling=False)
         assert "Created" == process.provisioning_state
 
-        process = await self.lro_result(client.lr_os.put200_updating_succeeded204, product, polling=False)
+        process = await self.lro_result(client.lros.put200_updating_succeeded204, product, polling=False)
         assert "Updating" == process.provisioning_state
 
-        process = await self.lro_result(client.lr_os.put200_acceptedcanceled200, product, polling=False)
+        process = await self.lro_result(client.lros.put200_acceptedcanceled200, product, polling=False)
         assert "Accepted" == process.provisioning_state
 
-        process = await self.lro_result(client.lr_os.put_no_header_in_retry, product)
+        process = await self.lro_result(client.lros.put_no_header_in_retry, product)
         assert "Succeeded" == process.provisioning_state
 
-        process = await self.lro_result(client.lr_os.put_no_header_in_retry, product)
+        process = await self.lro_result(client.lros.put_no_header_in_retry, product)
         assert "Succeeded" == process.provisioning_state
 
-        process = await self.lro_result(client.lr_os.put_sub_resource, SubProduct())
+        process = await self.lro_result(client.lros.put_sub_resource, SubProduct())
         assert "Succeeded" == process.provisioning_state
 
-        process = await self.lro_result(client.lr_os.put_sub_resource, SubProduct())
+        process = await self.lro_result(client.lros.put_sub_resource, SubProduct())
         assert "Succeeded" == process.provisioning_state
 
-        process = await self.lro_result(client.lr_os.put_non_resource, Sku())
+        process = await self.lro_result(client.lros.put_non_resource, Sku())
         assert "100" == process.id
 
-        process = await self.lro_result(client.lr_os.put_non_resource, Sku())
+        process = await self.lro_result(client.lros.put_non_resource, Sku())
         assert "100" == process.id
 
-        process = await self.lro_result(client.lr_os.post202_retry200, product)
+        process = await self.lro_result(client.lros.post202_retry200, product)
         assert process is None
 
-        process = await self.lro_result(client.lr_os.put200_succeeded, product)
+        process = await self.lro_result(client.lros.put200_succeeded, product)
         assert "Succeeded" == process.provisioning_state
 
-        process = await self.lro_result(client.lr_os.put200_succeeded_no_state, product)
+        process = await self.lro_result(client.lros.put200_succeeded_no_state, product)
         assert "100" == process.id
 
-        process = await self.lro_result(client.lr_os.put202_retry200, product)
+        process = await self.lro_result(client.lros.put202_retry200, product)
         assert "100" == process.id
 
-        process = await self.lro_result(client.lr_os.put_async_retry_succeeded, product)
+        process = await self.lro_result(client.lros.put_async_retry_succeeded, product)
         assert "Succeeded" == process.provisioning_state
 
-        process = await self.lro_result(client.lr_os.put_async_no_retry_succeeded, product)
+        process = await self.lro_result(client.lros.put_async_no_retry_succeeded, product)
         assert "Succeeded" == process.provisioning_state
 
         await self.assertRaisesWithMessage(
             ("Operation returned an invalid status 'OK'", "failed"),
-            client.lr_os.put_async_retry_failed, product)
+            client.lros.put_async_retry_failed, product)
 
         await self.assertRaisesWithMessage(
             ("Operation returned an invalid status 'OK'", "canceled"),
-            client.lr_os.put_async_no_retrycanceled, product)
+            client.lros.put_async_no_retrycanceled, product)
 
-        assert await self.lro_result(client.lr_os.delete204_succeeded) is None
-        assert await self.lro_result(client.lr_os.delete202_retry200) is None
-        assert await self.lro_result(client.lr_os.delete202_no_retry204) is None
+        assert await self.lro_result(client.lros.delete204_succeeded) is None
+        assert await self.lro_result(client.lros.delete202_retry200) is None
+        assert await self.lro_result(client.lros.delete202_no_retry204) is None
 
-        assert await self.lro_result(client.lr_os.delete_async_no_retry_succeeded) is None
-        assert await self.lro_result(client.lr_os.delete_no_header_in_retry) is None
+        assert await self.lro_result(client.lros.delete_async_no_retry_succeeded) is None
+        assert await self.lro_result(client.lros.delete_no_header_in_retry) is None
 
-        assert await self.lro_result(client.lr_os.delete_async_no_header_in_retry) is None
+        assert await self.lro_result(client.lros.delete_async_no_header_in_retry) is None
 
         await self.assertRaisesWithMessage(
             ("Operation returned an invalid status 'OK'", "canceled"),
-            client.lr_os.delete_async_retrycanceled)
+            client.lros.delete_async_retrycanceled)
 
         await self.assertRaisesWithMessage(
             ("Operation returned an invalid status 'OK'", "failed"),
-            client.lr_os.delete_async_retry_failed)
+            client.lros.delete_async_retry_failed)
 
-        assert await self.lro_result(client.lr_os.delete_async_retry_succeeded) is None
+        assert await self.lro_result(client.lros.delete_async_retry_succeeded) is None
 
-        process = await self.lro_result(client.lr_os.delete_provisioning202_accepted200_succeeded)
+        process = await self.lro_result(client.lros.delete_provisioning202_accepted200_succeeded)
         assert "Succeeded" == process.provisioning_state
 
-        result = await self.lro_result(client.lr_os.delete_provisioning202_deletingcanceled200)
+        result = await self.lro_result(client.lros.delete_provisioning202_deletingcanceled200)
         assert result.provisioning_state == 'Canceled'
 
-        result = await self.lro_result(client.lr_os.delete_provisioning202_deleting_failed200)
+        result = await self.lro_result(client.lros.delete_provisioning202_deleting_failed200)
         assert result.provisioning_state == 'Failed'
 
-        assert await self.lro_result(client.lr_os.post202_no_retry204, product) is None
+        assert await self.lro_result(client.lros.post202_no_retry204, product) is None
 
         await self.assertRaisesWithMessage("Internal Server Error",
-            client.lr_os.post_async_retry_failed)
+            client.lros.post_async_retry_failed)
 
         await self.assertRaisesWithMessage(
             ("Operation returned an invalid status 'OK'", "canceled"),
-            client.lr_os.post_async_retrycanceled)
+            client.lros.post_async_retrycanceled)
 
-        prod = await self.lro_result(client.lr_os.post_async_retry_succeeded)
+        prod = await self.lro_result(client.lros.post_async_retry_succeeded)
         assert prod.id == "100"
 
-        prod = await self.lro_result(client.lr_os.post_async_no_retry_succeeded)
+        prod = await self.lro_result(client.lros.post_async_no_retry_succeeded)
         assert prod.id ==  "100"
 
-        sku = await self.lro_result(client.lr_os.post200_with_payload)
+        sku = await self.lro_result(client.lros.post200_with_payload)
         assert sku.id ==  '1'
 
     @pytest.mark.asyncio
@@ -297,78 +297,78 @@ class TestAsyncLro:
         product = Product(location="West US")
 
         await self.assertRaisesWithMessage("Bad Request",
-            client.lrosa_ds.put_non_retry400, product)
+            client.lrosads.put_non_retry400, product)
 
         await self.assertRaisesWithMessage("Error from the server",
-            client.lrosa_ds.put_non_retry201_creating400, product)
+            client.lrosads.put_non_retry201_creating400, product)
 
         await self.assertRaisesWithMessage("Operation returned an invalid status 'Bad Request'",
-            client.lrosa_ds.put_async_relative_retry400, product)
+            client.lrosads.put_async_relative_retry400, product)
 
         await self.assertRaisesWithMessage("Expected bad request message",
-            client.lrosa_ds.delete_non_retry400)
+            client.lrosads.delete_non_retry400)
 
         await self.assertRaisesWithMessage("Expected bad request message",
-            client.lrosa_ds.delete202_non_retry400)
+            client.lrosads.delete202_non_retry400)
 
         await self.assertRaisesWithMessage("Expected bad request message",
-            client.lrosa_ds.delete_async_relative_retry400)
+            client.lrosads.delete_async_relative_retry400)
 
         await self.assertRaisesWithMessage("Expected bad request message",
-            client.lrosa_ds.post_non_retry400, product)
+            client.lrosads.post_non_retry400, product)
 
         await self.assertRaisesWithMessage("Expected bad request message",
-            client.lrosa_ds.post202_non_retry400, product)
+            client.lrosads.post202_non_retry400, product)
 
         await self.assertRaisesWithMessage("Expected bad request message",
-            client.lrosa_ds.post_async_relative_retry400, product)
+            client.lrosads.post_async_relative_retry400, product)
 
         await self.assertRaisesWithMessage("The response from long running operation does not contain a body.",
-            client.lrosa_ds.put_error201_no_provisioning_state_payload, product)
+            client.lrosads.put_error201_no_provisioning_state_payload, product)
 
         await self.assertRaisesWithMessage("The response from long running operation does not contain a body.",
-            client.lrosa_ds.put_async_relative_retry_no_status, product)
+            client.lrosads.put_async_relative_retry_no_status, product)
 
         await self.assertRaisesWithMessage("The response from long running operation does not contain a body.",
-            client.lrosa_ds.put_async_relative_retry_no_status_payload, product)
+            client.lrosads.put_async_relative_retry_no_status_payload, product)
 
         with pytest.raises(DecodeError):
-            await self.lro_result(client.lrosa_ds.put200_invalid_json, product)
+            await self.lro_result(client.lrosads.put200_invalid_json, product)
 
         with pytest.raises(DecodeError):
-            await self.lro_result(client.lrosa_ds.put_async_relative_retry_invalid_json_polling, product)
+            await self.lro_result(client.lrosads.put_async_relative_retry_invalid_json_polling, product)
 
         with pytest.raises(Exception):
-            await self.lro_result(client.lrosa_ds.put_async_relative_retry_invalid_header, product)
+            await self.lro_result(client.lrosads.put_async_relative_retry_invalid_header, product)
 
         with pytest.raises(Exception):
-            await self.lro_result(client.lrosa_ds.delete202_retry_invalid_header)
+            await self.lro_result(client.lrosads.delete202_retry_invalid_header)
 
         with pytest.raises(Exception):
-            await self.lro_result(client.lrosa_ds.delete_async_relative_retry_invalid_header)
+            await self.lro_result(client.lrosads.delete_async_relative_retry_invalid_header)
 
         with pytest.raises(Exception):
-            await self.lro_result(client.lrosa_ds.post202_retry_invalid_header)
+            await self.lro_result(client.lrosads.post202_retry_invalid_header)
 
         with pytest.raises(Exception):
-            await self.lro_result(client.lrosa_ds.post_async_relative_retry_invalid_header)
+            await self.lro_result(client.lrosads.post_async_relative_retry_invalid_header)
 
         with pytest.raises(DecodeError):
-            await self.lro_result(client.lrosa_ds.delete_async_relative_retry_invalid_json_polling)
+            await self.lro_result(client.lrosads.delete_async_relative_retry_invalid_json_polling)
 
         with pytest.raises(DecodeError):
-            await self.lro_result(client.lrosa_ds.post_async_relative_retry_invalid_json_polling)
+            await self.lro_result(client.lrosads.post_async_relative_retry_invalid_json_polling)
 
-        await self.lro_result(client.lrosa_ds.delete204_succeeded)
+        await self.lro_result(client.lrosads.delete204_succeeded)
 
         await self.assertRaisesWithMessage("The response from long running operation does not contain a body.",
-            client.lrosa_ds.delete_async_relative_retry_no_status)
+            client.lrosads.delete_async_relative_retry_no_status)
 
         await self.assertRaisesWithMessage("Unable to find status link for polling.",
-            client.lrosa_ds.post202_no_location)
+            client.lrosads.post202_no_location)
 
         await self.assertRaisesWithMessage("The response from long running operation does not contain a body.",
-            client.lrosa_ds.post_async_relative_retry_no_payload)
+            client.lrosads.post_async_relative_retry_no_payload)
 
         with pytest.raises(DecodeError):
-            await self.lro_result(client.lrosa_ds.put_non_retry201_creating400_invalid_json, product)
+            await self.lro_result(client.lrosads.put_non_retry201_creating400_invalid_json, product)
