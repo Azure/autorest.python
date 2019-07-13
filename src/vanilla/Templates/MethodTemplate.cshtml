@@ -155,19 +155,20 @@ else
   {
         @:header_dict = {}
   }
+        @:deserialized = None
+foreach (var responsePair in Model.Responses.Where(r => r.Value.Body != null))
+{
+        @:if response.status_code == @MethodPy.GetStatusCodeReference(responsePair.Key):
 if (Model.IsStreamResponse)
 {
-        @:deserialized = response.stream_download()
+            @:deserialized = response.stream_download(self._client._pipeline)
 }
 else
 {
-        @:deserialized = None
-  foreach (var responsePair in Model.Responses.Where(r => r.Value.Body != null))
-  {
-        @:if response.status_code == @MethodPy.GetStatusCodeReference(responsePair.Key):
+
             @:deserialized = self._deserialize('@responsePair.Value.Body.ToPythonRuntimeTypeString()', response)
+}
             @:@Model.AddIndividualResponseHeader(responsePair.Key)
-  }
 }
 @EmptyLine
         @:if cls:

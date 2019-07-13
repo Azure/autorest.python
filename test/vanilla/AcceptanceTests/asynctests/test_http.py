@@ -345,7 +345,7 @@ class TestHttp(object):
     @pytest.mark.asyncio
     async def test_success_status_codes(self, client):
 
-        await self.assertRaisesWithMessage("Operation returned an invalid status code 'Bad Request'",
+        await self.assertRaisesWithMessage("Operation returned an invalid status 'Bad Request'",
             client.http_failure.get_empty_error)
         await self.assertRaisesWithStatusAndResponseContains(requests.codes.bad_request, "NoErrorModel",
             client.http_failure.get_no_model_error)
