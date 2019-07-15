@@ -3,5 +3,5 @@ pytest
 pytest-cov
 pytest-asyncio;python_full_version>="3.5.2"
 msrest>=0.6.0
-azure-core>=1.0.0b1
+git+https://github.com/Azure/azure-sdk-for-python#subdirectory=sdk/core/azure-core&egg=azure-core  # azure-core 1.0.0b2 on master
 aiohttp;python_full_version>="3.5.2"
