@@ -10,5 +10,4 @@
 # --------------------------------------------------------------------------
 
 from ._auto_rest_swagger_bat_byte_service_async import AutoRestSwaggerBATByteService
-from ._configuration_async import AutoRestSwaggerBATByteServiceConfiguration
-__all__ = ['AutoRestSwaggerBATByteService', 'AutoRestSwaggerBATByteServiceConfiguration']
+__all__ = ['AutoRestSwaggerBATByteService']

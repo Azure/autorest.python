@@ -10,5 +10,4 @@
 # --------------------------------------------------------------------------
 
 from ._auto_rest_swagger_bat_array_service_async import AutoRestSwaggerBATArrayService
-from ._configuration_async import AutoRestSwaggerBATArrayServiceConfiguration
-__all__ = ['AutoRestSwaggerBATArrayService', 'AutoRestSwaggerBATArrayServiceConfiguration']
+__all__ = ['AutoRestSwaggerBATArrayService']

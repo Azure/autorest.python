@@ -10,5 +10,4 @@
 # --------------------------------------------------------------------------
 
 from ._auto_rest_integer_test_service_async import AutoRestIntegerTestService
-from ._configuration_async import AutoRestIntegerTestServiceConfiguration
-__all__ = ['AutoRestIntegerTestService', 'AutoRestIntegerTestServiceConfiguration']
+__all__ = ['AutoRestIntegerTestService']

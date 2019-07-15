@@ -9,9 +9,8 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from ._configuration import AutoRestRequiredOptionalTestServiceConfiguration
 from ._auto_rest_required_optional_test_service import AutoRestRequiredOptionalTestService
-__all__ = ['AutoRestRequiredOptionalTestService', 'AutoRestRequiredOptionalTestServiceConfiguration']
+__all__ = ['AutoRestRequiredOptionalTestService']
 
 from .version import VERSION
 

@@ -10,5 +10,4 @@
 # --------------------------------------------------------------------------
 
 from ._auto_rest_swagger_ba_tdictionary_service_async import AutoRestSwaggerBATdictionaryService
-from ._configuration_async import AutoRestSwaggerBATdictionaryServiceConfiguration
-__all__ = ['AutoRestSwaggerBATdictionaryService', 'AutoRestSwaggerBATdictionaryServiceConfiguration']
+__all__ = ['AutoRestSwaggerBATdictionaryService']

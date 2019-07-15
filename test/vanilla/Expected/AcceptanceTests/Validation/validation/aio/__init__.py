@@ -10,5 +10,4 @@
 # --------------------------------------------------------------------------
 
 from ._auto_rest_validation_test_async import AutoRestValidationTest
-from ._configuration_async import AutoRestValidationTestConfiguration
-__all__ = ['AutoRestValidationTest', 'AutoRestValidationTestConfiguration']
+__all__ = ['AutoRestValidationTest']

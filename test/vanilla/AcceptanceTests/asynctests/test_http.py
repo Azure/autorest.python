@@ -45,7 +45,7 @@ sys.path.append(join(tests, "Http"))
 from azure.core.exceptions import HttpResponseError
 from msrest.exceptions import DeserializationError
 
-from httpinfrastructure.aio import AutoRestHttpInfrastructureTestService, AutoRestHttpInfrastructureTestServiceConfiguration
+from httpinfrastructure.aio import AutoRestHttpInfrastructureTestService
 from httpinfrastructure.models import (
     A, B, C, D, ErrorException)
 

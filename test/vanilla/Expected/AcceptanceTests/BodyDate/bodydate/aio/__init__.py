@@ -10,5 +10,4 @@
 # --------------------------------------------------------------------------
 
 from ._auto_rest_date_test_service_async import AutoRestDateTestService
-from ._configuration_async import AutoRestDateTestServiceConfiguration
-__all__ = ['AutoRestDateTestService', 'AutoRestDateTestServiceConfiguration']
+__all__ = ['AutoRestDateTestService']

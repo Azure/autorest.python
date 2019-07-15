@@ -10,5 +10,4 @@
 # --------------------------------------------------------------------------
 
 from ._auto_rest_required_optional_test_service_async import AutoRestRequiredOptionalTestService
-from ._configuration_async import AutoRestRequiredOptionalTestServiceConfiguration
-__all__ = ['AutoRestRequiredOptionalTestService', 'AutoRestRequiredOptionalTestServiceConfiguration']
+__all__ = ['AutoRestRequiredOptionalTestService']

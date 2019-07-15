@@ -9,9 +9,8 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from ._configuration import AutoRestHttpInfrastructureTestServiceConfiguration
 from ._auto_rest_http_infrastructure_test_service import AutoRestHttpInfrastructureTestService
-__all__ = ['AutoRestHttpInfrastructureTestService', 'AutoRestHttpInfrastructureTestServiceConfiguration']
+__all__ = ['AutoRestHttpInfrastructureTestService']
 
 from .version import VERSION
 

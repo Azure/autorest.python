@@ -9,9 +9,8 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from ._configuration import AutoRestSwaggerBATXMLServiceConfiguration
 from ._auto_rest_swagger_batxml_service import AutoRestSwaggerBATXMLService
-__all__ = ['AutoRestSwaggerBATXMLService', 'AutoRestSwaggerBATXMLServiceConfiguration']
+__all__ = ['AutoRestSwaggerBATXMLService']
 
 from .version import VERSION
 

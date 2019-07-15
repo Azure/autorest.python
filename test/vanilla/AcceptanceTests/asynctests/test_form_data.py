@@ -40,7 +40,7 @@ sys.path.append(join(tests, "BodyFormData"))
 
 from msrest.exceptions import DeserializationError
 
-from bodyformdata.aio import AutoRestSwaggerBATFormDataService, AutoRestSwaggerBATFormDataServiceConfiguration
+from bodyformdata.aio import AutoRestSwaggerBATFormDataService
 
 import pytest
 
@@ -53,13 +53,15 @@ def dummy_file():
     os.remove(dummy.name)
 
 @pytest.fixture
-def client():
-    config = AutoRestSwaggerBATFormDataServiceConfiguration()
-    config.connection.data_block_size = 2
-    config.retry_policy.total_retries = 50  # Be agressive on this test, sometimes testserver DDOS :-p
-    config.retry_policy.backoff_factor = 1.6
-    client = AutoRestSwaggerBATFormDataService(base_url="http://localhost:3000", config=config)
-    return client
+async def client():
+    async with AutoRestSwaggerBATFormDataService(
+        base_url="http://localhost:3000",
+        connection_data_block_size = 2,
+        retry_total = 50,  # Be agressive on this test, sometimes testserver DDOS :-p
+        retry_backoff_factor = 1.6
+    ) as client:
+        yield client
+
 
 class TestFormData(object):
 
@@ -139,7 +141,7 @@ class TestFormData(object):
         async def stream_upload(data, length, block_size):
             progress = 0
             while True:
-                block = data.read(block_size)  
+                block = data.read(block_size)
                 progress += len(block)
                 print("Progress... {}%".format(int(progress*100/length)))
                 if not block:
