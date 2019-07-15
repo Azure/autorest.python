@@ -8,7 +8,6 @@
 # Changes may cause incorrect behavior and will be lost if the code is
 # regenerated.
 # --------------------------------------------------------------------------
-
 from azure.core.configuration import Configuration, ConnectionConfiguration
 from azure.core.pipeline import policies
 
@@ -33,9 +32,8 @@ class AutoRestPagingTestServiceConfiguration(Configuration):
         super(AutoRestPagingTestServiceConfiguration, self).__init__(**kwargs)
         self._configure(**kwargs)
 
-        self.user_agent_policy.add_user_agent('autorestpagingtestservice/{}'.format(VERSION))
+        self.user_agent_policy.add_user_agent('azsdk-python-autorestpagingtestservice/{}'.format(VERSION))
         self.generate_client_request_id = True
-        self.accept_language = None
 
         self.credentials = credentials
 

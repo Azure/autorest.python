@@ -28,7 +28,7 @@ class AutoRestReportServiceConfiguration(Configuration):
         super(AutoRestReportServiceConfiguration, self).__init__(**kwargs)
         self._configure(**kwargs)
 
-        self.user_agent_policy.add_user_agent('autorestreportservice/{}'.format(VERSION))
+        self.user_agent_policy.add_user_agent('azsdk-python-autorestreportservice/{}'.format(VERSION))
         self.generate_client_request_id = True
 
     def _configure(self, **kwargs):

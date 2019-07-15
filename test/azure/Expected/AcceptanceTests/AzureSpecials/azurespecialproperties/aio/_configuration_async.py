@@ -8,7 +8,6 @@
 # Changes may cause incorrect behavior and will be lost if the code is
 # regenerated.
 # --------------------------------------------------------------------------
-
 from azure.core.configuration import Configuration, ConnectionConfiguration
 from azure.core.pipeline import policies
 
@@ -38,9 +37,8 @@ class AutoRestAzureSpecialParametersTestClientConfiguration(Configuration):
         super(AutoRestAzureSpecialParametersTestClientConfiguration, self).__init__(**kwargs)
         self._configure(**kwargs)
 
-        self.user_agent_policy.add_user_agent('autorestazurespecialparameterstestclient/{}'.format(VERSION))
+        self.user_agent_policy.add_user_agent('azsdk-python-autorestazurespecialparameterstestclient/{}'.format(VERSION))
         self.generate_client_request_id = True
-        self.accept_language = None
 
         self.credentials = credentials
         self.subscription_id = subscription_id

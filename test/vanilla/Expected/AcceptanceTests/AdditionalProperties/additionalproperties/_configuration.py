@@ -28,7 +28,7 @@ class AdditionalPropertiesClientConfiguration(Configuration):
         super(AdditionalPropertiesClientConfiguration, self).__init__(**kwargs)
         self._configure(**kwargs)
 
-        self.user_agent_policy.add_user_agent('additionalpropertiesclient/{}'.format(VERSION))
+        self.user_agent_policy.add_user_agent('azsdk-python-additionalpropertiesclient/{}'.format(VERSION))
         self.generate_client_request_id = True
 
     def _configure(self, **kwargs):

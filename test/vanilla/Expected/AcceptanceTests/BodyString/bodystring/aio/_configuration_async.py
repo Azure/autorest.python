@@ -28,7 +28,7 @@ class AutoRestSwaggerBATServiceConfiguration(Configuration):
         super(AutoRestSwaggerBATServiceConfiguration, self).__init__(**kwargs)
         self._configure(**kwargs)
 
-        self.user_agent_policy.add_user_agent('autorestswaggerbatservice/{}'.format(VERSION))
+        self.user_agent_policy.add_user_agent('azsdk-python-autorestswaggerbatservice/{}'.format(VERSION))
         self.generate_client_request_id = True
         self.accept_language = None
 

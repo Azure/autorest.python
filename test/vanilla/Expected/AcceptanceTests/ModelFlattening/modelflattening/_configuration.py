@@ -28,7 +28,7 @@ class AutoRestResourceFlatteningTestServiceConfiguration(Configuration):
         super(AutoRestResourceFlatteningTestServiceConfiguration, self).__init__(**kwargs)
         self._configure(**kwargs)
 
-        self.user_agent_policy.add_user_agent('autorestresourceflatteningtestservice/{}'.format(VERSION))
+        self.user_agent_policy.add_user_agent('azsdk-python-autorestresourceflatteningtestservice/{}'.format(VERSION))
         self.generate_client_request_id = True
 
     def _configure(self, **kwargs):

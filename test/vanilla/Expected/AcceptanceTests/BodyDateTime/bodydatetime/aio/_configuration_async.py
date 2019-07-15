@@ -28,7 +28,7 @@ class AutoRestDateTimeTestServiceConfiguration(Configuration):
         super(AutoRestDateTimeTestServiceConfiguration, self).__init__(**kwargs)
         self._configure(**kwargs)
 
-        self.user_agent_policy.add_user_agent('autorestdatetimetestservice/{}'.format(VERSION))
+        self.user_agent_policy.add_user_agent('azsdk-python-autorestdatetimetestservice/{}'.format(VERSION))
         self.generate_client_request_id = True
         self.accept_language = None
 

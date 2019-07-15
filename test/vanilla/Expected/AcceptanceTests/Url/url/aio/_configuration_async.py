@@ -35,7 +35,7 @@ class AutoRestUrlTestServiceConfiguration(Configuration):
         super(AutoRestUrlTestServiceConfiguration, self).__init__(**kwargs)
         self._configure(**kwargs)
 
-        self.user_agent_policy.add_user_agent('autoresturltestservice/{}'.format(VERSION))
+        self.user_agent_policy.add_user_agent('azsdk-python-autoresturltestservice/{}'.format(VERSION))
         self.generate_client_request_id = True
         self.accept_language = None
 
