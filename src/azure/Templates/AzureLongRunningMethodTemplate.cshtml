@@ -178,8 +178,8 @@ else
 }
 @EmptyLine
         lro_delay = kwargs.get(
-            'long_running_operation_timeout',
-            self._config.long_running_operation_timeout)
+            'polling_interval ',
+            self._config.polling_interval )
 @{
 var lro_string = Model.GetLROOptions();
 if(lro_string != "")
