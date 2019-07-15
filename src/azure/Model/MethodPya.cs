@@ -51,9 +51,9 @@ namespace AutoRest.Python.Azure.Model
             get { return Extensions.ContainsKey(AzureExtensions.LongRunningExtension); }
         }
 
-        public bool HasCloudError => (CodeModel as CodeModelPya).AzureArm && (DefaultResponse.Body == null || DefaultResponse.Body.Name == "CloudError");
+        public bool HasCloudError => ((CodeModelPya)CodeModel).AzureArm && (DefaultResponse.Body == null || DefaultResponse.Body.Name == "CloudError");
 
-        public bool HasHttpResponseError => !(CodeModel as CodeModelPya).AzureArm && DefaultResponse.Body == null;
+        public bool HasHttpResponseError => !((CodeModelPya)CodeModel).AzureArm && DefaultResponse.Body == null;
 
         public override string ExceptionDocumentation
         {
