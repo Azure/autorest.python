@@ -105,7 +105,7 @@ class LROsOperations(object):
 
         lro_delay = kwargs.get(
             'polling_interval ',
-            self._config.polling_interval )
+            self._config.polling_interval)
         if polling is True: polling_method = ARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
@@ -178,7 +178,7 @@ class LROsOperations(object):
 
         lro_delay = kwargs.get(
             'polling_interval ',
-            self._config.polling_interval )
+            self._config.polling_interval)
         if polling is True: polling_method = ARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
@@ -252,7 +252,7 @@ class LROsOperations(object):
 
         lro_delay = kwargs.get(
             'polling_interval ',
-            self._config.polling_interval )
+            self._config.polling_interval)
         if polling is True: polling_method = ARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
@@ -329,7 +329,7 @@ class LROsOperations(object):
 
         lro_delay = kwargs.get(
             'polling_interval ',
-            self._config.polling_interval )
+            self._config.polling_interval)
         if polling is True: polling_method = ARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
@@ -404,7 +404,7 @@ class LROsOperations(object):
 
         lro_delay = kwargs.get(
             'polling_interval ',
-            self._config.polling_interval )
+            self._config.polling_interval)
         if polling is True: polling_method = ARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
@@ -481,7 +481,7 @@ class LROsOperations(object):
 
         lro_delay = kwargs.get(
             'polling_interval ',
-            self._config.polling_interval )
+            self._config.polling_interval)
         if polling is True: polling_method = ARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
@@ -556,7 +556,7 @@ class LROsOperations(object):
 
         lro_delay = kwargs.get(
             'polling_interval ',
-            self._config.polling_interval )
+            self._config.polling_interval)
         if polling is True: polling_method = ARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
@@ -637,7 +637,7 @@ class LROsOperations(object):
 
         lro_delay = kwargs.get(
             'polling_interval ',
-            self._config.polling_interval )
+            self._config.polling_interval)
         if polling is True: polling_method = ARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
@@ -723,7 +723,7 @@ class LROsOperations(object):
 
         lro_delay = kwargs.get(
             'polling_interval ',
-            self._config.polling_interval )
+            self._config.polling_interval)
         if polling is True: polling_method = ARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
@@ -807,7 +807,7 @@ class LROsOperations(object):
 
         lro_delay = kwargs.get(
             'polling_interval ',
-            self._config.polling_interval )
+            self._config.polling_interval)
         if polling is True: polling_method = ARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
@@ -893,7 +893,7 @@ class LROsOperations(object):
 
         lro_delay = kwargs.get(
             'polling_interval ',
-            self._config.polling_interval )
+            self._config.polling_interval)
         if polling is True: polling_method = ARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
@@ -977,7 +977,7 @@ class LROsOperations(object):
 
         lro_delay = kwargs.get(
             'polling_interval ',
-            self._config.polling_interval )
+            self._config.polling_interval)
         if polling is True: polling_method = ARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
@@ -1058,7 +1058,7 @@ class LROsOperations(object):
 
         lro_delay = kwargs.get(
             'polling_interval ',
-            self._config.polling_interval )
+            self._config.polling_interval)
         if polling is True: polling_method = ARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
@@ -1130,7 +1130,7 @@ class LROsOperations(object):
 
         lro_delay = kwargs.get(
             'polling_interval ',
-            self._config.polling_interval )
+            self._config.polling_interval)
         if polling is True: polling_method = ARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
@@ -1202,7 +1202,7 @@ class LROsOperations(object):
 
         lro_delay = kwargs.get(
             'polling_interval ',
-            self._config.polling_interval )
+            self._config.polling_interval)
         if polling is True: polling_method = ARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
@@ -1278,7 +1278,7 @@ class LROsOperations(object):
 
         lro_delay = kwargs.get(
             'polling_interval ',
-            self._config.polling_interval )
+            self._config.polling_interval)
         if polling is True: polling_method = ARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
@@ -1354,7 +1354,7 @@ class LROsOperations(object):
 
         lro_delay = kwargs.get(
             'polling_interval ',
-            self._config.polling_interval )
+            self._config.polling_interval)
         if polling is True: polling_method = ARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
@@ -1434,7 +1434,7 @@ class LROsOperations(object):
 
         lro_delay = kwargs.get(
             'polling_interval ',
-            self._config.polling_interval )
+            self._config.polling_interval)
         if polling is True: polling_method = ARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
@@ -1514,7 +1514,7 @@ class LROsOperations(object):
 
         lro_delay = kwargs.get(
             'polling_interval ',
-            self._config.polling_interval )
+            self._config.polling_interval)
         if polling is True: polling_method = ARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
@@ -1594,7 +1594,7 @@ class LROsOperations(object):
 
         lro_delay = kwargs.get(
             'polling_interval ',
-            self._config.polling_interval )
+            self._config.polling_interval)
         if polling is True: polling_method = ARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
@@ -1650,7 +1650,7 @@ class LROsOperations(object):
 
         lro_delay = kwargs.get(
             'polling_interval ',
-            self._config.polling_interval )
+            self._config.polling_interval)
         if polling is True: polling_method = ARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
@@ -1723,7 +1723,7 @@ class LROsOperations(object):
 
         lro_delay = kwargs.get(
             'polling_interval ',
-            self._config.polling_interval )
+            self._config.polling_interval)
         if polling is True: polling_method = ARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
@@ -1796,7 +1796,7 @@ class LROsOperations(object):
 
         lro_delay = kwargs.get(
             'polling_interval ',
-            self._config.polling_interval )
+            self._config.polling_interval)
         if polling is True: polling_method = ARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
@@ -1856,7 +1856,7 @@ class LROsOperations(object):
 
         lro_delay = kwargs.get(
             'polling_interval ',
-            self._config.polling_interval )
+            self._config.polling_interval)
         if polling is True: polling_method = ARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
@@ -1916,7 +1916,7 @@ class LROsOperations(object):
 
         lro_delay = kwargs.get(
             'polling_interval ',
-            self._config.polling_interval )
+            self._config.polling_interval)
         if polling is True: polling_method = ARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
@@ -1978,7 +1978,7 @@ class LROsOperations(object):
 
         lro_delay = kwargs.get(
             'polling_interval ',
-            self._config.polling_interval )
+            self._config.polling_interval)
         if polling is True: polling_method = ARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
@@ -2040,7 +2040,7 @@ class LROsOperations(object):
 
         lro_delay = kwargs.get(
             'polling_interval ',
-            self._config.polling_interval )
+            self._config.polling_interval)
         if polling is True: polling_method = ARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
@@ -2102,7 +2102,7 @@ class LROsOperations(object):
 
         lro_delay = kwargs.get(
             'polling_interval ',
-            self._config.polling_interval )
+            self._config.polling_interval)
         if polling is True: polling_method = ARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
@@ -2164,7 +2164,7 @@ class LROsOperations(object):
 
         lro_delay = kwargs.get(
             'polling_interval ',
-            self._config.polling_interval )
+            self._config.polling_interval)
         if polling is True: polling_method = ARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
@@ -2230,7 +2230,7 @@ class LROsOperations(object):
 
         lro_delay = kwargs.get(
             'polling_interval ',
-            self._config.polling_interval )
+            self._config.polling_interval)
         if polling is True: polling_method = ARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
@@ -2301,7 +2301,7 @@ class LROsOperations(object):
 
         lro_delay = kwargs.get(
             'polling_interval ',
-            self._config.polling_interval )
+            self._config.polling_interval)
         if polling is True: polling_method = ARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
@@ -2384,7 +2384,7 @@ class LROsOperations(object):
 
         lro_delay = kwargs.get(
             'polling_interval ',
-            self._config.polling_interval )
+            self._config.polling_interval)
         if polling is True: polling_method = ARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
@@ -2448,7 +2448,7 @@ class LROsOperations(object):
 
         lro_delay = kwargs.get(
             'polling_interval ',
-            self._config.polling_interval )
+            self._config.polling_interval)
         if polling is True: polling_method = ARMPolling(lro_delay, lro_options={'final-state-via': 'location'}, **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
@@ -2512,7 +2512,7 @@ class LROsOperations(object):
 
         lro_delay = kwargs.get(
             'polling_interval ',
-            self._config.polling_interval )
+            self._config.polling_interval)
         if polling is True: polling_method = ARMPolling(lro_delay, lro_options={'final-state-via': 'azure-async-operation'}, **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
@@ -2577,7 +2577,7 @@ class LROsOperations(object):
 
         lro_delay = kwargs.get(
             'polling_interval ',
-            self._config.polling_interval )
+            self._config.polling_interval)
         if polling is True: polling_method = ARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
@@ -2663,7 +2663,7 @@ class LROsOperations(object):
 
         lro_delay = kwargs.get(
             'polling_interval ',
-            self._config.polling_interval )
+            self._config.polling_interval)
         if polling is True: polling_method = ARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
@@ -2749,7 +2749,7 @@ class LROsOperations(object):
 
         lro_delay = kwargs.get(
             'polling_interval ',
-            self._config.polling_interval )
+            self._config.polling_interval)
         if polling is True: polling_method = ARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
@@ -2822,7 +2822,7 @@ class LROsOperations(object):
 
         lro_delay = kwargs.get(
             'polling_interval ',
-            self._config.polling_interval )
+            self._config.polling_interval)
         if polling is True: polling_method = ARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
@@ -2895,7 +2895,7 @@ class LROsOperations(object):
 
         lro_delay = kwargs.get(
             'polling_interval ',
-            self._config.polling_interval )
+            self._config.polling_interval)
         if polling is True: polling_method = ARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling

@@ -177,7 +177,7 @@ class StorageAccountsOperations:
 
         lro_delay = kwargs.get(
             'polling_interval ',
-            self._config.polling_interval )
+            self._config.polling_interval)
         if polling is True: polling_method = AsyncARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling

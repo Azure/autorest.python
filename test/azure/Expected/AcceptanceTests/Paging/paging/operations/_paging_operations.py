@@ -759,7 +759,7 @@ class PagingOperations(object):
 
         lro_delay = kwargs.get(
             'polling_interval ',
-            self._config.polling_interval )
+            self._config.polling_interval)
         if polling is True: polling_method = ARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
