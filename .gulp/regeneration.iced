@@ -84,32 +84,37 @@ defaultMappings = {
   'AcceptanceTests/CustomBaseUri': 'custom-baseUrl.json',
   'AcceptanceTests/CustomBaseUriMoreOptions': 'custom-baseUrl-more-options.json',
   'AcceptanceTests/ModelFlattening': 'model-flattening.json',
-  'AcceptanceTests/Xml': 'xml-service.json'
+  'AcceptanceTests/Xml': 'xml-service.json',
+  'AcceptanceTests/UrlMultiCollectionFormat' : 'url-multi-collectionFormat.json'
 }
 
 defaultAzureMappings = {
-  'AcceptanceTests/Lro': 'lro.json',
-  'AcceptanceTests/Paging': 'paging.json',
+  'AcceptanceTests/AzureBodyDuration': 'body-duration.json',
   'AcceptanceTests/AzureReport': 'azure-report.json',
   'AcceptanceTests/AzureParameterGrouping': 'azure-parameter-grouping.json',
   'AcceptanceTests/ModelFlattening': 'model-flattening.json',
+  'AcceptanceTests/CustomBaseUri': 'custom-baseUrl.json'
+}
+
+# The list is mostly built on Swaggers that uses CloudError feature
+# These Swagger should be modified to test their features, and not the CloudError one
+defaultARMMappings = {
   'AcceptanceTests/Head': 'head.json',
   'AcceptanceTests/HeadExceptions': 'head-exceptions.json',
+  'AcceptanceTests/StorageManagementClient': 'storage.json',
+  'AcceptanceTests/Lro': 'lro.json',
   'AcceptanceTests/SubscriptionIdApiVersion': 'subscriptionId-apiVersion.json',
+  'AcceptanceTests/Paging': 'paging.json',
   'AcceptanceTests/AzureSpecials': 'azure-special-properties.json',
-  'AcceptanceTests/CustomBaseUri': 'custom-baseUrl.json'
 }
 
 swaggerDir = "node_modules/@microsoft.azure/autorest.testserver/swagger"
 
 task 'regenerate-python', '', (done) ->
-  mappings = Object.assign({
-    'AcceptanceTests/UrlMultiCollectionFormat' : 'url-multi-collectionFormat.json'
-  }, defaultMappings)
   regenExpected {
     'outputBaseDir': 'test/vanilla',
     'inputBaseDir': swaggerDir,
-    'mappings': mappings,
+    'mappings': defaultMappings,
     'outputDir': 'Expected',
     'language': 'python',
     'flatteningThreshold': '1',
@@ -119,14 +124,21 @@ task 'regenerate-python', '', (done) ->
   return null
 
 task 'regenerate-pythonazure', '', (done) ->
-  mappings = Object.assign({
-    'AcceptanceTests/AzureBodyDuration': 'body-duration.json',
-    'AcceptanceTests/StorageManagementClient': 'storage.json'
-  }, defaultAzureMappings)
   regenExpected {
     'outputBaseDir': 'test/azure',
     'inputBaseDir': swaggerDir,
-    'mappings': mappings,
+    'mappings': defaultAzureMappings,
+    'outputDir': 'Expected',
+    'language': 'python',
+    'flatteningThreshold': '1'
+  },done
+  return null
+
+task 'regenerate-pythonarm', '', (done) ->
+  regenExpected {
+    'outputBaseDir': 'test/azure',
+    'inputBaseDir': swaggerDir,
+    'mappings': defaultARMMappings,
     'outputDir': 'Expected',
     'language': 'python',
     'azureArm': true,
@@ -134,5 +146,5 @@ task 'regenerate-pythonazure', '', (done) ->
   },done
   return null
 
-task 'regenerate', "regenerate expected code for tests", ['regenerate-python', 'regenerate-pythonazure'], (done) ->
+task 'regenerate', "regenerate expected code for tests", ['regenerate-python', 'regenerate-pythonazure', 'regenerate-pythonarm'], (done) ->
   done();
