@@ -107,7 +107,7 @@ def client(cookie_policy):
     pipeline = Pipeline(transport, policies)
 
     with AutoRestLongRunningOperationTestService(cred, base_url="http://localhost:3000", pipeline=pipeline) as client:
-        client._config.long_running_operation_timeout = 0 # In theory pointless, since we use AutorestTestARMPolling
+        client._config.polling_interval = 0 # In theory pointless, since we use AutorestTestARMPolling
         yield client
 
 
