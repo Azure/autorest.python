@@ -30,11 +30,11 @@ class AutoRestHeadTestService(object):
     """
 
     def __init__(
-            self, credentials, base_url=None, config=None, **kwargs):
+            self, credentials, base_url=None, **kwargs):
 
         if not base_url:
             base_url = 'http://localhost:3000'
-        self._config = config or AutoRestHeadTestServiceConfiguration(credentials, **kwargs)
+        self._config = AutoRestHeadTestServiceConfiguration(credentials, **kwargs)
         self._client = AsyncPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
         client_models = {}

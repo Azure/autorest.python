@@ -10,5 +10,4 @@
 # --------------------------------------------------------------------------
 
 from ._auto_rest_head_exception_test_service_async import AutoRestHeadExceptionTestService
-from ._configuration_async import AutoRestHeadExceptionTestServiceConfiguration
-__all__ = ['AutoRestHeadExceptionTestService', 'AutoRestHeadExceptionTestServiceConfiguration']
+__all__ = ['AutoRestHeadExceptionTestService']

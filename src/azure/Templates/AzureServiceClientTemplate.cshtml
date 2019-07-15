@@ -74,7 +74,7 @@ else
     """
 @EmptyLine
     def __init__(
-            self@(Model.RequiredConstructorParameters)@(Model.IsCustomBaseUri ? "" : ", base_url=None"), config=None, **kwargs):
+            self@(Model.RequiredConstructorParameters)@(Model.IsCustomBaseUri ? "" : ", base_url=None"), **kwargs):
 @EmptyLine
 @if (Model.IsCustomBaseUri)
 {
@@ -85,7 +85,7 @@ else
 @:        if not base_url:
 @:            base_url = '@Model.BaseUrl'
 }
-        self._config = config or @(Model.Name)Configuration(@(Model.ConfigConstructorParameters)**kwargs)
+        self._config = @(Model.Name)Configuration(@(Model.ConfigConstructorParameters)**kwargs)
         self._client = PipelineClient(base_url=base_url, config=self._config, **kwargs)
 @EmptyLine
 @if (Model.ModelTemplateModels.Any(each => !each.Extensions.ContainsKey(AzureExtensions.ExternalExtension)))

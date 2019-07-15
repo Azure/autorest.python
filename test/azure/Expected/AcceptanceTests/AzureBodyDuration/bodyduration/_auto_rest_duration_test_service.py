@@ -31,11 +31,11 @@ class AutoRestDurationTestService(object):
     """
 
     def __init__(
-            self, credentials, base_url=None, config=None, **kwargs):
+            self, credentials, base_url=None, **kwargs):
 
         if not base_url:
             base_url = 'http://localhost:3000'
-        self._config = config or AutoRestDurationTestServiceConfiguration(credentials, **kwargs)
+        self._config = AutoRestDurationTestServiceConfiguration(credentials, **kwargs)
         self._client = PipelineClient(base_url=base_url, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}

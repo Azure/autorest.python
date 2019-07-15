@@ -10,5 +10,4 @@
 # --------------------------------------------------------------------------
 
 from ._auto_rest_head_test_service_async import AutoRestHeadTestService
-from ._configuration_async import AutoRestHeadTestServiceConfiguration
-__all__ = ['AutoRestHeadTestService', 'AutoRestHeadTestServiceConfiguration']
+__all__ = ['AutoRestHeadTestService']

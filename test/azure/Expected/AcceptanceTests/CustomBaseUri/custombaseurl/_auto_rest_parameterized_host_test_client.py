@@ -33,10 +33,10 @@ class AutoRestParameterizedHostTestClient(object):
     """
 
     def __init__(
-            self, credentials, host, config=None, **kwargs):
+            self, credentials, host, **kwargs):
 
         base_url = 'http://{accountName}{host}'
-        self._config = config or AutoRestParameterizedHostTestClientConfiguration(credentials, host, **kwargs)
+        self._config = AutoRestParameterizedHostTestClientConfiguration(credentials, host, **kwargs)
         self._client = PipelineClient(base_url=base_url, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}

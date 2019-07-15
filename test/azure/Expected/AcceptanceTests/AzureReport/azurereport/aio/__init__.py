@@ -10,5 +10,4 @@
 # --------------------------------------------------------------------------
 
 from ._auto_rest_report_service_for_azure_async import AutoRestReportServiceForAzure
-from ._configuration_async import AutoRestReportServiceForAzureConfiguration
-__all__ = ['AutoRestReportServiceForAzure', 'AutoRestReportServiceForAzureConfiguration']
+__all__ = ['AutoRestReportServiceForAzure']

@@ -10,5 +10,4 @@
 # --------------------------------------------------------------------------
 
 from ._auto_rest_parameterized_host_test_client_async import AutoRestParameterizedHostTestClient
-from ._configuration_async import AutoRestParameterizedHostTestClientConfiguration
-__all__ = ['AutoRestParameterizedHostTestClient', 'AutoRestParameterizedHostTestClientConfiguration']
+__all__ = ['AutoRestParameterizedHostTestClient']

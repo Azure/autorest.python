@@ -33,11 +33,11 @@ class MicrosoftAzureTestUrl(object):
     """
 
     def __init__(
-            self, credentials, subscription_id, base_url=None, config=None, **kwargs):
+            self, credentials, subscription_id, base_url=None, **kwargs):
 
         if not base_url:
             base_url = 'https://management.azure.com'
-        self._config = config or MicrosoftAzureTestUrlConfiguration(credentials, subscription_id, **kwargs)
+        self._config = MicrosoftAzureTestUrlConfiguration(credentials, subscription_id, **kwargs)
         self._client = PipelineClient(base_url=base_url, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}

@@ -10,5 +10,4 @@
 # --------------------------------------------------------------------------
 
 from ._auto_rest_parameter_grouping_test_service_async import AutoRestParameterGroupingTestService
-from ._configuration_async import AutoRestParameterGroupingTestServiceConfiguration
-__all__ = ['AutoRestParameterGroupingTestService', 'AutoRestParameterGroupingTestServiceConfiguration']
+__all__ = ['AutoRestParameterGroupingTestService']
