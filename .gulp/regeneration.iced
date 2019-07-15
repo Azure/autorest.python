@@ -28,14 +28,11 @@ regenExpected = (opts,done) ->
     if (opts.addCredentials)
       args.push("--#{opts.language}.add-credentials=true")
 
+    if (opts.vanilla)
+      args.push("--#{opts.language}.vanilla=true")
+
     if (opts.azureArm)
       args.push("--#{opts.language}.azure-arm=true")
-
-    if (opts.fluent)
-      args.push("--#{opts.language}.fluent=true")
-
-    if (opts.syncMethods)
-      args.push("--#{opts.language}.sync-methods=#{opts.syncMethods}")
 
     if (opts.flatteningThreshold)
       args.push("--#{opts.language}.payload-flattening-threshold=#{opts.flatteningThreshold}")
@@ -116,6 +113,7 @@ task 'regenerate-python', '', (done) ->
     'outputDir': 'Expected',
     'language': 'python',
     'flatteningThreshold': '1',
+    'vanilla': true,
     'keepVersion': true
   },done
   return null

@@ -96,9 +96,9 @@ namespace AutoRest.Python
             }
 
             // process
-            var plugin = await GetValue<bool?>("azure-arm") == true
-                ? (IAnyPlugin)new AutoRest.Python.Azure.PluginPya()
-                : (IAnyPlugin)new AutoRest.Python.PluginPy();
+            var plugin = await GetValue<bool?>("vanilla") == true
+                ? (IAnyPlugin)new AutoRest.Python.PluginPy()
+                : (IAnyPlugin)new AutoRest.Python.Azure.PluginPya();
             Settings.PopulateSettings(plugin.Settings, Settings.Instance.CustomSettings);
 
             using (plugin.Activate())
