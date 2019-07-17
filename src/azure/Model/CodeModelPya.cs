@@ -5,6 +5,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using AutoRest.Core;
 using AutoRest.Core.Model;
 using AutoRest.Extensions.Azure;
 using AutoRest.Python.Model;
@@ -13,6 +14,8 @@ namespace AutoRest.Python.Azure.Model
 {
     public class CodeModelPya : CodeModelPy
     {
+
+        public bool AzureArm => (bool)Settings.Instance.CustomSettings["AzureArm"];
         internal IList<PagePya> PageModels { get; } = new List<PagePya>();
 
         internal IDictionary<string, IDictionary<int, string>> PageClasses { get; } =
@@ -30,9 +33,13 @@ namespace AutoRest.Python.Azure.Model
                     m.Extensions.ContainsKey(AzureExtensions.LongRunningExtension) &&
                     (bool) m.Extensions[AzureExtensions.LongRunningExtension]);
 
+        public bool HasAnyCloudErrors =>
+            MethodTemplateModels.Any(item =>
+                AzureArm && (item.DefaultResponse.Body == null || item.DefaultResponse.Body.Name == "CloudError"));
+
         public bool HasAnyHttpResponseErrors =>
             MethodTemplateModels.Any(item =>
-                (item.DefaultResponse.Body == null) || (item.DefaultResponse.Body.Name == "HttpResponseError"));
+                !AzureArm && item.DefaultResponse.Body == null);
 
         public override string RequiredConstructorParameters
         {
@@ -73,7 +80,7 @@ namespace AutoRest.Python.Azure.Model
             }
         }
 
-        public override string SetupRequires => "\"msrestazure>=0.6.0\"";
+        public override string SetupRequires => "\"azure-mgmt-core>=0.1.0\"";
 
         public override bool NeedsExtraImport => true;
 

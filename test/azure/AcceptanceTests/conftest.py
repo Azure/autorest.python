@@ -34,14 +34,7 @@ from unittest import TestLoader, TextTestRunner
 
 from os.path import dirname, pardir, join, realpath
 
-import requests
-from requests.adapters import HTTPAdapter
-from urllib3 import HTTPConnectionPool, Retry
-from urllib3.poolmanager import (
-    PoolManager,
-    PoolKey,
-    _default_key_normalizer
-)
+from azure.core.pipeline.policies import SansIOHTTPPolicy
 
 import pytest
 
@@ -75,91 +68,26 @@ collect_ignore = []
 if sys.version_info < (3,6):
     collect_ignore.append("asynctests")
 
-# The cookie manager of the test server
-class RetryForTest(Retry):
-    """Wrapper for urllib3 Retry object.
-    """
 
-    def __init__(self, **kwargs):
-        self.retry_cookie = None
-        super(RetryForTest, self).__init__(**kwargs)
+class CookiePolicy(SansIOHTTPPolicy):
+    def __init__(self, *args, **kwargs):
+        self._current_cookie = None
 
-    def increment(self, method=None, url=None, response=None,
-                  error=None, _pool=None, _stacktrace=None):
-        increment = super(RetryForTest, self).increment(
-            method, url, response, error, _pool, _stacktrace)
+    def on_request(self, request, **kwargs):
+        # type: (PipelineRequest, Any) -> None
+        http_request = request.http_request
+        if self._current_cookie:
+            http_request.headers["Cookie"] = self._current_cookie
+            self._current_cookie = None
 
-        if response:
-            # Fixes open socket warnings in Python 3.
-            response.close()
-            response.release_conn()
+    def on_response(self, request, response, **kwargs):
+        # type: (PipelineRequest, PipelineResponse, Any) -> None
+        http_response = response.http_response
 
-            # Collect retry cookie - we only do this for the test server
-            # at this point, unless we implement a proper cookie policy.
-            increment.retry_cookie = response.getheader("Set-Cookie")
-        return increment
-
-class HTTPConnectionPoolForTest(HTTPConnectionPool):
-    """Cookie logic only used for test server (localhost)"""
-
-    def _add_test_cookie(self, retries, headers):
-        host = self.host.strip('.')
-        if retries.retry_cookie and host == 'localhost':
-            if headers:
-                headers['cookie'] = retries.retry_cookie
-            else:
-                self.headers['cookie'] = retries.retry_cookie
-
-    def _remove_test_cookie(self, retries, headers):
-        host = self.host.strip('.')
-        if retries.retry_cookie and host == 'localhost':
-            retries.retry_cookie = None
-            if headers:
-                del headers['cookie']
-            else:
-                del self.headers['cookie']
-
-    def urlopen(self, method, url, body=None, headers=None,
-                retries=None, *args, **kwargs):
-        if hasattr(retries, 'retry_cookie'):
-            self._add_test_cookie(retries, headers)
-
-        response = super(HTTPConnectionPoolForTest, self).urlopen(
-            method, url, body, headers, retries, *args, **kwargs)
-
-        if hasattr(retries, 'retry_cookie'):
-            self._remove_test_cookie(retries, headers)
-        return response
-
-class AdapterForTest(HTTPAdapter):
-
-    def init_poolmanager(self, connections, maxsize, block=False):
-        self.poolmanager = PoolManager(
-            num_pools=connections,
-            maxsize=maxsize,
-            block=block)
-        context = {
-            "scheme": "http",
-            "host": "localhost",
-            "port": 3000,
-            "block": block,
-            "maxsize": maxsize
-        }
-        test_hosts = [_default_key_normalizer(PoolKey, context)]
-        for host in test_hosts:
-            self.poolmanager.pools[host] = \
-                HTTPConnectionPoolForTest(host[1], port=host[2])
-        self.max_retries = RetryForTest()
-        self.max_retries.status_forcelist.add(408)
-        self.max_retries.status_forcelist.add(500)
-        self.max_retries.status_forcelist.add(502)
-        self.max_retries.status_forcelist.add(503)
-        self.max_retries.status_forcelist.add(504)
-        self.max_retries.method_whitelist = {'HEAD', 'GET', 'PUT', 'DELETE', 'OPTIONS', 'TRACE', 'PATCH', 'POST'}
+        if "Set-Cookie" in http_response.headers:
+            self._current_cookie = http_response.headers["Set-Cookie"]
 
 @pytest.fixture()
-def test_session_callback():
-    def test_session_callback_internal(session, global_config, local_config, **kwargs):
-        session.mount('http://localhost:3000/', AdapterForTest())
-        return kwargs
-    return test_session_callback_internal
+def cookie_policy():
+    return CookiePolicy()
+

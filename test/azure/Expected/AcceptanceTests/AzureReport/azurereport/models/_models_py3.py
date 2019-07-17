@@ -13,6 +13,14 @@ from msrest.serialization import Model
 from azure.core import HttpResponseError
 
 
+class CloudError(Model):
+    """CloudError.
+    """
+
+    _attribute_map = {
+    }
+
+
 class Error(Model):
     """Error.
 
@@ -47,11 +55,3 @@ class ErrorException(HttpResponseError):
       if self.error is None:
           self.error = deserialize.dependencies[model_name]()
       super(ErrorException, self).__init__(response=response)
-
-
-class HttpResponseError(Model):
-    """HttpResponseError.
-    """
-
-    _attribute_map = {
-    }

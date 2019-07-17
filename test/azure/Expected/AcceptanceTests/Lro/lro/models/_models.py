@@ -49,14 +49,6 @@ class CloudErrorException(HttpResponseError):
       super(CloudErrorException, self).__init__(response=response)
 
 
-class HttpResponseError(Model):
-    """HttpResponseError.
-    """
-
-    _attribute_map = {
-    }
-
-
 class OperationResult(Model):
     """OperationResult.
 

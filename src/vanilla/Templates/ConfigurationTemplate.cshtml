@@ -41,9 +41,8 @@ class @(Model.Name)Configuration(Configuration):
         super(@(Model.Name)Configuration, self).__init__(**kwargs)
         self._configure(**kwargs)
 @EmptyLine
-        self.user_agent_policy.add_user_agent('@(Model.UserAgent)/{}'.format(VERSION))
+        self.user_agent_policy.add_user_agent('azsdk-python-@(Model.UserAgent)/{}'.format(VERSION))
         self.generate_client_request_id = True
-        self.accept_language = None
 @if (Model.Properties.Any() || Model.ConstantProperties.Any())
 {
     @EmptyLine

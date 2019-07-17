@@ -28,9 +28,8 @@ class AutoRestSwaggerBATXMLServiceConfiguration(Configuration):
         super(AutoRestSwaggerBATXMLServiceConfiguration, self).__init__(**kwargs)
         self._configure(**kwargs)
 
-        self.user_agent_policy.add_user_agent('autorestswaggerbatxmlservice/{}'.format(VERSION))
+        self.user_agent_policy.add_user_agent('azsdk-python-autorestswaggerbatxmlservice/{}'.format(VERSION))
         self.generate_client_request_id = True
-        self.accept_language = None
 
     def _configure(self, **kwargs):
         self.connection = ConnectionConfiguration(**kwargs)

@@ -22,7 +22,7 @@ VERSION = "2014-04-01-preview"
 # prerequisite: setuptools
 # http://pypi.python.org/pypi/setuptools
 
-REQUIRES = ["msrestazure>=0.6.0"]
+REQUIRES = ["azure-mgmt-core>=0.1.0"]
 
 setup(
     name=NAME,

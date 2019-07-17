@@ -95,4 +95,7 @@ help-content:
     - key: keep-version-file
       description: If used, do not replace the version.py if it already exists.
       type: bool
+    - key: no-async
+      description: If used, do not generate async code
+      type: bool
 ```

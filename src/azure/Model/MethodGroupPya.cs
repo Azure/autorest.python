@@ -13,18 +13,20 @@ namespace AutoRest.Python.Azure.Model
 {
     public class MethodGroupPya : MethodGroupPy
     {
-        public MethodGroupPya() 
+        public MethodGroupPya()
         {
         }
         public MethodGroupPya(string name) : base(name)
         {
         }
 
-        public override bool HasAnyModel => CodeModel.ModelTypes.Any(model => 
-            !model.Extensions.ContainsKey(AzureExtensions.ExternalExtension) || 
+        public override bool HasAnyModel => CodeModel.ModelTypes.Any(model =>
+            !model.Extensions.ContainsKey(AzureExtensions.ExternalExtension) ||
             !(bool) model.Extensions[AzureExtensions.ExternalExtension]);
 
-        public bool HasAnyHttpResponseErrors => MethodTemplateModels.Any(item => item.DefaultResponse.Body == null || item.DefaultResponse.Body.Name == "HttpResponseError");
+        public bool HasAnyCloudErrors => MethodTemplateModels.Any(item => (CodeModel as CodeModelPya).AzureArm && (item.DefaultResponse.Body == null || item.DefaultResponse.Body.Name == "CloudError"));
+
+        public bool HasAnyHttpResponseErrors => MethodTemplateModels.Any(item => !(CodeModel as CodeModelPya).AzureArm && item.DefaultResponse.Body == null);
 
         public bool HasAnyLongRunOperation => MethodTemplateModels.Any(m => m.Extensions.ContainsKey(AzureExtensions.LongRunningExtension));
     }

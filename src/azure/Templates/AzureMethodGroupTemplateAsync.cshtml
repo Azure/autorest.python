@@ -18,6 +18,11 @@ import uuid
 {
 @:from azure.core.exceptions import HttpResponseError, map_error
 }
+else if (Model.HasAnyCloudErrors)
+{
+@:from azure.core.exceptions import map_error
+@:from azure.mgmt.core.exceptions import ARMError
+}
 else
 {
 @:from azure.core.exceptions import map_error
@@ -25,7 +30,7 @@ else
 @if (Model.HasAnyLongRunOperation)
 {
 @:from azure.core.polling.async_poller import async_poller, AsyncNoPolling
-@:from msrestazure.polling.async_arm_polling import AsyncARMPolling
+@:from azure.mgmt.core.polling.async_arm_polling import AsyncARMPolling
 }
 @if (Model.HasAnyModel)
 {

@@ -51,13 +51,21 @@ namespace AutoRest.Python.Azure.Model
             get { return Extensions.ContainsKey(AzureExtensions.LongRunningExtension); }
         }
 
+        public bool HasCloudError => ((CodeModelPya)CodeModel).AzureArm && (DefaultResponse.Body == null || DefaultResponse.Body.Name == "CloudError");
+
+        public bool HasHttpResponseError => !((CodeModelPya)CodeModel).AzureArm && DefaultResponse.Body == null;
+
         public override string ExceptionDocumentation
         {
             get
             {
-                if (DefaultResponse.Body == null || DefaultResponse.Body.Name == "HttpResponseError")
+                if (HasHttpResponseError)
                 {
                     return ":class:`HttpResponseError<azure.core.HttpResponseError>`";
+                }
+                else if(HasCloudError)
+                {
+                    return ":class:`ARMError<azure.mgmt.core.ARMError>`";
                 }
                 return base.ExceptionDocumentation;
             }
@@ -68,11 +76,18 @@ namespace AutoRest.Python.Azure.Model
         {
             get
             {
-                if (DefaultResponse.Body == null || DefaultResponse.Body.Name == "HttpResponseError")
+                if (HasHttpResponseError)
                 {
                     var sb = new IndentedStringBuilder();
                     sb.AppendLine("map_error(status_code=response.status_code, response=response, error_map=error_map)");
                     sb.AppendLine("raise HttpResponseError(response=response)");
+                    return sb.ToString();
+                }
+                if (HasCloudError)
+                {
+                    var sb = new IndentedStringBuilder();
+                    sb.AppendLine("map_error(status_code=response.status_code, response=response, error_map=error_map)");
+                    sb.AppendLine("raise ARMError(response=response)");
                     return sb.ToString();
                 }
 

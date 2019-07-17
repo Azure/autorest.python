@@ -32,9 +32,8 @@ class AutoRestValidationTestConfiguration(Configuration):
         super(AutoRestValidationTestConfiguration, self).__init__(**kwargs)
         self._configure(**kwargs)
 
-        self.user_agent_policy.add_user_agent('autorestvalidationtest/{}'.format(VERSION))
+        self.user_agent_policy.add_user_agent('azsdk-python-autorestvalidationtest/{}'.format(VERSION))
         self.generate_client_request_id = True
-        self.accept_language = None
 
         self.subscription_id = subscription_id
 

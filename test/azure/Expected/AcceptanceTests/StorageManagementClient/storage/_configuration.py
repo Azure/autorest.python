@@ -40,7 +40,6 @@ class StorageManagementClientConfiguration(Configuration):
 
         self.user_agent_policy.add_user_agent('azsdk-python-storagemanagementclient/{}'.format(VERSION))
         self.generate_client_request_id = True
-        self.accept_language = None
 
         self.credentials = credentials
         self.subscription_id = subscription_id

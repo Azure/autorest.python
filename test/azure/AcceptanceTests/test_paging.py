@@ -57,13 +57,7 @@ def paging_client():
     with AutoRestPagingTestService(cred, base_url="http://localhost:3000") as client:
         yield client
 
-@pytest.fixture
-def special_paging_client(paging_client, test_session_callback):
-    paging_client._config.session_configuration_callback = test_session_callback
-    return paging_client
-
-def test_paging_happy_path(special_paging_client):
-    paging_client = special_paging_client
+def test_paging_happy_path(paging_client):
 
     pages = paging_client.paging.get_single_pages()
     items = [i for i in pages]

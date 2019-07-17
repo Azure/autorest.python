@@ -81,8 +81,6 @@ class ParameterGroupingOperations(object):
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if self._config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
         if custom_header is not None:
             header_parameters['customHeader'] = self._serialize.header("custom_header", custom_header, 'str')
 
@@ -137,8 +135,6 @@ class ParameterGroupingOperations(object):
         header_parameters = {}
         if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if self._config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
         if custom_header is not None:
             header_parameters['customHeader'] = self._serialize.header("custom_header", custom_header, 'str')
 
@@ -201,8 +197,6 @@ class ParameterGroupingOperations(object):
         header_parameters = {}
         if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if self._config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
         if header_one is not None:
             header_parameters['header-one'] = self._serialize.header("header_one", header_one, 'str')
         if header_two is not None:
@@ -255,8 +249,6 @@ class ParameterGroupingOperations(object):
         header_parameters = {}
         if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if self._config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
         if header_one is not None:
             header_parameters['header-one'] = self._serialize.header("header_one", header_one, 'str')
 

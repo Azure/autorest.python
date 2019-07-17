@@ -10,7 +10,8 @@
 # --------------------------------------------------------------------------
 
 import uuid
-from azure.core.exceptions import HttpResponseError, map_error
+from azure.core.exceptions import map_error
+from azure.mgmt.core.exceptions import ARMError
 
 
 class HttpSuccessOperations(object):
@@ -39,7 +40,7 @@ class HttpSuccessOperations(object):
          direct response
         :return: bool or the result of cls(response)
         :rtype: bool
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL
@@ -52,8 +53,6 @@ class HttpSuccessOperations(object):
         header_parameters = {}
         if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if self._config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct and send request
         request = self._client.head(url, query_parameters, header_parameters)
@@ -62,7 +61,7 @@ class HttpSuccessOperations(object):
 
         if response.status_code not in [200, 404]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            raise ARMError(response=response)
 
         deserialized = (response.status_code == 200)
         return deserialized
@@ -75,7 +74,7 @@ class HttpSuccessOperations(object):
          direct response
         :return: bool or the result of cls(response)
         :rtype: bool
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL
@@ -88,8 +87,6 @@ class HttpSuccessOperations(object):
         header_parameters = {}
         if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if self._config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct and send request
         request = self._client.head(url, query_parameters, header_parameters)
@@ -98,7 +95,7 @@ class HttpSuccessOperations(object):
 
         if response.status_code not in [204, 404]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            raise ARMError(response=response)
 
         deserialized = (response.status_code == 204)
         return deserialized
@@ -111,7 +108,7 @@ class HttpSuccessOperations(object):
          direct response
         :return: bool or the result of cls(response)
         :rtype: bool
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL
@@ -124,8 +121,6 @@ class HttpSuccessOperations(object):
         header_parameters = {}
         if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if self._config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct and send request
         request = self._client.head(url, query_parameters, header_parameters)
@@ -134,7 +129,7 @@ class HttpSuccessOperations(object):
 
         if response.status_code not in [204, 404]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            raise ARMError(response=response)
 
         deserialized = (response.status_code == 204)
         return deserialized

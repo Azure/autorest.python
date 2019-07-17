@@ -10,9 +10,10 @@
 # --------------------------------------------------------------------------
 
 import uuid
-from azure.core.exceptions import HttpResponseError, map_error
+from azure.core.exceptions import map_error
+from azure.mgmt.core.exceptions import ARMError
 from azure.core.polling import LROPoller, NoPolling
-from msrestazure.polling.arm_polling import ARMPolling
+from azure.mgmt.core.polling.arm_polling import ARMPolling
 
 from .. import models
 
@@ -52,7 +53,7 @@ class StorageAccountsOperations(object):
          direct response
         :return: CheckNameAvailabilityResult or the result of cls(response)
         :rtype: ~storage.models.CheckNameAvailabilityResult
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL
@@ -72,8 +73,6 @@ class StorageAccountsOperations(object):
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if self._config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct body
         body_content = self._serialize.body(account_name, 'StorageAccountCheckNameAvailabilityParameters')
@@ -85,7 +84,7 @@ class StorageAccountsOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            raise ARMError(response=response)
 
         deserialized = None
         if response.status_code == 200:
@@ -120,27 +119,24 @@ class StorageAccountsOperations(object):
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if self._config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct body
         body_content = self._serialize.body(parameters, 'StorageAccountCreateParameters')
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._client._pipeline.run(request)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 202]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            raise ARMError(response=response)
 
-        deserialized = None
 
         if response.status_code == 200:
-            deserialized = self._deserialize('StorageAccount', response)
+            self._deserialize('StorageAccount', response)
 
-        return deserialized
+        return response
 
     def create(
             self, resource_group_name, account_name, parameters, cls=None, polling=True, **kwargs):
@@ -159,12 +155,14 @@ class StorageAccountsOperations(object):
         :type account_name: str
         :param parameters: The parameters to provide for the created account.
         :type parameters: ~storage.models.StorageAccountCreateParameters
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of LROPoller that returns StorageAccount
         :rtype:
          ~msrestazure.azure_operation.AzureOperationPoller[~storage.models.StorageAccount]
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
         raw_result = self._create_initial(
             resource_group_name=resource_group_name,
@@ -179,12 +177,12 @@ class StorageAccountsOperations(object):
             return deserialized
 
         lro_delay = kwargs.get(
-            'long_running_operation_timeout',
-            self._config.long_running_operation_timeout)
+            'polling_interval ',
+            self._config.polling_interval)
         if polling is True: polling_method = ARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
-        return LROPoller(self, raw_result, get_long_running_output, polling_method)
+        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     create.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}'}
 
     def delete(self, resource_group_name, account_name, cls=None, **kwargs):
@@ -201,7 +199,7 @@ class StorageAccountsOperations(object):
          direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL
@@ -221,8 +219,6 @@ class StorageAccountsOperations(object):
         header_parameters = {}
         if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if self._config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct and send request
         request = self._client.delete(url, query_parameters, header_parameters)
@@ -231,7 +227,7 @@ class StorageAccountsOperations(object):
 
         if response.status_code not in [200, 204]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            raise ARMError(response=response)
 
         if cls:
             response_headers = {}
@@ -254,7 +250,7 @@ class StorageAccountsOperations(object):
          direct response
         :return: StorageAccount or the result of cls(response)
         :rtype: ~storage.models.StorageAccount
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL
@@ -275,8 +271,6 @@ class StorageAccountsOperations(object):
         header_parameters['Accept'] = 'application/json'
         if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if self._config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -285,7 +279,7 @@ class StorageAccountsOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            raise ARMError(response=response)
 
         deserialized = None
         if response.status_code == 200:
@@ -323,7 +317,7 @@ class StorageAccountsOperations(object):
          direct response
         :return: StorageAccount or the result of cls(response)
         :rtype: ~storage.models.StorageAccount
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL
@@ -345,8 +339,6 @@ class StorageAccountsOperations(object):
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if self._config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct body
         body_content = self._serialize.body(parameters, 'StorageAccountUpdateParameters')
@@ -358,7 +350,7 @@ class StorageAccountsOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            raise ARMError(response=response)
 
         deserialized = None
         if response.status_code == 200:
@@ -382,7 +374,7 @@ class StorageAccountsOperations(object):
          direct response
         :return: StorageAccountKeys or the result of cls(response)
         :rtype: ~storage.models.StorageAccountKeys
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL
@@ -403,8 +395,6 @@ class StorageAccountsOperations(object):
         header_parameters['Accept'] = 'application/json'
         if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if self._config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
@@ -413,7 +403,7 @@ class StorageAccountsOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            raise ARMError(response=response)
 
         deserialized = None
         if response.status_code == 200:
@@ -434,7 +424,7 @@ class StorageAccountsOperations(object):
         :return: An iterator like instance of StorageAccount
         :rtype:
          ~storage.models.StorageAccountPaged[~storage.models.StorageAccount]
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
         def prepare_request(next_link=None):
             if not next_link:
@@ -458,8 +448,6 @@ class StorageAccountsOperations(object):
             header_parameters['Accept'] = 'application/json'
             if self._config.generate_client_request_id:
                 header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-            if self._config.accept_language is not None:
-                header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
             # Construct and send request
             request = self._client.get(url, query_parameters, header_parameters)
@@ -474,7 +462,7 @@ class StorageAccountsOperations(object):
 
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response)
+                raise ARMError(response=response)
 
             return response
 
@@ -496,7 +484,7 @@ class StorageAccountsOperations(object):
         :return: An iterator like instance of StorageAccount
         :rtype:
          ~storage.models.StorageAccountPaged[~storage.models.StorageAccount]
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
         def prepare_request(next_link=None):
             if not next_link:
@@ -521,8 +509,6 @@ class StorageAccountsOperations(object):
             header_parameters['Accept'] = 'application/json'
             if self._config.generate_client_request_id:
                 header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-            if self._config.accept_language is not None:
-                header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
             # Construct and send request
             request = self._client.get(url, query_parameters, header_parameters)
@@ -537,7 +523,7 @@ class StorageAccountsOperations(object):
 
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response)
+                raise ARMError(response=response)
 
             return response
 
@@ -563,7 +549,7 @@ class StorageAccountsOperations(object):
          direct response
         :return: StorageAccountKeys or the result of cls(response)
         :rtype: ~storage.models.StorageAccountKeys
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
         error_map = kwargs.pop('error_map', None)
         regenerate_key1 = models.StorageAccountRegenerateKeyParameters(key_name=key_name)
@@ -587,8 +573,6 @@ class StorageAccountsOperations(object):
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
         if self._config.generate_client_request_id:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-        if self._config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
         # Construct body
         body_content = self._serialize.body(regenerate_key1, 'StorageAccountRegenerateKeyParameters')
@@ -600,7 +584,7 @@ class StorageAccountsOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            raise ARMError(response=response)
 
         deserialized = None
         if response.status_code == 200:

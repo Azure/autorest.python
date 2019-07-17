@@ -13,6 +13,14 @@ from msrest.serialization import Model
 from azure.core import HttpResponseError
 
 
+class CloudError(Model):
+    """CloudError.
+    """
+
+    _attribute_map = {
+    }
+
+
 class Error(Model):
     """Error.
 
@@ -83,14 +91,6 @@ class HeaderCustomNamedRequestIdParamGroupingParameters(Model):
     def __init__(self, **kwargs):
         super(HeaderCustomNamedRequestIdParamGroupingParameters, self).__init__(**kwargs)
         self.foo_client_request_id = kwargs.get('foo_client_request_id', None)
-
-
-class HttpResponseError(Model):
-    """HttpResponseError.
-    """
-
-    _attribute_map = {
-    }
 
 
 class OdataFilter(Model):

@@ -267,14 +267,23 @@ namespace AutoRest.Python.Azure
         /// <param name="codeModelient"></param>
         private static void AddAzureProperties(CodeModel codeModel)
         {
+            // Save acceptLanguage if it existed before
             var acceptLanguage = codeModel.Properties
                 .FirstOrDefault(p => AzureExtensions.AcceptLanguage.EqualsIgnoreCase(p.SerializedName));
 
+            // Add azure extension
             AzureExtensions.AddAzureProperties(codeModel);
+
+            // Remove extensions that we don't care in Python but autorest.common is registering anyway
             codeModel.Remove(codeModel.Properties.FirstOrDefault(p => p.Name == "long_running_operation_retry_timeout"));
             codeModel.Remove(codeModel.Properties.FirstOrDefault(p => p.Name == "generate_client_request_id"));
             codeModel.Remove(codeModel.Properties.FirstOrDefault(p => p.Name == "accept_language"));
 
+            codeModel.Methods
+                .Where(m => m.Parameters.Any(p => AzureExtensions.AcceptLanguage.EqualsIgnoreCase(p.SerializedName)))
+                .ForEach(m2 => m2.Remove(m2.Parameters.FirstOrDefault(p => AzureExtensions.AcceptLanguage.EqualsIgnoreCase(p.SerializedName))));
+
+            // Restore acceptLanguage if it existed before
             if (acceptLanguage != null) // && acceptLanguage.DefaultValue != "en-US"
             {
                 acceptLanguage.IsReadOnly = true;

@@ -10,9 +10,10 @@
 # --------------------------------------------------------------------------
 
 import uuid
-from azure.core.exceptions import HttpResponseError, map_error
+from azure.core.exceptions import map_error
+from azure.mgmt.core.exceptions import ARMError
 from azure.core.polling.async_poller import async_poller, AsyncNoPolling
-from msrestazure.polling.async_arm_polling import AsyncARMPolling
+from azure.mgmt.core.polling.async_arm_polling import AsyncARMPolling
 
 from ... import models
 
@@ -44,7 +45,7 @@ class PagingOperations:
 
         :return: An iterator like instance of Product
         :rtype: ~paging.models.ProductPaged[~paging.models.Product]
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
         def prepare_request(next_link=None):
             if not next_link:
@@ -63,8 +64,6 @@ class PagingOperations:
             header_parameters['Accept'] = 'application/json'
             if self._config.generate_client_request_id:
                 header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-            if self._config.accept_language is not None:
-                header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
             # Construct and send request
             request = self._client.get(url, query_parameters, header_parameters)
@@ -79,7 +78,7 @@ class PagingOperations:
 
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response)
+                raise ARMError(response=response)
 
             return response
 
@@ -92,7 +91,7 @@ class PagingOperations:
 
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response)
+                raise ARMError(response=response)
 
             return response
 
@@ -115,7 +114,7 @@ class PagingOperations:
          ~paging.models.PagingGetMultiplePagesOptions
         :return: An iterator like instance of Product
         :rtype: ~paging.models.ProductPaged[~paging.models.Product]
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
         maxresults = None
         if paging_get_multiple_pages_options is not None:
@@ -143,8 +142,6 @@ class PagingOperations:
                 header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
             if client_request_id is not None:
                 header_parameters['client-request-id'] = self._serialize.header("client_request_id", client_request_id, 'str')
-            if self._config.accept_language is not None:
-                header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
             if maxresults is not None:
                 header_parameters['maxresults'] = self._serialize.header("maxresults", maxresults, 'int')
             if timeout is not None:
@@ -163,7 +160,7 @@ class PagingOperations:
 
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response)
+                raise ARMError(response=response)
 
             return response
 
@@ -176,7 +173,7 @@ class PagingOperations:
 
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response)
+                raise ARMError(response=response)
 
             return response
 
@@ -200,7 +197,7 @@ class PagingOperations:
          ~paging.models.PagingGetOdataMultiplePagesOptions
         :return: An iterator like instance of Product
         :rtype: ~paging.models.ProductPaged1[~paging.models.Product]
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
         maxresults = None
         if paging_get_odata_multiple_pages_options is not None:
@@ -228,8 +225,6 @@ class PagingOperations:
                 header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
             if client_request_id is not None:
                 header_parameters['client-request-id'] = self._serialize.header("client_request_id", client_request_id, 'str')
-            if self._config.accept_language is not None:
-                header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
             if maxresults is not None:
                 header_parameters['maxresults'] = self._serialize.header("maxresults", maxresults, 'int')
             if timeout is not None:
@@ -248,7 +243,7 @@ class PagingOperations:
 
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response)
+                raise ARMError(response=response)
 
             return response
 
@@ -261,7 +256,7 @@ class PagingOperations:
 
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response)
+                raise ARMError(response=response)
 
             return response
 
@@ -284,7 +279,7 @@ class PagingOperations:
         :type client_request_id: str
         :return: An iterator like instance of Product
         :rtype: ~paging.models.ProductPaged[~paging.models.Product]
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
         maxresults = None
         if paging_get_multiple_pages_with_offset_options is not None:
@@ -319,8 +314,6 @@ class PagingOperations:
                 header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
             if client_request_id is not None:
                 header_parameters['client-request-id'] = self._serialize.header("client_request_id", client_request_id, 'str')
-            if self._config.accept_language is not None:
-                header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
             if maxresults is not None:
                 header_parameters['maxresults'] = self._serialize.header("maxresults", maxresults, 'int')
             if timeout is not None:
@@ -339,7 +332,7 @@ class PagingOperations:
 
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response)
+                raise ARMError(response=response)
 
             return response
 
@@ -352,7 +345,7 @@ class PagingOperations:
 
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response)
+                raise ARMError(response=response)
 
             return response
 
@@ -370,7 +363,7 @@ class PagingOperations:
 
         :return: An iterator like instance of Product
         :rtype: ~paging.models.ProductPaged[~paging.models.Product]
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
         def prepare_request(next_link=None):
             if not next_link:
@@ -389,8 +382,6 @@ class PagingOperations:
             header_parameters['Accept'] = 'application/json'
             if self._config.generate_client_request_id:
                 header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-            if self._config.accept_language is not None:
-                header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
             # Construct and send request
             request = self._client.get(url, query_parameters, header_parameters)
@@ -405,7 +396,7 @@ class PagingOperations:
 
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response)
+                raise ARMError(response=response)
 
             return response
 
@@ -418,7 +409,7 @@ class PagingOperations:
 
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response)
+                raise ARMError(response=response)
 
             return response
 
@@ -437,7 +428,7 @@ class PagingOperations:
 
         :return: An iterator like instance of Product
         :rtype: ~paging.models.ProductPaged[~paging.models.Product]
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
         def prepare_request(next_link=None):
             if not next_link:
@@ -456,8 +447,6 @@ class PagingOperations:
             header_parameters['Accept'] = 'application/json'
             if self._config.generate_client_request_id:
                 header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-            if self._config.accept_language is not None:
-                header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
             # Construct and send request
             request = self._client.get(url, query_parameters, header_parameters)
@@ -472,7 +461,7 @@ class PagingOperations:
 
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response)
+                raise ARMError(response=response)
 
             return response
 
@@ -485,7 +474,7 @@ class PagingOperations:
 
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response)
+                raise ARMError(response=response)
 
             return response
 
@@ -502,7 +491,7 @@ class PagingOperations:
 
         :return: An iterator like instance of Product
         :rtype: ~paging.models.ProductPaged[~paging.models.Product]
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
         def prepare_request(next_link=None):
             if not next_link:
@@ -521,8 +510,6 @@ class PagingOperations:
             header_parameters['Accept'] = 'application/json'
             if self._config.generate_client_request_id:
                 header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-            if self._config.accept_language is not None:
-                header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
             # Construct and send request
             request = self._client.get(url, query_parameters, header_parameters)
@@ -537,7 +524,7 @@ class PagingOperations:
 
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response)
+                raise ARMError(response=response)
 
             return response
 
@@ -550,7 +537,7 @@ class PagingOperations:
 
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response)
+                raise ARMError(response=response)
 
             return response
 
@@ -567,7 +554,7 @@ class PagingOperations:
 
         :return: An iterator like instance of Product
         :rtype: ~paging.models.ProductPaged[~paging.models.Product]
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
         def prepare_request(next_link=None):
             if not next_link:
@@ -586,8 +573,6 @@ class PagingOperations:
             header_parameters['Accept'] = 'application/json'
             if self._config.generate_client_request_id:
                 header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-            if self._config.accept_language is not None:
-                header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
             # Construct and send request
             request = self._client.get(url, query_parameters, header_parameters)
@@ -602,7 +587,7 @@ class PagingOperations:
 
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response)
+                raise ARMError(response=response)
 
             return response
 
@@ -615,7 +600,7 @@ class PagingOperations:
 
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response)
+                raise ARMError(response=response)
 
             return response
 
@@ -632,7 +617,7 @@ class PagingOperations:
 
         :return: An iterator like instance of Product
         :rtype: ~paging.models.ProductPaged[~paging.models.Product]
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
         def prepare_request(next_link=None):
             if not next_link:
@@ -651,8 +636,6 @@ class PagingOperations:
             header_parameters['Accept'] = 'application/json'
             if self._config.generate_client_request_id:
                 header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-            if self._config.accept_language is not None:
-                header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
             # Construct and send request
             request = self._client.get(url, query_parameters, header_parameters)
@@ -667,7 +650,7 @@ class PagingOperations:
 
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response)
+                raise ARMError(response=response)
 
             return response
 
@@ -680,7 +663,7 @@ class PagingOperations:
 
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response)
+                raise ARMError(response=response)
 
             return response
 
@@ -701,7 +684,7 @@ class PagingOperations:
         :type tenant: str
         :return: An iterator like instance of Product
         :rtype: ~paging.models.ProductPaged1[~paging.models.Product]
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
         def prepare_request(next_link=None):
             if not next_link:
@@ -731,8 +714,6 @@ class PagingOperations:
             header_parameters['Accept'] = 'application/json'
             if self._config.generate_client_request_id:
                 header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-            if self._config.accept_language is not None:
-                header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
             # Construct and send request
             request = self._client.get(url, query_parameters, header_parameters)
@@ -747,7 +728,7 @@ class PagingOperations:
 
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response)
+                raise ARMError(response=response)
 
             return response
 
@@ -760,7 +741,7 @@ class PagingOperations:
 
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response)
+                raise ARMError(response=response)
 
             return response
 
@@ -780,7 +761,7 @@ class PagingOperations:
         :type custom_parameter_group: ~paging.models.CustomParameterGroup
         :return: An iterator like instance of Product
         :rtype: ~paging.models.ProductPaged1[~paging.models.Product]
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
         api_version = None
         if custom_parameter_group is not None:
@@ -817,8 +798,6 @@ class PagingOperations:
             header_parameters['Accept'] = 'application/json'
             if self._config.generate_client_request_id:
                 header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
-            if self._config.accept_language is not None:
-                header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
 
             # Construct and send request
             request = self._client.get(url, query_parameters, header_parameters)
@@ -833,7 +812,7 @@ class PagingOperations:
 
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response)
+                raise ARMError(response=response)
 
             return response
 
@@ -846,7 +825,7 @@ class PagingOperations:
 
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response)
+                raise ARMError(response=response)
 
             return response
 
@@ -881,8 +860,6 @@ class PagingOperations:
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
         if client_request_id is not None:
             header_parameters['client-request-id'] = self._serialize.header("client_request_id", client_request_id, 'str')
-        if self._config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self._config.accept_language", self._config.accept_language, 'str')
         if maxresults is not None:
             header_parameters['maxresults'] = self._serialize.header("maxresults", maxresults, 'int')
         if timeout is not None:
@@ -890,19 +867,18 @@ class PagingOperations:
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            raise ARMError(response=response)
 
-        deserialized = None
 
         if response.status_code == 202:
-            deserialized = self._deserialize('ProductResult', response)
+            self._deserialize('ProductResult', response)
 
-        return deserialized
+        return response
 
     async def get_multiple_pages_lro(
             self, client_request_id=None, paging_get_multiple_pages_lro_options=None, *, cls=None, polling=True, **kwargs):
@@ -915,11 +891,13 @@ class PagingOperations:
          for the operation
         :type paging_get_multiple_pages_lro_options:
          ~paging.models.PagingGetMultiplePagesLroOptions
+        :param callable cls: A custom type or function that will be passed the
+         direct response
         :param polling: True for AsyncARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of ProductResult
         :rtype: ~~paging.models.ProductResult
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
         raw_result = await self._get_multiple_pages_lro_initial(
             client_request_id=client_request_id,
@@ -933,10 +911,10 @@ class PagingOperations:
             return deserialized
 
         lro_delay = kwargs.get(
-            'long_running_operation_timeout',
-            self._config.long_running_operation_timeout)
+            'polling_interval ',
+            self._config.polling_interval)
         if polling is True: polling_method = AsyncARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     get_multiple_pages_lro.metadata = {'url': '/paging/multiple/lro'}

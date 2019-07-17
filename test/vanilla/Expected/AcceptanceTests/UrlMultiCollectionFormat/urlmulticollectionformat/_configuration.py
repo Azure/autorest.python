@@ -28,9 +28,8 @@ class AutoRestUrlMutliCollectionFormatTestServiceConfiguration(Configuration):
         super(AutoRestUrlMutliCollectionFormatTestServiceConfiguration, self).__init__(**kwargs)
         self._configure(**kwargs)
 
-        self.user_agent_policy.add_user_agent('autoresturlmutlicollectionformattestservice/{}'.format(VERSION))
+        self.user_agent_policy.add_user_agent('azsdk-python-autoresturlmutlicollectionformattestservice/{}'.format(VERSION))
         self.generate_client_request_id = True
-        self.accept_language = None
 
     def _configure(self, **kwargs):
         self.connection = ConnectionConfiguration(**kwargs)

@@ -19,10 +19,10 @@
   "files.associations": {
     "*.iced": "coffeescript"
   },
-  "python.unitTest.pyTestArgs": [
+  "python.testing.pytestArgs": [
     "test"
   ],
-  "python.unitTest.pyTestEnabled": true,
+  "python.testing.pytestEnabled": true,
   "files.exclude": {
     "**/.git": true,
     "**/.svn": true,
