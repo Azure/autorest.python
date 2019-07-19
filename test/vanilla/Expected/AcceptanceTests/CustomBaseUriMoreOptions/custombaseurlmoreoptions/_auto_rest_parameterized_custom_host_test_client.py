@@ -32,10 +32,10 @@ class AutoRestParameterizedCustomHostTestClient(object):
     :type dns_suffix: str
     """
 
-    def __init__(self, subscription_id, dns_suffix, config=None, **kwargs):
+    def __init__(self, subscription_id, dns_suffix, **kwargs):
 
         base_url = '{vault}{secret}{dnsSuffix}'
-        self._config = config or AutoRestParameterizedCustomHostTestClientConfiguration(subscription_id, dns_suffix, **kwargs)
+        self._config = AutoRestParameterizedCustomHostTestClientConfiguration(subscription_id, dns_suffix, **kwargs)
         self._client = PipelineClient(base_url=base_url, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}

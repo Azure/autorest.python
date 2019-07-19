@@ -89,7 +89,6 @@ async def client():
     """Create a AutoRestLongRunningOperationTestService client with test server credentials."""
     cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
     async with AutoRestLongRunningOperationTestService(cred, base_url="http://localhost:3000") as client:
-        client._config.polling_interval = 0 # In theory pointless, since we use AutorestTestARMPolling
         yield client
 
 

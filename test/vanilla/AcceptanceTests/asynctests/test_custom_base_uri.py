@@ -46,7 +46,7 @@ from msrest.exceptions import (
 
 from azure.core.exceptions import ServiceRequestError
 
-from custombaseurl.aio import AutoRestParameterizedHostTestClient, AutoRestParameterizedHostTestClientConfiguration
+from custombaseurl.aio import AutoRestParameterizedHostTestClient
 from custombaseurl.models import Error, ErrorException
 from custombaseurlmoreoptions.aio import AutoRestParameterizedCustomHostTestClient
 
@@ -61,20 +61,17 @@ class TestCustomBaseUri(object):
 
     @pytest.mark.asyncio
     async def test_custom_base_uri_negative(self):
-        config = AutoRestParameterizedHostTestClientConfiguration("host:3000")
-        config.retry_policy.total_retries = 0
-        client = AutoRestParameterizedHostTestClient("host:3000", config=config)
+        async with AutoRestParameterizedHostTestClient("host:3000", retry_total = 0) as client:
 
-        with pytest.raises(ServiceRequestError):
-            await client.paths.get_empty("bad")
+            with pytest.raises(ServiceRequestError):
+                await client.paths.get_empty("bad")
 
-        with pytest.raises(ValidationError):
-            await client.paths.get_empty(None)
+            with pytest.raises(ValidationError):
+                await client.paths.get_empty(None)
 
-        config.host = "badhost:3000"
-        client = AutoRestParameterizedHostTestClient("host:3000", config=config)
-        with pytest.raises(ServiceRequestError):
-            await client.paths.get_empty("local")
+        async with AutoRestParameterizedHostTestClient("badhost:3000", retry_total = 0) as client:
+            with pytest.raises(ServiceRequestError):
+                await client.paths.get_empty("local")
 
     @pytest.mark.asyncio
     async def test_custom_base_uri_more_optiopns(self):

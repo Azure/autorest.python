@@ -9,9 +9,8 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from ._configuration import AdditionalPropertiesClientConfiguration
 from ._additional_properties_client import AdditionalPropertiesClient
-__all__ = ['AdditionalPropertiesClient', 'AdditionalPropertiesClientConfiguration']
+__all__ = ['AdditionalPropertiesClient']
 
 from .version import VERSION
 

@@ -10,5 +10,4 @@
 # --------------------------------------------------------------------------
 
 from ._storage_management_client_async import StorageManagementClient
-from ._configuration_async import StorageManagementClientConfiguration
-__all__ = ['StorageManagementClient', 'StorageManagementClientConfiguration']
+__all__ = ['StorageManagementClient']

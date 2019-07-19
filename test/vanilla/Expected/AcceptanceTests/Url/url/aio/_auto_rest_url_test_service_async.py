@@ -40,11 +40,11 @@ class AutoRestUrlTestService(object):
     """
 
     def __init__(
-            self, global_string_path, global_string_query=None, base_url=None, config=None, **kwargs):
+            self, global_string_path, global_string_query=None, base_url=None, **kwargs):
 
         if not base_url:
             base_url = 'http://localhost:3000'
-        self._config = config or AutoRestUrlTestServiceConfiguration(global_string_path, global_string_query, **kwargs)
+        self._config = AutoRestUrlTestServiceConfiguration(global_string_path, global_string_query, **kwargs)
         self._client = AsyncPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}

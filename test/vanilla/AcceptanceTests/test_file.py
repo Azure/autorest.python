@@ -42,7 +42,7 @@ sys.path.append(join(tests, "BodyFile"))
 
 from msrest.exceptions import DeserializationError
 
-from bodyfile import AutoRestSwaggerBATFileService, AutoRestSwaggerBATFileServiceConfiguration
+from bodyfile import AutoRestSwaggerBATFileService
 from bodyfile.models import ErrorException
 
 import pytest
@@ -56,9 +56,7 @@ class TestFile(object):
 
     def test_files(self):
 
-        config = AutoRestSwaggerBATFileServiceConfiguration()
-        config.connection.data_block_size = 1000
-        with AutoRestSwaggerBATFileService(base_url="http://localhost:3000", config=config) as client:
+        with AutoRestSwaggerBATFileService(base_url="http://localhost:3000", connection_data_block_size = 1000) as client:
 
             file_length = 0
             with io.BytesIO() as file_handle:
@@ -82,9 +80,7 @@ class TestFile(object):
                     sample_data = hash(data.read())
                 assert sample_data ==  hash(file_handle.getvalue())
 
-        config = AutoRestSwaggerBATFileServiceConfiguration()
-        config.connection.data_block_size = 4096
-        with AutoRestSwaggerBATFileService(base_url="http://localhost:3000", config=config) as client:
+        with AutoRestSwaggerBATFileService(base_url="http://localhost:3000", connection_data_block_size = 4096) as client:
             file_length = 0
             with io.BytesIO() as file_handle:
                 stream = client.files.get_empty_file()
@@ -99,9 +95,7 @@ class TestFile(object):
 
     def test_files_long_running(self):
         pytest.skip("slow")
-        config = AutoRestSwaggerBATFileServiceConfiguration()
-        config.connection.data_block_size = 4096
-        with AutoRestSwaggerBATFileService(base_url="http://localhost:3000", config=config) as client:
+        with AutoRestSwaggerBATFileService(base_url="http://localhost:3000", connection_data_block_size = 4096) as client:
             file_length = 0
             stream = client.files.get_file_large()
             for data in stream:
