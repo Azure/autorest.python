@@ -45,14 +45,14 @@ from msrest.authentication import BasicTokenAuthentication
 
 from azure.core.exceptions import DecodeError
 from azure.core.polling import LROPoller
-from azure.core.pipeline.policies import ContentDecodePolicy
+from azure.core.pipeline.policies import ContentDecodePolicy, RetryPolicy, HeadersPolicy
 from azure.core.pipeline.transport import RequestsTransport
 from azure.core.pipeline import Pipeline
 
 from azure.mgmt.core.polling.arm_polling import ARMPolling
 from azure.mgmt.core.exceptions import ARMError
 
-from lro import AutoRestLongRunningOperationTestService, AutoRestLongRunningOperationTestServiceConfiguration
+from lro import AutoRestLongRunningOperationTestService
 from lro.models import *  # pylint: disable=W0614
 
 
@@ -91,22 +91,14 @@ class AutorestTestARMPolling(ARMPolling):
 def client(cookie_policy):
     """Create a AutoRestLongRunningOperationTestService client with test server credentials."""
     cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
-    config = AutoRestLongRunningOperationTestServiceConfiguration(cred)
     policies = [
-        config.headers_policy,
-        config.user_agent_policy,
-        config.authentication_policy,
+        HeadersPolicy(),
         ContentDecodePolicy(),
-        config.redirect_policy,
-        config.retry_policy,
-        config.custom_hook_policy,
-        config.logging_policy,
+        RetryPolicy(),
         cookie_policy
     ]
-    transport = RequestsTransport(config)
-    pipeline = Pipeline(transport, policies)
 
-    with AutoRestLongRunningOperationTestService(cred, base_url="http://localhost:3000", pipeline=pipeline) as client:
+    with AutoRestLongRunningOperationTestService(cred, base_url="http://localhost:3000", policies=policies) as client:
         yield client
 
 
