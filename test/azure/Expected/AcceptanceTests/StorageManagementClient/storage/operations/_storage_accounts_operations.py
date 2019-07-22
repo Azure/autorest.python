@@ -427,6 +427,7 @@ class StorageAccountsOperations(object):
         :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
         def prepare_request(next_link=None):
+            query_parameters = {}
             if not next_link:
                 # Construct URL
                 url = self.list.metadata['url']
@@ -434,14 +435,10 @@ class StorageAccountsOperations(object):
                     'subscriptionId': self._serialize.url("self._config.subscription_id", self._config.subscription_id, 'str')
                 }
                 url = self._client.format_url(url, **path_format_arguments)
-
-                # Construct parameters
-                query_parameters = {}
                 query_parameters['api-version'] = self._serialize.query("self.api_version", self.api_version, 'str')
 
             else:
                 url = next_link
-                query_parameters = {}
 
             # Construct headers
             header_parameters = {}
@@ -467,15 +464,12 @@ class StorageAccountsOperations(object):
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise ARMError(response=response)
-
             return response
 
         # Deserialize response
-        pager = ItemPaged(
+        return ItemPaged(
             get_next, extract_data
         )
-
-        return pager
     list.metadata = {'url': '/subscriptions/{subscriptionId}/providers/Microsoft.Storage/storageAccounts'}
 
     def list_by_resource_group(
@@ -492,6 +486,7 @@ class StorageAccountsOperations(object):
         :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
         def prepare_request(next_link=None):
+            query_parameters = {}
             if not next_link:
                 # Construct URL
                 url = self.list_by_resource_group.metadata['url']
@@ -500,14 +495,10 @@ class StorageAccountsOperations(object):
                     'subscriptionId': self._serialize.url("self._config.subscription_id", self._config.subscription_id, 'str')
                 }
                 url = self._client.format_url(url, **path_format_arguments)
-
-                # Construct parameters
-                query_parameters = {}
                 query_parameters['api-version'] = self._serialize.query("self.api_version", self.api_version, 'str')
 
             else:
                 url = next_link
-                query_parameters = {}
 
             # Construct headers
             header_parameters = {}
@@ -533,15 +524,12 @@ class StorageAccountsOperations(object):
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise ARMError(response=response)
-
             return response
 
         # Deserialize response
-        pager = ItemPaged(
+        return ItemPaged(
             get_next, extract_data
         )
-
-        return pager
     list_by_resource_group.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts'}
 
     def regenerate_key(self, resource_group_name, account_name, key_name=None, cls=None, **kwargs):

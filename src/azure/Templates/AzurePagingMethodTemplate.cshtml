@@ -52,13 +52,11 @@ else
 @EmptyLine
 }
         def prepare_request(next_link=None):
+            query_parameters = {}
             if not next_link:
                 # Construct URL
                 url = self.@(((string)Model.Name).ToPythonCase()).metadata['url']
                 @(Model.BuildUrlPath("url", Model.LogicalParameters))
-@EmptyLine
-                # Construct parameters
-                query_parameters = {}
                 @(Model.BuildUrlQuery("query_parameters", Model.LogicalParameters))
 @EmptyLine
             else:
@@ -71,7 +69,6 @@ else
                 @:url = next_link
 }
                 @(Model.BuildUrlPath("url", Model.PagingParameters))
-                query_parameters = {}
                 @(Model.BuildUrlQuery("query_parameters", Model.PagingParameters))
 @EmptyLine
             # Construct headers
@@ -141,22 +138,19 @@ else
             error_map = kwargs.pop('error_map', None)
             if @Model.FailureStatusCodePredicate:
                 @Model.RaisedException
-@EmptyLine
             return response
 @EmptyLine
         # Deserialize response
 @if(!AsyncMode)
 {
-        @:pager = ItemPaged(
+        @:return ItemPaged(
             @:get_next, extract_data
         @:)
 }
 else
 {
-        @:pager = AsyncItemPaged(
+        @:return AsyncItemPaged(
             @:get_next_async, extract_data_async
         @:)
 }
-@EmptyLine
-        return pager
     @(methodName).metadata = {'url': '@(Model.Url)'}
