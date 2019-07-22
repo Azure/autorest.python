@@ -45,7 +45,8 @@ class PagingOperations:
         """A paging operation that finishes on the first call without a nextlink.
 
         :return: An iterator like instance of Product
-        :rtype: ~paging.models.ProductResult[~paging.models.Product]
+        :rtype:
+         ~azure.core.async_paging.AsyncItemPaged[~paging.models.Product]
         :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
         def prepare_request(next_link=None):
@@ -106,7 +107,8 @@ class PagingOperations:
         :type paging_get_multiple_pages_options:
          ~paging.models.PagingGetMultiplePagesOptions
         :return: An iterator like instance of Product
-        :rtype: ~paging.models.ProductResult[~paging.models.Product]
+        :rtype:
+         ~azure.core.async_paging.AsyncItemPaged[~paging.models.Product]
         :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
         maxresults = None
@@ -181,7 +183,8 @@ class PagingOperations:
         :type paging_get_odata_multiple_pages_options:
          ~paging.models.PagingGetOdataMultiplePagesOptions
         :return: An iterator like instance of Product
-        :rtype: ~paging.models.OdataProductResult[~paging.models.Product]
+        :rtype:
+         ~azure.core.async_paging.AsyncItemPaged[~paging.models.Product]
         :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
         maxresults = None
@@ -255,7 +258,8 @@ class PagingOperations:
         :param client_request_id:
         :type client_request_id: str
         :return: An iterator like instance of Product
-        :rtype: ~paging.models.ProductResult[~paging.models.Product]
+        :rtype:
+         ~azure.core.async_paging.AsyncItemPaged[~paging.models.Product]
         :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
         maxresults = None
@@ -331,7 +335,8 @@ class PagingOperations:
         retries and then get a response including a nextLink that has 10 pages.
 
         :return: An iterator like instance of Product
-        :rtype: ~paging.models.ProductResult[~paging.models.Product]
+        :rtype:
+         ~azure.core.async_paging.AsyncItemPaged[~paging.models.Product]
         :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
         def prepare_request(next_link=None):
@@ -388,7 +393,8 @@ class PagingOperations:
         all 10 pages eventually.
 
         :return: An iterator like instance of Product
-        :rtype: ~paging.models.ProductResult[~paging.models.Product]
+        :rtype:
+         ~azure.core.async_paging.AsyncItemPaged[~paging.models.Product]
         :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
         def prepare_request(next_link=None):
@@ -443,7 +449,8 @@ class PagingOperations:
         """A paging operation that receives a 400 on the first call.
 
         :return: An iterator like instance of Product
-        :rtype: ~paging.models.ProductResult[~paging.models.Product]
+        :rtype:
+         ~azure.core.async_paging.AsyncItemPaged[~paging.models.Product]
         :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
         def prepare_request(next_link=None):
@@ -498,7 +505,8 @@ class PagingOperations:
         """A paging operation that receives a 400 on the second call.
 
         :return: An iterator like instance of Product
-        :rtype: ~paging.models.ProductResult[~paging.models.Product]
+        :rtype:
+         ~azure.core.async_paging.AsyncItemPaged[~paging.models.Product]
         :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
         def prepare_request(next_link=None):
@@ -553,7 +561,8 @@ class PagingOperations:
         """A paging operation that receives an invalid nextLink.
 
         :return: An iterator like instance of Product
-        :rtype: ~paging.models.ProductResult[~paging.models.Product]
+        :rtype:
+         ~azure.core.async_paging.AsyncItemPaged[~paging.models.Product]
         :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
         def prepare_request(next_link=None):
@@ -612,7 +621,8 @@ class PagingOperations:
         :param tenant: Sets the tenant to use.
         :type tenant: str
         :return: An iterator like instance of Product
-        :rtype: ~paging.models.OdataProductResult[~paging.models.Product]
+        :rtype:
+         ~azure.core.async_paging.AsyncItemPaged[~paging.models.Product]
         :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
         def prepare_request(next_link=None):
@@ -681,7 +691,8 @@ class PagingOperations:
         :param custom_parameter_group: Additional parameters for the operation
         :type custom_parameter_group: ~paging.models.CustomParameterGroup
         :return: An iterator like instance of Product
-        :rtype: ~paging.models.OdataProductResult[~paging.models.Product]
+        :rtype:
+         ~azure.core.async_paging.AsyncItemPaged[~paging.models.Product]
         :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
         api_version = None

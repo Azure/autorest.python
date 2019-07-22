@@ -423,8 +423,7 @@ class StorageAccountsOperations(object):
         this.
 
         :return: An iterator like instance of StorageAccount
-        :rtype:
-         ~storage.models.StorageAccountListResult[~storage.models.StorageAccount]
+        :rtype: ~azure.core.paging.ItemPaged[~storage.models.StorageAccount]
         :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
         def prepare_request(next_link=None):
@@ -489,8 +488,7 @@ class StorageAccountsOperations(object):
          user’s subscription.
         :type resource_group_name: str
         :return: An iterator like instance of StorageAccount
-        :rtype:
-         ~storage.models.StorageAccountListResult[~storage.models.StorageAccount]
+        :rtype: ~azure.core.paging.ItemPaged[~storage.models.StorageAccount]
         :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
         def prepare_request(next_link=None):

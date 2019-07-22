@@ -24,7 +24,14 @@ string methodName = Model.Name.ToPythonCase();
 @:        @ParameterWrapComment(string.Empty, ":type " + parameter.Name + ": " + Model.GetDocumentationType(parameter.ModelType))
 }
         @ParameterWrapComment(string.Empty, ":return: An iterator like instance of " + Model.GetDocumentationTypeName(Model.PagedMetadata.ItemType))
-        @ParameterWrapComment(string.Empty, string.Format(":rtype: {0}[{1}]", Model.GetReturnTypeDocumentation(Model.ReturnType.Body), Model.GetReturnTypeDocumentation(Model.PagedMetadata.ItemType)))
+@if (!AsyncMode)
+{
+@:        @ParameterWrapComment(string.Empty, string.Format(":rtype: ~azure.core.paging.ItemPaged[{0}]", Model.GetReturnTypeDocumentation(Model.PagedMetadata.ItemType)))
+}
+else
+{
+@:        @ParameterWrapComment(string.Empty, string.Format(":rtype: ~azure.core.async_paging.AsyncItemPaged[{0}]", Model.GetReturnTypeDocumentation(Model.PagedMetadata.ItemType)))
+}
         @ParameterWrapComment(string.Empty, string.Format(":raises: {0}", Model.ExceptionDocumentation))
         """
 @if (Model.Deprecated)
