@@ -380,6 +380,27 @@ class StorageAccountKeys(Model):
         self.key2 = key2
 
 
+class StorageAccountListResult(Model):
+    """The list storage accounts operation response.
+
+    :param value: Gets the list of storage accounts and their properties.
+    :type value: list[~storage.models.StorageAccount]
+    :param next_link: Gets the link to the next set of results. Currently this
+     will always be empty as the API does not support pagination.
+    :type next_link: str
+    """
+
+    _attribute_map = {
+        'value': {'key': 'value', 'type': '[StorageAccount]'},
+        'next_link': {'key': 'nextLink', 'type': 'str'},
+    }
+
+    def __init__(self, *, value=None, next_link: str=None, **kwargs) -> None:
+        super(StorageAccountListResult, self).__init__(**kwargs)
+        self.value = value
+        self.next_link = next_link
+
+
 class StorageAccountRegenerateKeyParameters(Model):
     """StorageAccountRegenerateKeyParameters.
 

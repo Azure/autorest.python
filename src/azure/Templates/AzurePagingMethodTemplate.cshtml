@@ -23,8 +23,8 @@ string methodName = Model.Name.ToPythonCase();
 @:        @ParameterWrapComment(string.Empty, MethodPy.GetParameterDocumentationString(parameter))
 @:        @ParameterWrapComment(string.Empty, ":type " + parameter.Name + ": " + Model.GetDocumentationType(parameter.ModelType))
 }
-        @ParameterWrapComment(string.Empty, ":return: An iterator like instance of " + Model.GetDocumentationTypeName(Model.PagedResponseContentClass))
-        @ParameterWrapComment(string.Empty, string.Format(":rtype: {0}[{1}]", Model.GetReturnTypeDocumentation(Model.ReturnType.Body), Model.GetReturnTypeDocumentation(Model.PagedResponseContentClass)))
+        @ParameterWrapComment(string.Empty, ":return: An iterator like instance of " + Model.GetDocumentationTypeName(Model.PagedMetadata.ItemType))
+        @ParameterWrapComment(string.Empty, string.Format(":rtype: {0}[{1}]", Model.GetReturnTypeDocumentation(Model.ReturnType.Body), Model.GetReturnTypeDocumentation(Model.PagedMetadata.ItemType)))
         @ParameterWrapComment(string.Empty, string.Format(":raises: {0}", Model.ExceptionDocumentation))
         """
 @if (Model.Deprecated)
@@ -107,43 +107,49 @@ else
 }
             return request
 @EmptyLine
-        def internal_paging(next_link=None):
-            error_map = kwargs.pop('error_map', None)
-            request = prepare_request(next_link)
+@if(!AsyncMode)
+{
+@:        def extract_data(response):
+@:            deserialized = self._deserialize('@(Model.PagedResponseClass.Name)', response)
+@:            return deserialized.@(Model.PagedMetadata.NextLinkProp.Name), iter(deserialized.@(Model.PagedMetadata.ItemProp.Name))
 @EmptyLine
-            pipeline_response = self._client._pipeline.run(request)
+@:        def get_next(next_link=None):
+@:            request = prepare_request(next_link)
+@EmptyLine
+@:            pipeline_response = self._client._pipeline.run(request)
+}
+else
+{
+@:        async def extract_data_async(response):
+@:            deserialized = self._deserialize('@(Model.PagedResponseClass.Name)', response)
+@:            return deserialized.@(Model.PagedMetadata.NextLinkProp.Name), AsyncList(deserialized.@(Model.PagedMetadata.ItemProp.Name))
+@EmptyLine
+@:        async def get_next_async(next_link=None):
+@:            request = prepare_request(next_link)
+@EmptyLine
+            @:pipeline_response = await self._client._pipeline.run(request)
+}
             response = pipeline_response.http_response
 @EmptyLine
+            error_map = kwargs.pop('error_map', None)
             if @Model.FailureStatusCodePredicate:
                 @Model.RaisedException
 @EmptyLine
             return response
 @EmptyLine
-@if(AsyncMode)
-{
-@:        async def internal_paging_async(next_link=None):
-@:            error_map = kwargs.pop('error_map', None)
-@:            request = prepare_request(next_link)
-@EmptyLine
-            @:pipeline_response = await self._client._pipeline.run(request)
-            @:response = pipeline_response.http_response
-@EmptyLine
-@:            if @Model.FailureStatusCodePredicate:
-@:                @Model.RaisedException
-@EmptyLine
-@:            return response
-@EmptyLine
-}
         # Deserialize response
-@if(AsyncMode)
+@if(!AsyncMode)
 {
-        @:deserialized = models.@(Model.PagedResponseClass.Name)(
-            @:internal_paging, self._deserialize, async_command=internal_paging_async)
+        @:pager = ItemPaged(
+            @:get_next, extract_data
+        @:)
 }
 else
 {
-        @:deserialized = models.@(Model.PagedResponseClass.Name)(internal_paging, self._deserialize)
+        @:pager = AsyncItemPaged(
+            @:get_next_async, extract_data_async
+        @:)
 }
 @EmptyLine
-        return deserialized
+        return pager
     @(methodName).metadata = {'url': '@(Model.Url)'}

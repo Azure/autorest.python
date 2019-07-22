@@ -20,6 +20,7 @@ try:
     from ._models_py3 import StorageAccountCheckNameAvailabilityParameters
     from ._models_py3 import StorageAccountCreateParameters
     from ._models_py3 import StorageAccountKeys
+    from ._models_py3 import StorageAccountListResult
     from ._models_py3 import StorageAccountRegenerateKeyParameters
     from ._models_py3 import StorageAccountUpdateParameters
     from ._models_py3 import SubResource
@@ -37,13 +38,13 @@ except (SyntaxError, ImportError):
     from ._models import StorageAccountCheckNameAvailabilityParameters
     from ._models import StorageAccountCreateParameters
     from ._models import StorageAccountKeys
+    from ._models import StorageAccountListResult
     from ._models import StorageAccountRegenerateKeyParameters
     from ._models import StorageAccountUpdateParameters
     from ._models import SubResource
     from ._models import Usage
     from ._models import UsageListResult
     from ._models import UsageName
-from ._paged_models import StorageAccountPaged
 from ._storage_management_client_enums import (
     Reason,
     AccountType,
@@ -64,13 +65,13 @@ __all__ = [
     'StorageAccountCheckNameAvailabilityParameters',
     'StorageAccountCreateParameters',
     'StorageAccountKeys',
+    'StorageAccountListResult',
     'StorageAccountRegenerateKeyParameters',
     'StorageAccountUpdateParameters',
     'SubResource',
     'Usage',
     'UsageListResult',
     'UsageName',
-    'StorageAccountPaged',
     'Reason',
     'AccountType',
     'ProvisioningState',

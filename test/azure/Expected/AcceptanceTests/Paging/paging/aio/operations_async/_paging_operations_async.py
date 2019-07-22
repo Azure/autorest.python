@@ -12,6 +12,7 @@
 import uuid
 from azure.core.exceptions import map_error
 from azure.mgmt.core.exceptions import ARMError
+from azure.core.async_paging import AsyncItemPaged, AsyncList
 from azure.core.polling.async_poller import async_poller, AsyncNoPolling
 from azure.mgmt.core.polling.async_arm_polling import AsyncARMPolling
 
@@ -44,7 +45,7 @@ class PagingOperations:
         """A paging operation that finishes on the first call without a nextlink.
 
         :return: An iterator like instance of Product
-        :rtype: ~paging.models.ProductPaged[~paging.models.Product]
+        :rtype: ~paging.models.ProductResult[~paging.models.Product]
         :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
         def prepare_request(next_link=None):
@@ -69,26 +70,17 @@ class PagingOperations:
             request = self._client.get(url, query_parameters, header_parameters)
             return request
 
-        def internal_paging(next_link=None):
-            error_map = kwargs.pop('error_map', None)
-            request = prepare_request(next_link)
+        async def extract_data_async(response):
+            deserialized = self._deserialize('ProductResult', response)
+            return deserialized.next_link, AsyncList(deserialized.values)
 
-            pipeline_response = self._client._pipeline.run(request)
-            response = pipeline_response.http_response
-
-            if response.status_code not in [200]:
-                map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise ARMError(response=response)
-
-            return response
-
-        async def internal_paging_async(next_link=None):
-            error_map = kwargs.pop('error_map', None)
+        async def get_next_async(next_link=None):
             request = prepare_request(next_link)
 
             pipeline_response = await self._client._pipeline.run(request)
             response = pipeline_response.http_response
 
+            error_map = kwargs.pop('error_map', None)
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise ARMError(response=response)
@@ -96,10 +88,11 @@ class PagingOperations:
             return response
 
         # Deserialize response
-        deserialized = models.ProductPaged(
-            internal_paging, self._deserialize, async_command=internal_paging_async)
+        pager = AsyncItemPaged(
+            get_next_async, extract_data_async
+        )
 
-        return deserialized
+        return pager
     get_single_pages.metadata = {'url': '/paging/single'}
 
     def get_multiple_pages(
@@ -113,7 +106,7 @@ class PagingOperations:
         :type paging_get_multiple_pages_options:
          ~paging.models.PagingGetMultiplePagesOptions
         :return: An iterator like instance of Product
-        :rtype: ~paging.models.ProductPaged[~paging.models.Product]
+        :rtype: ~paging.models.ProductResult[~paging.models.Product]
         :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
         maxresults = None
@@ -151,26 +144,17 @@ class PagingOperations:
             request = self._client.get(url, query_parameters, header_parameters)
             return request
 
-        def internal_paging(next_link=None):
-            error_map = kwargs.pop('error_map', None)
-            request = prepare_request(next_link)
+        async def extract_data_async(response):
+            deserialized = self._deserialize('ProductResult', response)
+            return deserialized.next_link, AsyncList(deserialized.values)
 
-            pipeline_response = self._client._pipeline.run(request)
-            response = pipeline_response.http_response
-
-            if response.status_code not in [200]:
-                map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise ARMError(response=response)
-
-            return response
-
-        async def internal_paging_async(next_link=None):
-            error_map = kwargs.pop('error_map', None)
+        async def get_next_async(next_link=None):
             request = prepare_request(next_link)
 
             pipeline_response = await self._client._pipeline.run(request)
             response = pipeline_response.http_response
 
+            error_map = kwargs.pop('error_map', None)
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise ARMError(response=response)
@@ -178,10 +162,11 @@ class PagingOperations:
             return response
 
         # Deserialize response
-        deserialized = models.ProductPaged(
-            internal_paging, self._deserialize, async_command=internal_paging_async)
+        pager = AsyncItemPaged(
+            get_next_async, extract_data_async
+        )
 
-        return deserialized
+        return pager
     get_multiple_pages.metadata = {'url': '/paging/multiple'}
 
     def get_odata_multiple_pages(
@@ -196,7 +181,7 @@ class PagingOperations:
         :type paging_get_odata_multiple_pages_options:
          ~paging.models.PagingGetOdataMultiplePagesOptions
         :return: An iterator like instance of Product
-        :rtype: ~paging.models.ProductPaged1[~paging.models.Product]
+        :rtype: ~paging.models.OdataProductResult[~paging.models.Product]
         :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
         maxresults = None
@@ -234,26 +219,17 @@ class PagingOperations:
             request = self._client.get(url, query_parameters, header_parameters)
             return request
 
-        def internal_paging(next_link=None):
-            error_map = kwargs.pop('error_map', None)
-            request = prepare_request(next_link)
+        async def extract_data_async(response):
+            deserialized = self._deserialize('OdataProductResult', response)
+            return deserialized.odatanext_link, AsyncList(deserialized.values)
 
-            pipeline_response = self._client._pipeline.run(request)
-            response = pipeline_response.http_response
-
-            if response.status_code not in [200]:
-                map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise ARMError(response=response)
-
-            return response
-
-        async def internal_paging_async(next_link=None):
-            error_map = kwargs.pop('error_map', None)
+        async def get_next_async(next_link=None):
             request = prepare_request(next_link)
 
             pipeline_response = await self._client._pipeline.run(request)
             response = pipeline_response.http_response
 
+            error_map = kwargs.pop('error_map', None)
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise ARMError(response=response)
@@ -261,10 +237,11 @@ class PagingOperations:
             return response
 
         # Deserialize response
-        deserialized = models.ProductPaged1(
-            internal_paging, self._deserialize, async_command=internal_paging_async)
+        pager = AsyncItemPaged(
+            get_next_async, extract_data_async
+        )
 
-        return deserialized
+        return pager
     get_odata_multiple_pages.metadata = {'url': '/paging/multiple/odata'}
 
     def get_multiple_pages_with_offset(
@@ -278,7 +255,7 @@ class PagingOperations:
         :param client_request_id:
         :type client_request_id: str
         :return: An iterator like instance of Product
-        :rtype: ~paging.models.ProductPaged[~paging.models.Product]
+        :rtype: ~paging.models.ProductResult[~paging.models.Product]
         :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
         maxresults = None
@@ -323,26 +300,17 @@ class PagingOperations:
             request = self._client.get(url, query_parameters, header_parameters)
             return request
 
-        def internal_paging(next_link=None):
-            error_map = kwargs.pop('error_map', None)
-            request = prepare_request(next_link)
+        async def extract_data_async(response):
+            deserialized = self._deserialize('ProductResult', response)
+            return deserialized.next_link, AsyncList(deserialized.values)
 
-            pipeline_response = self._client._pipeline.run(request)
-            response = pipeline_response.http_response
-
-            if response.status_code not in [200]:
-                map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise ARMError(response=response)
-
-            return response
-
-        async def internal_paging_async(next_link=None):
-            error_map = kwargs.pop('error_map', None)
+        async def get_next_async(next_link=None):
             request = prepare_request(next_link)
 
             pipeline_response = await self._client._pipeline.run(request)
             response = pipeline_response.http_response
 
+            error_map = kwargs.pop('error_map', None)
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise ARMError(response=response)
@@ -350,10 +318,11 @@ class PagingOperations:
             return response
 
         # Deserialize response
-        deserialized = models.ProductPaged(
-            internal_paging, self._deserialize, async_command=internal_paging_async)
+        pager = AsyncItemPaged(
+            get_next_async, extract_data_async
+        )
 
-        return deserialized
+        return pager
     get_multiple_pages_with_offset.metadata = {'url': '/paging/multiple/withpath/{offset}'}
 
     def get_multiple_pages_retry_first(
@@ -362,7 +331,7 @@ class PagingOperations:
         retries and then get a response including a nextLink that has 10 pages.
 
         :return: An iterator like instance of Product
-        :rtype: ~paging.models.ProductPaged[~paging.models.Product]
+        :rtype: ~paging.models.ProductResult[~paging.models.Product]
         :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
         def prepare_request(next_link=None):
@@ -387,26 +356,17 @@ class PagingOperations:
             request = self._client.get(url, query_parameters, header_parameters)
             return request
 
-        def internal_paging(next_link=None):
-            error_map = kwargs.pop('error_map', None)
-            request = prepare_request(next_link)
+        async def extract_data_async(response):
+            deserialized = self._deserialize('ProductResult', response)
+            return deserialized.next_link, AsyncList(deserialized.values)
 
-            pipeline_response = self._client._pipeline.run(request)
-            response = pipeline_response.http_response
-
-            if response.status_code not in [200]:
-                map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise ARMError(response=response)
-
-            return response
-
-        async def internal_paging_async(next_link=None):
-            error_map = kwargs.pop('error_map', None)
+        async def get_next_async(next_link=None):
             request = prepare_request(next_link)
 
             pipeline_response = await self._client._pipeline.run(request)
             response = pipeline_response.http_response
 
+            error_map = kwargs.pop('error_map', None)
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise ARMError(response=response)
@@ -414,10 +374,11 @@ class PagingOperations:
             return response
 
         # Deserialize response
-        deserialized = models.ProductPaged(
-            internal_paging, self._deserialize, async_command=internal_paging_async)
+        pager = AsyncItemPaged(
+            get_next_async, extract_data_async
+        )
 
-        return deserialized
+        return pager
     get_multiple_pages_retry_first.metadata = {'url': '/paging/multiple/retryfirst'}
 
     def get_multiple_pages_retry_second(
@@ -427,7 +388,7 @@ class PagingOperations:
         all 10 pages eventually.
 
         :return: An iterator like instance of Product
-        :rtype: ~paging.models.ProductPaged[~paging.models.Product]
+        :rtype: ~paging.models.ProductResult[~paging.models.Product]
         :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
         def prepare_request(next_link=None):
@@ -452,26 +413,17 @@ class PagingOperations:
             request = self._client.get(url, query_parameters, header_parameters)
             return request
 
-        def internal_paging(next_link=None):
-            error_map = kwargs.pop('error_map', None)
-            request = prepare_request(next_link)
+        async def extract_data_async(response):
+            deserialized = self._deserialize('ProductResult', response)
+            return deserialized.next_link, AsyncList(deserialized.values)
 
-            pipeline_response = self._client._pipeline.run(request)
-            response = pipeline_response.http_response
-
-            if response.status_code not in [200]:
-                map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise ARMError(response=response)
-
-            return response
-
-        async def internal_paging_async(next_link=None):
-            error_map = kwargs.pop('error_map', None)
+        async def get_next_async(next_link=None):
             request = prepare_request(next_link)
 
             pipeline_response = await self._client._pipeline.run(request)
             response = pipeline_response.http_response
 
+            error_map = kwargs.pop('error_map', None)
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise ARMError(response=response)
@@ -479,10 +431,11 @@ class PagingOperations:
             return response
 
         # Deserialize response
-        deserialized = models.ProductPaged(
-            internal_paging, self._deserialize, async_command=internal_paging_async)
+        pager = AsyncItemPaged(
+            get_next_async, extract_data_async
+        )
 
-        return deserialized
+        return pager
     get_multiple_pages_retry_second.metadata = {'url': '/paging/multiple/retrysecond'}
 
     def get_single_pages_failure(
@@ -490,7 +443,7 @@ class PagingOperations:
         """A paging operation that receives a 400 on the first call.
 
         :return: An iterator like instance of Product
-        :rtype: ~paging.models.ProductPaged[~paging.models.Product]
+        :rtype: ~paging.models.ProductResult[~paging.models.Product]
         :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
         def prepare_request(next_link=None):
@@ -515,26 +468,17 @@ class PagingOperations:
             request = self._client.get(url, query_parameters, header_parameters)
             return request
 
-        def internal_paging(next_link=None):
-            error_map = kwargs.pop('error_map', None)
-            request = prepare_request(next_link)
+        async def extract_data_async(response):
+            deserialized = self._deserialize('ProductResult', response)
+            return deserialized.next_link, AsyncList(deserialized.values)
 
-            pipeline_response = self._client._pipeline.run(request)
-            response = pipeline_response.http_response
-
-            if response.status_code not in [200]:
-                map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise ARMError(response=response)
-
-            return response
-
-        async def internal_paging_async(next_link=None):
-            error_map = kwargs.pop('error_map', None)
+        async def get_next_async(next_link=None):
             request = prepare_request(next_link)
 
             pipeline_response = await self._client._pipeline.run(request)
             response = pipeline_response.http_response
 
+            error_map = kwargs.pop('error_map', None)
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise ARMError(response=response)
@@ -542,10 +486,11 @@ class PagingOperations:
             return response
 
         # Deserialize response
-        deserialized = models.ProductPaged(
-            internal_paging, self._deserialize, async_command=internal_paging_async)
+        pager = AsyncItemPaged(
+            get_next_async, extract_data_async
+        )
 
-        return deserialized
+        return pager
     get_single_pages_failure.metadata = {'url': '/paging/single/failure'}
 
     def get_multiple_pages_failure(
@@ -553,7 +498,7 @@ class PagingOperations:
         """A paging operation that receives a 400 on the second call.
 
         :return: An iterator like instance of Product
-        :rtype: ~paging.models.ProductPaged[~paging.models.Product]
+        :rtype: ~paging.models.ProductResult[~paging.models.Product]
         :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
         def prepare_request(next_link=None):
@@ -578,26 +523,17 @@ class PagingOperations:
             request = self._client.get(url, query_parameters, header_parameters)
             return request
 
-        def internal_paging(next_link=None):
-            error_map = kwargs.pop('error_map', None)
-            request = prepare_request(next_link)
+        async def extract_data_async(response):
+            deserialized = self._deserialize('ProductResult', response)
+            return deserialized.next_link, AsyncList(deserialized.values)
 
-            pipeline_response = self._client._pipeline.run(request)
-            response = pipeline_response.http_response
-
-            if response.status_code not in [200]:
-                map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise ARMError(response=response)
-
-            return response
-
-        async def internal_paging_async(next_link=None):
-            error_map = kwargs.pop('error_map', None)
+        async def get_next_async(next_link=None):
             request = prepare_request(next_link)
 
             pipeline_response = await self._client._pipeline.run(request)
             response = pipeline_response.http_response
 
+            error_map = kwargs.pop('error_map', None)
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise ARMError(response=response)
@@ -605,10 +541,11 @@ class PagingOperations:
             return response
 
         # Deserialize response
-        deserialized = models.ProductPaged(
-            internal_paging, self._deserialize, async_command=internal_paging_async)
+        pager = AsyncItemPaged(
+            get_next_async, extract_data_async
+        )
 
-        return deserialized
+        return pager
     get_multiple_pages_failure.metadata = {'url': '/paging/multiple/failure'}
 
     def get_multiple_pages_failure_uri(
@@ -616,7 +553,7 @@ class PagingOperations:
         """A paging operation that receives an invalid nextLink.
 
         :return: An iterator like instance of Product
-        :rtype: ~paging.models.ProductPaged[~paging.models.Product]
+        :rtype: ~paging.models.ProductResult[~paging.models.Product]
         :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
         def prepare_request(next_link=None):
@@ -641,26 +578,17 @@ class PagingOperations:
             request = self._client.get(url, query_parameters, header_parameters)
             return request
 
-        def internal_paging(next_link=None):
-            error_map = kwargs.pop('error_map', None)
-            request = prepare_request(next_link)
+        async def extract_data_async(response):
+            deserialized = self._deserialize('ProductResult', response)
+            return deserialized.next_link, AsyncList(deserialized.values)
 
-            pipeline_response = self._client._pipeline.run(request)
-            response = pipeline_response.http_response
-
-            if response.status_code not in [200]:
-                map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise ARMError(response=response)
-
-            return response
-
-        async def internal_paging_async(next_link=None):
-            error_map = kwargs.pop('error_map', None)
+        async def get_next_async(next_link=None):
             request = prepare_request(next_link)
 
             pipeline_response = await self._client._pipeline.run(request)
             response = pipeline_response.http_response
 
+            error_map = kwargs.pop('error_map', None)
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise ARMError(response=response)
@@ -668,10 +596,11 @@ class PagingOperations:
             return response
 
         # Deserialize response
-        deserialized = models.ProductPaged(
-            internal_paging, self._deserialize, async_command=internal_paging_async)
+        pager = AsyncItemPaged(
+            get_next_async, extract_data_async
+        )
 
-        return deserialized
+        return pager
     get_multiple_pages_failure_uri.metadata = {'url': '/paging/multiple/failureuri'}
 
     def get_multiple_pages_fragment_next_link(
@@ -683,7 +612,7 @@ class PagingOperations:
         :param tenant: Sets the tenant to use.
         :type tenant: str
         :return: An iterator like instance of Product
-        :rtype: ~paging.models.ProductPaged1[~paging.models.Product]
+        :rtype: ~paging.models.OdataProductResult[~paging.models.Product]
         :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
         def prepare_request(next_link=None):
@@ -719,26 +648,17 @@ class PagingOperations:
             request = self._client.get(url, query_parameters, header_parameters)
             return request
 
-        def internal_paging(next_link=None):
-            error_map = kwargs.pop('error_map', None)
-            request = prepare_request(next_link)
+        async def extract_data_async(response):
+            deserialized = self._deserialize('OdataProductResult', response)
+            return deserialized.odatanext_link, AsyncList(deserialized.values)
 
-            pipeline_response = self._client._pipeline.run(request)
-            response = pipeline_response.http_response
-
-            if response.status_code not in [200]:
-                map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise ARMError(response=response)
-
-            return response
-
-        async def internal_paging_async(next_link=None):
-            error_map = kwargs.pop('error_map', None)
+        async def get_next_async(next_link=None):
             request = prepare_request(next_link)
 
             pipeline_response = await self._client._pipeline.run(request)
             response = pipeline_response.http_response
 
+            error_map = kwargs.pop('error_map', None)
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise ARMError(response=response)
@@ -746,10 +666,11 @@ class PagingOperations:
             return response
 
         # Deserialize response
-        deserialized = models.ProductPaged1(
-            internal_paging, self._deserialize, async_command=internal_paging_async)
+        pager = AsyncItemPaged(
+            get_next_async, extract_data_async
+        )
 
-        return deserialized
+        return pager
     get_multiple_pages_fragment_next_link.metadata = {'url': '/paging/multiple/fragment/{tenant}'}
 
     def get_multiple_pages_fragment_with_grouping_next_link(
@@ -760,7 +681,7 @@ class PagingOperations:
         :param custom_parameter_group: Additional parameters for the operation
         :type custom_parameter_group: ~paging.models.CustomParameterGroup
         :return: An iterator like instance of Product
-        :rtype: ~paging.models.ProductPaged1[~paging.models.Product]
+        :rtype: ~paging.models.OdataProductResult[~paging.models.Product]
         :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
         api_version = None
@@ -803,26 +724,17 @@ class PagingOperations:
             request = self._client.get(url, query_parameters, header_parameters)
             return request
 
-        def internal_paging(next_link=None):
-            error_map = kwargs.pop('error_map', None)
-            request = prepare_request(next_link)
+        async def extract_data_async(response):
+            deserialized = self._deserialize('OdataProductResult', response)
+            return deserialized.odatanext_link, AsyncList(deserialized.values)
 
-            pipeline_response = self._client._pipeline.run(request)
-            response = pipeline_response.http_response
-
-            if response.status_code not in [200]:
-                map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise ARMError(response=response)
-
-            return response
-
-        async def internal_paging_async(next_link=None):
-            error_map = kwargs.pop('error_map', None)
+        async def get_next_async(next_link=None):
             request = prepare_request(next_link)
 
             pipeline_response = await self._client._pipeline.run(request)
             response = pipeline_response.http_response
 
+            error_map = kwargs.pop('error_map', None)
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise ARMError(response=response)
@@ -830,10 +742,11 @@ class PagingOperations:
             return response
 
         # Deserialize response
-        deserialized = models.ProductPaged1(
-            internal_paging, self._deserialize, async_command=internal_paging_async)
+        pager = AsyncItemPaged(
+            get_next_async, extract_data_async
+        )
 
-        return deserialized
+        return pager
     get_multiple_pages_fragment_with_grouping_next_link.metadata = {'url': '/paging/multiple/fragmentwithgrouping/{tenant}'}
 
 

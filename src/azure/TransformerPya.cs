@@ -95,53 +95,47 @@ namespace AutoRest.Python.Azure
         }
 
         [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "nextLink")]
-        private string GetPagingSetting(CodeModelPya codeModel, CompositeType body, Dictionary<string, object> extensions, IModelType valueType,
+        private PagePya GetPagingSetting(CodeModelPya codeModel, CompositeType body, Dictionary<string, object> extensions, IModelType valueType,
             IDictionary<int, string> typePageClasses, string methodName)
         {
             string valueTypeName = valueType.Name;
             var ext = extensions[AzureExtensions.PageableExtension] as JContainer;
 
-            var ignoreNextLink = false;
-            if ((ext["nextLinkName"] != null) && (ext["nextLinkName"].Type == JTokenType.Null))
-            {
-                ignoreNextLink = true;
-            }
             var nextLinkName = (string) ext["nextLinkName"] ?? "nextLink";
+            Property nextLinkProp = null;
             var itemName = (string) ext["itemName"] ?? "value";
+            Property itemProp = null;
 
-            // nextLinkName = nextLinkName.Replace(".", "\\\\.");
-            // itemName = itemName.Replace(".", "\\\\.");
-            var findNextLink = false;
-            var findItem = false;
             foreach (var property in body.ComposedProperties)
             {
                 var propName = property.SerializedName;
 
                 if (propName == nextLinkName)
                 {
-                    findNextLink = true;
                     nextLinkName = property.SerializedName = property.SerializedName.Replace(".", "\\\\.")?.Replace("\\\\\\\\", "\\\\");
+                    nextLinkProp = property;
 
                 }
-                else if (propName == itemName)
-                {
-                    findItem = true;
-                    itemName = property.SerializedName = property.SerializedName.Replace(".", "\\\\.")?.Replace("\\\\\\\\", "\\\\");
-                }
-
-                if (propName == nextLinkName.Replace(".", "\\\\.")?.Replace("\\\\\\\\", "\\\\"))
+                else if (propName == nextLinkName.Replace(".", "\\\\.")?.Replace("\\\\\\\\", "\\\\"))
                 {
                     nextLinkName = nextLinkName.Replace(".", "\\\\.")?.Replace("\\\\\\\\", "\\\\");
-                    findNextLink = true;
+                    nextLinkProp = property;
                 }
+
+                if (propName == itemName)
+                {
+                    itemName = property.SerializedName = property.SerializedName.Replace(".", "\\\\.")?.Replace("\\\\\\\\", "\\\\");
+                    itemProp = property;
+                }
+
                 else if (propName == itemName.Replace(".", "\\\\.")?.Replace("\\\\\\\\", "\\\\"))
                 {
                     itemName = itemName.Replace(".", "\\\\.")?.Replace("\\\\\\\\", "\\\\");
-                    findItem = true;
+                    itemProp = property;
                 }
             }
 
-            if (!findItem)
+            if (itemProp == null)
             {
                 throw new KeyNotFoundException("Couldn't find the item property specified by extension");
             }
@@ -169,13 +163,7 @@ namespace AutoRest.Python.Azure
             className = typePageClasses[hash];
             ext["className"] = className;
 
-            var pageModel = new PagePya(className, nextLinkName, itemName, valueType);
-            if (!codeModel.PageModels.Contains(pageModel))
-            {
-                codeModel.PageModels.Add(pageModel);
-            }
-
-            return className;
+            return new PagePya(className, nextLinkProp, itemProp, valueType);
         }
 
         /// <summary>
@@ -188,8 +176,6 @@ namespace AutoRest.Python.Azure
             {
                 throw new ArgumentNullException("codeModel");
             }
-
-            var convertedTypes = new Dictionary<IModelType, Response>();
 
             foreach (MethodPya method in codeModel.Methods.Where(m => m is MethodPya && m.Extensions.ContainsKey(AzureExtensions.PageableExtension)))
             {
@@ -207,29 +193,15 @@ namespace AutoRest.Python.Azure
                         {
                             codeModel.PageClasses.Add(valueTypeName, new Dictionary<int, string>());
                         }
-                        var pagableTypeName = GetPagingSetting(codeModel, compositType, method.Extensions, valueType,
+                        var pageableType = GetPagingSetting(codeModel, compositType, method.Extensions, valueType,
                             codeModel.PageClasses[valueTypeName], method.SerializedName);
 
-                        var pagedResult = New<CompositeType>(pagableTypeName);
+                        method.PagedMetadata = pageableType;
 
-                        // make sure the parent reference is set.
-                        pagedResult.CodeModel = codeModel;
-
-                        method.PagedResponseContentClass = valueType; // Save the content type model
-
-                        convertedTypes[compositType] = new Response(pagedResult, null);
-                        method.Responses[responseStatus] = convertedTypes[compositType];
                         break;
                     }
                 }
-
-                if (convertedTypes.ContainsKey(method.ReturnType.Body))
-                {
-                    method.ReturnType = convertedTypes[method.ReturnType.Body];
-                }
             }
-
-            SwaggerExtensions.RemoveUnreferencedTypes(codeModel, new HashSet<string>(convertedTypes.Keys.Cast<CompositeType>().Select(t => t.Name.Value)));
         }
 
         /// <summary>

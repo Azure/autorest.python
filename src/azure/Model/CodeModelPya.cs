@@ -21,8 +21,6 @@ namespace AutoRest.Python.Azure.Model
         internal IDictionary<string, IDictionary<int, string>> PageClasses { get; } =
             new Dictionary<string, IDictionary<int, string>>();
 
-        public IEnumerable<string> PagedClasses => PageModels.Select(t => t.TypeDefinitionName);
-
         public override bool HasAnyModel =>
             ModelTypes.Any(model =>
                 !model.Extensions.ContainsKey(AzureExtensions.ExternalExtension) ||

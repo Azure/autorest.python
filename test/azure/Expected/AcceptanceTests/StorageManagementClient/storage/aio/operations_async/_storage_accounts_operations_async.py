@@ -12,6 +12,7 @@
 import uuid
 from azure.core.exceptions import map_error
 from azure.mgmt.core.exceptions import ARMError
+from azure.core.async_paging import AsyncItemPaged, AsyncList
 from azure.core.polling.async_poller import async_poller, AsyncNoPolling
 from azure.mgmt.core.polling.async_arm_polling import AsyncARMPolling
 
@@ -422,7 +423,7 @@ class StorageAccountsOperations:
 
         :return: An iterator like instance of StorageAccount
         :rtype:
-         ~storage.models.StorageAccountPaged[~storage.models.StorageAccount]
+         ~storage.models.StorageAccountListResult[~storage.models.StorageAccount]
         :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
         def prepare_request(next_link=None):
@@ -452,26 +453,17 @@ class StorageAccountsOperations:
             request = self._client.get(url, query_parameters, header_parameters)
             return request
 
-        def internal_paging(next_link=None):
-            error_map = kwargs.pop('error_map', None)
-            request = prepare_request(next_link)
+        async def extract_data_async(response):
+            deserialized = self._deserialize('StorageAccountListResult', response)
+            return deserialized.next_link, AsyncList(deserialized.value)
 
-            pipeline_response = self._client._pipeline.run(request)
-            response = pipeline_response.http_response
-
-            if response.status_code not in [200]:
-                map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise ARMError(response=response)
-
-            return response
-
-        async def internal_paging_async(next_link=None):
-            error_map = kwargs.pop('error_map', None)
+        async def get_next_async(next_link=None):
             request = prepare_request(next_link)
 
             pipeline_response = await self._client._pipeline.run(request)
             response = pipeline_response.http_response
 
+            error_map = kwargs.pop('error_map', None)
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise ARMError(response=response)
@@ -479,10 +471,11 @@ class StorageAccountsOperations:
             return response
 
         # Deserialize response
-        deserialized = models.StorageAccountPaged(
-            internal_paging, self._deserialize, async_command=internal_paging_async)
+        pager = AsyncItemPaged(
+            get_next_async, extract_data_async
+        )
 
-        return deserialized
+        return pager
     list.metadata = {'url': '/subscriptions/{subscriptionId}/providers/Microsoft.Storage/storageAccounts'}
 
     def list_by_resource_group(
@@ -496,7 +489,7 @@ class StorageAccountsOperations:
         :type resource_group_name: str
         :return: An iterator like instance of StorageAccount
         :rtype:
-         ~storage.models.StorageAccountPaged[~storage.models.StorageAccount]
+         ~storage.models.StorageAccountListResult[~storage.models.StorageAccount]
         :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
         def prepare_request(next_link=None):
@@ -527,26 +520,17 @@ class StorageAccountsOperations:
             request = self._client.get(url, query_parameters, header_parameters)
             return request
 
-        def internal_paging(next_link=None):
-            error_map = kwargs.pop('error_map', None)
-            request = prepare_request(next_link)
+        async def extract_data_async(response):
+            deserialized = self._deserialize('StorageAccountListResult', response)
+            return deserialized.next_link, AsyncList(deserialized.value)
 
-            pipeline_response = self._client._pipeline.run(request)
-            response = pipeline_response.http_response
-
-            if response.status_code not in [200]:
-                map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise ARMError(response=response)
-
-            return response
-
-        async def internal_paging_async(next_link=None):
-            error_map = kwargs.pop('error_map', None)
+        async def get_next_async(next_link=None):
             request = prepare_request(next_link)
 
             pipeline_response = await self._client._pipeline.run(request)
             response = pipeline_response.http_response
 
+            error_map = kwargs.pop('error_map', None)
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise ARMError(response=response)
@@ -554,10 +538,11 @@ class StorageAccountsOperations:
             return response
 
         # Deserialize response
-        deserialized = models.StorageAccountPaged(
-            internal_paging, self._deserialize, async_command=internal_paging_async)
+        pager = AsyncItemPaged(
+            get_next_async, extract_data_async
+        )
 
-        return deserialized
+        return pager
     list_by_resource_group.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts'}
 
     async def regenerate_key(self, resource_group_name, account_name, key_name=None, *, cls=None, **kwargs):
