@@ -9,6 +9,8 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
+from azure.core.tracing.decorator import distributed_trace
+from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.exceptions import map_error
 
 from ... import models
@@ -35,6 +37,7 @@ class BoolModelOperations:
 
         self._config = config
 
+    @distributed_trace_async
     async def get_true(self, *, cls=None, **kwargs):
         """Get true Boolean value.
 
@@ -74,6 +77,7 @@ class BoolModelOperations:
         return deserialized
     get_true.metadata = {'url': '/bool/true'}
 
+    @distributed_trace_async
     async def put_true(self, *, cls=None, **kwargs):
         """Set Boolean value true.
 
@@ -113,6 +117,7 @@ class BoolModelOperations:
             return cls(response, None, response_headers)
     put_true.metadata = {'url': '/bool/true'}
 
+    @distributed_trace_async
     async def get_false(self, *, cls=None, **kwargs):
         """Get false Boolean value.
 
@@ -152,6 +157,7 @@ class BoolModelOperations:
         return deserialized
     get_false.metadata = {'url': '/bool/false'}
 
+    @distributed_trace_async
     async def put_false(self, *, cls=None, **kwargs):
         """Set Boolean value false.
 
@@ -191,6 +197,7 @@ class BoolModelOperations:
             return cls(response, None, response_headers)
     put_false.metadata = {'url': '/bool/false'}
 
+    @distributed_trace_async
     async def get_null(self, *, cls=None, **kwargs):
         """Get null Boolean value.
 
@@ -230,6 +237,7 @@ class BoolModelOperations:
         return deserialized
     get_null.metadata = {'url': '/bool/null'}
 
+    @distributed_trace_async
     async def get_invalid(self, *, cls=None, **kwargs):
         """Get invalid Boolean value.
 

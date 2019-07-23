@@ -9,6 +9,8 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
+from azure.core.tracing.decorator import distributed_trace
+from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.exceptions import map_error
 
 from ... import models
@@ -35,6 +37,7 @@ class PolymorphismOperations:
 
         self._config = config
 
+    @distributed_trace_async
     async def get_valid(self, *, cls=None, **kwargs):
         """Get complex types that are polymorphic.
 
@@ -74,6 +77,7 @@ class PolymorphismOperations:
         return deserialized
     get_valid.metadata = {'url': '/complex/polymorphism/valid'}
 
+    @distributed_trace_async
     async def put_valid(self, complex_body, *, cls=None, **kwargs):
         """Put complex types that are polymorphic.
 
@@ -145,6 +149,7 @@ class PolymorphismOperations:
             return cls(response, None, response_headers)
     put_valid.metadata = {'url': '/complex/polymorphism/valid'}
 
+    @distributed_trace_async
     async def get_dot_syntax(self, *, cls=None, **kwargs):
         """Get complex types that are polymorphic, JSON key contains a dot.
 
@@ -184,6 +189,7 @@ class PolymorphismOperations:
         return deserialized
     get_dot_syntax.metadata = {'url': '/complex/polymorphism/dotsyntax'}
 
+    @distributed_trace_async
     async def get_complicated(self, *, cls=None, **kwargs):
         """Get complex types that are polymorphic, but not at the root of the
         hierarchy; also have additional properties.
@@ -224,6 +230,7 @@ class PolymorphismOperations:
         return deserialized
     get_complicated.metadata = {'url': '/complex/polymorphism/complicated'}
 
+    @distributed_trace_async
     async def put_complicated(self, complex_body, *, cls=None, **kwargs):
         """Put complex types that are polymorphic, but not at the root of the
         hierarchy; also have additional properties.
@@ -264,6 +271,7 @@ class PolymorphismOperations:
             return cls(response, None, response_headers)
     put_complicated.metadata = {'url': '/complex/polymorphism/complicated'}
 
+    @distributed_trace_async
     async def put_missing_discriminator(self, complex_body, *, cls=None, **kwargs):
         """Put complex types that are polymorphic, omitting the discriminator.
 
@@ -309,6 +317,7 @@ class PolymorphismOperations:
         return deserialized
     put_missing_discriminator.metadata = {'url': '/complex/polymorphism/missingdiscriminator'}
 
+    @distributed_trace_async
     async def put_valid_missing_required(self, complex_body, *, cls=None, **kwargs):
         """Put complex types that are polymorphic, attempting to omit required
         'birthday' field - the request should not be allowed from the client.

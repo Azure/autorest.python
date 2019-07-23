@@ -9,6 +9,8 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
+from azure.core.tracing.decorator import distributed_trace
+from azure.core.tracing.decorator_async import distributed_trace_async
 import uuid
 from azure.core.exceptions import map_error
 from azure.mgmt.core.exceptions import ARMError
@@ -33,6 +35,7 @@ class HttpSuccessOperations:
 
         self._config = config
 
+    @distributed_trace_async
     async def head200(self, *, cls=None, **kwargs):
         """Return 200 status code if successful.
 
@@ -67,6 +70,7 @@ class HttpSuccessOperations:
         return deserialized
     head200.metadata = {'url': '/http/success/200'}
 
+    @distributed_trace_async
     async def head204(self, *, cls=None, **kwargs):
         """Return 204 status code if successful.
 
@@ -101,6 +105,7 @@ class HttpSuccessOperations:
         return deserialized
     head204.metadata = {'url': '/http/success/204'}
 
+    @distributed_trace_async
     async def head404(self, *, cls=None, **kwargs):
         """Return 404 status code if successful.
 

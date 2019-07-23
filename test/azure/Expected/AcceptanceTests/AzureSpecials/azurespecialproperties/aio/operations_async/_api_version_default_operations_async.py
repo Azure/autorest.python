@@ -9,6 +9,8 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
+from azure.core.tracing.decorator import distributed_trace
+from azure.core.tracing.decorator_async import distributed_trace_async
 import uuid
 from azure.core.exceptions import map_error
 
@@ -38,6 +40,7 @@ class ApiVersionDefaultOperations:
 
         self._config = config
 
+    @distributed_trace_async
     async def get_method_global_valid(self, *, cls=None, **kwargs):
         """GET method with api-version modeled in global settings.
 
@@ -75,6 +78,7 @@ class ApiVersionDefaultOperations:
             return cls(response, None, response_headers)
     get_method_global_valid.metadata = {'url': '/azurespecials/apiVersion/method/string/none/query/global/2015-07-01-preview'}
 
+    @distributed_trace_async
     async def get_method_global_not_provided_valid(self, *, cls=None, **kwargs):
         """GET method with api-version modeled in global settings.
 
@@ -112,6 +116,7 @@ class ApiVersionDefaultOperations:
             return cls(response, None, response_headers)
     get_method_global_not_provided_valid.metadata = {'url': '/azurespecials/apiVersion/method/string/none/query/globalNotProvided/2015-07-01-preview'}
 
+    @distributed_trace_async
     async def get_path_global_valid(self, *, cls=None, **kwargs):
         """GET method with api-version modeled in global settings.
 
@@ -149,6 +154,7 @@ class ApiVersionDefaultOperations:
             return cls(response, None, response_headers)
     get_path_global_valid.metadata = {'url': '/azurespecials/apiVersion/path/string/none/query/global/2015-07-01-preview'}
 
+    @distributed_trace_async
     async def get_swagger_global_valid(self, *, cls=None, **kwargs):
         """GET method with api-version modeled in global settings.
 

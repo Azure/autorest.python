@@ -9,6 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
+from azure.core.tracing.decorator import distributed_trace
 import uuid
 from azure.core.exceptions import map_error
 
@@ -36,6 +37,7 @@ class PathsOperations(object):
 
         self._config = config
 
+    @distributed_trace
     def get_empty(self, account_name, cls=None, **kwargs):
         """Get a 200 to test a valid base uri.
 

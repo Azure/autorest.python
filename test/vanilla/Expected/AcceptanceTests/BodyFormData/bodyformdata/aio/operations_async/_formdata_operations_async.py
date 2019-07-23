@@ -9,6 +9,8 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
+from azure.core.tracing.decorator import distributed_trace
+from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.exceptions import map_error
 
 from ... import models
@@ -35,6 +37,7 @@ class FormdataOperations:
 
         self._config = config
 
+    @distributed_trace_async
     async def upload_file(self, file_content, file_name, *, cls=None, **kwargs):
         """Upload file.
 
@@ -87,6 +90,7 @@ class FormdataOperations:
         return deserialized
     upload_file.metadata = {'url': '/formdata/stream/uploadfile'}
 
+    @distributed_trace_async
     async def upload_file_via_body(self, file_content, *, cls=None, **kwargs):
         """Upload file.
 

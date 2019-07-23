@@ -9,6 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
+from azure.core.tracing.decorator import distributed_trace
 from azure.core.exceptions import map_error
 
 from .. import models
@@ -35,6 +36,7 @@ class ArrayOperations(object):
 
         self._config = config
 
+    @distributed_trace
     def get_valid(self, cls=None, **kwargs):
         """Get complex types with array property.
 
@@ -74,6 +76,7 @@ class ArrayOperations(object):
         return deserialized
     get_valid.metadata = {'url': '/complex/array/valid'}
 
+    @distributed_trace
     def put_valid(self, array=None, cls=None, **kwargs):
         """Put complex types with array property.
 
@@ -115,6 +118,7 @@ class ArrayOperations(object):
             return cls(response, None, response_headers)
     put_valid.metadata = {'url': '/complex/array/valid'}
 
+    @distributed_trace
     def get_empty(self, cls=None, **kwargs):
         """Get complex types with array property which is empty.
 
@@ -154,6 +158,7 @@ class ArrayOperations(object):
         return deserialized
     get_empty.metadata = {'url': '/complex/array/empty'}
 
+    @distributed_trace
     def put_empty(self, array=None, cls=None, **kwargs):
         """Put complex types with array property which is empty.
 
@@ -195,6 +200,7 @@ class ArrayOperations(object):
             return cls(response, None, response_headers)
     put_empty.metadata = {'url': '/complex/array/empty'}
 
+    @distributed_trace
     def get_not_provided(self, cls=None, **kwargs):
         """Get complex types with array property while server doesn't provide a
         response payload.

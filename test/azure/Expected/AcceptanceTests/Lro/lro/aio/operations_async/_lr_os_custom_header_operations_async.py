@@ -9,6 +9,8 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
+from azure.core.tracing.decorator import distributed_trace
+from azure.core.tracing.decorator_async import distributed_trace_async
 import uuid
 from azure.core.exceptions import map_error
 from azure.mgmt.core.exceptions import ARMError
@@ -83,6 +85,7 @@ class LROsCustomHeaderOperations:
 
         return response
 
+    @distributed_trace_async
     async def put_async_retry_succeeded(
             self, product=None, *, cls=None, polling=True, **kwargs):
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is
@@ -165,6 +168,7 @@ class LROsCustomHeaderOperations:
 
         return response
 
+    @distributed_trace_async
     async def put201_creating_succeeded200(
             self, product=None, *, cls=None, polling=True, **kwargs):
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is
@@ -235,6 +239,7 @@ class LROsCustomHeaderOperations:
 
         return response
 
+    @distributed_trace_async
     async def post202_retry200(
             self, product=None, *, cls=None, polling=True, **kwargs):
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is
@@ -308,6 +313,7 @@ class LROsCustomHeaderOperations:
 
         return response
 
+    @distributed_trace_async
     async def post_async_retry_succeeded(
             self, product=None, *, cls=None, polling=True, **kwargs):
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is

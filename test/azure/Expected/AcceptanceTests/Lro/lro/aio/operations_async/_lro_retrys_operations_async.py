@@ -9,6 +9,8 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
+from azure.core.tracing.decorator import distributed_trace
+from azure.core.tracing.decorator_async import distributed_trace_async
 import uuid
 from azure.core.exceptions import map_error
 from azure.mgmt.core.exceptions import ARMError
@@ -79,6 +81,7 @@ class LRORetrysOperations:
 
         return response
 
+    @distributed_trace_async
     async def put201_creating_succeeded200(
             self, product=None, *, cls=None, polling=True, **kwargs):
         """Long running put request, service returns a 500, then a 201 to the
@@ -159,6 +162,7 @@ class LRORetrysOperations:
 
         return response
 
+    @distributed_trace_async
     async def put_async_relative_retry_succeeded(
             self, product=None, *, cls=None, polling=True, **kwargs):
         """Long running put request, service returns a 500, then a 200 to the
@@ -242,6 +246,7 @@ class LRORetrysOperations:
 
         return response
 
+    @distributed_trace_async
     async def delete_provisioning202_accepted200_succeeded(
             self, *, cls=None, polling=True, **kwargs):
         """Long running delete request, service returns a 500, then a  202 to the
@@ -305,6 +310,7 @@ class LRORetrysOperations:
 
         return response
 
+    @distributed_trace_async
     async def delete202_retry200(
             self, *, cls=None, polling=True, **kwargs):
         """Long running delete request, service returns a 500, then a 202 to the
@@ -366,6 +372,7 @@ class LRORetrysOperations:
 
         return response
 
+    @distributed_trace_async
     async def delete_async_relative_retry_succeeded(
             self, *, cls=None, polling=True, **kwargs):
         """Long running delete request, service returns a 500, then a 202 to the
@@ -435,6 +442,7 @@ class LRORetrysOperations:
 
         return response
 
+    @distributed_trace_async
     async def post202_retry200(
             self, product=None, *, cls=None, polling=True, **kwargs):
         """Long running post request, service returns a 500, then a 202 to the
@@ -506,6 +514,7 @@ class LRORetrysOperations:
 
         return response
 
+    @distributed_trace_async
     async def post_async_relative_retry_succeeded(
             self, product=None, *, cls=None, polling=True, **kwargs):
         """Long running post request, service returns a 500, then a 202 to the

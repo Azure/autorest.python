@@ -9,6 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
+from azure.core.tracing.decorator import distributed_trace
 import uuid
 from azure.core.exceptions import map_error
 
@@ -36,6 +37,7 @@ class SubscriptionInMethodOperations(object):
 
         self._config = config
 
+    @distributed_trace
     def post_method_local_valid(self, subscription_id, cls=None, **kwargs):
         """POST method with subscriptionId modeled in the method.  pass in
         subscription id = '1234-5678-9012-3456' to succeed.
@@ -80,6 +82,7 @@ class SubscriptionInMethodOperations(object):
             return cls(response, None, response_headers)
     post_method_local_valid.metadata = {'url': '/azurespecials/subscriptionId/method/string/none/path/local/1234-5678-9012-3456/{subscriptionId}'}
 
+    @distributed_trace
     def post_method_local_null(self, subscription_id, cls=None, **kwargs):
         """POST method with subscriptionId modeled in the method.  pass in
         subscription id = null, client-side validation should prevent you from
@@ -125,6 +128,7 @@ class SubscriptionInMethodOperations(object):
             return cls(response, None, response_headers)
     post_method_local_null.metadata = {'url': '/azurespecials/subscriptionId/method/string/none/path/local/null/{subscriptionId}'}
 
+    @distributed_trace
     def post_path_local_valid(self, subscription_id, cls=None, **kwargs):
         """POST method with subscriptionId modeled in the method.  pass in
         subscription id = '1234-5678-9012-3456' to succeed.
@@ -169,6 +173,7 @@ class SubscriptionInMethodOperations(object):
             return cls(response, None, response_headers)
     post_path_local_valid.metadata = {'url': '/azurespecials/subscriptionId/path/string/none/path/local/1234-5678-9012-3456/{subscriptionId}'}
 
+    @distributed_trace
     def post_swagger_local_valid(self, subscription_id, cls=None, **kwargs):
         """POST method with subscriptionId modeled in the method.  pass in
         subscription id = '1234-5678-9012-3456' to succeed.

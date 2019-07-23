@@ -9,6 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
+from azure.core.tracing.decorator import distributed_trace
 from azure.core.exceptions import map_error
 from .. import models
 import uuid
@@ -16,6 +17,7 @@ import uuid
 
 class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
 
+    @distributed_trace
     def put_array(self, resource_array=None, cls=None, **kwargs):
         """Put External Resource as an Array.
 
@@ -61,6 +63,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
             return cls(response, None, response_headers)
     put_array.metadata = {'url': '/model-flatten/array'}
 
+    @distributed_trace
     def get_array(self, cls=None, **kwargs):
         """Get External Resource as an Array.
 
@@ -103,6 +106,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         return deserialized
     get_array.metadata = {'url': '/model-flatten/array'}
 
+    @distributed_trace
     def put_wrapped_array(self, resource_array=None, cls=None, **kwargs):
         """No need to have a route in Express server for this operation. Used to
         verify the type flattened is not removed if it's referenced in an
@@ -150,6 +154,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
             return cls(response, None, response_headers)
     put_wrapped_array.metadata = {'url': '/model-flatten/wrappedarray'}
 
+    @distributed_trace
     def get_wrapped_array(self, cls=None, **kwargs):
         """No need to have a route in Express server for this operation. Used to
         verify the type flattened is not removed if it's referenced in an
@@ -194,6 +199,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         return deserialized
     get_wrapped_array.metadata = {'url': '/model-flatten/wrappedarray'}
 
+    @distributed_trace
     def put_dictionary(self, resource_dictionary=None, cls=None, **kwargs):
         """Put External Resource as a Dictionary.
 
@@ -240,6 +246,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
             return cls(response, None, response_headers)
     put_dictionary.metadata = {'url': '/model-flatten/dictionary'}
 
+    @distributed_trace
     def get_dictionary(self, cls=None, **kwargs):
         """Get External Resource as a Dictionary.
 
@@ -282,6 +289,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         return deserialized
     get_dictionary.metadata = {'url': '/model-flatten/dictionary'}
 
+    @distributed_trace
     def put_resource_collection(self, resource_complex_object=None, cls=None, **kwargs):
         """Put External Resource as a ResourceCollection.
 
@@ -329,6 +337,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
             return cls(response, None, response_headers)
     put_resource_collection.metadata = {'url': '/model-flatten/resourcecollection'}
 
+    @distributed_trace
     def get_resource_collection(self, cls=None, **kwargs):
         """Get External Resource as a ResourceCollection.
 
@@ -371,6 +380,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         return deserialized
     get_resource_collection.metadata = {'url': '/model-flatten/resourcecollection'}
 
+    @distributed_trace
     def put_simple_product(self, simple_body_product=None, cls=None, **kwargs):
         """Put Simple Product with client flattening true on the model.
 
@@ -422,6 +432,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         return deserialized
     put_simple_product.metadata = {'url': '/model-flatten/customFlattening'}
 
+    @distributed_trace
     def post_flattened_simple_product(self, product_id, max_product_display_name, description=None, generic_value=None, odatavalue=None, cls=None, **kwargs):
         """Put Flattened Simple Product with client flattening true on the
         parameter.
@@ -488,6 +499,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         return deserialized
     post_flattened_simple_product.metadata = {'url': '/model-flatten/customFlattening'}
 
+    @distributed_trace
     def put_simple_product_with_grouping(self, flatten_parameter_group, cls=None, **kwargs):
         """Put Simple Product with client flattening true on the model.
 

@@ -9,12 +9,15 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
+from azure.core.tracing.decorator import distributed_trace
+from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.exceptions import HttpResponseError, map_error
 from ... import models
 
 
 class AutoRestValidationTestOperationsMixin:
 
+    @distributed_trace_async
     async def validation_of_method_parameters(self, resource_group_name, id, *, cls=None, **kwargs):
         """Validates input parameters on the method. See swagger for details.
 
@@ -66,6 +69,7 @@ class AutoRestValidationTestOperationsMixin:
         return deserialized
     validation_of_method_parameters.metadata = {'url': '/fakepath/{subscriptionId}/{resourceGroupName}/{id}'}
 
+    @distributed_trace_async
     async def validation_of_body(self, resource_group_name, id, body=None, *, cls=None, **kwargs):
         """Validates body parameters on the method. See swagger for details.
 
@@ -126,6 +130,7 @@ class AutoRestValidationTestOperationsMixin:
         return deserialized
     validation_of_body.metadata = {'url': '/fakepath/{subscriptionId}/{resourceGroupName}/{id}'}
 
+    @distributed_trace_async
     async def get_with_constant_in_path(self, *, cls=None, **kwargs):
         """
 
@@ -165,6 +170,7 @@ class AutoRestValidationTestOperationsMixin:
             return cls(response, None, response_headers)
     get_with_constant_in_path.metadata = {'url': '/validation/constantsInPath/{constantParam}/value'}
 
+    @distributed_trace_async
     async def post_with_constant_in_body(self, body=None, *, cls=None, **kwargs):
         """
 
