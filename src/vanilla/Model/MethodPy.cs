@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Net;
+using AutoRest.Core;
 using System.Text.RegularExpressions;
 using AutoRest.Core.Model;
 using AutoRest.Core.Utilities;
@@ -37,6 +38,8 @@ namespace AutoRest.Python.Model
         public IEnumerable<ParameterPy> ParameterTemplateModels => Parameters.Cast<ParameterPy>();
 
         public bool IsStreamResponse => this.ReturnType.Body.IsPrimaryType(KnownPrimaryType.Stream);
+
+        public bool AddTracingDecorators => (bool)Settings.Instance.CustomSettings["trace"];
 
         public bool IsStreamRequestBody => LocalParameters.Any(parameter =>
             parameter.Location == ParameterLocation.Body &&

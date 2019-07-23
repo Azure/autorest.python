@@ -6,7 +6,15 @@
 @inherits AutoRest.Python.PythonTemplate<AutoRest.Python.Azure.Model.MethodPya>
 @{
 string methodName = Model.Name.ToPythonCase();
+string trace_decorator = "";
+string sync_trace_decorator = "";
 }
+@if (Model.AddTracingDecorators)
+{
+trace_decorator = AsyncMode? "@distributed_trace_async" : "@distributed_trace";
+sync_trace_decorator = "@distributed_trace";
+}
+    @(sync_trace_decorator)
     def @(methodName)(
             self, @(Model.MethodParameterDeclaration(Python3Mode)), **kwargs):
         """@(WrapComment(string.Empty, Model.BuildSummaryAndDescriptionString()))

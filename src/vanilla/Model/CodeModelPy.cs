@@ -34,6 +34,8 @@ namespace AutoRest.Python.Model
         [JsonIgnore]
         public IEnumerable<CompositeTypePy> ModelTemplateModels => ModelTypes.Cast<CompositeTypePy>();
 
+        public bool AddTracingDecorators => (bool)Settings.Instance.CustomSettings["trace"];
+
         [JsonIgnore]
         public virtual IEnumerable<MethodGroupPy> MethodGroupModels => Operations.Cast<MethodGroupPy>().Where(each => !each.IsCodeModelMethodGroup);
 
