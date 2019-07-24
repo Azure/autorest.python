@@ -20,7 +20,7 @@ regenExpected = (opts,done) ->
       "--license-header=#{if !!opts.header then opts.header else 'MICROSOFT_MIT_NO_VERSION'}",
       "--enable-xml",
       "--basic-setup-py",
-      "--trace"
+      "--trace",
     ]
 
     for swaggerFile in swaggerFiles
