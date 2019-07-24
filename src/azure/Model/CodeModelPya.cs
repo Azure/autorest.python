@@ -26,6 +26,10 @@ namespace AutoRest.Python.Azure.Model
                 !model.Extensions.ContainsKey(AzureExtensions.ExternalExtension) ||
                 !(bool) model.Extensions[AzureExtensions.ExternalExtension]);
 
+        public bool HasAnyPagingOperation =>
+            MethodTemplateModels.Any(m =>
+                    m.Extensions.ContainsKey(AzureExtensions.PageableExtension));
+
         public bool HasAnyLongRunOperation =>
             MethodTemplateModels.Any(m =>
                     m.Extensions.ContainsKey(AzureExtensions.LongRunningExtension) &&
