@@ -9,6 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
+from azure.core.tracing.decorator import distributed_trace
 from azure.core.exceptions import map_error
 
 from .. import models
@@ -35,6 +36,7 @@ class HttpSuccessOperations(object):
 
         self._config = config
 
+    @distributed_trace
     def head200(self, cls=None, **kwargs):
         """Return 200 status code if successful.
 
@@ -69,6 +71,7 @@ class HttpSuccessOperations(object):
             return cls(response, None, response_headers)
     head200.metadata = {'url': '/http/success/200'}
 
+    @distributed_trace
     def get200(self, cls=None, **kwargs):
         """Get 200 success.
 
@@ -109,6 +112,7 @@ class HttpSuccessOperations(object):
         return deserialized
     get200.metadata = {'url': '/http/success/200'}
 
+    @distributed_trace
     def put200(self, boolean_value=None, cls=None, **kwargs):
         """Put boolean value true returning 200 success.
 
@@ -152,6 +156,7 @@ class HttpSuccessOperations(object):
             return cls(response, None, response_headers)
     put200.metadata = {'url': '/http/success/200'}
 
+    @distributed_trace
     def patch200(self, boolean_value=None, cls=None, **kwargs):
         """Patch true Boolean value in request returning 200.
 
@@ -195,6 +200,7 @@ class HttpSuccessOperations(object):
             return cls(response, None, response_headers)
     patch200.metadata = {'url': '/http/success/200'}
 
+    @distributed_trace
     def post200(self, boolean_value=None, cls=None, **kwargs):
         """Post bollean value true in request that returns a 200.
 
@@ -238,6 +244,7 @@ class HttpSuccessOperations(object):
             return cls(response, None, response_headers)
     post200.metadata = {'url': '/http/success/200'}
 
+    @distributed_trace
     def delete200(self, boolean_value=None, cls=None, **kwargs):
         """Delete simple boolean value true returns 200.
 
@@ -281,6 +288,7 @@ class HttpSuccessOperations(object):
             return cls(response, None, response_headers)
     delete200.metadata = {'url': '/http/success/200'}
 
+    @distributed_trace
     def put201(self, boolean_value=None, cls=None, **kwargs):
         """Put true Boolean value in request returns 201.
 
@@ -324,6 +332,7 @@ class HttpSuccessOperations(object):
             return cls(response, None, response_headers)
     put201.metadata = {'url': '/http/success/201'}
 
+    @distributed_trace
     def post201(self, boolean_value=None, cls=None, **kwargs):
         """Post true Boolean value in request returns 201 (Created).
 
@@ -367,6 +376,7 @@ class HttpSuccessOperations(object):
             return cls(response, None, response_headers)
     post201.metadata = {'url': '/http/success/201'}
 
+    @distributed_trace
     def put202(self, boolean_value=None, cls=None, **kwargs):
         """Put true Boolean value in request returns 202 (Accepted).
 
@@ -410,6 +420,7 @@ class HttpSuccessOperations(object):
             return cls(response, None, response_headers)
     put202.metadata = {'url': '/http/success/202'}
 
+    @distributed_trace
     def patch202(self, boolean_value=None, cls=None, **kwargs):
         """Patch true Boolean value in request returns 202.
 
@@ -453,6 +464,7 @@ class HttpSuccessOperations(object):
             return cls(response, None, response_headers)
     patch202.metadata = {'url': '/http/success/202'}
 
+    @distributed_trace
     def post202(self, boolean_value=None, cls=None, **kwargs):
         """Post true Boolean value in request returns 202 (Accepted).
 
@@ -496,6 +508,7 @@ class HttpSuccessOperations(object):
             return cls(response, None, response_headers)
     post202.metadata = {'url': '/http/success/202'}
 
+    @distributed_trace
     def delete202(self, boolean_value=None, cls=None, **kwargs):
         """Delete true Boolean value in request returns 202 (accepted).
 
@@ -539,6 +552,7 @@ class HttpSuccessOperations(object):
             return cls(response, None, response_headers)
     delete202.metadata = {'url': '/http/success/202'}
 
+    @distributed_trace
     def head204(self, cls=None, **kwargs):
         """Return 204 status code if successful.
 
@@ -573,6 +587,7 @@ class HttpSuccessOperations(object):
             return cls(response, None, response_headers)
     head204.metadata = {'url': '/http/success/204'}
 
+    @distributed_trace
     def put204(self, boolean_value=None, cls=None, **kwargs):
         """Put true Boolean value in request returns 204 (no content).
 
@@ -616,6 +631,7 @@ class HttpSuccessOperations(object):
             return cls(response, None, response_headers)
     put204.metadata = {'url': '/http/success/204'}
 
+    @distributed_trace
     def patch204(self, boolean_value=None, cls=None, **kwargs):
         """Patch true Boolean value in request returns 204 (no content).
 
@@ -659,6 +675,7 @@ class HttpSuccessOperations(object):
             return cls(response, None, response_headers)
     patch204.metadata = {'url': '/http/success/204'}
 
+    @distributed_trace
     def post204(self, boolean_value=None, cls=None, **kwargs):
         """Post true Boolean value in request returns 204 (no content).
 
@@ -702,6 +719,7 @@ class HttpSuccessOperations(object):
             return cls(response, None, response_headers)
     post204.metadata = {'url': '/http/success/204'}
 
+    @distributed_trace
     def delete204(self, boolean_value=None, cls=None, **kwargs):
         """Delete true Boolean value in request returns 204 (no content).
 
@@ -745,6 +763,7 @@ class HttpSuccessOperations(object):
             return cls(response, None, response_headers)
     delete204.metadata = {'url': '/http/success/204'}
 
+    @distributed_trace
     def head404(self, cls=None, **kwargs):
         """Return 404 status code.
 

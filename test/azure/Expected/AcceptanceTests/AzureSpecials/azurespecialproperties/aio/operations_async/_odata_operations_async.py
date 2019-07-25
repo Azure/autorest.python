@@ -9,6 +9,8 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
+from azure.core.tracing.decorator import distributed_trace
+from azure.core.tracing.decorator_async import distributed_trace_async
 import uuid
 from azure.core.exceptions import map_error
 
@@ -36,6 +38,7 @@ class OdataOperations:
 
         self._config = config
 
+    @distributed_trace_async
     async def get_with_filter(self, filter=None, top=None, orderby=None, *, cls=None, **kwargs):
         """Specify filter parameter with value '$filter=id gt 5 and name eq
         'foo'&$orderby=id&$top=10'.

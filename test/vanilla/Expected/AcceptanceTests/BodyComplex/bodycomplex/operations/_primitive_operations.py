@@ -9,6 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
+from azure.core.tracing.decorator import distributed_trace
 from azure.core.exceptions import map_error
 
 from .. import models
@@ -35,6 +36,7 @@ class PrimitiveOperations(object):
 
         self._config = config
 
+    @distributed_trace
     def get_int(self, cls=None, **kwargs):
         """Get complex types with integer properties.
 
@@ -74,6 +76,7 @@ class PrimitiveOperations(object):
         return deserialized
     get_int.metadata = {'url': '/complex/primitive/integer'}
 
+    @distributed_trace
     def put_int(self, complex_body, cls=None, **kwargs):
         """Put complex types with integer properties.
 
@@ -113,6 +116,7 @@ class PrimitiveOperations(object):
             return cls(response, None, response_headers)
     put_int.metadata = {'url': '/complex/primitive/integer'}
 
+    @distributed_trace
     def get_long(self, cls=None, **kwargs):
         """Get complex types with long properties.
 
@@ -152,6 +156,7 @@ class PrimitiveOperations(object):
         return deserialized
     get_long.metadata = {'url': '/complex/primitive/long'}
 
+    @distributed_trace
     def put_long(self, complex_body, cls=None, **kwargs):
         """Put complex types with long properties.
 
@@ -191,6 +196,7 @@ class PrimitiveOperations(object):
             return cls(response, None, response_headers)
     put_long.metadata = {'url': '/complex/primitive/long'}
 
+    @distributed_trace
     def get_float(self, cls=None, **kwargs):
         """Get complex types with float properties.
 
@@ -230,6 +236,7 @@ class PrimitiveOperations(object):
         return deserialized
     get_float.metadata = {'url': '/complex/primitive/float'}
 
+    @distributed_trace
     def put_float(self, complex_body, cls=None, **kwargs):
         """Put complex types with float properties.
 
@@ -269,6 +276,7 @@ class PrimitiveOperations(object):
             return cls(response, None, response_headers)
     put_float.metadata = {'url': '/complex/primitive/float'}
 
+    @distributed_trace
     def get_double(self, cls=None, **kwargs):
         """Get complex types with double properties.
 
@@ -308,6 +316,7 @@ class PrimitiveOperations(object):
         return deserialized
     get_double.metadata = {'url': '/complex/primitive/double'}
 
+    @distributed_trace
     def put_double(self, complex_body, cls=None, **kwargs):
         """Put complex types with double properties.
 
@@ -348,6 +357,7 @@ class PrimitiveOperations(object):
             return cls(response, None, response_headers)
     put_double.metadata = {'url': '/complex/primitive/double'}
 
+    @distributed_trace
     def get_bool(self, cls=None, **kwargs):
         """Get complex types with bool properties.
 
@@ -387,6 +397,7 @@ class PrimitiveOperations(object):
         return deserialized
     get_bool.metadata = {'url': '/complex/primitive/bool'}
 
+    @distributed_trace
     def put_bool(self, complex_body, cls=None, **kwargs):
         """Put complex types with bool properties.
 
@@ -426,6 +437,7 @@ class PrimitiveOperations(object):
             return cls(response, None, response_headers)
     put_bool.metadata = {'url': '/complex/primitive/bool'}
 
+    @distributed_trace
     def get_string(self, cls=None, **kwargs):
         """Get complex types with string properties.
 
@@ -465,6 +477,7 @@ class PrimitiveOperations(object):
         return deserialized
     get_string.metadata = {'url': '/complex/primitive/string'}
 
+    @distributed_trace
     def put_string(self, complex_body, cls=None, **kwargs):
         """Put complex types with string properties.
 
@@ -504,6 +517,7 @@ class PrimitiveOperations(object):
             return cls(response, None, response_headers)
     put_string.metadata = {'url': '/complex/primitive/string'}
 
+    @distributed_trace
     def get_date(self, cls=None, **kwargs):
         """Get complex types with date properties.
 
@@ -543,6 +557,7 @@ class PrimitiveOperations(object):
         return deserialized
     get_date.metadata = {'url': '/complex/primitive/date'}
 
+    @distributed_trace
     def put_date(self, complex_body, cls=None, **kwargs):
         """Put complex types with date properties.
 
@@ -582,6 +597,7 @@ class PrimitiveOperations(object):
             return cls(response, None, response_headers)
     put_date.metadata = {'url': '/complex/primitive/date'}
 
+    @distributed_trace
     def get_date_time(self, cls=None, **kwargs):
         """Get complex types with datetime properties.
 
@@ -621,6 +637,7 @@ class PrimitiveOperations(object):
         return deserialized
     get_date_time.metadata = {'url': '/complex/primitive/datetime'}
 
+    @distributed_trace
     def put_date_time(self, complex_body, cls=None, **kwargs):
         """Put complex types with datetime properties.
 
@@ -661,6 +678,7 @@ class PrimitiveOperations(object):
             return cls(response, None, response_headers)
     put_date_time.metadata = {'url': '/complex/primitive/datetime'}
 
+    @distributed_trace
     def get_date_time_rfc1123(self, cls=None, **kwargs):
         """Get complex types with datetimeRfc1123 properties.
 
@@ -700,6 +718,7 @@ class PrimitiveOperations(object):
         return deserialized
     get_date_time_rfc1123.metadata = {'url': '/complex/primitive/datetimerfc1123'}
 
+    @distributed_trace
     def put_date_time_rfc1123(self, complex_body, cls=None, **kwargs):
         """Put complex types with datetimeRfc1123 properties.
 
@@ -740,6 +759,7 @@ class PrimitiveOperations(object):
             return cls(response, None, response_headers)
     put_date_time_rfc1123.metadata = {'url': '/complex/primitive/datetimerfc1123'}
 
+    @distributed_trace
     def get_duration(self, cls=None, **kwargs):
         """Get complex types with duration properties.
 
@@ -779,6 +799,7 @@ class PrimitiveOperations(object):
         return deserialized
     get_duration.metadata = {'url': '/complex/primitive/duration'}
 
+    @distributed_trace
     def put_duration(self, field=None, cls=None, **kwargs):
         """Put complex types with duration properties.
 
@@ -820,6 +841,7 @@ class PrimitiveOperations(object):
             return cls(response, None, response_headers)
     put_duration.metadata = {'url': '/complex/primitive/duration'}
 
+    @distributed_trace
     def get_byte(self, cls=None, **kwargs):
         """Get complex types with byte properties.
 
@@ -859,6 +881,7 @@ class PrimitiveOperations(object):
         return deserialized
     get_byte.metadata = {'url': '/complex/primitive/byte'}
 
+    @distributed_trace
     def put_byte(self, field=None, cls=None, **kwargs):
         """Put complex types with byte properties.
 

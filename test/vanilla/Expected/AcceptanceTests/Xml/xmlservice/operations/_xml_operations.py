@@ -9,6 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
+from azure.core.tracing.decorator import distributed_trace
 from azure.core.exceptions import HttpResponseError, map_error
 
 from .. import models
@@ -35,6 +36,7 @@ class XmlOperations(object):
 
         self._config = config
 
+    @distributed_trace
     def get_complex_type_ref_no_meta(self, cls=None, **kwargs):
         """Get a complex type that has a ref to a complex type with no XML node.
 
@@ -74,6 +76,7 @@ class XmlOperations(object):
         return deserialized
     get_complex_type_ref_no_meta.metadata = {'url': '/xml/complex-type-ref-no-meta'}
 
+    @distributed_trace
     def put_complex_type_ref_no_meta(self, model, cls=None, **kwargs):
         """Puts a complex type that has a ref to a complex type with no XML node.
 
@@ -113,6 +116,7 @@ class XmlOperations(object):
             return cls(response, None, response_headers)
     put_complex_type_ref_no_meta.metadata = {'url': '/xml/complex-type-ref-no-meta'}
 
+    @distributed_trace
     def get_complex_type_ref_with_meta(self, cls=None, **kwargs):
         """Get a complex type that has a ref to a complex type with XML node.
 
@@ -152,6 +156,7 @@ class XmlOperations(object):
         return deserialized
     get_complex_type_ref_with_meta.metadata = {'url': '/xml/complex-type-ref-with-meta'}
 
+    @distributed_trace
     def put_complex_type_ref_with_meta(self, model, cls=None, **kwargs):
         """Puts a complex type that has a ref to a complex type with XML node.
 
@@ -191,6 +196,7 @@ class XmlOperations(object):
             return cls(response, None, response_headers)
     put_complex_type_ref_with_meta.metadata = {'url': '/xml/complex-type-ref-with-meta'}
 
+    @distributed_trace
     def get_simple(self, cls=None, **kwargs):
         """Get a simple XML document.
 
@@ -230,6 +236,7 @@ class XmlOperations(object):
         return deserialized
     get_simple.metadata = {'url': '/xml/simple'}
 
+    @distributed_trace
     def put_simple(self, slideshow, cls=None, **kwargs):
         """Put a simple XML document.
 
@@ -269,6 +276,7 @@ class XmlOperations(object):
             return cls(response, None, response_headers)
     put_simple.metadata = {'url': '/xml/simple'}
 
+    @distributed_trace
     def get_wrapped_lists(self, cls=None, **kwargs):
         """Get an XML document with multiple wrapped lists.
 
@@ -308,6 +316,7 @@ class XmlOperations(object):
         return deserialized
     get_wrapped_lists.metadata = {'url': '/xml/wrapped-lists'}
 
+    @distributed_trace
     def put_wrapped_lists(self, wrapped_lists, cls=None, **kwargs):
         """Put an XML document with multiple wrapped lists.
 
@@ -347,6 +356,7 @@ class XmlOperations(object):
             return cls(response, None, response_headers)
     put_wrapped_lists.metadata = {'url': '/xml/wrapped-lists'}
 
+    @distributed_trace
     def get_headers(self, cls=None, **kwargs):
         """Get strongly-typed response headers.
 
@@ -382,6 +392,7 @@ class XmlOperations(object):
             return cls(response, None, response_headers)
     get_headers.metadata = {'url': '/xml/headers'}
 
+    @distributed_trace
     def get_empty_list(self, cls=None, **kwargs):
         """Get an empty list.
 
@@ -421,6 +432,7 @@ class XmlOperations(object):
         return deserialized
     get_empty_list.metadata = {'url': '/xml/empty-list'}
 
+    @distributed_trace
     def put_empty_list(self, slideshow, cls=None, **kwargs):
         """Puts an empty list.
 
@@ -460,6 +472,7 @@ class XmlOperations(object):
             return cls(response, None, response_headers)
     put_empty_list.metadata = {'url': '/xml/empty-list'}
 
+    @distributed_trace
     def get_empty_wrapped_lists(self, cls=None, **kwargs):
         """Gets some empty wrapped lists.
 
@@ -499,6 +512,7 @@ class XmlOperations(object):
         return deserialized
     get_empty_wrapped_lists.metadata = {'url': '/xml/empty-wrapped-lists'}
 
+    @distributed_trace
     def put_empty_wrapped_lists(self, apple_barrel, cls=None, **kwargs):
         """Puts some empty wrapped lists.
 
@@ -538,6 +552,7 @@ class XmlOperations(object):
             return cls(response, None, response_headers)
     put_empty_wrapped_lists.metadata = {'url': '/xml/empty-wrapped-lists'}
 
+    @distributed_trace
     def get_root_list(self, cls=None, **kwargs):
         """Gets a list as the root element.
 
@@ -577,6 +592,7 @@ class XmlOperations(object):
         return deserialized
     get_root_list.metadata = {'url': '/xml/root-list'}
 
+    @distributed_trace
     def put_root_list(self, bananas, cls=None, **kwargs):
         """Puts a list as the root element.
 
@@ -617,6 +633,7 @@ class XmlOperations(object):
             return cls(response, None, response_headers)
     put_root_list.metadata = {'url': '/xml/root-list'}
 
+    @distributed_trace
     def get_root_list_single_item(self, cls=None, **kwargs):
         """Gets a list with a single item.
 
@@ -656,6 +673,7 @@ class XmlOperations(object):
         return deserialized
     get_root_list_single_item.metadata = {'url': '/xml/root-list-single-item'}
 
+    @distributed_trace
     def put_root_list_single_item(self, bananas, cls=None, **kwargs):
         """Puts a list with a single item.
 
@@ -696,6 +714,7 @@ class XmlOperations(object):
             return cls(response, None, response_headers)
     put_root_list_single_item.metadata = {'url': '/xml/root-list-single-item'}
 
+    @distributed_trace
     def get_empty_root_list(self, cls=None, **kwargs):
         """Gets an empty list as the root element.
 
@@ -735,6 +754,7 @@ class XmlOperations(object):
         return deserialized
     get_empty_root_list.metadata = {'url': '/xml/empty-root-list'}
 
+    @distributed_trace
     def put_empty_root_list(self, bananas, cls=None, **kwargs):
         """Puts an empty list as the root element.
 
@@ -775,6 +795,7 @@ class XmlOperations(object):
             return cls(response, None, response_headers)
     put_empty_root_list.metadata = {'url': '/xml/empty-root-list'}
 
+    @distributed_trace
     def get_empty_child_element(self, cls=None, **kwargs):
         """Gets an XML document with an empty child element.
 
@@ -814,6 +835,7 @@ class XmlOperations(object):
         return deserialized
     get_empty_child_element.metadata = {'url': '/xml/empty-child-element'}
 
+    @distributed_trace
     def put_empty_child_element(self, banana, cls=None, **kwargs):
         """Puts a value with an empty child element.
 
@@ -853,6 +875,7 @@ class XmlOperations(object):
             return cls(response, None, response_headers)
     put_empty_child_element.metadata = {'url': '/xml/empty-child-element'}
 
+    @distributed_trace
     def list_containers(self, cls=None, **kwargs):
         """Lists containers in a storage account.
 
@@ -895,6 +918,7 @@ class XmlOperations(object):
         return deserialized
     list_containers.metadata = {'url': '/xml/'}
 
+    @distributed_trace
     def get_service_properties(self, cls=None, **kwargs):
         """Gets storage service properties.
 
@@ -939,6 +963,7 @@ class XmlOperations(object):
         return deserialized
     get_service_properties.metadata = {'url': '/xml/'}
 
+    @distributed_trace
     def put_service_properties(self, properties, cls=None, **kwargs):
         """Puts storage service properties.
 
@@ -983,6 +1008,7 @@ class XmlOperations(object):
             return cls(response, None, response_headers)
     put_service_properties.metadata = {'url': '/xml/'}
 
+    @distributed_trace
     def get_acls(self, cls=None, **kwargs):
         """Gets storage ACLs for a container.
 
@@ -1027,6 +1053,7 @@ class XmlOperations(object):
         return deserialized
     get_acls.metadata = {'url': '/xml/mycontainer'}
 
+    @distributed_trace
     def put_acls(self, properties, cls=None, **kwargs):
         """Puts storage ACLs for a container.
 
@@ -1072,6 +1099,7 @@ class XmlOperations(object):
             return cls(response, None, response_headers)
     put_acls.metadata = {'url': '/xml/mycontainer'}
 
+    @distributed_trace
     def list_blobs(self, cls=None, **kwargs):
         """Lists blobs in a storage container.
 

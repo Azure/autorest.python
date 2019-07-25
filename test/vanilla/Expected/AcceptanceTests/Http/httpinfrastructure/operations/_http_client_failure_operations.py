@@ -9,6 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
+from azure.core.tracing.decorator import distributed_trace
 from azure.core.exceptions import map_error
 
 from .. import models
@@ -35,6 +36,7 @@ class HttpClientFailureOperations(object):
 
         self._config = config
 
+    @distributed_trace
     def head400(self, cls=None, **kwargs):
         """Return 400 status code - should be represented in the client as an
         error.
@@ -70,6 +72,7 @@ class HttpClientFailureOperations(object):
             return cls(response, None, response_headers)
     head400.metadata = {'url': '/http/failure/client/400'}
 
+    @distributed_trace
     def get400(self, cls=None, **kwargs):
         """Return 400 status code - should be represented in the client as an
         error.
@@ -105,6 +108,7 @@ class HttpClientFailureOperations(object):
             return cls(response, None, response_headers)
     get400.metadata = {'url': '/http/failure/client/400'}
 
+    @distributed_trace
     def put400(self, boolean_value=None, cls=None, **kwargs):
         """Return 400 status code - should be represented in the client as an
         error.
@@ -149,6 +153,7 @@ class HttpClientFailureOperations(object):
             return cls(response, None, response_headers)
     put400.metadata = {'url': '/http/failure/client/400'}
 
+    @distributed_trace
     def patch400(self, boolean_value=None, cls=None, **kwargs):
         """Return 400 status code - should be represented in the client as an
         error.
@@ -193,6 +198,7 @@ class HttpClientFailureOperations(object):
             return cls(response, None, response_headers)
     patch400.metadata = {'url': '/http/failure/client/400'}
 
+    @distributed_trace
     def post400(self, boolean_value=None, cls=None, **kwargs):
         """Return 400 status code - should be represented in the client as an
         error.
@@ -237,6 +243,7 @@ class HttpClientFailureOperations(object):
             return cls(response, None, response_headers)
     post400.metadata = {'url': '/http/failure/client/400'}
 
+    @distributed_trace
     def delete400(self, boolean_value=None, cls=None, **kwargs):
         """Return 400 status code - should be represented in the client as an
         error.
@@ -281,6 +288,7 @@ class HttpClientFailureOperations(object):
             return cls(response, None, response_headers)
     delete400.metadata = {'url': '/http/failure/client/400'}
 
+    @distributed_trace
     def head401(self, cls=None, **kwargs):
         """Return 401 status code - should be represented in the client as an
         error.
@@ -316,6 +324,7 @@ class HttpClientFailureOperations(object):
             return cls(response, None, response_headers)
     head401.metadata = {'url': '/http/failure/client/401'}
 
+    @distributed_trace
     def get402(self, cls=None, **kwargs):
         """Return 402 status code - should be represented in the client as an
         error.
@@ -351,6 +360,7 @@ class HttpClientFailureOperations(object):
             return cls(response, None, response_headers)
     get402.metadata = {'url': '/http/failure/client/402'}
 
+    @distributed_trace
     def get403(self, cls=None, **kwargs):
         """Return 403 status code - should be represented in the client as an
         error.
@@ -386,6 +396,7 @@ class HttpClientFailureOperations(object):
             return cls(response, None, response_headers)
     get403.metadata = {'url': '/http/failure/client/403'}
 
+    @distributed_trace
     def put404(self, boolean_value=None, cls=None, **kwargs):
         """Return 404 status code - should be represented in the client as an
         error.
@@ -430,6 +441,7 @@ class HttpClientFailureOperations(object):
             return cls(response, None, response_headers)
     put404.metadata = {'url': '/http/failure/client/404'}
 
+    @distributed_trace
     def patch405(self, boolean_value=None, cls=None, **kwargs):
         """Return 405 status code - should be represented in the client as an
         error.
@@ -474,6 +486,7 @@ class HttpClientFailureOperations(object):
             return cls(response, None, response_headers)
     patch405.metadata = {'url': '/http/failure/client/405'}
 
+    @distributed_trace
     def post406(self, boolean_value=None, cls=None, **kwargs):
         """Return 406 status code - should be represented in the client as an
         error.
@@ -518,6 +531,7 @@ class HttpClientFailureOperations(object):
             return cls(response, None, response_headers)
     post406.metadata = {'url': '/http/failure/client/406'}
 
+    @distributed_trace
     def delete407(self, boolean_value=None, cls=None, **kwargs):
         """Return 407 status code - should be represented in the client as an
         error.
@@ -562,6 +576,7 @@ class HttpClientFailureOperations(object):
             return cls(response, None, response_headers)
     delete407.metadata = {'url': '/http/failure/client/407'}
 
+    @distributed_trace
     def put409(self, boolean_value=None, cls=None, **kwargs):
         """Return 409 status code - should be represented in the client as an
         error.
@@ -606,6 +621,7 @@ class HttpClientFailureOperations(object):
             return cls(response, None, response_headers)
     put409.metadata = {'url': '/http/failure/client/409'}
 
+    @distributed_trace
     def head410(self, cls=None, **kwargs):
         """Return 410 status code - should be represented in the client as an
         error.
@@ -641,6 +657,7 @@ class HttpClientFailureOperations(object):
             return cls(response, None, response_headers)
     head410.metadata = {'url': '/http/failure/client/410'}
 
+    @distributed_trace
     def get411(self, cls=None, **kwargs):
         """Return 411 status code - should be represented in the client as an
         error.
@@ -676,6 +693,7 @@ class HttpClientFailureOperations(object):
             return cls(response, None, response_headers)
     get411.metadata = {'url': '/http/failure/client/411'}
 
+    @distributed_trace
     def get412(self, cls=None, **kwargs):
         """Return 412 status code - should be represented in the client as an
         error.
@@ -711,6 +729,7 @@ class HttpClientFailureOperations(object):
             return cls(response, None, response_headers)
     get412.metadata = {'url': '/http/failure/client/412'}
 
+    @distributed_trace
     def put413(self, boolean_value=None, cls=None, **kwargs):
         """Return 413 status code - should be represented in the client as an
         error.
@@ -755,6 +774,7 @@ class HttpClientFailureOperations(object):
             return cls(response, None, response_headers)
     put413.metadata = {'url': '/http/failure/client/413'}
 
+    @distributed_trace
     def patch414(self, boolean_value=None, cls=None, **kwargs):
         """Return 414 status code - should be represented in the client as an
         error.
@@ -799,6 +819,7 @@ class HttpClientFailureOperations(object):
             return cls(response, None, response_headers)
     patch414.metadata = {'url': '/http/failure/client/414'}
 
+    @distributed_trace
     def post415(self, boolean_value=None, cls=None, **kwargs):
         """Return 415 status code - should be represented in the client as an
         error.
@@ -843,6 +864,7 @@ class HttpClientFailureOperations(object):
             return cls(response, None, response_headers)
     post415.metadata = {'url': '/http/failure/client/415'}
 
+    @distributed_trace
     def get416(self, cls=None, **kwargs):
         """Return 416 status code - should be represented in the client as an
         error.
@@ -878,6 +900,7 @@ class HttpClientFailureOperations(object):
             return cls(response, None, response_headers)
     get416.metadata = {'url': '/http/failure/client/416'}
 
+    @distributed_trace
     def delete417(self, boolean_value=None, cls=None, **kwargs):
         """Return 417 status code - should be represented in the client as an
         error.
@@ -922,6 +945,7 @@ class HttpClientFailureOperations(object):
             return cls(response, None, response_headers)
     delete417.metadata = {'url': '/http/failure/client/417'}
 
+    @distributed_trace
     def head429(self, cls=None, **kwargs):
         """Return 429 status code - should be represented in the client as an
         error.

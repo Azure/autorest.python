@@ -9,6 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
+from azure.core.tracing.decorator import distributed_trace
 from azure.core.exceptions import HttpResponseError, map_error
 
 from .. import models
@@ -35,6 +36,7 @@ class PetOperations(object):
 
         self._config = config
 
+    @distributed_trace
     def get_by_pet_id(self, pet_id, cls=None, **kwargs):
         """
 
@@ -80,6 +82,7 @@ class PetOperations(object):
         return deserialized
     get_by_pet_id.metadata = {'url': '/extensibleenums/pet/{petId}'}
 
+    @distributed_trace
     def add_pet(self, pet_param=None, cls=None, **kwargs):
         """
 

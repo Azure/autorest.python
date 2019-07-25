@@ -9,6 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
+from azure.core.tracing.decorator import distributed_trace
 import uuid
 from azure.core.exceptions import map_error
 from azure.mgmt.core.exceptions import ARMError
@@ -79,6 +80,7 @@ class LROSADsOperations(object):
 
         return response
 
+    @distributed_trace
     def put_non_retry400(
             self, product=None, cls=None, polling=True, **kwargs):
         """Long running put request, service returns a 400 to the initial request.
@@ -153,6 +155,7 @@ class LROSADsOperations(object):
 
         return response
 
+    @distributed_trace
     def put_non_retry201_creating400(
             self, product=None, cls=None, polling=True, **kwargs):
         """Long running put request, service returns a Product with
@@ -228,6 +231,7 @@ class LROSADsOperations(object):
 
         return response
 
+    @distributed_trace
     def put_non_retry201_creating400_invalid_json(
             self, product=None, cls=None, polling=True, **kwargs):
         """Long running put request, service returns a Product with
@@ -307,6 +311,7 @@ class LROSADsOperations(object):
 
         return response
 
+    @distributed_trace
     def put_async_relative_retry400(
             self, product=None, cls=None, polling=True, **kwargs):
         """Long running put request, service returns a 200 with
@@ -374,6 +379,7 @@ class LROSADsOperations(object):
 
         return response
 
+    @distributed_trace
     def delete_non_retry400(
             self, cls=None, polling=True, **kwargs):
         """Long running delete request, service returns a 400 with an error body.
@@ -433,6 +439,7 @@ class LROSADsOperations(object):
 
         return response
 
+    @distributed_trace
     def delete202_non_retry400(
             self, cls=None, polling=True, **kwargs):
         """Long running delete request, service returns a 202 with a location
@@ -493,6 +500,7 @@ class LROSADsOperations(object):
 
         return response
 
+    @distributed_trace
     def delete_async_relative_retry400(
             self, cls=None, polling=True, **kwargs):
         """Long running delete request, service returns a 202 to the initial
@@ -562,6 +570,7 @@ class LROSADsOperations(object):
 
         return response
 
+    @distributed_trace
     def post_non_retry400(
             self, product=None, cls=None, polling=True, **kwargs):
         """Long running post request, service returns a 400 with no error body.
@@ -631,6 +640,7 @@ class LROSADsOperations(object):
 
         return response
 
+    @distributed_trace
     def post202_non_retry400(
             self, product=None, cls=None, polling=True, **kwargs):
         """Long running post request, service returns a 202 with a location
@@ -701,6 +711,7 @@ class LROSADsOperations(object):
 
         return response
 
+    @distributed_trace
     def post_async_relative_retry400(
             self, product=None, cls=None, polling=True, **kwargs):
         """Long running post request, service returns a 202 to the initial request
@@ -780,6 +791,7 @@ class LROSADsOperations(object):
 
         return response
 
+    @distributed_trace
     def put_error201_no_provisioning_state_payload(
             self, product=None, cls=None, polling=True, **kwargs):
         """Long running put request, service returns a 201 to the initial request
@@ -859,6 +871,7 @@ class LROSADsOperations(object):
 
         return response
 
+    @distributed_trace
     def put_async_relative_retry_no_status(
             self, product=None, cls=None, polling=True, **kwargs):
         """Long running put request, service returns a 200 to the initial request,
@@ -945,6 +958,7 @@ class LROSADsOperations(object):
 
         return response
 
+    @distributed_trace
     def put_async_relative_retry_no_status_payload(
             self, product=None, cls=None, polling=True, **kwargs):
         """Long running put request, service returns a 200 to the initial request,
@@ -1013,6 +1027,7 @@ class LROSADsOperations(object):
 
         return response
 
+    @distributed_trace
     def delete204_succeeded(
             self, cls=None, polling=True, **kwargs):
         """Long running delete request, service returns a 204 to the initial
@@ -1070,6 +1085,7 @@ class LROSADsOperations(object):
 
         return response
 
+    @distributed_trace
     def delete_async_relative_retry_no_status(
             self, cls=None, polling=True, **kwargs):
         """Long running delete request, service returns a 202 to the initial
@@ -1139,6 +1155,7 @@ class LROSADsOperations(object):
 
         return response
 
+    @distributed_trace
     def post202_no_location(
             self, product=None, cls=None, polling=True, **kwargs):
         """Long running post request, service returns a 202 to the initial
@@ -1209,6 +1226,7 @@ class LROSADsOperations(object):
 
         return response
 
+    @distributed_trace
     def post_async_relative_retry_no_payload(
             self, product=None, cls=None, polling=True, **kwargs):
         """Long running post request, service returns a 202 to the initial
@@ -1287,6 +1305,7 @@ class LROSADsOperations(object):
 
         return response
 
+    @distributed_trace
     def put200_invalid_json(
             self, product=None, cls=None, polling=True, **kwargs):
         """Long running put request, service returns a 200 to the initial request,
@@ -1366,6 +1385,7 @@ class LROSADsOperations(object):
 
         return response
 
+    @distributed_trace
     def put_async_relative_retry_invalid_header(
             self, product=None, cls=None, polling=True, **kwargs):
         """Long running put request, service returns a 200 to the initial request,
@@ -1451,6 +1471,7 @@ class LROSADsOperations(object):
 
         return response
 
+    @distributed_trace
     def put_async_relative_retry_invalid_json_polling(
             self, product=None, cls=None, polling=True, **kwargs):
         """Long running put request, service returns a 200 to the initial request,
@@ -1519,6 +1540,7 @@ class LROSADsOperations(object):
 
         return response
 
+    @distributed_trace
     def delete202_retry_invalid_header(
             self, cls=None, polling=True, **kwargs):
         """Long running delete request, service returns a 202 to the initial
@@ -1580,6 +1602,7 @@ class LROSADsOperations(object):
 
         return response
 
+    @distributed_trace
     def delete_async_relative_retry_invalid_header(
             self, cls=None, polling=True, **kwargs):
         """Long running delete request, service returns a 202 to the initial
@@ -1642,6 +1665,7 @@ class LROSADsOperations(object):
 
         return response
 
+    @distributed_trace
     def delete_async_relative_retry_invalid_json_polling(
             self, cls=None, polling=True, **kwargs):
         """Long running delete request, service returns a 202 to the initial
@@ -1711,6 +1735,7 @@ class LROSADsOperations(object):
 
         return response
 
+    @distributed_trace
     def post202_retry_invalid_header(
             self, product=None, cls=None, polling=True, **kwargs):
         """Long running post request, service returns a 202 to the initial
@@ -1781,6 +1806,7 @@ class LROSADsOperations(object):
 
         return response
 
+    @distributed_trace
     def post_async_relative_retry_invalid_header(
             self, product=None, cls=None, polling=True, **kwargs):
         """Long running post request, service returns a 202 to the initial
@@ -1853,6 +1879,7 @@ class LROSADsOperations(object):
 
         return response
 
+    @distributed_trace
     def post_async_relative_retry_invalid_json_polling(
             self, product=None, cls=None, polling=True, **kwargs):
         """Long running post request, service returns a 202 to the initial

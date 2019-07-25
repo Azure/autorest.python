@@ -9,6 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
+from azure.core.tracing.decorator import distributed_trace
 from azure.core.exceptions import map_error
 
 from .. import models
@@ -35,6 +36,7 @@ class HttpRedirectsOperations(object):
 
         self._config = config
 
+    @distributed_trace
     def head300(self, cls=None, **kwargs):
         """Return 300 status code and redirect to /http/success/200.
 
@@ -71,6 +73,7 @@ class HttpRedirectsOperations(object):
             return cls(response, None, response_headers)
     head300.metadata = {'url': '/http/redirect/300'}
 
+    @distributed_trace
     def get300(self, cls=None, **kwargs):
         """Return 300 status code and redirect to /http/success/200.
 
@@ -115,6 +118,7 @@ class HttpRedirectsOperations(object):
         return deserialized
     get300.metadata = {'url': '/http/redirect/300'}
 
+    @distributed_trace
     def head301(self, cls=None, **kwargs):
         """Return 301 status code and redirect to /http/success/200.
 
@@ -151,6 +155,7 @@ class HttpRedirectsOperations(object):
             return cls(response, None, response_headers)
     head301.metadata = {'url': '/http/redirect/301'}
 
+    @distributed_trace
     def get301(self, cls=None, **kwargs):
         """Return 301 status code and redirect to /http/success/200.
 
@@ -187,6 +192,7 @@ class HttpRedirectsOperations(object):
             return cls(response, None, response_headers)
     get301.metadata = {'url': '/http/redirect/301'}
 
+    @distributed_trace
     def put301(self, boolean_value=None, cls=None, **kwargs):
         """Put true Boolean value in request returns 301.  This request should not
         be automatically redirected, but should return the received 301 to the
@@ -234,6 +240,7 @@ class HttpRedirectsOperations(object):
             return cls(response, None, response_headers)
     put301.metadata = {'url': '/http/redirect/301'}
 
+    @distributed_trace
     def head302(self, cls=None, **kwargs):
         """Return 302 status code and redirect to /http/success/200.
 
@@ -270,6 +277,7 @@ class HttpRedirectsOperations(object):
             return cls(response, None, response_headers)
     head302.metadata = {'url': '/http/redirect/302'}
 
+    @distributed_trace
     def get302(self, cls=None, **kwargs):
         """Return 302 status code and redirect to /http/success/200.
 
@@ -306,6 +314,7 @@ class HttpRedirectsOperations(object):
             return cls(response, None, response_headers)
     get302.metadata = {'url': '/http/redirect/302'}
 
+    @distributed_trace
     def patch302(self, boolean_value=None, cls=None, **kwargs):
         """Patch true Boolean value in request returns 302.  This request should
         not be automatically redirected, but should return the received 302 to
@@ -353,6 +362,7 @@ class HttpRedirectsOperations(object):
             return cls(response, None, response_headers)
     patch302.metadata = {'url': '/http/redirect/302'}
 
+    @distributed_trace
     def post303(self, boolean_value=None, cls=None, **kwargs):
         """Post true Boolean value in request returns 303.  This request should be
         automatically redirected usign a get, ultimately returning a 200 status
@@ -400,6 +410,7 @@ class HttpRedirectsOperations(object):
             return cls(response, None, response_headers)
     post303.metadata = {'url': '/http/redirect/303'}
 
+    @distributed_trace
     def head307(self, cls=None, **kwargs):
         """Redirect with 307, resulting in a 200 success.
 
@@ -436,6 +447,7 @@ class HttpRedirectsOperations(object):
             return cls(response, None, response_headers)
     head307.metadata = {'url': '/http/redirect/307'}
 
+    @distributed_trace
     def get307(self, cls=None, **kwargs):
         """Redirect get with 307, resulting in a 200 success.
 
@@ -472,6 +484,7 @@ class HttpRedirectsOperations(object):
             return cls(response, None, response_headers)
     get307.metadata = {'url': '/http/redirect/307'}
 
+    @distributed_trace
     def put307(self, boolean_value=None, cls=None, **kwargs):
         """Put redirected with 307, resulting in a 200 after redirect.
 
@@ -517,6 +530,7 @@ class HttpRedirectsOperations(object):
             return cls(response, None, response_headers)
     put307.metadata = {'url': '/http/redirect/307'}
 
+    @distributed_trace
     def patch307(self, boolean_value=None, cls=None, **kwargs):
         """Patch redirected with 307, resulting in a 200 after redirect.
 
@@ -562,6 +576,7 @@ class HttpRedirectsOperations(object):
             return cls(response, None, response_headers)
     patch307.metadata = {'url': '/http/redirect/307'}
 
+    @distributed_trace
     def post307(self, boolean_value=None, cls=None, **kwargs):
         """Post redirected with 307, resulting in a 200 after redirect.
 
@@ -607,6 +622,7 @@ class HttpRedirectsOperations(object):
             return cls(response, None, response_headers)
     post307.metadata = {'url': '/http/redirect/307'}
 
+    @distributed_trace
     def delete307(self, boolean_value=None, cls=None, **kwargs):
         """Delete redirected with 307, resulting in a 200 after redirect.
 

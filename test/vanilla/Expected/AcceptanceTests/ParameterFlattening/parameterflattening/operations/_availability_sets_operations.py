@@ -9,6 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
+from azure.core.tracing.decorator import distributed_trace
 from azure.core.exceptions import HttpResponseError, map_error
 
 from .. import models
@@ -35,6 +36,7 @@ class AvailabilitySetsOperations(object):
 
         self._config = config
 
+    @distributed_trace
     def update(self, resource_group_name, avset, tags, cls=None, **kwargs):
         """Updates the tags for an availability set.
 

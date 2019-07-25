@@ -9,6 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
+from azure.core.tracing.decorator import distributed_trace
 from azure.core.exceptions import map_error
 
 from .. import models
@@ -35,6 +36,7 @@ class DurationOperations(object):
 
         self._config = config
 
+    @distributed_trace
     def get_null(self, cls=None, **kwargs):
         """Get null duration value.
 
@@ -74,6 +76,7 @@ class DurationOperations(object):
         return deserialized
     get_null.metadata = {'url': '/duration/null'}
 
+    @distributed_trace
     def put_positive_duration(self, duration_body, cls=None, **kwargs):
         """Put a positive duration value.
 
@@ -113,6 +116,7 @@ class DurationOperations(object):
             return cls(response, None, response_headers)
     put_positive_duration.metadata = {'url': '/duration/positiveduration'}
 
+    @distributed_trace
     def get_positive_duration(self, cls=None, **kwargs):
         """Get a positive duration value.
 
@@ -152,6 +156,7 @@ class DurationOperations(object):
         return deserialized
     get_positive_duration.metadata = {'url': '/duration/positiveduration'}
 
+    @distributed_trace
     def get_invalid(self, cls=None, **kwargs):
         """Get an invalid duration value.
 

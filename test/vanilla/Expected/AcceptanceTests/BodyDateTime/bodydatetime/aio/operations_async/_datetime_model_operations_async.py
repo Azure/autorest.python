@@ -9,6 +9,8 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
+from azure.core.tracing.decorator import distributed_trace
+from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.exceptions import map_error
 
 from ... import models
@@ -35,6 +37,7 @@ class DatetimeModelOperations:
 
         self._config = config
 
+    @distributed_trace_async
     async def get_null(self, *, cls=None, **kwargs):
         """Get null datetime value.
 
@@ -74,6 +77,7 @@ class DatetimeModelOperations:
         return deserialized
     get_null.metadata = {'url': '/datetime/null'}
 
+    @distributed_trace_async
     async def get_invalid(self, *, cls=None, **kwargs):
         """Get invalid datetime value.
 
@@ -113,6 +117,7 @@ class DatetimeModelOperations:
         return deserialized
     get_invalid.metadata = {'url': '/datetime/invalid'}
 
+    @distributed_trace_async
     async def get_overflow(self, *, cls=None, **kwargs):
         """Get overflow datetime value.
 
@@ -152,6 +157,7 @@ class DatetimeModelOperations:
         return deserialized
     get_overflow.metadata = {'url': '/datetime/overflow'}
 
+    @distributed_trace_async
     async def get_underflow(self, *, cls=None, **kwargs):
         """Get underflow datetime value.
 
@@ -191,6 +197,7 @@ class DatetimeModelOperations:
         return deserialized
     get_underflow.metadata = {'url': '/datetime/underflow'}
 
+    @distributed_trace_async
     async def put_utc_max_date_time(self, datetime_body, *, cls=None, **kwargs):
         """Put max datetime value 9999-12-31T23:59:59.9999999Z.
 
@@ -230,6 +237,7 @@ class DatetimeModelOperations:
             return cls(response, None, response_headers)
     put_utc_max_date_time.metadata = {'url': '/datetime/max/utc'}
 
+    @distributed_trace_async
     async def get_utc_lowercase_max_date_time(self, *, cls=None, **kwargs):
         """Get max datetime value 9999-12-31t23:59:59.9999999z.
 
@@ -269,6 +277,7 @@ class DatetimeModelOperations:
         return deserialized
     get_utc_lowercase_max_date_time.metadata = {'url': '/datetime/max/utc/lowercase'}
 
+    @distributed_trace_async
     async def get_utc_uppercase_max_date_time(self, *, cls=None, **kwargs):
         """Get max datetime value 9999-12-31T23:59:59.9999999Z.
 
@@ -308,6 +317,7 @@ class DatetimeModelOperations:
         return deserialized
     get_utc_uppercase_max_date_time.metadata = {'url': '/datetime/max/utc/uppercase'}
 
+    @distributed_trace_async
     async def put_local_positive_offset_max_date_time(self, datetime_body, *, cls=None, **kwargs):
         """Put max datetime value with positive numoffset
         9999-12-31t23:59:59.9999999+14:00.
@@ -348,6 +358,7 @@ class DatetimeModelOperations:
             return cls(response, None, response_headers)
     put_local_positive_offset_max_date_time.metadata = {'url': '/datetime/max/localpositiveoffset'}
 
+    @distributed_trace_async
     async def get_local_positive_offset_lowercase_max_date_time(self, *, cls=None, **kwargs):
         """Get max datetime value with positive num offset
         9999-12-31t23:59:59.9999999+14:00.
@@ -388,6 +399,7 @@ class DatetimeModelOperations:
         return deserialized
     get_local_positive_offset_lowercase_max_date_time.metadata = {'url': '/datetime/max/localpositiveoffset/lowercase'}
 
+    @distributed_trace_async
     async def get_local_positive_offset_uppercase_max_date_time(self, *, cls=None, **kwargs):
         """Get max datetime value with positive num offset
         9999-12-31T23:59:59.9999999+14:00.
@@ -428,6 +440,7 @@ class DatetimeModelOperations:
         return deserialized
     get_local_positive_offset_uppercase_max_date_time.metadata = {'url': '/datetime/max/localpositiveoffset/uppercase'}
 
+    @distributed_trace_async
     async def put_local_negative_offset_max_date_time(self, datetime_body, *, cls=None, **kwargs):
         """Put max datetime value with positive numoffset
         9999-12-31t23:59:59.9999999-14:00.
@@ -468,6 +481,7 @@ class DatetimeModelOperations:
             return cls(response, None, response_headers)
     put_local_negative_offset_max_date_time.metadata = {'url': '/datetime/max/localnegativeoffset'}
 
+    @distributed_trace_async
     async def get_local_negative_offset_uppercase_max_date_time(self, *, cls=None, **kwargs):
         """Get max datetime value with positive num offset
         9999-12-31T23:59:59.9999999-14:00.
@@ -508,6 +522,7 @@ class DatetimeModelOperations:
         return deserialized
     get_local_negative_offset_uppercase_max_date_time.metadata = {'url': '/datetime/max/localnegativeoffset/uppercase'}
 
+    @distributed_trace_async
     async def get_local_negative_offset_lowercase_max_date_time(self, *, cls=None, **kwargs):
         """Get max datetime value with positive num offset
         9999-12-31t23:59:59.9999999-14:00.
@@ -548,6 +563,7 @@ class DatetimeModelOperations:
         return deserialized
     get_local_negative_offset_lowercase_max_date_time.metadata = {'url': '/datetime/max/localnegativeoffset/lowercase'}
 
+    @distributed_trace_async
     async def put_utc_min_date_time(self, datetime_body, *, cls=None, **kwargs):
         """Put min datetime value 0001-01-01T00:00:00Z.
 
@@ -587,6 +603,7 @@ class DatetimeModelOperations:
             return cls(response, None, response_headers)
     put_utc_min_date_time.metadata = {'url': '/datetime/min/utc'}
 
+    @distributed_trace_async
     async def get_utc_min_date_time(self, *, cls=None, **kwargs):
         """Get min datetime value 0001-01-01T00:00:00Z.
 
@@ -626,6 +643,7 @@ class DatetimeModelOperations:
         return deserialized
     get_utc_min_date_time.metadata = {'url': '/datetime/min/utc'}
 
+    @distributed_trace_async
     async def put_local_positive_offset_min_date_time(self, datetime_body, *, cls=None, **kwargs):
         """Put min datetime value 0001-01-01T00:00:00+14:00.
 
@@ -665,6 +683,7 @@ class DatetimeModelOperations:
             return cls(response, None, response_headers)
     put_local_positive_offset_min_date_time.metadata = {'url': '/datetime/min/localpositiveoffset'}
 
+    @distributed_trace_async
     async def get_local_positive_offset_min_date_time(self, *, cls=None, **kwargs):
         """Get min datetime value 0001-01-01T00:00:00+14:00.
 
@@ -704,6 +723,7 @@ class DatetimeModelOperations:
         return deserialized
     get_local_positive_offset_min_date_time.metadata = {'url': '/datetime/min/localpositiveoffset'}
 
+    @distributed_trace_async
     async def put_local_negative_offset_min_date_time(self, datetime_body, *, cls=None, **kwargs):
         """Put min datetime value 0001-01-01T00:00:00-14:00.
 
@@ -743,6 +763,7 @@ class DatetimeModelOperations:
             return cls(response, None, response_headers)
     put_local_negative_offset_min_date_time.metadata = {'url': '/datetime/min/localnegativeoffset'}
 
+    @distributed_trace_async
     async def get_local_negative_offset_min_date_time(self, *, cls=None, **kwargs):
         """Get min datetime value 0001-01-01T00:00:00-14:00.
 

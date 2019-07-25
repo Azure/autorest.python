@@ -9,6 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
+from azure.core.tracing.decorator import distributed_trace
 from azure.core.exceptions import map_error
 
 from .. import models
@@ -35,6 +36,7 @@ class HttpServerFailureOperations(object):
 
         self._config = config
 
+    @distributed_trace
     def head501(self, cls=None, **kwargs):
         """Return 501 status code - should be represented in the client as an
         error.
@@ -70,6 +72,7 @@ class HttpServerFailureOperations(object):
             return cls(response, None, response_headers)
     head501.metadata = {'url': '/http/failure/server/501'}
 
+    @distributed_trace
     def get501(self, cls=None, **kwargs):
         """Return 501 status code - should be represented in the client as an
         error.
@@ -105,6 +108,7 @@ class HttpServerFailureOperations(object):
             return cls(response, None, response_headers)
     get501.metadata = {'url': '/http/failure/server/501'}
 
+    @distributed_trace
     def post505(self, boolean_value=None, cls=None, **kwargs):
         """Return 505 status code - should be represented in the client as an
         error.
@@ -149,6 +153,7 @@ class HttpServerFailureOperations(object):
             return cls(response, None, response_headers)
     post505.metadata = {'url': '/http/failure/server/505'}
 
+    @distributed_trace
     def delete505(self, boolean_value=None, cls=None, **kwargs):
         """Return 505 status code - should be represented in the client as an
         error.

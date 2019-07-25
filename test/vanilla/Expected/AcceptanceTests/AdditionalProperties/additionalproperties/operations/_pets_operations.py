@@ -9,6 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
+from azure.core.tracing.decorator import distributed_trace
 from azure.core.exceptions import map_error
 
 from .. import models
@@ -35,6 +36,7 @@ class PetsOperations(object):
 
         self._config = config
 
+    @distributed_trace
     def create_ap_true(self, create_parameters, cls=None, **kwargs):
         """Create a Pet which contains more properties than what is defined.
 
@@ -81,6 +83,7 @@ class PetsOperations(object):
         return deserialized
     create_ap_true.metadata = {'url': '/additionalProperties/true'}
 
+    @distributed_trace
     def create_cat_ap_true(self, create_parameters, cls=None, **kwargs):
         """Create a CatAPTrue which contains more properties than what is defined.
 
@@ -127,6 +130,7 @@ class PetsOperations(object):
         return deserialized
     create_cat_ap_true.metadata = {'url': '/additionalProperties/true-subclass'}
 
+    @distributed_trace
     def create_ap_object(self, create_parameters, cls=None, **kwargs):
         """Create a Pet which contains more properties than what is defined.
 
@@ -173,6 +177,7 @@ class PetsOperations(object):
         return deserialized
     create_ap_object.metadata = {'url': '/additionalProperties/type/object'}
 
+    @distributed_trace
     def create_ap_string(self, create_parameters, cls=None, **kwargs):
         """Create a Pet which contains more properties than what is defined.
 
@@ -219,6 +224,7 @@ class PetsOperations(object):
         return deserialized
     create_ap_string.metadata = {'url': '/additionalProperties/type/string'}
 
+    @distributed_trace
     def create_ap_in_properties(self, create_parameters, cls=None, **kwargs):
         """Create a Pet which contains more properties than what is defined.
 
@@ -266,6 +272,7 @@ class PetsOperations(object):
         return deserialized
     create_ap_in_properties.metadata = {'url': '/additionalProperties/in/properties'}
 
+    @distributed_trace
     def create_ap_in_properties_with_ap_string(self, create_parameters, cls=None, **kwargs):
         """Create a Pet which contains more properties than what is defined.
 

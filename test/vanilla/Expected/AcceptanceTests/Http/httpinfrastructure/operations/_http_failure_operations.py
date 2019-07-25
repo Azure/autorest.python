@@ -9,6 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
+from azure.core.tracing.decorator import distributed_trace
 from azure.core.exceptions import HttpResponseError, map_error
 
 from .. import models
@@ -35,6 +36,7 @@ class HttpFailureOperations(object):
 
         self._config = config
 
+    @distributed_trace
     def get_empty_error(self, cls=None, **kwargs):
         """Get empty error form server.
 
@@ -75,6 +77,7 @@ class HttpFailureOperations(object):
         return deserialized
     get_empty_error.metadata = {'url': '/http/failure/emptybody/error'}
 
+    @distributed_trace
     def get_no_model_error(self, cls=None, **kwargs):
         """Get empty error form server.
 
@@ -114,6 +117,7 @@ class HttpFailureOperations(object):
         return deserialized
     get_no_model_error.metadata = {'url': '/http/failure/nomodel/error'}
 
+    @distributed_trace
     def get_no_model_empty(self, cls=None, **kwargs):
         """Get empty response from server.
 

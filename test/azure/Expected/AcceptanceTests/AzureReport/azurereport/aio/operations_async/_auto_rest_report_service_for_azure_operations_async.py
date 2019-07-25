@@ -9,6 +9,8 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
+from azure.core.tracing.decorator import distributed_trace
+from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.exceptions import map_error
 from ... import models
 import uuid
@@ -16,6 +18,7 @@ import uuid
 
 class AutoRestReportServiceForAzureOperationsMixin:
 
+    @distributed_trace_async
     async def get_report(self, qualifier=None, *, cls=None, **kwargs):
         """Get test coverage report.
 

@@ -9,6 +9,8 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
+from azure.core.tracing.decorator import distributed_trace
+from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.exceptions import map_error
 
 from ... import models
@@ -35,6 +37,7 @@ class IntModelOperations:
 
         self._config = config
 
+    @distributed_trace_async
     async def get_null(self, *, cls=None, **kwargs):
         """Get null Int value.
 
@@ -74,6 +77,7 @@ class IntModelOperations:
         return deserialized
     get_null.metadata = {'url': '/int/null'}
 
+    @distributed_trace_async
     async def get_invalid(self, *, cls=None, **kwargs):
         """Get invalid Int value.
 
@@ -113,6 +117,7 @@ class IntModelOperations:
         return deserialized
     get_invalid.metadata = {'url': '/int/invalid'}
 
+    @distributed_trace_async
     async def get_overflow_int32(self, *, cls=None, **kwargs):
         """Get overflow Int32 value.
 
@@ -152,6 +157,7 @@ class IntModelOperations:
         return deserialized
     get_overflow_int32.metadata = {'url': '/int/overflowint32'}
 
+    @distributed_trace_async
     async def get_underflow_int32(self, *, cls=None, **kwargs):
         """Get underflow Int32 value.
 
@@ -191,6 +197,7 @@ class IntModelOperations:
         return deserialized
     get_underflow_int32.metadata = {'url': '/int/underflowint32'}
 
+    @distributed_trace_async
     async def get_overflow_int64(self, *, cls=None, **kwargs):
         """Get overflow Int64 value.
 
@@ -230,6 +237,7 @@ class IntModelOperations:
         return deserialized
     get_overflow_int64.metadata = {'url': '/int/overflowint64'}
 
+    @distributed_trace_async
     async def get_underflow_int64(self, *, cls=None, **kwargs):
         """Get underflow Int64 value.
 
@@ -269,6 +277,7 @@ class IntModelOperations:
         return deserialized
     get_underflow_int64.metadata = {'url': '/int/underflowint64'}
 
+    @distributed_trace_async
     async def put_max32(self, int_body, *, cls=None, **kwargs):
         """Put max int32 value.
 
@@ -308,6 +317,7 @@ class IntModelOperations:
             return cls(response, None, response_headers)
     put_max32.metadata = {'url': '/int/max/32'}
 
+    @distributed_trace_async
     async def put_max64(self, int_body, *, cls=None, **kwargs):
         """Put max int64 value.
 
@@ -347,6 +357,7 @@ class IntModelOperations:
             return cls(response, None, response_headers)
     put_max64.metadata = {'url': '/int/max/64'}
 
+    @distributed_trace_async
     async def put_min32(self, int_body, *, cls=None, **kwargs):
         """Put min int32 value.
 
@@ -386,6 +397,7 @@ class IntModelOperations:
             return cls(response, None, response_headers)
     put_min32.metadata = {'url': '/int/min/32'}
 
+    @distributed_trace_async
     async def put_min64(self, int_body, *, cls=None, **kwargs):
         """Put min int64 value.
 
@@ -425,6 +437,7 @@ class IntModelOperations:
             return cls(response, None, response_headers)
     put_min64.metadata = {'url': '/int/min/64'}
 
+    @distributed_trace_async
     async def get_unix_time(self, *, cls=None, **kwargs):
         """Get datetime encoded as Unix time value.
 
@@ -464,6 +477,7 @@ class IntModelOperations:
         return deserialized
     get_unix_time.metadata = {'url': '/int/unixtime'}
 
+    @distributed_trace_async
     async def put_unix_time_date(self, int_body, *, cls=None, **kwargs):
         """Put datetime encoded as Unix time.
 
@@ -503,6 +517,7 @@ class IntModelOperations:
             return cls(response, None, response_headers)
     put_unix_time_date.metadata = {'url': '/int/unixtime'}
 
+    @distributed_trace_async
     async def get_invalid_unix_time(self, *, cls=None, **kwargs):
         """Get invalid Unix time value.
 
@@ -542,6 +557,7 @@ class IntModelOperations:
         return deserialized
     get_invalid_unix_time.metadata = {'url': '/int/invalidunixtime'}
 
+    @distributed_trace_async
     async def get_null_unix_time(self, *, cls=None, **kwargs):
         """Get null Unix time value.
 

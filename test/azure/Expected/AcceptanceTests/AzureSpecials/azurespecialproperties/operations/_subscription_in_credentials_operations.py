@@ -9,6 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
+from azure.core.tracing.decorator import distributed_trace
 import uuid
 from azure.core.exceptions import map_error
 
@@ -38,6 +39,7 @@ class SubscriptionInCredentialsOperations(object):
 
         self._config = config
 
+    @distributed_trace
     def post_method_global_valid(self, cls=None, **kwargs):
         """POST method with subscriptionId modeled in credentials.  Set the
         credential subscriptionId to '1234-5678-9012-3456' to succeed.
@@ -79,6 +81,7 @@ class SubscriptionInCredentialsOperations(object):
             return cls(response, None, response_headers)
     post_method_global_valid.metadata = {'url': '/azurespecials/subscriptionId/method/string/none/path/global/1234-5678-9012-3456/{subscriptionId}'}
 
+    @distributed_trace
     def post_method_global_null(self, cls=None, **kwargs):
         """POST method with subscriptionId modeled in credentials.  Set the
         credential subscriptionId to null, and client-side validation should
@@ -121,6 +124,7 @@ class SubscriptionInCredentialsOperations(object):
             return cls(response, None, response_headers)
     post_method_global_null.metadata = {'url': '/azurespecials/subscriptionId/method/string/none/path/global/null/{subscriptionId}'}
 
+    @distributed_trace
     def post_method_global_not_provided_valid(self, cls=None, **kwargs):
         """POST method with subscriptionId modeled in credentials.  Set the
         credential subscriptionId to '1234-5678-9012-3456' to succeed.
@@ -163,6 +167,7 @@ class SubscriptionInCredentialsOperations(object):
             return cls(response, None, response_headers)
     post_method_global_not_provided_valid.metadata = {'url': '/azurespecials/subscriptionId/method/string/none/path/globalNotProvided/1234-5678-9012-3456/{subscriptionId}'}
 
+    @distributed_trace
     def post_path_global_valid(self, cls=None, **kwargs):
         """POST method with subscriptionId modeled in credentials.  Set the
         credential subscriptionId to '1234-5678-9012-3456' to succeed.
@@ -204,6 +209,7 @@ class SubscriptionInCredentialsOperations(object):
             return cls(response, None, response_headers)
     post_path_global_valid.metadata = {'url': '/azurespecials/subscriptionId/path/string/none/path/global/1234-5678-9012-3456/{subscriptionId}'}
 
+    @distributed_trace
     def post_swagger_global_valid(self, cls=None, **kwargs):
         """POST method with subscriptionId modeled in credentials.  Set the
         credential subscriptionId to '1234-5678-9012-3456' to succeed.

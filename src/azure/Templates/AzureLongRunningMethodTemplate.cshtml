@@ -11,6 +11,11 @@
 string defKeyword = AsyncMode? "async def" : "def";
 string methodName = Model.Name.ToPythonCase();
 string initialMethodName = "_" + methodName + "_initial";
+string trace_decorator = "";
+}
+@if (Model.AddTracingDecorators)
+{
+trace_decorator = AsyncMode? "@distributed_trace_async" : "@distributed_trace";
 }
     @(defKeyword) @(initialMethodName)(
             self, @(Model.MethodParameterDeclaration(Python3Mode)), **kwargs):
@@ -109,6 +114,7 @@ else
 @EmptyLine
         return response
 @EmptyLine
+    @(trace_decorator)
     @(defKeyword) @(methodName)(
             self, @(Model.MethodParameterDeclaration(Python3Mode)), polling=True, **kwargs):
         """@(WrapComment(string.Empty, Model.BuildSummaryAndDescriptionString()))

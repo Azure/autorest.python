@@ -9,6 +9,8 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
+from azure.core.tracing.decorator import distributed_trace
+from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.exceptions import map_error
 
 from ... import models
@@ -35,6 +37,7 @@ class ByteOperations:
 
         self._config = config
 
+    @distributed_trace_async
     async def get_null(self, *, cls=None, **kwargs):
         """Get null byte value.
 
@@ -74,6 +77,7 @@ class ByteOperations:
         return deserialized
     get_null.metadata = {'url': '/byte/null'}
 
+    @distributed_trace_async
     async def get_empty(self, *, cls=None, **kwargs):
         """Get empty byte value ''.
 
@@ -113,6 +117,7 @@ class ByteOperations:
         return deserialized
     get_empty.metadata = {'url': '/byte/empty'}
 
+    @distributed_trace_async
     async def get_non_ascii(self, *, cls=None, **kwargs):
         """Get non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
 
@@ -152,6 +157,7 @@ class ByteOperations:
         return deserialized
     get_non_ascii.metadata = {'url': '/byte/nonAscii'}
 
+    @distributed_trace_async
     async def put_non_ascii(self, byte_body, *, cls=None, **kwargs):
         """Put non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
 
@@ -192,6 +198,7 @@ class ByteOperations:
             return cls(response, None, response_headers)
     put_non_ascii.metadata = {'url': '/byte/nonAscii'}
 
+    @distributed_trace_async
     async def get_invalid(self, *, cls=None, **kwargs):
         """Get invalid byte value ':::SWAGGER::::'.
 
