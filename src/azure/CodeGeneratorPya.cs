@@ -120,17 +120,6 @@ namespace AutoRest.Python.Azure
                 await Write(enumTemplate, Path.Combine(folderName, "models", "_" + codeModel.Name.ToPythonCase() + "_enums.py"));
             }
 
-            // Page class
-            if (codeModel.PageModels.Any()) {
-                List<PagePya> pagedModels = codeModel.PageModels as List<PagePya>;
-                var pageTemplate = new PageTemplate
-                {
-                    Model = pagedModels
-                };
-                await Write(pageTemplate, Path.Combine(folderName, "models", "_paged_models.py"));
-
-            }
-
             // Async
             if (noAsync != true)
             {

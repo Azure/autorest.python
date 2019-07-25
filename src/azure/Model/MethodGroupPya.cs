@@ -29,5 +29,7 @@ namespace AutoRest.Python.Azure.Model
         public bool HasAnyHttpResponseErrors => MethodTemplateModels.Any(item => !(CodeModel as CodeModelPya).AzureArm && item.DefaultResponse.Body == null);
 
         public bool HasAnyLongRunOperation => MethodTemplateModels.Any(m => m.Extensions.ContainsKey(AzureExtensions.LongRunningExtension));
+
+        public bool HasAnyPagingOperation => MethodTemplateModels.Any(m => m.Extensions.ContainsKey(AzureExtensions.PageableExtension));
     }
 }

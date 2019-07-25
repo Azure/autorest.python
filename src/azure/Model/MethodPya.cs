@@ -37,7 +37,7 @@ namespace AutoRest.Python.Azure.Model
             }
         }
 
-        public IModelType PagedResponseContentClass { get; set; }
+        public PagePya PagedMetadata { get; set; }
 
         public string ClientRequestIdString => AzureExtensions.GetClientRequestIdString(this);
 

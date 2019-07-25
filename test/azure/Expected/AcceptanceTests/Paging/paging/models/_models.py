@@ -48,6 +48,26 @@ class CustomParameterGroup(Model):
         self.tenant = kwargs.get('tenant', None)
 
 
+class OdataProductResult(Model):
+    """OdataProductResult.
+
+    :param values:
+    :type values: list[~paging.models.Product]
+    :param odatanext_link:
+    :type odatanext_link: str
+    """
+
+    _attribute_map = {
+        'values': {'key': 'values', 'type': '[Product]'},
+        'odatanext_link': {'key': 'odata\\.nextLink', 'type': 'str'},
+    }
+
+    def __init__(self, **kwargs):
+        super(OdataProductResult, self).__init__(**kwargs)
+        self.values = kwargs.get('values', None)
+        self.odatanext_link = kwargs.get('odatanext_link', None)
+
+
 class OperationResult(Model):
     """OperationResult.
 

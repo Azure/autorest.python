@@ -35,6 +35,10 @@ else
 {
 @:from azure.core.exceptions import map_error
 }
+@if (Model.HasAnyPagingOperation)
+{
+@:from azure.core.async_paging import AsyncItemPaged, AsyncList
+}
 @if (Model.HasAnyLongRunOperation)
 {
 @:from azure.core.polling.async_poller import async_poller, AsyncNoPolling

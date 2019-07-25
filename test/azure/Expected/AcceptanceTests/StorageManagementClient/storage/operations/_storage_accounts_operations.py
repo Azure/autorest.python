@@ -13,6 +13,7 @@ from azure.core.tracing.decorator import distributed_trace
 import uuid
 from azure.core.exceptions import map_error
 from azure.mgmt.core.exceptions import ARMError
+from azure.core.paging import ItemPaged
 from azure.core.polling import LROPoller, NoPolling
 from azure.mgmt.core.polling.arm_polling import ARMPolling
 
@@ -430,11 +431,11 @@ class StorageAccountsOperations(object):
         this.
 
         :return: An iterator like instance of StorageAccount
-        :rtype:
-         ~storage.models.StorageAccountPaged[~storage.models.StorageAccount]
+        :rtype: ~azure.core.paging.ItemPaged[~storage.models.StorageAccount]
         :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
         def prepare_request(next_link=None):
+            query_parameters = {}
             if not next_link:
                 # Construct URL
                 url = self.list.metadata['url']
@@ -442,14 +443,10 @@ class StorageAccountsOperations(object):
                     'subscriptionId': self._serialize.url("self._config.subscription_id", self._config.subscription_id, 'str')
                 }
                 url = self._client.format_url(url, **path_format_arguments)
-
-                # Construct parameters
-                query_parameters = {}
                 query_parameters['api-version'] = self._serialize.query("self.api_version", self.api_version, 'str')
 
             else:
                 url = next_link
-                query_parameters = {}
 
             # Construct headers
             header_parameters = {}
@@ -461,23 +458,26 @@ class StorageAccountsOperations(object):
             request = self._client.get(url, query_parameters, header_parameters)
             return request
 
-        def internal_paging(next_link=None):
-            error_map = kwargs.pop('error_map', None)
+        def extract_data(response):
+            deserialized = self._deserialize('StorageAccountListResult', response)
+            return deserialized.next_link, iter(deserialized.value)
+
+        def get_next(next_link=None):
             request = prepare_request(next_link)
 
             pipeline_response = self._client._pipeline.run(request)
             response = pipeline_response.http_response
 
+            error_map = kwargs.pop('error_map', None)
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise ARMError(response=response)
-
             return response
 
         # Deserialize response
-        deserialized = models.StorageAccountPaged(internal_paging, self._deserialize)
-
-        return deserialized
+        return ItemPaged(
+            get_next, extract_data
+        )
     list.metadata = {'url': '/subscriptions/{subscriptionId}/providers/Microsoft.Storage/storageAccounts'}
 
     @distributed_trace
@@ -491,11 +491,11 @@ class StorageAccountsOperations(object):
          user’s subscription.
         :type resource_group_name: str
         :return: An iterator like instance of StorageAccount
-        :rtype:
-         ~storage.models.StorageAccountPaged[~storage.models.StorageAccount]
+        :rtype: ~azure.core.paging.ItemPaged[~storage.models.StorageAccount]
         :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
         def prepare_request(next_link=None):
+            query_parameters = {}
             if not next_link:
                 # Construct URL
                 url = self.list_by_resource_group.metadata['url']
@@ -504,14 +504,10 @@ class StorageAccountsOperations(object):
                     'subscriptionId': self._serialize.url("self._config.subscription_id", self._config.subscription_id, 'str')
                 }
                 url = self._client.format_url(url, **path_format_arguments)
-
-                # Construct parameters
-                query_parameters = {}
                 query_parameters['api-version'] = self._serialize.query("self.api_version", self.api_version, 'str')
 
             else:
                 url = next_link
-                query_parameters = {}
 
             # Construct headers
             header_parameters = {}
@@ -523,23 +519,26 @@ class StorageAccountsOperations(object):
             request = self._client.get(url, query_parameters, header_parameters)
             return request
 
-        def internal_paging(next_link=None):
-            error_map = kwargs.pop('error_map', None)
+        def extract_data(response):
+            deserialized = self._deserialize('StorageAccountListResult', response)
+            return deserialized.next_link, iter(deserialized.value)
+
+        def get_next(next_link=None):
             request = prepare_request(next_link)
 
             pipeline_response = self._client._pipeline.run(request)
             response = pipeline_response.http_response
 
+            error_map = kwargs.pop('error_map', None)
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise ARMError(response=response)
-
             return response
 
         # Deserialize response
-        deserialized = models.StorageAccountPaged(internal_paging, self._deserialize)
-
-        return deserialized
+        return ItemPaged(
+            get_next, extract_data
+        )
     list_by_resource_group.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts'}
 
     @distributed_trace

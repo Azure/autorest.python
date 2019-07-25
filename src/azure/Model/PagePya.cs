@@ -9,21 +9,21 @@ using AutoRest.Python.Model;
 
 namespace AutoRest.Python.Azure.Model
 {
-    public class PagePya : IEquatable<PagePya>
+    public class PagePya
     {
         private readonly string _typeDefinitionName;
 
-        public PagePya(string className, string nextLinkName, string itemName, IModelType itemType)
+        public PagePya(string className, Property nextLinkProp, Property itemProp, IModelType itemType)
         {
             this._typeDefinitionName = className;
-            this.NextLinkName = nextLinkName;
-            this.ItemName = itemName;
+            this.NextLinkProp = nextLinkProp;
+            this.ItemProp = itemProp;
             this.ItemType = itemType;
         }
 
-        public string NextLinkName { get; private set; }
+        public Property NextLinkProp { get; private set; }
 
-        public string ItemName { get; private set; }
+        public Property ItemProp { get; private set; }
 
         public string TypeDefinitionName => CodeNamer.Instance.GetTypeName(_typeDefinitionName);
 
@@ -36,18 +36,6 @@ namespace AutoRest.Python.Azure.Model
                 return ItemType.Name;
             }
             return $":class:`{ItemType.Name} <{((CodeModelPy)ItemType.CodeModel)?.Namespace}.models.{ItemType.Name}>`";
-        }
-
-        public bool Equals(PagePya other)
-        {
-            if (other != null && 
-                this.NextLinkName.EqualsIgnoreCase(other.NextLinkName) && 
-                this.TypeDefinitionName.EqualsIgnoreCase(other.TypeDefinitionName) && 
-                this.ItemName.EqualsIgnoreCase(other.ItemName))
-            {
-                return true;
-            }
-            return false;
         }
     }
 }

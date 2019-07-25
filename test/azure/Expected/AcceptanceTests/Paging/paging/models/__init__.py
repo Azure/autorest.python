@@ -11,6 +11,7 @@
 
 try:
     from ._models_py3 import CustomParameterGroup
+    from ._models_py3 import OdataProductResult
     from ._models_py3 import OperationResult
     from ._models_py3 import PagingGetMultiplePagesLroOptions
     from ._models_py3 import PagingGetMultiplePagesOptions
@@ -21,6 +22,7 @@ try:
     from ._models_py3 import ProductResult
 except (SyntaxError, ImportError):
     from ._models import CustomParameterGroup
+    from ._models import OdataProductResult
     from ._models import OperationResult
     from ._models import PagingGetMultiplePagesLroOptions
     from ._models import PagingGetMultiplePagesOptions
@@ -29,11 +31,10 @@ except (SyntaxError, ImportError):
     from ._models import Product
     from ._models import ProductProperties
     from ._models import ProductResult
-from ._paged_models import ProductPaged
-from ._paged_models import ProductPaged1
 
 __all__ = [
     'CustomParameterGroup',
+    'OdataProductResult',
     'OperationResult',
     'PagingGetMultiplePagesLroOptions',
     'PagingGetMultiplePagesOptions',
@@ -42,6 +43,4 @@ __all__ = [
     'Product',
     'ProductProperties',
     'ProductResult',
-    'ProductPaged',
-    'ProductPaged1',
 ]

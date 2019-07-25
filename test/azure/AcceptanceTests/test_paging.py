@@ -61,39 +61,28 @@ def test_paging_happy_path(paging_client):
 
     pages = paging_client.paging.get_single_pages()
     items = [i for i in pages]
-    assert pages.next_link is None
     assert len(items) == 1
-
     assert items[0].properties.id == 1
     assert items[0].properties.name == "Product"
 
     pages = paging_client.paging.get_multiple_pages()
-    assert pages.next_link is not None
     items = [i for i in pages]
-    assert pages.next_link is None
     assert len(items) == 10
 
     pages = paging_client.paging.get_odata_multiple_pages()
-    assert pages.next_link is not None
     items = [i for i in pages]
-    assert pages.next_link is None
     assert len(items) == 10
 
     pages = paging_client.paging.get_multiple_pages_retry_first()
-    assert pages.next_link is not None
     items = [i for i in pages]
-    assert pages.next_link is None
     assert len(items) == 10
 
     pages = paging_client.paging.get_multiple_pages_retry_second()
-    assert pages.next_link is not None
     items = [i for i in pages]
-    assert pages.next_link is None
     assert len(items) == 10
 
     options = PagingGetMultiplePagesWithOffsetOptions(offset=100)
     pages = paging_client.paging.get_multiple_pages_with_offset(paging_get_multiple_pages_with_offset_options=options)
-    assert pages.next_link is not None
     items = [i for i in pages]
     assert len(items) == 10
     assert items[-1].properties.id == 110
@@ -106,8 +95,6 @@ def test_paging_sad_path(paging_client):
         list(pages)
 
     pages = paging_client.paging.get_multiple_pages_failure()
-    assert pages.next_link is not None
-
     with pytest.raises(HttpResponseError):
         list(pages)
 
@@ -119,7 +106,6 @@ def test_paging_fragment_path(paging_client):
 
     pages = paging_client.paging.get_multiple_pages_fragment_next_link("1.6", "test_user")
     items = [i for i in pages]
-    assert pages.next_link is None
     assert len(items) == 10
 
     with pytest.raises(AttributeError):
