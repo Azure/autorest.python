@@ -9,6 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
+from azure.core.tracing.decorator import distributed_trace
 from azure.core.exceptions import map_error
 
 from .. import models
@@ -37,6 +38,7 @@ class BasicOperations(object):
         self._config = config
         self.api_version = "2016-02-29"
 
+    @distributed_trace
     def get_valid(self, cls=None, **kwargs):
         """Get complex type {id: 2, name: 'abc', color: 'YELLOW'}.
 
@@ -76,6 +78,7 @@ class BasicOperations(object):
         return deserialized
     get_valid.metadata = {'url': '/complex/basic/valid'}
 
+    @distributed_trace
     def put_valid(self, complex_body, cls=None, **kwargs):
         """Please put {id: 2, name: 'abc', color: 'Magenta'}.
 
@@ -116,6 +119,7 @@ class BasicOperations(object):
             return cls(response, None, response_headers)
     put_valid.metadata = {'url': '/complex/basic/valid'}
 
+    @distributed_trace
     def get_invalid(self, cls=None, **kwargs):
         """Get a basic complex type that is invalid for the local strong type.
 
@@ -155,6 +159,7 @@ class BasicOperations(object):
         return deserialized
     get_invalid.metadata = {'url': '/complex/basic/invalid'}
 
+    @distributed_trace
     def get_empty(self, cls=None, **kwargs):
         """Get a basic complex type that is empty.
 
@@ -194,6 +199,7 @@ class BasicOperations(object):
         return deserialized
     get_empty.metadata = {'url': '/complex/basic/empty'}
 
+    @distributed_trace
     def get_null(self, cls=None, **kwargs):
         """Get a basic complex type whose properties are null.
 
@@ -233,6 +239,7 @@ class BasicOperations(object):
         return deserialized
     get_null.metadata = {'url': '/complex/basic/null'}
 
+    @distributed_trace
     def get_not_provided(self, cls=None, **kwargs):
         """Get a basic complex type while the server doesn't provide a response
         payload.

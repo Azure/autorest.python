@@ -9,6 +9,8 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
+from azure.core.tracing.decorator import distributed_trace
+from azure.core.tracing.decorator_async import distributed_trace_async
 import uuid
 from azure.core.exceptions import map_error
 from azure.mgmt.core.exceptions import ARMError
@@ -42,6 +44,7 @@ class StorageAccountsOperations:
 
         self._config = config
 
+    @distributed_trace_async
     async def check_name_availability(self, account_name, *, cls=None, **kwargs):
         """Checks that account name is valid and is not in use.
 
@@ -139,6 +142,7 @@ class StorageAccountsOperations:
 
         return response
 
+    @distributed_trace_async
     async def create(
             self, resource_group_name, account_name, parameters, *, cls=None, polling=True, **kwargs):
         """Asynchronously creates a new storage account with the specified
@@ -185,6 +189,7 @@ class StorageAccountsOperations:
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     create.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}'}
 
+    @distributed_trace_async
     async def delete(self, resource_group_name, account_name, *, cls=None, **kwargs):
         """Deletes a storage account in Microsoft Azure.
 
@@ -234,6 +239,7 @@ class StorageAccountsOperations:
             return cls(response, None, response_headers)
     delete.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}'}
 
+    @distributed_trace_async
     async def get_properties(self, resource_group_name, account_name, *, cls=None, **kwargs):
         """Returns the properties for the specified storage account including but
         not limited to name, account type, location, and account status. The
@@ -291,6 +297,7 @@ class StorageAccountsOperations:
         return deserialized
     get_properties.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}'}
 
+    @distributed_trace_async
     async def update(self, resource_group_name, account_name, parameters, *, cls=None, **kwargs):
         """Updates the account type or tags for a storage account. It can also be
         used to add a custom domain (note that custom domains cannot be added
@@ -362,6 +369,7 @@ class StorageAccountsOperations:
         return deserialized
     update.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}'}
 
+    @distributed_trace_async
     async def list_keys(self, resource_group_name, account_name, *, cls=None, **kwargs):
         """Lists the access keys for the specified storage account.
 
@@ -415,6 +423,7 @@ class StorageAccountsOperations:
         return deserialized
     list_keys.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/listKeys'}
 
+    @distributed_trace
     def list(
             self, *, cls=None, **kwargs):
         """Lists all the storage accounts available under the subscription. Note
@@ -472,6 +481,7 @@ class StorageAccountsOperations:
         )
     list.metadata = {'url': '/subscriptions/{subscriptionId}/providers/Microsoft.Storage/storageAccounts'}
 
+    @distributed_trace
     def list_by_resource_group(
             self, resource_group_name, *, cls=None, **kwargs):
         """Lists all the storage accounts available under the given resource
@@ -533,6 +543,7 @@ class StorageAccountsOperations:
         )
     list_by_resource_group.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts'}
 
+    @distributed_trace_async
     async def regenerate_key(self, resource_group_name, account_name, key_name=None, *, cls=None, **kwargs):
         """Regenerates the access keys for the specified storage account.
 

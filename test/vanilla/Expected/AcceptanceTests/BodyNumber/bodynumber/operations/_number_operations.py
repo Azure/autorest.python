@@ -9,6 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
+from azure.core.tracing.decorator import distributed_trace
 from azure.core.exceptions import map_error
 
 from .. import models
@@ -35,6 +36,7 @@ class NumberOperations(object):
 
         self._config = config
 
+    @distributed_trace
     def get_null(self, cls=None, **kwargs):
         """Get null Number value.
 
@@ -74,6 +76,7 @@ class NumberOperations(object):
         return deserialized
     get_null.metadata = {'url': '/number/null'}
 
+    @distributed_trace
     def get_invalid_float(self, cls=None, **kwargs):
         """Get invalid float Number value.
 
@@ -113,6 +116,7 @@ class NumberOperations(object):
         return deserialized
     get_invalid_float.metadata = {'url': '/number/invalidfloat'}
 
+    @distributed_trace
     def get_invalid_double(self, cls=None, **kwargs):
         """Get invalid double Number value.
 
@@ -152,6 +156,7 @@ class NumberOperations(object):
         return deserialized
     get_invalid_double.metadata = {'url': '/number/invaliddouble'}
 
+    @distributed_trace
     def get_invalid_decimal(self, cls=None, **kwargs):
         """Get invalid decimal Number value.
 
@@ -191,6 +196,7 @@ class NumberOperations(object):
         return deserialized
     get_invalid_decimal.metadata = {'url': '/number/invaliddecimal'}
 
+    @distributed_trace
     def put_big_float(self, number_body, cls=None, **kwargs):
         """Put big float value 3.402823e+20.
 
@@ -230,6 +236,7 @@ class NumberOperations(object):
             return cls(response, None, response_headers)
     put_big_float.metadata = {'url': '/number/big/float/3.402823e+20'}
 
+    @distributed_trace
     def get_big_float(self, cls=None, **kwargs):
         """Get big float value 3.402823e+20.
 
@@ -269,6 +276,7 @@ class NumberOperations(object):
         return deserialized
     get_big_float.metadata = {'url': '/number/big/float/3.402823e+20'}
 
+    @distributed_trace
     def put_big_double(self, number_body, cls=None, **kwargs):
         """Put big double value 2.5976931e+101.
 
@@ -308,6 +316,7 @@ class NumberOperations(object):
             return cls(response, None, response_headers)
     put_big_double.metadata = {'url': '/number/big/double/2.5976931e+101'}
 
+    @distributed_trace
     def get_big_double(self, cls=None, **kwargs):
         """Get big double value 2.5976931e+101.
 
@@ -347,6 +356,7 @@ class NumberOperations(object):
         return deserialized
     get_big_double.metadata = {'url': '/number/big/double/2.5976931e+101'}
 
+    @distributed_trace
     def put_big_double_positive_decimal(self, cls=None, **kwargs):
         """Put big double value 99999999.99.
 
@@ -386,6 +396,7 @@ class NumberOperations(object):
             return cls(response, None, response_headers)
     put_big_double_positive_decimal.metadata = {'url': '/number/big/double/99999999.99'}
 
+    @distributed_trace
     def get_big_double_positive_decimal(self, cls=None, **kwargs):
         """Get big double value 99999999.99.
 
@@ -425,6 +436,7 @@ class NumberOperations(object):
         return deserialized
     get_big_double_positive_decimal.metadata = {'url': '/number/big/double/99999999.99'}
 
+    @distributed_trace
     def put_big_double_negative_decimal(self, cls=None, **kwargs):
         """Put big double value -99999999.99.
 
@@ -464,6 +476,7 @@ class NumberOperations(object):
             return cls(response, None, response_headers)
     put_big_double_negative_decimal.metadata = {'url': '/number/big/double/-99999999.99'}
 
+    @distributed_trace
     def get_big_double_negative_decimal(self, cls=None, **kwargs):
         """Get big double value -99999999.99.
 
@@ -503,6 +516,7 @@ class NumberOperations(object):
         return deserialized
     get_big_double_negative_decimal.metadata = {'url': '/number/big/double/-99999999.99'}
 
+    @distributed_trace
     def put_big_decimal(self, number_body, cls=None, **kwargs):
         """Put big decimal value 2.5976931e+101.
 
@@ -542,6 +556,7 @@ class NumberOperations(object):
             return cls(response, None, response_headers)
     put_big_decimal.metadata = {'url': '/number/big/decimal/2.5976931e+101'}
 
+    @distributed_trace
     def get_big_decimal(self, cls=None, **kwargs):
         """Get big decimal value 2.5976931e+101.
 
@@ -581,6 +596,7 @@ class NumberOperations(object):
         return deserialized
     get_big_decimal.metadata = {'url': '/number/big/decimal/2.5976931e+101'}
 
+    @distributed_trace
     def put_big_decimal_positive_decimal(self, cls=None, **kwargs):
         """Put big decimal value 99999999.99.
 
@@ -620,6 +636,7 @@ class NumberOperations(object):
             return cls(response, None, response_headers)
     put_big_decimal_positive_decimal.metadata = {'url': '/number/big/decimal/99999999.99'}
 
+    @distributed_trace
     def get_big_decimal_positive_decimal(self, cls=None, **kwargs):
         """Get big decimal value 99999999.99.
 
@@ -659,6 +676,7 @@ class NumberOperations(object):
         return deserialized
     get_big_decimal_positive_decimal.metadata = {'url': '/number/big/decimal/99999999.99'}
 
+    @distributed_trace
     def put_big_decimal_negative_decimal(self, cls=None, **kwargs):
         """Put big decimal value -99999999.99.
 
@@ -698,6 +716,7 @@ class NumberOperations(object):
             return cls(response, None, response_headers)
     put_big_decimal_negative_decimal.metadata = {'url': '/number/big/decimal/-99999999.99'}
 
+    @distributed_trace
     def get_big_decimal_negative_decimal(self, cls=None, **kwargs):
         """Get big decimal value -99999999.99.
 
@@ -737,6 +756,7 @@ class NumberOperations(object):
         return deserialized
     get_big_decimal_negative_decimal.metadata = {'url': '/number/big/decimal/-99999999.99'}
 
+    @distributed_trace
     def put_small_float(self, number_body, cls=None, **kwargs):
         """Put small float value 3.402823e-20.
 
@@ -776,6 +796,7 @@ class NumberOperations(object):
             return cls(response, None, response_headers)
     put_small_float.metadata = {'url': '/number/small/float/3.402823e-20'}
 
+    @distributed_trace
     def get_small_float(self, cls=None, **kwargs):
         """Get big double value 3.402823e-20.
 
@@ -815,6 +836,7 @@ class NumberOperations(object):
         return deserialized
     get_small_float.metadata = {'url': '/number/small/float/3.402823e-20'}
 
+    @distributed_trace
     def put_small_double(self, number_body, cls=None, **kwargs):
         """Put small double value 2.5976931e-101.
 
@@ -854,6 +876,7 @@ class NumberOperations(object):
             return cls(response, None, response_headers)
     put_small_double.metadata = {'url': '/number/small/double/2.5976931e-101'}
 
+    @distributed_trace
     def get_small_double(self, cls=None, **kwargs):
         """Get big double value 2.5976931e-101.
 
@@ -893,6 +916,7 @@ class NumberOperations(object):
         return deserialized
     get_small_double.metadata = {'url': '/number/small/double/2.5976931e-101'}
 
+    @distributed_trace
     def put_small_decimal(self, number_body, cls=None, **kwargs):
         """Put small decimal value 2.5976931e-101.
 
@@ -932,6 +956,7 @@ class NumberOperations(object):
             return cls(response, None, response_headers)
     put_small_decimal.metadata = {'url': '/number/small/decimal/2.5976931e-101'}
 
+    @distributed_trace
     def get_small_decimal(self, cls=None, **kwargs):
         """Get small decimal value 2.5976931e-101.
 

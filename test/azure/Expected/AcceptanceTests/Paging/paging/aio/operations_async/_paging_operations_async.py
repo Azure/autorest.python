@@ -9,6 +9,8 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
+from azure.core.tracing.decorator import distributed_trace
+from azure.core.tracing.decorator_async import distributed_trace_async
 import uuid
 from azure.core.exceptions import map_error
 from azure.mgmt.core.exceptions import ARMError
@@ -40,6 +42,7 @@ class PagingOperations:
 
         self._config = config
 
+    @distributed_trace
     def get_single_pages(
             self, *, cls=None, **kwargs):
         """A paging operation that finishes on the first call without a nextlink.
@@ -90,6 +93,7 @@ class PagingOperations:
         )
     get_single_pages.metadata = {'url': '/paging/single'}
 
+    @distributed_trace
     def get_multiple_pages(
             self, client_request_id=None, paging_get_multiple_pages_options=None, *, cls=None, **kwargs):
         """A paging operation that includes a nextLink that has 10 pages.
@@ -159,6 +163,7 @@ class PagingOperations:
         )
     get_multiple_pages.metadata = {'url': '/paging/multiple'}
 
+    @distributed_trace
     def get_odata_multiple_pages(
             self, client_request_id=None, paging_get_odata_multiple_pages_options=None, *, cls=None, **kwargs):
         """A paging operation that includes a nextLink in odata format that has 10
@@ -229,6 +234,7 @@ class PagingOperations:
         )
     get_odata_multiple_pages.metadata = {'url': '/paging/multiple/odata'}
 
+    @distributed_trace
     def get_multiple_pages_with_offset(
             self, paging_get_multiple_pages_with_offset_options, client_request_id=None, *, cls=None, **kwargs):
         """A paging operation that includes a nextLink that has 10 pages.
@@ -305,6 +311,7 @@ class PagingOperations:
         )
     get_multiple_pages_with_offset.metadata = {'url': '/paging/multiple/withpath/{offset}'}
 
+    @distributed_trace
     def get_multiple_pages_retry_first(
             self, *, cls=None, **kwargs):
         """A paging operation that fails on the first call with 500 and then
@@ -356,6 +363,7 @@ class PagingOperations:
         )
     get_multiple_pages_retry_first.metadata = {'url': '/paging/multiple/retryfirst'}
 
+    @distributed_trace
     def get_multiple_pages_retry_second(
             self, *, cls=None, **kwargs):
         """A paging operation that includes a nextLink that has 10 pages, of which
@@ -408,6 +416,7 @@ class PagingOperations:
         )
     get_multiple_pages_retry_second.metadata = {'url': '/paging/multiple/retrysecond'}
 
+    @distributed_trace
     def get_single_pages_failure(
             self, *, cls=None, **kwargs):
         """A paging operation that receives a 400 on the first call.
@@ -458,6 +467,7 @@ class PagingOperations:
         )
     get_single_pages_failure.metadata = {'url': '/paging/single/failure'}
 
+    @distributed_trace
     def get_multiple_pages_failure(
             self, *, cls=None, **kwargs):
         """A paging operation that receives a 400 on the second call.
@@ -508,6 +518,7 @@ class PagingOperations:
         )
     get_multiple_pages_failure.metadata = {'url': '/paging/multiple/failure'}
 
+    @distributed_trace
     def get_multiple_pages_failure_uri(
             self, *, cls=None, **kwargs):
         """A paging operation that receives an invalid nextLink.
@@ -558,6 +569,7 @@ class PagingOperations:
         )
     get_multiple_pages_failure_uri.metadata = {'url': '/paging/multiple/failureuri'}
 
+    @distributed_trace
     def get_multiple_pages_fragment_next_link(
             self, api_version, tenant, *, cls=None, **kwargs):
         """A paging operation that doesn't return a full URL, just a fragment.
@@ -623,6 +635,7 @@ class PagingOperations:
         )
     get_multiple_pages_fragment_next_link.metadata = {'url': '/paging/multiple/fragment/{tenant}'}
 
+    @distributed_trace
     def get_multiple_pages_fragment_with_grouping_next_link(
             self, custom_parameter_group, *, cls=None, **kwargs):
         """A paging operation that doesn't return a full URL, just a fragment with
@@ -738,6 +751,7 @@ class PagingOperations:
 
         return response
 
+    @distributed_trace_async
     async def get_multiple_pages_lro(
             self, client_request_id=None, paging_get_multiple_pages_lro_options=None, *, cls=None, polling=True, **kwargs):
         """A long-running paging operation that includes a nextLink that has 10

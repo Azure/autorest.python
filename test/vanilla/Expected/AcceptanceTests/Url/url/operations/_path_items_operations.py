@@ -9,6 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
+from azure.core.tracing.decorator import distributed_trace
 from azure.core.exceptions import map_error
 
 from .. import models
@@ -35,6 +36,7 @@ class PathItemsOperations(object):
 
         self._config = config
 
+    @distributed_trace
     def get_all_with_values(self, local_string_path, path_item_string_path, local_string_query=None, path_item_string_query=None, cls=None, **kwargs):
         """send globalStringPath='globalStringPath',
         pathItemStringPath='pathItemStringPath',
@@ -95,6 +97,7 @@ class PathItemsOperations(object):
             return cls(response, None, response_headers)
     get_all_with_values.metadata = {'url': '/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/pathItemStringQuery/localStringQuery'}
 
+    @distributed_trace
     def get_global_query_null(self, local_string_path, path_item_string_path, local_string_query=None, path_item_string_query=None, cls=None, **kwargs):
         """send globalStringPath='globalStringPath',
         pathItemStringPath='pathItemStringPath',
@@ -154,6 +157,7 @@ class PathItemsOperations(object):
             return cls(response, None, response_headers)
     get_global_query_null.metadata = {'url': '/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/localStringQuery'}
 
+    @distributed_trace
     def get_global_and_local_query_null(self, local_string_path, path_item_string_path, local_string_query=None, path_item_string_query=None, cls=None, **kwargs):
         """send globalStringPath=globalStringPath,
         pathItemStringPath='pathItemStringPath',
@@ -212,6 +216,7 @@ class PathItemsOperations(object):
             return cls(response, None, response_headers)
     get_global_and_local_query_null.metadata = {'url': '/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/null'}
 
+    @distributed_trace
     def get_local_path_item_query_null(self, local_string_path, path_item_string_path, local_string_query=None, path_item_string_query=None, cls=None, **kwargs):
         """send globalStringPath='globalStringPath',
         pathItemStringPath='pathItemStringPath',

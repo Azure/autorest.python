@@ -9,6 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
+from azure.core.tracing.decorator import distributed_trace
 from azure.core.exceptions import HttpResponseError, map_error
 
 from .. import models
@@ -35,6 +36,7 @@ class FlattencomplexOperations(object):
 
         self._config = config
 
+    @distributed_trace
     def get_valid(self, cls=None, **kwargs):
         """
 

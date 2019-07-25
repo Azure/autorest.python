@@ -7,6 +7,7 @@ using System.Globalization;
 using System.Linq;
 using AutoRest.Core.Model;
 using AutoRest.Core.Utilities;
+using AutoRest.Core;
 using static AutoRest.Core.Utilities.DependencyInjection;
 
 namespace AutoRest.Python.Model
@@ -32,6 +33,8 @@ namespace AutoRest.Python.Model
         public bool HasAnyDefaultExceptions => this.MethodTemplateModels.Any(item => item.DefaultResponse.Body == null);
 
         public bool HasAnyDeprecated => this.MethodTemplateModels.Any(item => item.Deprecated);
+
+        public bool AddTracingDecorators => (bool)Settings.Instance.CustomSettings["trace"];
 
         public IEnumerable<PropertyPy> ConstantProperties { get; internal set; }
 

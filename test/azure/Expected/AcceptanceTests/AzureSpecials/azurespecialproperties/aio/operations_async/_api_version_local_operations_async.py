@@ -9,6 +9,8 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
+from azure.core.tracing.decorator import distributed_trace
+from azure.core.tracing.decorator_async import distributed_trace_async
 import uuid
 from azure.core.exceptions import map_error
 
@@ -38,6 +40,7 @@ class ApiVersionLocalOperations:
 
         self._config = config
 
+    @distributed_trace_async
     async def get_method_local_valid(self, *, cls=None, **kwargs):
         """Get method with api-version modeled in the method.  pass in api-version
         = '2.0' to succeed.
@@ -76,6 +79,7 @@ class ApiVersionLocalOperations:
             return cls(response, None, response_headers)
     get_method_local_valid.metadata = {'url': '/azurespecials/apiVersion/method/string/none/query/local/2.0'}
 
+    @distributed_trace_async
     async def get_method_local_null(self, api_version=None, *, cls=None, **kwargs):
         """Get method with api-version modeled in the method.  pass in api-version
         = null to succeed.
@@ -118,6 +122,7 @@ class ApiVersionLocalOperations:
             return cls(response, None, response_headers)
     get_method_local_null.metadata = {'url': '/azurespecials/apiVersion/method/string/none/query/local/null'}
 
+    @distributed_trace_async
     async def get_path_local_valid(self, *, cls=None, **kwargs):
         """Get method with api-version modeled in the method.  pass in api-version
         = '2.0' to succeed.
@@ -156,6 +161,7 @@ class ApiVersionLocalOperations:
             return cls(response, None, response_headers)
     get_path_local_valid.metadata = {'url': '/azurespecials/apiVersion/path/string/none/query/local/2.0'}
 
+    @distributed_trace_async
     async def get_swagger_local_valid(self, *, cls=None, **kwargs):
         """Get method with api-version modeled in the method.  pass in api-version
         = '2.0' to succeed.

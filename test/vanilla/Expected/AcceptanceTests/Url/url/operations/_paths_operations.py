@@ -9,6 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
+from azure.core.tracing.decorator import distributed_trace
 from azure.core.exceptions import map_error
 
 from .. import models
@@ -41,6 +42,7 @@ class PathsOperations(object):
         self.date_path = "2012-01-01"
         self.date_time_path = "2012-01-01T01:01:01Z"
 
+    @distributed_trace
     def get_boolean_true(self, cls=None, **kwargs):
         """Get true Boolean value on path.
 
@@ -80,6 +82,7 @@ class PathsOperations(object):
             return cls(response, None, response_headers)
     get_boolean_true.metadata = {'url': '/paths/bool/true/{boolPath}'}
 
+    @distributed_trace
     def get_boolean_false(self, cls=None, **kwargs):
         """Get false Boolean value on path.
 
@@ -119,6 +122,7 @@ class PathsOperations(object):
             return cls(response, None, response_headers)
     get_boolean_false.metadata = {'url': '/paths/bool/false/{boolPath}'}
 
+    @distributed_trace
     def get_int_one_million(self, cls=None, **kwargs):
         """Get '1000000' integer value.
 
@@ -158,6 +162,7 @@ class PathsOperations(object):
             return cls(response, None, response_headers)
     get_int_one_million.metadata = {'url': '/paths/int/1000000/{intPath}'}
 
+    @distributed_trace
     def get_int_negative_one_million(self, cls=None, **kwargs):
         """Get '-1000000' integer value.
 
@@ -197,6 +202,7 @@ class PathsOperations(object):
             return cls(response, None, response_headers)
     get_int_negative_one_million.metadata = {'url': '/paths/int/-1000000/{intPath}'}
 
+    @distributed_trace
     def get_ten_billion(self, cls=None, **kwargs):
         """Get '10000000000' 64 bit integer value.
 
@@ -236,6 +242,7 @@ class PathsOperations(object):
             return cls(response, None, response_headers)
     get_ten_billion.metadata = {'url': '/paths/long/10000000000/{longPath}'}
 
+    @distributed_trace
     def get_negative_ten_billion(self, cls=None, **kwargs):
         """Get '-10000000000' 64 bit integer value.
 
@@ -275,6 +282,7 @@ class PathsOperations(object):
             return cls(response, None, response_headers)
     get_negative_ten_billion.metadata = {'url': '/paths/long/-10000000000/{longPath}'}
 
+    @distributed_trace
     def float_scientific_positive(self, cls=None, **kwargs):
         """Get '1.034E+20' numeric value.
 
@@ -314,6 +322,7 @@ class PathsOperations(object):
             return cls(response, None, response_headers)
     float_scientific_positive.metadata = {'url': '/paths/float/1.034E+20/{floatPath}'}
 
+    @distributed_trace
     def float_scientific_negative(self, cls=None, **kwargs):
         """Get '-1.034E-20' numeric value.
 
@@ -353,6 +362,7 @@ class PathsOperations(object):
             return cls(response, None, response_headers)
     float_scientific_negative.metadata = {'url': '/paths/float/-1.034E-20/{floatPath}'}
 
+    @distributed_trace
     def double_decimal_positive(self, cls=None, **kwargs):
         """Get '9999999.999' numeric value.
 
@@ -392,6 +402,7 @@ class PathsOperations(object):
             return cls(response, None, response_headers)
     double_decimal_positive.metadata = {'url': '/paths/double/9999999.999/{doublePath}'}
 
+    @distributed_trace
     def double_decimal_negative(self, cls=None, **kwargs):
         """Get '-9999999.999' numeric value.
 
@@ -431,6 +442,7 @@ class PathsOperations(object):
             return cls(response, None, response_headers)
     double_decimal_negative.metadata = {'url': '/paths/double/-9999999.999/{doublePath}'}
 
+    @distributed_trace
     def string_unicode(self, cls=None, **kwargs):
         """Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value.
 
@@ -470,6 +482,7 @@ class PathsOperations(object):
             return cls(response, None, response_headers)
     string_unicode.metadata = {'url': '/paths/string/unicode/{stringPath}'}
 
+    @distributed_trace
     def string_url_encoded(self, cls=None, **kwargs):
         """Get 'begin!*'();:@ &=+$,/?#[]end.
 
@@ -509,6 +522,7 @@ class PathsOperations(object):
             return cls(response, None, response_headers)
     string_url_encoded.metadata = {'url': '/paths/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend/{stringPath}'}
 
+    @distributed_trace
     def string_empty(self, cls=None, **kwargs):
         """Get ''.
 
@@ -548,6 +562,7 @@ class PathsOperations(object):
             return cls(response, None, response_headers)
     string_empty.metadata = {'url': '/paths/string/empty/{stringPath}'}
 
+    @distributed_trace
     def string_null(self, string_path, cls=None, **kwargs):
         """Get null (should throw).
 
@@ -587,6 +602,7 @@ class PathsOperations(object):
             return cls(response, None, response_headers)
     string_null.metadata = {'url': '/paths/string/null/{stringPath}'}
 
+    @distributed_trace
     def enum_valid(self, enum_path, cls=None, **kwargs):
         """Get using uri with 'green color' in path parameter.
 
@@ -627,6 +643,7 @@ class PathsOperations(object):
             return cls(response, None, response_headers)
     enum_valid.metadata = {'url': '/paths/enum/green%20color/{enumPath}'}
 
+    @distributed_trace
     def enum_null(self, enum_path, cls=None, **kwargs):
         """Get null (should throw on the client before the request is sent on
         wire).
@@ -668,6 +685,7 @@ class PathsOperations(object):
             return cls(response, None, response_headers)
     enum_null.metadata = {'url': '/paths/string/null/{enumPath}'}
 
+    @distributed_trace
     def byte_multi_byte(self, byte_path, cls=None, **kwargs):
         """Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
 
@@ -708,6 +726,7 @@ class PathsOperations(object):
             return cls(response, None, response_headers)
     byte_multi_byte.metadata = {'url': '/paths/byte/multibyte/{bytePath}'}
 
+    @distributed_trace
     def byte_empty(self, cls=None, **kwargs):
         """Get '' as byte array.
 
@@ -745,6 +764,7 @@ class PathsOperations(object):
             return cls(response, None, response_headers)
     byte_empty.metadata = {'url': '/paths/byte/empty/{bytePath}'}
 
+    @distributed_trace
     def byte_null(self, byte_path, cls=None, **kwargs):
         """Get null as byte array (should throw).
 
@@ -784,6 +804,7 @@ class PathsOperations(object):
             return cls(response, None, response_headers)
     byte_null.metadata = {'url': '/paths/byte/null/{bytePath}'}
 
+    @distributed_trace
     def date_valid(self, cls=None, **kwargs):
         """Get '2012-01-01' as date.
 
@@ -821,6 +842,7 @@ class PathsOperations(object):
             return cls(response, None, response_headers)
     date_valid.metadata = {'url': '/paths/date/2012-01-01/{datePath}'}
 
+    @distributed_trace
     def date_null(self, date_path, cls=None, **kwargs):
         """Get null as date - this should throw or be unusable on the client side,
         depending on date representation.
@@ -861,6 +883,7 @@ class PathsOperations(object):
             return cls(response, None, response_headers)
     date_null.metadata = {'url': '/paths/date/null/{datePath}'}
 
+    @distributed_trace
     def date_time_valid(self, cls=None, **kwargs):
         """Get '2012-01-01T01:01:01Z' as date-time.
 
@@ -898,6 +921,7 @@ class PathsOperations(object):
             return cls(response, None, response_headers)
     date_time_valid.metadata = {'url': '/paths/datetime/2012-01-01T01%3A01%3A01Z/{dateTimePath}'}
 
+    @distributed_trace
     def date_time_null(self, date_time_path, cls=None, **kwargs):
         """Get null as date-time, should be disallowed or throw depending on
         representation of date-time.
@@ -938,6 +962,7 @@ class PathsOperations(object):
             return cls(response, None, response_headers)
     date_time_null.metadata = {'url': '/paths/datetime/null/{dateTimePath}'}
 
+    @distributed_trace
     def base64_url(self, base64_url_path, cls=None, **kwargs):
         """Get 'lorem' encoded value as 'bG9yZW0' (base64url).
 
@@ -977,6 +1002,7 @@ class PathsOperations(object):
             return cls(response, None, response_headers)
     base64_url.metadata = {'url': '/paths/string/bG9yZW0/{base64UrlPath}'}
 
+    @distributed_trace
     def array_csv_in_path(self, array_path, cls=None, **kwargs):
         """Get an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' ,
         null, ''] using the csv-array format.
@@ -1018,6 +1044,7 @@ class PathsOperations(object):
             return cls(response, None, response_headers)
     array_csv_in_path.metadata = {'url': '/paths/array/ArrayPath1%2cbegin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend%2c%2c/{arrayPath}'}
 
+    @distributed_trace
     def unix_time_url(self, unix_time_url_path, cls=None, **kwargs):
         """Get the date 2016-04-13 encoded value as '1460505600' (Unix time).
 

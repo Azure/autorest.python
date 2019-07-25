@@ -9,6 +9,8 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
+from azure.core.tracing.decorator import distributed_trace
+from azure.core.tracing.decorator_async import distributed_trace_async
 import uuid
 from azure.core.exceptions import map_error
 from azure.mgmt.core.exceptions import ARMError
@@ -37,6 +39,7 @@ class XMsClientRequestIdOperations:
 
         self._config = config
 
+    @distributed_trace_async
     async def get(self, *, cls=None, **kwargs):
         """Get method that overwrites x-ms-client-request header with value
         9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
@@ -73,6 +76,7 @@ class XMsClientRequestIdOperations:
             return cls(response, None, response_headers)
     get.metadata = {'url': '/azurespecials/overwrite/x-ms-client-request-id/method/'}
 
+    @distributed_trace_async
     async def param_get(self, x_ms_client_request_id, *, cls=None, **kwargs):
         """Get method that overwrites x-ms-client-request header with value
         9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.

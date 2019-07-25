@@ -86,6 +86,7 @@ namespace AutoRest.Python
             Settings.Instance.CustomSettings["AzureArm"] = await GetValue<bool?>("azure-arm") ?? false;
             Settings.Instance.MaximumCommentColumns = await GetValue<int?>("max-comment-columns") ?? Settings.DefaultMaximumCommentColumns;
             Settings.Instance.OutputFileName = await GetValue<string>("output-file");
+            Settings.Instance.CustomSettings["trace"] = await GetValue<bool?>("trace") ?? false;
 
             {
                 // TODO: sort out matters here entirely instead of relying on Input being read somewhere...

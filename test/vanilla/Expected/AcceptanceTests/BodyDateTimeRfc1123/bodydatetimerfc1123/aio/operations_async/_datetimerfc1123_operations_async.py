@@ -9,6 +9,8 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
+from azure.core.tracing.decorator import distributed_trace
+from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.exceptions import map_error
 
 from ... import models
@@ -35,6 +37,7 @@ class Datetimerfc1123Operations:
 
         self._config = config
 
+    @distributed_trace_async
     async def get_null(self, *, cls=None, **kwargs):
         """Get null datetime value.
 
@@ -75,6 +78,7 @@ class Datetimerfc1123Operations:
         return deserialized
     get_null.metadata = {'url': '/datetimerfc1123/null'}
 
+    @distributed_trace_async
     async def get_invalid(self, *, cls=None, **kwargs):
         """Get invalid datetime value.
 
@@ -115,6 +119,7 @@ class Datetimerfc1123Operations:
         return deserialized
     get_invalid.metadata = {'url': '/datetimerfc1123/invalid'}
 
+    @distributed_trace_async
     async def get_overflow(self, *, cls=None, **kwargs):
         """Get overflow datetime value.
 
@@ -155,6 +160,7 @@ class Datetimerfc1123Operations:
         return deserialized
     get_overflow.metadata = {'url': '/datetimerfc1123/overflow'}
 
+    @distributed_trace_async
     async def get_underflow(self, *, cls=None, **kwargs):
         """Get underflow datetime value.
 
@@ -195,6 +201,7 @@ class Datetimerfc1123Operations:
         return deserialized
     get_underflow.metadata = {'url': '/datetimerfc1123/underflow'}
 
+    @distributed_trace_async
     async def put_utc_max_date_time(self, datetime_body, *, cls=None, **kwargs):
         """Put max datetime value Fri, 31 Dec 9999 23:59:59 GMT.
 
@@ -235,6 +242,7 @@ class Datetimerfc1123Operations:
             return cls(response, None, response_headers)
     put_utc_max_date_time.metadata = {'url': '/datetimerfc1123/max'}
 
+    @distributed_trace_async
     async def get_utc_lowercase_max_date_time(self, *, cls=None, **kwargs):
         """Get max datetime value fri, 31 dec 9999 23:59:59 gmt.
 
@@ -275,6 +283,7 @@ class Datetimerfc1123Operations:
         return deserialized
     get_utc_lowercase_max_date_time.metadata = {'url': '/datetimerfc1123/max/lowercase'}
 
+    @distributed_trace_async
     async def get_utc_uppercase_max_date_time(self, *, cls=None, **kwargs):
         """Get max datetime value FRI, 31 DEC 9999 23:59:59 GMT.
 
@@ -315,6 +324,7 @@ class Datetimerfc1123Operations:
         return deserialized
     get_utc_uppercase_max_date_time.metadata = {'url': '/datetimerfc1123/max/uppercase'}
 
+    @distributed_trace_async
     async def put_utc_min_date_time(self, datetime_body, *, cls=None, **kwargs):
         """Put min datetime value Mon, 1 Jan 0001 00:00:00 GMT.
 
@@ -355,6 +365,7 @@ class Datetimerfc1123Operations:
             return cls(response, None, response_headers)
     put_utc_min_date_time.metadata = {'url': '/datetimerfc1123/min'}
 
+    @distributed_trace_async
     async def get_utc_min_date_time(self, *, cls=None, **kwargs):
         """Get min datetime value Mon, 1 Jan 0001 00:00:00 GMT.
 

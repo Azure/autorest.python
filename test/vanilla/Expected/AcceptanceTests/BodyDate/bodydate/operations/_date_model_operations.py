@@ -9,6 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
+from azure.core.tracing.decorator import distributed_trace
 from azure.core.exceptions import map_error
 
 from .. import models
@@ -35,6 +36,7 @@ class DateModelOperations(object):
 
         self._config = config
 
+    @distributed_trace
     def get_null(self, cls=None, **kwargs):
         """Get null date value.
 
@@ -74,6 +76,7 @@ class DateModelOperations(object):
         return deserialized
     get_null.metadata = {'url': '/date/null'}
 
+    @distributed_trace
     def get_invalid_date(self, cls=None, **kwargs):
         """Get invalid date value.
 
@@ -113,6 +116,7 @@ class DateModelOperations(object):
         return deserialized
     get_invalid_date.metadata = {'url': '/date/invaliddate'}
 
+    @distributed_trace
     def get_overflow_date(self, cls=None, **kwargs):
         """Get overflow date value.
 
@@ -152,6 +156,7 @@ class DateModelOperations(object):
         return deserialized
     get_overflow_date.metadata = {'url': '/date/overflowdate'}
 
+    @distributed_trace
     def get_underflow_date(self, cls=None, **kwargs):
         """Get underflow date value.
 
@@ -191,6 +196,7 @@ class DateModelOperations(object):
         return deserialized
     get_underflow_date.metadata = {'url': '/date/underflowdate'}
 
+    @distributed_trace
     def put_max_date(self, date_body, cls=None, **kwargs):
         """Put max date value 9999-12-31.
 
@@ -230,6 +236,7 @@ class DateModelOperations(object):
             return cls(response, None, response_headers)
     put_max_date.metadata = {'url': '/date/max'}
 
+    @distributed_trace
     def get_max_date(self, cls=None, **kwargs):
         """Get max date value 9999-12-31.
 
@@ -269,6 +276,7 @@ class DateModelOperations(object):
         return deserialized
     get_max_date.metadata = {'url': '/date/max'}
 
+    @distributed_trace
     def put_min_date(self, date_body, cls=None, **kwargs):
         """Put min date value 0000-01-01.
 
@@ -308,6 +316,7 @@ class DateModelOperations(object):
             return cls(response, None, response_headers)
     put_min_date.metadata = {'url': '/date/min'}
 
+    @distributed_trace
     def get_min_date(self, cls=None, **kwargs):
         """Get min date value 0000-01-01.
 

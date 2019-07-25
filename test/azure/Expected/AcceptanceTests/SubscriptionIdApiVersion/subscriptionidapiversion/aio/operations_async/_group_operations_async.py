@@ -9,6 +9,8 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
+from azure.core.tracing.decorator import distributed_trace
+from azure.core.tracing.decorator_async import distributed_trace_async
 import uuid
 from azure.core.exceptions import map_error
 
@@ -38,6 +40,7 @@ class GroupOperations:
 
         self._config = config
 
+    @distributed_trace_async
     async def get_sample_resource_group(self, resource_group_name, *, cls=None, **kwargs):
         """Provides a resouce group with name 'testgroup101' and location 'West
         US'.

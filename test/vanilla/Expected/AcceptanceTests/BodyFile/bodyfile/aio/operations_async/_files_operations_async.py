@@ -9,6 +9,8 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
+from azure.core.tracing.decorator import distributed_trace
+from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.exceptions import map_error
 
 from ... import models
@@ -35,6 +37,7 @@ class FilesOperations:
 
         self._config = config
 
+    @distributed_trace_async
     async def get_file(self, *, cls=None, **kwargs):
         """Get file.
 
@@ -75,6 +78,7 @@ class FilesOperations:
         return deserialized
     get_file.metadata = {'url': '/files/stream/nonempty'}
 
+    @distributed_trace_async
     async def get_file_large(self, *, cls=None, **kwargs):
         """Get a large file.
 
@@ -115,6 +119,7 @@ class FilesOperations:
         return deserialized
     get_file_large.metadata = {'url': '/files/stream/verylarge'}
 
+    @distributed_trace_async
     async def get_empty_file(self, *, cls=None, **kwargs):
         """Get empty file.
 

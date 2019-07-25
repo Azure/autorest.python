@@ -9,12 +9,14 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
+from azure.core.tracing.decorator import distributed_trace
 from azure.core.exceptions import HttpResponseError, map_error
 from .. import models
 
 
 class AutoRestValidationTestOperationsMixin(object):
 
+    @distributed_trace
     def validation_of_method_parameters(self, resource_group_name, id, cls=None, **kwargs):
         """Validates input parameters on the method. See swagger for details.
 
@@ -66,6 +68,7 @@ class AutoRestValidationTestOperationsMixin(object):
         return deserialized
     validation_of_method_parameters.metadata = {'url': '/fakepath/{subscriptionId}/{resourceGroupName}/{id}'}
 
+    @distributed_trace
     def validation_of_body(self, resource_group_name, id, body=None, cls=None, **kwargs):
         """Validates body parameters on the method. See swagger for details.
 
@@ -126,6 +129,7 @@ class AutoRestValidationTestOperationsMixin(object):
         return deserialized
     validation_of_body.metadata = {'url': '/fakepath/{subscriptionId}/{resourceGroupName}/{id}'}
 
+    @distributed_trace
     def get_with_constant_in_path(self, cls=None, **kwargs):
         """
 
@@ -165,6 +169,7 @@ class AutoRestValidationTestOperationsMixin(object):
             return cls(response, None, response_headers)
     get_with_constant_in_path.metadata = {'url': '/validation/constantsInPath/{constantParam}/value'}
 
+    @distributed_trace
     def post_with_constant_in_body(self, body=None, cls=None, **kwargs):
         """
 

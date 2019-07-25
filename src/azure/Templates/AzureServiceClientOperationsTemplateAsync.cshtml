@@ -13,6 +13,11 @@
 @Header("# ").TrimMultilineHeader()
 # --------------------------------------------------------------------------
 @EmptyLine
+@if (Model.AddTracingDecorators)
+{
+@:from azure.core.tracing.decorator import distributed_trace
+@:from azure.core.tracing.decorator_async import distributed_trace_async
+}
 @if (Model.HasAnyDeprecated)
 {
 @:import warnings

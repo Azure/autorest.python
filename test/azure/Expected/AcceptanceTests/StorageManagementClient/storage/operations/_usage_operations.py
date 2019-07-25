@@ -9,6 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
+from azure.core.tracing.decorator import distributed_trace
 import uuid
 from azure.core.exceptions import map_error
 from azure.mgmt.core.exceptions import ARMError
@@ -39,6 +40,7 @@ class UsageOperations(object):
 
         self._config = config
 
+    @distributed_trace
     def list(self, cls=None, **kwargs):
         """Gets the current usage count and the limit for the resources under the
         subscription.

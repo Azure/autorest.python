@@ -9,6 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
+from azure.core.tracing.decorator import distributed_trace
 from azure.core.exceptions import map_error
 
 from .. import models
@@ -35,6 +36,7 @@ class EnumOperations(object):
 
         self._config = config
 
+    @distributed_trace
     def get_not_expandable(self, cls=None, **kwargs):
         """Get enum value 'red color' from enumeration of 'red color',
         'green-color', 'blue_color'.
@@ -75,6 +77,7 @@ class EnumOperations(object):
         return deserialized
     get_not_expandable.metadata = {'url': '/string/enum/notExpandable'}
 
+    @distributed_trace
     def put_not_expandable(self, string_body, cls=None, **kwargs):
         """Sends value 'red color' from enumeration of 'red color', 'green-color',
         'blue_color'.
@@ -116,6 +119,7 @@ class EnumOperations(object):
             return cls(response, None, response_headers)
     put_not_expandable.metadata = {'url': '/string/enum/notExpandable'}
 
+    @distributed_trace
     def get_referenced(self, cls=None, **kwargs):
         """Get enum value 'red color' from enumeration of 'red color',
         'green-color', 'blue_color'.
@@ -156,6 +160,7 @@ class EnumOperations(object):
         return deserialized
     get_referenced.metadata = {'url': '/string/enum/Referenced'}
 
+    @distributed_trace
     def put_referenced(self, enum_string_body, cls=None, **kwargs):
         """Sends value 'red color' from enumeration of 'red color', 'green-color',
         'blue_color'.
@@ -197,6 +202,7 @@ class EnumOperations(object):
             return cls(response, None, response_headers)
     put_referenced.metadata = {'url': '/string/enum/Referenced'}
 
+    @distributed_trace
     def get_referenced_constant(self, cls=None, **kwargs):
         """Get value 'green-color' from the constant.
 
@@ -236,6 +242,7 @@ class EnumOperations(object):
         return deserialized
     get_referenced_constant.metadata = {'url': '/string/enum/ReferencedConstant'}
 
+    @distributed_trace
     def put_referenced_constant(self, field1=None, cls=None, **kwargs):
         """Sends value 'green-color' from a constant.
 

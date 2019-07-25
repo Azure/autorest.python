@@ -9,6 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
+from azure.core.tracing.decorator import distributed_trace
 from azure.core.exceptions import map_error
 
 from .. import models
@@ -41,6 +42,7 @@ class QueriesOperations(object):
         self.date_query = "2012-01-01"
         self.date_time_query = "2012-01-01T01:01:01Z"
 
+    @distributed_trace
     def get_boolean_true(self, cls=None, **kwargs):
         """Get true Boolean value on path.
 
@@ -77,6 +79,7 @@ class QueriesOperations(object):
             return cls(response, None, response_headers)
     get_boolean_true.metadata = {'url': '/queries/bool/true'}
 
+    @distributed_trace
     def get_boolean_false(self, cls=None, **kwargs):
         """Get false Boolean value on path.
 
@@ -113,6 +116,7 @@ class QueriesOperations(object):
             return cls(response, None, response_headers)
     get_boolean_false.metadata = {'url': '/queries/bool/false'}
 
+    @distributed_trace
     def get_boolean_null(self, bool_query=None, cls=None, **kwargs):
         """Get null Boolean value on query (query string should be absent).
 
@@ -150,6 +154,7 @@ class QueriesOperations(object):
             return cls(response, None, response_headers)
     get_boolean_null.metadata = {'url': '/queries/bool/null'}
 
+    @distributed_trace
     def get_int_one_million(self, cls=None, **kwargs):
         """Get '1000000' integer value.
 
@@ -186,6 +191,7 @@ class QueriesOperations(object):
             return cls(response, None, response_headers)
     get_int_one_million.metadata = {'url': '/queries/int/1000000'}
 
+    @distributed_trace
     def get_int_negative_one_million(self, cls=None, **kwargs):
         """Get '-1000000' integer value.
 
@@ -222,6 +228,7 @@ class QueriesOperations(object):
             return cls(response, None, response_headers)
     get_int_negative_one_million.metadata = {'url': '/queries/int/-1000000'}
 
+    @distributed_trace
     def get_int_null(self, int_query=None, cls=None, **kwargs):
         """Get null integer value (no query parameter).
 
@@ -259,6 +266,7 @@ class QueriesOperations(object):
             return cls(response, None, response_headers)
     get_int_null.metadata = {'url': '/queries/int/null'}
 
+    @distributed_trace
     def get_ten_billion(self, cls=None, **kwargs):
         """Get '10000000000' 64 bit integer value.
 
@@ -295,6 +303,7 @@ class QueriesOperations(object):
             return cls(response, None, response_headers)
     get_ten_billion.metadata = {'url': '/queries/long/10000000000'}
 
+    @distributed_trace
     def get_negative_ten_billion(self, cls=None, **kwargs):
         """Get '-10000000000' 64 bit integer value.
 
@@ -331,6 +340,7 @@ class QueriesOperations(object):
             return cls(response, None, response_headers)
     get_negative_ten_billion.metadata = {'url': '/queries/long/-10000000000'}
 
+    @distributed_trace
     def get_long_null(self, long_query=None, cls=None, **kwargs):
         """Get 'null 64 bit integer value (no query param in uri).
 
@@ -368,6 +378,7 @@ class QueriesOperations(object):
             return cls(response, None, response_headers)
     get_long_null.metadata = {'url': '/queries/long/null'}
 
+    @distributed_trace
     def float_scientific_positive(self, cls=None, **kwargs):
         """Get '1.034E+20' numeric value.
 
@@ -404,6 +415,7 @@ class QueriesOperations(object):
             return cls(response, None, response_headers)
     float_scientific_positive.metadata = {'url': '/queries/float/1.034E+20'}
 
+    @distributed_trace
     def float_scientific_negative(self, cls=None, **kwargs):
         """Get '-1.034E-20' numeric value.
 
@@ -440,6 +452,7 @@ class QueriesOperations(object):
             return cls(response, None, response_headers)
     float_scientific_negative.metadata = {'url': '/queries/float/-1.034E-20'}
 
+    @distributed_trace
     def float_null(self, float_query=None, cls=None, **kwargs):
         """Get null numeric value (no query parameter).
 
@@ -477,6 +490,7 @@ class QueriesOperations(object):
             return cls(response, None, response_headers)
     float_null.metadata = {'url': '/queries/float/null'}
 
+    @distributed_trace
     def double_decimal_positive(self, cls=None, **kwargs):
         """Get '9999999.999' numeric value.
 
@@ -513,6 +527,7 @@ class QueriesOperations(object):
             return cls(response, None, response_headers)
     double_decimal_positive.metadata = {'url': '/queries/double/9999999.999'}
 
+    @distributed_trace
     def double_decimal_negative(self, cls=None, **kwargs):
         """Get '-9999999.999' numeric value.
 
@@ -549,6 +564,7 @@ class QueriesOperations(object):
             return cls(response, None, response_headers)
     double_decimal_negative.metadata = {'url': '/queries/double/-9999999.999'}
 
+    @distributed_trace
     def double_null(self, double_query=None, cls=None, **kwargs):
         """Get null numeric value (no query parameter).
 
@@ -586,6 +602,7 @@ class QueriesOperations(object):
             return cls(response, None, response_headers)
     double_null.metadata = {'url': '/queries/double/null'}
 
+    @distributed_trace
     def string_unicode(self, cls=None, **kwargs):
         """Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value.
 
@@ -622,6 +639,7 @@ class QueriesOperations(object):
             return cls(response, None, response_headers)
     string_unicode.metadata = {'url': '/queries/string/unicode/'}
 
+    @distributed_trace
     def string_url_encoded(self, cls=None, **kwargs):
         """Get 'begin!*'();:@ &=+$,/?#[]end.
 
@@ -658,6 +676,7 @@ class QueriesOperations(object):
             return cls(response, None, response_headers)
     string_url_encoded.metadata = {'url': '/queries/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend'}
 
+    @distributed_trace
     def string_empty(self, cls=None, **kwargs):
         """Get ''.
 
@@ -694,6 +713,7 @@ class QueriesOperations(object):
             return cls(response, None, response_headers)
     string_empty.metadata = {'url': '/queries/string/empty'}
 
+    @distributed_trace
     def string_null(self, string_query=None, cls=None, **kwargs):
         """Get null (no query parameter in url).
 
@@ -731,6 +751,7 @@ class QueriesOperations(object):
             return cls(response, None, response_headers)
     string_null.metadata = {'url': '/queries/string/null'}
 
+    @distributed_trace
     def enum_valid(self, enum_query=None, cls=None, **kwargs):
         """Get using uri with query parameter 'green color'.
 
@@ -769,6 +790,7 @@ class QueriesOperations(object):
             return cls(response, None, response_headers)
     enum_valid.metadata = {'url': '/queries/enum/green%20color'}
 
+    @distributed_trace
     def enum_null(self, enum_query=None, cls=None, **kwargs):
         """Get null (no query parameter in url).
 
@@ -807,6 +829,7 @@ class QueriesOperations(object):
             return cls(response, None, response_headers)
     enum_null.metadata = {'url': '/queries/enum/null'}
 
+    @distributed_trace
     def byte_multi_byte(self, byte_query=None, cls=None, **kwargs):
         """Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
 
@@ -845,6 +868,7 @@ class QueriesOperations(object):
             return cls(response, None, response_headers)
     byte_multi_byte.metadata = {'url': '/queries/byte/multibyte'}
 
+    @distributed_trace
     def byte_empty(self, cls=None, **kwargs):
         """Get '' as byte array.
 
@@ -879,6 +903,7 @@ class QueriesOperations(object):
             return cls(response, None, response_headers)
     byte_empty.metadata = {'url': '/queries/byte/empty'}
 
+    @distributed_trace
     def byte_null(self, byte_query=None, cls=None, **kwargs):
         """Get null as byte array (no query parameters in uri).
 
@@ -916,6 +941,7 @@ class QueriesOperations(object):
             return cls(response, None, response_headers)
     byte_null.metadata = {'url': '/queries/byte/null'}
 
+    @distributed_trace
     def date_valid(self, cls=None, **kwargs):
         """Get '2012-01-01' as date.
 
@@ -950,6 +976,7 @@ class QueriesOperations(object):
             return cls(response, None, response_headers)
     date_valid.metadata = {'url': '/queries/date/2012-01-01'}
 
+    @distributed_trace
     def date_null(self, date_query=None, cls=None, **kwargs):
         """Get null as date - this should result in no query parameters in uri.
 
@@ -987,6 +1014,7 @@ class QueriesOperations(object):
             return cls(response, None, response_headers)
     date_null.metadata = {'url': '/queries/date/null'}
 
+    @distributed_trace
     def date_time_valid(self, cls=None, **kwargs):
         """Get '2012-01-01T01:01:01Z' as date-time.
 
@@ -1021,6 +1049,7 @@ class QueriesOperations(object):
             return cls(response, None, response_headers)
     date_time_valid.metadata = {'url': '/queries/datetime/2012-01-01T01%3A01%3A01Z'}
 
+    @distributed_trace
     def date_time_null(self, date_time_query=None, cls=None, **kwargs):
         """Get null as date-time, should result in no query parameters in uri.
 
@@ -1058,6 +1087,7 @@ class QueriesOperations(object):
             return cls(response, None, response_headers)
     date_time_null.metadata = {'url': '/queries/datetime/null'}
 
+    @distributed_trace
     def array_string_csv_valid(self, array_query=None, cls=None, **kwargs):
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' ,
         null, ''] using the csv-array format.
@@ -1097,6 +1127,7 @@ class QueriesOperations(object):
             return cls(response, None, response_headers)
     array_string_csv_valid.metadata = {'url': '/queries/array/csv/string/valid'}
 
+    @distributed_trace
     def array_string_csv_null(self, array_query=None, cls=None, **kwargs):
         """Get a null array of string using the csv-array format.
 
@@ -1134,6 +1165,7 @@ class QueriesOperations(object):
             return cls(response, None, response_headers)
     array_string_csv_null.metadata = {'url': '/queries/array/csv/string/null'}
 
+    @distributed_trace
     def array_string_csv_empty(self, array_query=None, cls=None, **kwargs):
         """Get an empty array [] of string using the csv-array format.
 
@@ -1172,6 +1204,7 @@ class QueriesOperations(object):
             return cls(response, None, response_headers)
     array_string_csv_empty.metadata = {'url': '/queries/array/csv/string/empty'}
 
+    @distributed_trace
     def array_string_ssv_valid(self, array_query=None, cls=None, **kwargs):
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' ,
         null, ''] using the ssv-array format.
@@ -1211,6 +1244,7 @@ class QueriesOperations(object):
             return cls(response, None, response_headers)
     array_string_ssv_valid.metadata = {'url': '/queries/array/ssv/string/valid'}
 
+    @distributed_trace
     def array_string_tsv_valid(self, array_query=None, cls=None, **kwargs):
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' ,
         null, ''] using the tsv-array format.
@@ -1250,6 +1284,7 @@ class QueriesOperations(object):
             return cls(response, None, response_headers)
     array_string_tsv_valid.metadata = {'url': '/queries/array/tsv/string/valid'}
 
+    @distributed_trace
     def array_string_pipes_valid(self, array_query=None, cls=None, **kwargs):
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' ,
         null, ''] using the pipes-array format.

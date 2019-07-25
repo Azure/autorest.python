@@ -9,6 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
+from azure.core.tracing.decorator import distributed_trace
 from azure.core.exceptions import map_error
 
 from .. import models
@@ -35,6 +36,7 @@ class InheritanceOperations(object):
 
         self._config = config
 
+    @distributed_trace
     def get_valid(self, cls=None, **kwargs):
         """Get complex types that extend others.
 
@@ -74,6 +76,7 @@ class InheritanceOperations(object):
         return deserialized
     get_valid.metadata = {'url': '/complex/inheritance/valid'}
 
+    @distributed_trace
     def put_valid(self, complex_body, cls=None, **kwargs):
         """Put complex types that extend others.
 

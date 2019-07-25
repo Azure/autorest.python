@@ -9,6 +9,8 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
+from azure.core.tracing.decorator import distributed_trace
+from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.exceptions import map_error
 
 from ... import models
@@ -35,6 +37,7 @@ class ReadonlypropertyOperations:
 
         self._config = config
 
+    @distributed_trace_async
     async def get_valid(self, *, cls=None, **kwargs):
         """Get complex types that have readonly properties.
 
@@ -74,6 +77,7 @@ class ReadonlypropertyOperations:
         return deserialized
     get_valid.metadata = {'url': '/complex/readonlyproperty/valid'}
 
+    @distributed_trace_async
     async def put_valid(self, size=None, *, cls=None, **kwargs):
         """Put complex types that have readonly properties.
 

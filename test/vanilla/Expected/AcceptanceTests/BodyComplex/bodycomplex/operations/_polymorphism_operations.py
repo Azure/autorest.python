@@ -9,6 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
+from azure.core.tracing.decorator import distributed_trace
 from azure.core.exceptions import map_error
 
 from .. import models
@@ -35,6 +36,7 @@ class PolymorphismOperations(object):
 
         self._config = config
 
+    @distributed_trace
     def get_valid(self, cls=None, **kwargs):
         """Get complex types that are polymorphic.
 
@@ -74,6 +76,7 @@ class PolymorphismOperations(object):
         return deserialized
     get_valid.metadata = {'url': '/complex/polymorphism/valid'}
 
+    @distributed_trace
     def put_valid(self, complex_body, cls=None, **kwargs):
         """Put complex types that are polymorphic.
 
@@ -145,6 +148,7 @@ class PolymorphismOperations(object):
             return cls(response, None, response_headers)
     put_valid.metadata = {'url': '/complex/polymorphism/valid'}
 
+    @distributed_trace
     def get_dot_syntax(self, cls=None, **kwargs):
         """Get complex types that are polymorphic, JSON key contains a dot.
 
@@ -184,6 +188,7 @@ class PolymorphismOperations(object):
         return deserialized
     get_dot_syntax.metadata = {'url': '/complex/polymorphism/dotsyntax'}
 
+    @distributed_trace
     def get_composed_with_discriminator(self, cls=None, **kwargs):
         """Get complex object composing a polymorphic scalar property and array
         property with polymorphic element type, with discriminator specified.
@@ -226,6 +231,7 @@ class PolymorphismOperations(object):
         return deserialized
     get_composed_with_discriminator.metadata = {'url': '/complex/polymorphism/composedWithDiscriminator'}
 
+    @distributed_trace
     def get_composed_without_discriminator(self, cls=None, **kwargs):
         """Get complex object composing a polymorphic scalar property and array
         property with polymorphic element type, without discriminator specified
@@ -268,6 +274,7 @@ class PolymorphismOperations(object):
         return deserialized
     get_composed_without_discriminator.metadata = {'url': '/complex/polymorphism/composedWithoutDiscriminator'}
 
+    @distributed_trace
     def get_complicated(self, cls=None, **kwargs):
         """Get complex types that are polymorphic, but not at the root of the
         hierarchy; also have additional properties.
@@ -308,6 +315,7 @@ class PolymorphismOperations(object):
         return deserialized
     get_complicated.metadata = {'url': '/complex/polymorphism/complicated'}
 
+    @distributed_trace
     def put_complicated(self, complex_body, cls=None, **kwargs):
         """Put complex types that are polymorphic, but not at the root of the
         hierarchy; also have additional properties.
@@ -348,6 +356,7 @@ class PolymorphismOperations(object):
             return cls(response, None, response_headers)
     put_complicated.metadata = {'url': '/complex/polymorphism/complicated'}
 
+    @distributed_trace
     def put_missing_discriminator(self, complex_body, cls=None, **kwargs):
         """Put complex types that are polymorphic, omitting the discriminator.
 
@@ -393,6 +402,7 @@ class PolymorphismOperations(object):
         return deserialized
     put_missing_discriminator.metadata = {'url': '/complex/polymorphism/missingdiscriminator'}
 
+    @distributed_trace
     def put_valid_missing_required(self, complex_body, cls=None, **kwargs):
         """Put complex types that are polymorphic, attempting to omit required
         'birthday' field - the request should not be allowed from the client.
