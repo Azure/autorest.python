@@ -397,6 +397,34 @@ class DotFish(Model):
         self.fishtype = None
 
 
+class DotFishMarket(Model):
+    """DotFishMarket.
+
+    :param sample_salmon:
+    :type sample_salmon: ~bodycomplex.models.DotSalmon
+    :param salmons:
+    :type salmons: list[~bodycomplex.models.DotSalmon]
+    :param sample_fish:
+    :type sample_fish: ~bodycomplex.models.DotFish
+    :param fishes:
+    :type fishes: list[~bodycomplex.models.DotFish]
+    """
+
+    _attribute_map = {
+        'sample_salmon': {'key': 'sampleSalmon', 'type': 'DotSalmon'},
+        'salmons': {'key': 'salmons', 'type': '[DotSalmon]'},
+        'sample_fish': {'key': 'sampleFish', 'type': 'DotFish'},
+        'fishes': {'key': 'fishes', 'type': '[DotFish]'},
+    }
+
+    def __init__(self, *, sample_salmon=None, salmons=None, sample_fish=None, fishes=None, **kwargs) -> None:
+        super(DotFishMarket, self).__init__(**kwargs)
+        self.sample_salmon = sample_salmon
+        self.salmons = salmons
+        self.sample_fish = sample_fish
+        self.fishes = fishes
+
+
 class DotSalmon(DotFish):
     """DotSalmon.
 
