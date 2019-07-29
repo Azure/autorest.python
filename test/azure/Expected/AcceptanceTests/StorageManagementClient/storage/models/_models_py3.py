@@ -58,14 +58,6 @@ class CheckNameAvailabilityResult(Model):
         self.message = message
 
 
-class CloudError(Model):
-    """CloudError.
-    """
-
-    _attribute_map = {
-    }
-
-
 class CustomDomain(Model):
     """The custom domain assigned to this storage account. This can be set via
     Update.
