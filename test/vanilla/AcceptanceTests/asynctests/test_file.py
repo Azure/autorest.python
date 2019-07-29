@@ -63,7 +63,7 @@ class TestFile(object):
             with io.BytesIO() as file_handle:
                 stream = await client.files.get_file()
                 total = len(stream)
-                assert not stream.response._released
+                assert not stream.response.internal_response._released
 
                 async for data in stream:
                     assert 0 < len(data) <= stream.block_size
@@ -71,7 +71,7 @@ class TestFile(object):
                     print("Downloading... {}%".format(int(file_length*100/total)))
                     file_handle.write(data)
 
-                assert stream.response._released
+                assert stream.response.internal_response._released
                 assert file_length !=  0
 
                 sample_file = realpath(
@@ -87,13 +87,13 @@ class TestFile(object):
             with io.BytesIO() as file_handle:
                 stream = await client.files.get_empty_file()
                 assert len(stream) == 0
-                assert not stream.response._released
+                assert not stream.response.internal_response._released
 
                 async for data in stream:
                     file_length += len(data)
                     file_handle.write(data)
 
-                assert stream.response._released
+                assert stream.response.internal_response._released
                 assert file_length ==  0
 
     @pytest.mark.asyncio
@@ -114,7 +114,7 @@ class TestFile(object):
     async def test_files_raw(self, client):
 
         def test_callback(response, data_stream, headers):
-            assert not data_stream.response._released
+            assert not data_stream.response.internal_response._released
             return data_stream
 
         file_length = 0
@@ -126,7 +126,7 @@ class TestFile(object):
                 file_length += len(data)
                 file_handle.write(data)
 
-            assert stream.response._released
+            assert stream.response.internal_response._released
             assert file_length !=  0
 
             sample_file = realpath(
@@ -144,7 +144,7 @@ class TestFile(object):
                 file_length += len(data)
                 file_handle.write(data)
 
-            assert stream.response._released
+            assert stream.response.internal_response._released
             assert file_length ==  0
 
 
