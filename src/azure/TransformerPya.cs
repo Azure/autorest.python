@@ -41,7 +41,7 @@ namespace AutoRest.Python.Azure
             ParameterGroupExtensionHelper.AddParameterGroups(codeModel);
             // AzureExtensions.AddLongRunningOperations(codeModel); -- Replaced by Python version
             AddAzureProperties(codeModel);
-            AzureExtensions.SetDefaultResponses(codeModel);
+            // AzureExtensions.SetDefaultResponses(codeModel); -- Replaced by Python version
             // AzureExtensions.AddPageableMethod(codeModel); -- Replaced by Python version
 
             // End of mock "NormalizeAzureClientModel"

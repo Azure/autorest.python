@@ -13,14 +13,6 @@ from msrest.serialization import Model
 from azure.core import HttpResponseError
 
 
-class CloudError(Model):
-    """CloudError.
-    """
-
-    _attribute_map = {
-    }
-
-
 class Error(Model):
     """Error.
 

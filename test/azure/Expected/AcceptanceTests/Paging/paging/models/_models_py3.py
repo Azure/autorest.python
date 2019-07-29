@@ -12,14 +12,6 @@
 from msrest.serialization import Model
 
 
-class CloudError(Model):
-    """CloudError.
-    """
-
-    _attribute_map = {
-    }
-
-
 class CustomParameterGroup(Model):
     """Additional parameters for
     get_multiple_pages_fragment_with_grouping_next_link operation.
