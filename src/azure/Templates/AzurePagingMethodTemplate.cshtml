@@ -8,6 +8,8 @@
 string methodName = Model.Name.ToPythonCase();
 string trace_decorator = "";
 string sync_trace_decorator = "";
+var nextLink = Model.PagedMetadata.NextLinkProp;
+string nextLinkName = (nextLink != null && nextLink.Name != "")?"deserialized."+nextLink.Name:"None";
 }
 @if (Model.AddTracingDecorators)
 {
@@ -123,7 +125,7 @@ else
 {
 @:        def extract_data(response):
 @:            deserialized = self._deserialize('@(Model.PagedResponseClass.Name)', response)
-@:            return deserialized.@(Model.PagedMetadata.NextLinkProp.Name), iter(deserialized.@(Model.PagedMetadata.ItemProp.Name))
+@:            return @(nextLinkName), iter(deserialized.@(Model.PagedMetadata.ItemProp.Name))
 @EmptyLine
 @:        def get_next(next_link=None):
 @:            request = prepare_request(next_link)
@@ -134,7 +136,7 @@ else
 {
 @:        async def extract_data_async(response):
 @:            deserialized = self._deserialize('@(Model.PagedResponseClass.Name)', response)
-@:            return deserialized.@(Model.PagedMetadata.NextLinkProp.Name), AsyncList(deserialized.@(Model.PagedMetadata.ItemProp.Name))
+@:            return @(nextLinkName), AsyncList(deserialized.@(Model.PagedMetadata.ItemProp.Name))
 @EmptyLine
 @:        async def get_next_async(next_link=None):
 @:            request = prepare_request(next_link)
