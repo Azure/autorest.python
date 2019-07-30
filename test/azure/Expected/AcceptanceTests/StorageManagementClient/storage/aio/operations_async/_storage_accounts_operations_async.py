@@ -461,7 +461,10 @@ class StorageAccountsOperations:
 
         async def extract_data_async(response):
             deserialized = self._deserialize('StorageAccountListResult', response)
-            return deserialized.next_link, AsyncList(deserialized.value)
+            list_of_elem = deserialized.value
+            if cls:
+               list_of_elem = cls(list_of_elem)
+            return deserialized.next_link, AsyncList(list_of_elem)
 
         async def get_next_async(next_link=None):
             request = prepare_request(next_link)
@@ -523,7 +526,10 @@ class StorageAccountsOperations:
 
         async def extract_data_async(response):
             deserialized = self._deserialize('StorageAccountListResult', response)
-            return deserialized.next_link, AsyncList(deserialized.value)
+            list_of_elem = deserialized.value
+            if cls:
+               list_of_elem = cls(list_of_elem)
+            return deserialized.next_link, AsyncList(list_of_elem)
 
         async def get_next_async(next_link=None):
             request = prepare_request(next_link)

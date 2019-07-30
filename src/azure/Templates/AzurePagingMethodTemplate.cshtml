@@ -125,7 +125,10 @@ else
 {
 @:        def extract_data(response):
 @:            deserialized = self._deserialize('@(Model.PagedResponseClass.Name)', response)
-@:            return @(nextLinkName), iter(deserialized.@(Model.PagedMetadata.ItemProp.Name))
+@:            list_of_elem = deserialized.@(Model.PagedMetadata.ItemProp.Name)
+@:            if cls:
+@:               list_of_elem = cls(list_of_elem)
+@:            return @(nextLinkName), iter(list_of_elem)
 @EmptyLine
 @:        def get_next(next_link=None):
 @:            request = prepare_request(next_link)
@@ -136,7 +139,10 @@ else
 {
 @:        async def extract_data_async(response):
 @:            deserialized = self._deserialize('@(Model.PagedResponseClass.Name)', response)
-@:            return @(nextLinkName), AsyncList(deserialized.@(Model.PagedMetadata.ItemProp.Name))
+@:            list_of_elem = deserialized.@(Model.PagedMetadata.ItemProp.Name)
+@:            if cls:
+@:               list_of_elem = cls(list_of_elem)
+@:            return @(nextLinkName), AsyncList(list_of_elem)
 @EmptyLine
 @:        async def get_next_async(next_link=None):
 @:            request = prepare_request(next_link)
