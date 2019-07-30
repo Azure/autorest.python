@@ -98,7 +98,7 @@ def client(cookie_policy):
         cookie_policy
     ]
 
-    with AutoRestLongRunningOperationTestService(cred, base_url="http://localhost:3000", policies=policies) as client:
+    with AutoRestLongRunningOperationTestService(cred, base_url="http://localhost:3000", policies=policies, polling_interval=0) as client:
         yield client
 
 
