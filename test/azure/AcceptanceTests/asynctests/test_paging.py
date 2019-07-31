@@ -58,6 +58,15 @@ async def paging_client():
         yield client
 
 @pytest.mark.asyncio
+async def test_paging_cls(paging_client):
+    def cb(list_of_obj):
+        for obj in list_of_obj:
+            obj.marked = True
+        return list_of_obj
+    async for obj in paging_client.paging.get_single_pages(cls=cb):
+        assert obj.marked
+
+@pytest.mark.asyncio
 async def test_paging_happy_path(paging_client):
 
     pages = paging_client.paging.get_single_pages()

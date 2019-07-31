@@ -73,7 +73,10 @@ class PagingOperations:
 
         async def extract_data_async(response):
             deserialized = self._deserialize('ProductResult', response)
-            return deserialized.next_link, AsyncList(deserialized.values)
+            list_of_elem = deserialized.values
+            if cls:
+               list_of_elem = cls(list_of_elem)
+            return deserialized.next_link, AsyncList(list_of_elem)
 
         async def get_next_async(next_link=None):
             request = prepare_request(next_link)
@@ -143,7 +146,10 @@ class PagingOperations:
 
         async def extract_data_async(response):
             deserialized = self._deserialize('ProductResult', response)
-            return deserialized.next_link, AsyncList(deserialized.values)
+            list_of_elem = deserialized.values
+            if cls:
+               list_of_elem = cls(list_of_elem)
+            return deserialized.next_link, AsyncList(list_of_elem)
 
         async def get_next_async(next_link=None):
             request = prepare_request(next_link)
@@ -214,7 +220,10 @@ class PagingOperations:
 
         async def extract_data_async(response):
             deserialized = self._deserialize('OdataProductResult', response)
-            return deserialized.odatanext_link, AsyncList(deserialized.values)
+            list_of_elem = deserialized.values
+            if cls:
+               list_of_elem = cls(list_of_elem)
+            return deserialized.odatanext_link, AsyncList(list_of_elem)
 
         async def get_next_async(next_link=None):
             request = prepare_request(next_link)
@@ -291,7 +300,10 @@ class PagingOperations:
 
         async def extract_data_async(response):
             deserialized = self._deserialize('ProductResult', response)
-            return deserialized.next_link, AsyncList(deserialized.values)
+            list_of_elem = deserialized.values
+            if cls:
+               list_of_elem = cls(list_of_elem)
+            return deserialized.next_link, AsyncList(list_of_elem)
 
         async def get_next_async(next_link=None):
             request = prepare_request(next_link)
@@ -343,7 +355,10 @@ class PagingOperations:
 
         async def extract_data_async(response):
             deserialized = self._deserialize('ProductResult', response)
-            return deserialized.next_link, AsyncList(deserialized.values)
+            list_of_elem = deserialized.values
+            if cls:
+               list_of_elem = cls(list_of_elem)
+            return deserialized.next_link, AsyncList(list_of_elem)
 
         async def get_next_async(next_link=None):
             request = prepare_request(next_link)
@@ -396,7 +411,10 @@ class PagingOperations:
 
         async def extract_data_async(response):
             deserialized = self._deserialize('ProductResult', response)
-            return deserialized.next_link, AsyncList(deserialized.values)
+            list_of_elem = deserialized.values
+            if cls:
+               list_of_elem = cls(list_of_elem)
+            return deserialized.next_link, AsyncList(list_of_elem)
 
         async def get_next_async(next_link=None):
             request = prepare_request(next_link)
@@ -447,7 +465,10 @@ class PagingOperations:
 
         async def extract_data_async(response):
             deserialized = self._deserialize('ProductResult', response)
-            return deserialized.next_link, AsyncList(deserialized.values)
+            list_of_elem = deserialized.values
+            if cls:
+               list_of_elem = cls(list_of_elem)
+            return deserialized.next_link, AsyncList(list_of_elem)
 
         async def get_next_async(next_link=None):
             request = prepare_request(next_link)
@@ -498,7 +519,10 @@ class PagingOperations:
 
         async def extract_data_async(response):
             deserialized = self._deserialize('ProductResult', response)
-            return deserialized.next_link, AsyncList(deserialized.values)
+            list_of_elem = deserialized.values
+            if cls:
+               list_of_elem = cls(list_of_elem)
+            return deserialized.next_link, AsyncList(list_of_elem)
 
         async def get_next_async(next_link=None):
             request = prepare_request(next_link)
@@ -549,7 +573,10 @@ class PagingOperations:
 
         async def extract_data_async(response):
             deserialized = self._deserialize('ProductResult', response)
-            return deserialized.next_link, AsyncList(deserialized.values)
+            list_of_elem = deserialized.values
+            if cls:
+               list_of_elem = cls(list_of_elem)
+            return deserialized.next_link, AsyncList(list_of_elem)
 
         async def get_next_async(next_link=None):
             request = prepare_request(next_link)
@@ -615,7 +642,10 @@ class PagingOperations:
 
         async def extract_data_async(response):
             deserialized = self._deserialize('OdataProductResult', response)
-            return deserialized.odatanext_link, AsyncList(deserialized.values)
+            list_of_elem = deserialized.values
+            if cls:
+               list_of_elem = cls(list_of_elem)
+            return deserialized.odatanext_link, AsyncList(list_of_elem)
 
         async def get_next_async(next_link=None):
             request = prepare_request(next_link)
@@ -687,7 +717,10 @@ class PagingOperations:
 
         async def extract_data_async(response):
             deserialized = self._deserialize('OdataProductResult', response)
-            return deserialized.odatanext_link, AsyncList(deserialized.values)
+            list_of_elem = deserialized.values
+            if cls:
+               list_of_elem = cls(list_of_elem)
+            return deserialized.odatanext_link, AsyncList(list_of_elem)
 
         async def get_next_async(next_link=None):
             request = prepare_request(next_link)

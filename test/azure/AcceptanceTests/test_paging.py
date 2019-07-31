@@ -57,6 +57,14 @@ def paging_client():
     with AutoRestPagingTestService(cred, base_url="http://localhost:3000") as client:
         yield client
 
+def test_paging_cls(paging_client):
+    def cb(list_of_obj):
+        for obj in list_of_obj:
+            obj.marked = True
+        return list_of_obj
+    pages = paging_client.paging.get_single_pages(cls=cb)
+    assert all(obj.marked for obj in pages)
+
 def test_paging_happy_path(paging_client):
 
     pages = paging_client.paging.get_single_pages()

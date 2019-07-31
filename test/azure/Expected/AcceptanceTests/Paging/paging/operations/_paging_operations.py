@@ -71,7 +71,10 @@ class PagingOperations(object):
 
         def extract_data(response):
             deserialized = self._deserialize('ProductResult', response)
-            return deserialized.next_link, iter(deserialized.values)
+            list_of_elem = deserialized.values
+            if cls:
+               list_of_elem = cls(list_of_elem)
+            return deserialized.next_link, iter(list_of_elem)
 
         def get_next(next_link=None):
             request = prepare_request(next_link)
@@ -140,7 +143,10 @@ class PagingOperations(object):
 
         def extract_data(response):
             deserialized = self._deserialize('ProductResult', response)
-            return deserialized.next_link, iter(deserialized.values)
+            list_of_elem = deserialized.values
+            if cls:
+               list_of_elem = cls(list_of_elem)
+            return deserialized.next_link, iter(list_of_elem)
 
         def get_next(next_link=None):
             request = prepare_request(next_link)
@@ -210,7 +216,10 @@ class PagingOperations(object):
 
         def extract_data(response):
             deserialized = self._deserialize('OdataProductResult', response)
-            return deserialized.odatanext_link, iter(deserialized.values)
+            list_of_elem = deserialized.values
+            if cls:
+               list_of_elem = cls(list_of_elem)
+            return deserialized.odatanext_link, iter(list_of_elem)
 
         def get_next(next_link=None):
             request = prepare_request(next_link)
@@ -286,7 +295,10 @@ class PagingOperations(object):
 
         def extract_data(response):
             deserialized = self._deserialize('ProductResult', response)
-            return deserialized.next_link, iter(deserialized.values)
+            list_of_elem = deserialized.values
+            if cls:
+               list_of_elem = cls(list_of_elem)
+            return deserialized.next_link, iter(list_of_elem)
 
         def get_next(next_link=None):
             request = prepare_request(next_link)
@@ -337,7 +349,10 @@ class PagingOperations(object):
 
         def extract_data(response):
             deserialized = self._deserialize('ProductResult', response)
-            return deserialized.next_link, iter(deserialized.values)
+            list_of_elem = deserialized.values
+            if cls:
+               list_of_elem = cls(list_of_elem)
+            return deserialized.next_link, iter(list_of_elem)
 
         def get_next(next_link=None):
             request = prepare_request(next_link)
@@ -389,7 +404,10 @@ class PagingOperations(object):
 
         def extract_data(response):
             deserialized = self._deserialize('ProductResult', response)
-            return deserialized.next_link, iter(deserialized.values)
+            list_of_elem = deserialized.values
+            if cls:
+               list_of_elem = cls(list_of_elem)
+            return deserialized.next_link, iter(list_of_elem)
 
         def get_next(next_link=None):
             request = prepare_request(next_link)
@@ -439,7 +457,10 @@ class PagingOperations(object):
 
         def extract_data(response):
             deserialized = self._deserialize('ProductResult', response)
-            return deserialized.next_link, iter(deserialized.values)
+            list_of_elem = deserialized.values
+            if cls:
+               list_of_elem = cls(list_of_elem)
+            return deserialized.next_link, iter(list_of_elem)
 
         def get_next(next_link=None):
             request = prepare_request(next_link)
@@ -489,7 +510,10 @@ class PagingOperations(object):
 
         def extract_data(response):
             deserialized = self._deserialize('ProductResult', response)
-            return deserialized.next_link, iter(deserialized.values)
+            list_of_elem = deserialized.values
+            if cls:
+               list_of_elem = cls(list_of_elem)
+            return deserialized.next_link, iter(list_of_elem)
 
         def get_next(next_link=None):
             request = prepare_request(next_link)
@@ -539,7 +563,10 @@ class PagingOperations(object):
 
         def extract_data(response):
             deserialized = self._deserialize('ProductResult', response)
-            return deserialized.next_link, iter(deserialized.values)
+            list_of_elem = deserialized.values
+            if cls:
+               list_of_elem = cls(list_of_elem)
+            return deserialized.next_link, iter(list_of_elem)
 
         def get_next(next_link=None):
             request = prepare_request(next_link)
@@ -604,7 +631,10 @@ class PagingOperations(object):
 
         def extract_data(response):
             deserialized = self._deserialize('OdataProductResult', response)
-            return deserialized.odatanext_link, iter(deserialized.values)
+            list_of_elem = deserialized.values
+            if cls:
+               list_of_elem = cls(list_of_elem)
+            return deserialized.odatanext_link, iter(list_of_elem)
 
         def get_next(next_link=None):
             request = prepare_request(next_link)
@@ -675,7 +705,10 @@ class PagingOperations(object):
 
         def extract_data(response):
             deserialized = self._deserialize('OdataProductResult', response)
-            return deserialized.odatanext_link, iter(deserialized.values)
+            list_of_elem = deserialized.values
+            if cls:
+               list_of_elem = cls(list_of_elem)
+            return deserialized.odatanext_link, iter(list_of_elem)
 
         def get_next(next_link=None):
             request = prepare_request(next_link)
