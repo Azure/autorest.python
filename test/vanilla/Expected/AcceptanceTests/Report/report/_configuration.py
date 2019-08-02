@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from azure.core.configuration import Configuration, ConnectionConfiguration
+from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
 
 from .version import VERSION
@@ -32,11 +32,10 @@ class AutoRestReportServiceConfiguration(Configuration):
         self.generate_client_request_id = True
 
     def _configure(self, **kwargs):
-        self.connection = ConnectionConfiguration(**kwargs)
-        self.user_agent_policy = policies.UserAgentPolicy(**kwargs)
-        self.headers_policy = policies.HeadersPolicy(**kwargs)
-        self.proxy_policy = policies.ProxyPolicy(**kwargs)
-        self.logging_policy = policies.NetworkTraceLoggingPolicy(**kwargs)
-        self.retry_policy = policies.RetryPolicy(**kwargs)
-        self.custom_hook_policy = policies.CustomHookPolicy(**kwargs)
-        self.redirect_policy = policies.RedirectPolicy(**kwargs)
+        self.user_agent_policy = kwargs.get('user_agent_policy') or policies.UserAgentPolicy(**kwargs)
+        self.headers_policy = kwargs.get('headers_policy') or policies.HeadersPolicy(**kwargs)
+        self.proxy_policy = kwargs.get('proxy_policy') or policies.ProxyPolicy(**kwargs)
+        self.logging_policy = kwargs.get('logging_policy') or policies.NetworkTraceLoggingPolicy(**kwargs)
+        self.retry_policy = kwargs.get('retry_policy') or policies.RetryPolicy(**kwargs)
+        self.custom_hook_policy = kwargs.get('custom_hook_policy') or policies.CustomHookPolicy(**kwargs)
+        self.redirect_policy = kwargs.get('redirect_policy') or policies.RedirectPolicy(**kwargs)
