@@ -538,6 +538,24 @@ class ErrorException(HttpResponseError):
       super(ErrorException, self).__init__(response=response)
 
 
+class JSONInput(Model):
+    """JSONInput.
+
+    :param id:
+    :type id: int
+    """
+
+    _attribute_map = {
+        'id': {'key': 'id', 'type': 'int', 'xml': {'name': 'id'}},
+    }
+    _xml_map = {
+    }
+
+    def __init__(self, **kwargs):
+        super(JSONInput, self).__init__(**kwargs)
+        self.id = kwargs.get('id', None)
+
+
 class ListBlobsResponse(Model):
     """An enumeration of blobs.
 

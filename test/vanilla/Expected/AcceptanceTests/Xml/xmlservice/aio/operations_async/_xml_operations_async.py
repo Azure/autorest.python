@@ -1144,3 +1144,46 @@ class XmlOperations:
 
         return deserialized
     list_blobs.metadata = {'url': '/xml/mycontainer'}
+
+    @distributed_trace_async
+    async def json_input(self, id=None, *, cls=None, **kwargs):
+        """A Swagger with XML that has one operation that takes JSON as input. You
+        need to send the ID number 42.
+
+        :param id:
+        :type id: int
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        """
+        error_map = kwargs.pop('error_map', None)
+        properties = models.JSONInput(id=id)
+
+        # Construct URL
+        url = self.json_input.metadata['url']
+
+        # Construct parameters
+        query_parameters = {}
+
+        # Construct headers
+        header_parameters = {}
+        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
+
+        # Construct body
+        body_content = self._serialize.body(properties, 'JSONInput')
+
+        # Construct and send request
+        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if cls:
+            response_headers = {}
+            return cls(response, None, response_headers)
+    json_input.metadata = {'url': '/xml/jsoninput'}
