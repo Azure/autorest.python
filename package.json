@@ -31,7 +31,7 @@
   },
   "homepage": "https://github.com/Azure/autorest.python/blob/master/README.md",
   "devDependencies": {
-    "@microsoft.azure/autorest.testserver": "^2.6.5",
+    "@microsoft.azure/autorest.testserver": "^2.6.6",
     "autorest": "^2.0.4203",
     "coffee-script": "^1.11.1",
     "dotnet-sdk-2.0.0": "^1.4.4",
