@@ -64,6 +64,9 @@ class TestXml(object):
     def test_json_xml(self, client):
         client.xml.json_input(id=42)
 
+        result = client.xml.json_output()
+        assert result.id == 42
+
     def test_basic(self, client):
 
         # Slideshow
