@@ -556,6 +556,24 @@ class JSONInput(Model):
         self.id = kwargs.get('id', None)
 
 
+class JSONOutput(Model):
+    """JSONOutput.
+
+    :param id:
+    :type id: int
+    """
+
+    _attribute_map = {
+        'id': {'key': 'id', 'type': 'int', 'xml': {'name': 'id'}},
+    }
+    _xml_map = {
+    }
+
+    def __init__(self, **kwargs):
+        super(JSONOutput, self).__init__(**kwargs)
+        self.id = kwargs.get('id', None)
+
+
 class ListBlobsResponse(Model):
     """An enumeration of blobs.
 

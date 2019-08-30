@@ -1186,3 +1186,44 @@ class XmlOperations(object):
             response_headers = {}
             return cls(response, None, response_headers)
     json_input.metadata = {'url': '/xml/jsoninput'}
+
+    @distributed_trace
+    def json_output(self, cls=None, **kwargs):
+        """A Swagger with XML that has one operation that returns JSON. ID number
+        42.
+
+        :param callable cls: A custom type or function that will be passed the
+         direct response
+        :return: JSONOutput or the result of cls(response)
+        :rtype: ~xmlservice.models.JSONOutput
+        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        """
+        error_map = kwargs.pop('error_map', None)
+        # Construct URL
+        url = self.json_output.metadata['url']
+
+        # Construct parameters
+        query_parameters = {}
+
+        # Construct headers
+        header_parameters = {}
+        header_parameters['Accept'] = 'application/json'
+
+        # Construct and send request
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        deserialized = None
+        if response.status_code == 200:
+            deserialized = self._deserialize('JSONOutput', response)
+
+        if cls:
+            return cls(response, deserialized, None)
+
+        return deserialized
+    json_output.metadata = {'url': '/xml/jsonoutput'}
