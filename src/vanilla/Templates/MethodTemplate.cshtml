@@ -81,7 +81,8 @@ trace_decorator = AsyncMode? "@distributed_trace_async" : "@distributed_trace";
   {
         // Right now, just generate the serialization context if it's a sequence type. Could be smarter later
         string serializationContext = "";
-        if(Model.CodeModel.ShouldGenerateXmlSerialization)
+        string is_xml = "";
+        if(Model.ShouldGenerateXmlSerialization)
         {
                 var serializationContextContent = Model.BuildSerializationContext();
                 if(!string.IsNullOrEmpty(serializationContextContent))
@@ -90,14 +91,18 @@ trace_decorator = AsyncMode? "@distributed_trace_async" : "@distributed_trace";
         @:serialization_ctxt = @serializationContextContent
                 }
         }
+        else if(Model.CodeModel.ShouldGenerateXmlSerialization)
+        {
+                is_xml = ", is_xml=False";
+        }
         if (Model.RequestBody.IsRequired)
         {
-        @:body_content = self._serialize.body(@Model.RequestBody.Name, '@(Model.RequestBody.ModelType.ToPythonRuntimeTypeString())'@serializationContext)
+        @:body_content = self._serialize.body(@Model.RequestBody.Name, '@(Model.RequestBody.ModelType.ToPythonRuntimeTypeString())'@(is_xml)@serializationContext)
         }
         else
         {
         @:if @Model.RequestBody.Name is not None:
-            @:body_content = self._serialize.body(@Model.RequestBody.Name, '@(Model.RequestBody.ModelType.ToPythonRuntimeTypeString())'@serializationContext)
+            @:body_content = self._serialize.body(@Model.RequestBody.Name, '@(Model.RequestBody.ModelType.ToPythonRuntimeTypeString())'@(is_xml)@serializationContext)
         @:else:
             @:body_content = None
         }
