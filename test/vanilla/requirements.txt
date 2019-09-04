@@ -2,6 +2,6 @@ requests>=2.14.0
 pytest<=5.1.1
 pytest-cov
 pytest-asyncio;python_full_version>="3.5.2"
-git+https://github.com/Azure/msrest-for-python@Json_xml_support#egg=Json_xml_support
+msrest>=0.6.10
 git+https://github.com/Azure/azure-sdk-for-python#subdirectory=sdk/core/azure-core&egg=azure-core  # azure-core 1.0.0b2 on master
 aiohttp;python_full_version>="3.5.2"
