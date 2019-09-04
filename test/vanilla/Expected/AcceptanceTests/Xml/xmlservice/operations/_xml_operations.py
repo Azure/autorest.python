@@ -1171,7 +1171,7 @@ class XmlOperations(object):
         header_parameters['Content-Type'] = 'application/json; charset=utf-8'
 
         # Construct body
-        body_content = self._serialize.body(properties, 'JSONInput')
+        body_content = self._serialize.body(properties, 'JSONInput', is_xml=False)
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)

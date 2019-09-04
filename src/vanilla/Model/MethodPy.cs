@@ -765,6 +765,9 @@ namespace AutoRest.Python.Model
                 return result;
             }
         }
+        
+        public bool ShouldGenerateXmlSerialization => RequestContentType.ToLower().Contains("application/xml");
+
 
         public string BuildSummaryAndDescriptionString()
         {
