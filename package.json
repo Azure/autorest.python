@@ -1,18 +1,11 @@
 {
   "name": "@microsoft.azure/autorest.python",
-  "version": "4.0.0",
-  "description": "The Python extension for classic generators in AutoRest.",
+  "version": "5.0.0",
+  "description": "The Python extension for generators in AutoRest.",
   "scripts": {
     "autorest": "autorest",
-    "start": "dotnet src/bin/netcoreapp2.0/autorest.python.dll --server",
-    "test": "gulp test",
-    "testci": "gulp testci",
-    "build": "gulp build",
-    "prepare": "gulp install_common && gulp build",
-    "publish-preview": "gulp publish-preview",
-    "regenerate": "gulp regenerate",
-    "clean": "gulp clean",
-    "nuke": "git clean -xdf"
+    "start": "python -m autorest.jsonrpc_server",
+    "build": "mvn package -Dlocal"
   },
   "repository": {
     "type": "git",
@@ -21,7 +14,6 @@
   "readme": "https://github.com/Azure/autorest.python/readme.md",
   "keywords": [
     "autorest",
-    "classic-generators",
     "python"
   ],
   "author": "Microsoft Corporation",
@@ -32,23 +24,6 @@
   "homepage": "https://github.com/Azure/autorest.python/blob/master/README.md",
   "devDependencies": {
     "@microsoft.azure/autorest.testserver": "^2.6.6",
-    "autorest": "^2.0.4203",
-    "coffee-script": "^1.11.1",
-    "dotnet-sdk-2.0.0": "^1.4.4",
-    "gulp": "^3.9.1",
-    "gulp-filter": "^5.0.0",
-    "gulp-line-ending-corrector": "^1.0.1",
-    "iced-coffee-script": "^108.0.11",
-    "marked": "^0.3.6",
-    "marked-terminal": "^2.0.0",
-    "moment": "^2.17.1",
-    "run-sequence": "*",
-    "shx": "^0.2.2",
-    "through2-parallel": "^0.1.3",
-    "yargs": "^8.0.2",
-    "yarn": "^1.0.2"
-  },
-  "dependencies": {
-    "dotnet-2.0.0": "^1.4.4"
+    "autorest": "^2.0.4203"
   }
 }
