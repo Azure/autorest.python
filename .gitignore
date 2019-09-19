@@ -24,6 +24,7 @@ wheels/
 .installed.cfg
 *.egg
 MANIFEST
+package-lock.json
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
@@ -102,3 +103,9 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+# pycharm
+.idea/
+
+# node modules
+node_modules/
