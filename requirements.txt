@@ -1,4 +1,9 @@
+# runtime
 json-rpc
 Jinja2
+pyyaml
+
+# dev mode
 tox
 invoke
+pylint
