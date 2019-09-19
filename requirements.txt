@@ -1,2 +1,4 @@
 json-rpc
 Jinja2
+tox
+invoke
