@@ -4,7 +4,7 @@
   "description": "The Python extension for generators in AutoRest.",
   "scripts": {
     "autorest": "autorest",
-    "start": "python -m autorest.jsonrpc_server",
+    "start": "python -m autorest.jsonrpc.server",
     "build": "mvn package -Dlocal"
   },
   "repository": {
