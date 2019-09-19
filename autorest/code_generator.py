@@ -31,10 +31,10 @@ import yaml
 
 from jinja2 import Template, PackageLoader, Environment
 
-from .jinja2_model import CodeModel
-from .jsonrpc_server import write_file
 from .jsonrpc import AutorestAPI
 
+from .models.codemodel import CodeModel
+from .models.schema import CompositeType
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -49,7 +49,7 @@ class CodeGenerator:
         _LOGGER.info(f"Inputs: {inputs}")
         filename = inputs[0]
         file_content = self._autorestapi.read_file(filename)
-        self._autorestapi.write_file(filename, file_content)
+        self._autorestapi.write_file("received_yaml.yaml", file_content)
 
         env = Environment(
             loader=PackageLoader('autorest', 'templates'),
@@ -64,12 +64,21 @@ class CodeGenerator:
         code_model.client_name = yaml_code_model["info"]["title"]
         code_model.api_version = yaml_code_model["info"]["version"]
 
+        composite_types = [d for d in yaml_code_model['schemas'].values() if d['type'] == 'object']
+        code_model.schemas = []
+        for schema in composite_types:
+            code_model.schemas.append(CompositeType.from_yaml(schema))
+
         # Generate the service client content
         template = env.get_template("service_client.py.jinja2")
         service_client = template.render(code_model=code_model)
 
+        template = env.get_template("model_container.py.jinja2")
+        model_file = template.render(code_model=code_model)
+
         # Write it
         self._autorestapi.write_file("service_client.py", service_client)
+        self._autorestapi.write_file("models.py", model_file)
         return True
 
 def main(yaml_model_file):

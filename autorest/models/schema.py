@@ -23,41 +23,15 @@
 # IN THE SOFTWARE.
 #
 # --------------------------------------------------------------------------
-import logging
-from pathlib import Path
-from typing import List
 
-from . import AutorestAPI
-
-
-_LOGGER = logging.getLogger(__name__)
-
-
-class LocalAutorestAPI(AutorestAPI):
-    """A local API that will write on local disk.
+class CompositeType:
+    """Represent a composite type schema ready to be serialized in Python.
     """
-    def __init__(self, reachable_files: List[str] = None, output_folder: str = "generated"):
-        if reachable_files is None:
-            reachable_files = []
-        self._reachable_files = reachable_files
-        self._output_folder = Path(output_folder)
 
-    def write_file(self, filename: str, file_content: str) -> None:
-        _LOGGER.debug("Writing file: %s", filename)
-        with (self._output_folder / Path(filename)).open('w') as fd:
-            fd.write(file_content)
-        _LOGGER.debug("Written file: %s", filename)
+    def __init__(self, name):
+        self.name = name
 
-    def read_file(self, filename: str) -> str:
-        _LOGGER.debug("Reading file: %s", filename)
-        with Path(filename).open('r') as fd:
-            return fd.read()
-
-    def list_inputs(self) -> List[str]:
-        return self._reachable_files
-
-    def get_value(self, key: str) -> str:
-        pass
-
-    def message(self, message) -> None:
-        pass
+    @classmethod
+    def from_yaml(cls, yaml_data):
+        name = yaml_data['details']['default']['name']
+        return cls(name)
