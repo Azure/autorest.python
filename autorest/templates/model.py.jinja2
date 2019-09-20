@@ -1,3 +1,67 @@
+{%- if model.base_model_type is defined %}
+class {{ model.name }}({{ model.base_model_type.name }}):
+{%- else %}
 class {{ model.name }}(Model):
-    pass
-    # FIXME
+{%- endif %}
+    {{'\"\"\"' + model.description + "\n"}}
+
+    {%- if (model.properties | selectattr('readonly') | first) is defined %}
+    {{ "Variables are only populated by the server, and will be ignored when sending a request.\n" }}
+    {%- endif %}
+    {%- if (model.properties | selectattr('readonly') | first) is defined %}
+    {{ "All required parameters must be populated in order to send to Azure.\n" }}
+    {%- endif %}
+
+    {%- if model.properties != None %}
+        {%- for p in model.properties %}
+    {{ p.get_property_documentation_string() }}
+    :type {{ p.name }}: {{ p.property_type }}
+        {%- endfor %}
+    {%- endif %}
+    {{'\"\"\"\n'}}
+
+    {%- if (model.properties | selectattr('required' or 'readonly') | first) is defined %}
+    _validation = {
+        {%- for p in model.properties | selectattr('readonly')%}
+        '{{ p.name }}': {'readonly': True},
+        {%- endfor %}
+        {%- for p in model.properties | selectattr('required')%}
+        '{{ p.name }}': {'required': True},
+        {%- endfor %}
+    }
+    {%- endif %}
+    _attribute_map = {
+        {%- if model.properties != None %}
+            {%- for p in model.properties %}
+        '{{ p.name }}': {'key': '{{ p.name }}', 'type': '{{ p.property_type }}'}
+            {%- endfor %}
+        {% else%}
+        {%- endif %}
+    }
+
+    def __init__(self, **kwargs):
+        super({{ model.name }}, self).__init__(**kwargs)
+        {%- if model.properties != None %}
+            {%- for p in model.properties %}
+                {%- if p.required %}
+        self.{{ p.name }} = None
+                {%- else %}
+        self.{{ p.name }} = kwargs.get('{{ p.name }}', None)
+                {%- endif %}
+            {%- endfor %}
+        {%- endif %}
+
+    {%- if model.is_exception %}
+    class {{ model.exception_type_definition_name }}(HttpResponseError):
+        {{'\"\"\"Server responded with exception of type: ' + model.name + "\n"}}
+        :param deserialize: A deserializer
+        :param response: Server response to be deserialized.
+        {{'\"\"\"\n'}}
+        def __init__(self, response, deserialize, *args):
+
+            model.name = {{ model.name }}
+            self.error = deserialize(model_name, response)
+            if self.error is None:
+                self.error = deserialize.dependencies[model_name]()
+            super({{ model.exception_type_definition_name }}, self).__init__(response=response)
+    {%- endif %}

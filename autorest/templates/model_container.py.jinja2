@@ -9,7 +9,11 @@
 # regenerated.
 # --------------------------------------------------------------------------
 from msrest.serialization import Model
+{%- if (code_model.schemas | selectattr('is_exception') | first) is defined %}
+from msrest.exceptions import HttpOperationError
+{%- endif %}
 
-{% for model in code_model.schemas %}
+
+{%- for model in code_model.schemas %}
 {% include "model.py.jinja2" %}
-{% endfor %}
+{%- endfor %}
