@@ -1,4 +1,9 @@
+# runtime
 json-rpc
-Jinja2
+Jinja2 >= 2.1 # I need "include" and auto-context
+pyyaml
+
+# dev mode
 tox
 invoke
+pylint

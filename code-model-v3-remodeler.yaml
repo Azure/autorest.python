@@ -1,0 +1,3795 @@
+schemas:
+  AccountStatus: &ref_11
+    type: string
+    description: Gets the status indicating whether the primary location of the storage account is available or unavailable.
+    allOf: []
+    anyOf: []
+    deprecated: false
+    enum:
+      - Available
+      - Unavailable
+    nullable: false
+    oneOf: []
+    properties: {}
+    readOnly: false
+    required: []
+    writeOnly: false
+    extensions:
+      x-ms-enum:
+        name: AccountStatus
+      x-ms-metadata:
+        name: AccountStatus
+        apiVersions:
+          - 2015-05-01-preview
+        filename:
+          - 'mem:///96?tree%20shaken%20doc...'
+        originalLocations:
+          - 'file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/schemas/StorageAccountProperties-statusOfPrimary'
+          - 'file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/schemas/StorageAccountProperties-statusOfSecondary'
+    details:
+      default:
+        name: AccountStatus
+        description: ''
+        enum:
+          name: AccountStatus
+          modelAsString: false
+          values:
+            - name: Available
+              description: ''
+              value: Available
+            - name: Unavailable
+              description: ''
+              value: Unavailable
+        uid: 'schema:97'
+  AccountType: &ref_0
+    type: string
+    description: Gets the type of the storage account.
+    allOf: []
+    anyOf: []
+    deprecated: false
+    enum:
+      - Standard_LRS
+      - Standard_ZRS
+      - Standard_GRS
+      - Standard_RAGRS
+      - Premium_LRS
+    nullable: false
+    oneOf: []
+    properties: {}
+    readOnly: false
+    required: []
+    writeOnly: false
+    extensions:
+      x-ms-enum:
+        name: AccountType
+      x-ms-metadata:
+        name: AccountType
+        apiVersions:
+          - 2015-05-01-preview
+        filename:
+          - 'mem:///96?tree%20shaken%20doc...'
+        originalLocations:
+          - 'file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/schemas/StorageAccountProperties-accountType'
+          - 'file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/schemas/StorageAccountPropertiesCreateParameters-accountType'
+          - 'file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/schemas/StorageAccountPropertiesUpdateParameters-accountType'
+    details:
+      default:
+        name: AccountType
+        description: ''
+        enum:
+          name: AccountType
+          modelAsString: false
+          values:
+            - name: Standard_LRS
+              description: ''
+              value: Standard_LRS
+            - name: Standard_ZRS
+              description: ''
+              value: Standard_ZRS
+            - name: Standard_GRS
+              description: ''
+              value: Standard_GRS
+            - name: Standard_RAGRS
+              description: ''
+              value: Standard_RAGRS
+            - name: Premium_LRS
+              description: ''
+              value: Premium_LRS
+        uid: 'schema:28'
+  KeyName: &ref_24
+    type: string
+    allOf: []
+    anyOf: []
+    deprecated: false
+    enum:
+      - key1
+      - key2
+    nullable: false
+    oneOf: []
+    properties: {}
+    readOnly: false
+    required: []
+    writeOnly: false
+    extensions:
+      x-ms-enum:
+        name: KeyName
+      x-ms-metadata:
+        name: KeyName
+        apiVersions:
+          - 2015-05-01-preview
+        filename:
+          - 'mem:///96?tree%20shaken%20doc...'
+        originalLocations:
+          - 'file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/schemas/StorageAccountRegenerateKeyParameters-keyName'
+    details:
+      default:
+        name: KeyName
+        description: ''
+        enum:
+          name: KeyName
+          modelAsString: false
+          values:
+            - name: key1
+              description: ''
+              value: key1
+            - name: key2
+              description: ''
+              value: key2
+        uid: 'schema:147'
+  ProvisioningState: &ref_10
+    type: string
+    description: Gets the status of the storage account at the time the operation was called.
+    allOf: []
+    anyOf: []
+    deprecated: false
+    enum:
+      - Creating
+      - ResolvingDNS
+      - Succeeded
+    nullable: false
+    oneOf: []
+    properties: {}
+    readOnly: false
+    required: []
+    writeOnly: false
+    extensions:
+      x-ms-enum:
+        name: ProvisioningState
+      x-ms-metadata:
+        name: ProvisioningState
+        apiVersions:
+          - 2015-05-01-preview
+        filename:
+          - 'mem:///96?tree%20shaken%20doc...'
+        originalLocations:
+          - 'file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/schemas/StorageAccountProperties-provisioningState'
+    details:
+      default:
+        name: ProvisioningState
+        description: ''
+        enum:
+          name: ProvisioningState
+          modelAsString: false
+          values:
+            - name: Creating
+              description: ''
+              value: Creating
+            - name: ResolvingDNS
+              description: ''
+              value: ResolvingDNS
+            - name: Succeeded
+              description: ''
+              value: Succeeded
+        uid: 'schema:87'
+  Reason: &ref_41
+    type: string
+    description: Gets the reason that a storage account name could not be used. The Reason element is only returned if NameAvailable is false.
+    allOf: []
+    anyOf: []
+    deprecated: false
+    enum:
+      - AccountNameInvalid
+      - AlreadyExists
+    nullable: false
+    oneOf: []
+    properties: {}
+    readOnly: false
+    required: []
+    writeOnly: false
+    extensions:
+      x-ms-enum:
+        name: Reason
+      x-ms-metadata:
+        name: Reason
+        apiVersions:
+          - 2015-05-01-preview
+        filename:
+          - 'mem:///96?tree%20shaken%20doc...'
+        originalLocations:
+          - 'file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/schemas/CheckNameAvailabilityResult-reason'
+    details:
+      default:
+        name: Reason
+        description: ''
+        enum:
+          name: Reason
+          modelAsString: false
+          values:
+            - name: AccountNameInvalid
+              description: ''
+              value: AccountNameInvalid
+            - name: AlreadyExists
+              description: ''
+              value: AlreadyExists
+        uid: 'schema:20'
+  UsageUnit: &ref_28
+    type: string
+    description: Gets the unit of measurement.
+    allOf: []
+    anyOf: []
+    deprecated: false
+    enum:
+      - Count
+      - Bytes
+      - Seconds
+      - Percent
+      - CountsPerSecond
+      - BytesPerSecond
+    nullable: false
+    oneOf: []
+    properties: {}
+    readOnly: false
+    required: []
+    writeOnly: false
+    extensions:
+      x-ms-enum:
+        name: UsageUnit
+      x-ms-metadata:
+        name: UsageUnit
+        apiVersions:
+          - 2015-05-01-preview
+        filename:
+          - 'mem:///96?tree%20shaken%20doc...'
+        originalLocations:
+          - 'file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/schemas/Usage-unit'
+    details:
+      default:
+        name: UsageUnit
+        description: ''
+        enum:
+          name: UsageUnit
+          modelAsString: false
+          values:
+            - name: Count
+              description: ''
+              value: Count
+            - name: Bytes
+              description: ''
+              value: Bytes
+            - name: Seconds
+              description: ''
+              value: Seconds
+            - name: Percent
+              description: ''
+              value: Percent
+            - name: CountsPerSecond
+              description: ''
+              value: CountsPerSecond
+            - name: BytesPerSecond
+              description: ''
+              value: BytesPerSecond
+        uid: 'schema:160'
+  'schemas:0': &ref_48
+    type: string
+    allOf: []
+    anyOf: []
+    deprecated: false
+    enum: []
+    nullable: false
+    oneOf: []
+    properties: {}
+    readOnly: false
+    required: []
+    writeOnly: false
+    extensions:
+      x-ms-metadata:
+        name: pathsÂ·subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsoft-storage-storageaccounts-accountnameÂ·putÂ·parametersÂ·1Â·schema
+        apiVersions:
+          - 2015-05-01-preview
+        filename:
+          - 'mem:///96?tree%20shaken%20doc...'
+        originalLocations:
+          - >-
+            file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/schemas/pathsÂ·subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsoft-storage-storageaccounts-accountnameÂ·putÂ·parametersÂ·1Â·schema
+    details:
+      default:
+        name: pathsÂ·subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsoft-storage-storageaccounts-accountnameÂ·putÂ·parametersÂ·1Â·schema
+        description: ''
+        uid: 'schema:1'
+  'schemas:1': &ref_56
+    type: string
+    allOf: []
+    anyOf: []
+    deprecated: false
+    enum: []
+    nullable: false
+    oneOf: []
+    properties: {}
+    readOnly: false
+    required: []
+    writeOnly: false
+    extensions:
+      x-ms-metadata:
+        name: pathsÂ·subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsoft-storage-storageaccounts-accountnameÂ·deleteÂ·parametersÂ·1Â·schema
+        apiVersions:
+          - 2015-05-01-preview
+        filename:
+          - 'mem:///96?tree%20shaken%20doc...'
+        originalLocations:
+          - >-
+            file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/schemas/pathsÂ·subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsoft-storage-storageaccounts-accountnameÂ·deleteÂ·parametersÂ·1Â·schema
+    details:
+      default:
+        name: pathsÂ·subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsoft-storage-storageaccounts-accountnameÂ·deleteÂ·parametersÂ·1Â·schema
+        description: ''
+        uid: 'schema:2'
+  'schemas:11': &ref_40
+    type: string
+    description: Gets an error message explaining the Reason value in more detail.
+    allOf: []
+    anyOf: []
+    deprecated: false
+    enum: []
+    nullable: false
+    oneOf: []
+    properties: {}
+    readOnly: false
+    required: []
+    writeOnly: false
+    extensions:
+      x-ms-metadata:
+        name: CheckNameAvailabilityResult-message
+        apiVersions:
+          - 2015-05-01-preview
+        filename:
+          - 'mem:///96?tree%20shaken%20doc...'
+        originalLocations:
+          - 'file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/schemas/CheckNameAvailabilityResult-message'
+    details:
+      default:
+        name: CheckNameAvailabilityResult-message
+        description: ''
+        uid: 'schema:23'
+  'schemas:12': &ref_1
+    type: object
+    allOf: []
+    anyOf: []
+    deprecated: false
+    enum: []
+    nullable: false
+    oneOf: []
+    properties:
+      accountType:
+        schema: *ref_0
+        description: Gets or sets the account type.
+        serializedName: accountType
+        extensions: {}
+        details:
+          default:
+            name: accountType
+            description: Gets or sets the account type.
+            readOnly: false
+            required: false
+            uid: 'property:29'
+    readOnly: false
+    required: []
+    writeOnly: false
+    extensions:
+      x-ms-metadata:
+        name: StorageAccountPropertiesCreateParameters
+        apiVersions:
+          - 2015-05-01-preview
+        filename:
+          - 'mem:///96?tree%20shaken%20doc...'
+        originalLocations:
+          - 'file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/schemas/StorageAccountPropertiesCreateParameters'
+    details:
+      default:
+        name: StorageAccountPropertiesCreateParameters
+        description: ''
+        uid: 'schema:27'
+  'schemas:14': &ref_54
+    type: object
+    description: The parameters to provide for the account.
+    allOf:
+      - &ref_16
+        type: object
+        allOf: []
+        anyOf: []
+        deprecated: false
+        enum: []
+        nullable: false
+        oneOf: []
+        properties:
+          name:
+            schema: &ref_32
+              type: string
+              description: Resource name
+              allOf: []
+              anyOf: []
+              deprecated: false
+              enum: []
+              nullable: false
+              oneOf: []
+              properties: {}
+              readOnly: true
+              required: []
+              writeOnly: false
+              extensions:
+                x-ms-metadata:
+                  name: Resource-name
+                  apiVersions:
+                    - 2015-05-01-preview
+                  filename:
+                    - 'mem:///96?tree%20shaken%20doc...'
+                  originalLocations:
+                    - 'file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/schemas/Resource-name'
+              details:
+                default:
+                  name: Resource-name
+                  description: ''
+                  uid: 'schema:38'
+            description: Resource name
+            serializedName: name
+            extensions: {}
+            details:
+              default:
+                name: name
+                description: Resource name
+                readOnly: true
+                required: false
+                uid: 'property:39'
+          type:
+            schema: &ref_33
+              type: string
+              description: Resource type
+              allOf: []
+              anyOf: []
+              deprecated: false
+              enum: []
+              nullable: false
+              oneOf: []
+              properties: {}
+              readOnly: true
+              required: []
+              writeOnly: false
+              extensions:
+                x-ms-metadata:
+                  name: Resource-type
+                  apiVersions:
+                    - 2015-05-01-preview
+                  filename:
+                    - 'mem:///96?tree%20shaken%20doc...'
+                  originalLocations:
+                    - 'file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/schemas/Resource-type'
+              details:
+                default:
+                  name: Resource-type
+                  description: ''
+                  uid: 'schema:41'
+            description: Resource type
+            serializedName: type
+            extensions: {}
+            details:
+              default:
+                name: type
+                description: Resource type
+                readOnly: true
+                required: false
+                uid: 'property:42'
+          id:
+            schema: &ref_31
+              type: string
+              description: Resource Id
+              allOf: []
+              anyOf: []
+              deprecated: false
+              enum: []
+              nullable: false
+              oneOf: []
+              properties: {}
+              readOnly: true
+              required: []
+              writeOnly: false
+              extensions:
+                x-ms-metadata:
+                  name: Resource-id
+                  apiVersions:
+                    - 2015-05-01-preview
+                  filename:
+                    - 'mem:///96?tree%20shaken%20doc...'
+                  originalLocations:
+                    - 'file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/schemas/Resource-id'
+              details:
+                default:
+                  name: Resource-id
+                  description: ''
+                  uid: 'schema:35'
+            description: Resource Id
+            serializedName: id
+            extensions: {}
+            details:
+              default:
+                name: id
+                description: Resource Id
+                readOnly: true
+                required: false
+                uid: 'property:36'
+          location:
+            schema: &ref_34
+              type: string
+              description: Resource location
+              allOf: []
+              anyOf: []
+              deprecated: false
+              enum: []
+              nullable: false
+              oneOf: []
+              properties: {}
+              readOnly: false
+              required: []
+              writeOnly: false
+              extensions:
+                x-ms-metadata:
+                  name: Resource-location
+                  apiVersions:
+                    - 2015-05-01-preview
+                  filename:
+                    - 'mem:///96?tree%20shaken%20doc...'
+                  originalLocations:
+                    - 'file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/schemas/Resource-location'
+              details:
+                default:
+                  name: Resource-location
+                  description: ''
+                  uid: 'schema:44'
+            description: Resource location
+            serializedName: location
+            extensions: {}
+            details:
+              default:
+                name: location
+                description: Resource location
+                readOnly: false
+                required: true
+                uid: 'property:45'
+          tags:
+            schema: &ref_35
+              type: object
+              description: Resource tags
+              additionalProperties: &ref_36
+                type: string
+                allOf: []
+                anyOf: []
+                deprecated: false
+                enum: []
+                nullable: false
+                oneOf: []
+                properties: {}
+                readOnly: false
+                required: []
+                writeOnly: false
+                extensions:
+                  x-ms-metadata:
+                    name: componentsÂ·schemasÂ·resourceÂ·propertiesÂ·tagsÂ·additionalproperties
+                    apiVersions:
+                      - 2015-05-01-preview
+                    filename:
+                      - 'mem:///96?tree%20shaken%20doc...'
+                    originalLocations:
+                      - 'file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/schemas/componentsÂ·schemasÂ·resourceÂ·propertiesÂ·tagsÂ·additionalproperties'
+                details:
+                  default:
+                    name: componentsÂ·schemasÂ·resourceÂ·propertiesÂ·tagsÂ·additionalproperties
+                    description: ''
+                    uid: 'schema:49'
+              allOf: []
+              anyOf: []
+              deprecated: false
+              enum: []
+              nullable: false
+              oneOf: []
+              properties: {}
+              readOnly: false
+              required: []
+              writeOnly: false
+              extensions:
+                x-ms-metadata:
+                  name: Resource-tags
+                  apiVersions:
+                    - 2015-05-01-preview
+                  filename:
+                    - 'mem:///96?tree%20shaken%20doc...'
+                  originalLocations:
+                    - 'file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/schemas/Resource-tags'
+              details:
+                default:
+                  name: Resource-tags
+                  description: Resource tags
+                  uid: 'schema:48'
+            description: Resource tags
+            serializedName: tags
+            extensions: {}
+            details:
+              default:
+                name: tags
+                description: Resource tags
+                readOnly: false
+                required: false
+                uid: 'property:50'
+        readOnly: false
+        required:
+          - location
+        writeOnly: false
+        extensions:
+          x-ms-azure-resource: true
+          x-ms-metadata:
+            name: Resource
+            apiVersions:
+              - 2015-05-01-preview
+            filename:
+              - 'mem:///96?tree%20shaken%20doc...'
+            originalLocations:
+              - 'file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/schemas/Resource'
+        details:
+          default:
+            name: Resource
+            description: ''
+            uid: 'schema:34'
+    anyOf: []
+    deprecated: false
+    enum: []
+    nullable: false
+    oneOf: []
+    properties:
+      properties:
+        schema: *ref_1
+        description: ''
+        serializedName: properties
+        extensions: {}
+        details:
+          default:
+            name: properties
+            description: ''
+            readOnly: false
+            required: false
+            uid: 'property:52'
+    readOnly: false
+    required: []
+    writeOnly: false
+    extensions:
+      x-ms-metadata:
+        name: StorageAccountCreateParameters
+        apiVersions:
+          - 2015-05-01-preview
+        filename:
+          - 'mem:///96?tree%20shaken%20doc...'
+        originalLocations:
+          - 'file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/schemas/StorageAccountCreateParameters'
+    details:
+      default:
+        name: StorageAccountCreateParameters
+        description: The parameters to provide for the account.
+        uid: 'schema:32'
+  'schemas:15': &ref_2
+    type: object
+    description: 'The URIs that are used to perform a retrieval of a public blob, queue or table object.'
+    allOf: []
+    anyOf: []
+    deprecated: false
+    enum: []
+    nullable: false
+    oneOf: []
+    properties:
+      FooPoint:
+        schema: &ref_6
+          type: object
+          description: 'The URIs that are used to perform a retrieval of a public blob, queue or table object.'
+          allOf: []
+          anyOf: []
+          deprecated: false
+          enum: []
+          nullable: false
+          oneOf: []
+          properties:
+            Bar.Point:
+              schema: &ref_7
+                type: object
+                description: 'The URIs that are used to perform a retrieval of a public blob, queue or table object.'
+                allOf: []
+                anyOf: []
+                deprecated: false
+                enum: []
+                nullable: false
+                oneOf: []
+                properties:
+                  RecursivePoint:
+                    schema: *ref_2
+                    description: Recursive Endpoints
+                    serializedName: RecursivePoint
+                    extensions: {}
+                    details:
+                      default:
+                        name: RecursivePoint
+                        description: Recursive Endpoints
+                        readOnly: false
+                        required: false
+                        uid: 'property:71'
+                readOnly: false
+                required: []
+                writeOnly: false
+                extensions:
+                  x-ms-metadata:
+                    name: Bar
+                    apiVersions:
+                      - 2015-05-01-preview
+                    filename:
+                      - 'mem:///96?tree%20shaken%20doc...'
+                    originalLocations:
+                      - 'file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/schemas/Bar'
+                details:
+                  default:
+                    name: Bar
+                    description: 'The URIs that are used to perform a retrieval of a public blob, queue or table object.'
+                    uid: 'schema:70'
+              description: Bar point
+              serializedName: Bar.Point
+              extensions: {}
+              details:
+                default:
+                  name: Bar.Point
+                  description: Bar point
+                  readOnly: false
+                  required: false
+                  uid: 'property:73'
+          readOnly: false
+          required: []
+          writeOnly: false
+          extensions:
+            x-ms-metadata:
+              name: Foo
+              apiVersions:
+                - 2015-05-01-preview
+              filename:
+                - 'mem:///96?tree%20shaken%20doc...'
+              originalLocations:
+                - 'file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/schemas/Foo'
+          details:
+            default:
+              name: Foo
+              description: 'The URIs that are used to perform a retrieval of a public blob, queue or table object.'
+              uid: 'schema:68'
+        description: Foo point
+        serializedName: FooPoint
+        extensions: {}
+        details:
+          default:
+            name: FooPoint
+            description: Foo point
+            readOnly: false
+            required: false
+            uid: 'property:75'
+      blob:
+        schema: &ref_3
+          type: string
+          description: Gets the blob endpoint.
+          allOf: []
+          anyOf: []
+          deprecated: false
+          enum: []
+          nullable: false
+          oneOf: []
+          properties: {}
+          readOnly: false
+          required: []
+          writeOnly: false
+          extensions:
+            x-ms-metadata:
+              name: Endpoints-blob
+              apiVersions:
+                - 2015-05-01-preview
+              filename:
+                - 'mem:///96?tree%20shaken%20doc...'
+              originalLocations:
+                - 'file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/schemas/Endpoints-blob'
+          details:
+            default:
+              name: Endpoints-blob
+              description: ''
+              uid: 'schema:56'
+        description: Gets the blob endpoint.
+        serializedName: blob
+        extensions: {}
+        details:
+          default:
+            name: blob
+            description: Gets the blob endpoint.
+            readOnly: false
+            required: false
+            uid: 'property:57'
+      dummyEndPoint:
+        schema: *ref_2
+        description: Dummy EndPoint
+        serializedName: dummyEndPoint
+        extensions: {}
+        details:
+          default:
+            name: dummyEndPoint
+            description: Dummy EndPoint
+            readOnly: false
+            required: false
+            uid: 'property:65'
+      queue:
+        schema: &ref_4
+          type: string
+          description: Gets the queue endpoint.
+          allOf: []
+          anyOf: []
+          deprecated: false
+          enum: []
+          nullable: false
+          oneOf: []
+          properties: {}
+          readOnly: false
+          required: []
+          writeOnly: false
+          extensions:
+            x-ms-metadata:
+              name: Endpoints-queue
+              apiVersions:
+                - 2015-05-01-preview
+              filename:
+                - 'mem:///96?tree%20shaken%20doc...'
+              originalLocations:
+                - 'file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/schemas/Endpoints-queue'
+          details:
+            default:
+              name: Endpoints-queue
+              description: ''
+              uid: 'schema:59'
+        description: Gets the queue endpoint.
+        serializedName: queue
+        extensions: {}
+        details:
+          default:
+            name: queue
+            description: Gets the queue endpoint.
+            readOnly: false
+            required: false
+            uid: 'property:60'
+      table:
+        schema: &ref_5
+          type: string
+          description: Gets the table endpoint.
+          allOf: []
+          anyOf: []
+          deprecated: false
+          enum: []
+          nullable: false
+          oneOf: []
+          properties: {}
+          readOnly: false
+          required: []
+          writeOnly: false
+          extensions:
+            x-ms-metadata:
+              name: Endpoints-table
+              apiVersions:
+                - 2015-05-01-preview
+              filename:
+                - 'mem:///96?tree%20shaken%20doc...'
+              originalLocations:
+                - 'file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/schemas/Endpoints-table'
+          details:
+            default:
+              name: Endpoints-table
+              description: ''
+              uid: 'schema:62'
+        description: Gets the table endpoint.
+        serializedName: table
+        extensions: {}
+        details:
+          default:
+            name: table
+            description: Gets the table endpoint.
+            readOnly: false
+            required: false
+            uid: 'property:63'
+    readOnly: false
+    required: []
+    writeOnly: false
+    extensions:
+      x-ms-metadata:
+        name: Endpoints
+        apiVersions:
+          - 2015-05-01-preview
+        filename:
+          - 'mem:///96?tree%20shaken%20doc...'
+        originalLocations:
+          - 'file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/schemas/Endpoints'
+    details:
+      default:
+        name: Endpoints
+        description: 'The URIs that are used to perform a retrieval of a public blob, queue or table object.'
+        uid: 'schema:55'
+  'schemas:16': *ref_3
+  'schemas:17': *ref_4
+  'schemas:18': *ref_5
+  'schemas:19': *ref_6
+  'schemas:2': &ref_57
+    type: string
+    allOf: []
+    anyOf: []
+    deprecated: false
+    enum: []
+    nullable: false
+    oneOf: []
+    properties: {}
+    readOnly: false
+    required: []
+    writeOnly: false
+    extensions:
+      x-ms-metadata:
+        name: pathsÂ·subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsoft-storage-storageaccounts-accountnameÂ·getÂ·parametersÂ·1Â·schema
+        apiVersions:
+          - 2015-05-01-preview
+        filename:
+          - 'mem:///96?tree%20shaken%20doc...'
+        originalLocations:
+          - >-
+            file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/schemas/pathsÂ·subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsoft-storage-storageaccounts-accountnameÂ·getÂ·parametersÂ·1Â·schema
+    details:
+      default:
+        name: pathsÂ·subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsoft-storage-storageaccounts-accountnameÂ·getÂ·parametersÂ·1Â·schema
+        description: ''
+        uid: 'schema:3'
+  'schemas:20': *ref_7
+  'schemas:21': &ref_9
+    type: object
+    description: The custom domain assigned to this storage account. This can be set via Update.
+    allOf: []
+    anyOf: []
+    deprecated: false
+    enum: []
+    nullable: false
+    oneOf: []
+    properties:
+      name:
+        schema: &ref_8
+          type: string
+          description: Gets or sets the custom domain name. Name is the CNAME source.
+          allOf: []
+          anyOf: []
+          deprecated: false
+          enum: []
+          nullable: false
+          oneOf: []
+          properties: {}
+          readOnly: false
+          required: []
+          writeOnly: false
+          extensions:
+            x-ms-metadata:
+              name: CustomDomain-name
+              apiVersions:
+                - 2015-05-01-preview
+              filename:
+                - 'mem:///96?tree%20shaken%20doc...'
+              originalLocations:
+                - 'file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/schemas/CustomDomain-name'
+          details:
+            default:
+              name: CustomDomain-name
+              description: ''
+              uid: 'schema:79'
+        description: Gets or sets the custom domain name. Name is the CNAME source.
+        serializedName: name
+        extensions: {}
+        details:
+          default:
+            name: name
+            description: Gets or sets the custom domain name. Name is the CNAME source.
+            readOnly: false
+            required: false
+            uid: 'property:80'
+      useSubDomain:
+        schema: &ref_42
+          type: boolean
+          description: Indicates whether indirect CName validation is enabled. Default value is false. This should only be set on updates
+          allOf: []
+          anyOf: []
+          deprecated: false
+          enum: []
+          nullable: false
+          oneOf: []
+          properties: {}
+          readOnly: false
+          required: []
+          writeOnly: false
+          extensions: {}
+          details:
+            default:
+              name: '.schemas:21.useSubDomain'
+              description: ''
+              uid: 'schema:82'
+        description: Indicates whether indirect CName validation is enabled. Default value is false. This should only be set on updates
+        serializedName: useSubDomain
+        extensions: {}
+        details:
+          default:
+            name: useSubDomain
+            description: Indicates whether indirect CName validation is enabled. Default value is false. This should only be set on updates
+            readOnly: false
+            required: false
+            uid: 'property:83'
+    readOnly: false
+    required: []
+    writeOnly: false
+    extensions:
+      x-ms-metadata:
+        name: CustomDomain
+        apiVersions:
+          - 2015-05-01-preview
+        filename:
+          - 'mem:///96?tree%20shaken%20doc...'
+        originalLocations:
+          - 'file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/schemas/CustomDomain'
+    details:
+      default:
+        name: CustomDomain
+        description: The custom domain assigned to this storage account. This can be set via Update.
+        uid: 'schema:78'
+  'schemas:22': *ref_8
+  'schemas:23': &ref_17
+    type: object
+    allOf: []
+    anyOf: []
+    deprecated: false
+    enum: []
+    nullable: false
+    oneOf: []
+    properties:
+      accountType:
+        schema: *ref_0
+        description: Gets the type of the storage account.
+        serializedName: accountType
+        extensions: {}
+        details:
+          default:
+            name: accountType
+            description: Gets the type of the storage account.
+            readOnly: false
+            required: false
+            uid: 'property:90'
+      creationTime:
+        schema: &ref_15
+          type: string
+          format: date-time
+          description: Gets the creation date and time of the storage account in UTC.
+          allOf: []
+          anyOf: []
+          deprecated: false
+          enum: []
+          nullable: false
+          oneOf: []
+          properties: {}
+          readOnly: false
+          required: []
+          writeOnly: false
+          extensions:
+            x-ms-metadata:
+              name: StorageAccountProperties-creationTime
+              apiVersions:
+                - 2015-05-01-preview
+              filename:
+                - 'mem:///96?tree%20shaken%20doc...'
+              originalLocations:
+                - 'file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/schemas/StorageAccountProperties-creationTime'
+          details:
+            default:
+              name: StorageAccountProperties-creationTime
+              description: ''
+              uid: 'schema:108'
+        description: Gets the creation date and time of the storage account in UTC.
+        serializedName: creationTime
+        extensions: {}
+        details:
+          default:
+            name: creationTime
+            description: Gets the creation date and time of the storage account in UTC.
+            readOnly: false
+            required: false
+            uid: 'property:109'
+      customDomain:
+        schema: *ref_9
+        description: Gets the user assigned custom domain assigned to this storage account.
+        serializedName: customDomain
+        extensions: {}
+        details:
+          default:
+            name: customDomain
+            description: Gets the user assigned custom domain assigned to this storage account.
+            readOnly: false
+            required: false
+            uid: 'property:111'
+      lastGeoFailoverTime:
+        schema: &ref_13
+          type: string
+          format: date-time
+          description: >-
+            Gets the timestamp of the most recent instance of a failover to the secondary location. Only the most recent timestamp is retained. This element is not returned if there has never been a failover instance. Only available if the
+            accountType is StandardGRS or StandardRAGRS.
+          allOf: []
+          anyOf: []
+          deprecated: false
+          enum: []
+          nullable: false
+          oneOf: []
+          properties: {}
+          readOnly: false
+          required: []
+          writeOnly: false
+          extensions:
+            x-ms-metadata:
+              name: StorageAccountProperties-lastGeoFailoverTime
+              apiVersions:
+                - 2015-05-01-preview
+              filename:
+                - 'mem:///96?tree%20shaken%20doc...'
+              originalLocations:
+                - 'file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/schemas/StorageAccountProperties-lastGeoFailoverTime'
+          details:
+            default:
+              name: StorageAccountProperties-lastGeoFailoverTime
+              description: ''
+              uid: 'schema:100'
+        description: >-
+          Gets the timestamp of the most recent instance of a failover to the secondary location. Only the most recent timestamp is retained. This element is not returned if there has never been a failover instance. Only available if the
+          accountType is StandardGRS or StandardRAGRS.
+        serializedName: lastGeoFailoverTime
+        extensions: {}
+        details:
+          default:
+            name: lastGeoFailoverTime
+            description: >-
+              Gets the timestamp of the most recent instance of a failover to the secondary location. Only the most recent timestamp is retained. This element is not returned if there has never been a failover instance. Only available if
+              the accountType is StandardGRS or StandardRAGRS.
+            readOnly: false
+            required: false
+            uid: 'property:101'
+      primaryEndpoints:
+        schema: *ref_2
+        description: 'Gets the URLs that are used to perform a retrieval of a public blob, queue or table object.Note that StandardZRS and PremiumLRS accounts only return the blob endpoint.'
+        serializedName: primaryEndpoints
+        extensions: {}
+        details:
+          default:
+            name: primaryEndpoints
+            description: 'Gets the URLs that are used to perform a retrieval of a public blob, queue or table object.Note that StandardZRS and PremiumLRS accounts only return the blob endpoint.'
+            readOnly: false
+            required: false
+            uid: 'property:92'
+      primaryLocation:
+        schema: &ref_12
+          type: string
+          description: Gets the location of the primary for the storage account.
+          allOf: []
+          anyOf: []
+          deprecated: false
+          enum: []
+          nullable: false
+          oneOf: []
+          properties: {}
+          readOnly: false
+          required: []
+          writeOnly: false
+          extensions:
+            x-ms-metadata:
+              name: StorageAccountProperties-primaryLocation
+              apiVersions:
+                - 2015-05-01-preview
+              filename:
+                - 'mem:///96?tree%20shaken%20doc...'
+              originalLocations:
+                - 'file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/schemas/StorageAccountProperties-primaryLocation'
+          details:
+            default:
+              name: StorageAccountProperties-primaryLocation
+              description: ''
+              uid: 'schema:94'
+        description: Gets the location of the primary for the storage account.
+        serializedName: primaryLocation
+        extensions: {}
+        details:
+          default:
+            name: primaryLocation
+            description: Gets the location of the primary for the storage account.
+            readOnly: false
+            required: false
+            uid: 'property:95'
+      provisioningState:
+        schema: *ref_10
+        description: Gets the status of the storage account at the time the operation was called.
+        serializedName: provisioningState
+        extensions: {}
+        details:
+          default:
+            name: provisioningState
+            description: Gets the status of the storage account at the time the operation was called.
+            readOnly: false
+            required: false
+            uid: 'property:88'
+      secondaryEndpoints:
+        schema: *ref_2
+        description: 'Gets the URLs that are used to perform a retrieval of a public blob, queue or table object from the secondary location of the storage account. Only available if the accountType is StandardRAGRS.'
+        serializedName: secondaryEndpoints
+        extensions: {}
+        details:
+          default:
+            name: secondaryEndpoints
+            description: 'Gets the URLs that are used to perform a retrieval of a public blob, queue or table object from the secondary location of the storage account. Only available if the accountType is StandardRAGRS.'
+            readOnly: false
+            required: false
+            uid: 'property:113'
+      secondaryLocation:
+        schema: &ref_14
+          type: string
+          description: Gets the location of the geo replicated secondary for the storage account. Only available if the accountType is StandardGRS or StandardRAGRS.
+          allOf: []
+          anyOf: []
+          deprecated: false
+          enum: []
+          nullable: false
+          oneOf: []
+          properties: {}
+          readOnly: false
+          required: []
+          writeOnly: false
+          extensions:
+            x-ms-metadata:
+              name: StorageAccountProperties-secondaryLocation
+              apiVersions:
+                - 2015-05-01-preview
+              filename:
+                - 'mem:///96?tree%20shaken%20doc...'
+              originalLocations:
+                - 'file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/schemas/StorageAccountProperties-secondaryLocation'
+          details:
+            default:
+              name: StorageAccountProperties-secondaryLocation
+              description: ''
+              uid: 'schema:103'
+        description: Gets the location of the geo replicated secondary for the storage account. Only available if the accountType is StandardGRS or StandardRAGRS.
+        serializedName: secondaryLocation
+        extensions: {}
+        details:
+          default:
+            name: secondaryLocation
+            description: Gets the location of the geo replicated secondary for the storage account. Only available if the accountType is StandardGRS or StandardRAGRS.
+            readOnly: false
+            required: false
+            uid: 'property:104'
+      statusOfPrimary:
+        schema: *ref_11
+        description: Gets the status indicating whether the primary location of the storage account is available or unavailable.
+        serializedName: statusOfPrimary
+        extensions: {}
+        details:
+          default:
+            name: statusOfPrimary
+            description: Gets the status indicating whether the primary location of the storage account is available or unavailable.
+            readOnly: false
+            required: false
+            uid: 'property:98'
+      statusOfSecondary:
+        schema: *ref_11
+        description: Gets the status indicating whether the secondary location of the storage account is available or unavailable. Only available if the accountType is StandardGRS or StandardRAGRS.
+        serializedName: statusOfSecondary
+        extensions: {}
+        details:
+          default:
+            name: statusOfSecondary
+            description: Gets the status indicating whether the secondary location of the storage account is available or unavailable. Only available if the accountType is StandardGRS or StandardRAGRS.
+            readOnly: false
+            required: false
+            uid: 'property:106'
+    readOnly: false
+    required: []
+    writeOnly: false
+    extensions:
+      x-ms-metadata:
+        name: StorageAccountProperties
+        apiVersions:
+          - 2015-05-01-preview
+        filename:
+          - 'mem:///96?tree%20shaken%20doc...'
+        originalLocations:
+          - 'file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/schemas/StorageAccountProperties'
+    details:
+      default:
+        name: StorageAccountProperties
+        description: ''
+        uid: 'schema:86'
+  'schemas:26': *ref_12
+  'schemas:28': *ref_13
+  'schemas:29': *ref_14
+  'schemas:3': &ref_58
+    type: string
+    allOf: []
+    anyOf: []
+    deprecated: false
+    enum: []
+    nullable: false
+    oneOf: []
+    properties: {}
+    readOnly: false
+    required: []
+    writeOnly: false
+    extensions:
+      x-ms-metadata:
+        name: pathsÂ·subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsoft-storage-storageaccounts-accountnameÂ·patchÂ·parametersÂ·1Â·schema
+        apiVersions:
+          - 2015-05-01-preview
+        filename:
+          - 'mem:///96?tree%20shaken%20doc...'
+        originalLocations:
+          - >-
+            file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/schemas/pathsÂ·subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsoft-storage-storageaccounts-accountnameÂ·patchÂ·parametersÂ·1Â·schema
+    details:
+      default:
+        name: pathsÂ·subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsoft-storage-storageaccounts-accountnameÂ·patchÂ·parametersÂ·1Â·schema
+        description: ''
+        uid: 'schema:4'
+  'schemas:31': *ref_15
+  'schemas:32': &ref_20
+    type: object
+    description: The storage account.
+    allOf:
+      - *ref_16
+    anyOf: []
+    deprecated: false
+    enum: []
+    nullable: false
+    oneOf: []
+    properties:
+      properties:
+        schema: *ref_17
+        description: ''
+        serializedName: properties
+        extensions: {}
+        details:
+          default:
+            name: properties
+            description: ''
+            readOnly: false
+            required: false
+            uid: 'property:117'
+    readOnly: false
+    required: []
+    writeOnly: false
+    extensions:
+      x-ms-metadata:
+        name: StorageAccount
+        apiVersions:
+          - 2015-05-01-preview
+        filename:
+          - 'mem:///96?tree%20shaken%20doc...'
+        originalLocations:
+          - 'file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/schemas/StorageAccount'
+    details:
+      default:
+        name: StorageAccount
+        description: The storage account.
+        uid: 'schema:116'
+  'schemas:33': &ref_61
+    type: object
+    description: The access keys for the storage account.
+    allOf: []
+    anyOf: []
+    deprecated: false
+    enum: []
+    nullable: false
+    oneOf: []
+    properties:
+      key1:
+        schema: &ref_18
+          type: string
+          description: Gets the value of key 1.
+          allOf: []
+          anyOf: []
+          deprecated: false
+          enum: []
+          nullable: false
+          oneOf: []
+          properties: {}
+          readOnly: false
+          required: []
+          writeOnly: false
+          extensions:
+            x-ms-metadata:
+              name: StorageAccountKeys-key1
+              apiVersions:
+                - 2015-05-01-preview
+              filename:
+                - 'mem:///96?tree%20shaken%20doc...'
+              originalLocations:
+                - 'file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/schemas/StorageAccountKeys-key1'
+          details:
+            default:
+              name: StorageAccountKeys-key1
+              description: ''
+              uid: 'schema:121'
+        description: Gets the value of key 1.
+        serializedName: key1
+        extensions: {}
+        details:
+          default:
+            name: key1
+            description: Gets the value of key 1.
+            readOnly: false
+            required: false
+            uid: 'property:122'
+      key2:
+        schema: &ref_19
+          type: string
+          description: Gets the value of key 2.
+          allOf: []
+          anyOf: []
+          deprecated: false
+          enum: []
+          nullable: false
+          oneOf: []
+          properties: {}
+          readOnly: false
+          required: []
+          writeOnly: false
+          extensions:
+            x-ms-metadata:
+              name: StorageAccountKeys-key2
+              apiVersions:
+                - 2015-05-01-preview
+              filename:
+                - 'mem:///96?tree%20shaken%20doc...'
+              originalLocations:
+                - 'file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/schemas/StorageAccountKeys-key2'
+          details:
+            default:
+              name: StorageAccountKeys-key2
+              description: ''
+              uid: 'schema:124'
+        description: Gets the value of key 2.
+        serializedName: key2
+        extensions: {}
+        details:
+          default:
+            name: key2
+            description: Gets the value of key 2.
+            readOnly: false
+            required: false
+            uid: 'property:125'
+    readOnly: false
+    required: []
+    writeOnly: false
+    extensions:
+      x-ms-metadata:
+        name: StorageAccountKeys
+        apiVersions:
+          - 2015-05-01-preview
+        filename:
+          - 'mem:///96?tree%20shaken%20doc...'
+        originalLocations:
+          - 'file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/schemas/StorageAccountKeys'
+    details:
+      default:
+        name: StorageAccountKeys
+        description: The access keys for the storage account.
+        uid: 'schema:120'
+  'schemas:34': *ref_18
+  'schemas:35': *ref_19
+  'schemas:36': &ref_62
+    type: object
+    description: The list storage accounts operation response.
+    allOf: []
+    anyOf: []
+    deprecated: false
+    enum: []
+    nullable: false
+    oneOf: []
+    properties:
+      nextLink:
+        schema: &ref_22
+          type: string
+          description: Gets the link to the next set of results. Currently this will always be empty as the API does not support pagination.
+          allOf: []
+          anyOf: []
+          deprecated: false
+          enum: []
+          nullable: false
+          oneOf: []
+          properties: {}
+          readOnly: false
+          required: []
+          writeOnly: false
+          extensions:
+            x-ms-metadata:
+              name: StorageAccountListResult-nextLink
+              apiVersions:
+                - 2015-05-01-preview
+              filename:
+                - 'mem:///96?tree%20shaken%20doc...'
+              originalLocations:
+                - 'file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/schemas/StorageAccountListResult-nextLink'
+          details:
+            default:
+              name: StorageAccountListResult-nextLink
+              description: ''
+              uid: 'schema:132'
+        description: Gets the link to the next set of results. Currently this will always be empty as the API does not support pagination.
+        serializedName: nextLink
+        extensions: {}
+        details:
+          default:
+            name: nextLink
+            description: Gets the link to the next set of results. Currently this will always be empty as the API does not support pagination.
+            readOnly: false
+            required: false
+            uid: 'property:133'
+      value:
+        schema: &ref_21
+          type: array
+          description: Gets the list of storage accounts and their properties.
+          allOf: []
+          anyOf: []
+          deprecated: false
+          enum: []
+          items: *ref_20
+          nullable: false
+          oneOf: []
+          properties: {}
+          readOnly: false
+          required: []
+          writeOnly: false
+          extensions:
+            x-ms-metadata:
+              name: StorageAccountListResult-value
+              apiVersions:
+                - 2015-05-01-preview
+              filename:
+                - 'mem:///96?tree%20shaken%20doc...'
+              originalLocations:
+                - 'file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/schemas/StorageAccountListResult-value'
+          details:
+            default:
+              name: StorageAccountListResult-value
+              description: ''
+              uid: 'schema:129'
+        description: Gets the list of storage accounts and their properties.
+        serializedName: value
+        extensions: {}
+        details:
+          default:
+            name: value
+            description: Gets the list of storage accounts and their properties.
+            readOnly: false
+            required: false
+            uid: 'property:130'
+    readOnly: false
+    required: []
+    writeOnly: false
+    extensions:
+      x-ms-metadata:
+        name: StorageAccountListResult
+        apiVersions:
+          - 2015-05-01-preview
+        filename:
+          - 'mem:///96?tree%20shaken%20doc...'
+        originalLocations:
+          - 'file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/schemas/StorageAccountListResult'
+    details:
+      default:
+        name: StorageAccountListResult
+        description: The list storage accounts operation response.
+        uid: 'schema:128'
+  'schemas:37': *ref_21
+  'schemas:38': *ref_22
+  'schemas:39': &ref_23
+    type: object
+    allOf: []
+    anyOf: []
+    deprecated: false
+    enum: []
+    nullable: false
+    oneOf: []
+    properties:
+      accountType:
+        schema: *ref_0
+        description: 'Gets or sets the account type. Note that StandardZRS and PremiumLRS accounts cannot be changed to other account types, and other account types cannot be changed to StandardZRS or PremiumLRS.'
+        serializedName: accountType
+        extensions: {}
+        details:
+          default:
+            name: accountType
+            description: 'Gets or sets the account type. Note that StandardZRS and PremiumLRS accounts cannot be changed to other account types, and other account types cannot be changed to StandardZRS or PremiumLRS.'
+            readOnly: false
+            required: false
+            uid: 'property:137'
+      customDomain:
+        schema: *ref_9
+        description: >-
+          User domain assigned to the storage account. Name is the CNAME source. Only one custom domain is supported per storage account at this time. To clear the existing custom domain, use an empty string for the custom domain name
+          property.
+        serializedName: customDomain
+        extensions: {}
+        details:
+          default:
+            name: customDomain
+            description: >-
+              User domain assigned to the storage account. Name is the CNAME source. Only one custom domain is supported per storage account at this time. To clear the existing custom domain, use an empty string for the custom domain name
+              property.
+            readOnly: false
+            required: false
+            uid: 'property:139'
+    readOnly: false
+    required: []
+    writeOnly: false
+    extensions:
+      x-ms-metadata:
+        name: StorageAccountPropertiesUpdateParameters
+        apiVersions:
+          - 2015-05-01-preview
+        filename:
+          - 'mem:///96?tree%20shaken%20doc...'
+        originalLocations:
+          - 'file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/schemas/StorageAccountPropertiesUpdateParameters'
+    details:
+      default:
+        name: StorageAccountPropertiesUpdateParameters
+        description: ''
+        uid: 'schema:136'
+  'schemas:4': &ref_60
+    type: string
+    allOf: []
+    anyOf: []
+    deprecated: false
+    enum: []
+    nullable: false
+    oneOf: []
+    properties: {}
+    readOnly: false
+    required: []
+    writeOnly: false
+    extensions:
+      x-ms-metadata:
+        name: pathsÂ·subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsoft-storage-storageaccounts-accountname-listkeysÂ·postÂ·parametersÂ·1Â·schema
+        apiVersions:
+          - 2015-05-01-preview
+        filename:
+          - 'mem:///96?tree%20shaken%20doc...'
+        originalLocations:
+          - >-
+            file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/schemas/pathsÂ·subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsoft-storage-storageaccounts-accountname-listkeysÂ·postÂ·parametersÂ·1Â·schema
+    details:
+      default:
+        name: pathsÂ·subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsoft-storage-storageaccounts-accountname-listkeysÂ·postÂ·parametersÂ·1Â·schema
+        description: ''
+        uid: 'schema:5'
+  'schemas:41': &ref_59
+    type: object
+    description: The parameters to update on the account.
+    allOf:
+      - *ref_16
+    anyOf: []
+    deprecated: false
+    enum: []
+    nullable: false
+    oneOf: []
+    properties:
+      properties:
+        schema: *ref_23
+        description: ''
+        serializedName: properties
+        extensions: {}
+        details:
+          default:
+            name: properties
+            description: ''
+            readOnly: false
+            required: false
+            uid: 'property:143'
+    readOnly: false
+    required: []
+    writeOnly: false
+    extensions:
+      x-ms-metadata:
+        name: StorageAccountUpdateParameters
+        apiVersions:
+          - 2015-05-01-preview
+        filename:
+          - 'mem:///96?tree%20shaken%20doc...'
+        originalLocations:
+          - 'file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/schemas/StorageAccountUpdateParameters'
+    details:
+      default:
+        name: StorageAccountUpdateParameters
+        description: The parameters to update on the account.
+        uid: 'schema:142'
+  'schemas:42': &ref_64
+    type: object
+    allOf: []
+    anyOf: []
+    deprecated: false
+    enum: []
+    nullable: false
+    oneOf: []
+    properties:
+      keyName:
+        schema: *ref_24
+        description: ''
+        serializedName: keyName
+        extensions: {}
+        details:
+          default:
+            name: keyName
+            description: ''
+            readOnly: false
+            required: false
+            uid: 'property:148'
+    readOnly: false
+    required: []
+    writeOnly: false
+    extensions:
+      x-ms-metadata:
+        name: StorageAccountRegenerateKeyParameters
+        apiVersions:
+          - 2015-05-01-preview
+        filename:
+          - 'mem:///96?tree%20shaken%20doc...'
+        originalLocations:
+          - 'file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/schemas/StorageAccountRegenerateKeyParameters'
+    details:
+      default:
+        name: StorageAccountRegenerateKeyParameters
+        description: ''
+        uid: 'schema:146'
+  'schemas:44': &ref_27
+    type: object
+    description: The Usage Names.
+    allOf: []
+    anyOf: []
+    deprecated: false
+    enum: []
+    nullable: false
+    oneOf: []
+    properties:
+      localizedValue:
+        schema: &ref_26
+          type: string
+          description: Gets a localized string describing the resource name.
+          allOf: []
+          anyOf: []
+          deprecated: false
+          enum: []
+          nullable: false
+          oneOf: []
+          properties: {}
+          readOnly: false
+          required: []
+          writeOnly: false
+          extensions:
+            x-ms-metadata:
+              name: UsageName-localizedValue
+              apiVersions:
+                - 2015-05-01-preview
+              filename:
+                - 'mem:///96?tree%20shaken%20doc...'
+              originalLocations:
+                - 'file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/schemas/UsageName-localizedValue'
+          details:
+            default:
+              name: UsageName-localizedValue
+              description: ''
+              uid: 'schema:155'
+        description: Gets a localized string describing the resource name.
+        serializedName: localizedValue
+        extensions: {}
+        details:
+          default:
+            name: localizedValue
+            description: Gets a localized string describing the resource name.
+            readOnly: false
+            required: false
+            uid: 'property:156'
+      value:
+        schema: &ref_25
+          type: string
+          description: Gets a string describing the resource name.
+          allOf: []
+          anyOf: []
+          deprecated: false
+          enum: []
+          nullable: false
+          oneOf: []
+          properties: {}
+          readOnly: false
+          required: []
+          writeOnly: false
+          extensions:
+            x-ms-metadata:
+              name: UsageName-value
+              apiVersions:
+                - 2015-05-01-preview
+              filename:
+                - 'mem:///96?tree%20shaken%20doc...'
+              originalLocations:
+                - 'file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/schemas/UsageName-value'
+          details:
+            default:
+              name: UsageName-value
+              description: ''
+              uid: 'schema:152'
+        description: Gets a string describing the resource name.
+        serializedName: value
+        extensions: {}
+        details:
+          default:
+            name: value
+            description: Gets a string describing the resource name.
+            readOnly: false
+            required: false
+            uid: 'property:153'
+    readOnly: false
+    required: []
+    writeOnly: false
+    extensions:
+      x-ms-metadata:
+        name: UsageName
+        apiVersions:
+          - 2015-05-01-preview
+        filename:
+          - 'mem:///96?tree%20shaken%20doc...'
+        originalLocations:
+          - 'file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/schemas/UsageName'
+    details:
+      default:
+        name: UsageName
+        description: The Usage Names.
+        uid: 'schema:151'
+  'schemas:45': *ref_25
+  'schemas:46': *ref_26
+  'schemas:47': &ref_29
+    type: object
+    description: Describes Storage Resource Usage.
+    allOf: []
+    anyOf: []
+    deprecated: false
+    enum: []
+    nullable: false
+    oneOf: []
+    properties:
+      name:
+        schema: *ref_27
+        description: Gets the name of the type of usage.
+        serializedName: name
+        extensions: {}
+        details:
+          default:
+            name: name
+            description: Gets the name of the type of usage.
+            readOnly: false
+            required: false
+            uid: 'property:169'
+      currentValue:
+        schema: &ref_43
+          type: integer
+          format: int32
+          description: Gets the current count of the allocated resources in the subscription.
+          allOf: []
+          anyOf: []
+          deprecated: false
+          enum: []
+          nullable: false
+          oneOf: []
+          properties: {}
+          readOnly: false
+          required: []
+          writeOnly: false
+          extensions: {}
+          details:
+            default:
+              name: '.schemas:47.currentValue'
+              description: ''
+              uid: 'schema:163'
+        description: Gets the current count of the allocated resources in the subscription.
+        serializedName: currentValue
+        extensions: {}
+        details:
+          default:
+            name: currentValue
+            description: Gets the current count of the allocated resources in the subscription.
+            readOnly: false
+            required: false
+            uid: 'property:164'
+      limit:
+        schema: &ref_44
+          type: integer
+          format: int32
+          description: Gets the maximum count of the resources that can be allocated in the subscription.
+          allOf: []
+          anyOf: []
+          deprecated: false
+          enum: []
+          nullable: false
+          oneOf: []
+          properties: {}
+          readOnly: false
+          required: []
+          writeOnly: false
+          extensions: {}
+          details:
+            default:
+              name: '.schemas:47.limit'
+              description: ''
+              uid: 'schema:166'
+        description: Gets the maximum count of the resources that can be allocated in the subscription.
+        serializedName: limit
+        extensions: {}
+        details:
+          default:
+            name: limit
+            description: Gets the maximum count of the resources that can be allocated in the subscription.
+            readOnly: false
+            required: false
+            uid: 'property:167'
+      unit:
+        schema: *ref_28
+        description: Gets the unit of measurement.
+        serializedName: unit
+        extensions: {}
+        details:
+          default:
+            name: unit
+            description: Gets the unit of measurement.
+            readOnly: false
+            required: false
+            uid: 'property:161'
+    readOnly: false
+    required: []
+    writeOnly: false
+    extensions:
+      x-ms-metadata:
+        name: Usage
+        apiVersions:
+          - 2015-05-01-preview
+        filename:
+          - 'mem:///96?tree%20shaken%20doc...'
+        originalLocations:
+          - 'file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/schemas/Usage'
+    details:
+      default:
+        name: Usage
+        description: Describes Storage Resource Usage.
+        uid: 'schema:159'
+  'schemas:49': &ref_65
+    type: object
+    description: The List Usages operation response.
+    allOf: []
+    anyOf: []
+    deprecated: false
+    enum: []
+    nullable: false
+    oneOf: []
+    properties:
+      value:
+        schema: &ref_30
+          type: array
+          description: Gets or sets the list Storage Resource Usages.
+          allOf: []
+          anyOf: []
+          deprecated: false
+          enum: []
+          items: *ref_29
+          nullable: false
+          oneOf: []
+          properties: {}
+          readOnly: false
+          required: []
+          writeOnly: false
+          extensions:
+            x-ms-metadata:
+              name: UsageListResult-value
+              apiVersions:
+                - 2015-05-01-preview
+              filename:
+                - 'mem:///96?tree%20shaken%20doc...'
+              originalLocations:
+                - 'file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/schemas/UsageListResult-value'
+          details:
+            default:
+              name: UsageListResult-value
+              description: ''
+              uid: 'schema:173'
+        description: Gets or sets the list Storage Resource Usages.
+        serializedName: value
+        extensions: {}
+        details:
+          default:
+            name: value
+            description: Gets or sets the list Storage Resource Usages.
+            readOnly: false
+            required: false
+            uid: 'property:174'
+    readOnly: false
+    required: []
+    writeOnly: false
+    extensions:
+      x-ms-metadata:
+        name: UsageListResult
+        apiVersions:
+          - 2015-05-01-preview
+        filename:
+          - 'mem:///96?tree%20shaken%20doc...'
+        originalLocations:
+          - 'file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/schemas/UsageListResult'
+    details:
+      default:
+        name: UsageListResult
+        description: The List Usages operation response.
+        uid: 'schema:172'
+  'schemas:5': &ref_63
+    type: string
+    allOf: []
+    anyOf: []
+    deprecated: false
+    enum: []
+    nullable: false
+    oneOf: []
+    properties: {}
+    readOnly: false
+    required: []
+    writeOnly: false
+    extensions:
+      x-ms-metadata:
+        name: pathsÂ·subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsoft-storage-storageaccounts-accountname-regeneratekeyÂ·postÂ·parametersÂ·1Â·schema
+        apiVersions:
+          - 2015-05-01-preview
+        filename:
+          - 'mem:///96?tree%20shaken%20doc...'
+        originalLocations:
+          - >-
+            file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/schemas/pathsÂ·subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsoft-storage-storageaccounts-accountname-regeneratekeyÂ·postÂ·parametersÂ·1Â·schema
+    details:
+      default:
+        name: pathsÂ·subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsoft-storage-storageaccounts-accountname-regeneratekeyÂ·postÂ·parametersÂ·1Â·schema
+        description: ''
+        uid: 'schema:6'
+  'schemas:50': *ref_30
+  'schemas:51': *ref_16
+  'schemas:52': *ref_31
+  'schemas:53': *ref_32
+  'schemas:54': *ref_33
+  'schemas:55': *ref_34
+  'schemas:56': *ref_35
+  'schemas:57': *ref_36
+  'schemas:58':
+    type: object
+    allOf: []
+    anyOf: []
+    deprecated: false
+    enum: []
+    nullable: false
+    oneOf: []
+    properties:
+      id:
+        schema: &ref_37
+          type: string
+          description: Resource Id
+          allOf: []
+          anyOf: []
+          deprecated: false
+          enum: []
+          nullable: false
+          oneOf: []
+          properties: {}
+          readOnly: false
+          required: []
+          writeOnly: false
+          extensions:
+            x-ms-metadata:
+              name: SubResource-id
+              apiVersions:
+                - 2015-05-01-preview
+              filename:
+                - 'mem:///96?tree%20shaken%20doc...'
+              originalLocations:
+                - 'file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/schemas/SubResource-id'
+          details:
+            default:
+              name: SubResource-id
+              description: ''
+              uid: 'schema:178'
+        description: Resource Id
+        serializedName: id
+        extensions: {}
+        details:
+          default:
+            name: id
+            description: Resource Id
+            readOnly: false
+            required: false
+            uid: 'property:179'
+    readOnly: false
+    required: []
+    writeOnly: false
+    extensions:
+      x-ms-azure-resource: true
+      x-ms-metadata:
+        name: SubResource
+        apiVersions:
+          - 2015-05-01-preview
+        filename:
+          - 'mem:///96?tree%20shaken%20doc...'
+        originalLocations:
+          - 'file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/schemas/SubResource'
+    details:
+      default:
+        name: SubResource
+        description: ''
+        uid: 'schema:177'
+  'schemas:59': *ref_37
+  'schemas:6': &ref_50
+    type: object
+    allOf: []
+    anyOf: []
+    deprecated: false
+    enum: []
+    nullable: false
+    oneOf: []
+    properties:
+      name:
+        schema: &ref_38
+          type: string
+          allOf: []
+          anyOf: []
+          deprecated: false
+          enum: []
+          nullable: false
+          oneOf: []
+          properties: {}
+          readOnly: false
+          required: []
+          writeOnly: false
+          extensions:
+            x-ms-metadata:
+              name: StorageAccountCheckNameAvailabilityParameters-name
+              apiVersions:
+                - 2015-05-01-preview
+              filename:
+                - 'mem:///96?tree%20shaken%20doc...'
+              originalLocations:
+                - 'file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/schemas/StorageAccountCheckNameAvailabilityParameters-name'
+          details:
+            default:
+              name: StorageAccountCheckNameAvailabilityParameters-name
+              description: ''
+              uid: 'schema:9'
+        description: ''
+        serializedName: name
+        extensions: {}
+        details:
+          default:
+            name: name
+            description: ''
+            readOnly: false
+            required: true
+            uid: 'property:10'
+      type:
+        schema: &ref_39
+          type: string
+          allOf: []
+          anyOf: []
+          default: Microsoft.Storage/storageAccounts
+          deprecated: false
+          enum: []
+          nullable: false
+          oneOf: []
+          properties: {}
+          readOnly: false
+          required: []
+          writeOnly: false
+          extensions:
+            x-ms-metadata:
+              name: StorageAccountCheckNameAvailabilityParameters-type
+              apiVersions:
+                - 2015-05-01-preview
+              filename:
+                - 'mem:///96?tree%20shaken%20doc...'
+              originalLocations:
+                - 'file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/schemas/StorageAccountCheckNameAvailabilityParameters-type'
+          details:
+            default:
+              name: StorageAccountCheckNameAvailabilityParameters-type
+              description: ''
+              uid: 'schema:12'
+        description: ''
+        serializedName: type
+        extensions: {}
+        details:
+          default:
+            name: type
+            description: ''
+            readOnly: false
+            required: false
+            uid: 'property:13'
+    readOnly: false
+    required:
+      - name
+    writeOnly: false
+    extensions:
+      x-ms-metadata:
+        name: StorageAccountCheckNameAvailabilityParameters
+        apiVersions:
+          - 2015-05-01-preview
+        filename:
+          - 'mem:///96?tree%20shaken%20doc...'
+        originalLocations:
+          - 'file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/schemas/StorageAccountCheckNameAvailabilityParameters'
+    details:
+      default:
+        name: StorageAccountCheckNameAvailabilityParameters
+        description: ''
+        uid: 'schema:8'
+  'schemas:60': &ref_46
+    type: string
+    allOf: []
+    anyOf: []
+    deprecated: false
+    enum: []
+    nullable: false
+    oneOf: []
+    properties: {}
+    readOnly: false
+    required: []
+    writeOnly: false
+    extensions:
+      x-ms-metadata:
+        name: componentsÂ·parametersÂ·subscriptionidparameterÂ·schema
+        apiVersions:
+          - 2015-05-01-preview
+        filename:
+          - 'mem:///96?tree%20shaken%20doc...'
+        originalLocations:
+          - 'file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/schemas/componentsÂ·parametersÂ·subscriptionidparameterÂ·schema'
+    details:
+      default:
+        name: componentsÂ·parametersÂ·subscriptionidparameterÂ·schema
+        description: ''
+        uid: 'schema:181'
+  'schemas:61': &ref_49
+    type: string
+    allOf: []
+    anyOf: []
+    deprecated: false
+    enum: []
+    nullable: false
+    oneOf: []
+    properties: {}
+    readOnly: false
+    required: []
+    writeOnly: false
+    extensions:
+      x-ms-metadata:
+        name: componentsÂ·parametersÂ·apiversionparameterÂ·schema
+        apiVersions:
+          - 2015-05-01-preview
+        filename:
+          - 'mem:///96?tree%20shaken%20doc...'
+        originalLocations:
+          - 'file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/schemas/componentsÂ·parametersÂ·apiversionparameterÂ·schema'
+    details:
+      default:
+        name: componentsÂ·parametersÂ·apiversionparameterÂ·schema
+        description: ''
+        uid: 'schema:182'
+  'schemas:62': &ref_47
+    type: string
+    allOf: []
+    anyOf: []
+    deprecated: false
+    enum: []
+    nullable: false
+    oneOf: []
+    properties: {}
+    readOnly: false
+    required: []
+    writeOnly: false
+    extensions:
+      x-ms-metadata:
+        name: componentsÂ·parametersÂ·resourcegroupnameÂ·schema
+        apiVersions:
+          - 2015-05-01-preview
+        filename:
+          - 'mem:///96?tree%20shaken%20doc...'
+        originalLocations:
+          - 'file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/schemas/componentsÂ·parametersÂ·resourcegroupnameÂ·schema'
+    details:
+      default:
+        name: componentsÂ·parametersÂ·resourcegroupnameÂ·schema
+        description: ''
+        uid: 'schema:183'
+  'schemas:7': *ref_38
+  'schemas:8': *ref_39
+  'schemas:9': &ref_51
+    type: object
+    description: The CheckNameAvailability operation response.
+    allOf: []
+    anyOf: []
+    deprecated: false
+    enum: []
+    nullable: false
+    oneOf: []
+    properties:
+      message:
+        schema: *ref_40
+        description: Gets an error message explaining the Reason value in more detail.
+        serializedName: message
+        extensions: {}
+        details:
+          default:
+            name: message
+            description: Gets an error message explaining the Reason value in more detail.
+            readOnly: false
+            required: false
+            uid: 'property:24'
+      nameAvailable:
+        schema: &ref_45
+          type: boolean
+          description: 'Gets a boolean value that indicates whether the name is available for you to use. If true, the name is available. If false, the name has already been taken or invalid and cannot be used.'
+          allOf: []
+          anyOf: []
+          deprecated: false
+          enum: []
+          nullable: false
+          oneOf: []
+          properties: {}
+          readOnly: false
+          required: []
+          writeOnly: false
+          extensions: {}
+          details:
+            default:
+              name: '.schemas:9.nameAvailable'
+              description: ''
+              uid: 'schema:17'
+        description: 'Gets a boolean value that indicates whether the name is available for you to use. If true, the name is available. If false, the name has already been taken or invalid and cannot be used.'
+        serializedName: nameAvailable
+        extensions: {}
+        details:
+          default:
+            name: nameAvailable
+            description: 'Gets a boolean value that indicates whether the name is available for you to use. If true, the name is available. If false, the name has already been taken or invalid and cannot be used.'
+            readOnly: false
+            required: false
+            uid: 'property:18'
+      reason:
+        schema: *ref_41
+        description: Gets the reason that a storage account name could not be used. The Reason element is only returned if NameAvailable is false.
+        serializedName: reason
+        extensions: {}
+        details:
+          default:
+            name: reason
+            description: Gets the reason that a storage account name could not be used. The Reason element is only returned if NameAvailable is false.
+            readOnly: false
+            required: false
+            uid: 'property:21'
+    readOnly: false
+    required: []
+    writeOnly: false
+    extensions:
+      x-ms-metadata:
+        name: CheckNameAvailabilityResult
+        apiVersions:
+          - 2015-05-01-preview
+        filename:
+          - 'mem:///96?tree%20shaken%20doc...'
+        originalLocations:
+          - 'file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/schemas/CheckNameAvailabilityResult'
+    details:
+      default:
+        name: CheckNameAvailabilityResult
+        description: The CheckNameAvailability operation response.
+        uid: 'schema:16'
+  universal-parameter-type:
+    type: object
+    description: Resource Identity
+    allOf: []
+    anyOf: []
+    enum: []
+    oneOf: []
+    properties:
+      accountName:
+        schema: *ref_48
+        description: 'The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.  '
+        serializedName: accountName
+        extensions: {}
+        details:
+          default:
+            name: accountName
+            description: 'The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.  '
+            readOnly: false
+            required: false
+            uid: 'universal-parameter:accountName'
+      resourceGroupName:
+        schema: *ref_47
+        description: The name of the resource group within the userâ€™s subscription.
+        serializedName: resourceGroupName
+        extensions: {}
+        details:
+          default:
+            name: resourceGroupName
+            description: The name of the resource group within the userâ€™s subscription.
+            readOnly: false
+            required: false
+            uid: 'universal-parameter:resourceGroupName'
+      subscriptionId:
+        schema: *ref_46
+        description: Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.
+        serializedName: subscriptionId
+        extensions: {}
+        details:
+          default:
+            name: subscriptionId
+            description: Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.
+            readOnly: false
+            required: false
+            uid: 'universal-parameter:subscriptionId'
+    required: []
+    extensions: {}
+    details:
+      default:
+        name: StorageIdentity
+        description: ''
+        uid: universal-parameter-type
+  '.schemas:21.useSubDomain': *ref_42
+  '.schemas:47.currentValue': *ref_43
+  '.schemas:47.limit': *ref_44
+  '.schemas:9.nameAvailable': *ref_45
+info:
+  title: StorageManagementClient
+  version: 2015-05-01-preview
+  extensions:
+    x-ms-metadata:
+      apiVersions:
+        - 2015-05-01-preview
+security: []
+servers:
+  - url: 'https://management.azure.com/'
+    extensions: {}
+tags: []
+http:
+  examples: {}
+  links: {}
+  securitySchemes: {}
+  callbacks: {}
+  operations:
+    'http-operation:0':
+      operationId: StorageAccounts_CheckNameAvailability
+      path: '/subscriptions/{subscriptionId}/providers/Microsoft.Storage/checkNameAvailability'
+      method: post
+      description: Checks that account name is valid and is not in use.
+      baseUrl: 'https://management.azure.com/'
+      deprecated: false
+      parameters:
+        - name: api-version
+          schema: *ref_49
+          description: Client Api Version.
+          allowEmptyValue: false
+          allowReserved: false
+          deprecated: false
+          explode: true
+          in: query
+          required: true
+          style: form
+          extensions:
+            x-ms-metadata: &ref_52
+              name: ApiVersionParameter
+              apiVersions:
+                - 2015-05-01-preview
+              filename:
+                - 'mem:///96?tree%20shaken%20doc...'
+              originalLocations:
+                - 'file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/parameters/ApiVersionParameter'
+          details:
+            default:
+              name: api-version
+              description: Client Api Version.
+              location: Method
+              uid: 'http-parameter:185'
+        - name: subscriptionId
+          schema: *ref_46
+          description: Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.
+          allowEmptyValue: false
+          allowReserved: false
+          deprecated: false
+          explode: false
+          in: path
+          required: true
+          style: simple
+          extensions:
+            x-ms-metadata: &ref_53
+              name: SubscriptionIdParameter
+              apiVersions:
+                - 2015-05-01-preview
+              filename:
+                - 'mem:///96?tree%20shaken%20doc...'
+              originalLocations:
+                - 'file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/parameters/SubscriptionIdParameter'
+          details:
+            default:
+              name: subscriptionId
+              description: Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.
+              location: Method
+              uid: 'http-parameter:186'
+      pathExtensions:
+        x-ms-metadata:
+          path: '/subscriptions/{subscriptionId}/providers/Microsoft.Storage/checkNameAvailability'
+          apiVersions:
+            - 2015-05-01-preview
+          filename:
+            - 'mem:///96?tree%20shaken%20doc...'
+          originalLocations:
+            - 'file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/paths/~1subscriptions~1{subscriptionId}~1providers~1Microsoft.Storage~1checkNameAvailability'
+      requestBody:
+        schema: *ref_50
+        description: 'The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.  '
+        contentType: application/json
+        required: true
+        extensions:
+          x-ms-requestBody-name: accountName
+      responses:
+        '200':
+          - schema: *ref_51
+            description: OK
+            headers: []
+            mimeTypes:
+              - application/json
+              - text/json
+            responseCode: '200'
+            extensions:
+              x-ms-metadata:
+                name: pathsÂ·subscriptions-subscriptionid-providers-microsoft-storage-checknameavailabilityÂ·postÂ·responsesÂ·200
+                apiVersions:
+                  - 2015-05-01-preview
+                filename:
+                  - 'mem:///96?tree%20shaken%20doc...'
+                originalLocations:
+                  - >-
+                    file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/responses/pathsÂ·subscriptions-subscriptionid-providers-microsoft-storage-checknameavailabilityÂ·postÂ·responsesÂ·200
+            details:
+              default:
+                name: 200 application/json text/json
+                description: MISSING DESCRIPTION 09
+                isErrorResponse: false
+                uid: 'response:187'
+      servers:
+        - url: 'https://management.azure.com/'
+          extensions: {}
+      tags:
+        - StorageAccounts
+      extensions:
+        x-ms-requestBody-index: 0
+      details:
+        default:
+          name: StorageAccounts_CheckNameAvailability
+          description: Checks that account name is valid and is not in use.
+          uid: 'http-operation:184'
+    'http-operation:1':
+      operationId: StorageAccounts_Create
+      path: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}'
+      method: put
+      description: >-
+        Asynchronously creates a new storage account with the specified parameters. Existing accounts cannot be updated with this API and should instead use the Update Storage Account API. If an account is already created and subsequent PUT
+        request is issued with exact same set of properties, then HTTP 200 would be returned. 
+      baseUrl: 'https://management.azure.com/'
+      deprecated: false
+      parameters:
+        - name: resourceGroupName
+          schema: *ref_47
+          description: The name of the resource group within the userâ€™s subscription.
+          allowEmptyValue: false
+          allowReserved: false
+          deprecated: false
+          explode: false
+          in: path
+          required: true
+          style: simple
+          extensions:
+            x-ms-metadata: &ref_55
+              name: ResourceGroupName
+              apiVersions:
+                - 2015-05-01-preview
+              filename:
+                - 'mem:///96?tree%20shaken%20doc...'
+              originalLocations:
+                - 'file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/parameters/ResourceGroupName'
+            x-ms-parameter-location: method
+          details:
+            default:
+              name: resourceGroupName
+              description: The name of the resource group within the userâ€™s subscription.
+              location: Method
+              uid: 'http-parameter:189'
+        - name: accountName
+          schema: *ref_48
+          description: 'The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.  '
+          allowEmptyValue: false
+          allowReserved: false
+          deprecated: false
+          explode: false
+          in: path
+          required: true
+          style: simple
+          extensions:
+            x-ms-metadata:
+              name: pathsÂ·subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsoft-storage-storageaccounts-accountnameÂ·putÂ·parametersÂ·1
+              apiVersions:
+                - 2015-05-01-preview
+              filename:
+                - 'mem:///96?tree%20shaken%20doc...'
+              originalLocations:
+                - >-
+                  file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/parameters/pathsÂ·subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsoft-storage-storageaccounts-accountnameÂ·putÂ·parametersÂ·1
+            x-ms-parameter-location: method
+          details:
+            default:
+              name: accountName
+              description: 'The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.  '
+              location: Method
+              uid: 'http-parameter:190'
+        - name: api-version
+          schema: *ref_49
+          description: Client Api Version.
+          allowEmptyValue: false
+          allowReserved: false
+          deprecated: false
+          explode: true
+          in: query
+          required: true
+          style: form
+          extensions:
+            x-ms-metadata: *ref_52
+          details:
+            default:
+              name: api-version
+              description: Client Api Version.
+              location: Method
+              uid: 'http-parameter:191'
+        - name: subscriptionId
+          schema: *ref_46
+          description: Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.
+          allowEmptyValue: false
+          allowReserved: false
+          deprecated: false
+          explode: false
+          in: path
+          required: true
+          style: simple
+          extensions:
+            x-ms-metadata: *ref_53
+          details:
+            default:
+              name: subscriptionId
+              description: Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.
+              location: Method
+              uid: 'http-parameter:192'
+      pathExtensions:
+        x-ms-metadata:
+          path: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}'
+          apiVersions:
+            - 2015-05-01-preview
+          filename:
+            - 'mem:///96?tree%20shaken%20doc...'
+          originalLocations:
+            - >-
+              file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/paths/~1subscriptions~1{subscriptionId}~1resourceGroups~1{resourceGroupName}~1providers~1Microsoft.Storage~1storageAccounts~1{accountName}
+      requestBody:
+        schema: *ref_54
+        description: The parameters to provide for the created account.
+        contentType: application/json
+        required: true
+        extensions:
+          x-ms-requestBody-name: parameters
+      responses:
+        '200':
+          - schema: *ref_20
+            description: OK
+            headers: []
+            mimeTypes:
+              - application/json
+              - text/json
+            responseCode: '200'
+            extensions:
+              x-ms-metadata:
+                name: pathsÂ·subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsoft-storage-storageaccounts-accountnameÂ·putÂ·responsesÂ·200
+                apiVersions:
+                  - 2015-05-01-preview
+                filename:
+                  - 'mem:///96?tree%20shaken%20doc...'
+                originalLocations:
+                  - >-
+                    file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/responses/pathsÂ·subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsoft-storage-storageaccounts-accountnameÂ·putÂ·responsesÂ·200
+            details:
+              default:
+                name: 200 application/json text/json
+                description: MISSING DESCRIPTION 09
+                isErrorResponse: false
+                uid: 'response:193'
+        '202':
+          - description: Accepted
+            headers: []
+            mimeTypes: []
+            responseCode: '202'
+            extensions:
+              x-ms-metadata:
+                name: pathsÂ·subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsoft-storage-storageaccounts-accountnameÂ·putÂ·responsesÂ·202
+                apiVersions:
+                  - 2015-05-01-preview
+                filename:
+                  - 'mem:///96?tree%20shaken%20doc...'
+                originalLocations:
+                  - >-
+                    file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/responses/pathsÂ·subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsoft-storage-storageaccounts-accountnameÂ·putÂ·responsesÂ·202
+            details:
+              default:
+                name: '202 '
+                description: MISSING DESCRIPTION 09
+                isErrorResponse: false
+                uid: 'response:194'
+      servers:
+        - url: 'https://management.azure.com/'
+          extensions: {}
+      tags:
+        - StorageAccounts
+      extensions:
+        x-ms-long-running-operation: true
+        x-ms-requestBody-index: 2
+      details:
+        default:
+          name: StorageAccounts_Create
+          description: >-
+            Asynchronously creates a new storage account with the specified parameters. Existing accounts cannot be updated with this API and should instead use the Update Storage Account API. If an account is already created and subsequent
+            PUT request is issued with exact same set of properties, then HTTP 200 would be returned. 
+          uid: 'http-operation:188'
+    'http-operation:2':
+      operationId: StorageAccounts_Delete
+      path: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}'
+      method: delete
+      description: Deletes a storage account in Microsoft Azure.
+      baseUrl: 'https://management.azure.com/'
+      deprecated: false
+      parameters:
+        - name: resourceGroupName
+          schema: *ref_47
+          description: The name of the resource group within the userâ€™s subscription.
+          allowEmptyValue: false
+          allowReserved: false
+          deprecated: false
+          explode: false
+          in: path
+          required: true
+          style: simple
+          extensions:
+            x-ms-metadata: *ref_55
+            x-ms-parameter-location: method
+          details:
+            default:
+              name: resourceGroupName
+              description: The name of the resource group within the userâ€™s subscription.
+              location: Method
+              uid: 'http-parameter:196'
+        - name: accountName
+          schema: *ref_56
+          description: 'The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.  '
+          allowEmptyValue: false
+          allowReserved: false
+          deprecated: false
+          explode: false
+          in: path
+          required: true
+          style: simple
+          extensions:
+            x-ms-metadata:
+              name: pathsÂ·subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsoft-storage-storageaccounts-accountnameÂ·deleteÂ·parametersÂ·1
+              apiVersions:
+                - 2015-05-01-preview
+              filename:
+                - 'mem:///96?tree%20shaken%20doc...'
+              originalLocations:
+                - >-
+                  file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/parameters/pathsÂ·subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsoft-storage-storageaccounts-accountnameÂ·deleteÂ·parametersÂ·1
+            x-ms-parameter-location: method
+          details:
+            default:
+              name: accountName
+              description: 'The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.  '
+              location: Method
+              uid: 'http-parameter:197'
+        - name: api-version
+          schema: *ref_49
+          description: Client Api Version.
+          allowEmptyValue: false
+          allowReserved: false
+          deprecated: false
+          explode: true
+          in: query
+          required: true
+          style: form
+          extensions:
+            x-ms-metadata: *ref_52
+          details:
+            default:
+              name: api-version
+              description: Client Api Version.
+              location: Method
+              uid: 'http-parameter:198'
+        - name: subscriptionId
+          schema: *ref_46
+          description: Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.
+          allowEmptyValue: false
+          allowReserved: false
+          deprecated: false
+          explode: false
+          in: path
+          required: true
+          style: simple
+          extensions:
+            x-ms-metadata: *ref_53
+          details:
+            default:
+              name: subscriptionId
+              description: Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.
+              location: Method
+              uid: 'http-parameter:199'
+      pathExtensions:
+        x-ms-metadata:
+          path: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}'
+          apiVersions:
+            - 2015-05-01-preview
+          filename:
+            - 'mem:///96?tree%20shaken%20doc...'
+          originalLocations:
+            - >-
+              file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/paths/~1subscriptions~1{subscriptionId}~1resourceGroups~1{resourceGroupName}~1providers~1Microsoft.Storage~1storageAccounts~1{accountName}
+      responses:
+        '200':
+          - description: OK
+            headers: []
+            mimeTypes: []
+            responseCode: '200'
+            extensions:
+              x-ms-metadata:
+                name: pathsÂ·subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsoft-storage-storageaccounts-accountnameÂ·deleteÂ·responsesÂ·200
+                apiVersions:
+                  - 2015-05-01-preview
+                filename:
+                  - 'mem:///96?tree%20shaken%20doc...'
+                originalLocations:
+                  - >-
+                    file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/responses/pathsÂ·subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsoft-storage-storageaccounts-accountnameÂ·deleteÂ·responsesÂ·200
+            details:
+              default:
+                name: '200 '
+                description: MISSING DESCRIPTION 09
+                isErrorResponse: false
+                uid: 'response:200'
+        '204':
+          - description: No Content
+            headers: []
+            mimeTypes: []
+            responseCode: '204'
+            extensions:
+              x-ms-metadata:
+                name: pathsÂ·subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsoft-storage-storageaccounts-accountnameÂ·deleteÂ·responsesÂ·204
+                apiVersions:
+                  - 2015-05-01-preview
+                filename:
+                  - 'mem:///96?tree%20shaken%20doc...'
+                originalLocations:
+                  - >-
+                    file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/responses/pathsÂ·subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsoft-storage-storageaccounts-accountnameÂ·deleteÂ·responsesÂ·204
+            details:
+              default:
+                name: '204 '
+                description: MISSING DESCRIPTION 09
+                isErrorResponse: false
+                uid: 'response:201'
+      servers:
+        - url: 'https://management.azure.com/'
+          extensions: {}
+      tags:
+        - StorageAccounts
+      extensions: {}
+      details:
+        default:
+          name: StorageAccounts_Delete
+          description: Deletes a storage account in Microsoft Azure.
+          uid: 'http-operation:195'
+    'http-operation:3':
+      operationId: StorageAccounts_GetProperties
+      path: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}'
+      method: get
+      description: 'Returns the properties for the specified storage account including but not limited to name, account type, location, and account status. The ListKeys operation should be used to retrieve storage keys.'
+      baseUrl: 'https://management.azure.com/'
+      deprecated: false
+      parameters:
+        - name: resourceGroupName
+          schema: *ref_47
+          description: The name of the resource group within the userâ€™s subscription.
+          allowEmptyValue: false
+          allowReserved: false
+          deprecated: false
+          explode: false
+          in: path
+          required: true
+          style: simple
+          extensions:
+            x-ms-metadata: *ref_55
+            x-ms-parameter-location: method
+          details:
+            default:
+              name: resourceGroupName
+              description: The name of the resource group within the userâ€™s subscription.
+              location: Method
+              uid: 'http-parameter:203'
+        - name: accountName
+          schema: *ref_57
+          description: 'The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.  '
+          allowEmptyValue: false
+          allowReserved: false
+          deprecated: false
+          explode: false
+          in: path
+          required: true
+          style: simple
+          extensions:
+            x-ms-metadata:
+              name: pathsÂ·subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsoft-storage-storageaccounts-accountnameÂ·getÂ·parametersÂ·1
+              apiVersions:
+                - 2015-05-01-preview
+              filename:
+                - 'mem:///96?tree%20shaken%20doc...'
+              originalLocations:
+                - >-
+                  file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/parameters/pathsÂ·subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsoft-storage-storageaccounts-accountnameÂ·getÂ·parametersÂ·1
+            x-ms-parameter-location: method
+          details:
+            default:
+              name: accountName
+              description: 'The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.  '
+              location: Method
+              uid: 'http-parameter:204'
+        - name: api-version
+          schema: *ref_49
+          description: Client Api Version.
+          allowEmptyValue: false
+          allowReserved: false
+          deprecated: false
+          explode: true
+          in: query
+          required: true
+          style: form
+          extensions:
+            x-ms-metadata: *ref_52
+          details:
+            default:
+              name: api-version
+              description: Client Api Version.
+              location: Method
+              uid: 'http-parameter:205'
+        - name: subscriptionId
+          schema: *ref_46
+          description: Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.
+          allowEmptyValue: false
+          allowReserved: false
+          deprecated: false
+          explode: false
+          in: path
+          required: true
+          style: simple
+          extensions:
+            x-ms-metadata: *ref_53
+          details:
+            default:
+              name: subscriptionId
+              description: Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.
+              location: Method
+              uid: 'http-parameter:206'
+      pathExtensions:
+        x-ms-metadata:
+          path: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}'
+          apiVersions:
+            - 2015-05-01-preview
+          filename:
+            - 'mem:///96?tree%20shaken%20doc...'
+          originalLocations:
+            - >-
+              file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/paths/~1subscriptions~1{subscriptionId}~1resourceGroups~1{resourceGroupName}~1providers~1Microsoft.Storage~1storageAccounts~1{accountName}
+      responses:
+        '200':
+          - schema: *ref_20
+            description: OK
+            headers: []
+            mimeTypes:
+              - application/json
+              - text/json
+            responseCode: '200'
+            extensions:
+              x-ms-metadata:
+                name: pathsÂ·subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsoft-storage-storageaccounts-accountnameÂ·getÂ·responsesÂ·200
+                apiVersions:
+                  - 2015-05-01-preview
+                filename:
+                  - 'mem:///96?tree%20shaken%20doc...'
+                originalLocations:
+                  - >-
+                    file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/responses/pathsÂ·subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsoft-storage-storageaccounts-accountnameÂ·getÂ·responsesÂ·200
+            details:
+              default:
+                name: 200 application/json text/json
+                description: MISSING DESCRIPTION 09
+                isErrorResponse: false
+                uid: 'response:207'
+      servers:
+        - url: 'https://management.azure.com/'
+          extensions: {}
+      tags:
+        - StorageAccounts
+      extensions: {}
+      details:
+        default:
+          name: StorageAccounts_GetProperties
+          description: 'Returns the properties for the specified storage account including but not limited to name, account type, location, and account status. The ListKeys operation should be used to retrieve storage keys.'
+          uid: 'http-operation:202'
+    'http-operation:4':
+      operationId: StorageAccounts_Update
+      path: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}'
+      method: patch
+      description: >-
+        Updates the account type or tags for a storage account. It can also be used to add a custom domain (note that custom domains cannot be added via the Create operation). Only one custom domain is supported per storage account. This
+        API can only be used to update one of tags, accountType, or customDomain per call. To update multiple of these properties, call the API multiple times with one change per call. This call does not change the storage keys for the
+        account. If you want to change storage account keys, use the RegenerateKey operation. The location and name of the storage account cannot be changed after creation.
+      baseUrl: 'https://management.azure.com/'
+      deprecated: false
+      parameters:
+        - name: resourceGroupName
+          schema: *ref_47
+          description: The name of the resource group within the userâ€™s subscription.
+          allowEmptyValue: false
+          allowReserved: false
+          deprecated: false
+          explode: false
+          in: path
+          required: true
+          style: simple
+          extensions:
+            x-ms-metadata: *ref_55
+            x-ms-parameter-location: method
+          details:
+            default:
+              name: resourceGroupName
+              description: The name of the resource group within the userâ€™s subscription.
+              location: Method
+              uid: 'http-parameter:209'
+        - name: accountName
+          schema: *ref_58
+          description: 'The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.  '
+          allowEmptyValue: false
+          allowReserved: false
+          deprecated: false
+          explode: false
+          in: path
+          required: true
+          style: simple
+          extensions:
+            x-ms-metadata:
+              name: pathsÂ·subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsoft-storage-storageaccounts-accountnameÂ·patchÂ·parametersÂ·1
+              apiVersions:
+                - 2015-05-01-preview
+              filename:
+                - 'mem:///96?tree%20shaken%20doc...'
+              originalLocations:
+                - >-
+                  file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/parameters/pathsÂ·subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsoft-storage-storageaccounts-accountnameÂ·patchÂ·parametersÂ·1
+            x-ms-parameter-location: method
+          details:
+            default:
+              name: accountName
+              description: 'The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.  '
+              location: Method
+              uid: 'http-parameter:210'
+        - name: api-version
+          schema: *ref_49
+          description: Client Api Version.
+          allowEmptyValue: false
+          allowReserved: false
+          deprecated: false
+          explode: true
+          in: query
+          required: true
+          style: form
+          extensions:
+            x-ms-metadata: *ref_52
+          details:
+            default:
+              name: api-version
+              description: Client Api Version.
+              location: Method
+              uid: 'http-parameter:211'
+        - name: subscriptionId
+          schema: *ref_46
+          description: Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.
+          allowEmptyValue: false
+          allowReserved: false
+          deprecated: false
+          explode: false
+          in: path
+          required: true
+          style: simple
+          extensions:
+            x-ms-metadata: *ref_53
+          details:
+            default:
+              name: subscriptionId
+              description: Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.
+              location: Method
+              uid: 'http-parameter:212'
+      pathExtensions:
+        x-ms-metadata:
+          path: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}'
+          apiVersions:
+            - 2015-05-01-preview
+          filename:
+            - 'mem:///96?tree%20shaken%20doc...'
+          originalLocations:
+            - >-
+              file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/paths/~1subscriptions~1{subscriptionId}~1resourceGroups~1{resourceGroupName}~1providers~1Microsoft.Storage~1storageAccounts~1{accountName}
+      requestBody:
+        schema: *ref_59
+        description: 'The parameters to update on the account. Note that only one property can be changed at a time using this API. '
+        contentType: application/json
+        required: true
+        extensions:
+          x-ms-requestBody-name: parameters
+      responses:
+        '200':
+          - schema: *ref_20
+            description: OK
+            headers: []
+            mimeTypes:
+              - application/json
+              - text/json
+            responseCode: '200'
+            extensions:
+              x-ms-metadata:
+                name: pathsÂ·subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsoft-storage-storageaccounts-accountnameÂ·patchÂ·responsesÂ·200
+                apiVersions:
+                  - 2015-05-01-preview
+                filename:
+                  - 'mem:///96?tree%20shaken%20doc...'
+                originalLocations:
+                  - >-
+                    file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/responses/pathsÂ·subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsoft-storage-storageaccounts-accountnameÂ·patchÂ·responsesÂ·200
+            details:
+              default:
+                name: 200 application/json text/json
+                description: MISSING DESCRIPTION 09
+                isErrorResponse: false
+                uid: 'response:213'
+      servers:
+        - url: 'https://management.azure.com/'
+          extensions: {}
+      tags:
+        - StorageAccounts
+      extensions:
+        x-ms-requestBody-index: 2
+      details:
+        default:
+          name: StorageAccounts_Update
+          description: >-
+            Updates the account type or tags for a storage account. It can also be used to add a custom domain (note that custom domains cannot be added via the Create operation). Only one custom domain is supported per storage account.
+            This API can only be used to update one of tags, accountType, or customDomain per call. To update multiple of these properties, call the API multiple times with one change per call. This call does not change the storage keys for
+            the account. If you want to change storage account keys, use the RegenerateKey operation. The location and name of the storage account cannot be changed after creation.
+          uid: 'http-operation:208'
+    'http-operation:5':
+      operationId: StorageAccounts_ListKeys
+      path: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/listKeys'
+      method: post
+      description: Lists the access keys for the specified storage account.
+      baseUrl: 'https://management.azure.com/'
+      deprecated: false
+      parameters:
+        - name: resourceGroupName
+          schema: *ref_47
+          description: The name of the resource group within the userâ€™s subscription.
+          allowEmptyValue: false
+          allowReserved: false
+          deprecated: false
+          explode: false
+          in: path
+          required: true
+          style: simple
+          extensions:
+            x-ms-metadata: *ref_55
+            x-ms-parameter-location: method
+          details:
+            default:
+              name: resourceGroupName
+              description: The name of the resource group within the userâ€™s subscription.
+              location: Method
+              uid: 'http-parameter:215'
+        - name: accountName
+          schema: *ref_60
+          description: The name of the storage account.
+          allowEmptyValue: false
+          allowReserved: false
+          deprecated: false
+          explode: false
+          in: path
+          required: true
+          style: simple
+          extensions:
+            x-ms-metadata:
+              name: pathsÂ·subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsoft-storage-storageaccounts-accountname-listkeysÂ·postÂ·parametersÂ·1
+              apiVersions:
+                - 2015-05-01-preview
+              filename:
+                - 'mem:///96?tree%20shaken%20doc...'
+              originalLocations:
+                - >-
+                  file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/parameters/pathsÂ·subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsoft-storage-storageaccounts-accountname-listkeysÂ·postÂ·parametersÂ·1
+            x-ms-parameter-location: method
+          details:
+            default:
+              name: accountName
+              description: The name of the storage account.
+              location: Method
+              uid: 'http-parameter:216'
+        - name: api-version
+          schema: *ref_49
+          description: Client Api Version.
+          allowEmptyValue: false
+          allowReserved: false
+          deprecated: false
+          explode: true
+          in: query
+          required: true
+          style: form
+          extensions:
+            x-ms-metadata: *ref_52
+          details:
+            default:
+              name: api-version
+              description: Client Api Version.
+              location: Method
+              uid: 'http-parameter:217'
+        - name: subscriptionId
+          schema: *ref_46
+          description: Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.
+          allowEmptyValue: false
+          allowReserved: false
+          deprecated: false
+          explode: false
+          in: path
+          required: true
+          style: simple
+          extensions:
+            x-ms-metadata: *ref_53
+          details:
+            default:
+              name: subscriptionId
+              description: Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.
+              location: Method
+              uid: 'http-parameter:218'
+      pathExtensions:
+        x-ms-metadata:
+          path: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/listKeys'
+          apiVersions:
+            - 2015-05-01-preview
+          filename:
+            - 'mem:///96?tree%20shaken%20doc...'
+          originalLocations:
+            - >-
+              file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/paths/~1subscriptions~1{subscriptionId}~1resourceGroups~1{resourceGroupName}~1providers~1Microsoft.Storage~1storageAccounts~1{accountName}~1listKeys
+      responses:
+        '200':
+          - schema: *ref_61
+            description: OK
+            headers: []
+            mimeTypes:
+              - application/json
+              - text/json
+            responseCode: '200'
+            extensions:
+              x-ms-metadata:
+                name: pathsÂ·subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsoft-storage-storageaccounts-accountname-listkeysÂ·postÂ·responsesÂ·200
+                apiVersions:
+                  - 2015-05-01-preview
+                filename:
+                  - 'mem:///96?tree%20shaken%20doc...'
+                originalLocations:
+                  - >-
+                    file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/responses/pathsÂ·subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsoft-storage-storageaccounts-accountname-listkeysÂ·postÂ·responsesÂ·200
+            details:
+              default:
+                name: 200 application/json text/json
+                description: MISSING DESCRIPTION 09
+                isErrorResponse: false
+                uid: 'response:219'
+      servers:
+        - url: 'https://management.azure.com/'
+          extensions: {}
+      tags:
+        - StorageAccounts
+      extensions: {}
+      details:
+        default:
+          name: StorageAccounts_ListKeys
+          description: Lists the access keys for the specified storage account.
+          uid: 'http-operation:214'
+    'http-operation:6':
+      operationId: StorageAccounts_List
+      path: '/subscriptions/{subscriptionId}/providers/Microsoft.Storage/storageAccounts'
+      method: get
+      description: Lists all the storage accounts available under the subscription. Note that storage keys are not returned; use the ListKeys operation for this.
+      baseUrl: 'https://management.azure.com/'
+      deprecated: false
+      parameters:
+        - name: api-version
+          schema: *ref_49
+          description: Client Api Version.
+          allowEmptyValue: false
+          allowReserved: false
+          deprecated: false
+          explode: true
+          in: query
+          required: true
+          style: form
+          extensions:
+            x-ms-metadata: *ref_52
+          details:
+            default:
+              name: api-version
+              description: Client Api Version.
+              location: Method
+              uid: 'http-parameter:221'
+        - name: subscriptionId
+          schema: *ref_46
+          description: Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.
+          allowEmptyValue: false
+          allowReserved: false
+          deprecated: false
+          explode: false
+          in: path
+          required: true
+          style: simple
+          extensions:
+            x-ms-metadata: *ref_53
+          details:
+            default:
+              name: subscriptionId
+              description: Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.
+              location: Method
+              uid: 'http-parameter:222'
+      pathExtensions:
+        x-ms-metadata:
+          path: '/subscriptions/{subscriptionId}/providers/Microsoft.Storage/storageAccounts'
+          apiVersions:
+            - 2015-05-01-preview
+          filename:
+            - 'mem:///96?tree%20shaken%20doc...'
+          originalLocations:
+            - 'file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/paths/~1subscriptions~1{subscriptionId}~1providers~1Microsoft.Storage~1storageAccounts'
+      responses:
+        '200':
+          - schema: *ref_62
+            description: OK
+            headers: []
+            mimeTypes:
+              - application/json
+              - text/json
+            responseCode: '200'
+            extensions:
+              x-ms-metadata:
+                name: pathsÂ·subscriptions-subscriptionid-providers-microsoft-storage-storageaccountsÂ·getÂ·responsesÂ·200
+                apiVersions:
+                  - 2015-05-01-preview
+                filename:
+                  - 'mem:///96?tree%20shaken%20doc...'
+                originalLocations:
+                  - >-
+                    file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/responses/pathsÂ·subscriptions-subscriptionid-providers-microsoft-storage-storageaccountsÂ·getÂ·responsesÂ·200
+            details:
+              default:
+                name: 200 application/json text/json
+                description: MISSING DESCRIPTION 09
+                isErrorResponse: false
+                uid: 'response:223'
+      servers:
+        - url: 'https://management.azure.com/'
+          extensions: {}
+      tags:
+        - StorageAccounts
+      extensions:
+        x-ms-pageable:
+          nextLinkName: {}
+      details:
+        default:
+          name: StorageAccounts_List
+          description: Lists all the storage accounts available under the subscription. Note that storage keys are not returned; use the ListKeys operation for this.
+          uid: 'http-operation:220'
+    'http-operation:7':
+      operationId: StorageAccounts_ListByResourceGroup
+      path: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts'
+      method: get
+      description: Lists all the storage accounts available under the given resource group. Note that storage keys are not returned; use the ListKeys operation for this.
+      baseUrl: 'https://management.azure.com/'
+      deprecated: false
+      parameters:
+        - name: resourceGroupName
+          schema: *ref_47
+          description: The name of the resource group within the userâ€™s subscription.
+          allowEmptyValue: false
+          allowReserved: false
+          deprecated: false
+          explode: false
+          in: path
+          required: true
+          style: simple
+          extensions:
+            x-ms-metadata: *ref_55
+            x-ms-parameter-location: method
+          details:
+            default:
+              name: resourceGroupName
+              description: The name of the resource group within the userâ€™s subscription.
+              location: Method
+              uid: 'http-parameter:225'
+        - name: api-version
+          schema: *ref_49
+          description: Client Api Version.
+          allowEmptyValue: false
+          allowReserved: false
+          deprecated: false
+          explode: true
+          in: query
+          required: true
+          style: form
+          extensions:
+            x-ms-metadata: *ref_52
+          details:
+            default:
+              name: api-version
+              description: Client Api Version.
+              location: Method
+              uid: 'http-parameter:226'
+        - name: subscriptionId
+          schema: *ref_46
+          description: Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.
+          allowEmptyValue: false
+          allowReserved: false
+          deprecated: false
+          explode: false
+          in: path
+          required: true
+          style: simple
+          extensions:
+            x-ms-metadata: *ref_53
+          details:
+            default:
+              name: subscriptionId
+              description: Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.
+              location: Method
+              uid: 'http-parameter:227'
+      pathExtensions:
+        x-ms-metadata:
+          path: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts'
+          apiVersions:
+            - 2015-05-01-preview
+          filename:
+            - 'mem:///96?tree%20shaken%20doc...'
+          originalLocations:
+            - >-
+              file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/paths/~1subscriptions~1{subscriptionId}~1resourceGroups~1{resourceGroupName}~1providers~1Microsoft.Storage~1storageAccounts
+      responses:
+        '200':
+          - schema: *ref_62
+            description: OK
+            headers: []
+            mimeTypes:
+              - application/json
+              - text/json
+            responseCode: '200'
+            extensions:
+              x-ms-metadata:
+                name: pathsÂ·subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsoft-storage-storageaccountsÂ·getÂ·responsesÂ·200
+                apiVersions:
+                  - 2015-05-01-preview
+                filename:
+                  - 'mem:///96?tree%20shaken%20doc...'
+                originalLocations:
+                  - >-
+                    file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/responses/pathsÂ·subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsoft-storage-storageaccountsÂ·getÂ·responsesÂ·200
+            details:
+              default:
+                name: 200 application/json text/json
+                description: MISSING DESCRIPTION 09
+                isErrorResponse: false
+                uid: 'response:228'
+      servers:
+        - url: 'https://management.azure.com/'
+          extensions: {}
+      tags:
+        - StorageAccounts
+      extensions:
+        x-ms-pageable:
+          nextLinkName: {}
+      details:
+        default:
+          name: StorageAccounts_ListByResourceGroup
+          description: Lists all the storage accounts available under the given resource group. Note that storage keys are not returned; use the ListKeys operation for this.
+          uid: 'http-operation:224'
+    'http-operation:8':
+      operationId: StorageAccounts_RegenerateKey
+      path: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/regenerateKey'
+      method: post
+      description: Regenerates the access keys for the specified storage account.
+      baseUrl: 'https://management.azure.com/'
+      deprecated: false
+      parameters:
+        - name: resourceGroupName
+          schema: *ref_47
+          description: The name of the resource group within the userâ€™s subscription.
+          allowEmptyValue: false
+          allowReserved: false
+          deprecated: false
+          explode: false
+          in: path
+          required: true
+          style: simple
+          extensions:
+            x-ms-metadata: *ref_55
+            x-ms-parameter-location: method
+          details:
+            default:
+              name: resourceGroupName
+              description: The name of the resource group within the userâ€™s subscription.
+              location: Method
+              uid: 'http-parameter:230'
+        - name: accountName
+          schema: *ref_63
+          description: 'The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.  '
+          allowEmptyValue: false
+          allowReserved: false
+          deprecated: false
+          explode: false
+          in: path
+          required: true
+          style: simple
+          extensions:
+            x-ms-metadata:
+              name: pathsÂ·subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsoft-storage-storageaccounts-accountname-regeneratekeyÂ·postÂ·parametersÂ·1
+              apiVersions:
+                - 2015-05-01-preview
+              filename:
+                - 'mem:///96?tree%20shaken%20doc...'
+              originalLocations:
+                - >-
+                  file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/parameters/pathsÂ·subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsoft-storage-storageaccounts-accountname-regeneratekeyÂ·postÂ·parametersÂ·1
+            x-ms-parameter-location: method
+          details:
+            default:
+              name: accountName
+              description: 'The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.  '
+              location: Method
+              uid: 'http-parameter:231'
+        - name: api-version
+          schema: *ref_49
+          description: Client Api Version.
+          allowEmptyValue: false
+          allowReserved: false
+          deprecated: false
+          explode: true
+          in: query
+          required: true
+          style: form
+          extensions:
+            x-ms-metadata: *ref_52
+          details:
+            default:
+              name: api-version
+              description: Client Api Version.
+              location: Method
+              uid: 'http-parameter:232'
+        - name: subscriptionId
+          schema: *ref_46
+          description: Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.
+          allowEmptyValue: false
+          allowReserved: false
+          deprecated: false
+          explode: false
+          in: path
+          required: true
+          style: simple
+          extensions:
+            x-ms-metadata: *ref_53
+          details:
+            default:
+              name: subscriptionId
+              description: Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.
+              location: Method
+              uid: 'http-parameter:233'
+      pathExtensions:
+        x-ms-metadata:
+          path: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/regenerateKey'
+          apiVersions:
+            - 2015-05-01-preview
+          filename:
+            - 'mem:///96?tree%20shaken%20doc...'
+          originalLocations:
+            - >-
+              file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/paths/~1subscriptions~1{subscriptionId}~1resourceGroups~1{resourceGroupName}~1providers~1Microsoft.Storage~1storageAccounts~1{accountName}~1regenerateKey
+      requestBody:
+        schema: *ref_64
+        description: Specifies name of the key which should be regenerated.
+        contentType: application/json
+        required: true
+        extensions:
+          x-ms-requestBody-name: regenerateKey
+      responses:
+        '200':
+          - schema: *ref_61
+            description: OK
+            headers: []
+            mimeTypes:
+              - application/json
+              - text/json
+            responseCode: '200'
+            extensions:
+              x-ms-metadata:
+                name: pathsÂ·subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsoft-storage-storageaccounts-accountname-regeneratekeyÂ·postÂ·responsesÂ·200
+                apiVersions:
+                  - 2015-05-01-preview
+                filename:
+                  - 'mem:///96?tree%20shaken%20doc...'
+                originalLocations:
+                  - >-
+                    file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/responses/pathsÂ·subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsoft-storage-storageaccounts-accountname-regeneratekeyÂ·postÂ·responsesÂ·200
+            details:
+              default:
+                name: 200 application/json text/json
+                description: MISSING DESCRIPTION 09
+                isErrorResponse: false
+                uid: 'response:234'
+      servers:
+        - url: 'https://management.azure.com/'
+          extensions: {}
+      tags:
+        - StorageAccounts
+      extensions:
+        x-ms-requestBody-index: 2
+      details:
+        default:
+          name: StorageAccounts_RegenerateKey
+          description: Regenerates the access keys for the specified storage account.
+          uid: 'http-operation:229'
+    'http-operation:9':
+      operationId: Usage_List
+      path: '/subscriptions/{subscriptionId}/providers/Microsoft.Storage/usages'
+      method: get
+      description: Gets the current usage count and the limit for the resources under the subscription.
+      baseUrl: 'https://management.azure.com/'
+      deprecated: false
+      parameters:
+        - name: api-version
+          schema: *ref_49
+          description: Client Api Version.
+          allowEmptyValue: false
+          allowReserved: false
+          deprecated: false
+          explode: true
+          in: query
+          required: true
+          style: form
+          extensions:
+            x-ms-metadata: *ref_52
+          details:
+            default:
+              name: api-version
+              description: Client Api Version.
+              location: Method
+              uid: 'http-parameter:236'
+        - name: subscriptionId
+          schema: *ref_46
+          description: Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.
+          allowEmptyValue: false
+          allowReserved: false
+          deprecated: false
+          explode: false
+          in: path
+          required: true
+          style: simple
+          extensions:
+            x-ms-metadata: *ref_53
+          details:
+            default:
+              name: subscriptionId
+              description: Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.
+              location: Method
+              uid: 'http-parameter:237'
+      pathExtensions:
+        x-ms-metadata:
+          path: '/subscriptions/{subscriptionId}/providers/Microsoft.Storage/usages'
+          apiVersions:
+            - 2015-05-01-preview
+          filename:
+            - 'mem:///96?tree%20shaken%20doc...'
+          originalLocations:
+            - 'file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/paths/~1subscriptions~1{subscriptionId}~1providers~1Microsoft.Storage~1usages'
+      responses:
+        '200':
+          - schema: *ref_65
+            description: OK
+            headers: []
+            mimeTypes:
+              - application/json
+              - text/json
+            responseCode: '200'
+            extensions:
+              x-ms-metadata:
+                name: pathsÂ·subscriptions-subscriptionid-providers-microsoft-storage-usagesÂ·getÂ·responsesÂ·200
+                apiVersions:
+                  - 2015-05-01-preview
+                filename:
+                  - 'mem:///96?tree%20shaken%20doc...'
+                originalLocations:
+                  - >-
+                    file:///D:/VSProjects/autorest.python.v3/node_modules/@microsoft.azure/autorest.testserver/swagger/storage.json#/components/responses/pathsÂ·subscriptions-subscriptionid-providers-microsoft-storage-usagesÂ·getÂ·responsesÂ·200
+            details:
+              default:
+                name: 200 application/json text/json
+                description: MISSING DESCRIPTION 09
+                isErrorResponse: false
+                uid: 'response:238'
+      servers:
+        - url: 'https://management.azure.com/'
+          extensions: {}
+      tags:
+        - Usage
+      extensions: {}
+      details:
+        default:
+          name: Usage_List
+          description: Gets the current usage count and the limit for the resources under the subscription.
+          uid: 'http-operation:235'
+  extensions: {}
+commands:
+  operations: {}
+  extensions: {}
+extensions: {}
+details:
+  default:
+    name: StorageManagementClient
+    description: ''
+    service-name: Storage
+    title: StorageManagementClient
+    uid: 'model:0'
