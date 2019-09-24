@@ -7,6 +7,7 @@ known_primary_types_mapping = {
     "none": "",
     "object": "object",
     "int": "int",
+    "number": "float",
     "integer": "int",
     "long": "long",
     "double": "float",
@@ -15,15 +16,27 @@ known_primary_types_mapping = {
     "stream": "Generator",
     "bytearray": "bytearray",
     "date": "date",
-    "dateTime": "datetime",
-    "datetimerfc1123": "datetime",
+    "date-time": "datetime.datetime",
+    "datetimerfc1123": "datetime.datetime",
     "timespan": "timedelta",
     "boolean": "bool",
-    "credentials": "",
     "uuid": "str",
     "base64url": "bytes",
-    "unixtime": "datetime"
+    "unixtime": "ddatetime.datetime"
 }
+
+# def get_type_documentation(schema):
+#     if schema['type'] == 'dictionary':
+#             return DictionaryType(schema).type_documentation()
+#         if schema['type'] == 'array':
+#             return SequenceType(schema).type_documentation()
+#         if schema['type'] == 'object':
+#             if schema.get('$key'):
+#                 # property is of a class in our yaml file
+#                 return schema['$key']
+#             # TODO: make sure pure objects don't have $key entry
+#             return 'object'
+#         return to_python_type(schema['type'])
 
 def to_python_type(original_type):
     try:

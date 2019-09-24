@@ -30,5 +30,6 @@
     "**/CVS": true,
     "**/.DS_Store": true,
     "**/*.pyc": true
-  }
+  },
+  "python.pythonPath": "py36\\Scripts\\python.exe"
 }

@@ -15,7 +15,7 @@ class {{ model.name }}(Model):
     {%- if model.properties != None %}
         {%- for p in model.properties %}
     {{ p.get_property_documentation_string() }}
-    :type {{ p.name }}: {{ p.property_type.type_documentation() }}
+    :type {{ p.name }}: {{ p.type_documentation()}}
         {%- endfor %}
     {%- endif %}
     {{'\"\"\"\n'}}

@@ -23,130 +23,9 @@
 # IN THE SOFTWARE.
 #
 # --------------------------------------------------------------------------
-from .dictionarytype import DictionaryType
-from .sequencetype import SequenceType
-from .extendedmodeltype import ExtendedModelType
 from .modeltype import ModelType
 from typing import Any, Dict, List
-from ..common.common import to_python_case, to_python_type
-
-class ComposedProperty:
-    """Represents a property / parameter of a composite type schema ready
-    to be serialized in Python.
-
-    :param str name: The name of the property
-    :param str description: Description of the property
-    :param str property_type: Type of variable of the property
-    :param bool required: Whether the property is required
-    :param bool readonly: Whether the property is readonly
-    :param bool constant: Whether the property is a constant
-    :param str default_value: The default value, if any of the property
-    :returns: A ComposedProperty model of the property
-    :rtype: ~autorest.models.schema.ComposedProperty
-    """
-    def __init__(
-        self,
-        name: str,
-        description: str,
-        property_type: str,
-        **kwargs: "**Any"
-    ) -> "ComposedProperty":
-        self.name = to_python_case(name)
-        self.description = description
-        self.property_type = property_type
-        self.required = kwargs.pop('required', False)
-        self.readonly = kwargs.pop('readonly', False)
-        self.constant = kwargs.pop('constant', False)
-        self.default_value = kwargs.pop('default_value', None)
-
-    """Constructs the documentation string for a property
-
-    :returns: The documentation string of the property
-    :rtype: str
-    """
-    def get_property_documentation_string(self) -> str:
-        if self.constant or self.readonly:
-            doc_string = ":ivar {}:".format(self.name)
-        else:
-            doc_string = ":param {}:".format(self.name)
-        if self.required:
-            doc_string += " Required."
-
-        description = self.description
-        if description and description[-1] != ".":
-            description += "."
-
-        # documentation = self.documentation
-        # if documentation:
-        #     if documentation[-1] != ".":
-        #         documentation += "."
-        #     documentation += " Default value: " + self.default_value + " ."
-        if description:
-            doc_string += " " + description
-        if self.default_value:
-            doc_string += " Default value: \"" + self.default_value + "\"."
-        # if documentation:
-        #     doc_string += " " + documentation
-        return doc_string
-
-    def get_attribute_map_type(self) -> str:
-        if isinstance(self.property_type, DictionaryType):
-            return "{{{}}}".format(self.property_type.value_type())
-        if isinstance(self.property_type, SequenceType):
-            return '[{}]'.format(self.property_type.element_type())
-        return self.property_type.type_documentation()
-
-    def _get_property_type_from_yaml(yaml_data):
-        property_type = yaml_data['schema']['type']
-        # all of is inheritance
-        if property_type == 'object':
-            if yaml_data['schema'].get('additionalProperties'):
-                # property is a dict
-                value_type = yaml_data['schema']['additionalProperties']['type']
-                return DictionaryType(value_type=to_python_type(value_type))
-            if yaml_data['schema']['details'].get('default'):
-                # property is of a class in our yaml file
-                return ExtendedModelType(value=yaml_data['schema']['details']['default']['name'])
-            # if not, the property's type is just object
-            return ExtendedModelType(value=property_type)
-        elif property_type == 'array':
-            # property is then a sequence type
-            element_type = yaml_data['schema']['items']['details']
-            if element_type.get('default'):
-                # property is a list of a class in our yaml file
-                return SequenceType(element_type=element_type['default']['name'])
-            else:
-                # property is a list of a known property type
-                return SequenceType(element_type=to_python_type(element_type))
-        return ExtendedModelType(to_python_type(property_type))
-
-
-
-    """Returns a ComposedProperty from the dict object constructed from a yaml file.
-
-    :param str name: The name of the property
-    :param yaml_data: A representation of the schema of a property from a yaml file
-    :type yaml_data: dict(str, str)
-    :returns: A ComposedProperty
-    :rtype: ~autorest.models.schema.ComposedProperty
-    """
-    @classmethod
-    def from_yaml(cls, name: str, yaml_data: Dict[str, str]) -> "ComposedProperty":
-        description = yaml_data['details']['default']['description'].strip()
-        required = yaml_data['details']['default']['required']
-        readonly = yaml_data['details']['default']['readOnly']
-        constant = yaml_data['details']['default'].get('constant', False)
-        property_type = cls._get_property_type_from_yaml(yaml_data)
-
-        return cls(
-            name=name,
-            description=description,
-            property_type=property_type,
-            required=required,
-            readonly=readonly,
-            constant=constant,
-            default_value=yaml_data['schema'].get('default')
-        )
+from ..common.utils import to_python_type
 
 
 class CompositeType(ModelType):
@@ -158,11 +37,31 @@ class CompositeType(ModelType):
     :type properties: dict(str, str)
     """
     def __init__(self, name: str, description: str, **kwargs: "**Any") -> "CompositeType":
-        super(CompositeType, self).__init__()
-        self.name = name
-        self.description = description
+        super(CompositeType, self).__init__(name, description, **kwargs)
         self.properties = kwargs.pop('properties', None)
         self.base_model = kwargs.pop('base_model', None)
+        self.property_type = kwargs.pop('property_type', None)
+        self.required = kwargs.pop('required', None)
+        self.readonly = kwargs.pop('readonly', None)
+        self.constant = kwargs.pop('constant', None)
+
+    def get_attribute_map_type(self) -> str:
+        return self.property_type
+
+    def type_documentation(self):
+        return self.property_type
+
+    def _get_property_type_from_yaml(yaml_data):
+        property_type = yaml_data['type']
+        # all of is inheritance
+        if property_type == 'object':
+            # TODO: make sure pure objects don't have $key entry
+            if yaml_data.get('$key'):
+                # property is of a class in our yaml file
+                return yaml_data['$key']
+            # if not, the property's type is just object
+            return property_type
+        return to_python_type(property_type)
 
     """Returns the properties of a CompositeType if they exist.
 
@@ -170,16 +69,17 @@ class CompositeType(ModelType):
     for the composite type.
     :type yaml_data: dict(str, str)
     :returns: a list of the properties of the composite type
-    :rtype: list[~autorest.models.schema.ComposedProperty]
+    :rtype: list[~autorest.models.Property or
+     ~autorest.models.DictionaryType or
+     ~autorest.models.SequenceType or
+     ~autorest.models.EnumType]
     """
     @classmethod
-    def _create_properties(cls, yaml_data: Dict[str, str]) -> List["ComposedProperty"]:
+    def _create_properties(cls, yaml_data: Dict[str, str]) -> List["Property"]:
         properties = []
-        for k, v in yaml_data['properties'].items():
-            properties.append(ComposedProperty.from_yaml(k, v))
-        # properties.sort(key=lambda item: (not(item.readonly or item.constant), item.name))
-        if not properties:
-            properties = None
+        for prop in yaml_data['properties']:
+            from . import build_property
+            properties.append(build_property(prop))
         return properties
 
     """Returns a CompositeType from the dict object constructed from a yaml file.
@@ -191,18 +91,27 @@ class CompositeType(ModelType):
     :rtype: ~autorest.models.schema.CompositeType
     """
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, str]) -> "CompositeType":
+    def from_yaml(cls, yaml_data: Dict[str, str], **kwargs) -> "CompositeType":
         # Returns a CompositeType from a yaml file
-        name = yaml_data['details']['default']['name']
-        description = yaml_data['details']['default']['description'].strip() or (name + ".")
-        properties = cls._create_properties(yaml_data)
+        name = kwargs.pop('name', None)
+        name = yaml_data['$key'] if not name else name
+        description = yaml_data['description'].strip() or (name + ".")
+        properties = cls._create_properties(yaml_data) if yaml_data.get('properties') else None
         base_model = None
-        if yaml_data['allOf']:
+        if yaml_data.get('allOf'):
             # this composite type has a base class
-            base_model = CompositeType.from_yaml(yaml_data['allOf'][0])
+            base_model = cls.from_yaml(yaml_data['allOf'][0])
+        required = yaml_data.get('required')
+        readonly = yaml_data.get('readOnly')
+        constant = yaml_data.get('constant')
+        property_type = cls._get_property_type_from_yaml(yaml_data)
         return cls(
             name=name,
             description=description,
             properties=properties,
-            base_model=base_model
+            base_model=base_model,
+            property_type=property_type,
+            required=required,
+            readonly=readonly,
+            constant=constant
         )
