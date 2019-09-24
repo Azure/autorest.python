@@ -1,11 +1,9 @@
 {
-  "name": "@microsoft.azure/autorest.python",
+  "name": "@autorest/python",
   "version": "5.0.0",
   "description": "The Python extension for generators in AutoRest.",
   "scripts": {
-    "autorest": "autorest",
-    "start": "python -m autorest.jsonrpc.server",
-    "build": "mvn package -Dlocal"
+    "start": "python -m autorest.jsonrpc.server"
   },
   "repository": {
     "type": "git",
@@ -24,6 +22,6 @@
   "homepage": "https://github.com/Azure/autorest.python/blob/master/README.md",
   "devDependencies": {
     "@microsoft.azure/autorest.testserver": "^2.6.6",
-    "autorest": "^2.0.4203"
+    "@autorest/autorest": "^3.0.0"
   }
 }
