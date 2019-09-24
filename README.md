@@ -23,26 +23,22 @@ AutoRest needs the below config to pick this up as a plug-in - see https://githu
 
 ``` yaml
 use-extension:
-  "@microsoft.azure/autorest.remodeler": "beta"
+  "@autorest/modelerfour": "~4.0.2"
 
 pipeline:
 
 # --- extension remodeler ---
 
   # "Shake the tree", and normalize the model
-  remodeler:
+  modelerfour:
     input: openapi-document/multi-api/identity     # the plugin where we get inputs from
 
   # allow developer to do transformations on the code model.
-  remodeler/new-transform:
-    input: remodeler
-
-  # Make some interpretations about what some things in the model mean
-  tweakcodemodel:
-    input: remodeler/new-transform
+  modelerfour/new-transform:
+    input: modelerfour
 
   mapper:
-    input: tweakcodemodel      # the plugin where we get inputs from
+    input: modelerfour/new-transform      # the plugin where we get inputs from
     output-artifact: python-files
 
   mapper/emitter:
