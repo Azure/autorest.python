@@ -34,7 +34,7 @@ from jinja2 import Template, PackageLoader, Environment
 from .jsonrpc import AutorestAPI
 
 from .models.codemodel import CodeModel
-from .models.schema import CompositeType
+from .models.compositetype import CompositeType
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -62,12 +62,14 @@ class CodeGenerator:
         # Create a code model
         code_model = CodeModel()
         code_model.client_name = yaml_code_model["info"]["title"]
-        code_model.api_version = yaml_code_model["info"]["version"]
+        # code_model.api_version = yaml_code_model["info"]["version"]
 
-        composite_types = [d for d in yaml_code_model['schemas'].values() if d['type'] == 'object']
+        composite_types = [d for d in yaml_code_model['schemas']['objects']]
         code_model.schemas = []
         for schema in composite_types:
             code_model.schemas.append(CompositeType.from_yaml(schema))
+        # sorts schemas based on inheritance
+        code_model.sort_schemas()
 
         # Generate the service client content
         template = env.get_template("service_client.py.jinja2")
