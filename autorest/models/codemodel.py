@@ -30,3 +30,23 @@ class CodeModel:
         self.client_name = None
         self.api_version = None
         self.schemas = None
+
+    def sort_schemas(self):
+        seen_schemas = set()
+        sorted_schemas = []
+        for schema in sorted(self.schemas, key=lambda x: x.name):
+            if schema in seen_schemas:
+                continue
+            ancestors = []
+            current = schema
+            ancestors.append(schema)
+            while current.base_model:
+                parent = current.base_model
+                if parent in seen_schemas:
+                    break
+                ancestors.insert(0, parent)
+                seen_schemas.add(current)
+                current = parent
+            seen_schemas.add(current)
+            sorted_schemas.extend(ancestors)
+        self.schemas = sorted_schemas

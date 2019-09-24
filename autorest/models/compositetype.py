@@ -23,7 +23,12 @@
 # IN THE SOFTWARE.
 #
 # --------------------------------------------------------------------------
+from .dictionarytype import DictionaryType
+from .sequencetype import SequenceType
+from .extendedmodeltype import ExtendedModelType
+from .modeltype import ModelType
 from typing import Any, Dict, List
+from ..common.common import to_python_case, to_python_type
 
 class ComposedProperty:
     """Represents a property / parameter of a composite type schema ready
@@ -46,7 +51,7 @@ class ComposedProperty:
         property_type: str,
         **kwargs: "**Any"
     ) -> "ComposedProperty":
-        self.name = name
+        self.name = to_python_case(name)
         self.description = description
         self.property_type = property_type
         self.required = kwargs.pop('required', False)
@@ -84,6 +89,39 @@ class ComposedProperty:
         #     doc_string += " " + documentation
         return doc_string
 
+    def get_attribute_map_type(self) -> str:
+        if isinstance(self.property_type, DictionaryType):
+            return "{{{}}}".format(self.property_type.value_type())
+        if isinstance(self.property_type, SequenceType):
+            return '[{}]'.format(self.property_type.element_type())
+        return self.property_type.type_documentation()
+
+    def _get_property_type_from_yaml(yaml_data):
+        property_type = yaml_data['schema']['type']
+        # all of is inheritance
+        if property_type == 'object':
+            if yaml_data['schema'].get('additionalProperties'):
+                # property is a dict
+                value_type = yaml_data['schema']['additionalProperties']['type']
+                return DictionaryType(value_type=to_python_type(value_type))
+            if yaml_data['schema']['details'].get('default'):
+                # property is of a class in our yaml file
+                return ExtendedModelType(value=yaml_data['schema']['details']['default']['name'])
+            # if not, the property's type is just object
+            return ExtendedModelType(value=property_type)
+        elif property_type == 'array':
+            # property is then a sequence type
+            element_type = yaml_data['schema']['items']['details']
+            if element_type.get('default'):
+                # property is a list of a class in our yaml file
+                return SequenceType(element_type=element_type['default']['name'])
+            else:
+                # property is a list of a known property type
+                return SequenceType(element_type=to_python_type(element_type))
+        return ExtendedModelType(to_python_type(property_type))
+
+
+
     """Returns a ComposedProperty from the dict object constructed from a yaml file.
 
     :param str name: The name of the property
@@ -94,18 +132,15 @@ class ComposedProperty:
     """
     @classmethod
     def from_yaml(cls, name: str, yaml_data: Dict[str, str]) -> "ComposedProperty":
+        description = yaml_data['details']['default']['description'].strip()
         required = yaml_data['details']['default']['required']
         readonly = yaml_data['details']['default']['readOnly']
         constant = yaml_data['details']['default'].get('constant', False)
-        property_type = yaml_data['schema']['type']
-        if property_type == 'object':
-            property_type = yaml_data['schema']['details']['default']['name']
-
-        # what if list, dict
+        property_type = cls._get_property_type_from_yaml(yaml_data)
 
         return cls(
             name=name,
-            description=yaml_data['details']['default']['description'].strip(),
+            description=description,
             property_type=property_type,
             required=required,
             readonly=readonly,
@@ -114,7 +149,7 @@ class ComposedProperty:
         )
 
 
-class CompositeType:
+class CompositeType(ModelType):
     """Represents a composite type schema ready to be serialized in Python.
 
     :param str name: The name of the composite type.
@@ -123,9 +158,11 @@ class CompositeType:
     :type properties: dict(str, str)
     """
     def __init__(self, name: str, description: str, **kwargs: "**Any") -> "CompositeType":
+        super(CompositeType, self).__init__()
         self.name = name
         self.description = description
         self.properties = kwargs.pop('properties', None)
+        self.base_model = kwargs.pop('base_model', None)
 
     """Returns the properties of a CompositeType if they exist.
 
@@ -159,8 +196,13 @@ class CompositeType:
         name = yaml_data['details']['default']['name']
         description = yaml_data['details']['default']['description'].strip() or (name + ".")
         properties = cls._create_properties(yaml_data)
+        base_model = None
+        if yaml_data['allOf']:
+            # this composite type has a base class
+            base_model = CompositeType.from_yaml(yaml_data['allOf'][0])
         return cls(
             name=name,
             description=description,
-            properties=properties
+            properties=properties,
+            base_model=base_model
         )
