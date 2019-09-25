@@ -12,6 +12,7 @@ class CodeNamer:
             "long","object","decimal","str","timedelta", "mro"
         ]
 
+    @staticmethod
     def to_python_case(name):
         def replace_upper_characters(m):
             match_str = m.group().lower()

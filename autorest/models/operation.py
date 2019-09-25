@@ -25,6 +25,7 @@
 # --------------------------------------------------------------------------
 from typing import Dict, Any
 
+from ..common.code_namer import CodeNamer
 from .imports import FileImport, ImportType
 
 class Operation:
@@ -41,6 +42,9 @@ class Operation:
         self.name = name
         self.description = description
 
+    @property
+    def python_name(self):
+        return CodeNamer().to_python_case(self.name)
 
     def imports(self):
         file_import = FileImport()
