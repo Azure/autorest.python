@@ -49,16 +49,16 @@ class AccountSasParameters(Model):
         'account_sas_parameters-key_to_sign': {'key': 'account_sas_parameters-key_to_sign', 'type': 'str'}
     }
 
-    def __init__(self, **kwargs):
+    def __init__(self, *, services, resource_types, permissions, ip_address_or_range: str=None, protocols=None, shared_access_start_time: datetime.datetime=None, shared_access_expiry_time: datetime.datetime, account_sas_parameters-key_to_sign: str=None, **kwargs) -> None:
         super(AccountSasParameters, self).__init__(**kwargs)
-        self.services = kwargs.get('services', None)
-        self.resource_types = kwargs.get('resource_types', None)
-        self.permissions = kwargs.get('permissions', None)
-        self.ip_address_or_range = kwargs.get('ip_address_or_range', None)
-        self.protocols = kwargs.get('protocols', None)
-        self.shared_access_start_time = kwargs.get('shared_access_start_time', None)
-        self.shared_access_expiry_time = kwargs.get('shared_access_expiry_time', None)
-        self.account_sas_parameters-key_to_sign = kwargs.get('account_sas_parameters-key_to_sign', None)
+        self.services = services
+        self.resource_types = resource_types
+        self.permissions = permissions
+        self.ip_address_or_range = ip_address_or_range
+        self.protocols = protocols
+        self.shared_access_start_time = shared_access_start_time
+        self.shared_access_expiry_time = shared_access_expiry_time
+        self.account_sas_parameters-key_to_sign = account_sas_parameters-key_to_sign
 
 class AzureEntityResource(Model):
     """The resource model definition for a Azure Resource Manager resource with an etag.
@@ -75,7 +75,7 @@ class AzureEntityResource(Model):
         'azure_entity_resource-etag': {'key': 'azure_entity_resource-etag', 'type': 'str'}
     }
 
-    def __init__(self, **kwargs):
+    def __init__(self, **kwargs) -> None:
         super(AzureEntityResource, self).__init__(**kwargs)
         self.azure_entity_resource-etag = None
 
@@ -94,9 +94,9 @@ class AzureFilesIdentityBasedAuthentication(Model):
         'directory_service_options': {'key': 'directory_service_options', 'type': 'str'}
     }
 
-    def __init__(self, **kwargs):
+    def __init__(self, *, directory_service_options, **kwargs) -> None:
         super(AzureFilesIdentityBasedAuthentication, self).__init__(**kwargs)
-        self.directory_service_options = kwargs.get('directory_service_options', None)
+        self.directory_service_options = directory_service_options
 
 class CheckNameAvailabilityResult(Model):
     """The CheckNameAvailability operation response.
@@ -119,7 +119,7 @@ class CheckNameAvailabilityResult(Model):
         'check_name_availability_result-message': {'key': 'check_name_availability_result-message', 'type': 'str'}
     }
 
-    def __init__(self, **kwargs):
+    def __init__(self, **kwargs) -> None:
         super(CheckNameAvailabilityResult, self).__init__(**kwargs)
         self.name_available = None
         self.reason = None
@@ -143,10 +143,10 @@ class CustomDomain(Model):
         'use_sub_domain_name': {'key': 'use_sub_domain_name', 'type': 'bool'}
     }
 
-    def __init__(self, **kwargs):
+    def __init__(self, *, custom_domain-name: str, use_sub_domain_name: bool=None, **kwargs) -> None:
         super(CustomDomain, self).__init__(**kwargs)
-        self.custom_domain-name = kwargs.get('custom_domain-name', None)
-        self.use_sub_domain_name = kwargs.get('use_sub_domain_name', None)
+        self.custom_domain-name = custom_domain-name
+        self.use_sub_domain_name = use_sub_domain_name
 
 class DateAfterCreation(Model):
     """Object to define the number of days after creation.
@@ -163,9 +163,9 @@ class DateAfterCreation(Model):
         'days_after_creation_greater_than': {'key': 'days_after_creation_greater_than', 'type': 'float'}
     }
 
-    def __init__(self, **kwargs):
+    def __init__(self, *, days_after_creation_greater_than: float, **kwargs) -> None:
         super(DateAfterCreation, self).__init__(**kwargs)
-        self.days_after_creation_greater_than = kwargs.get('days_after_creation_greater_than', None)
+        self.days_after_creation_greater_than = days_after_creation_greater_than
 
 class DateAfterModification(Model):
     """Object to define the number of days after last modification.
@@ -182,9 +182,9 @@ class DateAfterModification(Model):
         'days_after_modification_greater_than': {'key': 'days_after_modification_greater_than', 'type': 'float'}
     }
 
-    def __init__(self, **kwargs):
+    def __init__(self, *, days_after_modification_greater_than: float, **kwargs) -> None:
         super(DateAfterModification, self).__init__(**kwargs)
-        self.days_after_modification_greater_than = kwargs.get('days_after_modification_greater_than', None)
+        self.days_after_modification_greater_than = days_after_modification_greater_than
 
 class Dimension(Model):
     """Dimension of blobs, possibly be blob type or access tier.
@@ -200,10 +200,10 @@ class Dimension(Model):
         'dimension-display_name': {'key': 'dimension-display_name', 'type': 'str'}
     }
 
-    def __init__(self, **kwargs):
+    def __init__(self, *, dimension-name: str=None, dimension-display_name: str=None, **kwargs) -> None:
         super(Dimension, self).__init__(**kwargs)
-        self.dimension-name = kwargs.get('dimension-name', None)
-        self.dimension-display_name = kwargs.get('dimension-display_name', None)
+        self.dimension-name = dimension-name
+        self.dimension-display_name = dimension-display_name
 
 class Encryption(Model):
     """The encryption settings on the storage account.
@@ -226,11 +226,11 @@ class Encryption(Model):
         'key_vault_properties': {'key': 'key_vault_properties', 'type': 'KeyVaultProperties'}
     }
 
-    def __init__(self, **kwargs):
+    def __init__(self, *, encryption_services=None, key_source, key_vault_properties=None, **kwargs) -> None:
         super(Encryption, self).__init__(**kwargs)
-        self.encryption_services = kwargs.get('encryption_services', None)
-        self.key_source = kwargs.get('key_source', None)
-        self.key_vault_properties = kwargs.get('key_vault_properties', None)
+        self.encryption_services = encryption_services
+        self.key_source = key_source
+        self.key_vault_properties = key_vault_properties
 
 class EncryptionService(Model):
     """A service that allows server-side encryption to be used.
@@ -250,9 +250,9 @@ class EncryptionService(Model):
         'encryption_service-last_enabled_time': {'key': 'encryption_service-last_enabled_time', 'type': 'datetime.datetime'}
     }
 
-    def __init__(self, **kwargs):
+    def __init__(self, *, enabled: bool=None, **kwargs) -> None:
         super(EncryptionService, self).__init__(**kwargs)
-        self.enabled = kwargs.get('enabled', None)
+        self.enabled = enabled
         self.encryption_service-last_enabled_time = None
 
 class EncryptionServices(Model):
@@ -275,12 +275,12 @@ class EncryptionServices(Model):
         'encryption_service': {'key': 'encryption_service', 'type': 'EncryptionService'}
     }
 
-    def __init__(self, **kwargs):
+    def __init__(self, *, encryption_service=None, encryption_service=None, encryption_service=None, encryption_service=None, **kwargs) -> None:
         super(EncryptionServices, self).__init__(**kwargs)
-        self.encryption_service = kwargs.get('encryption_service', None)
-        self.encryption_service = kwargs.get('encryption_service', None)
-        self.encryption_service = kwargs.get('encryption_service', None)
-        self.encryption_service = kwargs.get('encryption_service', None)
+        self.encryption_service = encryption_service
+        self.encryption_service = encryption_service
+        self.encryption_service = encryption_service
+        self.encryption_service = encryption_service
 
 class Endpoints(Model):
     """The URIs that are used to perform a retrieval of a public blob, queue, table, web or dfs object.
@@ -312,7 +312,7 @@ class Endpoints(Model):
         'endpoints-dfs': {'key': 'endpoints-dfs', 'type': 'str'}
     }
 
-    def __init__(self, **kwargs):
+    def __init__(self, **kwargs) -> None:
         super(Endpoints, self).__init__(**kwargs)
         self.endpoints-blob = None
         self.endpoints-queue = None
@@ -342,7 +342,7 @@ class GeoReplicationStats(Model):
         'can_failover': {'key': 'can_failover', 'type': 'bool'}
     }
 
-    def __init__(self, **kwargs):
+    def __init__(self, **kwargs) -> None:
         super(GeoReplicationStats, self).__init__(**kwargs)
         self.geo_replication_status = None
         self.geo_replication_stats-last_sync_time = None
@@ -366,10 +366,10 @@ class IPRule(Model):
         'action': {'key': 'action', 'type': 'str'}
     }
 
-    def __init__(self, **kwargs):
+    def __init__(self, *, ip_address_or_range: str, action=None, **kwargs) -> None:
         super(IPRule, self).__init__(**kwargs)
-        self.ip_address_or_range = kwargs.get('ip_address_or_range', None)
-        self.action = kwargs.get('action', None)
+        self.ip_address_or_range = ip_address_or_range
+        self.action = action
 
 class Identity(Model):
     """Identity for the resource.
@@ -398,11 +398,11 @@ class Identity(Model):
         'identity_type': {'key': 'identity_type', 'type': 'str'}
     }
 
-    def __init__(self, **kwargs):
+    def __init__(self, *, identity_type, **kwargs) -> None:
         super(Identity, self).__init__(**kwargs)
         self.identity-principal_id = None
         self.identity-tenant_id = None
-        self.identity_type = kwargs.get('identity_type', None)
+        self.identity_type = identity_type
 
 class KeyVaultProperties(Model):
     """Properties of key vault.
@@ -421,11 +421,11 @@ class KeyVaultProperties(Model):
         'key_vault_uri': {'key': 'key_vault_uri', 'type': 'str'}
     }
 
-    def __init__(self, **kwargs):
+    def __init__(self, *, key_name: str=None, key_version: str=None, key_vault_uri: str=None, **kwargs) -> None:
         super(KeyVaultProperties, self).__init__(**kwargs)
-        self.key_name = kwargs.get('key_name', None)
-        self.key_version = kwargs.get('key_version', None)
-        self.key_vault_uri = kwargs.get('key_vault_uri', None)
+        self.key_name = key_name
+        self.key_version = key_version
+        self.key_vault_uri = key_vault_uri
 
 class ListAccountSasResponse(Model):
     """The List SAS credentials operation response.
@@ -442,7 +442,7 @@ class ListAccountSasResponse(Model):
         'list_account_sas_response-account_sas_token': {'key': 'list_account_sas_response-account_sas_token', 'type': 'str'}
     }
 
-    def __init__(self, **kwargs):
+    def __init__(self, **kwargs) -> None:
         super(ListAccountSasResponse, self).__init__(**kwargs)
         self.list_account_sas_response-account_sas_token = None
 
@@ -461,7 +461,7 @@ class ListServiceSasResponse(Model):
         'list_service_sas_response-service_sas_token': {'key': 'list_service_sas_response-service_sas_token', 'type': 'str'}
     }
 
-    def __init__(self, **kwargs):
+    def __init__(self, **kwargs) -> None:
         super(ListServiceSasResponse, self).__init__(**kwargs)
         self.list_service_sas_response-service_sas_token = None
 
@@ -476,9 +476,9 @@ class ManagementPolicy(Model):
         'management_policy_properties': {'key': 'management_policy_properties', 'type': 'ManagementPolicyProperties'}
     }
 
-    def __init__(self, **kwargs):
+    def __init__(self, *, management_policy_properties=None, **kwargs) -> None:
         super(ManagementPolicy, self).__init__(**kwargs)
-        self.management_policy_properties = kwargs.get('management_policy_properties', None)
+        self.management_policy_properties = management_policy_properties
 
 class ManagementPolicyAction(Model):
     """Actions are applied to the filtered blobs when the execution condition is met.
@@ -494,10 +494,10 @@ class ManagementPolicyAction(Model):
         'management_policy_snap_shot': {'key': 'management_policy_snap_shot', 'type': 'ManagementPolicySnapShot'}
     }
 
-    def __init__(self, **kwargs):
+    def __init__(self, *, management_policy_base_blob=None, management_policy_snap_shot=None, **kwargs) -> None:
         super(ManagementPolicyAction, self).__init__(**kwargs)
-        self.management_policy_base_blob = kwargs.get('management_policy_base_blob', None)
-        self.management_policy_snap_shot = kwargs.get('management_policy_snap_shot', None)
+        self.management_policy_base_blob = management_policy_base_blob
+        self.management_policy_snap_shot = management_policy_snap_shot
 
 class ManagementPolicyBaseBlob(Model):
     """Management policy action for base blob.
@@ -516,11 +516,11 @@ class ManagementPolicyBaseBlob(Model):
         'date_after_modification': {'key': 'date_after_modification', 'type': 'DateAfterModification'}
     }
 
-    def __init__(self, **kwargs):
+    def __init__(self, *, date_after_modification=None, date_after_modification=None, date_after_modification=None, **kwargs) -> None:
         super(ManagementPolicyBaseBlob, self).__init__(**kwargs)
-        self.date_after_modification = kwargs.get('date_after_modification', None)
-        self.date_after_modification = kwargs.get('date_after_modification', None)
-        self.date_after_modification = kwargs.get('date_after_modification', None)
+        self.date_after_modification = date_after_modification
+        self.date_after_modification = date_after_modification
+        self.date_after_modification = date_after_modification
 
 class ManagementPolicyDefinition(Model):
     """An object that defines the Lifecycle rule. Each definition is made up with a filters set and an actions set.
@@ -540,10 +540,10 @@ class ManagementPolicyDefinition(Model):
         'management_policy_filter': {'key': 'management_policy_filter', 'type': 'ManagementPolicyFilter'}
     }
 
-    def __init__(self, **kwargs):
+    def __init__(self, *, management_policy_action, management_policy_filter=None, **kwargs) -> None:
         super(ManagementPolicyDefinition, self).__init__(**kwargs)
-        self.management_policy_action = kwargs.get('management_policy_action', None)
-        self.management_policy_filter = kwargs.get('management_policy_filter', None)
+        self.management_policy_action = management_policy_action
+        self.management_policy_filter = management_policy_filter
 
 class ManagementPolicyFilter(Model):
     """Filters limit rule actions to a subset of blobs within the storage account. If multiple filters are defined, a logical AND is performed on all filters.
@@ -563,10 +563,10 @@ class ManagementPolicyFilter(Model):
         'management_policy_filter-blob_types': {'key': 'management_policy_filter-blob_types', 'type': '[string]'}
     }
 
-    def __init__(self, **kwargs):
+    def __init__(self, *, management_policy_filter-prefix_match=None, management_policy_filter-blob_types, **kwargs) -> None:
         super(ManagementPolicyFilter, self).__init__(**kwargs)
-        self.management_policy_filter-prefix_match = kwargs.get('management_policy_filter-prefix_match', None)
-        self.management_policy_filter-blob_types = kwargs.get('management_policy_filter-blob_types', None)
+        self.management_policy_filter-prefix_match = management_policy_filter-prefix_match
+        self.management_policy_filter-blob_types = management_policy_filter-blob_types
 
 class ManagementPolicyProperties(Model):
     """The Storage Account ManagementPolicy properties.
@@ -591,10 +591,10 @@ class ManagementPolicyProperties(Model):
         'management_policy_schema': {'key': 'management_policy_schema', 'type': 'ManagementPolicySchema'}
     }
 
-    def __init__(self, **kwargs):
+    def __init__(self, *, management_policy_schema, **kwargs) -> None:
         super(ManagementPolicyProperties, self).__init__(**kwargs)
         self.management_policy_properties-last_modified_time = None
-        self.management_policy_schema = kwargs.get('management_policy_schema', None)
+        self.management_policy_schema = management_policy_schema
 
 class ManagementPolicyRule(Model):
     """An object that wraps the Lifecycle rule. Each rule is uniquely defined by name.
@@ -622,12 +622,12 @@ class ManagementPolicyRule(Model):
         'management_policy_definition': {'key': 'management_policy_definition', 'type': 'ManagementPolicyDefinition'}
     }
 
-    def __init__(self, **kwargs):
+    def __init__(self, *, enabled: bool=None, management_policy_rule-name: str, type, management_policy_definition, **kwargs) -> None:
         super(ManagementPolicyRule, self).__init__(**kwargs)
-        self.enabled = kwargs.get('enabled', None)
-        self.management_policy_rule-name = kwargs.get('management_policy_rule-name', None)
-        self.type = kwargs.get('type', None)
-        self.management_policy_definition = kwargs.get('management_policy_definition', None)
+        self.enabled = enabled
+        self.management_policy_rule-name = management_policy_rule-name
+        self.type = type
+        self.management_policy_definition = management_policy_definition
 
 class ManagementPolicySchema(Model):
     """The Storage Account ManagementPolicies Rules. See more details in: https://docs.microsoft.com/en-us/azure/storage/common/storage-lifecycle-managment-concepts.
@@ -644,9 +644,9 @@ class ManagementPolicySchema(Model):
         'management_policy_schema-rules': {'key': 'management_policy_schema-rules', 'type': '[object]'}
     }
 
-    def __init__(self, **kwargs):
+    def __init__(self, *, management_policy_schema-rules, **kwargs) -> None:
         super(ManagementPolicySchema, self).__init__(**kwargs)
-        self.management_policy_schema-rules = kwargs.get('management_policy_schema-rules', None)
+        self.management_policy_schema-rules = management_policy_schema-rules
 
 class ManagementPolicySnapShot(Model):
     """Management policy action for snapshot.
@@ -659,9 +659,9 @@ class ManagementPolicySnapShot(Model):
         'date_after_creation': {'key': 'date_after_creation', 'type': 'DateAfterCreation'}
     }
 
-    def __init__(self, **kwargs):
+    def __init__(self, *, date_after_creation=None, **kwargs) -> None:
         super(ManagementPolicySnapShot, self).__init__(**kwargs)
-        self.date_after_creation = kwargs.get('date_after_creation', None)
+        self.date_after_creation = date_after_creation
 
 class MetricSpecification(Model):
     """Metric specification of operation.
@@ -698,17 +698,17 @@ class MetricSpecification(Model):
         'metric_specification-resource_id_dimension_name_override': {'key': 'metric_specification-resource_id_dimension_name_override', 'type': 'str'}
     }
 
-    def __init__(self, **kwargs):
+    def __init__(self, *, metric_specification-name: str=None, metric_specification-display_name: str=None, metric_specification-display_description: str=None, metric_specification-unit: str=None, metric_specification-dimensions=None, metric_specification-aggregation_type: str=None, fill_gap_with_zero: bool=None, metric_specification-category: str=None, metric_specification-resource_id_dimension_name_override: str=None, **kwargs) -> None:
         super(MetricSpecification, self).__init__(**kwargs)
-        self.metric_specification-name = kwargs.get('metric_specification-name', None)
-        self.metric_specification-display_name = kwargs.get('metric_specification-display_name', None)
-        self.metric_specification-display_description = kwargs.get('metric_specification-display_description', None)
-        self.metric_specification-unit = kwargs.get('metric_specification-unit', None)
-        self.metric_specification-dimensions = kwargs.get('metric_specification-dimensions', None)
-        self.metric_specification-aggregation_type = kwargs.get('metric_specification-aggregation_type', None)
-        self.fill_gap_with_zero = kwargs.get('fill_gap_with_zero', None)
-        self.metric_specification-category = kwargs.get('metric_specification-category', None)
-        self.metric_specification-resource_id_dimension_name_override = kwargs.get('metric_specification-resource_id_dimension_name_override', None)
+        self.metric_specification-name = metric_specification-name
+        self.metric_specification-display_name = metric_specification-display_name
+        self.metric_specification-display_description = metric_specification-display_description
+        self.metric_specification-unit = metric_specification-unit
+        self.metric_specification-dimensions = metric_specification-dimensions
+        self.metric_specification-aggregation_type = metric_specification-aggregation_type
+        self.fill_gap_with_zero = fill_gap_with_zero
+        self.metric_specification-category = metric_specification-category
+        self.metric_specification-resource_id_dimension_name_override = metric_specification-resource_id_dimension_name_override
 
 class NetworkRuleSet(Model):
     """Network rule set
@@ -734,12 +734,12 @@ class NetworkRuleSet(Model):
         'default_action': {'key': 'default_action', 'type': 'str'}
     }
 
-    def __init__(self, **kwargs):
+    def __init__(self, *, bypass=None, network_rule_set-virtual_network_rules=None, network_rule_set-ip_rules=None, default_action, **kwargs) -> None:
         super(NetworkRuleSet, self).__init__(**kwargs)
-        self.bypass = kwargs.get('bypass', None)
-        self.network_rule_set-virtual_network_rules = kwargs.get('network_rule_set-virtual_network_rules', None)
-        self.network_rule_set-ip_rules = kwargs.get('network_rule_set-ip_rules', None)
-        self.default_action = kwargs.get('default_action', None)
+        self.bypass = bypass
+        self.network_rule_set-virtual_network_rules = network_rule_set-virtual_network_rules
+        self.network_rule_set-ip_rules = network_rule_set-ip_rules
+        self.default_action = default_action
 
 class Operation(Model):
     """Storage REST API operation definition.
@@ -761,12 +761,12 @@ class Operation(Model):
         'operation_properties': {'key': 'operation_properties', 'type': 'OperationProperties'}
     }
 
-    def __init__(self, **kwargs):
+    def __init__(self, *, operation-name: str=None, operation-display=None, operation-origin: str=None, operation_properties=None, **kwargs) -> None:
         super(Operation, self).__init__(**kwargs)
-        self.operation-name = kwargs.get('operation-name', None)
-        self.operation-display = kwargs.get('operation-display', None)
-        self.operation-origin = kwargs.get('operation-origin', None)
-        self.operation_properties = kwargs.get('operation_properties', None)
+        self.operation-name = operation-name
+        self.operation-display = operation-display
+        self.operation-origin = operation-origin
+        self.operation_properties = operation_properties
 
 class Operation-display(Model):
     """Display metadata associated with the operation.
@@ -788,12 +788,12 @@ class Operation-display(Model):
         'operation-display-description': {'key': 'operation-display-description', 'type': 'str'}
     }
 
-    def __init__(self, **kwargs):
+    def __init__(self, *, operation-display-provider: str=None, operation-display-resource: str=None, operation-display-operation: str=None, operation-display-description: str=None, **kwargs) -> None:
         super(Operation-display, self).__init__(**kwargs)
-        self.operation-display-provider = kwargs.get('operation-display-provider', None)
-        self.operation-display-resource = kwargs.get('operation-display-resource', None)
-        self.operation-display-operation = kwargs.get('operation-display-operation', None)
-        self.operation-display-description = kwargs.get('operation-display-description', None)
+        self.operation-display-provider = operation-display-provider
+        self.operation-display-resource = operation-display-resource
+        self.operation-display-operation = operation-display-operation
+        self.operation-display-description = operation-display-description
 
 class OperationListResult(Model):
     """Result of the request to list Storage operations. It contains a list of operations and a URL link to get the next set of results.
@@ -806,9 +806,9 @@ class OperationListResult(Model):
         'operation_list_result-value': {'key': 'operation_list_result-value', 'type': '[object]'}
     }
 
-    def __init__(self, **kwargs):
+    def __init__(self, *, operation_list_result-value=None, **kwargs) -> None:
         super(OperationListResult, self).__init__(**kwargs)
-        self.operation_list_result-value = kwargs.get('operation_list_result-value', None)
+        self.operation_list_result-value = operation_list_result-value
 
 class OperationProperties(Model):
     """Properties of operation, include metric specifications.
@@ -821,9 +821,9 @@ class OperationProperties(Model):
         'service_specification': {'key': 'service_specification', 'type': 'ServiceSpecification'}
     }
 
-    def __init__(self, **kwargs):
+    def __init__(self, *, service_specification=None, **kwargs) -> None:
         super(OperationProperties, self).__init__(**kwargs)
-        self.service_specification = kwargs.get('service_specification', None)
+        self.service_specification = service_specification
 
 class Resource(Model):
     """Resource.
@@ -846,7 +846,7 @@ class Resource(Model):
         'resource-type': {'key': 'resource-type', 'type': 'str'}
     }
 
-    def __init__(self, **kwargs):
+    def __init__(self, **kwargs) -> None:
         super(Resource, self).__init__(**kwargs)
         self.resource-id = None
         self.resource-name = None
@@ -873,11 +873,11 @@ class Restriction(Model):
         'reason_code': {'key': 'reason_code', 'type': 'str'}
     }
 
-    def __init__(self, **kwargs):
+    def __init__(self, *, reason_code=None, **kwargs) -> None:
         super(Restriction, self).__init__(**kwargs)
         self.restriction-type = None
         self.restriction-values = None
-        self.reason_code = kwargs.get('reason_code', None)
+        self.reason_code = reason_code
 
 class SKUCapability(Model):
     """The capability information in the specified SKU, including file encryption, network ACLs, change notification, etc.
@@ -897,7 +897,7 @@ class SKUCapability(Model):
         'sku_capability-value': {'key': 'sku_capability-value', 'type': 'str'}
     }
 
-    def __init__(self, **kwargs):
+    def __init__(self, **kwargs) -> None:
         super(SKUCapability, self).__init__(**kwargs)
         self.sku_capability-name = None
         self.sku_capability-value = None
@@ -968,26 +968,26 @@ class ServiceSasParameters(Model):
         'content_type': {'key': 'content_type', 'type': 'str'}
     }
 
-    def __init__(self, **kwargs):
+    def __init__(self, *, service_sas_parameters-canonicalized_resource: str, resource=None, permissions=None, ip_address_or_range: str=None, protocols=None, shared_access_start_time: datetime.datetime=None, shared_access_expiry_time: datetime.datetime=None, identifier: str=None, partition_key_start: str=None, partition_key_end: str=None, row_key_start: str=None, row_key_end: str=None, service_sas_parameters-key_to_sign: str=None, cache_control: str=None, content_disposition: str=None, content_encoding: str=None, content_language: str=None, content_type: str=None, **kwargs) -> None:
         super(ServiceSasParameters, self).__init__(**kwargs)
-        self.service_sas_parameters-canonicalized_resource = kwargs.get('service_sas_parameters-canonicalized_resource', None)
-        self.resource = kwargs.get('resource', None)
-        self.permissions = kwargs.get('permissions', None)
-        self.ip_address_or_range = kwargs.get('ip_address_or_range', None)
-        self.protocols = kwargs.get('protocols', None)
-        self.shared_access_start_time = kwargs.get('shared_access_start_time', None)
-        self.shared_access_expiry_time = kwargs.get('shared_access_expiry_time', None)
-        self.identifier = kwargs.get('identifier', None)
-        self.partition_key_start = kwargs.get('partition_key_start', None)
-        self.partition_key_end = kwargs.get('partition_key_end', None)
-        self.row_key_start = kwargs.get('row_key_start', None)
-        self.row_key_end = kwargs.get('row_key_end', None)
-        self.service_sas_parameters-key_to_sign = kwargs.get('service_sas_parameters-key_to_sign', None)
-        self.cache_control = kwargs.get('cache_control', None)
-        self.content_disposition = kwargs.get('content_disposition', None)
-        self.content_encoding = kwargs.get('content_encoding', None)
-        self.content_language = kwargs.get('content_language', None)
-        self.content_type = kwargs.get('content_type', None)
+        self.service_sas_parameters-canonicalized_resource = service_sas_parameters-canonicalized_resource
+        self.resource = resource
+        self.permissions = permissions
+        self.ip_address_or_range = ip_address_or_range
+        self.protocols = protocols
+        self.shared_access_start_time = shared_access_start_time
+        self.shared_access_expiry_time = shared_access_expiry_time
+        self.identifier = identifier
+        self.partition_key_start = partition_key_start
+        self.partition_key_end = partition_key_end
+        self.row_key_start = row_key_start
+        self.row_key_end = row_key_end
+        self.service_sas_parameters-key_to_sign = service_sas_parameters-key_to_sign
+        self.cache_control = cache_control
+        self.content_disposition = content_disposition
+        self.content_encoding = content_encoding
+        self.content_language = content_language
+        self.content_type = content_type
 
 class ServiceSpecification(Model):
     """One property of operation, include metric specifications.
@@ -1000,9 +1000,9 @@ class ServiceSpecification(Model):
         'service_specification-metric_specifications': {'key': 'service_specification-metric_specifications', 'type': '[object]'}
     }
 
-    def __init__(self, **kwargs):
+    def __init__(self, *, service_specification-metric_specifications=None, **kwargs) -> None:
         super(ServiceSpecification, self).__init__(**kwargs)
-        self.service_specification-metric_specifications = kwargs.get('service_specification-metric_specifications', None)
+        self.service_specification-metric_specifications = service_specification-metric_specifications
 
 class Sku(Model):
     """The SKU of the storage account.
@@ -1045,15 +1045,15 @@ class Sku(Model):
         'sku-restrictions': {'key': 'sku-restrictions', 'type': '[object]'}
     }
 
-    def __init__(self, **kwargs):
+    def __init__(self, *, sku_name, kind=None, sku-restrictions=None, **kwargs) -> None:
         super(Sku, self).__init__(**kwargs)
-        self.sku_name = kwargs.get('sku_name', None)
+        self.sku_name = sku_name
         self.sku_tier = None
         self.sku-resource_type = None
-        self.kind = kwargs.get('kind', None)
+        self.kind = kind
         self.sku-locations = None
         self.sku-capabilities = None
-        self.sku-restrictions = kwargs.get('sku-restrictions', None)
+        self.sku-restrictions = sku-restrictions
 
 class StorageAccount(Model):
     """The storage account.
@@ -1075,12 +1075,12 @@ class StorageAccount(Model):
         'storage_account_properties': {'key': 'storage_account_properties', 'type': 'StorageAccountProperties'}
     }
 
-    def __init__(self, **kwargs):
+    def __init__(self, *, sku=None, kind=None, identity=None, storage_account_properties=None, **kwargs) -> None:
         super(StorageAccount, self).__init__(**kwargs)
-        self.sku = kwargs.get('sku', None)
-        self.kind = kwargs.get('kind', None)
-        self.identity = kwargs.get('identity', None)
-        self.storage_account_properties = kwargs.get('storage_account_properties', None)
+        self.sku = sku
+        self.kind = kind
+        self.identity = identity
+        self.storage_account_properties = storage_account_properties
 
 class StorageAccountCheckNameAvailabilityParameters(Model):
     """The parameters used to check the availability of the storage account name.
@@ -1101,10 +1101,10 @@ class StorageAccountCheckNameAvailabilityParameters(Model):
         'type': {'key': 'type', 'type': 'str'}
     }
 
-    def __init__(self, **kwargs):
+    def __init__(self, *, storage_account_check_name_availability_parameters-name: str, type, **kwargs) -> None:
         super(StorageAccountCheckNameAvailabilityParameters, self).__init__(**kwargs)
-        self.storage_account_check_name_availability_parameters-name = kwargs.get('storage_account_check_name_availability_parameters-name', None)
-        self.type = kwargs.get('type', None)
+        self.storage_account_check_name_availability_parameters-name = storage_account_check_name_availability_parameters-name
+        self.type = type
 
 class StorageAccountCreateParameters(Model):
     """The parameters used when creating a storage account.
@@ -1138,14 +1138,14 @@ class StorageAccountCreateParameters(Model):
         'storage_account_properties_create_parameters': {'key': 'storage_account_properties_create_parameters', 'type': 'StorageAccountPropertiesCreateParameters'}
     }
 
-    def __init__(self, **kwargs):
+    def __init__(self, *, sku, kind, storage_account_create_parameters-location: str, storage_account_create_parameters-tags=None, identity=None, storage_account_properties_create_parameters=None, **kwargs) -> None:
         super(StorageAccountCreateParameters, self).__init__(**kwargs)
-        self.sku = kwargs.get('sku', None)
-        self.kind = kwargs.get('kind', None)
-        self.storage_account_create_parameters-location = kwargs.get('storage_account_create_parameters-location', None)
-        self.storage_account_create_parameters-tags = kwargs.get('storage_account_create_parameters-tags', None)
-        self.identity = kwargs.get('identity', None)
-        self.storage_account_properties_create_parameters = kwargs.get('storage_account_properties_create_parameters', None)
+        self.sku = sku
+        self.kind = kind
+        self.storage_account_create_parameters-location = storage_account_create_parameters-location
+        self.storage_account_create_parameters-tags = storage_account_create_parameters-tags
+        self.identity = identity
+        self.storage_account_properties_create_parameters = storage_account_properties_create_parameters
 
 class StorageAccountKey(Model):
     """An access key for the storage account.
@@ -1168,7 +1168,7 @@ class StorageAccountKey(Model):
         'key_permission': {'key': 'key_permission', 'type': 'str'}
     }
 
-    def __init__(self, **kwargs):
+    def __init__(self, **kwargs) -> None:
         super(StorageAccountKey, self).__init__(**kwargs)
         self.storage_account_key-key_name = None
         self.storage_account_key-value = None
@@ -1189,7 +1189,7 @@ class StorageAccountListKeysResult(Model):
         'storage_account_list_keys_result-keys': {'key': 'storage_account_list_keys_result-keys', 'type': '[object]'}
     }
 
-    def __init__(self, **kwargs):
+    def __init__(self, **kwargs) -> None:
         super(StorageAccountListKeysResult, self).__init__(**kwargs)
         self.storage_account_list_keys_result-keys = None
 
@@ -1211,7 +1211,7 @@ class StorageAccountListResult(Model):
         'storage_account_list_result-next_link': {'key': 'storage_account_list_result-next_link', 'type': 'str'}
     }
 
-    def __init__(self, **kwargs):
+    def __init__(self, **kwargs) -> None:
         super(StorageAccountListResult, self).__init__(**kwargs)
         self.storage_account_list_result-value = None
         self.storage_account_list_result-next_link = None
@@ -1282,25 +1282,25 @@ class StorageAccountProperties(Model):
         'failover_in_progress': {'key': 'failover_in_progress', 'type': 'bool'}
     }
 
-    def __init__(self, **kwargs):
+    def __init__(self, *, endpoints=None, custom_domain=None, endpoints=None, encryption=None, access_tier=None, azure_files_identity_based_authentication=None, enable_https_traffic_only: bool=None, network_rule_set=None, is_hns_enabled: bool=None, geo_replication_stats=None, **kwargs) -> None:
         super(StorageAccountProperties, self).__init__(**kwargs)
         self.provisioning_state = None
-        self.endpoints = kwargs.get('endpoints', None)
+        self.endpoints = endpoints
         self.storage_account_properties-primary_location = None
         self.account_status = None
         self.storage_account_properties-last_geo_failover_time = None
         self.storage_account_properties-secondary_location = None
         self.account_status = None
         self.storage_account_properties-creation_time = None
-        self.custom_domain = kwargs.get('custom_domain', None)
-        self.endpoints = kwargs.get('endpoints', None)
-        self.encryption = kwargs.get('encryption', None)
-        self.access_tier = kwargs.get('access_tier', None)
-        self.azure_files_identity_based_authentication = kwargs.get('azure_files_identity_based_authentication', None)
-        self.enable_https_traffic_only = kwargs.get('enable_https_traffic_only', None)
-        self.network_rule_set = kwargs.get('network_rule_set', None)
-        self.is_hns_enabled = kwargs.get('is_hns_enabled', None)
-        self.geo_replication_stats = kwargs.get('geo_replication_stats', None)
+        self.custom_domain = custom_domain
+        self.endpoints = endpoints
+        self.encryption = encryption
+        self.access_tier = access_tier
+        self.azure_files_identity_based_authentication = azure_files_identity_based_authentication
+        self.enable_https_traffic_only = enable_https_traffic_only
+        self.network_rule_set = network_rule_set
+        self.is_hns_enabled = is_hns_enabled
+        self.geo_replication_stats = geo_replication_stats
         self.failover_in_progress = None
 
 class StorageAccountPropertiesCreateParameters(Model):
@@ -1332,15 +1332,15 @@ class StorageAccountPropertiesCreateParameters(Model):
         'is_hns_enabled': {'key': 'is_hns_enabled', 'type': 'bool'}
     }
 
-    def __init__(self, **kwargs):
+    def __init__(self, *, custom_domain=None, encryption=None, network_rule_set=None, access_tier=None, azure_files_identity_based_authentication=None, enable_https_traffic_only: bool=None, is_hns_enabled: bool=None, **kwargs) -> None:
         super(StorageAccountPropertiesCreateParameters, self).__init__(**kwargs)
-        self.custom_domain = kwargs.get('custom_domain', None)
-        self.encryption = kwargs.get('encryption', None)
-        self.network_rule_set = kwargs.get('network_rule_set', None)
-        self.access_tier = kwargs.get('access_tier', None)
-        self.azure_files_identity_based_authentication = kwargs.get('azure_files_identity_based_authentication', None)
-        self.enable_https_traffic_only = kwargs.get('enable_https_traffic_only', None)
-        self.is_hns_enabled = kwargs.get('is_hns_enabled', None)
+        self.custom_domain = custom_domain
+        self.encryption = encryption
+        self.network_rule_set = network_rule_set
+        self.access_tier = access_tier
+        self.azure_files_identity_based_authentication = azure_files_identity_based_authentication
+        self.enable_https_traffic_only = enable_https_traffic_only
+        self.is_hns_enabled = is_hns_enabled
 
 class StorageAccountPropertiesUpdateParameters(Model):
     """The parameters used when updating a storage account.
@@ -1368,14 +1368,14 @@ class StorageAccountPropertiesUpdateParameters(Model):
         'network_rule_set': {'key': 'network_rule_set', 'type': 'NetworkRuleSet'}
     }
 
-    def __init__(self, **kwargs):
+    def __init__(self, *, custom_domain=None, encryption=None, access_tier=None, azure_files_identity_based_authentication=None, enable_https_traffic_only: bool=None, network_rule_set=None, **kwargs) -> None:
         super(StorageAccountPropertiesUpdateParameters, self).__init__(**kwargs)
-        self.custom_domain = kwargs.get('custom_domain', None)
-        self.encryption = kwargs.get('encryption', None)
-        self.access_tier = kwargs.get('access_tier', None)
-        self.azure_files_identity_based_authentication = kwargs.get('azure_files_identity_based_authentication', None)
-        self.enable_https_traffic_only = kwargs.get('enable_https_traffic_only', None)
-        self.network_rule_set = kwargs.get('network_rule_set', None)
+        self.custom_domain = custom_domain
+        self.encryption = encryption
+        self.access_tier = access_tier
+        self.azure_files_identity_based_authentication = azure_files_identity_based_authentication
+        self.enable_https_traffic_only = enable_https_traffic_only
+        self.network_rule_set = network_rule_set
 
 class StorageAccountRegenerateKeyParameters(Model):
     """The parameters used to regenerate the storage account key.
@@ -1392,9 +1392,9 @@ class StorageAccountRegenerateKeyParameters(Model):
         'storage_account_regenerate_key_parameters-key_name': {'key': 'storage_account_regenerate_key_parameters-key_name', 'type': 'str'}
     }
 
-    def __init__(self, **kwargs):
+    def __init__(self, *, storage_account_regenerate_key_parameters-key_name: str, **kwargs) -> None:
         super(StorageAccountRegenerateKeyParameters, self).__init__(**kwargs)
-        self.storage_account_regenerate_key_parameters-key_name = kwargs.get('storage_account_regenerate_key_parameters-key_name', None)
+        self.storage_account_regenerate_key_parameters-key_name = storage_account_regenerate_key_parameters-key_name
 
 class StorageAccountUpdateParameters(Model):
     """The parameters that can be provided when updating the storage account properties.
@@ -1419,13 +1419,13 @@ class StorageAccountUpdateParameters(Model):
         'kind': {'key': 'kind', 'type': 'str'}
     }
 
-    def __init__(self, **kwargs):
+    def __init__(self, *, sku=None, storage_account_update_parameters-tags=None, identity=None, storage_account_properties_update_parameters=None, kind=None, **kwargs) -> None:
         super(StorageAccountUpdateParameters, self).__init__(**kwargs)
-        self.sku = kwargs.get('sku', None)
-        self.storage_account_update_parameters-tags = kwargs.get('storage_account_update_parameters-tags', None)
-        self.identity = kwargs.get('identity', None)
-        self.storage_account_properties_update_parameters = kwargs.get('storage_account_properties_update_parameters', None)
-        self.kind = kwargs.get('kind', None)
+        self.sku = sku
+        self.storage_account_update_parameters-tags = storage_account_update_parameters-tags
+        self.identity = identity
+        self.storage_account_properties_update_parameters = storage_account_properties_update_parameters
+        self.kind = kind
 
 class StorageSkuListResult(Model):
     """The response from the List Storage SKUs operation.
@@ -1442,7 +1442,7 @@ class StorageSkuListResult(Model):
         'storage_sku_list_result-value': {'key': 'storage_sku_list_result-value', 'type': '[object]'}
     }
 
-    def __init__(self, **kwargs):
+    def __init__(self, **kwargs) -> None:
         super(StorageSkuListResult, self).__init__(**kwargs)
         self.storage_sku_list_result-value = None
 
@@ -1464,10 +1464,10 @@ class TrackedResource(Model):
         'tracked_resource-location': {'key': 'tracked_resource-location', 'type': 'str'}
     }
 
-    def __init__(self, **kwargs):
+    def __init__(self, *, tracked_resource-tags=None, tracked_resource-location: str, **kwargs) -> None:
         super(TrackedResource, self).__init__(**kwargs)
-        self.tracked_resource-tags = kwargs.get('tracked_resource-tags', None)
-        self.tracked_resource-location = kwargs.get('tracked_resource-location', None)
+        self.tracked_resource-tags = tracked_resource-tags
+        self.tracked_resource-location = tracked_resource-location
 
 class Usage(Model):
     """Describes Storage Resource Usage.
@@ -1493,12 +1493,12 @@ class Usage(Model):
         'usage_name': {'key': 'usage_name', 'type': 'UsageName'}
     }
 
-    def __init__(self, **kwargs):
+    def __init__(self, *, usage_name=None, **kwargs) -> None:
         super(Usage, self).__init__(**kwargs)
         self.usage_unit = None
         self.current_value = None
         self.limit = None
-        self.usage_name = kwargs.get('usage_name', None)
+        self.usage_name = usage_name
 
 class UsageListResult(Model):
     """The response from the List Usages operation.
@@ -1511,9 +1511,9 @@ class UsageListResult(Model):
         'usage_list_result-value': {'key': 'usage_list_result-value', 'type': '[object]'}
     }
 
-    def __init__(self, **kwargs):
+    def __init__(self, *, usage_list_result-value=None, **kwargs) -> None:
         super(UsageListResult, self).__init__(**kwargs)
-        self.usage_list_result-value = kwargs.get('usage_list_result-value', None)
+        self.usage_list_result-value = usage_list_result-value
 
 class UsageName(Model):
     """The usage names that can be used; currently limited to StorageAccount.
@@ -1533,7 +1533,7 @@ class UsageName(Model):
         'usage_name-localized_value': {'key': 'usage_name-localized_value', 'type': 'str'}
     }
 
-    def __init__(self, **kwargs):
+    def __init__(self, **kwargs) -> None:
         super(UsageName, self).__init__(**kwargs)
         self.usage_name-value = None
         self.usage_name-localized_value = None
@@ -1559,8 +1559,8 @@ class VirtualNetworkRule(Model):
         'state': {'key': 'state', 'type': 'str'}
     }
 
-    def __init__(self, **kwargs):
+    def __init__(self, *, virtual_network_resource_id: str, action=None, state=None, **kwargs) -> None:
         super(VirtualNetworkRule, self).__init__(**kwargs)
-        self.virtual_network_resource_id = kwargs.get('virtual_network_resource_id', None)
-        self.action = kwargs.get('action', None)
-        self.state = kwargs.get('state', None)
+        self.virtual_network_resource_id = virtual_network_resource_id
+        self.action = action
+        self.state = state

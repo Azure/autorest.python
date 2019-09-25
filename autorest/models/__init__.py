@@ -18,13 +18,13 @@ __all__ = [
 
 def build_property(prop):
     ct_property = None
-    name = to_python_case(prop['$key'])
+    name = to_python_case(prop['language']['default']['name'])
     prop_type = prop['schema']['type']
     if prop_type == 'array':
         ct_property = SequenceType.from_yaml(yaml_data=prop, name=name)
     elif prop_type == 'dictionary':
         ct_property = DictionaryType.from_yaml(yaml_data=prop, name=name)
-    elif prop_type == 'choice':
+    elif prop_type == 'sealed-choice' or prop_type == 'choice':
         ct_property = EnumType.from_yaml(yaml_data=prop, name=name)
     else:
         ct_property = CompositeType.from_yaml(yaml_data=prop, name=name)

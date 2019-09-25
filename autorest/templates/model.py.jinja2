@@ -39,17 +39,10 @@ class {{ model.name }}(Model):
         {%- endif %}
     }
 
-    {{model.init_line}}
-        super({{ model.name }}, self).__init__(**kwargs)
-        {%- if model.properties != None %}
-            {%- for p in model.properties %}
-                {%- if p.required %}
-        self.{{ p.name }} = None
-                {%- else %}
-        self.{{ p.name }} = kwargs.get('{{ p.name }}', None)
-                {%- endif %}
-            {%- endfor %}
-        {%- endif %}
+    {{ model.init_line }}
+    {%- for arg in model.init_args %}
+        {{ arg }}
+    {%- endfor %}
 
     {%- if model.is_exception %}
     class {{ model.exception_type_definition_name }}(HttpResponseError):

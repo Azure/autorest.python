@@ -41,11 +41,9 @@ class CompositeType(ModelType):
         self.properties = kwargs.pop('properties', None)
         self.base_model = kwargs.pop('base_model', None)
         self.property_type = kwargs.pop('property_type', None)
-        self.required = kwargs.pop('required', None)
-        self.readonly = kwargs.pop('readonly', None)
-        self.constant = kwargs.pop('constant', None)
         self.property_documentation_string = None
         self.init_line = None
+        self.init_args = None
 
     def get_attribute_map_type(self) -> str:
         return self.property_type
@@ -97,16 +95,19 @@ class CompositeType(ModelType):
     def from_yaml(cls, yaml_data: Dict[str, str], **kwargs) -> "CompositeType":
         # Returns a CompositeType from a yaml file
         name = kwargs.pop('name', None)
+        is_parent = kwargs.pop('is_parent', False)
+        child_composite_types = kwargs.pop('child_composite_types', [])
         if not name:
-            name = yaml_data['$key']
+            name = yaml_data['language']['default']['name']
         description = yaml_data['description'].strip() or (name + ".")
         if description == "MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA":
             description = name + "."
         properties = cls._create_properties(yaml_data) if yaml_data.get('properties') else None
         base_model = None
-        if yaml_data.get('allOf'):
-            # this composite type has a base class
-            base_model = cls.from_yaml(yaml_data['allOf'][0])
+        # if not is_parent:
+        #     for p in child_composite_types:
+        #         if name == p['language']['default']['name']:
+        #             base_model = cls.from_yaml(p['allOf'][-1], is_parent=True)
         required = yaml_data.get('required')
         readonly = yaml_data.get('readOnly')
         constant = yaml_data.get('constant')

@@ -1,4 +1,5 @@
 from ..models import CompositeType, DictionaryType, SequenceType, EnumType
+from jinja2 import Template, PackageLoader, Environment
 
 
 class BaseSerializer:
@@ -15,6 +16,8 @@ class BaseSerializer:
         else:
             param_doc_string = ":param {}:".format(prop.name)
         description = prop.description
+        if prop.required:
+            description = "Required. " + description
         if description and description[-1] != ".":
             description += "."
         if description:
@@ -32,6 +35,23 @@ class BaseSerializer:
             type_doc_string += prop.property_type
 
         prop.documentation_string = param_doc_string + "\n\t" + type_doc_string
+
+
+    def serialize(self):
+        env = Environment(
+            loader=PackageLoader('autorest', 'templates'),
+            keep_trailing_newline=True
+        )
+
+        for model in self.code_model.schemas:
+            self._format_model_for_file(model)
+
+        # Generate the service client content
+        template = env.get_template("service_client.py.jinja2")
+        self._service_client_file = template.render(code_model=self.code_model)
+
+        template = env.get_template("model_container.py.jinja2")
+        self._model_file = template.render(code_model=self.code_model)
 
 
     def service_client_file(self):

@@ -1,5 +1,4 @@
 from .baseserializer import BaseSerializer
-from jinja2 import Template, PackageLoader, Environment
 
 
 class GenericSerializer(BaseSerializer):
@@ -9,22 +8,13 @@ class GenericSerializer(BaseSerializer):
 
     def _format_model_for_file(self, model):
         for prop in model.properties:
-            prop = self._format_property_doc_string_for_file(prop)
+            self._format_property_doc_string_for_file(prop)
         model.init_line = "def __init__(self, **kwargs):"
-
-
-    def serialize(self):
-        env = Environment(
-            loader=PackageLoader('autorest', 'templates'),
-            keep_trailing_newline=True
-        )
-
-        for model in self.code_model.schemas:
-            model = self._format_model_for_file(model)
-
-        # Generate the service client content
-        template = env.get_template("service_client.py.jinja2")
-        self._service_client_file = template.render(code_model=self.code_model)
-
-        template = env.get_template("model_container.py.jinja2")
-        self._model_file = template.render(code_model=self.code_model)
+        init_args = []
+        init_args.append("super({}, self).__init__(**kwargs)".format(model.name))
+        for prop in model.properties:
+            if prop.readonly:
+                init_args.append("self.{} = None".format(prop.name))
+            else:
+                init_args.append("self.{} = kwargs.get('{}', None)".format(prop.name, prop.name))
+        model.init_args = init_args

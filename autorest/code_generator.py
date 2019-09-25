@@ -36,6 +36,7 @@ from .jsonrpc import AutorestAPI
 from .models.codemodel import CodeModel
 from .models.compositetype import CompositeType
 from .serializers.genericserializer import GenericSerializer
+from .serializers.python3serializer import Python3Serializer
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -66,17 +67,24 @@ class CodeGenerator:
         # code_model.api_version = yaml_code_model["info"]["version"]
 
         composite_types = [d for d in yaml_code_model['schemas']['objects']]
+        child_composite_types = [c for c in yaml_code_model['schemas']['andCompounds']]
         code_model.schemas = []
         seen_names = set()
         # only adds a CompositeType to the list of schemas if we have not seen the name of the CompositeType yet
-        code_model.schemas = [CompositeType.from_yaml(s) for s in composite_types if s['$key'] not in seen_names and not seen_names.add(s['$key'])]
+        code_model.schemas = [CompositeType.from_yaml(s, child_composite_types=child_composite_types)
+                            for s in composite_types if s['language']['default']['name'] not in seen_names and
+                            not seen_names.add(s['language']['default']['name'])]
         code_model.sort_schemas()
 
         generic_serializer = GenericSerializer(code_model=code_model)
         generic_serializer.serialize()
+
+        python3_serializer = Python3Serializer(code_model=code_model)
+        python3_serializer.serialize()
         # Write it
         self._autorestapi.write_file("service_client.py", generic_serializer.service_client_file())
         self._autorestapi.write_file("models.py", generic_serializer.model_file())
+        self._autorestapi.write_file("models_py3.py", python3_serializer.model_file())
         return True
 
 def main(yaml_model_file):
