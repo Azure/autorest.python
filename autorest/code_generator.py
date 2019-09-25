@@ -35,6 +35,7 @@ from .jsonrpc import AutorestAPI
 
 from .models.codemodel import CodeModel
 from .models.compositetype import CompositeType
+from .serializers.genericserializer import GenericSerializer
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -71,16 +72,11 @@ class CodeGenerator:
         # sorts schemas based on inheritance
         code_model.sort_schemas()
 
-        # Generate the service client content
-        template = env.get_template("service_client.py.jinja2")
-        service_client = template.render(code_model=code_model)
-
-        template = env.get_template("model_container.py.jinja2")
-        model_file = template.render(code_model=code_model)
-
+        generic_serializer = GenericSerializer(code_model=code_model)
+        generic_serializer.serialize()
         # Write it
-        self._autorestapi.write_file("service_client.py", service_client)
-        self._autorestapi.write_file("models.py", model_file)
+        self._autorestapi.write_file("service_client.py", generic_serializer.service_client_file())
+        self._autorestapi.write_file("models.py", generic_serializer.model_file())
         return True
 
 def main(yaml_model_file):
