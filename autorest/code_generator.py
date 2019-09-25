@@ -52,7 +52,6 @@ class CodeGenerator:
         _LOGGER.info(f"Inputs: {inputs}")
         filename = inputs[0]
         file_content = self._autorestapi.read_file(filename)
-        self._autorestapi.write_file("received_yaml.yaml", file_content)
 
         env = Environment(
             loader=PackageLoader('autorest', 'templates'),
