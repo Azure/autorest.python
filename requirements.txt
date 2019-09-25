@@ -7,3 +7,4 @@ pyyaml
 tox
 invoke
 pylint
+pytest
