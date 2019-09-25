@@ -67,9 +67,9 @@ class CodeGenerator:
 
         composite_types = [d for d in yaml_code_model['schemas']['objects']]
         code_model.schemas = []
-        for schema in composite_types:
-            code_model.schemas.append(CompositeType.from_yaml(schema))
-        # sorts schemas based on inheritance
+        seen_names = set()
+        # only adds a CompositeType to the list of schemas if we have not seen the name of the CompositeType yet
+        code_model.schemas = [CompositeType.from_yaml(s) for s in composite_types if s['$key'] not in seen_names and not seen_names.add(s['$key'])]
         code_model.sort_schemas()
 
         generic_serializer = GenericSerializer(code_model=code_model)

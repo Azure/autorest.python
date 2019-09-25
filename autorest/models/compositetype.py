@@ -44,21 +44,24 @@ class CompositeType(ModelType):
         self.required = kwargs.pop('required', None)
         self.readonly = kwargs.pop('readonly', None)
         self.constant = kwargs.pop('constant', None)
+        self.property_documentation_string = None
+        self.init_line = None
 
     def get_attribute_map_type(self) -> str:
         return self.property_type
 
-    def type_documentation(self):
-        return self.property_type
-
     def _get_property_type_from_yaml(yaml_data):
-        property_type = yaml_data['type']
+        # checks to see if it's a top level CompositeType and not a property
+        if yaml_data.get('properties'):
+            return None
+        schema_data = yaml_data['schema']
+        property_type = schema_data['type']
         # all of is inheritance
         if property_type == 'object':
             # TODO: make sure pure objects don't have $key entry
-            if yaml_data.get('$key'):
+            if schema_data.get('$key'):
                 # property is of a class in our yaml file
-                return yaml_data['$key']
+                return schema_data['$key']
             # if not, the property's type is just object
             return property_type
         return to_python_type(property_type)
@@ -94,8 +97,11 @@ class CompositeType(ModelType):
     def from_yaml(cls, yaml_data: Dict[str, str], **kwargs) -> "CompositeType":
         # Returns a CompositeType from a yaml file
         name = kwargs.pop('name', None)
-        name = yaml_data['$key'] if not name else name
+        if not name:
+            name = yaml_data['$key']
         description = yaml_data['description'].strip() or (name + ".")
+        if description == "MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA":
+            description = name + "."
         properties = cls._create_properties(yaml_data) if yaml_data.get('properties') else None
         base_model = None
         if yaml_data.get('allOf'):

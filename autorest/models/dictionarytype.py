@@ -5,22 +5,18 @@ class DictionaryType(ModelType):
     def __init__(self, name, description, element_type, **kwargs):
         super(DictionaryType, self).__init__(name, description, **kwargs)
         self.element_type = element_type
-        self._type_documentation = None
 
-    def type_documentation(self):
-        self._type_documentation = "dict[str, {}]".format(self.element_type)
-        return self._type_documentation
 
     def get_attribute_map_type(self):
         return "{{{}}}".format(self.element_type)
 
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, str], name:str) -> "DictionaryType":
-        description = yaml_data['description'].strip()
+    def from_yaml(cls, yaml_data: Dict[str, str], name: str) -> "DictionaryType":
         required = yaml_data.get('required')
         readonly = yaml_data.get('readOnly')
         constant = yaml_data.get('constant')
-        element_type = yaml_data['elementType']['type']
+        description = yaml_data['schema']['description'].strip()
+        element_type = yaml_data['schema']['elementType']['type']
 
         return cls(
             name=name,

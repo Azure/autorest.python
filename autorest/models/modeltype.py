@@ -5,6 +5,8 @@ class ModelType:
         self.required = kwargs.pop('required', False)
         self.readonly = kwargs.pop('readonly', False)
         self.constant = kwargs.pop('constant', False)
+        self.documentation_string = None
+        self.attribute_map_string = None
 
     """Constructs the documentation string for a property
 
