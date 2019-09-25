@@ -35,6 +35,9 @@ from .jsonrpc import AutorestAPI
 
 from .models.codemodel import CodeModel
 from .models.compositetype import CompositeType
+from .models.operation_group import OperationGroup
+
+from .serializers.import_serializer import FileImportSerializer
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -71,12 +74,25 @@ class CodeGenerator:
         # sorts schemas based on inheritance
         code_model.sort_schemas()
 
+        operation_groups = [OperationGroup.from_yaml(op_group) for op_group in yaml_code_model['operationGroups']]
+
         # Generate the service client content
         template = env.get_template("service_client.py.jinja2")
         service_client = template.render(code_model=code_model)
 
         template = env.get_template("model_container.py.jinja2")
         model_file = template.render(code_model=code_model)
+
+        template = env.get_template("operations_container.py.jinja2")
+        for operation_group in operation_groups:
+            operation_group_content = template.render(
+                operation_group=operation_group,
+                imports=FileImportSerializer(operation_group.imports())
+            )
+            self._autorestapi.write_file(
+                f"{operation_group.name}_operation_group.py",
+                operation_group_content
+            )
 
         # Write it
         self._autorestapi.write_file("service_client.py", service_client)
