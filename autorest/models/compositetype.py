@@ -52,7 +52,10 @@ class CompositeType(ModelType):
         # checks to see if it's a top level CompositeType and not a property
         if yaml_data.get('properties'):
             return None
-        schema_data = yaml_data['schema']
+        try:
+            schema_data = yaml_data['schema']
+        except:
+            raise KeyError(yaml_data)
         property_type = schema_data['type']
         # all of is inheritance
         if property_type == 'object':
@@ -95,19 +98,12 @@ class CompositeType(ModelType):
     def from_yaml(cls, yaml_data: Dict[str, str], **kwargs) -> "CompositeType":
         # Returns a CompositeType from a yaml file
         name = kwargs.pop('name', None)
-        is_parent = kwargs.pop('is_parent', False)
-        child_composite_types = kwargs.pop('child_composite_types', [])
         if not name:
             name = yaml_data['language']['default']['name']
         description = yaml_data['description'].strip() or (name + ".")
         if description == "MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA":
             description = name + "."
         properties = cls._create_properties(yaml_data) if yaml_data.get('properties') else None
-        base_model = None
-        # if not is_parent:
-        #     for p in child_composite_types:
-        #         if name == p['language']['default']['name']:
-        #             base_model = cls.from_yaml(p['allOf'][-1], is_parent=True)
         required = yaml_data.get('required')
         readonly = yaml_data.get('readOnly')
         constant = yaml_data.get('constant')
@@ -116,7 +112,7 @@ class CompositeType(ModelType):
             name=name,
             description=description,
             properties=properties,
-            base_model=base_model,
+            base_model=None,
             property_type=property_type,
             required=required,
             readonly=readonly,
