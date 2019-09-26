@@ -70,7 +70,7 @@ def regen_expected(c, opts):
         swagger_files = (opts_mappings_value[0] if isinstance(opts_mappings_value, list) else opts_mappings_value).split(';')
         args = [
             "--use={}".format(base_dir),
-            "--{}".format(opts['language']),
+            # "--{}".format(opts['language']),
             "--clear-output-folder",
             "--output-folder={}/{}".format(output_dir, key),
             "--license-header={}".format(opts['header'] if opts.get('header') else 'MICROSOFT_MIT_NO_VERSION'),
@@ -84,26 +84,26 @@ def regen_expected(c, opts):
             args.append("--input-file={}".format(input_file_name))
 
         if opts.get('add_credentials') and opts['add_credentials']:
-            args.append("--{}.add-credentials=true".opts['language'])
+            args.append("--add-credentials=true")
 
         if opts.get('vanilla') and opts['vanilla']:
-            args.append("--{}.vanilla=true".format(opts['language']))
+            args.append("--vanilla=true")
 
         if opts.get('azure_arm') and opts['azure_arm']:
-            args.append("--{}.azure-arm=true".format(opts['language']))
+            args.append("--azure-arm=true")
 
         if opts.get('flattening_threshold'):
-            args.append("--{}.payload-flattening-threshold={}".format(opts['language'], opts['flattening_threshold']))
+            args.append("--payload-flattening-threshold={}".format(opts['flattening_threshold']))
 
         if opts.get('keep_version') and opts['keep_version']:
-            args.append("--{}.keep-version-file=true".format(opts['language']))
+            args.append("--keep-version-file=true")
 
         if opts.get('ns_prefix'):
             if isinstance(opts_mappings_value, list) and len(opts_mappings_value) > 1:
-                args.append("--{}.namespace={}".format(opts['language'], opts_mappings_value[1]))
+                args.append("--namespace={}".format(opts_mappings_value[1]))
             else:
                 namespace = [opts['ns_prefix'], key.replace("/\/|\./", '')].join('.')
-                args.append("--{}.namespace={}".format(opts['language'], namespace))
+                args.append("--namespace={}".format(namespace))
 
         if opts.get('override-info.version'):
             args.append("--override-info.version={}".format(opts['override-info.version']))
@@ -112,8 +112,9 @@ def regen_expected(c, opts):
         if opts.get('override-info.description'):
             args.append("--override-info.description={}".format(opts['override-info.description']))
 
-        c.run('echo Queuing up: Autorest {}'.format(" ".join(args)))
-        c.run('{}/node_modules/.bin/autorest {}'.format(base_dir, " ".join(args)))
+        cmd_line = 'autorest-beta {}'.format(" ".join(args))
+        c.run('echo Queuing up: {}'.format(cmd_line))
+        c.run(cmd_line)
         instances -= 1
         if not instances:
             return
