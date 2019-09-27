@@ -17,5 +17,6 @@ known_primary_types_mapping = {
     "boolean": "bool",
     "uuid": "str",
     "base64url": "bytes",
-    "unixtime": "datetime.datetime"
+    "unixtime": "datetime.datetime",
+    "duration": "datetime.timedelta",
 }
