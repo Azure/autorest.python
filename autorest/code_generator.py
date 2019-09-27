@@ -52,11 +52,12 @@ class CodeGenerator:
     def process(self) -> bool:
         # List the input file, should be only one
         inputs = self._autorestapi.list_inputs()
-        _LOGGER.info(f"Possible Inputs: {inputs}")
+        _LOGGER.info("Possible Inputs: %s", inputs)
         if "code-model-v4-no-tags.yaml" not in inputs:
             raise ValueError("code-model-v4-no-tags.yaml must be a possible input")
 
         file_content = self._autorestapi.read_file("code-model-v4-no-tags.yaml")
+        self._autorestapi.write_file("code-model-v4-no-tags.yaml", file_content)
 
         env = Environment(
             loader=PackageLoader('autorest', 'templates'),
@@ -72,7 +73,7 @@ class CodeGenerator:
         # code_model.api_version = yaml_code_model["info"]["version"]
 
         composite_types = [d for d in yaml_code_model['schemas']['objects']]
-        child_composite_types = [c for c in yaml_code_model['schemas']['andCompounds']]
+        child_composite_types = [c for c in yaml_code_model['schemas']['ands']]
         code_model.schemas = []
         seen_names = set()
         # only adds a CompositeType to the list of schemas if we have not seen the name of the CompositeType yet
