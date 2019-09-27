@@ -56,7 +56,7 @@ def Process(plugin_name, session_id):
 
 def main():
     logging.basicConfig(
-        level=logging.DEBUG,
+        level=logging.INFO,
         #stream=sys.stderr,
         filename="autorest_python.log"
     )

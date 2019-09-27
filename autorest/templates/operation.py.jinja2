@@ -1,0 +1,34 @@
+{{ trace_decorator }}
+{{ def_keyword}} {{ operation.python_name }}(self, {{ operation_parameters }}, **kwargs):
+    """{{operation.description}}.
+
+    {{operation.summary}}
+
+{% if operation.deprecated %}
+    .. warning::
+       This method is deprecated
+{% endif %}
+
+    {{operation.doc_parameters}}
+    """
+{% if operation.deprecated %}
+    warnings.warn('Method {{operation.name}} is deprecated', DeprecationWarning)
+{% endif %}
+    error_map = kwargs.pop('error_map', None)
+
+    # Construct URL
+    url = self.{{ operation.python_name }}.metadata['url']
+
+    # Construct parameters
+    query_parameters = {}
+
+    # Construct headers
+    header_parameters = {}
+{% if operation.has_any_response %}
+    header_parameters['Accept'] = '@(Model.AcceptContentType)'
+{% endif %}
+{% if operation.has_any_body %}
+    header_parameters['Content-Type'] = '@(Model.RequestContentType)'
+{% endif %}
+
+    ## FIXME
