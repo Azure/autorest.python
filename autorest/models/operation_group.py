@@ -57,6 +57,6 @@ class OperationGroup:
 
         return cls(
             yaml_data=yaml_data,
-            name=yaml_data['language']['default']['name'],
+            name=yaml_data["$key"], # yaml_data['language']['default']['name'],
             operations=operations,
         )
