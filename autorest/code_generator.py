@@ -105,7 +105,7 @@ class CodeGenerator:
 
         # Write it
         self._autorestapi.write_file(namespace / Path("service_client.py"), service_client)
-        self._autorestapi.write_file(namespace / Path("models") / Path("models.py"), model_file)
+        self._autorestapi.write_file(namespace / Path("models") / Path("_models.py"), model_file)
         return True
 
 def main(yaml_model_file):
