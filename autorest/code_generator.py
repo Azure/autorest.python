@@ -33,6 +33,7 @@ from jinja2 import Template, PackageLoader, Environment
 
 from .jsonrpc import AutorestAPI
 
+from .common.code_namer import CodeNamer
 from .models.codemodel import CodeModel
 from .models.compositetype import CompositeType
 from .models.operation_group import OperationGroup
@@ -77,6 +78,13 @@ class CodeGenerator:
 
         operation_groups = [OperationGroup.from_yaml(op_group) for op_group in yaml_code_model['operationGroups']]
 
+        # Get my namespace
+        namespace = self._autorestapi.get_value("namespace")
+        _LOGGER.debug("Namespace parameter was %s", namespace)
+        if not namespace:
+            namespace = CodeNamer.to_python_case(yaml_code_model["info"]["title"])
+        namespace = Path(*[ns_part for ns_part in namespace.split(".")])
+
         # Generate the service client content
         template = env.get_template("service_client.py.jinja2")
         service_client = template.render(code_model=code_model)
@@ -91,13 +99,13 @@ class CodeGenerator:
                 imports=FileImportSerializer(operation_group.imports())
             )
             self._autorestapi.write_file(
-                f"{operation_group.name}_operation_group.py",
+                namespace / Path("operations") / Path(f"{operation_group.name}_operation_group.py"),
                 operation_group_content
             )
 
         # Write it
-        self._autorestapi.write_file("service_client.py", service_client)
-        self._autorestapi.write_file("models.py", model_file)
+        self._autorestapi.write_file(namespace / Path("service_client.py"), service_client)
+        self._autorestapi.write_file(namespace / Path("models") / Path("models.py"), model_file)
         return True
 
 def main(yaml_model_file):
