@@ -114,7 +114,7 @@ def regen_expected(c, opts):
 
         cmd_line = 'autorest-beta {}'.format(" ".join(args))
         c.run('echo Queuing up: {}'.format(cmd_line))
-        c.run(cmd_line)
+        c.run(cmd_line, warn=True)
         instances -= 1
         if not instances:
             return
