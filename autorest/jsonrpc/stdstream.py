@@ -24,6 +24,7 @@
 #
 # --------------------------------------------------------------------------
 import json
+import os
 import logging
 from pathlib import Path
 import sys
@@ -53,7 +54,8 @@ def read_message(stream = sys.stdin):
     # Read the right number of bytes
     _LOGGER.info("Trying to read the message")
     message = stream.read(bytes_size)
-    _LOGGER.info(f"Read {message}")
+    _LOGGER.info("Received a %d bytes message (push to DEBUG to see full message)", len(message))
+    _LOGGER.debug("Read %s", message)
 
     return message
 
@@ -75,6 +77,7 @@ class StdStreamAutorestAPI(AutorestAPI):
 
     def write_file(self, filename: str, file_content: str) -> None:
         _LOGGER.debug(f"Writing a file: {filename}")
+        filename = os.fspath(filename)
         request = JSONRPC20Request(
             method="WriteFile",
             params=[
@@ -89,6 +92,7 @@ class StdStreamAutorestAPI(AutorestAPI):
 
     def read_file(self, filename: str) -> str:
         _LOGGER.debug(f"Asking content for file {filename}")
+        filename = os.fspath(filename)
         request = JSONRPC20Request(
             method="ReadFile",
             params=[

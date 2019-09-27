@@ -33,10 +33,14 @@ from jinja2 import Template, PackageLoader, Environment
 
 from .jsonrpc import AutorestAPI
 
+from .common.code_namer import CodeNamer
 from .models.codemodel import CodeModel
 from .models.compositetype import CompositeType
+from .models.operation_group import OperationGroup
 from .serializers.genericserializer import GenericSerializer
 from .serializers.python3serializer import Python3Serializer
+from .serializers.import_serializer import FileImportSerializer
+
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -48,10 +52,11 @@ class CodeGenerator:
     def process(self) -> bool:
         # List the input file, should be only one
         inputs = self._autorestapi.list_inputs()
-        _LOGGER.info(f"Inputs: {inputs}")
-        filename = inputs[0]
-        file_content = self._autorestapi.read_file(filename)
-        self._autorestapi.write_file("received_yaml.yaml", file_content)
+        _LOGGER.info(f"Possible Inputs: {inputs}")
+        if "code-model-v4-no-tags.yaml" not in inputs:
+            raise ValueError("code-model-v4-no-tags.yaml must be a possible input")
+
+        file_content = self._autorestapi.read_file("code-model-v4-no-tags.yaml")
 
         env = Environment(
             loader=PackageLoader('autorest', 'templates'),
@@ -81,10 +86,31 @@ class CodeGenerator:
 
         python3_serializer = Python3Serializer(code_model=code_model)
         python3_serializer.serialize()
+
+        operation_groups = [OperationGroup.from_yaml(op_group) for op_group in yaml_code_model['operationGroups']]
+
+        # Get my namespace
+        namespace = self._autorestapi.get_value("namespace")
+        _LOGGER.debug("Namespace parameter was %s", namespace)
+        if not namespace:
+            namespace = CodeNamer.to_python_case(yaml_code_model["info"]["title"])
+        namespace = Path(*[ns_part for ns_part in namespace.split(".")])
+
+        template = env.get_template("operations_container.py.jinja2")
+        for operation_group in operation_groups:
+            operation_group_content = template.render(
+                operation_group=operation_group,
+                imports=FileImportSerializer(operation_group.imports())
+            )
+            self._autorestapi.write_file(
+                namespace / Path("operations") / Path(f"{operation_group.name}_operation_group.py"),
+                operation_group_content
+            )
+
         # Write it
-        self._autorestapi.write_file("service_client.py", generic_serializer.service_client_file())
-        self._autorestapi.write_file("models.py", generic_serializer.model_file())
-        self._autorestapi.write_file("models_py3.py", python3_serializer.model_file())
+        self._autorestapi.write_file(namespace / Path("service_client.py"), generic_serializer.service_client_file())
+        self._autorestapi.write_file(namespace / Path("models") / Path("_models.py"), generic_serializer.model_file())
+        self._autorestapi.write_file(namespace / Path("models") / Path("_models_py3.py"), python3_serializer.model_file())
         return True
 
 def main(yaml_model_file):

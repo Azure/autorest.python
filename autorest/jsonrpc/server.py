@@ -23,7 +23,9 @@
 # IN THE SOFTWARE.
 #
 # --------------------------------------------------------------------------
+import os
 import logging
+import sys
 
 from jsonrpc import dispatcher, JSONRPCResponseManager
 
@@ -46,14 +48,27 @@ def Process(plugin_name, session_id):
     stdstream_connection = StdStreamAutorestAPI(session_id)
     code_generator = CodeGenerator(stdstream_connection)
 
-    return code_generator.process()
+    try:
+        return code_generator.process()
+    except Exception as err:
+        _LOGGER.exception("Unable to process autorest message")
 
 
 def main():
     logging.basicConfig(
-        level=logging.DEBUG,
+        level=logging.INFO,
+        #stream=sys.stderr,
         filename="autorest_python.log"
     )
+
+    if os.environ.get("AUTOREST_PYTHON_ATTACH_VSCODE_DEBUG", False):
+        import ptvsd
+
+        # 5678 is the default attach port in the VS Code debug configurations
+        print("Waiting for debugger attach")
+        ptvsd.enable_attach(address=('localhost', 5678), redirect_output=True)
+        ptvsd.wait_for_attach()
+        breakpoint()
 
     _LOGGER.info("Starting JSON RPC server")
 
