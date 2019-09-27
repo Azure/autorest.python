@@ -24,6 +24,7 @@
 #
 # --------------------------------------------------------------------------
 import json
+import os
 import logging
 from pathlib import Path
 import sys
@@ -76,6 +77,7 @@ class StdStreamAutorestAPI(AutorestAPI):
 
     def write_file(self, filename: str, file_content: str) -> None:
         _LOGGER.debug(f"Writing a file: {filename}")
+        filename = os.fspath(filename)
         request = JSONRPC20Request(
             method="WriteFile",
             params=[
@@ -90,6 +92,7 @@ class StdStreamAutorestAPI(AutorestAPI):
 
     def read_file(self, filename: str) -> str:
         _LOGGER.debug(f"Asking content for file {filename}")
+        filename = os.fspath(filename)
         request = JSONRPC20Request(
             method="ReadFile",
             params=[
