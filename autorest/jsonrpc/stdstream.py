@@ -53,7 +53,8 @@ def read_message(stream = sys.stdin):
     # Read the right number of bytes
     _LOGGER.info("Trying to read the message")
     message = stream.read(bytes_size)
-    _LOGGER.info(f"Read {message}")
+    _LOGGER.info("Received a %d bytes message (push to DEBUG to see full message)", len(message))
+    _LOGGER.debug("Read %s", message)
 
     return message
 

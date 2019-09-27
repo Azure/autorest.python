@@ -49,9 +49,11 @@ class CodeGenerator:
     def process(self) -> bool:
         # List the input file, should be only one
         inputs = self._autorestapi.list_inputs()
-        _LOGGER.info(f"Inputs: {inputs}")
-        filename = inputs[0]
-        file_content = self._autorestapi.read_file(filename)
+        _LOGGER.info(f"Possible Inputs: {inputs}")
+        if "code-model-v4-no-tags.yaml" not in inputs:
+            raise ValueError("code-model-v4-no-tags.yaml must be a possible input")
+
+        file_content = self._autorestapi.read_file("code-model-v4-no-tags.yaml")
 
         env = Environment(
             loader=PackageLoader('autorest', 'templates'),
