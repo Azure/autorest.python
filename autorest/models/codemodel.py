@@ -51,7 +51,8 @@ class CodeModel:
             sorted_schemas.extend(ancestors)
         self.schemas = sorted_schemas
 
-    def add_inheritance_to_models(self, yaml_data) -> None:
-        for child in yaml_data:
-            child_composite_type, parent_name = next(s for s in self.schemas if child['allOf'][0] == s.name)
-            child_composite_type.base_model = next(s for s in self.schemas if child['allOf'][1] == s.name)
+    def add_inheritance_to_models(self) -> None:
+        for schema in self.schemas:
+            if schema.base_model:
+                schema.base_model = next(s for s in self.schemas if s.name == schema.base_model)
+

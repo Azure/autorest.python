@@ -1,4 +1,4 @@
-from ..models import CompositeType, DictionaryType, SequenceType, EnumType
+from ..models import ClassType, DictionaryType, SequenceType, EnumType
 from jinja2 import Template, PackageLoader, Environment
 
 

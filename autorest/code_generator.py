@@ -35,7 +35,7 @@ from .jsonrpc import AutorestAPI
 
 from .common.code_namer import CodeNamer
 from .models.codemodel import CodeModel
-from .models.compositetype import CompositeType
+from .models.classtype import ClassType
 from .models.operation_group import OperationGroup
 from .serializers.genericserializer import GenericSerializer
 from .serializers.python3serializer import Python3Serializer
@@ -69,17 +69,16 @@ class CodeGenerator:
 
         # Create a code model
         code_model = CodeModel()
-        code_model.client_name = yaml_code_model["info"]["title"]
+        code_model.client_name = yaml_code_model["title"]
         # code_model.api_version = yaml_code_model["info"]["version"]
 
-        composite_types = [d for d in yaml_code_model['schemas']['objects']]
-        child_composite_types = [c for c in yaml_code_model['schemas']['ands']]
-        code_model.schemas = []
+        classes = [d for d in yaml_code_model['definitions']]
         seen_names = set()
-        # only adds a CompositeType to the list of schemas if we have not seen the name of the CompositeType yet
-        code_model.schemas = [CompositeType.from_yaml(s, child_composite_types=child_composite_types)
-                            for s in composite_types if s['language']['default']['name'] not in seen_names and
-                            not seen_names.add(s['language']['default']['name'])]
+        # only adds a ClassType to the list of schemas if we have not seen the name of the ClassTypes yet
+        code_model.schemas = [ClassType.from_yaml(name=s, yaml_data=yaml_code_model['definitions'][s])
+                                for s in classes if s not in seen_names and
+                                yaml_code_model['definitions'][s]['type'] == 'object' and
+                                not seen_names.add(s)]
         code_model.sort_schemas()
 
         generic_serializer = GenericSerializer(code_model=code_model)

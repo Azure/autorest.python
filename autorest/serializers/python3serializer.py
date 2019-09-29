@@ -1,6 +1,6 @@
 from .baseserializer import BaseSerializer
 from jinja2 import Template, PackageLoader, Environment
-from ..models import CompositeType
+from ..models import ClassType
 from ..common.known_primary_types_mapping import known_primary_types_mapping
 
 
@@ -19,7 +19,7 @@ class Python3Serializer(BaseSerializer):
                 if prop in model.base_model.properties and not prop.readonly:
                     properties_to_pass.append(prop)
                 else:
-                    properties_to_initialize(prop)
+                    properties_to_initialize.append(prop)
             properties_to_pass.append("**kwargs")
             init_args.append("super({}, self).__init__({})").format(model.name, ", ".join(properties_to_pass))
         else:
@@ -37,7 +37,7 @@ class Python3Serializer(BaseSerializer):
         init_properties_declaration = []
         init_args = []
         for prop in [p for p in model.properties if not p.readonly]:
-            if isinstance(prop, CompositeType) and prop.property_type in known_primary_types_mapping.values():
+            if isinstance(prop, ClassType) and prop.property_type in known_primary_types_mapping.values():
                 if prop.required:
                     init_properties_declaration.append("{}: {}".format(prop.name, prop.property_type))
                 else:

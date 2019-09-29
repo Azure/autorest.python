@@ -1,7 +1,7 @@
-from typing import Dict
-from .modeltype import ModelType
+from typing import Any, Dict
+from .basetype import BaseType
 
-class DictionaryType(ModelType):
+class DictionaryType(BaseType):
     def __init__(self, name, description, element_type, **kwargs):
         super(DictionaryType, self).__init__(name, description, **kwargs)
         self.element_type = element_type
@@ -11,18 +11,24 @@ class DictionaryType(ModelType):
         return "{{{}}}".format(self.element_type)
 
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, str], name: str) -> "DictionaryType":
-        required = yaml_data.get('required')
-        readonly = yaml_data.get('readOnly')
-        constant = yaml_data.get('constant')
-        description = yaml_data['schema']['description'].strip()
-        element_type = yaml_data['schema']['elementType']['type']
+    def from_yaml(cls, name: str, yaml_data: Dict[str, str], **kwargs: Any) -> "DictionaryType":
+        parameters_dict = cls._get_common_parameters(
+            name=name,
+            yaml_data=yaml_data,
+            required_list=kwargs.pop('required_list', None)
+        )
+        if yaml_data['elementType'].get('$ref'):
+            # type of value in dict is another Class
+            element_type = yaml_data['elementType']['$ref']
+        else:
+            # type of value in dict is a known type
+            element_type = yaml_data['elementType']['type']
 
         return cls(
             name=name,
-            description=description,
+            description=parameters_dict['description'],
             element_type=element_type,
-            required=required,
-            readonly=readonly,
-            constant=constant
+            required=parameters_dict['required'],
+            readonly=parameters_dict['readonly'],
+            constant=parameters_dict['constant']
         )

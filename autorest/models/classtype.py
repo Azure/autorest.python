@@ -23,21 +23,21 @@
 # IN THE SOFTWARE.
 #
 # --------------------------------------------------------------------------
-from .modeltype import ModelType
+from .basetype import BaseType
 from typing import Any, Dict, List
 from ..common.utils import to_python_type
 
 
-class CompositeType(ModelType):
-    """Represents a composite type schema ready to be serialized in Python.
+class ClassType(BaseType):
+    """Represents a class ready to be serialized in Python.
 
-    :param str name: The name of the composite type.
-    :param str description: The description of the composite type.
-    :param properties: the optional properties of the composite thpe.
+    :param str name: The name of the class.
+    :param str description: The description of the class.
+    :param properties: the optional properties of the class.
     :type properties: dict(str, str)
     """
-    def __init__(self, name: str, description: str, **kwargs: "**Any") -> "CompositeType":
-        super(CompositeType, self).__init__(name, description, **kwargs)
+    def __init__(self, name: str, description: str, **kwargs: "**Any") -> "ClassType":
+        super(ClassType, self).__init__(name, description, **kwargs)
         self.properties = kwargs.pop('properties', None)
         self.base_model = kwargs.pop('base_model', None)
         self.property_type = kwargs.pop('property_type', None)
@@ -49,72 +49,70 @@ class CompositeType(ModelType):
         return self.property_type
 
     def _get_property_type_from_yaml(yaml_data):
-        # checks to see if it's a top level CompositeType and not a property
-        if yaml_data.get('properties'):
-            return None
-        try:
-            schema_data = yaml_data['schema']
-        except:
-            raise KeyError(yaml_data)
-        property_type = schema_data['type']
-        # all of is inheritance
+        property_type = yaml_data['type']
         if property_type == 'object':
             # TODO: make sure pure objects don't have $key entry
-            if schema_data.get('$key'):
+            if yaml_data.get('$ref'):
                 # property is of a class in our yaml file
-                return schema_data['$key']
+                return yaml_data['$ref']
             # if not, the property's type is just object
-            return property_type
         return to_python_type(property_type)
 
-    """Returns the properties of a CompositeType if they exist.
+    """Returns the properties of a ClassType if they exist.
 
     :param yaml_data: a dictionary object representative of the yaml schema
-    for the composite type.
+    for the class type.
     :type yaml_data: dict(str, str)
-    :returns: a list of the properties of the composite type
+    :returns: a list of the properties of the class type
     :rtype: list[~autorest.models.Property or
      ~autorest.models.DictionaryType or
      ~autorest.models.SequenceType or
      ~autorest.models.EnumType]
     """
     @classmethod
-    def _create_properties(cls, yaml_data: Dict[str, str]) -> List["Property"]:
+    def _create_properties(cls, yaml_data: Dict[str, str], required_list: List[str]) -> List["Property"]:
         properties = []
-        for prop in yaml_data['properties']:
+        for name in yaml_data['properties']:
             from . import build_property
-            properties.append(build_property(prop))
+            properties.append(build_property(
+                name=name,
+                prop=yaml_data['properties'][name],
+                required_list=required_list
+            ))
         return properties
 
-    """Returns a CompositeType from the dict object constructed from a yaml file.
+    """Returns a ClassType from the dict object constructed from a yaml file.
 
-    :param str name: The name of the composite type.
-    :param yaml_data: A representation of the schema of a composite type from a yaml file.
+    :param str name: The name of the class type.
+    :param yaml_data: A representation of the schema of a class type from a yaml file.
     :type yaml_data: dict(str, str)
-    :returns: A CompositeType.
-    :rtype: ~autorest.models.schema.CompositeType
+    :returns: A ClassType.
+    :rtype: ~autorest.models.schema.ClassType
     """
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, str], **kwargs) -> "CompositeType":
-        # Returns a CompositeType from a yaml file
-        name = kwargs.pop('name', None)
-        if not name:
-            name = yaml_data['language']['default']['name']
-        description = yaml_data['description'].strip() or (name + ".")
-        if description == "MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA":
-            description = name + "."
-        properties = cls._create_properties(yaml_data) if yaml_data.get('properties') else None
-        required = yaml_data.get('required')
-        readonly = yaml_data.get('readOnly')
-        constant = yaml_data.get('constant')
-        property_type = cls._get_property_type_from_yaml(yaml_data)
+    def from_yaml(cls, name: str, yaml_data: Dict[str, str], **kwargs) -> "ClassType":
+        # Returns a ClassType from a yaml file
+        required_list = kwargs.pop('required_list', None)
+        parameters_dict = cls._get_common_parameters(
+            name=name,
+            yaml_data=yaml_data,
+            required_list=required_list
+        )
+        if yaml_data.get('properties'):
+            # A class to be serialized
+            properties = cls._create_properties(yaml_data=yaml_data, required_list=required_list)
+            property_type = None
+        else:
+            # A property to be serialized
+            properties = None
+            property_type = cls._get_property_type_from_yaml(yaml_data=yaml_data)
         return cls(
             name=name,
-            description=description,
+            description=parameters_dict['description'],
             properties=properties,
-            base_model=None,
+            base_model=yaml_data['allOf'][0] if yaml_data.get('allOf') else None,
             property_type=property_type,
-            required=required,
-            readonly=readonly,
-            constant=constant
+            required=parameters_dict['required'],
+            readonly=parameters_dict['readonly'],
+            constant=parameters_dict['constant']
         )
