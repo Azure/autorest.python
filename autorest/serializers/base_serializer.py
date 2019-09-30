@@ -24,19 +24,23 @@ class BaseSerializer:
             param_doc_string += " " + description
 
         # building the type line of the property doc
-        type_doc_string = ":type {}: ".format(prop.name)
-        if isinstance(prop, DictionarySchema):
-            type_doc_string += "dict[str, {}]".format(prop.element_type)
-        elif isinstance(prop, ListSchema):
-            type_doc_string += "list[{}]".format(prop.element_type)
-        elif isinstance(prop, EnumSchema):
-            type_doc_string += "str or {}".format(prop.enum_type)
-        elif isinstance(prop, ObjectSchema):
-            type_doc_string += prop.schema_type
-        elif isinstance(prop, PrimitiveSchema):
-            type_doc_string += prop.schema_type
+        try:
+            type_doc_string = ":type {}: ".format(prop.name)
+            if isinstance(prop, DictionarySchema):
+                type_doc_string += "dict[str, {}]".format(prop.element_type)
+            elif isinstance(prop, ListSchema):
+                type_doc_string += "list[{}]".format(prop.element_type)
+            elif isinstance(prop, EnumSchema):
+                type_doc_string += "str or {}".format(prop.enum_type)
+            elif isinstance(prop, ObjectSchema):
+                type_doc_string += prop.schema_type
+            elif isinstance(prop, PrimitiveSchema):
+                type_doc_string += prop.schema_type
+            prop.documentation_string = param_doc_string + "\n\t" + type_doc_string
+        except:
+            raise ValueError("{} {}".format(prop.name, prop.description))
 
-        prop.documentation_string = param_doc_string + "\n\t" + type_doc_string
+
 
 
     def serialize(self):
@@ -56,9 +60,10 @@ class BaseSerializer:
         self._model_file = template.render(code_model=self.code_model)
 
 
+    @property
     def service_client_file(self):
         return self._service_client_file
 
-
+    @property
     def model_file(self):
         return self._model_file

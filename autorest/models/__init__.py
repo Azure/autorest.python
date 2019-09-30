@@ -18,35 +18,15 @@ __all__ = [
 ]
 
 # TODO: should this be in models.__init__ or CodeModel
-def build_schema(name, yaml_data, required=None):
-    schema_type = yaml_data.get('type')
+def build_schema(name, yaml_data):
+    schema_type = yaml_data['schema']['type'] if yaml_data.get('schema') else yaml_data['type']
+
     if schema_type == 'array':
-        return ListSchema.from_yaml(
-            name=name,
-            yaml_data=yaml_data,
-            required=required
-        )
+        return ListSchema.from_yaml(name=name, yaml_data=yaml_data)
     if schema_type == 'dictionary':
-        return DictionarySchema.from_yaml(
-            name=name,
-            yaml_data=yaml_data,
-            required=required
-        )
+        return DictionarySchema.from_yaml(name=name, yaml_data=yaml_data)
     if schema_type in ('sealed-choice', 'choice'):
-        return EnumSchema.from_yaml(
-            name=name,
-            yaml_data=yaml_data,
-            required=required
-        )
+        return EnumSchema.from_yaml(name=name, yaml_data=yaml_data)
     if schema_type == 'object':
-        return ObjectSchema.from_yaml(
-            name=name,
-            yaml_data=yaml_data,
-            required=required
-        )
-    return get_primitive_schema(
-        name=name,
-        yaml_data=yaml_data,
-        required=required,
-        schema_type=schema_type
-    )
+        return ObjectSchema.from_yaml(name=name, yaml_data=yaml_data)
+    return get_primitive_schema(name=name, yaml_data=yaml_data)

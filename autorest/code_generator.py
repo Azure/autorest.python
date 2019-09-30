@@ -69,16 +69,14 @@ class CodeGenerator:
 
         # Create a code model
         code_model = CodeModel()
-        code_model.client_name = yaml_code_model["title"]
+        code_model.client_name = yaml_code_model['info']['title']
         # code_model.api_version = yaml_code_model["info"]["version"]
 
-        classes = [d for d in yaml_code_model['definitions']]
+        classes = [d for d in yaml_code_model['schemas']['objects']]
         seen_names = set()
         # only adds a ClassType to the list of schemas if we have not seen the name of the ClassTypes yet
-        code_model.schemas = [build_schema(name=s, yaml_data=yaml_code_model['definitions'][s])
-                                    for s in classes if s not in seen_names and
-                                    yaml_code_model['definitions'][s].get('type') == 'object' and
-                                    not seen_names.add(s)]
+        code_model.schemas = [build_schema(name=s['language']['default']['name'], yaml_data=s) for s in classes]
+        # code_model.schemas = [build_schema(name=s, yaml_data=yaml_code_model['schemas']['objects'][s]) for s in classes]
         # skip this for now, yaml does not seem to be correctly parsing ref
         # code_model.sort_schemas()
         generic_serializer = GenericSerializer(code_model=code_model)
@@ -108,9 +106,9 @@ class CodeGenerator:
             )
 
         # Write it
-        self._autorestapi.write_file(namespace / Path("service_client.py"), generic_serializer.service_client_file())
-        self._autorestapi.write_file(namespace / Path("models") / Path("_models.py"), generic_serializer.model_file())
-        self._autorestapi.write_file(namespace / Path("models") / Path("_models_py3.py"), python3_serializer.model_file())
+        self._autorestapi.write_file(namespace / Path("service_client.py"), generic_serializer.service_client_file)
+        self._autorestapi.write_file(namespace / Path("models") / Path("_models.py"), generic_serializer.model_file)
+        self._autorestapi.write_file(namespace / Path("models") / Path("_models_py3.py"), python3_serializer.model_file)
         return True
 
 def main(yaml_model_file):

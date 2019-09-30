@@ -50,16 +50,6 @@ class ObjectSchema(BaseSchema):
     def get_attribute_map_type(self) -> str:
         return self.schema_type
 
-    def _get_property_type_from_yaml(yaml_data):
-        schema_type = yaml_data['type']
-        if schema_type == 'object':
-            # TODO: make sure pure objects don't have $key entry
-            if yaml_data.get('$ref'):
-                # property is of a class in our yaml file
-                return yaml_data['$ref']
-            # if not, the property's type is just object
-        return to_python_type(schema_type)
-
     """Returns the properties of a ClassType if they exist.
 
     :param yaml_data: a dictionary object representative of the yaml schema
@@ -72,14 +62,13 @@ class ObjectSchema(BaseSchema):
      ~autorest.models.EnumType]
     """
     @classmethod
-    def _create_properties(cls, yaml_data: Dict[str, str], required_list: List[str]) -> List["Property"]:
+    def _create_properties(cls, yaml_data: Dict[str, str]) -> List["Property"]:
         properties = []
-        for name in yaml_data['properties']:
+        for prop in yaml_data:
             from . import build_schema
             properties.append(build_schema(
-                name=name,
-                yaml_data=yaml_data['properties'][name],
-                required=(required_list and name in required_list)
+                name=prop['serializedName'],
+                yaml_data=prop
             ))
         return properties
 
@@ -96,17 +85,14 @@ class ObjectSchema(BaseSchema):
         # Returns a ClassType from a yaml file
         common_parameters_dict = cls._get_common_parameters(
             name=name,
-            yaml_data=yaml_data,
-            required=kwargs.pop('required', None)
+            yaml_data=yaml_data
         )
+        schema_type = yaml_data['schema']['type'] if yaml_data.get('schema') else yaml_data['type']
         if yaml_data.get('properties'):
-            # A class to be serialized
-            properties = cls._create_properties(yaml_data=yaml_data, required_list=yaml_data.get('required'))
-            schema_type = 'object'
+            # A class with properties to be serialized
+            properties = cls._create_properties(yaml_data=yaml_data['properties'])
         else:
-            # A property to be serialized
-            properties = None
-            schema_type = cls._get_property_type_from_yaml(yaml_data=yaml_data)
+            properties = []
         return cls(
             name=name,
             description=common_parameters_dict['description'],

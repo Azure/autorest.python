@@ -8,11 +8,10 @@ class PrimitiveSchema(BaseSchema):
         self.schema_type = to_python_type(schema_type)
 
     @classmethod
-    def from_yaml(cls, name, yaml_data, schema_type, required):
+    def from_yaml(cls, name, yaml_data, schema_type):
         common_parameters_dict = cls._get_common_parameters(
             name=name,
-            yaml_data=yaml_data,
-            required=required
+            yaml_data=yaml_data
         )
         return cls(
             name=name,
@@ -23,11 +22,14 @@ class PrimitiveSchema(BaseSchema):
             constant=common_parameters_dict['constant']
         )
 
+    def get_attribute_map_type(self):
+        return self.schema_type
+
 
 class NumberSchema(PrimitiveSchema):
-    def __init__(self, name, description, schema_type, **kwargs):
+    def __init__(self, name, description, schema_type, precision, **kwargs):
         super(NumberSchema, self).__init__(name, description, schema_type)
-        self.precision = kwargs.pop('precision', None)
+        self.precision = precision
         self.multiple_of = kwargs.pop('multiple_of', None)
         self.maximum = kwargs.pop('maximum', None)
         self.minimum = kwargs.pop('minimum', None)
@@ -35,25 +37,25 @@ class NumberSchema(PrimitiveSchema):
         self.exclusive_minimum = kwargs.pop('exclusive_minimum', None)
 
     @classmethod
-    def from_yaml(cls, name, yaml_data, schema_type, required):
+    def from_yaml(cls, name, yaml_data, schema_type):
         common_parameters_dict = cls._get_common_parameters(
             name=name,
-            yaml_data=yaml_data,
-            required=required
+            yaml_data=yaml_data
         )
+        schema_data = yaml_data['schema']
         return cls(
             name=name,
             description=common_parameters_dict['description'],
             schema_type=schema_type,
-            precision=yaml_data.get('precision'),
+            precision=schema_data['precision'],
             required=common_parameters_dict['required'],
             readonly=common_parameters_dict['readonly'],
             constant=common_parameters_dict['constant'],
-            multiple_of = yaml_data.get('multipleOf'),
-            maximum=yaml_data.get('maximum'),
-            minimum=yaml_data.get('minimum'),
-            exclusive_maximum=yaml_data.get('exclusiveMaximum'),
-            exclusive_minimum=yaml_data.get('exclusiveMinimum')
+            multiple_of = schema_data.get('multipleOf'),
+            maximum=schema_data.get('maximum'),
+            minimum=schema_data.get('minimum'),
+            exclusive_maximum=schema_data.get('exclusiveMaximum'),
+            exclusive_minimum=schema_data.get('exclusiveMinimum')
         )
 
 class StringSchema(PrimitiveSchema):
@@ -64,12 +66,12 @@ class StringSchema(PrimitiveSchema):
         self.pattern = kwargs.pop('pattern', None)
 
     @classmethod
-    def from_yaml(cls, name, yaml_data, required):
+    def from_yaml(cls, name, yaml_data):
         common_parameters_dict = cls._get_common_parameters(
             name=name,
-            yaml_data=yaml_data,
-            required=required
+            yaml_data=yaml_data
         )
+        schema_data = yaml_data['schema']
         return cls(
             name=name,
             description=common_parameters_dict['description'],
@@ -77,33 +79,33 @@ class StringSchema(PrimitiveSchema):
             required=common_parameters_dict['required'],
             readonly=common_parameters_dict['readonly'],
             constant=common_parameters_dict['constant'],
-            max_length=yaml_data.get('maxLength'),
-            min_length=yaml_data.get('minLength'),
-            pattern=yaml_data.get('pattern')
+            max_length=schema_data.get('maxLength'),
+            min_length=schema_data.get('minLength'),
+            pattern=schema_data.get('pattern')
         )
 
 
 class DatetimeSchema(PrimitiveSchema):
-    def __init__(self, name, description, schema_type, **kwargs):
+    def __init__(self, name, description, schema_type, format, **kwargs):
         super(DatetimeSchema, self).__init__(name, description, schema_type, kwargs)
-        self.format = kwargs.pop(format, None)
+        self.format = format
 
     class Formats(str, Enum):
         datetime = "date-time"
         rfc1123 = "date-time-rfc1123"
 
     @classmethod
-    def from_yaml(cls, name, yaml_data, schema_type, required):
+    def from_yaml(cls, name, yaml_data, schema_type):
         common_parameters_dict = cls._get_common_parameters(
             name=name,
-            yaml_data=yaml_data,
-            required=required
+            yaml_data=yaml_data
         )
+        schema_data = yaml_data['schema']
         return cls(
             name=name,
             description=common_parameters_dict['description'],
             schema_type=schema_type,
-            format=cls.Formats(yaml_data['format']) if yaml_data.get('format') else None,
+            format=cls.Formats(schema_data['format']),
             required=common_parameters_dict['required'],
             readonly=common_parameters_dict['readonly'],
             constant=common_parameters_dict['constant'],
@@ -120,52 +122,48 @@ class ByteArraySchema(PrimitiveSchema):
         byte = "byte"
 
     @classmethod
-    def from_yaml(cls, name, yaml_data, required):
+    def from_yaml(cls, name, yaml_data):
         common_parameters_dict = cls._get_common_parameters(
             name=name,
-            yaml_data=yaml_data,
-            required=required
+            yaml_data=yaml_data
         )
+        schema_data = yaml_data['schema']
         return cls(
             name=name,
             description=common_parameters_dict['description'],
             schema_type='byte-array',
-            format=cls.Formats(yaml_data['format']),
+            format=cls.Formats(schema_data['format']),
             required=common_parameters_dict['required'],
             readonly=common_parameters_dict['readonly'],
             constant=common_parameters_dict['constant'],
         )
 
-def get_primitive_schema(name, yaml_data, schema_type, required):
+def get_primitive_schema(name, yaml_data):
+    schema_type = yaml_data['schema']['type']
     if schema_type in ('integer', 'number'):
         return NumberSchema.from_yaml(
             name=name,
             yaml_data=yaml_data,
-            schema_type=schema_type,
-            required=required
+            schema_type=schema_type
         )
     if schema_type == 'string':
         return StringSchema.from_yaml(
             name=name,
-            yaml_data=yaml_data,
-            required=required
+            yaml_data=yaml_data
         )
     if schema_type in ('date', 'date-time', 'unixtime'):
         return DatetimeSchema.from_yaml(
             name=name,
             yaml_data=yaml_data,
-            schema_type=schema_type,
-            required=required
+            schema_type=schema_type
         )
     if schema_type  == 'byte-array':
         return ByteArraySchema.from_yaml(
             name=name,
-            yaml_data=yaml_data,
-            required=required
+            yaml_data=yaml_data
         )
     return PrimitiveSchema.from_yaml(
         name=name,
         yaml_data=yaml_data,
-        schema_type=schema_type,
-        required=required
+        schema_type=schema_type
     )

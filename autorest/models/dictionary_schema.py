@@ -14,20 +14,12 @@ class DictionarySchema(BaseSchema):
     def from_yaml(cls, name: str, yaml_data: Dict[str, str], **kwargs: Any) -> "DictionarySchema":
         common_parameters_dict = cls._get_common_parameters(
             name=name,
-            yaml_data=yaml_data,
-            required=kwargs.pop('required', None)
+            yaml_data=yaml_data
         )
-        if yaml_data['elementType'].get('$ref'):
-            # type of value in dict is another Class
-            element_type = yaml_data['elementType']['$ref']
-        else:
-            # type of value in dict is a known type
-            element_type = yaml_data['elementType']['type']
-
         return cls(
             name=name,
             description=common_parameters_dict['description'],
-            element_type=element_type,
+            element_type=yaml_data['schema']['elementType']['type'],
             required=common_parameters_dict['required'],
             readonly=common_parameters_dict['readonly'],
             constant=common_parameters_dict['constant']

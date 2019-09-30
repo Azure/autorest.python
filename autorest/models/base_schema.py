@@ -32,9 +32,9 @@ class BaseSchema:
         return doc_string
 
     @classmethod
-    def _get_common_parameters(self, name, yaml_data, **kwargs) -> Dict[str, Any]:
+    def _get_common_parameters(self, name, yaml_data) -> Dict[str, Any]:
         return_dict = {}
-        return_dict['required'] = kwargs.pop('required', None)
+        return_dict['required'] = yaml_data.get('required')
         return_dict['readonly'] = yaml_data.get('readOnly')
         return_dict['constant'] = yaml_data.get('constant')
         return_dict['description'] = (yaml_data['description'].strip()

@@ -7,17 +7,15 @@ class GenericSerializer(BaseSerializer):
 
 
     def _format_model_for_file(self, model):
-        if model.properties:
-            for prop in model.properties:
-                self._format_property_doc_string_for_file(prop)
+        for prop in model.properties:
+            self._format_property_doc_string_for_file(prop)
         model.init_line = "def __init__(self, **kwargs):"
         init_args = []
         init_args.append("super({}, self).__init__(**kwargs)".format(model.name))
 
-        if model.properties:
-            for prop in model.properties:
-                if prop.readonly:
-                    init_args.append("self.{} = None".format(prop.name))
-                else:
-                    init_args.append("self.{} = kwargs.get('{}', None)".format(prop.name, prop.name))
+        for prop in model.properties:
+            if prop.readonly:
+                init_args.append("self.{} = None".format(prop.name))
+            else:
+                init_args.append("self.{} = kwargs.get('{}', None)".format(prop.name, prop.name))
         model.init_args = init_args

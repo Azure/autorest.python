@@ -35,8 +35,7 @@ class EnumSchema(BaseSchema):
     def from_yaml(cls, name: str, yaml_data: Dict[str, str], **kwargs: Any) -> "EnumType":
         common_parameters_dict = cls._get_common_parameters(
             name=name,
-            yaml_data=yaml_data,
-            required_list=kwargs.pop('required_list', None)
+            yaml_data=yaml_data
         )
         enum_type = yaml_data['choiceType']
 

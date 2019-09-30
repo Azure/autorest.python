@@ -13,4 +13,4 @@ def to_python_type(original_type):
     except:
         # one entry in the swagger has three types under type[]
         # https://github.com/Azure/perks/blob/master/codemodel/.resources/all-in-one/json/code-model.json#L882
-        return None
+        return "string"

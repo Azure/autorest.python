@@ -14,14 +14,14 @@ class Python3Serializer(BaseSerializer):
         if model.base_model:
             properties_to_initialize = []
             properties_to_pass = []
-            super_initialize = "super({}, self).__init__()"
-            for prop in model.properties:
-                if prop in model.base_model.properties and not prop.readonly:
-                    properties_to_pass.append(prop)
-                else:
-                    properties_to_initialize.append(prop)
+            super_initialize = "super({}, self).__init__()".format(model.name)
+            # for prop in model.properties:
+            #     if prop in model.base_model.properties and not prop.readonly:
+            #         properties_to_pass.append(prop)
+            #     else:
+            #         properties_to_initialize.append(prop)
             properties_to_pass.append("**kwargs")
-            init_args.append("super({}, self).__init__({})").format(model.name, ", ".join(properties_to_pass))
+            init_args.append("super({}, self).__init__({})".format(model.name, ", ".join(properties_to_pass)))
         else:
             init_args.append("super({}, self).__init__(**kwargs)".format(model.name))
             properties_to_initialize = model.properties
