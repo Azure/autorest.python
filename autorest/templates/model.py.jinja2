@@ -8,7 +8,7 @@ class {{ model.name }}(Model):
     {%- if (model.properties | selectattr('readonly') | first) is defined %}
     {{ "Variables are only populated by the server, and will be ignored when sending a request.\n" }}
     {%- endif %}
-    {%- if (model.properties | selectattr('readonly') | first) is defined %}
+    {%- if (model.properties | selectattr('required') | first) is defined %}
     {{ "All required parameters must be populated in order to send to Azure.\n" }}
     {%- endif %}
 
@@ -33,7 +33,7 @@ class {{ model.name }}(Model):
     _attribute_map = {
         {%- if model.properties != None %}
             {%- for p in model.properties %}
-        '{{ p.name }}': {'key': '{{ p.name }}', 'type': '{{ p.get_attribute_map_type()}}'}
+        '{{ p.name }}': {'key': '{{ p.name }}', 'type': '{{ p.get_attribute_map_type()}}'},
             {%- endfor %}
         {%- else%}
         {%- endif %}

@@ -42,7 +42,6 @@ class CodeModel:
             ancestors.append(schema)
             while current.base_model:
                 parent = current.base_model
-                raise ValueError(parent)
                 if parent.name in seen_schemas:
                     break
                 ancestors.insert(0, parent)
@@ -52,7 +51,8 @@ class CodeModel:
             sorted_schemas.extend(ancestors)
         self.schemas = sorted_schemas
 
-    def add_inheritance_to_models(self) -> None:
-        for schema in self.schemas:
-            if schema.base_model:
-                schema.base_model = next(s for s in self.schemas if s.name == schema.base_model)
+    def add_inheritance_to_models(self, and_schemas) -> None:
+        for and_schema in and_schemas:
+            if and_schema.get('allOf') and len(and_schema['allOf']) > 1 and and_schema['allOf'][0]['$key'] != and_schema['allOf'][1]['$key']:
+                schema = [s for s in self.schemas if s.name == and_schema['language']['default']['name']][0]
+                schema.base_model = [s for s in self.schemas if s.name == and_schema['allOf'][1]['language']['default']['name']][0]
