@@ -34,11 +34,13 @@ from jinja2 import Template, PackageLoader, Environment
 from .jsonrpc import AutorestAPI
 
 from .common.code_namer import CodeNamer
-from .models.codemodel import CodeModel
-from .models.compositetype import CompositeType
+from .models.code_model import CodeModel
+from .models import build_schema
 from .models.operation_group import OperationGroup
-
+from .serializers.generic_serializer import GenericSerializer
+from .serializers.python3_serializer import Python3Serializer
 from .serializers.import_serializer import FileImportSerializer
+
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -50,11 +52,12 @@ class CodeGenerator:
     def process(self) -> bool:
         # List the input file, should be only one
         inputs = self._autorestapi.list_inputs()
-        _LOGGER.info(f"Possible Inputs: {inputs}")
+        _LOGGER.info("Possible Inputs: %s", inputs)
         if "code-model-v4-no-tags.yaml" not in inputs:
             raise ValueError("code-model-v4-no-tags.yaml must be a possible input")
 
         file_content = self._autorestapi.read_file("code-model-v4-no-tags.yaml")
+        self._autorestapi.write_file("code-model-v4-no-tags.yaml", file_content)
 
         env = Environment(
             loader=PackageLoader('autorest', 'templates'),
@@ -66,15 +69,21 @@ class CodeGenerator:
 
         # Create a code model
         code_model = CodeModel()
-        code_model.client_name = yaml_code_model["info"]["title"]
+        code_model.client_name = yaml_code_model['info']['title']
         # code_model.api_version = yaml_code_model["info"]["version"]
 
-        composite_types = [d for d in yaml_code_model['schemas']['objects']]
-        code_model.schemas = []
-        for schema in composite_types:
-            code_model.schemas.append(CompositeType.from_yaml(schema))
-        # sorts schemas based on inheritance
-        code_model.sort_schemas()
+        classes = [d for d in yaml_code_model['schemas']['objects']]
+        seen_names = set()
+        # only adds a ClassType to the list of schemas if we have not seen the name of the ClassTypes yet
+        code_model.schemas = [build_schema(name=s['language']['default']['name'], yaml_data=s) for s in classes]
+        # code_model.schemas = [build_schema(name=s, yaml_data=yaml_code_model['schemas']['objects'][s]) for s in classes]
+        # skip this for now, yaml does not seem to be correctly parsing ref
+        # code_model.sort_schemas()
+        generic_serializer = GenericSerializer(code_model=code_model)
+        generic_serializer.serialize()
+
+        python3_serializer = Python3Serializer(code_model=code_model)
+        python3_serializer.serialize()
 
         operation_groups = [OperationGroup.from_yaml(op_group) for op_group in yaml_code_model['operationGroups']]
 
@@ -84,13 +93,6 @@ class CodeGenerator:
         if not namespace:
             namespace = CodeNamer.to_python_case(yaml_code_model["info"]["title"])
         namespace = Path(*[ns_part for ns_part in namespace.split(".")])
-
-        # Generate the service client content
-        template = env.get_template("service_client.py.jinja2")
-        service_client = template.render(code_model=code_model)
-
-        template = env.get_template("model_container.py.jinja2")
-        model_file = template.render(code_model=code_model)
 
         template = env.get_template("operations_container.py.jinja2")
         for operation_group in operation_groups:
@@ -104,8 +106,9 @@ class CodeGenerator:
             )
 
         # Write it
-        self._autorestapi.write_file(namespace / Path("service_client.py"), service_client)
-        self._autorestapi.write_file(namespace / Path("models") / Path("_models.py"), model_file)
+        self._autorestapi.write_file(namespace / Path("service_client.py"), generic_serializer.service_client_file)
+        self._autorestapi.write_file(namespace / Path("models") / Path("_models.py"), generic_serializer.model_file)
+        self._autorestapi.write_file(namespace / Path("models") / Path("_models_py3.py"), python3_serializer.model_file)
         return True
 
 def main(yaml_model_file):

@@ -1,10 +1,15 @@
-class ModelType:
+from typing import Any, Dict
+
+
+class BaseSchema:
     def __init__(self, name, description, **kwargs):
         self.name = name
         self.description = description
         self.required = kwargs.pop('required', False)
         self.readonly = kwargs.pop('readonly', False)
         self.constant = kwargs.pop('constant', False)
+        self.documentation_string = None
+        self.attribute_map_string = None
 
     """Constructs the documentation string for a property
 
@@ -25,3 +30,13 @@ class ModelType:
         if description:
             doc_string += " " + description
         return doc_string
+
+    @classmethod
+    def _get_common_parameters(self, name, yaml_data) -> Dict[str, Any]:
+        return_dict = {}
+        return_dict['required'] = yaml_data.get('required')
+        return_dict['readonly'] = yaml_data.get('readOnly')
+        return_dict['constant'] = yaml_data.get('constant')
+        return_dict['description'] = (yaml_data['description'].strip()
+                                      if yaml_data.get('description') else name + ".")
+        return return_dict

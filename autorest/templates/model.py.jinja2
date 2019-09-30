@@ -14,13 +14,12 @@ class {{ model.name }}(Model):
 
     {%- if model.properties != None %}
         {%- for p in model.properties %}
-    {{ p.get_property_documentation_string() }}
-    :type {{ p.name }}: {{ p.type_documentation()}}
+    {{ p.documentation_string }}
         {%- endfor %}
     {%- endif %}
-    {{'\"\"\"\n'}}
-
+    {{'\"\"\"'}}
     {%- if (model.properties | selectattr('required' or 'readonly') | first) is defined %}
+
     _validation = {
         {%- for p in model.properties | selectattr('readonly')%}
         '{{ p.name }}': {'readonly': True},
@@ -30,26 +29,20 @@ class {{ model.name }}(Model):
         {%- endfor %}
     }
     {%- endif %}
+
     _attribute_map = {
         {%- if model.properties != None %}
             {%- for p in model.properties %}
         '{{ p.name }}': {'key': '{{ p.name }}', 'type': '{{ p.get_attribute_map_type()}}'}
             {%- endfor %}
-        {% else%}
+        {%- else%}
         {%- endif %}
     }
 
-    def __init__(self, **kwargs):
-        super({{ model.name }}, self).__init__(**kwargs)
-        {%- if model.properties != None %}
-            {%- for p in model.properties %}
-                {%- if p.required %}
-        self.{{ p.name }} = None
-                {%- else %}
-        self.{{ p.name }} = kwargs.get('{{ p.name }}', None)
-                {%- endif %}
-            {%- endfor %}
-        {%- endif %}
+    {{ model.init_line }}
+    {%- for arg in model.init_args %}
+        {{ arg }}
+    {%- endfor %}
 
     {%- if model.is_exception %}
     class {{ model.exception_type_definition_name }}(HttpResponseError):
