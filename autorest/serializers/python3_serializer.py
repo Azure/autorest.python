@@ -1,4 +1,4 @@
-from .baseserializer import BaseSerializer
+from .base_serializer import BaseSerializer
 from jinja2 import Template, PackageLoader, Environment
 from ..models import ObjectSchema
 from ..common.known_primary_types_mapping import known_primary_types_mapping

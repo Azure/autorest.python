@@ -1,5 +1,5 @@
 from enum import Enum
-from .baseschema import BaseSchema
+from .base_schema import BaseSchema
 from ..common.utils import to_python_type
 
 class PrimitiveSchema(BaseSchema):
@@ -81,7 +81,7 @@ class StringSchema(PrimitiveSchema):
             min_length=yaml_data.get('minLength'),
             pattern=yaml_data.get('pattern')
         )
-    
+
 
 class DatetimeSchema(PrimitiveSchema):
     def __init__(self, name, description, schema_type, **kwargs):

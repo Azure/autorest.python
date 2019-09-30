@@ -23,7 +23,7 @@
 # IN THE SOFTWARE.
 #
 # --------------------------------------------------------------------------
-from .baseschema import BaseSchema
+from .base_schema import BaseSchema
 from typing import Any, Dict, List
 from ..common.utils import to_python_type
 
@@ -117,4 +117,3 @@ class ObjectSchema(BaseSchema):
             readonly=common_parameters_dict['readonly'],
             constant=common_parameters_dict['constant']
         )
-

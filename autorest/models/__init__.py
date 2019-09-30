@@ -1,10 +1,10 @@
-from .codemodel import CodeModel
-from .objectschema import ObjectSchema
-from .dictionaryschema import DictionarySchema
-from .listschema import ListSchema
-from .primitiveschemas import get_primitive_schema, PrimitiveSchema
-from .enumschema import EnumSchema
-from .baseschema import BaseSchema
+from .code_model import CodeModel
+from .object_schema import ObjectSchema
+from .dictionary_schema import DictionarySchema
+from .list_schema import ListSchema
+from .primitive_schemas import get_primitive_schema, PrimitiveSchema
+from .enum_schema import EnumSchema
+from .base_schema import BaseSchema
 from ..common.utils import to_python_case
 
 __all__ = [

@@ -56,4 +56,3 @@ class CodeModel:
         for schema in self.schemas:
             if schema.base_model:
                 schema.base_model = next(s for s in self.schemas if s.name == schema.base_model)
-

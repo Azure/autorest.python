@@ -34,11 +34,11 @@ from jinja2 import Template, PackageLoader, Environment
 from .jsonrpc import AutorestAPI
 
 from .common.code_namer import CodeNamer
-from .models.codemodel import CodeModel
+from .models.code_model import CodeModel
 from .models import build_schema
 from .models.operation_group import OperationGroup
-from .serializers.genericserializer import GenericSerializer
-from .serializers.python3serializer import Python3Serializer
+from .serializers.generic_serializer import GenericSerializer
+from .serializers.python3_serializer import Python3Serializer
 from .serializers.import_serializer import FileImportSerializer
 
 

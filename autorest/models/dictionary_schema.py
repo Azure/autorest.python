@@ -1,4 +1,4 @@
-from .baseschema import BaseSchema
+from .base_schema import BaseSchema
 from typing import Any, Dict
 
 class DictionarySchema(BaseSchema):

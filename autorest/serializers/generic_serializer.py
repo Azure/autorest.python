@@ -1,4 +1,4 @@
-from .baseserializer import BaseSerializer
+from .base_serializer import BaseSerializer
 
 
 class GenericSerializer(BaseSerializer):
@@ -13,7 +13,7 @@ class GenericSerializer(BaseSerializer):
         model.init_line = "def __init__(self, **kwargs):"
         init_args = []
         init_args.append("super({}, self).__init__(**kwargs)".format(model.name))
-        
+
         if model.properties:
             for prop in model.properties:
                 if prop.readonly:
