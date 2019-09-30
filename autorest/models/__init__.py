@@ -1,44 +1,52 @@
 from .codemodel import CodeModel
-from .classtype import ClassType
-from .dictionarytype import DictionaryType
-from .enumtype import EnumType
-from .basetype import BaseType
-from .sequencetype import SequenceType
+from .objectschema import ObjectSchema
+from .dictionaryschema import DictionarySchema
+from .listschema import ListSchema
+from .primitiveschemas import get_primitive_schema, PrimitiveSchema
+from .enumschema import EnumSchema
+from .baseschema import BaseSchema
 from ..common.utils import to_python_case
 
 __all__ = [
-    "BaseType",
+    "BaseSchema",
     "CodeModel",
-    "ClassType",
-    "DictionaryType",
-    "EnumType",
-    "SequenceType"
+    "ObjectSchema",
+    "DictionarySchema",
+    "ListSchema",
+    "EnumSchema",
+    "PrimitiveSchema"
 ]
 
-def build_property(name, prop, required_list):
-    prop_type = prop['type']
-    if prop_type == 'array':
-        final_property = SequenceType.from_yaml(
+# TODO: should this be in models.__init__ or CodeModel
+def build_schema(name, yaml_data, required=None):
+    schema_type = yaml_data.get('type')
+    if schema_type == 'array':
+        return ListSchema.from_yaml(
             name=name,
-            yaml_data=prop,
-            required_list=required_list
+            yaml_data=yaml_data,
+            required=required
         )
-    elif prop_type == 'dictionary':
-        final_property = DictionaryType.from_yaml(
+    if schema_type == 'dictionary':
+        return DictionarySchema.from_yaml(
             name=name,
-            yaml_data=prop,
-            required_list=required_list
+            yaml_data=yaml_data,
+            required=required
         )
-    elif prop_type == 'sealed-choice' or prop_type == 'choice':
-        final_property = EnumType.from_yaml(
+    if schema_type in ('sealed-choice', 'choice'):
+        return EnumSchema.from_yaml(
             name=name,
-            yaml_data=prop,
-            required_list=required_list
+            yaml_data=yaml_data,
+            required=required
         )
-    else:
-        final_property = ClassType.from_yaml(
+    if schema_type == 'object':
+        return ObjectSchema.from_yaml(
             name=name,
-            yaml_data=prop,
-            required_list=required_list
+            yaml_data=yaml_data,
+            required=required
         )
-    return final_property
+    return get_primitive_schema(
+        name=name,
+        yaml_data=yaml_data,
+        required=required,
+        schema_type=schema_type
+    )

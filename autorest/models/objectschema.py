@@ -23,12 +23,12 @@
 # IN THE SOFTWARE.
 #
 # --------------------------------------------------------------------------
-from .basetype import BaseType
+from .baseschema import BaseSchema
 from typing import Any, Dict, List
 from ..common.utils import to_python_type
 
 
-class ClassType(BaseType):
+class ObjectSchema(BaseSchema):
     """Represents a class ready to be serialized in Python.
 
     :param str name: The name of the class.
@@ -36,27 +36,29 @@ class ClassType(BaseType):
     :param properties: the optional properties of the class.
     :type properties: dict(str, str)
     """
-    def __init__(self, name: str, description: str, **kwargs: "**Any") -> "ClassType":
-        super(ClassType, self).__init__(name, description, **kwargs)
+    def __init__(self, name: str, description: str, schema_type: str, **kwargs: "**Any") -> "ObjectSchema":
+        super(ObjectSchema, self).__init__(name, description, **kwargs)
+        self.schema_type = schema_type
+        self.max_properties = kwargs.pop('max_properties', None)
+        self.min_properties = kwargs.pop('min_properties', None)
         self.properties = kwargs.pop('properties', None)
         self.base_model = kwargs.pop('base_model', None)
-        self.property_type = kwargs.pop('property_type', None)
         self.property_documentation_string = None
         self.init_line = None
         self.init_args = None
 
     def get_attribute_map_type(self) -> str:
-        return self.property_type
+        return self.schema_type
 
     def _get_property_type_from_yaml(yaml_data):
-        property_type = yaml_data['type']
-        if property_type == 'object':
+        schema_type = yaml_data['type']
+        if schema_type == 'object':
             # TODO: make sure pure objects don't have $key entry
             if yaml_data.get('$ref'):
                 # property is of a class in our yaml file
                 return yaml_data['$ref']
             # if not, the property's type is just object
-        return to_python_type(property_type)
+        return to_python_type(schema_type)
 
     """Returns the properties of a ClassType if they exist.
 
@@ -73,11 +75,11 @@ class ClassType(BaseType):
     def _create_properties(cls, yaml_data: Dict[str, str], required_list: List[str]) -> List["Property"]:
         properties = []
         for name in yaml_data['properties']:
-            from . import build_property
-            properties.append(build_property(
+            from . import build_schema
+            properties.append(build_schema(
                 name=name,
-                prop=yaml_data['properties'][name],
-                required_list=required_list
+                yaml_data=yaml_data['properties'][name],
+                required=(required_list and name in required_list)
             ))
         return properties
 
@@ -92,27 +94,27 @@ class ClassType(BaseType):
     @classmethod
     def from_yaml(cls, name: str, yaml_data: Dict[str, str], **kwargs) -> "ClassType":
         # Returns a ClassType from a yaml file
-        required_list = kwargs.pop('required_list', None)
-        parameters_dict = cls._get_common_parameters(
+        common_parameters_dict = cls._get_common_parameters(
             name=name,
             yaml_data=yaml_data,
-            required_list=required_list
+            required=kwargs.pop('required', None)
         )
         if yaml_data.get('properties'):
             # A class to be serialized
-            properties = cls._create_properties(yaml_data=yaml_data, required_list=required_list)
-            property_type = None
+            properties = cls._create_properties(yaml_data=yaml_data, required_list=yaml_data.get('required'))
+            schema_type = 'object'
         else:
             # A property to be serialized
             properties = None
-            property_type = cls._get_property_type_from_yaml(yaml_data=yaml_data)
+            schema_type = cls._get_property_type_from_yaml(yaml_data=yaml_data)
         return cls(
             name=name,
-            description=parameters_dict['description'],
+            description=common_parameters_dict['description'],
+            schema_type=schema_type,
             properties=properties,
             base_model=yaml_data['allOf'][0] if yaml_data.get('allOf') else None,
-            property_type=property_type,
-            required=parameters_dict['required'],
-            readonly=parameters_dict['readonly'],
-            constant=parameters_dict['constant']
+            required=common_parameters_dict['required'],
+            readonly=common_parameters_dict['readonly'],
+            constant=common_parameters_dict['constant']
         )
+

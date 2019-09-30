@@ -1,9 +1,9 @@
+from .baseschema import BaseSchema
 from typing import Any, Dict
-from .basetype import BaseType
 
-class DictionaryType(BaseType):
+class DictionarySchema(BaseSchema):
     def __init__(self, name, description, element_type, **kwargs):
-        super(DictionaryType, self).__init__(name, description, **kwargs)
+        super(DictionarySchema, self).__init__(name, description, **kwargs)
         self.element_type = element_type
 
 
@@ -11,11 +11,11 @@ class DictionaryType(BaseType):
         return "{{{}}}".format(self.element_type)
 
     @classmethod
-    def from_yaml(cls, name: str, yaml_data: Dict[str, str], **kwargs: Any) -> "DictionaryType":
-        parameters_dict = cls._get_common_parameters(
+    def from_yaml(cls, name: str, yaml_data: Dict[str, str], **kwargs: Any) -> "DictionarySchema":
+        common_parameters_dict = cls._get_common_parameters(
             name=name,
             yaml_data=yaml_data,
-            required_list=kwargs.pop('required_list', None)
+            required=kwargs.pop('required', None)
         )
         if yaml_data['elementType'].get('$ref'):
             # type of value in dict is another Class
@@ -26,9 +26,9 @@ class DictionaryType(BaseType):
 
         return cls(
             name=name,
-            description=parameters_dict['description'],
+            description=common_parameters_dict['description'],
             element_type=element_type,
-            required=parameters_dict['required'],
-            readonly=parameters_dict['readonly'],
-            constant=parameters_dict['constant']
+            required=common_parameters_dict['required'],
+            readonly=common_parameters_dict['readonly'],
+            constant=common_parameters_dict['constant']
         )

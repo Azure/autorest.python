@@ -42,7 +42,8 @@ class CodeModel:
             ancestors.append(schema)
             while current.base_model:
                 parent = current.base_model
-                if parent in seen_schemas:
+                raise ValueError(parent)
+                if parent.name in seen_schemas:
                     break
                 ancestors.insert(0, parent)
                 seen_schemas.add(current)

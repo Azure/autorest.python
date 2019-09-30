@@ -35,7 +35,7 @@ from .jsonrpc import AutorestAPI
 
 from .common.code_namer import CodeNamer
 from .models.codemodel import CodeModel
-from .models.classtype import ClassType
+from .models import build_schema
 from .models.operation_group import OperationGroup
 from .serializers.genericserializer import GenericSerializer
 from .serializers.python3serializer import Python3Serializer
@@ -75,12 +75,12 @@ class CodeGenerator:
         classes = [d for d in yaml_code_model['definitions']]
         seen_names = set()
         # only adds a ClassType to the list of schemas if we have not seen the name of the ClassTypes yet
-        code_model.schemas = [ClassType.from_yaml(name=s, yaml_data=yaml_code_model['definitions'][s])
-                                for s in classes if s not in seen_names and
-                                yaml_code_model['definitions'][s]['type'] == 'object' and
-                                not seen_names.add(s)]
-        code_model.sort_schemas()
-
+        code_model.schemas = [build_schema(name=s, yaml_data=yaml_code_model['definitions'][s])
+                                    for s in classes if s not in seen_names and
+                                    yaml_code_model['definitions'][s].get('type') == 'object' and
+                                    not seen_names.add(s)]
+        # skip this for now, yaml does not seem to be correctly parsing ref
+        # code_model.sort_schemas()
         generic_serializer = GenericSerializer(code_model=code_model)
         generic_serializer.serialize()
 

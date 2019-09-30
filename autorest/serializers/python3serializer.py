@@ -1,6 +1,6 @@
 from .baseserializer import BaseSerializer
 from jinja2 import Template, PackageLoader, Environment
-from ..models import ClassType
+from ..models import ObjectSchema
 from ..common.known_primary_types_mapping import known_primary_types_mapping
 
 
@@ -37,11 +37,11 @@ class Python3Serializer(BaseSerializer):
         init_properties_declaration = []
         init_args = []
         for prop in [p for p in model.properties if not p.readonly]:
-            if isinstance(prop, ClassType) and prop.property_type in known_primary_types_mapping.values():
+            if isinstance(prop, ObjectSchema) and prop.schema_type in known_primary_types_mapping.values():
                 if prop.required:
-                    init_properties_declaration.append("{}: {}".format(prop.name, prop.property_type))
+                    init_properties_declaration.append("{}: {}".format(prop.name, prop.schema_type))
                 else:
-                    init_properties_declaration.append("{}: {}=None".format(prop.name, prop.property_type))
+                    init_properties_declaration.append("{}: {}=None".format(prop.name, prop.schema_type))
             else:
                 if prop.required:
                     init_properties_declaration.append(prop.name)

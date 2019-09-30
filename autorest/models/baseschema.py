@@ -1,7 +1,7 @@
 from typing import Any, Dict
 
 
-class BaseType:
+class BaseSchema:
     def __init__(self, name, description, **kwargs):
         self.name = name
         self.description = description
@@ -32,9 +32,9 @@ class BaseType:
         return doc_string
 
     @classmethod
-    def _get_common_parameters(self, name, yaml_data, required_list=None) -> Dict[str, Any]:
+    def _get_common_parameters(self, name, yaml_data, **kwargs) -> Dict[str, Any]:
         return_dict = {}
-        return_dict['required'] = name in required_list if required_list else None
+        return_dict['required'] = kwargs.pop('required', None)
         return_dict['readonly'] = yaml_data.get('readOnly')
         return_dict['constant'] = yaml_data.get('constant')
         return_dict['description'] = (yaml_data['description'].strip()

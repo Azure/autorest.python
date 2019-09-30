@@ -623,6 +623,66 @@
       },
       "defaultProperties": []
     },
+    "ValueSchema": {
+      "description": "schema types that are non-object or complex types",
+      "type": "object",
+      "properties": {},
+      "defaultProperties": [],
+      "required": [
+        "$key",
+        "description",
+        "language",
+        "protocol",
+        "serialization",
+        "type",
+        "uid"
+      ],
+      "allOf": [
+        {
+          "$ref": "#/definitions/Schema"
+        }
+      ]
+    },
+    "PrimitiveSchema": {
+      "description": "Schema types that are primitive language values",
+      "type": "object",
+      "properties": {},
+      "defaultProperties": [],
+      "required": [
+        "$key",
+        "description",
+        "language",
+        "protocol",
+        "serialization",
+        "type",
+        "uid"
+      ],
+      "allOf": [
+        {
+          "$ref": "#/definitions/ValueSchema"
+        }
+      ]
+    },
+    "ComplexSchema": {
+      "description": "schema types that can be objects",
+      "type": "object",
+      "properties": {},
+      "defaultProperties": [],
+      "required": [
+        "$key",
+        "description",
+        "language",
+        "protocol",
+        "serialization",
+        "type",
+        "uid"
+      ],
+      "allOf": [
+        {
+          "$ref": "#/definitions/Schema"
+        }
+      ]
+    },
     "NumberSchema": {
       "description": "a Schema that represents a Number value",
       "type": "object",
@@ -665,7 +725,7 @@
       ],
       "allOf": [
         {
-          "$ref": "#/definitions/Schema"
+          "$ref": "#/definitions/PrimitiveSchema"
         }
       ]
     },
@@ -698,7 +758,7 @@
       ],
       "allOf": [
         {
-          "$ref": "#/definitions/Schema"
+          "$ref": "#/definitions/PrimitiveSchema"
         }
       ]
     },
@@ -736,7 +796,7 @@
       ],
       "allOf": [
         {
-          "$ref": "#/definitions/Schema"
+          "$ref": "#/definitions/ValueSchema"
         }
       ]
     },
@@ -765,7 +825,7 @@
       ],
       "allOf": [
         {
-          "$ref": "#/definitions/Schema"
+          "$ref": "#/definitions/ComplexSchema"
         }
       ]
     },
@@ -805,7 +865,7 @@
       ],
       "allOf": [
         {
-          "$ref": "#/definitions/Schema"
+          "$ref": "#/definitions/ComplexSchema"
         }
       ]
     },
@@ -1042,62 +1102,6 @@
           "items": {
             "$ref": "#/definitions/FlagValue"
           }
-        },
-        "language": {
-          "$ref": "#/definitions/Languages<SchemaMetadata>",
-          "description": "per-language information for Schema uses SchemaMetadata"
-        },
-        "type": {
-          "$ref": "#/definitions/AllSchemaTypes",
-          "description": "the schema type"
-        },
-        "summary": {
-          "description": "a short description",
-          "type": "string"
-        },
-        "example": {
-          "description": "example information"
-        },
-        "defaultValue": {
-          "description": "If the value isn't sent on the wire, the service will assume this"
-        },
-        "serialization": {
-          "$ref": "#/definitions/SerializationFormats",
-          "description": "per-serialization information for this Schema"
-        },
-        "uid": {
-          "type": "string"
-        },
-        "$key": {
-          "description": "common name of the aspect -- in OAI3 this was typically the key in the parent dictionary",
-          "type": "string"
-        },
-        "description": {
-          "description": "description of the aspect.",
-          "type": "string"
-        },
-        "apiVersions": {
-          "description": "API versions that this applies to. Undefined means all versions",
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/ApiVersion"
-          }
-        },
-        "deprecated": {
-          "$ref": "#/definitions/Deprecation",
-          "description": "deprecation information -- ie, when this aspect doesn't apply and why"
-        },
-        "externalDocs": {
-          "$ref": "#/definitions/ExternalDocumentation",
-          "description": "External Documentation Links"
-        },
-        "protocol": {
-          "$ref": "#/definitions/Protocols",
-          "description": "per-protocol information for this aspect"
-        },
-        "extensions": {
-          "$ref": "#/definitions/Dictionary<any>",
-          "description": "additional metadata extensions dictionary"
         }
       },
       "defaultProperties": [],
@@ -1110,6 +1114,11 @@
         "serialization",
         "type",
         "uid"
+      ],
+      "allOf": [
+        {
+          "$ref": "#/definitions/ValueSchema"
+        }
       ]
     },
     "ConstantValue": {
@@ -1181,7 +1190,7 @@
       ],
       "allOf": [
         {
-          "$ref": "#/definitions/Schema"
+          "$ref": "#/definitions/PrimitiveSchema"
         }
       ]
     },
@@ -1234,7 +1243,7 @@
       ],
       "allOf": [
         {
-          "$ref": "#/definitions/Schema"
+          "$ref": "#/definitions/PrimitiveSchema"
         }
       ]
     },
@@ -1267,7 +1276,7 @@
       ],
       "allOf": [
         {
-          "$ref": "#/definitions/Schema"
+          "$ref": "#/definitions/PrimitiveSchema"
         }
       ]
     },
@@ -1287,7 +1296,7 @@
       ],
       "allOf": [
         {
-          "$ref": "#/definitions/Schema"
+          "$ref": "#/definitions/PrimitiveSchema"
         }
       ]
     },
@@ -1307,7 +1316,7 @@
       ],
       "allOf": [
         {
-          "$ref": "#/definitions/Schema"
+          "$ref": "#/definitions/PrimitiveSchema"
         }
       ]
     },
@@ -1337,7 +1346,7 @@
       ],
       "allOf": [
         {
-          "$ref": "#/definitions/Schema"
+          "$ref": "#/definitions/PrimitiveSchema"
         }
       ]
     },
@@ -1357,7 +1366,7 @@
       ],
       "allOf": [
         {
-          "$ref": "#/definitions/Schema"
+          "$ref": "#/definitions/PrimitiveSchema"
         }
       ]
     },
@@ -1377,7 +1386,7 @@
       ],
       "allOf": [
         {
-          "$ref": "#/definitions/Schema"
+          "$ref": "#/definitions/PrimitiveSchema"
         }
       ]
     },
@@ -1407,7 +1416,7 @@
       ],
       "allOf": [
         {
-          "$ref": "#/definitions/Schema"
+          "$ref": "#/definitions/ValueSchema"
         }
       ]
     },
@@ -1427,7 +1436,7 @@
       ],
       "allOf": [
         {
-          "$ref": "#/definitions/Schema"
+          "$ref": "#/definitions/PrimitiveSchema"
         }
       ]
     },
@@ -1453,7 +1462,7 @@
       ],
       "allOf": [
         {
-          "$ref": "#/definitions/Schema"
+          "$ref": "#/definitions/ComplexSchema"
         }
       ]
     },
@@ -1465,20 +1474,7 @@
           "description": "the set of schemas that this schema is composed of.",
           "type": "array",
           "items": {
-            "anyOf": [
-              {
-                "$ref": "#/definitions/ObjectSchema"
-              },
-              {
-                "$ref": "#/definitions/AndSchema"
-              },
-              {
-                "$ref": "#/definitions/OrSchema"
-              },
-              {
-                "$ref": "#/definitions/DictionarySchema"
-              }
-            ]
+            "$ref": "#/definitions/ComplexSchema"
           }
         }
       },
@@ -1495,7 +1491,7 @@
       ],
       "allOf": [
         {
-          "$ref": "#/definitions/Schema"
+          "$ref": "#/definitions/ComplexSchema"
         }
       ]
     },
@@ -1507,20 +1503,7 @@
           "description": "the set of schemas that this schema is composed of. Every schema is optional",
           "type": "array",
           "items": {
-            "anyOf": [
-              {
-                "$ref": "#/definitions/ObjectSchema"
-              },
-              {
-                "$ref": "#/definitions/AndSchema"
-              },
-              {
-                "$ref": "#/definitions/OrSchema"
-              },
-              {
-                "$ref": "#/definitions/DictionarySchema"
-              }
-            ]
+            "$ref": "#/definitions/ComplexSchema"
           }
         }
       },
@@ -1537,7 +1520,7 @@
       ],
       "allOf": [
         {
-          "$ref": "#/definitions/Schema"
+          "$ref": "#/definitions/ComplexSchema"
         }
       ]
     },
@@ -1600,48 +1583,132 @@
       "description": "the full set of schemas for a given service, categorized into convenient collections",
       "type": "object",
       "properties": {
+        "arrays": {
+          "description": "a collection of items",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ArraySchema"
+          }
+        },
+        "dictionaries": {
+          "description": "an associative array (ie, dictionary, hashtable, etc)",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DictionarySchema"
+          }
+        },
+        "booleans": {
+          "description": "a true or false value",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/BooleanSchema"
+          }
+        },
+        "numbers": {
+          "description": "a number value",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/NumberSchema"
+          }
+        },
         "objects": {
-          "description": "schemas that likely result in the creation of new objects during code generation",
+          "description": "an object of some type",
           "type": "array",
           "items": {
             "$ref": "#/definitions/ObjectSchema"
           }
         },
-        "parameterGroups": {
-          "description": "groups of parameters that can be built as an object",
+        "strings": {
+          "description": "a string of characters",
           "type": "array",
           "items": {
-            "$ref": "#/definitions/ParameterGroupSchema"
+            "$ref": "#/definitions/StringSchema"
           }
         },
-        "orCompounds": {
-          "description": "schemas that construct more complex schemas based on compound construction (ie, allOf, oneOf, anyOf)",
+        "unixtimes": {
+          "description": "UnixTime",
           "type": "array",
           "items": {
-            "$ref": "#/definitions/OrSchema"
+            "$ref": "#/definitions/UnixTimeSchema"
           }
         },
-        "andCompounds": {
+        "byteArrays": {
+          "description": "ByteArray -- an array of bytes",
           "type": "array",
           "items": {
-            "$ref": "#/definitions/AndSchema"
+            "$ref": "#/definitions/ByteArraySchema"
           }
         },
-        "xorCompounds": {
+        "streams": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/XorSchema"
+            "$ref": "#/definitions/Schema"
+          }
+        },
+        "chars": {
+          "description": "a single character",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CharSchema"
+          }
+        },
+        "dates": {
+          "description": "a Date",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DateSchema"
+          }
+        },
+        "dateTimes": {
+          "description": "a DateTime",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DateTimeSchema"
+          }
+        },
+        "durations": {
+          "description": "a Duration",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DurationSchema"
+          }
+        },
+        "uuids": {
+          "description": "a universally unique identifier",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UuidSchema"
+          }
+        },
+        "uris": {
+          "description": "an URI of some kind",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UriSchema"
+          }
+        },
+        "credentials": {
+          "description": "a password or credential",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CredentialSchema"
+          }
+        },
+        "odataQueries": {
+          "description": "OData Query",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ODataQuerySchema"
           }
         },
         "choices": {
-          "description": "schemas that represent a set of choices (ie, 'enum')",
+          "description": "- this is essentially can be thought of as an 'enum' \nthat is a choice between one of several strings",
           "type": "array",
           "items": {
             "$ref": "#/definitions/ChoiceSchema"
           }
         },
         "sealedChoices": {
-          "description": "schemas that represent a set of choices that are sealed -- that can never have items added to the definition.",
           "type": "array",
           "items": {
             "$ref": "#/definitions/SealedChoiceSchema"
@@ -1653,216 +1720,48 @@
             "$ref": "#/definitions/FlagSchema"
           }
         },
-        "dictionaries": {
-          "description": "schemas that represent key-value dictionaries used in the model.",
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/DictionarySchema"
-          }
-        },
         "constants": {
-          "description": "constant values that are used in models and parameters",
+          "description": "a constant value",
           "type": "array",
           "items": {
             "$ref": "#/definitions/ConstantSchema"
           }
         },
-        "primitives": {
-          "description": "primitive schemas that represent things that should be able to be represented without additional classes generated",
+        "ands": {
           "type": "array",
           "items": {
-            "anyOf": [
-              {
-                "$ref": "#/definitions/NumberSchema"
-              },
-              {
-                "$ref": "#/definitions/StringSchema"
-              },
-              {
-                "$ref": "#/definitions/FlagSchema"
-              },
-              {
-                "$ref": "#/definitions/BooleanSchema"
-              },
-              {
-                "$ref": "#/definitions/CredentialSchema"
-              },
-              {
-                "$ref": "#/definitions/UriSchema"
-              },
-              {
-                "$ref": "#/definitions/UuidSchema"
-              },
-              {
-                "$ref": "#/definitions/DurationSchema"
-              },
-              {
-                "$ref": "#/definitions/DateTimeSchema"
-              },
-              {
-                "$ref": "#/definitions/DateSchema"
-              },
-              {
-                "$ref": "#/definitions/CharSchema"
-              },
-              {
-                "$ref": "#/definitions/ByteArraySchema"
-              },
-              {
-                "$ref": "#/definitions/UnixTimeSchema"
-              },
-              {
-                "$ref": "#/definitions/ArraySchema"
-              },
-              {
-                "$ref": "#/definitions/ChoiceSchema"
-              },
-              {
-                "$ref": "#/definitions/SealedChoiceSchema"
-              }
-            ]
+            "$ref": "#/definitions/AndSchema"
+          }
+        },
+        "ors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/OrSchema"
+          }
+        },
+        "xors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/XorSchema"
+          }
+        },
+        "unknowns": {
+          "description": "it's possible that we just may make this an error \nin representation.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Schema"
+          }
+        },
+        "parameterGroups": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ParameterGroupSchema"
           }
         }
       },
-      "defaultProperties": []
-    },
-    "CompoundSchemas": {
-      "anyOf": [
-        {
-          "$ref": "#/definitions/AndSchema"
-        },
-        {
-          "$ref": "#/definitions/OrSchema"
-        },
-        {
-          "$ref": "#/definitions/XorSchema"
-        }
-      ]
-    },
-    "PrimitiveSchemas": {
-      "anyOf": [
-        {
-          "$ref": "#/definitions/NumberSchema"
-        },
-        {
-          "$ref": "#/definitions/StringSchema"
-        },
-        {
-          "$ref": "#/definitions/BooleanSchema"
-        },
-        {
-          "$ref": "#/definitions/CredentialSchema"
-        },
-        {
-          "$ref": "#/definitions/UriSchema"
-        },
-        {
-          "$ref": "#/definitions/UuidSchema"
-        },
-        {
-          "$ref": "#/definitions/DurationSchema"
-        },
-        {
-          "$ref": "#/definitions/DateTimeSchema"
-        },
-        {
-          "$ref": "#/definitions/DateSchema"
-        },
-        {
-          "$ref": "#/definitions/CharSchema"
-        },
-        {
-          "$ref": "#/definitions/UnixTimeSchema"
-        }
-      ]
-    },
-    "ObjectSchemas": {
-      "anyOf": [
-        {
-          "$ref": "#/definitions/ObjectSchema"
-        },
-        {
-          "$ref": "#/definitions/AndSchema"
-        },
-        {
-          "$ref": "#/definitions/OrSchema"
-        },
-        {
-          "$ref": "#/definitions/DictionarySchema"
-        }
-      ]
-    },
-    "AllSchemas": {
-      "anyOf": [
-        {
-          "$ref": "#/definitions/NumberSchema"
-        },
-        {
-          "$ref": "#/definitions/StringSchema"
-        },
-        {
-          "$ref": "#/definitions/ParameterGroupSchema"
-        },
-        {
-          "$ref": "#/definitions/ObjectSchema"
-        },
-        {
-          "$ref": "#/definitions/FlagSchema"
-        },
-        {
-          "$ref": "#/definitions/BooleanSchema"
-        },
-        {
-          "$ref": "#/definitions/CredentialSchema"
-        },
-        {
-          "$ref": "#/definitions/UriSchema"
-        },
-        {
-          "$ref": "#/definitions/UuidSchema"
-        },
-        {
-          "$ref": "#/definitions/DurationSchema"
-        },
-        {
-          "$ref": "#/definitions/DateTimeSchema"
-        },
-        {
-          "$ref": "#/definitions/DateSchema"
-        },
-        {
-          "$ref": "#/definitions/CharSchema"
-        },
-        {
-          "$ref": "#/definitions/ByteArraySchema"
-        },
-        {
-          "$ref": "#/definitions/UnixTimeSchema"
-        },
-        {
-          "$ref": "#/definitions/AndSchema"
-        },
-        {
-          "$ref": "#/definitions/OrSchema"
-        },
-        {
-          "$ref": "#/definitions/NotSchema"
-        },
-        {
-          "$ref": "#/definitions/ArraySchema"
-        },
-        {
-          "$ref": "#/definitions/ChoiceSchema"
-        },
-        {
-          "$ref": "#/definitions/SealedChoiceSchema"
-        },
-        {
-          "$ref": "#/definitions/DictionarySchema"
-        },
-        {
-          "$ref": "#/definitions/ConstantSchema"
-        }
+      "defaultProperties": [],
+      "required": [
+        "strings"
       ]
     },
     "email": {
@@ -1974,18 +1873,6 @@
           "enum": [
             true
           ]
-        },
-        "language": {
-          "$ref": "#/definitions/Languages",
-          "description": "per-language information for this aspect"
-        },
-        "protocol": {
-          "$ref": "#/definitions/Protocols",
-          "description": "per-protocol information for this aspect"
-        },
-        "extensions": {
-          "$ref": "#/definitions/Dictionary<any>",
-          "description": "additional metadata extensions dictionary"
         }
       },
       "defaultProperties": [],
@@ -2007,18 +1894,6 @@
         "schema": {
           "$ref": "#/definitions/Schema",
           "description": "the content returned by the service for a given operaiton"
-        },
-        "language": {
-          "$ref": "#/definitions/Languages",
-          "description": "per-language information for this aspect"
-        },
-        "protocol": {
-          "$ref": "#/definitions/Protocols",
-          "description": "per-protocol information for this aspect"
-        },
-        "extensions": {
-          "$ref": "#/definitions/Dictionary<any>",
-          "description": "additional metadata extensions dictionary"
         }
       },
       "defaultProperties": [],
@@ -2366,18 +2241,8 @@
           "description": "deprecation information -- ie, when this aspect doesn't apply and why"
         },
         "schema": {
-          "description": "the schema for the",
-          "anyOf": [
-            {
-              "$ref": "#/definitions/NumberSchema"
-            },
-            {
-              "$ref": "#/definitions/StringSchema"
-            },
-            {
-              "$ref": "#/definitions/ChoiceSchema"
-            }
-          ]
+          "$ref": "#/definitions/ValueSchema",
+          "description": "the schema type for the server variable"
         },
         "default": {
           "description": "The default value to use for substitution, which SHALL be sent if an alternate value is not supplied.",
@@ -2802,21 +2667,6 @@
           "enum": [
             true
           ]
-        },
-        "path": {
-          "description": "A relative path to an individual endpoint. \n\nThe field name MUST begin with a slash. \nThe path is appended (no relative URL resolution) to the expanded URL from the Server Object's url field in order to construct the full URL. \nPath templating is allowed. \n\nWhen matching URLs, concrete (non-templated) paths would be matched before their templated counterparts.",
-          "type": "string"
-        },
-        "method": {
-          "$ref": "#/definitions/HttpMethod",
-          "description": "the HTTP Method used to process this operation"
-        },
-        "servers": {
-          "description": "each method must have one or more servers that it is connected to.",
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/HttpServer"
-          }
         }
       },
       "defaultProperties": [],
@@ -2848,21 +2698,6 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/Request"
-          }
-        },
-        "path": {
-          "description": "A relative path to an individual endpoint. \n\nThe field name MUST begin with a slash. \nThe path is appended (no relative URL resolution) to the expanded URL from the Server Object's url field in order to construct the full URL. \nPath templating is allowed. \n\nWhen matching URLs, concrete (non-templated) paths would be matched before their templated counterparts.",
-          "type": "string"
-        },
-        "method": {
-          "$ref": "#/definitions/HttpMethod",
-          "description": "the HTTP Method used to process this operation"
-        },
-        "servers": {
-          "description": "each method must have one or more servers that it is connected to.",
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/HttpServer"
           }
         }
       },
@@ -3147,27 +2982,13 @@
     "ChoiceType": {
       "type": "object",
       "properties": {
-        "type": {
-          "description": "the schema type\nthe schema type\nthe schema type\nthe schema type\nthe schema type\nthe schema type\nthe schema type\nthe schema type\nthe schema type\nthe schema type\nthe schema type",
-          "enum": [
-            "boolean",
-            "char",
-            "credential",
-            "date",
-            "date-time",
-            "duration",
-            "integer",
-            "number",
-            "string",
-            "unixtime",
-            "uri",
-            "uuid"
-          ],
-          "type": "string"
-        },
         "language": {
           "$ref": "#/definitions/Languages<SchemaMetadata>",
           "description": "per-language information for Schema uses SchemaMetadata"
+        },
+        "type": {
+          "$ref": "#/definitions/AllSchemaTypes",
+          "description": "the schema type"
         },
         "summary": {
           "description": "a short description",

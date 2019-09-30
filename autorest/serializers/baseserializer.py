@@ -1,4 +1,4 @@
-from ..models import ClassType, DictionaryType, SequenceType, EnumType
+from ..models import DictionarySchema, EnumSchema, ListSchema, ObjectSchema, PrimitiveSchema
 from jinja2 import Template, PackageLoader, Environment
 
 
@@ -25,14 +25,16 @@ class BaseSerializer:
 
         # building the type line of the property doc
         type_doc_string = ":type {}: ".format(prop.name)
-        if isinstance(prop, DictionaryType):
+        if isinstance(prop, DictionarySchema):
             type_doc_string += "dict[str, {}]".format(prop.element_type)
-        elif isinstance(prop, SequenceType):
+        elif isinstance(prop, ListSchema):
             type_doc_string += "list[{}]".format(prop.element_type)
-        elif isinstance(prop, EnumType):
+        elif isinstance(prop, EnumSchema):
             type_doc_string += "str or {}".format(prop.enum_type)
-        else:
-            type_doc_string += prop.property_type
+        elif isinstance(prop, ObjectSchema):
+            type_doc_string += prop.schema_type
+        elif isinstance(prop, PrimitiveSchema):
+            type_doc_string += prop.schema_type
 
         prop.documentation_string = param_doc_string + "\n\t" + type_doc_string
 

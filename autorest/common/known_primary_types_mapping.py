@@ -1,5 +1,5 @@
 known_primary_types_mapping = {
-    "none": "",
+    None: "",
     "long": "long",
     "double": "float",
     "decimal": "decimal.Decimal",
