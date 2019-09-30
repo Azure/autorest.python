@@ -25,7 +25,7 @@
 # --------------------------------------------------------------------------
 from .base_schema import BaseSchema
 from typing import Any, Dict, List
-from ..common.utils import to_python_type
+from ..common.utils import to_python_type, to_python_case
 
 
 class ObjectSchema(BaseSchema):
@@ -67,7 +67,7 @@ class ObjectSchema(BaseSchema):
         for prop in yaml_data:
             from . import build_schema
             properties.append(build_schema(
-                name=prop['serializedName'],
+                name=to_python_case(prop['serializedName']),
                 yaml_data=prop
             ))
         return properties

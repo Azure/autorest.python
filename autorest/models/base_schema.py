@@ -34,9 +34,13 @@ class BaseSchema:
     @classmethod
     def _get_common_parameters(self, name, yaml_data) -> Dict[str, Any]:
         return_dict = {}
+        description = yaml_data['description'].strip()
+        if description == 'MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA':
+            description = name + "."
+        elif 'MISSING' in description:
+            description = ""
         return_dict['required'] = yaml_data.get('required')
         return_dict['readonly'] = yaml_data.get('readOnly')
         return_dict['constant'] = yaml_data.get('constant')
-        return_dict['description'] = (yaml_data['description'].strip()
-                                      if yaml_data.get('description') else name + ".")
+        return_dict['description'] = description
         return return_dict

@@ -28,7 +28,7 @@ class PrimitiveSchema(BaseSchema):
 
 class NumberSchema(PrimitiveSchema):
     def __init__(self, name, description, schema_type, precision, **kwargs):
-        super(NumberSchema, self).__init__(name, description, schema_type)
+        super(NumberSchema, self).__init__(name, description, schema_type, **kwargs)
         self.precision = precision
         self.multiple_of = kwargs.pop('multiple_of', None)
         self.maximum = kwargs.pop('maximum', None)
@@ -60,7 +60,7 @@ class NumberSchema(PrimitiveSchema):
 
 class StringSchema(PrimitiveSchema):
     def __init__(self, name, description, schema_type, **kwargs):
-        super(StringSchema, self).__init__(name, description, schema_type)
+        super(StringSchema, self).__init__(name, description, schema_type, **kwargs)
         self.max_length = kwargs.pop('max_length', None)
         self.min_length = kwargs.pop('min_length', None)
         self.pattern = kwargs.pop('pattern', None)
@@ -87,7 +87,7 @@ class StringSchema(PrimitiveSchema):
 
 class DatetimeSchema(PrimitiveSchema):
     def __init__(self, name, description, schema_type, format, **kwargs):
-        super(DatetimeSchema, self).__init__(name, description, schema_type, kwargs)
+        super(DatetimeSchema, self).__init__(name, description, schema_type, **kwargs)
         self.format = format
 
     class Formats(str, Enum):
@@ -114,7 +114,7 @@ class DatetimeSchema(PrimitiveSchema):
 
 class ByteArraySchema(PrimitiveSchema):
     def __init__(self, name, description, schema_type, format, **kwargs):
-        super(ByteArraySchema, self).__init__(name, description, schema_type, kwargs)
+        super(ByteArraySchema, self).__init__(name, description, schema_type, **kwargs)
         self.format = format
 
     class Formats(str, Enum):

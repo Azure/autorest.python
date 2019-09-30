@@ -17,28 +17,31 @@ class BaseSerializer:
             param_doc_string = ":param {}:".format(prop.name)
         description = prop.description
         if prop.required:
-            description = "Required. " + description
+            if description:
+                description = "Required. " + description
+            else:
+                description = "Required."
         if description and description[-1] != ".":
             description += "."
         if description:
             param_doc_string += " " + description
 
         # building the type line of the property doc
-        try:
+        if prop.constant or prop.readonly:
+            type_doc_string = ":vartype {}: ".format(prop.name)
+        else:
             type_doc_string = ":type {}: ".format(prop.name)
-            if isinstance(prop, DictionarySchema):
-                type_doc_string += "dict[str, {}]".format(prop.element_type)
-            elif isinstance(prop, ListSchema):
-                type_doc_string += "list[{}]".format(prop.element_type)
-            elif isinstance(prop, EnumSchema):
-                type_doc_string += "str or {}".format(prop.enum_type)
-            elif isinstance(prop, ObjectSchema):
-                type_doc_string += prop.schema_type
-            elif isinstance(prop, PrimitiveSchema):
-                type_doc_string += prop.schema_type
-            prop.documentation_string = param_doc_string + "\n\t" + type_doc_string
-        except:
-            raise ValueError("{} {}".format(prop.name, prop.description))
+        if isinstance(prop, DictionarySchema):
+            type_doc_string += "dict[str, {}]".format(prop.element_type)
+        elif isinstance(prop, ListSchema):
+            type_doc_string += "list[{}]".format(prop.element_type)
+        elif isinstance(prop, EnumSchema):
+            type_doc_string += "str or {}".format(prop.enum_type)
+        elif isinstance(prop, ObjectSchema):
+            type_doc_string += prop.schema_type
+        elif isinstance(prop, PrimitiveSchema):
+            type_doc_string += prop.schema_type
+        prop.documentation_string = param_doc_string + "\n\t" + type_doc_string
 
 
 
