@@ -14,6 +14,8 @@ class GenericSerializer(BaseSerializer):
         init_args.append("super({}, self).__init__(**kwargs)".format(model.name))
 
         for prop in model.properties:
+            if model.base_model and prop in model.base_model.properties:
+                continue
             if prop.readonly:
                 init_args.append("self.{} = None".format(prop.name))
             else:

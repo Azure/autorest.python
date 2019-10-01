@@ -42,7 +42,7 @@ class ObjectSchema(BaseSchema):
         self.max_properties = kwargs.pop('max_properties', None)
         self.min_properties = kwargs.pop('min_properties', None)
         self.properties = kwargs.pop('properties', None)
-        self.base_model = kwargs.pop('base_model', None)
+        self.base_model = None
         self.property_documentation_string = None
         self.init_line = None
         self.init_args = None
