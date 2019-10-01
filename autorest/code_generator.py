@@ -73,11 +73,8 @@ class CodeGenerator:
         # code_model.api_version = yaml_code_model["info"]["version"]
 
         classes = [o for o in yaml_code_model['schemas']['objects']]
-        seen_names = set()
-        # only adds a ClassType to the list of schemas if we have not seen the name of the ClassTypes yet
         code_model.schemas = [build_schema(name=s['language']['default']['name'], yaml_data=s) for s in classes]
-        # code_model.schemas = [build_schema(name=s, yaml_data=yaml_code_model['schemas']['objects'][s]) for s in classes]
-        # skip this for now, yaml does not seem to be correctly parsing ref
+        code_model.add_collections_to_models(d for d in yaml_code_model['schemas']['dictionaries'])
         code_model.add_inheritance_to_models(a for a in yaml_code_model['schemas']['ands'])
         code_model.sort_schemas()
         generic_serializer = GenericSerializer(code_model=code_model)

@@ -1,9 +1,11 @@
 from .base_schema import BaseSchema
+from ..common.utils import to_python_case
 from typing import Any, Dict
 
 class DictionarySchema(BaseSchema):
     def __init__(self, name, description, element_type, **kwargs):
         super(DictionarySchema, self).__init__(name, description, **kwargs)
+        self.name = to_python_case(name)
         self.element_type = element_type
 
 
@@ -19,7 +21,9 @@ class DictionarySchema(BaseSchema):
         return cls(
             name=name,
             description=common_parameters_dict['description'],
-            element_type=yaml_data['schema']['elementType']['type'],
+            element_type=(yaml_data['schema']['elementType']['type']
+                          if yaml_data.get('schema')
+                          else yaml_data['elementType']['type']),
             required=common_parameters_dict['required'],
             readonly=common_parameters_dict['readonly'],
             constant=common_parameters_dict['constant']

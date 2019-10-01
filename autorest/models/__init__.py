@@ -20,7 +20,6 @@ __all__ = [
 # TODO: should this be in models.__init__ or CodeModel
 def build_schema(name, yaml_data):
     schema_type = yaml_data['schema']['type'] if yaml_data.get('schema') else yaml_data['type']
-
     if schema_type == 'array':
         return ListSchema.from_yaml(name=name, yaml_data=yaml_data)
     if schema_type == 'dictionary':
