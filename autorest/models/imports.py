@@ -28,9 +28,10 @@ from enum import Enum, auto
 
 class ImportType(Enum):
     STDLIB = auto()
-    THIRPARTY = auto()
+    THIRDPARTY = auto()
     AZURECORE = auto()
     LOCAL = auto()
+    MSREST = auto()
 
 class FileImport:
     def __init__(self):
@@ -65,6 +66,3 @@ class FileImport:
             for package_name, module_list in package_list.items():
                 for module_name in module_list:
                     self.add_from_import(package_name, module_name, import_type)
-
-
-

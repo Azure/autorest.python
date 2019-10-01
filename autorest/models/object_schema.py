@@ -68,7 +68,8 @@ class ObjectSchema(BaseSchema):
             from . import build_schema
             properties.append(build_schema(
                 name=to_python_case(prop['serializedName']),
-                yaml_data=prop
+                yaml_data=prop,
+                serialize_name=prop['serializedName']
             ))
         return properties
 
@@ -81,7 +82,7 @@ class ObjectSchema(BaseSchema):
     :rtype: ~autorest.models.schema.ClassType
     """
     @classmethod
-    def from_yaml(cls, name: str, yaml_data: Dict[str, str], **kwargs) -> "ClassType":
+    def from_yaml(cls, name: str, yaml_data: Dict[str, str], serialize_name=None) -> "ClassType":
         # Returns a ClassType from a yaml file
         common_parameters_dict = cls._get_common_parameters(
             name=name,
@@ -101,5 +102,6 @@ class ObjectSchema(BaseSchema):
             base_model=yaml_data['allOf'][0] if yaml_data.get('allOf') else None,
             required=common_parameters_dict['required'],
             readonly=common_parameters_dict['readonly'],
-            constant=common_parameters_dict['constant']
+            constant=common_parameters_dict['constant'],
+            serialize_name=serialize_name
         )

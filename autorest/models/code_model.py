@@ -25,6 +25,7 @@
 # --------------------------------------------------------------------------
 
 from .dictionary_schema import DictionarySchema
+from .imports import FileImport, ImportType
 
 class CodeModel:
 
@@ -32,6 +33,16 @@ class CodeModel:
         self.client_name = None
         self.api_version = None
         self.schemas = None
+
+
+    def imports(self):
+        file_import = FileImport()
+        file_import.add_from_import("msrest.serialization", "Model", ImportType.MSREST)
+        # if len([s for s in self.schemas if s.is_exception]) > 0:
+        #     file_import.add_from_import("azure.core.exceptions", "HttpResponseError", ImportType.AZURECORE)
+        return file_import
+
+
 
     def sort_schemas(self):
         seen_schemas = set()
@@ -69,12 +80,30 @@ class CodeModel:
         self._add_properties_from_inheritance()
 
     def add_collections_to_models(self, dictionary_schemas) -> None:
+        possible_schemas = self.schemas[:]
         for dictionary_schema in dictionary_schemas:
             dictionary_name = dictionary_schema['language']['default']['name']
             if 'MISSING' in dictionary_schema['description']:
                 dictionary_schema['description'] = 'Unmatched properties from the message are deserialized to this collection.'
-            for s in self.schemas:
-                if s.name == dictionary_name:
-                    s.properties.insert(0, DictionarySchema.from_yaml(name='additionalProperties', yaml_data=dictionary_schema))
-                elif s.name == dictionary_name.split('-')[0]:
-                    s.properties.insert(0, DictionarySchema.from_yaml(name=dictionary_name.split('-')[1], yaml_data=dictionary_schema))
+            for schema in possible_schemas:
+                if schema.name == dictionary_name:
+                    # checking to see if there's already an additional_properties in the schema's properties.
+                    # If so, we name it additional_properties_1
+                    for prop in schema.properties:
+                        if prop.name == 'additional_properties':
+                            prop.name = 'additional_properties1'
+                    schema.properties.insert(0, DictionarySchema.from_yaml(
+                        name='additional_properties',
+                        yaml_data=dictionary_schema
+                    ))
+                    possible_schemas.remove(schema)
+                    break
+                # elif schema.name == dictionary_name.split('-')[0]:
+                #     # checking to see if there's already an additional_properties in the schema's properties.
+                #     # If so, we name it additional_properties_1
+                #     for prop in schema.properties:
+                #         if prop.name == 'additional_properties':
+                #             prop.name = 'additional_properties1'
+                #     schema.properties.insert(0, DictionarySchema.from_yaml(name=dictionary_name.split('-')[1], yaml_data=dictionary_schema))
+                #     possible_schemas.remove(schema)
+                #     break

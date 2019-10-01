@@ -1,9 +1,11 @@
 from .base_schema import BaseSchema
 from typing import Any, Dict
+from ..common.utils import to_python_case
 
 class ListSchema(BaseSchema):
     def __init__(self, name, description, element_type, **kwargs):
-        super(ListSchema, self).__init__(name, description, **kwargs)
+        super(ListSchema, self).__init__(to_python_case(name), description, **kwargs)
+        self.serialize_name = name
         self.element_type = element_type
         self.max_items = kwargs.pop('max_items', None)
         self.min_items = kwargs.pop('min_items', None)
@@ -14,7 +16,7 @@ class ListSchema(BaseSchema):
         return '[{}]'.format(self.element_type)
 
     @classmethod
-    def from_yaml(cls, name: str, yaml_data: Dict[str, str], **kwargs: Any) -> "SequenceType":
+    def from_yaml(cls, name: str, yaml_data: Dict[str, str], serialize_name) -> "SequenceType":
         common_parameters_dict = cls._get_common_parameters(
             name=name,
             yaml_data=yaml_data
@@ -30,5 +32,6 @@ class ListSchema(BaseSchema):
             constant=common_parameters_dict['constant'],
             max_items=schema_data.get('maxItems'),
             min_items=schema_data.get('minItems'),
-            unique_items=schema_data.get('uniqueItems')
+            unique_items=schema_data.get('uniqueItems'),
+            serialize_name=serialize_name
         )
