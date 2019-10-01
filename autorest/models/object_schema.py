@@ -42,6 +42,7 @@ class ObjectSchema(BaseSchema):
         self.max_properties = kwargs.pop('max_properties', None)
         self.min_properties = kwargs.pop('min_properties', None)
         self.properties = kwargs.pop('properties', None)
+        self.is_exception = kwargs.pop('is_exception', False)
         self.base_model = None
         self.property_documentation_string = None
         self.init_line = None
@@ -82,7 +83,7 @@ class ObjectSchema(BaseSchema):
     :rtype: ~autorest.models.schema.ClassType
     """
     @classmethod
-    def from_yaml(cls, name: str, yaml_data: Dict[str, str], serialize_name=None) -> "ClassType":
+    def from_yaml(cls, name: str, yaml_data: Dict[str, str], **kwargs) -> "ClassType":
         # Returns a ClassType from a yaml file
         common_parameters_dict = cls._get_common_parameters(
             name=name,
@@ -94,6 +95,11 @@ class ObjectSchema(BaseSchema):
             properties = cls._create_properties(yaml_data=yaml_data['properties'])
         else:
             properties = []
+        is_exception = None
+        exceptions_set = kwargs.pop('exceptions_set', None)
+        if exceptions_set:
+            if yaml_data['$key'] in exceptions_set:
+                is_exception = True
         return cls(
             name=name,
             description=common_parameters_dict['description'],
@@ -103,5 +109,6 @@ class ObjectSchema(BaseSchema):
             required=common_parameters_dict['required'],
             readonly=common_parameters_dict['readonly'],
             constant=common_parameters_dict['constant'],
-            serialize_name=serialize_name
+            serialize_name=kwargs.pop('serialize_name', None),
+            is_exception=is_exception
         )

@@ -49,6 +49,15 @@ class CodeGenerator:
     def __init__(self, autorestapi: AutorestAPI):
         self._autorestapi = autorestapi
 
+    def _build_exceptions_set(self, yaml_data):
+        exceptions_set = set()
+        for group in yaml_data:
+            for operation in group['operations']:
+                for exception in operation['exceptions']:
+                    exceptions_set.add(exception['schema']['$key'])
+        return exceptions_set
+
+
     def process(self) -> bool:
         # List the input file, should be only one
         inputs = self._autorestapi.list_inputs()
@@ -72,8 +81,10 @@ class CodeGenerator:
         code_model.client_name = yaml_code_model['info']['title']
         # code_model.api_version = yaml_code_model["info"]["version"]
 
+        exceptions_set = self._build_exceptions_set(yaml_data=yaml_code_model['operationGroups'])
+
         classes = [o for o in yaml_code_model['schemas']['objects']]
-        code_model.schemas = [build_schema(name=s['language']['default']['name'], yaml_data=s) for s in classes]
+        code_model.schemas = [build_schema(name=s['language']['default']['name'], yaml_data=s, exceptions_set=exceptions_set) for s in classes]
         code_model.add_collections_to_models(d for d in yaml_code_model['schemas']['dictionaries'])
         code_model.add_inheritance_to_models(a for a in yaml_code_model['schemas']['ands'])
         code_model.sort_schemas()
