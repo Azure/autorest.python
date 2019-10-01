@@ -8,7 +8,7 @@ class PrimitiveSchema(BaseSchema):
         self.schema_type = to_python_type(schema_type)
 
     @classmethod
-    def from_yaml(cls, name, yaml_data, schema_type):
+    def from_yaml(cls, name, yaml_data, schema_type, serialize_name):
         common_parameters_dict = cls._get_common_parameters(
             name=name,
             yaml_data=yaml_data
@@ -19,7 +19,8 @@ class PrimitiveSchema(BaseSchema):
             schema_type=schema_type,
             required=common_parameters_dict['required'],
             readonly=common_parameters_dict['readonly'],
-            constant=common_parameters_dict['constant']
+            constant=common_parameters_dict['constant'],
+            serialize_name=serialize_name
         )
 
     def get_attribute_map_type(self):
@@ -37,7 +38,7 @@ class NumberSchema(PrimitiveSchema):
         self.exclusive_minimum = kwargs.pop('exclusive_minimum', None)
 
     @classmethod
-    def from_yaml(cls, name, yaml_data, schema_type):
+    def from_yaml(cls, name, yaml_data, schema_type, serialize_name):
         common_parameters_dict = cls._get_common_parameters(
             name=name,
             yaml_data=yaml_data
@@ -48,6 +49,7 @@ class NumberSchema(PrimitiveSchema):
             description=common_parameters_dict['description'],
             schema_type=schema_type,
             precision=schema_data['precision'],
+            serialize_name=serialize_name,
             required=common_parameters_dict['required'],
             readonly=common_parameters_dict['readonly'],
             constant=common_parameters_dict['constant'],
@@ -66,7 +68,7 @@ class StringSchema(PrimitiveSchema):
         self.pattern = kwargs.pop('pattern', None)
 
     @classmethod
-    def from_yaml(cls, name, yaml_data):
+    def from_yaml(cls, name, yaml_data, serialize_name):
         common_parameters_dict = cls._get_common_parameters(
             name=name,
             yaml_data=yaml_data
@@ -81,7 +83,8 @@ class StringSchema(PrimitiveSchema):
             constant=common_parameters_dict['constant'],
             max_length=schema_data.get('maxLength'),
             min_length=schema_data.get('minLength'),
-            pattern=schema_data.get('pattern')
+            pattern=schema_data.get('pattern'),
+            serialize_name=serialize_name
         )
 
 
@@ -95,7 +98,7 @@ class DatetimeSchema(PrimitiveSchema):
         rfc1123 = "date-time-rfc1123"
 
     @classmethod
-    def from_yaml(cls, name, yaml_data, schema_type):
+    def from_yaml(cls, name, yaml_data, schema_type, serialize_name):
         common_parameters_dict = cls._get_common_parameters(
             name=name,
             yaml_data=yaml_data
@@ -109,6 +112,7 @@ class DatetimeSchema(PrimitiveSchema):
             required=common_parameters_dict['required'],
             readonly=common_parameters_dict['readonly'],
             constant=common_parameters_dict['constant'],
+            serialize_name=serialize_name
         )
 
 
@@ -122,7 +126,7 @@ class ByteArraySchema(PrimitiveSchema):
         byte = "byte"
 
     @classmethod
-    def from_yaml(cls, name, yaml_data):
+    def from_yaml(cls, name, yaml_data, serialize_name):
         common_parameters_dict = cls._get_common_parameters(
             name=name,
             yaml_data=yaml_data
@@ -136,34 +140,40 @@ class ByteArraySchema(PrimitiveSchema):
             required=common_parameters_dict['required'],
             readonly=common_parameters_dict['readonly'],
             constant=common_parameters_dict['constant'],
+            serialize_name=serialize_name
         )
 
-def get_primitive_schema(name, yaml_data):
+def get_primitive_schema(name, yaml_data, serialize_name):
     schema_type = yaml_data['schema']['type']
     if schema_type in ('integer', 'number'):
         return NumberSchema.from_yaml(
             name=name,
             yaml_data=yaml_data,
-            schema_type=schema_type
+            schema_type=schema_type,
+            serialize_name=serialize_name
         )
     if schema_type == 'string':
         return StringSchema.from_yaml(
             name=name,
-            yaml_data=yaml_data
+            yaml_data=yaml_data,
+            serialize_name=serialize_name
         )
     if schema_type in ('date', 'date-time', 'unixtime'):
         return DatetimeSchema.from_yaml(
             name=name,
             yaml_data=yaml_data,
-            schema_type=schema_type
+            schema_type=schema_type,
+            serialize_name=serialize_name
         )
     if schema_type  == 'byte-array':
         return ByteArraySchema.from_yaml(
             name=name,
-            yaml_data=yaml_data
+            yaml_data=yaml_data,
+            serialize_name=serialize_name
         )
     return PrimitiveSchema.from_yaml(
         name=name,
         yaml_data=yaml_data,
-        schema_type=schema_type
+        schema_type=schema_type,
+        serialize_name=serialize_name
     )

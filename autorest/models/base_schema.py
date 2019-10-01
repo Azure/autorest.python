@@ -5,6 +5,9 @@ class BaseSchema:
     def __init__(self, name, description, **kwargs):
         self.name = name
         self.description = description
+        self.serialize_name = kwargs.pop('serialize_name', '')
+        if self.serialize_name:
+            self.serialize_name = self.serialize_name.replace('.', '\\\\.')
         self.required = kwargs.pop('required', False)
         self.readonly = kwargs.pop('readonly', False)
         self.constant = kwargs.pop('constant', False)

@@ -1,4 +1,5 @@
 from ..models import DictionarySchema, EnumSchema, ListSchema, ObjectSchema, PrimitiveSchema
+from .import_serializer import FileImportSerializer
 from jinja2 import Template, PackageLoader, Environment
 
 
@@ -60,7 +61,10 @@ class BaseSerializer:
         self._service_client_file = template.render(code_model=self.code_model)
 
         template = env.get_template("model_container.py.jinja2")
-        self._model_file = template.render(code_model=self.code_model)
+        self._model_file = template.render(
+            code_model=self.code_model,
+            imports=FileImportSerializer(self.code_model.imports())
+        )
 
 
     @property

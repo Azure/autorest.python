@@ -1,5 +1,6 @@
 known_primary_types_mapping = {
     None: "",
+    "and": "object",
     "long": "long",
     "double": "float",
     "decimal": "decimal.Decimal",
@@ -31,4 +32,3 @@ known_primary_types_mapping = {
     "uuid": "str"
     # "xor"
 }
-
