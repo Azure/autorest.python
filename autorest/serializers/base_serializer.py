@@ -45,8 +45,6 @@ class BaseSerializer:
         prop.documentation_string = param_doc_string + "\n\t" + type_doc_string
 
 
-
-
     def serialize(self):
         env = Environment(
             loader=PackageLoader('autorest', 'templates'),
