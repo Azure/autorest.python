@@ -39,7 +39,7 @@ class CodeModel:
 
     def imports(self):
         file_import = FileImport()
-        file_import.add_from_import("msrest.serialization", "Model", ImportType.MSREST)
+        file_import.add_from_import("msrest.serialization", "Model", ImportType.AZURECORE)
         if len([s for s in self.schemas if s.is_exception]) > 0:
             file_import.add_from_import("azure.core.exceptions", "HttpResponseError", ImportType.AZURECORE)
         return file_import

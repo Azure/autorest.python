@@ -1,8 +1,17 @@
 from .code_namer import CodeNamer
 from .known_primary_types_mapping import known_primary_types_mapping
 
-def to_python_case(name):
-    return CodeNamer.to_python_case(name)
+def get_property_name(name):
+        return CodeNamer().get_valid_python_name(name, "Property")
+
+def get_namespace_name(name):
+    return CodeNamer().get_valid_python_name(name, "")
+
+def get_enum_name(name):
+    return CodeNamer().get_valid_python_name(name, "Enum")
+
+def get_method_name(name):
+    return CodeNamer().get_valid_python_name(name, "Method")
 
 def to_python_type(original_type):
     try:

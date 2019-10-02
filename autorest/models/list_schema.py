@@ -1,10 +1,10 @@
 from .base_schema import BaseSchema
 from typing import Any, Dict
-from ..common.utils import to_python_case
+from ..common.utils import get_property_name
 
 class ListSchema(BaseSchema):
     def __init__(self, name, description, element_type, **kwargs):
-        super(ListSchema, self).__init__(to_python_case(name), description, **kwargs)
+        super(ListSchema, self).__init__(get_property_name(name), description, **kwargs)
         self.element_type = element_type
         self.max_items = kwargs.pop('max_items', None)
         self.min_items = kwargs.pop('min_items', None)

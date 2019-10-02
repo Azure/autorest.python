@@ -31,7 +31,6 @@ class ImportType(Enum):
     THIRDPARTY = auto()
     AZURECORE = auto()
     LOCAL = auto()
-    MSREST = auto()
 
 class FileImport:
     def __init__(self):
