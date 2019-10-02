@@ -19,5 +19,6 @@ class GenericSerializer(BaseSerializer):
             if prop.readonly:
                 init_args.append("self.{} = None".format(prop.name))
             else:
-                init_args.append("self.{} = kwargs.get('{}', None)".format(prop.name, prop.name))
+                default_value = "\"" + prop.default_value + "\"" if prop.default_value else "None"
+                init_args.append("self.{} = kwargs.get('{}', {})".format(prop.name, prop.name, default_value))
         model.init_args = init_args

@@ -29,5 +29,6 @@ class DictionarySchema(BaseSchema):
             required=common_parameters_dict['required'],
             readonly=common_parameters_dict['readonly'],
             constant=common_parameters_dict['constant'],
+            default_value = yaml_data['schema'].get('default_value'),
             serialize_name=serialize_name
         )

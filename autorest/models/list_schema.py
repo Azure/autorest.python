@@ -25,12 +25,13 @@ class ListSchema(BaseSchema):
         return cls(
             name=name,
             description=common_parameters_dict['description'],
-            element_type=schema_data['items']['type'],
+            element_type=schema_data['elementType']['type'],
             required=common_parameters_dict['required'],
             readonly=common_parameters_dict['readonly'],
             constant=common_parameters_dict['constant'],
             max_items=schema_data.get('maxItems'),
             min_items=schema_data.get('minItems'),
             unique_items=schema_data.get('uniqueItems'),
+            default_value = schema_data.get('default_value'),
             serialize_name=serialize_name
         )
