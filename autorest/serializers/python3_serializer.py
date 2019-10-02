@@ -43,12 +43,14 @@ class Python3Serializer(BaseSerializer):
                 if param.required:
                     init_properties_declaration.append("{}: {}".format(param.name, param.schema_type))
                 else:
-                    init_properties_declaration.append("{}: {}=None".format(param.name, param.schema_type))
+                    default_value = "\"" + param.default_value + "\"" if param.default_value else "None"
+                    init_properties_declaration.append("{}: {}={}".format(param.name, param.schema_type, default_value))
             else:
                 if param.required:
                     init_properties_declaration.append(param.name)
                 else:
-                    init_properties_declaration.append("{}=None".format(param.name))
+                    default_value = "\"" + param.default_value + "\"" if param.default_value else "None"
+                    init_properties_declaration.append("{}={}".format(param.name, default_value))
 
         if init_properties_declaration:
             model.init_line = "def __init__(self, *, {}, **kwargs) -> None:".format(", ".join(init_properties_declaration))

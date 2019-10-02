@@ -101,8 +101,7 @@ class CodeGenerator:
         python3_serializer = Python3Serializer(code_model=code_model)
         python3_serializer.serialize()
 
-        enum_serializer = EnumSerializer(enums=code_model.enums)
-        enum_serializer.serialize()
+
 
         operation_groups = [OperationGroup.from_yaml(op_group) for op_group in yaml_code_model['operationGroups']]
 
@@ -128,7 +127,10 @@ class CodeGenerator:
         self._autorestapi.write_file(namespace / Path("service_client.py"), generic_serializer.service_client_file)
         self._autorestapi.write_file(namespace / Path("models") / Path("_models.py"), generic_serializer.model_file)
         self._autorestapi.write_file(namespace / Path("models") / Path("_models_py3.py"), python3_serializer.model_file)
-        self._autorestapi.write_file(namespace / Path("models") / Path("_enums.py"), enum_serializer.enum_file)
+        if code_model.enums:
+            enum_serializer = EnumSerializer(enums=code_model.enums)
+            enum_serializer.serialize()
+            self._autorestapi.write_file(namespace / Path("models") / Path("_enums.py"), enum_serializer.enum_file)
         return True
 
 def main(yaml_model_file):

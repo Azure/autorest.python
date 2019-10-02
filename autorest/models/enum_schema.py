@@ -23,7 +23,6 @@ class EnumSchema(BaseSchema):
         super(EnumSchema, self).__init__(name, description, **kwargs)
         self.enum_type = enum_type
         self.values = values
-        self.default_value = kwargs.pop('default_value', None)
 
     def get_attribute_map_type(self):
         return 'str'

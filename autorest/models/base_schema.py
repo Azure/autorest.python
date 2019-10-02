@@ -11,6 +11,7 @@ class BaseSchema:
         self.required = kwargs.pop('required', False)
         self.readonly = kwargs.pop('readonly', False)
         self.constant = kwargs.pop('constant', False)
+        self.default_value = kwargs.pop('default_value', None)
         self.documentation_string = None
         self.attribute_map_string = None
 
@@ -42,8 +43,8 @@ class BaseSchema:
             description = name + "."
         elif 'MISSING' in description:
             description = ""
-        return_dict['required'] = yaml_data.get('required', False)
-        return_dict['readonly'] = yaml_data.get('readOnly', False)
-        return_dict['constant'] = yaml_data.get('constant', False)
+        return_dict['required'] = yaml_data.get('required')
+        return_dict['readonly'] = yaml_data.get('readOnly')
+        return_dict['constant'] = yaml_data.get('constant')
         return_dict['description'] = description
         return return_dict
