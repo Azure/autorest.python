@@ -1,6 +1,6 @@
 from .base_schema import BaseSchema
 from typing import Any, Dict
-from ..common.utils import to_python_case
+from ..common.utils import get_enum_name
 
 
 class EnumValue:
@@ -11,7 +11,7 @@ class EnumValue:
 
     @classmethod
     def from_yaml(cls, yaml_data):
-        name = to_python_case(yaml_data['language']['default']['name'])
+        name = get_enum_name(yaml_data['language']['default']['name'])
         return cls(
             name=name,
             value=yaml_data['value'],

@@ -1,5 +1,5 @@
 from .base_schema import BaseSchema
-from ..common.utils import to_python_case, to_python_type
+from ..common.utils import to_python_type
 from typing import Any, Dict
 
 class DictionarySchema(BaseSchema):

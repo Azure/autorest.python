@@ -33,7 +33,7 @@ from jinja2 import Template, PackageLoader, Environment
 
 from .jsonrpc import AutorestAPI
 
-from .common.code_namer import CodeNamer
+from .common.utils import get_namespace_name
 from .models.code_model import CodeModel
 from .models import build_schema, EnumSchema
 from .models.operation_group import OperationGroup
@@ -110,7 +110,7 @@ class CodeGenerator:
         namespace = self._autorestapi.get_value("namespace")
         _LOGGER.debug("Namespace parameter was %s", namespace)
         if not namespace:
-            namespace = CodeNamer.to_python_case(yaml_code_model["info"]["title"])
+            namespace = get_namespace_name(yaml_code_model["info"]["title"])
         namespace = Path(*[ns_part for ns_part in namespace.split(".")])
 
         template = env.get_template("operations_container.py.jinja2")
