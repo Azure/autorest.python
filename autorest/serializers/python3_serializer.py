@@ -1,6 +1,6 @@
 from .base_serializer import BaseSerializer
 from jinja2 import Template, PackageLoader, Environment
-from ..models import ObjectSchema
+from ..models import PrimitiveSchema
 from ..common.known_primary_types_mapping import known_primary_types_mapping
 
 
@@ -15,11 +15,11 @@ class Python3Serializer(BaseSerializer):
             properties_to_initialize = []
             properties_to_pass = []
             super_initialize = "super({}, self).__init__()".format(model.name)
-            # for prop in model.properties:
-            #     if prop in model.base_model.properties and not prop.readonly:
-            #         properties_to_pass.append(prop)
-            #     else:
-            #         properties_to_initialize.append(prop)
+            for prop in [p for p in model.properties if not p.readonly]:
+                if prop in model.base_model.properties:
+                    properties_to_pass.append("{}={}".format(prop.name, prop.name))
+                else:
+                    properties_to_initialize.append(prop)
             properties_to_pass.append("**kwargs")
             init_args.append("super({}, self).__init__({})".format(model.name, ", ".join(properties_to_pass)))
         else:
@@ -36,17 +36,19 @@ class Python3Serializer(BaseSerializer):
         init_line = "def __init__(self, )"
         init_properties_declaration = []
         init_args = []
-        for prop in [p for p in model.properties if not p.readonly]:
-            if isinstance(prop, ObjectSchema) and prop.schema_type in known_primary_types_mapping.values():
-                if prop.required:
-                    init_properties_declaration.append("{}: {}".format(prop.name, prop.schema_type))
+        init_line_parameters = [p for p in model.properties if not p.readonly]
+        init_line_parameters.sort(key=lambda x: x.required, reverse=True)
+        for param in init_line_parameters:
+            if isinstance(param, PrimitiveSchema):
+                if param.required:
+                    init_properties_declaration.append("{}: {}".format(param.name, param.schema_type))
                 else:
-                    init_properties_declaration.append("{}: {}=None".format(prop.name, prop.schema_type))
+                    init_properties_declaration.append("{}: {}=None".format(param.name, param.schema_type))
             else:
-                if prop.required:
-                    init_properties_declaration.append(prop.name)
+                if param.required:
+                    init_properties_declaration.append(param.name)
                 else:
-                    init_properties_declaration.append("{}=None".format(prop.name))
+                    init_properties_declaration.append("{}=None".format(param.name))
 
         if init_properties_declaration:
             model.init_line = "def __init__(self, *, {}, **kwargs) -> None:".format(", ".join(init_properties_declaration))

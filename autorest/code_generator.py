@@ -35,10 +35,11 @@ from .jsonrpc import AutorestAPI
 
 from .common.code_namer import CodeNamer
 from .models.code_model import CodeModel
-from .models import build_schema
+from .models import build_schema, EnumSchema
 from .models.operation_group import OperationGroup
 from .serializers.generic_serializer import GenericSerializer
 from .serializers.python3_serializer import Python3Serializer
+from .serializers.enum_serializer import EnumSerializer
 from .serializers.import_serializer import FileImportSerializer
 
 
@@ -53,6 +54,8 @@ class CodeGenerator:
         exceptions_set = set()
         for group in yaml_data:
             for operation in group['operations']:
+                if not operation.get('exceptions'):
+                    continue
                 for exception in operation['exceptions']:
                     exceptions_set.add(exception['schema']['$key'])
         return exceptions_set
@@ -85,14 +88,21 @@ class CodeGenerator:
 
         classes = [o for o in yaml_code_model['schemas']['objects']]
         code_model.schemas = [build_schema(name=s['language']['default']['name'], yaml_data=s, exceptions_set=exceptions_set) for s in classes]
-        code_model.add_collections_to_models(d for d in yaml_code_model['schemas']['dictionaries'])
-        code_model.add_inheritance_to_models(a for a in yaml_code_model['schemas']['ands'])
+        # sets the enums property in our code_model variable, which will later be passed to EnumSerializer
+        code_model.build_enums()
+        if yaml_code_model['schemas'].get('dictionaries'):
+            code_model.add_collections_to_models(d for d in yaml_code_model['schemas']['dictionaries'])
+        if yaml_code_model['schemas'].get('ands'):
+            code_model.add_inheritance_to_models(a for a in yaml_code_model['schemas']['ands'])
         code_model.sort_schemas()
         generic_serializer = GenericSerializer(code_model=code_model)
         generic_serializer.serialize()
 
         python3_serializer = Python3Serializer(code_model=code_model)
         python3_serializer.serialize()
+
+        enum_serializer = EnumSerializer(enums=code_model.enums)
+        enum_serializer.serialize()
 
         operation_groups = [OperationGroup.from_yaml(op_group) for op_group in yaml_code_model['operationGroups']]
 
@@ -118,6 +128,7 @@ class CodeGenerator:
         self._autorestapi.write_file(namespace / Path("service_client.py"), generic_serializer.service_client_file)
         self._autorestapi.write_file(namespace / Path("models") / Path("_models.py"), generic_serializer.model_file)
         self._autorestapi.write_file(namespace / Path("models") / Path("_models_py3.py"), python3_serializer.model_file)
+        self._autorestapi.write_file(namespace / Path("models") / Path("_enums.py"), enum_serializer.enum_file)
         return True
 
 def main(yaml_model_file):

@@ -25,6 +25,7 @@
 # --------------------------------------------------------------------------
 
 from .dictionary_schema import DictionarySchema
+from .enum_schema import EnumSchema
 from .imports import FileImport, ImportType
 
 class CodeModel:
@@ -33,6 +34,7 @@ class CodeModel:
         self.client_name = None
         self.api_version = None
         self.schemas = None
+        self.enums = None
 
 
     def imports(self):
@@ -42,7 +44,13 @@ class CodeModel:
             file_import.add_from_import("azure.core.exceptions", "HttpResponseError", ImportType.AZURECORE)
         return file_import
 
-
+    def build_enums(self):
+        enums = []
+        for schema in self.schemas:
+            for prop in schema.properties:
+                if isinstance(prop, EnumSchema):
+                    enums.append(prop)
+        self.enums = enums
 
     def sort_schemas(self):
         seen_schemas = set()

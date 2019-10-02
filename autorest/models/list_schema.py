@@ -5,7 +5,6 @@ from ..common.utils import to_python_case
 class ListSchema(BaseSchema):
     def __init__(self, name, description, element_type, **kwargs):
         super(ListSchema, self).__init__(to_python_case(name), description, **kwargs)
-        self.serialize_name = name
         self.element_type = element_type
         self.max_items = kwargs.pop('max_items', None)
         self.min_items = kwargs.pop('min_items', None)

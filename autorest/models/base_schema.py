@@ -7,7 +7,7 @@ class BaseSchema:
         self.description = description
         self.serialize_name = kwargs.pop('serialize_name', '')
         if self.serialize_name:
-            self.serialize_name = self.serialize_name.replace('.', '\\\\.')
+            self.serialize_name.replace('.', '\\\\.')
         self.required = kwargs.pop('required', False)
         self.readonly = kwargs.pop('readonly', False)
         self.constant = kwargs.pop('constant', False)
@@ -42,8 +42,8 @@ class BaseSchema:
             description = name + "."
         elif 'MISSING' in description:
             description = ""
-        return_dict['required'] = yaml_data.get('required')
-        return_dict['readonly'] = yaml_data.get('readOnly')
-        return_dict['constant'] = yaml_data.get('constant')
+        return_dict['required'] = yaml_data.get('required', False)
+        return_dict['readonly'] = yaml_data.get('readOnly', False)
+        return_dict['constant'] = yaml_data.get('constant', False)
         return_dict['description'] = description
         return return_dict
