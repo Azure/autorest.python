@@ -3,7 +3,7 @@ from ..common.utils import to_python_case, to_python_type
 from typing import Any, Dict
 
 class DictionarySchema(BaseSchema):
-    def __init__(self, name, serialize_name, description, element_type, **kwargs):
+    def __init__(self, name, description, element_type, **kwargs):
         super(DictionarySchema, self).__init__(name, description, **kwargs)
         try:
             self.element_type = to_python_type(element_type)

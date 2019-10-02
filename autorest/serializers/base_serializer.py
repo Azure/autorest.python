@@ -17,13 +17,18 @@ class BaseSerializer:
         else:
             param_doc_string = ":param {}:".format(prop.name)
         description = prop.description
+        if description and description[-1] != ".":
+            description += "."
         if prop.required:
             if description:
                 description = "Required. " + description
             else:
                 description = "Required."
-        if description and description[-1] != ".":
-            description += "."
+        if isinstance(prop, EnumSchema):
+            values = ["\'" + v.value + "\'" for v in prop.values]
+            description += " Possible values include: {}.".format(", ".join(values))
+            if prop.default_value:
+                description += " Default value: \"{}\".".format(prop.default_value)
         if description:
             param_doc_string += " " + description
 
@@ -58,6 +63,7 @@ class BaseSerializer:
         template = env.get_template("service_client.py.jinja2")
         self._service_client_file = template.render(code_model=self.code_model)
 
+        # Generate the models
         template = env.get_template("model_container.py.jinja2")
         self._model_file = template.render(
             code_model=self.code_model,
