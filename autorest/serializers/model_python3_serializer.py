@@ -1,12 +1,12 @@
-from .base_serializer import BaseSerializer
+from .model_base_serializer import ModelBaseSerializer
 from jinja2 import Template, PackageLoader, Environment
 from ..models import PrimitiveSchema
 from ..common.known_primary_types_mapping import known_primary_types_mapping
 
 
-class Python3Serializer(BaseSerializer):
-    def __init__(self, code_model):
-        super(Python3Serializer, self).__init__(code_model)
+class ModelPython3Serializer(ModelBaseSerializer):
+    def __init__(self, code_model, namespace):
+        super(ModelPython3Serializer, self).__init__(code_model, namespace)
 
 
     def _build_init_args(self, model):

@@ -37,8 +37,9 @@ from .common.utils import get_namespace_name
 from .models.code_model import CodeModel
 from .models import build_schema, EnumSchema
 from .models.operation_group import OperationGroup
-from .serializers.generic_serializer import GenericSerializer
-from .serializers.python3_serializer import Python3Serializer
+from .serializers.model_generic_serializer import ModelGenericSerializer
+from .serializers.model_python3_serializer import ModelPython3Serializer
+from .serializers.model_init_serializer import ModelInitSerializer
 from .serializers.enum_serializer import EnumSerializer
 from .serializers.import_serializer import FileImportSerializer
 
@@ -95,15 +96,6 @@ class CodeGenerator:
         if yaml_code_model['schemas'].get('ands'):
             code_model.add_inheritance_to_models(a for a in yaml_code_model['schemas']['ands'])
         code_model.sort_schemas()
-        generic_serializer = GenericSerializer(code_model=code_model)
-        generic_serializer.serialize()
-
-        python3_serializer = Python3Serializer(code_model=code_model)
-        python3_serializer.serialize()
-
-
-
-        operation_groups = [OperationGroup.from_yaml(op_group) for op_group in yaml_code_model['operationGroups']]
 
         # Get my namespace
         namespace = self._autorestapi.get_value("namespace")
@@ -111,6 +103,25 @@ class CodeGenerator:
         if not namespace:
             namespace = get_namespace_name(yaml_code_model["info"]["title"])
         namespace = Path(*[ns_part for ns_part in namespace.split(".")])
+
+        # Serialize the models folder
+
+        model_generic_serializer = ModelGenericSerializer(code_model=code_model, namespace=namespace)
+        model_generic_serializer.serialize()
+
+        model_python3_serializer = ModelPython3Serializer(code_model=code_model, namespace=namespace)
+        model_python3_serializer.serialize()
+
+        if code_model.enums:
+            enum_serializer = EnumSerializer(enums=code_model.enums)
+            enum_serializer.serialize()
+
+        model_init_serializer = ModelInitSerializer(code_model=code_model)
+        model_init_serializer.serialize()
+
+
+        operation_groups = [OperationGroup.from_yaml(op_group) for op_group in yaml_code_model['operationGroups']]
+
 
         template = env.get_template("operations_container.py.jinja2")
         for operation_group in operation_groups:
@@ -124,13 +135,13 @@ class CodeGenerator:
             )
 
         # Write it
-        self._autorestapi.write_file(namespace / Path("service_client.py"), generic_serializer.service_client_file)
-        self._autorestapi.write_file(namespace / Path("models") / Path("_models.py"), generic_serializer.model_file)
-        self._autorestapi.write_file(namespace / Path("models") / Path("_models_py3.py"), python3_serializer.model_file)
+        self._autorestapi.write_file(namespace / Path("service_client.py"), model_generic_serializer.service_client_file)
+        self._autorestapi.write_file(namespace / Path("models") / Path("_models.py"), model_generic_serializer.model_file)
+        self._autorestapi.write_file(namespace / Path("models") / Path("_models_py3.py"), model_python3_serializer.model_file)
         if code_model.enums:
-            enum_serializer = EnumSerializer(enums=code_model.enums)
-            enum_serializer.serialize()
-            self._autorestapi.write_file(namespace / Path("models") / Path("_enums.py"), enum_serializer.enum_file)
+            self._autorestapi.write_file(namespace / Path("models") / Path("_{}_enums.py".format(get_namespace_name(code_model.client_name))), enum_serializer.enum_file)
+        self._autorestapi.write_file(namespace / Path("models") / Path("__init__.py"), model_init_serializer.model_init_file)
+
         return True
 
 def main(yaml_model_file):

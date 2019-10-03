@@ -21,7 +21,7 @@ class PrimitiveSchema(BaseSchema):
             readonly=common_parameters_dict['readonly'],
             constant=common_parameters_dict['constant'],
             serialize_name=serialize_name,
-            default_value = schema_data.get('default_value'),
+            default_value = yaml_data['schema'].get('defaultValue'),
         )
 
     def get_attribute_map_type(self):
@@ -59,7 +59,7 @@ class NumberSchema(PrimitiveSchema):
             minimum=schema_data.get('minimum'),
             exclusive_maximum=schema_data.get('exclusiveMaximum'),
             exclusive_minimum=schema_data.get('exclusiveMinimum'),
-            default_value = schema_data.get('default_value'),
+            default_value = schema_data.get('defaultValue'),
         )
 
 class StringSchema(PrimitiveSchema):
@@ -86,7 +86,7 @@ class StringSchema(PrimitiveSchema):
             max_length=schema_data.get('maxLength'),
             min_length=schema_data.get('minLength'),
             pattern=schema_data.get('pattern'),
-            default_value = schema_data.get('default_value'),
+            default_value = schema_data.get('defaultValue'),
             serialize_name=serialize_name
         )
 
@@ -115,7 +115,7 @@ class DatetimeSchema(PrimitiveSchema):
             required=common_parameters_dict['required'],
             readonly=common_parameters_dict['readonly'],
             constant=common_parameters_dict['constant'],
-            default_value = schema_data.get('default_value'),
+            default_value = schema_data.get('defaultValue'),
             serialize_name=serialize_name
         )
 
@@ -144,7 +144,7 @@ class ByteArraySchema(PrimitiveSchema):
             required=common_parameters_dict['required'],
             readonly=common_parameters_dict['readonly'],
             constant=common_parameters_dict['constant'],
-            default_value = schema_data.get('default_value'),
+            default_value = schema_data.get('defaultValue'),
             serialize_name=serialize_name
         )
 
