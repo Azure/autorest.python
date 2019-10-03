@@ -10,8 +10,6 @@
 # --------------------------------------------------------------------------
 
 from enum import Enum
-
-
-{%- for enum in enums %}
+{% for enum in enums %}
 {% include "enum.py.jinja2" %}
-{%- endfor %}
+{% endfor %}

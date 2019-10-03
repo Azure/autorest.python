@@ -1,9 +1,9 @@
-from .base_serializer import BaseSerializer
+from .model_base_serializer import ModelBaseSerializer
 
 
-class GenericSerializer(BaseSerializer):
-    def __init__(self, code_model):
-        super(GenericSerializer, self).__init__(code_model)
+class ModelGenericSerializer(ModelBaseSerializer):
+    def __init__(self, code_model, namespace):
+        super(ModelGenericSerializer, self).__init__(code_model, namespace)
 
 
     def _format_model_for_file(self, model):

@@ -32,6 +32,6 @@ class ListSchema(BaseSchema):
             max_items=schema_data.get('maxItems'),
             min_items=schema_data.get('minItems'),
             unique_items=schema_data.get('uniqueItems'),
-            default_value = schema_data.get('default_value'),
+            default_value = schema_data.get('defaultValue'),
             serialize_name=serialize_name
         )

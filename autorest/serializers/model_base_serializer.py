@@ -3,9 +3,10 @@ from .import_serializer import FileImportSerializer
 from jinja2 import Template, PackageLoader, Environment
 
 
-class BaseSerializer:
-    def __init__(self, code_model):
+class ModelBaseSerializer:
+    def __init__(self, code_model, namespace):
         self.code_model = code_model
+        self.namespace = namespace
         self._service_client_file = None
         self._model_file = None
 
@@ -44,7 +45,7 @@ class BaseSerializer:
         elif isinstance(prop, ListSchema):
             type_doc_string += "list[{}]".format(prop.element_type)
         elif isinstance(prop, EnumSchema):
-            type_doc_string += "str or {}".format(prop.enum_type)
+            type_doc_string += "str or ~{}.models.{}".format(self.namespace, prop.enum_type)
         elif isinstance(prop, ObjectSchema):
             type_doc_string += prop.schema_type
         elif isinstance(prop, PrimitiveSchema):

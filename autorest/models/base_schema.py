@@ -43,8 +43,8 @@ class BaseSchema:
             description = name + "."
         elif 'MISSING' in description:
             description = ""
-        return_dict['required'] = yaml_data.get('required')
-        return_dict['readonly'] = yaml_data.get('readOnly')
-        return_dict['constant'] = yaml_data.get('constant')
+        return_dict['required'] = yaml_data.get('required', False)
+        return_dict['readonly'] = yaml_data.get('readOnly', False)
+        return_dict['constant'] = yaml_data.get('constant', False)
         return_dict['description'] = description
         return return_dict
