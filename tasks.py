@@ -65,7 +65,7 @@ def regen_expected(c, opts):
 
     for key in keys:
         opts_mappings_value = opts['mappings'][key]
-        key = key.strip();
+        key = key.strip()
 
         swagger_files = (opts_mappings_value[0] if isinstance(opts_mappings_value, list) else opts_mappings_value).split(';')
         args = [
@@ -119,13 +119,16 @@ def regen_expected(c, opts):
         if not instances:
             return
 
-
 @task
-def regenerate_python(c):
+def regenerate_python(c, swagger_name):
+    if swagger_name:
+        default_mapping = {k: v for k, v in default_mappings.items() if swagger_name in k}
+    else:
+        default_mapping = default_mappings
     opts = {
         'output_base_dir': 'test/vanilla',
         'input_base_dir': swagger_dir,
-        'mappings': default_mappings,
+        'mappings': default_mapping,
         'output_dir': 'Expected',
         'language': 'python',
         'flattening_threshold': '1',
@@ -137,11 +140,15 @@ def regenerate_python(c):
 
 
 @task
-def regenerate_python_azure(c):
+def regenerate_python_azure(c, swagger_name):
+    if swagger_name:
+        default_mapping = {k: v for k, v in default_azure_mappings.items() if swagger_name in k}
+    else:
+        default_mapping = default_azure_mappings
     opts = {
         'output_base_dir': 'test/azure',
         'input_base_dir': swagger_dir,
-        'mappings': default_azure_mappings,
+        'mappings': default_mapping,
         'output_dir': 'Expected',
         'language': 'python',
         'flattening_threshold': '1',
@@ -151,11 +158,15 @@ def regenerate_python_azure(c):
 
 
 @task
-def regenerate_python_arm(c):
+def regenerate_python_arm(c, swagger_name):
+    if swagger_name:
+        default_mapping = {k: v for k, v in default_arm_mappings.items() if swagger_name in k}
+    else:
+        default_mapping = default_arm_mappings
     opts = {
         'output_base_dir': 'test/azure',
         'input_base_dir': swagger_dir,
-        'mappings': default_arm_mappings,
+        'mappings': default_mapping,
         'output_dir': 'Expected',
         'language': 'python',
         'azure_arm': True,
@@ -166,11 +177,11 @@ def regenerate_python_arm(c):
 
 
 @task
-def regenerate(c):
+def regenerate(c, swagger_name=None):
     # regenerate expected code for tests
-    regenerate_python(c)
-    regenerate_python_azure(c)
-    regenerate_python_arm(c)
+    regenerate_python(c, swagger_name)
+    regenerate_python_azure(c, swagger_name)
+    regenerate_python_arm(c, swagger_name)
 
 
 @task
