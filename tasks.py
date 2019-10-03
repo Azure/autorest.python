@@ -122,7 +122,7 @@ def regen_expected(c, opts):
 @task
 def regenerate_python(c, swagger_name):
     if swagger_name:
-        default_mapping = {k: v for k, v in default_mappings.items() if swagger_name in k}
+        default_mapping = {k: v for k, v in default_mappings.items() if swagger_name.lower() in k.lower()}
     else:
         default_mapping = default_mappings
     opts = {
@@ -142,7 +142,7 @@ def regenerate_python(c, swagger_name):
 @task
 def regenerate_python_azure(c, swagger_name):
     if swagger_name:
-        default_mapping = {k: v for k, v in default_azure_mappings.items() if swagger_name in k}
+        default_mapping = {k: v for k, v in default_azure_mappings.items() if swagger_name.lower() in k.lower()}}
     else:
         default_mapping = default_azure_mappings
     opts = {
@@ -160,7 +160,7 @@ def regenerate_python_azure(c, swagger_name):
 @task
 def regenerate_python_arm(c, swagger_name):
     if swagger_name:
-        default_mapping = {k: v for k, v in default_arm_mappings.items() if swagger_name in k}
+        default_mapping = {k: v for k, v in default_arm_mappings.items() if swagger_name.lower() in k.lower()}
     else:
         default_mapping = default_arm_mappings
     opts = {
