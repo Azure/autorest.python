@@ -142,7 +142,7 @@ def regenerate_python(c, swagger_name):
 @task
 def regenerate_python_azure(c, swagger_name):
     if swagger_name:
-        default_mapping = {k: v for k, v in default_azure_mappings.items() if swagger_name.lower() in k.lower()}}
+        default_mapping = {k: v for k, v in default_azure_mappings.items() if swagger_name.lower() in k.lower()}
     else:
         default_mapping = default_azure_mappings
     opts = {
