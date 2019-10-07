@@ -7,7 +7,6 @@ class ModelBaseSerializer:
     def __init__(self, code_model, namespace):
         self.code_model = code_model
         self.namespace = namespace
-        self._service_client_file = None
         self._model_file = None
 
 
@@ -62,21 +61,12 @@ class ModelBaseSerializer:
         for model in self.code_model.schemas:
             self._format_model_for_file(model)
 
-        # Generate the service client content
-        template = env.get_template("service_client.py.jinja2")
-        self._service_client_file = template.render(code_model=self.code_model)
-
         # Generate the models
         template = env.get_template("model_container.py.jinja2")
         self._model_file = template.render(
             code_model=self.code_model,
             imports=FileImportSerializer(self.code_model.imports())
         )
-
-
-    @property
-    def service_client_file(self):
-        return self._service_client_file
 
     @property
     def model_file(self):

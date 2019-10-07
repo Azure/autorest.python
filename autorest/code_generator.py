@@ -42,6 +42,7 @@ from .serializers.model_python3_serializer import ModelPython3Serializer
 from .serializers.model_init_serializer import ModelInitSerializer
 from .serializers.enum_serializer import EnumSerializer
 from .serializers.import_serializer import FileImportSerializer
+from .serializers.general_serializer import GeneralSerializer
 
 
 _LOGGER = logging.getLogger(__name__)
@@ -98,6 +99,9 @@ class CodeGenerator:
 
         # Get my namespace
         namespace = self._autorestapi.get_value("namespace")
+        version = self._autorestapi.get_value("package-version")
+        if not version:
+            version = "1.0.0"
         _LOGGER.debug("Namespace parameter was %s", namespace)
         if not namespace:
             namespace = get_namespace_name(yaml_code_model["info"]["title"])
@@ -133,13 +137,27 @@ class CodeGenerator:
                 operation_group_content
             )
 
-        # Write it
-        self._autorestapi.write_file(namespace / Path("_{}.py".format(get_namespace_name(code_model.client_name))), model_generic_serializer.service_client_file)
+        # Write the models folder
         self._autorestapi.write_file(namespace / Path("models") / Path("_models.py"), model_generic_serializer.model_file)
         self._autorestapi.write_file(namespace / Path("models") / Path("_models_py3.py"), model_python3_serializer.model_file)
         if code_model.enums:
             self._autorestapi.write_file(namespace / Path("models") / Path("_{}_enums.py".format(get_namespace_name(code_model.client_name))), enum_serializer.enum_file)
         self._autorestapi.write_file(namespace / Path("models") / Path("__init__.py"), model_init_serializer.model_init_file)
+
+        general_serializer = GeneralSerializer(code_model=code_model, client_name=code_model.client_name, version=version)
+        general_serializer.serialize()
+
+        # Write the __init__ file
+        self._autorestapi.write_file(namespace / Path("__init__.py"), general_serializer.init_file)
+
+        # Write the service client
+        self._autorestapi.write_file(namespace / Path("_{}.py".format(get_namespace_name(code_model.client_name))), general_serializer.service_client_file)
+
+        # Write the version
+        self._autorestapi.write_file(namespace / Path("version.py"), general_serializer.version_file)
+
+        # Write the config file
+        self._autorestapi.write_file(namespace / Path("_configuration.py"), general_serializer.config_file)
 
         return True
 
