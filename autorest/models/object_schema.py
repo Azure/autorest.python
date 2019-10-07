@@ -36,8 +36,8 @@ class ObjectSchema(BaseSchema):
     :param properties: the optional properties of the class.
     :type properties: dict(str, str)
     """
-    def __init__(self, name: str, description: str, schema_type: str, **kwargs: "**Any") -> "ObjectSchema":
-        super(ObjectSchema, self).__init__(name, description, **kwargs)
+    def __init__(self, name: str, description: str, schema_type: str, id, **kwargs: "**Any") -> "ObjectSchema":
+        super(ObjectSchema, self).__init__(name, description, id, **kwargs)
         self.schema_type = schema_type
         self.max_properties = kwargs.pop('max_properties', None)
         self.min_properties = kwargs.pop('min_properties', None)
@@ -103,6 +103,7 @@ class ObjectSchema(BaseSchema):
         return cls(
             name=name,
             description=common_parameters_dict['description'],
+            id=common_parameters_dict['id'],
             schema_type=schema_type,
             properties=properties,
             base_model=yaml_data['allOf'][0] if yaml_data.get('allOf') else None,

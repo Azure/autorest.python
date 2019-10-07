@@ -33,7 +33,7 @@ from jinja2 import Template, PackageLoader, Environment
 
 from .jsonrpc import AutorestAPI
 
-from .common.utils import get_namespace_name
+from .common.utils import get_namespace_name, get_method_name
 from .models.code_model import CodeModel
 from .models import build_schema, EnumSchema
 from .models.operation_group import OperationGroup
@@ -70,7 +70,6 @@ class CodeGenerator:
             raise ValueError("code-model-v4-no-tags.yaml must be a possible input")
 
         file_content = self._autorestapi.read_file("code-model-v4-no-tags.yaml")
-        self._autorestapi.write_file("code-model-v4-no-tags.yaml", file_content)
 
         env = Environment(
             loader=PackageLoader('autorest', 'templates'),
@@ -130,12 +129,12 @@ class CodeGenerator:
                 imports=FileImportSerializer(operation_group.imports())
             )
             self._autorestapi.write_file(
-                namespace / Path("operations") / Path(f"{operation_group.name}_operation_group.py"),
+                namespace / Path("operations") / Path(f"_{get_method_name(operation_group.name)}_operations.py"),
                 operation_group_content
             )
 
         # Write it
-        self._autorestapi.write_file(namespace / Path("service_client.py"), model_generic_serializer.service_client_file)
+        self._autorestapi.write_file(namespace / Path("_{}.py".format(get_namespace_name(code_model.client_name))), model_generic_serializer.service_client_file)
         self._autorestapi.write_file(namespace / Path("models") / Path("_models.py"), model_generic_serializer.model_file)
         self._autorestapi.write_file(namespace / Path("models") / Path("_models_py3.py"), model_python3_serializer.model_file)
         if code_model.enums:

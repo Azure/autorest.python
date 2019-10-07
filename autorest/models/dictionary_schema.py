@@ -3,8 +3,8 @@ from ..common.utils import to_python_type
 from typing import Any, Dict
 
 class DictionarySchema(BaseSchema):
-    def __init__(self, name, description, element_type, **kwargs):
-        super(DictionarySchema, self).__init__(name, description, **kwargs)
+    def __init__(self, name, description, element_type, id, **kwargs):
+        super(DictionarySchema, self).__init__(name, description, id, **kwargs)
         try:
             self.element_type = to_python_type(element_type)
         except:
@@ -23,6 +23,7 @@ class DictionarySchema(BaseSchema):
         return cls(
             name=name,
             description=common_parameters_dict['description'],
+            id=common_parameters_dict['id'],
             element_type=(yaml_data['schema']['elementType']['type']
                           if yaml_data.get('schema')
                           else yaml_data['elementType']['type']),

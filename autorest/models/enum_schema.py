@@ -19,8 +19,8 @@ class EnumValue:
         )
 
 class EnumSchema(BaseSchema):
-    def __init__(self, name, description, enum_type, values, **kwargs):
-        super(EnumSchema, self).__init__(name, description, **kwargs)
+    def __init__(self, name, description, enum_type, values, id, **kwargs):
+        super(EnumSchema, self).__init__(name, description, id, **kwargs)
         self.enum_type = enum_type
         self.values = values
 
@@ -46,6 +46,7 @@ class EnumSchema(BaseSchema):
         return cls(
             name=name,
             description=common_parameters_dict['description'],
+            id=common_parameters_dict['id'],
             enum_type=enum_type,
             values=values,
             default_value=yaml_data['schema'].get('defaultValue'),

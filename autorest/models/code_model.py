@@ -83,8 +83,8 @@ class CodeModel:
     def add_inheritance_to_models(self, and_schemas) -> None:
         for and_schema in and_schemas:
             if and_schema.get('allOf') and len(and_schema['allOf']) > 1 and and_schema['allOf'][0]['$key'] != and_schema['allOf'][1]['$key']:
-                schema = [s for s in self.schemas if s.name == and_schema['language']['default']['name']][0]
-                schema.base_model = [s for s in self.schemas if s.name == and_schema['allOf'][1]['language']['default']['name']][0]
+                schema = [s for s in self.schemas if s.id == and_schema['$key']][0]
+                schema.base_model = [s for s in self.schemas if s.id == and_schema['allOf'][1]['$key']][0]
         self._add_properties_from_inheritance()
 
     def add_collections_to_models(self, dictionary_schemas) -> None:
