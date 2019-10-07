@@ -62,7 +62,10 @@ def main():
     )
 
     if os.environ.get("AUTOREST_PYTHON_ATTACH_VSCODE_DEBUG", False):
-        import ptvsd
+        try:
+            import ptvsd
+        except ImportError:
+            raise SystemExit("Please pip install ptvsd in order to use VSCode debugging")
 
         # 5678 is the default attach port in the VS Code debug configurations
         print("Waiting for debugger attach")
