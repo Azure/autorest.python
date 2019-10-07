@@ -23,11 +23,13 @@
 # IN THE SOFTWARE.
 #
 # --------------------------------------------------------------------------
+import io
 import json
 import os
 import logging
 from pathlib import Path
 import sys
+from typing import BinaryIO
 
 from jsonrpc.jsonrpc2 import JSONRPC20Request, JSONRPC20Response
 
@@ -37,15 +39,15 @@ from . import AutorestAPI
 _LOGGER = logging.getLogger(__name__)
 
 
-def read_message(stream = sys.stdin):
+def read_message(stream: BinaryIO = sys.stdin.buffer) -> str:
     # Content-Length
     order = stream.readline().rstrip()
 
-    if not order.startswith("Content-Length"):
+    if not order.startswith(b"Content-Length"):
         raise ValueError("I was expecting to see Content-Length")
     _LOGGER.info(f"Received: {order}")
     try:
-        bytes_size = int(order.split(":")[1].strip())
+        bytes_size = int(order.split(b":")[1].strip())
     except Exception as err:
         raise ValueError(f"Was unable to read length from {order}") from err
     # Double new line, so read another emptyline and ignore it
@@ -54,13 +56,15 @@ def read_message(stream = sys.stdin):
     # Read the right number of bytes
     _LOGGER.info("Trying to read the message")
     message = stream.read(bytes_size)
+    assert isinstance(message, bytes)
+    message = message.decode('utf-8')
     _LOGGER.info("Received a %d bytes message (push to DEBUG to see full message)", len(message))
     _LOGGER.debug("Read %s", message)
 
     return message
 
 
-def write_message(message, stream=sys.stdout.buffer):
+def write_message(message: str, stream: BinaryIO = sys.stdout.buffer) -> None:
     bytes_message = message.encode("utf-8")
     stream.write(b"Content-Length: ")
     stream.write(str(len(bytes_message)).encode("ascii"))
