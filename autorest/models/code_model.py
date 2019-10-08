@@ -35,6 +35,7 @@ class CodeModel:
         self.api_version = None
         self.schemas = None
         self.enums = None
+        self.namespace = None
 
 
     def imports(self):

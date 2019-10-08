@@ -28,7 +28,7 @@ class {{ client_name }}Configuration(Configuration):
         super({{ client_name }}Configuration, self).__init__(**kwargs)
         self._configure(**kwargs)
 
-        self.user_agent_policy.add_user_agent('azsdk-python-{{ lowercase_client_name }}/{}'.format(VERSION))
+        self.user_agent_policy.add_user_agent('azsdk-python-{{ client_name|lower }}/{}'.format(VERSION))
         self.generate_client_request_id = True
 
     def _configure(self, **kwargs):

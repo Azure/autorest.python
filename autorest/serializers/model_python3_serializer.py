@@ -5,8 +5,8 @@ from ..common.known_primary_types_mapping import known_primary_types_mapping
 
 
 class ModelPython3Serializer(ModelBaseSerializer):
-    def __init__(self, code_model, namespace):
-        super(ModelPython3Serializer, self).__init__(code_model, namespace)
+    def __init__(self, code_model):
+        super(ModelPython3Serializer, self).__init__(code_model)
 
 
     def _build_init_args(self, model):

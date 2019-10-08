@@ -4,9 +4,8 @@ from jinja2 import Template, PackageLoader, Environment
 
 
 class ModelBaseSerializer:
-    def __init__(self, code_model, namespace):
+    def __init__(self, code_model):
         self.code_model = code_model
-        self.namespace = namespace
         self._model_file = None
 
 
@@ -44,7 +43,7 @@ class ModelBaseSerializer:
         elif isinstance(prop, ListSchema):
             type_doc_string += "list[{}]".format(prop.element_type)
         elif isinstance(prop, EnumSchema):
-            type_doc_string += "str or ~{}.models.{}".format(self.namespace, prop.enum_type)
+            type_doc_string += "str or ~{}.models.{}".format(self.code_model.namespace, prop.enum_type)
         elif isinstance(prop, ObjectSchema):
             type_doc_string += prop.schema_type
         elif isinstance(prop, PrimitiveSchema):

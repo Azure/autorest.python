@@ -83,7 +83,10 @@ class CodeGenerator:
         # Create a code model
         code_model = CodeModel()
         code_model.client_name = yaml_code_model['info']['title']
-        # code_model.api_version = yaml_code_model["info"]["version"]
+        code_model.client_doc = yaml_code_model['info']['description']
+        code_model.api_version = self._autorestapi.get_value("package-version")
+        if not code_model.api_version:
+            code_model.api_version = "1.0.0"
 
         exceptions_set = self._build_exceptions_set(yaml_data=yaml_code_model['operationGroups'])
 
@@ -99,20 +102,17 @@ class CodeGenerator:
 
         # Get my namespace
         namespace = self._autorestapi.get_value("namespace")
-        version = self._autorestapi.get_value("package-version")
-        if not version:
-            version = "1.0.0"
         _LOGGER.debug("Namespace parameter was %s", namespace)
         if not namespace:
             namespace = get_namespace_name(yaml_code_model["info"]["title"])
-        namespace = Path(*[ns_part for ns_part in namespace.split(".")])
+        code_model.namespace = Path(*[ns_part for ns_part in namespace.split(".")])
 
         # Serialize the models folder
 
-        model_generic_serializer = ModelGenericSerializer(code_model=code_model, namespace=namespace)
+        model_generic_serializer = ModelGenericSerializer(code_model=code_model)
         model_generic_serializer.serialize()
 
-        model_python3_serializer = ModelPython3Serializer(code_model=code_model, namespace=namespace)
+        model_python3_serializer = ModelPython3Serializer(code_model=code_model)
         model_python3_serializer.serialize()
 
         if code_model.enums:
@@ -137,6 +137,8 @@ class CodeGenerator:
                 operation_group_content
             )
 
+        operation_group_names = [(get_method_name(o.name), o.name) for o in operation_groups]
+
         # Write the models folder
         self._autorestapi.write_file(namespace / Path("models") / Path("_models.py"), model_generic_serializer.model_file)
         self._autorestapi.write_file(namespace / Path("models") / Path("_models_py3.py"), model_python3_serializer.model_file)
@@ -144,7 +146,9 @@ class CodeGenerator:
             self._autorestapi.write_file(namespace / Path("models") / Path("_{}_enums.py".format(get_namespace_name(code_model.client_name))), enum_serializer.enum_file)
         self._autorestapi.write_file(namespace / Path("models") / Path("__init__.py"), model_init_serializer.model_init_file)
 
-        general_serializer = GeneralSerializer(code_model=code_model, client_name=code_model.client_name, version=version)
+        general_serializer = GeneralSerializer(
+            code_model=code_model, operation_group_names=operation_group_names
+        )
         general_serializer.serialize()
 
         # Write the __init__ file
