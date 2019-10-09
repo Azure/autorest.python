@@ -21,7 +21,7 @@ from . import models
 
 
 class {{ code_model.client_name }}(object):
-    """{{ code_model.client_doc }}
+    """{{ code_model.description }}
 
     {% for operation_group_name in operation_group_names %}
     :ivar {{ operation_group_name[0] }}: {{ operation_group_name[1] }} operations

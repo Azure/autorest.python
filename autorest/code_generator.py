@@ -83,7 +83,7 @@ class CodeGenerator:
         # Create a code model
         code_model = CodeModel()
         code_model.client_name = yaml_code_model['info']['title']
-        code_model.client_doc = yaml_code_model['info']['description']
+        code_model.description = yaml_code_model['info']['description']
         code_model.api_version = self._autorestapi.get_value("package-version")
         if not code_model.api_version:
             code_model.api_version = "1.0.0"
@@ -105,7 +105,8 @@ class CodeGenerator:
         _LOGGER.debug("Namespace parameter was %s", namespace)
         if not namespace:
             namespace = get_namespace_name(yaml_code_model["info"]["title"])
-        code_model.namespace = Path(*[ns_part for ns_part in namespace.split(".")])
+        code_model.namespace = namespace
+        namespace = Path(*[ns_part for ns_part in namespace.split(".")])
 
         # Serialize the models folder
 
@@ -162,6 +163,9 @@ class CodeGenerator:
 
         # Write the config file
         self._autorestapi.write_file(namespace / Path("_configuration.py"), general_serializer.config_file)
+
+        # Write the setup file
+        self._autorestapi.write_file(Path("setup.py"), general_serializer.setup_file)
 
         return True
 

@@ -9,6 +9,7 @@ class GeneralSerializer:
         self._service_client_file = None
         self._config_file = None
         self._version_file = None
+        self._setup_file = None
 
     def serialize(self):
         env = Environment(
@@ -34,6 +35,9 @@ class GeneralSerializer:
         template = env.get_template("version.py.jinja2")
         self._version_file = template.render(version=self.code_model.api_version)
 
+        template = env.get_template("setup.py.jinja2")
+        self._setup_file = template.render(code_model=self.code_model)
+
     @property
     def init_file(self):
         return self._init_file
@@ -49,3 +53,7 @@ class GeneralSerializer:
     @property
     def version_file(self):
         return self._version_file
+
+    @property
+    def setup_file(self):
+        return self._setup_file
