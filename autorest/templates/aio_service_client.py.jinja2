@@ -9,33 +9,34 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from azure.core import PipelineClient
+from azure.core import AsyncPipelineClient
 from msrest import Serializer, Deserializer
 
-from ._configuration import {{ code_model.client_name }}Configuration
+from ._configuration_async import {{ code_model.client_name }}Configuration
 from azure.core.exceptions import map_error
 {%- for operation_group_name in operation_group_names %}
-from .operations import {{ operation_group_name }}Operations
+from .operations_async import {{ operation_group_name }}Operations
 {%- endfor %}
-from . import models
+from .. import models
 
 
 class {{ code_model.client_name }}(object):
     """{{ code_model.description }}
 
     {% for operation_group_name in operation_group_names %}
-    :ivar {{ get_method_name(operation_group_name)  }}: {{ operation_group_name }} operations
-    :vartype {{ get_method_name(operation_group_name)  }}: {{ code_model.namespace }}.operations.{{ operation_group_name }}Operations
+    :ivar {{ get_method_name(operation_group_name) }}: {{ operation_group_name }} operations
+    :vartype {{ get_method_name(operation_group_name) }}: {{ code_model.namespace }}.operations.{{ operation_group_name }}Operations
     {% endfor %}
     :param str base_url: Service URL
     """
 
-    def __init__(self, base_url=None, **kwargs):
+    def __init__(
+            self, base_url=None, **kwargs):
 
         if not base_url:
             base_url = 'http://localhost:3000'
-        self._config = {{ code_model.client_name }}Configuration(**kwargs)
-        self._client = PipelineClient(base_url=base_url, config=self._config, **kwargs)
+        self._config = AdditionalPropertiesClientConfiguration(**kwargs)
+        self._client = AsyncPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '{{ code_model.api_version }}'
@@ -45,8 +46,8 @@ class {{ code_model.client_name }}(object):
         self.{{ get_method_name(operation_group_name) }} = {{ operation_group_name + "Operations" }}(
             self._client, self._config, self._serialize, self._deserialize)
         {% endfor %}
-    def __enter__(self):
-        self._client.__enter__()
+    async def __aenter__(self):
+        await self._client.__aenter__()
         return self
-    def __exit__(self, *exc_details):
-        self._client.__exit__(*exc_details)
+    async def __aexit__(self, *exc_details):
+        await self._client.__aexit__(*exc_details)

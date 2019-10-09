@@ -9,9 +9,5 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from ._{{ get_namespace_name(client_name) }} import {{ client_name }}
+from ._{{ get_namespace_name(client_name) }}_async import {{ client_name }}
 __all__ = ['{{ client_name }}']
-
-from .version import VERSION
-
-__version__ = VERSION

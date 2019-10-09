@@ -43,6 +43,7 @@ from .serializers.model_init_serializer import ModelInitSerializer
 from .serializers.enum_serializer import EnumSerializer
 from .serializers.import_serializer import FileImportSerializer
 from .serializers.general_serializer import GeneralSerializer
+from .serializers.aio_general_serializer import AioGeneralSerializer
 
 
 _LOGGER = logging.getLogger(__name__)
@@ -61,6 +62,88 @@ class CodeGenerator:
                 for exception in operation['exceptions']:
                     exceptions_set.add(exception['schema']['$key'])
         return exceptions_set
+
+
+    def _serialize_and_write_models_folder(self, namespace, code_model):
+        # Serialize the models folder
+
+        model_generic_serializer = ModelGenericSerializer(code_model=code_model)
+        model_generic_serializer.serialize()
+
+        model_python3_serializer = ModelPython3Serializer(code_model=code_model)
+        model_python3_serializer.serialize()
+
+        if code_model.enums:
+            enum_serializer = EnumSerializer(enums=code_model.enums)
+            enum_serializer.serialize()
+
+        model_init_serializer = ModelInitSerializer(code_model=code_model)
+        model_init_serializer.serialize()
+
+        # Write the models folder
+        models_path = namespace / Path("models")
+        self._autorestapi.write_file(models_path / Path("_models.py"), model_generic_serializer.model_file)
+        self._autorestapi.write_file(models_path / Path("_models_py3.py"), model_python3_serializer.model_file)
+        if code_model.enums:
+            self._autorestapi.write_file(models_path / Path("_{}_enums.py".format(get_namespace_name(code_model.client_name))), enum_serializer.enum_file)
+        self._autorestapi.write_file(models_path / Path("__init__.py"), model_init_serializer.model_init_file)
+
+    def _serialize_and_write_operations_folder(self, namespace, operation_groups, env):
+        template = env.get_template("operations_container.py.jinja2")
+        for operation_group in operation_groups:
+            operation_group_content = template.render(
+                operation_group=operation_group,
+                imports=FileImportSerializer(operation_group.imports())
+            )
+            self._autorestapi.write_file(
+                namespace / Path("operations") / Path(f"_{get_method_name(operation_group.name)}_operations.py"),
+                operation_group_content
+            )
+
+    def _serialize_and_write_top_level_folder(self, namespace, operation_group_names, code_model):
+        general_serializer = GeneralSerializer(
+            code_model=code_model, operation_group_names=operation_group_names
+        )
+        general_serializer.serialize()
+
+        # Write the __init__ file
+        self._autorestapi.write_file(namespace / Path("__init__.py"), general_serializer.init_file)
+
+        # Write the service client
+        self._autorestapi.write_file(
+            namespace / Path("_{}.py".format(get_namespace_name(code_model.client_name))),
+            general_serializer.service_client_file
+        )
+
+        # Write the version
+        self._autorestapi.write_file(namespace / Path("version.py"), general_serializer.version_file)
+
+        # Write the config file
+        self._autorestapi.write_file(namespace / Path("_configuration.py"), general_serializer.config_file)
+
+        # Write the setup file
+        self._autorestapi.write_file(Path("setup.py"), general_serializer.setup_file)
+
+    def _serialize_and_write_aio_folder(self, namespace, operation_group_names, code_model):
+        aio_general_serializer = AioGeneralSerializer(
+            code_model=code_model,
+            operation_group_names=operation_group_names
+        )
+        aio_general_serializer.serialize()
+
+        aio_path = namespace / Path("aio")
+
+        # Write the __init__ file
+        self._autorestapi.write_file(aio_path / Path("__init__.py"), aio_general_serializer.init_file)
+
+        # Write the service client
+        self._autorestapi.write_file(
+            aio_path / Path("_{}_async.py".format(get_namespace_name(code_model.client_name))),
+            aio_general_serializer.service_client_file
+        )
+
+        # Write the config file
+        self._autorestapi.write_file(aio_path / Path("_configuration_async.py"), aio_general_serializer.config_file)
 
 
     def process(self) -> bool:
@@ -108,64 +191,23 @@ class CodeGenerator:
         code_model.namespace = namespace
         namespace = Path(*[ns_part for ns_part in namespace.split(".")])
 
-        # Serialize the models folder
-
-        model_generic_serializer = ModelGenericSerializer(code_model=code_model)
-        model_generic_serializer.serialize()
-
-        model_python3_serializer = ModelPython3Serializer(code_model=code_model)
-        model_python3_serializer.serialize()
-
-        if code_model.enums:
-            enum_serializer = EnumSerializer(enums=code_model.enums)
-            enum_serializer.serialize()
-
-        model_init_serializer = ModelInitSerializer(code_model=code_model)
-        model_init_serializer.serialize()
-
+        self._serialize_and_write_models_folder(namespace=namespace, code_model=code_model)
 
         operation_groups = [OperationGroup.from_yaml(op_group) for op_group in yaml_code_model['operationGroups']]
+        self._serialize_and_write_operations_folder(namespace=namespace, operation_groups=operation_groups, env=env)
 
-
-        template = env.get_template("operations_container.py.jinja2")
-        for operation_group in operation_groups:
-            operation_group_content = template.render(
-                operation_group=operation_group,
-                imports=FileImportSerializer(operation_group.imports())
-            )
-            self._autorestapi.write_file(
-                namespace / Path("operations") / Path(f"_{get_method_name(operation_group.name)}_operations.py"),
-                operation_group_content
-            )
-
-        operation_group_names = [(get_method_name(o.name), o.name) for o in operation_groups]
-
-        # Write the models folder
-        self._autorestapi.write_file(namespace / Path("models") / Path("_models.py"), model_generic_serializer.model_file)
-        self._autorestapi.write_file(namespace / Path("models") / Path("_models_py3.py"), model_python3_serializer.model_file)
-        if code_model.enums:
-            self._autorestapi.write_file(namespace / Path("models") / Path("_{}_enums.py".format(get_namespace_name(code_model.client_name))), enum_serializer.enum_file)
-        self._autorestapi.write_file(namespace / Path("models") / Path("__init__.py"), model_init_serializer.model_init_file)
-
-        general_serializer = GeneralSerializer(
-            code_model=code_model, operation_group_names=operation_group_names
+        operation_group_names = [o.name for o in operation_groups]
+        self._serialize_and_write_top_level_folder(
+            namespace=namespace,
+            operation_group_names=operation_group_names,
+            code_model=code_model
         )
-        general_serializer.serialize()
 
-        # Write the __init__ file
-        self._autorestapi.write_file(namespace / Path("__init__.py"), general_serializer.init_file)
-
-        # Write the service client
-        self._autorestapi.write_file(namespace / Path("_{}.py".format(get_namespace_name(code_model.client_name))), general_serializer.service_client_file)
-
-        # Write the version
-        self._autorestapi.write_file(namespace / Path("version.py"), general_serializer.version_file)
-
-        # Write the config file
-        self._autorestapi.write_file(namespace / Path("_configuration.py"), general_serializer.config_file)
-
-        # Write the setup file
-        self._autorestapi.write_file(Path("setup.py"), general_serializer.setup_file)
+        self._serialize_and_write_aio_folder(
+            namespace=namespace,
+            code_model=code_model,
+            operation_group_names=operation_group_names
+        )
 
         return True
 
