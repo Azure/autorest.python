@@ -37,13 +37,15 @@ from .common.utils import get_namespace_name, get_method_name
 from .models.code_model import CodeModel
 from .models import build_schema, EnumSchema
 from .models.operation_group import OperationGroup
-from .serializers.model_generic_serializer import ModelGenericSerializer
-from .serializers.model_python3_serializer import ModelPython3Serializer
-from .serializers.model_init_serializer import ModelInitSerializer
-from .serializers.enum_serializer import EnumSerializer
-from .serializers.import_serializer import FileImportSerializer
-from .serializers.general_serializer import GeneralSerializer
-from .serializers.aio_general_serializer import AioGeneralSerializer
+from .serializers import (
+    AioGeneralSerializer,
+    EnumSerializer,
+    FileImportSerializer,
+    GeneralSerializer,
+    ModelGenericSerializer,
+    ModelInitSerializer,
+    ModelPython3Serializer
+)
 
 
 _LOGGER = logging.getLogger(__name__)
@@ -63,6 +65,35 @@ class CodeGenerator:
                     exceptions_set.add(exception['schema']['$key'])
         return exceptions_set
 
+
+    def _create_code_model(self, yaml_code_model):
+        # Create a code model
+        code_model = CodeModel()
+        code_model.client_name = yaml_code_model['info']['title']
+        code_model.description = yaml_code_model['info']['description']
+        code_model.api_version = self._autorestapi.get_value("package-version")
+        if not code_model.api_version:
+            code_model.api_version = "1.0.0"
+
+        exceptions_set = self._build_exceptions_set(yaml_data=yaml_code_model['operationGroups'])
+
+        classes = [o for o in yaml_code_model['schemas']['objects']]
+        code_model.schemas = [build_schema(name=s['language']['default']['name'], yaml_data=s, exceptions_set=exceptions_set) for s in classes]
+        # sets the enums property in our code_model variable, which will later be passed to EnumSerializer
+        code_model.build_enums()
+        if yaml_code_model['schemas'].get('dictionaries'):
+            code_model.add_collections_to_models(d for d in yaml_code_model['schemas']['dictionaries'])
+        if yaml_code_model['schemas'].get('ands'):
+            code_model.add_inheritance_to_models(a for a in yaml_code_model['schemas']['ands'])
+        code_model.sort_schemas()
+
+        # Get my namespace
+        namespace = self._autorestapi.get_value("namespace")
+        _LOGGER.debug("Namespace parameter was %s", namespace)
+        if not namespace:
+            namespace = get_namespace_name(yaml_code_model["info"]["title"])
+        code_model.namespace = Path(*[ns_part for ns_part in namespace.split(".")])
+        return code_model
 
     def _serialize_and_write_models_folder(self, namespace, code_model):
         # Serialize the models folder
@@ -163,48 +194,22 @@ class CodeGenerator:
         # Parse the received YAML
         yaml_code_model = yaml.safe_load(file_content)
 
-        # Create a code model
-        code_model = CodeModel()
-        code_model.client_name = yaml_code_model['info']['title']
-        code_model.description = yaml_code_model['info']['description']
-        code_model.api_version = self._autorestapi.get_value("package-version")
-        if not code_model.api_version:
-            code_model.api_version = "1.0.0"
+        code_model = self._create_code_model(yaml_code_model=yaml_code_model)
 
-        exceptions_set = self._build_exceptions_set(yaml_data=yaml_code_model['operationGroups'])
-
-        classes = [o for o in yaml_code_model['schemas']['objects']]
-        code_model.schemas = [build_schema(name=s['language']['default']['name'], yaml_data=s, exceptions_set=exceptions_set) for s in classes]
-        # sets the enums property in our code_model variable, which will later be passed to EnumSerializer
-        code_model.build_enums()
-        if yaml_code_model['schemas'].get('dictionaries'):
-            code_model.add_collections_to_models(d for d in yaml_code_model['schemas']['dictionaries'])
-        if yaml_code_model['schemas'].get('ands'):
-            code_model.add_inheritance_to_models(a for a in yaml_code_model['schemas']['ands'])
-        code_model.sort_schemas()
-
-        # Get my namespace
-        namespace = self._autorestapi.get_value("namespace")
-        _LOGGER.debug("Namespace parameter was %s", namespace)
-        if not namespace:
-            namespace = get_namespace_name(yaml_code_model["info"]["title"])
-        code_model.namespace = namespace
-        namespace = Path(*[ns_part for ns_part in namespace.split(".")])
-
-        self._serialize_and_write_models_folder(namespace=namespace, code_model=code_model)
+        self._serialize_and_write_models_folder(namespace=code_model.namespace, code_model=code_model)
 
         operation_groups = [OperationGroup.from_yaml(op_group) for op_group in yaml_code_model['operationGroups']]
-        self._serialize_and_write_operations_folder(namespace=namespace, operation_groups=operation_groups, env=env)
+        self._serialize_and_write_operations_folder(namespace=code_model.namespace, operation_groups=operation_groups, env=env)
 
         operation_group_names = [o.name for o in operation_groups]
         self._serialize_and_write_top_level_folder(
-            namespace=namespace,
+            namespace=code_model.namespace,
             operation_group_names=operation_group_names,
             code_model=code_model
         )
 
         self._serialize_and_write_aio_folder(
-            namespace=namespace,
+            namespace=code_model.namespace,
             code_model=code_model,
             operation_group_names=operation_group_names
         )
