@@ -44,7 +44,7 @@ from msrest.serialization import Deserializer
 from msrest.authentication import BasicTokenAuthentication
 
 from azure.core.exceptions import DecodeError
-from azure.core.polling.async_poller import async_poller
+from azure.core.polling import async_poller
 
 from azure.mgmt.core.exceptions import ARMError
 from azure.mgmt.core.polling.async_arm_polling import AsyncARMPolling

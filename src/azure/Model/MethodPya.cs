@@ -61,7 +61,7 @@ namespace AutoRest.Python.Azure.Model
             {
                 if (HasHttpResponseError)
                 {
-                    return ":class:`HttpResponseError<azure.core.HttpResponseError>`";
+                    return ":class:`HttpResponseError<azure.core.exceptions.HttpResponseError>`";
                 }
                 else if(HasCloudError)
                 {

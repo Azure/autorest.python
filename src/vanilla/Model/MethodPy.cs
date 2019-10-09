@@ -76,7 +76,7 @@ namespace AutoRest.Python.Model
                 IModelType body = DefaultResponse.Body;
                 if (body == null)
                 {
-                    return ":class:`HttpResponseError<azure.core.HttpResponseError>`";
+                    return ":class:`HttpResponseError<azure.core.exceptions.HttpResponseError>`";
                 }
                 else
                 {
@@ -91,7 +91,7 @@ namespace AutoRest.Python.Model
                     }
                     else
                     {
-                        return ":class:`HttpResponseError<azure.core.HttpResponseError>`";
+                        return ":class:`HttpResponseError<azure.core.exceptions.HttpResponseError>`";
                     }
                 }
             }
