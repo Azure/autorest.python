@@ -8,16 +8,27 @@
 # Changes may cause incorrect behavior and will be lost if the code is
 # regenerated.
 # --------------------------------------------------------------------------
-
+{% if is_async %}
+from azure.core import AsyncPipelineClient
+{%- else %}
 from azure.core import PipelineClient
+{%- endif %}
 from msrest import Serializer, Deserializer
-
+{% if is_async %}
+from ._configuration_async import {{ code_model.client_name }}Configuration
+{%- else %}
 from ._configuration import {{ code_model.client_name }}Configuration
+{%- endif %}
 from azure.core.exceptions import map_error
 {%- for operation_group_name in operation_group_names %}
+{%- if is_async %}
+from .operations_async import {{ operation_group_name }}Operations
+from .. import models
+{%- else %}
 from .operations import {{ operation_group_name }}Operations
-{%- endfor %}
 from . import models
+{%- endif %}
+{%- endfor %}
 
 
 class {{ code_model.client_name }}(object):
@@ -25,7 +36,11 @@ class {{ code_model.client_name }}(object):
 
     {% for operation_group_name in operation_group_names %}
     :ivar {{ get_method_name(operation_group_name)  }}: {{ operation_group_name }} operations
-    :vartype {{ get_method_name(operation_group_name)  }}: {{ code_model.namespace }}.operations.{{ operation_group_name }}Operations
+    {%- if is_async %}
+    :vartype {{ get_method_name(operation_group_name) }}: {{ code_model.namespace }}.aio.operations_async.{{ operation_group_name }}Operations
+    {%- else %}
+    :vartype {{ get_method_name(operation_group_name) }}: {{ code_model.namespace }}.operations.{{ operation_group_name }}Operations
+    {%- endif %}
     {% endfor %}
     :param str base_url: Service URL
     """
@@ -35,8 +50,12 @@ class {{ code_model.client_name }}(object):
         if not base_url:
             base_url = 'http://localhost:3000'
         self._config = {{ code_model.client_name }}Configuration(**kwargs)
+        {%- if is_async %}
+        self._client = AsyncPipelineClient(base_url=base_url, config=self._config, **kwargs)
+        {{ "" }}
+        {%- else %}
         self._client = PipelineClient(base_url=base_url, config=self._config, **kwargs)
-
+        {% endif %}
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '{{ code_model.api_version }}'
         self._serialize = Serializer(client_models)
@@ -45,8 +64,17 @@ class {{ code_model.client_name }}(object):
         self.{{ get_method_name(operation_group_name) }} = {{ operation_group_name + "Operations" }}(
             self._client, self._config, self._serialize, self._deserialize)
         {% endfor %}
+    {%- if is_async %}
+    async def __aenter__(self):
+        await self._client.__aenter__()
+        return self
+    async def __aexit__(self, *exc_details):
+        await self._client.__aexit__(*exc_details)
+    {{ "" }}
+    {%- else %}
     def __enter__(self):
         self._client.__enter__()
         return self
     def __exit__(self, *exc_details):
         self._client.__exit__(*exc_details)
+    {% endif %}

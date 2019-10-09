@@ -8,10 +8,14 @@
 # Changes may cause incorrect behavior and will be lost if the code is
 # regenerated.
 # --------------------------------------------------------------------------
-
+{% if is_async %}
+from ._{{ get_namespace_name(client_name) }}_async import {{ client_name }}
+{%- else %}
 from ._{{ get_namespace_name(client_name) }} import {{ client_name }}
+{%- endif %}
 __all__ = ['{{ client_name }}']
-
+{% if not is_async %}
 from .version import VERSION
 
 __version__ = VERSION
+{% endif %}
