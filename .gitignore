@@ -305,3 +305,4 @@ src/obj/
 .pytest_cache
 /env
 /venv
+/generated
