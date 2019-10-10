@@ -1,4 +1,6 @@
+import re
 from ..models import DictionarySchema, EnumSchema, ListSchema, ObjectSchema, PrimitiveSchema
+from ..common.utils import to_python_type
 from .import_serializer import FileImportSerializer
 from jinja2 import Template, PackageLoader, Environment
 
@@ -8,6 +10,13 @@ class ModelBaseSerializer:
         self.code_model = code_model
         self._model_file = None
 
+    def _format_model_name_and_description(self, model):
+        model_name_list = re.split('[^a-zA-Z\\d]', model.name)
+        model_name_list = [s[0].upper() + s[1:] if len(s) > 1 else s.upper()
+                            for s in model_name_list]
+        model.name= ''.join(model_name_list)
+        if not model.description:
+            model.description = model.name + "."
 
     def _format_property_doc_string_for_file(self, prop):
         # building the param line of the property doc
@@ -45,7 +54,7 @@ class ModelBaseSerializer:
         elif isinstance(prop, EnumSchema):
             type_doc_string += "str or ~{}.models.{}".format(self.code_model.namespace, prop.enum_type)
         elif isinstance(prop, ObjectSchema):
-            type_doc_string += prop.schema_type
+            type_doc_string += "~{}.models.{}".format(self.code_model.namespace, prop.schema_type)
         elif isinstance(prop, PrimitiveSchema):
             type_doc_string += prop.schema_type
         prop.documentation_string = param_doc_string + "\n\t" + type_doc_string

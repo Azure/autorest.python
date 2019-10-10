@@ -108,12 +108,16 @@ class ObjectSchema(BaseSchema):
                             has_additional_properties = True
 
                 yaml_data = yaml_data['allOf'][0]
-
+            else:
+                base_model = yaml_data['allOf'][0]['$key']
         common_parameters_dict = cls._get_common_parameters(
             name=name,
             yaml_data=yaml_data
         )
-        schema_type = yaml_data['schema']['type'] if yaml_data.get('schema') else yaml_data['type']
+        schema_type = yaml_data['schema']['type'] if yaml_data.get('schema') else None
+
+        if schema_type == 'object' or schema_type == 'and':
+            schema_type = yaml_data['schema']['language']['default']['name']
         if yaml_data.get('properties'):
             # A class with properties to be serialized
             properties = cls._create_properties(yaml_data=yaml_data['properties'])

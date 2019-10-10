@@ -28,7 +28,7 @@ def build_schema(name, yaml_data, **kwargs):
         return DictionarySchema.from_yaml(name=name, yaml_data=yaml_data, serialize_name=serialize_name)
     if schema_type in ('sealed-choice', 'choice'):
         return EnumSchema.from_yaml(name=name, yaml_data=yaml_data, serialize_name=serialize_name)
-    if schema_type == 'object' or yaml_data.get('allOf'):
+    if schema_type == 'object' or schema_type == 'and':
         return ObjectSchema.from_yaml(
             name=name,
             yaml_data=yaml_data,

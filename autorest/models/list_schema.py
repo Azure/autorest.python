@@ -1,6 +1,6 @@
 from .base_schema import BaseSchema
 from typing import Any, Dict
-from ..common.utils import get_property_name
+from ..common.utils import get_property_name, to_python_type
 
 class ListSchema(BaseSchema):
     def __init__(self, name, description, element_type, id, **kwargs):
@@ -22,11 +22,17 @@ class ListSchema(BaseSchema):
         )
         # TODO: for items, if the type is a primitive is it listed in type instead of $ref?
         schema_data = yaml_data['schema']
+        element_type = schema_data['elementType']['type']
+        if element_type == 'object' or element_type == 'and':
+            element_type = schema_data['elementType']['language']['default']['name']
+        else:
+            element_type = to_python_type(element_type)
+
         return cls(
             name=name,
             description=common_parameters_dict['description'],
             id=common_parameters_dict['id'],
-            element_type=schema_data['elementType']['type'],
+            element_type=element_type,
             required=common_parameters_dict['required'],
             readonly=common_parameters_dict['readonly'],
             constant=common_parameters_dict['constant'],

@@ -59,6 +59,7 @@ class ModelPython3Serializer(ModelBaseSerializer):
 
 
     def _format_model_for_file(self, model):
+        self._format_model_name_and_description(model)
         for prop in model.properties:
             self._format_property_doc_string_for_file(prop)
         self._build_init_line(model)
