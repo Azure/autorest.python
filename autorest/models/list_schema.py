@@ -1,6 +1,7 @@
 from .base_schema import BaseSchema
 from typing import Any, Dict
-from ..common.utils import get_property_name, to_python_type
+from ..common.utils import get_property_name
+
 
 class ListSchema(BaseSchema):
     def __init__(self, name, description, element_type, id, **kwargs):
@@ -12,7 +13,10 @@ class ListSchema(BaseSchema):
 
 
     def get_attribute_map_type(self):
-        return '[{}]'.format(self.element_type)
+        return '[{}]'.format(self.element_type.get_attribute_map_type())
+
+    def get_doc_string_type(self, namespace):
+        return 'list[{}]'.format(self.element_type.get_doc_string_type(namespace))
 
     @classmethod
     def from_yaml(cls, name: str, yaml_data: Dict[str, str], serialize_name) -> "SequenceType":
@@ -22,11 +26,15 @@ class ListSchema(BaseSchema):
         )
         # TODO: for items, if the type is a primitive is it listed in type instead of $ref?
         schema_data = yaml_data['schema']
-        element_type = schema_data['elementType']['type']
-        if element_type == 'object' or element_type == 'and':
-            element_type = schema_data['elementType']['language']['default']['name']
-        else:
-            element_type = to_python_type(element_type)
+        element_schema = schema_data['elementType']
+
+        from . import build_schema
+        element_type = build_schema(
+            name='_',
+            yaml_data=element_schema,
+            serialize_name='_',
+            for_element_type=True
+        )
 
         return cls(
             name=name,

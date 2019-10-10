@@ -33,10 +33,10 @@ class ModelBaseSerializer:
             if description:
                 description = "Required. " + description
             else:
-                description = "Required."
+                description = "Required. "
         if isinstance(prop, EnumSchema):
             values = ["\'" + v.value + "\'" for v in prop.values]
-            description += " Possible values include: {}.".format(", ".join(values))
+            description += "Possible values include: {}.".format(", ".join(values))
             if prop.default_value:
                 description += " Default value: \"{}\".".format(prop.default_value)
         if description:
@@ -47,16 +47,17 @@ class ModelBaseSerializer:
             type_doc_string = ":vartype {}: ".format(prop.name)
         else:
             type_doc_string = ":type {}: ".format(prop.name)
-        if isinstance(prop, DictionarySchema):
-            type_doc_string += "dict[str, {}]".format(prop.element_type)
-        elif isinstance(prop, ListSchema):
-            type_doc_string += "list[{}]".format(prop.element_type)
-        elif isinstance(prop, EnumSchema):
-            type_doc_string += "str or ~{}.models.{}".format(self.code_model.namespace, prop.enum_type)
-        elif isinstance(prop, ObjectSchema):
-            type_doc_string += "~{}.models.{}".format(self.code_model.namespace, prop.schema_type)
-        elif isinstance(prop, PrimitiveSchema):
-            type_doc_string += prop.schema_type
+        type_doc_string += prop.get_doc_string_type(self.code_model.namespace)
+        # if isinstance(prop, DictionarySchema):
+        #     type_doc_string += "dict[str, {}]".format(prop.element_type)
+        # elif isinstance(prop, ListSchema):
+        #     type_doc_string += "list[{}]".format(prop.element_type)
+        # elif isinstance(prop, EnumSchema):
+        #     type_doc_string += "str or ~{}.models.{}".format(self.code_model.namespace, prop.enum_type)
+        # elif isinstance(prop, ObjectSchema):
+        #     type_doc_string += "~{}.models.{}".format(self.code_model.namespace, prop.schema_type)
+        # elif isinstance(prop, PrimitiveSchema):
+        #     type_doc_string += prop.schema_type
         prop.documentation_string = param_doc_string + "\n\t" + type_doc_string
 
 

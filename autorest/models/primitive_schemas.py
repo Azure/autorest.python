@@ -25,7 +25,10 @@ class PrimitiveSchema(BaseSchema):
             default_value = yaml_data['schema'].get('defaultValue'),
         )
 
-    def get_attribute_map_type(self):
+    def get_attribute_map_type(self, namespace=None):
+        return self.schema_type
+
+    def get_doc_string_type(self, namespace=None):
         return self.schema_type
 
 
@@ -45,7 +48,7 @@ class NumberSchema(PrimitiveSchema):
             name=name,
             yaml_data=yaml_data
         )
-        schema_data = yaml_data['schema']
+        schema_data = yaml_data['schema'] if yaml_data.get('schema') else yaml_data
         return cls(
             name=name,
             description=common_parameters_dict['description'],
@@ -77,7 +80,7 @@ class StringSchema(PrimitiveSchema):
             name=name,
             yaml_data=yaml_data
         )
-        schema_data = yaml_data['schema']
+        schema_data = yaml_data['schema'] if yaml_data.get('schema') else yaml_data
         return cls(
             name=name,
             description=common_parameters_dict['description'],
@@ -109,7 +112,7 @@ class DatetimeSchema(PrimitiveSchema):
             name=name,
             yaml_data=yaml_data
         )
-        schema_data = yaml_data['schema']
+        schema_data = yaml_data['schema'] if yaml_data.get('schema') else yaml_data
         return cls(
             name=name,
             description=common_parameters_dict['description'],
@@ -139,7 +142,7 @@ class ByteArraySchema(PrimitiveSchema):
             name=name,
             yaml_data=yaml_data
         )
-        schema_data = yaml_data['schema']
+        schema_data = yaml_data['schema'] if yaml_data.get('schema') else yaml_data
         return cls(
             name=name,
             description=common_parameters_dict['description'],
@@ -154,7 +157,7 @@ class ByteArraySchema(PrimitiveSchema):
         )
 
 def get_primitive_schema(name, yaml_data, serialize_name):
-    schema_type = yaml_data['schema']['type']
+    schema_type = yaml_data['schema']['type'] if yaml_data.get('schema') else yaml_data['type']
     if schema_type in ('integer', 'number'):
         return NumberSchema.from_yaml(
             name=name,

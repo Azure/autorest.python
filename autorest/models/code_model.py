@@ -71,7 +71,7 @@ class CodeModel:
                 seen_schemas.add(current)
                 current = parent
             seen_schemas.add(current)
-            sorted_schemas.extend(ancestors)
+            sorted_schemas += ancestors
         self.schemas = sorted_schemas
 
     def _add_properties_from_inheritance(self):
@@ -80,6 +80,8 @@ class CodeModel:
                 parent = schema.base_model
                 while parent:
                     schema.properties = parent.properties + schema.properties
+                    seen_properties = set()
+                    schema.properties = [p for p in schema.properties if p.name not in seen_properties and not seen_properties.add(p.name)]
                     parent = parent.base_model
 
     def add_inheritance_to_models(self) -> None:

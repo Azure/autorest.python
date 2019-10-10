@@ -20,7 +20,6 @@ __all__ = [
 # TODO: should this be in models.__init__ or CodeModel
 def build_schema(name, yaml_data, **kwargs):
     serialize_name = kwargs.pop('serialize_name', None)
-    exceptions_set = kwargs.pop('exceptions_set', None)
     schema_type = yaml_data['schema']['type'] if yaml_data.get('schema') else yaml_data['type']
     if schema_type == 'array':
         return ListSchema.from_yaml(name=name, yaml_data=yaml_data, serialize_name=serialize_name)
@@ -33,6 +32,6 @@ def build_schema(name, yaml_data, **kwargs):
             name=name,
             yaml_data=yaml_data,
             serialize_name=serialize_name,
-            exceptions_set=exceptions_set
+            **kwargs
         )
     return get_primitive_schema(name=name, yaml_data=yaml_data, serialize_name=serialize_name)

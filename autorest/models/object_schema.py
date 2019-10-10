@@ -23,6 +23,7 @@
 # IN THE SOFTWARE.
 #
 # --------------------------------------------------------------------------
+import re
 from .base_schema import BaseSchema
 from typing import Any, Dict, List
 from ..common.utils import to_python_type, get_property_name
@@ -51,6 +52,16 @@ class ObjectSchema(BaseSchema):
 
     def get_attribute_map_type(self) -> str:
         return self.schema_type
+
+    def get_doc_string_type(self, namespace):
+        return '~{}.models.{}'.format(namespace, self.schema_type)
+
+    @classmethod
+    def _convert_to_class_name(cls, name):
+        name_list = re.split('[^a-zA-Z\\d]', name)
+        name_list = [s[0].upper() + s[1:] if len(s) > 1 else s.upper()
+                            for s in name_list]
+        return ''.join(name_list)
 
     """Returns the properties of a ClassType if they exist.
 
@@ -88,9 +99,10 @@ class ObjectSchema(BaseSchema):
     def from_yaml(cls, name: str, yaml_data: Dict[str, str], **kwargs) -> "ClassType":
         base_model = None
         has_additional_properties = False
-
+        for_element_type = kwargs.pop('for_element_type', False)
+        top_level = kwargs.pop('top_level', False)
         # this is then a top level schema from the and list in yaml_data
-        if yaml_data.get('allOf'):
+        if yaml_data.get('allOf') and not for_element_type:
             # this is the object we want to generate as itself
             if yaml_data['$key'] == yaml_data['allOf'][0]['$key']:
                 if len(yaml_data['allOf']) > 1:
@@ -110,19 +122,25 @@ class ObjectSchema(BaseSchema):
                 yaml_data = yaml_data['allOf'][0]
             else:
                 base_model = yaml_data['allOf'][0]['$key']
+        name = cls._convert_to_class_name(name)
         common_parameters_dict = cls._get_common_parameters(
             name=name,
             yaml_data=yaml_data
         )
-        schema_type = yaml_data['schema']['type'] if yaml_data.get('schema') else None
-
-        if schema_type == 'object' or schema_type == 'and':
-            schema_type = yaml_data['schema']['language']['default']['name']
-        if yaml_data.get('properties'):
-            # A class with properties to be serialized
-            properties = cls._create_properties(yaml_data=yaml_data['properties'])
+        if for_element_type:
+            properties = []
+            schema_type = yaml_data['type']
+            if schema_type == 'object' or schema_type == 'and':
+                schema_type = cls._convert_to_class_name(yaml_data['language']['default']['name'])
+        elif top_level:
+            properties = cls._create_properties(yaml_data=yaml_data.get('properties', []))
+            schema_type = None
         else:
             properties = []
+            schema_type = yaml_data['schema']['type']
+            if schema_type == 'object' or schema_type == 'and':
+                schema_type = cls._convert_to_class_name(yaml_data['schema']['language']['default']['name'])
+
         is_exception = None
         exceptions_set = kwargs.pop('exceptions_set', None)
         if exceptions_set:

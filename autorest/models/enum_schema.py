@@ -27,6 +27,9 @@ class EnumSchema(BaseSchema):
     def get_attribute_map_type(self):
         return 'str'
 
+    def get_doc_string_type(self, namespace):
+        return "str or ~{}.models.{}".format(namespace, self.enum_type)
+
     @classmethod
     def _get_enum_values(cls, yaml_data):
         values = []
