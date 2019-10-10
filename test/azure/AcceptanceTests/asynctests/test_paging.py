@@ -47,7 +47,7 @@ from msrest.authentication import BasicTokenAuthentication
 from paging.aio import AutoRestPagingTestService
 from paging.models import PagingGetMultiplePagesWithOffsetOptions
 
-from azure.core import HttpResponseError
+from azure.core.exceptions import HttpResponseError
 
 import pytest
 

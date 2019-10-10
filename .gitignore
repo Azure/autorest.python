@@ -303,3 +303,5 @@ package/
 src/obj/
 *.log
 .pytest_cache
+/env
+/venv

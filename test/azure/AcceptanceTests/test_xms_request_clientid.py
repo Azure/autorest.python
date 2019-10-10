@@ -43,7 +43,7 @@ sys.path.append(join(tests, "AzureSpecials"))
 
 from msrest.serialization import Deserializer
 from msrest.authentication import BasicTokenAuthentication
-from azure.core import HttpResponseError
+from azure.core.exceptions import HttpResponseError
 
 from azurespecialproperties import AutoRestAzureSpecialParametersTestClient
 from azurespecialproperties import models

@@ -15,7 +15,7 @@ from msrest.serialization import Model
 <text>
 @if (currModel.IsException)
 {
-@:from azure.core import HttpResponseError
+@:from azure.core.exceptions import HttpResponseError
 break;
 }
 </text>

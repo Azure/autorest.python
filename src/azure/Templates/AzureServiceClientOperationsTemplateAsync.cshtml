@@ -41,7 +41,7 @@ else
 }
 @if (Model.HasAnyLongRunOperation)
 {
-@:from azure.core.polling.async_poller import async_poller, AsyncNoPolling
+@:from azure.core.polling import async_poller, AsyncNoPolling
 @:from azure.mgmt.polling.async_arm_polling import AsyncARMPolling
 }
 @if (Model.HasAnyModel)
