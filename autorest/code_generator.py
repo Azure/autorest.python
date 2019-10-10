@@ -65,7 +65,6 @@ class CodeGenerator:
                     exceptions_set.add(exception['schema']['$key'])
         return exceptions_set
 
-
     def _create_code_model(self, yaml_code_model):
         # Create a code model
         code_model = CodeModel()
@@ -77,14 +76,12 @@ class CodeGenerator:
 
         exceptions_set = self._build_exceptions_set(yaml_data=yaml_code_model['operationGroups'])
 
-        classes = [o for o in yaml_code_model['schemas']['objects']]
+        classes = [a for a in yaml_code_model['schemas']['ands'] if a.get('allOf')]
         code_model.schemas = [build_schema(name=s['language']['default']['name'], yaml_data=s, exceptions_set=exceptions_set) for s in classes]
         # sets the enums property in our code_model variable, which will later be passed to EnumSerializer
         code_model.build_enums()
-        if yaml_code_model['schemas'].get('dictionaries'):
-            code_model.add_collections_to_models(d for d in yaml_code_model['schemas']['dictionaries'])
-        if yaml_code_model['schemas'].get('ands'):
-            code_model.add_inheritance_to_models(a for a in yaml_code_model['schemas']['ands'])
+        code_model.add_additional_properties_to_models()
+        code_model.add_inheritance_to_models()
         code_model.sort_schemas()
 
         # Get my namespace

@@ -82,38 +82,19 @@ class CodeModel:
                     schema.properties = parent.properties + schema.properties
                     parent = parent.base_model
 
-    def add_inheritance_to_models(self, and_schemas) -> None:
-        for and_schema in and_schemas:
-            if and_schema.get('allOf') and len(and_schema['allOf']) > 1 and and_schema['allOf'][0]['$key'] != and_schema['allOf'][1]['$key']:
-                schema = [s for s in self.schemas if s.id == and_schema['$key']][0]
-                schema.base_model = [s for s in self.schemas if s.id == and_schema['allOf'][1]['$key']][0]
+    def add_inheritance_to_models(self) -> None:
+        for schema in self.schemas:
+            if schema.base_model:
+                # right now, the base model property just holds the id of the parent class
+                schema.base_model = [b for b in self.schemas if b.id == schema.base_model][0]
         self._add_properties_from_inheritance()
 
-    def add_collections_to_models(self, dictionary_schemas) -> None:
-        possible_schemas = self.schemas[:]
-        for dictionary_schema in dictionary_schemas:
-            dictionary_name = dictionary_schema['language']['default']['name']
-            if 'MISSING' in dictionary_schema['description']:
-                dictionary_schema['description'] = 'Unmatched properties from the message are deserialized to this collection.'
-            for schema in possible_schemas:
-                if schema.name == dictionary_name:
-                    # checking to see if there's already an additional_properties in the schema's properties.
+    def add_additional_properties_to_models(self) -> None:
+        for schema in self.schemas:
+            if schema.has_additional_properties:
+                # checking to see if there's already an additional_properties in the schema's properties.
                     # If so, we name it additional_properties_1
-                    for prop in schema.properties:
-                        if prop.name == 'additional_properties':
-                            prop.name = 'additional_properties1'
-                    schema.properties.insert(0, DictionarySchema.from_yaml(
-                        name='additional_properties',
-                        yaml_data=dictionary_schema
-                    ))
-                    possible_schemas.remove(schema)
-                    break
-                # elif schema.name == dictionary_name.split('-')[0]:
-                #     # checking to see if there's already an additional_properties in the schema's properties.
-                #     # If so, we name it additional_properties_1
-                #     for prop in schema.properties:
-                #         if prop.name == 'additional_properties':
-                #             prop.name = 'additional_properties1'
-                #     schema.properties.insert(0, DictionarySchema.from_yaml(name=dictionary_name.split('-')[1], yaml_data=dictionary_schema))
-                #     possible_schemas.remove(schema)
-                #     break
+                for prop in schema.properties:
+                    if prop.name == 'additional_properties':
+                        prop.name = 'additional_properties1'
+                schema.properties.insert(0, DictionarySchema.create_additional_properties_dict())

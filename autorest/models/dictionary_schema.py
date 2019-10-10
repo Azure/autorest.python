@@ -15,6 +15,15 @@ class DictionarySchema(BaseSchema):
         return "{{{}}}".format(self.element_type)
 
     @classmethod
+    def create_additional_properties_dict(cls):
+        return cls(
+            name='additional_properties',
+            description='Unmatched properties from the message are deserialized to this collection.',
+            id='additional_properties',
+            element_type='object'
+        )
+
+    @classmethod
     def from_yaml(cls, name: str, yaml_data: Dict[str, str], serialize_name="") -> "DictionarySchema":
         common_parameters_dict = cls._get_common_parameters(
             name=name,
