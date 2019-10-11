@@ -48,13 +48,20 @@ from paging.aio import AutoRestPagingTestService
 from paging.models import PagingGetMultiplePagesWithOffsetOptions
 
 from azure.core.exceptions import HttpResponseError
+from azure.core.pipeline.policies import ContentDecodePolicy, AsyncRetryPolicy, HeadersPolicy
 
 import pytest
 
 @pytest.fixture
-async def paging_client():
+async def paging_client(cookie_policy):
     cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
-    async with AutoRestPagingTestService(cred, base_url="http://localhost:3000") as client:
+    policies = [
+        HeadersPolicy(),
+        ContentDecodePolicy(),
+        AsyncRetryPolicy(),
+        cookie_policy
+    ]
+    async with AutoRestPagingTestService(cred, base_url="http://localhost:3000", policies=policies) as client:
         yield client
 
 @pytest.mark.asyncio

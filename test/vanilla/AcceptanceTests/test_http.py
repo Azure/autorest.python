@@ -43,6 +43,7 @@ tests = realpath(join(cwd, pardir, "Expected", "AcceptanceTests"))
 sys.path.append(join(tests, "Http"))
 
 from azure.core.exceptions import HttpResponseError
+from azure.core.pipeline.policies import ContentDecodePolicy, RetryPolicy, HeadersPolicy, RedirectPolicy
 from msrest.exceptions import DeserializationError
 
 from httpinfrastructure import AutoRestHttpInfrastructureTestService
@@ -53,9 +54,16 @@ import pytest
 
 
 @pytest.fixture()
-def client():
+def client(cookie_policy):
     """Create a AutoRestHttpInfrastructureTestService client with test server credentials."""
-    with AutoRestHttpInfrastructureTestService(base_url="http://localhost:3000") as client:
+    policies = [
+        HeadersPolicy(),
+        ContentDecodePolicy(),
+        RedirectPolicy(),
+        RetryPolicy(),
+        cookie_policy
+    ]
+    with AutoRestHttpInfrastructureTestService(base_url="http://localhost:3000", policies=policies) as client:
         yield client
 
 

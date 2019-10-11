@@ -46,8 +46,6 @@ from msrest.authentication import BasicTokenAuthentication
 from azure.core.exceptions import DecodeError
 from azure.core.polling import LROPoller
 from azure.core.pipeline.policies import ContentDecodePolicy, RetryPolicy, HeadersPolicy
-from azure.core.pipeline.transport import RequestsTransport
-from azure.core.pipeline import Pipeline
 
 from azure.mgmt.core.polling.arm_polling import ARMPolling
 from azure.mgmt.core.exceptions import ARMError
