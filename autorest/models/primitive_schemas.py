@@ -3,8 +3,8 @@ from .base_schema import BaseSchema
 from ..common.utils import to_python_type
 
 class PrimitiveSchema(BaseSchema):
-    def __init__(self, name, description, schema_type, **kwargs):
-        super(PrimitiveSchema, self).__init__(name, description, **kwargs)
+    def __init__(self, name, description, schema_type, id, **kwargs):
+        super(PrimitiveSchema, self).__init__(name, description, id, **kwargs)
         self.schema_type = to_python_type(schema_type)
 
     @classmethod
@@ -16,6 +16,7 @@ class PrimitiveSchema(BaseSchema):
         return cls(
             name=name,
             description=common_parameters_dict['description'],
+            id=common_parameters_dict['id'],
             schema_type=schema_type,
             required=common_parameters_dict['required'],
             readonly=common_parameters_dict['readonly'],
@@ -24,7 +25,10 @@ class PrimitiveSchema(BaseSchema):
             default_value = yaml_data['schema'].get('defaultValue'),
         )
 
-    def get_attribute_map_type(self):
+    def get_attribute_map_type(self, namespace=None):
+        return self.schema_type
+
+    def get_doc_string_type(self, namespace=None):
         return self.schema_type
 
 
@@ -44,10 +48,11 @@ class NumberSchema(PrimitiveSchema):
             name=name,
             yaml_data=yaml_data
         )
-        schema_data = yaml_data['schema']
+        schema_data = yaml_data['schema'] if yaml_data.get('schema') else yaml_data
         return cls(
             name=name,
             description=common_parameters_dict['description'],
+            id=common_parameters_dict['id'],
             schema_type=schema_type,
             precision=schema_data['precision'],
             serialize_name=serialize_name,
@@ -75,10 +80,11 @@ class StringSchema(PrimitiveSchema):
             name=name,
             yaml_data=yaml_data
         )
-        schema_data = yaml_data['schema']
+        schema_data = yaml_data['schema'] if yaml_data.get('schema') else yaml_data
         return cls(
             name=name,
             description=common_parameters_dict['description'],
+            id=common_parameters_dict['id'],
             schema_type='string',
             required=common_parameters_dict['required'],
             readonly=common_parameters_dict['readonly'],
@@ -106,10 +112,11 @@ class DatetimeSchema(PrimitiveSchema):
             name=name,
             yaml_data=yaml_data
         )
-        schema_data = yaml_data['schema']
+        schema_data = yaml_data['schema'] if yaml_data.get('schema') else yaml_data
         return cls(
             name=name,
             description=common_parameters_dict['description'],
+            id=common_parameters_dict['id'],
             schema_type=schema_type,
             format=cls.Formats(schema_data['format']),
             required=common_parameters_dict['required'],
@@ -135,10 +142,11 @@ class ByteArraySchema(PrimitiveSchema):
             name=name,
             yaml_data=yaml_data
         )
-        schema_data = yaml_data['schema']
+        schema_data = yaml_data['schema'] if yaml_data.get('schema') else yaml_data
         return cls(
             name=name,
             description=common_parameters_dict['description'],
+            id=common_parameters_dict['id'],
             schema_type='byte-array',
             format=cls.Formats(schema_data['format']),
             required=common_parameters_dict['required'],
@@ -149,7 +157,7 @@ class ByteArraySchema(PrimitiveSchema):
         )
 
 def get_primitive_schema(name, yaml_data, serialize_name):
-    schema_type = yaml_data['schema']['type']
+    schema_type = yaml_data['schema']['type'] if yaml_data.get('schema') else yaml_data['type']
     if schema_type in ('integer', 'number'):
         return NumberSchema.from_yaml(
             name=name,

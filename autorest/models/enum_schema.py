@@ -19,13 +19,16 @@ class EnumValue:
         )
 
 class EnumSchema(BaseSchema):
-    def __init__(self, name, description, enum_type, values, **kwargs):
-        super(EnumSchema, self).__init__(name, description, **kwargs)
+    def __init__(self, name, description, enum_type, values, id, **kwargs):
+        super(EnumSchema, self).__init__(name, description, id, **kwargs)
         self.enum_type = enum_type
         self.values = values
 
     def get_attribute_map_type(self):
         return 'str'
+
+    def get_doc_string_type(self, namespace):
+        return "str or ~{}.models.{}".format(namespace, self.enum_type)
 
     @classmethod
     def _get_enum_values(cls, yaml_data):
@@ -46,6 +49,7 @@ class EnumSchema(BaseSchema):
         return cls(
             name=name,
             description=common_parameters_dict['description'],
+            id=common_parameters_dict['id'],
             enum_type=enum_type,
             values=values,
             default_value=yaml_data['schema'].get('defaultValue'),

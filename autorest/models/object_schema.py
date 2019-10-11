@@ -23,6 +23,7 @@
 # IN THE SOFTWARE.
 #
 # --------------------------------------------------------------------------
+import re
 from .base_schema import BaseSchema
 from typing import Any, Dict, List
 from ..common.utils import to_python_type, get_property_name
@@ -36,20 +37,31 @@ class ObjectSchema(BaseSchema):
     :param properties: the optional properties of the class.
     :type properties: dict(str, str)
     """
-    def __init__(self, name: str, description: str, schema_type: str, **kwargs: "**Any") -> "ObjectSchema":
-        super(ObjectSchema, self).__init__(name, description, **kwargs)
+    def __init__(self, name: str, description: str, schema_type: str, id, **kwargs: "**Any") -> "ObjectSchema":
+        super(ObjectSchema, self).__init__(name, description, id, **kwargs)
         self.schema_type = schema_type
         self.max_properties = kwargs.pop('max_properties', None)
         self.min_properties = kwargs.pop('min_properties', None)
         self.properties = kwargs.pop('properties', None)
         self.is_exception = kwargs.pop('is_exception', False)
-        self.base_model = None
+        self.has_additional_properties = kwargs.pop('has_additional_properties', False)
+        self.base_model = kwargs.pop('base_model', None)
         self.property_documentation_string = None
         self.init_line = None
         self.init_args = None
 
     def get_attribute_map_type(self) -> str:
         return self.schema_type
+
+    def get_doc_string_type(self, namespace):
+        return '~{}.models.{}'.format(namespace, self.schema_type)
+
+    @classmethod
+    def _convert_to_class_name(cls, name):
+        name_list = re.split('[^a-zA-Z\\d]', name)
+        name_list = [s[0].upper() + s[1:] if len(s) > 1 else s.upper()
+                            for s in name_list]
+        return ''.join(name_list)
 
     """Returns the properties of a ClassType if they exist.
 
@@ -74,6 +86,7 @@ class ObjectSchema(BaseSchema):
             ))
         return properties
 
+
     """Returns a ClassType from the dict object constructed from a yaml file.
 
     :param str name: The name of the class type.
@@ -84,17 +97,50 @@ class ObjectSchema(BaseSchema):
     """
     @classmethod
     def from_yaml(cls, name: str, yaml_data: Dict[str, str], **kwargs) -> "ClassType":
-        # Returns a ClassType from a yaml file
+        base_model = None
+        has_additional_properties = False
+        for_element_type = kwargs.pop('for_element_type', False)
+        top_level = kwargs.pop('top_level', False)
+        # this is then a top level schema from the and list in yaml_data
+        if yaml_data.get('allOf') and not for_element_type:
+            # this is the object we want to generate as itself
+            if yaml_data['$key'] == yaml_data['allOf'][0]['$key']:
+                if len(yaml_data['allOf']) > 1:
+                    # object has additional properties defined on it
+                    if yaml_data['allOf'][1]['type'] == 'dictionary':
+                        has_additional_properties = True
+
+                    # object has a parent then
+                    else:
+                        base_model = yaml_data['allOf'][1]['$key']
+
+                        # if there is another entry in the allOf, then this objects
+                        # has both a parent and additional_properties defined on it
+                        if len(yaml_data['allOf']) > 2:
+                            has_additional_properties = True
+
+                yaml_data = yaml_data['allOf'][0]
+            else:
+                base_model = yaml_data['allOf'][0]['$key']
+        name = cls._convert_to_class_name(name)
         common_parameters_dict = cls._get_common_parameters(
             name=name,
             yaml_data=yaml_data
         )
-        schema_type = yaml_data['schema']['type'] if yaml_data.get('schema') else yaml_data['type']
-        if yaml_data.get('properties'):
-            # A class with properties to be serialized
-            properties = cls._create_properties(yaml_data=yaml_data['properties'])
+        if for_element_type:
+            properties = []
+            schema_type = yaml_data['type']
+            if schema_type == 'object' or schema_type == 'and':
+                schema_type = cls._convert_to_class_name(yaml_data['language']['default']['name'])
+        elif top_level:
+            properties = cls._create_properties(yaml_data=yaml_data.get('properties', []))
+            schema_type = None
         else:
             properties = []
+            schema_type = yaml_data['schema']['type']
+            if schema_type == 'object' or schema_type == 'and':
+                schema_type = cls._convert_to_class_name(yaml_data['schema']['language']['default']['name'])
+
         is_exception = None
         exceptions_set = kwargs.pop('exceptions_set', None)
         if exceptions_set:
@@ -103,13 +149,15 @@ class ObjectSchema(BaseSchema):
         return cls(
             name=name,
             description=common_parameters_dict['description'],
+            id=common_parameters_dict['id'],
             schema_type=schema_type,
             properties=properties,
-            base_model=yaml_data['allOf'][0] if yaml_data.get('allOf') else None,
+            base_model=base_model,
             required=common_parameters_dict['required'],
             readonly=common_parameters_dict['readonly'],
             constant=common_parameters_dict['constant'],
             default_value=yaml_data['schema'].get('defaultValue') if yaml_data.get('schema') else None,
             serialize_name=kwargs.pop('serialize_name', None),
-            is_exception=is_exception
+            is_exception=is_exception,
+            has_additional_properties=has_additional_properties
         )

@@ -2,9 +2,10 @@ from typing import Any, Dict
 
 
 class BaseSchema:
-    def __init__(self, name, description, **kwargs):
+    def __init__(self, name, description, id, **kwargs):
         self.name = name
         self.description = description
+        self.id = id
         self.serialize_name = kwargs.pop('serialize_name', '')
         if self.serialize_name:
             self.serialize_name = self.serialize_name.replace('.', '\\\\.')
@@ -43,6 +44,7 @@ class BaseSchema:
             description = name + "."
         elif 'MISSING' in description:
             description = ""
+        return_dict['id'] = yaml_data['$key']
         return_dict['required'] = yaml_data.get('required', False)
         return_dict['readonly'] = yaml_data.get('readOnly', False)
         return_dict['constant'] = yaml_data.get('constant', False)
