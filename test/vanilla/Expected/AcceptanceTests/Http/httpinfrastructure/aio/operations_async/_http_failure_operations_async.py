@@ -86,7 +86,8 @@ class HttpFailureOperations:
          direct response
         :return: bool or the result of cls(response)
         :rtype: bool
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises:
+         :class:`HttpResponseError<azure.core.exceptions.HttpResponseError>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL
@@ -126,7 +127,8 @@ class HttpFailureOperations:
          direct response
         :return: bool or the result of cls(response)
         :rtype: bool
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises:
+         :class:`HttpResponseError<azure.core.exceptions.HttpResponseError>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL

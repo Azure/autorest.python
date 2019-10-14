@@ -45,7 +45,8 @@ class XmlOperations:
          direct response
         :return: RootWithRefAndNoMeta or the result of cls(response)
         :rtype: ~xmlservice.models.RootWithRefAndNoMeta
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises:
+         :class:`HttpResponseError<azure.core.exceptions.HttpResponseError>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL
@@ -87,7 +88,8 @@ class XmlOperations:
          direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises:
+         :class:`HttpResponseError<azure.core.exceptions.HttpResponseError>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL
@@ -125,7 +127,8 @@ class XmlOperations:
          direct response
         :return: RootWithRefAndMeta or the result of cls(response)
         :rtype: ~xmlservice.models.RootWithRefAndMeta
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises:
+         :class:`HttpResponseError<azure.core.exceptions.HttpResponseError>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL
@@ -167,7 +170,8 @@ class XmlOperations:
          direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises:
+         :class:`HttpResponseError<azure.core.exceptions.HttpResponseError>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL
@@ -285,7 +289,8 @@ class XmlOperations:
          direct response
         :return: AppleBarrel or the result of cls(response)
         :rtype: ~xmlservice.models.AppleBarrel
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises:
+         :class:`HttpResponseError<azure.core.exceptions.HttpResponseError>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL
@@ -365,7 +370,8 @@ class XmlOperations:
          direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises:
+         :class:`HttpResponseError<azure.core.exceptions.HttpResponseError>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL
@@ -401,7 +407,8 @@ class XmlOperations:
          direct response
         :return: Slideshow or the result of cls(response)
         :rtype: ~xmlservice.models.Slideshow
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises:
+         :class:`HttpResponseError<azure.core.exceptions.HttpResponseError>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL
@@ -443,7 +450,8 @@ class XmlOperations:
          direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises:
+         :class:`HttpResponseError<azure.core.exceptions.HttpResponseError>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL
@@ -481,7 +489,8 @@ class XmlOperations:
          direct response
         :return: AppleBarrel or the result of cls(response)
         :rtype: ~xmlservice.models.AppleBarrel
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises:
+         :class:`HttpResponseError<azure.core.exceptions.HttpResponseError>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL
@@ -523,7 +532,8 @@ class XmlOperations:
          direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises:
+         :class:`HttpResponseError<azure.core.exceptions.HttpResponseError>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL
@@ -561,7 +571,8 @@ class XmlOperations:
          direct response
         :return: list or the result of cls(response)
         :rtype: list[~xmlservice.models.Banana]
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises:
+         :class:`HttpResponseError<azure.core.exceptions.HttpResponseError>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL
@@ -603,7 +614,8 @@ class XmlOperations:
          direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises:
+         :class:`HttpResponseError<azure.core.exceptions.HttpResponseError>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL
@@ -642,7 +654,8 @@ class XmlOperations:
          direct response
         :return: list or the result of cls(response)
         :rtype: list[~xmlservice.models.Banana]
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises:
+         :class:`HttpResponseError<azure.core.exceptions.HttpResponseError>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL
@@ -684,7 +697,8 @@ class XmlOperations:
          direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises:
+         :class:`HttpResponseError<azure.core.exceptions.HttpResponseError>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL
@@ -723,7 +737,8 @@ class XmlOperations:
          direct response
         :return: list or the result of cls(response)
         :rtype: list[~xmlservice.models.Banana]
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises:
+         :class:`HttpResponseError<azure.core.exceptions.HttpResponseError>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL
@@ -765,7 +780,8 @@ class XmlOperations:
          direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises:
+         :class:`HttpResponseError<azure.core.exceptions.HttpResponseError>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL
@@ -804,7 +820,8 @@ class XmlOperations:
          direct response
         :return: Banana or the result of cls(response)
         :rtype: ~xmlservice.models.Banana
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises:
+         :class:`HttpResponseError<azure.core.exceptions.HttpResponseError>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL
@@ -846,7 +863,8 @@ class XmlOperations:
          direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises:
+         :class:`HttpResponseError<azure.core.exceptions.HttpResponseError>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL
@@ -884,7 +902,8 @@ class XmlOperations:
          direct response
         :return: ListContainersResponse or the result of cls(response)
         :rtype: ~xmlservice.models.ListContainersResponse
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises:
+         :class:`HttpResponseError<azure.core.exceptions.HttpResponseError>`
         """
         error_map = kwargs.pop('error_map', None)
         comp = "list"
@@ -927,7 +946,8 @@ class XmlOperations:
          direct response
         :return: StorageServiceProperties or the result of cls(response)
         :rtype: ~xmlservice.models.StorageServiceProperties
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises:
+         :class:`HttpResponseError<azure.core.exceptions.HttpResponseError>`
         """
         error_map = kwargs.pop('error_map', None)
         comp = "properties"
@@ -974,7 +994,8 @@ class XmlOperations:
          direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises:
+         :class:`HttpResponseError<azure.core.exceptions.HttpResponseError>`
         """
         error_map = kwargs.pop('error_map', None)
         comp = "properties"
@@ -1017,7 +1038,8 @@ class XmlOperations:
          direct response
         :return: list or the result of cls(response)
         :rtype: list[~xmlservice.models.SignedIdentifier]
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises:
+         :class:`HttpResponseError<azure.core.exceptions.HttpResponseError>`
         """
         error_map = kwargs.pop('error_map', None)
         comp = "acl"
@@ -1064,7 +1086,8 @@ class XmlOperations:
          direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises:
+         :class:`HttpResponseError<azure.core.exceptions.HttpResponseError>`
         """
         error_map = kwargs.pop('error_map', None)
         comp = "acl"
@@ -1108,7 +1131,8 @@ class XmlOperations:
          direct response
         :return: ListBlobsResponse or the result of cls(response)
         :rtype: ~xmlservice.models.ListBlobsResponse
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises:
+         :class:`HttpResponseError<azure.core.exceptions.HttpResponseError>`
         """
         error_map = kwargs.pop('error_map', None)
         comp = "list"
@@ -1156,7 +1180,8 @@ class XmlOperations:
          direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises:
+         :class:`HttpResponseError<azure.core.exceptions.HttpResponseError>`
         """
         error_map = kwargs.pop('error_map', None)
         properties = models.JSONInput(id=id)
@@ -1197,7 +1222,8 @@ class XmlOperations:
          direct response
         :return: JSONOutput or the result of cls(response)
         :rtype: ~xmlservice.models.JSONOutput
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises:
+         :class:`HttpResponseError<azure.core.exceptions.HttpResponseError>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL

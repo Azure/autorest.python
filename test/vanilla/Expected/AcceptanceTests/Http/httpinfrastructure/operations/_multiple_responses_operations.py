@@ -668,7 +668,8 @@ class MultipleResponsesOperations(object):
          direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises:
+         :class:`HttpResponseError<azure.core.exceptions.HttpResponseError>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL
@@ -702,7 +703,8 @@ class MultipleResponsesOperations(object):
          direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises:
+         :class:`HttpResponseError<azure.core.exceptions.HttpResponseError>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL
@@ -736,7 +738,8 @@ class MultipleResponsesOperations(object):
          direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises:
+         :class:`HttpResponseError<azure.core.exceptions.HttpResponseError>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL
@@ -770,7 +773,8 @@ class MultipleResponsesOperations(object):
          direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises:
+         :class:`HttpResponseError<azure.core.exceptions.HttpResponseError>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL
@@ -940,7 +944,8 @@ class MultipleResponsesOperations(object):
          direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises:
+         :class:`HttpResponseError<azure.core.exceptions.HttpResponseError>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL
@@ -974,7 +979,8 @@ class MultipleResponsesOperations(object):
          direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises:
+         :class:`HttpResponseError<azure.core.exceptions.HttpResponseError>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL
@@ -1008,7 +1014,8 @@ class MultipleResponsesOperations(object):
          direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises:
+         :class:`HttpResponseError<azure.core.exceptions.HttpResponseError>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL
@@ -1042,7 +1049,8 @@ class MultipleResponsesOperations(object):
          direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises:
+         :class:`HttpResponseError<azure.core.exceptions.HttpResponseError>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL
@@ -1077,7 +1085,8 @@ class MultipleResponsesOperations(object):
          direct response
         :return: A or the result of cls(response)
         :rtype: ~httpinfrastructure.models.A
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises:
+         :class:`HttpResponseError<azure.core.exceptions.HttpResponseError>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL
@@ -1117,7 +1126,8 @@ class MultipleResponsesOperations(object):
          direct response
         :return: A or the result of cls(response)
         :rtype: ~httpinfrastructure.models.A
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises:
+         :class:`HttpResponseError<azure.core.exceptions.HttpResponseError>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL
@@ -1157,7 +1167,8 @@ class MultipleResponsesOperations(object):
          direct response
         :return: A or the result of cls(response)
         :rtype: ~httpinfrastructure.models.A
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises:
+         :class:`HttpResponseError<azure.core.exceptions.HttpResponseError>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL
@@ -1198,7 +1209,8 @@ class MultipleResponsesOperations(object):
          direct response
         :return: A or the result of cls(response)
         :rtype: ~httpinfrastructure.models.A
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises:
+         :class:`HttpResponseError<azure.core.exceptions.HttpResponseError>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL
@@ -1238,7 +1250,8 @@ class MultipleResponsesOperations(object):
          direct response
         :return: A or the result of cls(response)
         :rtype: ~httpinfrastructure.models.A
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises:
+         :class:`HttpResponseError<azure.core.exceptions.HttpResponseError>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL
@@ -1278,7 +1291,8 @@ class MultipleResponsesOperations(object):
          direct response
         :return: A or the result of cls(response)
         :rtype: ~httpinfrastructure.models.A
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises:
+         :class:`HttpResponseError<azure.core.exceptions.HttpResponseError>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL
@@ -1318,7 +1332,8 @@ class MultipleResponsesOperations(object):
          direct response
         :return: A or the result of cls(response)
         :rtype: ~httpinfrastructure.models.A
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises:
+         :class:`HttpResponseError<azure.core.exceptions.HttpResponseError>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL

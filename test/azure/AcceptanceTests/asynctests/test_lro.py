@@ -44,7 +44,8 @@ from msrest.serialization import Deserializer
 from msrest.authentication import BasicTokenAuthentication
 
 from azure.core.exceptions import DecodeError
-from azure.core.polling.async_poller import async_poller
+from azure.core.polling import async_poller
+from azure.core.pipeline.policies import ContentDecodePolicy, AsyncRetryPolicy, HeadersPolicy
 
 from azure.mgmt.core.exceptions import ARMError
 from azure.mgmt.core.polling.async_arm_polling import AsyncARMPolling
@@ -85,10 +86,16 @@ class AutorestTestARMPolling(AsyncARMPolling):
         return (await self._client._pipeline.run(request, stream=False, **self._operation_config)).http_response
 
 @pytest.fixture()
-async def client():
+async def client(cookie_policy):
     """Create a AutoRestLongRunningOperationTestService client with test server credentials."""
     cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
-    async with AutoRestLongRunningOperationTestService(cred, base_url="http://localhost:3000", polling_interval=0) as client:
+    policies = [
+        HeadersPolicy(),
+        ContentDecodePolicy(),
+        AsyncRetryPolicy(),
+        cookie_policy
+    ]
+    async with AutoRestLongRunningOperationTestService(cred, base_url="http://localhost:3000", policies=policies, polling_interval=0) as client:
         yield client
 
 

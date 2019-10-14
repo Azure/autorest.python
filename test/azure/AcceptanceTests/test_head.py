@@ -48,7 +48,7 @@ from msrest.authentication import BasicTokenAuthentication
 from head import AutoRestHeadTestService
 from headexceptions import AutoRestHeadExceptionTestService
 
-from azure.core import HttpResponseError
+from azure.core.exceptions import HttpResponseError
 
 import pytest
 

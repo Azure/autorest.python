@@ -45,7 +45,8 @@ class FlattencomplexOperations:
          direct response
         :return: MyBaseType or the result of cls(response)
         :rtype: ~bodycomplex.models.MyBaseType
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises:
+         :class:`HttpResponseError<azure.core.exceptions.HttpResponseError>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL

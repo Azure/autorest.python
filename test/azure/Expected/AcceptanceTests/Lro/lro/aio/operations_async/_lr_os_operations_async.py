@@ -14,7 +14,7 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 import uuid
 from azure.core.exceptions import map_error
 from azure.mgmt.core.exceptions import ARMError
-from azure.core.polling.async_poller import async_poller, AsyncNoPolling
+from azure.core.polling import async_poller, AsyncNoPolling
 from azure.mgmt.core.polling.async_arm_polling import AsyncARMPolling
 
 from ... import models

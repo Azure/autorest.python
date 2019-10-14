@@ -47,7 +47,8 @@ class PetOperations:
          direct response
         :return: Pet or the result of cls(response)
         :rtype: ~extensibleenumsswagger.models.Pet
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises:
+         :class:`HttpResponseError<azure.core.exceptions.HttpResponseError>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL
@@ -93,7 +94,8 @@ class PetOperations:
          direct response
         :return: Pet or the result of cls(response)
         :rtype: ~extensibleenumsswagger.models.Pet
-        :raises: :class:`HttpResponseError<azure.core.HttpResponseError>`
+        :raises:
+         :class:`HttpResponseError<azure.core.exceptions.HttpResponseError>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL
