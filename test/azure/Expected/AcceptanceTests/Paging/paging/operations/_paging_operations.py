@@ -79,7 +79,7 @@ class PagingOperations(object):
         def get_next(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = self._client._pipeline.run(request)
+            pipeline_response = self._client._pipeline.run(request, **kwargs)
             response = pipeline_response.http_response
 
             error_map = kwargs.pop('error_map', None)
@@ -151,7 +151,7 @@ class PagingOperations(object):
         def get_next(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = self._client._pipeline.run(request)
+            pipeline_response = self._client._pipeline.run(request, **kwargs)
             response = pipeline_response.http_response
 
             error_map = kwargs.pop('error_map', None)
@@ -224,7 +224,7 @@ class PagingOperations(object):
         def get_next(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = self._client._pipeline.run(request)
+            pipeline_response = self._client._pipeline.run(request, **kwargs)
             response = pipeline_response.http_response
 
             error_map = kwargs.pop('error_map', None)
@@ -303,7 +303,7 @@ class PagingOperations(object):
         def get_next(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = self._client._pipeline.run(request)
+            pipeline_response = self._client._pipeline.run(request, **kwargs)
             response = pipeline_response.http_response
 
             error_map = kwargs.pop('error_map', None)
@@ -357,7 +357,7 @@ class PagingOperations(object):
         def get_next(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = self._client._pipeline.run(request)
+            pipeline_response = self._client._pipeline.run(request, **kwargs)
             response = pipeline_response.http_response
 
             error_map = kwargs.pop('error_map', None)
@@ -412,7 +412,7 @@ class PagingOperations(object):
         def get_next(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = self._client._pipeline.run(request)
+            pipeline_response = self._client._pipeline.run(request, **kwargs)
             response = pipeline_response.http_response
 
             error_map = kwargs.pop('error_map', None)
@@ -465,7 +465,7 @@ class PagingOperations(object):
         def get_next(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = self._client._pipeline.run(request)
+            pipeline_response = self._client._pipeline.run(request, **kwargs)
             response = pipeline_response.http_response
 
             error_map = kwargs.pop('error_map', None)
@@ -518,7 +518,7 @@ class PagingOperations(object):
         def get_next(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = self._client._pipeline.run(request)
+            pipeline_response = self._client._pipeline.run(request, **kwargs)
             response = pipeline_response.http_response
 
             error_map = kwargs.pop('error_map', None)
@@ -571,7 +571,7 @@ class PagingOperations(object):
         def get_next(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = self._client._pipeline.run(request)
+            pipeline_response = self._client._pipeline.run(request, **kwargs)
             response = pipeline_response.http_response
 
             error_map = kwargs.pop('error_map', None)
@@ -639,7 +639,7 @@ class PagingOperations(object):
         def get_next(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = self._client._pipeline.run(request)
+            pipeline_response = self._client._pipeline.run(request, **kwargs)
             response = pipeline_response.http_response
 
             error_map = kwargs.pop('error_map', None)
@@ -713,7 +713,7 @@ class PagingOperations(object):
         def get_next(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = self._client._pipeline.run(request)
+            pipeline_response = self._client._pipeline.run(request, **kwargs)
             response = pipeline_response.http_response
 
             error_map = kwargs.pop('error_map', None)

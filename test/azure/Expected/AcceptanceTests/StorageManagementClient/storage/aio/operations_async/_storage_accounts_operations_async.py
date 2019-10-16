@@ -469,7 +469,7 @@ class StorageAccountsOperations:
         async def get_next_async(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self._client._pipeline.run(request)
+            pipeline_response = await self._client._pipeline.run(request, **kwargs)
             response = pipeline_response.http_response
 
             error_map = kwargs.pop('error_map', None)
@@ -534,7 +534,7 @@ class StorageAccountsOperations:
         async def get_next_async(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self._client._pipeline.run(request)
+            pipeline_response = await self._client._pipeline.run(request, **kwargs)
             response = pipeline_response.http_response
 
             error_map = kwargs.pop('error_map', None)

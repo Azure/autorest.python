@@ -133,7 +133,7 @@ else
 @:        def get_next(next_link=None):
 @:            request = prepare_request(next_link)
 @EmptyLine
-@:            pipeline_response = self._client._pipeline.run(request)
+@:            pipeline_response = self._client._pipeline.run(request, **kwargs)
 }
 else
 {
@@ -147,7 +147,7 @@ else
 @:        async def get_next_async(next_link=None):
 @:            request = prepare_request(next_link)
 @EmptyLine
-            @:pipeline_response = await self._client._pipeline.run(request)
+            @:pipeline_response = await self._client._pipeline.run(request, **kwargs)
 }
             response = pipeline_response.http_response
 @EmptyLine
