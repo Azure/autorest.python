@@ -61,6 +61,7 @@ class DurationOperations(object):
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
 
         # Construct and send request
+        error_map = kwargs.pop('error_map', None)
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -108,6 +109,7 @@ class DurationOperations(object):
         body_content = self._serialize.body(duration_body, 'duration')
 
         # Construct and send request
+        error_map = kwargs.pop('error_map', None)
         request = self._client.put(url, query_parameters, header_parameters, body_content)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -145,6 +147,7 @@ class DurationOperations(object):
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
 
         # Construct and send request
+        error_map = kwargs.pop('error_map', None)
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -187,6 +190,7 @@ class DurationOperations(object):
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
 
         # Construct and send request
+        error_map = kwargs.pop('error_map', None)
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response

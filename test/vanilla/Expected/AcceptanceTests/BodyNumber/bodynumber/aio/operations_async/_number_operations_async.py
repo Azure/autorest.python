@@ -59,6 +59,7 @@ class NumberOperations:
         header_parameters['Accept'] = 'application/json'
 
         # Construct and send request
+        error_map = kwargs.pop('error_map', None)
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -99,6 +100,7 @@ class NumberOperations:
         header_parameters['Accept'] = 'application/json'
 
         # Construct and send request
+        error_map = kwargs.pop('error_map', None)
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -139,6 +141,7 @@ class NumberOperations:
         header_parameters['Accept'] = 'application/json'
 
         # Construct and send request
+        error_map = kwargs.pop('error_map', None)
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -179,6 +182,7 @@ class NumberOperations:
         header_parameters['Accept'] = 'application/json'
 
         # Construct and send request
+        error_map = kwargs.pop('error_map', None)
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -224,6 +228,7 @@ class NumberOperations:
         body_content = self._serialize.body(number_body, 'float')
 
         # Construct and send request
+        error_map = kwargs.pop('error_map', None)
         request = self._client.put(url, query_parameters, header_parameters, body_content)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -259,6 +264,7 @@ class NumberOperations:
         header_parameters['Accept'] = 'application/json'
 
         # Construct and send request
+        error_map = kwargs.pop('error_map', None)
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -304,6 +310,7 @@ class NumberOperations:
         body_content = self._serialize.body(number_body, 'float')
 
         # Construct and send request
+        error_map = kwargs.pop('error_map', None)
         request = self._client.put(url, query_parameters, header_parameters, body_content)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -339,6 +346,7 @@ class NumberOperations:
         header_parameters['Accept'] = 'application/json'
 
         # Construct and send request
+        error_map = kwargs.pop('error_map', None)
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -384,6 +392,7 @@ class NumberOperations:
         body_content = self._serialize.body(number_body, 'float')
 
         # Construct and send request
+        error_map = kwargs.pop('error_map', None)
         request = self._client.put(url, query_parameters, header_parameters, body_content)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -419,6 +428,7 @@ class NumberOperations:
         header_parameters['Accept'] = 'application/json'
 
         # Construct and send request
+        error_map = kwargs.pop('error_map', None)
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -464,6 +474,7 @@ class NumberOperations:
         body_content = self._serialize.body(number_body, 'float')
 
         # Construct and send request
+        error_map = kwargs.pop('error_map', None)
         request = self._client.put(url, query_parameters, header_parameters, body_content)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -499,6 +510,7 @@ class NumberOperations:
         header_parameters['Accept'] = 'application/json'
 
         # Construct and send request
+        error_map = kwargs.pop('error_map', None)
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -544,6 +556,7 @@ class NumberOperations:
         body_content = self._serialize.body(number_body, 'decimal')
 
         # Construct and send request
+        error_map = kwargs.pop('error_map', None)
         request = self._client.put(url, query_parameters, header_parameters, body_content)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -579,6 +592,7 @@ class NumberOperations:
         header_parameters['Accept'] = 'application/json'
 
         # Construct and send request
+        error_map = kwargs.pop('error_map', None)
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -624,6 +638,7 @@ class NumberOperations:
         body_content = self._serialize.body(number_body, 'decimal')
 
         # Construct and send request
+        error_map = kwargs.pop('error_map', None)
         request = self._client.put(url, query_parameters, header_parameters, body_content)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -659,6 +674,7 @@ class NumberOperations:
         header_parameters['Accept'] = 'application/json'
 
         # Construct and send request
+        error_map = kwargs.pop('error_map', None)
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -704,6 +720,7 @@ class NumberOperations:
         body_content = self._serialize.body(number_body, 'decimal')
 
         # Construct and send request
+        error_map = kwargs.pop('error_map', None)
         request = self._client.put(url, query_parameters, header_parameters, body_content)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -739,6 +756,7 @@ class NumberOperations:
         header_parameters['Accept'] = 'application/json'
 
         # Construct and send request
+        error_map = kwargs.pop('error_map', None)
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -784,6 +802,7 @@ class NumberOperations:
         body_content = self._serialize.body(number_body, 'float')
 
         # Construct and send request
+        error_map = kwargs.pop('error_map', None)
         request = self._client.put(url, query_parameters, header_parameters, body_content)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -819,6 +838,7 @@ class NumberOperations:
         header_parameters['Accept'] = 'application/json'
 
         # Construct and send request
+        error_map = kwargs.pop('error_map', None)
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -864,6 +884,7 @@ class NumberOperations:
         body_content = self._serialize.body(number_body, 'float')
 
         # Construct and send request
+        error_map = kwargs.pop('error_map', None)
         request = self._client.put(url, query_parameters, header_parameters, body_content)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -899,6 +920,7 @@ class NumberOperations:
         header_parameters['Accept'] = 'application/json'
 
         # Construct and send request
+        error_map = kwargs.pop('error_map', None)
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -944,6 +966,7 @@ class NumberOperations:
         body_content = self._serialize.body(number_body, 'decimal')
 
         # Construct and send request
+        error_map = kwargs.pop('error_map', None)
         request = self._client.put(url, query_parameters, header_parameters, body_content)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -979,6 +1002,7 @@ class NumberOperations:
         header_parameters['Accept'] = 'application/json'
 
         # Construct and send request
+        error_map = kwargs.pop('error_map', None)
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response

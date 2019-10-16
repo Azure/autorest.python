@@ -111,6 +111,7 @@ else
 @EmptyLine
 }
             # Construct and send request
+            error_map = kwargs.pop('error_map', None)
 @if (Model.RequestBody != null)
 {
             @:request = self._client.@(MethodPy.GetHttpFunction(Model.HttpMethod))(url, query_parameters, header_parameters, body_content)

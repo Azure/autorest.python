@@ -81,6 +81,7 @@ class StorageAccountsOperations(object):
         body_content = self._serialize.body(account_name, 'StorageAccountCheckNameAvailabilityParameters')
 
         # Construct and send request
+        error_map = kwargs.pop('error_map', None)
         request = self._client.post(url, query_parameters, header_parameters, body_content)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -127,6 +128,7 @@ class StorageAccountsOperations(object):
         body_content = self._serialize.body(parameters, 'StorageAccountCreateParameters')
 
         # Construct and send request
+        error_map = kwargs.pop('error_map', None)
         request = self._client.put(url, query_parameters, header_parameters, body_content)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -226,6 +228,7 @@ class StorageAccountsOperations(object):
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
 
         # Construct and send request
+        error_map = kwargs.pop('error_map', None)
         request = self._client.delete(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -279,6 +282,7 @@ class StorageAccountsOperations(object):
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
 
         # Construct and send request
+        error_map = kwargs.pop('error_map', None)
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -351,6 +355,7 @@ class StorageAccountsOperations(object):
         body_content = self._serialize.body(parameters, 'StorageAccountUpdateParameters')
 
         # Construct and send request
+        error_map = kwargs.pop('error_map', None)
         request = self._client.patch(url, query_parameters, header_parameters, body_content)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -405,6 +410,7 @@ class StorageAccountsOperations(object):
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
 
         # Construct and send request
+        error_map = kwargs.pop('error_map', None)
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -455,6 +461,7 @@ class StorageAccountsOperations(object):
                 header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
 
             # Construct and send request
+            error_map = kwargs.pop('error_map', None)
             request = self._client.get(url, query_parameters, header_parameters)
             return request
 
@@ -519,6 +526,7 @@ class StorageAccountsOperations(object):
                 header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
 
             # Construct and send request
+            error_map = kwargs.pop('error_map', None)
             request = self._client.get(url, query_parameters, header_parameters)
             return request
 
@@ -593,6 +601,7 @@ class StorageAccountsOperations(object):
         body_content = self._serialize.body(regenerate_key1, 'StorageAccountRegenerateKeyParameters')
 
         # Construct and send request
+        error_map = kwargs.pop('error_map', None)
         request = self._client.post(url, query_parameters, header_parameters, body_content)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response

@@ -59,6 +59,7 @@ class XmlOperations(object):
         header_parameters['Accept'] = 'application/xml'
 
         # Construct and send request
+        error_map = kwargs.pop('error_map', None)
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -105,6 +106,7 @@ class XmlOperations(object):
         body_content = self._serialize.body(model, 'RootWithRefAndNoMeta')
 
         # Construct and send request
+        error_map = kwargs.pop('error_map', None)
         request = self._client.put(url, query_parameters, header_parameters, body_content)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -141,6 +143,7 @@ class XmlOperations(object):
         header_parameters['Accept'] = 'application/xml'
 
         # Construct and send request
+        error_map = kwargs.pop('error_map', None)
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -187,6 +190,7 @@ class XmlOperations(object):
         body_content = self._serialize.body(model, 'RootWithRefAndMeta')
 
         # Construct and send request
+        error_map = kwargs.pop('error_map', None)
         request = self._client.put(url, query_parameters, header_parameters, body_content)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -222,6 +226,7 @@ class XmlOperations(object):
         header_parameters['Accept'] = 'application/xml'
 
         # Construct and send request
+        error_map = kwargs.pop('error_map', None)
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -267,6 +272,7 @@ class XmlOperations(object):
         body_content = self._serialize.body(slideshow, 'Slideshow')
 
         # Construct and send request
+        error_map = kwargs.pop('error_map', None)
         request = self._client.put(url, query_parameters, header_parameters, body_content)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -303,6 +309,7 @@ class XmlOperations(object):
         header_parameters['Accept'] = 'application/xml'
 
         # Construct and send request
+        error_map = kwargs.pop('error_map', None)
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -348,6 +355,7 @@ class XmlOperations(object):
         body_content = self._serialize.body(wrapped_lists, 'AppleBarrel')
 
         # Construct and send request
+        error_map = kwargs.pop('error_map', None)
         request = self._client.put(url, query_parameters, header_parameters, body_content)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -383,6 +391,7 @@ class XmlOperations(object):
         header_parameters = {}
 
         # Construct and send request
+        error_map = kwargs.pop('error_map', None)
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -421,6 +430,7 @@ class XmlOperations(object):
         header_parameters['Accept'] = 'application/xml'
 
         # Construct and send request
+        error_map = kwargs.pop('error_map', None)
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -467,6 +477,7 @@ class XmlOperations(object):
         body_content = self._serialize.body(slideshow, 'Slideshow')
 
         # Construct and send request
+        error_map = kwargs.pop('error_map', None)
         request = self._client.put(url, query_parameters, header_parameters, body_content)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -503,6 +514,7 @@ class XmlOperations(object):
         header_parameters['Accept'] = 'application/xml'
 
         # Construct and send request
+        error_map = kwargs.pop('error_map', None)
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -549,6 +561,7 @@ class XmlOperations(object):
         body_content = self._serialize.body(apple_barrel, 'AppleBarrel')
 
         # Construct and send request
+        error_map = kwargs.pop('error_map', None)
         request = self._client.put(url, query_parameters, header_parameters, body_content)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -585,6 +598,7 @@ class XmlOperations(object):
         header_parameters['Accept'] = 'application/xml'
 
         # Construct and send request
+        error_map = kwargs.pop('error_map', None)
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -632,6 +646,7 @@ class XmlOperations(object):
         body_content = self._serialize.body(bananas, '[Banana]', serialization_ctxt=serialization_ctxt)
 
         # Construct and send request
+        error_map = kwargs.pop('error_map', None)
         request = self._client.put(url, query_parameters, header_parameters, body_content)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -668,6 +683,7 @@ class XmlOperations(object):
         header_parameters['Accept'] = 'application/xml'
 
         # Construct and send request
+        error_map = kwargs.pop('error_map', None)
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -715,6 +731,7 @@ class XmlOperations(object):
         body_content = self._serialize.body(bananas, '[Banana]', serialization_ctxt=serialization_ctxt)
 
         # Construct and send request
+        error_map = kwargs.pop('error_map', None)
         request = self._client.put(url, query_parameters, header_parameters, body_content)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -751,6 +768,7 @@ class XmlOperations(object):
         header_parameters['Accept'] = 'application/xml'
 
         # Construct and send request
+        error_map = kwargs.pop('error_map', None)
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -798,6 +816,7 @@ class XmlOperations(object):
         body_content = self._serialize.body(bananas, '[Banana]', serialization_ctxt=serialization_ctxt)
 
         # Construct and send request
+        error_map = kwargs.pop('error_map', None)
         request = self._client.put(url, query_parameters, header_parameters, body_content)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -834,6 +853,7 @@ class XmlOperations(object):
         header_parameters['Accept'] = 'application/xml'
 
         # Construct and send request
+        error_map = kwargs.pop('error_map', None)
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -880,6 +900,7 @@ class XmlOperations(object):
         body_content = self._serialize.body(banana, 'Banana')
 
         # Construct and send request
+        error_map = kwargs.pop('error_map', None)
         request = self._client.put(url, query_parameters, header_parameters, body_content)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -919,6 +940,7 @@ class XmlOperations(object):
         header_parameters['Accept'] = 'application/xml'
 
         # Construct and send request
+        error_map = kwargs.pop('error_map', None)
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -965,6 +987,7 @@ class XmlOperations(object):
         header_parameters['Accept'] = 'application/xml'
 
         # Construct and send request
+        error_map = kwargs.pop('error_map', None)
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1016,6 +1039,7 @@ class XmlOperations(object):
         body_content = self._serialize.body(properties, 'StorageServiceProperties')
 
         # Construct and send request
+        error_map = kwargs.pop('error_map', None)
         request = self._client.put(url, query_parameters, header_parameters, body_content)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1057,6 +1081,7 @@ class XmlOperations(object):
         header_parameters['Accept'] = 'application/xml'
 
         # Construct and send request
+        error_map = kwargs.pop('error_map', None)
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1109,6 +1134,7 @@ class XmlOperations(object):
         body_content = self._serialize.body(properties, '[SignedIdentifier]', serialization_ctxt=serialization_ctxt)
 
         # Construct and send request
+        error_map = kwargs.pop('error_map', None)
         request = self._client.put(url, query_parameters, header_parameters, body_content)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1150,6 +1176,7 @@ class XmlOperations(object):
         header_parameters['Accept'] = 'application/xml'
 
         # Construct and send request
+        error_map = kwargs.pop('error_map', None)
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1199,6 +1226,7 @@ class XmlOperations(object):
         body_content = self._serialize.body(properties, 'JSONInput', is_xml=False)
 
         # Construct and send request
+        error_map = kwargs.pop('error_map', None)
         request = self._client.put(url, query_parameters, header_parameters, body_content)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1236,6 +1264,7 @@ class XmlOperations(object):
         header_parameters['Accept'] = 'application/json'
 
         # Construct and send request
+        error_map = kwargs.pop('error_map', None)
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
