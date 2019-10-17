@@ -58,7 +58,7 @@ class CodeModel:
         seen_schemas = set()
         sorted_schemas = []
         for schema in sorted(self.schemas, key=lambda x: x.name):
-            if schema in seen_schemas:
+            if schema.name in seen_schemas:
                 continue
             ancestors = []
             current = schema
@@ -68,9 +68,9 @@ class CodeModel:
                 if parent.name in seen_schemas:
                     break
                 ancestors.insert(0, parent)
-                seen_schemas.add(current)
+                seen_schemas.add(current.name)
                 current = parent
-            seen_schemas.add(current)
+            seen_schemas.add(current.name)
             sorted_schemas += ancestors
         self.schemas = sorted_schemas
 
