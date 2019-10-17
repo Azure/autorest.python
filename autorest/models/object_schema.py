@@ -25,6 +25,7 @@
 # --------------------------------------------------------------------------
 import re
 from .base_schema import BaseSchema
+from .dictionary_schema import DictionarySchema
 from typing import Any, Dict, List
 from ..common.utils import to_python_type, get_property_name
 
@@ -44,7 +45,6 @@ class ObjectSchema(BaseSchema):
         self.min_properties = kwargs.pop('min_properties', None)
         self.properties = kwargs.pop('properties', None)
         self.is_exception = kwargs.pop('is_exception', False)
-        self.has_additional_properties = kwargs.pop('has_additional_properties', False)
         self.base_model = kwargs.pop('base_model', None)
         self.property_documentation_string = None
         self.init_line = None
@@ -54,6 +54,8 @@ class ObjectSchema(BaseSchema):
         return self.schema_type
 
     def get_doc_string_type(self, namespace):
+        if self.schema_type == 'object':
+            return self.schema_type
         return '~{}.models.{}'.format(namespace, self.schema_type)
 
     @classmethod
@@ -75,12 +77,15 @@ class ObjectSchema(BaseSchema):
      ~autorest.models.EnumType]
     """
     @classmethod
-    def _create_properties(cls, yaml_data: Dict[str, str]) -> List["Property"]:
+    def _create_properties(cls, yaml_data: Dict[str, str], has_additional_properties) -> List["Property"]:
         properties = []
         for prop in yaml_data:
             from . import build_schema
+            name = get_property_name(prop['serializedName'])
+            if name == 'additional_properties' and has_additional_properties:
+                name = 'additional_properties1'
             properties.append(build_schema(
-                name=get_property_name(prop['serializedName']),
+                name=name,
                 yaml_data=prop,
                 serialize_name=prop['serializedName']
             ))
@@ -98,8 +103,9 @@ class ObjectSchema(BaseSchema):
     @classmethod
     def from_yaml(cls, name: str, yaml_data: Dict[str, str], **kwargs) -> "ClassType":
         base_model = None
-        has_additional_properties = False
+        properties = []
         for_element_type = kwargs.pop('for_element_type', False)
+        for_additional_properties = kwargs.pop('for_additional_properties', False)
         top_level = kwargs.pop('top_level', False)
         # this is then a top level schema from the and list in yaml_data
         if yaml_data.get('allOf') and not for_element_type:
@@ -108,7 +114,7 @@ class ObjectSchema(BaseSchema):
                 if len(yaml_data['allOf']) > 1:
                     # object has additional properties defined on it
                     if yaml_data['allOf'][1]['type'] == 'dictionary':
-                        has_additional_properties = True
+                        properties.append(DictionarySchema.from_yaml(name="additional_properties", yaml_data=yaml_data['allOf'][1], for_additional_properties=True))
 
                     # object has a parent then
                     else:
@@ -117,7 +123,7 @@ class ObjectSchema(BaseSchema):
                         # if there is another entry in the allOf, then this objects
                         # has both a parent and additional_properties defined on it
                         if len(yaml_data['allOf']) > 2:
-                            has_additional_properties = True
+                            properties.append(DictionarySchema.from_yaml(name="additional_properties", yaml_data=yaml_data['allOf'][2], for_additional_properties=True))
 
                 yaml_data = yaml_data['allOf'][0]
             else:
@@ -128,18 +134,21 @@ class ObjectSchema(BaseSchema):
             yaml_data=yaml_data
         )
         if for_element_type:
-            properties = []
             schema_type = yaml_data['type']
             if schema_type == 'object' or schema_type == 'and':
                 schema_type = cls._convert_to_class_name(yaml_data['language']['default']['name'])
+        elif for_additional_properties:
+            schema_type = yaml_data['type']
+            if schema_type == 'and':
+                schema_type = 'object'
         elif top_level:
-            properties = cls._create_properties(yaml_data=yaml_data.get('properties', []))
+            properties += cls._create_properties(yaml_data=yaml_data.get('properties', []), has_additional_properties=len(properties) > 0)
             schema_type = None
         else:
-            properties = []
-            schema_type = yaml_data['schema']['type']
+            schema_data = yaml_data['schema'] if yaml_data.get('schema') else yaml_data
+            schema_type = schema_data['type']
             if schema_type == 'object' or schema_type == 'and':
-                schema_type = cls._convert_to_class_name(yaml_data['schema']['language']['default']['name'])
+                schema_type = cls._convert_to_class_name(schema_data['language']['default']['name'])
 
         is_exception = None
         exceptions_set = kwargs.pop('exceptions_set', None)
@@ -158,6 +167,5 @@ class ObjectSchema(BaseSchema):
             constant=common_parameters_dict['constant'],
             default_value=yaml_data['schema'].get('defaultValue') if yaml_data.get('schema') else None,
             serialize_name=kwargs.pop('serialize_name', None),
-            is_exception=is_exception,
-            has_additional_properties=has_additional_properties
+            is_exception=is_exception
         )

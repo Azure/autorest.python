@@ -44,7 +44,8 @@ class EnumSchema(BaseSchema):
             yaml_data=yaml_data
         )
         enum_type = yaml_data['language']['default']['name']
-        values = cls._get_enum_values(yaml_data['schema']['choices'])
+        schema_data = yaml_data['schema'] if yaml_data.get('schema') else yaml_data
+        values = cls._get_enum_values(schema_data['choices'])
 
         return cls(
             name=name,
@@ -52,7 +53,7 @@ class EnumSchema(BaseSchema):
             id=common_parameters_dict['id'],
             enum_type=enum_type,
             values=values,
-            default_value=yaml_data['schema'].get('defaultValue'),
+            default_value=schema_data.get('defaultValue'),
             required=common_parameters_dict['required'],
             readonly=common_parameters_dict['readonly'],
             constant=common_parameters_dict['constant'],

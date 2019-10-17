@@ -80,7 +80,6 @@ class CodeGenerator:
         code_model.schemas = [build_schema(name=s['language']['default']['name'], yaml_data=s, exceptions_set=exceptions_set, top_level=True) for s in classes]
         # sets the enums property in our code_model variable, which will later be passed to EnumSerializer
         code_model.build_enums()
-        code_model.add_additional_properties_to_models()
         code_model.add_inheritance_to_models()
         code_model.sort_schemas()
 

@@ -90,13 +90,3 @@ class CodeModel:
                 # right now, the base model property just holds the id of the parent class
                 schema.base_model = [b for b in self.schemas if b.id == schema.base_model][0]
         self._add_properties_from_inheritance()
-
-    def add_additional_properties_to_models(self) -> None:
-        for schema in self.schemas:
-            if schema.has_additional_properties:
-                # checking to see if there's already an additional_properties in the schema's properties.
-                    # If so, we name it additional_properties_1
-                for prop in schema.properties:
-                    if prop.name == 'additional_properties':
-                        prop.name = 'additional_properties1'
-                schema.properties.insert(0, DictionarySchema.create_additional_properties_dict())
