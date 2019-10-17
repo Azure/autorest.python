@@ -60,7 +60,6 @@ class Datetimerfc1123Operations:
         header_parameters['Accept'] = 'application/json'
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -102,7 +101,6 @@ class Datetimerfc1123Operations:
         header_parameters['Accept'] = 'application/json'
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -144,7 +142,6 @@ class Datetimerfc1123Operations:
         header_parameters['Accept'] = 'application/json'
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -186,7 +183,6 @@ class Datetimerfc1123Operations:
         header_parameters['Accept'] = 'application/json'
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -233,7 +229,6 @@ class Datetimerfc1123Operations:
         body_content = self._serialize.body(datetime_body, 'rfc-1123')
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.put(url, query_parameters, header_parameters, body_content)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -270,7 +265,6 @@ class Datetimerfc1123Operations:
         header_parameters['Accept'] = 'application/json'
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -312,7 +306,6 @@ class Datetimerfc1123Operations:
         header_parameters['Accept'] = 'application/json'
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -359,7 +352,6 @@ class Datetimerfc1123Operations:
         body_content = self._serialize.body(datetime_body, 'rfc-1123')
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.put(url, query_parameters, header_parameters, body_content)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -396,7 +388,6 @@ class Datetimerfc1123Operations:
         header_parameters['Accept'] = 'application/json'
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response

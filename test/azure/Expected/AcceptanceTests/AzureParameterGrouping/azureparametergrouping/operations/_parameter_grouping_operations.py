@@ -90,7 +90,6 @@ class ParameterGroupingOperations(object):
         body_content = self._serialize.body(body, 'int')
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.post(url, query_parameters, header_parameters, body_content)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -143,7 +142,6 @@ class ParameterGroupingOperations(object):
             header_parameters['customHeader'] = self._serialize.header("custom_header", custom_header, 'str')
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -209,7 +207,6 @@ class ParameterGroupingOperations(object):
             header_parameters['header-two'] = self._serialize.header("header_two", header_two, 'str')
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -261,7 +258,6 @@ class ParameterGroupingOperations(object):
             header_parameters['header-one'] = self._serialize.header("header_one", header_one, 'str')
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response

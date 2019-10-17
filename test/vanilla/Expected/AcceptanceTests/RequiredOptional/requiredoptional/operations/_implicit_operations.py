@@ -64,7 +64,6 @@ class ImplicitOperations(object):
         header_parameters = {}
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -104,7 +103,6 @@ class ImplicitOperations(object):
         header_parameters = {}
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.put(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -144,7 +142,6 @@ class ImplicitOperations(object):
             header_parameters['queryParameter'] = self._serialize.header("query_parameter", query_parameter, 'str')
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.put(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -189,7 +186,6 @@ class ImplicitOperations(object):
             body_content = None
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.put(url, query_parameters, header_parameters, body_content)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -229,7 +225,6 @@ class ImplicitOperations(object):
         header_parameters = {}
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -266,7 +261,6 @@ class ImplicitOperations(object):
         header_parameters = {}
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -304,7 +298,6 @@ class ImplicitOperations(object):
         header_parameters = {}
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response

@@ -71,7 +71,6 @@ class FormdataOperations:
         }
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.post(url, query_parameters, header_parameters, form_content=form_data_content)
         pipeline_response = await self._client._pipeline.run(request, stream=True, **kwargs)
         response = pipeline_response.http_response
@@ -118,7 +117,6 @@ class FormdataOperations:
         # Construct body
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.put(url, query_parameters, header_parameters, stream_content=file_content)
         pipeline_response = await self._client._pipeline.run(request, stream=True, **kwargs)
         response = pipeline_response.http_response

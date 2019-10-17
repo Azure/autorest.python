@@ -50,6 +50,7 @@ class PagingOperations(object):
         :rtype: ~azure.core.paging.ItemPaged[~paging.models.Product]
         :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
+        error_map = kwargs.pop('error_map', None)
         def prepare_request(next_link=None):
             query_parameters = {}
             if not next_link:
@@ -66,7 +67,6 @@ class PagingOperations(object):
                 header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
 
             # Construct and send request
-            error_map = kwargs.pop('error_map', None)
             request = self._client.get(url, query_parameters, header_parameters)
             return request
 
@@ -83,7 +83,6 @@ class PagingOperations(object):
             pipeline_response = self._client._pipeline.run(request, **kwargs)
             response = pipeline_response.http_response
 
-            error_map = kwargs.pop('error_map', None)
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise ARMError(response=response)
@@ -117,6 +116,7 @@ class PagingOperations(object):
         if paging_get_multiple_pages_options is not None:
             timeout = paging_get_multiple_pages_options.timeout
 
+        error_map = kwargs.pop('error_map', None)
         def prepare_request(next_link=None):
             query_parameters = {}
             if not next_link:
@@ -139,7 +139,6 @@ class PagingOperations(object):
                 header_parameters['timeout'] = self._serialize.header("timeout", timeout, 'int')
 
             # Construct and send request
-            error_map = kwargs.pop('error_map', None)
             request = self._client.get(url, query_parameters, header_parameters)
             return request
 
@@ -156,7 +155,6 @@ class PagingOperations(object):
             pipeline_response = self._client._pipeline.run(request, **kwargs)
             response = pipeline_response.http_response
 
-            error_map = kwargs.pop('error_map', None)
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise ARMError(response=response)
@@ -191,6 +189,7 @@ class PagingOperations(object):
         if paging_get_odata_multiple_pages_options is not None:
             timeout = paging_get_odata_multiple_pages_options.timeout
 
+        error_map = kwargs.pop('error_map', None)
         def prepare_request(next_link=None):
             query_parameters = {}
             if not next_link:
@@ -213,7 +212,6 @@ class PagingOperations(object):
                 header_parameters['timeout'] = self._serialize.header("timeout", timeout, 'int')
 
             # Construct and send request
-            error_map = kwargs.pop('error_map', None)
             request = self._client.get(url, query_parameters, header_parameters)
             return request
 
@@ -230,7 +228,6 @@ class PagingOperations(object):
             pipeline_response = self._client._pipeline.run(request, **kwargs)
             response = pipeline_response.http_response
 
-            error_map = kwargs.pop('error_map', None)
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise ARMError(response=response)
@@ -267,6 +264,7 @@ class PagingOperations(object):
         if paging_get_multiple_pages_with_offset_options is not None:
             timeout = paging_get_multiple_pages_with_offset_options.timeout
 
+        error_map = kwargs.pop('error_map', None)
         def prepare_request(next_link=None):
             query_parameters = {}
             if not next_link:
@@ -293,7 +291,6 @@ class PagingOperations(object):
                 header_parameters['timeout'] = self._serialize.header("timeout", timeout, 'int')
 
             # Construct and send request
-            error_map = kwargs.pop('error_map', None)
             request = self._client.get(url, query_parameters, header_parameters)
             return request
 
@@ -310,7 +307,6 @@ class PagingOperations(object):
             pipeline_response = self._client._pipeline.run(request, **kwargs)
             response = pipeline_response.http_response
 
-            error_map = kwargs.pop('error_map', None)
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise ARMError(response=response)
@@ -332,6 +328,7 @@ class PagingOperations(object):
         :rtype: ~azure.core.paging.ItemPaged[~paging.models.Product]
         :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
+        error_map = kwargs.pop('error_map', None)
         def prepare_request(next_link=None):
             query_parameters = {}
             if not next_link:
@@ -348,7 +345,6 @@ class PagingOperations(object):
                 header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
 
             # Construct and send request
-            error_map = kwargs.pop('error_map', None)
             request = self._client.get(url, query_parameters, header_parameters)
             return request
 
@@ -365,7 +361,6 @@ class PagingOperations(object):
             pipeline_response = self._client._pipeline.run(request, **kwargs)
             response = pipeline_response.http_response
 
-            error_map = kwargs.pop('error_map', None)
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise ARMError(response=response)
@@ -388,6 +383,7 @@ class PagingOperations(object):
         :rtype: ~azure.core.paging.ItemPaged[~paging.models.Product]
         :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
+        error_map = kwargs.pop('error_map', None)
         def prepare_request(next_link=None):
             query_parameters = {}
             if not next_link:
@@ -404,7 +400,6 @@ class PagingOperations(object):
                 header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
 
             # Construct and send request
-            error_map = kwargs.pop('error_map', None)
             request = self._client.get(url, query_parameters, header_parameters)
             return request
 
@@ -421,7 +416,6 @@ class PagingOperations(object):
             pipeline_response = self._client._pipeline.run(request, **kwargs)
             response = pipeline_response.http_response
 
-            error_map = kwargs.pop('error_map', None)
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise ARMError(response=response)
@@ -442,6 +436,7 @@ class PagingOperations(object):
         :rtype: ~azure.core.paging.ItemPaged[~paging.models.Product]
         :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
+        error_map = kwargs.pop('error_map', None)
         def prepare_request(next_link=None):
             query_parameters = {}
             if not next_link:
@@ -458,7 +453,6 @@ class PagingOperations(object):
                 header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
 
             # Construct and send request
-            error_map = kwargs.pop('error_map', None)
             request = self._client.get(url, query_parameters, header_parameters)
             return request
 
@@ -475,7 +469,6 @@ class PagingOperations(object):
             pipeline_response = self._client._pipeline.run(request, **kwargs)
             response = pipeline_response.http_response
 
-            error_map = kwargs.pop('error_map', None)
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise ARMError(response=response)
@@ -496,6 +489,7 @@ class PagingOperations(object):
         :rtype: ~azure.core.paging.ItemPaged[~paging.models.Product]
         :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
+        error_map = kwargs.pop('error_map', None)
         def prepare_request(next_link=None):
             query_parameters = {}
             if not next_link:
@@ -512,7 +506,6 @@ class PagingOperations(object):
                 header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
 
             # Construct and send request
-            error_map = kwargs.pop('error_map', None)
             request = self._client.get(url, query_parameters, header_parameters)
             return request
 
@@ -529,7 +522,6 @@ class PagingOperations(object):
             pipeline_response = self._client._pipeline.run(request, **kwargs)
             response = pipeline_response.http_response
 
-            error_map = kwargs.pop('error_map', None)
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise ARMError(response=response)
@@ -550,6 +542,7 @@ class PagingOperations(object):
         :rtype: ~azure.core.paging.ItemPaged[~paging.models.Product]
         :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
+        error_map = kwargs.pop('error_map', None)
         def prepare_request(next_link=None):
             query_parameters = {}
             if not next_link:
@@ -566,7 +559,6 @@ class PagingOperations(object):
                 header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
 
             # Construct and send request
-            error_map = kwargs.pop('error_map', None)
             request = self._client.get(url, query_parameters, header_parameters)
             return request
 
@@ -583,7 +575,6 @@ class PagingOperations(object):
             pipeline_response = self._client._pipeline.run(request, **kwargs)
             response = pipeline_response.http_response
 
-            error_map = kwargs.pop('error_map', None)
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise ARMError(response=response)
@@ -608,6 +599,7 @@ class PagingOperations(object):
         :rtype: ~azure.core.paging.ItemPaged[~paging.models.Product]
         :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
+        error_map = kwargs.pop('error_map', None)
         def prepare_request(next_link=None):
             query_parameters = {}
             if not next_link:
@@ -635,7 +627,6 @@ class PagingOperations(object):
                 header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
 
             # Construct and send request
-            error_map = kwargs.pop('error_map', None)
             request = self._client.get(url, query_parameters, header_parameters)
             return request
 
@@ -652,7 +643,6 @@ class PagingOperations(object):
             pipeline_response = self._client._pipeline.run(request, **kwargs)
             response = pipeline_response.http_response
 
-            error_map = kwargs.pop('error_map', None)
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise ARMError(response=response)
@@ -683,6 +673,7 @@ class PagingOperations(object):
         if custom_parameter_group is not None:
             tenant = custom_parameter_group.tenant
 
+        error_map = kwargs.pop('error_map', None)
         def prepare_request(next_link=None):
             query_parameters = {}
             if not next_link:
@@ -710,7 +701,6 @@ class PagingOperations(object):
                 header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
 
             # Construct and send request
-            error_map = kwargs.pop('error_map', None)
             request = self._client.get(url, query_parameters, header_parameters)
             return request
 
@@ -727,7 +717,6 @@ class PagingOperations(object):
             pipeline_response = self._client._pipeline.run(request, **kwargs)
             response = pipeline_response.http_response
 
-            error_map = kwargs.pop('error_map', None)
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise ARMError(response=response)
@@ -769,7 +758,6 @@ class PagingOperations(object):
             header_parameters['timeout'] = self._serialize.header("timeout", timeout, 'int')
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response

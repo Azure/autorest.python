@@ -76,7 +76,6 @@ class AvailabilitySetsOperations:
         body_content = self._serialize.body(tags1, 'AvailabilitySetUpdateParameters')
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.patch(url, query_parameters, header_parameters, body_content)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response

@@ -62,7 +62,6 @@ class HeaderOperations:
         header_parameters['User-Agent'] = self._serialize.header("user_agent", user_agent, 'str')
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -97,7 +96,6 @@ class HeaderOperations:
         header_parameters = {}
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -138,7 +136,6 @@ class HeaderOperations:
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -173,7 +170,6 @@ class HeaderOperations:
         header_parameters = {}
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -218,7 +214,6 @@ class HeaderOperations:
         header_parameters['value'] = self._serialize.header("value", value, 'int')
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -257,7 +252,6 @@ class HeaderOperations:
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -302,7 +296,6 @@ class HeaderOperations:
         header_parameters['value'] = self._serialize.header("value", value, 'long')
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -341,7 +334,6 @@ class HeaderOperations:
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -386,7 +378,6 @@ class HeaderOperations:
         header_parameters['value'] = self._serialize.header("value", value, 'float')
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -425,7 +416,6 @@ class HeaderOperations:
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -470,7 +460,6 @@ class HeaderOperations:
         header_parameters['value'] = self._serialize.header("value", value, 'float')
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -509,7 +498,6 @@ class HeaderOperations:
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -554,7 +542,6 @@ class HeaderOperations:
         header_parameters['value'] = self._serialize.header("value", value, 'bool')
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -593,7 +580,6 @@ class HeaderOperations:
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -641,7 +627,6 @@ class HeaderOperations:
             header_parameters['value'] = self._serialize.header("value", value, 'str')
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -681,7 +666,6 @@ class HeaderOperations:
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -727,7 +711,6 @@ class HeaderOperations:
         header_parameters['value'] = self._serialize.header("value", value, 'date')
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -766,7 +749,6 @@ class HeaderOperations:
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -813,7 +795,6 @@ class HeaderOperations:
         header_parameters['value'] = self._serialize.header("value", value, 'iso-8601')
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -853,7 +834,6 @@ class HeaderOperations:
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -901,7 +881,6 @@ class HeaderOperations:
             header_parameters['value'] = self._serialize.header("value", value, 'rfc-1123')
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -941,7 +920,6 @@ class HeaderOperations:
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -987,7 +965,6 @@ class HeaderOperations:
         header_parameters['value'] = self._serialize.header("value", value, 'duration')
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1026,7 +1003,6 @@ class HeaderOperations:
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1071,7 +1047,6 @@ class HeaderOperations:
         header_parameters['value'] = self._serialize.header("value", value, 'bytearray')
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1110,7 +1085,6 @@ class HeaderOperations:
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1157,7 +1131,6 @@ class HeaderOperations:
             header_parameters['value'] = self._serialize.header("value", value, 'GreyscaleColors')
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1196,7 +1169,6 @@ class HeaderOperations:
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1234,7 +1206,6 @@ class HeaderOperations:
         header_parameters = {}
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response

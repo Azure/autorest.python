@@ -61,6 +61,7 @@ else
 	}
 @EmptyLine
 }
+        error_map = kwargs.pop('error_map', None)
         def prepare_request(next_link=None):
             query_parameters = {}
             if not next_link:
@@ -111,7 +112,6 @@ else
 @EmptyLine
 }
             # Construct and send request
-            error_map = kwargs.pop('error_map', None)
 @if (Model.RequestBody != null)
 {
             @:request = self._client.@(MethodPy.GetHttpFunction(Model.HttpMethod))(url, query_parameters, header_parameters, body_content)
@@ -152,7 +152,6 @@ else
 }
             response = pipeline_response.http_response
 @EmptyLine
-            error_map = kwargs.pop('error_map', None)
             if @Model.FailureStatusCodePredicate:
                 @Model.RaisedException
             return response

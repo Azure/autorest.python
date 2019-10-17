@@ -64,7 +64,6 @@ class LROSADsOperations(object):
             body_content = None
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.put(url, query_parameters, header_parameters, body_content)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -140,7 +139,6 @@ class LROSADsOperations(object):
             body_content = None
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.put(url, query_parameters, header_parameters, body_content)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -217,7 +215,6 @@ class LROSADsOperations(object):
             body_content = None
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.put(url, query_parameters, header_parameters, body_content)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -294,7 +291,6 @@ class LROSADsOperations(object):
             body_content = None
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.put(url, query_parameters, header_parameters, body_content)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -373,7 +369,6 @@ class LROSADsOperations(object):
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.delete(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -434,7 +429,6 @@ class LROSADsOperations(object):
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.delete(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -496,7 +490,6 @@ class LROSADsOperations(object):
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.delete(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -567,7 +560,6 @@ class LROSADsOperations(object):
             body_content = None
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.post(url, query_parameters, header_parameters, body_content)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -638,7 +630,6 @@ class LROSADsOperations(object):
             body_content = None
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.post(url, query_parameters, header_parameters, body_content)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -710,7 +701,6 @@ class LROSADsOperations(object):
             body_content = None
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.post(url, query_parameters, header_parameters, body_content)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -785,7 +775,6 @@ class LROSADsOperations(object):
             body_content = None
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.put(url, query_parameters, header_parameters, body_content)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -862,7 +851,6 @@ class LROSADsOperations(object):
             body_content = None
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.put(url, query_parameters, header_parameters, body_content)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -950,7 +938,6 @@ class LROSADsOperations(object):
             body_content = None
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.put(url, query_parameters, header_parameters, body_content)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1030,7 +1017,6 @@ class LROSADsOperations(object):
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.delete(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1089,7 +1075,6 @@ class LROSADsOperations(object):
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.delete(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1160,7 +1145,6 @@ class LROSADsOperations(object):
             body_content = None
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.post(url, query_parameters, header_parameters, body_content)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1232,7 +1216,6 @@ class LROSADsOperations(object):
             body_content = None
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.post(url, query_parameters, header_parameters, body_content)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1308,7 +1291,6 @@ class LROSADsOperations(object):
             body_content = None
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.put(url, query_parameters, header_parameters, body_content)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1383,7 +1365,6 @@ class LROSADsOperations(object):
             body_content = None
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.put(url, query_parameters, header_parameters, body_content)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1470,7 +1451,6 @@ class LROSADsOperations(object):
             body_content = None
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.put(url, query_parameters, header_parameters, body_content)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1550,7 +1530,6 @@ class LROSADsOperations(object):
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.delete(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1613,7 +1592,6 @@ class LROSADsOperations(object):
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.delete(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1677,7 +1655,6 @@ class LROSADsOperations(object):
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.delete(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1748,7 +1725,6 @@ class LROSADsOperations(object):
             body_content = None
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.post(url, query_parameters, header_parameters, body_content)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1820,7 +1796,6 @@ class LROSADsOperations(object):
             body_content = None
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.post(url, query_parameters, header_parameters, body_content)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1894,7 +1869,6 @@ class LROSADsOperations(object):
             body_content = None
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.post(url, query_parameters, header_parameters, body_content)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response

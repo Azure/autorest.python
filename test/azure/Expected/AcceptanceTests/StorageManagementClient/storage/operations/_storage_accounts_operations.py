@@ -81,7 +81,6 @@ class StorageAccountsOperations(object):
         body_content = self._serialize.body(account_name, 'StorageAccountCheckNameAvailabilityParameters')
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.post(url, query_parameters, header_parameters, body_content)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -128,7 +127,6 @@ class StorageAccountsOperations(object):
         body_content = self._serialize.body(parameters, 'StorageAccountCreateParameters')
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.put(url, query_parameters, header_parameters, body_content)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -228,7 +226,6 @@ class StorageAccountsOperations(object):
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.delete(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -282,7 +279,6 @@ class StorageAccountsOperations(object):
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -355,7 +351,6 @@ class StorageAccountsOperations(object):
         body_content = self._serialize.body(parameters, 'StorageAccountUpdateParameters')
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.patch(url, query_parameters, header_parameters, body_content)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -410,7 +405,6 @@ class StorageAccountsOperations(object):
             header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -440,6 +434,7 @@ class StorageAccountsOperations(object):
         :rtype: ~azure.core.paging.ItemPaged[~storage.models.StorageAccount]
         :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
+        error_map = kwargs.pop('error_map', None)
         def prepare_request(next_link=None):
             query_parameters = {}
             if not next_link:
@@ -461,7 +456,6 @@ class StorageAccountsOperations(object):
                 header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
 
             # Construct and send request
-            error_map = kwargs.pop('error_map', None)
             request = self._client.get(url, query_parameters, header_parameters)
             return request
 
@@ -478,7 +472,6 @@ class StorageAccountsOperations(object):
             pipeline_response = self._client._pipeline.run(request, **kwargs)
             response = pipeline_response.http_response
 
-            error_map = kwargs.pop('error_map', None)
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise ARMError(response=response)
@@ -504,6 +497,7 @@ class StorageAccountsOperations(object):
         :rtype: ~azure.core.paging.ItemPaged[~storage.models.StorageAccount]
         :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
+        error_map = kwargs.pop('error_map', None)
         def prepare_request(next_link=None):
             query_parameters = {}
             if not next_link:
@@ -526,7 +520,6 @@ class StorageAccountsOperations(object):
                 header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
 
             # Construct and send request
-            error_map = kwargs.pop('error_map', None)
             request = self._client.get(url, query_parameters, header_parameters)
             return request
 
@@ -543,7 +536,6 @@ class StorageAccountsOperations(object):
             pipeline_response = self._client._pipeline.run(request, **kwargs)
             response = pipeline_response.http_response
 
-            error_map = kwargs.pop('error_map', None)
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise ARMError(response=response)
@@ -601,7 +593,6 @@ class StorageAccountsOperations(object):
         body_content = self._serialize.body(regenerate_key1, 'StorageAccountRegenerateKeyParameters')
 
         # Construct and send request
-        error_map = kwargs.pop('error_map', None)
         request = self._client.post(url, query_parameters, header_parameters, body_content)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
