@@ -104,11 +104,11 @@ class ObjectSchema(BaseSchema):
     def from_yaml(cls, name: str, yaml_data: Dict[str, str], **kwargs) -> "ClassType":
         base_model = None
         properties = []
-        for_element_type = kwargs.pop('for_element_type', False)
         for_additional_properties = kwargs.pop('for_additional_properties', False)
         top_level = kwargs.pop('top_level', False)
-        # this is then a top level schema from the and list in yaml_data
-        if yaml_data.get('allOf') and not for_element_type:
+
+        # this is then a top level schema from the 'and' schemas in yaml_data
+        if top_level:
             # this is the object we want to generate as itself
             if yaml_data['$key'] == yaml_data['allOf'][0]['$key']:
                 if len(yaml_data['allOf']) > 1:
@@ -120,12 +120,13 @@ class ObjectSchema(BaseSchema):
                     else:
                         base_model = yaml_data['allOf'][1]['$key']
 
-                        # if there is another entry in the allOf, then this objects
-                        # has both a parent and additional_properties defined on it
+                        # if there is another entry in the allOf, then this object has both a parent and additional_properties defined on it
                         if len(yaml_data['allOf']) > 2:
                             properties.append(DictionarySchema.from_yaml(name="additional_properties", yaml_data=yaml_data['allOf'][2], for_additional_properties=True))
 
                 yaml_data = yaml_data['allOf'][0]
+
+            # in this case, the model doesn't have any properties of itself, it inherits solely from its parents
             else:
                 base_model = yaml_data['allOf'][0]['$key']
         name = cls._convert_to_class_name(name)
@@ -133,17 +134,14 @@ class ObjectSchema(BaseSchema):
             name=name,
             yaml_data=yaml_data
         )
-        if for_element_type:
-            schema_type = yaml_data['type']
-            if schema_type == 'object' or schema_type == 'and':
-                schema_type = cls._convert_to_class_name(yaml_data['language']['default']['name'])
+        if top_level:
+            properties += cls._create_properties(yaml_data=yaml_data.get('properties', []), has_additional_properties=len(properties) > 0)
+            schema_type = None
         elif for_additional_properties:
             schema_type = yaml_data['type']
             if schema_type == 'and':
                 schema_type = 'object'
-        elif top_level:
-            properties += cls._create_properties(yaml_data=yaml_data.get('properties', []), has_additional_properties=len(properties) > 0)
-            schema_type = None
+        # in this case, we are either generating an element for a List or Dictionary schema, or a property
         else:
             schema_data = yaml_data['schema'] if yaml_data.get('schema') else yaml_data
             schema_type = schema_data['type']

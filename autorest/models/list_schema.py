@@ -32,8 +32,7 @@ class ListSchema(BaseSchema):
         element_type = build_schema(
             name='_',
             yaml_data=element_schema,
-            serialize_name='_',
-            for_element_type=True
+            serialize_name='_'
         )
 
         return cls(

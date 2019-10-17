@@ -56,7 +56,6 @@ class DictionarySchema(BaseSchema):
             name='_',
             yaml_data=element_schema,
             serialize_name='_',
-            for_element_type=not for_additional_properties,
             for_additional_properties=for_additional_properties
         )
 
