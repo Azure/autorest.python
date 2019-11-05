@@ -48,16 +48,6 @@ class ModelBaseSerializer:
         else:
             type_doc_string = ":type {}: ".format(prop.name)
         type_doc_string += prop.get_doc_string_type(self.code_model.namespace)
-        # if isinstance(prop, DictionarySchema):
-        #     type_doc_string += "dict[str, {}]".format(prop.element_type)
-        # elif isinstance(prop, ListSchema):
-        #     type_doc_string += "list[{}]".format(prop.element_type)
-        # elif isinstance(prop, EnumSchema):
-        #     type_doc_string += "str or ~{}.models.{}".format(self.code_model.namespace, prop.enum_type)
-        # elif isinstance(prop, ObjectSchema):
-        #     type_doc_string += "~{}.models.{}".format(self.code_model.namespace, prop.schema_type)
-        # elif isinstance(prop, PrimitiveSchema):
-        #     type_doc_string += prop.schema_type
         prop.documentation_string = param_doc_string + "\n\t" + type_doc_string
 
 

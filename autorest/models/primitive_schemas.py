@@ -106,6 +106,13 @@ class DatetimeSchema(PrimitiveSchema):
         datetime = "date-time"
         rfc1123 = "date-time-rfc1123"
 
+    def get_attribute_map_type(self, namespace=None):
+        formats_to_attribute_type = {
+            self.Formats.datetime: "iso-8601",
+            self.Formats.rfc1123: "rfc-1123"
+        }
+        return formats_to_attribute_type[self.format]
+
     @classmethod
     def from_yaml(cls, name, yaml_data, schema_type, serialize_name):
         common_parameters_dict = cls._get_common_parameters(
