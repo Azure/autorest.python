@@ -88,8 +88,8 @@ class CodeGenerator:
 
         exceptions_set = self._build_exceptions_set(yaml_data=yaml_code_model['operationGroups'])
 
-        classes = [a for a in yaml_code_model['schemas']['ands'] if a.get('allOf')]
-        code_model.schemas = [build_schema(name=s['language']['default']['name'], yaml_data=s, exceptions_set=exceptions_set, top_level=True) for s in classes]
+        classes = [a for a in yaml_code_model['schemas']['objects']]
+        code_model.schemas = [build_schema(name=s['language']['default']['name'], yaml_data=s, exceptions_set=exceptions_set) for s in classes]
         # sets the enums property in our code_model variable, which will later be passed to EnumSerializer
         code_model.build_enums()
         code_model.add_inheritance_to_models()
