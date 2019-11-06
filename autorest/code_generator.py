@@ -62,6 +62,8 @@ class CodeGenerator:
                 if not operation.get('exceptions'):
                     continue
                 for exception in operation['exceptions']:
+                    if not exception.get('schema'):
+                        continue
                     exceptions_set.add(exception['schema']['$key'])
         return exceptions_set
 
@@ -69,7 +71,7 @@ class CodeGenerator:
         # Create a code model
         code_model = CodeModel()
         code_model.client_name = yaml_code_model['info']['title']
-        code_model.description = yaml_code_model['info']['description']
+        code_model.description = yaml_code_model['info']['description'] if yaml_code_model['info'].get('description') else ""
         code_model.api_version = self._autorestapi.get_value("package-version")
         if not code_model.api_version:
             code_model.api_version = "1.0.0"

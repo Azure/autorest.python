@@ -46,6 +46,7 @@ class ObjectSchema(BaseSchema):
         self.properties = kwargs.pop('properties', None)
         self.is_exception = kwargs.pop('is_exception', False)
         self.base_model = kwargs.pop('base_model', None)
+        self.has_subclasses = kwargs.pop('has_subclasses', False)
         self.property_documentation_string = None
         self.init_line = None
         self.init_args = None

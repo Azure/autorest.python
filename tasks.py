@@ -33,7 +33,7 @@ default_mappings = {
 }
 
 default_azure_mappings = {
-  'AcceptanceTests/AzureBodyDuration': 'body-duration.json',
+  'AcceptanceTests/AzureBodyDuration': ['body-duration.json', 'bodyduration'],
   'AcceptanceTests/AzureReport': 'azure-report.json',
   'AcceptanceTests/AzureParameterGrouping': 'azure-parameter-grouping.json',
   'AcceptanceTests/ModelFlattening': 'model-flattening.json',
@@ -120,7 +120,7 @@ def regen_expected(c, opts):
             return
 
 @task
-def regenerate_python(c, swagger_name):
+def regenerate_python(c, swagger_name=None):
     if swagger_name:
         default_mapping = {k: v for k, v in default_mappings.items() if swagger_name.lower() in k.lower()}
     else:
@@ -140,7 +140,7 @@ def regenerate_python(c, swagger_name):
 
 
 @task
-def regenerate_python_azure(c, swagger_name):
+def regenerate_python_azure(c, swagger_name=None):
     if swagger_name:
         default_mapping = {k: v for k, v in default_azure_mappings.items() if swagger_name.lower() in k.lower()}
     else:
@@ -158,7 +158,7 @@ def regenerate_python_azure(c, swagger_name):
 
 
 @task
-def regenerate_python_arm(c, swagger_name):
+def regenerate_python_arm(c, swagger_name=None):
     if swagger_name:
         default_mapping = {k: v for k, v in default_arm_mappings.items() if swagger_name.lower() in k.lower()}
     else:
