@@ -76,6 +76,16 @@ class CodeGenerator:
         if not code_model.api_version:
             code_model.api_version = "1.0.0"
 
+        # Get my namespace
+        namespace = self._autorestapi.get_value("namespace")
+        _LOGGER.debug("Namespace parameter was %s", namespace)
+        if not namespace:
+            namespace = get_namespace_name(yaml_code_model["info"]["title"])
+        code_model.namespace = Path(*[ns_part for ns_part in namespace.split(".")])
+
+        if not yaml_code_model['schemas']:
+            return code_model
+
         exceptions_set = self._build_exceptions_set(yaml_data=yaml_code_model['operationGroups'])
 
         classes = [a for a in yaml_code_model['schemas']['ands'] if a.get('allOf')]
@@ -85,12 +95,7 @@ class CodeGenerator:
         code_model.add_inheritance_to_models()
         code_model.sort_schemas()
 
-        # Get my namespace
-        namespace = self._autorestapi.get_value("namespace")
-        _LOGGER.debug("Namespace parameter was %s", namespace)
-        if not namespace:
-            namespace = get_namespace_name(yaml_code_model["info"]["title"])
-        code_model.namespace = Path(*[ns_part for ns_part in namespace.split(".")])
+
         return code_model
 
     def _serialize_and_write_models_folder(self, namespace, code_model):
@@ -194,7 +199,8 @@ class CodeGenerator:
 
         code_model = self._create_code_model(yaml_code_model=yaml_code_model)
 
-        self._serialize_and_write_models_folder(namespace=code_model.namespace, code_model=code_model)
+        if code_model.schemas:
+            self._serialize_and_write_models_folder(namespace=code_model.namespace, code_model=code_model)
 
         operation_groups = [OperationGroup.from_yaml(op_group) for op_group in yaml_code_model['operationGroups']]
         self._serialize_and_write_operations_folder(namespace=code_model.namespace, operation_groups=operation_groups, env=env)
