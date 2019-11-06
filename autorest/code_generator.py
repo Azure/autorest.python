@@ -64,7 +64,7 @@ class CodeGenerator:
                 for exception in operation['exceptions']:
                     if not exception.get('schema'):
                         continue
-                    exceptions_set.add(exception['schema']['$key'])
+                    exceptions_set.add(exception['schema']['language']['default']['name'])
         return exceptions_set
 
     def _create_code_model(self, yaml_code_model):

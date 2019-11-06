@@ -4,8 +4,8 @@ from ..common.utils import get_property_name
 
 
 class ListSchema(BaseSchema):
-    def __init__(self, name, description, element_type, id, **kwargs):
-        super(ListSchema, self).__init__(get_property_name(name), description, id, **kwargs)
+    def __init__(self, name, description, element_type, **kwargs):
+        super(ListSchema, self).__init__(get_property_name(name), description, **kwargs)
         self.element_type = element_type
         self.max_items = kwargs.pop('max_items', None)
         self.min_items = kwargs.pop('min_items', None)
@@ -38,7 +38,6 @@ class ListSchema(BaseSchema):
         return cls(
             name=name,
             description=common_parameters_dict['description'],
-            id=common_parameters_dict['id'],
             element_type=element_type,
             required=common_parameters_dict['required'],
             readonly=common_parameters_dict['readonly'],

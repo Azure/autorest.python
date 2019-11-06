@@ -87,6 +87,6 @@ class CodeModel:
     def add_inheritance_to_models(self) -> None:
         for schema in self.schemas:
             if schema.base_model:
-                # right now, the base model property just holds the id of the parent class
-                schema.base_model = [b for b in self.schemas if b.id == schema.base_model][0]
+                # right now, the base model property just holds the name of the parent class
+                schema.base_model = [b for b in self.schemas if b.name == schema.base_model][0]
         self._add_properties_from_inheritance()

@@ -3,8 +3,8 @@ from .base_schema import BaseSchema
 from ..common.utils import to_python_type
 
 class PrimitiveSchema(BaseSchema):
-    def __init__(self, name, description, schema_type, id, **kwargs):
-        super(PrimitiveSchema, self).__init__(name, description, id, **kwargs)
+    def __init__(self, name, description, schema_type, **kwargs):
+        super(PrimitiveSchema, self).__init__(name, description, **kwargs)
         self.schema_type = to_python_type(schema_type)
 
     @classmethod
@@ -16,7 +16,6 @@ class PrimitiveSchema(BaseSchema):
         return cls(
             name=name,
             description=common_parameters_dict['description'],
-            id=common_parameters_dict['id'],
             schema_type=schema_type,
             required=common_parameters_dict['required'],
             readonly=common_parameters_dict['readonly'],
@@ -52,7 +51,6 @@ class NumberSchema(PrimitiveSchema):
         return cls(
             name=name,
             description=common_parameters_dict['description'],
-            id=common_parameters_dict['id'],
             schema_type=schema_type,
             precision=schema_data['precision'],
             serialize_name=serialize_name,
@@ -84,7 +82,6 @@ class StringSchema(PrimitiveSchema):
         return cls(
             name=name,
             description=common_parameters_dict['description'],
-            id=common_parameters_dict['id'],
             schema_type='string',
             required=common_parameters_dict['required'],
             readonly=common_parameters_dict['readonly'],
@@ -123,7 +120,6 @@ class DatetimeSchema(PrimitiveSchema):
         return cls(
             name=name,
             description=common_parameters_dict['description'],
-            id=common_parameters_dict['id'],
             schema_type=schema_type,
             format=cls.Formats(schema_data['format']),
             required=common_parameters_dict['required'],
@@ -153,7 +149,6 @@ class ByteArraySchema(PrimitiveSchema):
         return cls(
             name=name,
             description=common_parameters_dict['description'],
-            id=common_parameters_dict['id'],
             schema_type='byte-array',
             format=cls.Formats(schema_data['format']),
             required=common_parameters_dict['required'],

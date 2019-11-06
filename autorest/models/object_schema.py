@@ -38,8 +38,8 @@ class ObjectSchema(BaseSchema):
     :param properties: the optional properties of the class.
     :type properties: dict(str, str)
     """
-    def __init__(self, name: str, description: str, schema_type: str, id, **kwargs: "**Any") -> "ObjectSchema":
-        super(ObjectSchema, self).__init__(name, description, id, **kwargs)
+    def __init__(self, name: str, description: str, schema_type: str, **kwargs: "**Any") -> "ObjectSchema":
+        super(ObjectSchema, self).__init__(name, description, **kwargs)
         self.schema_type = schema_type
         self.max_properties = kwargs.pop('max_properties', None)
         self.min_properties = kwargs.pop('min_properties', None)
@@ -109,8 +109,8 @@ class ObjectSchema(BaseSchema):
         if yaml_data.get('parents'):
             immediate_parents = yaml_data['parents']['immediate']
         # checking if object has a parent
-            if immediate_parents and immediate_parents[0]['$key'] != yaml_data['$key']:
-                base_model = immediate_parents[0]['$key']
+            if immediate_parents and immediate_parents[0]['language']['default']['name'] != yaml_data['language']['default']['name']:
+                base_model = immediate_parents[0]['language']['default']['name']
 
         # TODO: check to see what happens with an empty class
         # TODO: how to handle additional properties
@@ -127,7 +127,7 @@ class ObjectSchema(BaseSchema):
         # else:
 
             # this means that this class has additional properties defined on it
-            if immediate_parents[0]['$key'] == yaml_data['$key'] and immediate_parents[0]['type'] == 'dictionary':
+            if immediate_parents[0]['language']['default']['name'] == yaml_data['language']['default']['name'] and immediate_parents[0]['type'] == 'dictionary':
                 properties.append(DictionarySchema.from_yaml(name="additional_properties", yaml_data=immediate_parents[0], for_additional_properties=True))
 
         if yaml_data.get('properties'):
@@ -150,12 +150,11 @@ class ObjectSchema(BaseSchema):
         is_exception = None
         exceptions_set = kwargs.pop('exceptions_set', None)
         if exceptions_set:
-            if yaml_data['$key'] in exceptions_set:
+            if yaml_data['language']['default']['name'] in exceptions_set:
                 is_exception = True
         return cls(
             name=name,
             description=common_parameters_dict['description'],
-            id=common_parameters_dict['id'],
             schema_type=schema_type,
             properties=properties,
             base_model=base_model,

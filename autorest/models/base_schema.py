@@ -2,10 +2,9 @@ from typing import Any, Dict
 
 
 class BaseSchema:
-    def __init__(self, name, description, id, **kwargs):
+    def __init__(self, name, description, **kwargs):
         self.name = name
         self.description = description
-        self.id = id
         self.serialize_name = kwargs.pop('serialize_name', '')
         if self.serialize_name:
             self.serialize_name = self.serialize_name.replace('.', '\\\\.')
@@ -40,12 +39,11 @@ class BaseSchema:
     @classmethod
     def _get_common_parameters(self, name, yaml_data) -> Dict[str, Any]:
         return_dict = {}
-        description = yaml_data['description'].strip()
+        description = yaml_data['language']['default']['description'].strip()
         if description == 'MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA':
             description = name + "."
         elif 'MISSING' in description:
             description = ""
-        return_dict['id'] = yaml_data['$key']
         return_dict['required'] = yaml_data.get('required', False)
         return_dict['readonly'] = yaml_data.get('readOnly', False)
         return_dict['constant'] = yaml_data.get('constant', False)
