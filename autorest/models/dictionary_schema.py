@@ -33,7 +33,7 @@ class DictionarySchema(BaseSchema):
 
     @classmethod
     def from_yaml(cls, name: str, yaml_data: Dict[str, str], **kwargs) -> "DictionarySchema":
-        serialize_name = kwargs.pop("serialize_name", "")
+        original_swagger_name = kwargs.pop("original_swagger_name", "")
         for_additional_properties = kwargs.pop('for_additional_properties', False)
 
         common_parameters_dict = cls._get_common_parameters(
@@ -50,7 +50,7 @@ class DictionarySchema(BaseSchema):
         element_type = build_schema(
             name='_',
             yaml_data=element_schema,
-            serialize_name='_',
+            original_swagger_name='_',
             for_additional_properties=for_additional_properties
         )
 
@@ -64,5 +64,5 @@ class DictionarySchema(BaseSchema):
             default_value = (yaml_data['schema'].get('defaultValue')
                             if yaml_data.get('schema')
                             else yaml_data.get('defaultValue')),
-            serialize_name=serialize_name
+            original_swagger_name=original_swagger_name
         )

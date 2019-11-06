@@ -56,5 +56,5 @@ class EnumSchema(BaseSchema):
             required=common_parameters_dict['required'],
             readonly=common_parameters_dict['readonly'],
             constant=common_parameters_dict['constant'],
-            serialize_name=kwargs.pop('serialize_name', None)
+            original_swagger_name=kwargs.pop('original_swagger_name', None)
         )

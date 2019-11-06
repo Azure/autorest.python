@@ -19,7 +19,7 @@ class ListSchema(BaseSchema):
         return 'list[{}]'.format(self.element_type.get_doc_string_type(namespace))
 
     @classmethod
-    def from_yaml(cls, name: str, yaml_data: Dict[str, str], serialize_name) -> "SequenceType":
+    def from_yaml(cls, name: str, yaml_data: Dict[str, str], original_swagger_name) -> "SequenceType":
         common_parameters_dict = cls._get_common_parameters(
             name=name,
             yaml_data=yaml_data
@@ -32,7 +32,7 @@ class ListSchema(BaseSchema):
         element_type = build_schema(
             name='_',
             yaml_data=element_schema,
-            serialize_name='_'
+            original_swagger_name='_'
         )
 
         return cls(
@@ -46,5 +46,5 @@ class ListSchema(BaseSchema):
             min_items=schema_data.get('minItems'),
             unique_items=schema_data.get('uniqueItems'),
             default_value = schema_data.get('defaultValue'),
-            serialize_name=serialize_name
+            original_swagger_name=original_swagger_name
         )

@@ -88,7 +88,7 @@ class ObjectSchema(BaseSchema):
             properties.append(build_schema(
                 name=name,
                 yaml_data=prop,
-                serialize_name=prop['serializedName']
+                original_swagger_name=prop['serializedName']
             ))
         return properties
 
@@ -104,6 +104,7 @@ class ObjectSchema(BaseSchema):
     @classmethod
     def from_yaml(cls, name: str, yaml_data: Dict[str, str], **kwargs) -> "ClassType":
         for_additional_properties = kwargs.pop("for_additional_properties", False)
+        top_level = kwargs.pop("top_level", False)
         properties = []
         base_model = None
         if yaml_data.get('parents'):
@@ -130,11 +131,12 @@ class ObjectSchema(BaseSchema):
             if immediate_parents[0]['language']['default']['name'] == yaml_data['language']['default']['name'] and immediate_parents[0]['type'] == 'dictionary':
                 properties.append(DictionarySchema.from_yaml(name="additional_properties", yaml_data=immediate_parents[0], for_additional_properties=True))
 
-        if yaml_data.get('properties'):
+        schema_type = None
+        if top_level and yaml_data.get('properties'):
             properties += cls._create_properties(yaml_data=yaml_data.get('properties', []), has_additional_properties=len(properties) > 0)
 
         # this is to ensure that the attribute map type and property type are generated correctly
-        if for_additional_properties:
+        elif for_additional_properties:
             schema_type = yaml_data['type']
         else:
             schema_data = yaml_data['schema'] if yaml_data.get('schema') else yaml_data
@@ -142,7 +144,8 @@ class ObjectSchema(BaseSchema):
             if schema_type == 'object':
                 schema_type = cls._convert_to_class_name(schema_data['language']['default']['name'])
 
-        name = cls._convert_to_class_name(name)
+        if top_level:
+            name = cls._convert_to_class_name(name)
         common_parameters_dict = cls._get_common_parameters(
             name=name,
             yaml_data=yaml_data
@@ -162,6 +165,6 @@ class ObjectSchema(BaseSchema):
             readonly=common_parameters_dict['readonly'],
             constant=common_parameters_dict['constant'],
             default_value=yaml_data['schema'].get('defaultValue') if yaml_data.get('schema') else None,
-            serialize_name=kwargs.pop('serialize_name', None),
+            original_swagger_name=kwargs.pop('original_swagger_name', yaml_data['language']['default']['name']),
             is_exception=is_exception
         )
