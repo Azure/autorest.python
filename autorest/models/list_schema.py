@@ -25,15 +25,14 @@ class ListSchema(BaseSchema):
             yaml_data=yaml_data
         )
         # TODO: for items, if the type is a primitive is it listed in type instead of $ref?
-        schema_data = yaml_data['schema']
+        schema_data = yaml_data['schema'] if yaml_data.get('schema') else yaml_data
         element_schema = schema_data['elementType']
 
         from . import build_schema
         element_type = build_schema(
             name='_',
             yaml_data=element_schema,
-            serialize_name='_',
-            for_element_type=True
+            serialize_name='_'
         )
 
         return cls(

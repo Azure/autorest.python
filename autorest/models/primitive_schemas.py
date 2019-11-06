@@ -22,7 +22,7 @@ class PrimitiveSchema(BaseSchema):
             readonly=common_parameters_dict['readonly'],
             constant=common_parameters_dict['constant'],
             serialize_name=serialize_name,
-            default_value = yaml_data['schema'].get('defaultValue'),
+            default_value = yaml_data['schema'].get('defaultValue') if yaml_data.get('schema') else yaml_data.get('defaultValue'),
         )
 
     def get_attribute_map_type(self, namespace=None):
@@ -105,6 +105,13 @@ class DatetimeSchema(PrimitiveSchema):
     class Formats(str, Enum):
         datetime = "date-time"
         rfc1123 = "date-time-rfc1123"
+
+    def get_attribute_map_type(self, namespace=None):
+        formats_to_attribute_type = {
+            self.Formats.datetime: "iso-8601",
+            self.Formats.rfc1123: "rfc-1123"
+        }
+        return formats_to_attribute_type[self.format]
 
     @classmethod
     def from_yaml(cls, name, yaml_data, schema_type, serialize_name):

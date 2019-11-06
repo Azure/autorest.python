@@ -13,6 +13,7 @@ class BaseSchema:
         self.readonly = kwargs.pop('readonly', False)
         self.constant = kwargs.pop('constant', False)
         self.default_value = kwargs.pop('default_value', None)
+        self.discriminator_value = kwargs.pop('discriminator_value', None)
         self.documentation_string = None
         self.attribute_map_string = None
 

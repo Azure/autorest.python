@@ -62,6 +62,8 @@ class CodeGenerator:
                 if not operation.get('exceptions'):
                     continue
                 for exception in operation['exceptions']:
+                    if not exception.get('schema'):
+                        continue
                     exceptions_set.add(exception['schema']['$key'])
         return exceptions_set
 
@@ -69,20 +71,10 @@ class CodeGenerator:
         # Create a code model
         code_model = CodeModel()
         code_model.client_name = yaml_code_model['info']['title']
-        code_model.description = yaml_code_model['info']['description']
+        code_model.description = yaml_code_model['info']['description'] if yaml_code_model['info'].get('description') else ""
         code_model.api_version = self._autorestapi.get_value("package-version")
         if not code_model.api_version:
             code_model.api_version = "1.0.0"
-
-        exceptions_set = self._build_exceptions_set(yaml_data=yaml_code_model['operationGroups'])
-
-        classes = [a for a in yaml_code_model['schemas']['ands'] if a.get('allOf')]
-        code_model.schemas = [build_schema(name=s['language']['default']['name'], yaml_data=s, exceptions_set=exceptions_set, top_level=True) for s in classes]
-        # sets the enums property in our code_model variable, which will later be passed to EnumSerializer
-        code_model.build_enums()
-        code_model.add_additional_properties_to_models()
-        code_model.add_inheritance_to_models()
-        code_model.sort_schemas()
 
         # Get my namespace
         namespace = self._autorestapi.get_value("namespace")
@@ -90,6 +82,20 @@ class CodeGenerator:
         if not namespace:
             namespace = get_namespace_name(yaml_code_model["info"]["title"])
         code_model.namespace = Path(*[ns_part for ns_part in namespace.split(".")])
+
+        if not yaml_code_model['schemas']:
+            return code_model
+
+        exceptions_set = self._build_exceptions_set(yaml_data=yaml_code_model['operationGroups'])
+
+        classes = [a for a in yaml_code_model['schemas']['objects']]
+        code_model.schemas = [build_schema(name=s['language']['default']['name'], yaml_data=s, exceptions_set=exceptions_set) for s in classes]
+        # sets the enums property in our code_model variable, which will later be passed to EnumSerializer
+        code_model.build_enums()
+        code_model.add_inheritance_to_models()
+        code_model.sort_schemas()
+
+
         return code_model
 
     def _serialize_and_write_models_folder(self, namespace, code_model):
@@ -193,7 +199,8 @@ class CodeGenerator:
 
         code_model = self._create_code_model(yaml_code_model=yaml_code_model)
 
-        self._serialize_and_write_models_folder(namespace=code_model.namespace, code_model=code_model)
+        if code_model.schemas:
+            self._serialize_and_write_models_folder(namespace=code_model.namespace, code_model=code_model)
 
         operation_groups = [OperationGroup.from_yaml(op_group) for op_group in yaml_code_model['operationGroups']]
         self._serialize_and_write_operations_folder(namespace=code_model.namespace, operation_groups=operation_groups, env=env)
