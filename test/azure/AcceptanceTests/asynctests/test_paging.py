@@ -40,12 +40,14 @@ log_level = int(os.environ.get('PythonLogLevel', 30))
 
 tests = realpath(join(cwd, pardir, pardir, "Expected", "AcceptanceTests"))
 sys.path.append(join(tests, "Paging"))
+sys.path.append(join(tests, "CustomUrlPaging"))
 
 from msrest.serialization import Deserializer
 from msrest.authentication import BasicTokenAuthentication
 
 from paging.aio import AutoRestPagingTestService
 from paging.models import PagingGetMultiplePagesWithOffsetOptions
+from custombaseurlpaging.aio import AutoRestParameterizedHostTestPagingClient
 
 from azure.core.exceptions import HttpResponseError
 from azure.core.pipeline.policies import ContentDecodePolicy, AsyncRetryPolicy, HeadersPolicy
@@ -62,6 +64,12 @@ async def paging_client(cookie_policy):
         cookie_policy
     ]
     async with AutoRestPagingTestService(cred, base_url="http://localhost:3000", policies=policies) as client:
+        yield client
+
+@pytest.fixture
+async def custom_url_paging_client():
+    cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
+    async with AutoRestParameterizedHostTestPagingClient(cred, host="host:3000") as client:
         yield client
 
 @pytest.mark.asyncio
@@ -131,3 +139,19 @@ async def test_paging_fragment_path(paging_client):
     with pytest.raises(AttributeError):
         # Be sure this method is not generated (Transform work)
         paging_client.paging.get_multiple_pages_fragment_next_link_next()  # pylint: disable=E1101
+
+@pytest.mark.asyncio
+async def test_customurl_paging(custom_url_paging_client):
+    pages = custom_url_paging_client.paging.get_pages_partial_url("local")
+    paged = [i async for i in pages]
+
+    assert len(paged) == 2
+    assert paged[0].properties.id == 1
+    assert paged[1].properties.id == 2
+
+    pages = custom_url_paging_client.paging.get_pages_partial_url_operation("local")
+    paged = [i async for i in pages]
+
+    assert len(paged) == 2
+    assert paged[0].properties.id == 1
+    assert paged[1].properties.id == 2
