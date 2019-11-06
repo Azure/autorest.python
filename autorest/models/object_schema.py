@@ -132,10 +132,15 @@ class ObjectSchema(BaseSchema):
 
         if yaml_data.get('properties'):
             properties += cls._create_properties(yaml_data=yaml_data.get('properties', []), has_additional_properties=len(properties) > 0)
-        schema_data = yaml_data['schema'] if yaml_data.get('schema') else yaml_data
-        schema_type = schema_data['type']
-        if schema_type == 'object':
-            schema_type = cls._convert_to_class_name(schema_data['language']['default']['name'])
+
+        # this is to ensure that the attribute map type and property type are generated correctly
+        if for_additional_properties:
+            schema_type = yaml_data['type']
+        else:
+            schema_data = yaml_data['schema'] if yaml_data.get('schema') else yaml_data
+            schema_type = schema_data['type']
+            if schema_type == 'object':
+                schema_type = cls._convert_to_class_name(schema_data['language']['default']['name'])
 
         name = cls._convert_to_class_name(name)
         common_parameters_dict = cls._get_common_parameters(
