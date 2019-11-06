@@ -447,10 +447,6 @@ class StorageAccountsOperations(object):
                 query_parameters['api-version'] = self._serialize.query("self.api_version", self.api_version, 'str')
 
             else:
-                path_format_arguments = {
-                    'subscriptionId': self._serialize.url("self._config.subscription_id", self._config.subscription_id, 'str')
-                }
-                next_link = self._client.format_url(next_link, **path_format_arguments)
                 url = next_link
 
             # Construct headers
@@ -515,11 +511,6 @@ class StorageAccountsOperations(object):
                 query_parameters['api-version'] = self._serialize.query("self.api_version", self.api_version, 'str')
 
             else:
-                path_format_arguments = {
-                    'resourceGroupName': self._serialize.url("resource_group_name", resource_group_name, 'str'),
-                    'subscriptionId': self._serialize.url("self._config.subscription_id", self._config.subscription_id, 'str')
-                }
-                next_link = self._client.format_url(next_link, **path_format_arguments)
                 url = next_link
 
             # Construct headers

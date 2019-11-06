@@ -276,10 +276,6 @@ class PagingOperations(object):
                 url = self._client.format_url(url, **path_format_arguments)
 
             else:
-                path_format_arguments = {
-                    'offset': self._serialize.url("offset", offset, 'int')
-                }
-                next_link = self._client.format_url(next_link, **path_format_arguments)
                 url = next_link
 
             # Construct headers

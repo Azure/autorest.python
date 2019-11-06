@@ -106,6 +106,7 @@ defaultARMMappings = {
   'AcceptanceTests/Lro': 'lro.json',
   'AcceptanceTests/SubscriptionIdApiVersion': 'subscriptionId-apiVersion.json',
   'AcceptanceTests/Paging': 'paging.json',
+  'AcceptanceTests/CustomUrlPaging': 'custom-baseUrl-paging.json',
   'AcceptanceTests/AzureSpecials': 'azure-special-properties.json',
 }
 
