@@ -17,7 +17,18 @@ namespace AutoRest.Python.Azure.Model
         {
         }
 
+        public bool IsCustomBaseUri => ((CodeModelPya)CodeModel).IsCustomBaseUri;
+
         public bool IsPagingMethod => this.Extensions.ContainsKey(AzureExtensions.PageableExtension);
+
+        public IEnumerable<Parameter> PagingLogicalParameters {
+            get{
+                if(PagingParameters == null) {
+                    return LogicalParameters;
+                }
+                return PagingParameters.Union(LogicalParameters);
+            }
+        }
 
         public string PagingURL { get; set; }
 

@@ -77,10 +77,16 @@ else
 }
 else
 {
-                @:@(Model.BuildUrlPath("next_link", Model.LogicalParameters))
                 @:url = next_link
 }
-                @(Model.BuildUrlPath("url", Model.PagingParameters))
+@if (Model.IsCustomBaseUri)
+{
+                @:@(Model.BuildUrlPath("url", Model.PagingLogicalParameters))
+}
+else
+{
+                @:@(Model.BuildUrlPath("url", Model.PagingParameters))
+}
                 @(Model.BuildUrlQuery("query_parameters", Model.PagingParameters))
 @EmptyLine
             # Construct headers
