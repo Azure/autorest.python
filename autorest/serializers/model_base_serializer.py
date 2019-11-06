@@ -34,6 +34,8 @@ class ModelBaseSerializer:
                 description = "Required. " + description
             else:
                 description = "Required. "
+        if prop.constant or prop.is_discriminator:
+            description += "Constant filled by server. "
         if isinstance(prop, EnumSchema):
             values = ["\'" + v.value + "\'" for v in prop.values]
             description += "Possible values include: {}.".format(", ".join(values))
@@ -50,12 +52,13 @@ class ModelBaseSerializer:
         type_doc_string += prop.get_doc_string_type(self.code_model.namespace)
         prop.documentation_string = param_doc_string + "\n\t" + type_doc_string
 
-
     def serialize(self):
         env = Environment(
             loader=PackageLoader('autorest', 'templates'),
             keep_trailing_newline=True
         )
+
+        env.globals.update(str=str)
 
         for model in self.code_model.schemas:
             self._format_model_for_file(model)

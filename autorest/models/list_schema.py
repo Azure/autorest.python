@@ -42,6 +42,8 @@ class ListSchema(BaseSchema):
             required=common_parameters_dict['required'],
             readonly=common_parameters_dict['readonly'],
             constant=common_parameters_dict['constant'],
+            is_discriminator=common_parameters_dict['is_discriminator'],
+            discriminator_value = common_parameters_dict['discriminator_value'],
             max_items=schema_data.get('maxItems'),
             min_items=schema_data.get('minItems'),
             unique_items=schema_data.get('uniqueItems'),

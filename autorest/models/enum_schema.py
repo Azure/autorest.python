@@ -55,6 +55,8 @@ class EnumSchema(BaseSchema):
             default_value=schema_data.get('defaultValue'),
             required=common_parameters_dict['required'],
             readonly=common_parameters_dict['readonly'],
+            is_discriminator=common_parameters_dict['is_discriminator'],
+            discriminator_value = common_parameters_dict['discriminator_value'],
             constant=common_parameters_dict['constant'],
             original_swagger_name=kwargs.pop('original_swagger_name', None)
         )

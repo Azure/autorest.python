@@ -47,6 +47,8 @@ class ObjectSchema(BaseSchema):
         self.is_exception = kwargs.pop('is_exception', False)
         self.base_model = kwargs.pop('base_model', None)
         self.has_subclasses = kwargs.pop('has_subclasses', False)
+        self.discriminator = kwargs.pop('discriminator', None)
+        self.subtype_map = kwargs.pop('subtype_map', None)
         self.property_documentation_string = None
         self.init_line = None
         self.init_args = None
@@ -107,29 +109,27 @@ class ObjectSchema(BaseSchema):
         top_level = kwargs.pop("top_level", False)
         properties = []
         base_model = None
+
+        # checking to see if there is a parent class and / or additional properties
         if yaml_data.get('parents'):
             immediate_parents = yaml_data['parents']['immediate']
         # checking if object has a parent
             if immediate_parents and immediate_parents[0]['language']['default']['name'] != yaml_data['language']['default']['name']:
                 base_model = immediate_parents[0]['language']['default']['name']
 
-        # TODO: check to see what happens with an empty class
-        # TODO: how to handle additional properties
-
-
-        # if top_level:
-        #     properties += cls._create_properties(yaml_data=yaml_data.get('properties', []), has_additional_properties=len(properties) > 0)
-        #     schema_type = None
-        # elif for_additional_properties:
-        #     schema_type = yaml_data['type']
-        #     if schema_type == 'and':
-        #         schema_type = 'object'
-        # # in this case, we are either generating an element for a List or Dictionary schema, or a property
-        # else:
-
             # this means that this class has additional properties defined on it
             if immediate_parents[0]['language']['default']['name'] == yaml_data['language']['default']['name'] and immediate_parents[0]['type'] == 'dictionary':
                 properties.append(DictionarySchema.from_yaml(name="additional_properties", yaml_data=immediate_parents[0], for_additional_properties=True))
+
+        # checking to see if this is a polymorphic class
+        discriminator = None
+        subtype_map = {}
+        if yaml_data.get('discriminator'):
+            discriminator = yaml_data['discriminator']['property']['language']['default']['name']
+
+            # map of discriminator value to child's name
+            for children_name, children_yaml in yaml_data['discriminator']['immediate'].items():
+                subtype_map[children_yaml['discriminatorValue']] = cls._convert_to_class_name(children_name)
 
         schema_type = None
         if top_level and yaml_data.get('properties'):
@@ -164,7 +164,11 @@ class ObjectSchema(BaseSchema):
             required=common_parameters_dict['required'],
             readonly=common_parameters_dict['readonly'],
             constant=common_parameters_dict['constant'],
+            is_discriminator=common_parameters_dict['is_discriminator'],
+            discriminator_value = common_parameters_dict['discriminator_value'],
             default_value=yaml_data['schema'].get('defaultValue') if yaml_data.get('schema') else None,
             original_swagger_name=kwargs.pop('original_swagger_name', yaml_data['language']['default']['name']),
-            is_exception=is_exception
+            is_exception=is_exception,
+            discriminator=discriminator,
+            subtype_map=subtype_map if subtype_map else None
         )

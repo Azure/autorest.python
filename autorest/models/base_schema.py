@@ -11,6 +11,7 @@ class BaseSchema:
         self.required = kwargs.pop('required', False)
         self.readonly = kwargs.pop('readonly', False)
         self.constant = kwargs.pop('constant', False)
+        self.is_discriminator = kwargs.pop('is_discriminator', False)
         self.default_value = kwargs.pop('default_value', None)
         self.discriminator_value = kwargs.pop('discriminator_value', None)
         self.documentation_string = None
@@ -48,4 +49,6 @@ class BaseSchema:
         return_dict['readonly'] = yaml_data.get('readOnly', False)
         return_dict['constant'] = yaml_data.get('constant', False)
         return_dict['description'] = description
+        return_dict['is_discriminator'] = yaml_data.get('isDiscriminator', False)
+        return_dict['discriminator_value'] = yaml_data.get('discriminatorValue', None)
         return return_dict

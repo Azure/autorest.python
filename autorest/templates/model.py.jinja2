@@ -5,6 +5,10 @@ class {{ model.name }}(Model):
 {%- endif %}
     {{'\"\"\"' + model.description + "\n"}}
 
+    {%- if model.discriminator %}
+    {{ "You probably want to use the sub-classes and not this class directly. Known sub-classes are: " + ", ".join(model.subtype_map.values()) }}
+    {%- endif %}
+
     {%- if (model.properties | selectattr('readonly') | first) is defined %}
     {{ "Variables are only populated by the server, and will be ignored when sending a request.\n" }}
     {%- endif %}
@@ -38,6 +42,12 @@ class {{ model.name }}(Model):
         {%- else%}
         {%- endif %}
     }
+
+    {%- if model.discriminator %}
+    _subtype_map = {
+        '{{ model.discriminator }}': {{ str(model.subtype_map) }}
+    }
+    {%- endif %}
 
     {{ model.init_line }}
     {%- for arg in model.init_args %}

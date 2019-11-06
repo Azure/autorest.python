@@ -15,11 +15,15 @@ class ModelGenericSerializer(ModelBaseSerializer):
         init_args.append("super({}, self).__init__(**kwargs)".format(model.name))
 
         for prop in model.properties:
-            if model.base_model and prop in model.base_model.properties:
+            if model.base_model and prop in model.base_model.properties and not prop.is_discriminator:
                 continue
-            if prop.readonly:
-                init_args.append("self.{} = None".format(prop.name))
-            else:
+            if not prop.readonly and not prop.is_discriminator:
                 default_value = "\"" + prop.default_value + "\"" if prop.default_value else "None"
                 init_args.append("self.{} = kwargs.get('{}', {})".format(prop.name, prop.name, default_value))
+
+        for prop in model.properties:
+            if prop.readonly or (prop.is_discriminator and not model.discriminator_value):
+                init_args.append("self.{} = None".format(prop.name))
+            elif prop.is_discriminator and model.discriminator_value:
+                init_args.append("self.{} = '{}'".format(prop.name, model.discriminator_value))
         model.init_args = init_args

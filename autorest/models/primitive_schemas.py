@@ -20,6 +20,8 @@ class PrimitiveSchema(BaseSchema):
             required=common_parameters_dict['required'],
             readonly=common_parameters_dict['readonly'],
             constant=common_parameters_dict['constant'],
+            is_discriminator=common_parameters_dict['is_discriminator'],
+            discriminator_value = common_parameters_dict['discriminator_value'],
             original_swagger_name=original_swagger_name,
             default_value = yaml_data['schema'].get('defaultValue') if yaml_data.get('schema') else yaml_data.get('defaultValue'),
         )
@@ -57,6 +59,8 @@ class NumberSchema(PrimitiveSchema):
             required=common_parameters_dict['required'],
             readonly=common_parameters_dict['readonly'],
             constant=common_parameters_dict['constant'],
+            is_discriminator=common_parameters_dict['is_discriminator'],
+            discriminator_value = common_parameters_dict['discriminator_value'],
             multiple_of = schema_data.get('multipleOf'),
             maximum=schema_data.get('maximum'),
             minimum=schema_data.get('minimum'),
@@ -86,6 +90,8 @@ class StringSchema(PrimitiveSchema):
             required=common_parameters_dict['required'],
             readonly=common_parameters_dict['readonly'],
             constant=common_parameters_dict['constant'],
+            is_discriminator=common_parameters_dict['is_discriminator'],
+            discriminator_value = common_parameters_dict['discriminator_value'],
             max_length=schema_data.get('maxLength'),
             min_length=schema_data.get('minLength'),
             pattern=schema_data.get('pattern'),
@@ -125,6 +131,8 @@ class DatetimeSchema(PrimitiveSchema):
             required=common_parameters_dict['required'],
             readonly=common_parameters_dict['readonly'],
             constant=common_parameters_dict['constant'],
+            is_discriminator=common_parameters_dict['is_discriminator'],
+            discriminator_value = common_parameters_dict['discriminator_value'],
             default_value = schema_data.get('defaultValue'),
             original_swagger_name=original_swagger_name
         )
@@ -154,6 +162,8 @@ class ByteArraySchema(PrimitiveSchema):
             required=common_parameters_dict['required'],
             readonly=common_parameters_dict['readonly'],
             constant=common_parameters_dict['constant'],
+            is_discriminator=common_parameters_dict['is_discriminator'],
+            discriminator_value = common_parameters_dict['discriminator_value'],
             default_value = schema_data.get('defaultValue'),
             original_swagger_name=original_swagger_name
         )
