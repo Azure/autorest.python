@@ -434,6 +434,7 @@ class StorageAccountsOperations(object):
         :rtype: ~azure.core.paging.ItemPaged[~storage.models.StorageAccount]
         :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
+        error_map = kwargs.pop('error_map', None)
         def prepare_request(next_link=None):
             query_parameters = {}
             if not next_link:
@@ -468,10 +469,9 @@ class StorageAccountsOperations(object):
         def get_next(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = self._client._pipeline.run(request)
+            pipeline_response = self._client._pipeline.run(request, **kwargs)
             response = pipeline_response.http_response
 
-            error_map = kwargs.pop('error_map', None)
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise ARMError(response=response)
@@ -497,6 +497,7 @@ class StorageAccountsOperations(object):
         :rtype: ~azure.core.paging.ItemPaged[~storage.models.StorageAccount]
         :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
         """
+        error_map = kwargs.pop('error_map', None)
         def prepare_request(next_link=None):
             query_parameters = {}
             if not next_link:
@@ -532,10 +533,9 @@ class StorageAccountsOperations(object):
         def get_next(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = self._client._pipeline.run(request)
+            pipeline_response = self._client._pipeline.run(request, **kwargs)
             response = pipeline_response.http_response
 
-            error_map = kwargs.pop('error_map', None)
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise ARMError(response=response)
