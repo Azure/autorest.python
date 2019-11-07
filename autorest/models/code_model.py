@@ -23,10 +23,18 @@
 # IN THE SOFTWARE.
 #
 # --------------------------------------------------------------------------
+import logging
+from typing import List, Dict
 
+from .base_schema import BaseSchema
 from .dictionary_schema import DictionarySchema
 from .enum_schema import EnumSchema
 from .imports import FileImport, ImportType
+from .operation_group import OperationGroup
+
+
+_LOGGER = logging.getLogger(__name__)
+
 
 class CodeModel:
 
@@ -34,10 +42,19 @@ class CodeModel:
         self.client_name = None
         self.api_version = None
         self.description = None
-        self.schemas = None
+        self.schemas: List[BaseSchema] = []
+        self._schemas_index: Dict[str, BaseSchema] = None
         self.enums = None
         self.namespace = None
+        self.operation_groups: List[OperationGroup] = []
 
+    @property
+    def schemas_index(self):
+        """Create an index of schema using "id" of YAML initial node
+        """
+        if not self._schemas_index:
+            self._schemas_index = {id(schema.yaml_data): schema for schema in self.schemas}
+        return self._schemas_index
 
     def imports(self):
         file_import = FileImport()
@@ -51,6 +68,7 @@ class CodeModel:
         for schema in self.schemas:
             for prop in schema.properties:
                 if isinstance(prop, EnumSchema):
+                    _LOGGER.info("Added enum %s to enum list", prop.enum_type)
                     enums.append(prop)
         self.enums = enums
 
@@ -90,3 +108,17 @@ class CodeModel:
                 # right now, the base model property just holds the name of the parent class
                 schema.base_model = [b for b in self.schemas if b.original_swagger_name == schema.base_model][0]
         self._add_properties_from_inheritance()
+
+    def add_schema_link_to_operation(self) -> None:
+        # Index schemas
+        for operation_group in self.operation_groups:
+            for operation in operation_group.operations:
+                for obj in operation.parameters + operation.responses + operation.exceptions:
+                    schema_obj = obj.schema
+                    if schema_obj:
+                        schema_obj_id = id(obj.schema)
+                        _LOGGER.info("Looking for id %s (%s) for member %s of operation %s", schema_obj_id, schema_obj, obj, operation.name)
+                        try:
+                            obj.schema = self.schemas_index[schema_obj_id]
+                        except KeyError:
+                            _LOGGER.critical("Unable to ref the object")

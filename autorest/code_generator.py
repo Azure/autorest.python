@@ -76,6 +76,9 @@ class CodeGenerator:
         if not code_model.api_version:
             code_model.api_version = "1.0.0"
 
+        # Create operations
+        code_model.operation_groups = [OperationGroup.from_yaml(op_group) for op_group in yaml_code_model['operationGroups']]
+
         # Get my namespace
         namespace = self._autorestapi.get_value("namespace")
         _LOGGER.debug("Namespace parameter was %s", namespace)
@@ -83,18 +86,16 @@ class CodeGenerator:
             namespace = get_namespace_name(yaml_code_model["info"]["title"])
         code_model.namespace = Path(*[ns_part for ns_part in namespace.split(".")])
 
-        if not yaml_code_model['schemas']:
-            return code_model
+        if yaml_code_model['schemas']:
+            exceptions_set = self._build_exceptions_set(yaml_data=yaml_code_model['operationGroups'])
 
-        exceptions_set = self._build_exceptions_set(yaml_data=yaml_code_model['operationGroups'])
-
-        classes = [a for a in yaml_code_model['schemas']['objects']]
-        code_model.schemas = [build_schema(name=s['language']['default']['name'], yaml_data=s, exceptions_set=exceptions_set, top_level=True) for s in classes]
-        # sets the enums property in our code_model variable, which will later be passed to EnumSerializer
-        code_model.build_enums()
-        code_model.add_inheritance_to_models()
-        code_model.sort_schemas()
-
+            classes = [a for a in yaml_code_model['schemas']['objects']]
+            code_model.schemas = [build_schema(name=s['language']['default']['name'], yaml_data=s, exceptions_set=exceptions_set, top_level=True) for s in classes]
+            # sets the enums property in our code_model variable, which will later be passed to EnumSerializer
+            code_model.build_enums()
+            code_model.add_inheritance_to_models()
+            code_model.sort_schemas()
+            code_model.add_schema_link_to_operation()
 
         return code_model
 
@@ -189,6 +190,7 @@ class CodeGenerator:
             raise ValueError("code-model-v4-no-tags.yaml must be a possible input")
 
         file_content = self._autorestapi.read_file("code-model-v4-no-tags.yaml")
+        #self._autorestapi.write_file("code-model-v4-no-tags.yaml", file_content)
 
         env = Environment(
             loader=PackageLoader('autorest', 'templates'),
@@ -207,10 +209,9 @@ class CodeGenerator:
         if code_model.schemas:
             self._serialize_and_write_models_folder(namespace=code_model.namespace, code_model=code_model)
 
-        operation_groups = [OperationGroup.from_yaml(op_group) for op_group in yaml_code_model['operationGroups']]
-        self._serialize_and_write_operations_folder(namespace=code_model.namespace, operation_groups=operation_groups, env=env)
+        self._serialize_and_write_operations_folder(namespace=code_model.namespace, operation_groups=code_model.operation_groups, env=env)
 
-        operation_group_names = [o.name for o in operation_groups]
+        operation_group_names = [o.name for o in code_model.operation_groups]
         self._serialize_and_write_top_level_folder(
             namespace=code_model.namespace,
             operation_group_names=operation_group_names,

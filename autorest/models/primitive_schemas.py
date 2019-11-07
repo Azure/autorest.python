@@ -3,8 +3,8 @@ from .base_schema import BaseSchema
 from ..common.utils import to_python_type
 
 class PrimitiveSchema(BaseSchema):
-    def __init__(self, name, description, schema_type, **kwargs):
-        super(PrimitiveSchema, self).__init__(name, description, **kwargs)
+    def __init__(self, yaml_data, name, description, schema_type, **kwargs):
+        super(PrimitiveSchema, self).__init__(yaml_data, name, description, **kwargs)
         self.schema_type = to_python_type(schema_type)
 
     @classmethod
@@ -14,6 +14,7 @@ class PrimitiveSchema(BaseSchema):
             yaml_data=yaml_data
         )
         return cls(
+            yaml_data=yaml_data,
             name=name,
             description=common_parameters_dict['description'],
             schema_type=schema_type,
@@ -34,8 +35,8 @@ class PrimitiveSchema(BaseSchema):
 
 
 class NumberSchema(PrimitiveSchema):
-    def __init__(self, name, description, schema_type, precision, **kwargs):
-        super(NumberSchema, self).__init__(name, description, schema_type, **kwargs)
+    def __init__(self, yaml_data, name, description, schema_type, precision, **kwargs):
+        super(NumberSchema, self).__init__(yaml_data, name, description, schema_type, **kwargs)
         self.precision = precision
         self.multiple_of = kwargs.pop('multiple_of', None)
         self.maximum = kwargs.pop('maximum', None)
@@ -51,6 +52,7 @@ class NumberSchema(PrimitiveSchema):
         )
         schema_data = yaml_data['schema'] if yaml_data.get('schema') else yaml_data
         return cls(
+            yaml_data=yaml_data,
             name=name,
             description=common_parameters_dict['description'],
             schema_type=schema_type,
@@ -70,8 +72,8 @@ class NumberSchema(PrimitiveSchema):
         )
 
 class StringSchema(PrimitiveSchema):
-    def __init__(self, name, description, schema_type, **kwargs):
-        super(StringSchema, self).__init__(name, description, schema_type, **kwargs)
+    def __init__(self, yaml_data, name, description, schema_type, **kwargs):
+        super(StringSchema, self).__init__(yaml_data, name, description, schema_type, **kwargs)
         self.max_length = kwargs.pop('max_length', None)
         self.min_length = kwargs.pop('min_length', None)
         self.pattern = kwargs.pop('pattern', None)
@@ -84,6 +86,7 @@ class StringSchema(PrimitiveSchema):
         )
         schema_data = yaml_data['schema'] if yaml_data.get('schema') else yaml_data
         return cls(
+            yaml_data=yaml_data,
             name=name,
             description=common_parameters_dict['description'],
             schema_type='string',
@@ -101,8 +104,8 @@ class StringSchema(PrimitiveSchema):
 
 
 class DatetimeSchema(PrimitiveSchema):
-    def __init__(self, name, description, schema_type, format, **kwargs):
-        super(DatetimeSchema, self).__init__(name, description, schema_type, **kwargs)
+    def __init__(self, yaml_data, name, description, schema_type, format, **kwargs):
+        super(DatetimeSchema, self).__init__(yaml_data, name, description, schema_type, **kwargs)
         self.format = format
 
     class Formats(str, Enum):
@@ -124,6 +127,7 @@ class DatetimeSchema(PrimitiveSchema):
         )
         schema_data = yaml_data['schema'] if yaml_data.get('schema') else yaml_data
         return cls(
+            yaml_data=yaml_data,
             name=name,
             description=common_parameters_dict['description'],
             schema_type=schema_type,
@@ -139,8 +143,8 @@ class DatetimeSchema(PrimitiveSchema):
 
 
 class ByteArraySchema(PrimitiveSchema):
-    def __init__(self, name, description, schema_type, format, **kwargs):
-        super(ByteArraySchema, self).__init__(name, description, schema_type, **kwargs)
+    def __init__(self, yaml_data, name, description, schema_type, format, **kwargs):
+        super(ByteArraySchema, self).__init__(yaml_data, name, description, schema_type, **kwargs)
         self.format = format
 
     class Formats(str, Enum):
@@ -155,6 +159,7 @@ class ByteArraySchema(PrimitiveSchema):
         )
         schema_data = yaml_data['schema'] if yaml_data.get('schema') else yaml_data
         return cls(
+            yaml_data=yaml_data,
             name=name,
             description=common_parameters_dict['description'],
             schema_type='byte-array',

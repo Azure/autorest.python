@@ -2,7 +2,14 @@ from typing import Any, Dict
 
 
 class BaseSchema:
-    def __init__(self, name, description, **kwargs):
+    def __init__(
+        self,
+        yaml_data: Dict[str, Any],
+        name,
+        description,
+        **kwargs
+    ):
+        self.yaml_data = yaml_data
         self.name = name
         self.description = description
         self.original_swagger_name = kwargs.pop('original_swagger_name', '')

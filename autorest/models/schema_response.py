@@ -60,3 +60,6 @@ class SchemaResponse:
                 for code in yaml_data["protocol"]["http"]["statusCodes"]
             ],
         )
+
+    def __repr__(self):
+        return f"<{type(self)} {self.status_codes}>"
