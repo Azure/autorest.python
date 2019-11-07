@@ -58,7 +58,8 @@ def main():
     logging.basicConfig(
         level=logging.INFO,
         #stream=sys.stderr,
-        filename="autorest_python.log"
+        #filename="autorest_python.log"
+        handlers=[logging.FileHandler("autorest_python.log", 'w', 'utf-8')]
     )
 
     if os.environ.get("AUTOREST_PYTHON_ATTACH_VSCODE_DEBUG", False):
