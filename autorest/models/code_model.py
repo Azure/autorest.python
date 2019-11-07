@@ -43,18 +43,19 @@ class CodeModel:
         self.api_version = None
         self.description = None
         self.schemas: List[BaseSchema] = []
-        self._schemas_index: Dict[str, BaseSchema] = None
-        self.enums = None
+        self._global_index: Dict[str, BaseSchema] = None
+        self.enums: List[EnumSchema] = []
         self.namespace = None
         self.operation_groups: List[OperationGroup] = []
 
     @property
-    def schemas_index(self):
+    def global_index(self):
         """Create an index of schema using "id" of YAML initial node
         """
-        if not self._schemas_index:
-            self._schemas_index = {schema.id: schema for schema in self.schemas}
-        return self._schemas_index
+        if not self._global_index:
+            self._global_index = {schema.id: schema for schema in self.schemas}
+            self._global_index.update({enum.id: enum for enum in self.enums})
+        return self._global_index
 
     def imports(self):
         file_import = FileImport()
@@ -119,7 +120,7 @@ class CodeModel:
                         schema_obj_id = id(obj.schema)
                         _LOGGER.info("Looking for id %s (%s) for member %s of operation %s", schema_obj_id, schema_obj, obj, operation.name)
                         try:
-                            obj.schema = self.schemas_index[schema_obj_id]
+                            obj.schema = self.global_index[schema_obj_id]
                         except KeyError:
                             _LOGGER.critical("Unable to ref the object")
 

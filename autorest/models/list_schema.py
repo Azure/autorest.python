@@ -12,8 +12,8 @@ class ListSchema(BaseSchema):
         self.unique_items = kwargs.pop('unique_items', None)
 
 
-    def get_attribute_map_type(self):
-        return '[{}]'.format(self.element_type.get_attribute_map_type())
+    def get_serialization_type(self):
+        return '[{}]'.format(self.element_type.get_serialization_type())
 
     def get_doc_string_type(self, namespace):
         return 'list[{}]'.format(self.element_type.get_doc_string_type(namespace))

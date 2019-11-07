@@ -1,7 +1,8 @@
+from abc import ABC, abstractmethod
 from typing import Any, Dict
 
 
-class BaseSchema:
+class BaseSchema(ABC):
     def __init__(
         self,
         yaml_data: Dict[str, Any],
@@ -27,6 +28,14 @@ class BaseSchema:
     @property
     def id(self):
         return id(self.yaml_data)
+
+    @abstractmethod
+    def get_serialization_type(self):
+        ...
+
+    @abstractmethod
+    def get_doc_string_type(self, namespace=None):
+        ...
 
     """Constructs the documentation string for a property
 

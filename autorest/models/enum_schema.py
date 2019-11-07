@@ -30,7 +30,7 @@ class EnumSchema(BaseSchema):
     def __hash__(self):
         return hash(self.name)
 
-    def get_attribute_map_type(self):
+    def get_serialization_type(self):
         return 'str'
 
     def get_doc_string_type(self, namespace):
