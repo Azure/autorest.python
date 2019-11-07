@@ -28,6 +28,7 @@ class {{ operation_group.name }}Operations(object):
         self._deserialize = deserializer
         self._config = config
 {% for operation in operation_group.operations %}
+
     {% macro someop() %}{% include "operation.py.jinja2" %}{% endmacro %}
     {{ someop()|indent }}
 {% endfor %}

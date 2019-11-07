@@ -23,47 +23,43 @@
 # IN THE SOFTWARE.
 #
 # --------------------------------------------------------------------------
-import logging
-from typing import Dict, List, Any
-
-from .operation import Operation
-from .imports import FileImport
+from typing import Dict, Optional, List, Union, Any
 
 
-_LOGGER = logging.getLogger(__name__)
-
-class OperationGroup:
-    """Represent an operation group.
-
-    """
-
+class SchemaResponse:
     def __init__(
         self,
         yaml_data: Dict[str, Any],
-        name: str,
-        operations: List[Operation],
-    ) -> None:
+        schema: Optional[Any],
+        media_types: List[str],
+        status_codes: List[Union[str, int]],
+    ):
         self.yaml_data = yaml_data
-        self.name = name
-        self.operations = operations
+        self.schema = schema
+        self.media_types = media_types
+        self.status_codes = status_codes
 
-    def imports(self):
-        file_import = FileImport()
-        for operation in self.operations:
-            file_import.merge(operation.imports())
-        return file_import
+    @property
+    def has_body(self):
+        """Tell if that response defines a body.
+        """
+        return bool(self.schema)
 
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, Any], **kwargs) -> "OperationGroup":
-        name = yaml_data["$key"] # yaml_data['language']['default']['name'],
-        _LOGGER.info("Parsing %s operation group", name)
-
-        operations = []
-        for operation_yaml in yaml_data["operations"]:
-            operations.append(Operation.from_yaml(operation_yaml))
+    def from_yaml(cls, yaml_data: Dict[str, str], **kwargs) -> "SchemaResponse":
 
         return cls(
             yaml_data=yaml_data,
-            name=name,
-            operations=operations,
+            schema=yaml_data.get("schema", None),  # FIXME replace by operation model
+            media_types=[
+                media_type
+                for media_type in yaml_data["protocol"]["http"].get("mediaTypes", [])
+            ],
+            status_codes=[
+                int(code) if code != "default" else "default"
+                for code in yaml_data["protocol"]["http"]["statusCodes"]
+            ],
         )
+
+    def __repr__(self):
+        return f"<{type(self)} {self.status_codes}>"

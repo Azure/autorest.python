@@ -1,5 +1,11 @@
+{% set def_keyword = "async def" if async_mode else "def" %}
+{% set await_keyword = "await " if async_mode else "" %}
+{% set trace_decorator = "@distributed_trace_async" if async_mode else "@distributed_trace" %}
+{% set stream_request_parameter = "stream=" ~ ("True" if operation.is_stream_response else "False") %}
+{% set parameter_signature = operation.parameters|map(attribute='name')|join(', ') %}
+{# actual template starts here #}
 {{ trace_decorator }}
-{{ def_keyword}} {{ operation.python_name }}(self, {{ operation_parameters }}, **kwargs):
+{{ def_keyword }} {{ operation.python_name }}(self, {{ parameter_signature }}cls=None, **kwargs):
     """{{operation.description}}.
 
     {{operation.summary}}
@@ -10,12 +16,17 @@
 {% endif %}
 
     {{operation.doc_parameters}}
+    :param callable cls: A custom type or function that will be passed the direct response
+    {% if not operation.exceptions %}
+    :raises ~azure.core.HttpResponseError:
+    {% else %}
+    :raises ~namespace.models.{{ operation.exceptions[0].name }}:
+    {% endif %}
     """
 {% if operation.deprecated %}
     warnings.warn('Method {{operation.name}} is deprecated', DeprecationWarning)
 {% endif %}
     error_map = kwargs.pop('error_map', None)
-
     # Construct URL
     url = self.{{ operation.python_name }}.metadata['url']
 
@@ -24,11 +35,55 @@
 
     # Construct headers
     header_parameters = {}
-{% if operation.has_any_response %}
-    header_parameters['Accept'] = '@(Model.AcceptContentType)'
+{% if operation.has_response_body %}
+    header_parameters['Accept'] = '{{ operation.accept_content_type }}'
 {% endif %}
-{% if operation.has_any_body %}
-    header_parameters['Content-Type'] = '@(Model.RequestContentType)'
+{% if operation.has_request_body %}
+    header_parameters['Content-Type'] = '{{ operation.request_content_type }}'
 {% endif %}
 
-    ## FIXME
+{% if operation.has_request_body %}
+    # Construct body
+    body_content = self._serialize.body({{ operation.body_parameter.name }}, '@(Model.RequestBody.ModelType.ToPythonRuntimeTypeString())'@(is_xml)@serializationContext)
+
+{% endif %}
+    # Construct and send request
+{% if operation.is_form_data %}
+    request = self._client.{{ operation.method }}(url, query_parameters, header_parameters, form_content=form_data_content)
+{% elif operation.is_stream_request %}
+    request = self._client.{{ operation.method }}(url, query_parameters, header_parameters, stream_content=@parameter.Name)
+{% elif operation.has_request_body %}
+    request = self._client.{{ operation.method }}(url, query_parameters, header_parameters, body_content)
+{% else %}
+    request = self._client.{{ operation.method }}(url, query_parameters, header_parameters)
+{% endif %}
+    pipeline_response = {{ await_keyword }}self._client._pipeline.run(request, {{ stream_request_parameter }}, **kwargs)
+    response = pipeline_response.http_response
+
+    if response.status_code not in {{ operation.success_status_code|string() }}:
+        map_error(status_code=response.status_code, response=response, error_map=error_map)
+        {% if not operation.exceptions %}
+        raise HttpResponseError(response=response)
+        {% else %}
+        raise models.{{ operation.exceptions[0].name }}(response, self._deserialize)
+        {% endif %}
+
+{% if operation.has_response_body %}
+    deserialized = None
+  {% for status_code in operation.success_status_code %}
+    if response.status_code == {{ status_code }}:
+    {% if operation.is_stream_response %}
+      deserialized = response.stream_download(self._client._pipeline)
+    {% else %}
+      deserialized = self._deserialize('{{ operation.get_response_from_status(status_code).name }}', response)
+    {% endif %}
+  {% endfor %}
+    if cls:
+      return cls(response, deserialized, @Model.AddResponseHeader())
+    return deserialized
+{% else %}
+    if cls:
+      response_headers = {}
+      return cls(response, None, response_headers)
+{% endif %}
+{{ operation.python_name }}.metadata = {'url': '{{ operation.url }}'}

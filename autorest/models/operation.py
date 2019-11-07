@@ -23,10 +23,17 @@
 # IN THE SOFTWARE.
 #
 # --------------------------------------------------------------------------
-from typing import Dict, Any
+import logging
+from typing import Dict, List, Union, Any
 
 from ..common.utils import get_method_name
 from .imports import FileImport, ImportType
+from .schema_response import SchemaResponse
+from .parameter import Parameter
+
+
+_LOGGER = logging.getLogger(__name__)
+
 
 class Operation:
     """Represent an operation.
@@ -36,42 +43,166 @@ class Operation:
         self,
         yaml_data: Dict[str, Any],
         name: str,
-        description: str
+        description: str,
+        url: str,
+        method: str,
+        parameters: List[Parameter] = None,
+        responses: List[SchemaResponse] = None,
+        exceptions: List[SchemaResponse] = None,
+        media_types: List[str] = None,
     ) -> None:
+        if responses is None:
+            responses = []
+        if exceptions is None:
+            exceptions = []
+        if media_types is None:
+            media_types = []
+
         self.yaml_data = yaml_data
         self.name = name
         self.description = description
+        self.url = url
+        self.method = method
+        self.parameters = parameters
+        self.responses = responses
+        self.exceptions = exceptions
+        self.media_types = media_types
 
     @property
     def python_name(self):
         return get_method_name(self.name)
 
+    @staticmethod
+    def _suggest_content_type(
+        media_types: List[str]
+    ) -> str:
+        """Return the prefered media-type.
+
+        Assumes "media_types" attributes as a list exist.
+        """
+        if len(media_types) == 1:
+            return media_types.pop()
+
+        # If more type are supported, if JSON is supported, ask JSON only
+        for media_type in media_types:
+            if "json" in media_type:
+                return media_type
+        # If no JSON, and still several content type, chain them
+        return ",".join(media_types)
+
+    @property
+    def accept_content_type(self):
+        media_types = set(
+            media_type
+            for response in self.responses
+            for media_type in response.media_types
+        )
+        return self._suggest_content_type(media_types)
+
+    @property
+    def request_content_type(self):
+        return self._suggest_content_type(self.media_types)
+
+    @property
+    def is_stream_request(self):
+        """Is the request is a stream, like an upload."""
+        # FIXME look for input
+        return False
+
+    @property
+    def is_stream_response(self):
+        """Is the response expected to be streamable, like a download."""
+        # FIXME look for input
+        return False
+
+    @property
+    def has_request_body(self):
+        return any(parameter.location == "body" for parameter in self.parameters)
+
+    @property
+    def body_parameter(self):
+        if not self.has_request_body:
+            raise ValueError(f"There is body parameter for operation {self.name}")
+        # Should we check if there is two body? Modeler role right?
+        return [
+            parameter for parameter in self.parameters if parameter.location == "body"
+        ][0]
+
+    @property
+    def has_response_body(self):
+        """Tell if at least one response has a body.
+        """
+        return any(response.has_body for response in self.responses)
+
+    def get_response_from_status(self, status_code: int) -> SchemaResponse:
+        for response in self.responses:
+            if status_code in response.status_codes:
+                return response
+        raise ValueError(f"Incorrect status code {status_code}, operation {self.name}")
+
+    @property
+    def success_status_code(self) -> List[int]:
+        """The list of all successfull status code.
+        """
+        return [
+            code
+            for response in self.responses
+            for code in response.status_codes
+            if code != "default"
+        ]
+
     def imports(self):
         file_import = FileImport()
 
         # Exceptions
-        file_import.add_from_import("azure.core.exceptions", "map_error", ImportType.AZURECORE)
-        if True: # Replace with "this operation has default exception"
-            file_import.add_from_import("azure.core.exceptions", "HttpResponseError", ImportType.AZURECORE)
+        file_import.add_from_import(
+            "azure.core.exceptions", "map_error", ImportType.AZURECORE
+        )
+        if not self.exceptions:
+            file_import.add_from_import(
+                "azure.core.exceptions", "HttpResponseError", ImportType.AZURECORE
+            )
 
         # Tracings
-        if True: # Replace with "--tracing was passed to autorest"
-            file_import.add_from_import("azure.core.tracing.decorator", "distributed_trace", ImportType.AZURECORE)
+        if True:  # Replace with "--tracing was passed to autorest"
+            file_import.add_from_import(
+                "azure.core.tracing.decorator",
+                "distributed_trace",
+                ImportType.AZURECORE,
+            )
 
         # Deprecation
-        if True: # Replace with "the YAML contains deprecated:true"
+        if True:  # Replace with "the YAML contains deprecated:true"
             file_import.add_import("warnings", ImportType.STDLIB)
 
         # Models
-        if True: # Replace by "this operation has a return type or a body parameter"
+        if self.has_request_body or self.has_response_body:
             file_import.add_from_import("..", "models", ImportType.LOCAL)
 
         return file_import
 
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, str], **kwargs) -> "Operation":
+        name = yaml_data["language"]["default"]["name"]
+        _LOGGER.info("Parsing %s operation", name)
         return cls(
             yaml_data=yaml_data,
-            name=yaml_data['language']['default']['name'],
-            description=yaml_data['language']['default']['description'],
+            name=name,
+            description=yaml_data["language"]["default"]["description"],
+            url=yaml_data["request"]["protocol"]["http"]["path"],
+            method=yaml_data["request"]["protocol"]["http"]["method"],
+            parameters=[
+                Parameter.from_yaml(yaml)
+                for yaml in yaml_data["request"].get("parameters", [])
+            ],
+            responses=[
+                SchemaResponse.from_yaml(yaml) for yaml in yaml_data["responses"]
+            ],
+            exceptions=[
+                SchemaResponse.from_yaml(yaml) for yaml in yaml_data.get("exceptions", [])
+            ],
+            media_types=[
+                media_type
+                for media_type in yaml_data["request"]["protocol"]["http"].get("mediaTypes", [])
+            ],
         )

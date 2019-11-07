@@ -3,8 +3,8 @@ from ..common.utils import get_property_name
 from typing import Any, Dict
 
 class DictionarySchema(BaseSchema):
-    def __init__(self, name, description, element_type, **kwargs):
-        super(DictionarySchema, self).__init__(name, description, **kwargs)
+    def __init__(self, yaml_data, name, description, element_type, **kwargs):
+        super(DictionarySchema, self).__init__(yaml_data, name, description, **kwargs)
         self.element_type = element_type
         self.additional_properties = kwargs.pop('additional_properties', False)
 
@@ -25,6 +25,7 @@ class DictionarySchema(BaseSchema):
         if element_type == 'and':
             element_type = 'object'
         return cls(
+            yaml_data=None,
             name='additional_properties',
             description='Unmatched properties from the message are deserialized to this collection.',
             element_type='object',
@@ -55,6 +56,7 @@ class DictionarySchema(BaseSchema):
         )
 
         return cls(
+            yaml_data=yaml_data,
             name=name,
             description=description,
             element_type=element_type,
