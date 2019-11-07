@@ -45,6 +45,7 @@ class CodeModel:
         self.schemas: List[BaseSchema] = []
         self._schemas_index: Dict[str, BaseSchema] = None
         self.enums = None
+        self.primitives = None
         self.namespace = None
         self.operation_groups: List[OperationGroup] = []
 
@@ -62,15 +63,6 @@ class CodeModel:
         if len([s for s in self.schemas if s.is_exception]) > 0:
             file_import.add_from_import("azure.core.exceptions", "HttpResponseError", ImportType.AZURECORE)
         return file_import
-
-    def build_enums(self):
-        enums = []
-        # for schema in self.schemas:
-        #     for prop in schema.properties:
-        #         if isinstance(prop, EnumSchema):
-        #             _LOGGER.info("Added enum %s to enum list", prop.enum_type)
-        #             enums.append(prop)
-        # self.enums = enums
 
     def sort_schemas(self):
         seen_schemas = set()

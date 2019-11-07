@@ -36,6 +36,7 @@ from .jsonrpc import AutorestAPI
 from .common.utils import get_namespace_name, get_method_name, get_property_name
 from .models.code_model import CodeModel
 from .models import build_schema, EnumSchema
+from .models.primitive_schemas import get_primitive_schema
 from .models.operation_group import OperationGroup
 from .serializers import (
     AioGeneralSerializer,
@@ -67,6 +68,24 @@ class CodeGenerator:
                     exceptions_set.add(exception['schema']['language']['default']['name'])
         return exceptions_set
 
+    def _build_primitive_schemas(self, yaml_data):
+        primitive_schema_dict = {}
+        for schema_type, yaml_data in yaml_data['schemas'].items():
+            # these are not primitive types so we're generating them elsewhere
+            if schema_type in ['objects', 'arrays', 'dictionaries', 'choices', 'sealedChoices', 'constants']:
+                continue
+            primitive_schemas = []
+            for schema_data in yaml_data:
+                primitive_schemas.append(
+                    get_primitive_schema(
+                        name=get_property_name(schema_data['language']['default']['name']),
+                        yaml_data=schema_data,
+                        original_swagger_name=schema_data['language']['default']['name']
+                    )
+                )
+            primitive_schema_dict[schema_type] = primitive_schemas
+        return primitive_schema_dict
+
     def _create_code_model(self, yaml_code_model):
         # Create a code model
         code_model = CodeModel()
@@ -86,8 +105,9 @@ class CodeGenerator:
             namespace = get_namespace_name(yaml_code_model["info"]["title"])
         code_model.namespace = Path(*[ns_part for ns_part in namespace.split(".")])
 
-        if yaml_code_model['schemas']:
+        if yaml_code_model.get('schemas'):
             exceptions_set = self._build_exceptions_set(yaml_data=yaml_code_model['operationGroups'])
+            code_model.primitives = self._build_primitive_schemas(yaml_data=yaml_code_model)
             code_model.enums = set([EnumSchema.from_yaml(name=e['language']['default']['name'], yaml_data=e) for e in yaml_code_model['schemas']['choices']])
 
             classes = [a for a in yaml_code_model['schemas']['objects']]
