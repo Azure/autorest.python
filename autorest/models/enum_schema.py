@@ -19,8 +19,8 @@ class EnumValue:
         )
 
 class EnumSchema(BaseSchema):
-    def __init__(self, name, description, enum_type, values, id, **kwargs):
-        super(EnumSchema, self).__init__(name, description, id, **kwargs)
+    def __init__(self, name, description, enum_type, values, **kwargs):
+        super(EnumSchema, self).__init__(name, description, **kwargs)
         self.enum_type = enum_type
         self.values = values
 
@@ -50,12 +50,13 @@ class EnumSchema(BaseSchema):
         return cls(
             name=name,
             description=common_parameters_dict['description'],
-            id=common_parameters_dict['id'],
             enum_type=enum_type,
             values=values,
             default_value=schema_data.get('defaultValue'),
             required=common_parameters_dict['required'],
             readonly=common_parameters_dict['readonly'],
+            is_discriminator=common_parameters_dict['is_discriminator'],
+            discriminator_value = common_parameters_dict['discriminator_value'],
             constant=common_parameters_dict['constant'],
-            serialize_name=kwargs.pop('serialize_name', None)
+            original_swagger_name=kwargs.pop('original_swagger_name', None)
         )
