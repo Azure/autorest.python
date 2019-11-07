@@ -23,47 +23,37 @@
 # IN THE SOFTWARE.
 #
 # --------------------------------------------------------------------------
-import logging
-from typing import Dict, List, Any
-
-from .operation import Operation
-from .imports import FileImport
+from typing import Dict, Optional, List, Union, Any
 
 
-_LOGGER = logging.getLogger(__name__)
-
-class OperationGroup:
-    """Represent an operation group.
-
-    """
-
+class Parameter:
     def __init__(
         self,
         yaml_data: Dict[str, Any],
+        schema: Optional[Any],
         name: str,
-        operations: List[Operation],
-    ) -> None:
+        description: str,
+        implementation: str,
+        required: bool,
+        location: str,
+    ):
         self.yaml_data = yaml_data
+        self.schema = schema
         self.name = name
-        self.operations = operations
-
-    def imports(self):
-        file_import = FileImport()
-        for operation in self.operations:
-            file_import.merge(operation.imports())
-        return file_import
+        self.description = description
+        self.implementation = implementation
+        self.required = required
+        self.location = location
 
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, Any], **kwargs) -> "OperationGroup":
-        name = yaml_data["$key"] # yaml_data['language']['default']['name'],
-        _LOGGER.info("Parsing %s operation group", name)
-
-        operations = []
-        for operation_yaml in yaml_data["operations"]:
-            operations.append(Operation.from_yaml(operation_yaml))
+    def from_yaml(cls, yaml_data: Dict[str, str], **kwargs) -> "SchemaResponse":
 
         return cls(
             yaml_data=yaml_data,
-            name=name,
-            operations=operations,
+            schema=yaml_data.get("schema", None),  # FIXME replace by operation model
+            name=yaml_data["language"]["default"]["name"],
+            description=yaml_data["language"]["default"]["description"],
+            implementation=yaml_data["implementation"],
+            required=yaml_data.get("required", False),
+            location=yaml_data["protocol"]["http"]["in"],
         )

@@ -122,12 +122,13 @@ class CodeGenerator:
             self._autorestapi.write_file(models_path / Path("_{}_enums.py".format(get_namespace_name(code_model.client_name))), enum_serializer.enum_file)
         self._autorestapi.write_file(models_path / Path("__init__.py"), model_init_serializer.model_init_file)
 
-    def _serialize_and_write_operations_folder(self, namespace, operation_groups, env):
+    def _serialize_and_write_operations_folder(self, namespace, operation_groups, env, async_mode=False):
         template = env.get_template("operations_container.py.jinja2")
         for operation_group in operation_groups:
             operation_group_content = template.render(
                 operation_group=operation_group,
-                imports=FileImportSerializer(operation_group.imports())
+                imports=FileImportSerializer(operation_group.imports()),
+                async_mode=async_mode
             )
             self._autorestapi.write_file(
                 namespace / Path("operations") / Path(f"_{get_method_name(operation_group.name)}_operations.py"),
@@ -191,7 +192,11 @@ class CodeGenerator:
 
         env = Environment(
             loader=PackageLoader('autorest', 'templates'),
-            keep_trailing_newline=True
+            keep_trailing_newline=True,
+            line_statement_prefix="##",
+            line_comment_prefix="###",
+            trim_blocks=True,
+            lstrip_blocks=True,
         )
 
         # Parse the received YAML
