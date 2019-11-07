@@ -17,6 +17,11 @@
 
     {{operation.doc_parameters}}
     :param callable cls: A custom type or function that will be passed the direct response
+    {% if not operation.exceptions %}
+    :raises ~azure.core.HttpResponseError:
+    {% else %}
+    :raises ~namespace.models.{{ operation.exceptions[0].name }}:
+    {% endif %}
     """
 {% if operation.deprecated %}
     warnings.warn('Method {{operation.name}} is deprecated', DeprecationWarning)
@@ -57,7 +62,11 @@
 
     if response.status_code not in {{ operation.success_status_code|string() }}:
         map_error(status_code=response.status_code, response=response, error_map=error_map)
-        raise FIXME
+        {% if not operation.exceptions %}
+        raise HttpResponseError(response=response)
+        {% else %}
+        raise models.{{ operation.exceptions[0].name }}(response, self._deserialize)
+        {% endif %}
 
 {% if operation.has_response_body %}
     deserialized = None

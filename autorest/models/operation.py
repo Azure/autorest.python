@@ -158,7 +158,7 @@ class Operation:
         file_import.add_from_import(
             "azure.core.exceptions", "map_error", ImportType.AZURECORE
         )
-        if True:  # Replace with "this operation has default exception"
+        if not self.exceptions:
             file_import.add_from_import(
                 "azure.core.exceptions", "HttpResponseError", ImportType.AZURECORE
             )
@@ -176,7 +176,7 @@ class Operation:
             file_import.add_import("warnings", ImportType.STDLIB)
 
         # Models
-        if True:  # Replace by "this operation has a return type or a body parameter"
+        if self.has_request_body or self.has_response_body:
             file_import.add_from_import("..", "models", ImportType.LOCAL)
 
         return file_import
@@ -199,7 +199,7 @@ class Operation:
                 SchemaResponse.from_yaml(yaml) for yaml in yaml_data["responses"]
             ],
             exceptions=[
-                SchemaResponse.from_yaml(yaml) for yaml in yaml_data["exceptions"]
+                SchemaResponse.from_yaml(yaml) for yaml in yaml_data.get("exceptions", [])
             ],
             media_types=[
                 media_type
