@@ -43,7 +43,7 @@ class ModelPython3Serializer(ModelBaseSerializer):
         init_line_parameters = [p for p in model.properties if not p.readonly and not p.is_discriminator]
         init_line_parameters.sort(key=lambda x: x.required, reverse=True)
         for param in init_line_parameters:
-            if isinstance(param, PrimitiveSchema) and param.schema_type != 'datetime.datetime':
+            if isinstance(param, PrimitiveSchema):
                 if param.required:
                     init_properties_declaration.append("{}: {}".format(param.name, param.schema_type))
                 else:

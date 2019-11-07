@@ -33,7 +33,7 @@ from jinja2 import Template, PackageLoader, Environment
 
 from .jsonrpc import AutorestAPI
 
-from .common.utils import get_namespace_name, get_method_name
+from .common.utils import get_namespace_name, get_method_name, get_property_name
 from .models.code_model import CodeModel
 from .models import build_schema, EnumSchema
 from .models.operation_group import OperationGroup
@@ -88,11 +88,19 @@ class CodeGenerator:
 
         if yaml_code_model['schemas']:
             exceptions_set = self._build_exceptions_set(yaml_data=yaml_code_model['operationGroups'])
+            code_model.enums = set([EnumSchema.from_yaml(name=e['language']['default']['name'], yaml_data=e) for e in yaml_code_model['schemas']['choices']])
 
             classes = [a for a in yaml_code_model['schemas']['objects']]
-            code_model.schemas = [build_schema(name=s['language']['default']['name'], yaml_data=s, exceptions_set=exceptions_set, top_level=True) for s in classes]
+            code_model.schemas = [
+                build_schema(
+                    name=s['language']['default']['name'],
+                    yaml_data=s, exceptions_set=exceptions_set,
+                    top_level=True
+                )
+                for s in classes]
             # sets the enums property in our code_model variable, which will later be passed to EnumSerializer
-            code_model.build_enums()
+            code_model.add_enum_data_to_properties()
+
             code_model.add_inheritance_to_models()
             code_model.sort_schemas()
             code_model.add_schema_link_to_operation()

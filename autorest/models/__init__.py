@@ -25,8 +25,11 @@ def build_schema(name, yaml_data, **kwargs):
         return ListSchema.from_yaml(name=name, yaml_data=yaml_data, original_swagger_name=original_swagger_name)
     if schema_type == 'dictionary':
         return DictionarySchema.from_yaml(name=name, yaml_data=yaml_data, original_swagger_name=original_swagger_name)
+    # since we've already built all enums, we just need to create an empty EnumSchema object with just the name so we can
+    # link later
+    # TODO: check if enums need orignal swagger name
     if schema_type in ('sealed-choice', 'choice'):
-        return EnumSchema.from_yaml(name=name, yaml_data=yaml_data, original_swagger_name=original_swagger_name)
+        return EnumSchema.placeholder_enum(name=name, original_swagger_name=original_swagger_name)
     if schema_type == 'object' or schema_type == 'and':
         return ObjectSchema.from_yaml(
             name=name,

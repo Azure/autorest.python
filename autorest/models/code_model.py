@@ -65,12 +65,12 @@ class CodeModel:
 
     def build_enums(self):
         enums = []
-        for schema in self.schemas:
-            for prop in schema.properties:
-                if isinstance(prop, EnumSchema):
-                    _LOGGER.info("Added enum %s to enum list", prop.enum_type)
-                    enums.append(prop)
-        self.enums = enums
+        # for schema in self.schemas:
+        #     for prop in schema.properties:
+        #         if isinstance(prop, EnumSchema):
+        #             _LOGGER.info("Added enum %s to enum list", prop.enum_type)
+        #             enums.append(prop)
+        # self.enums = enums
 
     def sort_schemas(self):
         seen_schemas = set()
@@ -122,3 +122,11 @@ class CodeModel:
                             obj.schema = self.schemas_index[schema_obj_id]
                         except KeyError:
                             _LOGGER.critical("Unable to ref the object")
+
+    def add_enum_data_to_properties(self) -> None:
+        for schema in self.schemas:
+            for i in range(len(schema.properties)):
+                prop = schema.properties[i]
+                if isinstance(prop, EnumSchema):
+                    _LOGGER.info("Added enum %s to enum list", prop.enum_type)
+                    schema.properties[i] = [e for e in self.enums if e.original_swagger_name == prop.original_swagger_name][0]
