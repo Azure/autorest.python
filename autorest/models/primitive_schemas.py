@@ -27,7 +27,7 @@ class PrimitiveSchema(BaseSchema):
             default_value = yaml_data['schema'].get('defaultValue') if yaml_data.get('schema') else yaml_data.get('defaultValue'),
         )
 
-    def get_attribute_map_type(self, namespace=None):
+    def get_serialization_type(self):
         return self.schema_type
 
     def get_doc_string_type(self, namespace=None):
@@ -112,7 +112,7 @@ class DatetimeSchema(PrimitiveSchema):
         datetime = "date-time"
         rfc1123 = "date-time-rfc1123"
 
-    def get_attribute_map_type(self, namespace=None):
+    def get_serialization_type(self):
         formats_to_attribute_type = {
             self.Formats.datetime: "iso-8601",
             self.Formats.rfc1123: "rfc-1123"

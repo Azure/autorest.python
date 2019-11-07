@@ -53,7 +53,7 @@ class ObjectSchema(BaseSchema):
         self.init_line = None
         self.init_args = None
 
-    def get_attribute_map_type(self) -> str:
+    def get_serialization_type(self) -> str:
         return self.schema_type
 
     def get_doc_string_type(self, namespace):

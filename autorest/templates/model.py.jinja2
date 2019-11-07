@@ -37,7 +37,7 @@ class {{ model.name }}(Model):
     _attribute_map = {
         {%- if model.properties != None %}
             {%- for p in model.properties %}
-        '{{ p.name }}': {'key': '{{ p.original_swagger_name }}', 'type': '{{ p.get_attribute_map_type()}}'},
+        '{{ p.name }}': {'key': '{{ p.original_swagger_name }}', 'type': '{{ p.get_serialization_type()}}'},
             {%- endfor %}
         {%- else%}
         {%- endif %}

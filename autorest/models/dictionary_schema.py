@@ -9,10 +9,10 @@ class DictionarySchema(BaseSchema):
         self.additional_properties = kwargs.pop('additional_properties', False)
 
 
-    def get_attribute_map_type(self):
+    def get_serialization_type(self):
         if self.additional_properties:
             return '{object}'
-        return "{{{}}}".format(self.element_type.get_attribute_map_type())
+        return "{{{}}}".format(self.element_type.get_serialization_type())
 
     def get_doc_string_type(self, namespace):
         # in this case, it's an additional_properties property for unmatched properties
