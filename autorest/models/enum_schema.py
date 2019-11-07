@@ -24,6 +24,12 @@ class EnumSchema(BaseSchema):
         self.enum_type = enum_type
         self.values = values
 
+    def __eq__(self, other):
+        return isinstance(other, EnumSchema) and other.name == self.name
+
+    def __hash__(self):
+        return hash(self.name)
+
     def get_attribute_map_type(self):
         return 'str'
 
@@ -38,6 +44,17 @@ class EnumSchema(BaseSchema):
         return values
 
     @classmethod
+    def placeholder_enum(cls, name: str, original_swagger_name: str):
+        return cls(
+            name=name,
+            yaml_data=None,
+            description=None,
+            enum_type=None,
+            values=None,
+            original_swagger_name=original_swagger_name
+        )
+
+    @classmethod
     def from_yaml(cls, name: str, yaml_data: Dict[str, str], **kwargs: Any) -> "EnumType":
         common_parameters_dict = cls._get_common_parameters(
             name=name,
@@ -49,7 +66,7 @@ class EnumSchema(BaseSchema):
 
         return cls(
             yaml_data=yaml_data,
-            name=name,
+            name=get_enum_name(name),
             description=common_parameters_dict['description'],
             enum_type=enum_type,
             values=values,
@@ -59,5 +76,5 @@ class EnumSchema(BaseSchema):
             is_discriminator=common_parameters_dict['is_discriminator'],
             discriminator_value = common_parameters_dict['discriminator_value'],
             constant=common_parameters_dict['constant'],
-            original_swagger_name=kwargs.pop('original_swagger_name', None)
+            original_swagger_name=name
         )
