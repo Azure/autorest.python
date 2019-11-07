@@ -53,7 +53,7 @@ class CodeModel:
         """Create an index of schema using "id" of YAML initial node
         """
         if not self._schemas_index:
-            self._schemas_index = {id(schema.yaml_data): schema for schema in self.schemas}
+            self._schemas_index = {schema.id: schema for schema in self.schemas}
         return self._schemas_index
 
     def imports(self):

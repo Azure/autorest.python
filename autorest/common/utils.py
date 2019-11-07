@@ -13,6 +13,9 @@ def get_enum_name(name):
 def get_method_name(name):
     return CodeNamer().get_valid_python_name(name, "Method")
 
+def get_parameter_name(name):
+    return CodeNamer().get_valid_python_name(name, "Parameter")
+
 def to_python_type(original_type):
     try:
         return known_primary_types_mapping[original_type]

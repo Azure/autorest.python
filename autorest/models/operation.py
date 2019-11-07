@@ -24,7 +24,7 @@
 #
 # --------------------------------------------------------------------------
 import logging
-from typing import Dict, List, Union, Any
+from typing import Dict, List, Union, Iterable, Any
 
 from ..common.utils import get_method_name
 from .imports import FileImport, ImportType
@@ -81,7 +81,7 @@ class Operation:
         Assumes "media_types" attributes as a list exist.
         """
         if len(media_types) == 1:
-            return media_types.pop()
+            return media_types[0]
 
         # If more type are supported, if JSON is supported, ask JSON only
         for media_type in media_types:
@@ -97,7 +97,7 @@ class Operation:
             for response in self.responses
             for media_type in response.media_types
         )
-        return self._suggest_content_type(media_types)
+        return self._suggest_content_type(list(media_types))
 
     @property
     def request_content_type(self):
@@ -127,6 +127,11 @@ class Operation:
         return [
             parameter for parameter in self.parameters if parameter.location == "body"
         ][0]
+
+    @property
+    def serialization_context(self):
+        # FIXME Do the serialization context (XML)
+        return ""
 
     @property
     def has_response_body(self):
@@ -201,8 +206,5 @@ class Operation:
             exceptions=[
                 SchemaResponse.from_yaml(yaml) for yaml in yaml_data.get("exceptions", [])
             ],
-            media_types=[
-                media_type
-                for media_type in yaml_data["request"]["protocol"]["http"].get("mediaTypes", [])
-            ],
+            media_types=yaml_data["request"]["protocol"]["http"].get("mediaTypes", []),
         )

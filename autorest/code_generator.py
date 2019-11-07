@@ -131,10 +131,12 @@ class CodeGenerator:
             self._autorestapi.write_file(models_path / Path("_{}_enums.py".format(get_namespace_name(code_model.client_name))), enum_serializer.enum_file)
         self._autorestapi.write_file(models_path / Path("__init__.py"), model_init_serializer.model_init_file)
 
-    def _serialize_and_write_operations_folder(self, namespace, operation_groups, env, async_mode=False):
+    def _serialize_and_write_operations_folder(self, namespace, code_model, env, async_mode=False):
         template = env.get_template("operations_container.py.jinja2")
+        operation_groups=code_model.operation_groups
         for operation_group in operation_groups:
             operation_group_content = template.render(
+                code_model=code_model,
                 operation_group=operation_group,
                 imports=FileImportSerializer(operation_group.imports()),
                 async_mode=async_mode
@@ -217,7 +219,7 @@ class CodeGenerator:
         if code_model.schemas:
             self._serialize_and_write_models_folder(namespace=code_model.namespace, code_model=code_model)
 
-        self._serialize_and_write_operations_folder(namespace=code_model.namespace, operation_groups=code_model.operation_groups, env=env)
+        self._serialize_and_write_operations_folder(namespace=code_model.namespace, code_model=code_model, env=env)
 
         operation_group_names = [o.name for o in code_model.operation_groups]
         self._serialize_and_write_top_level_folder(

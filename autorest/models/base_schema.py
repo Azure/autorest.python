@@ -24,6 +24,10 @@ class BaseSchema:
         self.documentation_string = None
         self.attribute_map_string = None
 
+    @property
+    def id(self):
+        return id(self.yaml_data)
+
     """Constructs the documentation string for a property
 
     :returns: The documentation string of the property

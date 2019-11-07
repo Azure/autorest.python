@@ -25,6 +25,8 @@
 # --------------------------------------------------------------------------
 from typing import Dict, Optional, List, Union, Any
 
+from ..common.utils import get_parameter_name
+
 
 class Parameter:
     def __init__(
@@ -40,6 +42,7 @@ class Parameter:
         self.yaml_data = yaml_data
         self.schema = schema
         self.name = name
+        self.serialized_name = get_parameter_name(name)
         self.description = description
         self.implementation = implementation
         self.required = required

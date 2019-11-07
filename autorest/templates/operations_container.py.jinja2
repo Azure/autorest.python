@@ -22,6 +22,10 @@ class {{ operation_group.name }}Operations(object):
     :param deserializer: An object model deserializer.
     """
 
+{% if code_model.schemas %}
+    models = models
+
+{% endif %}
     def __init__(self, client, config, serializer, deserializer):
         self._client = client
         self._serialize = serializer
