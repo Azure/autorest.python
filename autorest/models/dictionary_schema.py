@@ -3,8 +3,8 @@ from ..common.utils import get_property_name
 from typing import Any, Dict
 
 class DictionarySchema(BaseSchema):
-    def __init__(self, name, description, element_type, id, **kwargs):
-        super(DictionarySchema, self).__init__(name, description, id, **kwargs)
+    def __init__(self, name, description, element_type, **kwargs):
+        super(DictionarySchema, self).__init__(name, description, **kwargs)
         self.element_type = element_type
         self.additional_properties = kwargs.pop('additional_properties', False)
 
@@ -27,14 +27,13 @@ class DictionarySchema(BaseSchema):
         return cls(
             name='additional_properties',
             description='Unmatched properties from the message are deserialized to this collection.',
-            id='additional_properties',
             element_type='object',
             additional_properties=True
         )
 
     @classmethod
     def from_yaml(cls, name: str, yaml_data: Dict[str, str], **kwargs) -> "DictionarySchema":
-        serialize_name = kwargs.pop("serialize_name", "")
+        original_swagger_name = kwargs.pop("original_swagger_name", "")
         for_additional_properties = kwargs.pop('for_additional_properties', False)
 
         common_parameters_dict = cls._get_common_parameters(
@@ -42,12 +41,8 @@ class DictionarySchema(BaseSchema):
             yaml_data=yaml_data
         )
 
-        if for_additional_properties:
-            description = 'Unmatched properties from the message are deserialized to this collection.'
-            id = 'additional_properties'
-        else:
-            description = common_parameters_dict['description']
-            id = common_parameters_dict['id']
+        description = ('Unmatched properties from the message are deserialized to this collection.'
+                    if for_additional_properties else common_parameters_dict['description'])
 
         element_schema = yaml_data['schema']['elementType'] if yaml_data.get('schema') else yaml_data['elementType']
 
@@ -55,20 +50,21 @@ class DictionarySchema(BaseSchema):
         element_type = build_schema(
             name='_',
             yaml_data=element_schema,
-            serialize_name='_',
+            original_swagger_name='_',
             for_additional_properties=for_additional_properties
         )
 
         return cls(
             name=name,
             description=description,
-            id=id,
             element_type=element_type,
             required=common_parameters_dict['required'],
             readonly=common_parameters_dict['readonly'],
             constant=common_parameters_dict['constant'],
+            is_discriminator=common_parameters_dict['is_discriminator'],
+            discriminator_value = common_parameters_dict['discriminator_value'],
             default_value = (yaml_data['schema'].get('defaultValue')
                             if yaml_data.get('schema')
                             else yaml_data.get('defaultValue')),
-            serialize_name=serialize_name
+            original_swagger_name=original_swagger_name
         )

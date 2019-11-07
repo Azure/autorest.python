@@ -16,30 +16,34 @@ class ModelPython3Serializer(ModelBaseSerializer):
             properties_to_pass = []
             super_initialize = "super({}, self).__init__()".format(model.name)
             for prop in [p for p in model.properties if not p.readonly]:
-                if prop in model.base_model.properties:
+                if prop in model.base_model.properties and not prop.is_discriminator:
                     properties_to_pass.append("{}={}".format(prop.name, prop.name))
                 else:
                     properties_to_initialize.append(prop)
             properties_to_pass.append("**kwargs")
             init_args.append("super({}, self).__init__({})".format(model.name, ", ".join(properties_to_pass)))
         else:
+
             init_args.append("super({}, self).__init__(**kwargs)".format(model.name))
             properties_to_initialize = model.properties
         for prop in properties_to_initialize:
-            if prop.readonly:
-                init_args.append("self.{} = None".format(prop.name))
-            else:
+            if not prop.readonly and not prop.is_discriminator:
                 init_args.append("self.{} = {}".format(prop.name, prop.name))
+        for prop in properties_to_initialize:
+            if prop.readonly or (prop.is_discriminator and not model.discriminator_value):
+                init_args.append("self.{} = None".format(prop.name))
+            elif prop.is_discriminator and model.discriminator_value:
+                init_args.append("self.{} = '{}'".format(prop.name, model.discriminator_value))
         model.init_args = init_args
 
     def _build_init_line(self, model):
         init_line = "def __init__(self, )"
         init_properties_declaration = []
         init_args = []
-        init_line_parameters = [p for p in model.properties if not p.readonly]
+        init_line_parameters = [p for p in model.properties if not p.readonly and not p.is_discriminator]
         init_line_parameters.sort(key=lambda x: x.required, reverse=True)
         for param in init_line_parameters:
-            if isinstance(param, PrimitiveSchema):
+            if isinstance(param, PrimitiveSchema) and param.schema_type != 'datetime.datetime':
                 if param.required:
                     init_properties_declaration.append("{}: {}".format(param.name, param.schema_type))
                 else:

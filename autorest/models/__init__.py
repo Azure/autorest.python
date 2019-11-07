@@ -19,19 +19,18 @@ __all__ = [
 
 # TODO: should this be in models.__init__ or CodeModel
 def build_schema(name, yaml_data, **kwargs):
-    serialize_name = kwargs.pop('serialize_name', None)
+    original_swagger_name = kwargs.get('original_swagger_name', None)
     schema_type = yaml_data['schema']['type'] if yaml_data.get('schema') else yaml_data['type']
     if schema_type == 'array':
-        return ListSchema.from_yaml(name=name, yaml_data=yaml_data, serialize_name=serialize_name)
+        return ListSchema.from_yaml(name=name, yaml_data=yaml_data, original_swagger_name=original_swagger_name)
     if schema_type == 'dictionary':
-        return DictionarySchema.from_yaml(name=name, yaml_data=yaml_data, serialize_name=serialize_name)
+        return DictionarySchema.from_yaml(name=name, yaml_data=yaml_data, original_swagger_name=original_swagger_name)
     if schema_type in ('sealed-choice', 'choice'):
-        return EnumSchema.from_yaml(name=name, yaml_data=yaml_data, serialize_name=serialize_name)
+        return EnumSchema.from_yaml(name=name, yaml_data=yaml_data, original_swagger_name=original_swagger_name)
     if schema_type == 'object' or schema_type == 'and':
         return ObjectSchema.from_yaml(
             name=name,
             yaml_data=yaml_data,
-            serialize_name=serialize_name,
             **kwargs
         )
-    return get_primitive_schema(name=name, yaml_data=yaml_data, serialize_name=serialize_name)
+    return get_primitive_schema(name=name, yaml_data=yaml_data, original_swagger_name=original_swagger_name)
