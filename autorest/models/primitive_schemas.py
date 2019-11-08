@@ -132,9 +132,6 @@ class DatetimeSchema(PrimitiveSchema):
 
 
 class DateSchema(PrimitiveSchema):
-    def __init__(self, yaml_data, name, schema_type, **kwargs):
-        super(DateSchema, self).__init__(yaml_data, name, schema_type, **kwargs)
-        self.format = format
 
     def get_serialization_type(self):
         return "date"
@@ -142,13 +139,14 @@ class DateSchema(PrimitiveSchema):
     def get_doc_string_type(self, namespace=None):
         return "~datetime.date"
 
-    @classmethod
-    def from_yaml(cls, name, yaml_data, schema_type):
-        return cls(
-            yaml_data=yaml_data,
-            name=name,
-            schema_type=schema_type,
-        )
+
+class Duration(PrimitiveSchema):
+
+    def get_serialization_type(self):
+        return "duration"
+
+    def get_doc_string_type(self, namespace=None):
+        return "~datetime.timedelta"
 
 
 class ByteArraySchema(PrimitiveSchema):
@@ -192,6 +190,12 @@ def get_primitive_schema(name, yaml_data):
         )
     if schema_type == 'date':
         return DateSchema.from_yaml(
+            name=name,
+            yaml_data=yaml_data,
+            schema_type=schema_type,
+        )
+    if schema_type == 'duration':
+        return Duration.from_yaml(
             name=name,
             yaml_data=yaml_data,
             schema_type=schema_type,
