@@ -33,6 +33,7 @@ class ParameterLocation(Enum):
     Path = "path"
     Body = "body"
     Query = "query"
+    Header = "header"
 
 
 class Parameter:

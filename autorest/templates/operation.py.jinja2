@@ -35,19 +35,29 @@
 
     # Construct parameters
     query_parameters = {}
-    {% if operation.query_parameters %}
-        {% for query_parameter in operation.query_parameters %}
-            {%if query_parameter.required %}
+{% if operation.query_parameters %}
+    {% for query_parameter in operation.query_parameters %}
+        {%if query_parameter.required %}
     query_parameters['{{ query_parameter.name }}'] = {{ operation.build_serialize_data_call(query_parameter, "query") }}
-            {% else %}
+        {% else %}
     if {{ query_parameter.serialized_name }} is not None:
         query_parameters['{{ query_parameter.name }}'] = {{ operation.build_serialize_data_call(query_parameter, "query") }}
-            {% endif %}
-        {% endfor %}
-    {% endif %}
+        {% endif %}
+    {% endfor %}
+{% endif %}
 
     # Construct headers
     header_parameters = {}
+{% if operation.headers_parameters %}
+    {% for header_parameter in operation.headers_parameters %}
+        {%if header_parameter.required %}
+    header_parameters['{{ header_parameter.name }}'] = {{ operation.build_serialize_data_call(header_parameter, "header") }}
+        {% else %}
+    if {{ header_parameter.serialized_name }} is not None:
+        header_parameters['{{ header_parameter.name }}'] = {{ operation.build_serialize_data_call(header_parameter, "header") }}
+        {% endif %}
+    {% endfor %}
+{% endif %}
 {% if operation.has_response_body %}
     header_parameters['Accept'] = '{{ operation.accept_content_type }}'
 {% endif %}
@@ -117,7 +127,16 @@
     return deserialized
 {% else %}
     if cls:
+    {% set return_type = operation.responses[0] %}
+    {% if return_type.headers %}
+      response_headers = {
+      {% for header_parameter in return_type.headers %}
+        '{{ header_parameter.name }}': self._deserialize('{{ header_parameter.schema.get_serialization_type() }}', response.headers.get('{{ header_parameter.name }}')),
+      {% endfor %}
+      }
+    {% else %}
       response_headers = {}
+    {% endif %}
       return cls(response, None, response_headers)
 {% endif %}
 {{ operation.python_name }}.metadata = {'url': '{{ operation.url }}'}

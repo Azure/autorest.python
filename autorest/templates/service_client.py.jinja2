@@ -25,7 +25,7 @@ from ._configuration import {{ code_model.client_name }}Configuration
 from azure.core.exceptions import map_error
 {%- for operation_group_name in operation_group_names %}
 {%- if is_async %}
-from .operations_async import {{ operation_group_name }}Operations
+from .operations_async import {{ operation_group_name.capitalize() }}Operations
 from .. import models
 {%- else %}
 from .operations import {{ operation_group_name }}Operations
@@ -66,7 +66,7 @@ class {{ code_model.client_name }}(object):
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
         {% for operation_group_name in operation_group_names %}
-        self.{{ get_method_name(operation_group_name) }} = {{ operation_group_name + "Operations" }}(
+        self.{{ get_method_name(operation_group_name) }} = {{ operation_group_name.capitalize() + "Operations" }}(
             self._client, self._config, self._serialize, self._deserialize)
         {% endfor %}
     {%- if is_async %}

@@ -23,6 +23,7 @@
 # IN THE SOFTWARE.
 #
 # --------------------------------------------------------------------------
+from itertools import chain
 import logging
 from typing import List, Dict, Optional
 
@@ -120,7 +121,7 @@ class CodeModel:
         # Index schemas
         for operation_group in self.operation_groups:
             for operation in operation_group.operations:
-                for obj in operation.parameters + operation.responses + operation.exceptions:
+                for obj in chain(operation.parameters, operation.responses, operation.exceptions, chain.from_iterable(response.headers for response in operation.responses)):
                     schema_obj = obj.schema
                     if schema_obj:
                         schema_obj_id = id(obj.schema)

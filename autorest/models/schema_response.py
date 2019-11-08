@@ -26,6 +26,12 @@
 from typing import Dict, Optional, List, Union, Any
 
 
+class HeaderResponse:
+    def __init__(self, name:str, schema):
+        self.name = name
+        self.schema = schema
+
+
 class SchemaResponse:
     def __init__(
         self,
@@ -33,11 +39,13 @@ class SchemaResponse:
         schema: Optional[Any],
         media_types: List[str],
         status_codes: List[Union[str, int]],
+        headers: List[HeaderResponse],
     ):
         self.yaml_data = yaml_data
         self.schema = schema
         self.media_types = media_types
         self.status_codes = status_codes
+        self.headers = headers
 
     @property
     def has_body(self):
@@ -51,14 +59,15 @@ class SchemaResponse:
         return cls(
             yaml_data=yaml_data,
             schema=yaml_data.get("schema", None),  # FIXME replace by operation model
-            media_types=[
-                media_type
-                for media_type in yaml_data["protocol"]["http"].get("mediaTypes", [])
-            ],
+            media_types=yaml_data["protocol"]["http"].get("mediaTypes", []),
             status_codes=[
                 int(code) if code != "default" else "default"
                 for code in yaml_data["protocol"]["http"]["statusCodes"]
             ],
+            headers=[
+                HeaderResponse(header_prop['language']['default']['header'], header_prop)
+                for header_prop in yaml_data["protocol"]["http"].get("headers", [])
+            ]
         )
 
     def __repr__(self):

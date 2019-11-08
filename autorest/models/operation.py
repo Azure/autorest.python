@@ -134,6 +134,12 @@ class Operation:
             parameter for parameter in self.parameters if parameter.location == ParameterLocation.Query
         ]
 
+    @property
+    def headers_parameters(self) -> List[Parameter]:
+        return [
+            parameter for parameter in self.parameters if parameter.location == ParameterLocation.Header
+        ]
+
     @staticmethod
     def build_constraints(constraints: List) -> List[str]:
         constraints_params = []
