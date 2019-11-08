@@ -40,12 +40,11 @@ class PrimitiveSchema(BaseSchema):
         self.schema_type = to_python_type(schema_type)
 
     @classmethod
-    def from_yaml(cls, name, yaml_data, schema_type, original_swagger_name):
+    def from_yaml(cls, name, yaml_data, schema_type):
         return cls(
             yaml_data=yaml_data,
             name=name,
-            schema_type=schema_type,
-            original_swagger_name=original_swagger_name,
+            schema_type=schema_type
         )
 
     def get_serialization_type(self):
@@ -66,13 +65,12 @@ class NumberSchema(PrimitiveSchema):
         self.exclusive_minimum = kwargs.pop('exclusive_minimum', None)
 
     @classmethod
-    def from_yaml(cls, name, yaml_data, schema_type, original_swagger_name):
+    def from_yaml(cls, name, yaml_data, schema_type):
         return cls(
             yaml_data=yaml_data,
             name=name,
             schema_type=schema_type,
             precision=yaml_data['precision'],
-            original_swagger_name=original_swagger_name,
             multiple_of = yaml_data.get('multipleOf'),
             maximum=yaml_data.get('maximum'),
             minimum=yaml_data.get('minimum'),
@@ -88,15 +86,14 @@ class StringSchema(PrimitiveSchema):
         self.pattern = kwargs.pop('pattern', None)
 
     @classmethod
-    def from_yaml(cls, name, yaml_data, original_swagger_name):
+    def from_yaml(cls, name, yaml_data):
         return cls(
             yaml_data=yaml_data,
             name=name,
             schema_type='string',
             max_length=yaml_data.get('maxLength'),
             min_length=yaml_data.get('minLength'),
-            pattern=yaml_data.get('pattern'),
-            original_swagger_name=original_swagger_name
+            pattern=yaml_data.get('pattern')
         )
 
 
@@ -117,13 +114,12 @@ class DatetimeSchema(PrimitiveSchema):
         return formats_to_attribute_type[self.format]
 
     @classmethod
-    def from_yaml(cls, name, yaml_data, schema_type, original_swagger_name):
+    def from_yaml(cls, name, yaml_data, schema_type):
         return cls(
             yaml_data=yaml_data,
             name=name,
             schema_type=schema_type,
-            format=cls.Formats(yaml_data['format']),
-            original_swagger_name=original_swagger_name
+            format=cls.Formats(yaml_data['format'])
         )
 
 
@@ -137,13 +133,12 @@ class ByteArraySchema(PrimitiveSchema):
         byte = "byte"
 
     @classmethod
-    def from_yaml(cls, name, yaml_data, original_swagger_name):
+    def from_yaml(cls, name, yaml_data):
         return cls(
             yaml_data=yaml_data,
             name=name,
             schema_type='byte-array',
-            format=cls.Formats(yaml_data['format']),
-            original_swagger_name=original_swagger_name
+            format=cls.Formats(yaml_data['format'])
         )
 
 
@@ -180,33 +175,29 @@ class ConstantSchema(BaseSchema):
         )
 
 
-def get_primitive_schema(name, yaml_data, original_swagger_name):
+def get_primitive_schema(name, yaml_data):
     schema_type = yaml_data['type']
     if schema_type in ('integer', 'number'):
         return NumberSchema.from_yaml(
             name=name,
             yaml_data=yaml_data,
-            schema_type=schema_type,
-            original_swagger_name=original_swagger_name
+            schema_type=schema_type
         )
     if schema_type == 'string':
         return StringSchema.from_yaml(
             name=name,
-            yaml_data=yaml_data,
-            original_swagger_name=original_swagger_name
+            yaml_data=yaml_data
         )
     if schema_type == 'date-time':
         return DatetimeSchema.from_yaml(
             name=name,
             yaml_data=yaml_data,
-            schema_type=schema_type,
-            original_swagger_name=original_swagger_name
+            schema_type=schema_type
         )
     if schema_type  == 'byte-array':
         return ByteArraySchema.from_yaml(
             name=name,
-            yaml_data=yaml_data,
-            original_swagger_name=original_swagger_name
+            yaml_data=yaml_data
         )
     # if schema_type  == 'constant':
     #     return ConstantSchema.from_yaml(
@@ -215,6 +206,5 @@ def get_primitive_schema(name, yaml_data, original_swagger_name):
     return PrimitiveSchema.from_yaml(
         name=name,
         yaml_data=yaml_data,
-        schema_type=schema_type,
-        original_swagger_name=original_swagger_name
+        schema_type=schema_type
     )

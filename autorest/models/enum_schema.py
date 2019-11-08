@@ -45,17 +45,6 @@ class EnumSchema(BaseSchema):
         return values
 
     @classmethod
-    def placeholder_enum(cls, name: str, original_swagger_name: str):
-        return cls(
-            name=name,
-            yaml_data=None,
-            description=None,
-            enum_type=None,
-            values=None,
-            original_swagger_name=original_swagger_name
-        )
-
-    @classmethod
     def from_yaml(cls, name: str, yaml_data: Dict[str, str], **kwargs: Any) -> "EnumType":
         enum_type = yaml_data['language']['default']['name']
         values = cls._get_enum_values(yaml_data['choices'])
@@ -65,6 +54,5 @@ class EnumSchema(BaseSchema):
             name=get_enum_name(name),
             description=yaml_data['language']['default']['description'],
             enum_type=enum_type,
-            values=values,
-            original_swagger_name=name
+            values=values
         )

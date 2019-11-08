@@ -2,7 +2,7 @@ class Property:
     def __init__(self, name, schema, original_swagger_name, property_data, **kwargs):
         self.name = name
         self.schema = schema
-        self.original_swagger_name = original_swagger_name
+        self.original_swagger_name = original_swagger_name.replace('.', '\\\\.')
 
         self.required = property_data.get('required', False)
         self.readonly = property_data.get('readOnly', False)

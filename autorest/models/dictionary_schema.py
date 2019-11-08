@@ -22,7 +22,6 @@ class DictionarySchema(BaseSchema):
 
     @classmethod
     def from_yaml(cls, name: str, yaml_data: Dict[str, str], **kwargs) -> "DictionarySchema":
-        original_swagger_name = kwargs.pop("original_swagger_name", "")
         for_additional_properties = kwargs.pop('for_additional_properties', False)
 
         element_schema = yaml_data['elementType']
@@ -31,7 +30,6 @@ class DictionarySchema(BaseSchema):
         element_type = build_schema(
             name='_',
             yaml_data=element_schema,
-            original_swagger_name='_',
             for_additional_properties=for_additional_properties,
             **kwargs
         )
@@ -40,6 +38,5 @@ class DictionarySchema(BaseSchema):
             yaml_data=yaml_data,
             name=name,
             element_type=element_type,
-            original_swagger_name=original_swagger_name,
             additional_properties=for_additional_properties
         )

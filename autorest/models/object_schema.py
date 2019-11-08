@@ -92,7 +92,6 @@ class ObjectSchema(BaseSchema):
             schema = build_schema(
                 name=name,
                 yaml_data=p['schema'],
-                original_swagger_name=p['serializedName'],
                 **kwargs
             )
             properties.append(
@@ -187,8 +186,6 @@ class ObjectSchema(BaseSchema):
             if yaml_data['language']['default']['name'] in exceptions_set:
                 is_exception = True
 
-
-
         return cls(
             yaml_data=yaml_data,
             name=name,
@@ -196,7 +193,6 @@ class ObjectSchema(BaseSchema):
             schema_type=schema_type,
             properties=properties,
             base_model=base_model,
-            original_swagger_name=kwargs.pop('original_swagger_name', yaml_data['language']['default']['name']),
             is_exception=is_exception,
             subtype_map=subtype_map if subtype_map else None
         )

@@ -77,8 +77,7 @@ class CodeGenerator:
             for schema_data in yaml_data:
                 primitive_schema = get_primitive_schema(
                     name=get_property_name(schema_data['language']['default']['name']),
-                    yaml_data=schema_data,
-                    original_swagger_name=schema_data['language']['default']['name']
+                    yaml_data=schema_data
                 )
                 primitive_schema_dict[primitive_schema.id] = primitive_schema
         return primitive_schema_dict
