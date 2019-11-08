@@ -60,7 +60,7 @@ class ModelBaseSerializer:
 
         env.globals.update(str=str)
 
-        for model in self.code_model.schemas:
+        for model in self.code_model.sorted_schemas:
             self._format_model_for_file(model)
 
         # Generate the models

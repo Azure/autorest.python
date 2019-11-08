@@ -11,8 +11,8 @@ class ModelInitSerializer:
             loader=PackageLoader('autorest', 'templates'),
             keep_trailing_newline=True
         )
-        schemas = sorted(self.code_model.schemas, key=lambda x: x.name)
-        enums = [e.enum_type for e in self.code_model.enums] if self.code_model.enums else None
+        schemas = sorted(self.code_model.sorted_schemas, key=lambda x: x.name)
+        enums = [e.enum_type for e in self.code_model.enums.values()] if self.code_model.enums else None
 
         if enums:
             enums.sort()

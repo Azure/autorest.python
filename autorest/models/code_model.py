@@ -42,33 +42,31 @@ class CodeModel:
         self.client_name = None
         self.api_version = None
         self.description = None
-        self.schemas: List[BaseSchema] = []
-        self._global_index: Dict[str, BaseSchema] = None
-        self.enums: List[EnumSchema] = []
-        self.primitives = None
+        self.schemas: Dict[int, BaseSchema] = {}
+        self.sorted_schemas: List[BaseSchema] = []
+        self.enums: Dict[int, EnumSchema] = []
+        self.primitives: Dict[int, BaseSchema] = {}
         self.namespace = None
         self.operation_groups: List[OperationGroup] = []
 
-    @property
-    def global_index(self):
-        """Create an index of schema using "id" of YAML initial node
-        """
-        if not self._global_index:
-            self._global_index = {schema.id: schema for schema in self.schemas}
-            self._global_index.update({enum.id: enum for enum in self.enums})
-        return self._global_index
+    def lookup_schema(self, schema_id):
+        for attr in [self.schemas, self.enums, self.primitives]:
+            for elt_key, elt_value in attr.items():
+                if schema_id == elt_key:
+                    return elt_value
+        raise KeyError("Didn't find it!!!!!")
 
     def imports(self):
         file_import = FileImport()
         file_import.add_from_import("msrest.serialization", "Model", ImportType.AZURECORE)
-        if len([s for s in self.schemas if s.is_exception]) > 0:
+        if len([s for s in self.schemas.values() if s.is_exception]) > 0:
             file_import.add_from_import("azure.core.exceptions", "HttpResponseError", ImportType.AZURECORE)
         return file_import
 
     def sort_schemas(self):
         seen_schemas = set()
         sorted_schemas = []
-        for schema in sorted(self.schemas, key=lambda x: x.name):
+        for schema in sorted(self.schemas.values(), key=lambda x: x.name):
             if schema.name in seen_schemas:
                 continue
             ancestors = []
@@ -83,10 +81,10 @@ class CodeModel:
                 current = parent
             seen_schemas.add(current.name)
             sorted_schemas += ancestors
-        self.schemas = sorted_schemas
+        self.sorted_schemas = sorted_schemas
 
     def _add_properties_from_inheritance(self):
-        for schema in self.schemas:
+        for schema in self.schemas.values():
             if schema.base_model:
                 parent = schema.base_model
                 while parent:
@@ -96,10 +94,10 @@ class CodeModel:
                     parent = parent.base_model
 
     def add_inheritance_to_models(self) -> None:
-        for schema in self.schemas:
+        for schema in self.schemas.values():
             if schema.base_model:
                 # right now, the base model property just holds the name of the parent class
-                schema.base_model = [b for b in self.schemas if b.original_swagger_name == schema.base_model][0]
+                schema.base_model = [b for b in self.schemas.values() if b.original_swagger_name == schema.base_model][0]
         self._add_properties_from_inheritance()
 
     def add_schema_link_to_operation(self) -> None:
@@ -112,12 +110,12 @@ class CodeModel:
                         schema_obj_id = id(obj.schema)
                         _LOGGER.info("Looking for id %s (%s) for member %s of operation %s", schema_obj_id, schema_obj, obj, operation.name)
                         try:
-                            obj.schema = self.global_index[schema_obj_id]
+                            obj.schema = self.lookup_schema(schema_obj_id)
                         except KeyError:
                             _LOGGER.critical("Unable to ref the object")
 
     def add_enum_data_to_properties(self) -> None:
-        for schema in self.schemas:
+        for schema in self.schemas.values():
             for i in range(len(schema.properties)):
                 prop = schema.properties[i]
                 if isinstance(prop, EnumSchema):
