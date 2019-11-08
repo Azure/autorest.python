@@ -23,9 +23,16 @@
 # IN THE SOFTWARE.
 #
 # --------------------------------------------------------------------------
+from enum import Enum
 from typing import Dict, Optional, List, Union, Any
 
 from ..common.utils import get_parameter_name
+
+
+class ParameterLocation(Enum):
+    Path = "path"
+    Body = "body"
+    Query = "query"
 
 
 class Parameter:
@@ -37,7 +44,9 @@ class Parameter:
         description: str,
         implementation: str,
         required: bool,
-        location: str,
+        location: ParameterLocation,
+        skip_url_encoding: bool,
+        constraints: List[Any],
     ):
         self.yaml_data = yaml_data
         self.schema = schema
@@ -47,6 +56,15 @@ class Parameter:
         self.implementation = implementation
         self.required = required
         self.location = location
+        self.skip_url_encoding = skip_url_encoding
+        self.constraints = constraints
+
+    @property
+    def for_method_signature(self):
+        if self.required:
+            return self.serialized_name
+        else:
+            return f"{self.serialized_name}=None"
 
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, str], **kwargs) -> "SchemaResponse":
@@ -58,5 +76,7 @@ class Parameter:
             description=yaml_data["language"]["default"]["description"],
             implementation=yaml_data["implementation"],
             required=yaml_data.get("required", False),
-            location=yaml_data["protocol"]["http"]["in"],
+            location=ParameterLocation(yaml_data["protocol"]["http"]["in"]),
+            skip_url_encoding=False, # FIXME skip_url_encoding
+            constraints=[], # FIXME constraints
         )

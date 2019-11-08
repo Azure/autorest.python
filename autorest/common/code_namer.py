@@ -110,10 +110,9 @@ class CodeNamer:
         return correct_name
 
     def _remove_invalid_python_characters(cls, name):
-        if not name:
-            raise TypeError("Property name {} cannot be used as an identifier, as it contains only invalid characters.".format(name))
         return cls._get_valid_name(name.replace('-', '_'), '_')
 
-
     def get_valid_python_name(cls, name, pad_string):
+        if not name:
+            return pad_string
         return cls._to_python_case(cls._get_escaped_reserved_name(cls._remove_invalid_python_characters(name), pad_string))

@@ -2,13 +2,11 @@
 {% set await_keyword = "await " if async_mode else "" %}
 {% set trace_decorator = "@distributed_trace_async" if async_mode else "@distributed_trace" %}
 {% set stream_request_parameter = "stream=" ~ ("True" if operation.is_stream_response else "False") %}
-{% set parameter_signature = operation.parameters|map(attribute='serialized_name')|join(', ') %}
-{% set parameter_signature_comma = (", " ~ parameter_signature) if parameter_signature else "" %}
 {% set request_as_xml = ", is_xml=False" if "xml" in operation.request_content_type else "" %}
 {% macro exception_name() %}{{ operation.exceptions[0].schema.name }}Exception{% endmacro %}
 {# actual template starts here #}
 {{ trace_decorator }}
-{{ def_keyword }} {{ operation.python_name }}(self{{ parameter_signature_comma }}, cls=None, **kwargs):
+{{ def_keyword }} {{ operation.python_name }}(self{{ operation.method_signature }}, cls=None, **kwargs):
     """{{operation.description}}.
 
     {{operation.summary}}
@@ -37,6 +35,16 @@
 
     # Construct parameters
     query_parameters = {}
+    {% if operation.query_parameters %}
+        {% for query_parameter in operation.query_parameters %}
+            {%if query_parameter.required %}
+    query_parameters['{{ query_parameter.name }}'] = {{ operation.build_serialize_data_call(query_parameter, "query") }}
+            {% else %}
+    if {{ query_parameter.serialized_name }} is not None:
+        query_parameters['{{ query_parameter.name }}'] = {{ operation.build_serialize_data_call(query_parameter, "query") }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
 
     # Construct headers
     header_parameters = {}

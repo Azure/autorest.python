@@ -37,6 +37,19 @@ from .custom_server import CustomBaseUrl
 _LOGGER = logging.getLogger(__name__)
 
 
+class FakeSchema(BaseSchema):
+    """Remove this guy eventually, just to make some fast process during dev.
+    """
+    def __init__(self):
+        ...
+
+    def get_serialization_type(self):
+        return "FAKESERIALIZATIONTYPE"
+
+    def get_doc_string_type(self, namespace=None):
+        return namespace+"FAKEDOCSTRING"
+
+
 class CodeModel:
 
     def __init__(self):
@@ -116,3 +129,4 @@ class CodeModel:
                             obj.schema = self.lookup_schema(schema_obj_id)
                         except KeyError:
                             _LOGGER.critical("Unable to ref the object")
+                            obj.schema = FakeSchema()
