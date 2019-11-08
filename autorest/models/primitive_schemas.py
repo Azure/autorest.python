@@ -1,6 +1,38 @@
+# --------------------------------------------------------------------------
+#
+# Copyright (c) Microsoft Corporation. All rights reserved.
+#
+# The MIT License (MIT)
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the ""Software""), to
+# deal in the Software without restriction, including without limitation the
+# rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+# sell copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED *AS IS*, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+# FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+# IN THE SOFTWARE.
+#
+# --------------------------------------------------------------------------
+import logging
+from typing import Dict, Optional, Any
 from enum import Enum
+
 from .base_schema import BaseSchema
 from ..common.utils import to_python_type
+
+
+_LOGGER = logging.getLogger(__name__)
+
 
 class PrimitiveSchema(BaseSchema):
     def __init__(self, yaml_data, name, description, schema_type, **kwargs):
@@ -173,6 +205,40 @@ class ByteArraySchema(PrimitiveSchema):
             original_swagger_name=original_swagger_name
         )
 
+
+class ConstantSchema(BaseSchema):
+
+    def __init__(
+        self,
+        yaml_data: Dict[str, Any],
+        name: str,
+        description: str,
+        value: Optional[Any],
+        element_type,
+    ):
+        super(ConstantSchema, self).__init__(yaml_data, name, description)
+        self.value = value
+        self.element_type = element_type
+
+    def get_serialization_type(self):
+        return self.element_type.get_serialization_type()
+
+    def get_doc_string_type(self, namespace=None):
+        return self.element_type.get_doc_string_type(namespace)
+
+    @classmethod
+    def from_yaml(cls, yaml_data: Dict[str, str], **kwargs) -> "ConstantSchema":
+        name = yaml_data["language"]["default"]["name"]
+        _LOGGER.info("Parsing %s constant", name)
+        return cls(
+            yaml_data=yaml_data,
+            name=name,
+            description=yaml_data["language"]["default"]["description"],
+            value=yaml_data.get("value"),
+            element_type=get_primitive_schema("constant", yaml_data["valueType"], "killme")
+        )
+
+
 def get_primitive_schema(name, yaml_data, original_swagger_name):
     schema_type = yaml_data['schema']['type'] if yaml_data.get('schema') else yaml_data['type']
     if schema_type in ('integer', 'number'):
@@ -201,6 +267,10 @@ def get_primitive_schema(name, yaml_data, original_swagger_name):
             yaml_data=yaml_data,
             original_swagger_name=original_swagger_name
         )
+    # if schema_type  == 'constant':
+    #     return ConstantSchema.from_yaml(
+    #         yaml_data=yaml_data,
+    #     )
     return PrimitiveSchema.from_yaml(
         name=name,
         yaml_data=yaml_data,
