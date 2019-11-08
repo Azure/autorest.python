@@ -11,7 +11,7 @@ known_primary_types_mapping = {
     "boolean": "bool",
     "byte-array": "bytearray",
     "char": "str",
-    # "constant",
+    "constant": "constant",
     # "credential",
     "date": "datetime.datetime",
     "date-time": "datetime.datetime",

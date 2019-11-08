@@ -72,7 +72,7 @@ class CodeGenerator:
         primitive_schema_dict = {}
         for schema_type, yaml_data in yaml_data['schemas'].items():
             # these are not primitive types so we're generating them elsewhere
-            if schema_type in ['objects', 'arrays', 'dictionaries', 'choices', 'sealedChoices', 'constants']:
+            if schema_type in ['objects', 'arrays', 'dictionaries', 'choices', 'sealedChoices']:
                 continue
             for schema_data in yaml_data:
                 primitive_schema = get_primitive_schema(
