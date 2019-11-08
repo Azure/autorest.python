@@ -143,12 +143,11 @@ class DateSchema(PrimitiveSchema):
         return "~datetime.date"
 
     @classmethod
-    def from_yaml(cls, name, yaml_data, schema_type, original_swagger_name):
+    def from_yaml(cls, name, yaml_data, schema_type):
         return cls(
             yaml_data=yaml_data,
             name=name,
             schema_type=schema_type,
-            original_swagger_name=original_swagger_name
         )
 
 
@@ -196,7 +195,6 @@ def get_primitive_schema(name, yaml_data):
             name=name,
             yaml_data=yaml_data,
             schema_type=schema_type,
-            original_swagger_name=original_swagger_name
         )
     if schema_type  == 'byte-array':
         return ByteArraySchema.from_yaml(
