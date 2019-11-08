@@ -62,7 +62,6 @@ swagger_dir = "node_modules/@microsoft.azure/autorest.testserver/swagger"
 def regen_expected(c, opts):
     output_dir = "{}/{}".format(opts['output_base_dir'], opts['output_dir']) if opts.get('output_base_dir') else opts['output_dir']
     keys = opts['mappings'].keys()
-    instances = len(keys)
 
     for key in keys:
         opts_mappings_value = opts['mappings'][key]
@@ -114,11 +113,12 @@ def regen_expected(c, opts):
             args.append("--override-info.description={}".format(opts['override-info.description']))
 
         cmd_line = 'autorest-beta {}'.format(" ".join(args))
-        c.run('echo Queuing up: {}'.format(cmd_line))
-        c.run(cmd_line, warn=True)
-        instances -= 1
-        if not instances:
-            return
+        print(f'Queuing up: {cmd_line}')
+        result = c.run(cmd_line, warn=True)
+        if not result:
+            print(f'Call failed with {result.return_code}')
+        else:
+            print('Call done')
 
 @task
 def regenerate_python(c, swagger_name=None):
