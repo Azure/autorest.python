@@ -29,7 +29,7 @@ from typing import Dict, List, Union, Iterable, Any
 from ..common.utils import get_method_name
 from .imports import FileImport, ImportType
 from .schema_response import SchemaResponse
-from .parameter import Parameter
+from .parameter import Parameter, ParameterLocation
 
 
 _LOGGER = logging.getLogger(__name__)
@@ -120,13 +120,44 @@ class Operation:
         return any(parameter.location == "body" for parameter in self.parameters)
 
     @property
-    def body_parameter(self):
+    def body_parameter(self) -> Parameter:
         if not self.has_request_body:
             raise ValueError(f"There is body parameter for operation {self.name}")
         # Should we check if there is two body? Modeler role right?
         return [
-            parameter for parameter in self.parameters if parameter.location == "body"
+            parameter for parameter in self.parameters if parameter.location == ParameterLocation.Body
         ][0]
+
+    @property
+    def query_parameters(self) -> List[Parameter]:
+        return [
+            parameter for parameter in self.parameters if parameter.location == ParameterLocation.Query
+        ]
+
+    @staticmethod
+    def build_constraints(constraints: List) -> List[str]:
+        constraints_params = []
+        for constraint in constraints:
+            pass
+        return constraints_params
+
+    @staticmethod
+    def build_serialize_data_call(parameter: Parameter, function_name: str) -> str:
+
+        optional_parameters = []
+
+        if parameter.skip_url_encoding:
+            optional_parameters.append("skip_quote=True")
+
+        if False: # FIXME divChar = ClientModelExtensions.NeedsFormattedSeparator(parameter);
+            div_char = '?'
+            optional_parameters.append(f"div='{div_char}'")
+
+        optional_parameters += Operation.build_constraints(parameter.constraints)
+
+        optional_parameters_string = "" if not optional_parameters else "," + ", ".join(optional_parameters)
+
+        return f"""self._serialize.{function_name}("{parameter.serialized_name}", {parameter.serialized_name}, '{parameter.schema.get_serialization_type()}'{optional_parameters_string})"""
 
     @property
     def serialization_context(self):
@@ -185,6 +216,15 @@ class Operation:
             file_import.add_from_import("..", "models", ImportType.LOCAL)
 
         return file_import
+
+    @property
+    def method_signature(self):
+        signature = ", ".join([
+            parameter.for_method_signature for parameter in self.parameters
+        ])
+        if signature:
+            signature = ", "+signature
+        return signature
 
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, str], **kwargs) -> "Operation":

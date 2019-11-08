@@ -23,52 +23,40 @@
 # IN THE SOFTWARE.
 #
 # --------------------------------------------------------------------------
+from collections import namedtuple
 import logging
 from typing import Dict, List, Any
-
-from .operation import Operation
-from .imports import FileImport, ImportType
 
 
 _LOGGER = logging.getLogger(__name__)
 
-class OperationGroup:
-    """Represent an operation group.
 
-    """
+ServerVariable = namedtuple("ServerVariable", ["description", "name"])
 
+
+class CustomBaseUrl:
     def __init__(
         self,
-        code_model,
         yaml_data: Dict[str, Any],
-        name: str,
-        operations: List[Operation],
-    ) -> None:
-        self.code_model = code_model
+        template_url: str,
+        variables: List[ServerVariable],
+    ):
         self.yaml_data = yaml_data
-        self.name = name
-        self.operations = operations
-
-    def imports(self):
-        file_import = FileImport()
-        for operation in self.operations:
-            file_import.merge(operation.imports())
-        if self.code_model.sorted_schemas:
-            file_import.add_from_import("..", "models", ImportType.LOCAL)
-        return file_import
+        self.template_url = template_url
+        self.variables = variables
 
     @classmethod
-    def from_yaml(cls, code_model, yaml_data: Dict[str, Any], **kwargs) -> "OperationGroup":
-        name = yaml_data["$key"] # yaml_data['language']['default']['name'],
-        _LOGGER.info("Parsing %s operation group", name)
-
-        operations = []
-        for operation_yaml in yaml_data["operations"]:
-            operations.append(Operation.from_yaml(operation_yaml))
-
+    def from_yaml(cls, yaml_data: Dict[str, str], **kwargs: Any) -> "CustomBaseUrl":
+        _LOGGER.info("Parsing custom url server")
         return cls(
-            code_model=code_model,
             yaml_data=yaml_data,
-            name=name,
-            operations=operations,
+            template_url=yaml_data["url"],
+            variables=[
+                ServerVariable(
+                    name=variable["language"]["default"]["name"],
+                    description=variable["language"]["default"]["description"],
+                )
+                for variable in yaml_data["variables"]
+            ],
         )
+

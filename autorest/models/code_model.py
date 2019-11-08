@@ -24,16 +24,30 @@
 #
 # --------------------------------------------------------------------------
 import logging
-from typing import List, Dict
+from typing import List, Dict, Optional
 
 from .base_schema import BaseSchema
 from .dictionary_schema import DictionarySchema
 from .enum_schema import EnumSchema
 from .imports import FileImport, ImportType
 from .operation_group import OperationGroup
+from .custom_server import CustomBaseUrl
 
 
 _LOGGER = logging.getLogger(__name__)
+
+
+class FakeSchema(BaseSchema):
+    """Remove this guy eventually, just to make some fast process during dev.
+    """
+    def __init__(self):
+        ...
+
+    def get_serialization_type(self):
+        return "FAKESERIALIZATIONTYPE"
+
+    def get_doc_string_type(self, namespace=None):
+        return namespace+"FAKEDOCSTRING"
 
 
 class CodeModel:
@@ -48,6 +62,8 @@ class CodeModel:
         self.primitives: Dict[int, BaseSchema] = {}
         self.namespace = None
         self.operation_groups: List[OperationGroup] = []
+        self.custom_base_url: Optional[CustomBaseUrl] = None
+        self.base_url: Optional[str] = None
 
     def lookup_schema(self, schema_id):
         for attr in [self.schemas, self.enums, self.primitives]:
@@ -113,3 +129,4 @@ class CodeModel:
                             obj.schema = self.lookup_schema(schema_obj_id)
                         except KeyError:
                             _LOGGER.critical("Unable to ref the object")
+                            obj.schema = FakeSchema()

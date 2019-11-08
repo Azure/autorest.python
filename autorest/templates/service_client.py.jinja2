@@ -1,3 +1,6 @@
+{% set def_keyword = "async def" if async_mode else "def" %}
+{% set pipeline_client = "AsyncPipelineClient" if async_mode else "PipelineClient" %}
+{# actual template starts here #}
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -42,20 +45,22 @@ class {{ code_model.client_name }}(object):
     :vartype {{ get_method_name(operation_group_name) }}: {{ code_model.namespace }}.operations.{{ operation_group_name }}Operations
     {%- endif %}
     {% endfor %}
+    {% if not code_model.custom_base_url %}
     :param str base_url: Service URL
+    {% endif %}
     """
 
-    def __init__(self, base_url=None, **kwargs):
+    def __init__(self{{ '' if code_model.custom_base_url else ', base_url=None' }}, **kwargs):
 
+        {% if code_model.custom_base_url %}
+        base_url = '{{ code_model.custom_base_url.template_url }}'
+        {% else %}
         if not base_url:
-            base_url = 'http://localhost:3000'
-        self._config = {{ code_model.client_name }}Configuration(**kwargs)
-        {%- if is_async %}
-        self._client = AsyncPipelineClient(base_url=base_url, config=self._config, **kwargs)
-        {{ "" }}
-        {%- else %}
-        self._client = PipelineClient(base_url=base_url, config=self._config, **kwargs)
+            base_url = '{{ code_model.base_url }}'
         {% endif %}
+        self._config = {{ code_model.client_name }}Configuration(**kwargs)
+        self._client = {{ pipeline_client }}(base_url=base_url, config=self._config, **kwargs)
+
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '{{ code_model.api_version }}'
         self._serialize = Serializer(client_models)
