@@ -21,14 +21,12 @@ class ListSchema(BaseSchema):
     @classmethod
     def from_yaml(cls, name: str, yaml_data: Dict[str, str], **kwargs) -> "SequenceType":
         # TODO: for items, if the type is a primitive is it listed in type instead of $ref?
-        original_swagger_name = kwargs.pop("original_swagger_name", None)
         element_schema = yaml_data['elementType']
 
         from . import build_schema
         element_type = build_schema(
             name='_',
             yaml_data=element_schema,
-            original_swagger_name='_',
             **kwargs
         )
 
@@ -39,5 +37,4 @@ class ListSchema(BaseSchema):
             max_items=yaml_data.get('maxItems'),
             min_items=yaml_data.get('minItems'),
             unique_items=yaml_data.get('uniqueItems'),
-            original_swagger_name=original_swagger_name
         )
