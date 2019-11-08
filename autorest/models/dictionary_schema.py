@@ -10,14 +10,14 @@ class DictionarySchema(BaseSchema):
 
 
     def get_serialization_type(self, namespace=None):
-        if self.additional_properties:
-            return '{object}'
+        # if self.additional_properties:
+        #     return '{object}'
         return "{{{}}}".format(self.element_type.get_serialization_type())
 
     def get_doc_string_type(self, namespace):
         # in this case, it's an additional_properties property for unmatched properties
-        if self.additional_properties:
-            return 'dict[str, object]'
+        # if self.additional_properties:
+        #     return 'dict[str, object]'
         return 'dict[str, {}]'.format(self.element_type.get_doc_string_type(namespace))
 
     @classmethod

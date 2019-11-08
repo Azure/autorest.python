@@ -97,7 +97,7 @@ class ObjectSchema(BaseSchema):
             )
             properties.append(
                 Property(
-                    name=get_property_name(p['serializedName']),
+                    name=name,
                     schema=schema,
                     original_swagger_name=p['serializedName'],
                     property_data=p

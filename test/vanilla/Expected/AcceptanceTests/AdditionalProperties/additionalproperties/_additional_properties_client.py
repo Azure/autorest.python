@@ -21,10 +21,10 @@ from . import models
 class AdditionalPropertiesClient(object):
     """Test Infrastructure for AutoRest
 
-    
+
     :ivar pets: Pets operations
     :vartype pets: additionalproperties.operations.PetsOperations
-    
+
     :param str base_url: Service URL
     """
 
@@ -34,18 +34,17 @@ class AdditionalPropertiesClient(object):
             base_url = 'http://localhost:3000'
         self._config = AdditionalPropertiesClientConfiguration(**kwargs)
         self._client = PipelineClient(base_url=base_url, config=self._config, **kwargs)
-        
+
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '1.0.0'
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
-        
+
         self.pets = PetsOperations(
             self._client, self._config, self._serialize, self._deserialize)
-        
+
     def __enter__(self):
         self._client.__enter__()
         return self
     def __exit__(self, *exc_details):
         self._client.__exit__(*exc_details)
-    

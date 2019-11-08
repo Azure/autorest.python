@@ -10,13 +10,14 @@
 # --------------------------------------------------------------------------
 
 from azure.core.tracing.decorator import distributed_trace
+from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.exceptions import map_error
 
-from .. import models
+from ... import models
 
 
-class PetsOperations(object):
-    """PetsOperations operations.
+class PetsOperations:
+    """PetsOperations async operations.
 
     You should not instantiate directly this class, but create a Client instance that will create it for you and attach it as attribute.
 
@@ -28,7 +29,7 @@ class PetsOperations(object):
 
     models = models
 
-    def __init__(self, client, config, serializer, deserializer):
+    def __init__(self, client, config, serializer, deserializer) -> None:
 
         self._client = client
         self._serialize = serializer
@@ -36,8 +37,8 @@ class PetsOperations(object):
 
         self._config = config
 
-    @distributed_trace
-    def create_ap_true(self, create_parameters, cls=None, **kwargs):
+    @distributed_trace_async
+    async def create_ap_true(self, create_parameters, *, cls=None, **kwargs):
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
@@ -66,7 +67,7 @@ class PetsOperations(object):
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -83,8 +84,8 @@ class PetsOperations(object):
         return deserialized
     create_ap_true.metadata = {'url': '/additionalProperties/true'}
 
-    @distributed_trace
-    def create_cat_ap_true(self, create_parameters, cls=None, **kwargs):
+    @distributed_trace_async
+    async def create_cat_ap_true(self, create_parameters, *, cls=None, **kwargs):
         """Create a CatAPTrue which contains more properties than what is defined.
 
         :param create_parameters:
@@ -113,7 +114,7 @@ class PetsOperations(object):
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -130,8 +131,8 @@ class PetsOperations(object):
         return deserialized
     create_cat_ap_true.metadata = {'url': '/additionalProperties/true-subclass'}
 
-    @distributed_trace
-    def create_ap_object(self, create_parameters, cls=None, **kwargs):
+    @distributed_trace_async
+    async def create_ap_object(self, create_parameters, *, cls=None, **kwargs):
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
@@ -160,7 +161,7 @@ class PetsOperations(object):
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -177,8 +178,8 @@ class PetsOperations(object):
         return deserialized
     create_ap_object.metadata = {'url': '/additionalProperties/type/object'}
 
-    @distributed_trace
-    def create_ap_string(self, create_parameters, cls=None, **kwargs):
+    @distributed_trace_async
+    async def create_ap_string(self, create_parameters, *, cls=None, **kwargs):
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
@@ -207,7 +208,7 @@ class PetsOperations(object):
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -224,8 +225,8 @@ class PetsOperations(object):
         return deserialized
     create_ap_string.metadata = {'url': '/additionalProperties/type/string'}
 
-    @distributed_trace
-    def create_ap_in_properties(self, create_parameters, cls=None, **kwargs):
+    @distributed_trace_async
+    async def create_ap_in_properties(self, create_parameters, *, cls=None, **kwargs):
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
@@ -255,7 +256,7 @@ class PetsOperations(object):
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -272,8 +273,8 @@ class PetsOperations(object):
         return deserialized
     create_ap_in_properties.metadata = {'url': '/additionalProperties/in/properties'}
 
-    @distributed_trace
-    def create_ap_in_properties_with_ap_string(self, create_parameters, cls=None, **kwargs):
+    @distributed_trace_async
+    async def create_ap_in_properties_with_ap_string(self, create_parameters, *, cls=None, **kwargs):
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
@@ -303,7 +304,7 @@ class PetsOperations(object):
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:

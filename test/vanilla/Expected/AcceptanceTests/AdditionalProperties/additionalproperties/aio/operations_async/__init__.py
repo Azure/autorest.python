@@ -9,10 +9,8 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from ._additional_properties_client import AdditionalPropertiesClient
-__all__ = ['AdditionalPropertiesClient']
+from ._pets_operations_async import PetsOperations
 
-from .version import VERSION
-
-__version__ = VERSION
-
+__all__ = [
+    'PetsOperations',
+]
