@@ -18,12 +18,11 @@ class ModelGenericSerializer(ModelBaseSerializer):
             if model.base_model and prop in model.base_model.properties and not prop.is_discriminator:
                 continue
             if not prop.readonly and not prop.is_discriminator:
-                default_value = "\"" + prop.default_value + "\"" if prop.default_value else "None"
+                default_value = "\"" + prop.schema.default_value + "\"" if prop.schema.default_value else "None"
                 init_args.append("self.{} = kwargs.get('{}', {})".format(prop.name, prop.name, default_value))
-
-        for prop in model.properties:
-            if prop.readonly or (prop.is_discriminator and not model.discriminator_value):
-                init_args.append("self.{} = None".format(prop.name))
-            elif prop.is_discriminator and model.discriminator_value:
-                init_args.append("self.{} = '{}'".format(prop.name, model.discriminator_value))
+            else:
+                if not model.discriminator_value:
+                    init_args.append("self.{} = None".format(prop.name))
+                else:
+                    init_args.append("self.{} = '{}'".format(prop.name, model.discriminator_value))
         model.init_args = init_args

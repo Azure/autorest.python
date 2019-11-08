@@ -26,6 +26,7 @@
 import re
 from .base_schema import BaseSchema
 from .dictionary_schema import DictionarySchema
+from .property import Property
 from typing import Any, Dict, List
 from ..common.utils import to_python_type, get_property_name
 
@@ -38,16 +39,16 @@ class ObjectSchema(BaseSchema):
     :param properties: the optional properties of the class.
     :type properties: dict(str, str)
     """
-    def __init__(self, yaml_data, name: str, description: str, schema_type: str, **kwargs: "**Any") -> "ObjectSchema":
-        super(ObjectSchema, self).__init__(yaml_data, name, description, **kwargs)
+    def __init__(self, yaml_data, name: str, schema_type: str, description=None, **kwargs: "**Any") -> "ObjectSchema":
+        super(ObjectSchema, self).__init__(yaml_data, name, **kwargs)
         self.schema_type = schema_type
+        self.description = description
         self.max_properties = kwargs.pop('max_properties', None)
         self.min_properties = kwargs.pop('min_properties', None)
         self.properties = kwargs.pop('properties', None)
         self.is_exception = kwargs.pop('is_exception', False)
         self.base_model = kwargs.pop('base_model', None)
         self.has_subclasses = kwargs.pop('has_subclasses', False)
-        self.discriminator = kwargs.pop('discriminator', None)
         self.subtype_map = kwargs.pop('subtype_map', None)
         self.property_documentation_string = None
         self.init_line = None
@@ -58,7 +59,7 @@ class ObjectSchema(BaseSchema):
 
     def get_doc_string_type(self, namespace):
         if self.schema_type == 'object':
-            return self.schema_type
+            return 'object'
         return '~{}.models.{}'.format(namespace, self.schema_type)
 
     @classmethod
@@ -80,18 +81,28 @@ class ObjectSchema(BaseSchema):
      ~autorest.models.EnumType]
     """
     @classmethod
-    def _create_properties(cls, yaml_data: Dict[str, str], has_additional_properties) -> List["Property"]:
+    def _create_properties(cls, yaml_data: Dict[str, str], has_additional_properties, **kwargs) -> List["Property"]:
         properties = []
-        for prop in yaml_data:
+        for p in yaml_data:
             from . import build_schema
-            name = get_property_name(prop['serializedName'])
+            name = get_property_name(p['serializedName'])
             if name == 'additional_properties' and has_additional_properties:
                 name = 'additional_properties1'
-            properties.append(build_schema(
+
+            schema = build_schema(
                 name=name,
-                yaml_data=prop,
-                original_swagger_name=prop['serializedName']
-            ))
+                yaml_data=p['schema'],
+                original_swagger_name=p['serializedName'],
+                **kwargs
+            )
+            properties.append(
+                Property(
+                    name=name,
+                    schema=schema,
+                    original_swagger_name=p['serializedName'],
+                    property_data=p
+                )
+            )
         return properties
 
 
@@ -115,11 +126,24 @@ class ObjectSchema(BaseSchema):
             immediate_parents = yaml_data['parents']['immediate']
         # checking if object has a parent
             if immediate_parents and immediate_parents[0]['language']['default']['name'] != yaml_data['language']['default']['name']:
-                base_model = immediate_parents[0]['language']['default']['name']
+                base_model = id(immediate_parents[0])
 
             # this means that this class has additional properties defined on it
             if immediate_parents[0]['language']['default']['name'] == yaml_data['language']['default']['name'] and immediate_parents[0]['type'] == 'dictionary':
-                properties.append(DictionarySchema.from_yaml(name="additional_properties", yaml_data=immediate_parents[0], for_additional_properties=True))
+                additional_properties_schema = DictionarySchema.from_yaml(
+                        name="additional_properties",
+                        yaml_data=immediate_parents[0],
+                        for_additional_properties=True,
+                        **kwargs
+                    )
+                properties.append(Property(
+                        name="additional_properties",
+                        schema=additional_properties_schema,
+                        original_swagger_name="",
+                        property_data={},
+                        description='Unmatched properties from the message are deserialized to this collection.'
+                    )
+                )
 
         # checking to see if this is a polymorphic class
         discriminator = None
@@ -133,43 +157,46 @@ class ObjectSchema(BaseSchema):
 
         schema_type = None
         if top_level and yaml_data.get('properties'):
-            properties += cls._create_properties(yaml_data=yaml_data.get('properties', []), has_additional_properties=len(properties) > 0)
+            properties += cls._create_properties(
+                yaml_data=yaml_data.get('properties', []),
+                has_additional_properties=len(properties) > 0,
+                **kwargs
+            )
 
         # this is to ensure that the attribute map type and property type are generated correctly
         elif for_additional_properties:
             schema_type = yaml_data['type']
         else:
-            schema_data = yaml_data['schema'] if yaml_data.get('schema') else yaml_data
-            schema_type = schema_data['type']
+            schema_type = yaml_data['type']
             if schema_type == 'object':
-                schema_type = cls._convert_to_class_name(schema_data['language']['default']['name'])
+                schema_type = cls._convert_to_class_name(yaml_data['language']['default']['name'])
+        if schema_type == 'any':
+            schema_type = 'object'
 
+        description = None
         if top_level:
             name = cls._convert_to_class_name(name)
-        common_parameters_dict = cls._get_common_parameters(
-            name=name,
-            yaml_data=yaml_data
-        )
+            description = yaml_data['language']['default']['description'].strip()
+            if description == 'MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA':
+                description = name + "."
+            elif 'MISSING' in description:
+                description = ""
         is_exception = None
         exceptions_set = kwargs.pop('exceptions_set', None)
         if exceptions_set:
             if yaml_data['language']['default']['name'] in exceptions_set:
                 is_exception = True
+
+
+
         return cls(
             yaml_data=yaml_data,
             name=name,
-            description=common_parameters_dict['description'],
+            description=description,
             schema_type=schema_type,
             properties=properties,
             base_model=base_model,
-            required=common_parameters_dict['required'],
-            readonly=common_parameters_dict['readonly'],
-            constant=common_parameters_dict['constant'],
-            is_discriminator=common_parameters_dict['is_discriminator'],
-            discriminator_value = common_parameters_dict['discriminator_value'],
-            default_value=yaml_data['schema'].get('defaultValue') if yaml_data.get('schema') else None,
             original_swagger_name=kwargs.pop('original_swagger_name', yaml_data['language']['default']['name']),
             is_exception=is_exception,
-            discriminator=discriminator,
             subtype_map=subtype_map if subtype_map else None
         )

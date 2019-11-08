@@ -105,7 +105,9 @@ class CodeGenerator:
         if yaml_code_model.get('schemas'):
             exceptions_set = self._build_exceptions_set(yaml_data=yaml_code_model['operationGroups'])
             code_model.primitives = self._build_primitive_schemas(yaml_data=yaml_code_model)
-            enums = set([EnumSchema.from_yaml(name=e['language']['default']['name'], yaml_data=e) for e in yaml_code_model['schemas']['choices']])
+            choices = yaml_code_model['schemas']['choices'] if yaml_code_model['schemas'].get('choices') else []
+            sealed_choices = yaml_code_model['schemas']['sealedChoices'] if yaml_code_model['schemas'].get('sealedChoices') else []
+            enums = [EnumSchema.from_yaml(name=e['language']['default']['name'], yaml_data=e) for e in choices + sealed_choices]
             code_model.enums = {enum.id: enum for enum in enums}
 
             classes = [a for a in yaml_code_model['schemas']['objects']]
@@ -113,12 +115,12 @@ class CodeGenerator:
                 build_schema(
                     name=s['language']['default']['name'],
                     yaml_data=s, exceptions_set=exceptions_set,
-                    top_level=True
+                    top_level=True,
+                    code_model=code_model
                 )
                 for s in classes]
             code_model.schemas = {schema.id: schema for schema in schemas}
             # sets the enums property in our code_model variable, which will later be passed to EnumSerializer
-            code_model.add_enum_data_to_properties()
 
             code_model.add_inheritance_to_models()
             code_model.sort_schemas()

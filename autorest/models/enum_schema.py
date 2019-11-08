@@ -20,7 +20,8 @@ class EnumValue:
 
 class EnumSchema(BaseSchema):
     def __init__(self, yaml_data, name, description, enum_type, values, **kwargs):
-        super(EnumSchema, self).__init__(yaml_data, name, description, **kwargs)
+        super(EnumSchema, self).__init__(yaml_data, name, **kwargs)
+        self.description = description
         self.enum_type = enum_type
         self.values = values
 
@@ -56,25 +57,14 @@ class EnumSchema(BaseSchema):
 
     @classmethod
     def from_yaml(cls, name: str, yaml_data: Dict[str, str], **kwargs: Any) -> "EnumType":
-        common_parameters_dict = cls._get_common_parameters(
-            name=name,
-            yaml_data=yaml_data
-        )
         enum_type = yaml_data['language']['default']['name']
-        schema_data = yaml_data['schema'] if yaml_data.get('schema') else yaml_data
-        values = cls._get_enum_values(schema_data['choices'])
+        values = cls._get_enum_values(yaml_data['choices'])
 
         return cls(
             yaml_data=yaml_data,
             name=get_enum_name(name),
-            description=common_parameters_dict['description'],
+            description=yaml_data['language']['default']['description'],
             enum_type=enum_type,
             values=values,
-            default_value=schema_data.get('defaultValue'),
-            required=common_parameters_dict['required'],
-            readonly=common_parameters_dict['readonly'],
-            is_discriminator=common_parameters_dict['is_discriminator'],
-            discriminator_value = common_parameters_dict['discriminator_value'],
-            constant=common_parameters_dict['constant'],
             original_swagger_name=name
         )
