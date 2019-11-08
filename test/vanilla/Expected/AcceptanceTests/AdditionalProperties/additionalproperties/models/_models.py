@@ -9,36 +9,34 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.serialization import Model
 from azure.core.exceptions import HttpResponseError
+from msrest.serialization import Model
 
 
 class PetAPTrue(Model):
     """PetAPTrue.
 
-    Variables are only populated by the server, and will be ignored when
-    sending a request.
+    Variables are only populated by the server, and will be ignored when sending a request.
 
     All required parameters must be populated in order to send to Azure.
 
-    :param additional_properties: Unmatched properties from the message are
-     deserialized this collection
-    :type additional_properties: dict[str, object]
-    :param id: Required.
-    :type id: int
+    :param additional_properties: Unmatched properties from the message are deserialized to this collection.
+	:type additional_properties: dict[str, ~additionalproperties.models.any]
+    :param id: Required. 
+	:type id: int
     :param name:
-    :type name: str
+	:type name: str
     :ivar status:
-    :vartype status: bool
+	:vartype status: bool
     """
 
     _validation = {
-        'id': {'required': True},
         'status': {'readonly': True},
+        'id': {'required': True},
     }
 
     _attribute_map = {
-        'additional_properties': {'key': '', 'type': '{object}'},
+        'additional_properties': {'key': '', 'type': '{any}'},
         'id': {'key': 'id', 'type': 'int'},
         'name': {'key': 'name', 'type': 'str'},
         'status': {'key': 'status', 'type': 'bool'},
@@ -55,31 +53,29 @@ class PetAPTrue(Model):
 class CatAPTrue(PetAPTrue):
     """CatAPTrue.
 
-    Variables are only populated by the server, and will be ignored when
-    sending a request.
+    Variables are only populated by the server, and will be ignored when sending a request.
 
     All required parameters must be populated in order to send to Azure.
 
-    :param additional_properties: Unmatched properties from the message are
-     deserialized this collection
-    :type additional_properties: dict[str, object]
-    :param id: Required.
-    :type id: int
+    :param additional_properties: Unmatched properties from the message are deserialized to this collection.
+	:type additional_properties: dict[str, ~additionalproperties.models.any]
+    :param id: Required. 
+	:type id: int
     :param name:
-    :type name: str
+	:type name: str
     :ivar status:
-    :vartype status: bool
+	:vartype status: bool
     :param friendly:
-    :type friendly: bool
+	:type friendly: bool
     """
 
     _validation = {
-        'id': {'required': True},
         'status': {'readonly': True},
+        'id': {'required': True},
     }
 
     _attribute_map = {
-        'additional_properties': {'key': '', 'type': '{object}'},
+        'additional_properties': {'key': '', 'type': '{any}'},
         'id': {'key': 'id', 'type': 'int'},
         'name': {'key': 'name', 'type': 'str'},
         'status': {'key': 'status', 'type': 'bool'},
@@ -89,15 +85,28 @@ class CatAPTrue(PetAPTrue):
     def __init__(self, **kwargs):
         super(CatAPTrue, self).__init__(**kwargs)
         self.friendly = kwargs.get('friendly', None)
+        self.status = None
+
+
+class ComponentsSchemasPetaptrueAdditionalproperties(Model):
+    """ComponentsSchemasPetaptrueAdditionalproperties.
+
+    """
+
+    _attribute_map = {
+    }
+
+    def __init__(self, **kwargs):
+        super(ComponentsSchemasPetaptrueAdditionalproperties, self).__init__(**kwargs)
 
 
 class Error(Model):
     """Error.
 
     :param status:
-    :type status: int
+	:type status: int
     :param message:
-    :type message: str
+	:type message: str
     """
 
     _attribute_map = {
@@ -109,45 +118,44 @@ class Error(Model):
         super(Error, self).__init__(**kwargs)
         self.status = kwargs.get('status', None)
         self.message = kwargs.get('message', None)
+    
 
+    class ErrorException(HttpResponseError):
+        """Server responded with exception of type: 'Error'.
 
-class ErrorException(HttpResponseError):
-    """Server responsed with exception of type: 'Error'.
+        :param deserialize: A deserializer
+        :param response: Server response to be deserialized.
+        """
 
-    :param deserialize: A deserializer
-    :param response: Server response to be deserialized.
-    """
+        def __init__(self, response, deserialize, *args):
 
-    def __init__(self, response, deserialize, *args):
-
-      model_name = 'Error'
-      self.error = deserialize(model_name, response)
-      if self.error is None:
-          self.error = deserialize.dependencies[model_name]()
-      super(ErrorException, self).__init__(response=response)
+            model_name = 'Error'
+            self.error = deserialize(model_name, response)
+            if self.error is None:
+                self.error = deserialize.dependencies[model_name]()
+            super(ErrorException, self).__init__(response=response)
 
 
 class PetAPInProperties(Model):
     """PetAPInProperties.
 
-    Variables are only populated by the server, and will be ignored when
-    sending a request.
+    Variables are only populated by the server, and will be ignored when sending a request.
 
     All required parameters must be populated in order to send to Azure.
 
-    :param id: Required.
-    :type id: int
+    :param id: Required. 
+	:type id: int
     :param name:
-    :type name: str
+	:type name: str
     :ivar status:
-    :vartype status: bool
+	:vartype status: bool
     :param additional_properties:
-    :type additional_properties: dict[str, float]
+	:type additional_properties: dict[str, float]
     """
 
     _validation = {
-        'id': {'required': True},
         'status': {'readonly': True},
+        'id': {'required': True},
     }
 
     _attribute_map = {
@@ -161,36 +169,46 @@ class PetAPInProperties(Model):
         super(PetAPInProperties, self).__init__(**kwargs)
         self.id = kwargs.get('id', None)
         self.name = kwargs.get('name', None)
-        self.status = None
         self.additional_properties = kwargs.get('additional_properties', None)
+        self.status = None
+
+
+class PetAPInPropertiesAdditionalProperties(Model):
+    """PetAPInPropertiesAdditionalProperties.
+
+    """
+
+    _attribute_map = {
+    }
+
+    def __init__(self, **kwargs):
+        super(PetAPInPropertiesAdditionalProperties, self).__init__(**kwargs)
 
 
 class PetAPInPropertiesWithAPString(Model):
     """PetAPInPropertiesWithAPString.
 
-    Variables are only populated by the server, and will be ignored when
-    sending a request.
+    Variables are only populated by the server, and will be ignored when sending a request.
 
     All required parameters must be populated in order to send to Azure.
 
-    :param additional_properties: Unmatched properties from the message are
-     deserialized this collection
-    :type additional_properties: dict[str, str]
-    :param id: Required.
-    :type id: int
+    :param additional_properties: Unmatched properties from the message are deserialized to this collection.
+	:type additional_properties: dict[str, str]
+    :param id: Required. 
+	:type id: int
     :param name:
-    :type name: str
+	:type name: str
     :ivar status:
-    :vartype status: bool
-    :param odatalocation: Required.
-    :type odatalocation: str
-    :param additional_properties1:
-    :type additional_properties1: dict[str, float]
+	:vartype status: bool
+    :param odatalocation: Required. 
+	:type odatalocation: str
+    :param additional_properties:
+	:type additional_properties: dict[str, float]
     """
 
     _validation = {
-        'id': {'required': True},
         'status': {'readonly': True},
+        'id': {'required': True},
         'odatalocation': {'required': True},
     }
 
@@ -199,8 +217,8 @@ class PetAPInPropertiesWithAPString(Model):
         'id': {'key': 'id', 'type': 'int'},
         'name': {'key': 'name', 'type': 'str'},
         'status': {'key': 'status', 'type': 'bool'},
-        'odatalocation': {'key': '@odata\\.location', 'type': 'str'},
-        'additional_properties1': {'key': 'additionalProperties', 'type': '{float}'},
+        'odatalocation': {'key': '@odata.location', 'type': 'str'},
+        'additional_properties': {'key': 'additionalProperties', 'type': '{float}'},
     }
 
     def __init__(self, **kwargs):
@@ -208,37 +226,47 @@ class PetAPInPropertiesWithAPString(Model):
         self.additional_properties = kwargs.get('additional_properties', None)
         self.id = kwargs.get('id', None)
         self.name = kwargs.get('name', None)
-        self.status = None
         self.odatalocation = kwargs.get('odatalocation', None)
-        self.additional_properties1 = kwargs.get('additional_properties1', None)
+        self.additional_properties = kwargs.get('additional_properties', None)
+        self.status = None
+
+
+class PetAPInPropertiesWithAPStringAdditionalProperties(Model):
+    """PetAPInPropertiesWithAPStringAdditionalProperties.
+
+    """
+
+    _attribute_map = {
+    }
+
+    def __init__(self, **kwargs):
+        super(PetAPInPropertiesWithAPStringAdditionalProperties, self).__init__(**kwargs)
 
 
 class PetAPObject(Model):
     """PetAPObject.
 
-    Variables are only populated by the server, and will be ignored when
-    sending a request.
+    Variables are only populated by the server, and will be ignored when sending a request.
 
     All required parameters must be populated in order to send to Azure.
 
-    :param additional_properties: Unmatched properties from the message are
-     deserialized this collection
-    :type additional_properties: dict[str, object]
-    :param id: Required.
-    :type id: int
+    :param additional_properties: Unmatched properties from the message are deserialized to this collection.
+	:type additional_properties: dict[str, ~additionalproperties.models.any]
+    :param id: Required. 
+	:type id: int
     :param name:
-    :type name: str
+	:type name: str
     :ivar status:
-    :vartype status: bool
+	:vartype status: bool
     """
 
     _validation = {
-        'id': {'required': True},
         'status': {'readonly': True},
+        'id': {'required': True},
     }
 
     _attribute_map = {
-        'additional_properties': {'key': '', 'type': '{object}'},
+        'additional_properties': {'key': '', 'type': '{any}'},
         'id': {'key': 'id', 'type': 'int'},
         'name': {'key': 'name', 'type': 'str'},
         'status': {'key': 'status', 'type': 'bool'},
@@ -255,25 +283,23 @@ class PetAPObject(Model):
 class PetAPString(Model):
     """PetAPString.
 
-    Variables are only populated by the server, and will be ignored when
-    sending a request.
+    Variables are only populated by the server, and will be ignored when sending a request.
 
     All required parameters must be populated in order to send to Azure.
 
-    :param additional_properties: Unmatched properties from the message are
-     deserialized this collection
-    :type additional_properties: dict[str, str]
-    :param id: Required.
-    :type id: int
+    :param additional_properties: Unmatched properties from the message are deserialized to this collection.
+	:type additional_properties: dict[str, str]
+    :param id: Required. 
+	:type id: int
     :param name:
-    :type name: str
+	:type name: str
     :ivar status:
-    :vartype status: bool
+	:vartype status: bool
     """
 
     _validation = {
-        'id': {'required': True},
         'status': {'readonly': True},
+        'id': {'required': True},
     }
 
     _attribute_map = {

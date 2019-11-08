@@ -11,26 +11,35 @@
 
 try:
     from ._models_py3 import CatAPTrue
+    from ._models_py3 import ComponentsSchemasPetaptrueAdditionalproperties
     from ._models_py3 import Error, ErrorException
     from ._models_py3 import PetAPInProperties
+    from ._models_py3 import PetAPInPropertiesAdditionalProperties
     from ._models_py3 import PetAPInPropertiesWithAPString
+    from ._models_py3 import PetAPInPropertiesWithAPStringAdditionalProperties
     from ._models_py3 import PetAPObject
     from ._models_py3 import PetAPString
     from ._models_py3 import PetAPTrue
 except (SyntaxError, ImportError):
     from ._models import CatAPTrue
+    from ._models import ComponentsSchemasPetaptrueAdditionalproperties
     from ._models import Error, ErrorException
     from ._models import PetAPInProperties
+    from ._models import PetAPInPropertiesAdditionalProperties
     from ._models import PetAPInPropertiesWithAPString
+    from ._models import PetAPInPropertiesWithAPStringAdditionalProperties
     from ._models import PetAPObject
     from ._models import PetAPString
     from ._models import PetAPTrue
 
 __all__ = [
     'CatAPTrue',
+    'ComponentsSchemasPetaptrueAdditionalproperties',
     'Error', 'ErrorException',
     'PetAPInProperties',
+    'PetAPInPropertiesAdditionalProperties',
     'PetAPInPropertiesWithAPString',
+    'PetAPInPropertiesWithAPStringAdditionalProperties',
     'PetAPObject',
     'PetAPString',
     'PetAPTrue',

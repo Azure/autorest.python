@@ -47,13 +47,13 @@ class ModelPython3Serializer(ModelBaseSerializer):
                 if param.required:
                     init_properties_declaration.append("{}: {}".format(param.name, param.schema_type))
                 else:
-                    default_value = "\"" + param.default_value + "\"" if param.default_value else "None"
+                    default_value = "\"" + param.schema.default_value + "\"" if param.schema.default_value else "None"
                     init_properties_declaration.append("{}: {}={}".format(param.name, param.schema_type, default_value))
             else:
                 if param.required:
                     init_properties_declaration.append(param.name)
                 else:
-                    default_value = "\"" + param.default_value + "\"" if param.default_value else "None"
+                    default_value = "\"" + param.schema.default_value + "\"" if param.schema.default_value else "None"
                     init_properties_declaration.append("{}={}".format(param.name, default_value))
 
         if init_properties_declaration:

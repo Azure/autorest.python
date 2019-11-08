@@ -19,21 +19,17 @@ __all__ = [
 
 # TODO: should this be in models.__init__ or CodeModel
 def build_schema(name, yaml_data, **kwargs):
-    original_swagger_name = kwargs.get('original_swagger_name', None)
-    schema_type = yaml_data['schema']['type'] if yaml_data.get('schema') else yaml_data['type']
+    code_model = kwargs.get('code_model')
+    schema_type = yaml_data['type']
     if schema_type == 'array':
-        return ListSchema.from_yaml(name=name, yaml_data=yaml_data, original_swagger_name=original_swagger_name)
+        return ListSchema.from_yaml(name=name, yaml_data=yaml_data, **kwargs)
     if schema_type == 'dictionary':
-        return DictionarySchema.from_yaml(name=name, yaml_data=yaml_data, original_swagger_name=original_swagger_name)
-    # since we've already built all enums, we just need to create an empty EnumSchema object with just the name so we can
-    # link later
-    # TODO: check if enums need orignal swagger name
-    if schema_type in ('sealed-choice', 'choice'):
-        return EnumSchema.placeholder_enum(name=name, original_swagger_name=original_swagger_name)
-    if schema_type == 'object' or schema_type == 'and':
+        return DictionarySchema.from_yaml(name=name, yaml_data=yaml_data, **kwargs)
+    if schema_type == 'object' or schema_type == 'and' or schema_type == 'any':
         return ObjectSchema.from_yaml(
             name=name,
             yaml_data=yaml_data,
             **kwargs
         )
-    return get_primitive_schema(name=name, yaml_data=yaml_data, original_swagger_name=original_swagger_name)
+    # since we've already built all enums and primitives, we just need to look them up
+    return code_model.lookup_schema(id(yaml_data))

@@ -97,7 +97,7 @@ class CodeModel:
         for schema in self.schemas.values():
             if schema.base_model:
                 # right now, the base model property just holds the name of the parent class
-                schema.base_model = [b for b in self.schemas.values() if b.original_swagger_name == schema.base_model][0]
+                schema.base_model = [b for b in self.schemas.values() if b.id == schema.base_model][0]
         self._add_properties_from_inheritance()
 
     def add_schema_link_to_operation(self) -> None:
@@ -113,11 +113,3 @@ class CodeModel:
                             obj.schema = self.lookup_schema(schema_obj_id)
                         except KeyError:
                             _LOGGER.critical("Unable to ref the object")
-
-    def add_enum_data_to_properties(self) -> None:
-        for schema in self.schemas.values():
-            for i in range(len(schema.properties)):
-                prop = schema.properties[i]
-                if isinstance(prop, EnumSchema):
-                    _LOGGER.info("Added enum %s to enum list", prop.enum_type)
-                    schema.properties[i] = [e for e in self.enums if e.original_swagger_name == prop.original_swagger_name][0]

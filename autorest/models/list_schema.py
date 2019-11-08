@@ -4,8 +4,8 @@ from ..common.utils import get_property_name
 
 
 class ListSchema(BaseSchema):
-    def __init__(self, yaml_data, name, description, element_type, **kwargs):
-        super(ListSchema, self).__init__(yaml_data, get_property_name(name), description, **kwargs)
+    def __init__(self, yaml_data, name, element_type, **kwargs):
+        super(ListSchema, self).__init__(yaml_data, get_property_name(name), **kwargs)
         self.element_type = element_type
         self.max_items = kwargs.pop('max_items', None)
         self.min_items = kwargs.pop('min_items', None)
@@ -19,35 +19,25 @@ class ListSchema(BaseSchema):
         return 'list[{}]'.format(self.element_type.get_doc_string_type(namespace))
 
     @classmethod
-    def from_yaml(cls, name: str, yaml_data: Dict[str, str], original_swagger_name) -> "SequenceType":
-        common_parameters_dict = cls._get_common_parameters(
-            name=name,
-            yaml_data=yaml_data
-        )
+    def from_yaml(cls, name: str, yaml_data: Dict[str, str], **kwargs) -> "SequenceType":
         # TODO: for items, if the type is a primitive is it listed in type instead of $ref?
-        schema_data = yaml_data['schema'] if yaml_data.get('schema') else yaml_data
-        element_schema = schema_data['elementType']
+        original_swagger_name = kwargs.pop("original_swagger_name", None)
+        element_schema = yaml_data['elementType']
 
         from . import build_schema
         element_type = build_schema(
             name='_',
             yaml_data=element_schema,
-            original_swagger_name='_'
+            original_swagger_name='_',
+            **kwargs
         )
 
         return cls(
             yaml_data=yaml_data,
             name=name,
-            description=common_parameters_dict['description'],
             element_type=element_type,
-            required=common_parameters_dict['required'],
-            readonly=common_parameters_dict['readonly'],
-            constant=common_parameters_dict['constant'],
-            is_discriminator=common_parameters_dict['is_discriminator'],
-            discriminator_value = common_parameters_dict['discriminator_value'],
-            max_items=schema_data.get('maxItems'),
-            min_items=schema_data.get('minItems'),
-            unique_items=schema_data.get('uniqueItems'),
-            default_value = schema_data.get('defaultValue'),
+            max_items=yaml_data.get('maxItems'),
+            min_items=yaml_data.get('minItems'),
+            unique_items=yaml_data.get('uniqueItems'),
             original_swagger_name=original_swagger_name
         )
