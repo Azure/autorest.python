@@ -12,8 +12,8 @@ class BaseSchema(ABC):
         self.yaml_data = yaml_data
         self.name = name
         self.default_value = yaml_data.get('defaultValue', None)
-        self.discriminator = yaml_data.get('discriminator', None)
-        self.discriminator_value = yaml_data.get('discriminator_value', None)
+        self.discriminator_name = yaml_data['discriminator']['property']['language']['default']['name'] if yaml_data.get('discriminator') else None
+        self.discriminator_value = yaml_data.get('discriminatorValue', None)
 
     @property
     def id(self):

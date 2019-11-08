@@ -1,5 +1,5 @@
 import re
-from ..models import DictionarySchema, EnumSchema, ListSchema, ObjectSchema, PrimitiveSchema
+from ..models import DictionarySchema, EnumSchema, ListSchema, ObjectSchema, PrimitiveSchema, ConstantSchema
 from ..common.utils import to_python_type
 from .import_serializer import FileImportSerializer
 from jinja2 import Template, PackageLoader, Environment
@@ -20,7 +20,7 @@ class ModelBaseSerializer:
 
     def _format_property_doc_string_for_file(self, prop):
         # building the param line of the property doc
-        if prop.constant or prop.readonly:
+        if isinstance(prop.schema, ConstantSchema) or prop.readonly:
             param_doc_string = ":ivar {}:".format(prop.name)
         else:
             param_doc_string = ":param {}:".format(prop.name)
@@ -34,10 +34,10 @@ class ModelBaseSerializer:
                 description = "Required. " + description
             else:
                 description = "Required. "
-        if prop.constant or prop.is_discriminator:
+        if isinstance(prop.schema, ConstantSchema) or prop.is_discriminator:
             description += "Constant filled by server. "
-        if isinstance(prop, EnumSchema):
-            values = ["\'" + v.value + "\'" for v in prop.values]
+        if isinstance(prop.schema, EnumSchema):
+            values = ["\'" + v.value + "\'" for v in prop.schema.values]
             description += "Possible values include: {}.".format(", ".join(values))
             if prop.schema.default_value:
                 description += " Default value: \"{}\".".format(prop.schema.default_value)
@@ -45,7 +45,7 @@ class ModelBaseSerializer:
             param_doc_string += " " + description
 
         # building the type line of the property doc
-        if prop.constant or prop.readonly:
+        if isinstance(prop.schema, ConstantSchema) or prop.readonly:
             type_doc_string = ":vartype {}: ".format(prop.name)
         else:
             type_doc_string = ":type {}: ".format(prop.name)

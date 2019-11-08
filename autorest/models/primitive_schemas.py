@@ -142,38 +142,6 @@ class ByteArraySchema(PrimitiveSchema):
         )
 
 
-class ConstantSchema(BaseSchema):
-
-    def __init__(
-        self,
-        yaml_data: Dict[str, Any],
-        name: str,
-        description: str,
-        value: Optional[Any],
-        element_type,
-    ):
-        super(ConstantSchema, self).__init__(yaml_data, name, description)
-        self.value = value
-        self.element_type = element_type
-
-    def get_serialization_type(self):
-        return self.element_type.get_serialization_type()
-
-    def get_doc_string_type(self, namespace=None):
-        return self.element_type.get_doc_string_type(namespace)
-
-    @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, str], **kwargs) -> "ConstantSchema":
-        name = yaml_data["language"]["default"]["name"]
-        _LOGGER.info("Parsing %s constant", name)
-        return cls(
-            yaml_data=yaml_data,
-            name=name,
-            description=yaml_data["language"]["default"]["description"],
-            value=yaml_data.get("value"),
-            element_type=get_primitive_schema("constant", yaml_data["valueType"], "killme")
-        )
-
 
 def get_primitive_schema(name, yaml_data):
     schema_type = yaml_data['type']
@@ -199,10 +167,6 @@ def get_primitive_schema(name, yaml_data):
             name=name,
             yaml_data=yaml_data
         )
-    # if schema_type  == 'constant':
-    #     return ConstantSchema.from_yaml(
-    #         yaml_data=yaml_data,
-    #     )
     return PrimitiveSchema.from_yaml(
         name=name,
         yaml_data=yaml_data,

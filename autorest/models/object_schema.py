@@ -48,7 +48,6 @@ class ObjectSchema(BaseSchema):
         self.properties = kwargs.pop('properties', None)
         self.is_exception = kwargs.pop('is_exception', False)
         self.base_model = kwargs.pop('base_model', None)
-        self.has_subclasses = kwargs.pop('has_subclasses', False)
         self.subtype_map = kwargs.pop('subtype_map', None)
         self.property_documentation_string = None
         self.init_line = None
@@ -145,11 +144,9 @@ class ObjectSchema(BaseSchema):
                 )
 
         # checking to see if this is a polymorphic class
-        discriminator = None
-        subtype_map = {}
+        subtype_map = None
         if yaml_data.get('discriminator'):
-            discriminator = yaml_data['discriminator']['property']['language']['default']['name']
-
+            subtype_map = {}
             # map of discriminator value to child's name
             for children_name, children_yaml in yaml_data['discriminator']['immediate'].items():
                 subtype_map[children_yaml['discriminatorValue']] = cls._convert_to_class_name(children_name)
@@ -194,5 +191,5 @@ class ObjectSchema(BaseSchema):
             properties=properties,
             base_model=base_model,
             is_exception=is_exception,
-            subtype_map=subtype_map if subtype_map else None
+            subtype_map=subtype_map
         )

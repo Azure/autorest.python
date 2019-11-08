@@ -35,7 +35,7 @@ from .jsonrpc import AutorestAPI
 
 from .common.utils import get_namespace_name, get_method_name, get_property_name
 from .models.code_model import CodeModel
-from .models import build_schema, EnumSchema
+from .models import build_schema, EnumSchema, ConstantSchema
 from .models.primitive_schemas import get_primitive_schema
 from .models.operation_group import OperationGroup
 from .models.custom_server import CustomBaseUrl
@@ -76,10 +76,13 @@ class CodeGenerator:
             if schema_type in ['objects', 'arrays', 'dictionaries', 'choices', 'sealedChoices']:
                 continue
             for schema_data in yaml_data:
-                primitive_schema = get_primitive_schema(
-                    name=get_property_name(schema_data['language']['default']['name']),
-                    yaml_data=schema_data
-                )
+                if schema_type == 'constants':
+                    primitive_schema = ConstantSchema.from_yaml(schema_data)
+                else:
+                    primitive_schema = get_primitive_schema(
+                        name=get_property_name(schema_data['language']['default']['name']),
+                        yaml_data=schema_data
+                    )
                 primitive_schema_dict[primitive_schema.id] = primitive_schema
         return primitive_schema_dict
 

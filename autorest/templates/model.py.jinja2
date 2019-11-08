@@ -5,7 +5,7 @@ class {{ model.name }}(Model):
 {%- endif %}
     {{'\"\"\"' + model.description + "\n"}}
 
-    {%- if model.discriminator %}
+    {%- if model.discriminator_name %}
     {{ "You probably want to use the sub-classes and not this class directly. Known sub-classes are: " + ", ".join(model.subtype_map.values()) }}
     {%- endif %}
 
@@ -43,9 +43,9 @@ class {{ model.name }}(Model):
         {%- endif %}
     }
 
-    {%- if model.discriminator %}
+    {%- if model.discriminator_name %}
     _subtype_map = {
-        '{{ model.discriminator }}': {{ str(model.subtype_map) }}
+        '{{ model.discriminator_name }}': {{ str(model.subtype_map) }}
     }
     {%- endif %}
 

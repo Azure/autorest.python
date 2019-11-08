@@ -1,3 +1,4 @@
+from .constant_schema import ConstantSchema
 class Property:
     def __init__(self, name, schema, original_swagger_name, property_data, **kwargs):
         self.name = name
@@ -6,9 +7,7 @@ class Property:
 
         self.required = property_data.get('required', False)
         self.readonly = property_data.get('readOnly', False)
-        self.constant = property_data.get('constant', False)
         self.is_discriminator = property_data.get('isDiscriminator', False)
-        self.discriminator_value = property_data.get('discriminatorValue', None)
         self.documentation_string = None
 
         if kwargs.get('description', None):
@@ -22,7 +21,7 @@ class Property:
             self.description = description
 
     def get_property_documentation_string(self) -> str:
-        if self.constant or self.readonly:
+        if isinstance(self.schema, ConstantSchema) or self.readonly:
             doc_string = ":ivar {}:".format(self.name)
         else:
             doc_string = ":param {}:".format(self.name)
