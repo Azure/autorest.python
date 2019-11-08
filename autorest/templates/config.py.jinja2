@@ -33,9 +33,6 @@ class {{ client_name }}Configuration(Configuration):
 
         self.user_agent_policy.add_user_agent('azsdk-python-{{ client_name|lower }}/{}'.format(VERSION))
         self.generate_client_request_id = True
-        {%- if is_async %}
-        self.accept_language = None
-        {%- endif %}
 
     def _configure(self, **kwargs):
         self.user_agent_policy = kwargs.get('user_agent_policy') or policies.UserAgentPolicy(**kwargs)

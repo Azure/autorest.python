@@ -38,6 +38,7 @@ from .models.code_model import CodeModel
 from .models import build_schema, EnumSchema
 from .models.primitive_schemas import get_primitive_schema
 from .models.operation_group import OperationGroup
+from .models.custom_server import CustomBaseUrl
 from .serializers import (
     AioGeneralSerializer,
     EnumSerializer,
@@ -92,8 +93,18 @@ class CodeGenerator:
         if not code_model.api_version:
             code_model.api_version = "1.0.0"
 
+        # Custom URL
+        servers = yaml_code_model['protocol']['http']['servers']
+        if len(servers) > 1:
+            _LOGGER.critical("More servers that current generator can handle, will use the first one")
+        server = servers[0]
+        if server.get('variables'):
+            code_model.custom_base_url = CustomBaseUrl.from_yaml(server)
+        else:
+            code_model.base_url = server['url']
+
         # Create operations
-        code_model.operation_groups = [OperationGroup.from_yaml(op_group) for op_group in yaml_code_model['operationGroups']]
+        code_model.operation_groups = [OperationGroup.from_yaml(code_model, op_group) for op_group in yaml_code_model['operationGroups']]
 
         # Get my namespace
         namespace = self._autorestapi.get_value("namespace")
