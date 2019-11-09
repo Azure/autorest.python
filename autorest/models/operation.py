@@ -183,6 +183,10 @@ class Operation:
         raise ValueError(f"Incorrect status code {status_code}, operation {self.name}")
 
     @property
+    def any_response_has_headers(self):
+        return any(response.headers for response in self.responses)
+
+    @property
     def success_status_code(self) -> List[int]:
         """The list of all successfull status code.
         """
