@@ -4,6 +4,18 @@
 {% set stream_request_parameter = "stream=" ~ ("True" if operation.is_stream_response else "False") %}
 {% set request_as_xml = ", is_xml=False" if "xml" in operation.request_content_type else "" %}
 {% macro exception_name() %}{{ operation.exceptions[0].schema.name }}Exception{% endmacro %}
+{% macro response_handling(response) %}
+  {% if response.headers %}
+    {% for header_parameter in response.headers %}
+response_headers['{{ header_parameter.name }}']=self._deserialize('{{ header_parameter.schema.get_serialization_type() }}', response.headers.get('{{ header_parameter.name }}'))
+    {% endfor %}
+  {% endif %}
+  {% if operation.has_response_body and operation.is_stream_response %}
+deserialized = response.stream_download(self._client._pipeline)
+  {% elif operation.has_response_body %}
+deserialized = self._deserialize('{{ response.name }}', response)
+  {% endif %}
+{% endmacro %}
 {# actual template starts here #}
 {{ trace_decorator }}
 {{ def_keyword }} {{ operation.python_name }}(self{{ operation.method_signature }}, cls=None, **kwargs):
@@ -117,34 +129,16 @@
     deserialized = None
 {% endif %}
 {% if operation.has_response_body or operation.any_response_has_headers %}
-{% if operation.responses|count > 1 %}
-{% for status_code in operation.success_status_code %}
-  {% set response =  operation.get_response_from_status(status_code) %}
+  {% if operation.responses|count > 1 %}
+    {% for status_code in operation.success_status_code %}
+      {% set response =  operation.get_response_from_status(status_code) %}
     if response.status_code == {{ status_code }}:
-  {% if response.headers %}
-    {% for header_parameter in response.headers %}
-        response_headers['{{ header_parameter.name }}']=self._deserialize('{{ header_parameter.schema.get_serialization_type() }}', response.headers.get('{{ header_parameter.name }}'))
+        {{ response_handling(response) }}
     {% endfor %}
+  {% else %}
+    {% set response = operation.responses[0] %}
+    {{ response_handling(response) }}
   {% endif %}
-  {% if operation.has_response_body and operation.is_stream_response %}
-        deserialized = response.stream_download(self._client._pipeline)
-  {% elif operation.has_response_body %}
-        deserialized = self._deserialize('{{ response.name }}', response)
-  {% endif %}
-{% endfor %}
-{% else %}
-  {% set response = operation.responses[0] %}
-  {% if response.headers %}
-    {% for header_parameter in response.headers %}
-    response_headers['{{ header_parameter.name }}']=self._deserialize('{{ header_parameter.schema.get_serialization_type() }}', response.headers.get('{{ header_parameter.name }}'))
-    {% endfor %}
-  {% endif %}
-  {% if operation.has_response_body and operation.is_stream_response %}
-    deserialized = response.stream_download(self._client._pipeline)
-  {% elif operation.has_response_body %}
-    deserialized = self._deserialize('{{ response.name }}', response)
-  {% endif %}
-{% endif %}
 {% endif %}
     if cls:
       return cls(response, {{ 'deserialized' if operation.has_response_body else 'None'}}, {{ 'response_headers' if operation.any_response_has_headers else 'None' }})
