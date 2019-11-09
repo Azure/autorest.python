@@ -13,9 +13,9 @@ from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
 {% if is_async %}
 from ..version import VERSION
-{%- else %}
+{% else %}
 from .version import VERSION
-{%- endif %}
+{% endif %}
 
 
 class {{ client_name }}Configuration(Configuration):
