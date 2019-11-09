@@ -9,7 +9,7 @@ class {{ model.name }}(Model):
     {{ "You probably want to use the sub-classes and not this class directly. Known sub-classes are: " + ", ".join(model.subtype_map.values()) }}
     {%- endif %}
 
-    {%- if (model.properties | selectattr('readonly') or selectattr('constant') | first) is defined %}
+    {%- if (model.properties | selectattr('readonly') | first) is defined %}
     {{ "Variables are only populated by the server, and will be ignored when sending a request.\n" }}
     {%- endif %}
     {%- if (model.properties | selectattr('required') | first) is defined %}
