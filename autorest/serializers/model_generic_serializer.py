@@ -17,6 +17,8 @@ class ModelGenericSerializer(ModelBaseSerializer):
         for prop in model.properties:
             if model.base_model and prop in model.base_model.properties and not prop.is_discriminator:
                 continue
+            if prop.constant:
+                continue
             if not prop.readonly and not prop.is_discriminator:
                 default_value = "\"" + prop.schema.default_value + "\"" if prop.schema.default_value else "None"
                 init_args.append("self.{} = kwargs.get('{}', {})".format(prop.name, prop.name, default_value))

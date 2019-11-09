@@ -8,6 +8,8 @@ class Property:
         self.required = property_data.get('required', False)
         self.readonly = property_data.get('readOnly', False)
         self.is_discriminator = property_data.get('isDiscriminator', False)
+        # this bool doesn't consider you to be constant if you are a discriminator
+        self.constant = isinstance(self.schema, ConstantSchema) and not self.is_discriminator
         self.documentation_string = None
 
         if kwargs.get('description', None):
@@ -20,8 +22,17 @@ class Property:
                 description = ""
             self.description = description
 
+        validation_map = {}
+        if self.required:
+            validation_map['required'] = True
+        if self.readonly:
+            validation_map['readonly'] = True
+        if self.constant:
+            validation_map['constant'] = True
+        self.validation_map = validation_map if validation_map else None
+
     def get_property_documentation_string(self) -> str:
-        if isinstance(self.schema, ConstantSchema) or self.readonly:
+        if self.constant or self.readonly:
             doc_string = ":ivar {}:".format(self.name)
         else:
             doc_string = ":param {}:".format(self.name)

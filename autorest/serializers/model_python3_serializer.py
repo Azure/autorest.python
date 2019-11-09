@@ -16,14 +16,13 @@ class ModelPython3Serializer(ModelBaseSerializer):
             properties_to_pass = []
             super_initialize = "super({}, self).__init__()".format(model.name)
             for prop in [p for p in model.properties if not p.readonly]:
-                if prop in model.base_model.properties and not prop.is_discriminator:
+                if (prop in model.base_model.properties and not prop.is_discriminator) or prop.constant:
                     properties_to_pass.append("{}={}".format(prop.name, prop.name))
                 else:
                     properties_to_initialize.append(prop)
             properties_to_pass.append("**kwargs")
             init_args.append("super({}, self).__init__({})".format(model.name, ", ".join(properties_to_pass)))
         else:
-
             init_args.append("super({}, self).__init__(**kwargs)".format(model.name))
             properties_to_initialize = model.properties
         for prop in properties_to_initialize:

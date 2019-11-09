@@ -18,7 +18,7 @@ class ConstantSchema(BaseSchema):
         self.schema = schema
 
     def get_serialization_type(self):
-        return self.value
+        return self.schema.schema_type
 
     def get_doc_string_type(self, namespace=None):
         return self.schema.get_doc_string_type(namespace)

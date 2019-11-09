@@ -25,11 +25,8 @@ class {{ model.name }}(Model):
     {%- if (model.properties | selectattr('required' or 'readonly') | first) is defined %}
 
     _validation = {
-        {%- for p in model.properties | selectattr('readonly')%}
-        '{{ p.name }}': {'readonly': True},
-        {%- endfor %}
-        {%- for p in model.properties | selectattr('required')%}
-        '{{ p.name }}': {'required': True},
+        {%- for p in model.properties | selectattr('validation_map')%}
+        '{{ p.name }}': {{ str(p.validation_map) }},
         {%- endfor %}
     }
     {%- endif %}
@@ -47,6 +44,12 @@ class {{ model.name }}(Model):
     _subtype_map = {
         '{{ model.discriminator_name }}': {{ str(model.subtype_map) }}
     }
+    {% endif %}
+
+    {%- if (model.properties | selectattr('constant') | first) is defined %}
+        {%- for p in model.properties | selectattr('constant')%}
+        {{ p.name }} = {{ p.schema.value.__repr__() }}
+        {%- endfor %}
     {%- endif %}
 
     {{ model.init_line }}
