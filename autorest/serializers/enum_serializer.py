@@ -15,7 +15,7 @@ class EnumSerializer:
 
         # Generate the enum file
         template = env.get_template("enum_container.py.jinja2")
-        self._enum_file = template.render(enums=self.enums)
+        self._enum_file = template.render(enums=self.enums.values())
 
     @property
     def enum_file(self):
