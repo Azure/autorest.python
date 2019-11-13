@@ -25,6 +25,9 @@ class EnumSchema(BaseSchema):
     def get_serialization_type(self):
         return 'str'
 
+    def get_python_type_annotation(self):
+        return 'str'
+
     def get_python_type(self, namespace):
         return "str or ~{}.models.{}".format(namespace, self.enum_type)
 

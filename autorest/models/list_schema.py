@@ -14,6 +14,9 @@ class ListSchema(BaseSchema):
     def get_serialization_type(self):
         return '[{}]'.format(self.element_type.get_serialization_type())
 
+    def get_python_type_annotation(self):
+        return f'List[{self.element_type.get_python_type_annotation()}]'
+
     def get_python_type(self, namespace):
         return 'list[{}]'.format(self.element_type.get_python_type(namespace))
 

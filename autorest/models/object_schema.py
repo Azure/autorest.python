@@ -65,6 +65,9 @@ class ObjectSchema(BaseSchema):
     def get_serialization_type(self) -> str:
         return self.name
 
+    def get_python_type_annotation(self) -> str:
+        return f'\"{self.name}\"""'
+
     def get_python_type(self, namespace):
         if self.schema_type == 'object':
             return 'object'
