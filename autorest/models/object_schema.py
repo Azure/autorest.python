@@ -62,12 +62,12 @@ class ObjectSchema(BaseSchema):
         return file_import
 
     def get_serialization_type(self) -> str:
-        return self.schema_type
+        return self.name
 
     def get_doc_string_type(self, namespace):
         if self.schema_type == 'object':
             return 'object'
-        return '~{}.models.{}'.format(namespace, self.schema_type)
+        return '~{}.models.{}'.format(namespace, self.name)
 
     @classmethod
     def _convert_to_class_name(cls, name):

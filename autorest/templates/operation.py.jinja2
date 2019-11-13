@@ -13,7 +13,7 @@ response_headers['{{ header_parameter.name }}']=self._deserialize('{{ header_par
   {% if operation.has_response_body and operation.is_stream_response %}
 deserialized = response.stream_download(self._client._pipeline)
   {% elif operation.has_response_body %}
-deserialized = self._deserialize('{{ response.name }}', response)
+deserialized = self._deserialize('{{ response.schema.get_serialization_type() }}', response)
   {% endif %}
 {% endmacro %}
 {# actual template starts here #}
@@ -85,7 +85,7 @@ deserialized = self._deserialize('{{ response.name }}', response)
         {% else %}
     if {{ operation.body_parameter.serialized_name }} is not None:
         body_content = self._serialize.body({{ operation.body_parameter.serialized_name }}, '{{ operation.body_parameter.schema.name }}'{{ request_as_xml }}{{ operation.serialization_context }})
-    else
+    else:
         body_content = None
         {% endif %}
     {% elif operation.body_parameter.is_form_data %}
