@@ -5,17 +5,6 @@ class {{ model.name }}(Model):
 {%- endif %}
     {{'\"\"\"' + model.description + "\n"}}
 
-    {%- if model.discriminator_name %}
-    {{ "You probably want to use the sub-classes and not this class directly. Known sub-classes are: " + ", ".join(model.subtype_map.values()) }}
-    {%- endif %}
-
-    {%- if (model.properties | selectattr('readonly') | first) is defined %}
-    {{ "Variables are only populated by the server, and will be ignored when sending a request.\n" }}
-    {%- endif %}
-    {%- if (model.properties | selectattr('required') | first) is defined %}
-    {{ "All required parameters must be populated in order to send to Azure.\n" }}
-    {%- endif %}
-
     {%- if model.properties != None %}
         {%- for p in model.properties %}
     {{ p.documentation_string }}
@@ -48,7 +37,7 @@ class {{ model.name }}(Model):
 
     {%- if (model.properties | selectattr('constant') | first) is defined %}
         {%- for p in model.properties | selectattr('constant')%}
-        {{ p.name }} = {{ p.schema.value.__repr__() }}
+    {{ p.name }} = {{ p.schema.value.__repr__() }}
         {%- endfor %}
     {%- endif %}
 
