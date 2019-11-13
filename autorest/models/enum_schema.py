@@ -4,13 +4,15 @@ from ..common.utils import get_enum_name
 
 
 class EnumValue:
-    def __init__(self, value, **kwargs):
+    def __init__(self, name, value, description=None):
+        self.name = name
         self.value = value
-        self.description = kwargs.pop('description', None)
+        self.description = description
 
     @classmethod
     def from_yaml(cls, yaml_data):
         return cls(
+            name=yaml_data['language']['default']['name'],
             value=yaml_data['value'],
             description=yaml_data['language']['default'].get('description')
         )
