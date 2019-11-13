@@ -1,10 +1,9 @@
 from .base_schema import BaseSchema
-from ..common.utils import get_property_name
 from typing import Any, Dict
 
 class DictionarySchema(BaseSchema):
-    def __init__(self, yaml_data, name, element_type, **kwargs):
-        super(DictionarySchema, self).__init__(yaml_data, name, **kwargs)
+    def __init__(self, yaml_data, element_type, **kwargs):
+        super(DictionarySchema, self).__init__(yaml_data, **kwargs)
         self.element_type = element_type
         self.additional_properties = kwargs.pop('additional_properties', False)
 
@@ -14,21 +13,20 @@ class DictionarySchema(BaseSchema):
         #     return '{object}'
         return "{{{}}}".format(self.element_type.get_serialization_type())
 
-    def get_doc_string_type(self, namespace):
+    def get_python_type(self, namespace):
         # in this case, it's an additional_properties property for unmatched properties
         # if self.additional_properties:
         #     return 'dict[str, object]'
-        return 'dict[str, {}]'.format(self.element_type.get_doc_string_type(namespace))
+        return 'dict[str, {}]'.format(self.element_type.get_python_type(namespace))
 
     @classmethod
-    def from_yaml(cls, name: str, yaml_data: Dict[str, str], **kwargs) -> "DictionarySchema":
+    def from_yaml(cls, yaml_data: Dict[str, str], **kwargs) -> "DictionarySchema":
         for_additional_properties = kwargs.pop('for_additional_properties', False)
 
         element_schema = yaml_data['elementType']
 
         from . import build_schema
         element_type = build_schema(
-            name='_',
             yaml_data=element_schema,
             for_additional_properties=for_additional_properties,
             **kwargs
@@ -36,7 +34,6 @@ class DictionarySchema(BaseSchema):
 
         return cls(
             yaml_data=yaml_data,
-            name=name,
             element_type=element_type,
             additional_properties=for_additional_properties
         )

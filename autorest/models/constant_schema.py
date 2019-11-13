@@ -9,19 +9,18 @@ class ConstantSchema(BaseSchema):
     def __init__(
         self,
         yaml_data: Dict[str, Any],
-        name: str,
         value: str,
         schema: Optional["PrimitiveSchema"]
     ):
-        super(ConstantSchema, self).__init__(yaml_data, name)
+        super(ConstantSchema, self).__init__(yaml_data)
         self.value = value
         self.schema = schema
 
     def get_serialization_type(self):
-        return self.schema.schema_type
+        return self.schema.get_serialization_type()
 
-    def get_doc_string_type(self, namespace=None):
-        return self.schema.get_doc_string_type(namespace)
+    def get_python_type(self, namespace=None):
+        return self.schema.get_python_type(namespace)
 
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, str], **kwargs) -> "ConstantSchema":
@@ -29,7 +28,6 @@ class ConstantSchema(BaseSchema):
         _LOGGER.info("Parsing %s constant", name)
         return cls(
             yaml_data=yaml_data,
-            name=name,
             value=yaml_data.get("value"),
-            schema=get_primitive_schema(name, yaml_data['valueType'])
+            schema=get_primitive_schema(yaml_data['valueType'])
         )

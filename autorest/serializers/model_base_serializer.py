@@ -11,13 +11,17 @@ class ModelBaseSerializer:
         self.code_model = code_model
         self._model_file = None
 
-    def _format_model_name_and_description(self, model):
-        model_name_list = re.split('[^a-zA-Z\\d]', model.name)
-        model_name_list = [s[0].upper() + s[1:] if len(s) > 1 else s.upper()
-                            for s in model_name_list]
-        model.name= ''.join(model_name_list)
-        if not model.description:
-            model.description = model.name + "."
+    def _format_model_parameter_warnings(self, model):
+        # if there are any warnings to include about parameters, we add them here
+        if model.discriminator_name:
+            model.description += ("\n\n\tYou probably want to use the sub-classes and not this class directly. Known sub-classes are: {}.\n"
+                                    .format(", ".join(model.subtype_map.values())))
+
+        if [x for x in model.properties if x.readonly or x.constant]:
+            model.description += "\n\n\tVariables are only populated by the server, and will be ignored when sending a request."
+
+        if [x for x in model.properties if x.required]:
+            model.description += "\n\n\tAll required parameters must be populated in order to send to Azure."
 
     def _format_property_doc_string_for_file(self, prop):
         # building the param line of the property doc
@@ -53,7 +57,7 @@ class ModelBaseSerializer:
             type_doc_string = ":vartype {}: ".format(prop.name)
         else:
             type_doc_string = ":type {}: ".format(prop.name)
-        type_doc_string += prop.schema.get_doc_string_type(self.code_model.namespace)
+        type_doc_string += prop.schema.get_python_type(self.code_model.namespace)
         prop.documentation_string = param_doc_string + "\n\t" + type_doc_string
 
     def serialize(self):

@@ -8,11 +8,9 @@ class BaseSchema(ABC):
     def __init__(
         self,
         yaml_data: Dict[str, Any],
-        name,
         **kwargs
     ):
         self.yaml_data = yaml_data
-        self.name = name
         self.default_value = yaml_data.get('defaultValue', None)
         self.discriminator_name = yaml_data['discriminator']['property']['language']['default']['name'] if yaml_data.get('discriminator') else None
         self.discriminator_value = yaml_data.get('discriminatorValue', None)
@@ -29,5 +27,5 @@ class BaseSchema(ABC):
         ...
 
     @abstractmethod
-    def get_doc_string_type(self, namespace=None):
+    def get_python_type(self, namespace=None):
         ...

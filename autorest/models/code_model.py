@@ -47,7 +47,7 @@ class FakeSchema(BaseSchema):
     def get_serialization_type(self):
         return "FAKESERIALIZATIONTYPE"
 
-    def get_doc_string_type(self, namespace=None):
+    def get_python_type(self, namespace=None):
         return namespace+"FAKEDOCSTRING"
 
 
