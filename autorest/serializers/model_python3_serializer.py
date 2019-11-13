@@ -1,6 +1,6 @@
 from .model_base_serializer import ModelBaseSerializer
 from jinja2 import Template, PackageLoader, Environment
-from ..models import PrimitiveSchema
+from ..models import PrimitiveSchema, ListSchema, DictionarySchema
 from ..common.known_primary_types_mapping import known_primary_types_mapping
 from ..models.imports import FileImport, ImportType
 
@@ -73,7 +73,11 @@ class ModelPython3Serializer(ModelBaseSerializer):
             for param in init_line_parameters:
                 if isinstance(param.schema, PrimitiveSchema):
                     stdlib_type = param.schema.get_python_type_annotation()
-                    if stdlib_type.startswith("~datetime"):
+                    if stdlib_type.startswith("datetime"):
                         file_import.add_import("datetime", ImportType.STDLIB)
+                elif isinstance(param.schema, ListSchema):
+                    file_import.add_from_import("typing", "List", ImportType.STDLIB)
+                elif isinstance(param.schema, DictionarySchema):
+                    file_import.add_from_import("typing", "Dict", ImportType.STDLIB)
 
         return file_import

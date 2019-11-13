@@ -87,6 +87,13 @@ class NumberSchema(PrimitiveSchema):
                 return "int"
         return "float"
 
+    def get_python_type_annotation(self):
+        python_type = self.get_python_type()
+        if python_type == "long":
+            return "int"
+        return python_type
+
+
 class StringSchema(PrimitiveSchema):
     def __init__(self, yaml_data, **kwargs):
         super(StringSchema, self).__init__(yaml_data, **kwargs)
@@ -127,6 +134,9 @@ class DatetimeSchema(PrimitiveSchema):
         return formats_to_attribute_type[self.format]
 
     def get_python_type(self, namespace=None):
+        return "~"+self.get_python_type_annotation()
+
+    def get_python_type_annotation(self):
         return "datetime.datetime"
 
     @classmethod
@@ -143,7 +153,10 @@ class DateSchema(PrimitiveSchema):
         return "date"
 
     def get_python_type(self, namespace=None):
-        return "~datetime.date"
+        return "~"+self.get_python_type_annotation()
+
+    def get_python_type_annotation(self):
+        return "datetime.date"
 
 
 class Duration(PrimitiveSchema):
@@ -152,7 +165,10 @@ class Duration(PrimitiveSchema):
         return "duration"
 
     def get_python_type(self, namespace=None):
-        return "~datetime.timedelta"
+        return "~"+self.get_python_type_annotation()
+
+    def get_python_type_annotation(self):
+        return "datetime.timedelta"
 
 
 class ByteArraySchema(PrimitiveSchema):
