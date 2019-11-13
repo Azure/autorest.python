@@ -41,7 +41,8 @@ class ObjectSchema(BaseSchema):
     :type properties: dict(str, str)
     """
     def __init__(self, yaml_data, name: str, schema_type: str, description=None, **kwargs: "**Any") -> "ObjectSchema":
-        super(ObjectSchema, self).__init__(yaml_data, name, **kwargs)
+        super(ObjectSchema, self).__init__(yaml_data, **kwargs)
+        self.name = name
         self.schema_type = schema_type
         self.description = description
         self.max_properties = kwargs.pop('max_properties', None)
@@ -97,7 +98,6 @@ class ObjectSchema(BaseSchema):
                 name = 'additional_properties1'
 
             schema = build_schema(
-                name=name,
                 yaml_data=p['schema'],
                 **kwargs
             )
@@ -121,7 +121,7 @@ class ObjectSchema(BaseSchema):
     :rtype: ~autorest.models.schema.ClassType
     """
     @classmethod
-    def from_yaml(cls, name: str, yaml_data: Dict[str, str], **kwargs) -> "ClassType":
+    def from_yaml(cls, yaml_data: Dict[str, str], **kwargs) -> "ClassType":
         for_additional_properties = kwargs.pop("for_additional_properties", False)
         top_level = kwargs.pop("top_level", False)
         properties = []
@@ -137,12 +137,12 @@ class ObjectSchema(BaseSchema):
             # this means that this class has additional properties defined on it
             if immediate_parents[0]['language']['default']['name'] == yaml_data['language']['default']['name'] and immediate_parents[0]['type'] == 'dictionary':
                 additional_properties_schema = DictionarySchema.from_yaml(
-                        name="additional_properties",
                         yaml_data=immediate_parents[0],
                         for_additional_properties=True,
                         **kwargs
                     )
-                properties.append(Property(
+                properties.append(
+                    Property(
                         name="additional_properties",
                         schema=additional_properties_schema,
                         original_swagger_name="",
@@ -156,7 +156,8 @@ class ObjectSchema(BaseSchema):
         if yaml_data.get('discriminator'):
             subtype_map = {}
             # map of discriminator value to child's name
-            for children_name, children_yaml in yaml_data['discriminator']['immediate'].items():
+            for children_yaml in yaml_data['discriminator']['immediate'].values():
+                children_name = children_yaml['language']['default']['name']
                 subtype_map[children_yaml['discriminatorValue']] = cls._convert_to_class_name(children_name)
 
         schema_type = None

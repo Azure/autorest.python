@@ -35,15 +35,12 @@ _LOGGER = logging.getLogger(__name__)
 
 
 class PrimitiveSchema(BaseSchema):
-    def __init__(self, yaml_data, name, **kwargs):
-        super(PrimitiveSchema, self).__init__(yaml_data, name, **kwargs)
+    def __init__(self, yaml_data, **kwargs):
+        super(PrimitiveSchema, self).__init__(yaml_data, **kwargs)
 
     @classmethod
-    def from_yaml(cls, name, yaml_data):
-        return cls(
-            yaml_data=yaml_data,
-            name=name
-        )
+    def from_yaml(cls,  yaml_data):
+        return cls(yaml_data=yaml_data)
 
     def get_serialization_type(self):
         return to_python_type(self.yaml_data['type'])
@@ -53,8 +50,8 @@ class PrimitiveSchema(BaseSchema):
 
 
 class NumberSchema(PrimitiveSchema):
-    def __init__(self, yaml_data, name, precision, **kwargs):
-        super(NumberSchema, self).__init__(yaml_data, name, **kwargs)
+    def __init__(self, yaml_data, precision, **kwargs):
+        super(NumberSchema, self).__init__(yaml_data, **kwargs)
         self.precision = precision
         self.multiple_of = kwargs.pop('multiple_of', None)
         self.maximum = kwargs.pop('maximum', None)
@@ -63,10 +60,9 @@ class NumberSchema(PrimitiveSchema):
         self.exclusive_minimum = kwargs.pop('exclusive_minimum', None)
 
     @classmethod
-    def from_yaml(cls, name, yaml_data):
+    def from_yaml(cls, yaml_data):
         return cls(
             yaml_data=yaml_data,
-            name=name,
             precision=yaml_data['precision'],
             multiple_of = yaml_data.get('multipleOf'),
             maximum=yaml_data.get('maximum'),
@@ -92,17 +88,16 @@ class NumberSchema(PrimitiveSchema):
         return "float"
 
 class StringSchema(PrimitiveSchema):
-    def __init__(self, yaml_data, name, **kwargs):
-        super(StringSchema, self).__init__(yaml_data, name, **kwargs)
+    def __init__(self, yaml_data, **kwargs):
+        super(StringSchema, self).__init__(yaml_data, **kwargs)
         self.max_length = kwargs.pop('max_length', None)
         self.min_length = kwargs.pop('min_length', None)
         self.pattern = kwargs.pop('pattern', None)
 
     @classmethod
-    def from_yaml(cls, name, yaml_data):
+    def from_yaml(cls, yaml_data):
         return cls(
             yaml_data=yaml_data,
-            name=name,
             max_length=yaml_data.get('maxLength'),
             min_length=yaml_data.get('minLength'),
             pattern=yaml_data.get('pattern')
@@ -116,8 +111,8 @@ class StringSchema(PrimitiveSchema):
 
 
 class DatetimeSchema(PrimitiveSchema):
-    def __init__(self, yaml_data, name, format, **kwargs):
-        super(DatetimeSchema, self).__init__(yaml_data, name, **kwargs)
+    def __init__(self, yaml_data, format, **kwargs):
+        super(DatetimeSchema, self).__init__(yaml_data, **kwargs)
         self.format = format
 
     class Formats(str, Enum):
@@ -135,10 +130,9 @@ class DatetimeSchema(PrimitiveSchema):
         return "datetime.datetime"
 
     @classmethod
-    def from_yaml(cls, name, yaml_data):
+    def from_yaml(cls, yaml_data):
         return cls(
             yaml_data=yaml_data,
-            name=name,
             format=cls.Formats(yaml_data['format'])
         )
 
@@ -162,8 +156,8 @@ class Duration(PrimitiveSchema):
 
 
 class ByteArraySchema(PrimitiveSchema):
-    def __init__(self, yaml_data, name, format, **kwargs):
-        super(ByteArraySchema, self).__init__(yaml_data, name, **kwargs)
+    def __init__(self, yaml_data, format, **kwargs):
+        super(ByteArraySchema, self).__init__(yaml_data, **kwargs)
         self.format = format
 
     class Formats(str, Enum):
@@ -177,48 +171,26 @@ class ByteArraySchema(PrimitiveSchema):
         return "bytearray"
 
     @classmethod
-    def from_yaml(cls, name, yaml_data):
+    def from_yaml(cls, yaml_data):
         return cls(
             yaml_data=yaml_data,
-            name=name,
             format=cls.Formats(yaml_data['format'])
         )
 
 
 
-def get_primitive_schema(name, yaml_data):
+def get_primitive_schema(yaml_data):
     schema_type = yaml_data['type']
     if schema_type in ('integer', 'number'):
-        return NumberSchema.from_yaml(
-            name=name,
-            yaml_data=yaml_data
-        )
+        return NumberSchema.from_yaml(yaml_data=yaml_data)
     if schema_type == 'string':
-        return StringSchema.from_yaml(
-            name=name,
-            yaml_data=yaml_data
-        )
+        return StringSchema.from_yaml(yaml_data=yaml_data)
     if schema_type == 'date-time':
-        return DatetimeSchema.from_yaml(
-            name=name,
-            yaml_data=yaml_data
-        )
+        return DatetimeSchema.from_yaml(yaml_data=yaml_data)
     if schema_type == 'date':
-        return DateSchema.from_yaml(
-            name=name,
-            yaml_data=yaml_data
-        )
+        return DateSchema.from_yaml(yaml_data=yaml_data)
     if schema_type == 'duration':
-        return Duration.from_yaml(
-            name=name,
-            yaml_data=yaml_data
-        )
+        return Duration.from_yaml(yaml_data=yaml_data)
     if schema_type  == 'byte-array':
-        return ByteArraySchema.from_yaml(
-            name=name,
-            yaml_data=yaml_data
-        )
-    return PrimitiveSchema.from_yaml(
-        name=name,
-        yaml_data=yaml_data
-    )
+        return ByteArraySchema.from_yaml(yaml_data=yaml_data)
+    return PrimitiveSchema.from_yaml(yaml_data=yaml_data)

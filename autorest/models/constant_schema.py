@@ -9,11 +9,10 @@ class ConstantSchema(BaseSchema):
     def __init__(
         self,
         yaml_data: Dict[str, Any],
-        name: str,
         value: str,
         schema: Optional["PrimitiveSchema"]
     ):
-        super(ConstantSchema, self).__init__(yaml_data, name)
+        super(ConstantSchema, self).__init__(yaml_data)
         self.value = value
         self.schema = schema
 
@@ -29,7 +28,6 @@ class ConstantSchema(BaseSchema):
         _LOGGER.info("Parsing %s constant", name)
         return cls(
             yaml_data=yaml_data,
-            name=name,
             value=yaml_data.get("value"),
-            schema=get_primitive_schema(name, yaml_data['valueType'])
+            schema=get_primitive_schema(yaml_data['valueType'])
         )

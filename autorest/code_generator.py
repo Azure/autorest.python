@@ -79,10 +79,7 @@ class CodeGenerator:
                 if schema_type == 'constants':
                     primitive_schema = ConstantSchema.from_yaml(schema_data)
                 else:
-                    primitive_schema = get_primitive_schema(
-                        name=get_property_name(schema_data['language']['default']['name']),
-                        yaml_data=schema_data
-                    )
+                    primitive_schema = get_primitive_schema(yaml_data=schema_data)
                 primitive_schema_dict[primitive_schema.id] = primitive_schema
         return primitive_schema_dict
 
@@ -120,14 +117,14 @@ class CodeGenerator:
             code_model.primitives = self._build_primitive_schemas(yaml_data=yaml_code_model)
             choices = yaml_code_model['schemas']['choices'] if yaml_code_model['schemas'].get('choices') else []
             sealed_choices = yaml_code_model['schemas']['sealedChoices'] if yaml_code_model['schemas'].get('sealedChoices') else []
-            enums = [EnumSchema.from_yaml(name=e['language']['default']['name'], yaml_data=e) for e in choices + sealed_choices]
+            enums = [EnumSchema.from_yaml(yaml_data=e) for e in choices + sealed_choices]
             code_model.enums = {enum.id: enum for enum in enums}
 
             classes = [a for a in yaml_code_model['schemas']['objects']]
             schemas = [
                 build_schema(
-                    name=s['language']['default']['name'],
-                    yaml_data=s, exceptions_set=exceptions_set,
+                    yaml_data=s,
+                    exceptions_set=exceptions_set,
                     top_level=True,
                     code_model=code_model
                 )
