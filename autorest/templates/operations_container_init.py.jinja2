@@ -1,3 +1,5 @@
+{% set async_suffix = "_async" if async_mode else "" %}
+{# actual template starts here #}
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -8,4 +10,13 @@
 # Changes may cause incorrect behavior and will be lost if the code is
 # regenerated.
 # --------------------------------------------------------------------------
-{{ imports }}
+
+{% for operation_group in operation_groups %}
+from ._{{ get_method_name(operation_group.name) }}_operations{{ async_suffix }} import {{ operation_group.name.capitalize() }}Operations
+{% endfor %}
+
+__all__ = [
+{% for operation_group in operation_groups %}
+    '{{ operation_group.name.capitalize() }}Operations',
+{% endfor %}
+]

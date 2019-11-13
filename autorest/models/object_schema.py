@@ -26,6 +26,7 @@
 import re
 from .base_schema import BaseSchema
 from .dictionary_schema import DictionarySchema
+from .imports import FileImport, ImportType
 from .property import Property
 from typing import Any, Dict, List
 from ..common.utils import to_python_type, get_property_name
@@ -52,6 +53,13 @@ class ObjectSchema(BaseSchema):
         self.property_documentation_string = None
         self.init_line = None
         self.init_args = None
+
+    def imports(self):
+        file_import = FileImport()
+        file_import.add_from_import("msrest.serialization", "Model", ImportType.AZURECORE)
+        if self.is_exception:
+            file_import.add_from_import("azure.core.exceptions", "HttpResponseError", ImportType.AZURECORE)
+        return file_import
 
     def get_serialization_type(self) -> str:
         return self.schema_type

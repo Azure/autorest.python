@@ -56,18 +56,18 @@ class {{ model.name }}(Model):
     {%- for arg in model.init_args %}
         {{ arg }}
     {%- endfor %}
-    {%- if model.is_exception %}
-    {{ "\n" }}
-    class {{ model.name + "Exception" }}(HttpResponseError):
-        {{'\"\"\"Server responded with exception of type: \'' + model.name + "\'.\n"}}
-        :param deserialize: A deserializer
-        :param response: Server response to be deserialized.
-        {{'\"\"\"\n'}}
-        def __init__(self, response, deserialize, *args):
+{%- if model.is_exception %}
 
-            model_name = '{{ model.name }}'
-            self.error = deserialize(model_name, response)
-            if self.error is None:
-                self.error = deserialize.dependencies[model_name]()
-            super({{ model.name + "Exception" }}, self).__init__(response=response)
-    {%- endif %}
+class {{ model.name + "Exception" }}(HttpResponseError):
+    {{'\"\"\"Server responded with exception of type: \'' + model.name + "\'.\n"}}
+    :param deserialize: A deserializer
+    :param response: Server response to be deserialized.
+    {{'\"\"\"\n'}}
+    def __init__(self, response, deserialize, *args):
+
+        model_name = '{{ model.name }}'
+        self.error = deserialize(model_name, response)
+        if self.error is None:
+            self.error = deserialize.dependencies[model_name]()
+        super({{ model.name + "Exception" }}, self).__init__(response=response)
+{%- endif %}

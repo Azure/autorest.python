@@ -2,6 +2,7 @@ from .model_base_serializer import ModelBaseSerializer
 from jinja2 import Template, PackageLoader, Environment
 from ..models import PrimitiveSchema
 from ..common.known_primary_types_mapping import known_primary_types_mapping
+from ..models.imports import FileImport, ImportType
 
 
 class ModelPython3Serializer(ModelBaseSerializer):
@@ -36,9 +37,7 @@ class ModelPython3Serializer(ModelBaseSerializer):
         model.init_args = init_args
 
     def _build_init_line(self, model):
-        init_line = "def __init__(self, )"
         init_properties_declaration = []
-        init_args = []
         init_line_parameters = [p for p in model.properties if not p.readonly and not p.is_discriminator]
         init_line_parameters.sort(key=lambda x: x.required, reverse=True)
         for param in init_line_parameters:
@@ -66,3 +65,15 @@ class ModelPython3Serializer(ModelBaseSerializer):
             self._format_property_doc_string_for_file(prop)
         self._build_init_line(model)
         self._build_init_args(model)
+
+    def imports(self):
+        file_import = super(ModelPython3Serializer, self).imports()
+        for model in self.code_model.sorted_schemas:
+            init_line_parameters = [p for p in model.properties if not p.readonly and not p.is_discriminator]
+            for param in init_line_parameters:
+                if isinstance(param.schema, PrimitiveSchema):
+                    stdlib_type = param.schema.get_doc_string_type("")
+                    if stdlib_type.startswith("~datetime"):
+                        file_import.add_import("datetime", ImportType.STDLIB)
+
+        return file_import

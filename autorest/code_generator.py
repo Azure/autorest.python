@@ -171,16 +171,18 @@ class CodeGenerator:
 
         base_path = namespace if not async_mode else namespace / Path("aio")
 
-        operation_groups=code_model.operation_groups
+        operation_groups = code_model.operation_groups
 
         operation_group_init_content = operation_group_init_template.render(
                 code_model=code_model,
                 operation_groups=operation_groups,
-                async_mode=async_mode
+                async_mode=async_mode,
+                get_method_name=get_method_name
         )
+        async_suffix = "_async" if async_mode else ""
 
         self._autorestapi.write_file(
-            base_path / Path("operations") / Path("__init__.py"),
+            base_path / Path(f"operations{async_suffix}") / Path("__init__.py"),
             operation_group_init_content
         )
 
@@ -192,7 +194,7 @@ class CodeGenerator:
                 async_mode=async_mode
             )
             self._autorestapi.write_file(
-                base_path / Path("operations") / Path(f"_{get_method_name(operation_group.name)}_operations.py"),
+                base_path / Path(f"operations{async_suffix}") / Path(f"_{get_method_name(operation_group.name)}_operations{async_suffix}.py"),
                 operation_group_content
             )
 
