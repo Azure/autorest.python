@@ -29,3 +29,6 @@ class BaseSchema(ABC):
     @abstractmethod
     def get_python_type(self, namespace=None):
         ...
+
+    def get_python_type_annotation(self):
+        return self.get_python_type()

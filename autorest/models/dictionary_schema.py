@@ -13,6 +13,9 @@ class DictionarySchema(BaseSchema):
         #     return '{object}'
         return "{{{}}}".format(self.element_type.get_serialization_type())
 
+    def get_python_type_annotation(self):
+        return f'Dict[str, {self.element_type.get_python_type_annotation()}]'
+
     def get_python_type(self, namespace):
         # in this case, it's an additional_properties property for unmatched properties
         # if self.additional_properties:
