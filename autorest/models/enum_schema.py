@@ -34,7 +34,7 @@ class EnumSchema(BaseSchema):
     def get_serialization_type(self):
         return 'str'
 
-    def get_doc_string_type(self, namespace):
+    def get_python_type(self, namespace):
         return "str or ~{}.models.{}".format(namespace, self.enum_type)
 
     @classmethod

@@ -14,11 +14,11 @@ class DictionarySchema(BaseSchema):
         #     return '{object}'
         return "{{{}}}".format(self.element_type.get_serialization_type())
 
-    def get_doc_string_type(self, namespace):
+    def get_python_type(self, namespace):
         # in this case, it's an additional_properties property for unmatched properties
         # if self.additional_properties:
         #     return 'dict[str, object]'
-        return 'dict[str, {}]'.format(self.element_type.get_doc_string_type(namespace))
+        return 'dict[str, {}]'.format(self.element_type.get_python_type(namespace))
 
     @classmethod
     def from_yaml(cls, name: str, yaml_data: Dict[str, str], **kwargs) -> "DictionarySchema":

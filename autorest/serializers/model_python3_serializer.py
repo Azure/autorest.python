@@ -43,10 +43,10 @@ class ModelPython3Serializer(ModelBaseSerializer):
         for param in init_line_parameters:
             if isinstance(param.schema, PrimitiveSchema):
                 if param.required:
-                    init_properties_declaration.append("{}: {}".format(param.name, param.schema.schema_type))
+                    init_properties_declaration.append("{}: {}".format(param.name, param.schema.get_python_type()))
                 else:
                     default_value = "\"" + param.schema.default_value + "\"" if param.schema.default_value else "None"
-                    init_properties_declaration.append("{}: {}={}".format(param.name, param.schema.schema_type, default_value))
+                    init_properties_declaration.append("{}: {}={}".format(param.name, param.schema.get_python_type(), default_value))
             else:
                 if param.required:
                     init_properties_declaration.append(param.name)
@@ -72,7 +72,7 @@ class ModelPython3Serializer(ModelBaseSerializer):
             init_line_parameters = [p for p in model.properties if not p.readonly and not p.is_discriminator]
             for param in init_line_parameters:
                 if isinstance(param.schema, PrimitiveSchema):
-                    stdlib_type = param.schema.get_doc_string_type("")
+                    stdlib_type = param.schema.get_python_type("")
                     if stdlib_type.startswith("~datetime"):
                         file_import.add_import("datetime", ImportType.STDLIB)
 

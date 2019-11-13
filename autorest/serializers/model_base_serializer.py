@@ -57,7 +57,7 @@ class ModelBaseSerializer:
             type_doc_string = ":vartype {}: ".format(prop.name)
         else:
             type_doc_string = ":type {}: ".format(prop.name)
-        type_doc_string += prop.schema.get_doc_string_type(self.code_model.namespace)
+        type_doc_string += prop.schema.get_python_type(self.code_model.namespace)
         prop.documentation_string = param_doc_string + "\n\t" + type_doc_string
 
     def serialize(self):

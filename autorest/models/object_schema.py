@@ -64,7 +64,7 @@ class ObjectSchema(BaseSchema):
     def get_serialization_type(self) -> str:
         return self.name
 
-    def get_doc_string_type(self, namespace):
+    def get_python_type(self, namespace):
         if self.schema_type == 'object':
             return 'object'
         return '~{}.models.{}'.format(namespace, self.name)
@@ -177,9 +177,10 @@ class ObjectSchema(BaseSchema):
         if schema_type == 'any':
             schema_type = 'object'
 
+        name = cls._convert_to_class_name(yaml_data['language']['default']['name'])
+
         description = None
         if top_level:
-            name = cls._convert_to_class_name(name)
             description = yaml_data['language']['default']['description'].strip()
             if description == 'MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA':
                 description = name + "."

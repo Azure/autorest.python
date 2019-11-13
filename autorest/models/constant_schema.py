@@ -18,10 +18,10 @@ class ConstantSchema(BaseSchema):
         self.schema = schema
 
     def get_serialization_type(self):
-        return self.schema.schema_type
+        return self.schema.get_serialization_type()
 
-    def get_doc_string_type(self, namespace=None):
-        return self.schema.get_doc_string_type(namespace)
+    def get_python_type(self, namespace=None):
+        return self.schema.get_python_type(namespace)
 
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, str], **kwargs) -> "ConstantSchema":

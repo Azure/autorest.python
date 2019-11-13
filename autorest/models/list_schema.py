@@ -15,8 +15,8 @@ class ListSchema(BaseSchema):
     def get_serialization_type(self):
         return '[{}]'.format(self.element_type.get_serialization_type())
 
-    def get_doc_string_type(self, namespace):
-        return 'list[{}]'.format(self.element_type.get_doc_string_type(namespace))
+    def get_python_type(self, namespace):
+        return 'list[{}]'.format(self.element_type.get_python_type(namespace))
 
     @classmethod
     def from_yaml(cls, name: str, yaml_data: Dict[str, str], **kwargs) -> "SequenceType":
