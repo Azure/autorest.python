@@ -1,5 +1,6 @@
 import re
 from ..models import DictionarySchema, EnumSchema, ListSchema, ObjectSchema, PrimitiveSchema, ConstantSchema
+from ..models.imports import FileImport
 from ..common.utils import to_python_type
 from .import_serializer import FileImportSerializer
 from jinja2 import Template, PackageLoader, Environment
@@ -74,8 +75,14 @@ class ModelBaseSerializer:
         template = env.get_template("model_container.py.jinja2")
         self._model_file = template.render(
             code_model=self.code_model,
-            imports=FileImportSerializer(self.code_model.imports())
+            imports=FileImportSerializer(self.imports())
         )
+
+    def imports(self):
+        file_import = FileImport()
+        for model in self.code_model.sorted_schemas:
+            file_import.merge(model.imports())
+        return file_import
 
     @property
     def model_file(self):

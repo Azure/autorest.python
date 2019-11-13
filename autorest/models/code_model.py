@@ -73,13 +73,6 @@ class CodeModel:
                     return elt_value
         raise KeyError("Didn't find it!!!!!")
 
-    def imports(self):
-        file_import = FileImport()
-        file_import.add_from_import("msrest.serialization", "Model", ImportType.AZURECORE)
-        if len([s for s in self.schemas.values() if s.is_exception]) > 0:
-            file_import.add_from_import("azure.core.exceptions", "HttpResponseError", ImportType.AZURECORE)
-        return file_import
-
     def sort_schemas(self):
         seen_schemas = set()
         sorted_schemas = []

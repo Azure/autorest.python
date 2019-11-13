@@ -28,7 +28,7 @@ from azure.core.exceptions import map_error
 from .operations_async import {{ operation_group_name.capitalize() }}Operations
 from .. import models
 {%- else %}
-from .operations import {{ operation_group_name }}Operations
+from .operations import {{ operation_group_name.capitalize() }}Operations
 from . import models
 {%- endif %}
 {%- endfor %}

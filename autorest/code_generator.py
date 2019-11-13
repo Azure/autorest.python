@@ -89,7 +89,7 @@ class CodeGenerator:
     def _create_code_model(self, yaml_code_model):
         # Create a code model
         code_model = CodeModel()
-        code_model.client_name = yaml_code_model['info']['title']
+        code_model.client_name = yaml_code_model['info']['title'].replace(" ", "")  # FIXME do a proper namer
         code_model.description = yaml_code_model['info']['description'] if yaml_code_model['info'].get('description') else ""
         code_model.api_version = self._autorestapi.get_value("package-version")
         if not code_model.api_version:
@@ -166,17 +166,35 @@ class CodeGenerator:
         self._autorestapi.write_file(models_path / Path("__init__.py"), model_init_serializer.model_init_file)
 
     def _serialize_and_write_operations_folder(self, namespace, code_model, env, async_mode=False):
-        template = env.get_template("operations_container.py.jinja2")
-        operation_groups=code_model.operation_groups
+        operation_group_template = env.get_template("operations_container.py.jinja2")
+        operation_group_init_template = env.get_template("operations_container_init.py.jinja2")
+
+        base_path = namespace if not async_mode else namespace / Path("aio")
+
+        operation_groups = code_model.operation_groups
+
+        operation_group_init_content = operation_group_init_template.render(
+                code_model=code_model,
+                operation_groups=operation_groups,
+                async_mode=async_mode,
+                get_method_name=get_method_name
+        )
+        async_suffix = "_async" if async_mode else ""
+
+        self._autorestapi.write_file(
+            base_path / Path(f"operations{async_suffix}") / Path("__init__.py"),
+            operation_group_init_content
+        )
+
         for operation_group in operation_groups:
-            operation_group_content = template.render(
+            operation_group_content = operation_group_template.render(
                 code_model=code_model,
                 operation_group=operation_group,
                 imports=FileImportSerializer(operation_group.imports()),
                 async_mode=async_mode
             )
             self._autorestapi.write_file(
-                namespace / Path("operations") / Path(f"_{get_method_name(operation_group.name)}_operations.py"),
+                base_path / Path(f"operations{async_suffix}") / Path(f"_{get_method_name(operation_group.name)}_operations{async_suffix}.py"),
                 operation_group_content
             )
 
@@ -254,6 +272,7 @@ class CodeGenerator:
             self._serialize_and_write_models_folder(namespace=code_model.namespace, code_model=code_model)
 
         self._serialize_and_write_operations_folder(namespace=code_model.namespace, code_model=code_model, env=env)
+        self._serialize_and_write_operations_folder(namespace=code_model.namespace, code_model=code_model, env=env, async_mode=True)
 
         operation_group_names = [o.name for o in code_model.operation_groups]
         self._serialize_and_write_top_level_folder(

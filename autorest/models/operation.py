@@ -117,7 +117,7 @@ class Operation:
 
     @property
     def has_request_body(self):
-        return any(parameter.location == "body" for parameter in self.parameters)
+        return any(parameter.location == ParameterLocation.Body for parameter in self.parameters)
 
     @property
     def body_parameter(self) -> Parameter:
