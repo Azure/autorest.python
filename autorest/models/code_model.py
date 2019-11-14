@@ -28,9 +28,7 @@ import logging
 from typing import List, Dict, Optional
 
 from .base_schema import BaseSchema
-from .dictionary_schema import DictionarySchema
 from .enum_schema import EnumSchema
-from .imports import FileImport, ImportType
 from .operation_group import OperationGroup
 from .custom_server import CustomBaseUrl
 
@@ -59,7 +57,7 @@ class CodeModel:
         self.description = None
         self.schemas: Dict[int, BaseSchema] = {}
         self.sorted_schemas: List[BaseSchema] = []
-        self.enums: Dict[int, EnumSchema] = []
+        self.enums: Dict[int, EnumSchema] = {}
         self.primitives: Dict[int, BaseSchema] = {}
         self.namespace = None
         self.operation_groups: List[OperationGroup] = []

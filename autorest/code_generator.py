@@ -69,20 +69,6 @@ class CodeGenerator:
                     exceptions_set.add(exception['schema']['language']['default']['name'])
         return exceptions_set
 
-    def _build_primitive_schemas(self, yaml_data):
-        primitive_schema_dict = {}
-        for schema_type, yaml_data in yaml_data['schemas'].items():
-            # these are not primitive types so we're generating them elsewhere
-            if schema_type in ['objects', 'arrays', 'dictionaries', 'choices', 'sealedChoices']:
-                continue
-            for schema_data in yaml_data:
-                if schema_type == 'constants':
-                    primitive_schema = ConstantSchema.from_yaml(schema_data)
-                else:
-                    primitive_schema = get_primitive_schema(yaml_data=schema_data)
-                primitive_schema_dict[primitive_schema.id] = primitive_schema
-        return primitive_schema_dict
-
     def _create_code_model(self, yaml_code_model):
         # Create a code model
         code_model = CodeModel()
@@ -114,22 +100,15 @@ class CodeGenerator:
 
         if yaml_code_model.get('schemas'):
             exceptions_set = self._build_exceptions_set(yaml_data=yaml_code_model['operationGroups'])
-            code_model.primitives = self._build_primitive_schemas(yaml_data=yaml_code_model)
-            choices = yaml_code_model['schemas']['choices'] if yaml_code_model['schemas'].get('choices') else []
-            sealed_choices = yaml_code_model['schemas']['sealedChoices'] if yaml_code_model['schemas'].get('sealedChoices') else []
-            enums = [EnumSchema.from_yaml(yaml_data=e) for e in choices + sealed_choices]
-            code_model.enums = {enum.id: enum for enum in enums}
 
-            classes = [a for a in yaml_code_model['schemas']['objects']]
-            schemas = [
-                build_schema(
-                    yaml_data=s,
-                    exceptions_set=exceptions_set,
-                    top_level=True,
-                    code_model=code_model
-                )
-                for s in classes]
-            code_model.schemas = {schema.id: schema for schema in schemas}
+            for type_list in yaml_code_model['schemas'].values():
+                for schema in type_list:
+                    build_schema(
+                        yaml_data=schema,
+                        exceptions_set=exceptions_set,
+                        top_level=True,
+                        code_model=code_model
+                    )
             # sets the enums property in our code_model variable, which will later be passed to EnumSerializer
 
             code_model.add_inheritance_to_models()

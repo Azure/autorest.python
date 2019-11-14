@@ -22,13 +22,37 @@ __all__ = [
 # TODO: should this be in models.__init__ or CodeModel
 def build_schema(yaml_data, **kwargs):
     code_model = kwargs.get('code_model')
-    schema_type = yaml_data['type']
-    if schema_type == 'array':
-        return ListSchema.from_yaml(yaml_data=yaml_data, **kwargs)
-    if schema_type == 'dictionary':
-        return DictionarySchema.from_yaml(yaml_data=yaml_data, **kwargs)
-    if schema_type == 'object' or schema_type == 'and' or schema_type == 'any':
-        return ObjectSchema.from_yaml(yaml_data=yaml_data, **kwargs)
+    yaml_id = id(yaml_data)
+    try:
+        return code_model.lookup_schema(yaml_id)
+    except Exception:
+        # Not created yet, let's create it and add it to the index
+        pass
 
-    # since we've already built all enums and primitives, we just need to look them up
-    return code_model.lookup_schema(id(yaml_data))
+    schema_type = yaml_data['type']
+    if schema_type == 'constant':
+        schema = ConstantSchema.from_yaml(yaml_data=yaml_data)
+        code_model.primitives[yaml_id] = schema
+
+    elif schema_type in ['choice', 'sealed-choice']:
+        schema = EnumSchema.from_yaml(yaml_data=yaml_data)
+        code_model.enums[yaml_id] = schema
+
+    elif schema_type == 'array':
+        schema = ListSchema.from_yaml(yaml_data=yaml_data, **kwargs)
+        code_model.primitives[yaml_id] = schema
+
+    elif schema_type == 'dictionary':
+        schema = DictionarySchema.from_yaml(yaml_data=yaml_data, **kwargs)
+        code_model.primitives[yaml_id] = schema
+
+    elif schema_type == 'object' or schema_type == 'and' or schema_type == 'any':
+        schema = ObjectSchema.from_yaml(yaml_data=yaml_data, **kwargs)
+        code_model.schemas[yaml_id] = schema
+
+    else:
+        schema = get_primitive_schema(yaml_data=yaml_data)
+        code_model.primitives[yaml_id] = schema
+
+    return schema
+
