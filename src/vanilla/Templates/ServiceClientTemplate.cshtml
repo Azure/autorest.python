@@ -118,6 +118,12 @@ else
             @:self._client, self._config, self._serialize, self._deserialize)
 }
 @EmptyLine
+    def close(self):
+        # type: () -> None
+        """Close the client if keep_alive is True.
+        """
+        self._client.close()  
+  
     def __enter__(self):
         self._client.__enter__()
         return self
