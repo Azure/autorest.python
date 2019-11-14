@@ -184,12 +184,11 @@ class ObjectSchema(BaseSchema):
         name = cls._convert_to_class_name(yaml_data['language']['default']['name'])
 
         description = None
-        if top_level:
-            description = yaml_data['language']['default']['description'].strip()
-            if description == 'MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA':
-                description = name + "."
-            elif 'MISSING' in description:
-                description = ""
+        description = yaml_data['language']['default']['description'].strip()
+        if description == 'MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA':
+            description = name + "."
+        elif 'MISSING' in description:
+            description = ""
         is_exception = None
         exceptions_set = kwargs.pop('exceptions_set', None)
         if exceptions_set:
