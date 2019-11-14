@@ -81,10 +81,10 @@ deserialized = self._deserialize('{{ response.schema.get_serialization_type() }}
     # Construct body
     {% if not operation.body_parameter.is_stream %}
         {% if operation.body_parameter.is_required %}
-    body_content = self._serialize.body({{ operation.body_parameter.serialized_name }}, '{{ operation.body_parameter.schema.name }}'{{ request_as_xml }}{{ operation.serialization_context }})
+    body_content = self._serialize.body({{ operation.body_parameter.serialized_name }}, '{{ operation.body_parameter.schema.get_serialization_type() }}'{{ request_as_xml }}{{ operation.serialization_context }})
         {% else %}
     if {{ operation.body_parameter.serialized_name }} is not None:
-        body_content = self._serialize.body({{ operation.body_parameter.serialized_name }}, '{{ operation.body_parameter.schema.name }}'{{ request_as_xml }}{{ operation.serialization_context }})
+        body_content = self._serialize.body({{ operation.body_parameter.serialized_name }}, '{{ operation.body_parameter.schema.get_serialization_type() }}'{{ request_as_xml }}{{ operation.serialization_context }})
     else:
         body_content = None
         {% endif %}
