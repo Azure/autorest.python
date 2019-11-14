@@ -30,6 +30,7 @@ from ..common.utils import get_method_name
 from .imports import FileImport, ImportType
 from .schema_response import SchemaResponse
 from .parameter import Parameter, ParameterLocation
+from .constant_schema import ConstantSchema
 
 
 _LOGGER = logging.getLogger(__name__)
@@ -138,6 +139,12 @@ class Operation:
     def headers_parameters(self) -> List[Parameter]:
         return [
             parameter for parameter in self.parameters if parameter.location == ParameterLocation.Header
+        ]
+
+    @property
+    def constant_parameters(self) -> List[Parameter]:
+        return [
+            parameter for parameter in self.parameters if isinstance(parameter.schema, ConstantSchema)
         ]
 
     @staticmethod

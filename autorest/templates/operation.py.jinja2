@@ -42,6 +42,12 @@ deserialized = self._deserialize('{{ response.schema.get_serialization_type() }}
     warnings.warn('Method {{operation.name}} is deprecated', DeprecationWarning)
 {% endif %}
     error_map = kwargs.pop('error_map', None)
+{% if operation.constant_parameters %}
+    {% for constant_parameter in operation.constant_parameters %}
+    {{ constant_parameter.serialized_name }} = "{{ constant_parameter.schema.value }}"
+    {% endfor %}
+{% endif %}
+
     # Construct URL
     url = self.{{ operation.python_name }}.metadata['url']
 

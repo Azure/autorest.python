@@ -28,6 +28,6 @@ class ConstantSchema(BaseSchema):
         _LOGGER.info("Parsing %s constant", name)
         return cls(
             yaml_data=yaml_data,
-            value=yaml_data.get("value"),
+            value=yaml_data.get("value", {}).get("value", None),
             schema=get_primitive_schema(yaml_data['valueType'])
         )
