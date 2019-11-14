@@ -44,7 +44,7 @@ class Parameter:
         name: str,
         description: str,
         implementation: str,
-        required: bool,
+        is_required: bool,
         location: ParameterLocation,
         skip_url_encoding: bool,
         constraints: List[Any],
@@ -55,14 +55,14 @@ class Parameter:
         self.serialized_name = get_parameter_name(name)
         self.description = description
         self.implementation = implementation
-        self.required = required
+        self.is_required = is_required
         self.location = location
         self.skip_url_encoding = skip_url_encoding
         self.constraints = constraints
 
     @property
     def for_method_signature(self):
-        if self.required:
+        if self.is_required:
             return self.serialized_name
         else:
             return f"{self.serialized_name}=None"
@@ -76,7 +76,7 @@ class Parameter:
             name=yaml_data["language"]["default"]["name"],
             description=yaml_data["language"]["default"]["description"],
             implementation=yaml_data["implementation"],
-            required=yaml_data.get("required", False),
+            is_required=yaml_data.get("required", False),
             location=ParameterLocation(yaml_data["protocol"]["http"]["in"]),
             skip_url_encoding=False, # FIXME skip_url_encoding
             constraints=[], # FIXME constraints
