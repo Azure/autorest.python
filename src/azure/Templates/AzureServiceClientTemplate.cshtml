@@ -110,9 +110,6 @@ else
 }
 @EmptyLine
     def close(self):
-        # type: () -> None
-        """Close the client if keep_alive is True.
-        """
         self._client.close()
 
     def __enter__(self):
