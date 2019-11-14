@@ -122,7 +122,7 @@ else
             @:self._client, self._config, self._serialize, self._deserialize)
 }
 @EmptyLine
-    async close(self):
+    async def close(self):
         await self._client.close()
   
     async def __aenter__(self):
