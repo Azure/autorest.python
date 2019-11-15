@@ -33,7 +33,7 @@ from jinja2 import Template, PackageLoader, Environment
 
 from .jsonrpc import AutorestAPI
 
-from .common.utils import get_namespace_name, get_method_name
+from .common.utils import get_namespace_name, get_client_name, get_method_name
 from .models.code_model import CodeModel
 from .models import build_schema, EnumSchema, ConstantSchema
 from .models.primitive_schemas import get_primitive_schema
@@ -169,7 +169,7 @@ class CodeGenerator:
                 async_mode=async_mode
             )
             self._autorestapi.write_file(
-                base_path / Path(f"operations{async_suffix}") / Path(f"_{get_method_name(operation_group.name)}_operations{async_suffix}.py"),
+                base_path / Path(f"operations{async_suffix}") / Path(f"_{get_client_name(operation_group.name)}_operations{async_suffix}.py"),
                 operation_group_content
             )
 
