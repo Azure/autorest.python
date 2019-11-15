@@ -27,11 +27,10 @@ class EnumSchema(BaseSchema):
         return 'str'
 
     def get_python_type_annotation(self):
-        return 'str'
+        return f'Union[str or {self.enum_type}]'
 
     def get_python_type(self, namespace):
-        return "str or ~{}.models.{}".format(namespace, self.enum_type)
-
+        return f"str or ~{namespace}.models.{self.enum_type}"
     @classmethod
     def _get_enum_values(cls, yaml_data):
         values = []

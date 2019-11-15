@@ -18,7 +18,7 @@ class ListSchema(BaseSchema):
         return f'List[{self.element_type.get_python_type_annotation()}]'
 
     def get_python_type(self, namespace):
-        return 'list[{}]'.format(self.element_type.get_python_type(namespace))
+        return f'list[{self.element_type.get_python_type(namespace)}]'
 
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, str], **kwargs) -> "SequenceType":
