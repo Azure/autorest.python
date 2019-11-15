@@ -45,7 +45,9 @@ class {{ model.name }}(Model):
     {%- for arg in model.init_args %}
         {{ arg }}
     {%- endfor %}
+
 {%- if model.is_exception %}
+
 
 class {{ model.name + "Exception" }}(HttpResponseError):
     {{'\"\"\"Server responded with exception of type: \'' + model.name + "\'.\n"}}
