@@ -51,6 +51,8 @@ class ObjectSchema(BaseSchema):
         self.is_exception = kwargs.pop('is_exception', False)
         self.base_model = kwargs.pop('base_model', None)
         self.subtype_map = kwargs.pop('subtype_map', None)
+        self.discriminator_name = kwargs.pop('discriminator_name', None)
+        self.discriminator_value = kwargs.pop('discriminator_value', None)
         self.property_documentation_string = None
         self.init_line = None
         self.init_args = None
@@ -209,3 +211,5 @@ class ObjectSchema(BaseSchema):
         self.base_model=base_model
         self.is_exception=is_exception
         self.subtype_map=subtype_map
+        self.discriminator_name = get_property_name(yaml_data['discriminator']['property']['language']['default']['name']) if yaml_data.get('discriminator') else None
+        self.discriminator_value = yaml_data.get('discriminatorValue', None)
