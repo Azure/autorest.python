@@ -74,7 +74,7 @@ class CodeModel:
     def sort_schemas(self):
         seen_schemas = set()
         sorted_schemas = []
-        for schema in sorted(self.schemas.values(), key=lambda x: x.name):
+        for schema in sorted(self.schemas.values(), key=lambda x: x.name.lower()):
             if schema.name in seen_schemas:
                 continue
             ancestors = []
