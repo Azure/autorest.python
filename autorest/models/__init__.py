@@ -47,8 +47,11 @@ def build_schema(yaml_data, **kwargs):
         code_model.primitives[yaml_id] = schema
 
     elif schema_type == 'object' or schema_type == 'and':
-        schema = ObjectSchema.from_yaml(yaml_data=yaml_data, **kwargs)
+        # To avoid infinite loop, create the right instance in memory,
+        # put it in the index, and then parse the object.
+        schema = ObjectSchema(yaml_data, None, None, None)
         code_model.schemas[yaml_id] = schema
+        schema.fill_instance_from_yaml(yaml_data, **kwargs)
 
     else:
         schema = get_primitive_schema(yaml_data=yaml_data)

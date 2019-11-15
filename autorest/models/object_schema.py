@@ -73,8 +73,8 @@ class ObjectSchema(BaseSchema):
             return 'object'
         return '~{}.models.{}'.format(namespace, self.name)
 
-    @classmethod
-    def _convert_to_class_name(cls, name):
+    @staticmethod
+    def _convert_to_class_name(name):
         name_list = re.split('[^a-zA-Z\\d]', name)
         name_list = [s[0].upper() + s[1:] if len(s) > 1 else s.upper()
                             for s in name_list]
@@ -91,8 +91,8 @@ class ObjectSchema(BaseSchema):
      ~autorest.models.SequenceType or
      ~autorest.models.EnumType]
     """
-    @classmethod
-    def _create_properties(cls, yaml_data: Dict[str, str], has_additional_properties, **kwargs) -> List["Property"]:
+    @staticmethod
+    def _create_properties(yaml_data: Dict[str, str], has_additional_properties, **kwargs) -> List["Property"]:
         properties = []
         for p in yaml_data:
             from . import build_schema
@@ -117,6 +117,8 @@ class ObjectSchema(BaseSchema):
 
     """Returns a ClassType from the dict object constructed from a yaml file.
 
+    WARNING: This guy might create an infinite loop.
+
     :param str name: The name of the class type.
     :param yaml_data: A representation of the schema of a class type from a yaml file.
     :type yaml_data: dict(str, str)
@@ -125,6 +127,10 @@ class ObjectSchema(BaseSchema):
     """
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, str], **kwargs) -> "ClassType":
+        obj = cls(yaml_data, None, None, None)
+        return obj.fill_instance_from_yaml(yaml_data)
+
+    def fill_instance_from_yaml(self, yaml_data: Dict[str, str], **kwargs) -> None:
         for_additional_properties = kwargs.pop("for_additional_properties", False)
         top_level = kwargs.pop("top_level", False)
         properties = []
@@ -161,11 +167,11 @@ class ObjectSchema(BaseSchema):
             # map of discriminator value to child's name
             for children_yaml in yaml_data['discriminator']['immediate'].values():
                 children_name = children_yaml['language']['default']['name']
-                subtype_map[children_yaml['discriminatorValue']] = cls._convert_to_class_name(children_name)
+                subtype_map[children_yaml['discriminatorValue']] = self._convert_to_class_name(children_name)
 
         schema_type = None
         if top_level and yaml_data.get('properties'):
-            properties += cls._create_properties(
+            properties += self._create_properties(
                 yaml_data=yaml_data.get('properties', []),
                 has_additional_properties=len(properties) > 0,
                 **kwargs
@@ -177,11 +183,11 @@ class ObjectSchema(BaseSchema):
         else:
             schema_type = yaml_data['type']
             if schema_type == 'object':
-                schema_type = cls._convert_to_class_name(yaml_data['language']['default']['name'])
+                schema_type = self._convert_to_class_name(yaml_data['language']['default']['name'])
         if schema_type == 'any':
             schema_type = 'object'
 
-        name = cls._convert_to_class_name(yaml_data['language']['default']['name'])
+        name = self._convert_to_class_name(yaml_data['language']['default']['name'])
 
         description = None
         description = yaml_data['language']['default']['description'].strip()
@@ -195,13 +201,12 @@ class ObjectSchema(BaseSchema):
             if yaml_data['language']['default']['name'] in exceptions_set:
                 is_exception = True
 
-        return cls(
-            yaml_data=yaml_data,
-            name=name,
-            description=description,
-            schema_type=schema_type,
-            properties=properties,
-            base_model=base_model,
-            is_exception=is_exception,
-            subtype_map=subtype_map
-        )
+
+        self.yaml_data=yaml_data
+        self.name=name
+        self.description=description
+        self.schema_type=schema_type
+        self.properties=properties
+        self.base_model=base_model
+        self.is_exception=is_exception
+        self.subtype_map=subtype_map
