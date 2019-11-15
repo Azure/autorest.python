@@ -68,7 +68,7 @@ class ObjectSchema(BaseSchema):
         return self.name
 
     def get_python_type_annotation(self) -> str:
-        return f'\"{self.name}\"""'
+        return f'\"{self.name}\"'
 
     def get_python_type(self, namespace):
         if self.schema_type == 'object':

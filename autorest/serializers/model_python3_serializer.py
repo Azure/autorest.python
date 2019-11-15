@@ -39,18 +39,11 @@ class ModelPython3Serializer(ModelBaseSerializer):
         init_line_parameters = [p for p in model.properties if not p.readonly and not p.is_discriminator and not p.constant]
         init_line_parameters.sort(key=lambda x: x.required, reverse=True)
         for param in init_line_parameters:
-            if isinstance(param.schema, PrimitiveSchema):
-                if param.required:
-                    init_properties_declaration.append("{}: {}".format(param.name, param.schema.get_python_type_annotation()))
-                else:
-                    default_value = "\"" + param.schema.default_value + "\"" if param.schema.default_value else "None"
-                    init_properties_declaration.append("{}: {}={}".format(param.name, param.schema.get_python_type_annotation(), default_value))
+            if param.required:
+                init_properties_declaration.append("{}: {}".format(param.name, param.schema.get_python_type_annotation()))
             else:
-                if param.required:
-                    init_properties_declaration.append(param.name)
-                else:
-                    default_value = "\"" + param.schema.default_value + "\"" if param.schema.default_value else "None"
-                    init_properties_declaration.append("{}={}".format(param.name, default_value))
+                default_value = "\"" + param.schema.default_value + "\"" if param.schema.default_value else "None"
+                init_properties_declaration.append("{}: {}={}".format(param.name, param.schema.get_python_type_annotation(), default_value))
 
         if init_properties_declaration:
             model.init_line = "def __init__(self, *, {}, **kwargs) -> None:".format(", ".join(init_properties_declaration))
