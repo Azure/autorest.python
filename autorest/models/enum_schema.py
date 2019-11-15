@@ -1,6 +1,5 @@
 from .base_schema import BaseSchema
 from typing import Any, Dict
-from ..common.utils import get_enum_name
 
 
 class EnumValue:

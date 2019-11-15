@@ -29,7 +29,7 @@ from .dictionary_schema import DictionarySchema
 from .imports import FileImport, ImportType
 from .property import Property
 from typing import Any, Dict, List
-from ..common.utils import get_property_name
+from ..common.utils import get_property_name, to_camel_case
 
 
 class ObjectSchema(BaseSchema):
@@ -75,12 +75,6 @@ class ObjectSchema(BaseSchema):
             return 'object'
         return '~{}.models.{}'.format(namespace, self.name)
 
-    @staticmethod
-    def _convert_to_class_name(name):
-        name_list = re.split('[^a-zA-Z\\d]', name)
-        name_list = [s[0].upper() + s[1:] if len(s) > 1 else s.upper()
-                            for s in name_list]
-        return ''.join(name_list)
 
     """Returns the properties of a ClassType if they exist.
 
@@ -168,7 +162,7 @@ class ObjectSchema(BaseSchema):
             # map of discriminator value to child's name
             for children_yaml in yaml_data['discriminator']['immediate'].values():
                 children_name = children_yaml['language']['default']['name']
-                subtype_map[children_yaml['discriminatorValue']] = self._convert_to_class_name(children_name)
+                subtype_map[children_yaml['discriminatorValue']] = to_camel_case(children_name)
 
         schema_type = None
         if yaml_data.get('properties'):
@@ -184,11 +178,11 @@ class ObjectSchema(BaseSchema):
         else:
             schema_type = yaml_data['type']
             if schema_type == 'object':
-                schema_type = self._convert_to_class_name(yaml_data['language']['default']['name'])
+                schema_type = to_camel_case(yaml_data['language']['default']['name'])
         if schema_type == 'any':
             schema_type = 'object'
 
-        name = self._convert_to_class_name(yaml_data['language']['default']['name'])
+        name = to_camel_case(yaml_data['language']['default']['name'])
 
         description = None
         description = yaml_data['language']['default']['description'].strip()

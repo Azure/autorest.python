@@ -20,7 +20,13 @@ def to_python_type(original_type):
 
 # The below code is all used to switch names to python case
 
-def get_model_name(name):
+def to_camel_case(name):
+    name_list = re.split('[^a-zA-Z\\d]', name)
+    name_list = [s[0].upper() + s[1:] if len(s) > 1 else s.upper()
+                        for s in name_list]
+    return ''.join(name_list)
+
+def get_client_name(name):
     return _get_valid_python_name(name, "Model")
 
 def get_property_name(name):

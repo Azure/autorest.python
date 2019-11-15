@@ -33,7 +33,7 @@ from jinja2 import Template, PackageLoader, Environment
 
 from .jsonrpc import AutorestAPI
 
-from .common.utils import get_namespace_name, get_method_name, get_property_name
+from .common.utils import get_namespace_name, get_method_name
 from .models.code_model import CodeModel
 from .models import build_schema, EnumSchema, ConstantSchema
 from .models.primitive_schemas import get_primitive_schema

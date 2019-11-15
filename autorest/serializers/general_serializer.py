@@ -1,5 +1,5 @@
 from jinja2 import Template, PackageLoader, Environment
-from ..common.utils import get_namespace_name, get_method_name
+from ..common.utils import get_namespace_name, get_method_name, get_client_name, to_camel_case
 
 class GeneralSerializer:
     def __init__(self, code_model, operation_group_names):
@@ -18,6 +18,8 @@ class GeneralSerializer:
         )
         env.globals.update(get_namespace_name=get_namespace_name)
         env.globals.update(get_method_name=get_method_name)
+        env.globals.update(get_client_name=get_client_name)
+        env.globals.update(to_camel_case=to_camel_case)
 
         template = env.get_template("init.py.jinja2")
         self._init_file = template.render(
