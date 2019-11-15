@@ -1,4 +1,5 @@
 from .imports import FileImport
+from ..common.utils import get_property_name
 
 from abc import ABC, abstractmethod
 from typing import Any, Dict
@@ -12,7 +13,7 @@ class BaseSchema(ABC):
     ):
         self.yaml_data = yaml_data
         self.default_value = yaml_data.get('defaultValue', None)
-        self.discriminator_name = yaml_data['discriminator']['property']['language']['default']['name'] if yaml_data.get('discriminator') else None
+        self.discriminator_name = get_property_name(yaml_data['discriminator']['property']['language']['default']['name']) if yaml_data.get('discriminator') else None
         self.discriminator_value = yaml_data.get('discriminatorValue', None)
 
     def imports(self):
