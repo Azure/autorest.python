@@ -1,5 +1,5 @@
-{% set def_keyword = "async def" if async_mode else "def" %}
-{% set pipeline_client = "AsyncPipelineClient" if async_mode else "PipelineClient" %}
+{% set def_keyword = "async def" if is_async else "def" %}
+{% set pipeline_client = "AsyncPipelineClient" if is_async else "PipelineClient" %}
 {# actual template starts here #}
 # coding=utf-8
 # --------------------------------------------------------------------------
