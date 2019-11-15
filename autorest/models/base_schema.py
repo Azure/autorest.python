@@ -23,12 +23,30 @@ class BaseSchema(ABC):
         return id(self.yaml_data)
 
     @abstractmethod
-    def get_serialization_type(self):
+    def get_serialization_type(self) -> str:
+        """The tag recognized by 'msrest' as a serialization/deserialization.
+
+        'str', 'int', 'float', 'bool' or
+        https://github.com/Azure/msrest-for-python/blob/b505e3627b547bd8fdc38327e86c70bdb16df061/msrest/serialization.py#L407-L416
+
+        or the object schema name (e.g. DotSalmon).
+
+        If list: '[str]'
+        If dict: '{str}'
+        """
         ...
 
     @abstractmethod
     def get_python_type(self, namespace=None):
+        """That the python type if used for input using RST syntax.
+
+        Special case for enum, for instance: 'str or ~namespace.EnumName'
+        """
         ...
 
     def get_python_type_annotation(self):
+        """That the python type if used for input using "typing" syntax
+
+        Special case for enum, for instance: Union[str, "EnumName"]
+        """
         return self.get_python_type()
