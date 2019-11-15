@@ -1,7 +1,6 @@
 from .model_base_serializer import ModelBaseSerializer
 from jinja2 import Template, PackageLoader, Environment
 from ..models import PrimitiveSchema, ListSchema, DictionarySchema
-from ..common.known_primary_types_mapping import known_primary_types_mapping
 from ..models.imports import FileImport, ImportType
 
 

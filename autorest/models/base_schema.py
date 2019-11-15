@@ -1,5 +1,4 @@
 from .imports import FileImport
-from ..common.utils import get_property_name
 
 from abc import ABC, abstractmethod
 from typing import Any, Dict

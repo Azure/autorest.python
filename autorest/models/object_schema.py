@@ -29,7 +29,7 @@ from .dictionary_schema import DictionarySchema
 from .imports import FileImport, ImportType
 from .property import Property
 from typing import Any, Dict, List
-from ..common.utils import to_python_type, get_property_name
+from ..common.utils import get_property_name
 
 
 class ObjectSchema(BaseSchema):

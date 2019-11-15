@@ -6,7 +6,6 @@ from .primitive_schemas import get_primitive_schema, PrimitiveSchema
 from .enum_schema import EnumSchema
 from .base_schema import BaseSchema
 from .constant_schema import ConstantSchema
-from ..common.utils import get_property_name
 
 __all__ = [
     "BaseSchema",
