@@ -48,6 +48,20 @@ class PrimitiveSchema(BaseSchema):
     def get_python_type(self, namespace=None):
         return to_python_type(self.yaml_data['type'])
 
+class AnySchema(PrimitiveSchema):
+    def __init__(self, yaml_data, **kwargs):
+        super(PrimitiveSchema, self).__init__(yaml_data, **kwargs)
+
+    @classmethod
+    def from_yaml(cls,  yaml_data):
+        return cls(yaml_data=yaml_data)
+
+    def get_serialization_type(self):
+        return 'object'
+
+    def get_python_type(self, namespace=None):
+        return 'object'
+
 
 class NumberSchema(PrimitiveSchema):
     def __init__(self, yaml_data, precision, **kwargs):
@@ -209,4 +223,6 @@ def get_primitive_schema(yaml_data):
         return Duration.from_yaml(yaml_data=yaml_data)
     if schema_type  == 'byte-array':
         return ByteArraySchema.from_yaml(yaml_data=yaml_data)
+    if schema_type == 'any':
+        return AnySchema.from_yaml(yaml_data=yaml_data)
     return PrimitiveSchema.from_yaml(yaml_data=yaml_data)

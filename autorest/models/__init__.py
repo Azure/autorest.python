@@ -46,7 +46,7 @@ def build_schema(yaml_data, **kwargs):
         schema = DictionarySchema.from_yaml(yaml_data=yaml_data, **kwargs)
         code_model.primitives[yaml_id] = schema
 
-    elif schema_type == 'object' or schema_type == 'and' or schema_type == 'any':
+    elif schema_type == 'object' or schema_type == 'and':
         schema = ObjectSchema.from_yaml(yaml_data=yaml_data, **kwargs)
         code_model.schemas[yaml_id] = schema
 
@@ -55,4 +55,3 @@ def build_schema(yaml_data, **kwargs):
         code_model.primitives[yaml_id] = schema
 
     return schema
-
