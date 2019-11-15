@@ -1,6 +1,8 @@
 {%- set config_import = "._configuration_async" if is_async else "._configuration" %}
 {%- set def_keyword = "async def" if is_async else "def" %}
 {%- set pipeline_client = "AsyncPipelineClient" if is_async else "PipelineClient" %}
+{%- set async_prefix = "a" if is_async else "" %}
+{%- set async_await = "await " if is_async else "" %}
 {# actual template starts here #}
 # coding=utf-8
 # --------------------------------------------------------------------------
@@ -66,17 +68,13 @@ class {{ code_model.client_name }}(object):
         self.{{ get_client_name(operation_group_name) }} = {{ to_camel_case(get_client_name(operation_group_name)) + "Operations" }}(
             self._client, self._config, self._serialize, self._deserialize)
         {% endfor %}
-    {%- if is_async %}
-    async def __aenter__(self):
-        await self._client.__aenter__()
+
+    {{ def_keyword }} close(self):
+        {{ async_await }}self._client.close()
+
+    {{ def_keyword }} __{{ async_prefix }}enter__(self):
+        {{ async_await }}self._client.__{{ async_prefix }}enter__()
         return self
-    async def __aexit__(self, *exc_details):
-        await self._client.__aexit__(*exc_details)
-    {{ "" }}
-    {%- else %}
-    def __enter__(self):
-        self._client.__enter__()
-        return self
-    def __exit__(self, *exc_details):
-        self._client.__exit__(*exc_details)
-    {% endif %}
+
+    {{ def_keyword }} __{{ async_prefix }}exit__(self, *exc_details):
+        {{ async_await }}self._client.__{{ async_prefix }}exit__(*exc_details)
