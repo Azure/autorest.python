@@ -106,7 +106,6 @@ class CodeGenerator:
                     build_schema(
                         yaml_data=schema,
                         exceptions_set=exceptions_set,
-                        top_level=True,
                         code_model=code_model
                     )
             # sets the enums property in our code_model variable, which will later be passed to EnumSerializer

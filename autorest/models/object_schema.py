@@ -132,7 +132,6 @@ class ObjectSchema(BaseSchema):
 
     def fill_instance_from_yaml(self, yaml_data: Dict[str, str], **kwargs) -> None:
         for_additional_properties = kwargs.pop("for_additional_properties", False)
-        top_level = kwargs.pop("top_level", False)
         properties = []
         base_model = None
 
@@ -170,7 +169,7 @@ class ObjectSchema(BaseSchema):
                 subtype_map[children_yaml['discriminatorValue']] = self._convert_to_class_name(children_name)
 
         schema_type = None
-        if top_level and yaml_data.get('properties'):
+        if yaml_data.get('properties'):
             properties += self._create_properties(
                 yaml_data=yaml_data.get('properties', []),
                 has_additional_properties=len(properties) > 0,
