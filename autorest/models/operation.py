@@ -258,7 +258,7 @@ class Operation:
                 for yaml in yaml_data["request"].get("parameters", [])
             ],
             responses=[
-                SchemaResponse.from_yaml(yaml) for yaml in yaml_data["responses"]
+                SchemaResponse.from_yaml(yaml) for yaml in yaml_data.get("responses", [])
             ],
             exceptions=[
                 SchemaResponse.from_yaml(yaml) for yaml in yaml_data.get("exceptions", [])
