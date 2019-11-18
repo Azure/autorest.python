@@ -1,5 +1,4 @@
 from jinja2 import Template, PackageLoader, Environment
-from ..common.utils import get_namespace_name, get_method_name, get_client_name, to_camel_case
 
 class GeneralSerializer:
     def __init__(self, code_model, operation_group_names):
@@ -16,14 +15,11 @@ class GeneralSerializer:
             loader=PackageLoader('autorest', 'templates'),
             keep_trailing_newline=True
         )
-        env.globals.update(get_namespace_name=get_namespace_name)
-        env.globals.update(get_method_name=get_method_name)
-        env.globals.update(get_client_name=get_client_name)
-        env.globals.update(to_camel_case=to_camel_case)
 
         template = env.get_template("init.py.jinja2")
         self._init_file = template.render(
-            client_name=self.code_model.client_name,
+            python_client_name=self.code_model.python_client_name,
+            camel_case_client_name=self.code_model.camel_case_client_name,
             async_mode=False
         )
 
@@ -35,7 +31,7 @@ class GeneralSerializer:
         )
 
         template = env.get_template("config.py.jinja2")
-        self._config_file = template.render(client_name=self.code_model.client_name, async_mode=False)
+        self._config_file = template.render(camel_case_client_name=self.code_model.camel_case_client_name, async_mode=False)
 
         template = env.get_template("version.py.jinja2")
         self._version_file = template.render(version=self.code_model.api_version)

@@ -42,11 +42,13 @@ class OperationGroup:
         code_model,
         yaml_data: Dict[str, Any],
         name: str,
+        class_name: str,
         operations: List[Operation],
     ) -> None:
         self.code_model = code_model
         self.yaml_data = yaml_data
         self.name = name
+        self.class_name = class_name
         self.operations = operations
 
     def imports(self):
@@ -59,7 +61,7 @@ class OperationGroup:
 
     @classmethod
     def from_yaml(cls, code_model, yaml_data: Dict[str, Any], **kwargs) -> "OperationGroup":
-        name = yaml_data["$key"] # yaml_data['language']['default']['name'],
+        name = yaml_data['language']['python']['name']
         _LOGGER.info("Parsing %s operation group", name)
 
         operations = []
@@ -70,5 +72,6 @@ class OperationGroup:
             code_model=code_model,
             yaml_data=yaml_data,
             name=name,
+            class_name=yaml_data['language']['python']['className'],
             operations=operations,
         )

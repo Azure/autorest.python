@@ -7,7 +7,7 @@
 {% macro response_handling(response) %}
   {% if response.headers %}
     {% for header_parameter in response.headers %}
-response_headers['{{ header_parameter.name }}']=self._deserialize('{{ header_parameter.schema.get_serialization_type() }}', response.headers.get('{{ header_parameter.name }}'))
+response_headers['{{ header_parameter.rest_api_name }}']=self._deserialize('{{ header_parameter.schema.get_serialization_type() }}', response.headers.get('{{ header_parameter.rest_api_name }}'))
     {% endfor %}
   {% endif %}
   {% if operation.has_response_body and operation.is_stream_response %}
@@ -56,10 +56,10 @@ deserialized = self._deserialize('{{ response.schema.get_serialization_type() }}
 {% if operation.query_parameters %}
     {% for query_parameter in operation.query_parameters %}
         {%if query_parameter.required %}
-    query_parameters['{{ query_parameter.name }}'] = {{ operation.build_serialize_data_call(query_parameter, "query") }}
+    query_parameters['{{ query_parameter.rest_api_name }}'] = {{ operation.build_serialize_data_call(query_parameter, "query") }}
         {% else %}
     if {{ query_parameter.serialized_name }} is not None:
-        query_parameters['{{ query_parameter.name }}'] = {{ operation.build_serialize_data_call(query_parameter, "query") }}
+        query_parameters['{{ query_parameter.rest_api_name }}'] = {{ operation.build_serialize_data_call(query_parameter, "query") }}
         {% endif %}
     {% endfor %}
 {% endif %}
@@ -69,10 +69,10 @@ deserialized = self._deserialize('{{ response.schema.get_serialization_type() }}
 {% if operation.headers_parameters %}
     {% for header_parameter in operation.headers_parameters %}
         {%if header_parameter.required %}
-    header_parameters['{{ header_parameter.name }}'] = {{ operation.build_serialize_data_call(header_parameter, "header") }}
+    header_parameters['{{ header_parameter.rest_api_name }}'] = {{ operation.build_serialize_data_call(header_parameter, "header") }}
         {% else %}
     if {{ header_parameter.serialized_name }} is not None:
-        header_parameters['{{ header_parameter.name }}'] = {{ operation.build_serialize_data_call(header_parameter, "header") }}
+        header_parameters['{{ header_parameter.rest_api_name }}'] = {{ operation.build_serialize_data_call(header_parameter, "header") }}
         {% endif %}
     {% endfor %}
 {% endif %}
@@ -111,7 +111,7 @@ deserialized = self._deserialize('{{ response.schema.get_serialization_type() }}
 {% if operation.is_form_data %}
     request = self._client.{{ operation.method }}(url, query_parameters, header_parameters, form_content=form_data_content)
 {% elif operation.is_stream_request %}
-    request = self._client.{{ operation.method }}(url, query_parameters, header_parameters, stream_content=@parameter.Name)
+    request = self._client.{{ operation.method }}(url, query_parameters, header_parameters, stream_content={{ parameter.serialized_name }})
 {% elif operation.has_request_body %}
     request = self._client.{{ operation.method }}(url, query_parameters, header_parameters, body_content)
 {% else %}

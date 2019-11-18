@@ -26,7 +26,7 @@ except (SyntaxError, ImportError):
     {%- endif %}
     {%- endfor %}
 {%- if enums %}
-from ._{{ client_name }}_enums import (
+from ._{{ python_client_name }}_enums import (
     {%- for enum in enums %}
     {{ enum }},
     {%- endfor %}

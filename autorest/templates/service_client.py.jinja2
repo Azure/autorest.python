@@ -20,7 +20,7 @@ from msrest import Serializer, Deserializer
 from {{ config_import }} import {{ code_model.client_name }}Configuration
 from azure.core.exceptions import map_error
 {%- for operation_group_name in operation_group_names %}
-{%- set camel_case_op_group_name = to_camel_case(get_client_name(operation_group_name)) %}
+{%- set camel_case_op_group_name = operation_group_name[1] %}
 {%- if async_mode %}
 from .operations_async import {{ camel_case_op_group_name }}Operations
 from .. import models
@@ -35,8 +35,8 @@ class {{ code_model.client_name }}(object):
     """{{ code_model.description }}
 
     {% for operation_group_name in operation_group_names %}
-    {%- set python_case_op_group_name = get_client_name(operation_group_name) %}
-    {%- set camel_case_op_group_name = to_camel_case(get_client_name(operation_group_name)) %}
+    {%- set python_case_op_group_name = operation_group_name[0] %}
+    {%- set camel_case_op_group_name = operation_group_name[1] %}
     :ivar {{ python_case_op_group_name  }}: {{ camel_case_op_group_name }} operations
     {%- if async_mode %}
     :vartype {{ python_case_op_group_name }}: {{ code_model.namespace }}.aio.operations_async.{{ camel_case_op_group_name }}Operations
@@ -65,7 +65,7 @@ class {{ code_model.client_name }}(object):
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
         {% for operation_group_name in operation_group_names %}
-        self.{{ get_client_name(operation_group_name) }} = {{ to_camel_case(get_client_name(operation_group_name)) + "Operations" }}(
+        self.{{ operation_group_name[0] }} = {{ operation_group_name[1] + "Operations" }}(
             self._client, self._config, self._serialize, self._deserialize)
         {% endfor %}
 

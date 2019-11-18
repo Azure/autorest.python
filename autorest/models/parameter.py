@@ -26,7 +26,6 @@
 from enum import Enum
 from typing import Dict, Optional, List, Union, Any
 
-from ..common.utils import get_parameter_name
 
 
 class ParameterLocation(Enum):
@@ -41,7 +40,7 @@ class Parameter:
         self,
         yaml_data: Dict[str, Any],
         schema: Optional[Any],
-        name: str,
+        rest_api_name: str,
         description: str,
         implementation: str,
         is_required: bool,
@@ -51,8 +50,8 @@ class Parameter:
     ):
         self.yaml_data = yaml_data
         self.schema = schema
-        self.name = name
-        self.serialized_name = get_parameter_name(name)
+        self.rest_api_name = rest_api_name
+        self.serialized_name = yaml_data['language']['python']['name']
         self.description = description
         self.implementation = implementation
         self.is_required = is_required
@@ -73,8 +72,8 @@ class Parameter:
         return cls(
             yaml_data=yaml_data,
             schema=yaml_data.get("schema", None),  # FIXME replace by operation model
-            name=yaml_data["language"]["default"]["name"],
-            description=yaml_data["language"]["default"]["description"],
+            rest_api_name=yaml_data["language"]["default"]["name"],
+            description=yaml_data["language"]["python"]["description"],
             implementation=yaml_data["implementation"],
             is_required=yaml_data.get("required", False),
             location=ParameterLocation(yaml_data["protocol"]["http"]["in"]),

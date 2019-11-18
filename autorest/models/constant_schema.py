@@ -24,7 +24,7 @@ class ConstantSchema(BaseSchema):
 
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, str], **kwargs) -> "ConstantSchema":
-        name = yaml_data["language"]["default"]["name"] if yaml_data["language"]["default"].get('name') else ""
+        name = yaml_data["language"]["python"]["name"] if yaml_data["language"]["python"].get('name') else ""
         _LOGGER.info("Parsing %s constant", name)
         return cls(
             yaml_data=yaml_data,

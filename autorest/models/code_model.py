@@ -52,7 +52,8 @@ class FakeSchema(BaseSchema):
 class CodeModel:
 
     def __init__(self):
-        self.client_name = None
+        self.python_client_name = None
+        self.camel_case_client_name = None
         self.api_version = None
         self.description = None
         self.schemas: Dict[int, BaseSchema] = {}

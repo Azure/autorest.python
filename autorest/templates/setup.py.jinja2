@@ -12,7 +12,7 @@
 
 from setuptools import setup, find_packages
 
-NAME = "{{ code_model.client_name|lower }}"
+NAME = "{{ code_model.camel_case_client_name|lower }}"
 VERSION = "{{ code_model.api_version }}"
 
 # To install the library, run the following
@@ -27,10 +27,10 @@ REQUIRES = ["msrest>=0.6.0", "azure-core<2.0.0,>=1.0.0"]
 setup(
     name=NAME,
     version=VERSION,
-    description="{{ code_model.client_name }}",
+    description="{{ code_model.camel_case_client_name }}",
     author_email="",
     url="",
-    keywords=["Swagger", "{{ code_model.client_name }}"],
+    keywords=["Swagger", "{{ code_model.camel_case_client_name }}"],
     install_requires=REQUIRES,
     packages=find_packages(),
     include_package_data=True,

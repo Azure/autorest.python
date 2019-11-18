@@ -33,10 +33,9 @@ from jinja2 import Template, PackageLoader, Environment
 
 from .jsonrpc import AutorestAPI
 
-from .common.utils import get_namespace_name, get_client_name, get_method_name
+from .models.name_converter import NameConverter
 from .models.code_model import CodeModel
 from .models import build_schema, EnumSchema, ConstantSchema
-from .models.primitive_schemas import get_primitive_schema
 from .models.operation_group import OperationGroup
 from .models.custom_server import CustomBaseUrl
 from .serializers import (
@@ -66,13 +65,14 @@ class CodeGenerator:
                 for exception in operation['exceptions']:
                     if not exception.get('schema'):
                         continue
-                    exceptions_set.add(exception['schema']['language']['default']['name'])
+                    exceptions_set.add(exception['schema']['language']['python']['name'])
         return exceptions_set
 
     def _create_code_model(self, yaml_code_model):
+        NameConverter().convert_yaml_names(yaml_code_model)
         # Create a code model
         code_model = CodeModel()
-        code_model.client_name = yaml_code_model['info']['title'].replace(" ", "")  # FIXME do a proper namer
+        code_model.python_client_name = yaml_code_model['info']['python_title']  # FIXME do a proper namer
         code_model.description = yaml_code_model['info']['description'] if yaml_code_model['info'].get('description') else ""
         code_model.api_version = self._autorestapi.get_value("package-version")
         if not code_model.api_version:
@@ -94,7 +94,7 @@ class CodeGenerator:
         namespace = self._autorestapi.get_value("namespace")
         _LOGGER.debug("Namespace parameter was %s", namespace)
         if not namespace:
-            namespace = get_namespace_name(yaml_code_model["info"]["title"])
+            namespace = yaml_code_model["info"]["title"]
         code_model.namespace = Path(*[ns_part for ns_part in namespace.split(".")])
 
         if yaml_code_model.get('schemas'):
@@ -136,7 +136,7 @@ class CodeGenerator:
         self._autorestapi.write_file(models_path / Path("_models.py"), model_generic_serializer.model_file)
         self._autorestapi.write_file(models_path / Path("_models_py3.py"), model_python3_serializer.model_file)
         if code_model.enums:
-            self._autorestapi.write_file(models_path / Path("_{}_enums.py".format(get_namespace_name(code_model.client_name))), enum_serializer.enum_file)
+            self._autorestapi.write_file(models_path / Path("_{}_enums.py".format(code_model.python_client_name)), enum_serializer.enum_file)
         self._autorestapi.write_file(models_path / Path("__init__.py"), model_init_serializer.model_init_file)
 
     def _serialize_and_write_operations_folder(self, namespace, code_model, env, async_mode=False):
@@ -148,10 +148,9 @@ class CodeGenerator:
         operation_groups = code_model.operation_groups
 
         operation_group_init_content = operation_group_init_template.render(
-                code_model=code_model,
-                operation_groups=operation_groups,
-                async_mode=async_mode,
-                get_method_name=get_method_name
+            code_model=code_model,
+            operation_groups=operation_groups,
+            async_mode=async_mode
         )
         async_suffix = "_async" if async_mode else ""
 
@@ -168,7 +167,7 @@ class CodeGenerator:
                 async_mode=async_mode
             )
             self._autorestapi.write_file(
-                base_path / Path(f"operations{async_suffix}") / Path(f"_{get_client_name(operation_group.name)}_operations{async_suffix}.py"),
+                base_path / Path(f"operations{async_suffix}") / Path(f"_{operation_group.name}_operations{async_suffix}.py"),
                 operation_group_content
             )
 
@@ -183,7 +182,7 @@ class CodeGenerator:
 
         # Write the service client
         self._autorestapi.write_file(
-            namespace / Path("_{}.py".format(get_namespace_name(code_model.client_name))),
+            namespace / Path("_{}.py".format(code_model.python_client_name)),
             general_serializer.service_client_file
         )
 
@@ -210,7 +209,7 @@ class CodeGenerator:
 
         # Write the service client
         self._autorestapi.write_file(
-            aio_path / Path("_{}_async.py".format(get_namespace_name(code_model.client_name))),
+            aio_path / Path("_{}_async.py".format(code_model.python_client_name)),
             aio_general_serializer.service_client_file
         )
 
@@ -248,7 +247,7 @@ class CodeGenerator:
         self._serialize_and_write_operations_folder(namespace=code_model.namespace, code_model=code_model, env=env)
         self._serialize_and_write_operations_folder(namespace=code_model.namespace, code_model=code_model, env=env, async_mode=True)
 
-        operation_group_names = [o.name for o in code_model.operation_groups]
+        operation_group_names = [(o.name, o.class_name) for o in code_model.operation_groups]
         self._serialize_and_write_top_level_folder(
             namespace=code_model.namespace,
             operation_group_names=operation_group_names,
