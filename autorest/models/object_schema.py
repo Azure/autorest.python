@@ -40,10 +40,9 @@ class ObjectSchema(BaseSchema):
     :param properties: the optional properties of the class.
     :type properties: dict(str, str)
     """
-    def __init__(self, yaml_data, name: str, schema_type: str, description=None, **kwargs: "**Any") -> "ObjectSchema":
+    def __init__(self, yaml_data, name: str, description=None, **kwargs: "**Any") -> "ObjectSchema":
         super(ObjectSchema, self).__init__(yaml_data, **kwargs)
         self.name = name
-        self.schema_type = schema_type
         self.description = description
         self.max_properties = kwargs.pop('max_properties', None)
         self.min_properties = kwargs.pop('min_properties', None)
@@ -71,8 +70,6 @@ class ObjectSchema(BaseSchema):
         return f'\"{self.name}\"'
 
     def get_python_type(self, namespace):
-        if self.schema_type == 'object':
-            return 'object'
         return '~{}.models.{}'.format(namespace, self.name)
 
 
@@ -164,23 +161,13 @@ class ObjectSchema(BaseSchema):
                 children_name = children_yaml['language']['default']['name']
                 subtype_map[children_yaml['discriminatorValue']] = to_camel_case(children_name)
 
-        schema_type = None
         if yaml_data.get('properties'):
             properties += self._create_properties(
                 yaml_data=yaml_data.get('properties', []),
                 has_additional_properties=len(properties) > 0,
                 **kwargs
             )
-
         # this is to ensure that the attribute map type and property type are generated correctly
-        elif for_additional_properties:
-            schema_type = yaml_data['type']
-        else:
-            schema_type = yaml_data['type']
-            if schema_type == 'object':
-                schema_type = to_camel_case(yaml_data['language']['default']['name'])
-        if schema_type == 'any':
-            schema_type = 'object'
 
         name = to_camel_case(yaml_data['language']['default']['name'])
 
@@ -200,7 +187,6 @@ class ObjectSchema(BaseSchema):
         self.yaml_data=yaml_data
         self.name=name
         self.description=description
-        self.schema_type=schema_type
         self.properties=properties
         self.base_model=base_model
         self.is_exception=is_exception

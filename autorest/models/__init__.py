@@ -48,7 +48,7 @@ def build_schema(yaml_data, **kwargs):
     elif schema_type == 'object' or schema_type == 'and':
         # To avoid infinite loop, create the right instance in memory,
         # put it in the index, and then parse the object.
-        schema = ObjectSchema(yaml_data, None, None, None)
+        schema = ObjectSchema(yaml_data, None, None)
         code_model.schemas[yaml_id] = schema
         schema.fill_instance_from_yaml(yaml_data, **kwargs)
 
