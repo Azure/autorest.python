@@ -15,7 +15,7 @@ from ._{{ get_namespace_name(client_name) }} import {{ client_name }}
 {%- endif %}
 __all__ = ['{{ client_name }}']
 {% if not is_async %}
-from .version import VERSION
+from ._version import VERSION
 
 __version__ = VERSION
 {% endif %}

@@ -189,7 +189,7 @@ class CodeGenerator:
         )
 
         # Write the version
-        self._autorestapi.write_file(namespace / Path("version.py"), general_serializer.version_file)
+        self._autorestapi.write_file(namespace / Path("_version.py"), general_serializer.version_file)
 
         # Write the config file
         self._autorestapi.write_file(namespace / Path("_configuration.py"), general_serializer.config_file)

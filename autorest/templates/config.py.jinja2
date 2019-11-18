@@ -1,3 +1,4 @@
+{%- set version_import = ".._version" if is_async else "._version" %}
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -11,11 +12,8 @@
 
 from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
-{% if is_async %}
-from ..version import VERSION
-{% else %}
-from .version import VERSION
-{% endif %}
+
+from {{ version_import }} import VERSION
 
 
 class {{ client_name }}Configuration(Configuration):
