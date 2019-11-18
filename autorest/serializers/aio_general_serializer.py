@@ -22,18 +22,18 @@ class AioGeneralSerializer:
         template = env.get_template("init.py.jinja2")
         self._init_file = template.render(
             client_name=self.code_model.client_name,
-            is_async=True
+            async_mode=True
         )
 
         template = env.get_template("service_client.py.jinja2")
         self._service_client_file = template.render(
             code_model=self.code_model,
             operation_group_names=self.operation_group_names,
-            is_async=True
+            async_mode=True
         )
 
         template = env.get_template("config.py.jinja2")
-        self._config_file = template.render(client_name=self.code_model.client_name, is_async=True)
+        self._config_file = template.render(client_name=self.code_model.client_name, async_mode=True)
 
     @property
     def init_file(self):

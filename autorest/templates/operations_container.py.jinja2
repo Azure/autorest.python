@@ -1,3 +1,4 @@
+{%- set object_base_class = "" if async_mode else "(object)" %}
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -11,7 +12,7 @@
 {{ imports }}
 
 
-class {{ operation_group.name.capitalize() }}Operations(object):
+class {{ operation_group.name.capitalize() }}Operations{{ object_base_class }}:
     """{{ operation_group.name }} operations.
 
     You should not instantiate directly this class, but create a Client instance that will create it for you and attach it as attribute.

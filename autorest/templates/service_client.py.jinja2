@@ -1,8 +1,8 @@
-{%- set config_import = "._configuration_async" if is_async else "._configuration" %}
-{%- set def_keyword = "async def" if is_async else "def" %}
-{%- set pipeline_client = "AsyncPipelineClient" if is_async else "PipelineClient" %}
-{%- set async_prefix = "a" if is_async else "" %}
-{%- set async_await = "await " if is_async else "" %}
+{%- set config_import = "._configuration_async" if async_mode else "._configuration" %}
+{%- set def_keyword = "async def" if async_mode else "def" %}
+{%- set pipeline_client = "AsyncPipelineClient" if async_mode else "PipelineClient" %}
+{%- set async_prefix = "a" if async_mode else "" %}
+{%- set async_await = "await " if async_mode else "" %}
 {# actual template starts here #}
 # coding=utf-8
 # --------------------------------------------------------------------------
@@ -21,7 +21,7 @@ from {{ config_import }} import {{ code_model.client_name }}Configuration
 from azure.core.exceptions import map_error
 {%- for operation_group_name in operation_group_names %}
 {%- set camel_case_op_group_name = to_camel_case(get_client_name(operation_group_name)) %}
-{%- if is_async %}
+{%- if async_mode %}
 from .operations_async import {{ camel_case_op_group_name }}Operations
 from .. import models
 {%- else %}
@@ -38,7 +38,7 @@ class {{ code_model.client_name }}(object):
     {%- set python_case_op_group_name = get_client_name(operation_group_name) %}
     {%- set camel_case_op_group_name = to_camel_case(get_client_name(operation_group_name)) %}
     :ivar {{ python_case_op_group_name  }}: {{ camel_case_op_group_name }} operations
-    {%- if is_async %}
+    {%- if async_mode %}
     :vartype {{ python_case_op_group_name }}: {{ code_model.namespace }}.aio.operations_async.{{ camel_case_op_group_name }}Operations
     {%- else %}
     :vartype {{ python_case_op_group_name }}: {{ code_model.namespace }}.operations.{{ camel_case_op_group_name }}Operations

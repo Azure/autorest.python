@@ -24,18 +24,18 @@ class GeneralSerializer:
         template = env.get_template("init.py.jinja2")
         self._init_file = template.render(
             client_name=self.code_model.client_name,
-            is_async=False
+            async_mode=False
         )
 
         template = env.get_template("service_client.py.jinja2")
         self._service_client_file = template.render(
             code_model=self.code_model,
             operation_group_names=self.operation_group_names,
-            is_async=False
+            async_mode=False
         )
 
         template = env.get_template("config.py.jinja2")
-        self._config_file = template.render(client_name=self.code_model.client_name, is_async=False)
+        self._config_file = template.render(client_name=self.code_model.client_name, async_mode=False)
 
         template = env.get_template("version.py.jinja2")
         self._version_file = template.render(version=self.code_model.api_version)
