@@ -27,7 +27,7 @@ class EnumSchema(BaseSchema):
         return 'str'
 
     def get_python_type_annotation(self):
-        return f'Union[str or \"{self.enum_type}\"]'
+        return f'Union[str, \"{self.enum_type}\"]'
 
     def get_python_type(self, namespace):
         return f"str or ~{namespace}.models.{self.enum_type}"
