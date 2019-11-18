@@ -1,6 +1,5 @@
 from .base_schema import BaseSchema
 from typing import Any, Dict
-from ..common.utils import get_enum_name
 
 
 class EnumValue:
@@ -12,9 +11,9 @@ class EnumValue:
     @classmethod
     def from_yaml(cls, yaml_data):
         return cls(
-            name=get_enum_name(yaml_data['language']['default']['name']),
+            name=yaml_data['language']['python']['name'],
             value=yaml_data['value'],
-            description=yaml_data['language']['default'].get('description')
+            description=yaml_data['language']['python'].get('description')
         )
 
 class EnumSchema(BaseSchema):
@@ -41,12 +40,12 @@ class EnumSchema(BaseSchema):
 
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, str], **kwargs: Any) -> "EnumType":
-        enum_type = yaml_data['language']['default']['name']
+        enum_type = yaml_data['language']['python']['name']
         values = cls._get_enum_values(yaml_data['choices'])
 
         return cls(
             yaml_data=yaml_data,
-            description=yaml_data['language']['default']['description'],
+            description=yaml_data['language']['python']['description'],
             enum_type=enum_type,
             values=values
         )

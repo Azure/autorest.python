@@ -33,7 +33,8 @@ from jinja2 import Template, PackageLoader, Environment
 
 from .jsonrpc import AutorestAPI
 
-from .common.utils import get_namespace_name, get_client_name, get_method_name
+from .common.utils import get_client_name, get_method_name
+from .models.name_converter import NameConverter
 from .models.code_model import CodeModel
 from .models import build_schema, EnumSchema, ConstantSchema
 from .models.primitive_schemas import get_primitive_schema
@@ -66,13 +67,14 @@ class CodeGenerator:
                 for exception in operation['exceptions']:
                     if not exception.get('schema'):
                         continue
-                    exceptions_set.add(exception['schema']['language']['default']['name'])
+                    exceptions_set.add(exception['schema']['language']['python']['name'])
         return exceptions_set
 
     def _create_code_model(self, yaml_code_model):
+        NameConverter().convert_yaml_names(yaml_code_model)
         # Create a code model
         code_model = CodeModel()
-        code_model.client_name = yaml_code_model['info']['title'].replace(" ", "")  # FIXME do a proper namer
+        code_model.client_name = yaml_code_model['info']['title']  # FIXME do a proper namer
         code_model.description = yaml_code_model['info']['description'] if yaml_code_model['info'].get('description') else ""
         code_model.api_version = self._autorestapi.get_value("package-version")
         if not code_model.api_version:
@@ -94,7 +96,7 @@ class CodeGenerator:
         namespace = self._autorestapi.get_value("namespace")
         _LOGGER.debug("Namespace parameter was %s", namespace)
         if not namespace:
-            namespace = get_namespace_name(yaml_code_model["info"]["title"])
+            namespace = yaml_code_model["info"]["title"]
         code_model.namespace = Path(*[ns_part for ns_part in namespace.split(".")])
 
         if yaml_code_model.get('schemas'):
@@ -136,7 +138,7 @@ class CodeGenerator:
         self._autorestapi.write_file(models_path / Path("_models.py"), model_generic_serializer.model_file)
         self._autorestapi.write_file(models_path / Path("_models_py3.py"), model_python3_serializer.model_file)
         if code_model.enums:
-            self._autorestapi.write_file(models_path / Path("_{}_enums.py".format(get_namespace_name(code_model.client_name))), enum_serializer.enum_file)
+            self._autorestapi.write_file(models_path / Path("_{}_enums.py".format(code_model.client_name)), enum_serializer.enum_file)
         self._autorestapi.write_file(models_path / Path("__init__.py"), model_init_serializer.model_init_file)
 
     def _serialize_and_write_operations_folder(self, namespace, code_model, env, async_mode=False):
@@ -183,7 +185,7 @@ class CodeGenerator:
 
         # Write the service client
         self._autorestapi.write_file(
-            namespace / Path("_{}.py".format(get_namespace_name(code_model.client_name))),
+            namespace / Path("_{}.py".format(code_model.client_name)),
             general_serializer.service_client_file
         )
 
@@ -210,7 +212,7 @@ class CodeGenerator:
 
         # Write the service client
         self._autorestapi.write_file(
-            aio_path / Path("_{}_async.py".format(get_namespace_name(code_model.client_name))),
+            aio_path / Path("_{}_async.py".format(code_model.client_name)),
             aio_general_serializer.service_client_file
         )
 

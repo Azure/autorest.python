@@ -29,7 +29,6 @@ from .dictionary_schema import DictionarySchema
 from .imports import FileImport, ImportType
 from .property import Property
 from typing import Any, Dict, List
-from ..common.utils import get_property_name, to_camel_case
 
 
 class ObjectSchema(BaseSchema):
@@ -132,11 +131,11 @@ class ObjectSchema(BaseSchema):
         if yaml_data.get('parents'):
             immediate_parents = yaml_data['parents']['immediate']
         # checking if object has a parent
-            if immediate_parents and immediate_parents[0]['language']['default']['name'] != yaml_data['language']['default']['name']:
+            if immediate_parents and immediate_parents[0]['language']['python']['name'] != yaml_data['language']['python']['name']:
                 base_model = id(immediate_parents[0])
 
             # this means that this class has additional properties defined on it
-            if immediate_parents[0]['language']['default']['name'] == yaml_data['language']['default']['name'] and immediate_parents[0]['type'] == 'dictionary':
+            if immediate_parents[0]['language']['python']['name'] == yaml_data['language']['python']['name'] and immediate_parents[0]['type'] == 'dictionary':
                 additional_properties_schema = DictionarySchema.from_yaml(
                         yaml_data=immediate_parents[0],
                         for_additional_properties=True,
@@ -158,8 +157,7 @@ class ObjectSchema(BaseSchema):
             subtype_map = {}
             # map of discriminator value to child's name
             for children_yaml in yaml_data['discriminator']['immediate'].values():
-                children_name = children_yaml['language']['default']['name']
-                subtype_map[children_yaml['discriminatorValue']] = to_camel_case(children_name)
+                subtype_map[children_yaml['discriminatorValue']] = children_yaml['language']['python']['name']
 
         if yaml_data.get('properties'):
             properties += self._create_properties(
@@ -169,10 +167,10 @@ class ObjectSchema(BaseSchema):
             )
         # this is to ensure that the attribute map type and property type are generated correctly
 
-        name = to_camel_case(yaml_data['language']['default']['name'])
+        name = yaml_data['language']['python']['name']
 
         description = None
-        description = yaml_data['language']['default']['description'].strip()
+        description = yaml_data['language']['python']['description'].strip()
         if description == 'MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA':
             description = name + "."
         elif 'MISSING' in description:
@@ -180,7 +178,7 @@ class ObjectSchema(BaseSchema):
         is_exception = None
         exceptions_set = kwargs.pop('exceptions_set', None)
         if exceptions_set:
-            if yaml_data['language']['default']['name'] in exceptions_set:
+            if yaml_data['language']['python']['name'] in exceptions_set:
                 is_exception = True
 
 
@@ -191,5 +189,5 @@ class ObjectSchema(BaseSchema):
         self.base_model=base_model
         self.is_exception=is_exception
         self.subtype_map=subtype_map
-        self.discriminator_name = get_property_name(yaml_data['discriminator']['property']['language']['default']['name']) if yaml_data.get('discriminator') else None
+        self.discriminator_name = yaml_data['discriminator']['property']['language']['python']['name'] if yaml_data.get('discriminator') else None
         self.discriminator_value = yaml_data.get('discriminatorValue', None)
