@@ -236,8 +236,16 @@ class Operation:
 
     @property
     def method_signature(self):
+        def is_parameter_in_signature(parameter):
+            """A predicate to tell if this parmater deserves to be in the signature.
+            """
+            return not (isinstance(parameter.schema, ConstantSchema) or parameter.implementation == "Client")
+
+        signature_parameters = [
+            parameter for parameter in self.parameters if is_parameter_in_signature(parameter)
+        ]
         signature = ", ".join([
-            parameter.for_method_signature for parameter in self.parameters
+            parameter.for_method_signature for parameter in signature_parameters
         ])
         if signature:
             signature = ", "+signature
