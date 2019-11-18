@@ -79,14 +79,13 @@ class CodeGenerator:
             code_model.api_version = "1.0.0"
 
         # Custom URL
-        servers = yaml_code_model['protocol']['http']['servers']
-        if len(servers) > 1:
-            _LOGGER.critical("More servers that current generator can handle, will use the first one")
-        server = servers[0]
-        if server.get('variables'):
-            code_model.custom_base_url = CustomBaseUrl.from_yaml(server)
+        global_parameters = yaml_code_model['globalParameters']
+        dollar_host = [parameter for parameter in global_parameters if parameter['language']['default']['name'] == "$host"]
+        if False: # FIXME rework on custom url
+            #code_model.custom_base_url = CustomBaseUrl.from_yaml(server)
+            pass
         else:
-            code_model.base_url = server['url']
+            code_model.base_url = dollar_host[0]['clientDefaultValue']
 
         # Create operations
         code_model.operation_groups = [OperationGroup.from_yaml(code_model, op_group) for op_group in yaml_code_model['operationGroups']]
@@ -227,7 +226,7 @@ class CodeGenerator:
             raise ValueError("code-model-v4-no-tags.yaml must be a possible input")
 
         file_content = self._autorestapi.read_file("code-model-v4-no-tags.yaml")
-        #self._autorestapi.write_file("code-model-v4-no-tags.yaml", file_content)
+        self._autorestapi.write_file("code-model-v4-no-tags.yaml", file_content)
 
         env = Environment(
             loader=PackageLoader('autorest', 'templates'),
