@@ -49,17 +49,16 @@ from bodystring.models import Colors
 
 import pytest
 
+@pytest.fixture(scope="module")
+async def client():
+    async with AutoRestSwaggerBATService(base_url="http://localhost:3000") as client:
+        yield client
+
+
 class TestString(object):
 
     @pytest.mark.asyncio
-    async def test_string(self):
-        client = AutoRestSwaggerBATService(base_url="http://localhost:3000")
-
-        assert await client.string.get_null() is None
-        await client.string.put_null(None)
-        assert "" ==  await client.string.get_empty()
-        await client.string.put_empty()
-
+    async def test_mbcs(self, client):
         try:
             test_str = (
                 "\xe5\x95\x8a\xe9\xbd\x84\xe4\xb8\x82\xe7\x8b\x9b\xe7\x8b"
@@ -96,6 +95,13 @@ class TestString(object):
 
         assert test_str ==  await client.string.get_mbcs()
         await client.string.put_mbcs()
+
+    @pytest.mark.asyncio
+    async def test_string(self, client):
+        assert await client.string.get_null() is None
+        await client.string.put_null(None)
+        assert "" ==  await client.string.get_empty()
+        await client.string.put_empty()
 
         test_str = "    Now is the time for all good men to come to the aid of their country    "
         assert test_str ==  await client.string.get_whitespace()

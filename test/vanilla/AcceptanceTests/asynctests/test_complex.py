@@ -58,12 +58,16 @@ class UTC(tzinfo):
 
 import pytest
 
+
+@pytest.fixture(scope="module")
+async def client():
+    async with AutoRestComplexTestService(base_url="http://localhost:3000") as client:
+        yield client
+
 class TestComplex(object):
 
     @pytest.mark.asyncio
-    async def test_complex(self):
-        client = AutoRestComplexTestService(base_url="http://localhost:3000")
-
+    async def test_valid(self, client):
         # GET basic/valid
         basic_result = await client.basic.get_valid()
         assert 2 ==  basic_result.id
@@ -76,6 +80,8 @@ class TestComplex(object):
         basic_result = Basic(id=2, name='abc', color=CMYKColors.magenta)
         await client.basic.put_valid(basic_result)
 
+    @pytest.mark.asyncio
+    async def test_complex(self, client):
         # GET basic/empty
         basic_result = await client.basic.get_empty()
         assert basic_result.id is None

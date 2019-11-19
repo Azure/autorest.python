@@ -49,16 +49,15 @@ from bodystring.models import Colors
 
 import pytest
 
+@pytest.fixture(scope="module")
+def client():
+    with AutoRestSwaggerBATService(base_url="http://localhost:3000") as client:
+        yield client
+
+
 class TestString(object):
 
-    def test_string(self):
-        client = AutoRestSwaggerBATService(base_url="http://localhost:3000")
-
-        assert client.string.get_null() is None
-        client.string.put_null(None)
-        assert "" ==  client.string.get_empty()
-        client.string.put_empty()
-
+    def test_mbcs(self, client):
         try:
             test_str = (
                 "\xe5\x95\x8a\xe9\xbd\x84\xe4\xb8\x82\xe7\x8b\x9b\xe7\x8b"
@@ -93,8 +92,15 @@ class TestString(object):
                 b"\xc9\xa1\xe3\x80\x87\xe3\x80\xbe\xe2\xbf\xbb\xe2\xba\x81"
                 b"\xee\xa1\x83\xe4\x9c\xa3\xee\xa1\xa4\xe2\x82\xac").decode('utf-8')
 
-        assert test_str ==  client.string.get_mbcs()
+        assert test_str == client.string.get_mbcs()
         client.string.put_mbcs()
+
+    def test_string(self, client):
+
+        assert client.string.get_null() is None
+        client.string.put_null(None)
+        assert "" ==  client.string.get_empty()
+        client.string.put_empty()
 
         test_str = "    Now is the time for all good men to come to the aid of their country    "
         assert test_str ==  client.string.get_whitespace()
@@ -118,6 +124,3 @@ class TestString(object):
         assert client.enum.get_referenced() ==  Colors.redcolor
         assert client.enum.get_referenced_constant().color_constant ==  Colors.green_color.value
 
-
-if __name__ == '__main__':
-    unittest.main()
