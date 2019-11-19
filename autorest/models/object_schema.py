@@ -131,25 +131,25 @@ class ObjectSchema(BaseSchema):
         if yaml_data.get('parents'):
             immediate_parents = yaml_data['parents']['immediate']
         # checking if object has a parent
-            if immediate_parents and immediate_parents[0]['language']['default']['name'] != yaml_data['language']['default']['name']:
-                base_model = id(immediate_parents[0])
-
-            # this means that this class has additional properties defined on it
-            if immediate_parents[0]['language']['default']['name'] == yaml_data['language']['default']['name'] and immediate_parents[0]['type'] == 'dictionary':
-                additional_properties_schema = DictionarySchema.from_yaml(
+            if immediate_parents:
+                if immediate_parents[0]['type'] == 'dictionary':
+                    additional_properties_schema = DictionarySchema.from_yaml(
                         yaml_data=immediate_parents[0],
                         for_additional_properties=True,
                         **kwargs
                     )
-                properties.append(
-                    Property(
-                        name="additional_properties",
-                        schema=additional_properties_schema,
-                        original_swagger_name="",
-                        property_data={},
-                        description='Unmatched properties from the message are deserialized to this collection.'
+                    properties.append(
+                        Property(
+                            name="additional_properties",
+                            schema=additional_properties_schema,
+                            original_swagger_name="",
+                            property_data={},
+                            description='Unmatched properties from the message are deserialized to this collection.'
+                        )
                     )
-                )
+                elif immediate_parents[0]['language']['default']['name'] != yaml_data['language']['default']['name']:
+                    base_model = id(immediate_parents[0])
+
 
         # checking to see if this is a polymorphic class
         subtype_map = None
@@ -171,7 +171,7 @@ class ObjectSchema(BaseSchema):
 
         description = None
         description = yaml_data['language']['python']['description'].strip()
-        if description == 'MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA':
+        if description == 'MISSING·SCHEMA-DESCRIPTION-OBJECTSCHEMA':
             description = name + "."
         elif 'MISSING' in description:
             description = ""

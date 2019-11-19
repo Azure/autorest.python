@@ -88,10 +88,9 @@ class NameConverter:
         schema_python_name = NameConverter._to_pascal_case(schema_name)
         schema['language']['python']['name'] = schema_python_name
 
-
     @staticmethod
     def _to_pascal_case(name):
-        name = NameConverter._to_valid_python_name(name)
+        # name = NameConverter._to_valid_python_name(name)
         name_list = re.split('[^a-zA-Z\\d]', name)
         name_list = [s[0].upper() + s[1:] if len(s) > 1 else s.upper()
                             for s in name_list]

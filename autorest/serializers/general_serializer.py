@@ -17,8 +17,8 @@ class GeneralSerializer:
 
         template = env.get_template("init.py.jinja2")
         self._init_file = template.render(
-            python_client_name=self.code_model.python_client_name,
-            pascal_case_client_name=self.code_model.pascal_case_client_name,
+            module_name=self.code_model.module_name,
+            class_name=self.code_model.class_name,
             async_mode=False
         )
 
@@ -29,7 +29,7 @@ class GeneralSerializer:
         )
 
         template = env.get_template("config.py.jinja2")
-        self._config_file = template.render(pascal_case_client_name=self.code_model.pascal_case_client_name, async_mode=False)
+        self._config_file = template.render(class_name=self.code_model.class_name, async_mode=False)
 
         template = env.get_template("version.py.jinja2")
         self._version_file = template.render(version=self.code_model.api_version)

@@ -72,8 +72,8 @@ class CodeGenerator:
         NameConverter.convert_yaml_names(yaml_code_model)
         # Create a code model
         code_model = CodeModel()
-        code_model.python_client_name = yaml_code_model['info']['python_title']
-        code_model.pascal_case_client_name = yaml_code_model['info']['pascal_case_title']
+        code_model.module_name = yaml_code_model['info']['python_title']
+        code_model.class_name = yaml_code_model['info']['pascal_case_title']
         code_model.description = yaml_code_model['info']['description'] if yaml_code_model['info'].get('description') else ""
         code_model.api_version = self._autorestapi.get_value("package-version")
         if not code_model.api_version:
@@ -137,7 +137,7 @@ class CodeGenerator:
         self._autorestapi.write_file(models_path / Path("_models.py"), model_generic_serializer.model_file)
         self._autorestapi.write_file(models_path / Path("_models_py3.py"), model_python3_serializer.model_file)
         if code_model.enums:
-            self._autorestapi.write_file(models_path / Path("_{}_enums.py".format(code_model.python_client_name)), enum_serializer.enum_file)
+            self._autorestapi.write_file(models_path / Path("_{}_enums.py".format(code_model.module_name)), enum_serializer.enum_file)
         self._autorestapi.write_file(models_path / Path("__init__.py"), model_init_serializer.model_init_file)
 
     def _serialize_and_write_operations_folder(self, namespace, code_model, env, async_mode=False):
@@ -181,7 +181,7 @@ class CodeGenerator:
 
         # Write the service client
         self._autorestapi.write_file(
-            namespace / Path("_{}.py".format(code_model.python_client_name)),
+            namespace / Path("_{}.py".format(code_model.module_name)),
             general_serializer.service_client_file
         )
 
@@ -205,7 +205,7 @@ class CodeGenerator:
 
         # Write the service client
         self._autorestapi.write_file(
-            aio_path / Path("_{}_async.py".format(code_model.python_client_name)),
+            aio_path / Path("_{}_async.py".format(code_model.module_name)),
             aio_general_serializer.service_client_file
         )
 

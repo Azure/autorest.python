@@ -20,7 +20,7 @@ class ModelInitSerializer:
         self._model_init_file = template.render(
             schemas=schemas,
             enums=enums,
-            python_client_name=self.code_model.python_client_name
+            module_name=self.code_model.module_name
         )
 
     @property

@@ -52,8 +52,8 @@ class FakeSchema(BaseSchema):
 class CodeModel:
 
     def __init__(self):
-        self.python_client_name = None
-        self.pascal_case_client_name = None
+        self.module_name = None
+        self.class_name = None
         self.api_version = None
         self.description = None
         self.schemas: Dict[int, BaseSchema] = {}
@@ -106,10 +106,7 @@ class CodeModel:
         for schema in self.schemas.values():
             if schema.base_model:
                 # right now, the base model property just holds the name of the parent class
-                try:
-                    schema.base_model = [b for b in self.schemas.values() if b.id == schema.base_model][0]
-                except IndexError:
-                    raise ValueError(schema.name)
+                schema.base_model = [b for b in self.schemas.values() if b.id == schema.base_model][0]
         self._add_properties_from_inheritance()
 
     def add_schema_link_to_operation(self) -> None:

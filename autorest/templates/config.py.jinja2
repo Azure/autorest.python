@@ -16,8 +16,8 @@ from azure.core.pipeline import policies
 from {{ version_import }} import VERSION
 
 
-class {{ pascal_case_client_name }}Configuration(Configuration):
-    """Configuration for {{ pascal_case_client_name }}
+class {{ class_name }}Configuration(Configuration):
+    """Configuration for {{ class_name }}
     Note that all parameters used to create this instance are saved as instance
     attributes.
 
@@ -26,10 +26,10 @@ class {{ pascal_case_client_name }}Configuration(Configuration):
     def __init__(self, **kwargs):
 
 
-        super({{ pascal_case_client_name }}Configuration, self).__init__(**kwargs)
+        super({{ class_name }}Configuration, self).__init__(**kwargs)
         self._configure(**kwargs)
 
-        self.user_agent_policy.add_user_agent('azsdk-python-{{ pascal_case_client_name|lower }}/{}'.format(VERSION))
+        self.user_agent_policy.add_user_agent('azsdk-python-{{ class_name|lower }}/{}'.format(VERSION))
         self.generate_client_request_id = True
 
     def _configure(self, **kwargs):
