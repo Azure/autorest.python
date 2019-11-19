@@ -69,11 +69,11 @@ class CodeGenerator:
         return exceptions_set
 
     def _create_code_model(self, yaml_code_model):
-        NameConverter().convert_yaml_names(yaml_code_model)
+        NameConverter.convert_yaml_names(yaml_code_model)
         # Create a code model
         code_model = CodeModel()
         code_model.python_client_name = yaml_code_model['info']['python_title']
-        code_model.camel_case_client_name = yaml_code_model['info']['camel_case_title']
+        code_model.pascal_case_client_name = yaml_code_model['info']['pascal_case_title']
         code_model.description = yaml_code_model['info']['description'] if yaml_code_model['info'].get('description') else ""
         code_model.api_version = self._autorestapi.get_value("package-version")
         if not code_model.api_version:

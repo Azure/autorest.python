@@ -16,7 +16,7 @@ class AioGeneralSerializer:
         template = env.get_template("init.py.jinja2")
         self._init_file = template.render(
             python_client_name=self.code_model.python_client_name,
-            camel_case_client_name=self.code_model.camel_case_client_name,
+            pascal_case_client_name=self.code_model.pascal_case_client_name,
             async_mode=True
         )
 
@@ -27,7 +27,7 @@ class AioGeneralSerializer:
         )
 
         template = env.get_template("config.py.jinja2")
-        self._config_file = template.render(camel_case_client_name=self.code_model.camel_case_client_name, async_mode=True)
+        self._config_file = template.render(pascal_case_client_name=self.code_model.pascal_case_client_name, async_mode=True)
 
     @property
     def init_file(self):

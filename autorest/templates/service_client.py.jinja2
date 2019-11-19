@@ -17,7 +17,7 @@
 from azure.core import {{ pipeline_client }}
 from msrest import Serializer, Deserializer
 
-from {{ config_import }} import {{ code_model.camel_case_client_name }}Configuration
+from {{ config_import }} import {{ code_model.pascal_case_client_name }}Configuration
 from azure.core.exceptions import map_error
 {%- for operation_group in code_model.operation_groups %}
 {%- if async_mode %}
@@ -30,7 +30,7 @@ from . import models
 {%- endfor %}
 
 
-class {{ code_model.camel_case_client_name }}(object):
+class {{ code_model.pascal_case_client_name }}(object):
     """{{ code_model.description }}
 
     {% for operation_group in code_model.operation_groups %}
@@ -54,7 +54,7 @@ class {{ code_model.camel_case_client_name }}(object):
         if not base_url:
             base_url = '{{ code_model.base_url }}'
         {% endif %}
-        self._config = {{ code_model.camel_case_client_name }}Configuration(**kwargs)
+        self._config = {{ code_model.pascal_case_client_name }}Configuration(**kwargs)
         self._client = {{ pipeline_client }}(base_url=base_url, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}

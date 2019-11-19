@@ -3,75 +3,71 @@ from ..common.python_mappings import basic_latin_chars, reserved_words
 
 class NameConverter:
 
-    def __init__(self):
-        self.seen_yaml_ids = []
-
-    def _seen_id(self, yaml_id):
-        for elt_id in self.seen_yaml_ids:
-            if yaml_id == elt_id:
-                return True
-        self.seen_yaml_ids.append(yaml_id)
-        return False
-
-    def convert_yaml_names(self, yaml_code):
-        self._convert_language_default_python_case(yaml_code)
+    @staticmethod
+    def convert_yaml_names(yaml_code):
+        NameConverter._convert_language_default_python_case(yaml_code)
         yaml_code['info']['python_title'] = NameConverter._to_valid_python_name(yaml_code['info']['title'].replace(" ", ""))
-        yaml_code['info']['camel_case_title'] = NameConverter._to_camel_case(yaml_code['info']['title'].replace(" ", ""))
-        self._convert_schemas(yaml_code['schemas'])
-        self._convert_operation_groups(yaml_code['operationGroups'])
-        self._convert_global_parameters(yaml_code['globalParameters'])
+        yaml_code['info']['pascal_case_title'] = NameConverter._to_pascal_case(yaml_code['info']['title'].replace(" ", ""))
+        NameConverter._convert_schemas(yaml_code['schemas'])
+        NameConverter._convert_operation_groups(yaml_code['operationGroups'])
+        NameConverter._convert_global_parameters(yaml_code['globalParameters'])
 
-    def _convert_global_parameters(self, global_parameters):
+    @staticmethod
+    def _convert_global_parameters(global_parameters):
         for global_parameter in global_parameters:
-            self._convert_language_default_python_case(global_parameter)
+            NameConverter._convert_language_default_python_case(global_parameter)
 
-
-    def _convert_operation_groups(self, operation_groups):
+    @staticmethod
+    def _convert_operation_groups(operation_groups):
         for operation_group in operation_groups:
-            self._convert_language_default_python_case(operation_group, pad_string="Model")
-            operation_group['language']['python']['className'] = NameConverter._to_camel_case(operation_group['language']['python']['name'])
+            NameConverter._convert_language_default_python_case(operation_group, pad_string="Model")
+            operation_group['language']['python']['className'] = NameConverter._to_pascal_case(operation_group['language']['python']['name'])
             for operation in operation_group['operations']:
-                self._convert_language_default_python_case(operation, pad_string='Method')
+                NameConverter._convert_language_default_python_case(operation, pad_string='Method')
                 for exception in operation_group.get('exceptions', []):
-                    self._convert_language_default_python_case(operation)
-                self._convert_language_default_python_case(operation['request'])
+                    NameConverter._convert_language_default_python_case(operation)
+                NameConverter._convert_language_default_python_case(operation['request'])
                 for parameter in operation['request'].get('parameters', []):
-                    self._convert_language_default_python_case(parameter, pad_string="Parameter")
+                    NameConverter._convert_language_default_python_case(parameter, pad_string="Parameter")
                 for response in operation.get('responses', []):
-                    self._convert_language_default_python_case(response)
+                    NameConverter._convert_language_default_python_case(response)
 
-    def _convert_schemas(self, schemas):
+    @staticmethod
+    def _convert_schemas(schemas):
         for obj in schemas['objects']:
-            self._convert_object_schema(obj)
+            NameConverter._convert_object_schema(obj)
         for type_list, schema_yamls in schemas.items():
             for schema in schema_yamls:
                 if type_list == 'objects':
                     continue
                 if type_list == 'arrays' or type_list == 'dictionaries':
-                    self._convert_language_default_python_case(schema)
-                    self._convert_language_default_python_case(schema['elementType'])
+                    NameConverter._convert_language_default_python_case(schema)
+                    NameConverter._convert_language_default_python_case(schema['elementType'])
                 elif type_list == 'constants':
-                    self._convert_language_default_python_case(schema)
-                    self._convert_language_default_python_case(schema['value'])
-                    self._convert_language_default_python_case(schema['valueType'])
+                    NameConverter._convert_language_default_python_case(schema)
+                    NameConverter._convert_language_default_python_case(schema['value'])
+                    NameConverter._convert_language_default_python_case(schema['valueType'])
                 elif type_list == 'sealedChoices' or type_list == 'choices':
-                    self._convert_enum_schema(schema)
+                    NameConverter._convert_enum_schema(schema)
                 else:
-                    self._convert_language_default_python_case(schema)
+                    NameConverter._convert_language_default_python_case(schema)
 
-    def _convert_enum_schema(self, schema):
-        self._convert_language_default_camel_case(schema)
-        self._convert_language_default_python_case(schema['choiceType'])
+    @staticmethod
+    def _convert_enum_schema(schema):
+        NameConverter._convert_language_default_pascal_case(schema)
+        NameConverter._convert_language_default_python_case(schema['choiceType'])
 
         for choice in schema['choices']:
-            self._convert_language_default_python_case(choice, pad_string='Enum')
+            NameConverter._convert_language_default_python_case(choice, pad_string='Enum')
 
-    def _convert_object_schema(self, schema):
-        self._convert_language_default_camel_case(schema)
+    @staticmethod
+    def _convert_object_schema(schema):
+        NameConverter._convert_language_default_pascal_case(schema)
         for prop in schema.get('properties', []):
-            self._convert_language_default_python_case(schema=prop, pad_string='Property')
+            NameConverter._convert_language_default_python_case(schema=prop, pad_string='Property')
 
-    def _convert_language_default_python_case(self, schema, **kwargs):
+    @staticmethod
+    def _convert_language_default_python_case(schema, **kwargs):
         if schema['language'].get('python'):
             return
         schema['language']['python'] = dict(schema['language']['default'])
@@ -81,19 +77,21 @@ class NameConverter:
         schema_python_name = NameConverter._to_valid_python_name(schema_name, **kwargs)
         schema['language']['python']['name'] = schema_python_name
 
-    def _convert_language_default_camel_case(self, schema):
+    @staticmethod
+    def _convert_language_default_pascal_case(schema):
         if schema['language'].get('python'):
             return
         schema['language']['python'] = dict(schema['language']['default'])
         schema_name = schema['language']['default']['name']
         schema_python_name = schema['language']['python']['name']
 
-        schema_python_name = NameConverter._to_camel_case(schema_name)
+        schema_python_name = NameConverter._to_pascal_case(schema_name)
         schema['language']['python']['name'] = schema_python_name
 
 
     @staticmethod
-    def _to_camel_case(name):
+    def _to_pascal_case(name):
+        name = NameConverter._to_valid_python_name(name)
         name_list = re.split('[^a-zA-Z\\d]', name)
         name_list = [s[0].upper() + s[1:] if len(s) > 1 else s.upper()
                             for s in name_list]
