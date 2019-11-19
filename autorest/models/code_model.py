@@ -106,7 +106,10 @@ class CodeModel:
         for schema in self.schemas.values():
             if schema.base_model:
                 # right now, the base model property just holds the name of the parent class
-                schema.base_model = [b for b in self.schemas.values() if b.id == schema.base_model][0]
+                try:
+                    schema.base_model = [b for b in self.schemas.values() if b.id == schema.base_model][0]
+                except IndexError:
+                    raise ValueError(schema.name)
         self._add_properties_from_inheritance()
 
     def add_schema_link_to_operation(self) -> None:

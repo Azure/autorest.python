@@ -17,31 +17,28 @@
 from azure.core import {{ pipeline_client }}
 from msrest import Serializer, Deserializer
 
-from {{ config_import }} import {{ code_model.client_name }}Configuration
+from {{ config_import }} import {{ code_model.camel_case_client_name }}Configuration
 from azure.core.exceptions import map_error
-{%- for operation_group_name in operation_group_names %}
-{%- set camel_case_op_group_name = operation_group_name[1] %}
+{%- for operation_group in code_model.operation_groups %}
 {%- if async_mode %}
-from .operations_async import {{ camel_case_op_group_name }}Operations
+from .operations_async import {{ operation_group.class_name }}Operations
 from .. import models
 {%- else %}
-from .operations import {{ camel_case_op_group_name }}Operations
+from .operations import {{ operation_group.class_name }}Operations
 from . import models
 {%- endif %}
 {%- endfor %}
 
 
-class {{ code_model.client_name }}(object):
+class {{ code_model.camel_case_client_name }}(object):
     """{{ code_model.description }}
 
-    {% for operation_group_name in operation_group_names %}
-    {%- set python_case_op_group_name = operation_group_name[0] %}
-    {%- set camel_case_op_group_name = operation_group_name[1] %}
-    :ivar {{ python_case_op_group_name  }}: {{ camel_case_op_group_name }} operations
+    {% for operation_group in code_model.operation_groups %}
+    :ivar {{ operation_group.name  }}: {{ operation_group.class_name }} operations
     {%- if async_mode %}
-    :vartype {{ python_case_op_group_name }}: {{ code_model.namespace }}.aio.operations_async.{{ camel_case_op_group_name }}Operations
+    :vartype {{ operation_group.name }}: {{ code_model.namespace }}.aio.operations_async.{{ operation_group.class_name }}Operations
     {%- else %}
-    :vartype {{ python_case_op_group_name }}: {{ code_model.namespace }}.operations.{{ camel_case_op_group_name }}Operations
+    :vartype {{ operation_group.name }}: {{ code_model.namespace }}.operations.{{ operation_group.class_name }}Operations
     {%- endif %}
     {% endfor %}
     {% if not code_model.custom_base_url %}
@@ -57,15 +54,15 @@ class {{ code_model.client_name }}(object):
         if not base_url:
             base_url = '{{ code_model.base_url }}'
         {% endif %}
-        self._config = {{ code_model.client_name }}Configuration(**kwargs)
+        self._config = {{ code_model.camel_case_client_name }}Configuration(**kwargs)
         self._client = {{ pipeline_client }}(base_url=base_url, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self.api_version = '{{ code_model.api_version }}'
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
-        {% for operation_group_name in operation_group_names %}
-        self.{{ operation_group_name[0] }} = {{ operation_group_name[1] + "Operations" }}(
+        {% for operation_group in code_model.operation_groups %}
+        self.{{ operation_group.name }} = {{ operation_group.class_name + "Operations" }}(
             self._client, self._config, self._serialize, self._deserialize)
         {% endfor %}
 

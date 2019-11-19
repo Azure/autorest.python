@@ -33,7 +33,7 @@ from jinja2 import Template, PackageLoader, Environment
 
 from .jsonrpc import AutorestAPI
 
-from .models.name_converter import NameConverter
+from .plugins import NameConverter
 from .models.code_model import CodeModel
 from .models import build_schema, EnumSchema, ConstantSchema
 from .models.operation_group import OperationGroup
@@ -72,7 +72,8 @@ class CodeGenerator:
         NameConverter().convert_yaml_names(yaml_code_model)
         # Create a code model
         code_model = CodeModel()
-        code_model.python_client_name = yaml_code_model['info']['python_title']  # FIXME do a proper namer
+        code_model.python_client_name = yaml_code_model['info']['python_title']
+        code_model.camel_case_client_name = yaml_code_model['info']['camel_case_title']
         code_model.description = yaml_code_model['info']['description'] if yaml_code_model['info'].get('description') else ""
         code_model.api_version = self._autorestapi.get_value("package-version")
         if not code_model.api_version:
@@ -94,7 +95,7 @@ class CodeGenerator:
         namespace = self._autorestapi.get_value("namespace")
         _LOGGER.debug("Namespace parameter was %s", namespace)
         if not namespace:
-            namespace = yaml_code_model["info"]["title"]
+            namespace = yaml_code_model["info"]["python_title"]
         code_model.namespace = Path(*[ns_part for ns_part in namespace.split(".")])
 
         if yaml_code_model.get('schemas'):
@@ -171,10 +172,8 @@ class CodeGenerator:
                 operation_group_content
             )
 
-    def _serialize_and_write_top_level_folder(self, namespace, operation_group_names, code_model):
-        general_serializer = GeneralSerializer(
-            code_model=code_model, operation_group_names=operation_group_names
-        )
+    def _serialize_and_write_top_level_folder(self, namespace, code_model):
+        general_serializer = GeneralSerializer(code_model=code_model)
         general_serializer.serialize()
 
         # Write the __init__ file
@@ -195,11 +194,8 @@ class CodeGenerator:
         # Write the setup file
         self._autorestapi.write_file(Path("setup.py"), general_serializer.setup_file)
 
-    def _serialize_and_write_aio_folder(self, namespace, operation_group_names, code_model):
-        aio_general_serializer = AioGeneralSerializer(
-            code_model=code_model,
-            operation_group_names=operation_group_names
-        )
+    def _serialize_and_write_aio_folder(self, namespace, code_model):
+        aio_general_serializer = AioGeneralSerializer(code_model=code_model)
         aio_general_serializer.serialize()
 
         aio_path = namespace / Path("aio")
@@ -247,17 +243,14 @@ class CodeGenerator:
         self._serialize_and_write_operations_folder(namespace=code_model.namespace, code_model=code_model, env=env)
         self._serialize_and_write_operations_folder(namespace=code_model.namespace, code_model=code_model, env=env, async_mode=True)
 
-        operation_group_names = [(o.name, o.class_name) for o in code_model.operation_groups]
         self._serialize_and_write_top_level_folder(
             namespace=code_model.namespace,
-            operation_group_names=operation_group_names,
             code_model=code_model
         )
 
         self._serialize_and_write_aio_folder(
             namespace=code_model.namespace,
-            code_model=code_model,
-            operation_group_names=operation_group_names
+            code_model=code_model
         )
 
         return True

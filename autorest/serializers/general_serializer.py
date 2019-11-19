@@ -1,9 +1,8 @@
 from jinja2 import Template, PackageLoader, Environment
 
 class GeneralSerializer:
-    def __init__(self, code_model, operation_group_names):
+    def __init__(self, code_model):
         self.code_model = code_model
-        self.operation_group_names = operation_group_names
         self._init_file = None
         self._service_client_file = None
         self._config_file = None
@@ -26,7 +25,6 @@ class GeneralSerializer:
         template = env.get_template("service_client.py.jinja2")
         self._service_client_file = template.render(
             code_model=self.code_model,
-            operation_group_names=self.operation_group_names,
             async_mode=False
         )
 

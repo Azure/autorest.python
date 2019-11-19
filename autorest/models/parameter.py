@@ -41,6 +41,7 @@ class Parameter:
         yaml_data: Dict[str, Any],
         schema: Optional[Any],
         rest_api_name: str,
+        serialized_name: str,
         description: str,
         implementation: str,
         is_required: bool,
@@ -51,7 +52,7 @@ class Parameter:
         self.yaml_data = yaml_data
         self.schema = schema
         self.rest_api_name = rest_api_name
-        self.serialized_name = yaml_data['language']['python']['name']
+        self.serialized_name = serialized_name
         self.description = description
         self.implementation = implementation
         self.is_required = is_required
@@ -73,6 +74,7 @@ class Parameter:
             yaml_data=yaml_data,
             schema=yaml_data.get("schema", None),  # FIXME replace by operation model
             rest_api_name=yaml_data["language"]["default"]["name"],
+            serialized_name=yaml_data['language']['python']['name'],
             description=yaml_data["language"]["python"]["description"],
             implementation=yaml_data["implementation"],
             is_required=yaml_data.get("required", False),

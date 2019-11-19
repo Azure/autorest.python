@@ -131,11 +131,11 @@ class ObjectSchema(BaseSchema):
         if yaml_data.get('parents'):
             immediate_parents = yaml_data['parents']['immediate']
         # checking if object has a parent
-            if immediate_parents and immediate_parents[0]['language']['python']['name'] != yaml_data['language']['python']['name']:
+            if immediate_parents and immediate_parents[0]['language']['default']['name'] != yaml_data['language']['default']['name']:
                 base_model = id(immediate_parents[0])
 
             # this means that this class has additional properties defined on it
-            if immediate_parents[0]['language']['python']['name'] == yaml_data['language']['python']['name'] and immediate_parents[0]['type'] == 'dictionary':
+            if immediate_parents[0]['language']['default']['name'] == yaml_data['language']['default']['name'] and immediate_parents[0]['type'] == 'dictionary':
                 additional_properties_schema = DictionarySchema.from_yaml(
                         yaml_data=immediate_parents[0],
                         for_additional_properties=True,
