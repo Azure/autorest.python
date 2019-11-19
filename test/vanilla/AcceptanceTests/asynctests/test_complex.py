@@ -59,7 +59,7 @@ class UTC(tzinfo):
 import pytest
 
 
-@pytest.fixture(scope="module")
+@pytest.fixture()
 async def client():
     async with AutoRestComplexTestService(base_url="http://localhost:3000") as client:
         yield client

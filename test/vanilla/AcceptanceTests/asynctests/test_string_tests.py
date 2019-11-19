@@ -49,7 +49,7 @@ from bodystring.models import Colors
 
 import pytest
 
-@pytest.fixture(scope="module")
+@pytest.fixture()
 async def client():
     async with AutoRestSwaggerBATService(base_url="http://localhost:3000") as client:
         yield client
