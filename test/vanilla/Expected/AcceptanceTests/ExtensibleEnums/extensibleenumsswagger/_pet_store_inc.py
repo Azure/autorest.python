@@ -43,6 +43,8 @@ class PetStoreInc(object):
         self.pet = PetOperations(
             self._client, self._config, self._serialize, self._deserialize)
 
+    def close(self):
+        self._client.close()
     def __enter__(self):
         self._client.__enter__()
         return self
