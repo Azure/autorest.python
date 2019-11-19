@@ -58,11 +58,16 @@ class UTC(tzinfo):
 
 import pytest
 
+
+@pytest.fixture(scope="module")
+def client():
+    with AutoRestComplexTestService(base_url="http://localhost:3000") as client:
+        yield client
+
+
 class TestComplex(object):
 
-    def test_complex(self):
-        client = AutoRestComplexTestService(base_url="http://localhost:3000")
-
+    def test_valid(self, client):
         # GET basic/valid
         basic_result = client.basic.get_valid()
         assert 2 ==  basic_result.id
@@ -75,6 +80,7 @@ class TestComplex(object):
         basic_result = Basic(id=2, name='abc', color=CMYKColors.magenta)
         client.basic.put_valid(basic_result)
 
+    def test_complex(self, client):
         # GET basic/empty
         basic_result = client.basic.get_empty()
         assert basic_result.id is None
