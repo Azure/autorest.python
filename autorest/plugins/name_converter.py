@@ -97,8 +97,7 @@ class NameConverter:
         return ''.join(name_list)
 
     @staticmethod
-    def _to_valid_python_name(name, **kwargs):
-        pad_string = kwargs.pop('pad_string', "")
+    def _to_valid_python_name(name, *, pad_string=""):
         if not name:
             return pad_string
         return NameConverter._to_python_case(
