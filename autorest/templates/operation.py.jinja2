@@ -50,6 +50,11 @@ deserialized = self._deserialize('{{ response.schema.get_serialization_type() }}
 
     # Construct URL
     url = self.{{ operation.python_name }}.metadata['url']
+    path_format_arguments = {
+        '$host': self._client._base_url
+        # FIXME do custom base url
+    }
+    url = self._client.format_url(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = {}
