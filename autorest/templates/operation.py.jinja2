@@ -19,16 +19,21 @@ deserialized = self._deserialize('{{ response.schema.get_serialization_type() }}
 {# actual template starts here #}
 {{ trace_decorator }}
 {{ def_keyword }} {{ operation.python_name }}(self{{ operation.method_signature }}, cls=None, **kwargs):
-    """{{operation.description}}.
+    """{{operation.description.strip() }}.
 
-    {{operation.summary}}
+    {{ "FIXME: add operation.summary\n" }}
 
 {%- if operation.deprecated -%}
     .. warning::
        This method is deprecated
 
 {%- endif -%}
-    {{operation.doc_parameters}}
+{% for parameter in operation.parameters %}
+    {% if parameter.implementation != 'Client' %}
+    :param {{ parameter.serialized_name }}: {{ parameter.description }}
+    :type {{ parameter.serialized_name }}: {{ parameter.schema.get_python_type(code_model.namespace) }}
+    {% endif %}
+{% endfor %}
     :param callable cls: A custom type or function that will be passed the direct response
     :return: FIXME or the result of cls(response)
     :rtype: FIXME
