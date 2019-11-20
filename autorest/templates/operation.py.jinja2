@@ -17,7 +17,9 @@ deserialized = self._deserialize('{{ response.schema.get_serialization_type() }}
   {% endif %}
 {% endmacro %}
 {# actual template starts here #}
+{% if operation.tracing %}
 {{ trace_decorator }}
+{% endif %}
 {{ def_keyword }} {{ operation.python_name }}(self{{ operation.method_signature }}, cls=None, **kwargs):
     """{{operation.description.strip() }}.
 

@@ -87,6 +87,9 @@ class CodeGenerator:
         else:
             code_model.base_url = dollar_host[0]['clientDefaultValue']
 
+        # Get whether we are tracing
+        code_model.tracing = False if self._autorestapi.get_value("trace") is None else True
+
         # Create operations
         code_model.operation_groups = [OperationGroup.from_yaml(code_model, op_group) for op_group in yaml_code_model['operationGroups']]
 
@@ -220,7 +223,7 @@ class CodeGenerator:
             raise ValueError("code-model-v4-no-tags.yaml must be a possible input")
 
         file_content = self._autorestapi.read_file("code-model-v4-no-tags.yaml")
-        self._autorestapi.write_file("code-model-v4-no-tags.yaml", file_content)
+        # self._autorestapi.write_file("code-model-v4-no-tags.yaml", file_content)
 
         env = Environment(
             loader=PackageLoader('autorest', 'templates'),

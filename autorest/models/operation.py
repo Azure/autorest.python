@@ -50,6 +50,7 @@ class Operation:
         responses: List[SchemaResponse] = None,
         exceptions: List[SchemaResponse] = None,
         media_types: List[str] = None,
+        tracing: bool = None,
     ) -> None:
         if responses is None:
             responses = []
@@ -67,6 +68,7 @@ class Operation:
         self.responses = responses
         self.exceptions = exceptions
         self.media_types = media_types
+        self.tracing = tracing
 
     @property
     def python_name(self):
@@ -216,7 +218,7 @@ class Operation:
             )
 
         # Tracings
-        if True:  # Replace with "--tracing was passed to autorest"
+        if self.tracing:  # Replace with "--tracing was passed to autorest"
             file_import.add_from_import(
                 "azure.core.tracing.decorator",
                 "distributed_trace",
@@ -271,4 +273,5 @@ class Operation:
                 SchemaResponse.from_yaml(yaml) for yaml in yaml_data.get("exceptions", [])
             ],
             media_types=yaml_data["request"]["protocol"]["http"].get("mediaTypes", []),
+            tracing=kwargs.pop('tracing', False),
         )

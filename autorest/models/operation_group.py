@@ -66,7 +66,7 @@ class OperationGroup:
 
         operations = []
         for operation_yaml in yaml_data["operations"]:
-            operations.append(Operation.from_yaml(operation_yaml))
+            operations.append(Operation.from_yaml(operation_yaml, tracing=code_model.tracing))
 
         return cls(
             code_model=code_model,

@@ -61,6 +61,7 @@ class CodeModel:
         self.enums: Dict[int, EnumSchema] = {}
         self.primitives: Dict[int, BaseSchema] = {}
         self.namespace = None
+        self.tracing = None
         self.operation_groups: List[OperationGroup] = []
         self.custom_base_url: Optional[CustomBaseUrl] = None
         self.base_url: Optional[str] = None
