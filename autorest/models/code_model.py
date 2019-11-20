@@ -50,18 +50,40 @@ class FakeSchema(BaseSchema):
 
 
 class CodeModel:
+    """Holds all of the information we have parsed out of the yaml file. The CodeModel is what gets
+    serialized by the serializers.
 
+    :param str module_name: The module name for the client. Is in snake case.
+    :param str class_name: The class name for the client. Is in pascal case.
+    :param str api_version: The API version for the code we're generating
+    :param str description: The description of the client
+    :param str namespace: The namespace of our module
+    :param bool tracing: Whether distributed tracing is enabled for the code we are going to generate
+    :param schemas: The list of schemas we are going to serialize in the models files. Maps their yaml
+     id to our created ObjectSchema.
+    :type schemas: dict[int, ~autorest.models.ObjectSchema]
+    :param sorted_schemas: Our schemas in order by inheritance and alphabet
+    :type sorted_schemas: list[~autorest.models.ObjectSchema]
+    :param enums: The enums, if any, we are going to serialize. Maps their yaml id to our created EnumSchema.
+    :type enums: Dict[int, ~autorest.models.EnumSchema]
+    :param primitives: List of schemas we've created that are not EnumSchemas or ObjectSchemas. Maps their
+     yaml id to our created schemas.
+    :type primitives: Dict[int, ~autorest.models.BaseSchema]
+    :param operation_groups: The operation groups we are going to serialize
+    :type operation_groups: list[~autorest.models.OperationGroup]
+    :param str custom_base_url: Optional. 
+    """
     def __init__(self):
         self.module_name = None
         self.class_name = None
         self.api_version = None
         self.description = None
-        self.schemas: Dict[int, BaseSchema] = {}
-        self.sorted_schemas: List[BaseSchema] = []
-        self.enums: Dict[int, EnumSchema] = {}
-        self.primitives: Dict[int, BaseSchema] = {}
         self.namespace = None
         self.tracing = None
+        self.schemas: Dict[int, ObjectSchema] = {}
+        self.sorted_schemas: List[ObjectSchema] = []
+        self.enums: Dict[int, EnumSchema] = {}
+        self.primitives: Dict[int, BaseSchema] = {}
         self.operation_groups: List[OperationGroup] = []
         self.custom_base_url: Optional[CustomBaseUrl] = None
         self.base_url: Optional[str] = None

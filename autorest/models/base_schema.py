@@ -5,6 +5,11 @@ from typing import Any, Dict
 
 
 class BaseSchema(ABC):
+    """This is the base class for all schema models.
+
+    :param yaml_data: the yaml data for a schema
+    :type yaml_data: dict[str, Any]
+    """
     def __init__(
         self,
         yaml_data: Dict[str, Any],
@@ -35,7 +40,7 @@ class BaseSchema(ABC):
         ...
 
     @abstractmethod
-    def get_python_type(self, namespace=None):
+    def get_python_type(self, namespace: str=None):
         """That the python type if used for input using RST syntax.
 
         Special case for enum, for instance: 'str or ~namespace.EnumName'
