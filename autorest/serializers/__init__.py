@@ -7,6 +7,7 @@ from .model_generic_serializer import ModelGenericSerializer
 from .model_init_serializer import ModelInitSerializer
 from .model_python3_serializer import ModelPython3Serializer
 from .operations_init_serializer import OperationsInitSerializer
+from .operation_group_serializer import OperationGroupSerializer
 
 __all__ = [
     "AioGeneralSerializer",
@@ -17,5 +18,6 @@ __all__ = [
     "ModelGenericSerializer",
     "ModelInitSerializer",
     "ModelPython3Serializer",
-    "OperationsInitSerializer"
+    "OperationsInitSerializer",
+    "OperationGroupSerializer"
 ]

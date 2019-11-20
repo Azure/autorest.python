@@ -46,7 +46,8 @@ from .serializers import (
     ModelGenericSerializer,
     ModelInitSerializer,
     ModelPython3Serializer,
-    OperationsInitSerializer
+    OperationsInitSerializer,
+    OperationGroupSerializer
 )
 
 
@@ -160,18 +161,25 @@ class CodeGenerator:
             operations_async_init_serializer.operations_init_file
         )
 
-
-        operation_group_template = env.get_template("operations_container.py.jinja2")
         for operation_group in code_model.operation_groups:
-            operation_group_content = operation_group_template.render(
-                code_model=code_model,
-                operation_group=operation_group,
-                imports=FileImportSerializer(operation_group.imports()),
-                async_mode=False
+            # write sync operation group and operation files
+            operation_group_serializer = OperationGroupSerializer(
+                code_model=code_model, env=env, operation_group=operation_group, async_mode=False
             )
+            operation_group_serializer.serialize()
             self._autorestapi.write_file(
                 namespace / Path(f"operations") / Path(f"_{operation_group.name}_operations.py"),
-                operation_group_content
+                operation_group_serializer.operation_group_file
+            )
+
+            # write async operation group and operation files
+            operation_group_async_serializer = OperationGroupSerializer(
+                code_model=code_model, env=env, operation_group=operation_group, async_mode=True
+            )
+            operation_group_async_serializer.serialize()
+            self._autorestapi.write_file(
+                namespace / Path("aio") / Path(f"operations_async") / Path(f"_{operation_group.name}_operations_async.py"),
+                operation_group_async_serializer.operation_group_file
             )
 
     def _serialize_and_write_top_level_folder(self, namespace, code_model, env):
@@ -246,7 +254,6 @@ class CodeGenerator:
             self._serialize_and_write_models_folder(namespace=code_model.namespace, code_model=code_model, env=env)
 
         self._serialize_and_write_operations_folder(namespace=code_model.namespace, code_model=code_model, env=env)
-        # self._serialize_and_write_operations_folder(namespace=code_model.namespace, code_model=code_model, env=env, async_mode=True)
 
         self._serialize_and_write_top_level_folder(
             namespace=code_model.namespace,
