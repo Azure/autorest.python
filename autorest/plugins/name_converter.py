@@ -9,7 +9,7 @@ class NameConverter:
         yaml_code['info']['python_title'] = NameConverter._to_valid_python_name(yaml_code['info']['title'].replace(" ", ""))
         yaml_code['info']['pascal_case_title'] = NameConverter._to_pascal_case(yaml_code['info']['title'].replace(" ", ""))
         NameConverter._convert_schemas(yaml_code['schemas'])
-        NameConverter._convert_operation_groups(yaml_code['operationGroups'])
+        NameConverter._convert_operation_groups(yaml_code['operationGroups'], module_name=yaml_code['info']['python_title'])
         NameConverter._convert_global_parameters(yaml_code['globalParameters'])
 
     @staticmethod
@@ -18,9 +18,9 @@ class NameConverter:
             NameConverter._convert_language_default_python_case(global_parameter)
 
     @staticmethod
-    def _convert_operation_groups(operation_groups):
+    def _convert_operation_groups(operation_groups, module_name):
         for operation_group in operation_groups:
-            NameConverter._convert_language_default_python_case(operation_group, pad_string="Model")
+            NameConverter._convert_language_default_python_case(operation_group, pad_string=module_name)
             operation_group['language']['python']['className'] = NameConverter._to_pascal_case(operation_group['language']['python']['name'])
             for operation in operation_group['operations']:
                 NameConverter._convert_language_default_python_case(operation, pad_string='Method')

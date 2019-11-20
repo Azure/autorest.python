@@ -218,7 +218,7 @@ class Operation:
             )
 
         # Tracings
-        if self.tracing:  # Replace with "--tracing was passed to autorest"
+        if self.tracing:
             file_import.add_from_import(
                 "azure.core.tracing.decorator",
                 "distributed_trace",
