@@ -1,4 +1,3 @@
-from .aio_general_serializer import AioGeneralSerializer
 from .enum_serializer import EnumSerializer
 from .general_serializer import GeneralSerializer
 from .import_serializer import FileImportSerializer
@@ -10,7 +9,6 @@ from .operations_init_serializer import OperationsInitSerializer
 from .operation_group_serializer import OperationGroupSerializer
 
 __all__ = [
-    "AioGeneralSerializer",
     "EnumSerializer",
     "FileImportSerialzer",
     "GeneralSerializer",

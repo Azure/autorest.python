@@ -39,7 +39,6 @@ from .models import build_schema, EnumSchema, ConstantSchema
 from .models.operation_group import OperationGroup
 from .models.custom_server import CustomBaseUrl
 from .serializers import (
-    AioGeneralSerializer,
     EnumSerializer,
     FileImportSerializer,
     GeneralSerializer,
@@ -183,7 +182,7 @@ class CodeGenerator:
             )
 
     def _serialize_and_write_top_level_folder(self, namespace, code_model, env):
-        general_serializer = GeneralSerializer(code_model=code_model, env=env)
+        general_serializer = GeneralSerializer(code_model=code_model, env=env, async_mode=False)
         general_serializer.serialize()
 
         # Write the __init__ file
@@ -205,7 +204,7 @@ class CodeGenerator:
         self._autorestapi.write_file(Path("setup.py"), general_serializer.setup_file)
 
     def _serialize_and_write_aio_folder(self, namespace, code_model, env):
-        aio_general_serializer = AioGeneralSerializer(code_model=code_model, env=env)
+        aio_general_serializer = GeneralSerializer(code_model=code_model, env=env, async_mode=True)
         aio_general_serializer.serialize()
 
         aio_path = namespace / Path("aio")
