@@ -115,20 +115,20 @@ class CodeGenerator:
 
         return code_model
 
-    def _serialize_and_write_models_folder(self, namespace, code_model):
+    def _serialize_and_write_models_folder(self, namespace, code_model, env):
         # Serialize the models folder
 
-        model_generic_serializer = ModelGenericSerializer(code_model=code_model)
+        model_generic_serializer = ModelGenericSerializer(code_model=code_model, env=env)
         model_generic_serializer.serialize()
 
-        model_python3_serializer = ModelPython3Serializer(code_model=code_model)
+        model_python3_serializer = ModelPython3Serializer(code_model=code_model, env=env)
         model_python3_serializer.serialize()
 
         if code_model.enums:
-            enum_serializer = EnumSerializer(enums=code_model.enums)
+            enum_serializer = EnumSerializer(enums=code_model.enums, env=env)
             enum_serializer.serialize()
 
-        model_init_serializer = ModelInitSerializer(code_model=code_model)
+        model_init_serializer = ModelInitSerializer(code_model=code_model, env=env)
         model_init_serializer.serialize()
 
         # Write the models folder
@@ -171,8 +171,8 @@ class CodeGenerator:
                 operation_group_content
             )
 
-    def _serialize_and_write_top_level_folder(self, namespace, code_model):
-        general_serializer = GeneralSerializer(code_model=code_model)
+    def _serialize_and_write_top_level_folder(self, namespace, code_model, env):
+        general_serializer = GeneralSerializer(code_model=code_model, env=env)
         general_serializer.serialize()
 
         # Write the __init__ file
@@ -193,8 +193,8 @@ class CodeGenerator:
         # Write the setup file
         self._autorestapi.write_file(Path("setup.py"), general_serializer.setup_file)
 
-    def _serialize_and_write_aio_folder(self, namespace, code_model):
-        aio_general_serializer = AioGeneralSerializer(code_model=code_model)
+    def _serialize_and_write_aio_folder(self, namespace, code_model, env):
+        aio_general_serializer = AioGeneralSerializer(code_model=code_model, env=env)
         aio_general_serializer.serialize()
 
         aio_path = namespace / Path("aio")
@@ -240,19 +240,21 @@ class CodeGenerator:
         code_model = self._create_code_model(yaml_code_model=yaml_code_model)
 
         if code_model.schemas:
-            self._serialize_and_write_models_folder(namespace=code_model.namespace, code_model=code_model)
+            self._serialize_and_write_models_folder(namespace=code_model.namespace, code_model=code_model, env=env)
 
         self._serialize_and_write_operations_folder(namespace=code_model.namespace, code_model=code_model, env=env)
         self._serialize_and_write_operations_folder(namespace=code_model.namespace, code_model=code_model, env=env, async_mode=True)
 
         self._serialize_and_write_top_level_folder(
             namespace=code_model.namespace,
-            code_model=code_model
+            code_model=code_model,
+            env=env
         )
 
         self._serialize_and_write_aio_folder(
             namespace=code_model.namespace,
-            code_model=code_model
+            code_model=code_model,
+            env=env
         )
 
         return True

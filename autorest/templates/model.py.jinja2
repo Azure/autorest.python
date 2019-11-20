@@ -1,52 +1,51 @@
-{%- if model.base_model is defined and model.base_model.name|length %}
+{% if model.base_model is defined and model.base_model.name|length %}
 class {{ model.name }}({{ model.base_model.name }}):
-{%- else %}
+{% else %}
 class {{ model.name }}(Model):
-{%- endif %}
-    {{'\"\"\"' + model.description + "\n"}}
+{% endif %}
+    {{'\"\"\"' + model.description }}
 
-    {%- if model.properties != None %}
-        {%- for p in model.properties %}
+    {% if model.properties != None %}
+        {% for p in model.properties %}
     {{ p.documentation_string }}
-        {%- endfor %}
-    {%- endif %}
+        {% endfor %}
+    {% endif %}
     {{'\"\"\"'}}
-    {%- if (model.properties | selectattr('required' or 'readonly') | first) is defined %}
+    {% if (model.properties | selectattr('required' or 'readonly') | first) is defined %}
 
     _validation = {
-        {%- for p in model.properties | selectattr('validation_map')%}
+        {% for p in model.properties | selectattr('validation_map')%}
         '{{ p.name }}': {{ str(p.validation_map) }},
-        {%- endfor %}
+        {% endfor %}
     }
-    {%- endif %}
+    {% endif %}
 
     _attribute_map = {
-        {%- if model.properties != None %}
-            {%- for p in model.properties %}
+        {% if model.properties != None %}
+            {% for p in model.properties %}
         '{{ p.name }}': {'key': '{{ p.original_swagger_name }}', 'type': '{{ p.schema.get_serialization_type()}}'},
-            {%- endfor %}
-        {%- else%}
-        {%- endif %}
+            {% endfor %}
+        {% else%}
+        {% endif %}
     }
+    {% if model.discriminator_name %}
 
-    {%- if model.discriminator_name %}
     _subtype_map = {
         '{{ model.discriminator_name }}': {{ str(model.subtype_map) }}
     }
     {% endif %}
+    {% if (model.properties | selectattr('constant') | first) is defined %}
 
-    {%- if (model.properties | selectattr('constant') | first) is defined %}
-        {%- for p in model.properties | selectattr('constant')%}
+        {% for p in model.properties | selectattr('constant')%}
     {{ p.name }} = {{ p.schema.value.__repr__() }}
-        {%- endfor %}
-    {%- endif %}
+        {% endfor %}
+    {% endif %}
 
     {{ model.init_line }}
-    {%- for arg in model.init_args %}
+    {% for arg in model.init_args %}
         {{ arg }}
-    {%- endfor %}
-
-{%- if model.is_exception %}
+    {% endfor %}
+{% if model.is_exception %}
 
 
 class {{ model.name + "Exception" }}(HttpResponseError):
@@ -61,4 +60,6 @@ class {{ model.name + "Exception" }}(HttpResponseError):
         if self.error is None:
             self.error = deserialize.dependencies[model_name]()
         super({{ model.name + "Exception" }}, self).__init__(response=response)
-{%- endif %}
+
+
+{% endif %}

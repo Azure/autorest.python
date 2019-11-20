@@ -1,10 +1,10 @@
 
 class {{ enum.enum_type }}(str, Enum):
     {{ "" }}
-    {%- for value in enum.values %}
-    {%- if value.description %}
+    {% for value in enum.values %}
+    {% if value.description %}
     {{ value.name }} = "{{ value.value }}"  {{ "#: " + value.description }}
-    {%- else %}
+    {% else %}
     {{ value.name }} = "{{ value.value }}"
-    {%- endif %}
-    {%- endfor %}
+    {% endif %}
+    {% endfor %}
