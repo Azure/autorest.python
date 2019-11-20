@@ -39,13 +39,14 @@ from .models import build_schema, EnumSchema, ConstantSchema
 from .models.operation_group import OperationGroup
 from .models.custom_server import CustomBaseUrl
 from .serializers import (
-    AioGeneralSerializer,
     EnumSerializer,
     FileImportSerializer,
     GeneralSerializer,
     ModelGenericSerializer,
     ModelInitSerializer,
-    ModelPython3Serializer
+    ModelPython3Serializer,
+    OperationsInitSerializer,
+    OperationGroupSerializer
 )
 
 
@@ -142,40 +143,46 @@ class CodeGenerator:
             self._autorestapi.write_file(models_path / Path("_{}_enums.py".format(code_model.module_name)), enum_serializer.enum_file)
         self._autorestapi.write_file(models_path / Path("__init__.py"), model_init_serializer.model_init_file)
 
-    def _serialize_and_write_operations_folder(self, namespace, code_model, env, async_mode=False):
-        operation_group_template = env.get_template("operations_container.py.jinja2")
-        operation_group_init_template = env.get_template("operations_container_init.py.jinja2")
-
-        base_path = namespace if not async_mode else namespace / Path("aio")
-
-        operation_groups = code_model.operation_groups
-
-        operation_group_init_content = operation_group_init_template.render(
-            code_model=code_model,
-            operation_groups=operation_groups,
-            async_mode=async_mode
-        )
-        async_suffix = "_async" if async_mode else ""
-
+    def _serialize_and_write_operations_folder(self, namespace, code_model, env):
+        # write sync operations init file
+        operations_init_serializer = OperationsInitSerializer(code_model=code_model, env=env, async_mode=False)
+        operations_init_serializer.serialize()
         self._autorestapi.write_file(
-            base_path / Path(f"operations{async_suffix}") / Path("__init__.py"),
-            operation_group_init_content
+            namespace / Path(f"operations") / Path("__init__.py"),
+            operations_init_serializer.operations_init_file
         )
 
-        for operation_group in operation_groups:
-            operation_group_content = operation_group_template.render(
-                code_model=code_model,
-                operation_group=operation_group,
-                imports=FileImportSerializer(operation_group.imports()),
-                async_mode=async_mode
+        # write async operations init file
+        operations_async_init_serializer = OperationsInitSerializer(code_model=code_model, env=env, async_mode=True)
+        operations_async_init_serializer.serialize()
+        self._autorestapi.write_file(
+            namespace / Path("aio") / Path(f"operations_async") / Path("__init__.py"),
+            operations_async_init_serializer.operations_init_file
+        )
+
+        for operation_group in code_model.operation_groups:
+            # write sync operation group and operation files
+            operation_group_serializer = OperationGroupSerializer(
+                code_model=code_model, env=env, operation_group=operation_group, async_mode=False
             )
+            operation_group_serializer.serialize()
             self._autorestapi.write_file(
-                base_path / Path(f"operations{async_suffix}") / Path(f"_{operation_group.name}_operations{async_suffix}.py"),
-                operation_group_content
+                namespace / Path(f"operations") / Path(f"_{operation_group.name}_operations.py"),
+                operation_group_serializer.operation_group_file
+            )
+
+            # write async operation group and operation files
+            operation_group_async_serializer = OperationGroupSerializer(
+                code_model=code_model, env=env, operation_group=operation_group, async_mode=True
+            )
+            operation_group_async_serializer.serialize()
+            self._autorestapi.write_file(
+                namespace / Path("aio") / Path(f"operations_async") / Path(f"_{operation_group.name}_operations_async.py"),
+                operation_group_async_serializer.operation_group_file
             )
 
     def _serialize_and_write_top_level_folder(self, namespace, code_model, env):
-        general_serializer = GeneralSerializer(code_model=code_model, env=env)
+        general_serializer = GeneralSerializer(code_model=code_model, env=env, async_mode=False)
         general_serializer.serialize()
 
         # Write the __init__ file
@@ -197,7 +204,7 @@ class CodeGenerator:
         self._autorestapi.write_file(Path("setup.py"), general_serializer.setup_file)
 
     def _serialize_and_write_aio_folder(self, namespace, code_model, env):
-        aio_general_serializer = AioGeneralSerializer(code_model=code_model, env=env)
+        aio_general_serializer = GeneralSerializer(code_model=code_model, env=env, async_mode=True)
         aio_general_serializer.serialize()
 
         aio_path = namespace / Path("aio")
@@ -246,7 +253,6 @@ class CodeGenerator:
             self._serialize_and_write_models_folder(namespace=code_model.namespace, code_model=code_model, env=env)
 
         self._serialize_and_write_operations_folder(namespace=code_model.namespace, code_model=code_model, env=env)
-        self._serialize_and_write_operations_folder(namespace=code_model.namespace, code_model=code_model, env=env, async_mode=True)
 
         self._serialize_and_write_top_level_folder(
             namespace=code_model.namespace,
