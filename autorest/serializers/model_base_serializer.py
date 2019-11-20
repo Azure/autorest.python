@@ -7,8 +7,9 @@ from jinja2 import Template, PackageLoader, Environment
 
 
 class ModelBaseSerializer:
-    def __init__(self, code_model):
+    def __init__(self, code_model, env):
         self.code_model = code_model
+        self.env = env
         self._model_file = None
 
     def _format_model_parameter_warnings(self, model):
@@ -61,18 +62,14 @@ class ModelBaseSerializer:
         prop.documentation_string = param_doc_string + "\n\t" + type_doc_string
 
     def serialize(self):
-        env = Environment(
-            loader=PackageLoader('autorest', 'templates'),
-            keep_trailing_newline=True
-        )
 
-        env.globals.update(str=str)
+        self.env.globals.update(str=str)
 
         for model in self.code_model.sorted_schemas:
             self._format_model_for_file(model)
 
         # Generate the models
-        template = env.get_template("model_container.py.jinja2")
+        template = self.env.get_template("model_container.py.jinja2")
         self._model_file = template.render(
             code_model=self.code_model,
             imports=FileImportSerializer(self.imports())

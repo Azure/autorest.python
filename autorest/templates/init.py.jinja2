@@ -1,4 +1,4 @@
-{%- set async_suffix = "_async" if async_mode else "" %}
+{% set async_suffix = "_async" if async_mode else "" %}
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -9,9 +9,11 @@
 # Changes may cause incorrect behavior and will be lost if the code is
 # regenerated.
 # --------------------------------------------------------------------------
+
 from ._{{ module_name + async_suffix }} import {{ class_name }}
 __all__ = ['{{ class_name }}']
 {% if not async_mode %}
+
 from ._version import VERSION
 
 __version__ = VERSION

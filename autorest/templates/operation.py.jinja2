@@ -23,11 +23,11 @@ deserialized = self._deserialize('{{ response.schema.get_serialization_type() }}
 
     {{ "FIXME: add operation.summary\n" }}
 
-{%- if operation.deprecated -%}
+{% if operation.deprecated -%}
     .. warning::
        This method is deprecated
 
-{%- endif -%}
+{% endif -%}
 {% for parameter in operation.parameters %}
     {% if parameter.implementation != 'Client' %}
     :param {{ parameter.serialized_name }}: {{ parameter.description }}

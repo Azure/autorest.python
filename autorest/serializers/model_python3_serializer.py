@@ -5,8 +5,8 @@ from ..models.imports import FileImport, ImportType
 
 
 class ModelPython3Serializer(ModelBaseSerializer):
-    def __init__(self, code_model):
-        super(ModelPython3Serializer, self).__init__(code_model)
+    def __init__(self, code_model, env):
+        super(ModelPython3Serializer, self).__init__(code_model, env)
 
 
     def _build_init_args(self, model):

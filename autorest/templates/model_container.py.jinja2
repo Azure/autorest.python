@@ -11,6 +11,6 @@
 
 {{ imports }}
 {{ "" }}
-{%- for model in code_model.sorted_schemas %}
+{% for model in code_model.sorted_schemas %}
 {% include "model.py.jinja2" %}
-{%- endfor %}
+{% endfor %}

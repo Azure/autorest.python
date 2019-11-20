@@ -1,8 +1,9 @@
 from jinja2 import Template, PackageLoader, Environment
 
 class GeneralSerializer:
-    def __init__(self, code_model):
+    def __init__(self, code_model, env):
         self.code_model = code_model
+        self.env = env
         self._init_file = None
         self._service_client_file = None
         self._config_file = None
@@ -10,31 +11,26 @@ class GeneralSerializer:
         self._setup_file = None
 
     def serialize(self):
-        env = Environment(
-            loader=PackageLoader('autorest', 'templates'),
-            keep_trailing_newline=True
-        )
-
-        template = env.get_template("init.py.jinja2")
+        template = self.env.get_template("init.py.jinja2")
         self._init_file = template.render(
             module_name=self.code_model.module_name,
             class_name=self.code_model.class_name,
             async_mode=False
         )
 
-        template = env.get_template("service_client.py.jinja2")
+        template = self.env.get_template("service_client.py.jinja2")
         self._service_client_file = template.render(
             code_model=self.code_model,
             async_mode=False
         )
 
-        template = env.get_template("config.py.jinja2")
+        template = self.env.get_template("config.py.jinja2")
         self._config_file = template.render(class_name=self.code_model.class_name, async_mode=False)
 
-        template = env.get_template("version.py.jinja2")
+        template = self.env.get_template("version.py.jinja2")
         self._version_file = template.render(version=self.code_model.api_version)
 
-        template = env.get_template("setup.py.jinja2")
+        template = self.env.get_template("setup.py.jinja2")
         self._setup_file = template.render(code_model=self.code_model)
 
     @property

@@ -2,8 +2,8 @@ from .model_base_serializer import ModelBaseSerializer
 
 
 class ModelGenericSerializer(ModelBaseSerializer):
-    def __init__(self, code_model):
-        super(ModelGenericSerializer, self).__init__(code_model)
+    def __init__(self, code_model, env):
+        super(ModelGenericSerializer, self).__init__(code_model, env)
 
 
     def _format_model_for_file(self, model):
