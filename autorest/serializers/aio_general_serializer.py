@@ -1,10 +1,8 @@
 from jinja2 import Template, PackageLoader, Environment
-from ..common.utils import get_namespace_name, get_method_name, get_client_name, to_camel_case
 
 class AioGeneralSerializer:
-    def __init__(self, code_model, operation_group_names):
+    def __init__(self, code_model):
         self.code_model = code_model
-        self.operation_group_names = operation_group_names
         self._init_file = None
         self._service_client_file = None
         self._config_file = None
@@ -14,26 +12,22 @@ class AioGeneralSerializer:
             loader=PackageLoader('autorest', 'templates'),
             keep_trailing_newline=True
         )
-        env.globals.update(get_namespace_name=get_namespace_name)
-        env.globals.update(get_method_name=get_method_name)
-        env.globals.update(get_client_name=get_client_name)
-        env.globals.update(to_camel_case=to_camel_case)
 
         template = env.get_template("init.py.jinja2")
         self._init_file = template.render(
-            client_name=self.code_model.client_name,
+            module_name=self.code_model.module_name,
+            class_name=self.code_model.class_name,
             async_mode=True
         )
 
         template = env.get_template("service_client.py.jinja2")
         self._service_client_file = template.render(
             code_model=self.code_model,
-            operation_group_names=self.operation_group_names,
             async_mode=True
         )
 
         template = env.get_template("config.py.jinja2")
-        self._config_file = template.render(client_name=self.code_model.client_name, async_mode=True)
+        self._config_file = template.render(class_name=self.code_model.class_name, async_mode=True)
 
     @property
     def init_file(self):

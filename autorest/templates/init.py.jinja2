@@ -1,3 +1,4 @@
+{%- set async_suffix = "_async" if async_mode else "" %}
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -8,12 +9,8 @@
 # Changes may cause incorrect behavior and will be lost if the code is
 # regenerated.
 # --------------------------------------------------------------------------
-{% if async_mode %}
-from ._{{ get_namespace_name(client_name) }}_async import {{ client_name }}
-{%- else %}
-from ._{{ get_namespace_name(client_name) }} import {{ client_name }}
-{%- endif %}
-__all__ = ['{{ client_name }}']
+from ._{{ module_name + async_suffix }} import {{ class_name }}
+__all__ = ['{{ class_name }}']
 {% if not async_mode %}
 from ._version import VERSION
 

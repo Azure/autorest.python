@@ -53,10 +53,9 @@ class CustomBaseUrl:
             template_url=yaml_data["url"],
             variables=[
                 ServerVariable(
-                    name=variable["language"]["default"]["name"],
-                    description=variable["language"]["default"]["description"],
+                    name=variable["language"]["python"]["name"],
+                    description=variable["language"]["python"]["description"],
                 )
                 for variable in yaml_data["variables"]
             ],
         )
-
