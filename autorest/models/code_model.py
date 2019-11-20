@@ -71,7 +71,8 @@ class CodeModel:
     :type primitives: Dict[int, ~autorest.models.BaseSchema]
     :param operation_groups: The operation groups we are going to serialize
     :type operation_groups: list[~autorest.models.OperationGroup]
-    :param str custom_base_url: Optional. 
+    :param str custom_base_url: Optional. If user specifies a custom base url, this will override the default
+    :param str base_url: Optional. The default base_url. Will include the host from yaml
     """
     def __init__(self):
         self.module_name = None
@@ -88,14 +89,26 @@ class CodeModel:
         self.custom_base_url: Optional[CustomBaseUrl] = None
         self.base_url: Optional[str] = None
 
-    def lookup_schema(self, schema_id):
+    def lookup_schema(self, schema_id: int) -> None:
+        """Looks to see if the schema has already been created.
+
+        :param int schema_id: The yaml id of the schema
+        :return: If created, we return the created schema, otherwise, we throw.
+        :rtype: ~autorest.models.BaseSchema
+        :raises: KeyError if schema is not found
+        """
         for attr in [self.schemas, self.enums, self.primitives]:
             for elt_key, elt_value in attr.items():
                 if schema_id == elt_key:
                     return elt_value
         raise KeyError("Didn't find it!!!!!")
 
-    def sort_schemas(self):
+    def sort_schemas(self) -> None:
+        """Sorts the final object schemas by inheritance and by alphabetical order.
+
+        :return: None
+        :rtype: None
+        """
         seen_schemas = set()
         sorted_schemas = []
         for schema in sorted(self.schemas.values(), key=lambda x: x.name.lower()):
@@ -115,7 +128,12 @@ class CodeModel:
             sorted_schemas += ancestors
         self.sorted_schemas = sorted_schemas
 
-    def _add_properties_from_inheritance(self):
+    def _add_properties_from_inheritance(self) -> None:
+        """Adds properties from base classes to schemas with parents.
+
+        :return: None
+        :rtype: None
+        """
         for schema in self.schemas.values():
             if schema.base_model:
                 parent = schema.base_model
@@ -126,6 +144,11 @@ class CodeModel:
                     parent = parent.base_model
 
     def add_inheritance_to_models(self) -> None:
+        """Adds base classes and properties from base classes to schemas with parents.
+
+        :return: None
+        :rtype: None
+        """
         for schema in self.schemas.values():
             if schema.base_model:
                 # right now, the base model property just holds the name of the parent class
@@ -133,6 +156,11 @@ class CodeModel:
         self._add_properties_from_inheritance()
 
     def add_schema_link_to_operation(self) -> None:
+        """Puts created schemas into operation classes `schema` property
+
+        :return: None
+        :rtype: None
+        """
         # Index schemas
         for operation_group in self.operation_groups:
             for operation in operation_group.operations:
