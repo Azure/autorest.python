@@ -12,11 +12,11 @@
 # --------------------------------------------------------------------------
 
 {% for operation_group in operation_groups %}
-from ._{{ get_method_name(operation_group.name) }}_operations{{ async_suffix }} import {{ operation_group.name.capitalize() }}Operations
+from ._{{ operation_group.name }}_operations{{ async_suffix }} import {{ operation_group.class_name }}Operations
 {% endfor %}
 
 __all__ = [
 {% for operation_group in operation_groups %}
-    '{{ operation_group.name.capitalize() }}Operations',
+    '{{ operation_group.class_name }}Operations',
 {% endfor %}
 ]

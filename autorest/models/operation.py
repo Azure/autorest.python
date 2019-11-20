@@ -26,7 +26,6 @@
 import logging
 from typing import Dict, List, Union, Iterable, Any
 
-from ..common.utils import get_method_name
 from .imports import FileImport, ImportType
 from .schema_response import SchemaResponse
 from .parameter import Parameter, ParameterLocation
@@ -71,7 +70,7 @@ class Operation:
 
     @property
     def python_name(self):
-        return get_method_name(self.name)
+        return self.name
 
     @staticmethod
     def _suggest_content_type(
@@ -253,12 +252,12 @@ class Operation:
 
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, str], **kwargs) -> "Operation":
-        name = yaml_data["language"]["default"]["name"]
+        name = yaml_data["language"]["python"]["name"]
         _LOGGER.info("Parsing %s operation", name)
         return cls(
             yaml_data=yaml_data,
             name=name,
-            description=yaml_data["language"]["default"]["description"],
+            description=yaml_data["language"]["python"]["description"],
             url=yaml_data["request"]["protocol"]["http"]["path"],
             method=yaml_data["request"]["protocol"]["http"]["method"],
             parameters=[

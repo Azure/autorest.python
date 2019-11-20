@@ -15,7 +15,7 @@ class Property:
         if kwargs.get('description', None):
             self.description = kwargs.pop('description')
         else:
-            description = property_data['language']['default']['description'].strip()
+            description = property_data['language']['python']['description'].strip()
             if description == 'MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA':
                 description = name + "."
             elif 'MISSING' in description:

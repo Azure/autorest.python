@@ -1,5 +1,4 @@
 from jinja2 import Template, PackageLoader, Environment
-from ..common.utils import get_namespace_name
 
 class ModelInitSerializer:
     def __init__(self, code_model):
@@ -21,7 +20,7 @@ class ModelInitSerializer:
         self._model_init_file = template.render(
             schemas=schemas,
             enums=enums,
-            client_name=get_namespace_name(self.code_model.client_name)
+            module_name=self.code_model.module_name
         )
 
     @property
