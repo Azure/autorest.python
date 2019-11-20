@@ -69,7 +69,6 @@ class CodeGenerator:
         return exceptions_set
 
     def _create_code_model(self, yaml_code_model):
-        NameConverter.convert_yaml_names(yaml_code_model)
         # Create a code model
         code_model = CodeModel()
         code_model.module_name = yaml_code_model['info']['python_title']
@@ -234,6 +233,9 @@ class CodeGenerator:
 
         # Parse the received YAML
         yaml_code_model = yaml.safe_load(file_content)
+
+        # convert the names to python names
+        NameConverter.convert_yaml_names(yaml_code_model)
 
         code_model = self._create_code_model(yaml_code_model=yaml_code_model)
 
