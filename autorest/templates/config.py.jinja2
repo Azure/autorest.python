@@ -1,4 +1,5 @@
-{%- set version_import = ".._version" if async_mode else "._version" %}
+{% set version_import = ".._version" if async_mode else "._version" %}
+{% set async_prefix = "Async" if async_mode else "" %}
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -37,14 +38,6 @@ class {{ client_name }}Configuration(Configuration):
         self.headers_policy = kwargs.get('headers_policy') or policies.HeadersPolicy(**kwargs)
         self.proxy_policy = kwargs.get('proxy_policy') or policies.ProxyPolicy(**kwargs)
         self.logging_policy = kwargs.get('logging_policy') or policies.NetworkTraceLoggingPolicy(**kwargs)
-        {%- if async_mode %}
-        self.retry_policy = kwargs.get('retry_policy') or policies.AsyncRetryPolicy(**kwargs)
-        {%- else %}
-        self.retry_policy = kwargs.get('retry_policy') or policies.RetryPolicy(**kwargs)
-        {%- endif %}
+        self.retry_policy = kwargs.get('retry_policy') or policies.{{ async_prefix }}RetryPolicy(**kwargs)
         self.custom_hook_policy = kwargs.get('custom_hook_policy') or policies.CustomHookPolicy(**kwargs)
-        {%- if async_mode %}
-        self.redirect_policy = kwargs.get('redirect_policy') or policies.AsyncRedirectPolicy(**kwargs)
-        {%- else %}
-        self.redirect_policy = kwargs.get('redirect_policy') or policies.RedirectPolicy(**kwargs)
-        {%- endif  %}
+        self.redirect_policy = kwargs.get('redirect_policy') or policies.{{ async_prefix }}RedirectPolicy(**kwargs)
