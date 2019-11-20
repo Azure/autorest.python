@@ -1,8 +1,10 @@
-{%- set config_import = "._configuration_async" if async_mode else "._configuration" %}
-{%- set def_keyword = "async def" if async_mode else "def" %}
-{%- set pipeline_client = "AsyncPipelineClient" if async_mode else "PipelineClient" %}
-{%- set async_prefix = "a" if async_mode else "" %}
-{%- set async_await = "await " if async_mode else "" %}
+{% set config_import = "._configuration_async" if async_mode else "._configuration" %}
+{% set def_keyword = "async def" if async_mode else "def" %}
+{% set pipeline_client = "AsyncPipelineClient" if async_mode else "PipelineClient" %}
+{% set async_prefix = "a" if async_mode else "" %}
+{% set async_await = "await " if async_mode else "" %}
+{% set operations_import = ".operations_async" if async_mode else ".operations" %}
+{% set path_to_models = ".." if async_mode else "." %}
 {# actual template starts here #}
 # coding=utf-8
 # --------------------------------------------------------------------------
@@ -14,37 +16,35 @@
 # Changes may cause incorrect behavior and will be lost if the code is
 # regenerated.
 # --------------------------------------------------------------------------
+
 from azure.core import {{ pipeline_client }}
 from msrest import Serializer, Deserializer
 
 from {{ config_import }} import {{ code_model.client_name }}Configuration
 from azure.core.exceptions import map_error
-{%- for operation_group_name in operation_group_names %}
-{%- set camel_case_op_group_name = to_camel_case(get_client_name(operation_group_name)) %}
-{%- if async_mode %}
-from .operations_async import {{ camel_case_op_group_name }}Operations
-from .. import models
-{%- else %}
-from .operations import {{ camel_case_op_group_name }}Operations
-from . import models
-{%- endif %}
-{%- endfor %}
+{% for operation_group_name in operation_group_names %}
+{% set camel_case_op_group_name = to_camel_case(get_client_name(operation_group_name)) %}
+from {{ operations_import }} import {{ camel_case_op_group_name }}Operations
+{% endfor %}
+from {{ path_to_models }} import models
 
 
 class {{ code_model.client_name }}(object):
     """{{ code_model.description }}
 
+
     {% for operation_group_name in operation_group_names %}
-    {%- set python_case_op_group_name = get_client_name(operation_group_name) %}
-    {%- set camel_case_op_group_name = to_camel_case(get_client_name(operation_group_name)) %}
+    {% set python_case_op_group_name = get_client_name(operation_group_name) %}
+    {% set camel_case_op_group_name = to_camel_case(get_client_name(operation_group_name)) %}
     :ivar {{ python_case_op_group_name  }}: {{ camel_case_op_group_name }} operations
-    {%- if async_mode %}
+    {% if async_mode %}
     :vartype {{ python_case_op_group_name }}: {{ code_model.namespace }}.aio.operations_async.{{ camel_case_op_group_name }}Operations
-    {%- else %}
+    {% else %}
     :vartype {{ python_case_op_group_name }}: {{ code_model.namespace }}.operations.{{ camel_case_op_group_name }}Operations
-    {%- endif %}
+    {% endif %}
     {% endfor %}
     {% if not code_model.custom_base_url %}
+
     :param str base_url: Service URL
     {% endif %}
     """
@@ -64,6 +64,7 @@ class {{ code_model.client_name }}(object):
         self.api_version = '{{ code_model.api_version }}'
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
+
         {% for operation_group_name in operation_group_names %}
         self.{{ get_client_name(operation_group_name) }} = {{ to_camel_case(get_client_name(operation_group_name)) + "Operations" }}(
             self._client, self._config, self._serialize, self._deserialize)

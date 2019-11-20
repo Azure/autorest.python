@@ -14,7 +14,11 @@ class GeneralSerializer:
     def serialize(self):
         env = Environment(
             loader=PackageLoader('autorest', 'templates'),
-            keep_trailing_newline=True
+            keep_trailing_newline=True,
+            line_statement_prefix="##",
+            line_comment_prefix="###",
+            trim_blocks=True,
+            lstrip_blocks=True
         )
         env.globals.update(get_namespace_name=get_namespace_name)
         env.globals.update(get_method_name=get_method_name)
