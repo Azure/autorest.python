@@ -35,12 +35,20 @@ class ConstantSchema(BaseSchema):
     def get_python_type(self, namespace: Optional[str] = None) -> str:
         """The python type used for RST syntax input and type annotation.
 
-        :param str namespace. Optional
+        :param str namespace: Optional. The namespace for the models.
         """
         return self.schema.get_python_type(namespace)
 
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, str], **kwargs) -> "ConstantSchema":
+    def from_yaml(cls, yaml_data: Dict[str, Any], **kwargs) -> "ConstantSchema":
+        """Constructs a ConstantSchema from yaml data.
+
+        :param yaml_data: the yaml data from which we will construct this schema
+        :type yaml_data: dict[str, Any]
+
+        :return: A created ConstantSchema
+        :rtype: ~autorest.models.ConstantSchema
+        """
         name = yaml_data["language"]["python"]["name"] if yaml_data["language"]["python"].get('name') else ""
         _LOGGER.info("Parsing %s constant", name)
         return cls(
