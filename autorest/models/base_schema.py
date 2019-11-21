@@ -1,13 +1,13 @@
 from .imports import FileImport
 
 from abc import ABC, abstractmethod
-from typing import Any, Dict
+from typing import Any, Dict, Optional
 
 
 class BaseSchema(ABC):
     """This is the base class for all schema models.
 
-    :param yaml_data: the yaml data for a schema
+    :param yaml_data: the yaml data for this schema
     :type yaml_data: dict[str, Any]
     """
     def __init__(
@@ -40,15 +40,15 @@ class BaseSchema(ABC):
         ...
 
     @abstractmethod
-    def get_python_type(self, namespace: str=None):
-        """That the python type if used for input using RST syntax.
+    def get_python_type(self, namespace: Optional[str] = None) -> str:
+        """The python type used for RST syntax input.
 
         Special case for enum, for instance: 'str or ~namespace.EnumName'
         """
         ...
 
-    def get_python_type_annotation(self):
-        """That the python type if used for input using "typing" syntax
+    def get_python_type_annotation(self) -> str:
+        """The python type used for type annotation
 
         Special case for enum, for instance: Union[str, "EnumName"]
         """
