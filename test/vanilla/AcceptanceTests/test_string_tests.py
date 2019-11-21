@@ -49,16 +49,21 @@ from bodystring.models import Colors
 
 import pytest
 
+@pytest.fixture
+def client():
+    return AutoRestSwaggerBATService(base_url="http://localhost:3000")
+
 class TestString(object):
 
-    def test_string(self):
-        client = AutoRestSwaggerBATService(base_url="http://localhost:3000")
-
+    def test_null(self, client):
         assert client.string.get_null() is None
         client.string.put_null(None)
+
+    def test_empty(self, client):
         assert "" ==  client.string.get_empty()
         client.string.put_empty()
 
+    def test_mbcs(self, client):
         try:
             test_str = (
                 "\xe5\x95\x8a\xe9\xbd\x84\xe4\xb8\x82\xe7\x8b\x9b\xe7\x8b"
@@ -96,28 +101,37 @@ class TestString(object):
         assert test_str ==  client.string.get_mbcs()
         client.string.put_mbcs()
 
+    def test_whitespace(self, client):
         test_str = "    Now is the time for all good men to come to the aid of their country    "
         assert test_str ==  client.string.get_whitespace()
         client.string.put_whitespace()
 
+    def test_get_not_provided(self, client):
         assert client.string.get_not_provided() is None
+
+    def test_enum_not_expandable(self, client):
         assert Colors.redcolor ==  client.enum.get_not_expandable()
         client.enum.put_not_expandable('red color')
         client.enum.put_not_expandable(Colors.redcolor)
         with pytest.raises(SerializationError):
             client.enum.put_not_expandable('not a colour')
 
+    def test_get_base64_encdoded(self, client):
         assert client.string.get_base64_encoded() ==  'a string that gets encoded with base64'.encode()
+
+    def test_base64_url_encoded(self, client):
         assert client.string.get_base64_url_encoded() ==  'a string that gets encoded with base64url'.encode()
-        assert client.string.get_null_base64_url_encoded() is None
         client.string.put_base64_url_encoded('a string that gets encoded with base64url'.encode())
 
+    def test_get_null_base64_url_encoded(self, client):
+        assert client.string.get_null_base64_url_encoded() is None
+
+    def test_enum_referenced(self, client):
         client.enum.put_referenced(Colors.redcolor)
         client.enum.put_referenced("red color")
-        client.enum.put_referenced_constant()
+
         assert client.enum.get_referenced() ==  Colors.redcolor
+
+    def test_enum_referenced_constant(self, client):
+        client.enum.put_referenced_constant()
         assert client.enum.get_referenced_constant().color_constant ==  Colors.green_color.value
-
-
-if __name__ == '__main__':
-    unittest.main()

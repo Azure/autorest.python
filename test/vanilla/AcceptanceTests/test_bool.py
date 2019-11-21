@@ -48,20 +48,27 @@ from bodyboolean.models import ErrorException
 
 import pytest
 
+@pytest.fixture
+def client():
+    return AutoRestBoolTestService(base_url="http://localhost:3000")
+
 class TestBool(object):
 
-    def test_bool(self):
-        client = AutoRestBoolTestService(base_url="http://localhost:3000")
-
+    def test_model_get_true(self, client):
         assert client.bool_model.get_true()
+
+    def test_model_get_false(self, client):
         assert not client.bool_model.get_false()
 
+    def test_model_get_null(self, client):
         client.bool_model.get_null()
+
+    def test_model_put_false(self, client):
         client.bool_model.put_false()
+
+    def test_model_put_true(self, client):
         client.bool_model.put_true()
 
+    def test_model_get_invalid(self, client):
         with pytest.raises(DecodeError):
             client.bool_model.get_invalid()
-
-if __name__ == '__main__':
-    unittest.main()

@@ -51,62 +51,66 @@ from validation.models import (
 
 import pytest
 
-class TestValidation(object):
-
-    def test_constant_values(self):
-        client = AutoRestValidationTest(
+@pytest.fixture
+def client():
+    client = AutoRestValidationTest(
             "abc123",
             base_url="http://localhost:3000")
-        client.api_version = "12-34-5678"
+    client.api_version = "12-34-5678"
+    return client
 
+class TestValidation(object):
+
+    def test_with_constant_in_path(self, client):
         client.get_with_constant_in_path()
 
         body = Product(child=ChildProduct())
         product = client.post_with_constant_in_body(body=body)
         assert product is not None
 
-    def test_validation(self):
-        client = AutoRestValidationTest(
-            "abc123",
-            base_url="http://localhost:3000")
-        client.api_version = "12-34-5678"
-
+    def test_min_length_validation(self, client):
         try:
             client.validation_of_method_parameters("1", 100)
         except ValidationError as err:
             assert err.rule ==  "min_length"
             assert err.target ==  "resource_group_name"
 
+    def test_max_length_validation(self, client):
         try:
             client.validation_of_method_parameters("1234567890A", 100)
         except ValidationError as err:
             assert err.rule ==  "max_length"
             assert err.target ==  "resource_group_name"
 
+    def test_pattern_validation(self, client):
         try:
             client.validation_of_method_parameters("!@#$", 100)
         except ValidationError as err:
             assert err.rule ==  "pattern"
             assert err.target ==  "resource_group_name"
 
+    def test_multiple_validation(self, client):
         try:
             client.validation_of_method_parameters("123", 105)
         except ValidationError as err:
             assert err.rule ==  "multiple"
             assert err.target ==  "id"
 
+    def test_minimum_validation(self, client):
         try:
             client.validation_of_method_parameters("123", 0)
         except ValidationError as err:
             assert err.rule ==  "minimum"
             assert err.target ==  "id"
 
+    def test_maximum_validation(self, client):
         try:
             client.validation_of_method_parameters("123", 2000)
         except ValidationError as err:
             assert err.rule ==  "maximum"
             assert err.target ==  "id"
 
+    def test_minimum_ex_validation(self, client):
         try:
             tempproduct=Product(child=ChildProduct(), capacity=0)
             client.validation_of_body("123", 150, tempproduct)
@@ -114,6 +118,7 @@ class TestValidation(object):
             assert err.rule ==  "minimum_ex"
             assert "capacity" in  err.target
 
+    def test_maximum_ex_validation(self, client):
         try:
             tempproduct=Product(child=ChildProduct(), capacity=100)
             client.validation_of_body("123", 150, tempproduct)
@@ -121,6 +126,7 @@ class TestValidation(object):
             assert err.rule ==  "maximum_ex"
             assert "capacity" in  err.target
 
+    def test_max_items_validation(self, client):
         try:
             tempproduct=Product(child=ChildProduct(),
                 display_names=["item1","item2","item3","item4","item5","item6","item7"])
@@ -129,13 +135,14 @@ class TestValidation(object):
             assert err.rule ==  "max_items"
             assert "display_names" in  err.target
 
-        client2 = AutoRestValidationTest(
+    def test_api_version_validation(self):
+        client = AutoRestValidationTest(
             "abc123",
             base_url="http://localhost:3000")
-        client2.api_version = "abc"
+        client.api_version = "abc"
 
         try:
-            client2.validation_of_method_parameters("123", 150)
+            client.validation_of_method_parameters("123", 150)
         except ValidationError as err:
             assert err.rule ==  "pattern"
             assert err.target ==  "self.api_version"

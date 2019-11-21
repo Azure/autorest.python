@@ -47,8 +47,7 @@ _LOGGER = logging.getLogger(__name__)
 
 @pytest.fixture
 def client():
-    with AutoRestSwaggerBATXMLService(base_url="http://localhost:3000") as client:
-        yield client
+    return AutoRestSwaggerBATXMLService(base_url="http://localhost:3000")
 
 def _assert_with_log(func, *args, **kwargs):
     def raise_for_status(response, deserialized, headers):
@@ -67,8 +66,7 @@ class TestXml(object):
         result = client.xml.json_output()
         assert result.id == 42
 
-    def test_basic(self, client):
-
+    def test_simple(self, client):
         # Slideshow
 
         slideshow = client.xml.get_simple()
@@ -93,38 +91,38 @@ class TestXml(object):
 
         _assert_with_log(client.xml.put_simple, slideshow)
 
-        # Empty child element
+    def test_empty_child_element(self, client):
         banana = client.xml.get_empty_child_element()
         assert banana.flavor == '' # That's the point of this test, it was an empty node.
         _assert_with_log(client.xml.put_empty_child_element, banana)
 
-        # Empty root list
+    def test_empty_root_list(self, client):
         bananas = client.xml.get_empty_root_list()
         assert bananas == []
         _assert_with_log(client.xml.put_empty_root_list, bananas)
 
-        # Root list single item
+    def test_root_list_single_item(self, client):
         bananas = client.xml.get_root_list_single_item()
         assert len(bananas) == 1
         assert bananas[0].name == "Cavendish"
         _assert_with_log(client.xml.put_root_list_single_item, bananas)
 
-        # Root list
+    def test_root_list(self, client):
         bananas = client.xml.get_root_list()
         assert len(bananas) == 2
         _assert_with_log(client.xml.put_root_list, bananas)
 
-        # Empty wrapped list
+    def test_empty_wrapped_lists(self, client):
         bananas = client.xml.get_empty_wrapped_lists()
         assert bananas.good_apples == []
         assert bananas.bad_apples == []
         _assert_with_log(client.xml.put_empty_wrapped_lists, bananas)
 
-        # Empty object
+    def test_get_empty(self, client):
         slideshow = client.xml.get_empty_list()
         _assert_with_log(client.xml.put_empty_list, slideshow)
 
-        # Wrapped list
+    def test_wrapped_lists(self, client):
         bananas = client.xml.get_wrapped_lists()
         assert bananas.good_apples == ['Fuji', 'Gala']
         assert bananas.bad_apples == ['Red Delicious']
@@ -139,24 +137,13 @@ class TestXml(object):
         assert root.ref_to_model.id == "myid"
         client.xml.put_complex_type_ref_with_meta(root)
 
-    def test_storage(self, client):
-
+    def test_list_containers(self, client):
         containers = client.xml.list_containers()
         assert len(containers.containers) == 3
+
+    def test_list_blobs(self, client):
         blobs = client.xml.list_blobs()
         assert len(blobs.blobs.blob) == 5
-
-        properties = client.xml.get_service_properties()
-        assert properties.hour_metrics is not None
-        assert properties.minute_metrics is not None
-        _assert_with_log(client.xml.put_service_properties, properties)
-
-        acls = client.xml.get_acls()
-        assert len(acls) == 1
-        assert acls[0].id == 'MTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI='
-        _assert_with_log(client.xml.put_acls, acls)
-
-        blobs = client.xml.list_blobs()
         assert not blobs.blobs.blob_prefix
         assert len(blobs.blobs.blob) == 5
         blob = blobs.blobs.blob[0]
@@ -177,3 +164,15 @@ class TestXml(object):
         assert blob.metadata["Color"] == "blue"
         assert blob.metadata["BlobNumber"] == "01"
         assert blob.metadata["SomeMetadataName"] == "SomeMetadataValue"
+
+    def test_service_properties(self, client):
+        properties = client.xml.get_service_properties()
+        assert properties.hour_metrics is not None
+        assert properties.minute_metrics is not None
+        _assert_with_log(client.xml.put_service_properties, properties)
+
+    def test_acls(self, client):
+        acls = client.xml.get_acls()
+        assert len(acls) == 1
+        assert acls[0].id == 'MTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI='
+        _assert_with_log(client.xml.put_acls, acls)

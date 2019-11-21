@@ -49,70 +49,74 @@ import pytest
 
 @pytest.fixture
 def client():
-    with AutoRestSwaggerBATFileService(base_url="http://localhost:3000") as client:
-        yield client
+    def _client(connection_data_block_size=None):
+        return AutoRestSwaggerBATFileService(
+            base_url="http://localhost:3000", connection_data_block_size=connection_data_block_size
+        )
+    return _client
+
+@pytest.fixture
+def callback():
+    def _callback(response, data_stream, headers):
+        assert not data_stream.response.internal_response._content_consumed
+        return data_stream
+    return _callback
 
 class TestFile(object):
 
-    def test_files(self):
+    def test_get_file(self, client):
+        client = client(connection_data_block_size=1000)
+        file_length = 0
+        with io.BytesIO() as file_handle:
+            stream = client.files.get_file()
+            total = len(stream)
+            assert not stream.response.internal_response._content_consumed
 
-        with AutoRestSwaggerBATFileService(base_url="http://localhost:3000", connection_data_block_size = 1000) as client:
-
-            file_length = 0
-            with io.BytesIO() as file_handle:
-                stream = client.files.get_file()
-                total = len(stream)
-                assert not stream.response.internal_response._content_consumed
-
-                for data in stream:
-                    assert 0 < len(data) <= stream.block_size
-                    file_length += len(data)
-                    print("Downloading... {}%".format(int(file_length*100/total)))
-                    file_handle.write(data)
-
-                assert file_length !=  0
-
-                sample_file = realpath(
-                    join(cwd, pardir, pardir, pardir,
-                        "node_modules", "@microsoft.azure", "autorest.testserver", "routes", "sample.png"))
-
-                with open(sample_file, 'rb') as data:
-                    sample_data = hash(data.read())
-                assert sample_data ==  hash(file_handle.getvalue())
-
-        with AutoRestSwaggerBATFileService(base_url="http://localhost:3000", connection_data_block_size = 4096) as client:
-            file_length = 0
-            with io.BytesIO() as file_handle:
-                stream = client.files.get_empty_file()
-                assert len(stream) == 0
-                assert not stream.response.internal_response._content_consumed
-
-                for data in stream:
-                    file_length += len(data)
-                    file_handle.write(data)
-
-                assert file_length ==  0
-
-    def test_files_long_running(self):
-        pytest.skip("slow")
-        with AutoRestSwaggerBATFileService(base_url="http://localhost:3000", connection_data_block_size = 4096) as client:
-            file_length = 0
-            stream = client.files.get_file_large()
             for data in stream:
                 assert 0 < len(data) <= stream.block_size
                 file_length += len(data)
+                print("Downloading... {}%".format(int(file_length*100/total)))
+                file_handle.write(data)
+
+            assert file_length !=  0
+
+            sample_file = realpath(
+                join(cwd, pardir, pardir, pardir,
+                    "node_modules", "@microsoft.azure", "autorest.testserver", "routes", "sample.png"))
+
+            with open(sample_file, 'rb') as data:
+                sample_data = hash(data.read())
+            assert sample_data ==  hash(file_handle.getvalue())
+
+    def test_get_empty_file(self, client):
+        client = client(connection_data_block_size=4096)
+        file_length = 0
+        with io.BytesIO() as file_handle:
+            stream = client.files.get_empty_file()
+            assert len(stream) == 0
+            assert not stream.response.internal_response._content_consumed
+
+            for data in stream:
+                file_length += len(data)
+                file_handle.write(data)
+
+            assert file_length ==  0
+
+    def test_files_long_running(self, client):
+        pytest.skip("slow")
+        client = client(connection_data_block_size=4096)
+        file_length = 0
+        stream = client.files.get_file_large()
+        for data in stream:
+            assert 0 < len(data) <= stream.block_size
+            file_length += len(data)
 
         assert file_length ==  3000 * 1024 * 1024
 
-    def test_files_raw(self, client):
-
-        def test_callback(response, data_stream, headers):
-            assert not data_stream.response.internal_response._content_consumed
-            return data_stream
-
+    def test_get_file_with_callback(self, client, callback):
         file_length = 0
         with io.BytesIO() as file_handle:
-            stream = client.files.get_file(cls=test_callback)
+            stream = client().files.get_file(cls=callback)
             assert len(stream) > 0
             for data in stream:
                 assert 0 < len(data) <= stream.block_size
@@ -129,14 +133,12 @@ class TestFile(object):
                 sample_data = hash(data.read())
             assert sample_data ==  hash(file_handle.getvalue())
 
+    def test_get_empty_file_with_callback(self, client, callback):
         file_length = 0
         with io.BytesIO() as file_handle:
-            stream = client.files.get_empty_file(cls=test_callback)
+            stream = client().files.get_empty_file(cls=callback)
             for data in stream:
                 file_length += len(data)
                 file_handle.write(data)
 
             assert file_length ==  0
-
-if __name__ == '__main__':
-    unittest.main()

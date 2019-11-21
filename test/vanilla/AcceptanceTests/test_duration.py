@@ -47,19 +47,18 @@ from bodyduration import AutoRestDurationTestService
 
 import pytest
 
+@pytest.fixture
+def client():
+    return AutoRestDurationTestService(base_url="http://localhost:3000")
+
 class TestDuration(object):
 
-    def test_duration(self):
-        client = AutoRestDurationTestService(base_url="http://localhost:3000")
-
+    def test_get_null_and_invalid(self, client):
         assert client.duration.get_null() is None
 
         with pytest.raises(DeserializationError):
             client.duration.get_invalid()
 
+    def test_positive_duration(self, client):
         client.duration.get_positive_duration()
         client.duration.put_positive_duration(timedelta(days=123, hours=22, minutes=14, seconds=12, milliseconds=11))
-
-
-if __name__ == '__main__':
-    unittest.main()

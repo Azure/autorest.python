@@ -371,7 +371,3 @@ class TestHttp(object):
         client.http_success.delete204(True)
         client.http_success.head404()
         client.http_success.patch204(True)
-
-
-if __name__ == '__main__':
-    unittest.main()

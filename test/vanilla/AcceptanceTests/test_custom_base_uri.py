@@ -52,25 +52,29 @@ from custombaseurlmoreoptions import AutoRestParameterizedCustomHostTestClient
 
 import pytest
 
+@pytest.fixture
+def client():
+    return AutoRestParameterizedHostTestClient("host:3000", retry_total = 0)
+
 class TestCustomBaseUri(object):
 
-    def test_custom_base_uri_positive(self):
+    def test_positive(self):
         client = AutoRestParameterizedHostTestClient("host:3000")
         client.paths.get_empty("local")
 
-    def test_custom_base_uri_negative(self):
-        client = AutoRestParameterizedHostTestClient("host:3000", retry_total = 0)
-
+    def test_get_empty_with_bad_string(self, client):
         with pytest.raises(ServiceRequestError):
             client.paths.get_empty("bad")
 
+    def test_get_empty_with_none(self, client):
         with pytest.raises(ValidationError):
             client.paths.get_empty(None)
 
+    def test_get_empty_from_bad_host(self):
         client = AutoRestParameterizedHostTestClient("badhost:3000", retry_total = 0)
         with pytest.raises(ServiceRequestError):
             client.paths.get_empty("local")
 
-    def test_custom_base_uri_more_optiopns(self):
+    def test_more_optiopns(self):
         client = AutoRestParameterizedCustomHostTestClient("test12", "host:3000")
         client.paths.get_empty("http://lo", "cal", "key1")
