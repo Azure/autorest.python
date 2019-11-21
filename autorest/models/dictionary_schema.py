@@ -1,5 +1,5 @@
 from .base_schema import BaseSchema
-from typing import Any, Dict
+from typing import Any, Dict, Optional
 
 class DictionarySchema(BaseSchema):
     """Schema for dictionaries that will be serialized.
