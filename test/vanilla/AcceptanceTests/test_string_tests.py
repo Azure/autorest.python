@@ -98,7 +98,7 @@ class TestString(object):
                 b"\xc9\xa1\xe3\x80\x87\xe3\x80\xbe\xe2\xbf\xbb\xe2\xba\x81"
                 b"\xee\xa1\x83\xe4\x9c\xa3\xee\xa1\xa4\xe2\x82\xac").decode('utf-8')
 
-        assert test_str ==  client.string.get_mbcs()
+        assert test_str == client.string.get_mbcs()
         client.string.put_mbcs()
 
     def test_whitespace(self, client):

@@ -40,6 +40,8 @@ class AutoRestValidationTest(AutoRestValidationTestOperationsMixin):
         self._deserialize = Deserializer(client_models)
 
 
+    def close(self):
+        self._client.close()
     def __enter__(self):
         self._client.__enter__()
         return self
