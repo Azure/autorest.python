@@ -72,7 +72,3 @@ class TestHead(object):
         client.head_exception.head204()
         with pytest.raises(HttpResponseError):
             client.head_exception.head404()
-
-
-if __name__ == '__main__':
-    unittest.main()
