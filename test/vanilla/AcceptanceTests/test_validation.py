@@ -146,7 +146,3 @@ class TestValidation(object):
         except ValidationError as err:
             assert err.rule ==  "pattern"
             assert err.target ==  "self.api_version"
-
-
-if __name__ == '__main__':
-    unittest.main()

@@ -58,7 +58,6 @@ def client():
     return AutoRestResourceFlatteningTestService(base_url="http://localhost:3000")
 
 class TestModelFlatteningTests(object):
-
     @pytest.mark.asyncio
     async def test_flattening_array(self, client):
 

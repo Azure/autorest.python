@@ -47,31 +47,47 @@ from bodyinteger.aio import AutoRestIntegerTestService
 
 import pytest
 
+@pytest.fixture
+def client():
+    return AutoRestIntegerTestService(base_url="http://localhost:3000")
+
 class TestInteger(object):
-
     @pytest.mark.asyncio
-    async def test_integer(self):
-        client = AutoRestIntegerTestService(base_url="http://localhost:3000")
-
+    async def test_max_min_32_bit(self, client):
         await client.int_model.put_max32(2147483647) # sys.maxint
         await client.int_model.put_min32(-2147483648)
 
+    @pytest.mark.asyncio
+    async def test_max_min_64_bit(self, client):
         await client.int_model.put_max64(9223372036854776000)  # sys.maxsize
         await client.int_model.put_min64(-9223372036854776000)
+
+    @pytest.mark.asyncio
+    async def test_get_null_and_invalid(self, client):
         await client.int_model.get_null()
 
         with pytest.raises(DecodeError):
             await client.int_model.get_invalid()
 
+    @pytest.mark.asyncio
+    async def test_get_overflow(self, client):
         # Testserver excepts these to fail, but they won't in Python and it's ok.
         await client.int_model.get_overflow_int32()
         await client.int_model.get_overflow_int64()
+
+    @pytest.mark.asyncio
+    async def test_get_underflow(self, client):
         await client.int_model.get_underflow_int32()
         await client.int_model.get_underflow_int64()
 
+    @pytest.mark.asyncio
+    async def test_unix_time_date(self, client):
         unix_date = datetime(year=2016, month=4, day=13)
         await client.int_model.put_unix_time_date(unix_date)
-        assert unix_date.utctimetuple() == (await client.int_model.get_unix_time()).utctimetuple()
+        assert unix_date.utctimetuple() ==  (await client.int_model.get_unix_time().utctimetuple())
+
+    @pytest.mark.asyncio
+    async def test_get_null_and_invalid_unix_time(self, client):
         assert await client.int_model.get_null_unix_time() is None
 
         with pytest.raises(DecodeError):

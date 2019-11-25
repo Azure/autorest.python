@@ -47,60 +47,80 @@ from bodydatetime.aio import AutoRestDateTimeTestService
 
 import pytest
 
+@pytest.fixture
+def client():
+    return AutoRestDateTimeTestService(base_url="http://localhost:3000")
+
 class TestDatetime(object):
-
     @pytest.mark.asyncio
-    async def test_datetime(self):
-        client = AutoRestDateTimeTestService(base_url="http://localhost:3000")
-
+    async def test_utc_max_date_time(self, client):
         max_date = isodate.parse_datetime("9999-12-31T23:59:59.999999Z")
-        min_date = isodate.parse_datetime("0001-01-01T00:00:00Z")
-
         dt = await client.datetime_model.get_utc_lowercase_max_date_time()
         assert dt ==  max_date
         dt = await client.datetime_model.get_utc_uppercase_max_date_time()
         assert dt ==  max_date
+        await client.datetime_model.put_utc_max_date_time(max_date)
+
+    @pytest.mark.asyncio
+    async def test_get_utc_min_date_time(self, client):
+        min_date = isodate.parse_datetime("0001-01-01T00:00:00Z")
         dt = await client.datetime_model.get_utc_min_date_time()
         assert dt ==  min_date
+        await client.datetime_model.put_utc_min_date_time(min_date)
 
+    @pytest.mark.asyncio
+    async def test_get_local_negative_offset_min_date_time(self, client):
         await client.datetime_model.get_local_negative_offset_min_date_time()
+        await client.datetime_model.put_local_negative_offset_min_date_time(
+            isodate.parse_datetime("0001-01-01T00:00:00-14:00"))
 
+    @pytest.mark.asyncio
+    async def test_get_local_negative_offset_lowercase_max_date_time(self, client):
         with pytest.raises(DeserializationError):
             await client.datetime_model.get_local_negative_offset_lowercase_max_date_time()
 
+    @pytest.mark.asyncio
+    async def test_get_local_negative_offset_uppercase_max_date_time(self, client):
         with pytest.raises(DeserializationError):
             await client.datetime_model.get_local_negative_offset_uppercase_max_date_time()
 
+    @pytest.mark.asyncio
+    async def test_local_positive_offset_min_date_time(self, client):
         with pytest.raises(DeserializationError):
             await client.datetime_model.get_local_positive_offset_min_date_time()
-
-        await client.datetime_model.get_local_positive_offset_lowercase_max_date_time()
-        await client.datetime_model.get_local_positive_offset_uppercase_max_date_time()
-
-        await client.datetime_model.get_null()
-
-        with pytest.raises(DeserializationError):
-            await client.datetime_model.get_overflow()
-
-        with pytest.raises(DeserializationError):
-            await client.datetime_model.get_invalid()
-
-        with pytest.raises(DeserializationError):
-            await client.datetime_model.get_underflow()
-
-        await client.datetime_model.put_utc_max_date_time(max_date)
-        await client.datetime_model.put_utc_min_date_time(min_date)
 
         with pytest.raises(SerializationError):
             await client.datetime_model.put_local_positive_offset_min_date_time(
                 isodate.parse_datetime("0001-01-01T00:00:00+14:00"))
 
-        await client.datetime_model.put_local_negative_offset_min_date_time(
-            isodate.parse_datetime("0001-01-01T00:00:00-14:00"))
+    @pytest.mark.asyncio
+    async def test_local_positive_offset_max_date_time(self, client):
+        await client.datetime_model.get_local_positive_offset_lowercase_max_date_time()
+        await client.datetime_model.get_local_positive_offset_uppercase_max_date_time()
+        await client.datetime_model.put_local_positive_offset_max_date_time(
+            isodate.parse_datetime("9999-12-31T23:59:59.999999+14:00"))
 
+    @pytest.mark.asyncio
+    async def test_get_null(self, client):
+        await client.datetime_model.get_null()
+
+    @pytest.mark.asyncio
+    async def test_get_overflow(self, client):
+        with pytest.raises(DeserializationError):
+            await client.datetime_model.get_overflow()
+
+    @pytest.mark.asyncio
+    async def test_get_invalid(self, client):
+        with pytest.raises(DeserializationError):
+            await client.datetime_model.get_invalid()
+
+    @pytest.mark.asyncio
+    async def test_get_underflow(self, client):
+        with pytest.raises(DeserializationError):
+            await client.datetime_model.get_underflow()
+
+    @pytest.mark.asyncio
+    async def test_put_local_negative_offset_max_date_time(self, client):
         with pytest.raises(SerializationError):
             await client.datetime_model.put_local_negative_offset_max_date_time(
                 isodate.parse_datetime("9999-12-31T23:59:59.999999-14:00"))
-
-        await client.datetime_model.put_local_positive_offset_max_date_time(
-            isodate.parse_datetime("9999-12-31T23:59:59.999999+14:00"))

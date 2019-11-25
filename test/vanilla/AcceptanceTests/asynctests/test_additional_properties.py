@@ -143,6 +143,3 @@ class TestAdditionalProperties(object):
         output_ap_str_add = await client.pets.create_ap_in_properties_with_ap_string(input_ap_str_add)
         assert output_ap_str_add.additional_properties['color'] ==  'red'
         assert output_ap_str_add.additional_properties1['weight'] ==  599
-
-if __name__ == '__main__':
-    unittest.main()

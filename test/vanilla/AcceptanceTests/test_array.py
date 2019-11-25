@@ -159,7 +159,7 @@ class TestArray(object):
 
     def test_get_byte_invalid_null(self, client):
         bytes_array = client.array.get_byte_invalid_null()
-        assert bytes_array, [bytes4 ==  None]
+        assert bytes_array, [bytearray([0x0AB, 0x0AC, 0x0AD]) ==  None]
 
     def test_get_complex_null(self, client):
         assert client.array.get_complex_null() is None
@@ -171,7 +171,7 @@ class TestArray(object):
         client.array.put_complex_valid(products)
         assert products ==  client.array.get_complex_valid()
 
-    def test_array_valid(self, client):
+    def test_get_array_valid(self, client):
         listlist = [["1", "2", "3"], ["4", "5", "6"], ["7", "8", "9"]]
         client.array.put_array_valid(listlist)
         assert listlist ==  client.array.get_array_valid()
@@ -181,11 +181,11 @@ class TestArray(object):
         client.array.put_dictionary_valid(listdict)
         assert listdict ==  client.array.get_dictionary_valid()
 
-    def test_array_valid(self, client, products):
+    def test_get_complex_item_null(self, client, products):
         products_null = [products[0], None, products[2]]
         assert products_null ==  client.array.get_complex_item_null()
 
-    def test_array_valid(self, client, products):
+    def test_get_complex_item_empty(self, client, products):
         products_empty = [products[0], Product(), products[2]]
         assert products_empty ==  client.array.get_complex_item_empty()
 

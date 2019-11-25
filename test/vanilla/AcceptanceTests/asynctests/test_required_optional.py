@@ -45,51 +45,77 @@ from requiredoptional.models import StringWrapper, ArrayWrapper, ClassWrapper
 
 import pytest
 
+@pytest.fixture
+def client_required():
+    client = AutoRestRequiredOptionalTestService(
+            "required_path",
+            "required_query",
+            base_url="http://localhost:3000")
+    client._config.required_global_path = "required_path"
+    client._config.required_global_query = "required_query"
+    return client
+
+@pytest.fixture
+def client():
+    client = AutoRestRequiredOptionalTestService(
+            "required_path",
+            "required_query",
+            base_url="http://localhost:3000")
+    client._config.required_global_path = None
+    client._config.required_global_query = None
+    return client
 
 class TestRequiredOptional(object):
 
-    @pytest.mark.asyncio
-    async def test_required_optional(self):
-
-        client = AutoRestRequiredOptionalTestService(
-            required_global_path="required_path",
-            required_global_query="required_query",
-            base_url="http://localhost:3000")
-
-        await client.implicit.put_optional_query(None)
-        await client.implicit.put_optional_body(None)
-        await client.implicit.put_optional_header(None)
-
-        await client.implicit.get_optional_global_query(headers={})
-
-        await client.explicit.post_optional_integer_parameter(None)
-        await client.explicit.post_optional_integer_property(None)
-        await client.explicit.post_optional_integer_header(None)
-
-        await client.explicit.post_optional_string_parameter(None)
-        await client.explicit.post_optional_string_property(None)
-        await client.explicit.post_optional_string_header(None)
-
-        await client.explicit.post_optional_class_parameter(None)
-        await client.explicit.post_optional_class_property(None)
-
-        await client.explicit.post_optional_array_parameter(None)
-        await client.explicit.post_optional_array_property(None)
-        await client.explicit.post_optional_array_header(None)
+    """These clients have a required global path and query
+    """
 
     @pytest.mark.asyncio
-    async def test_required_optional_negative(self):
+    async def test_put_optional(self, client_required):
+        await client_required.implicit.put_optional_query(None)
+        await client_required.implicit.put_optional_body(None)
+        await client_required.implicit.put_optional_header(None)
 
-        client = AutoRestRequiredOptionalTestService(
-            required_global_path="None",
-            required_global_query="None",
-            base_url="http://localhost:3000")
-        client._config.required_global_path=None
-        client._config.required_global_query=None
+    @pytest.mark.asyncio
+    async def test_get_optional_global_query(self, client_required):
+        await client_required.implicit.get_optional_global_query(None)
 
+    @pytest.mark.asyncio
+    async def test_post_optional_integer(self, client_required):
+        await client_required.explicit.post_optional_integer_parameter(None)
+        await client_required.explicit.post_optional_integer_property(None)
+        await client_required.explicit.post_optional_integer_header(None)
+
+    @pytest.mark.asyncio
+    async def test_post_optional_string(self, client_required):
+        await client_required.explicit.post_optional_string_parameter(None)
+        await client_required.explicit.post_optional_string_property(None)
+        await client_required.explicit.post_optional_string_header(None)
+
+    @pytest.mark.asyncio
+    async def test_post_optional_class(self, client_required):
+        await client_required.explicit.post_optional_class_parameter(None)
+        await client_required.explicit.post_optional_class_property(None)
+
+    @pytest.mark.asyncio
+    async def test_post_optional_array(self, client_required):
+        await client_required.explicit.post_optional_array_parameter(None)
+        await client_required.explicit.post_optional_array_property(None)
+        await client_required.explicit.post_optional_array_header(None)
+
+    @pytest.mark.asyncio
+    async def test_implicit_get_required(self, client):
         with pytest.raises(ValidationError):
             await client.implicit.get_required_path(None)
 
+        with pytest.raises(ValidationError):
+            await client.implicit.get_required_global_path()
+
+        with pytest.raises(ValidationError):
+            await client.implicit.get_required_global_query()
+
+    @pytest.mark.asyncio
+    async def test_post_required_string(self, client):
         with pytest.raises(ValidationError):
             await client.explicit.post_required_string_header(None)
 
@@ -99,6 +125,8 @@ class TestRequiredOptional(object):
         with pytest.raises(ValidationError):
             await client.explicit.post_required_string_property(None)
 
+    @pytest.mark.asyncio
+    async def test_post_required_array(self, client):
         with pytest.raises(ValidationError):
             await client.explicit.post_required_array_header(None)
 
@@ -108,20 +136,10 @@ class TestRequiredOptional(object):
         with pytest.raises(ValidationError):
             await client.explicit.post_required_array_property(None)
 
+    @pytest.mark.asyncio
+    async def test_post_required_class(self, client):
         with pytest.raises(ValidationError):
             await client.explicit.post_required_class_parameter(None)
 
         with pytest.raises(ValidationError):
             await client.explicit.post_required_class_property(None)
-
-        with pytest.raises(ValidationError):
-            await client.implicit.get_required_global_path()
-
-        with pytest.raises(ValidationError):
-            await client.implicit.get_required_global_query()
-
-
-if __name__ == '__main__':
-
-
-    unittest.main()

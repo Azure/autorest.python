@@ -47,20 +47,20 @@ from bodyduration.aio import AutoRestDurationTestService
 
 import pytest
 
+@pytest.fixture
+def client():
+    return AutoRestDurationTestService(base_url="http://localhost:3000")
+
 class TestDuration(object):
 
     @pytest.mark.asyncio
-    async def test_duration(self):
-        client = AutoRestDurationTestService(base_url="http://localhost:3000")
-
+    async def test_get_null_and_invalid(self, client):
         assert await client.duration.get_null() is None
 
         with pytest.raises(DeserializationError):
             await client.duration.get_invalid()
 
+    @pytest.mark.asyncio
+    async def test_positive_duration(self, client):
         await client.duration.get_positive_duration()
         await client.duration.put_positive_duration(timedelta(days=123, hours=22, minutes=14, seconds=12, milliseconds=11))
-
-
-if __name__ == '__main__':
-    unittest.main()

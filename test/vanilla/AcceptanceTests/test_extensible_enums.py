@@ -79,7 +79,3 @@ class TestExtensibleEnums(object):
         assert returned_pet.days_of_week ==  "Friday"
         assert returned_pet.int_enum ==  "3"
         assert returned_pet.name ==  "Retriever"
-
-
-if __name__ == '__main__':
-    unittest.main()
