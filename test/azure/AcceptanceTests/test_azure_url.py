@@ -59,7 +59,3 @@ class TestAzureUrl(object):
         group = client.group.get_sample_resource_group("testgoup101")
         assert group.name ==  "testgroup101"
         assert group.location ==  "West US"
-
-
-if __name__ == '__main__':
-    unittest.main()

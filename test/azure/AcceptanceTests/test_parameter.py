@@ -60,98 +60,129 @@ from azureparametergrouping.models import (
 
 import pytest
 
+@pytest.fixture
+def client():
+    cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
+    return AutoRestParameterGroupingTestService(cred, base_url="http://localhost:3000")
+
+@pytest.fixture
+def valid_subscription():
+    return '1234-5678-9012-3456'
+
+@pytest.fixture
+def azure_client(valid_subscription):
+    cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
+    return AutoRestAzureSpecialParametersTestClient(cred, valid_subscription, base_url="http://localhost:3000")
+
+@pytest.fixture
+def body_parameter():
+    return 1234
+
+@pytest.fixture
+def header_parameter():
+    return 'header'
+
+@pytest.fixture
+def query_parameter():
+    return 21
+
+@pytest.fixture
+def path_parameter():
+    return 'path'
+
+
+@pytest.fixture
+def unencoded_path():
+    return 'path1/path2/path3'
+
+@pytest.fixture
+def unencoded_query():
+    return 'value1&q2=value2&q3=value3'
+
 class TestParameter(object):
 
-    def test_parameter_grouping(self):
-
-        bodyParameter = 1234
-        headerParameter = 'header'
-        queryParameter = 21
-        pathParameter = 'path'
-
-        cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
-        client = AutoRestParameterGroupingTestService(cred, base_url="http://localhost:3000")
-
+    def test_post_all_required_parameters(self, client, body_parameter, header_parameter, query_parameter, path_parameter):
         # Valid required parameters
-        requiredParameters = ParameterGroupingPostRequiredParameters(body=bodyParameter, path=pathParameter, custom_header=headerParameter, query=queryParameter)
-        client.parameter_grouping.post_required(requiredParameters)
+        required_parameters = ParameterGroupingPostRequiredParameters(body=body_parameter, path=path_parameter, custom_header=header_parameter, query=query_parameter)
+        client.parameter_grouping.post_required(required_parameters)
 
+    def test_post_required_parameters_null_optional_parameters(self, client, body_parameter, path_parameter):
         #Required parameters but null optional parameters
-        requiredParameters = ParameterGroupingPostRequiredParameters(body=bodyParameter, path=pathParameter, query=None)
-        client.parameter_grouping.post_required(requiredParameters)
+        required_parameters = ParameterGroupingPostRequiredParameters(body=body_parameter, path=path_parameter, query=None)
+        client.parameter_grouping.post_required(required_parameters)
 
+    def test_post_required_parameters_with_null_required_property(self, client, path_parameter):
         #Required parameters object is not null, but a required property of the object is
-        requiredParameters = ParameterGroupingPostRequiredParameters(body = None, path = pathParameter)
+        required_parameters = ParameterGroupingPostRequiredParameters(body = None, path = path_parameter)
 
         with pytest.raises(ValidationError):
-            client.parameter_grouping.post_required(requiredParameters)
+            client.parameter_grouping.post_required(required_parameters)
         with pytest.raises(ValidationError):
             client.parameter_grouping.post_required(None)
 
+    def test_post_all_optional(self, client, header_parameter, query_parameter):
         #Valid optional parameters
-        optionalParameters = ParameterGroupingPostOptionalParameters(custom_header = headerParameter, query = queryParameter)
-        client.parameter_grouping.post_optional(optionalParameters)
+        optional_parameters = ParameterGroupingPostOptionalParameters(custom_header = header_parameter, query = query_parameter)
+        client.parameter_grouping.post_optional(optional_parameters)
 
+    def test_post_none_optional(self, client):
         #null optional paramters
         client.parameter_grouping.post_optional(None)
 
+    def test_post_all_multi_param_groups(self, client, header_parameter, query_parameter):
         #Multiple grouped parameters
-        firstGroup = FirstParameterGroup(header_one = headerParameter, query_one = queryParameter)
-        secondGroup = ParameterGroupingPostMultiParamGroupsSecondParamGroup(header_two = "header2", query_two = 42)
+        first_group = FirstParameterGroup(header_one = header_parameter, query_one = query_parameter)
+        second_group = ParameterGroupingPostMultiParamGroupsSecondParamGroup(header_two = "header2", query_two = 42)
 
-        client.parameter_grouping.post_multi_param_groups(firstGroup, secondGroup)
+        client.parameter_grouping.post_multi_param_groups(first_group, second_group)
 
+    def test_post_some_multi_param_groups(self, client, header_parameter):
         #Multiple grouped parameters -- some optional parameters omitted
-        firstGroup = FirstParameterGroup(header_one = headerParameter)
-        secondGroup = ParameterGroupingPostMultiParamGroupsSecondParamGroup(query_two = 42)
+        first_group = FirstParameterGroup(header_one = header_parameter)
+        second_group = ParameterGroupingPostMultiParamGroupsSecondParamGroup(query_two = 42)
 
-        client.parameter_grouping.post_multi_param_groups(firstGroup, secondGroup)
-        client.parameter_grouping.post_shared_parameter_group_object(firstGroup)
+        client.parameter_grouping.post_multi_param_groups(first_group, second_group)
 
-    def test_azure_special_parameters(self):
+    def test_post_shared_parameter_group_object(self, client, header_parameter):
+        first_group = FirstParameterGroup(header_one = header_parameter)
+        client.parameter_grouping.post_shared_parameter_group_object(first_group)
 
-        validSubscription = '1234-5678-9012-3456'
-        validApiVersion = '2.0'
-        unencodedPath = 'path1/path2/path3'
-        unencodedQuery = 'value1&q2=value2&q3=value3'
-        cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
-        client = AutoRestAzureSpecialParametersTestClient(cred, validSubscription, base_url="http://localhost:3000")
+    def test_subscription_in_credentials(self, azure_client):
+        # valid_api_version = '2.0'
+        azure_client.subscription_in_credentials.post_method_global_not_provided_valid()
+        azure_client.subscription_in_credentials.post_method_global_valid()
+        azure_client.subscription_in_credentials.post_path_global_valid()
+        azure_client.subscription_in_credentials.post_swagger_global_valid()
 
-        client.subscription_in_credentials.post_method_global_not_provided_valid()
-        client.subscription_in_credentials.post_method_global_valid()
-        client.subscription_in_credentials.post_path_global_valid()
-        client.subscription_in_credentials.post_swagger_global_valid()
-        client.subscription_in_method.post_method_local_valid(validSubscription)
-        client.subscription_in_method.post_path_local_valid(validSubscription)
-        client.subscription_in_method.post_swagger_local_valid(validSubscription)
+    def test_subscription_in_method(self, azure_client, valid_subscription):
+        azure_client.subscription_in_method.post_method_local_valid(valid_subscription)
+        azure_client.subscription_in_method.post_path_local_valid(valid_subscription)
+        azure_client.subscription_in_method.post_swagger_local_valid(valid_subscription)
         with pytest.raises(ValidationError):
-            client.subscription_in_method.post_method_local_null(None)
+            azure_client.subscription_in_method.post_method_local_null(None)
 
-        client.api_version_default.get_method_global_not_provided_valid()
-        client.api_version_default.get_method_global_valid()
-        client.api_version_default.get_path_global_valid()
-        client.api_version_default.get_swagger_global_valid()
-        client.api_version_local.get_method_local_valid()
-        client.api_version_local.get_method_local_null()
-        client.api_version_local.get_path_local_valid()
-        client.api_version_local.get_swagger_local_valid()
+    def test_api_version_default(self, azure_client):
+        azure_client.api_version_default.get_method_global_not_provided_valid()
+        azure_client.api_version_default.get_method_global_valid()
+        azure_client.api_version_default.get_path_global_valid()
+        azure_client.api_version_default.get_swagger_global_valid()
 
-        client.skip_url_encoding.get_method_path_valid(unencodedPath)
-        client.skip_url_encoding.get_path_path_valid(unencodedPath)
-        client.skip_url_encoding.get_swagger_path_valid()
-        client.skip_url_encoding.get_method_query_valid(unencodedQuery)
-        client.skip_url_encoding.get_path_query_valid(unencodedQuery)
-        client.skip_url_encoding.get_swagger_query_valid()
-        client.skip_url_encoding.get_method_query_null()
-        client.skip_url_encoding.get_method_query_null(None)
+    def test_api_version_local(self, azure_client):
+        azure_client.api_version_local.get_method_local_valid()
+        azure_client.api_version_local.get_method_local_null()
+        azure_client.api_version_local.get_path_local_valid()
+        azure_client.api_version_local.get_swagger_local_valid()
 
-    def test_azure_odata(self):
+    def test_skip_url_encoding(self, azure_client, unencoded_path, unencoded_query):
+        azure_client.skip_url_encoding.get_method_path_valid(unencoded_path)
+        azure_client.skip_url_encoding.get_path_path_valid(unencoded_path)
+        azure_client.skip_url_encoding.get_swagger_path_valid()
+        azure_client.skip_url_encoding.get_method_query_valid(unencoded_query)
+        azure_client.skip_url_encoding.get_path_query_valid(unencoded_query)
+        azure_client.skip_url_encoding.get_swagger_query_valid()
+        azure_client.skip_url_encoding.get_method_query_null()
+        azure_client.skip_url_encoding.get_method_query_null(None)
 
-        validSubscription = '1234-5678-9012-3456'
-        cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
-        client = AutoRestAzureSpecialParametersTestClient(cred, validSubscription, base_url="http://localhost:3000")
-        client.odata.get_with_filter(filter="id gt 5 and name eq 'foo'", top=10, orderby="id")
+    def test_azure_odata(self, azure_client):
+        azure_client.odata.get_with_filter(filter="id gt 5 and name eq 'foo'", top=10, orderby="id")
 
-
-if __name__ == '__main__':
-    unittest.main()
