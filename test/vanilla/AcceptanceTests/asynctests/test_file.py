@@ -58,7 +58,7 @@ def client():
 @pytest.fixture
 def callback():
     def _callback(response, data_stream, headers):
-        assert not data_stream.response.internal_response._content_consumed
+        assert not data_stream.response.internal_response._released
         return data_stream
     return _callback
 
@@ -71,9 +71,9 @@ class TestFile(object):
         with io.BytesIO() as file_handle:
             stream = await client.files.get_file()
             total = len(stream)
-            assert not stream.response.internal_response._content_consumed
+            assert not stream.response.internal_response._released
 
-            for data in stream:
+            async for data in stream:
                 assert 0 < len(data) <= stream.block_size
                 file_length += len(data)
                 print("Downloading... {}%".format(int(file_length*100/total)))
@@ -82,8 +82,8 @@ class TestFile(object):
             assert file_length !=  0
 
             sample_file = realpath(
-                join(cwd, pardir, pardir, pardir,
-                    "node_modules", "@microsoft.azure", "autorest.testserver", "routes", "sample.png"))
+                join(cwd, pardir, pardir, pardir, pardir,
+                     "node_modules", "@microsoft.azure", "autorest.testserver", "routes", "sample.png"))
 
             with open(sample_file, 'rb') as data:
                 sample_data = hash(data.read())
@@ -96,9 +96,9 @@ class TestFile(object):
         with io.BytesIO() as file_handle:
             stream = await client.files.get_empty_file()
             assert len(stream) == 0
-            assert not stream.response.internal_response._content_consumed
+            assert not stream.response.internal_response._released
 
-            for data in stream:
+            async for data in stream:
                 file_length += len(data)
                 file_handle.write(data)
 
@@ -110,7 +110,7 @@ class TestFile(object):
         client = client(connection_data_block_size=4096)
         file_length = 0
         stream = await client.files.get_file_large()
-        for data in stream:
+        async for data in stream:
             assert 0 < len(data) <= stream.block_size
             file_length += len(data)
 
@@ -120,9 +120,9 @@ class TestFile(object):
     async def test_get_file_with_callback(self, client, callback):
         file_length = 0
         with io.BytesIO() as file_handle:
-            stream = client().files.get_file(cls=callback)
+            stream = await client().files.get_file(cls=callback)
             assert len(stream) > 0
-            for data in stream:
+            async for data in stream:
                 assert 0 < len(data) <= stream.block_size
                 file_length += len(data)
                 file_handle.write(data)
@@ -130,7 +130,7 @@ class TestFile(object):
             assert file_length !=  0
 
             sample_file = realpath(
-                join(cwd, pardir, pardir, pardir,
+                join(cwd, pardir, pardir, pardir, pardir,
                      "node_modules", "@microsoft.azure", "autorest.testserver", "routes", "sample.png"))
 
             with open(sample_file, 'rb') as data:
@@ -141,9 +141,10 @@ class TestFile(object):
     async def test_get_empty_file_with_callback(self, client, callback):
         file_length = 0
         with io.BytesIO() as file_handle:
-            stream = client().files.get_empty_file(cls=callback)
-            for data in stream:
+            stream = await client().files.get_empty_file(cls=callback)
+            async for data in stream:
                 file_length += len(data)
                 file_handle.write(data)
 
+            assert stream.response.internal_response._released
             assert file_length ==  0

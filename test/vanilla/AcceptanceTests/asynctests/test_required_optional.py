@@ -78,7 +78,7 @@ class TestRequiredOptional(object):
 
     @pytest.mark.asyncio
     async def test_get_optional_global_query(self, client_required):
-        await client_required.implicit.get_optional_global_query(None)
+        await client_required.implicit.get_optional_global_query(headers={})
 
     @pytest.mark.asyncio
     async def test_post_optional_integer(self, client_required):

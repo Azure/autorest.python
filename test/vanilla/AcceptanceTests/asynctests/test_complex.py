@@ -221,7 +221,7 @@ class TestComplex(object):
     async def test_primitive_get_and_put_duration(self, client):
         # GET primitive/duration
         expected = timedelta(days=123, hours=22, minutes=14, seconds=12, milliseconds=11)
-        assert expected ==  (await client.primitive.get_duration().field)
+        assert expected ==  (await client.primitive.get_duration()).field
 
         await client.primitive.put_duration(expected)
 
@@ -310,12 +310,12 @@ class TestComplex(object):
     @pytest.mark.asyncio
     async def test_dictionary_get_and_null(self, client):
         # GET dictionary/null
-        assert await client.dictionary.get_null().default_program is None
+        assert (await client.dictionary.get_null()).default_program is None
 
     @pytest.mark.asyncio
     async def test_dictionary_get_not_provided(self, client):
         # GET dictionary/notprovided
-        assert await client.dictionary.get_not_provided().default_program is None
+        assert (await client.dictionary.get_not_provided()).default_program is None
 
     """
     COMPLEX TYPES THAT INVOLVE INHERITANCE

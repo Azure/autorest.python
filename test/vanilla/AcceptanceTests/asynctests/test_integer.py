@@ -84,7 +84,7 @@ class TestInteger(object):
     async def test_unix_time_date(self, client):
         unix_date = datetime(year=2016, month=4, day=13)
         await client.int_model.put_unix_time_date(unix_date)
-        assert unix_date.utctimetuple() ==  (await client.int_model.get_unix_time().utctimetuple())
+        assert unix_date.utctimetuple() ==  (await client.int_model.get_unix_time()).utctimetuple()
 
     @pytest.mark.asyncio
     async def test_get_null_and_invalid_unix_time(self, client):

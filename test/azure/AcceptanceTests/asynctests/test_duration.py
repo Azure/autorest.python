@@ -49,23 +49,23 @@ from bodyduration.aio import AutoRestDurationTestService
 
 import pytest
 
+@pytest.fixture
+def client():
+    cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
+    return AutoRestDurationTestService(cred, base_url="http://localhost:3000")
+
 class TestDuration(object):
 
     @pytest.mark.asyncio
-    async def test_duration(self):
+    async def test_get_null_and_invalid(self, client):
+        assert (await client.duration.get_null()) is None
 
-        cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
-        async with AutoRestDurationTestService(cred, base_url="http://localhost:3000") as client:
+        with pytest.raises(DeserializationError):
+            await client.duration.get_invalid()
 
-            assert await client.duration.get_null() is None
+    @pytest.mark.asyncio
+    async def test_positive_duration(self, client):
+        await client.duration.get_positive_duration()
+        delta = timedelta(days=123, hours=22, minutes=14, seconds=12, milliseconds=11)
+        await client.duration.put_positive_duration(delta)
 
-            with pytest.raises(DeserializationError):
-                await client.duration.get_invalid()
-
-            await client.duration.get_positive_duration()
-            delta = timedelta(days=123, hours=22, minutes=14, seconds=12, milliseconds=11)
-            await client.duration.put_positive_duration(delta)
-
-
-if __name__ == '__main__':
-    unittest.main()

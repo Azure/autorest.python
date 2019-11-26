@@ -190,7 +190,7 @@ class TestHeader(object):
 
     @pytest.mark.asyncio
     async def test_response_existing_key(self, client):
-        async def useragent_header(response, _, headers):
+        def useragent_header(response, _, headers):
             return headers.get('User-Agent')
         response = await client.header.response_existing_key(cls=useragent_header)
         assert response == "overwrite"
@@ -201,14 +201,14 @@ class TestHeader(object):
         #await client.header.param_protected_key("text/html")
 
         # This test has different result compare to C#, which content-type is saved in another place.
-        async def content_header(response, _, headers):
+        def content_header(response, _, headers):
             return headers.get('Content-Type')
         response = await client.header.response_protected_key(cls=content_header)
         assert response == "text/html; charset=utf-8"
 
     @pytest.mark.asyncio
     async def test_custom_request_id(self, client):
-        async def status_code(response, _, headers):
+        def status_code(response, _, headers):
             return response.status_code
         custom_headers = {"x-ms-client-request-id": "9C4D50EE-2D56-4CD3-8152-34347DC9F2B0"}
         response = await client.header.custom_request_id(headers=custom_headers, cls=status_code)

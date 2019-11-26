@@ -145,4 +145,4 @@ class TestString(object):
     @pytest.mark.asyncio
     async def test_enum_referenced_constant(self, client):
         await client.enum.put_referenced_constant()
-        assert (await client.enum.get_referenced_constant().color_constant) ==  Colors.green_color.value
+        assert (await client.enum.get_referenced_constant()).color_constant ==  Colors.green_color.value
