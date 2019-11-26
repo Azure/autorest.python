@@ -410,11 +410,3 @@ class TestLro:
     def test_post202_retry_invalid_header_with_exception(self, client):
         with pytest.raises(Exception):
                 self.lro_result(client.lrosads.post202_retry_invalid_header)
-
-        
-    
-        
-
-        
-
-        
