@@ -41,8 +41,6 @@ sys.path.append(join(tests, "Report"))
 
 from report import AutoRestReportService
 
-@pytest.fixture
-
 
 class TestAcceptance(object):
 
