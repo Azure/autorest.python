@@ -146,9 +146,15 @@ class TestValidation(object):
             assert "display_names" in  err.target
 
     @pytest.mark.asyncio
-    async def test_api_version_validation(self, client):
+    async def test_api_version_validation(self):
+        client = AutoRestValidationTest(
+            "abc123",
+            base_url="http://localhost:3000")
+        client.api_version = "abc"
         try:
             await client.validation_of_method_parameters("123", 150)
         except ValidationError as err:
             assert err.rule ==  "pattern"
             assert err.target ==  "self.api_version"
+        finally:
+            await client._client.close()

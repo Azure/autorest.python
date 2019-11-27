@@ -273,9 +273,10 @@ class TestComplex(object):
         # PUT array/empty
         await client.array.put_empty([])
 
+    @pytest.mark.asyncio
     async def test_array_get_not_provided(self, client):
         # Get array/notprovided
-        assert await client.array.get_not_provided().array is None
+        assert (await client.array.get_not_provided()).array is None
 
     # COMPLEX TYPE WITH DICTIONARY PROPERTIES
 

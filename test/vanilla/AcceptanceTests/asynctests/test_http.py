@@ -68,89 +68,83 @@ async def client(cookie_policy):
 
 
 class TestHttp(object):
-
-    @pytest.mark.asyncio
-    async def assertStatus(self, code, func, *args, **kwargs):
+    async def assert_status(self, code, func, *args, **kwargs):
         def return_status(response, data, headers):
             return response.status_code
         kwargs['cls'] = return_status
-        status_code = func(*args, **kwargs)
+        status_code = await func(*args, **kwargs)
         assert status_code == code
 
-    @pytest.mark.asyncio
-    async def assertRaisesWithMessage(self, msg, func, *args, **kwargs):
+    async def assert_raises_with_message(self, msg, func, *args, **kwargs):
         try:
-            func(*args, **kwargs)
+            await func(*args, **kwargs)
             pytest.fail()
 
         except HttpResponseError as err:
             assert err.message == msg
 
-    @pytest.mark.asyncio
-    async def assertRaisesWithModel(self, code, model, func, *args, **kwargs):
+    async def assert_raises_with_model(self, code, model, func, *args, **kwargs):
         try:
-            func(*args, **kwargs)
+            await func(*args, **kwargs)
             pytest.fail()
 
         except HttpResponseError as err:
             assert isinstance(err.error, model)
             assert err.response.status_code == code
 
-    @pytest.mark.asyncio
-    async def assertRaisesWithStatus(self, code, func, *args, **kwargs):
+    async def assert_raises_with_status(self, code, func, *args, **kwargs):
         try:
-            func(*args, **kwargs)
+            await func(*args, **kwargs)
             pytest.fail()
 
         except HttpResponseError as err:
             assert err.response.status_code == code
 
-    @pytest.mark.asyncio
-    async def assertRaisesWithStatusAndMessage(self, code, msg, func, *args, **kwargs):
+    async def assert_raises_with_status_and_message(self, code, msg, func, *args, **kwargs):
         try:
-            func(*args, **kwargs)
+            await func(*args, **kwargs)
             pytest.fail()
 
         except HttpResponseError as err:
             assert err.message == msg
             assert err.response.status_code == code
 
-    @pytest.mark.asyncio
-    async def assertRaisesWithStatusAndResponseContains(self, code, msg, func, *args, **kwargs):
+    async def assert_raises_with_status_and_response_contains(self, code, msg, func, *args, **kwargs):
         try:
-            func(*args, **kwargs)
+            await func(*args, **kwargs)
             pytest.fail()
 
         except HttpResponseError as err:
             assert err.response.status_code == code
             assert msg in err.response.text()
 
+
     @pytest.mark.asyncio
     async def test_get200_model204(self, client):
         r = await client.multiple_responses.get200_model204_no_model_default_error200_valid()
         assert '200' ==  r.status_code
 
-        self.assertRaisesWithStatus(201,
+        await self.assert_raises_with_status(201,
             client.multiple_responses.get200_model204_no_model_default_error201_invalid)
 
-        self.assertRaisesWithStatus(202,
+        await self.assert_raises_with_status(202,
             client.multiple_responses.get200_model204_no_model_default_error202_none)
 
         assert (await client.multiple_responses.get200_model204_no_model_default_error204_valid()) is None
 
-        self.assertRaisesWithStatusAndMessage(400, "client error",
+        await self.assert_raises_with_status_and_message(400, "client error",
             client.multiple_responses.get200_model204_no_model_default_error400_valid)
 
     @pytest.mark.asyncio
     async def test_get200_model201(self, client):
-        self.assertStatus(200, client.multiple_responses.get200_model201_model_default_error200_valid)
+        await self.assert_status(200, client.multiple_responses.get200_model201_model_default_error200_valid)
 
         b_model = await client.multiple_responses.get200_model201_model_default_error201_valid()
         assert b_model is not None
         assert b_model.status_code ==  "201"
         assert b_model.text_status_code ==  "Created"
 
-        self.assertRaisesWithStatusAndMessage(400, "client error",
+        await self.assert_raises_with_status_and_message(400, "client error",
             client.multiple_responses.get200_model201_model_default_error400_valid)
 
     @pytest.mark.asyncio
@@ -167,7 +161,7 @@ class TestHttp(object):
         assert d_model is not None
         assert d_model.http_status_code ==  "404"
 
-        self.assertRaisesWithStatusAndMessage(400, "client error",
+        await self.assert_raises_with_status_and_message(400, "client error",
             client.multiple_responses.get200_model_a201_model_c404_model_ddefault_error400_valid)
 
     @pytest.mark.asyncio
@@ -175,21 +169,21 @@ class TestHttp(object):
         await client.multiple_responses.get202_none204_none_default_error202_none()
         await client.multiple_responses.get202_none204_none_default_error204_none()
 
-        self.assertRaisesWithStatusAndMessage(400, "client error",
+        await self.assert_raises_with_status_and_message(400, "client error",
             client.multiple_responses.get202_none204_none_default_error400_valid)
 
         await client.multiple_responses.get202_none204_none_default_none202_invalid()
         await client.multiple_responses.get202_none204_none_default_none204_none()
 
-        self.assertRaisesWithStatus(400,
+        await self.assert_raises_with_status(400,
             client.multiple_responses.get202_none204_none_default_none400_none)
 
-        self.assertRaisesWithStatus(400,
+        await self.assert_raises_with_status(400,
             client.multiple_responses.get202_none204_none_default_none400_invalid)
 
     @pytest.mark.asyncio
     async def test_get_default_model_a200(self, client):
-        self.assertStatus(200, client.multiple_responses.get_default_model_a200_valid)
+        await self.assert_status(200, client.multiple_responses.get_default_model_a200_valid)
 
         assert (await client.multiple_responses.get_default_model_a200_none()) is None
         await client.multiple_responses.get_default_model_a200_valid()
@@ -197,10 +191,10 @@ class TestHttp(object):
 
     @pytest.mark.asyncio
     async def test_get_default_model_a400(self, client):
-        self.assertRaisesWithModel(400, A,
+        await self.assert_raises_with_model(400, A,
             client.multiple_responses.get_default_model_a400_valid)
 
-        self.assertRaisesWithModel(400, A,
+        await self.assert_raises_with_model(400, A,
             client.multiple_responses.get_default_model_a400_none)
 
     @pytest.mark.asyncio
@@ -210,49 +204,49 @@ class TestHttp(object):
 
     @pytest.mark.asyncio
     async def test_get_default_none400(self, client):
-        self.assertRaisesWithStatus(400,
+        await self.assert_raises_with_status(400,
             client.multiple_responses.get_default_none400_invalid)
 
-        self.assertRaisesWithStatus(400,
+        await self.assert_raises_with_status(400,
             client.multiple_responses.get_default_none400_none)
 
     @pytest.mark.asyncio
     async def test_get200_model_a200(self, client):
         assert await client.multiple_responses.get200_model_a200_none() is None
 
-        self.assertStatus(200, client.multiple_responses.get200_model_a200_valid)
+        await self.assert_status(200, client.multiple_responses.get200_model_a200_valid)
 
         assert (await client.multiple_responses.get200_model_a200_invalid()).status_code is None
 
     @pytest.mark.asyncio
     async def test_get200_model_a400(self, client):
-        self.assertRaisesWithStatus(400,
+        await self.assert_raises_with_status(400,
             client.multiple_responses.get200_model_a400_none)
-        self.assertRaisesWithStatus(400,
+        await self.assert_raises_with_status(400,
             client.multiple_responses.get200_model_a400_valid)
-        self.assertRaisesWithStatus(400,
+        await self.assert_raises_with_status(400,
             client.multiple_responses.get200_model_a400_invalid)
 
     @pytest.mark.asyncio
     async def test_get200_model_a202(self, client):
-        self.assertRaisesWithStatus(202,
+        await self.assert_raises_with_status(202,
             client.multiple_responses.get200_model_a202_valid)
 
     @pytest.mark.asyncio
     async def test_server_error_status_codes_501(self, client):
 
-        self.assertRaisesWithStatus(requests.codes.not_implemented,
+        await self.assert_raises_with_status(requests.codes.not_implemented,
             client.http_server_failure.head501)
 
-        self.assertRaisesWithStatus(requests.codes.not_implemented,
+        await self.assert_raises_with_status(requests.codes.not_implemented,
             client.http_server_failure.get501)
 
     @pytest.mark.asyncio
     async def test_server_error_status_codes_505(self, client):
-        self.assertRaisesWithStatus(requests.codes.http_version_not_supported,
+        await self.assert_raises_with_status(requests.codes.http_version_not_supported,
             client.http_server_failure.post505, True)
 
-        self.assertRaisesWithStatus(requests.codes.http_version_not_supported,
+        await self.assert_raises_with_status(requests.codes.http_version_not_supported,
             client.http_server_failure.delete505, True)
 
     @pytest.mark.asyncio
@@ -265,7 +259,7 @@ class TestHttp(object):
 
         # TODO, 4042586: Support options operations in swagger modeler
         #await client.http_retry.options429()
-    
+
     @pytest.mark.asyncio
     async def test_retry_status_codes_500(self, client):
         await client.http_retry.put500(True)
@@ -283,152 +277,152 @@ class TestHttp(object):
 
     @pytest.mark.asyncio
     async def test_error_status_codes_400(self, client):
-        self.assertRaisesWithStatus(requests.codes.bad_request,
+        await self.assert_raises_with_status(requests.codes.bad_request,
             client.http_client_failure.head400)
 
-        self.assertRaisesWithStatus(requests.codes.bad_request,
+        await self.assert_raises_with_status(requests.codes.bad_request,
             client.http_client_failure.get400)
 
         # TODO, 4042586: Support options operations in swagger modeler
-        #self.assertRaisesWithStatus(requests.codes.bad_request,
+        #await self.assert_raises_with_status(requests.codes.bad_request,
         #    await client.http_client_failure.options400)
 
-        self.assertRaisesWithStatus(requests.codes.bad_request,
+        await self.assert_raises_with_status(requests.codes.bad_request,
             client.http_client_failure.put400, True)
 
-        self.assertRaisesWithStatus(requests.codes.bad_request,
+        await self.assert_raises_with_status(requests.codes.bad_request,
             client.http_client_failure.patch400, True)
 
-        self.assertRaisesWithStatus(requests.codes.bad_request,
+        await self.assert_raises_with_status(requests.codes.bad_request,
             client.http_client_failure.post400, True)
 
-        self.assertRaisesWithStatus(requests.codes.bad_request,
+        await self.assert_raises_with_status(requests.codes.bad_request,
             client.http_client_failure.delete400, True)
 
     @pytest.mark.asyncio
     async def test_error_status_codes_401(self, client):
-        self.assertRaisesWithStatus(requests.codes.unauthorized,
+        await self.assert_raises_with_status(requests.codes.unauthorized,
             client.http_client_failure.head401)
 
     @pytest.mark.asyncio
     async def test_error_status_codes_402(self, client):
-        self.assertRaisesWithStatus(requests.codes.payment_required,
+        await self.assert_raises_with_status(requests.codes.payment_required,
             client.http_client_failure.get402)
 
     @pytest.mark.asyncio
     async def test_error_status_codes_403(self, client):
         # TODO, 4042586: Support options operations in swagger modeler
-        #self.assertRaisesWithStatus(requests.codes.forbidden,
+        #await self.assert_raises_with_status(requests.codes.forbidden,
         #    client.http_client_failure.options403)
 
-        self.assertRaisesWithStatus(requests.codes.forbidden,
+        await self.assert_raises_with_status(requests.codes.forbidden,
             client.http_client_failure.get403)
 
     @pytest.mark.asyncio
     async def test_error_status_codes_404(self, client):
-        self.assertRaisesWithStatus(requests.codes.not_found,
+        await self.assert_raises_with_status(requests.codes.not_found,
             client.http_client_failure.put404, True)
 
     @pytest.mark.asyncio
     async def test_error_status_codes_405(self, client):
-        self.assertRaisesWithStatus(requests.codes.method_not_allowed,
+        await self.assert_raises_with_status(requests.codes.method_not_allowed,
             client.http_client_failure.patch405, True)
 
     @pytest.mark.asyncio
     async def test_error_status_codes_406(self, client):
-        self.assertRaisesWithStatus(requests.codes.not_acceptable,
+        await self.assert_raises_with_status(requests.codes.not_acceptable,
             client.http_client_failure.post406, True)
 
     @pytest.mark.asyncio
     async def test_error_status_codes_407(self, client):
-        self.assertRaisesWithStatus(requests.codes.proxy_authentication_required,
+        await self.assert_raises_with_status(requests.codes.proxy_authentication_required,
             client.http_client_failure.delete407, True)
 
     @pytest.mark.asyncio
     async def test_error_status_codes_409(self, client):
-        self.assertRaisesWithStatus(requests.codes.conflict,
+        await self.assert_raises_with_status(requests.codes.conflict,
             client.http_client_failure.put409, True)
 
     @pytest.mark.asyncio
     async def test_error_status_codes_410(self, client):
-        self.assertRaisesWithStatus(requests.codes.gone,
+        await self.assert_raises_with_status(requests.codes.gone,
             client.http_client_failure.head410)
 
     @pytest.mark.asyncio
     async def test_error_status_codes_411(self, client):
-        self.assertRaisesWithStatus(requests.codes.length_required,
+        await self.assert_raises_with_status(requests.codes.length_required,
             client.http_client_failure.get411)
 
         # TODO, 4042586: Support options operations in swagger modeler
-        #self.assertRaisesWithStatus(requests.codes.precondition_failed,
+        #await self.assert_raises_with_status(requests.codes.precondition_failed,
         #    client.http_client_failure.options412)
 
-        self.assertRaisesWithStatus(requests.codes.precondition_failed,
+        await self.assert_raises_with_status(requests.codes.precondition_failed,
             client.http_client_failure.get412)
 
-        self.assertRaisesWithStatus(requests.codes.request_entity_too_large,
+        await self.assert_raises_with_status(requests.codes.request_entity_too_large,
             client.http_client_failure.put413, True)
 
-        self.assertRaisesWithStatus(requests.codes.request_uri_too_large,
+        await self.assert_raises_with_status(requests.codes.request_uri_too_large,
             client.http_client_failure.patch414, True)
 
-        self.assertRaisesWithStatus(requests.codes.unsupported_media,
+        await self.assert_raises_with_status(requests.codes.unsupported_media,
             client.http_client_failure.post415, True)
 
-        self.assertRaisesWithStatus(requests.codes.requested_range_not_satisfiable,
+        await self.assert_raises_with_status(requests.codes.requested_range_not_satisfiable,
             client.http_client_failure.get416)
 
-        self.assertRaisesWithStatus(requests.codes.expectation_failed,
+        await self.assert_raises_with_status(requests.codes.expectation_failed,
             client.http_client_failure.delete417, True)
 
-        self.assertRaisesWithStatus(429,
+        await self.assert_raises_with_status(429,
             client.http_client_failure.head429)
 
     @pytest.mark.asyncio
     async def test_redirect_to_300(self, client):
-        self.assertStatus(200, client.http_redirects.get300)
+        await self.assert_status(200, client.http_redirects.get300)
 
     @pytest.mark.asyncio
     async def test_redirect_to_301(self, client):
-        self.assertStatus(200, client.http_redirects.head301)
-        self.assertStatus(200, client.http_redirects.get301)
-        self.assertStatus(requests.codes.moved_permanently, client.http_redirects.put301, True)
+        await self.assert_status(200, client.http_redirects.head301)
+        await self.assert_status(200, client.http_redirects.get301)
+        await self.assert_status(requests.codes.moved_permanently, client.http_redirects.put301, True)
 
     @pytest.mark.asyncio
     async def test_redirect_to_302(self, client):
-        self.assertStatus(200, client.http_redirects.head302)
-        self.assertStatus(200, client.http_redirects.get302)
-        self.assertStatus(requests.codes.found, client.http_redirects.patch302, True)
+        await self.assert_status(200, client.http_redirects.head302)
+        await self.assert_status(200, client.http_redirects.get302)
+        await self.assert_status(requests.codes.found, client.http_redirects.patch302, True)
 
     @pytest.mark.asyncio
     async def test_redicret_to_303(self, client):
-        self.assertStatus(200, client.http_redirects.post303, True)
+        await self.assert_status(200, client.http_redirects.post303, True)
 
     @pytest.mark.asyncio
     async def test_redirect_to_307(self, client):
-        self.assertStatus(200, client.http_redirects.head307)
-        self.assertStatus(200, client.http_redirects.get307)
+        await self.assert_status(200, client.http_redirects.head307)
+        await self.assert_status(200, client.http_redirects.get307)
 
         # TODO, 4042586: Support options operations in swagger modeler
-        #self.assertStatus(200, client.http_redirects.options307)
-        self.assertStatus(200, client.http_redirects.put307, True)
-        self.assertStatus(200, client.http_redirects.post307, True)
-        self.assertStatus(200, client.http_redirects.patch307, True)
-        self.assertStatus(200, client.http_redirects.delete307, True)
+        #await self.assert_status(200, client.http_redirects.options307)
+        await self.assert_status(200, client.http_redirects.put307, True)
+        await self.assert_status(200, client.http_redirects.post307, True)
+        await self.assert_status(200, client.http_redirects.patch307, True)
+        await self.assert_status(200, client.http_redirects.delete307, True)
 
     @pytest.mark.asyncio
     async def test_bad_request_status_assert(self, client):
-        self.assertRaisesWithMessage("Operation returned an invalid status 'Bad Request'",
+        await self.assert_raises_with_message("Operation returned an invalid status 'Bad Request'",
             (client.http_failure.get_empty_error))
 
     @pytest.mark.asyncio
     async def test_no_error_model_status_assert(self, client):
-        self.assertRaisesWithStatusAndResponseContains(requests.codes.bad_request, "NoErrorModel",
+        await self.assert_raises_with_status_and_response_contains(requests.codes.bad_request, "NoErrorModel",
             (client.http_failure.get_no_model_error))
 
     @pytest.mark.asyncio
     async def test_success_status_codes_200(self, client):
-        client.http_success.head200()
+        await client.http_success.head200()
         assert await client.http_success.get200()
         await client.http_success.put200(True)
         await client.http_success.post200(True)
@@ -442,7 +436,7 @@ class TestHttp(object):
     async def test_success_status_codes_201(self, client):
         await client.http_success.put201(True)
         await client.http_success.post201(True)
-    
+
     @pytest.mark.asyncio
     async def test_success_status_codes_202(self, client):
         await client.http_success.put202(True)
@@ -461,4 +455,3 @@ class TestHttp(object):
     @pytest.mark.asyncio
     async def test_success_status_codes_404(self, client):
         await client.http_success.head404()
-        

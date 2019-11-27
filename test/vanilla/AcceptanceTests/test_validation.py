@@ -134,6 +134,10 @@ class TestValidation(object):
             assert "display_names" in  err.target
 
     def test_api_version_validation(self, client):
+        client = AutoRestValidationTest(
+            "abc123",
+            base_url="http://localhost:3000")
+        client.api_version = "abc"
         try:
             client.validation_of_method_parameters("123", 150)
         except ValidationError as err:
