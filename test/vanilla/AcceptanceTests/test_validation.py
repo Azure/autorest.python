@@ -53,11 +53,9 @@ import pytest
 
 @pytest.fixture
 def client():
-    client = AutoRestValidationTest(
-            "abc123",
-            base_url="http://localhost:3000")
-    client.api_version = "12-34-5678"
-    return client
+    with AutoRestValidationTest("abc123", base_url="http://localhost:3000") as client:
+        client.api_version = "12-34-5678"
+        yield client
 
 class TestValidation(object):
 

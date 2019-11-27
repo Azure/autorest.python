@@ -49,8 +49,9 @@ from bodyboolean.models import ErrorException
 import pytest
 
 @pytest.fixture
-def client():
-    return AutoRestBoolTestService(base_url="http://localhost:3000")
+async def client():
+    async with AutoRestBoolTestService(base_url="http://localhost:3000") as client:
+        yield client
 
 class TestBool(object):
 

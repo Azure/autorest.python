@@ -48,8 +48,9 @@ from bodydate.aio import AutoRestDateTestService
 import pytest
 
 @pytest.fixture
-def client():
-    return AutoRestDateTestService(base_url="http://localhost:3000")
+async def client():
+    async with AutoRestDateTestService(base_url="http://localhost:3000") as client:
+        yield client
 
 class TestDate(object):
 

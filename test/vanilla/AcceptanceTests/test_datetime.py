@@ -49,7 +49,8 @@ import pytest
 
 @pytest.fixture
 def client():
-    return AutoRestDateTimeTestService(base_url="http://localhost:3000")
+    with AutoRestDateTimeTestService(base_url="http://localhost:3000") as client:
+        yield client
 
 class TestDatetime(object):
 

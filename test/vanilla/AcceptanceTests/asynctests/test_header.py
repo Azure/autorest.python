@@ -49,8 +49,9 @@ from header.models import GreyscaleColors
 import pytest
 
 @pytest.fixture
-def client():
-    return AutoRestSwaggerBATHeaderService(base_url="http://localhost:3000")
+async def client():
+    async with AutoRestSwaggerBATHeaderService(base_url="http://localhost:3000") as client:
+        yield client
 
 @pytest.fixture
 def value_header():

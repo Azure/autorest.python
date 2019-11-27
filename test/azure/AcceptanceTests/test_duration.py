@@ -52,7 +52,8 @@ import pytest
 @pytest.fixture
 def client():
     cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
-    return AutoRestDurationTestService(cred, base_url="http://localhost:3000")
+    with AutoRestDurationTestService(cred, base_url="http://localhost:3000") as client:
+        yield client
 
 class TestDuration(object):
 

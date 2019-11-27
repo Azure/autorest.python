@@ -48,7 +48,8 @@ import pytest
 
 @pytest.fixture
 def client():
-    return PetStoreInc(base_url="http://localhost:3000")
+    with PetStoreInc(base_url="http://localhost:3000") as client:
+        yield client
 
 class TestExtensibleEnums(object):
 

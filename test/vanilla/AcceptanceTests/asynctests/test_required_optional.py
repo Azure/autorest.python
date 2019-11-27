@@ -46,24 +46,24 @@ from requiredoptional.models import StringWrapper, ArrayWrapper, ClassWrapper
 import pytest
 
 @pytest.fixture
-def client_required():
-    client = AutoRestRequiredOptionalTestService(
+async def client_required():
+    async with AutoRestRequiredOptionalTestService(
             "required_path",
             "required_query",
-            base_url="http://localhost:3000")
-    client._config.required_global_path = "required_path"
-    client._config.required_global_query = "required_query"
-    return client
+            base_url="http://localhost:3000") as client:
+        client._config.required_global_path = "required_path"
+        client._config.required_global_query = "required_query"
+        yield client
 
 @pytest.fixture
-def client():
-    client = AutoRestRequiredOptionalTestService(
+async def client():
+    async with AutoRestRequiredOptionalTestService(
             "required_path",
             "required_query",
-            base_url="http://localhost:3000")
-    client._config.required_global_path = None
-    client._config.required_global_query = None
-    return client
+            base_url="http://localhost:3000") as client:
+        client._config.required_global_path = None
+        client._config.required_global_query = None
+        yield client
 
 class TestRequiredOptional(object):
 

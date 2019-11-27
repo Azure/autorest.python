@@ -55,7 +55,8 @@ from additionalproperties.models import (
 
 @pytest.fixture
 def client():
-    return AdditionalPropertiesClient(base_url="http://localhost:3000")
+    with AdditionalPropertiesClient(base_url="http://localhost:3000") as client:
+        yield client
 
 class TestAdditionalProperties(object):
 

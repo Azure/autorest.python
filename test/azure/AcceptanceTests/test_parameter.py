@@ -63,7 +63,8 @@ import pytest
 @pytest.fixture
 def client():
     cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
-    return AutoRestParameterGroupingTestService(cred, base_url="http://localhost:3000")
+    with AutoRestParameterGroupingTestService(cred, base_url="http://localhost:3000") as client:
+        yield client
 
 @pytest.fixture
 def valid_subscription():
@@ -72,7 +73,8 @@ def valid_subscription():
 @pytest.fixture
 def azure_client(valid_subscription):
     cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
-    return AutoRestAzureSpecialParametersTestClient(cred, valid_subscription, base_url="http://localhost:3000")
+    with AutoRestAzureSpecialParametersTestClient(cred, valid_subscription, base_url="http://localhost:3000") as client:
+        yield client
 
 @pytest.fixture
 def body_parameter():

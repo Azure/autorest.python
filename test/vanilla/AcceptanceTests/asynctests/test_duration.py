@@ -48,8 +48,9 @@ from bodyduration.aio import AutoRestDurationTestService
 import pytest
 
 @pytest.fixture
-def client():
-    return AutoRestDurationTestService(base_url="http://localhost:3000")
+async def client():
+    async with AutoRestDurationTestService(base_url="http://localhost:3000") as client:
+        yield client
 
 class TestDuration(object):
 

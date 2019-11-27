@@ -63,7 +63,8 @@ def client(cookie_policy):
         RetryPolicy(),
         cookie_policy
     ]
-    return AutoRestHttpInfrastructureTestService(base_url="http://localhost:3000", policies=policies)
+    with AutoRestHttpInfrastructureTestService(base_url="http://localhost:3000", policies=policies) as client:
+        yield client
 
 
 class TestHttp(object):
@@ -243,7 +244,7 @@ class TestHttp(object):
 
         # TODO, 4042586: Support options operations in swagger modeler
         #client.http_retry.options429()
-    
+
     def test_retry_status_codes_500(self, client):
         client.http_retry.put500(True)
         client.http_retry.patch500(True)
@@ -375,7 +376,7 @@ class TestHttp(object):
         self.assertStatus(200, client.http_redirects.patch307, True)
         self.assertStatus(200, client.http_redirects.delete307, True)
 
-    
+
 
     def test_bad_request_status_assert(self, client):
         self.assertRaisesWithMessage("Operation returned an invalid status 'Bad Request'",
@@ -399,7 +400,7 @@ class TestHttp(object):
     def test_success_status_codes_201(self, client):
         client.http_success.put201(True)
         client.http_success.post201(True)
-    
+
     def test_success_status_codes_202(self, client):
         client.http_success.put202(True)
         client.http_success.post202(True)
@@ -415,4 +416,3 @@ class TestHttp(object):
 
     def test_success_status_codes_404(self, client):
         client.http_success.head404()
-        

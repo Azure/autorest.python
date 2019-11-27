@@ -50,7 +50,8 @@ import pytest
 
 @pytest.fixture
 def client():
-    return AutoRestBoolTestService(base_url="http://localhost:3000")
+    with AutoRestBoolTestService(base_url="http://localhost:3000") as client:
+        yield client
 
 class TestBool(object):
 

@@ -49,8 +49,9 @@ from bodynumber.aio import AutoRestNumberTestService
 import pytest
 
 @pytest.fixture
-def client():
-    return AutoRestNumberTestService(base_url="http://localhost:3000")
+async def client():
+    async with AutoRestNumberTestService(base_url="http://localhost:3000") as client:
+        yield client
 
 class TestNumber(object):
 

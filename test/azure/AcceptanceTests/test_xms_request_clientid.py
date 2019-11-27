@@ -54,7 +54,8 @@ import pytest
 def client():
     valid_subscription = '1234-5678-9012-3456'
     cred = BasicTokenAuthentication({"access_token":123})
-    return AutoRestAzureSpecialParametersTestClient(cred, valid_subscription, base_url="http://localhost:3000")
+    with AutoRestAzureSpecialParametersTestClient(cred, valid_subscription, base_url="http://localhost:3000") as client:
+        yield client
 
 class TestXmsRequestClientId(object):
 

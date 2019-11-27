@@ -48,8 +48,9 @@ from bodydatetimerfc1123.aio import AutoRestRFC1123DateTimeTestService
 import pytest
 
 @pytest.fixture
-def client():
-    return AutoRestRFC1123DateTimeTestService(base_url="http://localhost:3000")
+async def client():
+    async with AutoRestRFC1123DateTimeTestService(base_url="http://localhost:3000") as client:
+        yield client
 
 class TestDateTimeRfc(object):
 

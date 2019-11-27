@@ -48,8 +48,9 @@ from bodyinteger.aio import AutoRestIntegerTestService
 import pytest
 
 @pytest.fixture
-def client():
-    return AutoRestIntegerTestService(base_url="http://localhost:3000")
+async def client():
+    async with AutoRestIntegerTestService(base_url="http://localhost:3000") as client:
+        yield client
 
 class TestInteger(object):
     @pytest.mark.asyncio

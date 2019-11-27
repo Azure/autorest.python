@@ -48,12 +48,10 @@ from bodyfile.models import ErrorException
 import pytest
 
 @pytest.fixture
-def client():
-    def _client(connection_data_block_size=None):
-        return AutoRestSwaggerBATFileService(
-            base_url="http://localhost:3000", connection_data_block_size=connection_data_block_size
-        )
-    return _client
+def client(connection_data_block_size):
+    with AutoRestSwaggerBATFileService(
+        base_url="http://localhost:3000", connection_data_block_size=connection_data_block_size) as client:
+        yield client
 
 @pytest.fixture
 def callback():
@@ -64,8 +62,8 @@ def callback():
 
 class TestFile(object):
 
+    @pytest.mark.parametrize('connection_data_block_size', [1000])
     def test_get_file(self, client):
-        client = client(connection_data_block_size=1000)
         file_length = 0
         with io.BytesIO() as file_handle:
             stream = client.files.get_file()
@@ -88,8 +86,8 @@ class TestFile(object):
                 sample_data = hash(data.read())
             assert sample_data ==  hash(file_handle.getvalue())
 
+    @pytest.mark.parametrize('connection_data_block_size', [4096])
     def test_get_empty_file(self, client):
-        client = client(connection_data_block_size=4096)
         file_length = 0
         with io.BytesIO() as file_handle:
             stream = client.files.get_empty_file()
@@ -102,9 +100,9 @@ class TestFile(object):
 
             assert file_length ==  0
 
+    @pytest.mark.parametrize('connection_data_block_size', [4096])
     def test_files_long_running(self, client):
         pytest.skip("slow")
-        client = client(connection_data_block_size=4096)
         file_length = 0
         stream = client.files.get_file_large()
         for data in stream:
@@ -113,10 +111,11 @@ class TestFile(object):
 
         assert file_length ==  3000 * 1024 * 1024
 
+    @pytest.mark.parametrize('connection_data_block_size', [None])
     def test_get_file_with_callback(self, client, callback):
         file_length = 0
         with io.BytesIO() as file_handle:
-            stream = client().files.get_file(cls=callback)
+            stream = client.files.get_file(cls=callback)
             assert len(stream) > 0
             for data in stream:
                 assert 0 < len(data) <= stream.block_size
@@ -133,10 +132,11 @@ class TestFile(object):
                 sample_data = hash(data.read())
             assert sample_data ==  hash(file_handle.getvalue())
 
+    @pytest.mark.parametrize('connection_data_block_size', [None])
     def test_get_empty_file_with_callback(self, client, callback):
         file_length = 0
         with io.BytesIO() as file_handle:
-            stream = client().files.get_empty_file(cls=callback)
+            stream = client.files.get_empty_file(cls=callback)
             for data in stream:
                 file_length += len(data)
                 file_handle.write(data)

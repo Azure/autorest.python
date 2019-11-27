@@ -54,7 +54,8 @@ import pytest
 
 @pytest.fixture
 def client():
-    return AutoRestParameterizedHostTestClient("host:3000", retry_total = 0)
+    with AutoRestParameterizedHostTestClient("host:3000", retry_total = 0) as client:
+        yield client
 
 class TestCustomBaseUri(object):
 

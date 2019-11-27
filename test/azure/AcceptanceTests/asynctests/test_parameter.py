@@ -59,9 +59,10 @@ from azureparametergrouping.models import (
 import pytest
 
 @pytest.fixture
-def client():
+async def client():
     cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
-    return AutoRestParameterGroupingTestService(cred, base_url="http://localhost:3000")
+    async with AutoRestParameterGroupingTestService(cred, base_url="http://localhost:3000") as client:
+        yield client
 
 @pytest.fixture
 def valid_subscription():

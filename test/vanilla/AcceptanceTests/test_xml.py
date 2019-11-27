@@ -47,7 +47,8 @@ _LOGGER = logging.getLogger(__name__)
 
 @pytest.fixture
 def client():
-    return AutoRestSwaggerBATXMLService(base_url="http://localhost:3000")
+    with AutoRestSwaggerBATXMLService(base_url="http://localhost:3000") as client:
+        yield client
 
 def _assert_with_log(func, *args, **kwargs):
     def raise_for_status(response, deserialized, headers):

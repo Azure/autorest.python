@@ -56,11 +56,11 @@ from custombaseurl.models import Error, ErrorException
 import pytest
 
 @pytest.fixture
-def client():
+async def client():
     cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
-    client = AutoRestParameterizedHostTestClient(cred, host="host:3000")
-    client._config.retry_policy.retries = 0
-    return client
+    async with AutoRestParameterizedHostTestClient(cred, host="host:3000") as client:
+        client._config.retry_policy.retries = 0
+        yield client
 
 class TestCustomBaseUri(object):
 

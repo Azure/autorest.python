@@ -55,8 +55,9 @@ from additionalproperties.models import (
 import pytest
 
 @pytest.fixture
-def client():
-    return AdditionalPropertiesClient(base_url="http://localhost:3000")
+async def client():
+    async with AdditionalPropertiesClient(base_url="http://localhost:3000") as client:
+        yield client
 
 class TestAdditionalProperties(object):
 
