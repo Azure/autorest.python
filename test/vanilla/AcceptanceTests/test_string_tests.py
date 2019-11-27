@@ -58,7 +58,7 @@ class TestString(object):
 
     def test_null(self, client):
         assert client.string.get_null() is None
-        client.string.put_null(None)
+        client.string.put_null()
 
     def test_empty(self, client):
         assert "" ==  client.string.get_empty()
