@@ -67,9 +67,10 @@ async def client(cookie_policy):
         yield client
 
 @pytest.fixture
-def custom_url_client():
+async def custom_url_client():
     cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
-    return AutoRestParameterizedHostTestPagingClient(cred, host="host:3000")
+    async with AutoRestParameterizedHostTestPagingClient(cred, host="host:3000") as client:
+        yield client
 
 @pytest.mark.asyncio
 async def test_get_single_pages_with_cb(client):
