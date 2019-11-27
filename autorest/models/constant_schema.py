@@ -17,12 +17,21 @@ class ConstantSchema(BaseSchema):
     def __init__(
         self,
         yaml_data: Dict[str, Any],
-        value: str,
+        value: Optional[str],
         schema: Optional["PrimitiveSchema"]
     ):
         super(ConstantSchema, self).__init__(yaml_data)
         self.value = value
         self.schema = schema
+
+    def get_constant_value(self):
+        """This string is used directly in template, as-is
+        """
+        if self.value is None:
+            return "None"
+        if isinstance(self.value, str):
+            return f'"{self.value}"'
+        return self.value
 
     def get_serialization_type(self) -> str:
         """Returns the serialization value for msrest.

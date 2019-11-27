@@ -51,7 +51,7 @@ deserialized = self._deserialize('{{ response.schema.get_serialization_type() }}
     error_map = kwargs.pop('error_map', None)
 {% if operation.constant_parameters %}
     {% for constant_parameter in operation.constant_parameters %}
-    {{ constant_parameter.serialized_name }} = "{{ constant_parameter.schema.value }}"
+    {{ constant_parameter.serialized_name }} = {{ constant_parameter.schema.get_constant_value() }}
     {% endfor %}
 {% endif %}
 
