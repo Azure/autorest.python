@@ -133,12 +133,7 @@ class TestValidation(object):
             assert err.rule ==  "max_items"
             assert "display_names" in  err.target
 
-    def test_api_version_validation(self):
-        client = AutoRestValidationTest(
-            "abc123",
-            base_url="http://localhost:3000")
-        client.api_version = "abc"
-
+    def test_api_version_validation(self, client):
         try:
             client.validation_of_method_parameters("123", 150)
         except ValidationError as err:
