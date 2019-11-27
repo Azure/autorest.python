@@ -49,22 +49,21 @@ from bodyduration import AutoRestDurationTestService
 
 import pytest
 
+@pytest.fixture
+def client():
+    cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
+    with AutoRestDurationTestService(cred, base_url="http://localhost:3000") as client:
+        yield client
+
 class TestDuration(object):
 
-    def test_duration(self):
-
-        cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
-        client = AutoRestDurationTestService(cred, base_url="http://localhost:3000")
-
+    def test_get_null_and_invalid(self, client):
         assert client.duration.get_null() is None
 
         with pytest.raises(DeserializationError):
             client.duration.get_invalid()
 
+    def test_positive_duration(self, client):
         client.duration.get_positive_duration()
         delta = timedelta(days=123, hours=22, minutes=14, seconds=12, milliseconds=11)
         client.duration.put_positive_duration(delta)
-
-
-if __name__ == '__main__':
-    unittest.main()

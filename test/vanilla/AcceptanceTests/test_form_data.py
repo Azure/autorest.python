@@ -60,7 +60,6 @@ def client():
         retry_total = 50,  # Be agressive on this test, sometimes testserver DDOS :-p
         retry_backoff_factor = 1.6
     ) as client:
-
         yield client
 
 class TestFormData(object):

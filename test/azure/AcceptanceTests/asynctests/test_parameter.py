@@ -58,101 +58,146 @@ from azureparametergrouping.models import (
 
 import pytest
 
+@pytest.fixture
+async def client():
+    cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
+    async with AutoRestParameterGroupingTestService(cred, base_url="http://localhost:3000") as client:
+        yield client
+
+@pytest.fixture
+def valid_subscription():
+    return '1234-5678-9012-3456'
+
+@pytest.fixture
+async def azure_client(valid_subscription):
+    cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
+    async with AutoRestAzureSpecialParametersTestClient(
+        cred, valid_subscription, base_url="http://localhost:3000"
+    ) as client:
+        yield client
+
+@pytest.fixture
+def body_parameter():
+    return 1234
+
+@pytest.fixture
+def header_parameter():
+    return 'header'
+
+@pytest.fixture
+def query_parameter():
+    return 21
+
+@pytest.fixture
+def path_parameter():
+    return 'path'
+
+
+@pytest.fixture
+def unencoded_path():
+    return 'path1/path2/path3'
+
+@pytest.fixture
+def unencoded_query():
+    return 'value1&q2=value2&q3=value3'
+
 class TestParameter(object):
 
     @pytest.mark.asyncio
-    async def test_parameter_grouping(self):
-
-        bodyParameter = 1234
-        headerParameter = 'header'
-        queryParameter = 21
-        pathParameter = 'path'
-
-        cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
-        async with AutoRestParameterGroupingTestService(cred, base_url="http://localhost:3000") as client:
-
-            # Valid required parameters
-            requiredParameters = ParameterGroupingPostRequiredParameters(body=bodyParameter, path=pathParameter, custom_header=headerParameter, query=queryParameter)
-            await client.parameter_grouping.post_required(requiredParameters)
-
-            #Required parameters but null optional parameters
-            requiredParameters = ParameterGroupingPostRequiredParameters(body=bodyParameter, path=pathParameter, query=None)
-            await client.parameter_grouping.post_required(requiredParameters)
-
-            #Required parameters object is not null, but a required property of the object is
-            requiredParameters = ParameterGroupingPostRequiredParameters(body = None, path = pathParameter)
-
-            with pytest.raises(ValidationError):
-                await client.parameter_grouping.post_required(requiredParameters)
-            with pytest.raises(ValidationError):
-                await client.parameter_grouping.post_required(None)
-
-            #Valid optional parameters
-            optionalParameters = ParameterGroupingPostOptionalParameters(custom_header = headerParameter, query = queryParameter)
-            await client.parameter_grouping.post_optional(optionalParameters)
-
-            #null optional paramters
-            await client.parameter_grouping.post_optional(None)
-
-            #Multiple grouped parameters
-            firstGroup = FirstParameterGroup(header_one = headerParameter, query_one = queryParameter)
-            secondGroup = ParameterGroupingPostMultiParamGroupsSecondParamGroup(header_two = "header2", query_two = 42)
-
-            await client.parameter_grouping.post_multi_param_groups(firstGroup, secondGroup)
-
-            #Multiple grouped parameters -- some optional parameters omitted
-            firstGroup = FirstParameterGroup(header_one = headerParameter)
-            secondGroup = ParameterGroupingPostMultiParamGroupsSecondParamGroup(query_two = 42)
-
-            await client.parameter_grouping.post_multi_param_groups(firstGroup, secondGroup)
-            await client.parameter_grouping.post_shared_parameter_group_object(firstGroup)
+    async def test_post_all_required_parameters(self, client, body_parameter, header_parameter, query_parameter, path_parameter):
+        # Valid required parameters
+        required_parameters = ParameterGroupingPostRequiredParameters(body=body_parameter, path=path_parameter, custom_header=header_parameter, query=query_parameter)
+        await client.parameter_grouping.post_required(required_parameters)
 
     @pytest.mark.asyncio
-    async def test_azure_special_parameters(self):
-
-        validSubscription = '1234-5678-9012-3456'
-        validApiVersion = '2.0'
-        unencodedPath = 'path1/path2/path3'
-        unencodedQuery = 'value1&q2=value2&q3=value3'
-        cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
-        async with AutoRestAzureSpecialParametersTestClient(cred, validSubscription, base_url="http://localhost:3000") as client:
-
-            await client.subscription_in_credentials.post_method_global_not_provided_valid()
-            await client.subscription_in_credentials.post_method_global_valid()
-            await client.subscription_in_credentials.post_path_global_valid()
-            await client.subscription_in_credentials.post_swagger_global_valid()
-            await client.subscription_in_method.post_method_local_valid(validSubscription)
-            await client.subscription_in_method.post_path_local_valid(validSubscription)
-            await client.subscription_in_method.post_swagger_local_valid(validSubscription)
-            with pytest.raises(ValidationError):
-                await client.subscription_in_method.post_method_local_null(None)
-
-            await client.api_version_default.get_method_global_not_provided_valid()
-            await client.api_version_default.get_method_global_valid()
-            await client.api_version_default.get_path_global_valid()
-            await client.api_version_default.get_swagger_global_valid()
-            await client.api_version_local.get_method_local_valid()
-            await client.api_version_local.get_method_local_null()
-            await client.api_version_local.get_path_local_valid()
-            await client.api_version_local.get_swagger_local_valid()
-
-            await client.skip_url_encoding.get_method_path_valid(unencodedPath)
-            await client.skip_url_encoding.get_path_path_valid(unencodedPath)
-            await client.skip_url_encoding.get_swagger_path_valid()
-            await client.skip_url_encoding.get_method_query_valid(unencodedQuery)
-            await client.skip_url_encoding.get_path_query_valid(unencodedQuery)
-            await client.skip_url_encoding.get_swagger_query_valid()
-            await client.skip_url_encoding.get_method_query_null()
-            await client.skip_url_encoding.get_method_query_null(None)
+    async def test_post_required_parameters_null_optional_parameters(self, client, body_parameter, path_parameter):
+        #Required parameters but null optional parameters
+        required_parameters = ParameterGroupingPostRequiredParameters(body=body_parameter, path=path_parameter, query=None)
+        await client.parameter_grouping.post_required(required_parameters)
 
     @pytest.mark.asyncio
-    async def test_azure_odata(self):
+    async def test_post_required_parameters_with_null_required_property(self, client, path_parameter):
+        #Required parameters object is not null, but a required property of the object is
+        required_parameters = ParameterGroupingPostRequiredParameters(body = None, path = path_parameter)
 
-        validSubscription = '1234-5678-9012-3456'
-        cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
-        async with AutoRestAzureSpecialParametersTestClient(cred, validSubscription, base_url="http://localhost:3000") as client:
-            await client.odata.get_with_filter(filter="id gt 5 and name eq 'foo'", top=10, orderby="id")
+        with pytest.raises(ValidationError):
+            await client.parameter_grouping.post_required(required_parameters)
+        with pytest.raises(ValidationError):
+            await client.parameter_grouping.post_required(None)
 
+    @pytest.mark.asyncio
+    async def test_post_all_optional(self, client, header_parameter, query_parameter):
+        #Valid optional parameters
+        optional_parameters = ParameterGroupingPostOptionalParameters(custom_header = header_parameter, query = query_parameter)
+        await client.parameter_grouping.post_optional(optional_parameters)
 
-if __name__ == '__main__':
-    unittest.main()
+    @pytest.mark.asyncio
+    async def test_post_none_optional(self, client):
+        #null optional paramters
+        await client.parameter_grouping.post_optional(None)
+
+    @pytest.mark.asyncio
+    async def test_post_all_multi_param_groups(self, client, header_parameter, query_parameter):
+        #Multiple grouped parameters
+        first_group = FirstParameterGroup(header_one = header_parameter, query_one = query_parameter)
+        second_group = ParameterGroupingPostMultiParamGroupsSecondParamGroup(header_two = "header2", query_two = 42)
+
+        await client.parameter_grouping.post_multi_param_groups(first_group, second_group)
+
+    @pytest.mark.asyncio
+    async def test_post_some_multi_param_groups(self, client, header_parameter):
+        #Multiple grouped parameters -- some optional parameters omitted
+        first_group = FirstParameterGroup(header_one = header_parameter)
+        second_group = ParameterGroupingPostMultiParamGroupsSecondParamGroup(query_two = 42)
+
+        await client.parameter_grouping.post_multi_param_groups(first_group, second_group)
+
+    @pytest.mark.asyncio
+    async def test_post_shared_parameter_group_object(self, client, header_parameter):
+        first_group = FirstParameterGroup(header_one = header_parameter)
+        await client.parameter_grouping.post_shared_parameter_group_object(first_group)
+
+    @pytest.mark.asyncio
+    async def test_subscription_in_credentials(self, azure_client):
+        # valid_api_version = '2.0'
+        await azure_client.subscription_in_credentials.post_method_global_not_provided_valid()
+        await azure_client.subscription_in_credentials.post_method_global_valid()
+        await azure_client.subscription_in_credentials.post_path_global_valid()
+        await azure_client.subscription_in_credentials.post_swagger_global_valid()
+
+    @pytest.mark.asyncio
+    async def test_subscription_in_method(self, azure_client, valid_subscription):
+        await azure_client.subscription_in_method.post_method_local_valid(valid_subscription)
+        await azure_client.subscription_in_method.post_path_local_valid(valid_subscription)
+        await azure_client.subscription_in_method.post_swagger_local_valid(valid_subscription)
+        with pytest.raises(ValidationError):
+            await azure_client.subscription_in_method.post_method_local_null(None)
+
+    @pytest.mark.asyncio
+    async def test_api_version_default(self, azure_client):
+        await azure_client.api_version_default.get_method_global_not_provided_valid()
+        await azure_client.api_version_default.get_method_global_valid()
+        await azure_client.api_version_default.get_path_global_valid()
+        await azure_client.api_version_default.get_swagger_global_valid()
+
+    @pytest.mark.asyncio
+    async def test_api_version_local(self, azure_client):
+        await azure_client.api_version_local.get_method_local_valid()
+        await azure_client.api_version_local.get_method_local_null()
+        await azure_client.api_version_local.get_path_local_valid()
+        await azure_client.api_version_local.get_swagger_local_valid()
+
+    @pytest.mark.asyncio
+    async def test_skip_url_encoding(self, azure_client, unencoded_path, unencoded_query):
+        await azure_client.skip_url_encoding.get_method_path_valid(unencoded_path)
+        await azure_client.skip_url_encoding.get_path_path_valid(unencoded_path)
+        await azure_client.skip_url_encoding.get_swagger_path_valid()
+        await azure_client.skip_url_encoding.get_method_query_valid(unencoded_query)
+        await azure_client.skip_url_encoding.get_path_query_valid(unencoded_query)
+        await azure_client.skip_url_encoding.get_swagger_query_valid()
+        await azure_client.skip_url_encoding.get_method_query_null()
+        await azure_client.skip_url_encoding.get_method_query_null(None)
+
+    @pytest.mark.asyncio
+    async def test_azure_odata(self, azure_client):
+        await azure_client.odata.get_with_filter(filter="id gt 5 and name eq 'foo'", top=10, orderby="id")

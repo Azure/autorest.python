@@ -47,35 +47,43 @@ from bodyinteger import AutoRestIntegerTestService
 
 import pytest
 
+@pytest.fixture
+def client():
+    with AutoRestIntegerTestService(base_url="http://localhost:3000") as client:
+        yield client
+
 class TestInteger(object):
 
-    def test_integer(self):
-        client = AutoRestIntegerTestService(base_url="http://localhost:3000")
-
+    def test_max_min_32_bit(self, client):
         client.int_model.put_max32(2147483647) # sys.maxint
         client.int_model.put_min32(-2147483648)
 
+    def test_max_min_64_bit(self, client):
         client.int_model.put_max64(9223372036854776000)  # sys.maxsize
         client.int_model.put_min64(-9223372036854776000)
+
+    def test_get_null_and_invalid(self, client):
         client.int_model.get_null()
 
         with pytest.raises(DecodeError):
             client.int_model.get_invalid()
 
+    def test_get_overflow(self, client):
         # Testserver excepts these to fail, but they won't in Python and it's ok.
         client.int_model.get_overflow_int32()
         client.int_model.get_overflow_int64()
+
+    def test_get_underflow(self, client):
         client.int_model.get_underflow_int32()
         client.int_model.get_underflow_int64()
 
+    def test_unix_time_date(self, client):
         unix_date = datetime(year=2016, month=4, day=13)
         client.int_model.put_unix_time_date(unix_date)
         assert unix_date.utctimetuple() ==  client.int_model.get_unix_time().utctimetuple()
+
+    def test_get_null_and_invalid_unix_time(self, client):
         assert client.int_model.get_null_unix_time() is None
 
         with pytest.raises(DecodeError):
             client.int_model.get_invalid_unix_time()
-
-
-if __name__ == '__main__':
-    unittest.main()

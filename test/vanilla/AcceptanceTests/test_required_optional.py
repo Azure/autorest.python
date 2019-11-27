@@ -46,49 +46,66 @@ from requiredoptional.models import StringWrapper, ArrayWrapper, ClassWrapper
 import pytest
 
 @pytest.fixture
+def client_required():
+    with AutoRestRequiredOptionalTestService(
+            "required_path",
+            "required_query",
+            base_url="http://localhost:3000") as client:
+        client._config.required_global_path = "required_path"
+        client._config.required_global_query = "required_query"
+        yield client
+
+@pytest.fixture
 def client():
     with AutoRestRequiredOptionalTestService(
             "required_path",
             "required_query",
             base_url="http://localhost:3000") as client:
+        client._config.required_global_path = None
+        client._config.required_global_query = None
         yield client
 
 class TestRequiredOptional(object):
 
-    def test_required_optional(self, client):
+    # These clients have a required global path and query
+    def test_put_optional(self, client_required):
+        client_required.implicit.put_optional_query(None)
+        client_required.implicit.put_optional_body(None)
+        client_required.implicit.put_optional_header(None)
 
-        client._config.required_global_path = "required_path"
-        client._config.required_global_query = "required_query"
+    def test_get_optional_global_query(self, client_required):
+        client_required.implicit.get_optional_global_query(None)
 
-        client.implicit.put_optional_query(None)
-        client.implicit.put_optional_body(None)
-        client.implicit.put_optional_header(None)
+    def test_post_optional_integer(self, client_required):
+        client_required.explicit.post_optional_integer_parameter(None)
+        client_required.explicit.post_optional_integer_property(None)
+        client_required.explicit.post_optional_integer_header(None)
 
-        client.implicit.get_optional_global_query(None)
+    def test_post_optional_string(self, client_required):
+        client_required.explicit.post_optional_string_parameter(None)
+        client_required.explicit.post_optional_string_property(None)
+        client_required.explicit.post_optional_string_header(None)
 
-        client.explicit.post_optional_integer_parameter(None)
-        client.explicit.post_optional_integer_property(None)
-        client.explicit.post_optional_integer_header(None)
+    def test_post_optional_class(self, client_required):
+        client_required.explicit.post_optional_class_parameter(None)
+        client_required.explicit.post_optional_class_property(None)
 
-        client.explicit.post_optional_string_parameter(None)
-        client.explicit.post_optional_string_property(None)
-        client.explicit.post_optional_string_header(None)
+    def test_post_optional_array(self, client_required):
+        client_required.explicit.post_optional_array_parameter(None)
+        client_required.explicit.post_optional_array_property(None)
+        client_required.explicit.post_optional_array_header(None)
 
-        client.explicit.post_optional_class_parameter(None)
-        client.explicit.post_optional_class_property(None)
-
-        client.explicit.post_optional_array_parameter(None)
-        client.explicit.post_optional_array_property(None)
-        client.explicit.post_optional_array_header(None)
-
-    def test_required_optional_negative(self, client):
-
-        client._config.required_global_path = None
-        client._config.required_global_query = None
-
+    def test_implicit_get_required(self, client):
         with pytest.raises(ValidationError):
             client.implicit.get_required_path(None)
 
+        with pytest.raises(ValidationError):
+            client.implicit.get_required_global_path()
+
+        with pytest.raises(ValidationError):
+            client.implicit.get_required_global_query()
+
+    def test_post_required_string(self, client):
         with pytest.raises(ValidationError):
             client.explicit.post_required_string_header(None)
 
@@ -98,6 +115,7 @@ class TestRequiredOptional(object):
         with pytest.raises(ValidationError):
             client.explicit.post_required_string_property(None)
 
+    def test_post_required_array(self, client):
         with pytest.raises(ValidationError):
             client.explicit.post_required_array_header(None)
 
@@ -107,20 +125,9 @@ class TestRequiredOptional(object):
         with pytest.raises(ValidationError):
             client.explicit.post_required_array_property(None)
 
+    def test_post_required_class(self, client):
         with pytest.raises(ValidationError):
             client.explicit.post_required_class_parameter(None)
 
         with pytest.raises(ValidationError):
             client.explicit.post_required_class_property(None)
-
-        with pytest.raises(ValidationError):
-            client.implicit.get_required_global_path()
-
-        with pytest.raises(ValidationError):
-            client.implicit.get_required_global_query()
-
-
-if __name__ == '__main__':
-
-
-    unittest.main()
