@@ -113,7 +113,7 @@ async def test_get_multiple_pages_retry_second(client):
     assert len(items) == 10
 
 @pytest.mark.asyncio
-async def teset_get_multiple_pages_with_offset(client):
+async def test_get_multiple_pages_with_offset(client):
     options = PagingGetMultiplePagesWithOffsetOptions(offset=100)
     pages = client.paging.get_multiple_pages_with_offset(paging_get_multiple_pages_with_offset_options=options)
     items = [i async for i in pages]

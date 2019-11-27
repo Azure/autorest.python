@@ -102,7 +102,7 @@ def test_get_multiple_pages_retry_second(client):
     items = [i for i in pages]
     assert len(items) == 10
 
-def teset_get_multiple_pages_with_offset(client):
+def test_get_multiple_pages_with_offset(client):
     options = PagingGetMultiplePagesWithOffsetOptions(offset=100)
     pages = client.paging.get_multiple_pages_with_offset(paging_get_multiple_pages_with_offset_options=options)
     items = [i for i in pages]
