@@ -110,7 +110,7 @@ def custom_headers():
 
 class TestLro:
 
-    def assertRaisesWithMessage(self, msg, func, *args, **kwargs):
+    def assert_raises_with_message(self, msg, func, *args, **kwargs):
         try:
             self.lro_result(func, *args, **kwargs)
             pytest.fail("HttpResponseError wasn't raised as expected")
@@ -155,7 +155,7 @@ class TestLro:
         assert "Creating" ==  process.provisioning_state
 
     def test_happy_put201_creating_failed200(self, client, product):
-        self.assertRaisesWithMessage(
+        self.assert_raises_with_message(
             ("Operation returned an invalid status 'OK'", "failed"),
             client.lros.put201_creating_failed200, product)
 
@@ -170,7 +170,7 @@ class TestLro:
         assert "Updating" ==  process.provisioning_state
 
     def test_happy_put200_acceptedcanceled200(self, client, product):
-        self.assertRaisesWithMessage(
+        self.assert_raises_with_message(
             ("Operation returned an invalid status 'OK'", "canceled"),
             client.lros.put200_acceptedcanceled200, product)
 
@@ -218,11 +218,11 @@ class TestLro:
         assert "Succeeded" ==  process.provisioning_state
 
     def test_happy_put_retry_failed_canceled(self, client, product):
-        self.assertRaisesWithMessage(
+        self.assert_raises_with_message(
             ("Operation returned an invalid status 'OK'", "failed"),
             client.lros.put_async_retry_failed, product)
 
-        self.assertRaisesWithMessage(
+        self.assert_raises_with_message(
             ("Operation returned an invalid status 'OK'", "canceled"),
             client.lros.put_async_no_retrycanceled, product)
 
@@ -240,11 +240,11 @@ class TestLro:
         assert self.lro_result(client.lros.delete_async_no_header_in_retry) is None
 
     def test_happy_delete_async_retry_failed_canceled(self, client):
-        self.assertRaisesWithMessage(
+        self.assert_raises_with_message(
             ("Operation returned an invalid status 'OK'", "canceled"),
             client.lros.delete_async_retrycanceled)
 
-        self.assertRaisesWithMessage(
+        self.assert_raises_with_message(
             ("Operation returned an invalid status 'OK'", "failed"),
             client.lros.delete_async_retry_failed)
 
@@ -269,10 +269,10 @@ class TestLro:
         assert sku.id ==  '1'
 
     def test_happy_post_async_retry_failed_canceled(self, client, product):
-        self.assertRaisesWithMessage("Internal Server Error",
+        self.assert_raises_with_message("Internal Server Error",
             client.lros.post_async_retry_failed)
 
-        self.assertRaisesWithMessage(
+        self.assert_raises_with_message(
             ("Operation returned an invalid status 'OK'", "canceled"),
             client.lros.post_async_retrycanceled)
 
@@ -318,24 +318,24 @@ class TestLro:
         assert process is None
 
     def test_sads_put_non_retry(self, client, product):
-        self.assertRaisesWithMessage("Bad Request",
+        self.assert_raises_with_message("Bad Request",
             client.lrosads.put_non_retry400, product)
 
-        self.assertRaisesWithMessage("Error from the server",
+        self.assert_raises_with_message("Error from the server",
             client.lrosads.put_non_retry201_creating400, product)
 
     def test_sads_put_async_relative(self, client, product):
-        self.assertRaisesWithMessage("Operation returned an invalid status 'Bad Request'",
+        self.assert_raises_with_message("Operation returned an invalid status 'Bad Request'",
             client.lrosads.put_async_relative_retry400, product)
 
-        self.assertRaisesWithMessage("The response from long running operation does not contain a body.",
+        self.assert_raises_with_message("The response from long running operation does not contain a body.",
             client.lrosads.put_async_relative_retry_no_status, product)
 
-        self.assertRaisesWithMessage("The response from long running operation does not contain a body.",
+        self.assert_raises_with_message("The response from long running operation does not contain a body.",
             client.lrosads.put_async_relative_retry_no_status_payload, product)
 
     def test_sads_put_error201_no_provisioning_state_payload(self, client, product):
-        self.assertRaisesWithMessage("The response from long running operation does not contain a body.",
+        self.assert_raises_with_message("The response from long running operation does not contain a body.",
             client.lrosads.put_error201_no_provisioning_state_payload, product)
 
     def test_sads_put200_invalid_json_with_exception(self, client, product):
@@ -355,17 +355,17 @@ class TestLro:
 
     def tests_lro_sads_delete_non_retry(self, client, product):
 
-        self.assertRaisesWithMessage("Bad Request",
+        self.assert_raises_with_message("Bad Request",
             client.lrosads.delete_non_retry400)
 
-        self.assertRaisesWithMessage("Bad Request",
+        self.assert_raises_with_message("Bad Request",
             client.lrosads.delete202_non_retry400)
 
     def test_sads_delete_async_relative(self, client, product):
-        self.assertRaisesWithMessage("Bad Request",
+        self.assert_raises_with_message("Bad Request",
             client.lrosads.delete_async_relative_retry400)
 
-        self.assertRaisesWithMessage("The response from long running operation does not contain a body.",
+        self.assert_raises_with_message("The response from long running operation does not contain a body.",
             client.lrosads.delete_async_relative_retry_no_status)
 
     def test_sads_delete204_succeeded(self, client):
@@ -383,21 +383,21 @@ class TestLro:
             self.lro_result(client.lrosads.delete202_retry_invalid_header)
 
     def test_sads_post_non_retry(self, client, product):
-        self.assertRaisesWithMessage("Bad Request",
+        self.assert_raises_with_message("Bad Request",
             client.lrosads.post_non_retry400, product)
 
-        self.assertRaisesWithMessage("Bad Request",
+        self.assert_raises_with_message("Bad Request",
             client.lrosads.post202_non_retry400, product)
 
     def test_sads_post_async_relative(self, client, product):
-        self.assertRaisesWithMessage("Bad Request",
+        self.assert_raises_with_message("Bad Request",
             client.lrosads.post_async_relative_retry400, product)
 
-        self.assertRaisesWithMessage("The response from long running operation does not contain a body.",
+        self.assert_raises_with_message("The response from long running operation does not contain a body.",
             client.lrosads.post_async_relative_retry_no_payload)
 
     def test_sads_post202_no_location(self, client):
-        self.assertRaisesWithMessage("Unable to find status link for polling.",
+        self.assert_raises_with_message("Unable to find status link for polling.",
             client.lrosads.post202_no_location)
 
     def test_sads_post_async_relative_with_exception(self, client):

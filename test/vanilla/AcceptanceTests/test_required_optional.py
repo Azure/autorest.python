@@ -67,8 +67,7 @@ def client():
 
 class TestRequiredOptional(object):
 
-    """These clients have a required global path and query
-    """
+    # These clients have a required global path and query
     def test_put_optional(self, client_required):
         client_required.implicit.put_optional_query(None)
         client_required.implicit.put_optional_body(None)

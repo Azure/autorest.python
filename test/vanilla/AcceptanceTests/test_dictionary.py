@@ -60,9 +60,7 @@ def test_dict():
 
 class TestDictionary(object):
 
-    """
-    Primitive types
-    """
+    # Primitive types
     def test_boolean_tfft(self, client):
         tfft = {"0":True, "1":False, "2":False, "3":True}
         assert tfft ==  client.dictionary.get_boolean_tfft()
@@ -220,8 +218,7 @@ class TestDictionary(object):
                      '2': 'Lorem ipsum'.encode()}
         assert client.dictionary.get_base64_url() ==  test_dict
 
-    """Basic dictionary parsing
-    """
+    # Basic dictionary parsing
     def test_empty(self, client):
 
         assert {} ==  client.dictionary.get_empty()
@@ -244,8 +241,7 @@ class TestDictionary(object):
     def test_get_empty_string_key(self, client):
         assert {"":"val1"} ==  client.dictionary.get_empty_string_key()
 
-    """Dictionary composed types
-    """
+    # Dictionary composed types
     def test_get_complex_null_and_empty(self, client):
         assert client.dictionary.get_complex_null() is None
         assert {} ==  client.dictionary.get_complex_empty()

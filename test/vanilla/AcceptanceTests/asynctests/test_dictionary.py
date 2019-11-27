@@ -60,9 +60,8 @@ def test_dict():
 
 class TestDictionary(object):
 
-    """
-    Primitive types
-    """
+    # Primitive types
+
     @pytest.mark.asyncio
     async def test_boolean_tfft(self, client):
         tfft = {"0":True, "1":False, "2":False, "3":True}
@@ -241,8 +240,7 @@ class TestDictionary(object):
                      '2': 'Lorem ipsum'.encode()}
         assert (await client.dictionary.get_base64_url())==  test_dict
 
-    """Basic dictionary parsing
-    """
+    # Basic dictionary parsing
 
     @pytest.mark.asyncio
     async def test_empty(self, client):
@@ -270,8 +268,7 @@ class TestDictionary(object):
     async def test_get_empty_string_key(self, client):
         assert {"":"val1"} ==  (await client.dictionary.get_empty_string_key())
 
-    """Dictionary composed types
-    """
+    # Dictionary composed types
 
     @pytest.mark.asyncio
     async def test_get_complex_null_and_empty(self, client):

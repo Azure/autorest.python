@@ -66,9 +66,7 @@ async def client():
         yield client
 
 class TestRequiredOptional(object):
-
-    """These clients have a required global path and query
-    """
+    # These clients have a required global path and query
 
     @pytest.mark.asyncio
     async def test_put_optional(self, client_required):

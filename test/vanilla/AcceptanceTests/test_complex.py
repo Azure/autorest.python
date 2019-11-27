@@ -105,9 +105,7 @@ class TestComplex(object):
         with pytest.raises(DeserializationError):
             client.basic.get_invalid()
 
-    """
-    COMPLEX TYPE WITH PRIMITIVE PROPERTIES
-    """
+    # COMPLEX TYPE WITH PRIMITIVE PROPERTIES
     def test_primitive_get_and_put_int(self, client):
         # GET primitive/integer
         intResult = client.primitive.get_int()
@@ -218,9 +216,8 @@ class TestComplex(object):
         # PUT primitive/byte
         client.primitive.put_byte(valid_bytes)
 
-    """
-    COMPLEX TYPE WITH READ ONLY PROPERTIES
-    """
+    # COMPLEX TYPE WITH READ ONLY PROPERTIES
+
     def test_readonlyproperty_get_and_put_valid(self, client):
         # GET readonly/valid
         valid_obj = ReadonlyObj(size=2)
@@ -232,9 +229,8 @@ class TestComplex(object):
         readonly_result = client.readonlyproperty.put_valid(2)
         assert readonly_result is None
 
-    """
-    COMPLEX TYPE WITH ARRAY PROPERTIES
-    """
+    # COMPLEX TYPE WITH ARRAY PROPERTIES
+
     def test_array_get_and_put_valid(self, client):
         # GET array/valid
         array_result = client.array.get_valid()
@@ -260,9 +256,8 @@ class TestComplex(object):
         # Get array/notprovided
         assert client.array.get_not_provided().array is None
 
-    """
-    COMPLEX TYPE WITH DICTIONARY PROPERTIES
-    """
+    # COMPLEX TYPE WITH DICTIONARY PROPERTIES
+
     def test_dictionary_get_and_put_valid(self, client):
         # GET dictionary/valid
         dict_result = client.dictionary.get_valid()
@@ -290,9 +285,8 @@ class TestComplex(object):
         # GET dictionary/notprovided
         assert client.dictionary.get_not_provided().default_program is None
 
-    """
-    COMPLEX TYPES THAT INVOLVE INHERITANCE
-    """
+    # COMPLEX TYPES THAT INVOLVE INHERITANCE
+
     def test_inheritance_get_and_put_valid(self, client):
         # GET inheritance/valid
         inheritanceResult = client.inheritance.get_valid()
@@ -312,9 +306,8 @@ class TestComplex(object):
             }
         client.inheritance.put_valid(request)
 
-    """
-    COMPLEX TYPES THAT INVOLVE POLYMORPHISM
-    """
+    # COMPLEX TYPES THAT INVOLVE POLYMORPHISM
+
     def test_polymorphism_get_and_put_valid(self, client):
         # GET polymorphism/valid
         result = client.polymorphism.get_valid()
@@ -363,9 +356,8 @@ class TestComplex(object):
         with pytest.raises(ValidationError):
             client.polymorphism.put_valid_missing_required(bad_request)
 
-    """
-    COMPLEX TYPES THAT INVOLVE RECURSIVE REFERENCE
-    """
+    # COMPLEX TYPES THAT INVOLVE RECURSIVE REFERENCE
+
     def test_polymorphismrecursive_get_and_put_valid(self, client):
         # GET polymorphicrecursive/valid
         result = client.polymorphicrecursive.get_valid()
@@ -422,16 +414,14 @@ class TestComplex(object):
         client.polymorphicrecursive.put_valid(request)
 
 
-    """
-    Complex types that uses additional properties and polymorphism
-    """
+    # Complex types that uses additional properties and polymorphism
+
     def test_polymorphism_get_and_put_complicated(self, client):
         smart_salmon = client.polymorphism.get_complicated()
         client.polymorphism.put_complicated(smart_salmon)
 
-    """
-    Complex types that uses missing discriminator
-    """
+    # Complex types that uses missing discriminator
+
     def test_polymorphism_get_and_put_missing_discriminator(self, client):
         regular_salmon = Salmon(
             iswild=True,
