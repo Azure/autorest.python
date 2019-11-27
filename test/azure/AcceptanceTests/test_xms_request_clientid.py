@@ -50,15 +50,16 @@ from azurespecialproperties import models
 
 import pytest
 
+@pytest.fixture
+def client():
+    valid_subscription = '1234-5678-9012-3456'
+    cred = BasicTokenAuthentication({"access_token":123})
+    with AutoRestAzureSpecialParametersTestClient(cred, valid_subscription, base_url="http://localhost:3000") as client:
+        yield client
+
 class TestXmsRequestClientId(object):
 
-    def test_client_request_id_in_exception(self):
-        validSubscription = '1234-5678-9012-3456'
-        expectedRequestId = '9C4D50EE-2D56-4CD3-8152-34347DC9F2B0'
-
-        cred = BasicTokenAuthentication({"access_token":123})
-        client = AutoRestAzureSpecialParametersTestClient(cred, validSubscription, base_url="http://localhost:3000")
-
+    def test_client_request_id_in_exception(self, client):
         try:
             client.xms_client_request_id.get()
             pytest.fail("HttpResponseError wasn't raised as expected")
@@ -66,15 +67,6 @@ class TestXmsRequestClientId(object):
         except HttpResponseError as err:
             pass
 
-    def test_xms_request_client_id_in_client(self):
-        validSubscription = '1234-5678-9012-3456'
-        expectedRequestId = '9C4D50EE-2D56-4CD3-8152-34347DC9F2B0'
-
-        cred = BasicTokenAuthentication({"access_token":123})
-        client = AutoRestAzureSpecialParametersTestClient(cred, validSubscription, base_url="http://localhost:3000")
+    def test_xms_request_client_id_in_client(self, client):
         client._config.generate_client_request_id = False
         client.xms_client_request_id.get()
-
-
-if __name__ == '__main__':
-    unittest.main()

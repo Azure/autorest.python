@@ -46,19 +46,22 @@ from extensibleenumsswagger.models import (
 
 import pytest
 
+@pytest.fixture
+def client():
+    with PetStoreInc(base_url="http://localhost:3000") as client:
+        yield client
+
 class TestExtensibleEnums(object):
 
-    def test_ext_enums(self):
-        client = PetStoreInc(base_url="http://localhost:3000")
-        
+    def test_get_by_pet_id(self, client):
         # Now enum return are always string (Autorest.Python 3.0)
 
         tommy = client.pet.get_by_pet_id('tommy')
-        assert tommy.days_of_week ==  "Monday" 
+        assert tommy.days_of_week ==  "Monday"
         assert tommy.int_enum ==  "1"
 
         casper = client.pet.get_by_pet_id('casper')
-        assert casper.days_of_week ==  "Weekend" 
+        assert casper.days_of_week ==  "Weekend"
         assert casper.int_enum ==  "2"
 
         scooby = client.pet.get_by_pet_id('scooby')
@@ -67,16 +70,13 @@ class TestExtensibleEnums(object):
         # "allowedValues" of "x-ms-enum" is not supported in Python
         assert scooby.int_enum ==  "2.1" # Might be "2" if one day Python is supposed to support "allowedValues"
 
+    def test_add_pet(self, client):
         retriever = Pet(
             name="Retriever",
             int_enum=IntEnum.three,
             days_of_week=DaysOfWeekExtensibleEnum.friday
         )
         returned_pet = client.pet.add_pet(retriever)
-        assert returned_pet.days_of_week ==  "Friday" 
+        assert returned_pet.days_of_week ==  "Friday"
         assert returned_pet.int_enum ==  "3"
         assert returned_pet.name ==  "Retriever"
-
-
-if __name__ == '__main__':
-    unittest.main()

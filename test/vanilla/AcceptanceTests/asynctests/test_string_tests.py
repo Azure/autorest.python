@@ -49,13 +49,22 @@ from bodystring.models import Colors
 
 import pytest
 
-@pytest.fixture(scope="module")
+@pytest.fixture
 async def client():
     async with AutoRestSwaggerBATService(base_url="http://localhost:3000") as client:
         yield client
 
-
 class TestString(object):
+
+    @pytest.mark.asyncio
+    async def test_null(self, client):
+        assert await client.string.get_null() is None
+        await client.string.put_null(None)
+
+    @pytest.mark.asyncio
+    async def test_empty(self, client):
+        assert "" ==  (await client.string.get_empty())
+        await client.string.put_empty()
 
     @pytest.mark.asyncio
     async def test_mbcs(self, client):
@@ -93,34 +102,48 @@ class TestString(object):
                 b"\xc9\xa1\xe3\x80\x87\xe3\x80\xbe\xe2\xbf\xbb\xe2\xba\x81"
                 b"\xee\xa1\x83\xe4\x9c\xa3\xee\xa1\xa4\xe2\x82\xac").decode('utf-8')
 
-        assert test_str ==  await client.string.get_mbcs()
+        assert test_str == (await client.string.get_mbcs())
         await client.string.put_mbcs()
 
     @pytest.mark.asyncio
-    async def test_string(self, client):
-        assert await client.string.get_null() is None
-        await client.string.put_null(None)
-        assert "" ==  await client.string.get_empty()
-        await client.string.put_empty()
-
+    async def test_whitespace(self, client):
         test_str = "    Now is the time for all good men to come to the aid of their country    "
-        assert test_str ==  await client.string.get_whitespace()
+        assert test_str ==  (await client.string.get_whitespace())
         await client.string.put_whitespace()
 
+    @pytest.mark.asyncio
+    async def test_get_not_provided(self, client):
         assert await client.string.get_not_provided() is None
-        assert Colors.redcolor ==  await client.enum.get_not_expandable()
+
+    @pytest.mark.asyncio
+    async def test_enum_not_expandable(self, client):
+        assert Colors.redcolor ==  (await client.enum.get_not_expandable())
         await client.enum.put_not_expandable('red color')
         await client.enum.put_not_expandable(Colors.redcolor)
         with pytest.raises(SerializationError):
             await client.enum.put_not_expandable('not a colour')
 
-        assert await client.string.get_base64_encoded() ==  'a string that gets encoded with base64'.encode()
-        assert await client.string.get_base64_url_encoded() ==  'a string that gets encoded with base64url'.encode()
-        assert await client.string.get_null_base64_url_encoded() is None
+    @pytest.mark.asyncio
+    async def test_get_base64_encdoded(self, client):
+        assert (await client.string.get_base64_encoded()) ==  'a string that gets encoded with base64'.encode()
+
+    @pytest.mark.asyncio
+    async def test_base64_url_encoded(self, client):
+        assert (await client.string.get_base64_url_encoded()) ==  'a string that gets encoded with base64url'.encode()
         await client.string.put_base64_url_encoded('a string that gets encoded with base64url'.encode())
 
+    @pytest.mark.asyncio
+    async def test_get_null_base64_url_encoded(self, client):
+        assert (await client.string.get_null_base64_url_encoded()) is None
+
+    @pytest.mark.asyncio
+    async def test_enum_referenced(self, client):
         await client.enum.put_referenced(Colors.redcolor)
         await client.enum.put_referenced("red color")
+
+        assert (await client.enum.get_referenced()) ==  Colors.redcolor
+
+    @pytest.mark.asyncio
+    async def test_enum_referenced_constant(self, client):
         await client.enum.put_referenced_constant()
-        assert await client.enum.get_referenced() ==  Colors.redcolor
         assert (await client.enum.get_referenced_constant()).color_constant ==  Colors.green_color.value

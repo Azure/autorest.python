@@ -47,29 +47,42 @@ from bodydatetimerfc1123.aio import AutoRestRFC1123DateTimeTestService
 
 import pytest
 
+@pytest.fixture
+async def client():
+    async with AutoRestRFC1123DateTimeTestService(base_url="http://localhost:3000") as client:
+        yield client
+
 class TestDateTimeRfc(object):
 
     @pytest.mark.asyncio
-    async def test_datetime_rfc(self):
-        client = AutoRestRFC1123DateTimeTestService(base_url="http://localhost:3000")
-
+    async def test_get_null(self, client):
         assert await client.datetimerfc1123.get_null() is None
 
+    @pytest.mark.asyncio
+    async def test_get_invalid(self, client):
         with pytest.raises(DeserializationError):
             await client.datetimerfc1123.get_invalid()
 
+    @pytest.mark.asyncio
+    async def test_get_underflow(self, client):
         with pytest.raises(DeserializationError):
             await client.datetimerfc1123.get_underflow()
 
+    @pytest.mark.asyncio
+    async def test_get_overflow(self, client):
         with pytest.raises(DeserializationError):
             await client.datetimerfc1123.get_overflow()
 
+    @pytest.mark.asyncio
+    async def test_utc_max_date_time(self, client):
+        max_date = isodate.parse_datetime("9999-12-31T23:59:59.999999Z")
+
         await client.datetimerfc1123.get_utc_lowercase_max_date_time()
         await client.datetimerfc1123.get_utc_uppercase_max_date_time()
-        await client.datetimerfc1123.get_utc_min_date_time()
-
-        max_date = isodate.parse_datetime("9999-12-31T23:59:59.999999Z")
         await client.datetimerfc1123.put_utc_max_date_time(max_date)
 
+    @pytest.mark.asyncio
+    async def test_utc_min_date_time(self, client):
         min_date = isodate.parse_datetime("0001-01-01T00:00:00Z")
+        await client.datetimerfc1123.get_utc_min_date_time()
         await client.datetimerfc1123.put_utc_min_date_time(min_date)

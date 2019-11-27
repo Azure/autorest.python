@@ -47,21 +47,28 @@ from bodybyte.aio import AutoRestSwaggerBATByteService
 
 import pytest
 
+@pytest.fixture
+async def client():
+    async with AutoRestSwaggerBATByteService(base_url="http://localhost:3000") as client:
+        yield client
+
 class TestByte(object):
 
     @pytest.mark.asyncio
-    async def test_byte(self):
-        client = AutoRestSwaggerBATByteService(base_url="http://localhost:3000")
+    async def test_non_ascii(self, client):
+        tests = bytearray([0x0FF, 0x0FE, 0x0FD, 0x0FC, 0x0FB, 0x0FA, 0x0F9, 0x0F8, 0x0F7, 0x0F6])
+        await client.byte.put_non_ascii(tests)
+        assert tests ==  (await client.byte.get_non_ascii())
 
-        test_bytes = bytearray([0x0FF, 0x0FE, 0x0FD, 0x0FC, 0x0FB, 0x0FA, 0x0F9, 0x0F8, 0x0F7, 0x0F6])
-        await client.byte.put_non_ascii(test_bytes)
-        assert test_bytes == await client.byte.get_non_ascii()
-
+    @pytest.mark.asyncio
+    async def test_get_null(self, client):
         assert await client.byte.get_null() is None
-        assert bytearray() == await client.byte.get_empty()
 
+    @pytest.mark.asyncio
+    async def test_get_empty(self, client):
+        assert bytearray() ==  (await client.byte.get_empty())
+
+    @pytest.mark.asyncio
+    async def test_get_invalid(self, client):
         with pytest.raises(DeserializationError):
             await client.byte.get_invalid()
-
-if __name__ == '__main__':
-    unittest.main()

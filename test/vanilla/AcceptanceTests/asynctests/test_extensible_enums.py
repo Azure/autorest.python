@@ -46,12 +46,15 @@ from extensibleenumsswagger.models import (
 
 import pytest
 
+@pytest.fixture
+async def client():
+    async with PetStoreInc(base_url="http://localhost:3000") as client:
+        yield client
+
 class TestExtensibleEnums(object):
 
     @pytest.mark.asyncio
-    async def test_ext_enums(self):
-        client = PetStoreInc(base_url="http://localhost:3000")
-
+    async def test_get_by_pet_id(self, client):
         # Now enum return are always string (Autorest.Python 3.0)
 
         tommy = await client.pet.get_by_pet_id('tommy')
@@ -68,6 +71,8 @@ class TestExtensibleEnums(object):
         # "allowedValues" of "x-ms-enum" is not supported in Python
         assert scooby.int_enum ==  "2.1" # Might be "2" if one day Python is supposed to support "allowedValues"
 
+    @pytest.mark.asyncio
+    async def test_add_pet(self, client):
         retriever = Pet(
             name="Retriever",
             int_enum=IntEnum.three,
@@ -77,7 +82,3 @@ class TestExtensibleEnums(object):
         assert returned_pet.days_of_week ==  "Friday"
         assert returned_pet.int_enum ==  "3"
         assert returned_pet.name ==  "Retriever"
-
-
-if __name__ == '__main__':
-    unittest.main()

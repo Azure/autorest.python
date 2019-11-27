@@ -44,6 +44,8 @@ class AutoRestSwaggerBATdictionaryService(object):
         self.dictionary = DictionaryOperations(
             self._client, self._config, self._serialize, self._deserialize)
 
+    async def close(self):
+        await self._client.close()
     async def __aenter__(self):
         await self._client.__aenter__()
         return self

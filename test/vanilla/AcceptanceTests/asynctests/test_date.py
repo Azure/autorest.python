@@ -47,29 +47,40 @@ from bodydate.aio import AutoRestDateTestService
 
 import pytest
 
+@pytest.fixture
+async def client():
+    async with AutoRestDateTestService(base_url="http://localhost:3000") as client:
+        yield client
+
 class TestDate(object):
 
     @pytest.mark.asyncio
-    async def test_date(self):
-        client = AutoRestDateTestService(base_url="http://localhost:3000")
-
+    async def test_model_get_and_put_max_date(self, client):
         max_date = isodate.parse_date("9999-12-31T23:59:59.999999Z")
-        min_date = isodate.parse_date("0001-01-01T00:00:00Z")
         await client.date_model.put_max_date(max_date)
-        await client.date_model.put_min_date(min_date)
+        assert max_date ==  (await client.date_model.get_max_date())
 
-        assert max_date ==  await client.date_model.get_max_date()
-        assert min_date ==  await client.date_model.get_min_date()
+    @pytest.mark.asyncio
+    async def test_model_get_and_put_min_date(self, client):
+        min_date = isodate.parse_date("0001-01-01T00:00:00Z")
+        await client.date_model.put_min_date(min_date)
+        assert min_date ==  (await client.date_model.get_min_date())
+
+    @pytest.mark.asyncio
+    async def test_model_get_null(self, client):
         assert await client.date_model.get_null() is None
 
+    @pytest.mark.asyncio
+    async def test_model_get_invalid_date(self, client):
         with pytest.raises(DeserializationError):
             await client.date_model.get_invalid_date()
 
+    @pytest.mark.asyncio
+    async def test_model_get_overflow_date(self, client):
         with pytest.raises(DeserializationError):
             await client.date_model.get_overflow_date()
 
+    @pytest.mark.asyncio
+    async def test_model_get_underflow_date(self, client):
         with pytest.raises(DeserializationError):
             await client.date_model.get_underflow_date()
-
-if __name__ == '__main__':
-    unittest.main()

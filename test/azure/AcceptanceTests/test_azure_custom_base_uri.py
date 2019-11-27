@@ -55,6 +55,13 @@ from custombaseurl.models import Error, ErrorException
 
 import pytest
 
+@pytest.fixture
+def client():
+    cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
+    with AutoRestParameterizedHostTestClient(cred, host="host:3000") as client:
+        client._config.retry_policy.retries = 0
+        yield client
+
 class TestCustomBaseUri(object):
 
     def test_custom_base_uri_positive(self):
@@ -62,21 +69,15 @@ class TestCustomBaseUri(object):
         client = AutoRestParameterizedHostTestClient(cred, host="host:3000")
         client.paths.get_empty("local")
 
-    def test_custom_base_uri_negative(self):
-        cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
-        client = AutoRestParameterizedHostTestClient(cred, host="host:3000")
-        client._config.retry_policy.retries = 0
+    def test_custom_base_uri_get_empty(self, client):
         with pytest.raises(ServiceRequestError):
             client.paths.get_empty("bad")
 
+    def test_custom_base_uri_get_none(self, client):
         with pytest.raises(ValidationError):
             client.paths.get_empty(None)
 
+    def test_custom_base_uri_bad_host(self, client):
         client._config.host = "badhost:3000"
         with pytest.raises(ServiceRequestError):
             client.paths.get_empty("local")
-
-if __name__ == '__main__':
-
-
-    unittest.main()

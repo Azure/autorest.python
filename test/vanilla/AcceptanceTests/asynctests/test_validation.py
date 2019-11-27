@@ -51,66 +51,74 @@ from validation.models import (
 
 import pytest
 
+@pytest.fixture
+async def client():
+    async with AutoRestValidationTest(
+            "abc123",
+            base_url="http://localhost:3000") as client:
+        client.api_version = "12-34-5678"
+        yield client
+
 class TestValidation(object):
 
     @pytest.mark.asyncio
-    async def test_constant_values(self):
-        client = AutoRestValidationTest(
-            "abc123",
-            base_url="http://localhost:3000")
-        client.api_version = "12-34-5678"
-
+    async def test_with_constant_in_path(self, client):
         await client.get_with_constant_in_path()
 
         body = Product(child=ChildProduct())
         product = await client.post_with_constant_in_body(body=body)
         assert product is not None
 
-        await client._client.close()
-
     @pytest.mark.asyncio
-    async def test_validation(self):
-        client = AutoRestValidationTest(
-            "abc123",
-            base_url="http://localhost:3000")
-        client.api_version = "12-34-5678"
-
+    async def test_min_length_validation(self, client):
         try:
             await client.validation_of_method_parameters("1", 100)
         except ValidationError as err:
             assert err.rule ==  "min_length"
             assert err.target ==  "resource_group_name"
 
+    @pytest.mark.asyncio
+    async def test_max_length_validation(self, client):
         try:
             await client.validation_of_method_parameters("1234567890A", 100)
         except ValidationError as err:
             assert err.rule ==  "max_length"
             assert err.target ==  "resource_group_name"
 
+    @pytest.mark.asyncio
+    async def test_pattern_validation(self, client):
         try:
             await client.validation_of_method_parameters("!@#$", 100)
         except ValidationError as err:
             assert err.rule ==  "pattern"
             assert err.target ==  "resource_group_name"
 
+    @pytest.mark.asyncio
+    async def test_multiple_validation(self, client):
         try:
             await client.validation_of_method_parameters("123", 105)
         except ValidationError as err:
             assert err.rule ==  "multiple"
             assert err.target ==  "id"
 
+    @pytest.mark.asyncio
+    async def test_minimum_validation(self, client):
         try:
             await client.validation_of_method_parameters("123", 0)
         except ValidationError as err:
             assert err.rule ==  "minimum"
             assert err.target ==  "id"
 
+    @pytest.mark.asyncio
+    async def test_maximum_validation(self, client):
         try:
             await client.validation_of_method_parameters("123", 2000)
         except ValidationError as err:
             assert err.rule ==  "maximum"
             assert err.target ==  "id"
 
+    @pytest.mark.asyncio
+    async def test_minimum_ex_validation(self, client):
         try:
             tempproduct=Product(child=ChildProduct(), capacity=0)
             await client.validation_of_body("123", 150, tempproduct)
@@ -118,6 +126,8 @@ class TestValidation(object):
             assert err.rule ==  "minimum_ex"
             assert "capacity" in  err.target
 
+    @pytest.mark.asyncio
+    async def test_maximum_ex_validation(self, client):
         try:
             tempproduct=Product(child=ChildProduct(), capacity=100)
             await client.validation_of_body("123", 150, tempproduct)
@@ -125,6 +135,8 @@ class TestValidation(object):
             assert err.rule ==  "maximum_ex"
             assert "capacity" in  err.target
 
+    @pytest.mark.asyncio
+    async def test_max_items_validation(self, client):
         try:
             tempproduct=Product(child=ChildProduct(),
                 display_names=["item1","item2","item3","item4","item5","item6","item7"])
@@ -133,15 +145,16 @@ class TestValidation(object):
             assert err.rule ==  "max_items"
             assert "display_names" in  err.target
 
-        client2 = AutoRestValidationTest(
+    @pytest.mark.asyncio
+    async def test_api_version_validation(self):
+        client = AutoRestValidationTest(
             "abc123",
             base_url="http://localhost:3000")
-        client2.api_version = "abc"
-
+        client.api_version = "abc"
         try:
-            await client2.validation_of_method_parameters("123", 150)
+            await client.validation_of_method_parameters("123", 150)
         except ValidationError as err:
-            assert err.rule == "pattern"
-            assert err.target == "self.api_version"
-
-        await client._client.close()
+            assert err.rule ==  "pattern"
+            assert err.target ==  "self.api_version"
+        finally:
+            await client._client.close()

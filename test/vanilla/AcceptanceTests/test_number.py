@@ -48,42 +48,64 @@ from bodynumber import AutoRestNumberTestService
 
 import pytest
 
+@pytest.fixture
+def client():
+    with AutoRestNumberTestService(base_url="http://localhost:3000") as client:
+        yield client
+
 class TestNumber(object):
 
-    def test_numbers(self):
-        client = AutoRestNumberTestService(base_url="http://localhost:3000")
-
+    def test_big_float(self, client):
         client.number.put_big_float(3.402823e+20)
-        client.number.put_small_float(3.402823e-20)
-        client.number.put_big_double(2.5976931e+101)
-        client.number.put_small_double(2.5976931e-101)
-        client.number.put_big_double_negative_decimal()
-        client.number.put_big_double_positive_decimal()
-        client.number.put_big_decimal(Decimal(2.5976931e+101))
-        client.number.put_small_decimal(Decimal(2.5976931e-101))
-        # client.number.put_big_decimal_positive_decimal()
-        # client.number.put_big_decimal_negative_decimal()
-        client.number.get_null()
         assert client.number.get_big_float() ==  3.402823e+20
+
+    def test_small_float(self, client):
+        client.number.put_small_float(3.402823e-20)
         assert client.number.get_small_float() ==  3.402823e-20
+
+    def test_big_double(self, client):
+        client.number.put_big_double(2.5976931e+101)
         assert client.number.get_big_double() ==  2.5976931e+101
+
+    def test_small_double(self, client):
+        client.number.put_small_double(2.5976931e-101)
         assert client.number.get_small_double() ==  2.5976931e-101
+
+    def test_big_double_negative_decimal(self, client):
+        client.number.put_big_double_negative_decimal()
         assert client.number.get_big_double_negative_decimal() ==  -99999999.99
+
+    def test_big_double_positive_decimal(self, client):
+        client.number.put_big_double_positive_decimal()
         assert client.number.get_big_double_positive_decimal() ==  99999999.99
+
+    def test_big_decimal(self, client):
+        client.number.put_big_decimal(Decimal(2.5976931e+101))
         assert client.number.get_big_decimal() ==  2.5976931e+101
+
+    def test_small_decimal(self, client):
+        client.number.put_small_decimal(Decimal(2.5976931e-101))
         assert client.number.get_small_decimal() ==  2.5976931e-101
+
+    def test_get_big_decimal_negative_decimal(self, client):
+        # client.number.put_big_decimal_positive_decimal()
         assert client.number.get_big_decimal_negative_decimal() ==  -99999999.99
+
+    def test_get_big_decimal_positive_decimal(self, client):
+        # client.number.put_big_decimal_negative_decimal()
         assert client.number.get_big_decimal_positive_decimal() ==  99999999.99
 
+    def test_get_null(self, client):
+        client.number.get_null()
+
+    def test_get_invalid_decimal(self, client):
         with pytest.raises(DecodeError):
             client.number.get_invalid_decimal()
 
+    def test_get_invalid_double(self, client):
         with pytest.raises(DecodeError):
             client.number.get_invalid_double()
 
+    def test_get_invalid_float(self, client):
         with pytest.raises(DecodeError):
             client.number.get_invalid_float()
-
-
-if __name__ == '__main__':
-    unittest.main()

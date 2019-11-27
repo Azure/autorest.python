@@ -59,15 +59,20 @@ class UTC(tzinfo):
 import pytest
 
 
-@pytest.fixture(scope="module")
+@pytest.fixture()
 async def client():
     async with AutoRestComplexTestService(base_url="http://localhost:3000") as client:
         yield client
 
+@pytest.fixture
+def min_date():
+    min_date = datetime.min
+    return min_date.replace(tzinfo=UTC())
+
 class TestComplex(object):
 
     @pytest.mark.asyncio
-    async def test_valid(self, client):
+    async def test_basic_get_and_put_valid(self, client):
         # GET basic/valid
         basic_result = await client.basic.get_valid()
         assert 2 ==  basic_result.id
@@ -81,28 +86,35 @@ class TestComplex(object):
         await client.basic.put_valid(basic_result)
 
     @pytest.mark.asyncio
-    async def test_complex(self, client):
+    async def test_basic_get_empty(self, client):
         # GET basic/empty
         basic_result = await client.basic.get_empty()
         assert basic_result.id is None
         assert basic_result.name is None
 
+    @pytest.mark.asyncio
+    async def test_basic_get_null(self, client):
         # GET basic/null
         basic_result = await client.basic.get_null()
         assert basic_result.id is None
         assert basic_result.name is None
 
+    @pytest.mark.asyncio
+    async def test_basic_get_not_provided(self, client):
         # GET basic/notprovided
         basic_result = await client.basic.get_not_provided()
         assert basic_result is None
 
+    @pytest.mark.asyncio
+    async def test_basic_get_invalid(self, client):
         # GET basic/invalid
         with pytest.raises(DeserializationError):
             await client.basic.get_invalid()
 
-        """
-        COMPLEX TYPE WITH PRIMITIVE PROPERTIES
-        """
+    # COMPLEX TYPE WITH PRIMITIVE PROPERTIES
+
+    @pytest.mark.asyncio
+    async def test_primitive_get_and_put_int(self, client):
         # GET primitive/integer
         intResult = await client.primitive.get_int()
         assert -1 ==  intResult.field1
@@ -112,6 +124,8 @@ class TestComplex(object):
         intRequest = {'field1':-1, 'field2':2}
         await client.primitive.put_int(intRequest)
 
+    @pytest.mark.asyncio
+    async def test_primitive_get_and_put_long(self, client):
         # GET primitive/long
         longResult = await client.primitive.get_long()
         assert 1099511627775 ==  longResult.field1
@@ -121,6 +135,8 @@ class TestComplex(object):
         longRequest = {'field1':1099511627775, 'field2':-999511627788}
         await client.primitive.put_long(longRequest)
 
+    @pytest.mark.asyncio
+    async def test_primitive_get_and_put_float(self, client):
         # GET primitive/float
         floatResult = await client.primitive.get_float()
         assert 1.05 ==  floatResult.field1
@@ -130,6 +146,8 @@ class TestComplex(object):
         floatRequest = FloatWrapper(field1=1.05, field2=-0.003)
         await client.primitive.put_float(floatRequest)
 
+    @pytest.mark.asyncio
+    async def test_primitive_get_and_put_double(self, client):
         # GET primitive/double
         doubleResult = await client.primitive.get_double()
         assert 3e-100 ==  doubleResult.field1
@@ -140,6 +158,8 @@ class TestComplex(object):
         doubleRequest['field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose'] = -5e-57
         await client.primitive.put_double(doubleRequest)
 
+    @pytest.mark.asyncio
+    async def test_primitive_get_and_put_bool(self, client):
         # GET primitive/bool
         boolResult = await client.primitive.get_bool()
         assert boolResult.field_true
@@ -149,6 +169,8 @@ class TestComplex(object):
         boolRequest = BooleanWrapper(field_true=True, field_false=False)
         await client.primitive.put_bool(boolRequest)
 
+    @pytest.mark.asyncio
+    async def test_primitive_get_and_put_string(self, client):
         # GET primitive/string
         stringResult = await client.primitive.get_string()
         assert "goodrequest" ==  stringResult.field
@@ -159,6 +181,8 @@ class TestComplex(object):
         stringRequest = StringWrapper(null=None, empty="", field="goodrequest")
         await client.primitive.put_string(stringRequest)
 
+    @pytest.mark.asyncio
+    async def test_primitive_get_and_put_date(self, client):
         # GET primitive/date
         dateResult = await client.primitive.get_date()
         assert isodate.parse_date("0001-01-01") ==  dateResult.field
@@ -169,10 +193,11 @@ class TestComplex(object):
             leap=isodate.parse_date('2016-02-29'))
         await client.primitive.put_date(dateRequest)
 
+    @pytest.mark.asyncio
+    async def test_primitive_get_and_put_date_time(self, client, min_date):
         # GET primitive/datetime
         datetimeResult = await client.primitive.get_date_time()
-        min_date = datetime.min
-        min_date = min_date.replace(tzinfo=UTC())
+
         assert min_date ==  datetimeResult.field
 
         datetime_request = DatetimeWrapper(
@@ -180,6 +205,8 @@ class TestComplex(object):
             now=isodate.parse_datetime("2015-05-18T18:38:00Z"))
         await client.primitive.put_date_time(datetime_request)
 
+    @pytest.mark.asyncio
+    async def test_primitive_get_and_put_date_time_rfc1123(self, client, min_date):
         # GET primitive/datetimerfc1123
         datetimeRfc1123Result = await client.primitive.get_date_time_rfc1123()
         assert min_date ==  datetimeRfc1123Result.field
@@ -189,12 +216,16 @@ class TestComplex(object):
             now=isodate.parse_datetime("2015-05-18T11:38:00Z"))
         await client.primitive.put_date_time_rfc1123(datetime_request)
 
+    @pytest.mark.asyncio
+    async def test_primitive_get_and_put_duration(self, client):
         # GET primitive/duration
         expected = timedelta(days=123, hours=22, minutes=14, seconds=12, milliseconds=11)
         assert expected ==  (await client.primitive.get_duration()).field
 
         await client.primitive.put_duration(expected)
 
+    @pytest.mark.asyncio
+    async def test_primitive_get_and_put_byte(self, client):
         # GET primitive/byte
         byteResult = await client.primitive.get_byte()
         valid_bytes = bytearray([0x0FF, 0x0FE, 0x0FD, 0x0FC, 0x000, 0x0FA, 0x0F9, 0x0F8, 0x0F7, 0x0F6])
@@ -203,9 +234,10 @@ class TestComplex(object):
         # PUT primitive/byte
         await client.primitive.put_byte(valid_bytes)
 
-        """
-        COMPLEX TYPE WITH READ ONLY PROPERTIES
-        """
+    # COMPLEX TYPE WITH READ ONLY PROPERTIES
+
+    @pytest.mark.asyncio
+    async def test_readonlyproperty_get_and_put_valid(self, client):
         # GET readonly/valid
         valid_obj = ReadonlyObj(size=2)
         valid_obj.id = '1234'
@@ -216,9 +248,10 @@ class TestComplex(object):
         readonly_result = await client.readonlyproperty.put_valid(2)
         assert readonly_result is None
 
-        """
-        COMPLEX TYPE WITH ARRAY PROPERTIES
-        """
+    # COMPLEX TYPE WITH ARRAY PROPERTIES
+
+    @pytest.mark.asyncio
+    async def test_array_get_and_put_valid(self, client):
         # GET array/valid
         array_result = await client.array.get_valid()
         assert 5 ==  len(array_result.array)
@@ -230,6 +263,9 @@ class TestComplex(object):
         # PUT array/valid
         await client.array.put_valid(array_value)
 
+    @pytest.mark.asyncio
+    async def test_array_get_and_put_empty(self, client):
+
         # GET array/empty
         array_result = await client.array.get_empty()
         assert 0 ==  len(array_result.array)
@@ -237,12 +273,15 @@ class TestComplex(object):
         # PUT array/empty
         await client.array.put_empty([])
 
+    @pytest.mark.asyncio
+    async def test_array_get_not_provided(self, client):
         # Get array/notprovided
         assert (await client.array.get_not_provided()).array is None
 
-        """
-        COMPLEX TYPE WITH DICTIONARY PROPERTIES
-        """
+    # COMPLEX TYPE WITH DICTIONARY PROPERTIES
+
+    @pytest.mark.asyncio
+    async def test_dictionary_get_and_put_valid(self, client):
         # GET dictionary/valid
         dict_result = await client.dictionary.get_valid()
         assert 5 ==  len(dict_result.default_program)
@@ -253,6 +292,8 @@ class TestComplex(object):
         # PUT dictionary/valid
         await client.dictionary.put_valid(dict_val)
 
+    @pytest.mark.asyncio
+    async def test_dictionary_get_and_put_empty(self, client):
         # GET dictionary/empty
         dict_result = await client.dictionary.get_empty()
         assert 0 ==  len(dict_result.default_program)
@@ -260,15 +301,20 @@ class TestComplex(object):
         # PUT dictionary/empty
         await client.dictionary.put_empty(default_program={})
 
+    @pytest.mark.asyncio
+    async def test_dictionary_get_and_null(self, client):
         # GET dictionary/null
         assert (await client.dictionary.get_null()).default_program is None
 
+    @pytest.mark.asyncio
+    async def test_dictionary_get_not_provided(self, client):
         # GET dictionary/notprovided
         assert (await client.dictionary.get_not_provided()).default_program is None
 
-        """
-        COMPLEX TYPES THAT INVOLVE INHERITANCE
-        """
+    # COMPLEX TYPES THAT INVOLVE INHERITANCE
+
+    @pytest.mark.asyncio
+    async def test_inheritance_get_and_put_valid(self, client):
         # GET inheritance/valid
         inheritanceResult = await client.inheritance.get_valid()
         assert 2 ==  inheritanceResult.id
@@ -287,9 +333,10 @@ class TestComplex(object):
             }
         await client.inheritance.put_valid(request)
 
-        """
-        COMPLEX TYPES THAT INVOLVE POLYMORPHISM
-        """
+    # COMPLEX TYPES THAT INVOLVE POLYMORPHISM
+
+    @pytest.mark.asyncio
+    async def test_polymorphism_get_and_put_valid(self, client):
         # GET polymorphism/valid
         result = await client.polymorphism.get_valid()
         assert result is not None
@@ -321,6 +368,8 @@ class TestComplex(object):
             )
         await client.polymorphism.put_valid(request)
 
+    @pytest.mark.asyncio
+    async def test_polymorphism_put_valid_missing_required(self, client):
         bad_request = Salmon(length=1,
             iswild=True,
             location="alaska",
@@ -336,10 +385,10 @@ class TestComplex(object):
         with pytest.raises(ValidationError):
             await client.polymorphism.put_valid_missing_required(bad_request)
 
-        """
-        COMPLEX TYPES THAT INVOLVE RECURSIVE REFERENCE
-        """
+    # COMPLEX TYPES THAT INVOLVE RECURSIVE REFERENCE
 
+    @pytest.mark.asyncio
+    async def test_polymorphismrecursive_get_and_put_valid(self, client):
         # GET polymorphicrecursive/valid
         result = await client.polymorphicrecursive.get_valid()
         assert isinstance(result,  Salmon)
@@ -395,15 +444,17 @@ class TestComplex(object):
         await client.polymorphicrecursive.put_valid(request)
 
 
-        """
-        Complex types that uses additional properties and polymorphism
-        """
+    # Complex types that uses additional properties and polymorphism
+
+    @pytest.mark.asyncio
+    async def test_polymorphism_get_and_put_complicated(self, client):
         smart_salmon = await client.polymorphism.get_complicated()
         await client.polymorphism.put_complicated(smart_salmon)
 
-        """
-        Complex types that uses missing discriminator
-        """
+    # Complex types that uses missing discriminator
+
+    @pytest.mark.asyncio
+    async def test_polymorphism_get_and_put_missing_discriminator(self, client):
         regular_salmon = Salmon(
             iswild=True,
             location='alaska',
@@ -426,8 +477,13 @@ class TestComplex(object):
                 age=1,
                 species="scary",
                 jawsize=5,
-                color='pinkish-gray',
+                color='pinkish-gray'
             )]
         )
         # Not raise is enough of a test
         await client.polymorphism.put_missing_discriminator(regular_salmon)
+
+        # Dot syntax
+        dot_salmon = await client.polymorphism.get_dot_syntax()
+        assert dot_salmon.fishtype == "DotSalmon"
+        assert dot_salmon.location == "sweden"

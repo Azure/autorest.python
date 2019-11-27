@@ -52,28 +52,35 @@ from custombaseurlmoreoptions.aio import AutoRestParameterizedCustomHostTestClie
 
 import pytest
 
+@pytest.fixture
+async def client():
+    async with AutoRestParameterizedHostTestClient("host:3000", retry_total = 0) as client:
+        yield client
+
 class TestCustomBaseUri(object):
 
     @pytest.mark.asyncio
-    async def test_custom_base_uri_positive(self):
+    async def test_positive(self):
         client = AutoRestParameterizedHostTestClient("host:3000")
         await client.paths.get_empty("local")
 
     @pytest.mark.asyncio
-    async def test_custom_base_uri_negative(self):
-        async with AutoRestParameterizedHostTestClient("host:3000", retry_total = 0) as client:
-
-            with pytest.raises(ServiceRequestError):
-                await client.paths.get_empty("bad")
-
-            with pytest.raises(ValidationError):
-                await client.paths.get_empty(None)
-
-        async with AutoRestParameterizedHostTestClient("badhost:3000", retry_total = 0) as client:
-            with pytest.raises(ServiceRequestError):
-                await client.paths.get_empty("local")
+    async def test_get_empty_with_bad_string(self, client):
+        with pytest.raises(ServiceRequestError):
+            await client.paths.get_empty("bad")
 
     @pytest.mark.asyncio
-    async def test_custom_base_uri_more_optiopns(self):
+    async def test_get_empty_with_none(self, client):
+        with pytest.raises(ValidationError):
+            await client.paths.get_empty(None)
+
+    @pytest.mark.asyncio
+    async def test_get_empty_from_bad_host(self):
+        client = AutoRestParameterizedHostTestClient("badhost:3000", retry_total = 0)
+        with pytest.raises(ServiceRequestError):
+            await client.paths.get_empty("local")
+
+    @pytest.mark.asyncio
+    async def test_more_optiopns(self):
         client = AutoRestParameterizedCustomHostTestClient("test12", "host:3000")
         await client.paths.get_empty("http://lo", "cal", "key1")
