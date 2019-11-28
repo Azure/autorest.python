@@ -10,9 +10,9 @@
 response_headers['{{ header_parameter.rest_api_name }}']=self._deserialize('{{ header_parameter.schema.get_serialization_type() }}', response.headers.get('{{ header_parameter.rest_api_name }}'))
     {% endfor %}
   {% endif %}
-  {% if operation.has_response_body and operation.is_stream_response %}
+  {% if response.has_body and operation.is_stream_response %}
 deserialized = response.stream_download(self._client._pipeline)
-  {% elif operation.has_response_body %}
+  {% elif response.has_body %}
 deserialized = self._deserialize('{{ response.schema.get_serialization_type() }}', response)
   {% endif %}
 {% endmacro %}
