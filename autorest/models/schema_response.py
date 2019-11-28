@@ -65,7 +65,7 @@ class SchemaResponse:
                 for code in yaml_data["protocol"]["http"]["statusCodes"]
             ],
             headers=[
-                HeaderResponse(header_prop['language']['default']['header'], header_prop)
+                HeaderResponse(header_prop['header'], header_prop['schema'])
                 for header_prop in yaml_data["protocol"]["http"].get("headers", [])
             ]
         )
