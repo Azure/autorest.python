@@ -6,6 +6,7 @@ from .primitive_schemas import get_primitive_schema, PrimitiveSchema
 from .enum_schema import EnumSchema
 from .base_schema import BaseSchema
 from .constant_schema import ConstantSchema
+from .imports import FileImport
 
 __all__ = [
     "BaseSchema",
@@ -15,6 +16,7 @@ __all__ = [
     "DictionarySchema",
     "ListSchema",
     "EnumSchema",
+    "FileImport",
     "PrimitiveSchema"
 ]
 
