@@ -61,7 +61,7 @@ class EnumSchema(BaseSchema):
         :return: The serialization value for msrest
         :rtype: str
         """
-        return 'str'
+        return self.enum_type
 
     def get_python_type_annotation(self) -> str:
         """The python type used for type annotation
