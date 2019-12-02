@@ -160,6 +160,16 @@ class DatetimeSchema(PrimitiveSchema):
             format=cls.Formats(yaml_data['format'])
         )
 
+class UnixTimeSchema(PrimitiveSchema):
+
+    def get_serialization_type(self):
+        return "unix-time"
+
+    def get_python_type(self, namespace=None):
+        return "~"+self.get_python_type_annotation()
+
+    def get_python_type_annotation(self):
+        return "datetime.datetime"
 
 class DateSchema(PrimitiveSchema):
 
@@ -219,6 +229,8 @@ def get_primitive_schema(yaml_data):
         return StringSchema.from_yaml(yaml_data=yaml_data)
     if schema_type == 'date-time':
         return DatetimeSchema.from_yaml(yaml_data=yaml_data)
+    if schema_type == 'unixtime':
+        return UnixTimeSchema(yaml_data=yaml_data)
     if schema_type == 'date':
         return DateSchema.from_yaml(yaml_data=yaml_data)
     if schema_type == 'duration':
