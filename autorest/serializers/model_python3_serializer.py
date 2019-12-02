@@ -1,6 +1,6 @@
 from .model_base_serializer import ModelBaseSerializer
 from jinja2 import Template, PackageLoader, Environment
-from ..models import PrimitiveSchema, ListSchema, DictionarySchema
+from ..models import PrimitiveSchema, ListSchema, DictionarySchema, EnumSchema
 from ..models.imports import FileImport, ImportType
 
 
@@ -70,5 +70,7 @@ class ModelPython3Serializer(ModelBaseSerializer):
                     file_import.add_from_import("typing", "List", ImportType.STDLIB)
                 elif isinstance(param.schema, DictionarySchema):
                     file_import.add_from_import("typing", "Dict", ImportType.STDLIB)
+                elif isinstance(param.schema, EnumSchema):
+                    file_import.add_from_import("typing", "Union", ImportType.STDLIB)
 
         return file_import
