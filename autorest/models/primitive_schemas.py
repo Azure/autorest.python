@@ -195,7 +195,9 @@ class ByteArraySchema(PrimitiveSchema):
         byte = "byte"
 
     def get_serialization_type(self):
-        return "base64"
+        if self.format == ByteArraySchema.Formats.base64url:
+            return "base64"
+        return "bytearray"
 
     def get_python_type(self, namespace=None):
         return "bytearray"
