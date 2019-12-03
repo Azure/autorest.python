@@ -86,9 +86,11 @@ class CodeGenerator:
         # Custom URL
         dollar_host = [parameter for parameter in code_model.global_parameters if parameter.rest_api_name == "$host"]
         if not dollar_host:
-            code_model.base_url = "FIXME"
+            code_model.base_url = None
         else:
-            code_model.base_url = dollar_host[0]['clientDefaultValue']
+            dollar_host_parameter = dollar_host[0]
+            code_model.global_parameters.remove(dollar_host_parameter)
+            code_model.base_url = dollar_host_parameter.yaml_data['clientDefaultValue']
 
         # Get whether we are tracing
         code_model.tracing = False if self._autorestapi.get_value("trace") is None else True
