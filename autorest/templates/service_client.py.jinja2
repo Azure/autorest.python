@@ -5,6 +5,7 @@
 {% set async_await = "await " if async_mode else "" %}
 {% set operations_import = ".operations_async" if async_mode else ".operations" %}
 {% set path_to_models = ".." if async_mode else "." %}
+{% set method_signature = code_model.global_parameters|join(', ', attribute='serialized_name') ~ (", " if code_model.global_parameters else "") %}
 {# actual template starts here #}
 # coding=utf-8
 # --------------------------------------------------------------------------
@@ -46,15 +47,15 @@ class {{ code_model.class_name }}(object):
     {% endif %}
     """
 
-    def __init__(self{{ '' if code_model.custom_base_url else ', base_url=None' }}, **kwargs):
+    def __init__(self, {{ method_signature }}{{ '' if not code_model.base_url else 'base_url=None, ' }}**kwargs):
 
-        {% if code_model.custom_base_url %}
+        {% if not code_model.base_url %}
         base_url = '{{ code_model.custom_base_url.template_url }}'
         {% else %}
         if not base_url:
             base_url = '{{ code_model.base_url }}'
         {% endif %}
-        self._config = {{ code_model.class_name }}Configuration(**kwargs)
+        self._config = {{ code_model.class_name }}Configuration({{ method_signature }}**kwargs)
         self._client = {{ pipeline_client }}(base_url=base_url, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}

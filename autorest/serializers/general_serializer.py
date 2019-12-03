@@ -26,7 +26,7 @@ class GeneralSerializer:
         )
 
         template = self.env.get_template("config.py.jinja2")
-        self._config_file = template.render(class_name=self.code_model.class_name, async_mode=self.async_mode)
+        self._config_file = template.render(code_model=self.code_model, async_mode=self.async_mode)
 
         if not self.async_mode:
             template = self.env.get_template("version.py.jinja2")

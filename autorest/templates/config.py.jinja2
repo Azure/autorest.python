@@ -1,5 +1,7 @@
 {% set version_import = ".._version" if async_mode else "._version" %}
 {% set async_prefix = "Async" if async_mode else "" %}
+{% set method_signature = code_model.global_parameters|join(', ', attribute='serialized_name') ~ (", " if code_model.global_parameters else "") %}
+{# actual template starts here #}
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -17,21 +19,33 @@ from azure.core.pipeline import policies
 from {{ version_import }} import VERSION
 
 
-class {{ class_name }}Configuration(Configuration):
-    """Configuration for {{ class_name }}
+class {{ code_model.class_name }}Configuration(Configuration):
+    """Configuration for {{ code_model.class_name }}
     Note that all parameters used to create this instance are saved as instance
     attributes.
 
+{% for parameter in code_model.global_parameters %}
+    :param {{ parameter.serialized_name }}: {{ parameter.description }}
+    :type {{ parameter.serialized_name }}: {{ parameter.schema.get_python_type(code_model.namespace) }}
+{% endfor %}
     """
 
-    def __init__(self, **kwargs):
+    def __init__(self, {{ method_signature }}**kwargs):
 
+{% for parameter in code_model.global_parameters %}
+        if {{ parameter.serialized_name }} is None:
+            raise ValueError("Parameter '{{ parameter.serialized_name }}' must not be None.")
+{% endfor %}
 
-        super({{ class_name }}Configuration, self).__init__(**kwargs)
+        super({{ code_model.class_name }}Configuration, self).__init__(**kwargs)
         self._configure(**kwargs)
 
-        self.user_agent_policy.add_user_agent('azsdk-python-{{ class_name|lower }}/{}'.format(VERSION))
+        self.user_agent_policy.add_user_agent('azsdk-python-{{ code_model.class_name|lower }}/{}'.format(VERSION))
         self.generate_client_request_id = True
+
+{% for parameter in code_model.global_parameters %}
+        self.{{ parameter.serialized_name }} = {{ parameter.serialized_name }}
+{% endfor %}
 
     def _configure(self, **kwargs):
         self.user_agent_policy = kwargs.get('user_agent_policy') or policies.UserAgentPolicy(**kwargs)

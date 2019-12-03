@@ -29,8 +29,10 @@ from typing import List, Dict, Optional
 
 from .base_schema import BaseSchema
 from .enum_schema import EnumSchema
+from .object_schema import ObjectSchema
 from .operation_group import OperationGroup
 from .custom_server import CustomBaseUrl
+from .parameter import Parameter
 
 
 _LOGGER = logging.getLogger(__name__)
@@ -86,6 +88,7 @@ class CodeModel:
         self.enums: Dict[int, EnumSchema] = {}
         self.primitives: Dict[int, BaseSchema] = {}
         self.operation_groups: List[OperationGroup] = []
+        self.global_parameters: List[Parameter] = []
         self.custom_base_url: Optional[CustomBaseUrl] = None
         self.base_url: Optional[str] = None
 
@@ -155,6 +158,17 @@ class CodeModel:
                 schema.base_model = [b for b in self.schemas.values() if b.id == schema.base_model][0]
         self._add_properties_from_inheritance()
 
+    def _populate_schema(self, obj) -> None:
+        schema_obj = obj.schema
+        if schema_obj:
+            schema_obj_id = id(obj.schema)
+            _LOGGER.debug("Looking for id %s (%s) for member %s", schema_obj_id, schema_obj, obj)
+            try:
+                obj.schema = self.lookup_schema(schema_obj_id)
+            except KeyError:
+                _LOGGER.critical("Unable to ref the object")
+                obj.schema = FakeSchema()
+
     def add_schema_link_to_operation(self) -> None:
         """Puts created schemas into operation classes `schema` property
 
@@ -165,12 +179,8 @@ class CodeModel:
         for operation_group in self.operation_groups:
             for operation in operation_group.operations:
                 for obj in chain(operation.parameters, operation.responses, operation.exceptions, chain.from_iterable(response.headers for response in operation.responses)):
-                    schema_obj = obj.schema
-                    if schema_obj:
-                        schema_obj_id = id(obj.schema)
-                        _LOGGER.info("Looking for id %s (%s) for member %s of operation %s", schema_obj_id, schema_obj, obj, operation.name)
-                        try:
-                            obj.schema = self.lookup_schema(schema_obj_id)
-                        except KeyError:
-                            _LOGGER.critical("Unable to ref the object")
-                            obj.schema = FakeSchema()
+                    self._populate_schema(obj)
+
+    def add_schema_link_to_global_parameters(self) -> None:
+        for parameter in self.global_parameters:
+            self._populate_schema(parameter)
