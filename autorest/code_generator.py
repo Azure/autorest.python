@@ -37,6 +37,7 @@ from .plugins import NameConverter
 from .models.code_model import CodeModel
 from .models import build_schema, EnumSchema, ConstantSchema
 from .models.operation_group import OperationGroup
+from .models.parameter import Parameter
 from .models.custom_server import CustomBaseUrl
 from .serializers import (
     EnumSerializer,
@@ -79,12 +80,13 @@ class CodeGenerator:
         if not code_model.api_version:
             code_model.api_version = "1.0.0"
 
+        # Global parameters
+        code_model.global_parameters = [Parameter.from_yaml(param) for param in yaml_code_model['globalParameters']]
+
         # Custom URL
-        global_parameters = yaml_code_model['globalParameters']
-        dollar_host = [parameter for parameter in global_parameters if parameter['language']['default']['name'] == "$host"]
-        if False: # FIXME rework on custom url
-            #code_model.custom_base_url = CustomBaseUrl.from_yaml(server)
-            pass
+        dollar_host = [parameter for parameter in code_model.global_parameters if parameter.rest_api_name == "$host"]
+        if not dollar_host:
+            code_model.base_url = "FIXME"
         else:
             code_model.base_url = dollar_host[0]['clientDefaultValue']
 
@@ -116,6 +118,7 @@ class CodeGenerator:
             code_model.add_inheritance_to_models()
             code_model.sort_schemas()
             code_model.add_schema_link_to_operation()
+            code_model.add_schema_link_to_global_parameters()
 
         return code_model
 
