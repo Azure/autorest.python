@@ -12,7 +12,7 @@ primary_types = {
     # "byte-array": "bytearray",
     "char": "str",
     "constant": "constant",
-    # "credential",
+    "credential": "azure.core.credentials.TokenCredential",
     # "date": "datetime.datetime",
     # "date-time": "datetime.datetime",
     # "duration": "datetime.timedelta",
