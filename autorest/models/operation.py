@@ -242,9 +242,16 @@ class Operation:
             """
             return not (isinstance(parameter.schema, ConstantSchema) or parameter.implementation == "Client")
 
-        signature_parameters = [
-            parameter for parameter in self.parameters if is_parameter_in_signature(parameter)
-        ]
+        signature_parameters_required = []
+        signature_parameters_optional = []
+        for parameter in self.parameters:
+            if is_parameter_in_signature(parameter):
+                if parameter.is_required:
+                    signature_parameters_required.append(parameter)
+                else:
+                    signature_parameters_optional.append(parameter)
+
+        signature_parameters = signature_parameters_required + signature_parameters_optional
         signature = ", ".join([
             parameter.for_method_signature for parameter in signature_parameters
         ])
