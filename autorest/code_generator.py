@@ -38,7 +38,6 @@ from .models.code_model import CodeModel
 from .models import build_schema, EnumSchema, ConstantSchema
 from .models.operation_group import OperationGroup
 from .models.parameter import Parameter
-from .models.custom_server import CustomBaseUrl
 from .serializers import (
     EnumSerializer,
     FileImportSerializer,
@@ -86,7 +85,10 @@ class CodeGenerator:
         # Custom URL
         dollar_host = [parameter for parameter in code_model.global_parameters if parameter.rest_api_name == "$host"]
         if not dollar_host:
-            code_model.base_url = None
+            # We don't want to support multi-api customurl YET (will see if that goes well....)
+            # So far now, let's get the first one in the first operation
+            # UGLY as hell.....
+            code_model.custom_base_url = yaml_code_model['operationGroups'][0]['operations'][0]['request']['protocol']['http']['uri']
         else:
             dollar_host_parameter = dollar_host[0]
             code_model.global_parameters.remove(dollar_host_parameter)

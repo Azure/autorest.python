@@ -131,6 +131,12 @@ class Operation:
         ][0]
 
     @property
+    def path_parameters(self) -> List[Parameter]:
+        return [
+            parameter for parameter in self.parameters if parameter.location == ParameterLocation.Uri
+        ]
+
+    @property
     def query_parameters(self) -> List[Parameter]:
         return [
             parameter for parameter in self.parameters if parameter.location == ParameterLocation.Query
@@ -171,7 +177,11 @@ class Operation:
 
         optional_parameters_string = "" if not optional_parameters else "," + ", ".join(optional_parameters)
 
-        return f"""self._serialize.{function_name}("{parameter.serialized_name}", {parameter.serialized_name}, '{parameter.schema.get_serialization_type()}'{optional_parameters_string})"""
+        origin_name = parameter.serialized_name
+        if parameter.implementation == "Client":
+            origin_name = f"self._config.{parameter.serialized_name}"
+
+        return f"""self._serialize.{function_name}("{origin_name}", {origin_name}, '{parameter.schema.get_serialization_type()}'{optional_parameters_string})"""
 
     @property
     def serialization_context(self):

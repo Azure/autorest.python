@@ -41,8 +41,11 @@ class {{ code_model.class_name }}(object):
     :vartype {{ operation_group.name }}: {{ code_model.namespace }}.operations.{{ operation_group.class_name }}Operations
     {% endif %}
     {% endfor %}
+{% for parameter in code_model.global_parameters %}
+    :param {{ parameter.serialized_name }}: {{ parameter.description }}
+    :type {{ parameter.serialized_name }}: {{ parameter.schema.get_python_type(code_model.namespace) }}
+{% endfor %}
     {% if not code_model.custom_base_url %}
-
     :param str base_url: Service URL
     {% endif %}
     """
@@ -50,7 +53,7 @@ class {{ code_model.class_name }}(object):
     def __init__(self, {{ method_signature }}{{ '' if not code_model.base_url else 'base_url=None, ' }}**kwargs):
 
         {% if not code_model.base_url %}
-        base_url = '{{ code_model.custom_base_url.template_url }}'
+        base_url = '{{ code_model.custom_base_url }}'
         {% else %}
         if not base_url:
             base_url = '{{ code_model.base_url }}'

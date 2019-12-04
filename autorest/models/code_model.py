@@ -31,7 +31,6 @@ from .base_schema import BaseSchema
 from .enum_schema import EnumSchema
 from .object_schema import ObjectSchema
 from .operation_group import OperationGroup
-from .custom_server import CustomBaseUrl
 from .parameter import Parameter
 
 
@@ -89,7 +88,7 @@ class CodeModel:
         self.primitives: Dict[int, BaseSchema] = {}
         self.operation_groups: List[OperationGroup] = []
         self.global_parameters: List[Parameter] = []
-        self.custom_base_url: Optional[CustomBaseUrl] = None
+        self.custom_base_url: Optional[str] = None
         self.base_url: Optional[str] = None
 
     def lookup_schema(self, schema_id: int) -> None:
