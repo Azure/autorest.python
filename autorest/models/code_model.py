@@ -147,7 +147,7 @@ class CodeModel:
             implementation="Client",
             description="Credentials needed for the client to connect to Azure.",
             is_required=True,
-            location="global",
+            location="other",
             skip_url_encoding=True,
             constraints=[]
         )

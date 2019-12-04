@@ -34,7 +34,7 @@ class ParameterLocation(Enum):
     Query = "query"
     Header = "header"
     Uri = "uri"
-    Global = "global"
+    Other = "other"
 
 
 class Parameter:
