@@ -6,8 +6,8 @@
 {% macro exception_name() %}{{ operation.exceptions[0].schema.name }}Exception{% endmacro %}
 {% macro response_handling(response) %}
   {% if response.headers %}
-    {% for header_parameter in response.headers %}
-response_headers['{{ header_parameter.rest_api_name }}']=self._deserialize('{{ header_parameter.schema.get_serialization_type() }}', response.headers.get('{{ header_parameter.rest_api_name }}'))
+    {% for response_header in response.headers %}
+response_headers['{{ response_header.name }}']=self._deserialize('{{ response_header.schema.get_serialization_type() }}', response.headers.get('{{ response_header.name }}'))
     {% endfor %}
   {% endif %}
   {% if response.has_body and operation.is_stream_response %}
