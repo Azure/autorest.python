@@ -34,6 +34,7 @@ class ParameterLocation(Enum):
     Query = "query"
     Header = "header"
     Uri = "uri"
+    Other = "other"
 
 
 class Parameter:
@@ -67,6 +68,7 @@ class Parameter:
             return self.serialized_name
         else:
             return f"{self.serialized_name}=None"
+
 
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, str], **kwargs) -> "SchemaResponse":

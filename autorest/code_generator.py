@@ -124,6 +124,9 @@ class CodeGenerator:
             code_model.add_schema_link_to_operation()
             code_model.add_schema_link_to_global_parameters()
 
+        if self._autorestapi.get_value("credentials") or self._autorestapi.get_value("azure-arm"):
+            code_model.add_credentials()
+
         return code_model
 
     def _serialize_and_write_models_folder(self, namespace, code_model, env):

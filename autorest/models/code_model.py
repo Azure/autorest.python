@@ -29,6 +29,7 @@ from typing import List, Dict, Optional
 
 from .base_schema import BaseSchema
 from .enum_schema import EnumSchema
+from .primitive_schemas import PrimitiveSchema
 from .object_schema import ObjectSchema
 from .operation_group import OperationGroup
 from .parameter import Parameter
@@ -129,6 +130,27 @@ class CodeModel:
             seen_schemas.add(current.name)
             sorted_schemas += ancestors
         self.sorted_schemas = sorted_schemas
+
+    def add_credentials(self) -> None:
+        """Adds a `credentials` global parameter.
+
+        :return: None
+        :rtype: None
+        """
+        credential_schema = PrimitiveSchema(yaml_data={"type": "credential"})
+        credential_parameter = Parameter(
+            yaml_data={},
+            schema=credential_schema,
+            serialized_name="credentials",
+            rest_api_name="credentials",
+            implementation="Client",
+            description="Credentials needed for the client to connect to Azure.",
+            is_required=True,
+            location="other",
+            skip_url_encoding=True,
+            constraints=[]
+        )
+        self.global_parameters.append(credential_parameter)
 
     def _add_properties_from_inheritance(self) -> None:
         """Adds properties from base classes to schemas with parents.
