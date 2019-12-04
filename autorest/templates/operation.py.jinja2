@@ -153,7 +153,7 @@ deserialized = self._deserialize('{{ response.schema.get_serialization_type() }}
   {% if operation.responses|count > 1 %}
     {% for status_code in operation.success_status_code %}
       {% set response =  operation.get_response_from_status(status_code) %}
-      {% if response.headers or response.has_body or operation.is_stream_response %}
+      {% if response.headers or response.has_body %}
     if response.status_code == {{ status_code }}:
         {{ response_handling(response) }}
       {% endif %}
