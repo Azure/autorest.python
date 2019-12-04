@@ -32,7 +32,7 @@ from .enum_schema import EnumSchema
 from .primitive_schemas import PrimitiveSchema
 from .object_schema import ObjectSchema
 from .operation_group import OperationGroup
-from .parameter import Parameter
+from .parameter import Parameter, ParameterLocation
 
 
 _LOGGER = logging.getLogger(__name__)
@@ -146,7 +146,7 @@ class CodeModel:
             implementation="Client",
             description="Credentials needed for the client to connect to Azure.",
             is_required=True,
-            location="other",
+            location=ParameterLocation.Other,
             skip_url_encoding=True,
             constraints=[]
         )
