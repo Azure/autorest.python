@@ -133,7 +133,7 @@ class Operation:
     @property
     def path_parameters(self) -> List[Parameter]:
         return [
-            parameter for parameter in self.parameters if parameter.location == ParameterLocation.Uri
+            parameter for parameter in self.parameters if parameter.location == ParameterLocation.Uri and parameter.rest_api_name != "$host"
         ]
 
     @property
