@@ -60,7 +60,7 @@ deserialized = self._deserialize('{{ response.schema.get_serialization_type() }}
 {% if operation.path_parameters %}
     path_format_arguments = {
 {% for path_parameter in operation.path_parameters %}
-        '{{ path_parameter.rest_api_name }}': {{ operation.build_serialize_data_call(path_parameter, "url") }}
+        '{{ path_parameter.rest_api_name }}': {{ operation.build_serialize_data_call(path_parameter, "url") }},
 {% endfor %}
     }
     url = self._client.format_url(url, **path_format_arguments)
