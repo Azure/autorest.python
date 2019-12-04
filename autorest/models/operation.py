@@ -24,7 +24,7 @@
 #
 # --------------------------------------------------------------------------
 import logging
-from typing import Dict, List, Union, Iterable, Any
+from typing import Dict, List
 
 from .imports import FileImport, ImportType
 from .schema_response import SchemaResponse
@@ -69,6 +69,9 @@ class Operation:
         self.exceptions = exceptions
         self.media_types = media_types
         self.tracing = tracing
+        # Will be set by codemodel if this operation is flattened, means to treat
+        # parameters a little differently
+        self.is_flattened = False
 
     @property
     def python_name(self):
@@ -124,7 +127,7 @@ class Operation:
     @property
     def body_parameter(self) -> Parameter:
         if not self.has_request_body:
-            raise ValueError(f"There is body parameter for operation {self.name}")
+            raise ValueError(f"There is no body parameter for operation {self.name}")
         # Should we check if there is two body? Modeler role right?
         return [
             parameter for parameter in self.parameters if parameter.location == ParameterLocation.Body
@@ -160,6 +163,29 @@ class Operation:
         for constraint in constraints:
             pass
         return constraints_params
+
+    @property
+    def method_parameters(self) -> List[Parameter]:
+        """The list of parameter used in method signature.
+        """
+        def is_parameter_in_signature(parameter):
+            """A predicate to tell if this parmater deserves to be in the signature.
+            """
+            return not (isinstance(parameter.schema, ConstantSchema) or parameter.implementation == "Client")
+
+        signature_parameters_required = []
+        signature_parameters_optional = []
+        for parameter in self.parameters:
+            if is_parameter_in_signature(parameter):
+                if parameter.is_required:
+                    signature_parameters_required.append(parameter)
+                else:
+                    signature_parameters_optional.append(parameter)
+
+        signature_parameters = signature_parameters_required + signature_parameters_optional
+        if self.is_flattened:
+            signature_parameters.remove(self.body_parameter)
+        return signature_parameters
 
     @staticmethod
     def build_serialize_data_call(parameter: Parameter, function_name: str) -> str:
@@ -247,27 +273,24 @@ class Operation:
 
     @property
     def method_signature(self):
-        def is_parameter_in_signature(parameter):
-            """A predicate to tell if this parmater deserves to be in the signature.
-            """
-            return not (isinstance(parameter.schema, ConstantSchema) or parameter.implementation == "Client")
 
-        signature_parameters_required = []
-        signature_parameters_optional = []
-        for parameter in self.parameters:
-            if is_parameter_in_signature(parameter):
-                if parameter.is_required:
-                    signature_parameters_required.append(parameter)
-                else:
-                    signature_parameters_optional.append(parameter)
-
-        signature_parameters = signature_parameters_required + signature_parameters_optional
         signature = ", ".join([
-            parameter.for_method_signature for parameter in signature_parameters
+            parameter.for_method_signature for parameter in self.method_parameters
         ])
         if signature:
             signature = ", "+signature
         return signature
+
+    def build_flattened_object(self):
+        if not self.is_flattened:
+            raise ValueError("This method can't be called if the operation doesn't need parameter flattening")
+
+        parameters = [
+            parameter for parameter in self.parameters if parameter.location == ParameterLocation.Other
+        ]
+        parameter_string = ",".join([f"{param.serialized_name}={param.serialized_name}" for param in parameters])
+
+        return f"{self.body_parameter.serialized_name} = models.{self.body_parameter.schema.name}({parameter_string})"
 
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, str], **kwargs) -> "Operation":

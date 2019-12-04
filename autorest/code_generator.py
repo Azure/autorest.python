@@ -76,6 +76,7 @@ class CodeGenerator:
         code_model.class_name = yaml_code_model['info']['pascal_case_title']
         code_model.description = yaml_code_model['info']['description'] if yaml_code_model['info'].get('description') else ""
         code_model.api_version = self._autorestapi.get_value("package-version")
+        code_model.options["payload-flattening-threshold"] = self._autorestapi.get_value("payload-flattening-threshold") or 0
         if not code_model.api_version:
             code_model.api_version = "1.0.0"
 
@@ -126,6 +127,9 @@ class CodeGenerator:
 
         if self._autorestapi.get_value("credentials") or self._autorestapi.get_value("azure-arm"):
             code_model.add_credentials()
+
+        # Parameter flattening
+        code_model.enable_parameter_flattening()
 
         return code_model
 
@@ -240,7 +244,7 @@ class CodeGenerator:
             raise ValueError("code-model-v4-no-tags.yaml must be a possible input")
 
         file_content = self._autorestapi.read_file("code-model-v4-no-tags.yaml")
-        # self._autorestapi.write_file("code-model-v4-no-tags.yaml", file_content)
+        #self._autorestapi.write_file("code-model-v4-no-tags.yaml", file_content)
 
         env = Environment(
             loader=PackageLoader('autorest', 'templates'),
@@ -256,6 +260,9 @@ class CodeGenerator:
 
         # convert the names to python names
         NameConverter.convert_yaml_names(yaml_code_model)
+
+        # save a new copy for debug
+        #self._autorestapi.write_file("code-model-v4-no-tags-python.yaml", yaml.safe_dump(yaml_code_model))
 
         code_model = self._create_code_model(yaml_code_model=yaml_code_model)
 
