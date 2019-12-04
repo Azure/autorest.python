@@ -70,7 +70,7 @@ deserialized = self._deserialize('{{ response.schema.get_serialization_type() }}
     query_parameters = {}
 {% if operation.query_parameters %}
     {% for query_parameter in operation.query_parameters %}
-        {%if query_parameter.required %}
+        {%if query_parameter.is_required %}
     query_parameters['{{ query_parameter.rest_api_name }}'] = {{ operation.build_serialize_data_call(query_parameter, "query") }}
         {% else %}
     if {{ query_parameter.serialized_name }} is not None:
@@ -83,7 +83,7 @@ deserialized = self._deserialize('{{ response.schema.get_serialization_type() }}
     header_parameters = {}
 {% if operation.headers_parameters %}
     {% for header_parameter in operation.headers_parameters %}
-        {%if header_parameter.required %}
+        {%if header_parameter.is_required %}
     header_parameters['{{ header_parameter.rest_api_name }}'] = {{ operation.build_serialize_data_call(header_parameter, "header") }}
         {% else %}
     if {{ header_parameter.serialized_name }} is not None:
