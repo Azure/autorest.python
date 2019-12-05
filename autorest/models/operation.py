@@ -24,7 +24,7 @@
 #
 # --------------------------------------------------------------------------
 import logging
-from typing import Dict, List
+from typing import Dict, List, Any
 
 from .imports import FileImport, ImportType
 from .schema_response import SchemaResponse
