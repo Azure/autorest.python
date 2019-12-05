@@ -55,6 +55,7 @@ class CodeModel:
     """Holds all of the information we have parsed out of the yaml file. The CodeModel is what gets
     serialized by the serializers.
 
+    :param bool azure_arm: Whether this code model is for ARM or not.
     :param str module_name: The module name for the client. Is in snake case.
     :param str class_name: The class name for the client. Is in pascal case.
     :param str api_version: The API version for the code we're generating
@@ -76,7 +77,8 @@ class CodeModel:
     :param str custom_base_url: Optional. If user specifies a custom base url, this will override the default
     :param str base_url: Optional. The default base_url. Will include the host from yaml
     """
-    def __init__(self):
+    def __init__(self, azure_arm):
+        self.azure_arm = azure_arm
         self.module_name = None
         self.class_name = None
         self.api_version = None
