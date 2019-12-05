@@ -32,6 +32,7 @@ from .enum_schema import EnumSchema
 from .primitive_schemas import PrimitiveSchema
 from .object_schema import ObjectSchema
 from .operation_group import OperationGroup
+from .operation import Operation
 from .parameter import Parameter
 
 
@@ -151,6 +152,34 @@ class CodeModel:
             constraints=[]
         )
         self.global_parameters.append(credential_parameter)
+
+    def _lro_initial_function(operation):
+        return Operation(
+            yaml_data={},
+            name="_" + operation.name + "_initial",
+            description="",
+            url=operation.url,
+            method=operation.method,
+            parameters=operation.parameters,
+            responses=operation.responses,
+            exceptions=operation.exceptions,
+            media_types=operation.media_types,
+            tracing=operation.tracing,
+            is_lro_initial=True,
+        )
+
+    def add_lro_initial_functions(self) -> None:
+        """If there are LRO functions in here, will add initial LRO function
+        """
+        for operation_group in self.operation_groups:
+            i = 0
+            while i < len(operation_group.operations):
+                operation = operation_group.operations[i]
+                if operation.is_lro:
+                    operation_group.operations.insert(i, CodeModel._lro_initial_function(operation))
+                    i += 1
+                i += 1
+
 
     def _add_properties_from_inheritance(self) -> None:
         """Adds properties from base classes to schemas with parents.

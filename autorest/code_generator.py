@@ -100,6 +100,7 @@ class CodeGenerator:
         # Create operations
         code_model.operation_groups = [OperationGroup.from_yaml(code_model, op_group) for op_group in yaml_code_model['operationGroups']]
 
+
         # Get my namespace
         namespace = self._autorestapi.get_value("namespace")
         _LOGGER.debug("Namespace parameter was %s", namespace)
@@ -123,6 +124,7 @@ class CodeGenerator:
             code_model.sort_schemas()
             code_model.add_schema_link_to_operation()
             code_model.add_schema_link_to_global_parameters()
+        code_model.add_lro_initial_functions()
 
         if self._autorestapi.get_value("credentials") or self._autorestapi.get_value("azure-arm"):
             code_model.add_credentials()

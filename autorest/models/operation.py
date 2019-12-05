@@ -51,6 +51,8 @@ class Operation:
         exceptions: List[SchemaResponse] = None,
         media_types: List[str] = None,
         tracing: bool = None,
+        is_lro: bool = None,
+        is_lro_initial: bool = None,
     ) -> None:
         if responses is None:
             responses = []
@@ -69,6 +71,8 @@ class Operation:
         self.exceptions = exceptions
         self.media_types = media_types
         self.tracing = tracing
+        self.is_lro = is_lro
+        self.is_lro_initial = is_lro_initial
 
     @property
     def python_name(self):
@@ -273,6 +277,7 @@ class Operation:
     def from_yaml(cls, yaml_data: Dict[str, str], **kwargs) -> "Operation":
         name = yaml_data["language"]["python"]["name"]
         _LOGGER.info("Parsing %s operation", name)
+
         return cls(
             yaml_data=yaml_data,
             name=name,
@@ -291,4 +296,5 @@ class Operation:
             ],
             media_types=yaml_data["request"]["protocol"]["http"].get("mediaTypes", []),
             tracing=kwargs.pop('tracing', False),
+            is_lro=yaml_data['extensions'].get('x-ms-long-running-operation', False) if yaml_data.get('extensions') else False
         )
