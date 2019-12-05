@@ -17,13 +17,13 @@ deserialized = self._deserialize('{{ response.schema.get_serialization_type() }}
   {% endif %}
 {% endmacro %}
 {# actual template starts here #}
-{% if operation.tracing and not operation.is_lro_initial %}
+{% if code_model.tracing %}
 {{ trace_decorator }}
 {% else %}
 
 {% endif %}
 {{ def_keyword }} {{ operation.python_name }}(self{{ operation.method_signature }}, cls=None, **kwargs):
-{% if not operation.is_lro_initial %}
+{% if operation.want_description_docstring %}
     """{{operation.description.strip() }}.
 
     {{ "FIXME: add operation.summary\n" }}
@@ -170,15 +170,10 @@ deserialized = self._deserialize('{{ response.schema.get_serialization_type() }}
     {{ response_handling(response) }}
   {% endif %}
 {% endif %}
-{% if not operation.is_lro_initial %}
     if cls:
       return cls(response, {{ 'deserialized' if operation.has_response_body else 'None'}}, {{ 'response_headers' if operation.any_response_has_headers else '{}' }})
-{% endif %}
 
 {% if operation.has_response_body %}
-    {% set returned_object = "response" if operation.is_lro_initial else "deserialized" %}
-    return {{ returned_object }}
+    return {{ operation.returned_response }}
 {% endif %}
-{% if not operation.is_lro_initial %}
 {{ operation.python_name }}.metadata = {'url': '{{ operation.url }}'}
-{% endif %}

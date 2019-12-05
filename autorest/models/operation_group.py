@@ -57,6 +57,12 @@ class OperationGroup:
             file_import.merge(operation.imports())
         if self.code_model.sorted_schemas:
             file_import.add_from_import("..", "models", ImportType.LOCAL)
+        if self.code_model.tracing:
+            file_import.add_from_import(
+                "azure.core.tracing.decorator",
+                "distributed_trace",
+                ImportType.AZURECORE,
+            )
         return file_import
 
     @property
@@ -72,7 +78,7 @@ class OperationGroup:
 
         operations = []
         for operation_yaml in yaml_data["operations"]:
-            operations.append(Operation.from_yaml(operation_yaml, tracing=code_model.tracing))
+            operations.append(Operation.from_yaml(operation_yaml))
 
         return cls(
             code_model=code_model,

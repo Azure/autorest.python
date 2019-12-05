@@ -2,10 +2,10 @@
 {% set await_keyword = "await " if async_mode else "" %}
 {% set trace_decorator = "@distributed_trace_async" if async_mode else "@distributed_trace" %}
 {% macro exception_name() %}{{ operation.exceptions[0].schema.name }}Exception{% endmacro %}
-{% if operation.tracing %}
+{% if code_model.tracing %}
 {{ trace_decorator }}
 {% endif %}
-{{ def_keyword }} {{ operation.python_name }}(self{{ operation.method_signature }}, polling=True, cls=None, **kwargs):
+{{ def_keyword }} {{ operation.python_name }}(self{{ operation.method_signature }}, cls=None, polling=True, **kwargs):
     """{{operation.description.strip() }}.
 
     {{ "FIXME: add operation.summary\n" }}
@@ -22,10 +22,8 @@
     {% endif %}
 {% endfor %}
     :param callable cls: A custom type or function that will be passed the direct response
-{% if operation.is_lro %}
-    :param polling: True for ARMPolling, Flase for no polling, or a
+    :param polling: True for ARMPolling, False for no polling, or a
      polling object for personal polling strategy
-{% endif %}
     :return: FIXME or the result of cls(response)
     :rtype: FIXME
     {% if not operation.exceptions %}
@@ -34,7 +32,7 @@
     :raises ~{{ code_model.namespace }}.models.{{ exception_name() }}:
     {% endif %}
     """
-    raw_result = self._{{ operation.name }}"_initial"(
+    raw_result = self._{{ operation.name }}_initial(
         {% for parameter in operation.parameters %}
             {% if parameter.implementation != 'Client' %}
             {{ parameter.serialized_name }}={{ parameter.serialized_name }},

@@ -41,7 +41,7 @@ class OperationGroupSerializer:
             code_model=self.code_model,
             operation_group=self.operation_group,
             imports=FileImportSerializer(imports),
-            async_mode=self.async_mode
+            async_mode=self.async_mode,
         )
 
     def filename(self):

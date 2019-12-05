@@ -61,7 +61,6 @@ class CodeModel:
     :param str api_version: The API version for the code we're generating
     :param str description: The description of the client
     :param str namespace: The namespace of our module
-    :param bool tracing: Whether distributed tracing is enabled for the code we are going to generate
     :param schemas: The list of schemas we are going to serialize in the models files. Maps their yaml
      id to our created ObjectSchema.
     :type schemas: dict[int, ~autorest.models.ObjectSchema]
@@ -83,7 +82,6 @@ class CodeModel:
         self.api_version = None
         self.description = None
         self.namespace = None
-        self.tracing = None
         self.schemas: Dict[int, ObjectSchema] = {}
         self.sorted_schemas: List[ObjectSchema] = []
         self.enums: Dict[int, EnumSchema] = {}
@@ -165,8 +163,8 @@ class CodeModel:
             responses=operation.responses,
             exceptions=operation.exceptions,
             media_types=operation.media_types,
-            tracing=operation.tracing,
-            is_lro_initial=True,
+            returned_response="response",
+            want_description_docstring=False
         )
 
     def add_lro_initial_functions(self) -> None:

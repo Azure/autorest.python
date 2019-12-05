@@ -24,7 +24,7 @@
 #
 # --------------------------------------------------------------------------
 import logging
-from typing import Dict, List, Any
+from typing import Dict, List, Any, Optional
 
 from .imports import FileImport, ImportType
 from .schema_response import SchemaResponse
@@ -50,9 +50,9 @@ class Operation:
         responses: List[SchemaResponse] = None,
         exceptions: List[SchemaResponse] = None,
         media_types: List[str] = None,
-        tracing: bool = None,
-        is_lro: bool = None,
-        is_lro_initial: bool = None,
+        is_lro: Optional[bool] = None,
+        returned_response: Optional[str] = "deserialized",
+        want_description_docstring: Optional[bool] = True
     ) -> None:
         if responses is None:
             responses = []
@@ -70,12 +70,12 @@ class Operation:
         self.responses = responses
         self.exceptions = exceptions
         self.media_types = media_types
-        self.tracing = tracing
         self.is_lro = is_lro
-        self.is_lro_initial = is_lro_initial
         # Will be set by codemodel if this operation is flattened, means to treat
         # parameters a little differently
         self.is_flattened = False
+        self.returned_response = returned_response
+        self.want_description_docstring = want_description_docstring
 
     @property
     def python_name(self):
@@ -257,14 +257,6 @@ class Operation:
                 "azure.core.exceptions", "HttpResponseError", ImportType.AZURECORE
             )
 
-        # Tracings
-        if self.tracing:
-            file_import.add_from_import(
-                "azure.core.tracing.decorator",
-                "distributed_trace",
-                ImportType.AZURECORE,
-            )
-
         # Deprecation
         if True:  # Replace with "the YAML contains deprecated:true"
             file_import.add_import("warnings", ImportType.STDLIB)
@@ -318,6 +310,5 @@ class Operation:
                 SchemaResponse.from_yaml(yaml) for yaml in yaml_data.get("exceptions", [])
             ],
             media_types=yaml_data["request"]["protocol"]["http"].get("mediaTypes", []),
-            tracing=kwargs.pop('tracing', False),
             is_lro=yaml_data['extensions'].get('x-ms-long-running-operation', False) if yaml_data.get('extensions') else False
         )
