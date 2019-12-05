@@ -17,7 +17,7 @@ deserialized = self._deserialize('{{ response.schema.get_serialization_type() }}
   {% endif %}
 {% endmacro %}
 {# actual template starts here #}
-{% if code_model.tracing %}
+{% if code_model.tracing and operation.want_tracing %}
 {{ trace_decorator }}
 {% else %}
 

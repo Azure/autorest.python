@@ -50,9 +50,9 @@ class Operation:
         responses: List[SchemaResponse] = None,
         exceptions: List[SchemaResponse] = None,
         media_types: List[str] = None,
-        is_lro: Optional[bool] = None,
         returned_response: Optional[str] = "deserialized",
-        want_description_docstring: Optional[bool] = True
+        want_description_docstring: Optional[bool] = True,
+        want_tracing: Optional[bool] = True
     ) -> None:
         if responses is None:
             responses = []
@@ -70,12 +70,12 @@ class Operation:
         self.responses = responses
         self.exceptions = exceptions
         self.media_types = media_types
-        self.is_lro = is_lro
         # Will be set by codemodel if this operation is flattened, means to treat
         # parameters a little differently
         self.is_flattened = False
         self.returned_response = returned_response
         self.want_description_docstring = want_description_docstring
+        self.want_tracing = want_tracing
 
     @property
     def python_name(self):
@@ -309,6 +309,5 @@ class Operation:
             exceptions=[
                 SchemaResponse.from_yaml(yaml) for yaml in yaml_data.get("exceptions", [])
             ],
-            media_types=yaml_data["request"]["protocol"]["http"].get("mediaTypes", []),
-            is_lro=yaml_data['extensions'].get('x-ms-long-running-operation', False) if yaml_data.get('extensions') else False
+            media_types=yaml_data["request"]["protocol"]["http"].get("mediaTypes", [])
         )

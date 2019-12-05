@@ -33,6 +33,7 @@ from .primitive_schemas import PrimitiveSchema
 from .object_schema import ObjectSchema
 from .operation_group import OperationGroup
 from .operation import Operation
+from .lro_operation import LROOperation
 from .parameter import Parameter, ParameterLocation
 
 
@@ -164,17 +165,22 @@ class CodeModel:
             exceptions=operation.exceptions,
             media_types=operation.media_types,
             returned_response="response",
-            want_description_docstring=False
+            want_description_docstring=False,
+            want_tracing=False
         )
 
-    def add_lro_initial_functions(self) -> None:
-        """If there are LRO functions in here, will add initial LRO function
+    def format_lro_operations(self) -> None:
+        """Adds operations and attributes needed for LROs.
+
+        If there are LRO functions in here, will add initial LRO function. Will also set the return
+        type of the LRO operation
         """
         for operation_group in self.operation_groups:
             i = 0
             while i < len(operation_group.operations):
                 operation = operation_group.operations[i]
-                if operation.is_lro:
+                if isinstance(operation, LROOperation):
+                    operation.set_lro_response_type()
                     operation_group.operations.insert(i, CodeModel._lro_initial_function(operation))
                     i += 1
                 i += 1

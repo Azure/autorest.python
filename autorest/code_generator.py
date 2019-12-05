@@ -130,7 +130,7 @@ class CodeGenerator:
             code_model.sort_schemas()
             code_model.add_schema_link_to_operation()
             code_model.add_schema_link_to_global_parameters()
-        code_model.add_lro_initial_functions()
+        code_model.format_lro_operations()
 
         if self._autorestapi.get_value("credentials") or self._autorestapi.get_value("azure-arm"):
             code_model.add_credentials()

@@ -27,6 +27,7 @@ import logging
 from typing import Dict, List, Any
 
 from .operation import Operation
+from .lro_operation import LROOperation
 from .imports import FileImport, ImportType
 
 
@@ -78,7 +79,11 @@ class OperationGroup:
 
         operations = []
         for operation_yaml in yaml_data["operations"]:
-            operations.append(Operation.from_yaml(operation_yaml))
+            if operation_yaml.get('extensions') and operation_yaml['extensions'].get('x-ms-long-running-operation'):
+                operation = LROOperation.from_yaml(operation_yaml)
+            else:
+                operation = Operation.from_yaml(operation_yaml)
+            operations.append(operation)
 
         return cls(
             code_model=code_model,

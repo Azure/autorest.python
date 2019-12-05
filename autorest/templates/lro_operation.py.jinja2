@@ -2,6 +2,13 @@
 {% set await_keyword = "await " if async_mode else "" %}
 {% set trace_decorator = "@distributed_trace_async" if async_mode else "@distributed_trace" %}
 {% macro exception_name() %}{{ operation.exceptions[0].schema.name }}Exception{% endmacro %}
+{% macro response_headers(response) %}
+response_headers = {
+    {% for response_header in response.headers %}
+    '{{ response_header.name }}': self._deserialize('{{ response_header.schema.get_serialization_type() }}', response.headers.get('{{ response_header.name }}')),
+    {% endfor %}
+}
+{% endmacro %}
 {% if code_model.tracing %}
 {{ trace_decorator }}
 {% endif %}
@@ -35,16 +42,27 @@
     raw_result = self._{{ operation.name }}_initial(
         {% for parameter in operation.parameters %}
             {% if parameter.implementation != 'Client' %}
-            {{ parameter.serialized_name }}={{ parameter.serialized_name }},
+        {{ parameter.serialized_name }}={{ parameter.serialized_name }},
             {% endif %}
         {% endfor %}
         **kwargs
     )
 
     def get_long_running_output(response):
-        deserialized = self._deserialize(FIXME, response)
+        {% if operation.lro_response_type %}
+        deserialized = self._deserialize('{{ operation.lro_response_type }}', response)
 
         return deserialized
+        {% else %}
+        if cls:
+            {% if operation.has_response_body or operation.any_response_has_headers %}
+                {% set response = operation.responses[0] %}
+            {{ response_headers(response) }}
+            {% else %}
+            response_headers = {}
+            {% endif %}
+            return cls(response, None, response_headers)
+        {% endif %}
     lro_delay = kwargs.get(
         'polling_interval',
         self._config.polling_interval

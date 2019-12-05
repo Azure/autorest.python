@@ -1,5 +1,5 @@
 from .import_serializer import FileImportSerializer, ImportType
-from ..models import FileImport
+from ..models import FileImport, LROOperation
 
 class OperationGroupSerializer:
     def __init__(self, code_model, env, operation_group, async_mode):
@@ -29,8 +29,12 @@ class OperationGroupSerializer:
         return new_imports
 
 
+
     def serialize(self):
+        def _is_lro(operation):
+            return isinstance(operation, LROOperation)
         operation_group_template = self.env.get_template("operations_container.py.jinja2")
+        self.env.globals.update(is_lro=_is_lro)
         if self.operation_group.is_empty_operation_group:
             operation_group_template = self.env.get_template("operations_container_mixin.py.jinja2")
 
