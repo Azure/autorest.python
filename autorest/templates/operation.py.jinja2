@@ -23,6 +23,7 @@ deserialized = self._deserialize('{{ response.schema.get_serialization_type() }}
 
 {% endif %}
 {{ def_keyword }} {{ operation.python_name }}(self{{ operation.method_signature }}, cls=None, **kwargs):
+{% if not operation.is_lro_initial %}
     """{{operation.description.strip() }}.
 
     {{ "FIXME: add operation.summary\n" }}
@@ -47,6 +48,7 @@ deserialized = self._deserialize('{{ response.schema.get_serialization_type() }}
     :raises ~{{ code_model.namespace }}.models.{{ exception_name() }}:
     {% endif %}
     """
+{% endif %}
 {% if operation.deprecated %}
     warnings.warn('Method {{operation.name}} is deprecated', DeprecationWarning)
 {% endif %}

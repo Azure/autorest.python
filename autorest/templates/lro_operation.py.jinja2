@@ -5,7 +5,7 @@
 {% if operation.tracing %}
 {{ trace_decorator }}
 {% endif %}
-{{ def_keyword }} {{ operation.python_name }}(self{{ operation.method_signature }}, polling=FIXME, cls=None, **kwargs):
+{{ def_keyword }} {{ operation.python_name }}(self{{ operation.method_signature }}, polling=True, cls=None, **kwargs):
     """{{operation.description.strip() }}.
 
     {{ "FIXME: add operation.summary\n" }}
