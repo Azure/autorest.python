@@ -31,6 +31,9 @@ class OperationGroupSerializer:
 
     def serialize(self):
         operation_group_template = self.env.get_template("operations_container.py.jinja2")
+        if self.operation_group.is_empty_operation_group:
+            operation_group_template = self.env.get_template("operations_container_mixin.py.jinja2")
+
         imports = self.operation_group.imports()
         if self.async_mode:
             imports = OperationGroupSerializer._change_imports_for_async(imports)
@@ -40,6 +43,14 @@ class OperationGroupSerializer:
             imports=FileImportSerializer(imports),
             async_mode=self.async_mode
         )
+
+    def filename(self):
+        basename = self.operation_group.name
+        if self.operation_group.is_empty_operation_group:
+            basename = self.code_model.module_name
+        async_suffix = "_async" if self.async_mode else ""
+
+        return f"_{basename}_operations{async_suffix}.py"
 
     @property
     def operation_group_file(self):

@@ -100,6 +100,11 @@ class CodeGenerator:
 
         # Create operations
         code_model.operation_groups = [OperationGroup.from_yaml(code_model, op_group) for op_group in yaml_code_model['operationGroups']]
+        for op_group in code_model.operation_groups:
+            if op_group.is_empty_operation_group:
+                op_group.class_name = code_model.class_name+"OperationsMixin"
+            else:
+                op_group.class_name += "Operations"
 
         # Get my namespace
         namespace = self._autorestapi.get_value("namespace")
@@ -181,7 +186,7 @@ class CodeGenerator:
             )
             operation_group_serializer.serialize()
             self._autorestapi.write_file(
-                namespace / Path(f"operations") / Path(f"_{operation_group.name}_operations.py"),
+                namespace / Path(f"operations") / Path(operation_group_serializer.filename()),
                 operation_group_serializer.operation_group_file
             )
 
@@ -191,7 +196,7 @@ class CodeGenerator:
             )
             operation_group_async_serializer.serialize()
             self._autorestapi.write_file(
-                namespace / Path("aio") / Path(f"operations_async") / Path(f"_{operation_group.name}_operations_async.py"),
+                namespace / Path("aio") / Path(f"operations_async") / Path(operation_group_async_serializer.filename()),
                 operation_group_async_serializer.operation_group_file
             )
 

@@ -6,6 +6,9 @@
 {% set operations_import = ".operations_async" if async_mode else ".operations" %}
 {% set path_to_models = ".." if async_mode else "." %}
 {% set method_signature = code_model.global_parameters|join(', ', attribute='serialized_name') ~ (", " if code_model.global_parameters else "") %}
+{% set has_mixin_operation_group = code_model.operation_groups|selectattr("is_empty_operation_group")|first %}
+{% macro mixin_operation_group_name() %}{{ code_model.class_name }}OperationsMixin{% endmacro %}
+{% set base_class = mixin_operation_group_name() if has_mixin_operation_group else "object" %}
 {# actual template starts here #}
 # coding=utf-8
 # --------------------------------------------------------------------------
@@ -22,23 +25,22 @@ from azure.core import {{ pipeline_client }}
 from msrest import Serializer, Deserializer
 
 from {{ config_import }} import {{ code_model.class_name }}Configuration
-from azure.core.exceptions import map_error
 {% for operation_group in code_model.operation_groups %}
-from {{ operations_import }} import {{ operation_group.class_name }}Operations
+from {{ operations_import }} import {{ operation_group.class_name }}
 {% endfor %}
 from {{ path_to_models }} import models
 
 
-class {{ code_model.class_name }}(object):
+class {{ code_model.class_name }}({{ base_class }}):
     """{{ code_model.description }}
 
 
-    {% for operation_group in code_model.operation_groups %}
+    {% for operation_group in code_model.operation_groups|rejectattr("is_empty_operation_group") %}
     :ivar {{ operation_group.name  }}: {{ operation_group.class_name }} operations
     {% if async_mode %}
-    :vartype {{ operation_group.name }}: {{ code_model.namespace }}.aio.operations_async.{{ operation_group.class_name }}Operations
+    :vartype {{ operation_group.name }}: {{ code_model.namespace }}.aio.operations_async.{{ operation_group.class_name }}
     {% else %}
-    :vartype {{ operation_group.name }}: {{ code_model.namespace }}.operations.{{ operation_group.class_name }}Operations
+    :vartype {{ operation_group.name }}: {{ code_model.namespace }}.operations.{{ operation_group.class_name }}
     {% endif %}
     {% endfor %}
 {% for parameter in code_model.global_parameters %}
@@ -66,8 +68,8 @@ class {{ code_model.class_name }}(object):
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
 
-        {% for operation_group in code_model.operation_groups %}
-        self.{{ operation_group.name }} = {{ operation_group.class_name + "Operations" }}(
+        {% for operation_group in code_model.operation_groups|rejectattr("is_empty_operation_group") %}
+        self.{{ operation_group.name }} = {{ operation_group.class_name }}(
             self._client, self._config, self._serialize, self._deserialize)
         {% endfor %}
 
