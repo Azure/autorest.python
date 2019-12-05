@@ -1,5 +1,4 @@
 {% set def_keyword = "async def" if async_mode else "def" %}
-{% set polling_parameter = "polling=FIXME, " if operation.is_lro else "" %}
 {% set await_keyword = "await " if async_mode else "" %}
 {% set trace_decorator = "@distributed_trace_async" if async_mode else "@distributed_trace" %}
 {% set stream_request_parameter = "stream=" ~ ("True" if operation.is_stream_response else "False") %}
@@ -18,10 +17,12 @@ deserialized = self._deserialize('{{ response.schema.get_serialization_type() }}
   {% endif %}
 {% endmacro %}
 {# actual template starts here #}
-{% if operation.tracing %}
+{% if operation.tracing and not operation.is_lro_initial %}
 {{ trace_decorator }}
+{% else %}
+
 {% endif %}
-{{ def_keyword }} {{ operation.python_name }}(self{{ operation.method_signature }}, {{ polling_parameter }}cls=None, **kwargs):
+{{ def_keyword }} {{ operation.python_name }}(self{{ operation.method_signature }}, cls=None, **kwargs):
     """{{operation.description.strip() }}.
 
     {{ "FIXME: add operation.summary\n" }}
@@ -38,10 +39,6 @@ deserialized = self._deserialize('{{ response.schema.get_serialization_type() }}
     {% endif %}
 {% endfor %}
     :param callable cls: A custom type or function that will be passed the direct response
-{% if operation.is_lro %}
-    :param polling: True for ARMPolling, Flase for no polling, or a
-     polling object for personal polling strategy
-{% endif %}
     :return: FIXME or the result of cls(response)
     :rtype: FIXME
     {% if not operation.exceptions %}
@@ -50,29 +47,6 @@ deserialized = self._deserialize('{{ response.schema.get_serialization_type() }}
     :raises ~{{ code_model.namespace }}.models.{{ exception_name() }}:
     {% endif %}
     """
-{% if operation.is_lro %}
-    raw_result = self._{{ operation.name }}"_initial"(
-        {% for parameter in operation.parameters %}
-            {% if parameter.implementation != 'Client' %}
-            {{ parameter.serialized_name }}={{ parameter.serialized_name }},
-            {% endif %}
-        {% endfor %}
-        **kwargs
-    )
-
-    def get_long_running_output(response):
-        deserialized = self._deserialize(FIXME, response)
-
-        return deserialized
-    lro_delay = kwargs.get(
-        'polling_interval',
-        self._config.polling_interval
-    )
-    if polling is True: polling_method = ARMPolling(lro_delay, **kwargs)
-    elif polling is False: polling_method = NoPolling()
-    else: polling_method = polling
-    return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-{% else %}
 {% if operation.deprecated %}
     warnings.warn('Method {{operation.name}} is deprecated', DeprecationWarning)
 {% endif %}
@@ -202,7 +176,6 @@ deserialized = self._deserialize('{{ response.schema.get_serialization_type() }}
 {% if operation.has_response_body %}
     {% set returned_object = "response" if operation.is_lro_initial else "deserialized" %}
     return {{ returned_object }}
-{% endif %}
 {% endif %}
 {% if not operation.is_lro_initial %}
 {{ operation.python_name }}.metadata = {'url': '{{ operation.url }}'}

@@ -32,12 +32,8 @@ from .enum_schema import EnumSchema
 from .primitive_schemas import PrimitiveSchema
 from .object_schema import ObjectSchema
 from .operation_group import OperationGroup
-<<<<<<< HEAD
 from .operation import Operation
-from .parameter import Parameter
-=======
 from .parameter import Parameter, ParameterLocation
->>>>>>> 34bec146b491e4c79f100f02761361979559bc05
 
 
 _LOGGER = logging.getLogger(__name__)
