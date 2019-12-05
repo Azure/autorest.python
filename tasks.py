@@ -115,10 +115,11 @@ def regen_expected(c, opts):
         cmd_line = 'autorest-beta {}'.format(" ".join(args))
         print(f'Queuing up: {cmd_line}')
         result = c.run(cmd_line, warn=True)
-        if not result:
-            print(f'Call failed with {result.return_code}')
+        if result.ok:
+            print('Call done with success')
         else:
-            print('Call done')
+            print(f'Call failed with {result.return_code}')
+
 
 @task
 def regenerate_python(c, swagger_name=None):
