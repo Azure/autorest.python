@@ -1,5 +1,4 @@
-{% set def_keyword = "async def" if async_mode else "def" %}
-{% set await_keyword = "await " if async_mode else "" %}
+{% import 'keywords.jinja2' as keywords with context %}
 {% set trace_decorator = "@distributed_trace_async" if async_mode else "@distributed_trace" %}
 {% set stream_request_parameter = "stream=" ~ ("True" if operation.is_stream_response else "False") %}
 {% set request_as_xml = ", is_xml=False" if "xml" in operation.request_content_type else "" %}
@@ -20,7 +19,7 @@ deserialized = self._deserialize('{{ response.schema.get_serialization_type() }}
 {% if operation.tracing %}
 {{ trace_decorator }}
 {% endif %}
-{{ def_keyword }} {{ operation.python_name }}(self{{ operation.method_signature }}, cls=None, **kwargs):
+{{ keywords.def }} {{ operation.python_name }}(self{{ operation.method_signature }}, cls=None, **kwargs):
     """{{operation.description.strip() }}.
 
     {{ "FIXME: add operation.summary\n" }}
@@ -135,7 +134,7 @@ deserialized = self._deserialize('{{ response.schema.get_serialization_type() }}
 {% else %}
     request = self._client.{{ operation.method }}(url, query_parameters, header_parameters)
 {% endif %}
-    pipeline_response = {{ await_keyword }}self._client._pipeline.run(request, {{ stream_request_parameter }}, **kwargs)
+    pipeline_response = {{ keywords.await }}self._client._pipeline.run(request, {{ stream_request_parameter }}, **kwargs)
     response = pipeline_response.http_response
 
     if response.status_code not in {{ operation.success_status_code|string() }}:
