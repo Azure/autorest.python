@@ -59,6 +59,12 @@ class OperationGroup:
             file_import.add_from_import("..", "models", ImportType.LOCAL)
         return file_import
 
+    @property
+    def is_empty_operation_group(self):
+        """The operation group with no name is the direct client methods.
+        """
+        return not self.yaml_data['language']['default']['name']
+
     @classmethod
     def from_yaml(cls, code_model, yaml_data: Dict[str, Any], **kwargs) -> "OperationGroup":
         name = yaml_data['language']['python']['name']

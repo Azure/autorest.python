@@ -31,7 +31,7 @@ deserialized = self._deserialize('{{ response.schema.get_serialization_type() }}
        This method is deprecated
 
 {% endif -%}
-{% for parameter in operation.parameters %}
+{% for parameter in operation.method_parameters %}
     {% if parameter.implementation != 'Client' %}
     :param {{ parameter.serialized_name }}: {{ parameter.description }}
     :type {{ parameter.serialized_name }}: {{ parameter.schema.get_python_type(code_model.namespace) }}
@@ -77,6 +77,9 @@ deserialized = self._deserialize('{{ response.schema.get_serialization_type() }}
     warnings.warn('Method {{operation.name}} is deprecated', DeprecationWarning)
 {% endif %}
     error_map = kwargs.pop('error_map', None)
+{% if operation.is_flattened %}
+    {{ operation.build_flattened_object() }}
+{% endif %}
 {% if operation.constant_parameters %}
     {% for constant_parameter in operation.constant_parameters %}
     {{ constant_parameter.serialized_name }} = {{ constant_parameter.schema.get_constant_value() }}
@@ -181,7 +184,7 @@ deserialized = self._deserialize('{{ response.schema.get_serialization_type() }}
   {% if operation.responses|count > 1 %}
     {% for status_code in operation.success_status_code %}
       {% set response =  operation.get_response_from_status(status_code) %}
-      {% if response.headers or response.has_body or operation.is_stream_response %}
+      {% if response.headers or response.has_body %}
     if response.status_code == {{ status_code }}:
         {{ response_handling(response) }}
       {% endif %}

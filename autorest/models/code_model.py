@@ -25,15 +25,19 @@
 # --------------------------------------------------------------------------
 from itertools import chain
 import logging
-from typing import List, Dict, Optional
+from typing import List, Dict, Optional, Any, cast
 
 from .base_schema import BaseSchema
 from .enum_schema import EnumSchema
 from .primitive_schemas import PrimitiveSchema
 from .object_schema import ObjectSchema
 from .operation_group import OperationGroup
+<<<<<<< HEAD
 from .operation import Operation
 from .parameter import Parameter
+=======
+from .parameter import Parameter, ParameterLocation
+>>>>>>> 34bec146b491e4c79f100f02761361979559bc05
 
 
 _LOGGER = logging.getLogger(__name__)
@@ -92,6 +96,7 @@ class CodeModel:
         self.global_parameters: List[Parameter] = []
         self.custom_base_url: Optional[str] = None
         self.base_url: Optional[str] = None
+        self.options: Dict[str, Any] = {}
 
     def lookup_schema(self, schema_id: int) -> None:
         """Looks to see if the schema has already been created.
@@ -147,7 +152,7 @@ class CodeModel:
             implementation="Client",
             description="Credentials needed for the client to connect to Azure.",
             is_required=True,
-            location="other",
+            location=ParameterLocation.Other,
             skip_url_encoding=True,
             constraints=[]
         )
@@ -180,6 +185,43 @@ class CodeModel:
                     i += 1
                 i += 1
 
+    def enable_parameter_flattening(self):
+        for op_group in self.operation_groups:
+            for operation in op_group.operations:
+                self._enable_parameter_flattening_for_operation(operation)
+
+    def _enable_parameter_flattening_for_operation(self, operation):
+        if not (operation.has_request_body and isinstance(operation.body_parameter.schema, ObjectSchema)):
+            return
+
+        body_schema = cast(ObjectSchema, operation.body_parameter.schema)
+        properties = [prop for prop in body_schema.properties if not (prop.constant or prop.readonly)]
+
+        if len(properties) > self.options.get("payload-flattening-threshold", 0):
+            return
+
+        # Create fake parameters, so we can use the template as usual
+        fake_parameters = []
+        for prop in properties:
+            fake_parameters.append(
+                Parameter(
+                    yaml_data=None,
+                    schema=prop.schema,
+                    rest_api_name=prop.original_swagger_name,
+                    serialized_name=prop.name,
+                    description=prop.description,
+                    implementation="Method",
+                    is_required=prop.required,
+                    location=ParameterLocation.Other,
+                    skip_url_encoding=False, # Doesn't matter here
+                    constraints=[], # FIXME inject validation map
+                )
+            )
+
+        # Insert after the body parameter these fake parameters
+        body_parameter_index = operation.parameters.index(operation.body_parameter)
+        operation.parameters[body_parameter_index:body_parameter_index] = fake_parameters
+        operation.is_flattened = True
 
     def _add_properties_from_inheritance(self) -> None:
         """Adds properties from base classes to schemas with parents.

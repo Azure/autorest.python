@@ -76,6 +76,7 @@ class CodeGenerator:
         code_model.class_name = yaml_code_model['info']['pascal_case_title']
         code_model.description = yaml_code_model['info']['description'] if yaml_code_model['info'].get('description') else ""
         code_model.api_version = self._autorestapi.get_value("package-version")
+        code_model.options["payload-flattening-threshold"] = self._autorestapi.get_value("payload-flattening-threshold") or 0
         if not code_model.api_version:
             code_model.api_version = "1.0.0"
 
@@ -99,6 +100,11 @@ class CodeGenerator:
 
         # Create operations
         code_model.operation_groups = [OperationGroup.from_yaml(code_model, op_group) for op_group in yaml_code_model['operationGroups']]
+        for op_group in code_model.operation_groups:
+            if op_group.is_empty_operation_group:
+                op_group.class_name = code_model.class_name+"OperationsMixin"
+            else:
+                op_group.class_name += "Operations"
 
 
         # Get my namespace
@@ -128,6 +134,9 @@ class CodeGenerator:
 
         if self._autorestapi.get_value("credentials") or self._autorestapi.get_value("azure-arm"):
             code_model.add_credentials()
+
+        # Parameter flattening
+        code_model.enable_parameter_flattening()
 
         return code_model
 
@@ -179,7 +188,7 @@ class CodeGenerator:
             )
             operation_group_serializer.serialize()
             self._autorestapi.write_file(
-                namespace / Path(f"operations") / Path(f"_{operation_group.name}_operations.py"),
+                namespace / Path(f"operations") / Path(operation_group_serializer.filename()),
                 operation_group_serializer.operation_group_file
             )
 
@@ -189,7 +198,7 @@ class CodeGenerator:
             )
             operation_group_async_serializer.serialize()
             self._autorestapi.write_file(
-                namespace / Path("aio") / Path(f"operations_async") / Path(f"_{operation_group.name}_operations_async.py"),
+                namespace / Path("aio") / Path(f"operations_async") / Path(operation_group_async_serializer.filename()),
                 operation_group_async_serializer.operation_group_file
             )
 
@@ -242,7 +251,7 @@ class CodeGenerator:
             raise ValueError("code-model-v4-no-tags.yaml must be a possible input")
 
         file_content = self._autorestapi.read_file("code-model-v4-no-tags.yaml")
-        # self._autorestapi.write_file("code-model-v4-no-tags.yaml", file_content)
+        #self._autorestapi.write_file("code-model-v4-no-tags.yaml", file_content)
 
         env = Environment(
             loader=PackageLoader('autorest', 'templates'),
@@ -258,6 +267,9 @@ class CodeGenerator:
 
         # convert the names to python names
         NameConverter.convert_yaml_names(yaml_code_model)
+
+        # save a new copy for debug
+        #self._autorestapi.write_file("code-model-v4-no-tags-python.yaml", yaml.safe_dump(yaml_code_model))
 
         code_model = self._create_code_model(yaml_code_model=yaml_code_model)
 
