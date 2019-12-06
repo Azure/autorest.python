@@ -96,7 +96,7 @@ class CodeGenerator:
             code_model.base_url = dollar_host_parameter.yaml_data['clientDefaultValue']
 
         # Get whether we are tracing
-        code_model.tracing = False if self._autorestapi.get_value("trace") is None else True
+        code_model.tracing = self._autorestapi.get_boolean_value("trace")
 
         # Create operations
         code_model.operation_groups = [OperationGroup.from_yaml(code_model, op_group) for op_group in yaml_code_model['operationGroups']]
@@ -130,7 +130,7 @@ class CodeGenerator:
             code_model.add_schema_link_to_operation()
             code_model.add_schema_link_to_global_parameters()
 
-        if self._autorestapi.get_value("credentials") or self._autorestapi.get_value("azure-arm"):
+        if self._autorestapi.get_boolean_value("credentials") or self._autorestapi.get_boolean_value("azure-arm"):
             code_model.add_credentials()
 
         # Parameter flattening
