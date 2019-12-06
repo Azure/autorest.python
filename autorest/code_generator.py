@@ -273,7 +273,15 @@ class CodeGenerator:
         # convert the names to python names
         NameConverter.convert_yaml_names(yaml_code_model)
 
-        options = {'azure_arm': azure_arm, 'credential': azure_arm or self._autorestapi.get_boolean_value("add-credentials") or self._autorestapi.get_boolean_value('add-credential')}
+        credential_scopes = self._autorestapi.get_value('credential-scopes')
+        if not credential_scopes and azure_arm:
+            credential_scopes = "https://management.azure.com/.default"
+
+        options = {
+            'azure_arm': azure_arm,
+            'credential': azure_arm or self._autorestapi.get_boolean_value("add-credentials") or self._autorestapi.get_boolean_value('add-credential'),
+            "credential_scopes": credential_scopes.split(",") if credential_scopes else None
+        }
 
         # save a new copy for debug
         #self._autorestapi.write_file("code-model-v4-no-tags-python.yaml", yaml.safe_dump(yaml_code_model))
