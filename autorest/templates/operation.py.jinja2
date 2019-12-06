@@ -140,7 +140,7 @@ deserialized = self._deserialize('{{ response.schema.get_serialization_type() }}
     if response.status_code not in {{ operation.success_status_code|string() }}:
         map_error(status_code=response.status_code, response=response, error_map=error_map)
         {% if not operation.exceptions %}
-            {% if code_model.azure_arm %}
+            {% if code_model.options['azure_arm'] %}
         raise ARMError(response=response)
             {% else %}
         raise HttpResponseError(response=response)

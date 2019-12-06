@@ -55,7 +55,8 @@ class CodeModel:
     """Holds all of the information we have parsed out of the yaml file. The CodeModel is what gets
     serialized by the serializers.
 
-    :param bool azure_arm: Whether this code model is for ARM or not.
+    :param options: Options of the code model. I.e., whether this is for management generation
+    :type options: dict[str, bool]
     :param str module_name: The module name for the client. Is in snake case.
     :param str class_name: The class name for the client. Is in pascal case.
     :param str api_version: The API version for the code we're generating
@@ -77,8 +78,8 @@ class CodeModel:
     :param str custom_base_url: Optional. If user specifies a custom base url, this will override the default
     :param str base_url: Optional. The default base_url. Will include the host from yaml
     """
-    def __init__(self, azure_arm):
-        self.azure_arm = azure_arm
+    def __init__(self, options: Dict[str, Any]):
+        self.options = options
         self.module_name = None
         self.class_name = None
         self.api_version = None
@@ -93,7 +94,6 @@ class CodeModel:
         self.global_parameters: List[Parameter] = []
         self.custom_base_url: Optional[str] = None
         self.base_url: Optional[str] = None
-        self.options: Dict[str, Any] = {}
 
     def lookup_schema(self, schema_id: int) -> None:
         """Looks to see if the schema has already been created.

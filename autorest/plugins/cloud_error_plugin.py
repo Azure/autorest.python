@@ -1,4 +1,4 @@
-class YamlRemover:
+class CloudErrorPlugin:
 
     @staticmethod
     def remove_cloud_errors(yaml_data):
@@ -13,3 +13,9 @@ class YamlRemover:
                         del operation['exceptions'][i]
                         i -= 1
                     i += 1
+        if yaml_data.get('schemas') and yaml_data['schemas'].get('objects'):
+            for i in range(len(yaml_data['schemas']['objects'])):
+                obj_schema = yaml_data['schemas']['objects'][i]
+                if obj_schema['language']['default']['name'] == 'CloudError':
+                    del yaml_data['schemas']['objects'][i]
+                    break

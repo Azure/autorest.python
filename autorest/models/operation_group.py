@@ -53,10 +53,15 @@ class OperationGroup:
 
     def imports(self):
         file_import = FileImport()
+        any_operation_has_no_exceptions = False
         for operation in self.operations:
             file_import.merge(operation.imports())
+            if not operation.exceptions:
+                any_operation_has_no_exceptions = True
         if self.code_model.sorted_schemas:
             file_import.add_from_import("..", "models", ImportType.LOCAL)
+        if self.code_model.options['azure_arm'] and any_operation_has_no_exceptions:
+            file_import.add_from_import("azure.mgmt.core.exceptions", "ARMError", ImportType.AZURECORE)
         return file_import
 
     @property

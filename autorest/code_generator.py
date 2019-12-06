@@ -33,7 +33,7 @@ from jinja2 import Template, PackageLoader, Environment
 
 from .jsonrpc import AutorestAPI
 
-from .plugins import NameConverter, YamlRemover
+from .plugins import NameConverter, CloudErrorPlugin
 from .models.code_model import CodeModel
 from .models import build_schema, EnumSchema, ConstantSchema
 from .models.operation_group import OperationGroup
@@ -69,9 +69,9 @@ class CodeGenerator:
                     exceptions_set.add(exception['schema']['language']['python']['name'])
         return exceptions_set
 
-    def _create_code_model(self, yaml_code_model, azure_arm):
+    def _create_code_model(self, yaml_code_model, options):
         # Create a code model
-        code_model = CodeModel(azure_arm)
+        code_model = CodeModel(options)
         code_model.module_name = yaml_code_model['info']['python_title']
         code_model.class_name = yaml_code_model['info']['pascal_case_title']
         code_model.description = yaml_code_model['info']['description'] if yaml_code_model['info'].get('description') else ""
@@ -263,16 +263,18 @@ class CodeGenerator:
         # Parse the received YAML
         yaml_code_model = yaml.safe_load(file_content)
 
-        azure_arm = self._autorestapi.get_value("azure-arm")
+        azure_arm = self._autorestapi.get_value("azure-arm") or False
         if azure_arm:
-            YamlRemover.remove_cloud_errors(yaml_code_model)
+            CloudErrorPlugin.remove_cloud_errors(yaml_code_model)
         # convert the names to python names
         NameConverter.convert_yaml_names(yaml_code_model)
+
+        options = {'azure_arm': azure_arm}
 
         # save a new copy for debug
         #self._autorestapi.write_file("code-model-v4-no-tags-python.yaml", yaml.safe_dump(yaml_code_model))
 
-        code_model = self._create_code_model(yaml_code_model=yaml_code_model, azure_arm=azure_arm)
+        code_model = self._create_code_model(yaml_code_model=yaml_code_model, options=options)
 
         if code_model.schemas:
             self._serialize_and_write_models_folder(namespace=code_model.namespace, code_model=code_model, env=env)
