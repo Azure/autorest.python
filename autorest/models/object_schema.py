@@ -84,28 +84,8 @@ class ObjectSchema(BaseSchema):
      ~autorest.models.EnumType]
     """
     @staticmethod
-    def _create_properties(yaml_data: Dict[str, str], has_additional_properties, **kwargs) -> List["Property"]:
-        properties = []
-        for p in yaml_data:
-            from . import build_schema
-            name = p['language']['python']['name']
-            if name == 'additional_properties' and has_additional_properties:
-                name = 'additional_properties1'
-
-            schema = build_schema(
-                yaml_data=p['schema'],
-                **kwargs
-            )
-            properties.append(
-                Property(
-                    name=name,
-                    schema=schema,
-                    original_swagger_name=p['serializedName'],
-                    property_data=p
-                )
-            )
-        return properties
-
+    def _create_properties(yaml_data: Dict[str, str], **kwargs) -> List["Property"]:
+        return
 
     """Returns a ClassType from the dict object constructed from a yaml file.
 
@@ -143,7 +123,7 @@ class ObjectSchema(BaseSchema):
                             name="additional_properties",
                             schema=additional_properties_schema,
                             original_swagger_name="",
-                            property_data={},
+                            yaml_data={},
                             description='Unmatched properties from the message are deserialized to this collection.'
                         )
                     )
@@ -160,11 +140,7 @@ class ObjectSchema(BaseSchema):
                 subtype_map[children_yaml['discriminatorValue']] = children_yaml['language']['python']['name']
 
         if yaml_data.get('properties'):
-            properties += self._create_properties(
-                yaml_data=yaml_data.get('properties', []),
-                has_additional_properties=len(properties) > 0,
-                **kwargs
-            )
+            properties += [Property.from_yaml(p, has_additional_properties=len(properties) > 0, **kwargs) for p in yaml_data['properties']]
         # this is to ensure that the attribute map type and property type are generated correctly
 
         name = yaml_data['language']['python']['name']
