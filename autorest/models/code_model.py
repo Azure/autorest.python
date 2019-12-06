@@ -134,8 +134,8 @@ class CodeModel:
             sorted_schemas += ancestors
         self.sorted_schemas = sorted_schemas
 
-    def add_credentials(self) -> None:
-        """Adds a `credentials` global parameter.
+    def add_credential_global_parameter(self) -> None:
+        """Adds a `credential` global parameter.
 
         :return: None
         :rtype: None
@@ -144,10 +144,10 @@ class CodeModel:
         credential_parameter = Parameter(
             yaml_data={},
             schema=credential_schema,
-            serialized_name="credentials",
-            rest_api_name="credentials",
+            serialized_name="credential",
+            rest_api_name="credential",
             implementation="Client",
-            description="Credentials needed for the client to connect to Azure.",
+            description="Credential needed for the client to connect to Azure.",
             is_required=True,
             location=ParameterLocation.Other,
             skip_url_encoding=True,
