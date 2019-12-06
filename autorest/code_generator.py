@@ -275,7 +275,7 @@ class CodeGenerator:
 
         credential_scopes = self._autorestapi.get_value('credential-scope')
         if not credential_scopes and azure_arm:
-            credential_scopes = "https://management.azure.com/.default"
+            credential_scopes = ["https://management.azure.com/.default"]
 
         options = {
             'azure_arm': azure_arm,
