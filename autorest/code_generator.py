@@ -130,7 +130,7 @@ class CodeGenerator:
             code_model.add_schema_link_to_operation()
             code_model.add_schema_link_to_global_parameters()
 
-        if code_model.options['credential'] or code_model.options['azure_arm']:
+        if code_model.options['credential']:
             code_model.add_credential_global_parameter()
 
         # Parameter flattening
@@ -269,7 +269,7 @@ class CodeGenerator:
         # convert the names to python names
         NameConverter.convert_yaml_names(yaml_code_model)
 
-        options = {'azure_arm': azure_arm, 'credential': self._autorestapi.get_boolean_value("add-credentials")}
+        options = {'azure_arm': azure_arm, 'credential': azure_arm or self._autorestapi.get_boolean_value("add-credentials") or self._autorestapi.get_boolean_value('add-credential')}
 
         # save a new copy for debug
         #self._autorestapi.write_file("code-model-v4-no-tags-python.yaml", yaml.safe_dump(yaml_code_model))
