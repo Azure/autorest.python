@@ -68,4 +68,6 @@ class AutorestAPI:
         result = self.get_value(key)
         if result is None:
             return False
+        if isinstance(result, bool):
+            return result
         return result == {} or result.lower() == "true" or result == 1
