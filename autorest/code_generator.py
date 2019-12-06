@@ -273,7 +273,7 @@ class CodeGenerator:
         # convert the names to python names
         NameConverter.convert_yaml_names(yaml_code_model)
 
-        credential_scopes = self._autorestapi.get_value('credential-scope')
+        credential_scopes = self._autorestapi.get_value('credential-scopes')
         if not credential_scopes and azure_arm:
             credential_scopes = ["https://management.azure.com/.default"]
 
