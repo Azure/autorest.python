@@ -51,17 +51,25 @@ class OperationGroup:
         self.class_name = class_name
         self.operations = operations
 
-    def imports(self):
+    def imports(self, async_mode):
         file_import = FileImport()
-        any_operation_has_no_exceptions = False
         for operation in self.operations:
-            file_import.merge(operation.imports())
-            if not operation.exceptions:
-                any_operation_has_no_exceptions = True
+            file_import.merge(operation.imports(self.code_model))
         if self.code_model.sorted_schemas:
             file_import.add_from_import("..", "models", ImportType.LOCAL)
-        if self.code_model.options['azure_arm'] and any_operation_has_no_exceptions:
-            file_import.add_from_import("azure.mgmt.core.exceptions", "ARMError", ImportType.AZURECORE)
+        if self.code_model.tracing:
+            if async_mode:
+                file_import.add_from_import(
+                    "azure.core.tracing.decorator_async",
+                    "distributed_trace_async",
+                    ImportType.AZURECORE,
+                )
+            else:
+                file_import.add_from_import(
+                    "azure.core.tracing.decorator",
+                    "distributed_trace",
+                    ImportType.AZURECORE,
+                )
         return file_import
 
     @property
@@ -77,7 +85,7 @@ class OperationGroup:
 
         operations = []
         for operation_yaml in yaml_data["operations"]:
-            operations.append(Operation.from_yaml(operation_yaml, tracing=code_model.tracing))
+            operations.append(Operation.from_yaml(operation_yaml))
 
         return cls(
             code_model=code_model,
