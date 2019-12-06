@@ -11,7 +11,7 @@ class {{ model.name }}(Model):
         {% endfor %}
     {% endif %}
     {{'\"\"\"'}}
-    {% if (model.properties | selectattr('required' or 'readonly') | first) is defined %}
+    {% if (model.properties | selectattr('validation_map') ) | first %}
 
     _validation = {
         {% for p in model.properties | selectattr('validation_map')%}
