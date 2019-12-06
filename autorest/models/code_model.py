@@ -151,7 +151,7 @@ class CodeModel:
             skip_url_encoding=True,
             constraints=[]
         )
-        self.global_parameters.append(credential_parameter)
+        self.global_parameters.insert(0, credential_parameter)
 
     def enable_parameter_flattening(self):
         for op_group in self.operation_groups:
