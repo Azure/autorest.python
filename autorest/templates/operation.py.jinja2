@@ -16,7 +16,7 @@ deserialized = self._deserialize('{{ response.schema.get_serialization_type() }}
   {% endif %}
 {% endmacro %}
 {# actual template starts here #}
-{% if operation.tracing %}
+{% if code_model.tracing %}
 {{ trace_decorator }}
 {% endif %}
 {{ keywords.def }} {{ operation.python_name }}(self{{ operation.method_signature }}, cls=None, **kwargs):
@@ -40,7 +40,7 @@ deserialized = self._deserialize('{{ response.schema.get_serialization_type() }}
     :rtype: FIXME
     {% if not operation.exceptions %}
         {% if code_model.options['azure_arm'] %}
-    :raises :class:`ARMError<azure.mgmt.core.ARMError>`
+    :raises ~azure.mgmt.core.ARMError:
         {% else %}
     :raises ~azure.core.HttpResponseError:
         {% endif %}
