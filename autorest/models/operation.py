@@ -50,7 +50,6 @@ class Operation:
         responses: List[SchemaResponse] = None,
         exceptions: List[SchemaResponse] = None,
         media_types: List[str] = None,
-        tracing: bool = None,
     ) -> None:
         if responses is None:
             responses = []
@@ -68,7 +67,6 @@ class Operation:
         self.responses = responses
         self.exceptions = exceptions
         self.media_types = media_types
-        self.tracing = tracing
         # Will be set by codemodel if this operation is flattened, means to treat
         # parameters a little differently
         self.is_flattened = False
@@ -241,7 +239,7 @@ class Operation:
             if code != "default"
         ]
 
-    def imports(self):
+    def imports(self, code_model):
         file_import = FileImport()
 
         # Exceptions
@@ -249,17 +247,12 @@ class Operation:
             "azure.core.exceptions", "map_error", ImportType.AZURECORE
         )
         if not self.exceptions:
-            file_import.add_from_import(
-                "azure.core.exceptions", "HttpResponseError", ImportType.AZURECORE
-            )
-
-        # Tracings
-        if self.tracing:
-            file_import.add_from_import(
-                "azure.core.tracing.decorator",
-                "distributed_trace",
-                ImportType.AZURECORE,
-            )
+            if code_model.options['azure_arm']:
+                file_import.add_from_import("azure.mgmt.core.exceptions", "ARMError", ImportType.AZURECORE)
+            else:
+                file_import.add_from_import(
+                    "azure.core.exceptions", "HttpResponseError", ImportType.AZURECORE
+                )
 
         # Deprecation
         if True:  # Replace with "the YAML contains deprecated:true"
@@ -313,5 +306,4 @@ class Operation:
                 SchemaResponse.from_yaml(yaml) for yaml in yaml_data.get("exceptions", [])
             ],
             media_types=yaml_data["request"]["protocol"]["http"].get("mediaTypes", []),
-            tracing=kwargs.pop('tracing', False),
         )
