@@ -54,9 +54,7 @@ class OperationGroup:
     def imports(self, async_mode):
         file_import = FileImport()
         for operation in self.operations:
-            file_import.merge(operation.imports(self.code_model))
-        if self.code_model.sorted_schemas:
-            file_import.add_from_import("..", "models", ImportType.LOCAL)
+            file_import.merge(operation.imports(self.code_model, async_mode))
         if self.code_model.tracing:
             if async_mode:
                 file_import.add_from_import(

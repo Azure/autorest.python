@@ -239,7 +239,7 @@ class Operation:
             if code != "default"
         ]
 
-    def imports(self, code_model):
+    def imports(self, code_model, async_mode):
         file_import = FileImport()
 
         # Exceptions
@@ -260,7 +260,10 @@ class Operation:
 
         # Models
         if self.has_request_body or self.has_response_body:
-            file_import.add_from_import("..", "models", ImportType.LOCAL)
+            if async_mode:
+                file_import.add_from_import("...", "models", ImportType.LOCAL)
+            else:
+                file_import.add_from_import("..", "models", ImportType.LOCAL)
 
         return file_import
 
