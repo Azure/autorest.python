@@ -259,7 +259,7 @@ class Operation:
             file_import.add_import("warnings", ImportType.STDLIB)
 
         # Models
-        if self.has_request_body or self.has_response_body:
+        if self.has_request_body or self.has_response_body or self.exceptions:
             if async_mode:
                 file_import.add_from_import("...", "models", ImportType.LOCAL)
             else:
