@@ -199,7 +199,7 @@ class Operation:
 
         optional_parameters += Operation.build_constraints(parameter.constraints)
 
-        optional_parameters_string = "" if not optional_parameters else "," + ", ".join(optional_parameters)
+        optional_parameters_string = "" if not optional_parameters else ", " + ", ".join(optional_parameters)
 
         origin_name = parameter.serialized_name
         if parameter.implementation == "Client":
