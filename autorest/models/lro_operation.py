@@ -18,7 +18,6 @@ class LROOperation(Operation):
         responses: List[SchemaResponse] = [None],
         exceptions: List[SchemaResponse] = None,
         media_types: List[str] = None,
-        returned_response: Optional[str] = "deserialized",
         want_description_docstring: Optional[bool] = True,
         want_tracing: Optional[bool] = True
     ) -> None:
@@ -32,7 +31,6 @@ class LROOperation(Operation):
             responses,
             exceptions,
             media_types,
-            returned_response,
             want_description_docstring,
             want_tracing
         )

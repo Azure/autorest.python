@@ -181,6 +181,6 @@ deserialized = self._deserialize('{{ response.schema.get_serialization_type() }}
       return cls(response, {{ 'deserialized' if operation.has_response_body else 'None'}}, {{ 'response_headers' if operation.any_response_has_headers else '{}' }})
 
 {% if operation.has_response_body %}
-    return {{ operation.returned_response }}
+    return deserialized
 {% endif %}
 {{ operation.python_name }}.metadata = {'url': '{{ operation.url }}'}

@@ -168,7 +168,6 @@ class CodeModel:
             responses=operation.responses,
             exceptions=operation.exceptions,
             media_types=operation.media_types,
-            returned_response="response",
             want_description_docstring=False,
             want_tracing=False
         )

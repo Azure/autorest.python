@@ -50,7 +50,6 @@ class Operation:
         responses: List[SchemaResponse] = None,
         exceptions: List[SchemaResponse] = None,
         media_types: List[str] = None,
-        returned_response: Optional[str] = "deserialized",
         want_description_docstring: Optional[bool] = True,
         want_tracing: Optional[bool] = True
     ) -> None:
@@ -73,7 +72,6 @@ class Operation:
         # Will be set by codemodel if this operation is flattened, means to treat
         # parameters a little differently
         self.is_flattened = False
-        self.returned_response = returned_response
         self.want_description_docstring = want_description_docstring
         self.want_tracing = want_tracing
 

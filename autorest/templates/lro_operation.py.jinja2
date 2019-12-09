@@ -49,6 +49,7 @@ response_headers = {
         {{ parameter.serialized_name }}={{ parameter.serialized_name }},
             {% endif %}
         {% endfor %}
+        cls=lambda x,y,z: x
         **kwargs
     )
 
