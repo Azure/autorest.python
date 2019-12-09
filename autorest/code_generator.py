@@ -100,11 +100,11 @@ class CodeGenerator:
 
         # Create operations
         code_model.operation_groups = [OperationGroup.from_yaml(code_model, op_group) for op_group in yaml_code_model['operationGroups']]
-        for op_group in code_model.operation_groups:
-            if op_group.is_empty_operation_group:
-                op_group.class_name = code_model.class_name+"OperationsMixin"
-            else:
-                op_group.class_name += "Operations"
+        # for op_group in code_model.operation_groups:
+        #     if op_group.is_empty_operation_group:
+        #         op_group.class_name = code_model.class_name+"OperationsMixin"
+        #     else:
+        #         op_group.class_name += "Operations"
 
         # Get my namespace
         namespace = self._autorestapi.get_value("namespace")
