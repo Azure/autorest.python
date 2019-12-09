@@ -24,7 +24,7 @@
 #
 # --------------------------------------------------------------------------
 import logging
-from typing import Dict, List, Any
+from typing import Dict, List, Any, Optional
 
 from .imports import FileImport, ImportType
 from .schema_response import SchemaResponse
@@ -50,6 +50,8 @@ class Operation:
         responses: List[SchemaResponse] = None,
         exceptions: List[SchemaResponse] = None,
         media_types: List[str] = None,
+        want_description_docstring: Optional[bool] = True,
+        want_tracing: Optional[bool] = True
     ) -> None:
         if responses is None:
             responses = []
@@ -70,6 +72,8 @@ class Operation:
         # Will be set by codemodel if this operation is flattened, means to treat
         # parameters a little differently
         self.is_flattened = False
+        self.want_description_docstring = want_description_docstring
+        self.want_tracing = want_tracing
 
     @property
     def python_name(self):
@@ -292,6 +296,7 @@ class Operation:
     def from_yaml(cls, yaml_data: Dict[str, str], **kwargs) -> "Operation":
         name = yaml_data["language"]["python"]["name"]
         _LOGGER.info("Parsing %s operation", name)
+
         return cls(
             yaml_data=yaml_data,
             name=name,
@@ -308,5 +313,5 @@ class Operation:
             exceptions=[
                 SchemaResponse.from_yaml(yaml) for yaml in yaml_data.get("exceptions", [])
             ],
-            media_types=yaml_data["request"]["protocol"]["http"].get("mediaTypes", []),
+            media_types=yaml_data["request"]["protocol"]["http"].get("mediaTypes", [])
         )

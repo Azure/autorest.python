@@ -32,6 +32,8 @@ from .enum_schema import EnumSchema
 from .primitive_schemas import PrimitiveSchema
 from .object_schema import ObjectSchema
 from .operation_group import OperationGroup
+from .operation import Operation
+from .lro_operation import LROOperation
 from .parameter import Parameter, ParameterLocation
 
 
@@ -62,7 +64,6 @@ class CodeModel:
     :param str api_version: The API version for the code we're generating
     :param str description: The description of the client
     :param str namespace: The namespace of our module
-    :param bool tracing: Whether distributed tracing is enabled for the code we are going to generate
     :param schemas: The list of schemas we are going to serialize in the models files. Maps their yaml
      id to our created ObjectSchema.
     :type schemas: dict[int, ~autorest.models.ObjectSchema]
@@ -155,6 +156,37 @@ class CodeModel:
             constraints=[]
         )
         self.global_parameters.insert(0, credential_parameter)
+
+    def _lro_initial_function(operation):
+        return Operation(
+            yaml_data={},
+            name="_" + operation.name + "_initial",
+            description="",
+            url=operation.url,
+            method=operation.method,
+            parameters=operation.parameters,
+            responses=operation.responses,
+            exceptions=operation.exceptions,
+            media_types=operation.media_types,
+            want_description_docstring=False,
+            want_tracing=False
+        )
+
+    def format_lro_operations(self) -> None:
+        """Adds operations and attributes needed for LROs.
+
+        If there are LRO functions in here, will add initial LRO function. Will also set the return
+        type of the LRO operation
+        """
+        for operation_group in self.operation_groups:
+            i = 0
+            while i < len(operation_group.operations):
+                operation = operation_group.operations[i]
+                if isinstance(operation, LROOperation):
+                    operation.set_lro_response_type()
+                    operation_group.operations.insert(i, CodeModel._lro_initial_function(operation))
+                    i += 1
+                i += 1
 
     def enable_parameter_flattening(self):
         for op_group in self.operation_groups:

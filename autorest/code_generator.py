@@ -106,6 +106,7 @@ class CodeGenerator:
         #     else:
         #         op_group.class_name += "Operations"
 
+
         # Get my namespace
         namespace = self._autorestapi.get_value("namespace")
         _LOGGER.debug("Namespace parameter was %s", namespace)
@@ -129,6 +130,7 @@ class CodeGenerator:
             code_model.sort_schemas()
             code_model.add_schema_link_to_operation()
             code_model.add_schema_link_to_global_parameters()
+        code_model.format_lro_operations()
 
         if code_model.options['credential']:
             code_model.add_credential_global_parameter()

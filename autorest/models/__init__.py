@@ -7,6 +7,7 @@ from .enum_schema import EnumSchema
 from .base_schema import BaseSchema
 from .constant_schema import ConstantSchema
 from .imports import FileImport
+from .lro_operation import LROOperation
 
 __all__ = [
     "BaseSchema",
@@ -17,7 +18,8 @@ __all__ = [
     "ListSchema",
     "EnumSchema",
     "FileImport",
-    "PrimitiveSchema"
+    "PrimitiveSchema",
+    "LROOperation"
 ]
 
 # TODO: should this be in models.__init__ or CodeModel
