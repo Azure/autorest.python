@@ -205,7 +205,7 @@ class Operation:
 
         optional_parameters += Operation.build_constraints(parameter.constraints)
 
-        optional_parameters_string = "" if not optional_parameters else "," + ", ".join(optional_parameters)
+        optional_parameters_string = "" if not optional_parameters else ", " + ", ".join(optional_parameters)
 
         origin_name = parameter.serialized_name
         if parameter.implementation == "Client":
@@ -245,7 +245,7 @@ class Operation:
             if code != "default"
         ]
 
-    def imports(self):
+    def imports(self, code_model, async_mode):
         file_import = FileImport()
 
         # Exceptions
@@ -253,17 +253,23 @@ class Operation:
             "azure.core.exceptions", "map_error", ImportType.AZURECORE
         )
         if not self.exceptions:
-            file_import.add_from_import(
-                "azure.core.exceptions", "HttpResponseError", ImportType.AZURECORE
-            )
+            if code_model.options['azure_arm']:
+                file_import.add_from_import("azure.mgmt.core.exceptions", "ARMError", ImportType.AZURECORE)
+            else:
+                file_import.add_from_import(
+                    "azure.core.exceptions", "HttpResponseError", ImportType.AZURECORE
+                )
 
         # Deprecation
         if True:  # Replace with "the YAML contains deprecated:true"
             file_import.add_import("warnings", ImportType.STDLIB)
 
         # Models
-        if self.has_request_body or self.has_response_body:
-            file_import.add_from_import("..", "models", ImportType.LOCAL)
+        if self.has_request_body or self.has_response_body or self.exceptions:
+            if async_mode:
+                file_import.add_from_import("...", "models", ImportType.LOCAL)
+            else:
+                file_import.add_from_import("..", "models", ImportType.LOCAL)
 
         return file_import
 

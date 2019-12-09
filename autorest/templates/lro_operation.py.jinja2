@@ -34,7 +34,11 @@ response_headers = {
     :return: FIXME or the result of cls(response)
     :rtype: FIXME
     {% if not operation.exceptions %}
+        {% if code_model.options['azure_arm'] %}
+    :raises ~azure.mgmt.core.ARMError:
+        {% else %}
     :raises ~azure.core.HttpResponseError:
+        {% endif %}
     {% else %}
     :raises ~{{ code_model.namespace }}.models.{{ exception_name() }}:
     {% endif %}

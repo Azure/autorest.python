@@ -59,3 +59,15 @@ class AutorestAPI:
 
     def message(self, message) -> None:
         pass
+
+    def get_boolean_value(self, key: str) -> bool:
+        """Get a value and interpret it as a boolean.
+
+        For the JSON testserver, empty dict means "it was on the line", so we want it to true.
+        """
+        result = self.get_value(key)
+        if result is None:
+            return False
+        if isinstance(result, bool):
+            return result
+        return result == {} or result.lower() == "true" or result == 1

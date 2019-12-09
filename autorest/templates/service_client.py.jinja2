@@ -1,8 +1,6 @@
+{% import 'keywords.jinja2' as keywords with context %}
 {% set config_import = "._configuration_async" if async_mode else "._configuration" %}
-{% set def_keyword = "async def" if async_mode else "def" %}
 {% set pipeline_client = "AsyncPipelineClient" if async_mode else "PipelineClient" %}
-{% set async_prefix = "a" if async_mode else "" %}
-{% set async_await = "await " if async_mode else "" %}
 {% set operations_import = ".operations_async" if async_mode else ".operations" %}
 {% set path_to_models = ".." if async_mode else "." %}
 {% set method_signature = code_model.global_parameters|join(', ', attribute='serialized_name') ~ (", " if code_model.global_parameters else "") %}
@@ -73,12 +71,12 @@ class {{ code_model.class_name }}({{ base_class }}):
             self._client, self._config, self._serialize, self._deserialize)
         {% endfor %}
 
-    {{ def_keyword }} close(self):
-        {{ async_await }}self._client.close()
+    {{ keywords.def }} close(self):
+        {{ keywords.await }}self._client.close()
 
-    {{ def_keyword }} __{{ async_prefix }}enter__(self):
-        {{ async_await }}self._client.__{{ async_prefix }}enter__()
+    {{ keywords.def }} __{{ keywords.async_prefix }}enter__(self):
+        {{ keywords.await }}self._client.__{{ keywords.async_prefix }}enter__()
         return self
 
-    {{ def_keyword }} __{{ async_prefix }}exit__(self, *exc_details):
-        {{ async_await }}self._client.__{{ async_prefix }}exit__(*exc_details)
+    {{ keywords.def }} __{{ keywords.async_prefix }}exit__(self, *exc_details):
+        {{ keywords.await }}self._client.__{{ keywords.async_prefix }}exit__(*exc_details)

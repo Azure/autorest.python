@@ -52,18 +52,23 @@ class OperationGroup:
         self.class_name = class_name
         self.operations = operations
 
-    def imports(self):
+    def imports(self, async_mode):
         file_import = FileImport()
         for operation in self.operations:
-            file_import.merge(operation.imports())
-        if self.code_model.sorted_schemas:
-            file_import.add_from_import("..", "models", ImportType.LOCAL)
+            file_import.merge(operation.imports(self.code_model, async_mode))
         if self.code_model.tracing:
-            file_import.add_from_import(
-                "azure.core.tracing.decorator",
-                "distributed_trace",
-                ImportType.AZURECORE,
-            )
+            if async_mode:
+                file_import.add_from_import(
+                    "azure.core.tracing.decorator_async",
+                    "distributed_trace_async",
+                    ImportType.AZURECORE,
+                )
+            else:
+                file_import.add_from_import(
+                    "azure.core.tracing.decorator",
+                    "distributed_trace",
+                    ImportType.AZURECORE,
+                )
         return file_import
 
     @property

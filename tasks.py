@@ -1,6 +1,8 @@
 import os
 from invoke import task
 
+_AUTOREST_CMD_LINE = "autorest-beta --version:3.0.6162"
+
 default_mappings = {
   'AcceptanceTests/AdditionalProperties': 'additionalProperties.json',
   'AcceptanceTests/ParameterFlattening': 'parameter-flattening.json',
@@ -112,7 +114,7 @@ def regen_expected(c, opts):
         if opts.get('override-info.description'):
             args.append("--override-info.description={}".format(opts['override-info.description']))
 
-        cmd_line = 'autorest-beta {}'.format(" ".join(args))
+        cmd_line = '{} {}'.format(_AUTOREST_CMD_LINE, " ".join(args))
         print(f'Queuing up: {cmd_line}')
         result = c.run(cmd_line, warn=True)
         if result.ok:

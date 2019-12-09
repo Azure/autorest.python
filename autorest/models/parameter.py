@@ -82,6 +82,6 @@ class Parameter:
             implementation=yaml_data["implementation"],
             is_required=yaml_data.get("required", False),
             location=ParameterLocation(yaml_data["protocol"]["http"]["in"]),
-            skip_url_encoding=False, # FIXME skip_url_encoding
+            skip_url_encoding=yaml_data.get("extensions", {}).get("x-ms-skip-url-encoding", False),
             constraints=[], # FIXME constraints
         )
