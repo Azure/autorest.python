@@ -32,7 +32,9 @@ class Property:
             validation_map['readonly'] = True
         if self.constant:
             validation_map['constant'] = True
-        self.validation_map = validation_map if validation_map else None
+        if self.schema.get_validation_map():
+            validation_map.update(self.schema.get_validation_map())
+        self.validation_map = validation_map or None
 
     def get_property_documentation_string(self) -> str:
         if self.constant or self.readonly:

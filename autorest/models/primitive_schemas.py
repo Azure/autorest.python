@@ -85,6 +85,23 @@ class NumberSchema(PrimitiveSchema):
             exclusive_minimum=yaml_data.get('exclusiveMinimum'),
         )
 
+    def get_validation_map(self):
+        validation_map = {}
+        if self.maximum is not None:
+            if self.exclusive_maximum:
+                validation_map['maximum_ex'] = self.maximum
+            else:
+                validation_map['maximum'] = self.maximum
+        if self.minimum is not None:
+            if self.exclusive_minimum:
+                validation_map['minimum_ex'] = self.minimum
+            else:
+                validation_map['minimum'] = self.minimum
+        if self.multiple_of:
+            validation_map['multiple'] = self.multiple_of
+        return validation_map or None
+
+
     def get_serialization_type(self):
         if self.yaml_data['type'] == "integer":
             if self.precision == 64:
@@ -123,6 +140,17 @@ class StringSchema(PrimitiveSchema):
             min_length=yaml_data.get('minLength'),
             pattern=yaml_data.get('pattern')
         )
+
+    def get_validation_map(self):
+        validation_map = {}
+        if self.max_length is not None:
+            validation_map['max_length'] = self.max_length
+            validation_map['min_length'] = self.min_length or 0
+        if self.min_length is not None:
+            validation_map['min_length'] = self.min_length
+        if self.pattern is not None:
+            validation_map['pattern'] = self.pattern
+        return validation_map or None
 
     def get_serialization_type(self):
         return "str"

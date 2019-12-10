@@ -66,3 +66,6 @@ class BaseSchema(ABC):
         By default, return value, since it works sometimes (integer)
         """
         return str(value)
+
+    def get_validation_map(self) -> Dict[str, Any]:
+        return None

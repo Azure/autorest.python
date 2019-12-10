@@ -20,6 +20,17 @@ class ListSchema(BaseSchema):
     def get_python_type(self, namespace):
         return f'list[{self.element_type.get_python_type(namespace)}]'
 
+    def get_validation_map(self):
+        validation_map = {}
+        if self.max_items:
+            validation_map['max_items'] = self.max_items
+            validation_map['min_items'] = self.min_items or 0
+        if self.min_items:
+            validation_map['min_items'] = self.min_items
+        if self.unique_items:
+            validation_map['unique'] = True
+        return validation_map or None
+
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, str], **kwargs) -> "SequenceType":
         # TODO: for items, if the type is a primitive is it listed in type instead of $ref?
