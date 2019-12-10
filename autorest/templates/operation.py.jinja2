@@ -39,16 +39,17 @@ deserialized = self._deserialize('{{ response.schema.get_serialization_type() }}
     {% endif %}
 {% endfor %}
     :param callable cls: A custom type or function that will be passed the direct response
-    :return: FIXME or the result of cls(response)
-    :rtype: FIXME
+    :return: {{ operation.responses|map(attribute='schema')|map(attribute='name')|join(' or ') }} or the result of cls(response)
+    :rtype: {% for response in operation.responses|selectattr('has_body') %}{{response.schema.get_python_type(code_model.namespace)}}{% if not loop.last %} or {% endif %}{% endfor %}
+
     {% if not operation.exceptions %}
         {% if code_model.options['azure_arm'] %}
-    :raises ~azure.mgmt.core.ARMError:
+    :raises: ~azure.mgmt.core.ARMError
         {% else %}
-    :raises ~azure.core.HttpResponseError:
+    :raises: ~azure.core.HttpResponseError
         {% endif %}
     {% else %}
-    :raises ~{{ code_model.namespace }}.models.{{ exception_name() }}:
+    :raises: ~{{ code_model.namespace }}.models.{{ exception_name() }}:
     {% endif %}
     """
 {% endif %}
