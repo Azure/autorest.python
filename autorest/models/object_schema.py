@@ -71,6 +71,9 @@ class ObjectSchema(BaseSchema):
     def get_python_type(self, namespace):
         return '~{}.models.{}'.format(namespace, self.name)
 
+    def get_declaration(self, value):
+        return f"{self.name}()"
+
 
     """Returns the properties of a ClassType if they exist.
 

@@ -158,7 +158,7 @@ class StringSchema(PrimitiveSchema):
     def get_python_type(self, namespace=None):
         return "str"
 
-    def get_constant_value(self, value) -> str:
+    def get_declaration(self, value) -> str:
         return f'"{value}"'
 
 
@@ -184,7 +184,7 @@ class DatetimeSchema(PrimitiveSchema):
     def get_python_type_annotation(self):
         return "datetime.datetime"
 
-    def get_constant_value(self, value) -> str:
+    def get_declaration(self, value) -> str:
         """Could be discussed, since technically I should return a datetime object,
         but msrest will do fine.
         """
@@ -208,7 +208,7 @@ class UnixTimeSchema(PrimitiveSchema):
     def get_python_type_annotation(self):
         return "datetime.datetime"
 
-    def get_constant_value(self, value) -> str:
+    def get_declaration(self, value) -> str:
         """Could be discussed, since technically I should return a datetime object,
         but msrest will do fine.
         """
@@ -225,7 +225,7 @@ class DateSchema(PrimitiveSchema):
     def get_python_type_annotation(self):
         return "datetime.date"
 
-    def get_constant_value(self, value) -> str:
+    def get_declaration(self, value) -> str:
         """Could be discussed, since technically I should return a datetime object,
         but msrest will do fine.
         """
@@ -243,7 +243,7 @@ class Duration(PrimitiveSchema):
     def get_python_type_annotation(self):
         return "datetime.timedelta"
 
-    def get_constant_value(self, value) -> str:
+    def get_declaration(self, value) -> str:
         """Could be discussed, since technically I should return a datetime object,
         but msrest will do fine.
         """
@@ -267,7 +267,7 @@ class ByteArraySchema(PrimitiveSchema):
     def get_python_type(self, namespace=None):
         return "bytearray"
 
-    def get_constant_value(self, value) -> str:
+    def get_declaration(self, value) -> str:
         return f'bytearray("{value}", encoding="utf-8")'
 
     @classmethod

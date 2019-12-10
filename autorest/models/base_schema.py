@@ -54,7 +54,7 @@ class BaseSchema(ABC):
         """
         return self.get_python_type()
 
-    def get_constant_value(self, value) -> str:
+    def get_declaration(self, value) -> str:
         """Return the current value from YAML as a Python string that represents the constant.
 
         Example, if schema is "bytearray" and value is "foo",

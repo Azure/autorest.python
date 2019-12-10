@@ -24,12 +24,15 @@ class ConstantSchema(BaseSchema):
         self.value = value
         self.schema = schema
 
+    def get_declaration(self, value):
+        raise TypeError('Should not call get_declaration on a ConstantSchema. Call get_constant_value instead')
+
     def get_constant_value(self):
         """This string is used directly in template, as-is
         """
         if self.value is None:
             return "None"
-        return self.schema.get_constant_value(self.value)
+        return self.schema.get_declaration(self.value)
 
     def get_serialization_type(self) -> str:
         """Returns the serialization value for msrest.
