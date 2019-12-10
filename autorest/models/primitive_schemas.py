@@ -50,7 +50,7 @@ class PrimitiveSchema(BaseSchema):
 
 class AnySchema(PrimitiveSchema):
     def __init__(self, yaml_data, **kwargs):
-        super(PrimitiveSchema, self).__init__(yaml_data, **kwargs)
+        super(AnySchema, self).__init__(yaml_data, **kwargs)
 
     @classmethod
     def from_yaml(cls,  yaml_data):
@@ -130,6 +130,9 @@ class StringSchema(PrimitiveSchema):
     def get_python_type(self, namespace=None):
         return "str"
 
+    def get_constant_value(self, value) -> str:
+        return f'"{value}"'
+
 
 class DatetimeSchema(PrimitiveSchema):
     def __init__(self, yaml_data, format, **kwargs):
@@ -153,6 +156,12 @@ class DatetimeSchema(PrimitiveSchema):
     def get_python_type_annotation(self):
         return "datetime.datetime"
 
+    def get_constant_value(self, value) -> str:
+        """Could be discussed, since technically I should return a datetime object,
+        but msrest will do fine.
+        """
+        return f'"{value}"'
+
     @classmethod
     def from_yaml(cls, yaml_data):
         return cls(
@@ -171,6 +180,12 @@ class UnixTimeSchema(PrimitiveSchema):
     def get_python_type_annotation(self):
         return "datetime.datetime"
 
+    def get_constant_value(self, value) -> str:
+        """Could be discussed, since technically I should return a datetime object,
+        but msrest will do fine.
+        """
+        return f'"{value}"'
+
 class DateSchema(PrimitiveSchema):
 
     def get_serialization_type(self):
@@ -181,6 +196,12 @@ class DateSchema(PrimitiveSchema):
 
     def get_python_type_annotation(self):
         return "datetime.date"
+
+    def get_constant_value(self, value) -> str:
+        """Could be discussed, since technically I should return a datetime object,
+        but msrest will do fine.
+        """
+        return f'"{value}"'
 
 
 class Duration(PrimitiveSchema):
@@ -193,6 +214,12 @@ class Duration(PrimitiveSchema):
 
     def get_python_type_annotation(self):
         return "datetime.timedelta"
+
+    def get_constant_value(self, value) -> str:
+        """Could be discussed, since technically I should return a datetime object,
+        but msrest will do fine.
+        """
+        return f'"{value}"'
 
 
 class ByteArraySchema(PrimitiveSchema):
@@ -212,13 +239,15 @@ class ByteArraySchema(PrimitiveSchema):
     def get_python_type(self, namespace=None):
         return "bytearray"
 
+    def get_constant_value(self, value) -> str:
+        return f'bytearray("{value}", encoding="utf-8")'
+
     @classmethod
     def from_yaml(cls, yaml_data):
         return cls(
             yaml_data=yaml_data,
             format=cls.Formats(yaml_data['format'])
         )
-
 
 
 def get_primitive_schema(yaml_data):

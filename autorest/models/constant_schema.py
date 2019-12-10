@@ -29,9 +29,7 @@ class ConstantSchema(BaseSchema):
         """
         if self.value is None:
             return "None"
-        if isinstance(self.value, str):
-            return f'"{self.value}"'
-        return self.value
+        return self.schema.get_constant_value(self.value)
 
     def get_serialization_type(self) -> str:
         """Returns the serialization value for msrest.

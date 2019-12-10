@@ -53,3 +53,16 @@ class BaseSchema(ABC):
         Special case for enum, for instance: Union[str, "EnumName"]
         """
         return self.get_python_type()
+
+    def get_constant_value(self, value) -> str:
+        """Return the current value from YAML as a Python string that represents the constant.
+
+        Example, if schema is "bytearray" and value is "foo",
+        should return bytearray("foo", encoding="utf-8")
+        as a string.
+
+        This is important for constant serialization.
+
+        By default, return value, since it works sometimes (integer)
+        """
+        return str(value)
