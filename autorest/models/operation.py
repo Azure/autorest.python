@@ -28,7 +28,7 @@ from typing import Dict, List, Any, Optional
 
 from .imports import FileImport, ImportType
 from .schema_response import SchemaResponse
-from .parameter import Parameter, ParameterLocation
+from .parameter import Parameter, ParameterLocation, ParameterStyle
 from .constant_schema import ConstantSchema
 
 
@@ -199,8 +199,17 @@ class Operation:
         if parameter.skip_url_encoding:
             optional_parameters.append("skip_quote=True")
 
-        if False: # FIXME divChar = ClientModelExtensions.NeedsFormattedSeparator(parameter);
-            div_char = '?'
+        if parameter.style:
+            if parameter.style in [ParameterStyle.simple, ParameterStyle.form]:
+                div_char = ','
+            elif parameter.style in [ParameterStyle.spaceDelimited]:
+                div_char = ' '
+            elif parameter.style in [ParameterStyle.pipeDelimited]:
+                div_char = '|'
+            elif parameter.style in [ParameterStyle.tabDelimited]:
+                div_char = '\t'
+            else:
+                raise ValueError(f"Do not support {parameter.style} yet")
             optional_parameters.append(f"div='{div_char}'")
 
         optional_parameters += Operation.build_constraints(parameter.constraints)

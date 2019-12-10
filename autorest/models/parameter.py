@@ -27,7 +27,6 @@ from enum import Enum
 from typing import Dict, Optional, List, Union, Any
 
 
-
 class ParameterLocation(Enum):
     Path = "path"
     Body = "body"
@@ -35,6 +34,17 @@ class ParameterLocation(Enum):
     Header = "header"
     Uri = "uri"
     Other = "other"
+
+
+class ParameterStyle(Enum):
+    simple = "simple"
+    label = "label"
+    matrix = "matrix"
+    form = "form"
+    spaceDelimited = "spaceDelimited"
+    pipeDelimited = "pipeDelimited"
+    deepObject = "deepObject"
+    tabDelimited = "tabDelimited"
 
 
 class Parameter:
@@ -50,6 +60,7 @@ class Parameter:
         location: ParameterLocation,
         skip_url_encoding: bool,
         constraints: List[Any],
+        style: Optional[ParameterStyle] = None,
     ):
         self.yaml_data = yaml_data
         self.schema = schema
@@ -61,6 +72,7 @@ class Parameter:
         self.location = location
         self.skip_url_encoding = skip_url_encoding
         self.constraints = constraints
+        self.style = style
 
     @property
     def for_method_signature(self):
@@ -79,6 +91,7 @@ class Parameter:
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, str], **kwargs) -> "SchemaResponse":
 
+        http_protocol = yaml_data["protocol"]["http"]
         return cls(
             yaml_data=yaml_data,
             schema=yaml_data.get("schema", None),  # FIXME replace by operation model
@@ -87,7 +100,8 @@ class Parameter:
             description=yaml_data["language"]["python"]["description"],
             implementation=yaml_data["implementation"],
             is_required=yaml_data.get("required", False),
-            location=ParameterLocation(yaml_data["protocol"]["http"]["in"]),
+            location=ParameterLocation(http_protocol["in"]),
             skip_url_encoding=yaml_data.get("extensions", {}).get("x-ms-skip-url-encoding", False),
             constraints=[], # FIXME constraints
+            style=ParameterStyle(http_protocol["style"]) if "style" in http_protocol else None,
         )
