@@ -45,6 +45,7 @@ class ParameterStyle(Enum):
     pipeDelimited = "pipeDelimited"
     deepObject = "deepObject"
     tabDelimited = "tabDelimited"
+    json = "json"
 
 
 class Parameter:
@@ -95,7 +96,8 @@ class Parameter:
         return cls(
             yaml_data=yaml_data,
             schema=yaml_data.get("schema", None),  # FIXME replace by operation model
-            rest_api_name=yaml_data["language"]["default"]["name"],
+            # See also https://github.com/Azure/autorest.modelerfour/issues/80
+            rest_api_name=yaml_data["language"]["default"].get("serializedName", yaml_data["language"]["default"]["name"]),
             serialized_name=yaml_data['language']['python']['name'],
             description=yaml_data["language"]["python"]["description"],
             implementation=yaml_data["implementation"],
