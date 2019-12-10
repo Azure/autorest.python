@@ -49,7 +49,6 @@ class {{ code_model.class_name }}Configuration(Configuration):
         self._configure(**kwargs)
 
         self.user_agent_policy.add_user_agent('azsdk-python-{{ code_model.class_name|lower }}/{}'.format(VERSION))
-        self.generate_client_request_id = True
 
 
 
