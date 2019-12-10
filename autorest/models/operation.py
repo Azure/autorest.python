@@ -90,6 +90,8 @@ class Operation:
         if len(media_types) == 1:
             return media_types[0]
 
+        if "application/json" in media_types:
+            return "application/json"
         # If more type are supported, if JSON is supported, ask JSON only
         for media_type in media_types:
             if "json" in media_type:
