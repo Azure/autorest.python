@@ -47,7 +47,7 @@ class ModelBaseSerializer:
 
         if isinstance(prop.schema, EnumSchema):
             values = ["\'" + v.value + "\'" for v in prop.schema.values]
-            description += "Possible values include: {}.".format(", ".join(values))
+            description += " Possible values include: {}.".format(", ".join(values))
             if prop.schema.default_value:
                 description += " Default value: \"{}\".".format(prop.schema.default_value)
         if description:
