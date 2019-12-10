@@ -10,6 +10,7 @@ def test_pascal_case():
         "pascal_case": "PascalCase",
         "pascal_case_": "PascalCase",
         "_pascal_case": "PascalCase",
+        "LROs": "LROs",
         "___pascal____case6666": "PascalCase6666",
     }
 
