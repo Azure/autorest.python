@@ -10,11 +10,10 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from ._{{ module_name + async_suffix }} import {{ class_name }}
-__all__ = ['{{ class_name }}']
-{% if not async_mode %}
-
+from ._{{ code_model.module_name + async_suffix }} import {{ code_model.class_name }}
+{% if not async_mode and code_model.package_version%}
 from ._version import VERSION
 
 __version__ = VERSION
 {% endif %}
+__all__ = ['{{ class_name }}']

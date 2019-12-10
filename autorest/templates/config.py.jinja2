@@ -17,7 +17,11 @@
 from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
 
+{% if code_model.package_version %}
 from {{ version_import }} import VERSION
+{% else %}
+VERSION = "unknown"
+{% endif %}
 
 
 class {{ code_model.class_name }}Configuration(Configuration):

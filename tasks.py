@@ -1,7 +1,7 @@
 import os
 from invoke import task
 
-_AUTOREST_CMD_LINE = "autorest-beta --version:3.0.6162"
+_AUTOREST_CMD_LINE = "autorest-beta"
 
 default_mappings = {
   'AcceptanceTests/AdditionalProperties': 'additionalProperties.json',
@@ -78,6 +78,7 @@ def regen_expected(c, opts):
             "--license-header={}".format(opts['header'] if opts.get('header') else 'MICROSOFT_MIT_NO_VERSION'),
             "--enable-xml",
             "--basic-setup-py",
+            "--package-version=0.1.0",
             "--trace"
         ]
 

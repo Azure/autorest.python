@@ -14,9 +14,8 @@ class GeneralSerializer:
     def serialize(self):
         template = self.env.get_template("init.py.jinja2")
         self._init_file = template.render(
-            module_name=self.code_model.module_name,
-            class_name=self.code_model.class_name,
-            async_mode=self.async_mode
+            code_model=self.code_model,
+            async_mode=self.async_mode,
         )
 
         template = self.env.get_template("service_client.py.jinja2")
@@ -26,11 +25,14 @@ class GeneralSerializer:
         )
 
         template = self.env.get_template("config.py.jinja2")
-        self._config_file = template.render(code_model=self.code_model, async_mode=self.async_mode)
+        self._config_file = template.render(
+            code_model=self.code_model,
+            async_mode=self.async_mode
+        )
 
         if not self.async_mode:
             template = self.env.get_template("version.py.jinja2")
-            self._version_file = template.render(version=self.code_model.api_version)
+            self._version_file = template.render(version=self.code_model.package_version)
 
             template = self.env.get_template("setup.py.jinja2")
             self._setup_file = template.render(code_model=self.code_model)
