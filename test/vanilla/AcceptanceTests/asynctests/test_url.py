@@ -233,24 +233,40 @@ class TestUrl(object):
     async def test_get_all_with_values(self, client):
         client._config.global_string_path = "globalStringPath"
         client._config.global_string_query = "globalStringQuery"
-        await client.path_items.get_all_with_values("localStringPath", "pathItemStringPath",
-                "localStringQuery", "pathItemStringQuery")
+        await client.path_items.get_all_with_values(
+            "pathItemStringPath",
+            "localStringPath",
+            "pathItemStringQuery",
+            "localStringQuery",
+        )
 
     @pytest.mark.asyncio
     async def test_get_global_and_local_query_null(self, client):
         client._config.global_string_path = "globalStringPath"
-        await client.path_items.get_global_and_local_query_null("localStringPath", "pathItemStringPath",
-                None, "pathItemStringQuery")
+        await client.path_items.get_global_and_local_query_null(
+            "pathItemStringPath",
+            "localStringPath",
+            "pathItemStringQuery",
+            None,
+        )
 
     @pytest.mark.asyncio
     async def test_get_global_query_null(self, client):
         client._config.global_string_path = "globalStringPath"
-        await client.path_items.get_global_query_null("localStringPath", "pathItemStringPath",
-                "localStringQuery", "pathItemStringQuery")
+        await client.path_items.get_global_query_null(
+            "pathItemStringPath",
+            "localStringPath",
+            "pathItemStringQuery",
+            "localStringQuery",
+        )
 
     @pytest.mark.asyncio
     async def test_get_local_path_item_query_null(self, client):
         client._config.global_string_path = "globalStringPath"
         client._config.global_string_query = "globalStringQuery"
-        await client.path_items.get_local_path_item_query_null("localStringPath", "pathItemStringPath",
-                None, None)
+        await client.path_items.get_local_path_item_query_null(
+            "pathItemStringPath",
+            "localStringPath",
+            None,
+            None,
+        )
