@@ -1,6 +1,6 @@
 {% set version_import = ".._version" if async_mode else "._version" %}
 {% set async_prefix = "Async" if async_mode else "" %}
-{% set method_signature = code_model.global_parameters|join(', ', attribute='serialized_name') ~ (", " if code_model.global_parameters else "") %}
+{% set method_signature = code_model.global_parameters|join(', ', attribute='for_method_signature') ~ (", " if code_model.global_parameters else "") %}
 {% set credential_scopes = "*self.credential_scopes, " if code_model.options['credential_scopes'] else "" %}
 {# actual template starts here #}
 # coding=utf-8
@@ -33,7 +33,7 @@ class {{ code_model.class_name }}Configuration(Configuration):
 
     def __init__(self, {{ method_signature }}**kwargs):
 
-{% for parameter in code_model.global_parameters %}
+{% for parameter in code_model.global_parameters|selectattr('is_required') %}
         if {{ parameter.serialized_name }} is None:
             raise ValueError("Parameter '{{ parameter.serialized_name }}' must not be None.")
 {% endfor %}

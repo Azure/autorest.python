@@ -69,6 +69,12 @@ class Parameter:
         else:
             return f"{self.serialized_name}=None"
 
+    @property
+    def full_serialized_name(self):
+        origin_name = self.serialized_name
+        if self.implementation == "Client":
+            origin_name = f"self._config.{self.serialized_name}"
+        return origin_name
 
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, str], **kwargs) -> "SchemaResponse":

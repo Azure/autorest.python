@@ -3,7 +3,8 @@
 {% set pipeline_client = "AsyncPipelineClient" if async_mode else "PipelineClient" %}
 {% set operations_import = ".operations_async" if async_mode else ".operations" %}
 {% set path_to_models = ".." if async_mode else "." %}
-{% set method_signature = code_model.global_parameters|join(', ', attribute='serialized_name') ~ (", " if code_model.global_parameters else "") %}
+{% set method_signature = code_model.global_parameters|join(', ', attribute='for_method_signature') ~ (", " if code_model.global_parameters else "") %}
+{% set config_signature = code_model.global_parameters|join(', ', attribute='serialized_name') ~ (", " if code_model.global_parameters else "") %}
 {% set has_mixin_operation_group = code_model.operation_groups|selectattr("is_empty_operation_group")|first %}
 {% macro mixin_operation_group_name() %}{{ code_model.class_name }}OperationsMixin{% endmacro %}
 {% set base_class = mixin_operation_group_name() if has_mixin_operation_group else "object" %}
@@ -58,7 +59,7 @@ class {{ code_model.class_name }}({{ base_class }}):
         if not base_url:
             base_url = '{{ code_model.base_url }}'
         {% endif %}
-        self._config = {{ code_model.class_name }}Configuration({{ method_signature }}**kwargs)
+        self._config = {{ code_model.class_name }}Configuration({{ config_signature }}**kwargs)
         self._client = {{ pipeline_client }}(base_url=base_url, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}

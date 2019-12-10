@@ -207,9 +207,7 @@ class Operation:
 
         optional_parameters_string = "" if not optional_parameters else ", " + ", ".join(optional_parameters)
 
-        origin_name = parameter.serialized_name
-        if parameter.implementation == "Client":
-            origin_name = f"self._config.{parameter.serialized_name}"
+        origin_name = parameter.full_serialized_name
 
         return f"""self._serialize.{function_name}("{origin_name}", {origin_name}, '{parameter.schema.get_serialization_type()}'{optional_parameters_string})"""
 
