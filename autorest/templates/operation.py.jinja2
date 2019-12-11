@@ -182,7 +182,7 @@ deserialized = self._deserialize('{{ response.schema.get_serialization_type() }}
     {% endfor %}
   {% else %}
     {% set response = operation.responses[0] %}
-    {{ response_handling(response) }}
+    {{ response_handling(response)|indent }}
   {% endif %}
 {% endif %}
     if cls:
