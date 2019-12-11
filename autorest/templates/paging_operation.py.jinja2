@@ -1,0 +1,198 @@
+{% import 'keywords.jinja2' as keywords with context %}
+{% set trace_decorator = "@distributed_trace_async" if async_mode else "@distributed_trace" %}
+{% set stream_request_parameter = "stream=" ~ ("True" if operation.is_stream_response else "False") %}
+{% set request_as_xml = ", is_xml=False" if "xml" in operation.request_content_type else "" %}
+{% macro return_docstring() %}
+{% if operation.responses | selectattr('has_body') | first %}
+:return: {{ operation.responses|map(attribute='schema')|map(attribute='name')|join(' or ') }} or the result of cls(response)
+    :rtype: {% for response in operation.responses %}{{response.schema.get_python_type(code_model.namespace)}}{% if not loop.last %} or {% endif %}{% endfor %}
+{% else %}
+:return: None
+:rtype: None
+{% endif %}
+{% endmacro %}
+{% macro exception_name() %}{{ operation.exceptions[0].schema.name }}Exception{% endmacro %}
+{% macro response_handling(response) %}
+  {% if response.headers %}
+    {% for response_header in response.headers %}
+response_headers['{{ response_header.name }}']=self._deserialize('{{ response_header.schema.get_serialization_type() }}', response.headers.get('{{ response_header.name }}'))
+    {% endfor %}
+  {% endif %}
+  {% if response.has_body and operation.is_stream_response %}
+deserialized = response.stream_download(self._client._pipeline)
+  {% elif response.has_body %}
+deserialized = self._deserialize('{{ response.schema.get_serialization_type() }}', response)
+  {% endif %}
+{% endmacro %}
+{# actual template starts here #}
+{% if code_model.tracing and operation.want_tracing %}
+{{ trace_decorator }}
+{% else %}
+
+{% endif %}
+{{ keywords.def }} {{ operation.python_name }}(self{{ operation.method_signature }}, cls=None, **kwargs):
+{% if operation.want_description_docstring %}
+    """{{operation.description.strip() }}.
+
+    {{ "FIXME: add operation.summary\n" }}
+
+{% if operation.deprecated -%}
+    .. warning::
+       This method is deprecated
+
+{% endif -%}
+{% for parameter in operation.method_parameters %}
+    {% if parameter.implementation != 'Client' %}
+    :param {{ parameter.serialized_name }}: {{ parameter.description }}
+    :type {{ parameter.serialized_name }}: {{ parameter.schema.get_python_type(code_model.namespace) }}
+    {% endif %}
+{% endfor %}
+    :param callable cls: A custom type or function that will be passed the direct response
+    {{ return_docstring() }}
+    {% if not operation.exceptions %}
+        {% if code_model.options['azure_arm'] %}
+    :raises: ~azure.mgmt.core.ARMError
+        {% else %}
+    :raises: ~azure.core.HttpResponseError
+        {% endif %}
+    {% else %}
+    :raises: ~{{ code_model.namespace }}.models.{{ exception_name() }}:
+    {% endif %}
+    """
+{% endif %}
+{% if operation.deprecated %}
+    warnings.warn('Method {{operation.name}} is deprecated', DeprecationWarning)
+{% endif %}
+    error_map = kwargs.pop('error_map', None)
+{% if operation.is_flattened %}
+    {{ operation.build_flattened_object() }}
+{% endif %}
+{% if operation.constant_parameters %}
+    {% for constant_parameter in operation.constant_parameters %}
+    {{ constant_parameter.serialized_name }} = {{ constant_parameter.schema.get_constant_value() }}
+    {% endfor %}
+{% endif %}
+
+    def prepare_request(next_link=None):
+        if not next_link:
+            # Construct URL
+            url = self.{{ operation.python_name }}.metadata['url']
+        {% if operation.path_parameters %}
+            path_format_arguments = {
+        {% for path_parameter in operation.path_parameters %}
+                '{{ path_parameter.rest_api_name }}': {{ operation.build_serialize_data_call(path_parameter, "url") }},
+        {% endfor %}
+            }
+            url = self._client.format_url(url, **path_format_arguments)
+        {% endif %}
+        else:
+            url = next_link
+
+        # Construct parameters
+        query_parameters = {}
+    {% if operation.query_parameters %}
+        {% for query_parameter in operation.query_parameters %}
+            {%if query_parameter.is_required %}
+        query_parameters['{{ query_parameter.rest_api_name }}'] = {{ operation.build_serialize_data_call(query_parameter, "query") }}
+            {% else %}
+        if {{ query_parameter.full_serialized_name }} is not None:
+            query_parameters['{{ query_parameter.rest_api_name }}'] = {{ operation.build_serialize_data_call(query_parameter, "query") }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+
+        # Construct headers
+        header_parameters = {}
+    {% if operation.headers_parameters %}
+        {% for header_parameter in operation.headers_parameters %}
+            {%if header_parameter.is_required %}
+        header_parameters['{{ header_parameter.rest_api_name }}'] = {{ operation.build_serialize_data_call(header_parameter, "header") }}
+            {% else %}
+        if {{ header_parameter.full_serialized_name }} is not None:
+            header_parameters['{{ header_parameter.rest_api_name }}'] = {{ operation.build_serialize_data_call(header_parameter, "header") }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+    {% if operation.has_response_body %}
+        header_parameters['Accept'] = '{{ operation.accept_content_type }}'
+    {% endif %}
+    {% if operation.has_request_body %}
+        header_parameters['Content-Type'] = '{{ operation.request_content_type }}'
+    {% endif %}
+
+    {% if operation.has_request_body %}
+        # Construct body
+        {% if not operation.body_parameter.is_stream %}
+            {% if operation.body_parameter.is_required %}
+        body_content = self._serialize.body({{ operation.body_parameter.serialized_name }}, '{{ operation.body_parameter.schema.get_serialization_type() }}'{{ request_as_xml }}{{ operation.serialization_context }})
+            {% else %}
+        if {{ operation.body_parameter.serialized_name }} is not None:
+            body_content = self._serialize.body({{ operation.body_parameter.serialized_name }}, '{{ operation.body_parameter.schema.get_serialization_type() }}'{{ request_as_xml }}{{ operation.serialization_context }})
+        else:
+            body_content = None
+            {% endif %}
+        {% elif operation.body_parameter.is_form_data %}
+        # Construct form data
+        form_data_content = {
+        ###foreach (var parameter in Model.LocalParameters)
+        ###    if (parameter.Location == ParameterLocation.FormData)
+        ###    {
+        ###            @:'@parameter.SerializedName': @parameter.Name,
+        ###    }
+        ###}
+        }
+        {% endif %}
+
+    {% endif %}
+        # Construct and send request
+    {% if operation.is_form_data %}
+        request = self._client.{{ operation.method }}(url, query_parameters, header_parameters, form_content=form_data_content)
+    {% elif operation.is_stream_request %}
+        request = self._client.{{ operation.method }}(url, query_parameters, header_parameters, stream_content={{ parameter.serialized_name }})
+    {% elif operation.has_request_body %}
+        request = self._client.{{ operation.method }}(url, query_parameters, header_parameters, body_content)
+    {% else %}
+        request = self._client.{{ operation.method }}(url, query_parameters, header_parameters)
+    {% endif %}
+        return request
+
+    {{ keywords.def }} extract_data(response):
+        {% set response = operation.responses[0] %}
+        deserialized = self._deserialize('{{ response.schema.get_serialization_type() }}', response)
+        list_of_elem = deserialized.{{ operation.item_name }}
+        if cls:
+            list_of_elem = cls(list_of_elem)
+        {% if async_mode %}
+        return deserialized.{{ operation.next_link_name }}, AsyncList(list_of_elem)
+        {% else %}
+        return deserialized.{{ operation.next_link_name }}, iter(list_of_elem)
+        {% endif %}
+
+    {{ keywords.def }} get_next(next_link=None):
+        request = prepare_request(next_link)
+
+        pipeline_response = {{ keywords.await }}self._client._pipeline.run(request, {{ stream_request_parameter }}, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in {{ operation.success_status_code|string() }}:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            {% if not operation.exceptions %}
+                {% if code_model.options['azure_arm'] %}
+            raise ARMError(response=response)
+                {% else %}
+            raise HttpResponseError(response=response)
+                {% endif %}
+            {% else %}
+            raise models.{{ exception_name() }}(response, self._deserialize)
+            {% endif %}
+
+        return response
+
+{% if async_mode %}
+    return AsyncItemPaged(
+{% else %}
+    return ItemPaged(
+{% endif %}
+        get_next, extract_data
+    )
+{{ operation.python_name }}.metadata = {'url': '{{ operation.url }}'}

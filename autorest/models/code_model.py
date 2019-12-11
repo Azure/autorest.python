@@ -34,6 +34,7 @@ from .object_schema import ObjectSchema
 from .operation_group import OperationGroup
 from .operation import Operation
 from .lro_operation import LROOperation
+from .paging_operation import PagingOperation
 from .parameter import Parameter, ParameterLocation
 
 
@@ -188,6 +189,20 @@ class CodeModel:
                     operation_group.operations.insert(i, CodeModel._lro_initial_function(operation))
                     i += 1
                 i += 1
+
+    def remove_next_operation(self) -> None:
+        for operation_group in self.operation_groups:
+            next_operations_names = []
+            for operation in operation_group.operations:
+                if isinstance(operation, PagingOperation) and operation.operation_name:
+                    next_operations_names.append(operation.operation_name.split('_')[-1])
+
+            operation_group.operations = [
+                operation
+                for operation
+                in operation_group.operations
+                if operation.yaml_data.get('language', {}).get('default', {}).get('name') not in next_operations_names
+            ]
 
     def enable_parameter_flattening(self):
         for op_group in self.operation_groups:

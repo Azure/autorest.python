@@ -8,6 +8,7 @@ from .base_schema import BaseSchema
 from .constant_schema import ConstantSchema
 from .imports import FileImport
 from .lro_operation import LROOperation
+from .paging_operation import PagingOperation
 
 __all__ = [
     "BaseSchema",
