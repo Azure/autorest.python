@@ -177,7 +177,7 @@ deserialized = self._deserialize('{{ response.schema.get_serialization_type() }}
       {% set response =  operation.get_response_from_status(status_code) %}
       {% if response.headers or response.has_body %}
     if response.status_code == {{ status_code }}:
-        {{ response_handling(response) }}
+        {{ response_handling(response)|indent(8) }}
       {% endif %}
     {% endfor %}
   {% else %}
