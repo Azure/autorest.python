@@ -121,8 +121,7 @@ class Operation:
     @property
     def is_stream_response(self):
         """Is the response expected to be streamable, like a download."""
-        # FIXME look for input
-        return False
+        return any(response.is_stream_response for response in self.responses)
 
     @property
     def has_request_body(self):
@@ -241,7 +240,7 @@ class Operation:
 
     @property
     def any_response_has_headers(self):
-        return any(response.headers for response in self.responses)
+        return any(response.has_headers for response in self.responses)
 
     @property
     def success_status_code(self) -> List[int]:

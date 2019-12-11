@@ -1,0 +1,12 @@
+{% macro response_handling(response) %}
+  {% if response.headers %}
+    {% for response_header in response.headers %}
+response_headers['{{ response_header.name }}']=self._deserialize('{{ response_header.schema.get_serialization_type() }}', response.headers.get('{{ response_header.name }}'))
+    {% endfor %}
+  {% endif %}
+  {% if response.has_body and response.is_stream_response %}
+deserialized = response.stream_download(self._client._pipeline)
+  {% elif response.has_body %}
+deserialized = self._deserialize('{{ response.schema.get_serialization_type() }}', response)
+  {% endif %}
+{% endmacro %}

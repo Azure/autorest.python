@@ -1,4 +1,5 @@
 {% import 'keywords.jinja2' as keywords with context %}
+{% from 'operation_tools.jinja2' import response_handling %}
 {% set trace_decorator = "@distributed_trace_async" if async_mode else "@distributed_trace" %}
 {% set stream_request_parameter = "stream=" ~ ("True" if operation.is_stream_response else "False") %}
 {% set request_as_xml = ", is_xml=False" if "xml" in operation.request_content_type else "" %}
@@ -12,18 +13,6 @@
 {% endif %}
 {% endmacro %}
 {% macro exception_name() %}{{ operation.exceptions[0].schema.name }}Exception{% endmacro %}
-{% macro response_handling(response) %}
-  {% if response.headers %}
-    {% for response_header in response.headers %}
-response_headers['{{ response_header.name }}']=self._deserialize('{{ response_header.schema.get_serialization_type() }}', response.headers.get('{{ response_header.name }}'))
-    {% endfor %}
-  {% endif %}
-  {% if response.has_body and operation.is_stream_response %}
-deserialized = response.stream_download(self._client._pipeline)
-  {% elif response.has_body %}
-deserialized = self._deserialize('{{ response.schema.get_serialization_type() }}', response)
-  {% endif %}
-{% endmacro %}
 {# actual template starts here #}
 {% if code_model.tracing and operation.want_tracing %}
 {{ trace_decorator }}

@@ -34,13 +34,11 @@ class LROOperation(Operation):
             want_description_docstring,
             want_tracing
         )
-        self.lro_response_type = None
+        self.lro_response: Optional[SchemaResponse] = None
 
     def set_lro_response_type(self) -> None:
-        response_types = set()
-        for response in self.responses:
-            if response.schema:
-                response_types.add(response.schema.get_serialization_type())
+        responses = {response.schema: response for response in self.responses if response.has_body}
+        response_types = list(responses.values())
         if len(response_types) > 1:
-            _LOGGER.warning(f"Multiple schema types in responses: {str(response_types)}")
-        self.lro_response_type = response_types.pop() if response_types else None
+            _LOGGER.warning("Multiple schema types in responses: %s", response_types)
+        self.lro_response = response_types.pop() if response_types else None

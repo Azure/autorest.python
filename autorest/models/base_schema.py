@@ -72,3 +72,6 @@ class BaseSchema(ABC):
 
     def get_serialization_constraints(self) -> List[str]:
         return None
+
+    def __repr__(self):
+        return f"<{self.__class__.__name__}>"

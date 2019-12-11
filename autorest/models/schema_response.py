@@ -53,6 +53,18 @@ class SchemaResponse:
         """
         return bool(self.schema)
 
+    @property
+    def has_headers(self):
+        """Tell if that response defines headers.
+        """
+        return bool(self.headers)
+
+    @property
+    def is_stream_response(self):
+        """Is the response expected to be streamable, like a download."""
+        # FIXME look for input
+        return False
+
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, str], **kwargs) -> "SchemaResponse":
 
@@ -71,4 +83,4 @@ class SchemaResponse:
         )
 
     def __repr__(self):
-        return f"<{type(self)} {self.status_codes}>"
+        return f"<{self.__class__.__name__} {self.status_codes} {self.schema}>"
