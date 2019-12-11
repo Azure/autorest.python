@@ -3,6 +3,7 @@ from .operation import Operation
 from typing import Dict, List, Any, Optional
 from .parameter import Parameter
 from .schema_response import SchemaResponse
+from .imports import ImportType
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -42,3 +43,28 @@ class LROOperation(Operation):
         if len(response_types) > 1:
             _LOGGER.warning("Multiple schema types in responses: %s", response_types)
         self.lro_response = response_types.pop() if response_types else None
+
+    def imports(self, code_model, async_mode):
+        file_import = super().imports(code_model, async_mode)
+
+        if async_mode:
+            file_import.add_from_import(
+                "azure.core.polling", "async_poller", ImportType.AZURECORE
+            )
+            file_import.add_from_import(
+                "azure.core.polling", "AsyncNoPolling", ImportType.AZURECORE
+            )
+            file_import.add_from_import(
+                "azure.mgmt.core.polling.async_arm_polling", "AsyncARMPolling", ImportType.AZURECORE
+            )
+        else:
+            file_import.add_from_import(
+                "azure.core.polling", "LROPoller", ImportType.AZURECORE
+            )
+            file_import.add_from_import(
+                "azure.core.polling", "NoPolling", ImportType.AZURECORE
+            )
+            file_import.add_from_import(
+                "azure.mgmt.core.polling.arm_polling", "ARMPolling", ImportType.AZURECORE
+            )
+        return file_import

@@ -46,7 +46,7 @@ response_headers = {
         {% for parameter in operation.method_parameters %}
         {{ parameter.serialized_name }}={{ parameter.serialized_name }},
         {% endfor %}
-        cls=lambda x,y,z: x
+        cls=lambda x,y,z: x,
         **kwargs
     )
 
