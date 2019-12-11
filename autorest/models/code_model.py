@@ -225,7 +225,6 @@ class CodeModel:
         # Insert after the body parameter these fake parameters
         body_parameter_index = operation.parameters.index(operation.body_parameter)
         operation.parameters[body_parameter_index:body_parameter_index] = fake_parameters
-        operation.is_flattened = True
 
     def _add_properties_from_inheritance(self) -> None:
         """Adds properties from base classes to schemas with parents.

@@ -69,9 +69,6 @@ class Operation:
         self.responses = responses
         self.exceptions = exceptions
         self.media_types = media_types
-        # Will be set by codemodel if this operation is flattened, means to treat
-        # parameters a little differently
-        self.is_flattened = False
         self.want_description_docstring = want_description_docstring
         self.want_tracing = want_tracing
 
@@ -290,6 +287,12 @@ class Operation:
         if signature:
             signature = ", "+signature
         return signature
+
+    @property
+    def is_flattened(self):
+        return bool([
+            parameter for parameter in self.parameters if parameter.location == ParameterLocation.Other
+        ])
 
     def build_flattened_object(self):
         if not self.is_flattened:

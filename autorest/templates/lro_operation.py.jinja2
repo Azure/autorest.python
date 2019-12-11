@@ -24,10 +24,8 @@ response_headers = {
 
 {% endif -%}
 {% for parameter in operation.method_parameters %}
-    {% if parameter.implementation != 'Client' %}
     :param {{ parameter.serialized_name }}: {{ parameter.description }}
     :type {{ parameter.serialized_name }}: {{ parameter.schema.get_python_type(code_model.namespace) }}
-    {% endif %}
 {% endfor %}
     :param callable cls: A custom type or function that will be passed the direct response
     :param polling: True for ARMPolling, False for no polling, or a
@@ -45,10 +43,8 @@ response_headers = {
     {% endif %}
     """
     raw_result = self._{{ operation.name }}_initial(
-        {% for parameter in operation.parameters %}
-            {% if parameter.implementation != 'Client' %}
+        {% for parameter in operation.method_parameters %}
         {{ parameter.serialized_name }}={{ parameter.serialized_name }},
-            {% endif %}
         {% endfor %}
         cls=lambda x,y,z: x
         **kwargs

@@ -133,13 +133,15 @@ class CodeGenerator:
             code_model.sort_schemas()
             code_model.add_schema_link_to_operation()
             code_model.add_schema_link_to_global_parameters()
+
+        # Parameter flattening
+        code_model.enable_parameter_flattening()
+
+        # LRO operation
         code_model.format_lro_operations()
 
         if code_model.options['credential']:
             code_model.add_credential_global_parameter()
-
-        # Parameter flattening
-        code_model.enable_parameter_flattening()
 
         return code_model
 
