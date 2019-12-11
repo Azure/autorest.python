@@ -304,7 +304,7 @@ class Operation:
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, str], **kwargs) -> "Operation":
         name = yaml_data["language"]["python"]["name"]
-        _LOGGER.info("Parsing %s operation", name)
+        _LOGGER.debug("Parsing %s operation", name)
 
         return cls(
             yaml_data=yaml_data,

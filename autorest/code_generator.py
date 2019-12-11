@@ -255,7 +255,7 @@ class CodeGenerator:
     def process(self) -> bool:
         # List the input file, should be only one
         inputs = self._autorestapi.list_inputs()
-        _LOGGER.info("Possible Inputs: %s", inputs)
+        _LOGGER.debug("Possible Inputs: %s", inputs)
         if "code-model-v4-no-tags.yaml" not in inputs:
             raise ValueError("code-model-v4-no-tags.yaml must be a possible input")
 
@@ -314,10 +314,6 @@ class CodeGenerator:
 
 def main(yaml_model_file):
     from .jsonrpc.localapi import LocalAutorestAPI
-
-    logging.basicConfig(
-        level=logging.DEBUG,
-    )
 
     code_generator = CodeGenerator(
         autorestapi=LocalAutorestAPI(

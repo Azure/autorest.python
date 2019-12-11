@@ -27,7 +27,7 @@ import logging
 from pathlib import Path
 from typing import List
 
-from . import AutorestAPI
+from . import AutorestAPI, Channel
 
 
 _LOGGER = logging.getLogger(__name__)
@@ -37,6 +37,7 @@ class LocalAutorestAPI(AutorestAPI):
     """A local API that will write on local disk.
     """
     def __init__(self, reachable_files: List[str] = None, output_folder: str = "generated"):
+        super().__init__()
         if reachable_files is None:
             reachable_files = []
         self._reachable_files = reachable_files
@@ -59,5 +60,5 @@ class LocalAutorestAPI(AutorestAPI):
     def get_value(self, key: str) -> str:
         pass
 
-    def message(self, message) -> None:
+    def message(self, channel: Channel, text: str) -> None:
         pass
