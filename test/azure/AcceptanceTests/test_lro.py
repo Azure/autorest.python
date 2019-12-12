@@ -90,8 +90,8 @@ def client(cookie_policy):
     """Create a AutoRestLongRunningOperationTestService client with test server credentials."""
     cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
     policies = [
-        HeadersPolicy(),
         RequestIdPolicy(),
+        HeadersPolicy(),
         ContentDecodePolicy(),
         RetryPolicy(),
         cookie_policy

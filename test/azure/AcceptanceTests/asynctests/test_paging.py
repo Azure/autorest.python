@@ -58,8 +58,8 @@ import pytest
 async def client(cookie_policy):
     cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
     policies = [
-        HeadersPolicy(),
         RequestIdPolicy(),
+        HeadersPolicy(),
         ContentDecodePolicy(),
         AsyncRetryPolicy(),
         cookie_policy
