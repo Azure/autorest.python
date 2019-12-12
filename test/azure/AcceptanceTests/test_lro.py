@@ -45,7 +45,7 @@ from msrest.authentication import BasicTokenAuthentication
 
 from azure.core.exceptions import DecodeError
 from azure.core.polling import LROPoller
-from azure.core.pipeline.policies import ContentDecodePolicy, RetryPolicy, HeadersPolicy
+from azure.core.pipeline.policies import ContentDecodePolicy, RetryPolicy, HeadersPolicy, RequestIdPolicy
 
 from azure.mgmt.core.polling.arm_polling import ARMPolling
 from azure.mgmt.core.exceptions import ARMError
@@ -91,6 +91,7 @@ def client(cookie_policy):
     cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
     policies = [
         HeadersPolicy(),
+        RequestIdPolicy(),
         ContentDecodePolicy(),
         RetryPolicy(),
         cookie_policy

@@ -50,7 +50,7 @@ from paging.models import PagingGetMultiplePagesWithOffsetOptions
 from custombaseurlpaging.aio import AutoRestParameterizedHostTestPagingClient
 
 from azure.core.exceptions import HttpResponseError
-from azure.core.pipeline.policies import ContentDecodePolicy, AsyncRetryPolicy, HeadersPolicy
+from azure.core.pipeline.policies import ContentDecodePolicy, AsyncRetryPolicy, HeadersPolicy, RequestIdPolicy
 
 import pytest
 
@@ -59,6 +59,7 @@ async def client(cookie_policy):
     cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
     policies = [
         HeadersPolicy(),
+        RequestIdPolicy(),
         ContentDecodePolicy(),
         AsyncRetryPolicy(),
         cookie_policy

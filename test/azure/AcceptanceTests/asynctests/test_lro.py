@@ -45,7 +45,7 @@ from msrest.authentication import BasicTokenAuthentication
 
 from azure.core.exceptions import DecodeError
 from azure.core.polling import async_poller
-from azure.core.pipeline.policies import ContentDecodePolicy, AsyncRetryPolicy, HeadersPolicy
+from azure.core.pipeline.policies import ContentDecodePolicy, AsyncRetryPolicy, HeadersPolicy, RequestIdPolicy
 
 from azure.mgmt.core.exceptions import ARMError
 from azure.mgmt.core.polling.async_arm_polling import AsyncARMPolling
@@ -91,6 +91,7 @@ async def client(cookie_policy):
     cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
     policies = [
         HeadersPolicy(),
+        RequestIdPolicy(),
         ContentDecodePolicy(),
         AsyncRetryPolicy(),
         cookie_policy
