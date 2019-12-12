@@ -265,6 +265,10 @@ class Operation:
                     "azure.core.exceptions", "HttpResponseError", ImportType.AZURECORE
                 )
 
+        # If ARM, I always generated a client request id
+        if code_model.options['azure_arm']:
+            file_import.add_import("uuid", ImportType.STDLIB)
+
         # Deprecation
         if True:  # Replace with "the YAML contains deprecated:true"
             file_import.add_import("warnings", ImportType.STDLIB)

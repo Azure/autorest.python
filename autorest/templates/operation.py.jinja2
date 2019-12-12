@@ -102,6 +102,9 @@
 {% if operation.has_request_body %}
     header_parameters['Content-Type'] = '{{ operation.request_content_type }}'
 {% endif %}
+{% if code_model.options['azure_arm'] %}
+    kwargs.setdefault('request_id', str(uuid.uuid1()))
+{% endif %}
 
 {% if operation.has_request_body %}
     # Construct body

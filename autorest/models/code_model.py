@@ -35,6 +35,7 @@ from .operation_group import OperationGroup
 from .operation import Operation
 from .lro_operation import LROOperation
 from .parameter import Parameter, ParameterLocation
+from .client import Client
 
 
 _LOGGER = logging.getLogger(__name__)
@@ -96,6 +97,7 @@ class CodeModel:
         self.global_parameters: List[Parameter] = []
         self.custom_base_url: Optional[str] = None
         self.base_url: Optional[str] = None
+        self.service_client = Client()
 
     def lookup_schema(self, schema_id: int) -> None:
         """Looks to see if the schema has already been created.
