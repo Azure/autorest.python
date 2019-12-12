@@ -45,7 +45,7 @@ from msrest.serialization import Deserializer
 from msrest.exceptions import DeserializationError, SerializationError
 
 from bodystring.aio import AutoRestSwaggerBATService
-from bodystring.models import Colors
+from bodystring.models import Colors, ErrorException
 
 import pytest
 
@@ -120,7 +120,7 @@ class TestString(object):
         assert Colors.redcolor ==  (await client.enum.get_not_expandable())
         await client.enum.put_not_expandable('red color')
         await client.enum.put_not_expandable(Colors.redcolor)
-        with pytest.raises(SerializationError):
+        with pytest.raises(ErrorException):
             await client.enum.put_not_expandable('not a colour')
 
     @pytest.mark.asyncio
