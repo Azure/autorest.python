@@ -57,8 +57,7 @@ import pytest
 
 @pytest.fixture
 async def client():
-    cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
-    async with AutoRestParameterizedHostTestClient(cred, host="host:3000") as client:
+    async with AutoRestParameterizedHostTestClient(host="host:3000") as client:
         client._config.retry_policy.retries = 0
         yield client
 

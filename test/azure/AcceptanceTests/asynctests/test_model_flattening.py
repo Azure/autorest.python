@@ -57,7 +57,7 @@ import pytest
 async def client():
     # This is the same client of the "vanilla" one, generated with "azure" because it's the
     # only test that use client level method, and I want to test Azure works too on that.
-    async with AutoRestResourceFlatteningTestService(Authentication(), base_url="http://localhost:3000") as client:
+    async with AutoRestResourceFlatteningTestService(base_url="http://localhost:3000") as client:
         yield client
 
 class TestModelFlatteningTests(object):

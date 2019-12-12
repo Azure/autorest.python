@@ -60,8 +60,7 @@ import pytest
 
 @pytest.fixture
 async def client():
-    cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
-    async with AutoRestParameterGroupingTestService(cred, base_url="http://localhost:3000") as client:
+    async with AutoRestParameterGroupingTestService(base_url="http://localhost:3000") as client:
         yield client
 
 @pytest.fixture

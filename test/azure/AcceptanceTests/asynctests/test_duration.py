@@ -51,8 +51,7 @@ import pytest
 
 @pytest.fixture
 async def client():
-    cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
-    async with AutoRestDurationTestService(cred, base_url="http://localhost:3000") as client:
+    async with AutoRestDurationTestService(base_url="http://localhost:3000") as client:
         yield client
 
 class TestDuration(object):
