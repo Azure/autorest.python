@@ -259,7 +259,7 @@ class CodeModel:
         schema_obj = obj.schema
         if schema_obj:
             schema_obj_id = id(obj.schema)
-            _LOGGER.debug("Looking for id %s (%s) for member %s", schema_obj_id, schema_obj, obj)
+            _LOGGER.debug("Looking for id %s for member %s", schema_obj_id, obj)
             try:
                 obj.schema = self.lookup_schema(schema_obj_id)
             except KeyError:
