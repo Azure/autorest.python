@@ -25,7 +25,9 @@ from {{ config_import }} import {{ code_model.class_name }}Configuration
 {% for operation_group in code_model.operation_groups %}
 from {{ operations_import }} import {{ operation_group.class_name }}
 {% endfor %}
+{% if code_model.sorted_schemas %}
 from {{ path_to_models }} import models
+{% endif %}
 
 
 class {{ code_model.class_name }}({{ base_class }}):
