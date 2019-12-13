@@ -59,6 +59,7 @@ def client():
 
 class TestValidation(object):
 
+    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.modelerfour/issues/83")
     def test_with_constant_in_path(self, client):
         client.get_with_constant_in_path()
 
@@ -108,6 +109,7 @@ class TestValidation(object):
             assert err.rule ==  "maximum"
             assert err.target ==  "id"
 
+    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.modelerfour/issues/83")
     def test_minimum_ex_validation(self, client):
         try:
             tempproduct=Product(child=ChildProduct(), capacity=0)
@@ -116,6 +118,7 @@ class TestValidation(object):
             assert err.rule ==  "minimum_ex"
             assert "capacity" in  err.target
 
+    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.modelerfour/issues/83")
     def test_maximum_ex_validation(self, client):
         try:
             tempproduct=Product(child=ChildProduct(), capacity=100)
@@ -124,6 +127,7 @@ class TestValidation(object):
             assert err.rule ==  "maximum_ex"
             assert "capacity" in  err.target
 
+    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.modelerfour/issues/83")
     def test_max_items_validation(self, client):
         try:
             tempproduct=Product(child=ChildProduct(),
@@ -133,6 +137,7 @@ class TestValidation(object):
             assert err.rule ==  "max_items"
             assert "display_names" in  err.target
 
+    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.modelerfour/issues/90")
     def test_api_version_validation(self, client):
         client = AutoRestValidationTest(
             "abc123",
