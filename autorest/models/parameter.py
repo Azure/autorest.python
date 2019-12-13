@@ -68,12 +68,19 @@ class Parameter:
         self.rest_api_name = rest_api_name
         self.serialized_name = serialized_name
         self.description = description
-        self.implementation = implementation
+        self._implementation = implementation
         self.is_required = is_required
         self.location = location
         self.skip_url_encoding = skip_url_encoding
         self.constraints = constraints
         self.style = style
+
+    @property
+    def implementation(self):
+        # https://github.com/Azure/autorest.modelerfour/issues/81
+        if self.serialized_name == "api_version":
+            return "Method"
+        return self._implementation
 
     @property
     def for_method_signature(self):
