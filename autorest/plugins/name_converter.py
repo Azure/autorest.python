@@ -10,7 +10,8 @@ class NameConverter:
         yaml_code['info']['pascal_case_title'] = NameConverter._to_pascal_case(yaml_code['info']['title'].replace(" ", ""))
         NameConverter._convert_schemas(yaml_code['schemas'])
         NameConverter._convert_operation_groups(yaml_code['operationGroups'], yaml_code['info']['pascal_case_title'])
-        NameConverter._convert_global_parameters(yaml_code['globalParameters'])
+        if yaml_code.get('globalParameters'):
+            NameConverter._convert_global_parameters(yaml_code['globalParameters'])
 
     @staticmethod
     def _convert_global_parameters(global_parameters):
@@ -28,7 +29,7 @@ class NameConverter:
             for operation in operation_group['operations']:
                 NameConverter._convert_language_default_python_case(operation, pad_string='Method')
                 for exception in operation_group.get('exceptions', []):
-                    NameConverter._convert_language_default_python_case(operation)
+                    NameConverter._convert_language_default_python_case(exception)
                 NameConverter._convert_language_default_python_case(operation['request'])
                 for parameter in operation['request'].get('parameters', []):
                     NameConverter._convert_language_default_python_case(parameter, pad_string="Parameter")
