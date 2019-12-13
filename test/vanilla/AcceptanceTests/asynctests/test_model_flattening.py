@@ -48,8 +48,7 @@ from modelflattening.models import (
     FlattenedProduct,
     ErrorException,
     ResourceCollection,
-    SimpleProduct,
-    FlattenParameterGroup)
+    SimpleProduct)
 
 import pytest
 
@@ -246,6 +245,7 @@ class TestModelFlatteningTests(object):
 
     @pytest.mark.asyncio
     async def test_model_flattening_with_grouping(self, client):
+        from modelflattening.models import FlattenParameterGroup
 
         simple_product = SimpleProduct(
             product_id = "123",
