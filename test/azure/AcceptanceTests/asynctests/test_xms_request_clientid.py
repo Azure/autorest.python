@@ -65,7 +65,7 @@ class TestXmsRequestClientId(object):
         # expectedRequestId = '9C4D50EE-2D56-4CD3-8152-34347DC9F2B0'
 
         try:
-            await client.xms_client_request_id.get()
+            await client.x_ms_client_request_id.get()
             self.fail("HttpResponseError wasn't raised as expected")
 
         except HttpResponseError as err:
@@ -76,4 +76,4 @@ class TestXmsRequestClientId(object):
         # expectedRequestId = '9C4D50EE-2D56-4CD3-8152-34347DC9F2B0'
 
         client._config.generate_client_request_id = False
-        await client.xms_client_request_id.get()
+        await client.x_ms_client_request_id.get()

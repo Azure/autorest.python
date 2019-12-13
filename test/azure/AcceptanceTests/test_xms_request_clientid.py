@@ -61,7 +61,7 @@ class TestXmsRequestClientId(object):
 
     def test_client_request_id_in_exception(self, client):
         try:
-            client.xms_client_request_id.get()
+            client.x_ms_client_request_id.get()
             pytest.fail("HttpResponseError wasn't raised as expected")
 
         except HttpResponseError as err:
@@ -69,4 +69,4 @@ class TestXmsRequestClientId(object):
 
     def test_xms_request_client_id_in_client(self, client):
         client._config.generate_client_request_id = False
-        client.xms_client_request_id.get()
+        client.x_ms_client_request_id.get()
