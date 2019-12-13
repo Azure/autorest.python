@@ -40,12 +40,14 @@ class SchemaResponse:
         media_types: List[str],
         status_codes: List[Union[str, int]],
         headers: List[HeaderResponse],
+        binary: bool,
     ):
         self.yaml_data = yaml_data
         self.schema = schema
         self.media_types = media_types
         self.status_codes = status_codes
         self.headers = headers
+        self.binary = binary
 
     @property
     def has_body(self):
@@ -62,8 +64,7 @@ class SchemaResponse:
     @property
     def is_stream_response(self):
         """Is the response expected to be streamable, like a download."""
-        # FIXME look for input
-        return False
+        return self.binary
 
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, str], **kwargs) -> "SchemaResponse":
@@ -79,7 +80,8 @@ class SchemaResponse:
             headers=[
                 HeaderResponse(header_prop['header'], header_prop['schema'])
                 for header_prop in yaml_data["protocol"]["http"].get("headers", [])
-            ]
+            ],
+            binary=yaml_data.get("binary", False),
         )
 
     def __repr__(self):

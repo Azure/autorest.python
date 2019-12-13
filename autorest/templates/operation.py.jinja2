@@ -158,10 +158,10 @@
 {% if operation.any_response_has_headers %}
     response_headers = {}
 {% endif %}
-{% if operation.has_response_body and operation.responses|count > 1 %}
+{% if (operation.has_response_body or operation.is_stream_response) and operation.responses|count > 1 %}
     deserialized = None
 {% endif %}
-{% if operation.has_response_body or operation.any_response_has_headers %}
+{% if operation.has_response_body or operation.is_stream_response or operation.any_response_has_headers %}
   {% if operation.responses|count > 1 %}
     {% for status_code in operation.success_status_code %}
       {% set response =  operation.get_response_from_status(status_code) %}
@@ -176,9 +176,9 @@
   {% endif %}
 {% endif %}
     if cls:
-      return cls(response, {{ 'deserialized' if operation.has_response_body else 'None'}}, {{ 'response_headers' if operation.any_response_has_headers else '{}' }})
+      return cls(response, {{ 'deserialized' if (operation.has_response_body or operation.is_stream_response) else 'None'}}, {{ 'response_headers' if operation.any_response_has_headers else '{}' }})
 
-{% if operation.has_response_body %}
+{% if operation.has_response_body or operation.is_stream_response %}
     return deserialized
 {% endif %}
 {{ operation.python_name }}.metadata = {'url': '{{ operation.url }}'}
