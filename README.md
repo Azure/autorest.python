@@ -22,9 +22,9 @@ AutoRest needs the below config to pick this up as a plug-in - see https://githu
 #### Mapper
 
 ``` yaml
-version: 3.0.6169
+version: 3.0.6175
 use-extension:
-  "@autorest/modelerfour": "4.2.87"
+  "@autorest/modelerfour": "4.2.92"
 
 pipeline:
 
