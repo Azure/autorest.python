@@ -327,8 +327,9 @@ class Operation:
             responses=[
                 SchemaResponse.from_yaml(yaml) for yaml in yaml_data.get("responses", [])
             ],
+            # Exception with no schema means default exception, we don't store them
             exceptions=[
-                SchemaResponse.from_yaml(yaml) for yaml in yaml_data.get("exceptions", [])
+                SchemaResponse.from_yaml(yaml) for yaml in yaml_data.get("exceptions", []) if "schema" in yaml
             ],
             media_types=yaml_data["request"]["protocol"]["http"].get("mediaTypes", [])
         )
