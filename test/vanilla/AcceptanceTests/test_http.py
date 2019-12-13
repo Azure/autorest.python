@@ -48,7 +48,7 @@ from msrest.exceptions import DeserializationError
 
 from httpinfrastructure import AutoRestHttpInfrastructureTestService
 from httpinfrastructure.models import (
-    A, B, C, D, ErrorException)
+    MyException, B, C, D, ErrorException)
 
 import pytest
 
