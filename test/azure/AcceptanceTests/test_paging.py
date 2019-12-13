@@ -46,7 +46,6 @@ from msrest.serialization import Deserializer
 from msrest.authentication import BasicTokenAuthentication
 
 from paging import AutoRestPagingTestService
-from paging.models import PagingGetMultiplePagesWithOffsetOptions
 from custombaseurlpaging import AutoRestParameterizedHostTestPagingClient
 
 from azure.core.exceptions import HttpResponseError
@@ -103,6 +102,7 @@ def test_get_multiple_pages_retry_second(client):
     assert len(items) == 10
 
 def test_get_multiple_pages_with_offset(client):
+    from paging.models import PagingGetMultiplePagesWithOffsetOptions
     options = PagingGetMultiplePagesWithOffsetOptions(offset=100)
     pages = client.paging.get_multiple_pages_with_offset(paging_get_multiple_pages_with_offset_options=options)
     items = [i for i in pages]
