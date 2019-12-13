@@ -185,10 +185,10 @@ class TestHttp(object):
         client.multiple_responses.get_default_model_a200_none()
 
     def test_get_default_model_a400(self, client):
-        self.assert_raises_with_model(400, A,
+        self.assert_raises_with_model(400, MyException,
             client.multiple_responses.get_default_model_a400_valid)
 
-        self.assert_raises_with_model(400, A,
+        self.assert_raises_with_model(400, MyException,
             client.multiple_responses.get_default_model_a400_none)
 
     def test_get_default_none200(self, client):
@@ -231,10 +231,10 @@ class TestHttp(object):
 
     def test_server_error_status_codes_505(self, client):
         self.assert_raises_with_status(requests.codes.http_version_not_supported,
-            client.http_server_failure.post505, True)
+            client.http_server_failure.post505)
 
         self.assert_raises_with_status(requests.codes.http_version_not_supported,
-            client.http_server_failure.delete505, True)
+            client.http_server_failure.delete505)
 
     def test_retry_status_codes_408(self, client):
         client.http_retry.head408()
@@ -246,16 +246,16 @@ class TestHttp(object):
         #client.http_retry.options429()
 
     def test_retry_status_codes_500(self, client):
-        client.http_retry.put500(True)
-        client.http_retry.patch500(True)
+        client.http_retry.put500()
+        client.http_retry.patch500()
 
     def test_retry_status_codes_503(self, client):
-        client.http_retry.post503(True)
-        client.http_retry.delete503(True)
+        client.http_retry.post503()
+        client.http_retry.delete503()
 
     def test_retry_status_codes_504(self, client):
-        client.http_retry.put504(True)
-        client.http_retry.patch504(True)
+        client.http_retry.put504()
+        client.http_retry.patch504()
 
     def test_error_status_codes_400(self, client):
         self.assert_raises_with_status(requests.codes.bad_request,
@@ -269,16 +269,16 @@ class TestHttp(object):
         #    client.http_client_failure.options400)
 
         self.assert_raises_with_status(requests.codes.bad_request,
-            client.http_client_failure.put400, True)
+            client.http_client_failure.put400)
 
         self.assert_raises_with_status(requests.codes.bad_request,
-            client.http_client_failure.patch400, True)
+            client.http_client_failure.patch400)
 
         self.assert_raises_with_status(requests.codes.bad_request,
-            client.http_client_failure.post400, True)
+            client.http_client_failure.post400)
 
         self.assert_raises_with_status(requests.codes.bad_request,
-            client.http_client_failure.delete400, True)
+            client.http_client_failure.delete400)
 
     def test_error_status_codes_401(self, client):
         self.assert_raises_with_status(requests.codes.unauthorized,
@@ -298,23 +298,23 @@ class TestHttp(object):
 
     def test_error_status_codes_404(self, client):
         self.assert_raises_with_status(requests.codes.not_found,
-            client.http_client_failure.put404, True)
+            client.http_client_failure.put404)
 
     def test_error_status_codes_405(self, client):
         self.assert_raises_with_status(requests.codes.method_not_allowed,
-            client.http_client_failure.patch405, True)
+            client.http_client_failure.patch405)
 
     def test_error_status_codes_406(self, client):
         self.assert_raises_with_status(requests.codes.not_acceptable,
-            client.http_client_failure.post406, True)
+            client.http_client_failure.post406)
 
     def test_error_status_codes_407(self, client):
         self.assert_raises_with_status(requests.codes.proxy_authentication_required,
-            client.http_client_failure.delete407, True)
+            client.http_client_failure.delete407)
 
     def test_error_status_codes_409(self, client):
         self.assert_raises_with_status(requests.codes.conflict,
-            client.http_client_failure.put409, True)
+            client.http_client_failure.put409)
 
     def test_error_status_codes_410(self, client):
         self.assert_raises_with_status(requests.codes.gone,
@@ -332,19 +332,19 @@ class TestHttp(object):
             client.http_client_failure.get412)
 
         self.assert_raises_with_status(requests.codes.request_entity_too_large,
-            client.http_client_failure.put413, True)
+            client.http_client_failure.put413)
 
         self.assert_raises_with_status(requests.codes.request_uri_too_large,
-            client.http_client_failure.patch414, True)
+            client.http_client_failure.patch414)
 
         self.assert_raises_with_status(requests.codes.unsupported_media,
-            client.http_client_failure.post415, True)
+            client.http_client_failure.post415)
 
         self.assert_raises_with_status(requests.codes.requested_range_not_satisfiable,
             client.http_client_failure.get416)
 
         self.assert_raises_with_status(requests.codes.expectation_failed,
-            client.http_client_failure.delete417, True)
+            client.http_client_failure.delete417)
 
         self.assert_raises_with_status(429,
             client.http_client_failure.head429)
@@ -355,15 +355,15 @@ class TestHttp(object):
     def test_redirect_to_301(self, client):
         self.assert_status(200, client.http_redirects.head301)
         self.assert_status(200, client.http_redirects.get301)
-        self.assert_status(requests.codes.moved_permanently, client.http_redirects.put301, True)
+        self.assert_status(requests.codes.moved_permanently, client.http_redirects.put301)
 
     def test_redirect_to_302(self, client):
         self.assert_status(200, client.http_redirects.head302)
         self.assert_status(200, client.http_redirects.get302)
-        self.assert_status(requests.codes.found, client.http_redirects.patch302, True)
+        self.assert_status(requests.codes.found, client.http_redirects.patch302)
 
     def test_redicret_to_303(self, client):
-        self.assert_status(200, client.http_redirects.post303, True)
+        self.assert_status(200, client.http_redirects.post303)
 
     def test_redirect_to_307(self, client):
         self.assert_status(200, client.http_redirects.head307)
@@ -371,10 +371,10 @@ class TestHttp(object):
 
         # TODO, 4042586: Support options operations in swagger modeler
         #self.assert_status(200, client.http_redirects.options307)
-        self.assert_status(200, client.http_redirects.put307, True)
-        self.assert_status(200, client.http_redirects.post307, True)
-        self.assert_status(200, client.http_redirects.patch307, True)
-        self.assert_status(200, client.http_redirects.delete307, True)
+        self.assert_status(200, client.http_redirects.put307)
+        self.assert_status(200, client.http_redirects.post307)
+        self.assert_status(200, client.http_redirects.patch307)
+        self.assert_status(200, client.http_redirects.delete307)
 
 
 
@@ -389,30 +389,30 @@ class TestHttp(object):
     def test_success_status_codes_200(self, client):
         client.http_success.head200()
         assert client.http_success.get200()
-        client.http_success.put200(True)
-        client.http_success.post200(True)
-        client.http_success.patch200(True)
-        client.http_success.delete200(True)
+        client.http_success.put200()
+        client.http_success.post200()
+        client.http_success.patch200()
+        client.http_success.delete200()
 
         # TODO, 4042586: Support options operations in swagger modeler
         #assert client.http_success.options200()
 
     def test_success_status_codes_201(self, client):
-        client.http_success.put201(True)
-        client.http_success.post201(True)
+        client.http_success.put201()
+        client.http_success.post201()
 
     def test_success_status_codes_202(self, client):
-        client.http_success.put202(True)
-        client.http_success.post202(True)
-        client.http_success.patch202(True)
-        client.http_success.delete202(True)
+        client.http_success.put202()
+        client.http_success.post202()
+        client.http_success.patch202()
+        client.http_success.delete202()
 
     def test_success_status_codes_204(self, client):
         client.http_success.head204()
-        client.http_success.put204(True)
-        client.http_success.post204(True)
-        client.http_success.delete204(True)
-        client.http_success.patch204(True)
+        client.http_success.put204()
+        client.http_success.post204()
+        client.http_success.delete204()
+        client.http_success.patch204()
 
     def test_success_status_codes_404(self, client):
         client.http_success.head404()
