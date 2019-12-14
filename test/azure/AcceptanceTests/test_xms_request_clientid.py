@@ -64,6 +64,7 @@ class TestXmsRequestClientId(object):
         except HttpResponseError as err:
             pass
 
+    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.python/issues/248")
     def test_xms_request_client_id_in_client(self, client):
         client._config.generate_client_request_id = False
         client.x_ms_client_request_id.get()

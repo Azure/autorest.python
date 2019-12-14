@@ -48,6 +48,7 @@ import pytest
 
 class TestAzureUrl(object):
 
+    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.modelerfour/issues/91")
     @pytest.mark.asyncio
     async def test_azure_url(self, credential, authentication_policy):
 

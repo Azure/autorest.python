@@ -46,6 +46,7 @@ from subscriptionidapiversion.models import ErrorException, SampleResourceGroup
 
 class TestAzureUrl(object):
 
+    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.modelerfour/issues/91")
     def test_azure_url(self, credential, authentication_policy):
 
         sub_id = str(uuid4())

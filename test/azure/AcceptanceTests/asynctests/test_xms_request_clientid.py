@@ -68,6 +68,7 @@ class TestXmsRequestClientId(object):
         except HttpResponseError as err:
             pass
 
+    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.python/issues/248")
     @pytest.mark.asyncio
     async def test_xms_request_client_id_in_client(self, client):
         # expectedRequestId = '9C4D50EE-2D56-4CD3-8152-34347DC9F2B0'
