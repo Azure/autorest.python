@@ -42,9 +42,6 @@ tests = realpath(join(cwd, pardir, "Expected", "AcceptanceTests"))
 sys.path.append(join(tests, "Head"))
 sys.path.append(join(tests, "HeadExceptions"))
 
-from msrest.serialization import Deserializer
-from msrest.authentication import BasicTokenAuthentication
-
 from head.aio import AutoRestHeadTestService
 from headexceptions.aio import AutoRestHeadExceptionTestService
 
@@ -55,20 +52,18 @@ import pytest
 class TestHead(object):
 
     @pytest.mark.asyncio
-    async def test_head(self):
+    async def test_head(self, credential, authentication_policy):
 
-        cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
-        async with AutoRestHeadTestService(cred, base_url="http://localhost:3000") as client:
+        async with AutoRestHeadTestService(credential, base_url="http://localhost:3000", authentication_policy=authentication_policy) as client:
 
             assert await client.http_success.head200()
             assert await client.http_success.head204()
             assert not await client.http_success.head404()
 
     @pytest.mark.asyncio
-    async def test_head_exception(self):
+    async def test_head_exception(self, credential, authentication_policy):
 
-        cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
-        async with AutoRestHeadExceptionTestService(cred, base_url="http://localhost:3000") as client:
+        async with AutoRestHeadExceptionTestService(cred, base_url="http://localhost:3000", authentication_policy=authentication_policy) as client:
 
             await client.head_exception.head200()
             await client.head_exception.head204()

@@ -41,9 +41,6 @@ log_level = int(os.environ.get('PythonLogLevel', 30))
 tests = realpath(join(cwd, pardir, "Expected", "AcceptanceTests"))
 sys.path.append(join(tests, "SubscriptionIdApiVersion"))
 
-from msrest.serialization import Deserializer
-from msrest.authentication import BasicTokenAuthentication
-
 from subscriptionidapiversion.aio import MicrosoftAzureTestUrl
 from subscriptionidapiversion.models import ErrorException, SampleResourceGroup
 
@@ -52,12 +49,11 @@ import pytest
 class TestAzureUrl(object):
 
     @pytest.mark.asyncio
-    async def test_azure_url(self):
+    async def test_azure_url(self, credential, authentication_policy):
 
         sub_id = str(uuid4())
 
-        cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
-        async with MicrosoftAzureTestUrl(cred, sub_id, base_url="http://localhost:3000") as client:
+        async with MicrosoftAzureTestUrl(credential, sub_id, base_url="http://localhost:3000", authentication_policy=authentication_policy) as client:
 
             group = await client.group.get_sample_resource_group("testgoup101")
             assert group.name ==  "testgroup101"

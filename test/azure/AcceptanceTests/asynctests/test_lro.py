@@ -40,9 +40,6 @@ log_level = int(os.environ.get('PythonLogLevel', 30))
 tests = realpath(join(cwd, pardir, pardir, "Expected", "AcceptanceTests"))
 sys.path.append(join(tests, "Lro"))
 
-from msrest.serialization import Deserializer
-from msrest.authentication import BasicTokenAuthentication
-
 from azure.core.exceptions import DecodeError
 from azure.core.polling import async_poller
 from azure.core.pipeline.policies import ContentDecodePolicy, AsyncRetryPolicy, HeadersPolicy, RequestIdPolicy
@@ -86,9 +83,8 @@ class AutorestTestARMPolling(AsyncARMPolling):
         return (await self._client._pipeline.run(request, stream=False, **self._operation_config)).http_response
 
 @pytest.fixture()
-async def client(cookie_policy):
+async def client(cookie_policy, credential):
     """Create a AutoRestLongRunningOperationTestService client with test server credentials."""
-    cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
     policies = [
         RequestIdPolicy(),
         HeadersPolicy(),
@@ -96,7 +92,7 @@ async def client(cookie_policy):
         AsyncRetryPolicy(),
         cookie_policy
     ]
-    async with AutoRestLongRunningOperationTestService(cred, base_url="http://localhost:3000", policies=policies, polling_interval=0) as client:
+    async with AutoRestLongRunningOperationTestService(credential, base_url="http://localhost:3000", policies=policies, polling_interval=0) as client:
         yield client
 
 

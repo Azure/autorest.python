@@ -41,8 +41,6 @@ log_level = int(os.environ.get('PythonLogLevel', 30))
 tests = realpath(join(cwd, pardir, "Expected", "AcceptanceTests"))
 sys.path.append(join(tests, "AzureSpecials"))
 
-from msrest.serialization import Deserializer
-from msrest.authentication import BasicTokenAuthentication
 from azure.core.exceptions import HttpResponseError
 
 from azurespecialproperties.aio import AutoRestAzureSpecialParametersTestClient
@@ -51,11 +49,10 @@ from azurespecialproperties import models
 import pytest
 
 @pytest.fixture
-async def client():
-    cred = BasicTokenAuthentication({"access_token":123})
+async def client(credential, authentication_policy):
     valid_subscription = '1234-5678-9012-3456'
     async with AutoRestAzureSpecialParametersTestClient(
-        cred, valid_subscription, base_url="http://localhost:3000"
+        credential, valid_subscription, base_url="http://localhost:3000", authentication_policy=authentication_policy
     ) as client:
         yield client
 

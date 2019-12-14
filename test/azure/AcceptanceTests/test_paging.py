@@ -43,7 +43,6 @@ sys.path.append(join(tests, "Paging"))
 sys.path.append(join(tests, "CustomUrlPaging"))
 
 from msrest.serialization import Deserializer
-from msrest.authentication import BasicTokenAuthentication
 
 from paging import AutoRestPagingTestService
 from custombaseurlpaging import AutoRestParameterizedHostTestPagingClient
@@ -53,16 +52,14 @@ from azure.core.exceptions import HttpResponseError
 import pytest
 
 @pytest.fixture
-def client():
-    cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
-    with AutoRestPagingTestService(cred, base_url="http://localhost:3000") as client:
+def client(credential, authentication_policy):
+    with AutoRestPagingTestService(credential, base_url="http://localhost:3000", authentication_policy=authentication_policy) as client:
         yield client
 
 
 @pytest.fixture
-def custom_url_client():
-    cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
-    with AutoRestParameterizedHostTestPagingClient(cred, host="host:3000") as client:
+def custom_url_client(credential, authentication_policy):
+    with AutoRestParameterizedHostTestPagingClient(credential, host="host:3000", authentication_policy=authentication_policy) as client:
         yield client
 
 

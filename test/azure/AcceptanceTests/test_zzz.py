@@ -43,8 +43,6 @@ log_level = int(os.environ.get('PythonLogLevel', 30))
 tests = realpath(join(cwd, pardir, "Expected", "AcceptanceTests"))
 sys.path.append(join(tests, "AzureReport"))
 
-from msrest.authentication import BasicTokenAuthentication
-
 from azurereport import AutoRestReportServiceForAzure
 
 

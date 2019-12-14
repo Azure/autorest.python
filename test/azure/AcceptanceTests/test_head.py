@@ -42,9 +42,6 @@ tests = realpath(join(cwd, pardir, "Expected", "AcceptanceTests"))
 sys.path.append(join(tests, "Head"))
 sys.path.append(join(tests, "HeadExceptions"))
 
-from msrest.serialization import Deserializer
-from msrest.authentication import BasicTokenAuthentication
-
 from head import AutoRestHeadTestService
 from headexceptions import AutoRestHeadExceptionTestService
 
@@ -54,21 +51,19 @@ import pytest
 
 class TestHead(object):
 
-    def test_head(self):
+    def test_head(self, credential, authentication_policy):
 
-        cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
-        client = AutoRestHeadTestService(cred, base_url="http://localhost:3000")
+        with AutoRestHeadTestService(credential, base_url="http://localhost:3000", authentication_policy=authentication_policy) as client:
 
-        assert client.http_success.head200()
-        assert client.http_success.head204()
-        assert not client.http_success.head404()
+            assert client.http_success.head200()
+            assert client.http_success.head204()
+            assert not client.http_success.head404()
 
-    def test_head_exception(self):
+    def test_head_exception(self, credential, authentication_policy):
 
-        cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
-        client = AutoRestHeadExceptionTestService(cred, base_url="http://localhost:3000")
+        with AutoRestHeadExceptionTestService(credential, base_url="http://localhost:3000", authentication_policy=authentication_policy) as client:
 
-        client.head_exception.head200()
-        client.head_exception.head204()
-        with pytest.raises(HttpResponseError):
-            client.head_exception.head404()
+            client.head_exception.head200()
+            client.head_exception.head204()
+            with pytest.raises(HttpResponseError):
+                client.head_exception.head404()

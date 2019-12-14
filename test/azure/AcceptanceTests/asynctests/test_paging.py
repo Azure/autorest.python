@@ -42,9 +42,6 @@ tests = realpath(join(cwd, pardir, pardir, "Expected", "AcceptanceTests"))
 sys.path.append(join(tests, "Paging"))
 sys.path.append(join(tests, "CustomUrlPaging"))
 
-from msrest.serialization import Deserializer
-from msrest.authentication import BasicTokenAuthentication
-
 from paging.aio import AutoRestPagingTestService
 from custombaseurlpaging.aio import AutoRestParameterizedHostTestPagingClient
 
@@ -54,8 +51,7 @@ from azure.core.pipeline.policies import ContentDecodePolicy, AsyncRetryPolicy, 
 import pytest
 
 @pytest.fixture
-async def client(cookie_policy):
-    cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
+async def client(cookie_policy, credential):
     policies = [
         RequestIdPolicy(),
         HeadersPolicy(),
@@ -63,13 +59,12 @@ async def client(cookie_policy):
         AsyncRetryPolicy(),
         cookie_policy
     ]
-    async with AutoRestPagingTestService(cred, base_url="http://localhost:3000", policies=policies) as client:
+    async with AutoRestPagingTestService(credential, base_url="http://localhost:3000", policies=policies) as client:
         yield client
 
 @pytest.fixture
-async def custom_url_client():
-    cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
-    async with AutoRestParameterizedHostTestPagingClient(cred, host="host:3000") as client:
+async def custom_url_client(credential, authentication_policy):
+    async with AutoRestParameterizedHostTestPagingClient(credential, host="host:3000", authentication_policy=authentication_policy) as client:
         yield client
 
 @pytest.mark.asyncio

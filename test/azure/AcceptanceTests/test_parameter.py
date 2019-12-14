@@ -44,7 +44,6 @@ sys.path.append(join(tests, "SubscriptionIdApiVersion"))
 sys.path.append(join(tests, "AzureBodyDuration"))
 sys.path.append(join(tests, "AzureSpecials"))
 
-from msrest.authentication import BasicTokenAuthentication
 from msrest.exceptions import DeserializationError, ValidationError
 
 from azureparametergrouping import AutoRestParameterGroupingTestService
@@ -65,9 +64,8 @@ def valid_subscription():
     return '1234-5678-9012-3456'
 
 @pytest.fixture
-def azure_client(valid_subscription):
-    cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
-    with AutoRestAzureSpecialParametersTestClient(cred, valid_subscription, base_url="http://localhost:3000") as client:
+def azure_client(valid_subscription, credential, authentication_policy):
+    with AutoRestAzureSpecialParametersTestClient(credential, valid_subscription, base_url="http://localhost:3000", authentication_policy=authentication_policy) as client:
         yield client
 
 @pytest.fixture

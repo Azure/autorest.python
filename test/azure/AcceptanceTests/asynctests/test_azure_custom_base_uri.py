@@ -46,8 +46,6 @@ from msrest.exceptions import (
     SerializationError,
     ValidationError
 )
-from msrest.authentication import BasicTokenAuthentication
-
 from azure.core.exceptions import ServiceRequestError
 
 from custombaseurl.aio import AutoRestParameterizedHostTestClient
