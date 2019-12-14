@@ -36,6 +36,7 @@ from .operation import Operation
 from .lro_operation import LROOperation
 from .paging_operation import PagingOperation
 from .parameter import Parameter, ParameterLocation
+from .client import Client
 
 
 _LOGGER = logging.getLogger(__name__)
@@ -97,6 +98,7 @@ class CodeModel:
         self.global_parameters: List[Parameter] = []
         self.custom_base_url: Optional[str] = None
         self.base_url: Optional[str] = None
+        self.service_client = Client()
 
     def lookup_schema(self, schema_id: int) -> None:
         """Looks to see if the schema has already been created.
@@ -240,7 +242,6 @@ class CodeModel:
         # Insert after the body parameter these fake parameters
         body_parameter_index = operation.parameters.index(operation.body_parameter)
         operation.parameters[body_parameter_index:body_parameter_index] = fake_parameters
-        operation.is_flattened = True
 
     def _add_properties_from_inheritance(self) -> None:
         """Adds properties from base classes to schemas with parents.
@@ -273,7 +274,7 @@ class CodeModel:
         schema_obj = obj.schema
         if schema_obj:
             schema_obj_id = id(obj.schema)
-            _LOGGER.debug("Looking for id %s (%s) for member %s", schema_obj_id, schema_obj, obj)
+            _LOGGER.debug("Looking for id %s for member %s", schema_obj_id, obj)
             try:
                 obj.schema = self.lookup_schema(schema_obj_id)
             except KeyError:

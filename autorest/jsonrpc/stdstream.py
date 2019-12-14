@@ -33,10 +33,15 @@ from typing import BinaryIO
 
 from jsonrpc.jsonrpc2 import JSONRPC20Request, JSONRPC20Response
 
-from . import AutorestAPI
+from . import AutorestAPI, Channel
 
 
+# Being we use "Message" as default logger, we can't propate this particular
+# file or we'll get an infite loop
+# If Logging at this deep level is expected, go with a config file
+# https://docs.python.org/3.8/library/logging.config.html
 _LOGGER = logging.getLogger(__name__)
+_LOGGER.propagate = False
 
 
 def read_message(stream: BinaryIO = sys.stdin.buffer) -> str:
@@ -77,6 +82,7 @@ class StdStreamAutorestAPI(AutorestAPI):
     """The stream API with Autorest
     """
     def __init__(self, session_id: str):
+        super().__init__()
         self.session_id = session_id
 
     def write_file(self, filename: str, file_content: str) -> None:
@@ -135,7 +141,12 @@ class StdStreamAutorestAPI(AutorestAPI):
         return json.loads(read_message())["result"]
 
 
-    def message(self, message):
+    def message(self, channel: Channel, text: str) -> None:
+        # https://github.com/Azure/autorest/blob/ad7f01ffe17aa74ad0075d6b1562a3fa78fd2e96/src/autorest-core/lib/message.ts#L53
+        message = {
+            'Channel': channel.value,
+            'Text': text,
+        }
         _LOGGER.debug(f"Sending a message to Autorest: {message}")
         request = JSONRPC20Request(
             method="Message",

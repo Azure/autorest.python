@@ -76,6 +76,7 @@ class TestCustomBaseUri(object):
         with pytest.raises(ServiceRequestError):
             client.paths.get_empty("local")
 
+    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.testserver/issues/97")
     def test_more_optiopns(self):
-        client = AutoRestParameterizedCustomHostTestClient("test12", "host:3000")
-        client.paths.get_empty("http://lo", "cal", "key1")
+        with AutoRestParameterizedCustomHostTestClient("test12", "host:3000") as client:
+            client.paths.get_empty("http://lo", "cal", "key1")

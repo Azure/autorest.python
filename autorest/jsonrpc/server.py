@@ -41,7 +41,7 @@ def GetPluginNames():
 
 @dispatcher.add_method
 def Process(plugin_name, session_id):
-    _LOGGER.info("Process was called by Autorest")
+    _LOGGER.debug("Process was called by Autorest")
     from ..code_generator import CodeGenerator
     from .stdstream import StdStreamAutorestAPI
 
@@ -51,17 +51,10 @@ def Process(plugin_name, session_id):
     try:
         return code_generator.process()
     except Exception as err:
-        _LOGGER.exception("Unable to process autorest message")
+        _LOGGER.exception("Python generator raised an exception")
 
 
 def main():
-    logging.basicConfig(
-        level=logging.INFO,
-        #stream=sys.stderr,
-        #filename="autorest_python.log"
-        handlers=[logging.FileHandler("autorest_python.log", 'w', 'utf-8')]
-    )
-
     if os.environ.get("AUTOREST_PYTHON_ATTACH_VSCODE_DEBUG", False):
         try:
             import ptvsd
@@ -74,18 +67,18 @@ def main():
         ptvsd.wait_for_attach()
         breakpoint()
 
-    _LOGGER.info("Starting JSON RPC server")
+    _LOGGER.debug("Starting JSON RPC server")
 
     while True:
-        _LOGGER.info(f"Trying to read")
+        _LOGGER.debug("Trying to read")
         message = read_message()
 
         response = JSONRPCResponseManager.handle(message, dispatcher).json
-        _LOGGER.info(f"Produced: {response}")
+        _LOGGER.debug("Produced: %s", response)
         write_message(response)
-        _LOGGER.info(f"Message processed")
+        _LOGGER.debug("Message processed")
 
-    _LOGGER.info("Ending JSON RPC server")
+    _LOGGER.debug("Ending JSON RPC server")
 
 if __name__ == "__main__":
     main()

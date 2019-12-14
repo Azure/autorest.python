@@ -61,6 +61,7 @@ async def client():
 
 class TestValidation(object):
 
+    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.modelerfour/issues/83")
     @pytest.mark.asyncio
     async def test_with_constant_in_path(self, client):
         await client.get_with_constant_in_path()
@@ -117,6 +118,7 @@ class TestValidation(object):
             assert err.rule ==  "maximum"
             assert err.target ==  "id"
 
+    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.modelerfour/issues/83")
     @pytest.mark.asyncio
     async def test_minimum_ex_validation(self, client):
         try:
@@ -126,6 +128,7 @@ class TestValidation(object):
             assert err.rule ==  "minimum_ex"
             assert "capacity" in  err.target
 
+    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.modelerfour/issues/83")
     @pytest.mark.asyncio
     async def test_maximum_ex_validation(self, client):
         try:
@@ -135,6 +138,7 @@ class TestValidation(object):
             assert err.rule ==  "maximum_ex"
             assert "capacity" in  err.target
 
+    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.modelerfour/issues/83")
     @pytest.mark.asyncio
     async def test_max_items_validation(self, client):
         try:
@@ -145,6 +149,7 @@ class TestValidation(object):
             assert err.rule ==  "max_items"
             assert "display_names" in  err.target
 
+    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.modelerfour/issues/90")
     @pytest.mark.asyncio
     async def test_api_version_validation(self):
         client = AutoRestValidationTest(

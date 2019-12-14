@@ -1,29 +1,18 @@
 {% import 'keywords.jinja2' as keywords with context %}
+{% from 'operation_tools.jinja2' import response_handling %}
 {% set trace_decorator = "@distributed_trace_async" if async_mode else "@distributed_trace" %}
 {% set stream_request_parameter = "stream=" ~ ("True" if operation.is_stream_response else "False") %}
 {% set request_as_xml = ", is_xml=False" if "xml" in operation.request_content_type else "" %}
 {% macro return_docstring() %}
 {% if operation.responses | selectattr('has_body') | first %}
-:return: {{ operation.responses|map(attribute='schema')|map(attribute='name')|join(' or ') }} or the result of cls(response)
-    :rtype: {% for response in operation.responses %}{{response.schema.get_python_type(code_model.namespace)}}{% if not loop.last %} or {% endif %}{% endfor %}
+    :return: {{ operation.responses|map(attribute='schema')|map(attribute='name')|join(' or ') }} or the result of cls(response)
+    :rtype: {% for response in operation.responses %}{{response.schema.get_python_type(code_model.namespace) if response.has_body else "None"}}{% if not loop.last %} or {% endif %}{% endfor %}
 {% else %}
-:return: None
-:rtype: None
+    :return: None
+    :rtype: None
 {% endif %}
 {% endmacro %}
 {% macro exception_name() %}{{ operation.exceptions[0].schema.name }}Exception{% endmacro %}
-{% macro response_handling(response) %}
-  {% if response.headers %}
-    {% for response_header in response.headers %}
-response_headers['{{ response_header.name }}']=self._deserialize('{{ response_header.schema.get_serialization_type() }}', response.headers.get('{{ response_header.name }}'))
-    {% endfor %}
-  {% endif %}
-  {% if response.has_body and operation.is_stream_response %}
-deserialized = response.stream_download(self._client._pipeline)
-  {% elif response.has_body %}
-deserialized = self._deserialize('{{ response.schema.get_serialization_type() }}', response)
-  {% endif %}
-{% endmacro %}
 {# actual template starts here #}
 {% if code_model.tracing and operation.want_tracing %}
 {{ trace_decorator }}
@@ -42,10 +31,8 @@ deserialized = self._deserialize('{{ response.schema.get_serialization_type() }}
 
 {% endif -%}
 {% for parameter in operation.method_parameters %}
-    {% if parameter.implementation != 'Client' %}
     :param {{ parameter.serialized_name }}: {{ parameter.description }}
     :type {{ parameter.serialized_name }}: {{ parameter.schema.get_python_type(code_model.namespace) }}
-    {% endif %}
 {% endfor %}
     :param callable cls: A custom type or function that will be passed the direct response
     {{ return_docstring() }}
@@ -115,6 +102,9 @@ deserialized = self._deserialize('{{ response.schema.get_serialization_type() }}
 {% if operation.has_request_body %}
     header_parameters['Content-Type'] = '{{ operation.request_content_type }}'
 {% endif %}
+{% if code_model.options['azure_arm'] %}
+    kwargs.setdefault('request_id', str(uuid.uuid1()))
+{% endif %}
 
 {% if operation.has_request_body %}
     # Construct body
@@ -168,27 +158,27 @@ deserialized = self._deserialize('{{ response.schema.get_serialization_type() }}
 {% if operation.any_response_has_headers %}
     response_headers = {}
 {% endif %}
-{% if operation.has_response_body and operation.responses|count > 1 %}
+{% if (operation.has_response_body or operation.is_stream_response) and operation.responses|count > 1 %}
     deserialized = None
 {% endif %}
-{% if operation.has_response_body or operation.any_response_has_headers %}
+{% if operation.has_response_body or operation.is_stream_response or operation.any_response_has_headers %}
   {% if operation.responses|count > 1 %}
     {% for status_code in operation.success_status_code %}
       {% set response =  operation.get_response_from_status(status_code) %}
       {% if response.headers or response.has_body %}
     if response.status_code == {{ status_code }}:
-        {{ response_handling(response) }}
+        {{ response_handling(response)|indent(8) }}
       {% endif %}
     {% endfor %}
   {% else %}
     {% set response = operation.responses[0] %}
-    {{ response_handling(response) }}
+    {{ response_handling(response)|indent }}
   {% endif %}
 {% endif %}
     if cls:
-      return cls(response, {{ 'deserialized' if operation.has_response_body else 'None'}}, {{ 'response_headers' if operation.any_response_has_headers else '{}' }})
+      return cls(response, {{ 'deserialized' if (operation.has_response_body or operation.is_stream_response) else 'None'}}, {{ 'response_headers' if operation.any_response_has_headers else '{}' }})
 
-{% if operation.has_response_body %}
+{% if operation.has_response_body or operation.is_stream_response %}
     return deserialized
 {% endif %}
 {{ operation.python_name }}.metadata = {'url': '{{ operation.url }}'}

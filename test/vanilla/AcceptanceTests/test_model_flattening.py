@@ -48,8 +48,7 @@ from modelflattening.models import (
     FlattenedProduct,
     ErrorException,
     ResourceCollection,
-    SimpleProduct,
-    FlattenParameterGroup)
+    SimpleProduct)
 
 import pytest
 
@@ -60,6 +59,7 @@ def client():
 
 class TestModelFlatteningTests(object):
 
+    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.modelerfour/issues/14")
     def test_flattening_array(self, client):
 
         #Array
@@ -93,6 +93,7 @@ class TestModelFlatteningTests(object):
 
         client.put_array(resourceArray)
 
+    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.modelerfour/issues/14")
     def test_flattening_dictionary(self, client):
 
         #Dictionary
@@ -130,6 +131,7 @@ class TestModelFlatteningTests(object):
 
         client.put_dictionary(resourceDictionary)
 
+    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.modelerfour/issues/14")
     def test_flattening_complex_object(self, client):
 
         #ResourceCollection
@@ -211,6 +213,7 @@ class TestModelFlatteningTests(object):
 
         client.put_resource_collection(resourceComplexObject)
 
+    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.modelerfour/issues/14")
     def test_model_flattening_simple(self, client):
 
         simple_product = SimpleProduct(
@@ -226,6 +229,7 @@ class TestModelFlatteningTests(object):
         result.additional_properties = {} # Not the purpose of this test. This enables the ==.
         assert result ==  simple_product
 
+    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.modelerfour/issues/14")
     def test_model_flattening_with_parameter_flattening(self, client):
 
         simple_product = SimpleProduct(
@@ -240,7 +244,9 @@ class TestModelFlatteningTests(object):
         result.additional_properties = {} # Not the purpose of this test. This enables the ==.
         assert result ==  simple_product
 
+    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.modelerfour/issues/10")
     def test_model_flattening_with_grouping(self, client):
+        from modelflattening.models import FlattenParameterGroup
 
         simple_product = SimpleProduct(
             product_id = "123",

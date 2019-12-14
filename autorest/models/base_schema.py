@@ -1,7 +1,7 @@
 from .imports import FileImport
 
 from abc import ABC, abstractmethod
-from typing import Any, Dict, Optional
+from typing import Any, Dict, Optional, List
 
 
 class BaseSchema(ABC):
@@ -69,3 +69,9 @@ class BaseSchema(ABC):
 
     def get_validation_map(self) -> Dict[str, Any]:
         return None
+
+    def get_serialization_constraints(self) -> List[str]:
+        return None
+
+    def __repr__(self):
+        return f"<{self.__class__.__name__}>"

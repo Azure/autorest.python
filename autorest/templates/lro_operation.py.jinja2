@@ -1,6 +1,8 @@
-{% set def_keyword = "async def" if async_mode else "def" %}
-{% set await_keyword = "await " if async_mode else "" %}
+{% import 'keywords.jinja2' as keywords with context %}
+{% from 'operation_tools.jinja2' import response_handling %}
 {% set trace_decorator = "@distributed_trace_async" if async_mode else "@distributed_trace" %}
+{% set async_prefix = "Async" if async_mode else "" %}
+{% set poller = "async_poller" if async_mode else "LROPoller" %}
 {% macro exception_name() %}{{ operation.exceptions[0].schema.name }}Exception{% endmacro %}
 {% macro response_headers(response) %}
 response_headers = {
@@ -9,10 +11,11 @@ response_headers = {
     {% endfor %}
 }
 {% endmacro %}
+{# actual template starts here #}
 {% if code_model.tracing %}
 {{ trace_decorator }}
 {% endif %}
-{{ def_keyword }} {{ operation.python_name }}(self{{ operation.method_signature }}, cls=None, polling=True, **kwargs):
+{{ keywords.def }} {{ operation.python_name }}(self{{ operation.method_signature }}, cls=None, polling=True, **kwargs):
     """{{operation.description.strip() }}.
 
     {{ "FIXME: add operation.summary\n" }}
@@ -23,10 +26,8 @@ response_headers = {
 
 {% endif -%}
 {% for parameter in operation.method_parameters %}
-    {% if parameter.implementation != 'Client' %}
     :param {{ parameter.serialized_name }}: {{ parameter.description }}
     :type {{ parameter.serialized_name }}: {{ parameter.schema.get_python_type(code_model.namespace) }}
-    {% endif %}
 {% endfor %}
     :param callable cls: A custom type or function that will be passed the direct response
     :param polling: True for ARMPolling, False for no polling, or a
@@ -43,37 +44,33 @@ response_headers = {
     :raises ~{{ code_model.namespace }}.models.{{ exception_name() }}:
     {% endif %}
     """
-    raw_result = self._{{ operation.name }}_initial(
-        {% for parameter in operation.parameters %}
-            {% if parameter.implementation != 'Client' %}
+    raw_result = {{ keywords.await }}self._{{ operation.name }}_initial(
+        {% for parameter in operation.method_parameters %}
         {{ parameter.serialized_name }}={{ parameter.serialized_name }},
-            {% endif %}
         {% endfor %}
-        cls=lambda x,y,z: x
+        cls=lambda x,y,z: x,
         **kwargs
     )
 
     def get_long_running_output(response):
-        {% if operation.lro_response_type %}
-        deserialized = self._deserialize('{{ operation.lro_response_type }}', response)
-
-        return deserialized
-        {% else %}
-        if cls:
-            {% if operation.has_response_body or operation.any_response_has_headers %}
-                {% set response = operation.responses[0] %}
-            {{ response_headers(response) }}
-            {% else %}
-            response_headers = {}
-            {% endif %}
-            return cls(response, None, response_headers)
+        {% if operation.lro_response.has_headers %}
+        response_headers = {}
         {% endif %}
+        {% if operation.lro_response %}
+        {{ response_handling(operation.lro_response)|indent(8) }}
+        {% endif %}
+        if cls:
+            return cls(response, {{ 'deserialized' if operation.lro_response.has_body else 'None'}}, {{ 'response_headers' if operation.lro_response.has_headers else '{}' }})
+        {% if operation.lro_response.has_body %}
+        return deserialized
+        {% endif %}
+
     lro_delay = kwargs.get(
         'polling_interval',
         self._config.polling_interval
     )
-    if polling is True: polling_method = ARMPolling(lro_delay, **kwargs)
-    elif polling is False: polling_method = NoPolling()
+    if polling is True: polling_method = {{ async_prefix }}ARMPolling(lro_delay, **kwargs)
+    elif polling is False: polling_method = {{ async_prefix }}NoPolling()
     else: polling_method = polling
-    return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+    return {{ keywords.await }}{{ poller }}(self._client, raw_result, get_long_running_output, polling_method)
 {{ operation.python_name }}.metadata = {'url': '{{ operation.url }}'}

@@ -61,7 +61,7 @@ swagger_dir = "node_modules/@microsoft.azure/autorest.testserver/swagger"
 
 
 @task
-def regen_expected(c, opts):
+def regen_expected(c, opts, debug):
     output_dir = "{}/{}".format(opts['output_base_dir'], opts['output_dir']) if opts.get('output_base_dir') else opts['output_dir']
     keys = opts['mappings'].keys()
 
@@ -85,6 +85,9 @@ def regen_expected(c, opts):
         for swagger_file in swagger_files:
             input_file_name = "{}/{}".format(opts['input_base_dir'], swagger_file) if opts.get('input_base_dir') else swagger_file
             args.append("--input-file={}".format(input_file_name))
+
+        if debug:
+            args.append("--debug")
 
         if opts.get('add_credentials') and opts['add_credentials']:
             args.append("--add-credentials=true")
@@ -125,7 +128,7 @@ def regen_expected(c, opts):
 
 
 @task
-def regenerate_python(c, swagger_name=None):
+def regenerate_python(c, swagger_name=None, debug=False):
     if swagger_name:
         default_mapping = {k: v for k, v in default_mappings.items() if swagger_name.lower() in k.lower()}
     else:
@@ -135,17 +138,16 @@ def regenerate_python(c, swagger_name=None):
         'input_base_dir': swagger_dir,
         'mappings': default_mapping,
         'output_dir': 'Expected',
-        'language': 'python',
         'flattening_threshold': '1',
         'vanilla': True,
         'keep_version': True,
         'ns_prefix': True
     }
-    regen_expected(c, opts)
+    regen_expected(c, opts, debug)
 
 
 @task
-def regenerate_python_azure(c, swagger_name=None):
+def regenerate_python_azure(c, swagger_name=None, debug=False):
     if swagger_name:
         default_mapping = {k: v for k, v in default_azure_mappings.items() if swagger_name.lower() in k.lower()}
     else:
@@ -155,15 +157,14 @@ def regenerate_python_azure(c, swagger_name=None):
         'input_base_dir': swagger_dir,
         'mappings': default_mapping,
         'output_dir': 'Expected',
-        'language': 'python',
         'flattening_threshold': '1',
         'ns_prefix': True
     }
-    regen_expected(c, opts)
+    regen_expected(c, opts, debug)
 
 
 @task
-def regenerate_python_arm(c, swagger_name=None):
+def regenerate_python_arm(c, swagger_name=None, debug=False):
     if swagger_name:
         default_mapping = {k: v for k, v in default_arm_mappings.items() if swagger_name.lower() in k.lower()}
     else:
@@ -173,20 +174,19 @@ def regenerate_python_arm(c, swagger_name=None):
         'input_base_dir': swagger_dir,
         'mappings': default_mapping,
         'output_dir': 'Expected',
-        'language': 'python',
         'azure_arm': True,
         'flattening_threshold': '1',
         'ns_prefix': True
     }
-    regen_expected(c, opts)
+    regen_expected(c, opts, debug)
 
 
 @task
-def regenerate(c, swagger_name=None):
+def regenerate(c, swagger_name=None, debug=False):
     # regenerate expected code for tests
-    regenerate_python(c, swagger_name)
-    regenerate_python_azure(c, swagger_name)
-    regenerate_python_arm(c, swagger_name)
+    regenerate_python(c, swagger_name, debug)
+    regenerate_python_azure(c, swagger_name, debug)
+    regenerate_python_arm(c, swagger_name, debug)
 
 
 @task

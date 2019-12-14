@@ -1,4 +1,6 @@
 from jinja2 import Template, PackageLoader, Environment
+from .import_serializer import FileImportSerializer
+
 
 class GeneralSerializer:
     def __init__(self, code_model, env, async_mode):
@@ -21,7 +23,10 @@ class GeneralSerializer:
         template = self.env.get_template("service_client.py.jinja2")
         self._service_client_file = template.render(
             code_model=self.code_model,
-            async_mode=self.async_mode
+            async_mode=self.async_mode,
+            imports=FileImportSerializer(
+                self.code_model.service_client.imports(self.code_model, self.async_mode)
+            ),
         )
 
         template = self.env.get_template("config.py.jinja2")

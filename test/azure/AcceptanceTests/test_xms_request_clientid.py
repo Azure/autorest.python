@@ -41,8 +41,6 @@ log_level = int(os.environ.get('PythonLogLevel', 30))
 tests = realpath(join(cwd, pardir, "Expected", "AcceptanceTests"))
 sys.path.append(join(tests, "AzureSpecials"))
 
-from msrest.serialization import Deserializer
-from msrest.authentication import BasicTokenAuthentication
 from azure.core.exceptions import HttpResponseError
 
 from azurespecialproperties import AutoRestAzureSpecialParametersTestClient
@@ -51,22 +49,22 @@ from azurespecialproperties import models
 import pytest
 
 @pytest.fixture
-def client():
+def client(credential, authentication_policy):
     valid_subscription = '1234-5678-9012-3456'
-    cred = BasicTokenAuthentication({"access_token":123})
-    with AutoRestAzureSpecialParametersTestClient(cred, valid_subscription, base_url="http://localhost:3000") as client:
+    with AutoRestAzureSpecialParametersTestClient(credential, valid_subscription, base_url="http://localhost:3000", authentication_policy=authentication_policy) as client:
         yield client
 
 class TestXmsRequestClientId(object):
 
     def test_client_request_id_in_exception(self, client):
         try:
-            client.xms_client_request_id.get()
+            client.x_ms_client_request_id.get()
             pytest.fail("HttpResponseError wasn't raised as expected")
 
         except HttpResponseError as err:
             pass
 
+    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.python/issues/248")
     def test_xms_request_client_id_in_client(self, client):
         client._config.generate_client_request_id = False
-        client.xms_client_request_id.get()
+        client.x_ms_client_request_id.get()

@@ -81,7 +81,7 @@ class OperationGroup:
     @classmethod
     def from_yaml(cls, code_model, yaml_data: Dict[str, Any], **kwargs) -> "OperationGroup":
         name = yaml_data['language']['python']['name']
-        _LOGGER.info("Parsing %s operation group", name)
+        _LOGGER.debug("Parsing %s operation group", name)
 
         operations = []
         for operation_yaml in yaml_data["operations"]:

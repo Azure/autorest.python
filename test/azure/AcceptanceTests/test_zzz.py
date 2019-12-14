@@ -43,8 +43,6 @@ log_level = int(os.environ.get('PythonLogLevel', 30))
 tests = realpath(join(cwd, pardir, "Expected", "AcceptanceTests"))
 sys.path.append(join(tests, "AzureReport"))
 
-from msrest.authentication import BasicTokenAuthentication
-
 from azurereport import AutoRestReportServiceForAzure
 
 
@@ -53,8 +51,7 @@ class TestAcceptance(object):
 
     def test_ensure_coverage(self):
 
-        cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
-        client = AutoRestReportServiceForAzure(cred, base_url="http://localhost:3000")
+        client = AutoRestReportServiceForAzure(base_url="http://localhost:3000")
         report = client.get_report(platform.python_version())
 
         skipped = [k for k, v in report.items() if v == 0]

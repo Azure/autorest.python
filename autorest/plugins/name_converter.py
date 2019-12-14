@@ -37,7 +37,7 @@ class NameConverter:
 
     @staticmethod
     def _convert_schemas(schemas):
-        for obj in schemas['objects']:
+        for obj in schemas.get('objects', []):
             NameConverter._convert_object_schema(obj)
         for type_list, schema_yamls in schemas.items():
             for schema in schema_yamls:

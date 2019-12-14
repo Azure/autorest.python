@@ -46,7 +46,6 @@ from msrest.exceptions import (
     SerializationError,
     ValidationError
 )
-from msrest.authentication import BasicTokenAuthentication
 
 from azure.core.exceptions import ServiceRequestError
 
@@ -57,16 +56,13 @@ import pytest
 
 @pytest.fixture
 def client():
-    cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
-    with AutoRestParameterizedHostTestClient(cred, host="host:3000") as client:
+    with AutoRestParameterizedHostTestClient(host="host:3000") as client:
         client._config.retry_policy.retries = 0
         yield client
 
 class TestCustomBaseUri(object):
 
-    def test_custom_base_uri_positive(self):
-        cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
-        client = AutoRestParameterizedHostTestClient(cred, host="host:3000")
+    def test_custom_base_uri_positive(self, client):
         client.paths.get_empty("local")
 
     def test_custom_base_uri_get_empty(self, client):

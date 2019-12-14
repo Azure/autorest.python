@@ -69,9 +69,6 @@ class Operation:
         self.responses = responses
         self.exceptions = exceptions
         self.media_types = media_types
-        # Will be set by codemodel if this operation is flattened, means to treat
-        # parameters a little differently
-        self.is_flattened = False
         self.want_description_docstring = want_description_docstring
         self.want_tracing = want_tracing
 
@@ -121,8 +118,7 @@ class Operation:
     @property
     def is_stream_response(self):
         """Is the response expected to be streamable, like a download."""
-        # FIXME look for input
-        return False
+        return any(response.is_stream_response for response in self.responses)
 
     @property
     def has_request_body(self):
@@ -212,7 +208,9 @@ class Operation:
                 raise ValueError(f"Do not support {parameter.style} yet")
             optional_parameters.append(f"div='{div_char}'")
 
-        optional_parameters += Operation.build_constraints(parameter.constraints)
+        # optional_parameters += Operation.build_constraints(parameter.constraints)
+        serialization_constraints = parameter.schema.get_serialization_constraints()
+        optional_parameters += serialization_constraints if serialization_constraints else ""
 
         optional_parameters_string = "" if not optional_parameters else ", " + ", ".join(optional_parameters)
 
@@ -239,7 +237,7 @@ class Operation:
 
     @property
     def any_response_has_headers(self):
-        return any(response.headers for response in self.responses)
+        return any(response.has_headers for response in self.responses)
 
     @property
     def success_status_code(self) -> List[int]:
@@ -267,6 +265,10 @@ class Operation:
                     "azure.core.exceptions", "HttpResponseError", ImportType.AZURECORE
                 )
 
+        # If ARM, I always generated a client request id
+        if code_model.options['azure_arm']:
+            file_import.add_import("uuid", ImportType.STDLIB)
+
         # Deprecation
         if True:  # Replace with "the YAML contains deprecated:true"
             file_import.add_import("warnings", ImportType.STDLIB)
@@ -290,6 +292,12 @@ class Operation:
             signature = ", "+signature
         return signature
 
+    @property
+    def is_flattened(self):
+        return bool([
+            parameter for parameter in self.parameters if parameter.location == ParameterLocation.Other
+        ])
+
     def build_flattened_object(self):
         if not self.is_flattened:
             raise ValueError("This method can't be called if the operation doesn't need parameter flattening")
@@ -304,7 +312,7 @@ class Operation:
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, str], **kwargs) -> "Operation":
         name = yaml_data["language"]["python"]["name"]
-        _LOGGER.info("Parsing %s operation", name)
+        _LOGGER.debug("Parsing %s operation", name)
 
         return cls(
             yaml_data=yaml_data,
@@ -319,8 +327,9 @@ class Operation:
             responses=[
                 SchemaResponse.from_yaml(yaml) for yaml in yaml_data.get("responses", [])
             ],
+            # Exception with no schema means default exception, we don't store them
             exceptions=[
-                SchemaResponse.from_yaml(yaml) for yaml in yaml_data.get("exceptions", [])
+                SchemaResponse.from_yaml(yaml) for yaml in yaml_data.get("exceptions", []) if "schema" in yaml
             ],
             media_types=yaml_data["request"]["protocol"]["http"].get("mediaTypes", [])
         )

@@ -23,42 +23,41 @@
 # IN THE SOFTWARE.
 #
 # --------------------------------------------------------------------------
-import logging
-from pathlib import Path
-from typing import List
-
-from . import AutorestAPI, Channel
+from .imports import FileImport, ImportType
 
 
-_LOGGER = logging.getLogger(__name__)
-
-
-class LocalAutorestAPI(AutorestAPI):
-    """A local API that will write on local disk.
+class Client:
+    """A service client.
     """
-    def __init__(self, reachable_files: List[str] = None, output_folder: str = "generated"):
-        super().__init__()
-        if reachable_files is None:
-            reachable_files = []
-        self._reachable_files = reachable_files
-        self._output_folder = Path(output_folder)
 
-    def write_file(self, filename: str, file_content: str) -> None:
-        _LOGGER.debug("Writing file: %s", filename)
-        with (self._output_folder / Path(filename)).open('w') as fd:
-            fd.write(file_content)
-        _LOGGER.debug("Written file: %s", filename)
+    def pipeline_class(self, code_model, async_mode):
+        if code_model.options["azure_arm"]:
+            if async_mode:
+                return "AsyncARMPipelineClient"
+            else:
+                return "ARMPipelineClient"
+        else:
+            if async_mode:
+                return "AsyncPipelineClient"
+            else:
+                return "PipelineClient"
 
-    def read_file(self, filename: str) -> str:
-        _LOGGER.debug("Reading file: %s", filename)
-        with Path(filename).open('r') as fd:
-            return fd.read()
+    def imports(self, code_model, async_mode):
+        file_import = FileImport()
 
-    def list_inputs(self) -> List[str]:
-        return self._reachable_files
+        file_import.add_from_import(
+            "msrest", "Serializer", ImportType.AZURECORE
+        )
+        file_import.add_from_import(
+            "msrest", "Deserializer", ImportType.AZURECORE
+        )
 
-    def get_value(self, key: str) -> str:
-        pass
-
-    def message(self, channel: Channel, text: str) -> None:
-        pass
+        if code_model.options["azure_arm"]:
+            file_import.add_from_import(
+                "azure.mgmt.core", self.pipeline_class(code_model, async_mode), ImportType.AZURECORE
+            )
+        else:
+            file_import.add_from_import(
+                "azure.core", self.pipeline_class(code_model, async_mode), ImportType.AZURECORE
+            )
+        return file_import

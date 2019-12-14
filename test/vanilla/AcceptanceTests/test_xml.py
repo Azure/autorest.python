@@ -59,6 +59,7 @@ def _assert_with_log(func, *args, **kwargs):
         print(err.response.text)
         pytest.fail()
 
+@pytest.mark.skip("https://github.com/Azure/autorest.python/issues/168")
 class TestXml(object):
 
     def test_json_xml(self, client):

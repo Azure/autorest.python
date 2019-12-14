@@ -41,9 +41,7 @@ log_level = int(os.environ.get('PythonLogLevel', 30))
 tests = realpath(join(cwd, pardir, "Expected", "AcceptanceTests"))
 sys.path.append(join(tests, "AzureBodyDuration"))
 
-from msrest.serialization import Deserializer
 from msrest.exceptions import DeserializationError
-from msrest.authentication import BasicTokenAuthentication
 
 from bodyduration import AutoRestDurationTestService
 
@@ -51,8 +49,7 @@ import pytest
 
 @pytest.fixture
 def client():
-    cred = BasicTokenAuthentication({"access_token" :str(uuid4())})
-    with AutoRestDurationTestService(cred, base_url="http://localhost:3000") as client:
+    with AutoRestDurationTestService(base_url="http://localhost:3000") as client:
         yield client
 
 class TestDuration(object):

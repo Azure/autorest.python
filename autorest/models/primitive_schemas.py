@@ -67,7 +67,7 @@ class NumberSchema(PrimitiveSchema):
     def __init__(self, yaml_data, precision, **kwargs):
         super(NumberSchema, self).__init__(yaml_data, **kwargs)
         self.precision = precision
-        self.multiple_of = kwargs.pop('multiple_of', None)
+        self.multiple = kwargs.pop('multiple', None)
         self.maximum = kwargs.pop('maximum', None)
         self.minimum = kwargs.pop('minimum', None)
         self.exclusive_maximum = kwargs.pop('exclusive_maximum', None)
@@ -78,12 +78,22 @@ class NumberSchema(PrimitiveSchema):
         return cls(
             yaml_data=yaml_data,
             precision=yaml_data['precision'],
-            multiple_of = yaml_data.get('multipleOf'),
+            multiple = yaml_data.get('multipleOf'),
             maximum=yaml_data.get('maximum'),
             minimum=yaml_data.get('minimum'),
             exclusive_maximum=yaml_data.get('exclusiveMaximum'),
             exclusive_minimum=yaml_data.get('exclusiveMinimum'),
         )
+
+    def get_serialization_constraints(self):
+        validation_constraints = [
+            f"maximum_ex={self.maximum}" if self.maximum is not None and self.exclusive_maximum else None,
+            f"maximum={self.maximum}" if self.maximum is not None and not self.exclusive_maximum else None,
+            f"minimum_ex={self.minimum}" if self.minimum is not None and self.exclusive_minimum else None,
+            f"minimum={self.minimum}" if self.minimum is not None and not self.exclusive_minimum else None,
+            f"multiple={self.multiple}" if self.multiple else None
+        ]
+        return [x for x in validation_constraints if x is not None]
 
     def get_validation_map(self):
         validation_map = {}
@@ -97,8 +107,8 @@ class NumberSchema(PrimitiveSchema):
                 validation_map['minimum_ex'] = self.minimum
             else:
                 validation_map['minimum'] = self.minimum
-        if self.multiple_of:
-            validation_map['multiple'] = self.multiple_of
+        if self.multiple:
+            validation_map['multiple'] = self.multiple
         return validation_map or None
 
 
@@ -137,15 +147,22 @@ class StringSchema(PrimitiveSchema):
         return cls(
             yaml_data=yaml_data,
             max_length=yaml_data.get('maxLength'),
-            min_length=yaml_data.get('minLength'),
+            min_length=(yaml_data.get('minLength') or 0) if yaml_data.get('maxLength') else yaml_data.get('minLength'),
             pattern=yaml_data.get('pattern')
         )
+
+    def get_serialization_constraints(self):
+        validation_constraints = [
+            f"max_length={self.max_length}" if self.max_length is not None else None,
+            f"min_length={self.min_length}" if self.min_length is not None else None,
+            f"pattern=\'{self.pattern}\'" if self.pattern is not None else None
+        ]
+        return [x for x in validation_constraints if x is not None]
 
     def get_validation_map(self):
         validation_map = {}
         if self.max_length is not None:
             validation_map['max_length'] = self.max_length
-            validation_map['min_length'] = self.min_length or 0
         if self.min_length is not None:
             validation_map['min_length'] = self.min_length
         if self.pattern is not None:

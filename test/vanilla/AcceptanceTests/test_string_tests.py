@@ -45,7 +45,7 @@ from msrest.serialization import Deserializer
 from msrest.exceptions import DeserializationError, SerializationError
 
 from bodystring import AutoRestSwaggerBATService
-from bodystring.models import Colors
+from bodystring.models import Colors, ErrorException
 
 import pytest
 
@@ -114,7 +114,9 @@ class TestString(object):
         assert Colors.redcolor ==  client.enum.get_not_expandable()
         client.enum.put_not_expandable('red color')
         client.enum.put_not_expandable(Colors.redcolor)
-        with pytest.raises(SerializationError):
+        # Autorest v3 is switching behavior here. Old Autorest would have thrown a serialization error,
+        # but now we allow the user to pass strings as enums, so the raised exception is different.
+        with pytest.raises(ErrorException):
             client.enum.put_not_expandable('not a colour')
 
     def test_get_base64_encdoded(self, client):
