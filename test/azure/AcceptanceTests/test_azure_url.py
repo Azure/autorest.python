@@ -35,6 +35,8 @@ from datetime import date, datetime, timedelta
 import os
 from os.path import dirname, pardir, join, realpath
 
+import pytest
+
 cwd = dirname(realpath(__file__))
 log_level = int(os.environ.get('PythonLogLevel', 30))
 
