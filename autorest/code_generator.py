@@ -84,7 +84,7 @@ class CodeGenerator:
             raise ValueError("--basic-setup-py must be used with --package-version")
 
         # Global parameters
-        code_model.global_parameters = [Parameter.from_yaml(param) for param in yaml_code_model['globalParameters']]
+        code_model.global_parameters = [Parameter.from_yaml(param) for param in yaml_code_model.get('globalParameters', [])]
 
         # Custom URL
         dollar_host = [parameter for parameter in code_model.global_parameters if parameter.rest_api_name == "$host"]
