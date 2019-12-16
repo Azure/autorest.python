@@ -178,6 +178,7 @@ class TestParameter(object):
         with pytest.raises(ValidationError):
             await azure_client.subscription_in_method.post_method_local_null(None)
 
+    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.modelerfour/issues/94")
     @pytest.mark.asyncio
     async def test_api_version_default(self, azure_client):
         await azure_client.api_version_default.get_method_global_not_provided_valid()
@@ -185,6 +186,7 @@ class TestParameter(object):
         await azure_client.api_version_default.get_path_global_valid()
         await azure_client.api_version_default.get_swagger_global_valid()
 
+    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.modelerfour/issues/93")
     @pytest.mark.asyncio
     async def test_api_version_local(self, azure_client):
         await azure_client.api_version_local.get_method_local_valid()
@@ -192,6 +194,7 @@ class TestParameter(object):
         await azure_client.api_version_local.get_path_local_valid()
         await azure_client.api_version_local.get_swagger_local_valid()
 
+    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.modelerfour/issues/92")
     @pytest.mark.asyncio
     async def test_skip_url_encoding(self, azure_client, unencoded_path, unencoded_query):
         await azure_client.skip_url_encoding.get_method_path_valid(unencoded_path)
