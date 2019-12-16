@@ -3,6 +3,15 @@
 {% set trace_decorator = "@distributed_trace_async" if async_mode else "@distributed_trace" %}
 {% set async_prefix = "Async" if async_mode else "" %}
 {% set poller = "async_poller" if async_mode else "LROPoller" %}
+{% macro return_docstring() %}
+{% if operation.responses | selectattr('has_body') | first %}
+:return: An instance of LROPoller that returns {{ operation.responses[0].schema.name if operation.responses[0].has_body else "None"}}
+    :rtype: ~azure.core.polling.LROPoller[{{ operation.responses[0].schema.get_python_type(code_model.namespace) if operation.responses[0].has_body else "None" }}]
+{% else %}
+:return: None or the result of cls(response)
+    :rtype: None
+{% endif %}
+{% endmacro %}
 {% macro exception_name() %}{{ operation.exceptions[0].schema.name }}Exception{% endmacro %}
 {% macro response_headers(response) %}
 response_headers = {
@@ -33,8 +42,7 @@ response_headers = {
     :param callable cls: A custom type or function that will be passed the direct response
     :param polling: True for ARMPolling, False for no polling, or a
      polling object for personal polling strategy
-    :return: FIXME or the result of cls(response)
-    :rtype: FIXME
+    {{ return_docstring() }}
     {% if not operation.exceptions %}
         {% if code_model.options['azure_arm'] %}
     :raises ~azure.mgmt.core.ARMError:
