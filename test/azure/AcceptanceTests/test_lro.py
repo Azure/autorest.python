@@ -143,6 +143,7 @@ class TestLro:
         product = client.lros.post_double_headers_final_azure_header_get().result()
         assert product.id == "100"
 
+    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.modelerfour/issues/14")
     def test_happy_put201_creating_succeeded200(self, client, product):
         process = self.lro_result(client.lros.put201_creating_succeeded200, product)
         assert "Succeeded" ==  process.provisioning_state
@@ -151,6 +152,7 @@ class TestLro:
         process = self.lro_result(client.lros.put201_creating_succeeded200, product, polling=False)
         assert "Creating" ==  process.provisioning_state
 
+    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.modelerfour/issues/14")
     def test_happy_put201_creating_failed200(self, client, product):
         self.assert_raises_with_message(
             ("Operation returned an invalid status 'OK'", "failed"),
@@ -159,6 +161,7 @@ class TestLro:
         process = self.lro_result(client.lros.put201_creating_failed200, product, polling=False)
         assert "Created" ==  process.provisioning_state
 
+    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.modelerfour/issues/14")
     def test_happy_put200_updating_succeeded204(self, client, product):
         process = self.lro_result(client.lros.put200_updating_succeeded204, product)
         assert "Succeeded" ==  process.provisioning_state
@@ -166,6 +169,7 @@ class TestLro:
         process = self.lro_result(client.lros.put200_updating_succeeded204, product, polling=False)
         assert "Updating" ==  process.provisioning_state
 
+    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.modelerfour/issues/14")
     def test_happy_put200_acceptedcanceled200(self, client, product):
         self.assert_raises_with_message(
             ("Operation returned an invalid status 'OK'", "canceled"),
@@ -174,6 +178,7 @@ class TestLro:
         process = self.lro_result(client.lros.put200_acceptedcanceled200, product, polling=False)
         assert "Accepted" ==  process.provisioning_state
 
+    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.modelerfour/issues/14")
     def test_happy_put_no_header_in_retry(self, client, product):
         process = self.lro_result(client.lros.put_no_header_in_retry, product)
         assert "Succeeded" ==  process.provisioning_state
@@ -181,6 +186,7 @@ class TestLro:
         process = self.lro_result(client.lros.put_async_no_header_in_retry, product)
         assert "Succeeded" ==  process.provisioning_state
 
+    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.modelerfour/issues/14")
     def test_happy_put_sub_resource(self, client):
         process = self.lro_result(client.lros.put_sub_resource, SubProduct())
         assert "Succeeded" ==  process.provisioning_state
@@ -195,7 +201,7 @@ class TestLro:
         process = self.lro_result(client.lros.put_async_non_resource, Sku())
         assert "100" ==  process.id
 
-
+    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.modelerfour/issues/14")
     def test_happy_put200_succeeded(self, client, product):
         process = self.lro_result(client.lros.put200_succeeded, product)
         assert "Succeeded" ==  process.provisioning_state
@@ -207,6 +213,7 @@ class TestLro:
         process = self.lro_result(client.lros.put202_retry200, product)
         assert "100" ==  process.id
 
+    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.modelerfour/issues/14")
     def test_happy_put_retry_succeeded(self, client, product):
         process = self.lro_result(client.lros.put_async_retry_succeeded, product)
         assert "Succeeded" ==  process.provisioning_state
@@ -249,6 +256,7 @@ class TestLro:
         assert self.lro_result(client.lros.delete_async_no_retry_succeeded) is None
         assert self.lro_result(client.lros.delete_async_retry_succeeded) is None
 
+    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.modelerfour/issues/14")
     def test_happy_delete_provisioning(self, client):
         process = self.lro_result(client.lros.delete_provisioning202_accepted200_succeeded)
         assert "Succeeded" ==  process.provisioning_state
@@ -280,6 +288,7 @@ class TestLro:
         prod = self.lro_result(client.lros.post_async_no_retry_succeeded)
         assert prod.id ==  "100"
 
+    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.modelerfour/issues/14")
     def test_retrys_put(self, client, product):
         process = self.lro_result(client.lro_retrys.put201_creating_succeeded200, product)
         assert 'Succeeded' ==  process.provisioning_state
@@ -287,6 +296,7 @@ class TestLro:
         process = self.lro_result(client.lro_retrys.put_async_relative_retry_succeeded, product)
         assert 'Succeeded' ==  process.provisioning_state
 
+    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.modelerfour/issues/14")
     def test_retrys_delete(self, client, product):
         process = self.lro_result(client.lro_retrys.delete_provisioning202_accepted200_succeeded)
         assert 'Succeeded' ==  process.provisioning_state
