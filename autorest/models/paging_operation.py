@@ -63,19 +63,20 @@ class PagingOperation(Operation):
         self._next_link_name = yaml_data['extensions']['x-ms-pageable'].get("nextLinkName")
         self.operation_name = yaml_data['extensions']['x-ms-pageable'].get("operationName")
 
-    def _find_python_name(self, rest_api_name):
+    def _find_python_name(self, rest_api_name, log_name):
         response = self.responses[0]
         for prop in response.schema.properties:
             if prop.original_swagger_name == rest_api_name:
                 return prop.name
+        raise ValueError(f"Was unable to find {log_name}:{rest_api_name} in model {response.schema.name}")
 
     @property
     def item_name(self):
-        return self._find_python_name(self._item_name)
+        return self._find_python_name(self._item_name, "itemName")
 
     @property
     def next_link_name(self):
-        return self._find_python_name(self._next_link_name)
+        return self._find_python_name(self._next_link_name, "nextLinkName")
 
     def imports(self, code_model, async_mode):
         file_import = super(PagingOperation, self).imports(code_model, async_mode)

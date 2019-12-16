@@ -6,7 +6,7 @@ class Property:
         self.yaml_data = yaml_data
         self.name = name
         self.schema = schema
-        self.original_swagger_name = original_swagger_name.replace('.', '\\\\.')
+        self.original_swagger_name = original_swagger_name
 
         self.required = yaml_data.get('required', False)
         self.readonly = yaml_data.get('readOnly', False)
@@ -35,6 +35,12 @@ class Property:
         if self.schema.get_validation_map():
             validation_map.update(self.schema.get_validation_map())
         self.validation_map = validation_map or None
+
+    @property
+    def escaped_swagger_name(self):
+        """Return the RestAPI name correctly escaped for serialization.
+        """
+        return self.original_swagger_name.replace('.', '\\\\.')
 
     def get_property_documentation_string(self) -> str:
         if self.constant or self.readonly:
