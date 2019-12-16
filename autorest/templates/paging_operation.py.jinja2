@@ -1,6 +1,5 @@
 {% import 'keywords.jinja2' as keywords with context %}
 {% import 'operation_tools.jinja2' as op_tools %}
-{% set trace_decorator = "@distributed_trace_async" if async_mode else "@distributed_trace" %}
 {% set stream_request_parameter = "stream=" ~ ("True" if operation.is_stream_response else "False") %}
 {% set request_as_xml = ", is_xml=False" if "xml" in operation.request_content_type else "" %}
 {% macro return_docstring() %}
@@ -15,11 +14,11 @@
 {% macro exception_name() %}{{ operation.exceptions[0].schema.name }}Exception{% endmacro %}
 {# actual template starts here #}
 {% if code_model.tracing and operation.want_tracing %}
-{{ trace_decorator }}
+@distributed_trace
 {% else %}
 
 {% endif %}
-{{ keywords.def }} {{ operation.python_name }}(self{{ operation.method_signature }}, cls=None, **kwargs):
+def {{ operation.python_name }}(self{{ operation.method_signature }}, cls=None, **kwargs):
 {% if operation.want_description_docstring %}
     """{{operation.description.strip() }}.
 

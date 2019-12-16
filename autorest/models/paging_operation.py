@@ -93,4 +93,12 @@ class PagingOperation(Operation):
             file_import.add_from_import(
                 "azure.core.paging", "ItemPaged", ImportType.AZURECORE
             )
+
+        if code_model.tracing:
+            file_import.add_from_import(
+                "azure.core.tracing.decorator",
+                "distributed_trace",
+                ImportType.AZURECORE,
+            )
+
         return file_import
