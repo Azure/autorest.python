@@ -1,5 +1,5 @@
 {% import 'keywords.jinja2' as keywords with context %}
-{% from 'operation_tools.jinja2' import response_handling %}
+{% from 'operation_tools.jinja2' import response_handling, boolean_head %}
 {% set trace_decorator = "@distributed_trace_async" if async_mode else "@distributed_trace" %}
 {% set stream_request_parameter = "stream=" ~ ("True" if operation.is_stream_response else "False") %}
 {% set request_as_xml = ", is_xml=False" if "xml" in operation.request_content_type else "" %}
@@ -158,10 +158,10 @@
 {% if operation.any_response_has_headers %}
     response_headers = {}
 {% endif %}
-{% if (operation.has_response_body or operation.is_stream_response) and operation.responses|count > 1 %}
+{% if operation.has_response_body and operation.responses|count > 1 %}
     deserialized = None
 {% endif %}
-{% if operation.has_response_body or operation.is_stream_response or operation.any_response_has_headers %}
+{% if operation.has_response_body or operation.any_response_has_headers %}
   {% if operation.responses|count > 1 %}
     {% for status_code in operation.success_status_code %}
       {% set response =  operation.get_response_from_status(status_code) %}
@@ -176,9 +176,12 @@
   {% endif %}
 {% endif %}
     if cls:
-      return cls(response, {{ 'deserialized' if (operation.has_response_body or operation.is_stream_response) else 'None'}}, {{ 'response_headers' if operation.any_response_has_headers else '{}' }})
+      return cls(response, {{ 'deserialized' if operation.has_response_body else 'None'}}, {{ 'response_headers' if operation.any_response_has_headers else '{}' }})
 
-{% if operation.has_response_body or operation.is_stream_response %}
+{% if operation.has_response_body %}
     return deserialized
+{% endif %}
+{% if operation.method == 'head' and code_model.options['head_as_boolean'] %}
+    return 200 <= response.status_code <= 299
 {% endif %}
 {{ operation.python_name }}.metadata = {'url': '{{ operation.url }}'}
