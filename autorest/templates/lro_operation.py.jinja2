@@ -11,6 +11,7 @@ response_headers = {
     {% endfor %}
 }
 {% endmacro %}
+{% set lro_options = (", lro_options={'final-state-via': '"+ operation.lro_options['final-state-via'] + "'}") if operation.lro_options else "" %}
 {# actual template starts here #}
 {% if code_model.tracing %}
 {{ trace_decorator }}
@@ -69,7 +70,7 @@ response_headers = {
         'polling_interval',
         self._config.polling_interval
     )
-    if polling is True: polling_method = {{ async_prefix }}ARMPolling(lro_delay, **kwargs)
+    if polling is True: polling_method = {{ async_prefix }}ARMPolling(lro_delay{{ lro_options }},  **kwargs)
     elif polling is False: polling_method = {{ async_prefix }}NoPolling()
     else: polling_method = polling
     return {{ keywords.await }}{{ poller }}(self._client, raw_result, get_long_running_output, polling_method)
