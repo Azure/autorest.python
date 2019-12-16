@@ -193,17 +193,34 @@ class CodeModel:
                 i += 1
 
     def remove_next_operation(self) -> None:
+        """Linking paging operations together.
+
+        Could disapear if https://github.com/Azure/autorest.modelerfour/issues/85 done
+        """
         for operation_group in self.operation_groups:
-            next_operations_names = []
+            # Build an index to be faster
+            op_index = {
+                operation.yaml_data.get('language', {}).get('default', {}).get('name'): operation
+                for operation
+                in operation_group.operations
+            }
+
+            next_operations = []
             for operation in operation_group.operations:
                 if isinstance(operation, PagingOperation) and operation.operation_name:
-                    next_operations_names.append(operation.operation_name.split('_')[-1])
+                    short_op_name = operation.operation_name.split('_')[-1]
+                    if short_op_name not in op_index:
+                        raise ValueError(f"Could not find {operation.operation_name} in op group {operation_group.name} I have {op_index.keys()}")
+
+                    next_operation = op_index[short_op_name]
+                    operation.next_operation = next_operation
+                    next_operations.append(next_operation)
 
             operation_group.operations = [
                 operation
                 for operation
                 in operation_group.operations
-                if operation.yaml_data.get('language', {}).get('default', {}).get('name') not in next_operations_names
+                if operation not in next_operations
             ]
 
     def enable_parameter_flattening(self):

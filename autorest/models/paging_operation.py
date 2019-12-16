@@ -62,6 +62,7 @@ class PagingOperation(Operation):
         self._item_name = yaml_data['extensions']['x-ms-pageable'].get("itemName")
         self._next_link_name = yaml_data['extensions']['x-ms-pageable'].get("nextLinkName")
         self.operation_name = yaml_data['extensions']['x-ms-pageable'].get("operationName")
+        self.next_operation: Optional[Operation] = None
 
     def _find_python_name(self, rest_api_name, log_name):
         response = self.responses[0]
