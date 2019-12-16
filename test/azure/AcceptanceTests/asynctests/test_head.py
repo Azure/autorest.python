@@ -63,7 +63,7 @@ class TestHead(object):
     @pytest.mark.asyncio
     async def test_head_exception(self, credential, authentication_policy):
 
-        async with AutoRestHeadExceptionTestService(cred, base_url="http://localhost:3000", authentication_policy=authentication_policy) as client:
+        async with AutoRestHeadExceptionTestService(credential, base_url="http://localhost:3000", authentication_policy=authentication_policy) as client:
 
             await client.head_exception.head200()
             await client.head_exception.head204()
