@@ -415,8 +415,6 @@ class TestComplex(object):
 
 
     # Complex types that uses additional properties and polymorphism
-
-    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.python/issues/247")
     def test_polymorphism_get_and_put_complicated(self, client):
         smart_salmon = client.polymorphism.get_complicated()
         client.polymorphism.put_complicated(smart_salmon)

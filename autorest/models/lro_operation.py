@@ -36,6 +36,7 @@ class LROOperation(Operation):
             want_tracing
         )
         self.lro_response: Optional[SchemaResponse] = None
+        self.lro_options = yaml_data.get("extensions", {}).get("x-ms-long-running-operation-options", {})
 
     def set_lro_response_type(self) -> None:
         responses = {response.schema: response for response in self.responses if response.has_body}

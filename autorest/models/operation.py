@@ -227,7 +227,7 @@ class Operation:
     def has_response_body(self):
         """Tell if at least one response has a body.
         """
-        return any(response.has_body for response in self.responses)
+        return any(response.has_body or response.is_stream_response for response in self.responses)
 
     def get_response_from_status(self, status_code: int) -> SchemaResponse:
         for response in self.responses:

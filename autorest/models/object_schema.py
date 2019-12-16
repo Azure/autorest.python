@@ -117,23 +117,24 @@ class ObjectSchema(BaseSchema):
             immediate_parents = yaml_data['parents']['immediate']
         # checking if object has a parent
             if immediate_parents:
-                if immediate_parents[0]['type'] == 'dictionary':
-                    additional_properties_schema = DictionarySchema.from_yaml(
-                        yaml_data=immediate_parents[0],
-                        for_additional_properties=True,
-                        **kwargs
-                    )
-                    properties.append(
-                        Property(
-                            name="additional_properties",
-                            schema=additional_properties_schema,
-                            original_swagger_name="",
-                            yaml_data={},
-                            description='Unmatched properties from the message are deserialized to this collection.'
+                for immediate_parent in immediate_parents:
+                    if immediate_parent['type'] == 'dictionary':
+                        additional_properties_schema = DictionarySchema.from_yaml(
+                            yaml_data=immediate_parent,
+                            for_additional_properties=True,
+                            **kwargs
                         )
-                    )
-                elif immediate_parents[0]['language']['default']['name'] != yaml_data['language']['default']['name']:
-                    base_model = id(immediate_parents[0])
+                        properties.append(
+                            Property(
+                                name="additional_properties",
+                                schema=additional_properties_schema,
+                                original_swagger_name="",
+                                yaml_data={},
+                                description='Unmatched properties from the message are deserialized to this collection.'
+                            )
+                        )
+                    elif immediate_parent['language']['default']['name'] != yaml_data['language']['default']['name']:
+                        base_model = id(immediate_parent)
 
 
         # checking to see if this is a polymorphic class

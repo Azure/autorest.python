@@ -257,7 +257,7 @@ class CodeGenerator:
             raise ValueError("code-model-v4-no-tags.yaml must be a possible input")
 
         file_content = self._autorestapi.read_file("code-model-v4-no-tags.yaml")
-        #self._autorestapi.write_file("code-model-v4-no-tags.yaml", file_content)
+        self._autorestapi.write_file("code-model-v4-no-tags.yaml", file_content)
 
         env = Environment(
             loader=PackageLoader('autorest', 'templates'),
@@ -283,9 +283,15 @@ class CodeGenerator:
 
         options = {
             'azure_arm': azure_arm,
-            'credential': azure_arm or self._autorestapi.get_boolean_value("add-credentials") or self._autorestapi.get_boolean_value('add-credential'),
-            "credential_scopes": credential_scopes.split(",") if credential_scopes else None
+            'credential': self._autorestapi.get_boolean_value("add-credentials") or self._autorestapi.get_boolean_value('add-credential'),
+            "credential_scopes": credential_scopes.split(",") if credential_scopes else None,
+            'head_as_boolean': self._autorestapi.get_boolean_value('head-as-boolean')
         }
+
+        # Force some options in ARM MODE:
+        if azure_arm:
+            options['credential'] = True
+            options['head_as_boolean'] = True
 
         # save a new copy for debug
         #self._autorestapi.write_file("code-model-v4-no-tags-python.yaml", yaml.safe_dump(yaml_code_model))

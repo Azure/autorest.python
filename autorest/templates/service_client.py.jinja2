@@ -62,7 +62,11 @@ class {{ code_model.class_name }}({{ base_class }}):
         self._config = {{ code_model.class_name }}Configuration({{ config_signature }}**kwargs)
         self._client = {{ code_model.service_client.pipeline_class(code_model, async_mode) }}(base_url=base_url, config=self._config, **kwargs)
 
+        {% if code_model.sorted_schemas %}
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
+        {% else %}
+        client_models = {}
+        {% endif %}
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
 
