@@ -73,6 +73,8 @@ class PagingOperation(Operation):
 
     @property
     def item_name(self):
+        if self._item_name is None:
+            return "value"
         return self._find_python_name(self._item_name, "itemName")
 
     @property
