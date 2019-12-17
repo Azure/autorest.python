@@ -38,6 +38,9 @@ class DictionarySchema(BaseSchema):
         """
         return 'dict[str, {}]'.format(self.element_type.get_python_type(namespace))
 
+    def xml_serialization_ctxt(self) -> Optional[str]:
+        raise NotImplementedError("Dictionary schema does not support XML serialization.")
+
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, str], **kwargs: Any) -> "DictionarySchema":
         """Constructs a DictionarySchema from yaml data.

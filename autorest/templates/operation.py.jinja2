@@ -2,7 +2,8 @@
 {% import 'operation_tools.jinja2' as op_tools %}
 {% set trace_decorator = "@distributed_trace_async" if async_mode else "@distributed_trace" %}
 {% set stream_request_parameter = "stream=" ~ ("True" if operation.is_stream_response else "False") %}
-{% set request_as_xml = ", is_xml=False" if "xml" in operation.request_content_type else "" %}
+{% set send_xml = "xml" in operation.request_content_type %}
+{% set request_as_xml = ", is_xml=True" if send_xml else "" %}
 {% macro return_docstring() %}
 {% if operation.responses | selectattr('has_body') | first %}
 :return: {{ operation.responses|map(attribute='schema')|map(attribute='name')|join(' or ') }} or the result of cls(response)
@@ -78,11 +79,15 @@
 {% if operation.has_request_body %}
     # Construct body
     {% if not operation.body_parameter.is_stream %}
+        {% set ser_ctxt = operation.body_parameter.schema.xml_serialization_ctxt() if send_xml else None %}
+        {% if ser_ctxt %}
+    serialization_ctxt = {'xml': {{ "{" }}{{ ser_ctxt }}{{ "}}" }}
+        {% endif %}
         {% if operation.body_parameter.is_required %}
-    body_content = self._serialize.body({{ operation.body_parameter.serialized_name }}, '{{ operation.body_parameter.schema.get_serialization_type() }}'{{ request_as_xml }}{{ operation.serialization_context }})
+    body_content = self._serialize.body({{ operation.body_parameter.serialized_name }}, '{{ operation.body_parameter.schema.get_serialization_type() }}'{{ request_as_xml }}{{ ", serialization_ctxt=serialization_ctxt" if ser_ctxt else "" }})
         {% else %}
     if {{ operation.body_parameter.serialized_name }} is not None:
-        body_content = self._serialize.body({{ operation.body_parameter.serialized_name }}, '{{ operation.body_parameter.schema.get_serialization_type() }}'{{ request_as_xml }}{{ operation.serialization_context }})
+        body_content = self._serialize.body({{ operation.body_parameter.serialized_name }}, '{{ operation.body_parameter.schema.get_serialization_type() }}'{{ request_as_xml }}{{ ", serialization_ctxt=serialization_ctxt" if ser_ctxt else "" }})
     else:
         body_content = None
         {% endif %}

@@ -1,5 +1,5 @@
 from .base_schema import BaseSchema
-from typing import Any, Dict
+from typing import Any, Dict, Optional
 
 
 class ListSchema(BaseSchema):
@@ -9,7 +9,6 @@ class ListSchema(BaseSchema):
         self.max_items = kwargs.pop('max_items', None)
         self.min_items = kwargs.pop('min_items', None)
         self.unique_items = kwargs.pop('unique_items', None)
-
 
     def get_serialization_type(self):
         return '[{}]'.format(self.element_type.get_serialization_type())
@@ -30,6 +29,27 @@ class ListSchema(BaseSchema):
         if self.unique_items:
             validation_map['unique'] = True
         return validation_map or None
+
+    def xml_serialization_ctxt(self) -> Optional[str]:
+        attrs_list = []
+        base_xml_map = super().xml_serialization_ctxt()
+        if base_xml_map:
+            attrs_list.append(base_xml_map)
+
+        # Attribute at the list level
+        if self.xml_metadata.get('wrapped', False):
+            attrs_list.append("'wrapped': True")
+
+        # Attributes of the items
+        item_xml_metadata = self.element_type.xml_metadata
+        if item_xml_metadata.get('name'):
+            attrs_list.append(f"'itemsName': '{item_xml_metadata['name']}'")
+        if item_xml_metadata.get('prefix', False):
+            attrs_list.append(f"'itemsPrefix': '{item_xml_metadata['prefix']}'")
+        if item_xml_metadata.get('namespace', False):
+            attrs_list.append(f"'itemsNs': '{item_xml_metadata['namespace']}'")
+
+        return ", ".join(attrs_list)
 
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, str], **kwargs) -> "SequenceType":

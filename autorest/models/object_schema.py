@@ -28,7 +28,7 @@ from .base_schema import BaseSchema
 from .dictionary_schema import DictionarySchema
 from .imports import FileImport, ImportType
 from .property import Property
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Optional
 
 
 class ObjectSchema(BaseSchema):
@@ -77,6 +77,17 @@ class ObjectSchema(BaseSchema):
     def __repr__(self):
         return f"<{self.__class__.__name__} {self.name}>"
 
+    def xml_serialization_ctxt(self) -> Optional[str]:
+        # object schema contains _xml_map, they don't need serialization context
+        return None
+
+    def xml_map_content(self):
+        if not self.xml_metadata:
+            raise ValueError("This object does not contain XML metadata")
+        # This is NOT an error on the super call, we use the serialization context for "xml_map",
+        # but we don't want to write a serialization context for an object.
+        return super().xml_serialization_ctxt()
+
     """Returns the properties of a ClassType if they exist.
 
     :param yaml_data: a dictionary object representative of the yaml schema
@@ -104,7 +115,7 @@ class ObjectSchema(BaseSchema):
     """
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, str], **kwargs) -> "ClassType":
-        obj = cls(yaml_data, None, None, None)
+        obj = cls(yaml_data, None, None)
         return obj.fill_instance_from_yaml(yaml_data)
 
     def fill_instance_from_yaml(self, yaml_data: Dict[str, str], **kwargs) -> None:

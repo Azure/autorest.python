@@ -17,9 +17,24 @@ class BaseSchema(ABC):
     ):
         self.yaml_data = yaml_data
         self.default_value = yaml_data.get('defaultValue', None)
+        self.xml_metadata = yaml_data.get('serialization', {}).get('xml', {})
 
     def imports(self):
         return FileImport()
+
+    def xml_serialization_ctxt(self) -> Optional[str]:
+        """Return the serialization context in case this schema is used in an operation.
+        """
+        attrs_list = []
+        if self.xml_metadata.get('name'):
+            attrs_list.append(f"'name': '{self.xml_metadata['name']}'")
+        if self.xml_metadata.get('attribute', False):
+            attrs_list.append("'attr': True")
+        if self.xml_metadata.get('prefix', False):
+            attrs_list.append(f"'prefix': '{self.xml_metadata['prefix']}'")
+        if self.xml_metadata.get('namespace', False):
+            attrs_list.append(f"'ns': '{self.xml_metadata['namespace']}'")
+        return ", ".join(attrs_list)
 
     @property
     def id(self):
