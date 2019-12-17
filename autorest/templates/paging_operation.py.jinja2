@@ -12,6 +12,7 @@
 {% endif %}
 {% endmacro %}
 {% macro exception_name() %}{{ operation.exceptions[0].schema.name }}Exception{% endmacro %}
+{% set next_link_str = "deserialized." + operation.next_link_name if operation.next_link_name else "None" %}
 {# actual template starts here #}
 {% if code_model.tracing and operation.want_tracing %}
 @distributed_trace
@@ -141,9 +142,9 @@ def {{ operation.python_name }}(self{{ operation.method_signature }}, cls=None, 
         if cls:
             list_of_elem = cls(list_of_elem)
         {% if async_mode %}
-        return deserialized.{{ operation.next_link_name }}, AsyncList(list_of_elem)
+        return {{ next_link_str }}, AsyncList(list_of_elem)
         {% else %}
-        return deserialized.{{ operation.next_link_name }}, iter(list_of_elem)
+        return {{ next_link_str }}, iter(list_of_elem)
         {% endif %}
 
     {{ keywords.def }} get_next(next_link=None):

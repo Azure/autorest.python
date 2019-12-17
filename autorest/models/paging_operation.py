@@ -69,16 +69,26 @@ class PagingOperation(Operation):
         for prop in response.schema.properties:
             if prop.original_swagger_name == rest_api_name:
                 return prop.name
-        raise ValueError(f"Was unable to find {log_name}:{rest_api_name} in model {response.schema.name}")
+        raise ValueError(f"While scanning x-ms-pageable, was unable to find {log_name}:{rest_api_name} in model {response.schema.name}")
 
     @property
     def item_name(self):
         if self._item_name is None:
-            return "value"
+            # Default value. I still check if I find it,  so I can do a nice message.
+            item_name = "value"
+            try:
+                self._find_python_name(item_name, "itemName")
+            except ValueError:
+                response = self.responses[0]
+                raise ValueError(f"While scanning x-ms-pageable, itemName was not defined and object {response.schema.name} has no array called 'value'")
+            return item_name
         return self._find_python_name(self._item_name, "itemName")
 
     @property
     def next_link_name(self):
+        if not self._next_link_name:
+            # That's an ok scenario, it just means no next page possible
+            return None
         return self._find_python_name(self._next_link_name, "nextLinkName")
 
     def imports(self, code_model, async_mode):
