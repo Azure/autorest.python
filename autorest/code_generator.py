@@ -219,7 +219,7 @@ class CodeGenerator:
         )
 
         # Write the version if necessary
-        if code_model.package_version:
+        if code_model.package_version and general_serializer.version_file:
             self._autorestapi.write_file(namespace_path / Path("_version.py"), general_serializer.version_file)
 
         # Write the config file
@@ -248,6 +248,33 @@ class CodeGenerator:
         # Write the config file
         self._autorestapi.write_file(aio_path / Path("_configuration_async.py"), aio_general_serializer.config_file)
 
+    def _build_code_model_options(self):
+        azure_arm = self._autorestapi.get_boolean_value("azure-arm")
+        credential_scopes = self._autorestapi.get_value('credential-scopes')
+        if not credential_scopes and azure_arm:
+            credential_scopes = "https://management.azure.com/.default"
+
+        license_header = self._autorestapi.get_value("header-text")
+        if license_header:
+            license_header = license_header.replace("\n", "\n# ")
+            license_header = "# --------------------------------------------------------------------------\n# " + license_header
+            license_header += "\n# --------------------------------------------------------------------------"
+
+        options = {
+            'azure_arm': azure_arm,
+            'credential': self._autorestapi.get_boolean_value("add-credentials") or self._autorestapi.get_boolean_value('add-credential'),
+            "credential_scopes": credential_scopes.split(",") if credential_scopes else None,
+            'head_as_boolean': self._autorestapi.get_boolean_value('head-as-boolean'),
+            'license_header': license_header,
+            'keep_version_file': self._autorestapi.get_boolean_value("keep-version-file")
+        }
+
+        # Force some options in ARM MODE:
+        if azure_arm:
+            options['credential'] = True
+            options['head_as_boolean'] = True
+        return options
+
 
     def process(self) -> bool:
         # List the input file, should be only one
@@ -271,35 +298,12 @@ class CodeGenerator:
         # Parse the received YAML
         yaml_code_model = yaml.safe_load(file_content)
 
-        azure_arm = self._autorestapi.get_boolean_value("azure-arm")
-        if azure_arm:
+        options = self._build_code_model_options()
+
+        if options['azure_arm']:
             CloudErrorPlugin.remove_cloud_errors(yaml_code_model)
         # convert the names to python names
         NameConverter.convert_yaml_names(yaml_code_model)
-
-        credential_scopes = self._autorestapi.get_value('credential-scopes')
-        if not credential_scopes and azure_arm:
-            credential_scopes = "https://management.azure.com/.default"
-
-        license_header = self._autorestapi.get_value("header-text")
-        if license_header:
-            license_header = license_header.replace("\n", "\n# ")
-            license_header = "# --------------------------------------------------------------------------\n# " + license_header
-            license_header += "\n# --------------------------------------------------------------------------"
-
-
-        options = {
-            'azure_arm': azure_arm,
-            'credential': self._autorestapi.get_boolean_value("add-credentials") or self._autorestapi.get_boolean_value('add-credential'),
-            "credential_scopes": credential_scopes.split(",") if credential_scopes else None,
-            'head_as_boolean': self._autorestapi.get_boolean_value('head-as-boolean'),
-            'license_header': license_header
-        }
-
-        # Force some options in ARM MODE:
-        if azure_arm:
-            options['credential'] = True
-            options['head_as_boolean'] = True
 
         # save a new copy for debug
         #self._autorestapi.write_file("code-model-v4-no-tags-python.yaml", yaml.safe_dump(yaml_code_model))
