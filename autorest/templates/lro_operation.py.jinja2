@@ -4,13 +4,8 @@
 {% set async_prefix = "Async" if async_mode else "" %}
 {% set poller = "async_poller" if async_mode else "LROPoller" %}
 {% macro return_docstring() %}
-{% if operation.responses | selectattr('has_body') | first %}
 :return: An instance of LROPoller that returns {{ operation.responses[0].schema.name if operation.responses[0].has_body else "None"}}
     :rtype: ~azure.core.polling.LROPoller[{{ operation.responses[0].schema.get_python_type(code_model.namespace) if operation.responses[0].has_body else "None" }}]
-{% else %}
-:return: None or the result of cls(response)
-    :rtype: None
-{% endif %}
 {% endmacro %}
 {% macro exception_name() %}{{ operation.exceptions[0].schema.name }}Exception{% endmacro %}
 {% macro response_headers(response) %}
