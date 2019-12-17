@@ -15,9 +15,9 @@ class ModelInitSerializer:
 
         template = self.env.get_template("model_init.py.jinja2")
         self._model_init_file = template.render(
+            code_model=self.code_model,
             schemas=schemas,
-            enums=enums,
-            module_name=self.code_model.module_name
+            enums=enums
         )
 
     @property

@@ -151,7 +151,7 @@ class CodeGenerator:
         model_python3_serializer.serialize()
 
         if code_model.enums:
-            enum_serializer = EnumSerializer(enums=code_model.enums, env=env)
+            enum_serializer = EnumSerializer(code_model=code_model, env=env)
             enum_serializer.serialize()
 
         model_init_serializer = ModelInitSerializer(code_model=code_model, env=env)
@@ -281,11 +281,19 @@ class CodeGenerator:
         if not credential_scopes and azure_arm:
             credential_scopes = "https://management.azure.com/.default"
 
+        license_header = self._autorestapi.get_value("header-text")
+        if license_header:
+            license_header = license_header.replace("\n", "\n# ")
+            license_header = "# --------------------------------------------------------------------------\n# " + license_header
+            license_header += "\n# --------------------------------------------------------------------------"
+
+
         options = {
             'azure_arm': azure_arm,
             'credential': self._autorestapi.get_boolean_value("add-credentials") or self._autorestapi.get_boolean_value('add-credential'),
             "credential_scopes": credential_scopes.split(",") if credential_scopes else None,
-            'head_as_boolean': self._autorestapi.get_boolean_value('head-as-boolean')
+            'head_as_boolean': self._autorestapi.get_boolean_value('head-as-boolean'),
+            'license_header': license_header
         }
 
         # Force some options in ARM MODE:
