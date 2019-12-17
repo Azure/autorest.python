@@ -1,5 +1,5 @@
 {% import 'keywords.jinja2' as keywords with context %}
-{% from 'operation_tools.jinja2' import response_handling, boolean_head %}
+{% import 'operation_tools.jinja2' as op_tools %}
 {% set trace_decorator = "@distributed_trace_async" if async_mode else "@distributed_trace" %}
 {% set stream_request_parameter = "stream=" ~ ("True" if operation.is_stream_response else "False") %}
 {% set request_as_xml = ", is_xml=False" if "xml" in operation.request_content_type else "" %}
@@ -71,40 +71,9 @@
     url = self._client.format_url(url, **path_format_arguments)
 {% endif %}
 
-    # Construct parameters
-    query_parameters = {}
-{% if operation.query_parameters %}
-    {% for query_parameter in operation.query_parameters %}
-        {%if query_parameter.is_required %}
-    query_parameters['{{ query_parameter.rest_api_name }}'] = {{ operation.build_serialize_data_call(query_parameter, "query") }}
-        {% else %}
-    if {{ query_parameter.full_serialized_name }} is not None:
-        query_parameters['{{ query_parameter.rest_api_name }}'] = {{ operation.build_serialize_data_call(query_parameter, "query") }}
-        {% endif %}
-    {% endfor %}
-{% endif %}
+    {{ op_tools.query_parameters(operation)|indent }}
 
-    # Construct headers
-    header_parameters = {}
-{% if operation.headers_parameters %}
-    {% for header_parameter in operation.headers_parameters %}
-        {%if header_parameter.is_required %}
-    header_parameters['{{ header_parameter.rest_api_name }}'] = {{ operation.build_serialize_data_call(header_parameter, "header") }}
-        {% else %}
-    if {{ header_parameter.full_serialized_name }} is not None:
-        header_parameters['{{ header_parameter.rest_api_name }}'] = {{ operation.build_serialize_data_call(header_parameter, "header") }}
-        {% endif %}
-    {% endfor %}
-{% endif %}
-{% if operation.has_response_body %}
-    header_parameters['Accept'] = '{{ operation.accept_content_type }}'
-{% endif %}
-{% if operation.has_request_body %}
-    header_parameters['Content-Type'] = '{{ operation.request_content_type }}'
-{% endif %}
-{% if code_model.options['azure_arm'] %}
-    kwargs.setdefault('request_id', str(uuid.uuid1()))
-{% endif %}
+    {{ op_tools.header_parameters(code_model, operation)|indent }}
 
 {% if operation.has_request_body %}
     # Construct body
@@ -167,12 +136,12 @@
       {% set response =  operation.get_response_from_status(status_code) %}
       {% if response.headers or response.has_body %}
     if response.status_code == {{ status_code }}:
-        {{ response_handling(response)|indent(8) }}
+        {{ op_tools.response_handling(response)|indent(8) }}
       {% endif %}
     {% endfor %}
   {% else %}
     {% set response = operation.responses[0] %}
-    {{ response_handling(response)|indent }}
+    {{ op_tools.response_handling(response)|indent }}
   {% endif %}
 {% endif %}
     if cls:

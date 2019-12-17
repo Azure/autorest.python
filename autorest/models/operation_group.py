@@ -28,6 +28,7 @@ from typing import Dict, List, Any
 
 from .operation import Operation
 from .lro_operation import LROOperation
+from .paging_operation import PagingOperation
 from .imports import FileImport, ImportType
 
 
@@ -84,8 +85,10 @@ class OperationGroup:
 
         operations = []
         for operation_yaml in yaml_data["operations"]:
-            if operation_yaml.get('extensions') and operation_yaml['extensions'].get('x-ms-long-running-operation'):
+            if operation_yaml.get('extensions', {}).get('x-ms-long-running-operation'):
                 operation = LROOperation.from_yaml(operation_yaml)
+            elif operation_yaml.get('extensions', {}).get('x-ms-pageable'):
+                operation = PagingOperation.from_yaml(operation_yaml)
             else:
                 operation = Operation.from_yaml(operation_yaml)
             operations.append(operation)
