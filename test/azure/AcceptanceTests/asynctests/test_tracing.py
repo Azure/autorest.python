@@ -28,14 +28,6 @@ import os
 from os.path import dirname, pardir, join, realpath
 import inspect
 
-cwd = dirname(realpath(__file__))
-log_level = int(os.environ.get('PythonLogLevel', 30))
-
-tests = realpath(join(cwd, pardir, pardir, "Expected", "AcceptanceTests"))
-sys.path.append(join(tests, "Paging"))
-sys.path.append(join(tests, "Lro"))
-sys.path.append(join(tests, "SubscriptionIdApiVersion"))
-
 from paging.aio import AutoRestPagingTestService
 from subscriptionidapiversion.aio import MicrosoftAzureTestUrl
 from lro.aio import AutoRestLongRunningOperationTestService

@@ -35,14 +35,6 @@ from datetime import date, datetime, timedelta
 import os
 from os.path import dirname, pardir, join, realpath
 
-cwd = dirname(realpath(__file__))
-log_level = int(os.environ.get('PythonLogLevel', 30))
-
-tests = realpath(join(cwd, pardir, "Expected", "AcceptanceTests"))
-sys.path.append(join(tests, "AzureParameterGrouping"))
-sys.path.append(join(tests, "SubscriptionIdApiVersion"))
-sys.path.append(join(tests, "AzureSpecials"))
-
 from msrest.exceptions import DeserializationError, ValidationError
 
 from azureparametergrouping.aio import AutoRestParameterGroupingTestService

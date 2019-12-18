@@ -35,13 +35,6 @@ from datetime import date, datetime, timedelta
 import os
 from os.path import dirname, pardir, join, realpath
 
-cwd = dirname(realpath(__file__))
-log_level = int(os.environ.get('PythonLogLevel', 30))
-
-tests = realpath(join(cwd, pardir, "Expected", "AcceptanceTests"))
-sys.path.append(join(tests, "Head"))
-sys.path.append(join(tests, "HeadExceptions"))
-
 from head import AutoRestHeadTestService
 from headexceptions import AutoRestHeadExceptionTestService
 
