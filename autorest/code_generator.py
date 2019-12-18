@@ -176,12 +176,13 @@ class CodeGenerator:
         )
 
         # write async operations init file
-        operations_async_init_serializer = OperationsInitSerializer(code_model=code_model, env=env, async_mode=True)
-        operations_async_init_serializer.serialize()
-        self._autorestapi.write_file(
-            namespace_path / Path("aio") / Path(f"operations_async") / Path("__init__.py"),
-            operations_async_init_serializer.operations_init_file
-        )
+        if not code_model.options['no_async']:
+            operations_async_init_serializer = OperationsInitSerializer(code_model=code_model, env=env, async_mode=True)
+            operations_async_init_serializer.serialize()
+            self._autorestapi.write_file(
+                namespace_path / Path("aio") / Path(f"operations_async") / Path("__init__.py"),
+                operations_async_init_serializer.operations_init_file
+            )
 
         for operation_group in code_model.operation_groups:
             # write sync operation group and operation files
@@ -194,15 +195,16 @@ class CodeGenerator:
                 operation_group_serializer.operation_group_file
             )
 
-            # write async operation group and operation files
-            operation_group_async_serializer = OperationGroupSerializer(
-                code_model=code_model, env=env, operation_group=operation_group, async_mode=True
-            )
-            operation_group_async_serializer.serialize()
-            self._autorestapi.write_file(
-                namespace_path / Path("aio") / Path(f"operations_async") / Path(operation_group_async_serializer.filename()),
-                operation_group_async_serializer.operation_group_file
-            )
+            if not code_model.options['no_async']:
+                # write async operation group and operation files
+                operation_group_async_serializer = OperationGroupSerializer(
+                    code_model=code_model, env=env, operation_group=operation_group, async_mode=True
+                )
+                operation_group_async_serializer.serialize()
+                self._autorestapi.write_file(
+                    namespace_path / Path("aio") / Path(f"operations_async") / Path(operation_group_async_serializer.filename()),
+                    operation_group_async_serializer.operation_group_file
+                )
 
     def _serialize_and_write_top_level_folder(self, code_model, env):
         namespace_path = Path(*[ns_part for ns_part in code_model.namespace.split(".")])
@@ -219,7 +221,7 @@ class CodeGenerator:
         )
 
         # Write the version if necessary
-        if code_model.package_version and general_serializer.version_file:
+        if code_model.package_version or not code_model.options['keep_version_file'] or not self._autorestapi.read_file(namespace_path / Path("_version.py")):
             self._autorestapi.write_file(namespace_path / Path("_version.py"), general_serializer.version_file)
 
         # Write the config file
@@ -266,7 +268,8 @@ class CodeGenerator:
             "credential_scopes": credential_scopes.split(",") if credential_scopes else None,
             'head_as_boolean': self._autorestapi.get_boolean_value('head-as-boolean'),
             'license_header': license_header,
-            'keep_version_file': self._autorestapi.get_boolean_value("keep-version-file")
+            'keep_version_file': self._autorestapi.get_boolean_value("keep-version-file"),
+            'no_async': self._autorestapi.get_boolean_value("no-async"),
         }
 
         # Force some options in ARM MODE:
@@ -320,10 +323,11 @@ class CodeGenerator:
             env=env
         )
 
-        self._serialize_and_write_aio_folder(
-            code_model=code_model,
-            env=env
-        )
+        if not code_model.options['no_async']:
+            self._serialize_and_write_aio_folder(
+                code_model=code_model,
+                env=env
+            )
 
         return True
 
