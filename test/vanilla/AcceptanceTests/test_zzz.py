@@ -33,12 +33,6 @@ import os
 import platform
 from os.path import dirname, pardir, join, realpath
 
-cwd = dirname(realpath(__file__))
-log_level = int(os.environ.get('PythonLogLevel', 30))
-
-tests = realpath(join(cwd, pardir, "Expected", "AcceptanceTests"))
-sys.path.append(join(tests, "Report"))
-
 from report import AutoRestReportService
 
 

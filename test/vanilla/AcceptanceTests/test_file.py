@@ -34,18 +34,15 @@ from datetime import date, datetime, timedelta
 import os
 from os.path import dirname, pardir, join, realpath
 
-cwd = dirname(realpath(__file__))
-log_level = int(os.environ.get('PythonLogLevel', 30))
-
-tests = realpath(join(cwd, pardir, "Expected", "AcceptanceTests"))
-sys.path.append(join(tests, "BodyFile"))
-
 from msrest.exceptions import DeserializationError
 
 from bodyfile import AutoRestSwaggerBATFileService
 from bodyfile.models import ErrorException
 
 import pytest
+
+cwd = dirname(realpath(__file__))
+
 
 @pytest.fixture
 def client(connection_data_block_size):

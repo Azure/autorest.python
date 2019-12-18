@@ -34,13 +34,6 @@ from datetime import date, datetime, timedelta
 import os
 from os.path import dirname, pardir, join, realpath
 
-cwd = dirname(realpath(__file__))
-log_level = int(os.environ.get('PythonLogLevel', 10))
-
-tests = realpath(join(cwd, pardir, "Expected", "AcceptanceTests"))
-sys.path.append(join(tests, "Validation"))
-
-from msrest.serialization import Deserializer
 from msrest.exceptions import DeserializationError, ValidationError
 
 from validation.aio import AutoRestValidationTest
@@ -152,14 +145,12 @@ class TestValidation(object):
     @pytest.mark.xfail(reason="https://github.com/Azure/autorest.modelerfour/issues/90")
     @pytest.mark.asyncio
     async def test_api_version_validation(self):
-        client = AutoRestValidationTest(
+        with AutoRestValidationTest(
             "abc123",
-            base_url="http://localhost:3000")
-        client.api_version = "abc"
-        try:
-            await client.validation_of_method_parameters("123", 150)
-        except ValidationError as err:
-            assert err.rule ==  "pattern"
-            assert err.target ==  "self.api_version"
-        finally:
-            await client._client.close()
+            base_url="http://localhost:3000") as client:
+            client.api_version = "abc"
+            try:
+                await client.validation_of_method_parameters("123", 150)
+            except ValidationError as err:
+                assert err.rule ==  "pattern"
+                assert err.target ==  "self.api_version"

@@ -5,3 +5,31 @@ pytest-asyncio;python_full_version>="3.5.2"
 msrest>=0.6.10
 azure-core>=1.1.0
 aiohttp;python_full_version>="3.5.2"
+-e ./Expected/AcceptanceTests/AdditionalProperties
+-e ./Expected/AcceptanceTests/BodyArray
+-e ./Expected/AcceptanceTests/BodyBoolean
+-e ./Expected/AcceptanceTests/BodyByte
+-e ./Expected/AcceptanceTests/BodyComplex
+-e ./Expected/AcceptanceTests/BodyDate
+-e ./Expected/AcceptanceTests/BodyDateTime
+-e ./Expected/AcceptanceTests/BodyDateTimeRfc1123
+-e ./Expected/AcceptanceTests/BodyDictionary
+-e ./Expected/AcceptanceTests/BodyDuration
+-e ./Expected/AcceptanceTests/BodyFile
+-e ./Expected/AcceptanceTests/BodyFormData
+-e ./Expected/AcceptanceTests/BodyInteger
+-e ./Expected/AcceptanceTests/BodyNumber
+-e ./Expected/AcceptanceTests/BodyString
+-e ./Expected/AcceptanceTests/CustomBaseUri
+-e ./Expected/AcceptanceTests/CustomBaseUriMoreOptions
+-e ./Expected/AcceptanceTests/ExtensibleEnums
+-e ./Expected/AcceptanceTests/Header
+-e ./Expected/AcceptanceTests/Http
+-e ./Expected/AcceptanceTests/ModelFlattening
+-e ./Expected/AcceptanceTests/ParameterFlattening
+-e ./Expected/AcceptanceTests/Report
+-e ./Expected/AcceptanceTests/RequiredOptional
+-e ./Expected/AcceptanceTests/Url
+-e ./Expected/AcceptanceTests/UrlMultiCollectionFormat
+-e ./Expected/AcceptanceTests/Validation
+-e ./Expected/AcceptanceTests/Xml

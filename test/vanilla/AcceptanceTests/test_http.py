@@ -36,12 +36,6 @@ from os.path import dirname, pardir, join, realpath
 
 import requests
 
-cwd = dirname(realpath(__file__))
-log_level = int(os.environ.get('PythonLogLevel', 30))
-
-tests = realpath(join(cwd, pardir, "Expected", "AcceptanceTests"))
-sys.path.append(join(tests, "Http"))
-
 from azure.core.exceptions import HttpResponseError
 from azure.core.pipeline.policies import ContentDecodePolicy, RetryPolicy, HeadersPolicy, RedirectPolicy
 from msrest.exceptions import DeserializationError
