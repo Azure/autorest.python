@@ -19,7 +19,7 @@ class ProductPaged(Paged):
 
     _attribute_map = {
         'next_link': {'key': 'nextLink', 'type': 'str'},
-        'current_page': {'key': 'values', 'type': '[Product]'}
+        'current_page': {'key': 'value', 'type': '[Product]'}
     }
 
     def __init__(self, *args, **kwargs):
@@ -31,10 +31,23 @@ class ProductPaged1(Paged):
     """
 
     _attribute_map = {
-        'next_link': {'key': 'odata\\.nextLink', 'type': 'str'},
+        'next_link': {'key': 'nextLink', 'type': 'str'},
         'current_page': {'key': 'values', 'type': '[Product]'}
     }
 
     def __init__(self, *args, **kwargs):
 
         super(ProductPaged1, self).__init__(*args, **kwargs)
+class ProductPaged2(Paged):
+    """
+    A paging container for iterating over a list of :class:`Product <paging.models.Product>` object
+    """
+
+    _attribute_map = {
+        'next_link': {'key': 'odata\\.nextLink', 'type': 'str'},
+        'current_page': {'key': 'values', 'type': '[Product]'}
+    }
+
+    def __init__(self, *args, **kwargs):
+
+        super(ProductPaged2, self).__init__(*args, **kwargs)

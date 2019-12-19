@@ -46,9 +46,8 @@ class ImplicitOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: Error or ClientRawResponse if raw=true
-        :rtype: ~requiredoptional.models.Error or
-         ~msrest.pipeline.ClientRawResponse
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<requiredoptional.models.ErrorException>`
         """
@@ -71,7 +70,7 @@ class ImplicitOperations(object):
         request = self._client.get(url, query_parameters, header_parameters)
         response = self._client.send(request, stream=False, **operation_config)
 
-        if response.status_code < 200 or response.status_code >= 300:
+        if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
         if raw:
@@ -216,9 +215,8 @@ class ImplicitOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: Error or ClientRawResponse if raw=true
-        :rtype: ~requiredoptional.models.Error or
-         ~msrest.pipeline.ClientRawResponse
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<requiredoptional.models.ErrorException>`
         """
@@ -241,7 +239,7 @@ class ImplicitOperations(object):
         request = self._client.get(url, query_parameters, header_parameters)
         response = self._client.send(request, stream=False, **operation_config)
 
-        if response.status_code < 200 or response.status_code >= 300:
+        if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
         if raw:
@@ -258,9 +256,8 @@ class ImplicitOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: Error or ClientRawResponse if raw=true
-        :rtype: ~requiredoptional.models.Error or
-         ~msrest.pipeline.ClientRawResponse
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<requiredoptional.models.ErrorException>`
         """
@@ -280,7 +277,7 @@ class ImplicitOperations(object):
         request = self._client.get(url, query_parameters, header_parameters)
         response = self._client.send(request, stream=False, **operation_config)
 
-        if response.status_code < 200 or response.status_code >= 300:
+        if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
         if raw:
@@ -297,9 +294,8 @@ class ImplicitOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: Error or ClientRawResponse if raw=true
-        :rtype: ~requiredoptional.models.Error or
-         ~msrest.pipeline.ClientRawResponse
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`ErrorException<requiredoptional.models.ErrorException>`
         """
@@ -320,7 +316,7 @@ class ImplicitOperations(object):
         request = self._client.get(url, query_parameters, header_parameters)
         response = self._client.send(request, stream=False, **operation_config)
 
-        if response.status_code < 200 or response.status_code >= 300:
+        if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
         if raw:
