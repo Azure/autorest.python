@@ -1,15 +1,14 @@
 # This pipeline is triggered only for pr
-trigger: master
+trigger: autorestv3
 
 pr:
   branches:
     include:
-    - *
+    - autorestv3
 
 variables:
   NodeVersion: '10.x'
   PythonVersion: '3.6'
-  source_path: 'sdk/core/azure-core'
 
 jobs:
   - job: 'AutoRest.Python.CI'
@@ -29,13 +28,29 @@ jobs:
         inputs:
           versionSpec: $(PythonVersion)
 
-      - script: pip install pytest pytest-cov pytest-asyncio isodate msrest aiohttp $(Build.SourcesDirectory)/$(source_path)
+      - script: pip install -r requirements.txt tox
         displayName: 'Prepare Environment'
 
       - script: |
-          git clone --recursive $(auto_rest_clone_url)
-          cd autorest.python
-          git checkout $(repo_branch)
           npm install
-          pytest test/vanilla
-        displayName: 'Run Test'
+          cd tests/azure
+          tox -e ci
+        displayName: 'Execute Tests'
+
+      - task: PublishTestResults@2
+        condition: always()
+        inputs:
+          testResultsFiles: '**/*test*.xml'
+          testRunTitle: '$(OSName) Python $(PythonVersion)'
+
+      - script: |
+          coverage xml -i --omit="*test*,*example*"
+        displayName: 'Generate Coverage XML'
+        continueOnError: true
+
+      - task: PublishCodeCoverageResults@1
+        displayName: 'Publish Code Coverage'
+        continueOnError: true
+        inputs:
+          codeCoverageTool: Cobertura
+          summaryFileLocation: '$(Build.SourcesDirectory)/coverage.xml'
