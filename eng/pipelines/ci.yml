@@ -64,8 +64,8 @@ jobs:
           versionSpec: $(PythonVersion)
       
       - script: |
-          pip install tox
-        displayName: 'Install tox in Target PyVersion $(PythonVersion)'
+          pip install tox coverage
+        displayName: 'Install Env Specific Reqs in Target PyVersion $(PythonVersion)'
 
       - script: |
           cd $(TestFolder)
@@ -82,11 +82,9 @@ jobs:
       - script: |
           coverage xml -i --omit="*test*"
         displayName: 'Generate Coverage XML'
-        continueOnError: true
 
       - task: PublishCodeCoverageResults@1
         displayName: 'Publish Code Coverage'
-        continueOnError: true
         inputs:
           codeCoverageTool: Cobertura
           summaryFileLocation: '$(TestFolder)/coverage.xml'
