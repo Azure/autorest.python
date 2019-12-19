@@ -9,6 +9,7 @@ pr:
 variables:
   NodeVersion: '10.x'
   PythonVersion: '3.6'
+  TestFolder: '$(Build.SourcesDirectory)/test/azure'
 
 jobs:
   - job: 'AutoRest_Python_CI'
@@ -67,7 +68,7 @@ jobs:
         displayName: 'Install tox in Target PyVersion $(PythonVersion)'
 
       - script: |
-          cd $(Build.SourcesDirectory)/test/azure
+          cd $(TestFolder)
           tox -e ci
         displayName: 'Execute Tests - Python $(PythonVersion)'
 
@@ -76,6 +77,7 @@ jobs:
         inputs:
           testResultsFiles: '**/*test*.xml'
           testRunTitle: '$(OSName) Python $(PythonVersion)'
+          searchFolder: '$(TestFolder)'
 
       # - script: |
       #     coverage xml -i --omit="*test*,*example*"
