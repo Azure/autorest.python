@@ -42,6 +42,113 @@ class PagingOperations(object):
         self._config = config
 
     @distributed_trace
+    def get_no_item_name_pages(
+            self, cls=None, **kwargs):
+        """A paging operation that must return result of the default 'value' node.
+
+        :return: An iterator like instance of Product
+        :rtype: ~azure.core.paging.ItemPaged[~paging.models.Product]
+        :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
+        """
+        error_map = kwargs.pop('error_map', None)
+        def prepare_request(next_link=None):
+            query_parameters = {}
+            if not next_link:
+                # Construct URL
+                url = self.get_no_item_name_pages.metadata['url']
+
+            else:
+                url = next_link
+
+            # Construct headers
+            header_parameters = {}
+            header_parameters['Accept'] = 'application/json'
+            if self._config.generate_client_request_id:
+                header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
+
+            # Construct and send request
+            request = self._client.get(url, query_parameters, header_parameters)
+            return request
+
+        def extract_data(response):
+            deserialized = self._deserialize('ProductResultValue', response)
+            list_of_elem = deserialized.value
+            if cls:
+               list_of_elem = cls(list_of_elem)
+            return deserialized.next_link, iter(list_of_elem)
+
+        def get_next(next_link=None):
+            request = prepare_request(next_link)
+
+            pipeline_response = self._client._pipeline.run(request, **kwargs)
+            response = pipeline_response.http_response
+
+            if response.status_code not in [200]:
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise ARMError(response=response)
+            return response
+
+        # Deserialize response
+        return ItemPaged(
+            get_next, extract_data
+        )
+    get_no_item_name_pages.metadata = {'url': '/paging/noitemname'}
+
+    @distributed_trace
+    def get_null_next_link_name_pages(
+            self, cls=None, **kwargs):
+        """A paging operation that must ignore any kind of nextLink, and stop
+        after page 1.
+
+        :return: An iterator like instance of Product
+        :rtype: ~azure.core.paging.ItemPaged[~paging.models.Product]
+        :raises: :class:`ARMError<azure.mgmt.core.ARMError>`
+        """
+        error_map = kwargs.pop('error_map', None)
+        def prepare_request(next_link=None):
+            query_parameters = {}
+            if not next_link:
+                # Construct URL
+                url = self.get_null_next_link_name_pages.metadata['url']
+
+            else:
+                url = next_link
+
+            # Construct headers
+            header_parameters = {}
+            header_parameters['Accept'] = 'application/json'
+            if self._config.generate_client_request_id:
+                header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
+
+            # Construct and send request
+            request = self._client.get(url, query_parameters, header_parameters)
+            return request
+
+        def extract_data(response):
+            deserialized = self._deserialize('ProductResult', response)
+            list_of_elem = deserialized.values
+            if cls:
+               list_of_elem = cls(list_of_elem)
+            return deserialized.next_link, iter(list_of_elem)
+
+        def get_next(next_link=None):
+            request = prepare_request(next_link)
+
+            pipeline_response = self._client._pipeline.run(request, **kwargs)
+            response = pipeline_response.http_response
+
+            if response.status_code not in [200]:
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise ARMError(response=response)
+            return response
+
+        # Deserialize response
+        return ItemPaged(
+            get_next, extract_data
+        )
+    get_null_next_link_name_pages.metadata = {'url': '/paging/nullnextlink'}
+
+    @distributed_trace
     def get_single_pages(
             self, cls=None, **kwargs):
         """A paging operation that finishes on the first call without a nextlink.

@@ -46,8 +46,8 @@ class ExplicitOperations:
         :type body_parameter: int
         :param callable cls: A custom type or function that will be passed the
          direct response
-        :return: Error or the result of cls(response)
-        :rtype: ~requiredoptional.models.Error
+        :return: None or the result of cls(response)
+        :rtype: None
         :raises:
          :class:`ErrorException<requiredoptional.models.ErrorException>`
         """
@@ -70,7 +70,7 @@ class ExplicitOperations:
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
-        if response.status_code < 200 or response.status_code >= 300:
+        if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
@@ -133,8 +133,8 @@ class ExplicitOperations:
         :type value: int
         :param callable cls: A custom type or function that will be passed the
          direct response
-        :return: Error or the result of cls(response)
-        :rtype: ~requiredoptional.models.Error
+        :return: None or the result of cls(response)
+        :rtype: None
         :raises:
          :class:`ErrorException<requiredoptional.models.ErrorException>`
         """
@@ -159,7 +159,7 @@ class ExplicitOperations:
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
-        if response.status_code < 200 or response.status_code >= 300:
+        if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
@@ -226,8 +226,8 @@ class ExplicitOperations:
         :type header_parameter: int
         :param callable cls: A custom type or function that will be passed the
          direct response
-        :return: Error or the result of cls(response)
-        :rtype: ~requiredoptional.models.Error
+        :return: None or the result of cls(response)
+        :rtype: None
         :raises:
          :class:`ErrorException<requiredoptional.models.ErrorException>`
         """
@@ -247,7 +247,7 @@ class ExplicitOperations:
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
-        if response.status_code < 200 or response.status_code >= 300:
+        if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
@@ -305,8 +305,8 @@ class ExplicitOperations:
         :type body_parameter: str
         :param callable cls: A custom type or function that will be passed the
          direct response
-        :return: Error or the result of cls(response)
-        :rtype: ~requiredoptional.models.Error
+        :return: None or the result of cls(response)
+        :rtype: None
         :raises:
          :class:`ErrorException<requiredoptional.models.ErrorException>`
         """
@@ -329,7 +329,7 @@ class ExplicitOperations:
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
-        if response.status_code < 200 or response.status_code >= 300:
+        if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
@@ -392,8 +392,8 @@ class ExplicitOperations:
         :type value: str
         :param callable cls: A custom type or function that will be passed the
          direct response
-        :return: Error or the result of cls(response)
-        :rtype: ~requiredoptional.models.Error
+        :return: None or the result of cls(response)
+        :rtype: None
         :raises:
          :class:`ErrorException<requiredoptional.models.ErrorException>`
         """
@@ -418,7 +418,7 @@ class ExplicitOperations:
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
-        if response.status_code < 200 or response.status_code >= 300:
+        if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
@@ -485,8 +485,8 @@ class ExplicitOperations:
         :type header_parameter: str
         :param callable cls: A custom type or function that will be passed the
          direct response
-        :return: Error or the result of cls(response)
-        :rtype: ~requiredoptional.models.Error
+        :return: None or the result of cls(response)
+        :rtype: None
         :raises:
          :class:`ErrorException<requiredoptional.models.ErrorException>`
         """
@@ -506,7 +506,7 @@ class ExplicitOperations:
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
-        if response.status_code < 200 or response.status_code >= 300:
+        if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
@@ -564,8 +564,8 @@ class ExplicitOperations:
         :type body_parameter: ~requiredoptional.models.Product
         :param callable cls: A custom type or function that will be passed the
          direct response
-        :return: Error or the result of cls(response)
-        :rtype: ~requiredoptional.models.Error
+        :return: None or the result of cls(response)
+        :rtype: None
         :raises:
          :class:`ErrorException<requiredoptional.models.ErrorException>`
         """
@@ -588,7 +588,7 @@ class ExplicitOperations:
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
-        if response.status_code < 200 or response.status_code >= 300:
+        if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
@@ -651,8 +651,8 @@ class ExplicitOperations:
         :type value: ~requiredoptional.models.Product
         :param callable cls: A custom type or function that will be passed the
          direct response
-        :return: Error or the result of cls(response)
-        :rtype: ~requiredoptional.models.Error
+        :return: None or the result of cls(response)
+        :rtype: None
         :raises:
          :class:`ErrorException<requiredoptional.models.ErrorException>`
         """
@@ -677,7 +677,7 @@ class ExplicitOperations:
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
-        if response.status_code < 200 or response.status_code >= 300:
+        if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
@@ -744,8 +744,8 @@ class ExplicitOperations:
         :type body_parameter: list[str]
         :param callable cls: A custom type or function that will be passed the
          direct response
-        :return: Error or the result of cls(response)
-        :rtype: ~requiredoptional.models.Error
+        :return: None or the result of cls(response)
+        :rtype: None
         :raises:
          :class:`ErrorException<requiredoptional.models.ErrorException>`
         """
@@ -768,7 +768,7 @@ class ExplicitOperations:
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
-        if response.status_code < 200 or response.status_code >= 300:
+        if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
@@ -831,8 +831,8 @@ class ExplicitOperations:
         :type value: list[str]
         :param callable cls: A custom type or function that will be passed the
          direct response
-        :return: Error or the result of cls(response)
-        :rtype: ~requiredoptional.models.Error
+        :return: None or the result of cls(response)
+        :rtype: None
         :raises:
          :class:`ErrorException<requiredoptional.models.ErrorException>`
         """
@@ -857,7 +857,7 @@ class ExplicitOperations:
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
-        if response.status_code < 200 or response.status_code >= 300:
+        if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 
@@ -924,8 +924,8 @@ class ExplicitOperations:
         :type header_parameter: list[str]
         :param callable cls: A custom type or function that will be passed the
          direct response
-        :return: Error or the result of cls(response)
-        :rtype: ~requiredoptional.models.Error
+        :return: None or the result of cls(response)
+        :rtype: None
         :raises:
          :class:`ErrorException<requiredoptional.models.ErrorException>`
         """
@@ -945,7 +945,7 @@ class ExplicitOperations:
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
-        if response.status_code < 200 or response.status_code >= 300:
+        if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException(response, self._deserialize)
 

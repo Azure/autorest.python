@@ -230,3 +230,23 @@ class ProductResult(Model):
         super(ProductResult, self).__init__(**kwargs)
         self.values = kwargs.get('values', None)
         self.next_link = kwargs.get('next_link', None)
+
+
+class ProductResultValue(Model):
+    """ProductResultValue.
+
+    :param value:
+    :type value: list[~paging.models.Product]
+    :param next_link:
+    :type next_link: str
+    """
+
+    _attribute_map = {
+        'value': {'key': 'value', 'type': '[Product]'},
+        'next_link': {'key': 'nextLink', 'type': 'str'},
+    }
+
+    def __init__(self, **kwargs):
+        super(ProductResultValue, self).__init__(**kwargs)
+        self.value = kwargs.get('value', None)
+        self.next_link = kwargs.get('next_link', None)
