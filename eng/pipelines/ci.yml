@@ -67,7 +67,7 @@ jobs:
         displayName: 'Install tox in Target PyVersion $(PythonVersion)'
 
       - script: |
-          cd $(Build.SourcesDirectory)/tests/azure
+          cd $(Build.SourcesDirectory)/test/azure
           tox -e ci
         displayName: 'Execute Tests - Python $(PythonVersion)'
 
