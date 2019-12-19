@@ -11,7 +11,7 @@ variables:
   PythonVersion: '3.6'
 
 jobs:
-  - job: 'AutoRest.Python.CI'
+  - job: 'AutoRest_Python_CI'
     displayName: 'Run AutoRest CI Checks'
 
     strategy:
