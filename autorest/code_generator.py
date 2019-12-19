@@ -270,6 +270,7 @@ class CodeGenerator:
             'license_header': license_header,
             'keep_version_file': self._autorestapi.get_boolean_value("keep-version-file"),
             'no_async': self._autorestapi.get_boolean_value("no-async"),
+            'override_client_name': self._autorestapi.get_value("override-client-name")
         }
 
         # Force some options in ARM MODE:
@@ -306,7 +307,7 @@ class CodeGenerator:
         if options['azure_arm']:
             CloudErrorPlugin.remove_cloud_errors(yaml_code_model)
         # convert the names to python names
-        NameConverter.convert_yaml_names(yaml_code_model)
+        NameConverter.convert_yaml_names(yaml_code_model, options['override_client_name'])
 
         # save a new copy for debug
         #self._autorestapi.write_file("code-model-v4-no-tags-python.yaml", yaml.safe_dump(yaml_code_model))

@@ -4,10 +4,14 @@ from ..common.python_mappings import basic_latin_chars, reserved_words
 class NameConverter:
 
     @staticmethod
-    def convert_yaml_names(yaml_code):
+    def convert_yaml_names(yaml_code, override_client_name):
         NameConverter._convert_language_default_python_case(yaml_code)
-        yaml_code['info']['python_title'] = NameConverter._to_valid_python_name(yaml_code['info']['title'].replace(" ", ""))
-        yaml_code['info']['pascal_case_title'] = NameConverter._to_pascal_case(yaml_code['info']['title'].replace(" ", ""))
+        if override_client_name:
+            yaml_code['info']['python_title'] = NameConverter._to_valid_python_name(override_client_name)
+            yaml_code['info']['pascal_case_title'] = NameConverter._to_pascal_case(override_client_name)
+        else:
+            yaml_code['info']['python_title'] = NameConverter._to_valid_python_name(yaml_code['info']['title'].replace(" ", ""))
+            yaml_code['info']['pascal_case_title'] = NameConverter._to_pascal_case(yaml_code['info']['title'].replace(" ", ""))
         NameConverter._convert_schemas(yaml_code['schemas'])
         NameConverter._convert_operation_groups(yaml_code['operationGroups'], yaml_code['info']['pascal_case_title'])
         if yaml_code.get('globalParameters'):
