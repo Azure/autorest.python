@@ -267,7 +267,8 @@ class CodeGenerator:
             'override_client_name': self._autorestapi.get_value("override-client-name"),
             'payload-flattening-threshold': self._autorestapi.get_value("payload-flattening-threshold") or 0,
             'basic_setup_py': self._autorestapi.get_boolean_value("basic-setup-py"),
-            'package_version': self._autorestapi.get_value("package-version")
+            'package_version': self._autorestapi.get_value("package-version"),
+            'client_side_validation': False if self._autorestapi.get_value('client-side-validation') == False else True
         }
 
         if options["basic_setup_py"] and not options['package_version']:
