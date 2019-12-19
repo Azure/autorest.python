@@ -22,6 +22,7 @@ try:
     from ._models_py3 import DictionaryWrapper
     from ._models_py3 import Dog
     from ._models_py3 import DotFish
+    from ._models_py3 import DotFishMarket
     from ._models_py3 import DotSalmon
     from ._models_py3 import DoubleWrapper
     from ._models_py3 import DurationWrapper
@@ -54,6 +55,7 @@ except (SyntaxError, ImportError):
     from ._models import DictionaryWrapper
     from ._models import Dog
     from ._models import DotFish
+    from ._models import DotFishMarket
     from ._models import DotSalmon
     from ._models import DoubleWrapper
     from ._models import DurationWrapper
@@ -92,6 +94,7 @@ __all__ = [
     'DictionaryWrapper',
     'Dog',
     'DotFish',
+    'DotFishMarket',
     'DotSalmon',
     'DoubleWrapper',
     'DurationWrapper',

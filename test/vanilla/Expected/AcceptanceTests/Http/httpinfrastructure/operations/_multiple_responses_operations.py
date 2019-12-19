@@ -870,7 +870,8 @@ class MultipleResponsesOperations(object):
         :return: A or ClientRawResponse if raw=true
         :rtype: ~httpinfrastructure.models.A or
          ~msrest.pipeline.ClientRawResponse
-        :raises: :class:`AException<httpinfrastructure.models.AException>`
+        :raises:
+         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
         """
         # Construct URL
         url = self.get_default_model_a200_valid.metadata['url']
@@ -880,6 +881,7 @@ class MultipleResponsesOperations(object):
 
         # Construct headers
         header_parameters = {}
+        header_parameters['Accept'] = 'application/json'
         if custom_headers:
             header_parameters.update(custom_headers)
 
@@ -887,12 +889,18 @@ class MultipleResponsesOperations(object):
         request = self._client.get(url, query_parameters, header_parameters)
         response = self._client.send(request, stream=False, **operation_config)
 
-        if response.status_code < 200 or response.status_code >= 300:
-            raise models.AException(self._deserialize, response)
+        if response.status_code not in [200]:
+            raise HttpOperationError(self._deserialize, response)
+
+        deserialized = None
+        if response.status_code == 200:
+            deserialized = self._deserialize('A', response)
 
         if raw:
-            client_raw_response = ClientRawResponse(None, response)
+            client_raw_response = ClientRawResponse(deserialized, response)
             return client_raw_response
+
+        return deserialized
     get_default_model_a200_valid.metadata = {'url': '/http/payloads/default/A/response/200/valid'}
 
     def get_default_model_a200_none(
@@ -907,7 +915,8 @@ class MultipleResponsesOperations(object):
         :return: A or ClientRawResponse if raw=true
         :rtype: ~httpinfrastructure.models.A or
          ~msrest.pipeline.ClientRawResponse
-        :raises: :class:`AException<httpinfrastructure.models.AException>`
+        :raises:
+         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
         """
         # Construct URL
         url = self.get_default_model_a200_none.metadata['url']
@@ -917,6 +926,7 @@ class MultipleResponsesOperations(object):
 
         # Construct headers
         header_parameters = {}
+        header_parameters['Accept'] = 'application/json'
         if custom_headers:
             header_parameters.update(custom_headers)
 
@@ -924,12 +934,18 @@ class MultipleResponsesOperations(object):
         request = self._client.get(url, query_parameters, header_parameters)
         response = self._client.send(request, stream=False, **operation_config)
 
-        if response.status_code < 200 or response.status_code >= 300:
-            raise models.AException(self._deserialize, response)
+        if response.status_code not in [200]:
+            raise HttpOperationError(self._deserialize, response)
+
+        deserialized = None
+        if response.status_code == 200:
+            deserialized = self._deserialize('A', response)
 
         if raw:
-            client_raw_response = ClientRawResponse(None, response)
+            client_raw_response = ClientRawResponse(deserialized, response)
             return client_raw_response
+
+        return deserialized
     get_default_model_a200_none.metadata = {'url': '/http/payloads/default/A/response/200/none'}
 
     def get_default_model_a400_valid(
@@ -941,9 +957,8 @@ class MultipleResponsesOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: A or ClientRawResponse if raw=true
-        :rtype: ~httpinfrastructure.models.A or
-         ~msrest.pipeline.ClientRawResponse
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`AException<httpinfrastructure.models.AException>`
         """
         # Construct URL
@@ -961,7 +976,7 @@ class MultipleResponsesOperations(object):
         request = self._client.get(url, query_parameters, header_parameters)
         response = self._client.send(request, stream=False, **operation_config)
 
-        if response.status_code < 200 or response.status_code >= 300:
+        if response.status_code not in [200]:
             raise models.AException(self._deserialize, response)
 
         if raw:
@@ -978,9 +993,8 @@ class MultipleResponsesOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: A or ClientRawResponse if raw=true
-        :rtype: ~httpinfrastructure.models.A or
-         ~msrest.pipeline.ClientRawResponse
+        :return: None or ClientRawResponse if raw=true
+        :rtype: None or ~msrest.pipeline.ClientRawResponse
         :raises: :class:`AException<httpinfrastructure.models.AException>`
         """
         # Construct URL
@@ -998,7 +1012,7 @@ class MultipleResponsesOperations(object):
         request = self._client.get(url, query_parameters, header_parameters)
         response = self._client.send(request, stream=False, **operation_config)
 
-        if response.status_code < 200 or response.status_code >= 300:
+        if response.status_code not in [200]:
             raise models.AException(self._deserialize, response)
 
         if raw:
@@ -1035,7 +1049,7 @@ class MultipleResponsesOperations(object):
         request = self._client.get(url, query_parameters, header_parameters)
         response = self._client.send(request, stream=False, **operation_config)
 
-        if response.status_code < 200 or response.status_code >= 300:
+        if response.status_code not in [200]:
             raise HttpOperationError(self._deserialize, response)
 
         if raw:
@@ -1072,7 +1086,7 @@ class MultipleResponsesOperations(object):
         request = self._client.get(url, query_parameters, header_parameters)
         response = self._client.send(request, stream=False, **operation_config)
 
-        if response.status_code < 200 or response.status_code >= 300:
+        if response.status_code not in [200]:
             raise HttpOperationError(self._deserialize, response)
 
         if raw:
@@ -1109,7 +1123,7 @@ class MultipleResponsesOperations(object):
         request = self._client.get(url, query_parameters, header_parameters)
         response = self._client.send(request, stream=False, **operation_config)
 
-        if response.status_code < 200 or response.status_code >= 300:
+        if response.status_code not in [200]:
             raise HttpOperationError(self._deserialize, response)
 
         if raw:
@@ -1146,7 +1160,7 @@ class MultipleResponsesOperations(object):
         request = self._client.get(url, query_parameters, header_parameters)
         response = self._client.send(request, stream=False, **operation_config)
 
-        if response.status_code < 200 or response.status_code >= 300:
+        if response.status_code not in [200]:
             raise HttpOperationError(self._deserialize, response)
 
         if raw:

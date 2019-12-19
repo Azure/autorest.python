@@ -39,6 +39,153 @@ class PagingOperations:
 
         self.config = config
 
+    def get_no_item_name_pages(
+            self, *, custom_headers=None, raw=False, **operation_config):
+        """A paging operation that must return result of the default 'value' node.
+
+        :param dict custom_headers: headers that will be added to the request
+        :param bool raw: returns the direct response alongside the
+         deserialized response
+        :param operation_config: :ref:`Operation configuration
+         overrides<msrest:optionsforoperations>`.
+        :return: An iterator like instance of Product
+        :rtype: ~paging.models.ProductPaged[~paging.models.Product]
+        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
+        """
+        def prepare_request(next_link=None):
+            if not next_link:
+                # Construct URL
+                url = self.get_no_item_name_pages.metadata['url']
+
+                # Construct parameters
+                query_parameters = {}
+
+            else:
+                url = next_link
+                query_parameters = {}
+
+            # Construct headers
+            header_parameters = {}
+            header_parameters['Accept'] = 'application/json'
+            if self.config.generate_client_request_id:
+                header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
+            if custom_headers:
+                header_parameters.update(custom_headers)
+            if self.config.accept_language is not None:
+                header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+
+            # Construct and send request
+            request = self._client.get(url, query_parameters, header_parameters)
+            return request
+
+        def internal_paging(next_link=None):
+            request = prepare_request(next_link)
+
+            response = self._client.send(request, stream=False, **operation_config)
+
+            if response.status_code not in [200]:
+                exp = CloudError(response)
+                exp.request_id = response.headers.get('x-ms-request-id')
+                raise exp
+
+            return response
+
+        async def internal_paging_async(next_link=None):
+            request = prepare_request(next_link)
+
+            response = await self._client.async_send(request, stream=False, **operation_config)
+
+            if response.status_code not in [200]:
+                exp = CloudError(response)
+                exp.request_id = response.headers.get('x-ms-request-id')
+                raise exp
+
+            return response
+
+        # Deserialize response
+        header_dict = None
+        if raw:
+            header_dict = {}
+        deserialized = models.ProductPaged(
+            internal_paging, self._deserialize.dependencies, header_dict, async_command=internal_paging_async)
+
+        return deserialized
+    get_no_item_name_pages.metadata = {'url': '/paging/noitemname'}
+
+    def get_null_next_link_name_pages(
+            self, *, custom_headers=None, raw=False, **operation_config):
+        """A paging operation that must ignore any kind of nextLink, and stop
+        after page 1.
+
+        :param dict custom_headers: headers that will be added to the request
+        :param bool raw: returns the direct response alongside the
+         deserialized response
+        :param operation_config: :ref:`Operation configuration
+         overrides<msrest:optionsforoperations>`.
+        :return: An iterator like instance of Product
+        :rtype: ~paging.models.ProductPaged1[~paging.models.Product]
+        :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
+        """
+        def prepare_request(next_link=None):
+            if not next_link:
+                # Construct URL
+                url = self.get_null_next_link_name_pages.metadata['url']
+
+                # Construct parameters
+                query_parameters = {}
+
+            else:
+                url = next_link
+                query_parameters = {}
+
+            # Construct headers
+            header_parameters = {}
+            header_parameters['Accept'] = 'application/json'
+            if self.config.generate_client_request_id:
+                header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
+            if custom_headers:
+                header_parameters.update(custom_headers)
+            if self.config.accept_language is not None:
+                header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+
+            # Construct and send request
+            request = self._client.get(url, query_parameters, header_parameters)
+            return request
+
+        def internal_paging(next_link=None):
+            request = prepare_request(next_link)
+
+            response = self._client.send(request, stream=False, **operation_config)
+
+            if response.status_code not in [200]:
+                exp = CloudError(response)
+                exp.request_id = response.headers.get('x-ms-request-id')
+                raise exp
+
+            return response
+
+        async def internal_paging_async(next_link=None):
+            request = prepare_request(next_link)
+
+            response = await self._client.async_send(request, stream=False, **operation_config)
+
+            if response.status_code not in [200]:
+                exp = CloudError(response)
+                exp.request_id = response.headers.get('x-ms-request-id')
+                raise exp
+
+            return response
+
+        # Deserialize response
+        header_dict = None
+        if raw:
+            header_dict = {}
+        deserialized = models.ProductPaged1(
+            internal_paging, self._deserialize.dependencies, header_dict, async_command=internal_paging_async)
+
+        return deserialized
+    get_null_next_link_name_pages.metadata = {'url': '/paging/nullnextlink'}
+
     def get_single_pages(
             self, *, custom_headers=None, raw=False, **operation_config):
         """A paging operation that finishes on the first call without a nextlink.
@@ -49,7 +196,7 @@ class PagingOperations:
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
         :return: An iterator like instance of Product
-        :rtype: ~paging.models.ProductPaged[~paging.models.Product]
+        :rtype: ~paging.models.ProductPaged1[~paging.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
         def prepare_request(next_link=None):
@@ -106,7 +253,7 @@ class PagingOperations:
         header_dict = None
         if raw:
             header_dict = {}
-        deserialized = models.ProductPaged(
+        deserialized = models.ProductPaged1(
             internal_paging, self._deserialize.dependencies, header_dict, async_command=internal_paging_async)
 
         return deserialized
@@ -128,7 +275,7 @@ class PagingOperations:
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
         :return: An iterator like instance of Product
-        :rtype: ~paging.models.ProductPaged[~paging.models.Product]
+        :rtype: ~paging.models.ProductPaged1[~paging.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
         maxresults = None
@@ -198,7 +345,7 @@ class PagingOperations:
         header_dict = None
         if raw:
             header_dict = {}
-        deserialized = models.ProductPaged(
+        deserialized = models.ProductPaged1(
             internal_paging, self._deserialize.dependencies, header_dict, async_command=internal_paging_async)
 
         return deserialized
@@ -221,7 +368,7 @@ class PagingOperations:
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
         :return: An iterator like instance of Product
-        :rtype: ~paging.models.ProductPaged1[~paging.models.Product]
+        :rtype: ~paging.models.ProductPaged2[~paging.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
         maxresults = None
@@ -291,7 +438,7 @@ class PagingOperations:
         header_dict = None
         if raw:
             header_dict = {}
-        deserialized = models.ProductPaged1(
+        deserialized = models.ProductPaged2(
             internal_paging, self._deserialize.dependencies, header_dict, async_command=internal_paging_async)
 
         return deserialized
@@ -313,7 +460,7 @@ class PagingOperations:
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
         :return: An iterator like instance of Product
-        :rtype: ~paging.models.ProductPaged[~paging.models.Product]
+        :rtype: ~paging.models.ProductPaged1[~paging.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
         maxresults = None
@@ -390,7 +537,7 @@ class PagingOperations:
         header_dict = None
         if raw:
             header_dict = {}
-        deserialized = models.ProductPaged(
+        deserialized = models.ProductPaged1(
             internal_paging, self._deserialize.dependencies, header_dict, async_command=internal_paging_async)
 
         return deserialized
@@ -407,7 +554,7 @@ class PagingOperations:
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
         :return: An iterator like instance of Product
-        :rtype: ~paging.models.ProductPaged[~paging.models.Product]
+        :rtype: ~paging.models.ProductPaged1[~paging.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
         def prepare_request(next_link=None):
@@ -464,7 +611,7 @@ class PagingOperations:
         header_dict = None
         if raw:
             header_dict = {}
-        deserialized = models.ProductPaged(
+        deserialized = models.ProductPaged1(
             internal_paging, self._deserialize.dependencies, header_dict, async_command=internal_paging_async)
 
         return deserialized
@@ -482,7 +629,7 @@ class PagingOperations:
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
         :return: An iterator like instance of Product
-        :rtype: ~paging.models.ProductPaged[~paging.models.Product]
+        :rtype: ~paging.models.ProductPaged1[~paging.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
         def prepare_request(next_link=None):
@@ -539,7 +686,7 @@ class PagingOperations:
         header_dict = None
         if raw:
             header_dict = {}
-        deserialized = models.ProductPaged(
+        deserialized = models.ProductPaged1(
             internal_paging, self._deserialize.dependencies, header_dict, async_command=internal_paging_async)
 
         return deserialized
@@ -555,7 +702,7 @@ class PagingOperations:
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
         :return: An iterator like instance of Product
-        :rtype: ~paging.models.ProductPaged[~paging.models.Product]
+        :rtype: ~paging.models.ProductPaged1[~paging.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
         def prepare_request(next_link=None):
@@ -612,7 +759,7 @@ class PagingOperations:
         header_dict = None
         if raw:
             header_dict = {}
-        deserialized = models.ProductPaged(
+        deserialized = models.ProductPaged1(
             internal_paging, self._deserialize.dependencies, header_dict, async_command=internal_paging_async)
 
         return deserialized
@@ -628,7 +775,7 @@ class PagingOperations:
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
         :return: An iterator like instance of Product
-        :rtype: ~paging.models.ProductPaged[~paging.models.Product]
+        :rtype: ~paging.models.ProductPaged1[~paging.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
         def prepare_request(next_link=None):
@@ -685,7 +832,7 @@ class PagingOperations:
         header_dict = None
         if raw:
             header_dict = {}
-        deserialized = models.ProductPaged(
+        deserialized = models.ProductPaged1(
             internal_paging, self._deserialize.dependencies, header_dict, async_command=internal_paging_async)
 
         return deserialized
@@ -701,7 +848,7 @@ class PagingOperations:
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
         :return: An iterator like instance of Product
-        :rtype: ~paging.models.ProductPaged[~paging.models.Product]
+        :rtype: ~paging.models.ProductPaged1[~paging.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
         def prepare_request(next_link=None):
@@ -758,7 +905,7 @@ class PagingOperations:
         header_dict = None
         if raw:
             header_dict = {}
-        deserialized = models.ProductPaged(
+        deserialized = models.ProductPaged1(
             internal_paging, self._deserialize.dependencies, header_dict, async_command=internal_paging_async)
 
         return deserialized
@@ -778,7 +925,7 @@ class PagingOperations:
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
         :return: An iterator like instance of Product
-        :rtype: ~paging.models.ProductPaged1[~paging.models.Product]
+        :rtype: ~paging.models.ProductPaged2[~paging.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
         def prepare_request(next_link=None):
@@ -846,7 +993,7 @@ class PagingOperations:
         header_dict = None
         if raw:
             header_dict = {}
-        deserialized = models.ProductPaged1(
+        deserialized = models.ProductPaged2(
             internal_paging, self._deserialize.dependencies, header_dict, async_command=internal_paging_async)
 
         return deserialized
@@ -865,7 +1012,7 @@ class PagingOperations:
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
         :return: An iterator like instance of Product
-        :rtype: ~paging.models.ProductPaged1[~paging.models.Product]
+        :rtype: ~paging.models.ProductPaged2[~paging.models.Product]
         :raises: :class:`CloudError<msrestazure.azure_exceptions.CloudError>`
         """
         api_version = None
@@ -940,7 +1087,7 @@ class PagingOperations:
         header_dict = None
         if raw:
             header_dict = {}
-        deserialized = models.ProductPaged1(
+        deserialized = models.ProductPaged2(
             internal_paging, self._deserialize.dependencies, header_dict, async_command=internal_paging_async)
 
         return deserialized

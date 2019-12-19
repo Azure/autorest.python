@@ -196,6 +196,100 @@ class PolymorphismOperations(object):
         return deserialized
     get_dot_syntax.metadata = {'url': '/complex/polymorphism/dotsyntax'}
 
+    def get_composed_with_discriminator(
+            self, custom_headers=None, raw=False, **operation_config):
+        """Get complex object composing a polymorphic scalar property and array
+        property with polymorphic element type, with discriminator specified.
+        Deserialization must NOT fail and use the discriminator type specified
+        on the wire.
+
+        :param dict custom_headers: headers that will be added to the request
+        :param bool raw: returns the direct response alongside the
+         deserialized response
+        :param operation_config: :ref:`Operation configuration
+         overrides<msrest:optionsforoperations>`.
+        :return: DotFishMarket or ClientRawResponse if raw=true
+        :rtype: ~bodycomplex.models.DotFishMarket or
+         ~msrest.pipeline.ClientRawResponse
+        :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
+        """
+        # Construct URL
+        url = self.get_composed_with_discriminator.metadata['url']
+
+        # Construct parameters
+        query_parameters = {}
+
+        # Construct headers
+        header_parameters = {}
+        header_parameters['Accept'] = 'application/json'
+        if custom_headers:
+            header_parameters.update(custom_headers)
+
+        # Construct and send request
+        request = self._client.get(url, query_parameters, header_parameters)
+        response = self._client.send(request, stream=False, **operation_config)
+
+        if response.status_code not in [200]:
+            raise models.ErrorException(self._deserialize, response)
+
+        deserialized = None
+        if response.status_code == 200:
+            deserialized = self._deserialize('DotFishMarket', response)
+
+        if raw:
+            client_raw_response = ClientRawResponse(deserialized, response)
+            return client_raw_response
+
+        return deserialized
+    get_composed_with_discriminator.metadata = {'url': '/complex/polymorphism/composedWithDiscriminator'}
+
+    def get_composed_without_discriminator(
+            self, custom_headers=None, raw=False, **operation_config):
+        """Get complex object composing a polymorphic scalar property and array
+        property with polymorphic element type, without discriminator specified
+        on wire. Deserialization must NOT fail and use the explicit type of the
+        property.
+
+        :param dict custom_headers: headers that will be added to the request
+        :param bool raw: returns the direct response alongside the
+         deserialized response
+        :param operation_config: :ref:`Operation configuration
+         overrides<msrest:optionsforoperations>`.
+        :return: DotFishMarket or ClientRawResponse if raw=true
+        :rtype: ~bodycomplex.models.DotFishMarket or
+         ~msrest.pipeline.ClientRawResponse
+        :raises: :class:`ErrorException<bodycomplex.models.ErrorException>`
+        """
+        # Construct URL
+        url = self.get_composed_without_discriminator.metadata['url']
+
+        # Construct parameters
+        query_parameters = {}
+
+        # Construct headers
+        header_parameters = {}
+        header_parameters['Accept'] = 'application/json'
+        if custom_headers:
+            header_parameters.update(custom_headers)
+
+        # Construct and send request
+        request = self._client.get(url, query_parameters, header_parameters)
+        response = self._client.send(request, stream=False, **operation_config)
+
+        if response.status_code not in [200]:
+            raise models.ErrorException(self._deserialize, response)
+
+        deserialized = None
+        if response.status_code == 200:
+            deserialized = self._deserialize('DotFishMarket', response)
+
+        if raw:
+            client_raw_response = ClientRawResponse(deserialized, response)
+            return client_raw_response
+
+        return deserialized
+    get_composed_without_discriminator.metadata = {'url': '/complex/polymorphism/composedWithoutDiscriminator'}
+
     def get_complicated(
             self, custom_headers=None, raw=False, **operation_config):
         """Get complex types that are polymorphic, but not at the root of the

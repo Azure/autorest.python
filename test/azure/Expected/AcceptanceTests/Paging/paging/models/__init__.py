@@ -31,6 +31,7 @@ except (SyntaxError, ImportError):
     from ._models import ProductResult
 from ._paged_models import ProductPaged
 from ._paged_models import ProductPaged1
+from ._paged_models import ProductPaged2
 
 __all__ = [
     'CustomParameterGroup',
@@ -44,4 +45,5 @@ __all__ = [
     'ProductResult',
     'ProductPaged',
     'ProductPaged1',
+    'ProductPaged2',
 ]
