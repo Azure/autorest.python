@@ -79,7 +79,8 @@ jobs:
           testRunTitle: '$(OSName) Python $(PythonVersion)'
           searchFolder: '$(TestFolder)'
 
-      - script: |
+      - pwsh: |
+          Get-ChildItem -Recurse
           coverage xml -i --omit="*test*"
         displayName: 'Generate Coverage XML'
 
