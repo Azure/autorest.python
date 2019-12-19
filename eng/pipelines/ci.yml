@@ -1,0 +1,41 @@
+# This pipeline is triggered only for pr
+trigger: master
+
+pr:
+  branches:
+    include:
+    - *
+
+variables:
+  NodeVersion: '10.x'
+  PythonVersion: '3.6'
+  source_path: 'sdk/core/azure-core'
+
+jobs:
+  - job: 'AutoRest.Python.CI'
+    displayName: 'Run AutoRest CI Checks'
+
+    pool:
+      vmImage: 'ubuntu-16.04'
+
+    steps:
+      - task: NodeTool@0
+        displayName: 'Install Node.js $(NodeVersion)'
+        inputs:
+          versionSpec: '$(NodeVersion)'        
+
+      - task: UsePythonVersion@0
+        displayName: 'Use Python $(PythonVersion)'
+        inputs:
+          versionSpec: $(PythonVersion)
+
+      - script: pip install pytest pytest-cov pytest-asyncio isodate msrest aiohttp $(Build.SourcesDirectory)/$(source_path)
+        displayName: 'Prepare Environment'
+
+      - script: |
+          git clone --recursive $(auto_rest_clone_url)
+          cd autorest.python
+          git checkout $(repo_branch)
+          npm install
+          pytest test/vanilla
+        displayName: 'Run Test'
