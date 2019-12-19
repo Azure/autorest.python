@@ -20,6 +20,7 @@ try:
     from ._models_py3 import Product
     from ._models_py3 import ProductProperties
     from ._models_py3 import ProductResult
+    from ._models_py3 import ProductResultValue
 except (SyntaxError, ImportError):
     from ._models import CustomParameterGroup
     from ._models import OdataProductResult
@@ -31,6 +32,7 @@ except (SyntaxError, ImportError):
     from ._models import Product
     from ._models import ProductProperties
     from ._models import ProductResult
+    from ._models import ProductResultValue
 
 __all__ = [
     'CustomParameterGroup',
@@ -43,4 +45,5 @@ __all__ = [
     'Product',
     'ProductProperties',
     'ProductResult',
+    'ProductResultValue',
 ]

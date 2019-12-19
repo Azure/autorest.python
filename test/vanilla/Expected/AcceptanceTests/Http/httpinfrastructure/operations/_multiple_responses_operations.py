@@ -808,7 +808,8 @@ class MultipleResponsesOperations(object):
          direct response
         :return: A or the result of cls(response)
         :rtype: ~httpinfrastructure.models.A
-        :raises: :class:`AException<httpinfrastructure.models.AException>`
+        :raises:
+         :class:`HttpResponseError<azure.core.exceptions.HttpResponseError>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL
@@ -819,19 +820,25 @@ class MultipleResponsesOperations(object):
 
         # Construct headers
         header_parameters = {}
+        header_parameters['Accept'] = 'application/json'
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
-        if response.status_code < 200 or response.status_code >= 300:
+        if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.AException(response, self._deserialize)
+            raise HttpResponseError(response=response)
+
+        deserialized = None
+        if response.status_code == 200:
+            deserialized = self._deserialize('A', response)
 
         if cls:
-            response_headers = {}
-            return cls(response, None, response_headers)
+            return cls(response, deserialized, None)
+
+        return deserialized
     get_default_model_a200_valid.metadata = {'url': '/http/payloads/default/A/response/200/valid'}
 
     @distributed_trace
@@ -842,7 +849,8 @@ class MultipleResponsesOperations(object):
          direct response
         :return: A or the result of cls(response)
         :rtype: ~httpinfrastructure.models.A
-        :raises: :class:`AException<httpinfrastructure.models.AException>`
+        :raises:
+         :class:`HttpResponseError<azure.core.exceptions.HttpResponseError>`
         """
         error_map = kwargs.pop('error_map', None)
         # Construct URL
@@ -853,19 +861,25 @@ class MultipleResponsesOperations(object):
 
         # Construct headers
         header_parameters = {}
+        header_parameters['Accept'] = 'application/json'
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
-        if response.status_code < 200 or response.status_code >= 300:
+        if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.AException(response, self._deserialize)
+            raise HttpResponseError(response=response)
+
+        deserialized = None
+        if response.status_code == 200:
+            deserialized = self._deserialize('A', response)
 
         if cls:
-            response_headers = {}
-            return cls(response, None, response_headers)
+            return cls(response, deserialized, None)
+
+        return deserialized
     get_default_model_a200_none.metadata = {'url': '/http/payloads/default/A/response/200/none'}
 
     @distributed_trace
@@ -874,8 +888,8 @@ class MultipleResponsesOperations(object):
 
         :param callable cls: A custom type or function that will be passed the
          direct response
-        :return: A or the result of cls(response)
-        :rtype: ~httpinfrastructure.models.A
+        :return: None or the result of cls(response)
+        :rtype: None
         :raises: :class:`AException<httpinfrastructure.models.AException>`
         """
         error_map = kwargs.pop('error_map', None)
@@ -893,7 +907,7 @@ class MultipleResponsesOperations(object):
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
-        if response.status_code < 200 or response.status_code >= 300:
+        if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.AException(response, self._deserialize)
 
@@ -908,8 +922,8 @@ class MultipleResponsesOperations(object):
 
         :param callable cls: A custom type or function that will be passed the
          direct response
-        :return: A or the result of cls(response)
-        :rtype: ~httpinfrastructure.models.A
+        :return: None or the result of cls(response)
+        :rtype: None
         :raises: :class:`AException<httpinfrastructure.models.AException>`
         """
         error_map = kwargs.pop('error_map', None)
@@ -927,7 +941,7 @@ class MultipleResponsesOperations(object):
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
-        if response.status_code < 200 or response.status_code >= 300:
+        if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.AException(response, self._deserialize)
 
@@ -962,7 +976,7 @@ class MultipleResponsesOperations(object):
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
-        if response.status_code < 200 or response.status_code >= 300:
+        if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -997,7 +1011,7 @@ class MultipleResponsesOperations(object):
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
-        if response.status_code < 200 or response.status_code >= 300:
+        if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1032,7 +1046,7 @@ class MultipleResponsesOperations(object):
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
-        if response.status_code < 200 or response.status_code >= 300:
+        if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1067,7 +1081,7 @@ class MultipleResponsesOperations(object):
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
-        if response.status_code < 200 or response.status_code >= 300:
+        if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
