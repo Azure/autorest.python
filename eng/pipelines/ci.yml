@@ -47,7 +47,8 @@ jobs:
           versionSpec: 3.6
 
       - script: |
-          pip install -r requirements.txt tox
+          cd $(Build.SourcesDirectory)
+          pip install -r requirements.txt
           npm install -g "@autorest/autorest"
           npm install
         displayName: 'Prepare Environment for Generation'
@@ -66,7 +67,7 @@ jobs:
         displayName: 'Install tox in Target PyVersion $(PythonVersion)'
 
       - script: |
-          cd tests/azure
+          cd $(Build.SourcesDirectory)/tests/azure
           tox -e ci
         displayName: 'Execute Tests - Python $(PythonVersion)'
 
