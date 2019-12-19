@@ -79,14 +79,14 @@ jobs:
           testRunTitle: '$(OSName) Python $(PythonVersion)'
           searchFolder: '$(TestFolder)'
 
-      # - script: |
-      #     coverage xml -i --omit="*test*,*example*"
-      #   displayName: 'Generate Coverage XML'
-      #   continueOnError: true
+      - script: |
+          coverage xml -i --omit="*test*"
+        displayName: 'Generate Coverage XML'
+        continueOnError: true
 
-      # - task: PublishCodeCoverageResults@1
-      #   displayName: 'Publish Code Coverage'
-      #   continueOnError: true
-      #   inputs:
-      #     codeCoverageTool: Cobertura
-      #     summaryFileLocation: '$(Build.SourcesDirectory)/coverage.xml'
+      - task: PublishCodeCoverageResults@1
+        displayName: 'Publish Code Coverage'
+        continueOnError: true
+        inputs:
+          codeCoverageTool: Cobertura
+          summaryFileLocation: '$(TestFolder)/coverage.xml'
