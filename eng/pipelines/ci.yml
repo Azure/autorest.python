@@ -11,8 +11,8 @@ variables:
   PythonVersion: '3.6'
 
 jobs:
-  - job: 'AutoRest.Python.CI'
-    displayName: 'Run AutoRest CI Checks'
+  - job: 'AutoRest.Python.CI.Generation'
+    displayName: 'Autorest Regenerate '
 
     pool:
       vmImage: 'ubuntu-16.04'
@@ -43,14 +43,73 @@ jobs:
           testResultsFiles: '**/*test*.xml'
           testRunTitle: '$(OSName) Python $(PythonVersion)'
 
-      - script: |
-          coverage xml -i --omit="*test*,*example*"
-        displayName: 'Generate Coverage XML'
-        continueOnError: true
+  - job: 'AutoRest.Python.CI'
+    displayName: 'Run AutoRest CI Checks'
 
-      - task: PublishCodeCoverageResults@1
-        displayName: 'Publish Code Coverage'
-        continueOnError: true
+    strategy:
+      matrix:
+        Linux_Python27:
+          OSName: 'Linux'
+          OSVmImage: 'ubuntu-16.04'
+          PythonVersion: '2.7'
+          CoverageArg: ''
+        Linux_Python35:
+          OSName: 'Linux'
+          OSVmImage: 'ubuntu-16.04'
+          PythonVersion: '3.5'
+          CoverageArg: ''
+        Linux_Python36:
+          OSName: 'Linux'
+          OSVmImage: 'ubuntu-16.04'
+          PythonVersion: '3.8'
+          CoverageArg: ''
+
+    pool:
+      vmImage: 'ubuntu-16.04'
+
+    steps:
+      - task: NodeTool@0
+        displayName: 'Install Node.js $(NodeVersion)'
         inputs:
-          codeCoverageTool: Cobertura
-          summaryFileLocation: '$(Build.SourcesDirectory)/coverage.xml'
+          versionSpec: '$(NodeVersion)'        
+
+      - task: UsePythonVersion@0
+        displayName: 'Use Python 3.6'
+        inputs:
+          versionSpec: 3.6
+
+      - script: pip install -r requirements.txt tox
+        displayName: 'Prepare Environment for Generation'
+
+      - script: |
+          npm install -g "@autorest/autorest"
+          npm install 
+        displayName: 'Execute Tests'
+
+      - task: UsePythonVersion@0
+        displayName: 'Use Python $(PythonVersion)'
+        inputs:
+          versionSpec: $(PythonVersion)
+
+      - script: |
+          cd tests/azure
+          tox -e ci
+        displayName: 'Execute Tests - Python $(PythonVersion)'
+
+      - task: PublishTestResults@2
+        condition: always()
+        inputs:
+          testResultsFiles: '**/*test*.xml'
+          testRunTitle: '$(OSName) Python $(PythonVersion)'
+
+      # - script: |
+      #     coverage xml -i --omit="*test*,*example*"
+      #   displayName: 'Generate Coverage XML'
+      #   continueOnError: true
+
+      # - task: PublishCodeCoverageResults@1
+      #   displayName: 'Publish Code Coverage'
+      #   continueOnError: true
+      #   inputs:
+      #     codeCoverageTool: Cobertura
+      #     summaryFileLocation: '$(Build.SourcesDirectory)/coverage.xml'
