@@ -63,7 +63,6 @@ class CodeModel:
     :type options: dict[str, bool]
     :param str module_name: The module name for the client. Is in snake case.
     :param str class_name: The class name for the client. Is in pascal case.
-    :param str package_version: The package version if any
     :param str description: The description of the client
     :param str namespace: The namespace of our module
     :param schemas: The list of schemas we are going to serialize in the models files. Maps their yaml
@@ -85,7 +84,6 @@ class CodeModel:
         self.options = options
         self.module_name = None
         self.class_name = None
-        self.package_version: Optional[str] = None
         self.description = None
         self.namespace = None
         self.namespace_path = None

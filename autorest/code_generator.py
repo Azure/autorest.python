@@ -75,13 +75,7 @@ class CodeGenerator:
         code_model.module_name = yaml_code_model['info']['python_title']
         code_model.class_name = yaml_code_model['info']['pascal_case_title']
         code_model.description = yaml_code_model['info']['description'] if yaml_code_model['info'].get('description') else ""
-        code_model.package_version = self._autorestapi.get_value("package-version")
-        code_model.options["payload-flattening-threshold"] = self._autorestapi.get_value("payload-flattening-threshold") or 0
-        code_model.options["basic-setup-py"] = self._autorestapi.get_boolean_value("basic-setup-py")
 
-        # Check consistency of parameters
-        if code_model.options["basic-setup-py"] and not code_model.package_version:
-            raise ValueError("--basic-setup-py must be used with --package-version")
 
         # Global parameters
         code_model.global_parameters = [Parameter.from_yaml(param) for param in yaml_code_model.get('globalParameters', [])]
@@ -207,12 +201,21 @@ class CodeGenerator:
                 )
 
     def _serialize_and_write_top_level_folder(self, code_model, env):
-        namespace_path = Path(*[ns_part for ns_part in code_model.namespace.split(".")])
+        # namespace_path = Path(*[ns_part for ns_part in code_model.namespace.split(".")])
         general_serializer = GeneralSerializer(code_model=code_model, env=env, async_mode=False)
         general_serializer.serialize()
 
-        # Write the __init__ file
-        self._autorestapi.write_file(namespace_path / Path("__init__.py"), general_serializer.init_file)
+        namespace_parts = [ns_part for ns_part in code_model.namespace.split(".")]
+        namespace_path = None
+        for i in range(len(namespace_parts)):
+            namespace_path = Path(namespace_parts[i]) if not namespace_path else namespace_path / Path(namespace_parts[i])
+            if i == len(namespace_parts) - 1:
+                # Write the main __init__ file
+                self._autorestapi.write_file(namespace_path / Path("__init__.py"), general_serializer.init_file)
+            else:
+                # write pkgutil init file
+                self._autorestapi.write_file(namespace_path / Path("__init__.py"), general_serializer.pkgutil_init_file)
+
 
         # Write the service client
         self._autorestapi.write_file(
@@ -221,14 +224,14 @@ class CodeGenerator:
         )
 
         # Write the version if necessary
-        if code_model.package_version or not code_model.options['keep_version_file'] or not self._autorestapi.read_file(namespace_path / Path("_version.py")):
+        if code_model.options['package_version'] or not code_model.options['keep_version_file'] or not self._autorestapi.read_file(namespace_path / Path("_version.py")):
             self._autorestapi.write_file(namespace_path / Path("_version.py"), general_serializer.version_file)
 
         # Write the config file
         self._autorestapi.write_file(namespace_path / Path("_configuration.py"), general_serializer.config_file)
 
         # Write the setup file
-        if code_model.options["basic-setup-py"]:
+        if code_model.options["basic_setup_py"]:
             self._autorestapi.write_file(Path("setup.py"), general_serializer.setup_file)
 
     def _serialize_and_write_aio_folder(self, code_model, env):
@@ -270,7 +273,15 @@ class CodeGenerator:
             'license_header': license_header,
             'keep_version_file': self._autorestapi.get_boolean_value("keep-version-file"),
             'no_async': self._autorestapi.get_boolean_value("no-async"),
+            'override_client_name': self._autorestapi.get_value("override-client-name"),
+            'payload-flattening-threshold': self._autorestapi.get_value("payload-flattening-threshold") or 0,
+            'basic_setup_py': self._autorestapi.get_boolean_value("basic-setup-py"),
+            'package_version': self._autorestapi.get_value("package-version"),
+            'client_side_validation': False if self._autorestapi.get_value('client-side-validation') == False else True
         }
+
+        if options["basic_setup_py"] and not options['package_version']:
+            raise ValueError("--basic-setup-py must be used with --package-version")
 
         # Force some options in ARM MODE:
         if azure_arm:
@@ -306,7 +317,7 @@ class CodeGenerator:
         if options['azure_arm']:
             CloudErrorPlugin.remove_cloud_errors(yaml_code_model)
         # convert the names to python names
-        NameConverter.convert_yaml_names(yaml_code_model)
+        NameConverter.convert_yaml_names(yaml_code_model, options['override_client_name'])
 
         # save a new copy for debug
         #self._autorestapi.write_file("code-model-v4-no-tags-python.yaml", yaml.safe_dump(yaml_code_model))

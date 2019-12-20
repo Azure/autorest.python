@@ -3,7 +3,7 @@
 {{ code_model.options['license_header'] }}
 
 from ._{{ code_model.module_name + async_suffix }} import {{ code_model.class_name }}
-{% if not async_mode and code_model.package_version%}
+{% if not async_mode and code_model.options['package_version']%}
 from ._version import VERSION
 
 __version__ = VERSION

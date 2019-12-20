@@ -85,5 +85,5 @@ reserved_words = [
     "print","raise","return","try","while","with",
     "yield", "async", "await",
     "int","bool","bytearray","date","datetime","float",
-    "long","object","decimal","str","timedelta", "mro"
+    "long","object","decimal","str","timedelta", "mro", "self"
 ]

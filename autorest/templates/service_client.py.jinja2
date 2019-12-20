@@ -60,6 +60,9 @@ class {{ code_model.class_name }}({{ base_class }}):
         client_models = {}
         {% endif %}
         self._serialize = Serializer(client_models)
+        {% if not code_model.options['client_side_validation'] %}
+        self._serialize.client_side_validation = False
+        {% endif %}
         self._deserialize = Deserializer(client_models)
 
         {% for operation_group in code_model.operation_groups|rejectattr("is_empty_operation_group") %}

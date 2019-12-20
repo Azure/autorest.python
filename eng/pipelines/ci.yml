@@ -73,6 +73,7 @@ jobs:
           tox -e ci
         displayName: 'Execute "azure" Tests - Python $(PythonVersion)'
 
+<<<<<<< HEAD
       - task: PublishTestResults@2
         condition: always()
         displayName: 'Publish "azure" Test Results'
@@ -81,15 +82,36 @@ jobs:
           testRunTitle: '$(OSName) Python $(PythonVersion) - azure'
           searchFolder: '$(TestFolder)/azure'
 
+=======
+>>>>>>> autorestv3
       - script: |
           cd $(TestFolder)/vanilla
           tox -e ci
         displayName: 'Execute "vanilla" Tests - Python $(PythonVersion)'
 
       - task: PublishTestResults@2
+<<<<<<< HEAD
         displayName: 'Publish "vanilla" Test Results'
         condition: always()
         inputs:
           testResultsFiles: 'test-junit-vanilla-ci.xml'
           testRunTitle: '$(OSName) Python $(PythonVersion) - vanilla'
           searchFolder: '$(TestFolder)/vanilla'
+=======
+        condition: always()
+        inputs:
+          testResultsFiles: '**/*test*.xml'
+          testRunTitle: '$(OSName) Python $(PythonVersion)'
+          searchFolder: '$(TestFolder)'
+
+      # - pwsh: |
+      #     Get-ChildItem -Recurse
+      #     coverage xml -i --omit="*test*"
+      #   displayName: 'Generate Coverage XML'
+
+      # - task: PublishCodeCoverageResults@1
+      #   displayName: 'Publish Code Coverage'
+      #   inputs:
+      #     codeCoverageTool: Cobertura
+      #     summaryFileLocation: '$(TestFolder)/coverage.xml'
+>>>>>>> autorestv3
