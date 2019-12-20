@@ -21,7 +21,6 @@ jobs:
           OSName: 'Linux'
           OSVmImage: 'ubuntu-16.04'
           PythonVersion: '2.7'
-          CoverageArg: ''
         Linux_Python35:
           OSName: 'Linux'
           OSVmImage: 'ubuntu-16.04'
@@ -31,7 +30,6 @@ jobs:
           OSName: 'Linux'
           OSVmImage: 'ubuntu-16.04'
           PythonVersion: '3.8'
-          CoverageArg: ''
 
     pool:
       vmImage: '$(OSVmImage)'
@@ -70,13 +68,15 @@ jobs:
       - script: |
           cd $(TestFolder)/azure
           tox -e ci
-          coverage xml -i --omit="*test*"
+          # coverage xml -i --omit="*test*"
+          ls
         displayName: 'Execute "azure" Tests - Python $(PythonVersion)'
 
       - script: |
           cd $(TestFolder)/vanilla
           tox -e ci
-          coverage xml -i --omit="*test*"
+          # coverage xml -i --omit="*test*"
+          ls
         displayName: 'Execute "vanilla" Tests - Python $(PythonVersion)'
 
       - task: PublishTestResults@2
