@@ -72,9 +72,9 @@ jobs:
 
       - task: PublishTestResults@2
         condition: always()
-        displayName: 'Publish "azure" TestResults'
+        displayName: 'Publish "azure" Test Results'
         inputs:
-          testResultsFiles: '**/*test*azure*.xml'
+          testResultsFiles: '**/test-junit-azure-ci.xml'
           testRunTitle: '$(OSName) Python $(PythonVersion) - azure'
           searchFolder: '$(TestFolder)'
 
@@ -84,17 +84,16 @@ jobs:
         displayName: 'Execute "vanilla" Tests - Python $(PythonVersion)'
 
       - task: PublishTestResults@2
-        displayName: 'Publish "vanilla" TestResults'
+        displayName: 'Publish "vanilla" Test Results'
         condition: always()
         inputs:
-          testResultsFiles: '**/*test*vanilla*.xml'
+          testResultsFiles: '**/test-junit-vanilla-ci.xml'
           testRunTitle: '$(OSName) Python $(PythonVersion) - vanilla'
           searchFolder: '$(TestFolder)'
 
-      # - pwsh: |
-      #     Get-ChildItem -Recurse
-      #     coverage xml -i --omit="*test*"
-      #   displayName: 'Generate Coverage XML'
+      - pwsh: |
+          Get-ChildItem $(TestFolder) -Recurse
+        displayName: 'Generate Find Coverage Artifacts'
 
       # - task: PublishCodeCoverageResults@1
       #   displayName: 'Publish Code Coverage'
