@@ -9,7 +9,7 @@ pr:
 variables:
   NodeVersion: '10.x'
   PythonVersion: '3.6'
-  TestFolder: '$(Build.SourcesDirectory)/test/azure'
+  TestFolder: '$(Build.SourcesDirectory)/test/'
 
 jobs:
   - job: 'AutoRest_Python_CI'
@@ -68,9 +68,16 @@ jobs:
         displayName: 'Install Env Specific Reqs in Target PyVersion $(PythonVersion)'
 
       - script: |
-          cd $(TestFolder)
+          cd $(TestFolder)/azure
           tox -e ci
-        displayName: 'Execute Tests - Python $(PythonVersion)'
+          coverage xml -i --omit="*test*"
+        displayName: 'Execute "azure" Tests - Python $(PythonVersion)'
+
+      - script: |
+          cd $(TestFolder)/vanilla
+          tox -e ci
+          coverage xml -i --omit="*test*"
+        displayName: 'Execute "vanilla" Tests - Python $(PythonVersion)'
 
       - task: PublishTestResults@2
         condition: always()
@@ -81,11 +88,11 @@ jobs:
 
       - pwsh: |
           Get-ChildItem -Recurse
-          coverage xml -i --omit="*test*"
+#          coverage xml -i --omit="*test*"
         displayName: 'Generate Coverage XML'
 
-      - task: PublishCodeCoverageResults@1
-        displayName: 'Publish Code Coverage'
-        inputs:
-          codeCoverageTool: Cobertura
-          summaryFileLocation: '$(TestFolder)/coverage.xml'
+      # - task: PublishCodeCoverageResults@1
+      #   displayName: 'Publish Code Coverage'
+      #   inputs:
+      #     codeCoverageTool: Cobertura
+      #     summaryFileLocation: '$(TestFolder)/coverage.xml'
