@@ -196,3 +196,4 @@ def test(c):
     c.run('tox')
     os.chdir("{}/test/azure/".format(base_dir))
     c.run('tox')
+
