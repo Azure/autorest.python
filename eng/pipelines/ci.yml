@@ -68,15 +68,11 @@ jobs:
       - script: |
           cd $(TestFolder)/azure
           tox -e ci
-          # coverage xml -i --omit="*test*"
-          ls
         displayName: 'Execute "azure" Tests - Python $(PythonVersion)'
 
       - script: |
           cd $(TestFolder)/vanilla
           tox -e ci
-          # coverage xml -i --omit="*test*"
-          ls
         displayName: 'Execute "vanilla" Tests - Python $(PythonVersion)'
 
       - task: PublishTestResults@2
@@ -86,10 +82,10 @@ jobs:
           testRunTitle: '$(OSName) Python $(PythonVersion)'
           searchFolder: '$(TestFolder)'
 
-      - pwsh: |
-          Get-ChildItem -Recurse
-#          coverage xml -i --omit="*test*"
-        displayName: 'Generate Coverage XML'
+      # - pwsh: |
+      #     Get-ChildItem -Recurse
+      #     coverage xml -i --omit="*test*"
+      #   displayName: 'Generate Coverage XML'
 
       # - task: PublishCodeCoverageResults@1
       #   displayName: 'Publish Code Coverage'
