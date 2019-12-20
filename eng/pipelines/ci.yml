@@ -90,13 +90,3 @@ jobs:
           testResultsFiles: 'test-junit-vanilla-ci.xml'
           testRunTitle: '$(OSName) Python $(PythonVersion) - vanilla'
           searchFolder: '$(TestFolder)/vanilla'
-
-      - pwsh: |
-          Get-ChildItem $(TestFolder) -Recurse
-        displayName: 'Generate Find Coverage Artifacts'
-
-      # - task: PublishCodeCoverageResults@1
-      #   displayName: 'Publish Code Coverage'
-      #   inputs:
-      #     codeCoverageTool: Cobertura
-      #     summaryFileLocation: '$(TestFolder)/coverage.xml'
