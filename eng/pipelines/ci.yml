@@ -1,7 +1,7 @@
 trigger: 
   branches:
     include:
-    - master
+    - autorestv3
 
 pr:
   branches:
