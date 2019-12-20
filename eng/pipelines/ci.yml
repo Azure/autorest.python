@@ -1,5 +1,8 @@
 # This pipeline is triggered only for pr
-trigger: autorestv3
+trigger: 
+  branches:
+    include:
+    - master
 
 pr:
   branches:
