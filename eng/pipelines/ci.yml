@@ -50,6 +50,7 @@ jobs:
       - script: |
           cd $(Build.SourcesDirectory)
           pip install -r requirements.txt
+          pip install ./autorest
           npm install -g "@autorest/autorest"
           npm install
         displayName: 'Prepare Environment for Generation'
