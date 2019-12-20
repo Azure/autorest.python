@@ -70,16 +70,25 @@ jobs:
           tox -e ci
         displayName: 'Execute "azure" Tests - Python $(PythonVersion)'
 
+      - task: PublishTestResults@2
+        condition: always()
+        displayName: 'Publish "azure" TestResults'
+        inputs:
+          testResultsFiles: '**/*test*azure*.xml'
+          testRunTitle: '$(OSName) Python $(PythonVersion) - azure'
+          searchFolder: '$(TestFolder)'
+
       - script: |
           cd $(TestFolder)/vanilla
           tox -e ci
         displayName: 'Execute "vanilla" Tests - Python $(PythonVersion)'
 
       - task: PublishTestResults@2
+        displayName: 'Publish "vanilla" TestResults'
         condition: always()
         inputs:
-          testResultsFiles: '**/*test*.xml'
-          testRunTitle: '$(OSName) Python $(PythonVersion)'
+          testResultsFiles: '**/*test*vanilla*.xml'
+          testRunTitle: '$(OSName) Python $(PythonVersion) - vanilla'
           searchFolder: '$(TestFolder)'
 
       # - pwsh: |
