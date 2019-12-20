@@ -14,6 +14,9 @@ class GeneralSerializer:
         self._setup_file = None
 
     def serialize(self):
+        template = self.env.get_template("pkgutil_init.py.jinja2")
+        self._pkgutil_init_file = template.render()
+
         template = self.env.get_template("init.py.jinja2")
         self._init_file = template.render(
             code_model=self.code_model,
@@ -41,6 +44,10 @@ class GeneralSerializer:
 
             template = self.env.get_template("setup.py.jinja2")
             self._setup_file = template.render(code_model=self.code_model)
+
+    @property
+    def pkgutil_init_file(self):
+        return self._pkgutil_init_file
 
     @property
     def init_file(self):

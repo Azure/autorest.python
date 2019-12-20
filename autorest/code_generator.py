@@ -201,12 +201,21 @@ class CodeGenerator:
                 )
 
     def _serialize_and_write_top_level_folder(self, code_model, env):
-        namespace_path = Path(*[ns_part for ns_part in code_model.namespace.split(".")])
+        # namespace_path = Path(*[ns_part for ns_part in code_model.namespace.split(".")])
         general_serializer = GeneralSerializer(code_model=code_model, env=env, async_mode=False)
         general_serializer.serialize()
 
-        # Write the __init__ file
-        self._autorestapi.write_file(namespace_path / Path("__init__.py"), general_serializer.init_file)
+        namespace_parts = [ns_part for ns_part in code_model.namespace.split(".")]
+        namespace_path = None
+        for i in range(len(namespace_parts)):
+            namespace_path = Path(namespace_parts[i]) if not namespace_path else namespace_path / Path(namespace_parts[i])
+            if i == len(namespace_parts) - 1:
+                # Write the main __init__ file
+                self._autorestapi.write_file(namespace_path / Path("__init__.py"), general_serializer.init_file)
+            else:
+                # write pkgutil init file
+                self._autorestapi.write_file(namespace_path / Path("__init__.py"), general_serializer.pkgutil_init_file)
+
 
         # Write the service client
         self._autorestapi.write_file(
