@@ -74,9 +74,9 @@ jobs:
         condition: always()
         displayName: 'Publish "azure" Test Results'
         inputs:
-          testResultsFiles: '**/test-junit-azure-ci.xml'
+          testResultsFiles: 'test-junit-azure-ci.xml'
           testRunTitle: '$(OSName) Python $(PythonVersion) - azure'
-          searchFolder: '$(TestFolder)'
+          searchFolder: '$(TestFolder)/azure'
 
       - script: |
           cd $(TestFolder)/vanilla
@@ -87,9 +87,9 @@ jobs:
         displayName: 'Publish "vanilla" Test Results'
         condition: always()
         inputs:
-          testResultsFiles: '**/test-junit-vanilla-ci.xml'
+          testResultsFiles: 'test-junit-vanilla-ci.xml'
           testRunTitle: '$(OSName) Python $(PythonVersion) - vanilla'
-          searchFolder: '$(TestFolder)'
+          searchFolder: '$(TestFolder)/vanilla'
 
       - pwsh: |
           Get-ChildItem $(TestFolder) -Recurse
