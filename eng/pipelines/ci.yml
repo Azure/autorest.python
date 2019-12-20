@@ -1,5 +1,5 @@
 # This pipeline is triggered only for pr
-trigger: none
+trigger: autorestv3
 
 pr:
   branches:
