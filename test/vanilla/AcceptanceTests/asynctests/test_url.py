@@ -134,6 +134,10 @@ class TestUrl(object):
         await client.paths.string_url_encoded()
 
     @pytest.mark.asyncio
+    async def test_string_url_non_encoded(self, client):
+        await client.paths.string_url_non_encoded()
+
+    @pytest.mark.asyncio
     async def test_enum_valid(self, client):
         await client.paths.enum_valid(UriColor.greencolor)
 

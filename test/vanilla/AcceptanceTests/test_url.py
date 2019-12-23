@@ -116,6 +116,9 @@ class TestUrl(object):
     def test_string_url_encoded(self, client):
         client.paths.string_url_encoded()
 
+    def test_string_url_non_encoded(self, client):
+        client.paths.string_url_non_encoded()
+
     def test_enum_valid(self, client):
         client.paths.enum_valid(UriColor.greencolor)
 

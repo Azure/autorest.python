@@ -69,9 +69,9 @@ class TestCustomBaseUri(object):
 
     @pytest.mark.asyncio
     async def test_get_empty_from_bad_host(self):
-        client = AutoRestParameterizedHostTestClient("badhost:3000", retry_total = 0)
-        with pytest.raises(ServiceRequestError):
-            await client.paths.get_empty("local")
+        async with AutoRestParameterizedHostTestClient("badhost:3000", retry_total = 0) as client:
+            with pytest.raises(ServiceRequestError):
+                await client.paths.get_empty("local")
 
     @pytest.mark.xfail(reason="https://github.com/Azure/autorest.testserver/issues/97")
     @pytest.mark.asyncio

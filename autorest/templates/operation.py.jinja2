@@ -153,4 +153,4 @@
 {% if operation.method == 'head' and code_model.options['head_as_boolean'] %}
     return 200 <= response.status_code <= 299
 {% endif %}
-{{ operation.python_name }}.metadata = {'url': '{{ operation.url }}'}
+{{ operation.python_name }}.metadata = {'url': '{{ operation.url|replace("'", "\\'") }}'}

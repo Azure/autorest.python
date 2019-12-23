@@ -572,6 +572,51 @@ class PathsOperations:
     string_url_encoded.metadata = {'url': '/paths/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend/{stringPath}'}
 
     @distributed_trace_async
+    async def string_url_non_encoded(self, cls=None, **kwargs):
+        """Get 'begin!*'();:@&=+$,end.
+
+        FIXME: add operation.summary
+
+
+        :param callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+
+        :raises: ~url.models.ErrorException:
+        """
+        error_map = kwargs.pop('error_map', None)
+        string_path = "begin!*'();:@&=+$,end"
+
+        # Construct URL
+        url = self.string_url_non_encoded.metadata['url']
+        path_format_arguments = {
+            'stringPath': self._serialize.url("string_path", string_path, 'str', skip_quote=True),
+        }
+        url = self._client.format_url(url, **path_format_arguments)
+
+        # Construct parameters
+        query_parameters = {}
+
+
+        # Construct headers
+        header_parameters = {}
+
+
+        # Construct and send request
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise models.ErrorException(response, self._deserialize)
+
+        if cls:
+          return cls(response, None, {})
+
+    string_url_non_encoded.metadata = {'url': '/paths/string/begin!*\'();:@&=+$,end/{stringPath}'}
+
+    @distributed_trace_async
     async def string_empty(self, cls=None, **kwargs):
         """Get ''.
 
