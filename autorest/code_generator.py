@@ -11,8 +11,7 @@ import yaml
 
 from jinja2 import Template, PackageLoader, Environment
 
-from .jsonrpc import AutorestAPI
-
+from . import Plugin
 from .plugins import NameConverter, CloudErrorPlugin
 from .models.code_model import CodeModel
 from .models import build_schema, EnumSchema, ConstantSchema
@@ -33,9 +32,7 @@ from .serializers import (
 _LOGGER = logging.getLogger(__name__)
 
 
-class CodeGenerator:
-    def __init__(self, autorestapi: AutorestAPI):
-        self._autorestapi = autorestapi
+class CodeGenerator(Plugin):
 
     def _build_exceptions_set(self, yaml_data):
         exceptions_set = set()

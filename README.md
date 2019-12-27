@@ -19,7 +19,7 @@ contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additio
 AutoRest needs the below config to pick this up as a plug-in - see https://github.com/Azure/autorest/blob/master/docs/developer/architecture/AutoRest-extension.md
 
 
-#### Mapper
+#### Python code gen
 
 ``` yaml
 version: 3.0.6182
@@ -30,15 +30,18 @@ pipeline:
 
 # --- extension remodeler ---
 
-  mapper:
+  python/m2r:
     input: modelerfour/identity
+
+  python/codegen:
+    input: python/m2r
     output-artifact: python-files
 
-  mapper/emitter:
-    input: mapper
-    scope: scope-mapper/emitter
+  python/codegen/emitter:
+    input: codegen
+    scope: scope-codegen/emitter
 
-scope-mapper/emitter:
+scope-codegen/emitter:
     input-artifact: python-files
     output-uri-expr: $key
 
