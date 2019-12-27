@@ -16,25 +16,25 @@ class BaseProduct(Model):
 
 	All required parameters must be populated in order to send to Azure.
 
-    :param base_product_id: Required. Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles.
-	:type base_product_id: str
-    :param base_product_description: Description of product.
-	:type base_product_description: str
+    :param product_id: Required. Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles.
+	:type product_id: str
+    :param description: Description of product.
+	:type description: str
     """
 
     _validation = {
-        'base_product_id': {'required': True},
+        'product_id': {'required': True},
     }
 
     _attribute_map = {
-        'base_product_id': {'key': 'base_product_id', 'type': 'str'},
-        'base_product_description': {'key': 'base_product_description', 'type': 'str'},
+        'product_id': {'key': 'base_product_id', 'type': 'str'},
+        'description': {'key': 'base_product_description', 'type': 'str'},
     }
 
-    def __init__(self, *, base_product_id: str, base_product_description: str=None, **kwargs) -> None:
+    def __init__(self, *, product_id: str, description: str=None, **kwargs) -> None:
         super(BaseProduct, self).__init__(**kwargs)
-        self.base_product_id = base_product_id
-        self.base_product_description = base_product_description
+        self.product_id = product_id
+        self.description = description
 
 
 class Error(Model):
@@ -270,26 +270,26 @@ class SimpleProduct(BaseProduct):
 
 	All required parameters must be populated in order to send to Azure.
 
-    :param base_product_id: Required. Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles.
-	:type base_product_id: str
-    :param base_product_description: Description of product.
-	:type base_product_description: str
+    :param product_id: Required. Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles.
+	:type product_id: str
+    :param description: Description of product.
+	:type description: str
     :param details: The product documentation.
 	:type details: ~modelflattening.models.SimpleProductProperties
     """
 
     _validation = {
-        'base_product_id': {'required': True},
+        'product_id': {'required': True},
     }
 
     _attribute_map = {
-        'base_product_id': {'key': 'base_product_id', 'type': 'str'},
-        'base_product_description': {'key': 'base_product_description', 'type': 'str'},
+        'product_id': {'key': 'base_product_id', 'type': 'str'},
+        'description': {'key': 'base_product_description', 'type': 'str'},
         'details': {'key': 'details', 'type': 'SimpleProductProperties'},
     }
 
-    def __init__(self, *, base_product_id: str, base_product_description: str=None, details: "SimpleProductProperties"=None, **kwargs) -> None:
-        super(SimpleProduct, self).__init__(base_product_id=base_product_id, base_product_description=base_product_description, **kwargs)
+    def __init__(self, *, product_id: str, description: str=None, details: "SimpleProductProperties"=None, **kwargs) -> None:
+        super(SimpleProduct, self).__init__(product_id=product_id, description=description, **kwargs)
         self.details = details
 
 
@@ -302,24 +302,24 @@ class SimpleProductProperties(Model):
 
     :param max_product_display_name: Required. Display name of product.
 	:type max_product_display_name: str
-    :ivar max_product_capacity: Required. Capacity of product. For example, 4 people. Default value: "Large".
-	:vartype max_product_capacity: str
+    :ivar capacity: Required. Capacity of product. For example, 4 people. Default value: "Large".
+	:vartype capacity: str
     :param max_product_image: The product URL.
 	:type max_product_image: ~modelflattening.models.ProductUrl
     """
 
     _validation = {
         'max_product_display_name': {'required': True},
-        'max_product_capacity': {'required': True, 'constant': True},
+        'capacity': {'required': True, 'constant': True},
     }
 
     _attribute_map = {
         'max_product_display_name': {'key': 'max_product_display_name', 'type': 'str'},
-        'max_product_capacity': {'key': 'max_product_capacity', 'type': 'str'},
+        'capacity': {'key': 'max_product_capacity', 'type': 'str'},
         'max_product_image': {'key': 'max_product_image', 'type': 'ProductUrl'},
     }
 
-    max_product_capacity = "Large"
+    capacity = "Large"
 
     def __init__(self, *, max_product_display_name: str, max_product_image: "ProductUrl"=None, **kwargs) -> None:
         super(SimpleProductProperties, self).__init__(**kwargs)
