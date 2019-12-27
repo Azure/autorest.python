@@ -1,4 +1,4 @@
-trigger: 
+trigger:
   branches:
     include:
     - autorestv3
@@ -40,7 +40,7 @@ jobs:
       - task: NodeTool@0
         displayName: 'Install Node.js $(NodeVersion)'
         inputs:
-          versionSpec: '$(NodeVersion)'        
+          versionSpec: '$(NodeVersion)'
 
       - task: UsePythonVersion@0
         displayName: 'Use Python 3.6'
@@ -49,11 +49,14 @@ jobs:
 
       - script: |
           cd $(Build.SourcesDirectory)
-          pip install -r requirements.txt
-          pip install ./autorest
+          pip install -r dev_requirements.txt
           npm install -g "@autorest/autorest"
           npm install
         displayName: 'Prepare Environment for Generation'
+      - script: |
+          pytest test/unittests
+        displayName: 'Unit tests'
+
       - script: |
           inv regenerate
         displayName: 'Regenerate Code'
@@ -61,7 +64,7 @@ jobs:
         displayName: 'Use Python $(PythonVersion)'
         inputs:
           versionSpec: $(PythonVersion)
-      
+
       - script: |
           pip install tox coverage==4.5.4
         displayName: 'Install Env Specific Reqs in Target PyVersion $(PythonVersion)'

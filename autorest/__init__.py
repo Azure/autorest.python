@@ -6,6 +6,10 @@
 from abc import ABC, abstractmethod
 
 from .jsonrpc import AutorestAPI
+from ._version import VERSION
+
+
+__version__ = VERSION
 
 
 class Plugin(ABC):
