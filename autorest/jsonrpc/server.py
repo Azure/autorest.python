@@ -17,20 +17,29 @@ _LOGGER = logging.getLogger(__name__)
 
 @dispatcher.add_method
 def GetPluginNames():
-    return ["mapper"]
+    return ["codegen", "m2r"]
 
 @dispatcher.add_method
 def Process(plugin_name, session_id):
+    """JSON-RPC process call.
+    """
     _LOGGER.debug("Process was called by Autorest")
-    from ..code_generator import CodeGenerator
-    from .stdstream import StdStreamAutorestAPI
+    if plugin_name == "m2r":
+        from ..m2r import M2R as PluginToLoad
+    elif plugin_name == "codegen":
+        from ..code_generator import CodeGenerator as PluginToLoad
+    else:
+        _LOGGER.fatal("Unknown plugin name %s", plugin_name)
+        raise RuntimeError(f"Unknown plugin name {plugin_name}")
 
+    from .stdstream import StdStreamAutorestAPI
     stdstream_connection = StdStreamAutorestAPI(session_id)
-    code_generator = CodeGenerator(stdstream_connection)
+
+    plugin = PluginToLoad(stdstream_connection)
 
     try:
-        return code_generator.process()
-    except Exception as err:
+        return plugin.process()
+    except Exception:   # pylint: disable=broad-except
         _LOGGER.exception("Python generator raised an exception")
 
 
