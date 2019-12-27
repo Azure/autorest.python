@@ -8,13 +8,13 @@
 
 from enum import Enum
 
-class Enum0(str, Enum):
+class foo_enum(str, Enum):
     
     foo1 = "foo1"
     foo2 = "foo2"
     foo3 = "foo3"
 
-class foo_enum(str, Enum):
+class enum0(str, Enum):
     
     foo1 = "foo1"
     foo2 = "foo2"

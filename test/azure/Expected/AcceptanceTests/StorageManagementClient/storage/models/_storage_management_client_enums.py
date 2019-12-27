@@ -8,10 +8,11 @@
 
 from enum import Enum
 
-class Reason(str, Enum):
+class ProvisioningState(str, Enum):
     
-    account_name_invalid = "AccountNameInvalid"
-    already_exists = "AlreadyExists"
+    creating = "Creating"
+    resolving_dns = "ResolvingDNS"
+    succeeded = "Succeeded"
 
 class AccountType(str, Enum):
     
@@ -21,21 +22,10 @@ class AccountType(str, Enum):
     standard_ragrs = "Standard_RAGRS"
     premium_lrs = "Premium_LRS"
 
-class ProvisioningState(str, Enum):
-    
-    creating = "Creating"
-    resolving_dns = "ResolvingDNS"
-    succeeded = "Succeeded"
-
 class AccountStatus(str, Enum):
     
     available = "Available"
     unavailable = "Unavailable"
-
-class KeyName(str, Enum):
-    
-    key1 = "key1"
-    key2 = "key2"
 
 class UsageUnit(str, Enum):
     
@@ -45,3 +35,13 @@ class UsageUnit(str, Enum):
     percent = "Percent"
     counts_per_second = "CountsPerSecond"
     bytes_per_second = "BytesPerSecond"
+
+class Reason(str, Enum):
+    
+    account_name_invalid = "AccountNameInvalid"
+    already_exists = "AlreadyExists"
+
+class KeyName(str, Enum):
+    
+    key1 = "key1"
+    key2 = "key2"

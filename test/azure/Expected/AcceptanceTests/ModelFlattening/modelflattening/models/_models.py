@@ -246,7 +246,7 @@ class ResourceCollection(Model):
 	:type productresource: ~modelflattening.models.FlattenedProduct
     :param arrayofresources:
 	:type arrayofresources: list[~modelflattening.models.FlattenedProduct]
-    :param dictionaryofresources: Dictionary of <FlattenedProduct>.
+    :param dictionaryofresources: Dictionary of :code:`<FlattenedProduct>`.
 	:type dictionaryofresources: dict[str, ~modelflattening.models.FlattenedProduct]
     """
 

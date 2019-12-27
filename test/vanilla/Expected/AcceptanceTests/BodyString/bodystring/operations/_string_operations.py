@@ -300,7 +300,7 @@ class StringOperations(object):
 
     @distributed_trace
     def get_whitespace(self, cls=None, **kwargs):
-        """Get string value with leading and trailing whitespace '<tab><space><space>Now is the time for all good men to come to the aid of their country<tab><space><space>'.
+        """Get string value with leading and trailing whitespace ':code:`<tab>`:code:`<space>`:code:`<space>`Now is the time for all good men to come to the aid of their country:code:`<tab>`:code:`<space>`:code:`<space>`'.
 
         FIXME: add operation.summary
 
@@ -343,7 +343,7 @@ class StringOperations(object):
 
     @distributed_trace
     def put_whitespace(self, cls=None, **kwargs):
-        """Set String value with leading and trailing whitespace '<tab><space><space>Now is the time for all good men to come to the aid of their country<tab><space><space>'.
+        """Set String value with leading and trailing whitespace ':code:`<tab>`:code:`<space>`:code:`<space>`Now is the time for all good men to come to the aid of their country:code:`<tab>`:code:`<space>`:code:`<space>`'.
 
         FIXME: add operation.summary
 
