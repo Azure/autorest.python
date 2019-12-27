@@ -49,3 +49,7 @@ def test_m2r_cycle():
 
     assert yaml_data['description'] == _RST_LINK
     assert yaml_data['summary'] == _RST_LINK
+
+def test_inline_html():
+    m2r = M2R(None)
+    assert m2r.convert_to_rst("Dictionary of <FlattenedProduct>.") == "Dictionary of :code:`<FlattenedProduct>`."
