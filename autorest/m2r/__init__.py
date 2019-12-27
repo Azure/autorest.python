@@ -63,4 +63,4 @@ class M2R(Plugin):
     def convert_to_rst(string_to_convert: str) -> str:
         """Convert that string from MD to RST.
         """
-        return m2r.convert(string_to_convert)
+        return m2r.convert(string_to_convert).strip()
