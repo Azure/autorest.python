@@ -7,7 +7,7 @@ from autorest.m2r import M2R
 
 
 _MD_LINK = "[inline link](https://github.com/Azure/autorest.python)"
-_RST_LINK = "\n`inline link <https://github.com/Azure/autorest.python>`_\n"
+_RST_LINK = "`inline link <https://github.com/Azure/autorest.python>`_"
 
 def test_m2r_replace_basic():
     yaml_data = {
