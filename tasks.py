@@ -79,7 +79,8 @@ def regen_expected(c, opts, debug):
             "--enable-xml",
             "--basic-setup-py",
             "--package-version=0.1.0",
-            "--trace"
+            "--trace",
+            "--output-artifact=code-model-v4-no-tags",
         ]
 
         for swagger_file in swagger_files:
