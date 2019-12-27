@@ -191,9 +191,10 @@ def regenerate(c, swagger_name=None, debug=False):
 
 
 @task
-def test(c):
+def test(c, env=None):
     # run language-specific tests
+    cmd = f'tox -e {env}' if env else 'tox'
     os.chdir("{}/test/vanilla/".format(base_dir))
-    c.run('tox')
+    c.run(cmd)
     os.chdir("{}/test/azure/".format(base_dir))
-    c.run('tox')
+    c.run(cmd)
