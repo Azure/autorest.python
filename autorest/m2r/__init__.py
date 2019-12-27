@@ -16,6 +16,15 @@ from .. import Plugin
 _LOGGER = logging.getLogger(__name__)
 
 
+class AutorestRender(m2r.RestRenderer):
+    """Redefine the concept of inline HTML in the renderer, we don't want to define a new format
+    in the description/summary.
+    """
+    def inline_html(self, html):
+        """Do not render inline HTML with a role definition."""
+        return f":code:`{html}`"
+
+
 class M2R(Plugin):
     """A plugin to convert any description and summary from MD to RST.
     """
@@ -63,4 +72,4 @@ class M2R(Plugin):
     def convert_to_rst(string_to_convert: str) -> str:
         """Convert that string from MD to RST.
         """
-        return m2r.convert(string_to_convert).strip()
+        return m2r.convert(string_to_convert, renderer=AutorestRender()).strip()
