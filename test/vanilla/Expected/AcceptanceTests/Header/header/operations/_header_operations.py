@@ -1226,7 +1226,7 @@ class HeaderOperations(object):
 
         :param scenario: Send a post request with header values "scenario": "positive" or "negative"
         :type scenario: str
-        :param value: Send a post request with header values 'GREY' 
+        :param value: Send a post request with header values 'GREY'
         :type value: str or ~header.models.GreyscaleColors
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)

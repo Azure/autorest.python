@@ -1268,7 +1268,7 @@ class ArrayOperations(object):
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
-        :rtype: list[str or ~bodyarray.models.Enum0]
+        :rtype: list[str or ~bodyarray.models.enum0]
         :raises: ~bodyarray.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', None)
@@ -1310,7 +1310,7 @@ class ArrayOperations(object):
 
 
         :param array_body: 
-        :type array_body: list[str or ~bodyarray.models.Enum0]
+        :type array_body: list[str or ~bodyarray.models.enum0]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
