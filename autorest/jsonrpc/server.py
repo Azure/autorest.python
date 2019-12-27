@@ -17,7 +17,7 @@ _LOGGER = logging.getLogger(__name__)
 
 @dispatcher.add_method
 def GetPluginNames():
-    return ["mapper", "python/m2r"]
+    return ["mapper"]
 
 @dispatcher.add_method
 def Process(plugin_name, session_id):
