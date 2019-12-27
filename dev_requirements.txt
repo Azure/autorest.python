@@ -1,0 +1,6 @@
+-e .
+tox
+invoke
+pylint
+pytest
+ptvsd
