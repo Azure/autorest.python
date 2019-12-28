@@ -18,6 +18,8 @@ class ParameterGroupingOperations(object):
 
     You should not instantiate directly this class, but create a Client instance that will create it for you and attach it as attribute.
 
+    :ivar models: Alias to model classes used in this operation group.
+    :type models: ~azureparametergrouping.models
     :param client: Client for service requests.
     :param config: Configuration of service client.
     :param serializer: An object model serializer.
