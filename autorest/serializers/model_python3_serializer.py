@@ -9,8 +9,6 @@ from ..models.imports import ImportType
 
 
 class ModelPython3Serializer(ModelBaseSerializer):
-    def __init__(self, code_model, env): # pylint: disable = useless-super-delegation
-        super(ModelPython3Serializer, self).__init__(code_model, env)
 
     @staticmethod
     def _build_init_args(model):
