@@ -116,14 +116,27 @@ class AutorestAPI(ABC):
         """Send a log message to autorest.
         """
 
-    def get_boolean_value(self, key: str) -> bool:
-        """Get a value and interpret it as a boolean.
+    def get_boolean_value(self, key: str, default: bool=None) -> bool:
+        """Check if value is present on the line, and interpret it as bool if it was.
 
-        For the JSON testserver, empty dict means "it was on the line", so we want it to true.
+        If value is not not on the line, return the "default".
+        If the value is present, will also accept "true" or 1 as True.
+
+        For autorest, empty dict means "it was on the line", so we want it to true.
+
+        :returns: A boolean if it was present, or None if not
+        :rtype: Optional[bool]
         """
         result = self.get_value(key)
         if result is None:
-            return False
+            return default
+        if result == {}: # autorest received --myoption
+            return True
         if isinstance(result, bool):
             return result
-        return result == {} or result.lower() == "true" or result == 1
+        # Try as a string
+        try:
+            return result.lower() == "true"
+        except AttributeError: # not a string
+            pass
+        return result == 1

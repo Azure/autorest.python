@@ -6,7 +6,6 @@
 import re
 from ..models import DictionarySchema, EnumSchema, ListSchema, ObjectSchema, PrimitiveSchema, ConstantSchema
 from ..models.imports import FileImport
-from ..common.utils import to_python_type
 from .import_serializer import FileImportSerializer
 from jinja2 import Template, PackageLoader, Environment
 

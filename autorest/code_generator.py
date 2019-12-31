@@ -9,24 +9,13 @@ import sys
 
 import yaml
 
-from jinja2 import Template, PackageLoader, Environment
-
 from . import Plugin
 from .plugins import NameConverter, CloudErrorPlugin
 from .models.code_model import CodeModel
 from .models import build_schema, EnumSchema, ConstantSchema
 from .models.operation_group import OperationGroup
 from .models.parameter import Parameter
-from .serializers import (
-    EnumSerializer,
-    FileImportSerializer,
-    GeneralSerializer,
-    ModelGenericSerializer,
-    ModelInitSerializer,
-    ModelPython3Serializer,
-    OperationsInitSerializer,
-    OperationGroupSerializer
-)
+from .serializers import JinjaSerializer
 
 
 _LOGGER = logging.getLogger(__name__)
@@ -70,7 +59,7 @@ class CodeGenerator(Plugin):
             code_model.base_url = dollar_host_parameter.yaml_data['clientDefaultValue']
 
         # Get whether we are tracing
-        code_model.tracing = self._autorestapi.get_boolean_value("trace")
+        code_model.tracing = self._autorestapi.get_boolean_value("trace", False)
 
         # Create operations
         code_model.operation_groups = [OperationGroup.from_yaml(code_model, op_group) for op_group in yaml_code_model['operationGroups']]
@@ -111,127 +100,8 @@ class CodeGenerator(Plugin):
 
         return code_model
 
-    def _serialize_and_write_models_folder(self, code_model, env):
-        namespace_path = Path(*[ns_part for ns_part in code_model.namespace.split(".")])
-        # Serialize the models folder
-
-        model_generic_serializer = ModelGenericSerializer(code_model=code_model, env=env)
-        model_generic_serializer.serialize()
-
-        model_python3_serializer = ModelPython3Serializer(code_model=code_model, env=env)
-        model_python3_serializer.serialize()
-
-        if code_model.enums:
-            enum_serializer = EnumSerializer(code_model=code_model, env=env)
-            enum_serializer.serialize()
-
-        model_init_serializer = ModelInitSerializer(code_model=code_model, env=env)
-        model_init_serializer.serialize()
-
-        # Write the models folder
-        models_path = namespace_path / Path("models")
-        self._autorestapi.write_file(models_path / Path("_models.py"), model_generic_serializer.model_file)
-        self._autorestapi.write_file(models_path / Path("_models_py3.py"), model_python3_serializer.model_file)
-        if code_model.enums:
-            self._autorestapi.write_file(models_path / Path("_{}_enums.py".format(code_model.module_name)), enum_serializer.enum_file)
-        self._autorestapi.write_file(models_path / Path("__init__.py"), model_init_serializer.model_init_file)
-
-    def _serialize_and_write_operations_folder(self, code_model, env):
-        namespace_path = Path(*[ns_part for ns_part in code_model.namespace.split(".")])
-        # write sync operations init file
-        operations_init_serializer = OperationsInitSerializer(code_model=code_model, env=env, async_mode=False)
-        operations_init_serializer.serialize()
-        self._autorestapi.write_file(
-            namespace_path / Path(f"operations") / Path("__init__.py"),
-            operations_init_serializer.operations_init_file
-        )
-
-        # write async operations init file
-        if not code_model.options['no_async']:
-            operations_async_init_serializer = OperationsInitSerializer(code_model=code_model, env=env, async_mode=True)
-            operations_async_init_serializer.serialize()
-            self._autorestapi.write_file(
-                namespace_path / Path("aio") / Path(f"operations_async") / Path("__init__.py"),
-                operations_async_init_serializer.operations_init_file
-            )
-
-        for operation_group in code_model.operation_groups:
-            # write sync operation group and operation files
-            operation_group_serializer = OperationGroupSerializer(
-                code_model=code_model, env=env, operation_group=operation_group, async_mode=False
-            )
-            operation_group_serializer.serialize()
-            self._autorestapi.write_file(
-                namespace_path / Path(f"operations") / Path(operation_group_serializer.filename()),
-                operation_group_serializer.operation_group_file
-            )
-
-            if not code_model.options['no_async']:
-                # write async operation group and operation files
-                operation_group_async_serializer = OperationGroupSerializer(
-                    code_model=code_model, env=env, operation_group=operation_group, async_mode=True
-                )
-                operation_group_async_serializer.serialize()
-                self._autorestapi.write_file(
-                    namespace_path / Path("aio") / Path(f"operations_async") / Path(operation_group_async_serializer.filename()),
-                    operation_group_async_serializer.operation_group_file
-                )
-
-    def _serialize_and_write_top_level_folder(self, code_model, env):
-        # namespace_path = Path(*[ns_part for ns_part in code_model.namespace.split(".")])
-        general_serializer = GeneralSerializer(code_model=code_model, env=env, async_mode=False)
-        general_serializer.serialize()
-
-        namespace_parts = [ns_part for ns_part in code_model.namespace.split(".")]
-        namespace_path = None
-        for i in range(len(namespace_parts)):
-            namespace_path = Path(namespace_parts[i]) if not namespace_path else namespace_path / Path(namespace_parts[i])
-            if i == len(namespace_parts) - 1:
-                # Write the main __init__ file
-                self._autorestapi.write_file(namespace_path / Path("__init__.py"), general_serializer.init_file)
-            else:
-                # write pkgutil init file
-                self._autorestapi.write_file(namespace_path / Path("__init__.py"), general_serializer.pkgutil_init_file)
-
-
-        # Write the service client
-        self._autorestapi.write_file(
-            namespace_path / Path("_{}.py".format(code_model.module_name)),
-            general_serializer.service_client_file
-        )
-
-        # Write the version if necessary
-        if code_model.options['package_version'] or not code_model.options['keep_version_file'] or not self._autorestapi.read_file(namespace_path / Path("_version.py")):
-            self._autorestapi.write_file(namespace_path / Path("_version.py"), general_serializer.version_file)
-
-        # Write the config file
-        self._autorestapi.write_file(namespace_path / Path("_configuration.py"), general_serializer.config_file)
-
-        # Write the setup file
-        if code_model.options["basic_setup_py"]:
-            self._autorestapi.write_file(Path("setup.py"), general_serializer.setup_file)
-
-    def _serialize_and_write_aio_folder(self, code_model, env):
-        namespace_path = Path(*[ns_part for ns_part in code_model.namespace.split(".")])
-        aio_general_serializer = GeneralSerializer(code_model=code_model, env=env, async_mode=True)
-        aio_general_serializer.serialize()
-
-        aio_path = namespace_path / Path("aio")
-
-        # Write the __init__ file
-        self._autorestapi.write_file(aio_path / Path("__init__.py"), aio_general_serializer.init_file)
-
-        # Write the service client
-        self._autorestapi.write_file(
-            aio_path / Path("_{}_async.py".format(code_model.module_name)),
-            aio_general_serializer.service_client_file
-        )
-
-        # Write the config file
-        self._autorestapi.write_file(aio_path / Path("_configuration_async.py"), aio_general_serializer.config_file)
-
     def _build_code_model_options(self):
-        azure_arm = self._autorestapi.get_boolean_value("azure-arm")
+        azure_arm = self._autorestapi.get_boolean_value("azure-arm", False)
         credential_scopes = self._autorestapi.get_value('credential-scopes')
         if not credential_scopes and azure_arm:
             credential_scopes = "https://management.azure.com/.default"
@@ -244,17 +114,17 @@ class CodeGenerator(Plugin):
 
         options = {
             'azure_arm': azure_arm,
-            'credential': self._autorestapi.get_boolean_value("add-credentials") or self._autorestapi.get_boolean_value('add-credential'),
+            'credential': self._autorestapi.get_boolean_value("add-credentials", False) or self._autorestapi.get_boolean_value('add-credential', False),
             "credential_scopes": credential_scopes.split(",") if credential_scopes else None,
-            'head_as_boolean': self._autorestapi.get_boolean_value('head-as-boolean'),
+            'head_as_boolean': self._autorestapi.get_boolean_value('head-as-boolean', False),
             'license_header': license_header,
-            'keep_version_file': self._autorestapi.get_boolean_value("keep-version-file"),
-            'no_async': self._autorestapi.get_boolean_value("no-async"),
+            'keep_version_file': self._autorestapi.get_boolean_value("keep-version-file", False),
+            'no_async': self._autorestapi.get_boolean_value("no-async", False),
             'override_client_name': self._autorestapi.get_value("override-client-name"),
             'payload-flattening-threshold': self._autorestapi.get_value("payload-flattening-threshold") or 0,
-            'basic_setup_py': self._autorestapi.get_boolean_value("basic-setup-py"),
+            'basic_setup_py': self._autorestapi.get_boolean_value("basic-setup-py", False),
             'package_version': self._autorestapi.get_value("package-version"),
-            'client_side_validation': False if self._autorestapi.get_value('client-side-validation') == False else True
+            'client_side_validation': self._autorestapi.get_boolean_value('client-side-validation', True)
         }
 
         if options["basic_setup_py"] and not options['package_version']:
@@ -275,16 +145,6 @@ class CodeGenerator(Plugin):
             raise ValueError("code-model-v4-no-tags.yaml must be a possible input")
 
         file_content = self._autorestapi.read_file("code-model-v4-no-tags.yaml")
-        #self._autorestapi.write_file("code-model-v4-no-tags.yaml", file_content)
-
-        env = Environment(
-            loader=PackageLoader('autorest', 'templates'),
-            keep_trailing_newline=True,
-            line_statement_prefix="##",
-            line_comment_prefix="###",
-            trim_blocks=True,
-            lstrip_blocks=True,
-        )
 
         # Parse the received YAML
         yaml_code_model = yaml.safe_load(file_content)
@@ -296,26 +156,10 @@ class CodeGenerator(Plugin):
         # convert the names to python names
         NameConverter.convert_yaml_names(yaml_code_model, options['override_client_name'])
 
-        # save a new copy for debug
-        #self._autorestapi.write_file("code-model-v4-no-tags-python.yaml", yaml.safe_dump(yaml_code_model))
-
         code_model = self._create_code_model(yaml_code_model=yaml_code_model, options=options)
 
-        if code_model.schemas:
-            self._serialize_and_write_models_folder(code_model=code_model, env=env)
-
-        self._serialize_and_write_operations_folder(code_model=code_model, env=env)
-
-        self._serialize_and_write_top_level_folder(
-            code_model=code_model,
-            env=env
-        )
-
-        if not code_model.options['no_async']:
-            self._serialize_and_write_aio_folder(
-                code_model=code_model,
-                env=env
-            )
+        serializer = JinjaSerializer(self._autorestapi)
+        serializer.serialize(code_model)
 
         return True
 
