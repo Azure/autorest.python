@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 import re
-from ..common.python_mappings import basic_latin_chars, reserved_words
+from .python_mappings import basic_latin_chars, reserved_words
 
 class NameConverter:
 

@@ -17,7 +17,7 @@ _LOGGER = logging.getLogger(__name__)
 
 @dispatcher.add_method
 def GetPluginNames():
-    return ["codegen", "m2r"]
+    return ["codegen", "m2r", "namer"]
 
 @dispatcher.add_method
 def Process(plugin_name, session_id):
@@ -26,6 +26,8 @@ def Process(plugin_name, session_id):
     _LOGGER.debug("Process was called by Autorest")
     if plugin_name == "m2r":
         from ..m2r import M2R as PluginToLoad
+    elif plugin_name == "namer":
+        from ..namer import Namer as PluginToLoad
     elif plugin_name == "codegen":
         from ..code_generator import CodeGenerator as PluginToLoad
     else:

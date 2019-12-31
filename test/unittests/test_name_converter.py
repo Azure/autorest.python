@@ -1,4 +1,4 @@
-from autorest.plugins import NameConverter
+from autorest.namer.name_converter import NameConverter
 
 def test_pascal_case():
     expected_conversion = {

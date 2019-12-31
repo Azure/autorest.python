@@ -10,7 +10,7 @@ import sys
 import yaml
 
 from . import Plugin
-from .plugins import NameConverter, CloudErrorPlugin
+from .plugins import CloudErrorPlugin
 from .models.code_model import CodeModel
 from .models import build_schema, EnumSchema, ConstantSchema
 from .models.operation_group import OperationGroup
@@ -120,7 +120,6 @@ class CodeGenerator(Plugin):
             'license_header': license_header,
             'keep_version_file': self._autorestapi.get_boolean_value("keep-version-file", False),
             'no_async': self._autorestapi.get_boolean_value("no-async", False),
-            'override_client_name': self._autorestapi.get_value("override-client-name"),
             'payload-flattening-threshold': self._autorestapi.get_value("payload-flattening-threshold") or 0,
             'basic_setup_py': self._autorestapi.get_boolean_value("basic-setup-py", False),
             'package_version': self._autorestapi.get_value("package-version"),
@@ -153,8 +152,6 @@ class CodeGenerator(Plugin):
 
         if options['azure_arm']:
             CloudErrorPlugin.remove_cloud_errors(yaml_code_model)
-        # convert the names to python names
-        NameConverter.convert_yaml_names(yaml_code_model, options['override_client_name'])
 
         code_model = self._create_code_model(yaml_code_model=yaml_code_model, options=options)
 
