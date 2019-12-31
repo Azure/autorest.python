@@ -92,7 +92,7 @@ class CodeGenerator(Plugin):
         code_model.format_lro_operations()
         code_model.remove_next_operation()
 
-        if code_model.options['credential']:
+        if options['credential']:
             code_model.add_credential_global_parameter()
 
         return code_model
