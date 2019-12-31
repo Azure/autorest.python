@@ -23,6 +23,10 @@ class BaseSchema(ABC):
         self.yaml_data = yaml_data
         self.default_value = yaml_data.get('defaultValue', None)
 
+    @classmethod
+    def from_yaml(cls, yaml_data):
+        return cls(yaml_data=yaml_data)
+
     def imports(self):
         return FileImport()
 
