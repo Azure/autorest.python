@@ -27,7 +27,7 @@ def test_m2r_replace_basic():
     }
 
     m2r = M2R(None)
-    m2r.convert_docstring(yaml_data)
+    m2r.update_yaml(yaml_data)
 
     assert yaml_data['description'] == _RST_LINK
     assert yaml_data['summary'] == _RST_LINK
@@ -45,7 +45,7 @@ def test_m2r_cycle():
     assert yaml_data['obj']['obj'] is yaml_data
 
     m2r = M2R(None)
-    m2r.convert_docstring(yaml_data)
+    m2r.update_yaml(yaml_data)
 
     assert yaml_data['description'] == _RST_LINK
     assert yaml_data['summary'] == _RST_LINK

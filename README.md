@@ -33,8 +33,11 @@ pipeline:
   python/m2r:
     input: modelerfour/identity
 
-  python/codegen:
+  python/namer:
     input: python/m2r
+
+  python/codegen:
+    input: python/namer
     output-artifact: python-files
 
   python/codegen/emitter:
