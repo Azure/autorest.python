@@ -129,7 +129,7 @@ class JinjaSerializer:
 
         namespace_parts = code_model.namespace.split(".")
         namespace_path = None
-        for count, elem in enumerate(namespace_parts, 0):
+        for count, elem in enumerate(namespace_parts):
             namespace_path = Path(elem) if not namespace_path else namespace_path / Path(elem)
             if count == len(namespace_parts) - 1:
                 # Write the main __init__ file
