@@ -3,9 +3,6 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from .import_serializer import FileImportSerializer
-from jinja2 import Template, PackageLoader, Environment
-
 
 class EnumSerializer:
     def __init__(self, code_model, env):

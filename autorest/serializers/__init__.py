@@ -55,7 +55,7 @@ class JinjaSerializer:
             )
 
     def _serialize_and_write_models_folder(self, code_model, env):
-        namespace_path = Path(*[ns_part for ns_part in code_model.namespace.split(".")])
+        namespace_path = Path(*(code_model.namespace.split(".")))
         # Serialize the models folder
 
         model_generic_serializer = ModelGenericSerializer(code_model=code_model, env=env)
@@ -76,11 +76,13 @@ class JinjaSerializer:
         self._autorestapi.write_file(models_path / Path("_models.py"), model_generic_serializer.model_file)
         self._autorestapi.write_file(models_path / Path("_models_py3.py"), model_python3_serializer.model_file)
         if code_model.enums:
-            self._autorestapi.write_file(models_path / Path("_{}_enums.py".format(code_model.module_name)), enum_serializer.enum_file)
+            self._autorestapi.write_file(models_path / Path("_{}_enums.py".format(
+                code_model.module_name)), enum_serializer.enum_file
+            )
         self._autorestapi.write_file(models_path / Path("__init__.py"), model_init_serializer.model_init_file)
 
     def _serialize_and_write_operations_folder(self, code_model, env):
-        namespace_path = Path(*[ns_part for ns_part in code_model.namespace.split(".")])
+        namespace_path = Path(*(code_model.namespace.split(".")))
         # write sync operations init file
         operations_init_serializer = OperationsInitSerializer(code_model=code_model, env=env, async_mode=False)
         operations_init_serializer.serialize()
@@ -116,20 +118,20 @@ class JinjaSerializer:
                 )
                 operation_group_async_serializer.serialize()
                 self._autorestapi.write_file(
-                    namespace_path / Path("aio") / Path(f"operations_async") / Path(operation_group_async_serializer.filename()),
+                    (namespace_path / Path("aio") / Path(f"operations_async") /
+                    Path(operation_group_async_serializer.filename())),
                     operation_group_async_serializer.operation_group_file
                 )
 
     def _serialize_and_write_top_level_folder(self, code_model, env):
-        # namespace_path = Path(*[ns_part for ns_part in code_model.namespace.split(".")])
         general_serializer = GeneralSerializer(code_model=code_model, env=env, async_mode=False)
         general_serializer.serialize()
 
-        namespace_parts = [ns_part for ns_part in code_model.namespace.split(".")]
+        namespace_parts = code_model.namespace.split(".")
         namespace_path = None
-        for i in range(len(namespace_parts)):
-            namespace_path = Path(namespace_parts[i]) if not namespace_path else namespace_path / Path(namespace_parts[i])
-            if i == len(namespace_parts) - 1:
+        for count, elem in enumerate(namespace_parts):
+            namespace_path = Path(elem) if not namespace_path else namespace_path / Path(elem)
+            if count == len(namespace_parts) - 1:
                 # Write the main __init__ file
                 self._autorestapi.write_file(namespace_path / Path("__init__.py"), general_serializer.init_file)
             else:
@@ -144,7 +146,9 @@ class JinjaSerializer:
         )
 
         # Write the version if necessary
-        if code_model.options['package_version'] or not code_model.options['keep_version_file'] or not self._autorestapi.read_file(namespace_path / Path("_version.py")):
+        if (code_model.options['package_version'] or
+            not code_model.options['keep_version_file'] or
+            not self._autorestapi.read_file(namespace_path / Path("_version.py"))):
             self._autorestapi.write_file(namespace_path / Path("_version.py"), general_serializer.version_file)
 
         # Write the config file
@@ -155,7 +159,7 @@ class JinjaSerializer:
             self._autorestapi.write_file(Path("setup.py"), general_serializer.setup_file)
 
     def _serialize_and_write_aio_folder(self, code_model, env):
-        namespace_path = Path(*[ns_part for ns_part in code_model.namespace.split(".")])
+        namespace_path = Path(*(code_model.namespace.split(".")))
         aio_general_serializer = GeneralSerializer(code_model=code_model, env=env, async_mode=True)
         aio_general_serializer.serialize()
 

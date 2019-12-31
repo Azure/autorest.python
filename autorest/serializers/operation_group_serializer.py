@@ -3,8 +3,8 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from .import_serializer import FileImportSerializer, ImportType
-from ..models import FileImport, LROOperation, PagingOperation
+from .import_serializer import FileImportSerializer
+from ..models import LROOperation, PagingOperation
 
 class OperationGroupSerializer:
     def __init__(self, code_model, env, operation_group, async_mode):
