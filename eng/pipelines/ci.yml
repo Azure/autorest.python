@@ -54,6 +54,10 @@ jobs:
           npm install
         displayName: 'Prepare Environment for Generation'
       - script: |
+          pylint autorest
+        displayName: 'Pylint'
+
+      - script: |
           pytest test/unittests
         displayName: 'Unit tests'
 
