@@ -5,7 +5,7 @@
 # --------------------------------------------------------------------------
 import logging
 from .base_schema import BaseSchema
-from .primitive_schemas import get_primitive_schema
+from .primitive_schemas import get_primitive_schema, PrimitiveSchema
 from typing import Dict, Any, Optional
 
 _LOGGER = logging.getLogger(__name__)

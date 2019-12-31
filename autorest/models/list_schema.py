@@ -37,7 +37,7 @@ class ListSchema(BaseSchema):
         return validation_map or None
 
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, str], **kwargs) -> "SequenceType":
+    def from_yaml(cls, yaml_data: Dict[str, str], **kwargs) -> "ListSchema":
         # TODO: for items, if the type is a primitive is it listed in type instead of $ref?
         element_schema = yaml_data['elementType']
 

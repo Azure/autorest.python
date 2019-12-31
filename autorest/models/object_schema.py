@@ -19,7 +19,7 @@ class ObjectSchema(BaseSchema):
     :param properties: the optional properties of the class.
     :type properties: dict(str, str)
     """
-    def __init__(self, yaml_data, name: str, description=None, **kwargs: "**Any") -> "ObjectSchema":
+    def __init__(self, yaml_data: Dict[str, Any], name: str, description: str = None, **kwargs):
         super(ObjectSchema, self).__init__(yaml_data, **kwargs)
         self.name = name
         self.description = description
@@ -57,38 +57,23 @@ class ObjectSchema(BaseSchema):
     def __repr__(self):
         return f"<{self.__class__.__name__} {self.name}>"
 
-    """Returns the properties of a ClassType if they exist.
 
-    :param yaml_data: a dictionary object representative of the yaml schema
-    for the class type.
-    :type yaml_data: dict(str, str)
-    :returns: a list of the properties of the class type
-    :rtype: list[~autorest.models.Property or
-     ~autorest.models.DictionaryType or
-     ~autorest.models.SequenceType or
-     ~autorest.models.EnumType]
-    """
-    @staticmethod
-    def _create_properties(yaml_data: Dict[str, str], **kwargs) -> List["Property"]:
-        return
-
-    """Returns a ClassType from the dict object constructed from a yaml file.
-
-    WARNING: This guy might create an infinite loop.
-
-    :param str name: The name of the class type.
-    :param yaml_data: A representation of the schema of a class type from a yaml file.
-    :type yaml_data: dict(str, str)
-    :returns: A ClassType.
-    :rtype: ~autorest.models.schema.ClassType
-    """
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, str], **kwargs) -> "ClassType":
-        obj = cls(yaml_data, None, None, None)
+    def from_yaml(cls, yaml_data: Dict[str, Any], **kwargs) -> "ObjectSchema":
+        """Returns a ClassType from the dict object constructed from a yaml file.
+
+        WARNING: This guy might create an infinite loop.
+
+        :param str name: The name of the class type.
+        :param yaml_data: A representation of the schema of a class type from a yaml file.
+        :type yaml_data: dict(str, str)
+        :returns: A ClassType.
+        :rtype: ~autorest.models.schema.ClassType
+        """
+        obj = cls(yaml_data, "", None)
         return obj.fill_instance_from_yaml(yaml_data)
 
-    def fill_instance_from_yaml(self, yaml_data: Dict[str, str], **kwargs) -> None:
-        for_additional_properties = kwargs.pop("for_additional_properties", False)
+    def fill_instance_from_yaml(self, yaml_data: Dict[str, Any], **kwargs):
         properties = []
         base_model = None
 

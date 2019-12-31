@@ -72,10 +72,10 @@ class BaseSchema(ABC):
         """
         return str(value)
 
-    def get_validation_map(self) -> Dict[str, Any]:
+    def get_validation_map(self) -> Optional[Dict[str, Any]]:
         return None
 
-    def get_serialization_constraints(self) -> List[str]:
+    def get_serialization_constraints(self) -> Optional[List[str]]:
         return None
 
     def __repr__(self):

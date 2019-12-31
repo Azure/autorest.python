@@ -5,7 +5,7 @@
 # --------------------------------------------------------------------------
 from itertools import chain
 import logging
-from typing import List, Dict, Optional, Any, cast
+from typing import List, Dict, Optional, Any, cast, Set
 
 from .base_schema import BaseSchema
 from .enum_schema import EnumSchema
@@ -98,8 +98,8 @@ class CodeModel:
         :return: None
         :rtype: None
         """
-        seen_schemas = set()
-        sorted_schemas = []
+        seen_schemas: Set[str] = set()
+        sorted_schemas: List[ObjectSchema] = []
         for schema in sorted(self.schemas.values(), key=lambda x: x.name.lower()):
             if schema.name in seen_schemas:
                 continue
@@ -249,7 +249,7 @@ class CodeModel:
                 parent = schema.base_model
                 while parent:
                     schema.properties = parent.properties + schema.properties
-                    seen_properties = set()
+                    seen_properties: Set["BaseSchema"] = set()
                     schema.properties = [p for p in schema.properties if p.name not in seen_properties and not seen_properties.add(p.name)]
                     parent = parent.base_model
 
@@ -265,7 +265,7 @@ class CodeModel:
                 schema.base_model = [b for b in self.schemas.values() if b.id == schema.base_model][0]
         self._add_properties_from_inheritance()
 
-    def _populate_schema(self, obj) -> None:
+    def _populate_schema(self, obj):
         schema_obj = obj.schema
         if schema_obj:
             schema_obj_id = id(obj.schema)

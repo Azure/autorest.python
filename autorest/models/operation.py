@@ -107,7 +107,7 @@ class Operation:
     @property
     def body_parameter(self) -> Parameter:
         if not self.has_request_body:
-            raise ValueError(f"There is no body parameter for operation {self.name}")
+            raise ValueError(f"There are no body parameters for operation {self.name}")
         # Should we check if there is two body? Modeler role right?
         return [
             parameter for parameter in self.parameters if parameter.location == ParameterLocation.Body
@@ -115,24 +115,32 @@ class Operation:
 
     @property
     def path_parameters(self) -> List[Parameter]:
+        if not self.parameters:
+            raise ValueError(f"There are no path parameters for operation {self.name}")
         return [
             parameter for parameter in self.parameters if parameter.location in [ParameterLocation.Uri, ParameterLocation.Path] and parameter.rest_api_name != "$host"
         ]
 
     @property
     def query_parameters(self) -> List[Parameter]:
+        if not self.parameters:
+            raise ValueError(f"There are no query parameters for operation {self.name}")
         return [
             parameter for parameter in self.parameters if parameter.location == ParameterLocation.Query
         ]
 
     @property
     def headers_parameters(self) -> List[Parameter]:
+        if not self.parameters:
+            raise ValueError(f"There are no header parameters for operation {self.name}")
         return [
             parameter for parameter in self.parameters if parameter.location == ParameterLocation.Header
         ]
 
     @property
     def constant_parameters(self) -> List[Parameter]:
+        if not self.parameters:
+            raise ValueError(f"There are no constant parameters for operation {self.name}")
         return [
             parameter for parameter in self.parameters if isinstance(parameter.schema, ConstantSchema)
         ]
@@ -155,6 +163,8 @@ class Operation:
 
         signature_parameters_required = []
         signature_parameters_optional = []
+        if not self.parameters:
+            raise ValueError(f"There are no method parameters for operation {self.name}")
         for parameter in self.parameters:
             if is_parameter_in_signature(parameter):
                 if parameter.is_required:
@@ -290,7 +300,7 @@ class Operation:
         return f"{self.body_parameter.serialized_name} = models.{self.body_parameter.schema.name}({parameter_string})"
 
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, str], **kwargs) -> "Operation":
+    def from_yaml(cls, yaml_data: Dict[str, Any], **kwargs) -> "Operation":
         name = yaml_data["language"]["python"]["name"]
         _LOGGER.debug("Parsing %s operation", name)
 
