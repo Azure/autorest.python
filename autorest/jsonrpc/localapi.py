@@ -22,6 +22,7 @@ class LocalAutorestAPI(AutorestAPI):
             reachable_files = []
         self._reachable_files = reachable_files
         self._output_folder = Path(output_folder)
+        self.values = dict()
 
     def write_file(self, filename: str, file_content: str) -> None:
         _LOGGER.debug("Writing file: %s", filename)
@@ -38,7 +39,7 @@ class LocalAutorestAPI(AutorestAPI):
         return self._reachable_files
 
     def get_value(self, key: str) -> str:
-        pass
+        return self.values.get(key, None)
 
     def message(self, channel: Channel, text: str) -> None:
         pass

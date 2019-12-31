@@ -59,7 +59,7 @@ class CodeGenerator(Plugin):
             code_model.base_url = dollar_host_parameter.yaml_data['clientDefaultValue']
 
         # Get whether we are tracing
-        code_model.tracing = self._autorestapi.get_boolean_value("trace")
+        code_model.tracing = self._autorestapi.get_boolean_value("trace", False)
 
         # Create operations
         code_model.operation_groups = [OperationGroup.from_yaml(code_model, op_group) for op_group in yaml_code_model['operationGroups']]
@@ -101,7 +101,7 @@ class CodeGenerator(Plugin):
         return code_model
 
     def _build_code_model_options(self):
-        azure_arm = self._autorestapi.get_boolean_value("azure-arm")
+        azure_arm = self._autorestapi.get_boolean_value("azure-arm", False)
         credential_scopes = self._autorestapi.get_value('credential-scopes')
         if not credential_scopes and azure_arm:
             credential_scopes = "https://management.azure.com/.default"
@@ -114,17 +114,17 @@ class CodeGenerator(Plugin):
 
         options = {
             'azure_arm': azure_arm,
-            'credential': self._autorestapi.get_boolean_value("add-credentials") or self._autorestapi.get_boolean_value('add-credential'),
+            'credential': self._autorestapi.get_boolean_value("add-credentials", False) or self._autorestapi.get_boolean_value('add-credential', False),
             "credential_scopes": credential_scopes.split(",") if credential_scopes else None,
-            'head_as_boolean': self._autorestapi.get_boolean_value('head-as-boolean'),
+            'head_as_boolean': self._autorestapi.get_boolean_value('head-as-boolean', False),
             'license_header': license_header,
-            'keep_version_file': self._autorestapi.get_boolean_value("keep-version-file"),
-            'no_async': self._autorestapi.get_boolean_value("no-async"),
+            'keep_version_file': self._autorestapi.get_boolean_value("keep-version-file", False),
+            'no_async': self._autorestapi.get_boolean_value("no-async", False),
             'override_client_name': self._autorestapi.get_value("override-client-name"),
             'payload-flattening-threshold': self._autorestapi.get_value("payload-flattening-threshold") or 0,
-            'basic_setup_py': self._autorestapi.get_boolean_value("basic-setup-py"),
+            'basic_setup_py': self._autorestapi.get_boolean_value("basic-setup-py", False),
             'package_version': self._autorestapi.get_value("package-version"),
-            'client_side_validation': False if self._autorestapi.get_value('client-side-validation') == False else True
+            'client_side_validation': self._autorestapi.get_boolean_value('client-side-validation', True)
         }
 
         if options["basic_setup_py"] and not options['package_version']:
