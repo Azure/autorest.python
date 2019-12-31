@@ -3,12 +3,15 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from .constant_schema import ConstantSchema
 from typing import Any, Dict
 
-class Property:
+from .base_model import BaseModel
+from .constant_schema import ConstantSchema
+
+
+class Property(BaseModel):
     def __init__(self, yaml_data, name, schema, original_swagger_name, **kwargs):
-        self.yaml_data = yaml_data
+        super().__init__(yaml_data)
         self.name = name
         self.schema = schema
         self.original_swagger_name = original_swagger_name

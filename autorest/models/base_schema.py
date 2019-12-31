@@ -3,13 +3,14 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from .imports import FileImport
-
 from abc import ABC, abstractmethod
 from typing import Any, Dict, Optional, List
 
+from .base_model import BaseModel
+from .imports import FileImport
 
-class BaseSchema(ABC):
+
+class BaseSchema(BaseModel, ABC):
     """This is the base class for all schema models.
 
     :param yaml_data: the yaml data for this schema
@@ -20,7 +21,7 @@ class BaseSchema(ABC):
         yaml_data: Dict[str, Any],
         **kwargs
     ):
-        self.yaml_data = yaml_data
+        super().__init__(yaml_data)
         self.default_value = yaml_data.get('defaultValue', None)
 
     @classmethod
@@ -29,10 +30,6 @@ class BaseSchema(ABC):
 
     def imports(self):
         return FileImport()
-
-    @property
-    def id(self):
-        return id(self.yaml_data)
 
     @abstractmethod
     def get_serialization_type(self) -> str:
@@ -81,6 +78,3 @@ class BaseSchema(ABC):
 
     def get_serialization_constraints(self) -> List[str]:
         return None
-
-    def __repr__(self):
-        return f"<{self.__class__.__name__}>"

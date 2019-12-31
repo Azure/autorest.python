@@ -5,14 +5,16 @@
 # --------------------------------------------------------------------------
 from typing import Dict, Optional, List, Union, Any
 
+from .base_model import BaseModel
+
 
 class HeaderResponse:
-    def __init__(self, name:str, schema):
+    def __init__(self, name: str, schema):
         self.name = name
         self.schema = schema
 
 
-class SchemaResponse:
+class SchemaResponse(BaseModel):
     def __init__(
         self,
         yaml_data: Dict[str, Any],
@@ -22,7 +24,7 @@ class SchemaResponse:
         headers: List[HeaderResponse],
         binary: bool,
     ):
-        self.yaml_data = yaml_data
+        super().__init__(yaml_data)
         self.schema = schema
         self.media_types = media_types
         self.status_codes = status_codes
