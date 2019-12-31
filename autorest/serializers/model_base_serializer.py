@@ -3,13 +3,10 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-import re
-from ..models import DictionarySchema, EnumSchema, ListSchema, ObjectSchema, PrimitiveSchema, ConstantSchema
+from abc import abstractmethod
+from ..models import EnumSchema
 from ..models.imports import FileImport
-from ..common.utils import to_python_type
 from .import_serializer import FileImportSerializer
-from jinja2 import Template, PackageLoader, Environment
-
 
 class ModelBaseSerializer:
     def __init__(self, code_model, env):
@@ -17,14 +14,17 @@ class ModelBaseSerializer:
         self.env = env
         self._model_file = None
 
-    def _format_model_parameter_warnings(self, model):
+    @staticmethod
+    def _format_model_parameter_warnings(model):
         # if there are any warnings to include about parameters, we add them here
         if model.discriminator_name:
-            model.description += ("\n\n\tYou probably want to use the sub-classes and not this class directly. Known sub-classes are: {}.\n"
-                                    .format(", ".join(model.subtype_map.values())))
+            model.description += (
+                "\n\n\tYou probably want to use the sub-classes and not this class directly." +
+                    " Known sub-classes are: {}.\n".format(", ".join(model.subtype_map.values())))
 
         if [x for x in model.properties if x.readonly or x.constant]:
-            model.description += "\n\n\tVariables are only populated by the server, and will be ignored when sending a request."
+            model.description += ("\n\n\tVariables are only populated by the server," +
+                " and will be ignored when sending a request.")
 
         if [x for x in model.properties if x.required]:
             model.description += "\n\n\tAll required parameters must be populated in order to send to Azure."
@@ -89,3 +89,7 @@ class ModelBaseSerializer:
     @property
     def model_file(self):
         return self._model_file
+
+    @abstractmethod
+    def _format_model_for_file(self, model):
+        raise NotImplementedError()

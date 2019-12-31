@@ -7,7 +7,7 @@ from .model_base_serializer import ModelBaseSerializer
 
 
 class ModelGenericSerializer(ModelBaseSerializer):
-    def __init__(self, code_model, env):
+    def __init__(self, code_model, env): # pylint: disable = useless-super-delegation
         super(ModelGenericSerializer, self).__init__(code_model, env)
 
 

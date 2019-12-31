@@ -15,7 +15,7 @@ from .operation_group_serializer import OperationGroupSerializer
 
 __all__ = [
     "EnumSerializer",
-    "FileImportSerialzer",
+    "FileImportSerializer",
     "GeneralSerializer",
     "ModelBaseSerializer",
     "ModelGenericSerializer",

@@ -3,7 +3,6 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from jinja2 import Template, PackageLoader, Environment
 
 class ModelInitSerializer:
     def __init__(self, code_model, env):

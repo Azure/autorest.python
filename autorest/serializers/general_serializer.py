@@ -3,7 +3,6 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from jinja2 import Template, PackageLoader, Environment
 from .import_serializer import FileImportSerializer
 
 
@@ -17,6 +16,7 @@ class GeneralSerializer:
         self._config_file = None
         self._version_file = None
         self._setup_file = None
+        self._pkgutil_init_file = None
 
     def serialize(self):
         template = self.env.get_template("pkgutil_init.py.jinja2")
