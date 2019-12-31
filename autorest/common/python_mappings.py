@@ -3,39 +3,6 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-primary_types = {
-    None: "",
-    "long": "long",
-    "double": "float",
-    "decimal": "decimal.Decimal",
-    "stream": "Generator",
-    "datetimerfc1123": "datetime.datetime",
-    "timespan": "timedelta",
-    # "base64url": "bytes",
-    # "duration": "datetime.timedelta",
-    "boolean": "bool",
-    # "byte-array": "bytearray",
-    "char": "str",
-    "constant": "constant",
-    "credential": "azure.core.credentials.TokenCredential",
-    # "date": "datetime.datetime",
-    # "date-time": "datetime.datetime",
-    # "duration": "datetime.timedelta",
-    # "flag",
-    # "integer": "int",
-    # "not",
-    # "number": "float",
-    "object": "object",
-    # "odata-query",
-    # "or",
-    # "parameter-group",
-    # "string": "str",
-    # "unixtime": "unix-time",
-    # TODO: is uri a string?
-    # "uri",
-    "uuid": "str"
-    # "xor"
-}
 
 basic_latin_chars = {
     ' ': "Space",

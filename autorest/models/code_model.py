@@ -35,6 +35,17 @@ class FakeSchema(BaseSchema):
         return namespace+"FAKEDOCSTRING"
 
 
+class CredentialSchema(BaseSchema):
+    def __init__(self):  # pylint: disable=super-init-not-called
+        self.type = 'azure.core.credentials.TokenCredential'
+
+    def get_serialization_type(self):
+        return self.type
+
+    def get_python_type(self, namespace=None):
+        return self.type
+
+
 class CodeModel:
     """Holds all of the information we have parsed out of the yaml file. The CodeModel is what gets
     serialized by the serializers.
@@ -123,7 +134,7 @@ class CodeModel:
         :return: None
         :rtype: None
         """
-        credential_schema = PrimitiveSchema(yaml_data={"type": "credential"})
+        credential_schema = CredentialSchema()
         credential_parameter = Parameter(
             yaml_data={},
             schema=credential_schema,

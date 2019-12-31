@@ -4,38 +4,30 @@
 # license information.
 # --------------------------------------------------------------------------
 import logging
-from typing import Dict, Optional, Any
 from enum import Enum
 
 from .base_schema import BaseSchema
-from ..common.utils import to_python_type
 
 
 _LOGGER = logging.getLogger(__name__)
 
 
 class PrimitiveSchema(BaseSchema):
-    def __init__(self, yaml_data, **kwargs):
-        super(PrimitiveSchema, self).__init__(yaml_data, **kwargs)
+    _TYPE_MAPPINGS = {
+        "boolean": "bool",
+    }
 
-    @classmethod
-    def from_yaml(cls,  yaml_data):
-        return cls(yaml_data=yaml_data)
+    def _to_python_type(self):
+        return self._TYPE_MAPPINGS.get(self.yaml_data['type'], "str")
 
     def get_serialization_type(self):
-        return to_python_type(self.yaml_data['type'])
+        return self._to_python_type()
 
     def get_python_type(self, namespace=None):
-        return to_python_type(self.yaml_data['type'])
+        return self._to_python_type()
+
 
 class AnySchema(PrimitiveSchema):
-    def __init__(self, yaml_data, **kwargs):
-        super(AnySchema, self).__init__(yaml_data, **kwargs)
-
-    @classmethod
-    def from_yaml(cls,  yaml_data):
-        return cls(yaml_data=yaml_data)
-
     def get_serialization_type(self):
         return 'object'
 
@@ -44,26 +36,14 @@ class AnySchema(PrimitiveSchema):
 
 
 class NumberSchema(PrimitiveSchema):
-    def __init__(self, yaml_data, precision, **kwargs):
+    def __init__(self, yaml_data, **kwargs):
         super(NumberSchema, self).__init__(yaml_data, **kwargs)
-        self.precision = precision
-        self.multiple = kwargs.pop('multiple', None)
-        self.maximum = kwargs.pop('maximum', None)
-        self.minimum = kwargs.pop('minimum', None)
-        self.exclusive_maximum = kwargs.pop('exclusive_maximum', None)
-        self.exclusive_minimum = kwargs.pop('exclusive_minimum', None)
-
-    @classmethod
-    def from_yaml(cls, yaml_data):
-        return cls(
-            yaml_data=yaml_data,
-            precision=yaml_data['precision'],
-            multiple = yaml_data.get('multipleOf'),
-            maximum=yaml_data.get('maximum'),
-            minimum=yaml_data.get('minimum'),
-            exclusive_maximum=yaml_data.get('exclusiveMaximum'),
-            exclusive_minimum=yaml_data.get('exclusiveMinimum'),
-        )
+        self.precision = yaml_data['precision']
+        self.multiple = yaml_data.get('multipleOf')
+        self.maximum = yaml_data.get('maximum')
+        self.minimum = yaml_data.get('minimum')
+        self.exclusive_maximum = yaml_data.get('exclusiveMaximum')
+        self.exclusive_minimum = yaml_data.get('exclusiveMinimum')
 
     def get_serialization_constraints(self):
         validation_constraints = [
@@ -118,18 +98,9 @@ class NumberSchema(PrimitiveSchema):
 class StringSchema(PrimitiveSchema):
     def __init__(self, yaml_data, **kwargs):
         super(StringSchema, self).__init__(yaml_data, **kwargs)
-        self.max_length = kwargs.pop('max_length', None)
-        self.min_length = kwargs.pop('min_length', None)
-        self.pattern = kwargs.pop('pattern', None)
-
-    @classmethod
-    def from_yaml(cls, yaml_data):
-        return cls(
-            yaml_data=yaml_data,
-            max_length=yaml_data.get('maxLength'),
-            min_length=(yaml_data.get('minLength') or 0) if yaml_data.get('maxLength') else yaml_data.get('minLength'),
-            pattern=yaml_data.get('pattern')
-        )
+        self.max_length = yaml_data.get('maxLength')
+        self.min_length = yaml_data.get('minLength', 0) if yaml_data.get('maxLength') else yaml_data.get('minLength')
+        self.pattern = yaml_data.get('pattern')
 
     def get_serialization_constraints(self):
         validation_constraints = [
@@ -149,20 +120,14 @@ class StringSchema(PrimitiveSchema):
             validation_map['pattern'] = self.pattern
         return validation_map or None
 
-    def get_serialization_type(self):
-        return "str"
-
-    def get_python_type(self, namespace=None):
-        return "str"
-
     def get_declaration(self, value) -> str:
         return f'"{value}"'
 
 
 class DatetimeSchema(PrimitiveSchema):
-    def __init__(self, yaml_data, format, **kwargs):
+    def __init__(self, yaml_data, **kwargs):
         super(DatetimeSchema, self).__init__(yaml_data, **kwargs)
-        self.format = format
+        self.format = self.Formats(yaml_data['format'])
 
     class Formats(str, Enum):
         datetime = "date-time"
@@ -187,12 +152,6 @@ class DatetimeSchema(PrimitiveSchema):
         """
         return f'"{value}"'
 
-    @classmethod
-    def from_yaml(cls, yaml_data):
-        return cls(
-            yaml_data=yaml_data,
-            format=cls.Formats(yaml_data['format'])
-        )
 
 class UnixTimeSchema(PrimitiveSchema):
 
@@ -210,6 +169,7 @@ class UnixTimeSchema(PrimitiveSchema):
         but msrest will do fine.
         """
         return f'"{value}"'
+
 
 class DateSchema(PrimitiveSchema):
 
@@ -248,9 +208,9 @@ class Duration(PrimitiveSchema):
 
 
 class ByteArraySchema(PrimitiveSchema):
-    def __init__(self, yaml_data, format, **kwargs):
+    def __init__(self, yaml_data, **kwargs):
         super(ByteArraySchema, self).__init__(yaml_data, **kwargs)
-        self.format = format
+        self.format = self.Formats(yaml_data['format'])
 
     class Formats(str, Enum):
         base64url = "base64url"
@@ -267,13 +227,6 @@ class ByteArraySchema(PrimitiveSchema):
     def get_declaration(self, value) -> str:
         return f'bytearray("{value}", encoding="utf-8")'
 
-    @classmethod
-    def from_yaml(cls, yaml_data):
-        return cls(
-            yaml_data=yaml_data,
-            format=cls.Formats(yaml_data['format'])
-        )
-
 
 def get_primitive_schema(yaml_data):
     schema_type = yaml_data['type']
@@ -289,7 +242,7 @@ def get_primitive_schema(yaml_data):
         return DateSchema.from_yaml(yaml_data=yaml_data)
     if schema_type == 'duration':
         return Duration.from_yaml(yaml_data=yaml_data)
-    if schema_type  == 'byte-array':
+    if schema_type == 'byte-array':
         return ByteArraySchema.from_yaml(yaml_data=yaml_data)
     if schema_type == 'any':
         return AnySchema.from_yaml(yaml_data=yaml_data)
