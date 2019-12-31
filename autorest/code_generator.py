@@ -10,7 +10,6 @@ from typing import Dict, Any
 import yaml
 
 from . import Plugin
-from .plugins import CloudErrorPlugin
 from .models.code_model import CodeModel
 from .models import build_schema
 from .models.operation_group import OperationGroup
@@ -22,6 +21,26 @@ _LOGGER = logging.getLogger(__name__)
 
 
 class CodeGenerator(Plugin):
+
+    @staticmethod
+    def remove_cloud_errors(yaml_data):
+        for group in yaml_data['operationGroups']:
+            for operation in group['operations']:
+                if not operation.get('exceptions'):
+                    continue
+                i = 0
+                while i < len(operation['exceptions']):
+                    exception = operation['exceptions'][i]
+                    if exception.get('schema') and exception['schema']['language']['default']['name'] == 'CloudError':
+                        del operation['exceptions'][i]
+                        i -= 1
+                    i += 1
+        if yaml_data.get('schemas') and yaml_data['schemas'].get('objects'):
+            for i in range(len(yaml_data['schemas']['objects'])):
+                obj_schema = yaml_data['schemas']['objects'][i]
+                if obj_schema['language']['default']['name'] == 'CloudError':
+                    del yaml_data['schemas']['objects'][i]
+                    break
 
     def _build_exceptions_set(self, yaml_data):
         exceptions_set = set()
@@ -151,7 +170,7 @@ class CodeGenerator(Plugin):
         options = self._build_code_model_options()
 
         if options['azure_arm']:
-            CloudErrorPlugin.remove_cloud_errors(yaml_code_model)
+            self.remove_cloud_errors(yaml_code_model)
 
         code_model = self._create_code_model(yaml_code_model=yaml_code_model, options=options)
 
