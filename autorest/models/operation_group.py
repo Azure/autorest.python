@@ -37,7 +37,7 @@ class OperationGroup:
         file_import = FileImport()
         for operation in self.operations:
             file_import.merge(operation.imports(self.code_model, async_mode))
-        if self.code_model.tracing:
+        if self.code_model.options['tracing']:
             if async_mode:
                 file_import.add_from_import(
                     "azure.core.tracing.decorator_async",

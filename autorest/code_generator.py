@@ -4,15 +4,15 @@
 # license information.
 # --------------------------------------------------------------------------
 import logging
-from pathlib import Path
 import sys
+from typing import Dict, Any
 
 import yaml
 
 from . import Plugin
 from .plugins import CloudErrorPlugin
 from .models.code_model import CodeModel
-from .models import build_schema, EnumSchema, ConstantSchema
+from .models import build_schema
 from .models.operation_group import OperationGroup
 from .models.parameter import Parameter
 from .serializers import JinjaSerializer
@@ -58,9 +58,6 @@ class CodeGenerator(Plugin):
             code_model.global_parameters.remove(dollar_host_parameter)
             code_model.base_url = dollar_host_parameter.yaml_data['clientDefaultValue']
 
-        # Get whether we are tracing
-        code_model.tracing = self._autorestapi.get_boolean_value("trace", False)
-
         # Create operations
         code_model.operation_groups = [OperationGroup.from_yaml(code_model, op_group) for op_group in yaml_code_model['operationGroups']]
 
@@ -100,7 +97,9 @@ class CodeGenerator(Plugin):
 
         return code_model
 
-    def _build_code_model_options(self):
+    def _build_code_model_options(self) -> Dict[str, Any]:
+        """Build en options dict from the user input while running autorest.
+        """
         azure_arm = self._autorestapi.get_boolean_value("azure-arm", False)
         credential_scopes = self._autorestapi.get_value('credential-scopes')
         if not credential_scopes and azure_arm:
@@ -123,7 +122,8 @@ class CodeGenerator(Plugin):
             'payload-flattening-threshold': self._autorestapi.get_value("payload-flattening-threshold") or 0,
             'basic_setup_py': self._autorestapi.get_boolean_value("basic-setup-py", False),
             'package_version': self._autorestapi.get_value("package-version"),
-            'client_side_validation': self._autorestapi.get_boolean_value('client-side-validation', True)
+            'client_side_validation': self._autorestapi.get_boolean_value('client-side-validation', True),
+            'tracing': self._autorestapi.get_boolean_value("trace", False),
         }
 
         if options["basic_setup_py"] and not options['package_version']:

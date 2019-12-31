@@ -78,7 +78,6 @@ class CodeModel:
         self.description = None
         self.namespace = None
         self.namespace_path = None
-        self.tracing = None
         self.schemas: Dict[int, ObjectSchema] = {}
         self.sorted_schemas: List[ObjectSchema] = []
         self.enums: Dict[int, EnumSchema] = {}
