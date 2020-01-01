@@ -72,13 +72,16 @@ class AutorestAPI(ABC):
         if Path("logging.conf").exists():
             logging.config.fileConfig(Path("logging.conf"))
         else:
-            logging.basicConfig(
-                level=logging.DEBUG,
-                format="[%(name)s.%(funcName)s:%(lineno)d] %(message)s",
-                handlers=[
-                    AutorestHandler(self)
-                ]
-            )
+            self._handler = AutorestHandler(self)
+            fmt = logging.Formatter("[%(name)s.%(funcName)s:%(lineno)d] %(message)s")
+            self._handler.setFormatter(fmt)
+            logging.getLogger().addHandler(self._handler)
+            logging.getLogger().setLevel(logging.DEBUG)
+
+    def close(self):
+        if self._handler:
+            logging.getLogger().removeHandler(self._handler)
+            self._handler = None
 
     @abstractmethod
     def write_file(self, filename: str, file_content: str) -> None:
