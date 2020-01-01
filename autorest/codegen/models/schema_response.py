@@ -67,4 +67,4 @@ class SchemaResponse(BaseModel):
         )
 
     def __repr__(self):
-        return f"<{self.__class__.__name__} {self.status_codes} {self.schema}>"
+        return f"<{self.__class__.__name__} {self.status_codes}>"

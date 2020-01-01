@@ -9,7 +9,7 @@ from typing import Dict, Any
 
 import yaml
 
-from . import Plugin
+from .. import Plugin
 from .models.code_model import CodeModel
 from .models import build_schema
 from .models.operation_group import OperationGroup
@@ -180,7 +180,7 @@ class CodeGenerator(Plugin):
         return True
 
 def main(yaml_model_file):
-    from .jsonrpc.localapi import LocalAutorestAPI
+    from ..jsonrpc.localapi import LocalAutorestAPI
 
     code_generator = CodeGenerator(
         autorestapi=LocalAutorestAPI(

@@ -29,7 +29,7 @@ def Process(plugin_name, session_id):
     elif plugin_name == "namer":
         from ..namer import Namer as PluginToLoad
     elif plugin_name == "codegen":
-        from ..code_generator import CodeGenerator as PluginToLoad
+        from ..codegen import CodeGenerator as PluginToLoad
     else:
         _LOGGER.fatal("Unknown plugin name %s", plugin_name)
         raise RuntimeError(f"Unknown plugin name {plugin_name}")
@@ -40,6 +40,7 @@ def Process(plugin_name, session_id):
     plugin = PluginToLoad(stdstream_connection)
 
     try:
+        _LOGGER.debug("Starting plugin %s", PluginToLoad.__name__)
         return plugin.process()
     except Exception:   # pylint: disable=broad-except
         _LOGGER.exception("Python generator raised an exception")
