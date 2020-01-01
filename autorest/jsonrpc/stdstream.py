@@ -16,12 +16,7 @@ from jsonrpc.jsonrpc2 import JSONRPC20Request, JSONRPC20Response
 from . import AutorestAPI, Channel
 
 
-# Being we use "Message" as default logger, we can't propate this particular
-# file or we'll get an infite loop
-# If Logging at this deep level is expected, go with a config file
-# https://docs.python.org/3.8/library/logging.config.html
 _LOGGER = logging.getLogger(__name__)
-_LOGGER.propagate = False
 
 
 def read_message(stream: BinaryIO = sys.stdin.buffer) -> str:
@@ -30,7 +25,7 @@ def read_message(stream: BinaryIO = sys.stdin.buffer) -> str:
 
     if not order.startswith(b"Content-Length"):
         raise ValueError("I was expecting to see Content-Length")
-    _LOGGER.info(f"Received: {order}")
+    _LOGGER.debug("Received: %s", order)
     try:
         bytes_size = int(order.split(b":")[1].strip())
     except Exception as err:
@@ -39,12 +34,12 @@ def read_message(stream: BinaryIO = sys.stdin.buffer) -> str:
     stream.readline()
 
     # Read the right number of bytes
-    _LOGGER.info("Trying to read the message")
+    _LOGGER.debug("Trying to read the message")
     message = stream.read(bytes_size)
     assert isinstance(message, bytes)
     message = message.decode('utf-8')
-    _LOGGER.info("Received a %d bytes message (push to DEBUG to see full message)", len(message))
-    _LOGGER.debug("Read %s", message)
+    _LOGGER.debug("Received a %d bytes message", len(message))
+    #_LOGGER.debug("Read %s", message)
 
     return message
 
@@ -66,7 +61,7 @@ class StdStreamAutorestAPI(AutorestAPI):
         self.session_id = session_id
 
     def write_file(self, filename: str, file_content: str) -> None:
-        _LOGGER.debug(f"Writing a file: {filename}")
+        _LOGGER.debug("Writing a file: %s", filename)
         filename = os.fspath(filename)
         request = JSONRPC20Request(
             method="WriteFile",
@@ -81,7 +76,7 @@ class StdStreamAutorestAPI(AutorestAPI):
         write_message(request.json)
 
     def read_file(self, filename: str) -> str:
-        _LOGGER.debug(f"Asking content for file {filename}")
+        _LOGGER.debug("Asking content for file %s", filename)
         filename = os.fspath(filename)
         request = JSONRPC20Request(
             method="ReadFile",
@@ -108,7 +103,7 @@ class StdStreamAutorestAPI(AutorestAPI):
         return json.loads(read_message())["result"]
 
     def get_value(self, key):
-        _LOGGER.debug(f"Calling get value to Autorest: {key}")
+        _LOGGER.debug("Calling get value to Autorest: %s", key)
         request = JSONRPC20Request(
             method="GetValue",
             params=[
@@ -123,11 +118,11 @@ class StdStreamAutorestAPI(AutorestAPI):
 
     def message(self, channel: Channel, text: str) -> None:
         # https://github.com/Azure/autorest/blob/ad7f01ffe17aa74ad0075d6b1562a3fa78fd2e96/src/autorest-core/lib/message.ts#L53
+        # Don't log anything here, or you will create a cycle with the autorest handler
         message = {
             'Channel': channel.value,
             'Text': text,
         }
-        _LOGGER.debug(f"Sending a message to Autorest: {message}")
         request = JSONRPC20Request(
             method="Message",
             params=[

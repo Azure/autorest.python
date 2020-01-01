@@ -3,6 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
+import contextlib
 import os
 import logging
 import sys
@@ -23,26 +24,27 @@ def GetPluginNames():
 def Process(plugin_name, session_id):
     """JSON-RPC process call.
     """
-    _LOGGER.debug("Process was called by Autorest")
-    if plugin_name == "m2r":
-        from ..m2r import M2R as PluginToLoad
-    elif plugin_name == "namer":
-        from ..namer import Namer as PluginToLoad
-    elif plugin_name == "codegen":
-        from ..code_generator import CodeGenerator as PluginToLoad
-    else:
-        _LOGGER.fatal("Unknown plugin name %s", plugin_name)
-        raise RuntimeError(f"Unknown plugin name {plugin_name}")
-
     from .stdstream import StdStreamAutorestAPI
-    stdstream_connection = StdStreamAutorestAPI(session_id)
+    with contextlib.closing(StdStreamAutorestAPI(session_id)) as stdstream_connection:
 
-    plugin = PluginToLoad(stdstream_connection)
+        _LOGGER.debug("Autorest called process with plugin_name '%s' and session_id: '%s'", plugin_name, session_id)
+        if plugin_name == "m2r":
+            from ..m2r import M2R as PluginToLoad
+        elif plugin_name == "namer":
+            from ..namer import Namer as PluginToLoad
+        elif plugin_name == "codegen":
+            from ..codegen import CodeGenerator as PluginToLoad
+        else:
+            _LOGGER.fatal("Unknown plugin name %s", plugin_name)
+            raise RuntimeError(f"Unknown plugin name {plugin_name}")
 
-    try:
-        return plugin.process()
-    except Exception:   # pylint: disable=broad-except
-        _LOGGER.exception("Python generator raised an exception")
+        plugin = PluginToLoad(stdstream_connection)
+
+        try:
+            _LOGGER.debug("Starting plugin %s", PluginToLoad.__name__)
+            return plugin.process()
+        except Exception:   # pylint: disable=broad-except
+            _LOGGER.exception("Python generator raised an exception")
 
 
 def main():

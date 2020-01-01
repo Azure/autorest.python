@@ -3,6 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
+from .base_model import BaseModel
 from .code_model import CodeModel
 from .object_schema import ObjectSchema
 from .dictionary_schema import DictionarySchema
@@ -15,7 +16,9 @@ from .imports import FileImport
 from .lro_operation import LROOperation
 from .paging_operation import PagingOperation
 
+
 __all__ = [
+    "BaseModel",
     "BaseSchema",
     "CodeModel",
     "ConstantSchema",
@@ -25,7 +28,8 @@ __all__ = [
     "EnumSchema",
     "FileImport",
     "PrimitiveSchema",
-    "LROOperation"
+    "LROOperation",
+    "PagingOperation",
 ]
 
 # TODO: should this be in models.__init__ or CodeModel

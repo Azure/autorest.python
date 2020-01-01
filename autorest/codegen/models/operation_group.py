@@ -6,6 +6,7 @@
 import logging
 from typing import Dict, List, Any
 
+from .base_model import BaseModel
 from .operation import Operation
 from .lro_operation import LROOperation
 from .paging_operation import PagingOperation
@@ -14,7 +15,7 @@ from .imports import FileImport, ImportType
 
 _LOGGER = logging.getLogger(__name__)
 
-class OperationGroup:
+class OperationGroup(BaseModel):
     """Represent an operation group.
 
     """
@@ -27,8 +28,8 @@ class OperationGroup:
         class_name: str,
         operations: List[Operation],
     ) -> None:
+        super().__init__(yaml_data)
         self.code_model = code_model
-        self.yaml_data = yaml_data
         self.name = name
         self.class_name = class_name
         self.operations = operations
@@ -37,7 +38,7 @@ class OperationGroup:
         file_import = FileImport()
         for operation in self.operations:
             file_import.merge(operation.imports(self.code_model, async_mode))
-        if self.code_model.tracing:
+        if self.code_model.options['tracing']:
             if async_mode:
                 file_import.add_from_import(
                     "azure.core.tracing.decorator_async",

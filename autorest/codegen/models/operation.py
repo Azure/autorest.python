@@ -6,6 +6,7 @@
 import logging
 from typing import Dict, List, Any, Optional
 
+from .base_model import BaseModel
 from .imports import FileImport, ImportType
 from .schema_response import SchemaResponse
 from .parameter import Parameter, ParameterLocation, ParameterStyle
@@ -15,7 +16,7 @@ from .constant_schema import ConstantSchema
 _LOGGER = logging.getLogger(__name__)
 
 
-class Operation:
+class Operation(BaseModel):
     """Represent an operation.
     """
 
@@ -33,6 +34,7 @@ class Operation:
         want_description_docstring: Optional[bool] = True,
         want_tracing: Optional[bool] = True
     ) -> None:
+        super().__init__(yaml_data)
         if responses is None:
             responses = []
         if exceptions is None:
@@ -40,7 +42,6 @@ class Operation:
         if media_types is None:
             media_types = []
 
-        self.yaml_data = yaml_data
         self.name = name
         self.description = description
         self.url = url

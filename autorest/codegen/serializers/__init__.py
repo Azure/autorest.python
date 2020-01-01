@@ -7,7 +7,7 @@ from pathlib import Path
 
 from jinja2 import PackageLoader, Environment
 
-from ..jsonrpc import AutorestAPI
+from ...jsonrpc import AutorestAPI
 from ..models import CodeModel
 
 from .enum_serializer import EnumSerializer
@@ -30,7 +30,7 @@ class JinjaSerializer:
 
     def serialize(self, code_model: CodeModel) -> None:
         env = Environment(
-            loader=PackageLoader('autorest', 'templates'),
+            loader=PackageLoader('autorest.codegen', 'templates'),
             keep_trailing_newline=True,
             line_statement_prefix="##",
             line_comment_prefix="###",

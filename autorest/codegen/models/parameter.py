@@ -6,6 +6,8 @@
 from enum import Enum
 from typing import Dict, Optional, List, Union, Any
 
+from .base_model import BaseModel
+
 
 class ParameterLocation(Enum):
     Path = "path"
@@ -28,7 +30,7 @@ class ParameterStyle(Enum):
     json = "json"
 
 
-class Parameter:
+class Parameter(BaseModel):
     def __init__(
         self,
         yaml_data: Dict[str, Any],
@@ -43,7 +45,7 @@ class Parameter:
         constraints: List[Any],
         style: Optional[ParameterStyle] = None,
     ):
-        self.yaml_data = yaml_data
+        super().__init__(yaml_data)
         self.schema = schema
         self.rest_api_name = rest_api_name
         self.serialized_name = serialized_name

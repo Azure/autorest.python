@@ -17,7 +17,7 @@ response_headers = {
 {% endmacro %}
 {% set lro_options = (", lro_options={'final-state-via': '"+ operation.lro_options['final-state-via'] + "'}") if operation.lro_options else "" %}
 {# actual template starts here #}
-{% if code_model.tracing %}
+{% if code_model.options['tracing'] %}
 {{ trace_decorator }}
 {% endif %}
 {{ keywords.def }} {{ operation.python_name }}(self{{ operation.method_signature }}, cls=None, polling=True, **kwargs):
