@@ -6,7 +6,6 @@
 import logging
 import sys
 from typing import Dict, Any
-
 import yaml
 
 from .. import Plugin
@@ -42,7 +41,8 @@ class CodeGenerator(Plugin):
                     del yaml_data['schemas']['objects'][i]
                     break
 
-    def _build_exceptions_set(self, yaml_data):
+    @staticmethod
+    def _build_exceptions_set(yaml_data):
         exceptions_set = set()
         for group in yaml_data:
             for operation in group['operations']:
@@ -59,11 +59,16 @@ class CodeGenerator(Plugin):
         code_model = CodeModel(options)
         code_model.module_name = yaml_code_model['info']['python_title']
         code_model.class_name = yaml_code_model['info']['pascal_case_title']
-        code_model.description = yaml_code_model['info']['description'] if yaml_code_model['info'].get('description') else ""
+        code_model.description = (
+            yaml_code_model['info']['description']
+            if yaml_code_model['info'].get('description') else ""
+        )
 
 
         # Global parameters
-        code_model.global_parameters = [Parameter.from_yaml(param) for param in yaml_code_model.get('globalParameters', [])]
+        code_model.global_parameters = [
+            Parameter.from_yaml(param) for param in yaml_code_model.get('globalParameters', [])
+        ]
 
         # Custom URL
         dollar_host = [parameter for parameter in code_model.global_parameters if parameter.rest_api_name == "$host"]
@@ -71,14 +76,17 @@ class CodeGenerator(Plugin):
             # We don't want to support multi-api customurl YET (will see if that goes well....)
             # So far now, let's get the first one in the first operation
             # UGLY as hell.....
-            code_model.custom_base_url = yaml_code_model['operationGroups'][0]['operations'][0]['request']['protocol']['http']['uri']
+            first_operation_of_first_group = yaml_code_model['operationGroups'][0]['operations'][0]
+            code_model.custom_base_url = first_operation_of_first_group['request']['protocol']['http']['uri']
         else:
             dollar_host_parameter = dollar_host[0]
             code_model.global_parameters.remove(dollar_host_parameter)
             code_model.base_url = dollar_host_parameter.yaml_data['clientDefaultValue']
 
         # Create operations
-        code_model.operation_groups = [OperationGroup.from_yaml(code_model, op_group) for op_group in yaml_code_model['operationGroups']]
+        code_model.operation_groups = [
+            OperationGroup.from_yaml(code_model, op_group) for op_group in yaml_code_model['operationGroups']
+        ]
 
         # Get my namespace
         namespace = self._autorestapi.get_value("namespace")
@@ -88,7 +96,7 @@ class CodeGenerator(Plugin):
         code_model.namespace = namespace
 
         if yaml_code_model.get('schemas'):
-            exceptions_set = self._build_exceptions_set(yaml_data=yaml_code_model['operationGroups'])
+            exceptions_set = CodeGenerator._build_exceptions_set(yaml_data=yaml_code_model['operationGroups'])
 
             for type_list in yaml_code_model['schemas'].values():
                 for schema in type_list:
@@ -127,12 +135,18 @@ class CodeGenerator(Plugin):
         license_header = self._autorestapi.get_value("header-text")
         if license_header:
             license_header = license_header.replace("\n", "\n# ")
-            license_header = "# --------------------------------------------------------------------------\n# " + license_header
+            license_header = (
+                "# --------------------------------------------------------------------------\n# " +
+                license_header
+            )
             license_header += "\n# --------------------------------------------------------------------------"
 
         options = {
             'azure_arm': azure_arm,
-            'credential': self._autorestapi.get_boolean_value("add-credentials", False) or self._autorestapi.get_boolean_value('add-credential', False),
+            'credential': (
+                self._autorestapi.get_boolean_value("add-credentials", False) or
+                self._autorestapi.get_boolean_value('add-credential', False)
+            ),
             "credential_scopes": credential_scopes.split(",") if credential_scopes else None,
             'head_as_boolean': self._autorestapi.get_boolean_value('head-as-boolean', False),
             'license_header': license_header,
@@ -180,7 +194,8 @@ class CodeGenerator(Plugin):
         return True
 
 def main(yaml_model_file):
-    from ..jsonrpc.localapi import LocalAutorestAPI
+    from ..jsonrpc.localapi import LocalAutorestAPI  # pylint: disable=import-outside-toplevel
+
 
     code_generator = CodeGenerator(
         autorestapi=LocalAutorestAPI(
