@@ -187,7 +187,7 @@ class DateSchema(PrimitiveSchema):
         return f'"{value}"'
 
 
-class Duration(PrimitiveSchema):
+class DurationSchema(PrimitiveSchema):
 
     def get_serialization_type(self):
         return "duration"
@@ -227,22 +227,16 @@ class ByteArraySchema(PrimitiveSchema):
 
 
 def get_primitive_schema(yaml_data):
-    # pylint: disable=too-many-return-statements
+    mapping = {
+        'integer': NumberSchema,
+        'number': NumberSchema,
+        'string': StringSchema,
+        'date-time': DatetimeSchema,
+        'unixtime': UnixTimeSchema,
+        'date': DateSchema,
+        'duration': DurationSchema,
+        'byte-array': ByteArraySchema,
+        'any': AnySchema
+    }
     schema_type = yaml_data['type']
-    if schema_type in ('integer', 'number'):
-        return NumberSchema.from_yaml(yaml_data=yaml_data)
-    if schema_type == 'string':
-        return StringSchema.from_yaml(yaml_data=yaml_data)
-    if schema_type == 'date-time':
-        return DatetimeSchema.from_yaml(yaml_data=yaml_data)
-    if schema_type == 'unixtime':
-        return UnixTimeSchema(yaml_data=yaml_data)
-    if schema_type == 'date':
-        return DateSchema.from_yaml(yaml_data=yaml_data)
-    if schema_type == 'duration':
-        return Duration.from_yaml(yaml_data=yaml_data)
-    if schema_type == 'byte-array':
-        return ByteArraySchema.from_yaml(yaml_data=yaml_data)
-    if schema_type == 'any':
-        return AnySchema.from_yaml(yaml_data=yaml_data)
-    return PrimitiveSchema.from_yaml(yaml_data=yaml_data)
+    return mapping.get(schema_type, PrimitiveSchema).from_yaml(yaml_data=yaml_data)

@@ -8,12 +8,20 @@ from .base_schema import BaseSchema
 
 
 class ListSchema(BaseSchema):
-    def __init__(self, yaml_data, element_type, **kwargs):
+    def __init__(
+        self,
+        yaml_data,
+        element_type,
+        *,
+        max_items: int = None,
+        min_items: int = None,
+        unique_items: int = None
+    ):
         super(ListSchema, self).__init__(yaml_data)
         self.element_type = element_type
-        self.max_items = kwargs.pop('max_items', None)
-        self.min_items = kwargs.pop('min_items', None)
-        self.unique_items = kwargs.pop('unique_items', None)
+        self.max_items = max_items
+        self.min_items = min_items
+        self.unique_items = unique_items
 
 
     def get_serialization_type(self):
@@ -37,7 +45,7 @@ class ListSchema(BaseSchema):
         return validation_map or None
 
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, str], **kwargs) -> "SequenceType":  # pylint: disable=arguments-differ
+    def from_yaml(cls, yaml_data: Dict[str, str], **kwargs) -> "SequenceType":
         # TODO: for items, if the type is a primitive is it listed in type instead of $ref?
         element_schema = yaml_data['elementType']
 

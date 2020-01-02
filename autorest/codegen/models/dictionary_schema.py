@@ -14,10 +14,10 @@ class DictionarySchema(BaseSchema):
     :param element_type: The type of the value for the dictionary
     :type element_type: ~autorest.models.BaseSchema
     """
-    def __init__(self, yaml_data: Dict[str, Any], element_type: "BaseSchema", **kwargs: Any):
+    def __init__(self, yaml_data: Dict[str, Any], element_type: "BaseSchema", *, additional_properties: bool = False):
         super(DictionarySchema, self).__init__(yaml_data)
         self.element_type = element_type
-        self.additional_properties = kwargs.pop('additional_properties', False)
+        self.additional_properties = additional_properties
 
 
     def get_serialization_type(self) -> str:
@@ -45,7 +45,6 @@ class DictionarySchema(BaseSchema):
 
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, str], **kwargs: Any) -> "DictionarySchema":
-        # pylint: disable=arguments-differ
         """Constructs a DictionarySchema from yaml data.
 
         :param yaml_data: the yaml data from which we will construct this schema

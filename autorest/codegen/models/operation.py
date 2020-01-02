@@ -246,7 +246,8 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods
             file_import.add_import("uuid", ImportType.STDLIB)
 
         # Deprecation
-        if True:  # Replace with "the YAML contains deprecated:true"  # pylint: disable=using-constant-test
+        # FIXME: Replace with "the YAML contains deprecated:true"
+        if True:  # pylint: disable=using-constant-test
             file_import.add_import("warnings", ImportType.STDLIB)
 
         # Models

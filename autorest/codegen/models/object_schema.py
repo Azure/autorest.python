@@ -10,7 +10,6 @@ from .imports import FileImport, ImportType
 from .property import Property
 
 
-
 class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
     """Represents a class ready to be serialized in Python.
 

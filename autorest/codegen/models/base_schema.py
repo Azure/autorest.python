@@ -54,7 +54,7 @@ class BaseSchema(BaseModel, ABC):
 
         Special case for enum, for instance: Union[str, "EnumName"]
         """
-        return self.get_python_type("_")
+        return self.get_python_type(None)
 
     def get_declaration(self, value) -> str: # pylint: disable=no-self-use
         """Return the current value from YAML as a Python string that represents the constant.
