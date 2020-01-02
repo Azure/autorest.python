@@ -8,7 +8,6 @@ import sys
 from typing import Dict, Any
 import yaml
 
-from ..jsonrpc.localapi import LocalAutorestAPI
 from .. import Plugin
 from .models.code_model import CodeModel
 from .models import build_schema
@@ -195,6 +194,9 @@ class CodeGenerator(Plugin):
         return True
 
 def main(yaml_model_file):
+    from ..jsonrpc.localapi import LocalAutorestAPI  # pylint: disable=import-outside-toplevel
+
+
     code_generator = CodeGenerator(
         autorestapi=LocalAutorestAPI(
             reachable_files=[yaml_model_file])
