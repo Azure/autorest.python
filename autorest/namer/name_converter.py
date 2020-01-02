@@ -15,8 +15,12 @@ class NameConverter:
             yaml_code['info']['python_title'] = NameConverter._to_valid_python_name(override_client_name)
             yaml_code['info']['pascal_case_title'] = NameConverter._to_pascal_case(override_client_name)
         else:
-            yaml_code['info']['python_title'] = NameConverter._to_valid_python_name(yaml_code['info']['title'].replace(" ", ""))
-            yaml_code['info']['pascal_case_title'] = NameConverter._to_pascal_case(yaml_code['info']['title'].replace(" ", ""))
+            yaml_code['info']['python_title'] = NameConverter._to_valid_python_name(
+                yaml_code['info']['title'].replace(" ", "")
+            )
+            yaml_code['info']['pascal_case_title'] = NameConverter._to_pascal_case(
+                yaml_code['info']['title'].replace(" ", "")
+            )
         NameConverter._convert_schemas(yaml_code['schemas'])
         NameConverter._convert_operation_groups(yaml_code['operationGroups'], yaml_code['info']['pascal_case_title'])
         if yaml_code.get('globalParameters'):
@@ -34,7 +38,8 @@ class NameConverter:
             if not operation_group['language']['default']['name']:
                 operation_group['language']['python']['className'] = code_model_title + "OperationsMixin"
             else:
-                operation_group['language']['python']['className'] = NameConverter._to_pascal_case(operation_group['language']['default']['name']) + "Operations"
+                operation_group['language']['python']['className'] = NameConverter._to_pascal_case(
+                    operation_group['language']['default']['name']) + "Operations"
             for operation in operation_group['operations']:
                 NameConverter._convert_language_default_python_case(operation, pad_string='Method')
                 for exception in operation_group.get('exceptions', []):
@@ -53,14 +58,14 @@ class NameConverter:
             for schema in schema_yamls:
                 if type_list == 'objects':
                     continue
-                if type_list == 'arrays' or type_list == 'dictionaries':
+                if type_list in ['arrays', 'dictionaries']:
                     NameConverter._convert_language_default_python_case(schema)
                     NameConverter._convert_language_default_python_case(schema['elementType'])
                 elif type_list == 'constants':
                     NameConverter._convert_language_default_python_case(schema)
                     NameConverter._convert_language_default_python_case(schema['value'])
                     NameConverter._convert_language_default_python_case(schema['valueType'])
-                elif type_list == 'sealedChoices' or type_list == 'choices':
+                elif type_list in ['sealedChoices', 'choices']:
                     NameConverter._convert_enum_schema(schema)
                 else:
                     NameConverter._convert_language_default_python_case(schema)
@@ -172,5 +177,7 @@ class NameConverter:
             correct_name = NameConverter._remove_invalid_characters(ret_name, allowed_characters)
 
         if not correct_name:
-            raise ValueError("Property name {} cannot be used as an identifier, as it contains only invalid characters.".format(name))
+            raise ValueError(
+                "Property name {} cannot be used as an identifier, as it contains only invalid characters.".format(name)
+            )
         return correct_name
