@@ -3,15 +3,15 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-import re
+from typing import Dict
 from .base_schema import BaseSchema
 from .dictionary_schema import DictionarySchema
 from .imports import FileImport, ImportType
 from .property import Property
-from typing import Any, Dict, List
 
 
-class ObjectSchema(BaseSchema):
+
+class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
     """Represents a class ready to be serialized in Python.
 
     :param str name: The name of the class.
@@ -19,7 +19,7 @@ class ObjectSchema(BaseSchema):
     :param properties: the optional properties of the class.
     :type properties: dict(str, str)
     """
-    def __init__(self, yaml_data, name: str, description=None, **kwargs: "**Any") -> "ObjectSchema":
+    def __init__(self, yaml_data, name: str, description=None, **kwargs) -> "ObjectSchema":
         super(ObjectSchema, self).__init__(yaml_data, **kwargs)
         self.name = name
         self.description = description
@@ -48,7 +48,7 @@ class ObjectSchema(BaseSchema):
     def get_python_type_annotation(self) -> str:
         return f'\"{self.name}\"'
 
-    def get_python_type(self, namespace):
+    def get_python_type(self, namespace):  # pylint: disable=signature-differs
         return '~{}.models.{}'.format(namespace, self.name)
 
     def get_declaration(self, value):
@@ -57,38 +57,22 @@ class ObjectSchema(BaseSchema):
     def __repr__(self):
         return f"<{self.__class__.__name__} {self.name}>"
 
-    """Returns the properties of a ClassType if they exist.
-
-    :param yaml_data: a dictionary object representative of the yaml schema
-    for the class type.
-    :type yaml_data: dict(str, str)
-    :returns: a list of the properties of the class type
-    :rtype: list[~autorest.models.Property or
-     ~autorest.models.DictionaryType or
-     ~autorest.models.SequenceType or
-     ~autorest.models.EnumType]
-    """
-    @staticmethod
-    def _create_properties(yaml_data: Dict[str, str], **kwargs) -> List["Property"]:
-        return
-
-    """Returns a ClassType from the dict object constructed from a yaml file.
-
-    WARNING: This guy might create an infinite loop.
-
-    :param str name: The name of the class type.
-    :param yaml_data: A representation of the schema of a class type from a yaml file.
-    :type yaml_data: dict(str, str)
-    :returns: A ClassType.
-    :rtype: ~autorest.models.schema.ClassType
-    """
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, str], **kwargs) -> "ClassType":
-        obj = cls(yaml_data, None, None, None)
+    def from_yaml(cls, yaml_data: Dict[str, str]) -> "ObjectSchema":
+        """Returns a ClassType from the dict object constructed from a yaml file.
+
+        WARNING: This guy might create an infinite loop.
+
+        :param str name: The name of the class type.
+        :param yaml_data: A representation of the schema of a class type from a yaml file.
+        :type yaml_data: dict(str, str)
+        :returns: A ClassType.
+        :rtype: ~autorest.models.schema.ClassType
+        """
+        obj = cls(yaml_data, None, None)
         return obj.fill_instance_from_yaml(yaml_data)
 
     def fill_instance_from_yaml(self, yaml_data: Dict[str, str], **kwargs) -> None:
-        for_additional_properties = kwargs.pop("for_additional_properties", False)
         properties = []
         base_model = None
 
@@ -126,7 +110,10 @@ class ObjectSchema(BaseSchema):
                 subtype_map[children_yaml['discriminatorValue']] = children_yaml['language']['python']['name']
 
         if yaml_data.get('properties'):
-            properties += [Property.from_yaml(p, has_additional_properties=len(properties) > 0, **kwargs) for p in yaml_data['properties']]
+            properties += [
+                Property.from_yaml(p, has_additional_properties=len(properties) > 0, **kwargs)
+                for p in yaml_data['properties']
+            ]
         # this is to ensure that the attribute map type and property type are generated correctly
 
         name = yaml_data['language']['python']['name']
@@ -144,12 +131,15 @@ class ObjectSchema(BaseSchema):
                 is_exception = True
 
 
-        self.yaml_data=yaml_data
-        self.name=name
-        self.description=description
-        self.properties=properties
-        self.base_model=base_model
-        self.is_exception=is_exception
-        self.subtype_map=subtype_map
-        self.discriminator_name = yaml_data['discriminator']['property']['language']['python']['name'] if yaml_data.get('discriminator') else None
+        self.yaml_data = yaml_data
+        self.name = name
+        self.description = description
+        self.properties = properties
+        self.base_model = base_model
+        self.is_exception = is_exception
+        self.subtype_map = subtype_map
+        self.discriminator_name = (
+            yaml_data['discriminator']['property']['language']['python']['name']
+            if yaml_data.get('discriminator') else None
+        )
         self.discriminator_value = yaml_data.get('discriminatorValue', None)

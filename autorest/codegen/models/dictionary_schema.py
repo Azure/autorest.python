@@ -3,8 +3,8 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from .base_schema import BaseSchema
 from typing import Any, Dict, Optional
+from .base_schema import BaseSchema
 
 class DictionarySchema(BaseSchema):
     """Schema for dictionaries that will be serialized.
@@ -45,6 +45,7 @@ class DictionarySchema(BaseSchema):
 
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, str], **kwargs: Any) -> "DictionarySchema":
+        # pylint: disable=arguments-differ
         """Constructs a DictionarySchema from yaml data.
 
         :param yaml_data: the yaml data from which we will construct this schema
@@ -57,7 +58,7 @@ class DictionarySchema(BaseSchema):
 
         element_schema = yaml_data['elementType']
 
-        from . import build_schema
+        from . import build_schema  # pylint: disable=import-outside-toplevel
         element_type = build_schema(
             yaml_data=element_schema,
             for_additional_properties=for_additional_properties,

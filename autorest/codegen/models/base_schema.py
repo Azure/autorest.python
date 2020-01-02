@@ -16,11 +16,7 @@ class BaseSchema(BaseModel, ABC):
     :param yaml_data: the yaml data for this schema
     :type yaml_data: dict[str, Any]
     """
-    def __init__(
-        self,
-        yaml_data: Dict[str, Any],
-        **kwargs
-    ):
+    def __init__(self, yaml_data: Dict[str, Any]):
         super().__init__(yaml_data)
         self.default_value = yaml_data.get('defaultValue', None)
 
@@ -28,7 +24,7 @@ class BaseSchema(BaseModel, ABC):
     def from_yaml(cls, yaml_data):
         return cls(yaml_data=yaml_data)
 
-    def imports(self):
+    def imports(self):  # pylint: disable=no-self-use
         return FileImport()
 
     @abstractmethod
@@ -60,7 +56,7 @@ class BaseSchema(BaseModel, ABC):
         """
         return self.get_python_type()
 
-    def get_declaration(self, value) -> str:
+    def get_declaration(self, value) -> str: # pylint: disable=no-self-use
         """Return the current value from YAML as a Python string that represents the constant.
 
         Example, if schema is "bytearray" and value is "foo",
@@ -73,8 +69,8 @@ class BaseSchema(BaseModel, ABC):
         """
         return str(value)
 
-    def get_validation_map(self) -> Dict[str, Any]:
+    def get_validation_map(self) -> Dict[str, Any]: # pylint: disable=no-self-use
         return None
 
-    def get_serialization_constraints(self) -> List[str]:
+    def get_serialization_constraints(self) -> List[str]: # pylint: disable=no-self-use
         return None

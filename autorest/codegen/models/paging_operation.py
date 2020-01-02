@@ -49,7 +49,10 @@ class PagingOperation(Operation):
         for prop in response.schema.properties:
             if prop.original_swagger_name == rest_api_name:
                 return prop.name
-        raise ValueError(f"While scanning x-ms-pageable, was unable to find {log_name}:{rest_api_name} in model {response.schema.name}")
+        raise ValueError(
+            f"While scanning x-ms-pageable, was unable to find " +
+            f"{log_name}:{rest_api_name} in model {response.schema.name}"
+        )
 
     @property
     def item_name(self):
@@ -60,7 +63,10 @@ class PagingOperation(Operation):
                 self._find_python_name(item_name, "itemName")
             except ValueError:
                 response = self.responses[0]
-                raise ValueError(f"While scanning x-ms-pageable, itemName was not defined and object {response.schema.name} has no array called 'value'")
+                raise ValueError(
+                    f"While scanning x-ms-pageable, itemName was not defined " +
+                     f"and object {response.schema.name} has no array called 'value'"
+                )
             return item_name
         return self._find_python_name(self._item_name, "itemName")
 

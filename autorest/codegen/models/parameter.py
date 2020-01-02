@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 from enum import Enum
-from typing import Dict, Optional, List, Union, Any
+from typing import Dict, Optional, List, Any
 
 from .base_model import BaseModel
 
@@ -68,8 +68,7 @@ class Parameter(BaseModel):
     def for_method_signature(self):
         if self.is_required:
             return self.serialized_name
-        else:
-            return f"{self.serialized_name}=None"
+        return f"{self.serialized_name}=None"
 
     @property
     def full_serialized_name(self):
@@ -79,14 +78,16 @@ class Parameter(BaseModel):
         return origin_name
 
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, str], **kwargs) -> "SchemaResponse":
+    def from_yaml(cls, yaml_data: Dict[str, str]) -> "SchemaResponse":
 
         http_protocol = yaml_data["protocol"]["http"]
         return cls(
             yaml_data=yaml_data,
             schema=yaml_data.get("schema", None),  # FIXME replace by operation model
             # See also https://github.com/Azure/autorest.modelerfour/issues/80
-            rest_api_name=yaml_data["language"]["default"].get("serializedName", yaml_data["language"]["default"]["name"]),
+            rest_api_name=yaml_data["language"]["default"].get(
+                "serializedName", yaml_data["language"]["default"]["name"]
+            ),
             serialized_name=yaml_data['language']['python']['name'],
             description=yaml_data["language"]["python"]["description"],
             implementation=yaml_data["implementation"],
