@@ -15,7 +15,7 @@ class DictionarySchema(BaseSchema):
     :type element_type: ~autorest.models.BaseSchema
     """
     def __init__(self, yaml_data: Dict[str, Any], element_type: "BaseSchema", **kwargs: Any):
-        super(DictionarySchema, self).__init__(yaml_data, **kwargs)
+        super(DictionarySchema, self).__init__(yaml_data)
         self.element_type = element_type
         self.additional_properties = kwargs.pop('additional_properties', False)
 

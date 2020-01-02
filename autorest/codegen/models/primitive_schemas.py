@@ -36,8 +36,8 @@ class AnySchema(PrimitiveSchema):
 
 
 class NumberSchema(PrimitiveSchema):
-    def __init__(self, yaml_data, **kwargs):
-        super(NumberSchema, self).__init__(yaml_data, **kwargs)
+    def __init__(self, yaml_data):
+        super(NumberSchema, self).__init__(yaml_data)
         self.precision = yaml_data['precision']
         self.multiple = yaml_data.get('multipleOf')
         self.maximum = yaml_data.get('maximum')
@@ -76,16 +76,14 @@ class NumberSchema(PrimitiveSchema):
         if self.yaml_data['type'] == "integer":
             if self.precision == 64:
                 return "long"
-            else:
-                return "int"
+            return "int"
         return "float"
 
     def get_python_type(self, namespace=None):
         if self.yaml_data['type'] == "integer":
             if self.precision == 64:
                 return "long"
-            else:
-                return "int"
+            return "int"
         return "float"
 
     def get_python_type_annotation(self):
@@ -96,8 +94,8 @@ class NumberSchema(PrimitiveSchema):
 
 
 class StringSchema(PrimitiveSchema):
-    def __init__(self, yaml_data, **kwargs):
-        super(StringSchema, self).__init__(yaml_data, **kwargs)
+    def __init__(self, yaml_data):
+        super(StringSchema, self).__init__(yaml_data)
         self.max_length = yaml_data.get('maxLength')
         self.min_length = yaml_data.get('minLength', 0) if yaml_data.get('maxLength') else yaml_data.get('minLength')
         self.pattern = yaml_data.get('pattern')
@@ -125,8 +123,8 @@ class StringSchema(PrimitiveSchema):
 
 
 class DatetimeSchema(PrimitiveSchema):
-    def __init__(self, yaml_data, **kwargs):
-        super(DatetimeSchema, self).__init__(yaml_data, **kwargs)
+    def __init__(self, yaml_data):
+        super(DatetimeSchema, self).__init__(yaml_data)
         self.format = self.Formats(yaml_data['format'])
 
     class Formats(str, Enum):
@@ -208,8 +206,8 @@ class Duration(PrimitiveSchema):
 
 
 class ByteArraySchema(PrimitiveSchema):
-    def __init__(self, yaml_data, **kwargs):
-        super(ByteArraySchema, self).__init__(yaml_data, **kwargs)
+    def __init__(self, yaml_data):
+        super(ByteArraySchema, self).__init__(yaml_data)
         self.format = self.Formats(yaml_data['format'])
 
     class Formats(str, Enum):
@@ -229,6 +227,7 @@ class ByteArraySchema(PrimitiveSchema):
 
 
 def get_primitive_schema(yaml_data):
+    # pylint: disable=too-many-return-statements
     schema_type = yaml_data['type']
     if schema_type in ('integer', 'number'):
         return NumberSchema.from_yaml(yaml_data=yaml_data)

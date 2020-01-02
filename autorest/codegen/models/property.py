@@ -67,7 +67,7 @@ class Property(BaseModel):
 
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, Any], **kwargs) -> "Property":
-        from . import build_schema
+        from . import build_schema  # pylint: disable=import-outside-toplevel
         name = yaml_data['language']['python']['name']
         has_additional_properties = kwargs.pop("has_additional_properties", None)
         if name == 'additional_properties' and has_additional_properties:

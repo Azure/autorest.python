@@ -38,7 +38,7 @@ def build_schema(yaml_data, **kwargs):
     yaml_id = id(yaml_data)
     try:
         return code_model.lookup_schema(yaml_id)
-    except Exception:
+    except KeyError:
         # Not created yet, let's create it and add it to the index
         pass
 
@@ -59,7 +59,7 @@ def build_schema(yaml_data, **kwargs):
         schema = DictionarySchema.from_yaml(yaml_data=yaml_data, **kwargs)
         code_model.primitives[yaml_id] = schema
 
-    elif schema_type == 'object' or schema_type == 'and':
+    elif schema_type in ['object', 'and']:
         # To avoid infinite loop, create the right instance in memory,
         # put it in the index, and then parse the object.
         schema = ObjectSchema(yaml_data, None, None)

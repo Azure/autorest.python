@@ -16,7 +16,7 @@ from .constant_schema import ConstantSchema
 _LOGGER = logging.getLogger(__name__)
 
 
-class Operation(BaseModel):
+class Operation(BaseModel):  # pylint: disable=too-many-public-methods
     """Represent an operation.
     """
 
@@ -117,7 +117,9 @@ class Operation(BaseModel):
     @property
     def path_parameters(self) -> List[Parameter]:
         return [
-            parameter for parameter in self.parameters if parameter.location in [ParameterLocation.Uri, ParameterLocation.Path] and parameter.rest_api_name != "$host"
+            parameter for parameter in self.parameters
+            if parameter.location in [ParameterLocation.Uri, ParameterLocation.Path] and
+            parameter.rest_api_name != "$host"
         ]
 
     @property
@@ -137,13 +139,6 @@ class Operation(BaseModel):
         return [
             parameter for parameter in self.parameters if isinstance(parameter.schema, ConstantSchema)
         ]
-
-    @staticmethod
-    def build_constraints(constraints: List) -> List[str]:
-        constraints_params = []
-        for constraint in constraints:
-            pass
-        return constraints_params
 
     @property
     def method_parameters(self) -> List[Parameter]:
@@ -189,7 +184,6 @@ class Operation(BaseModel):
                 raise ValueError(f"Do not support {parameter.style} yet")
             optional_parameters.append(f"div='{div_char}'")
 
-        # optional_parameters += Operation.build_constraints(parameter.constraints)
         serialization_constraints = parameter.schema.get_serialization_constraints()
         optional_parameters += serialization_constraints if serialization_constraints else ""
 
@@ -197,7 +191,8 @@ class Operation(BaseModel):
 
         origin_name = parameter.full_serialized_name
 
-        return f"""self._serialize.{function_name}("{origin_name}", {origin_name}, '{parameter.schema.get_serialization_type()}'{optional_parameters_string})"""
+        return (f"""self._serialize.{function_name}("{origin_name}", {origin_name}, """ +
+        f"""'{parameter.schema.get_serialization_type()}'{optional_parameters_string})""")
 
     @property
     def serialization_context(self):
@@ -251,7 +246,7 @@ class Operation(BaseModel):
             file_import.add_import("uuid", ImportType.STDLIB)
 
         # Deprecation
-        if True:  # Replace with "the YAML contains deprecated:true"
+        if True:  # Replace with "the YAML contains deprecated:true"  # pylint: disable=using-constant-test
             file_import.add_import("warnings", ImportType.STDLIB)
 
         # Models
@@ -291,7 +286,7 @@ class Operation(BaseModel):
         return f"{self.body_parameter.serialized_name} = models.{self.body_parameter.schema.name}({parameter_string})"
 
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, str], **kwargs) -> "Operation":
+    def from_yaml(cls, yaml_data: Dict[str, str]) -> "Operation":
         name = yaml_data["language"]["python"]["name"]
         _LOGGER.debug("Parsing %s operation", name)
 

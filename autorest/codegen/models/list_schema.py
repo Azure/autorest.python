@@ -3,13 +3,13 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
+from typing import Dict
 from .base_schema import BaseSchema
-from typing import Any, Dict
 
 
 class ListSchema(BaseSchema):
     def __init__(self, yaml_data, element_type, **kwargs):
-        super(ListSchema, self).__init__(yaml_data, **kwargs)
+        super(ListSchema, self).__init__(yaml_data)
         self.element_type = element_type
         self.max_items = kwargs.pop('max_items', None)
         self.min_items = kwargs.pop('min_items', None)
@@ -22,7 +22,7 @@ class ListSchema(BaseSchema):
     def get_python_type_annotation(self):
         return f'List[{self.element_type.get_python_type_annotation()}]'
 
-    def get_python_type(self, namespace):
+    def get_python_type(self, namespace):  # pylint: disable=signature-differs
         return f'list[{self.element_type.get_python_type(namespace)}]'
 
     def get_validation_map(self):
@@ -37,11 +37,11 @@ class ListSchema(BaseSchema):
         return validation_map or None
 
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, str], **kwargs) -> "SequenceType":
+    def from_yaml(cls, yaml_data: Dict[str, str], **kwargs) -> "SequenceType":  # pylint: disable=arguments-differ
         # TODO: for items, if the type is a primitive is it listed in type instead of $ref?
         element_schema = yaml_data['elementType']
 
-        from . import build_schema
+        from . import build_schema  # pylint: disable=import-outside-toplevel
         element_type = build_schema(
             yaml_data=element_schema,
             **kwargs

@@ -4,9 +4,9 @@
 # license information.
 # --------------------------------------------------------------------------
 import logging
+from typing import Dict, Any, Optional
 from .base_schema import BaseSchema
 from .primitive_schemas import get_primitive_schema
-from typing import Dict, Any, Optional
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -55,7 +55,7 @@ class ConstantSchema(BaseSchema):
         return self.schema.get_python_type(namespace)
 
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, Any], **kwargs) -> "ConstantSchema":
+    def from_yaml(cls, yaml_data: Dict[str, Any]) -> "ConstantSchema":
         """Constructs a ConstantSchema from yaml data.
 
         :param yaml_data: the yaml data from which we will construct this schema

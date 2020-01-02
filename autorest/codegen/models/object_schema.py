@@ -20,7 +20,7 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
     :type properties: dict(str, str)
     """
     def __init__(self, yaml_data, name: str, description=None, **kwargs) -> "ObjectSchema":
-        super(ObjectSchema, self).__init__(yaml_data, **kwargs)
+        super(ObjectSchema, self).__init__(yaml_data)
         self.name = name
         self.description = description
         self.max_properties = kwargs.pop('max_properties', None)
