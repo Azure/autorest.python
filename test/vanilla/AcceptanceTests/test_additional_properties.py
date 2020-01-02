@@ -40,6 +40,7 @@ from msrest.exceptions import DeserializationError
 from additionalproperties import AdditionalPropertiesClient
 from additionalproperties.models import (
     PetAPTrue,
+    CatAPTrue,
     PetAPObject,
     PetAPString,
     PetAPInProperties,
@@ -65,6 +66,21 @@ class TestAdditionalProperties(object):
             }
         )
         output_ap_true = client.pets.create_ap_true(input_ap_true)
+        assert output_ap_true.additional_properties['birthdate'] ==  '2017-12-13T02:29:51Z'
+
+    def test_create_cat_ap_true(self, client):
+        input_ap_true = CatAPTrue(
+            id = 1,
+            name = 'Lisa',
+            friendly = True,
+            additional_properties = {
+                'birthdate': '2017-12-13T02:29:51Z',
+                'complexProperty': {
+                    'color': 'Red'
+                }
+            }
+        )
+        output_ap_true = client.pets.create_cat_ap_true(input_ap_true)
         assert output_ap_true.additional_properties['birthdate'] ==  '2017-12-13T02:29:51Z'
 
     def test_create_ap_object(self, client):
