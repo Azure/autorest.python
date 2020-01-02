@@ -60,7 +60,7 @@ class OperationGroup(BaseModel):
         return not self.yaml_data['language']['default']['name']
 
     @classmethod
-    def from_yaml(cls, code_model, yaml_data: Dict[str, Any], **kwargs) -> "OperationGroup":
+    def from_yaml(cls, code_model, yaml_data: Dict[str, Any]) -> "OperationGroup":
         name = yaml_data['language']['python']['name']
         _LOGGER.debug("Parsing %s operation group", name)
 

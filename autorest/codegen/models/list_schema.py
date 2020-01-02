@@ -3,17 +3,25 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
+from typing import Dict
 from .base_schema import BaseSchema
-from typing import Any, Dict
 
 
 class ListSchema(BaseSchema):
-    def __init__(self, yaml_data, element_type, **kwargs):
-        super(ListSchema, self).__init__(yaml_data, **kwargs)
+    def __init__(
+        self,
+        yaml_data,
+        element_type,
+        *,
+        max_items: int = None,
+        min_items: int = None,
+        unique_items: int = None
+    ):
+        super(ListSchema, self).__init__(yaml_data)
         self.element_type = element_type
-        self.max_items = kwargs.pop('max_items', None)
-        self.min_items = kwargs.pop('min_items', None)
-        self.unique_items = kwargs.pop('unique_items', None)
+        self.max_items = max_items
+        self.min_items = min_items
+        self.unique_items = unique_items
 
 
     def get_serialization_type(self):
@@ -41,7 +49,7 @@ class ListSchema(BaseSchema):
         # TODO: for items, if the type is a primitive is it listed in type instead of $ref?
         element_schema = yaml_data['elementType']
 
-        from . import build_schema
+        from . import build_schema  # pylint: disable=import-outside-toplevel
         element_type = build_schema(
             yaml_data=element_schema,
             **kwargs

@@ -4,9 +4,9 @@
 # license information.
 # --------------------------------------------------------------------------
 import logging
+from typing import Dict, Any, Optional
 from .base_schema import BaseSchema
 from .primitive_schemas import get_primitive_schema
-from typing import Dict, Any, Optional
 
 _LOGGER = logging.getLogger(__name__)
 

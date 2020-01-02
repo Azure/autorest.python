@@ -3,9 +3,8 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from .base_schema import BaseSchema
 from typing import Any, Dict, List, Optional
-from .primitive_schemas import StringSchema
+from .base_schema import BaseSchema
 
 
 class EnumValue:
@@ -52,10 +51,9 @@ class EnumSchema(BaseSchema):
         yaml_data: Dict[str, Any],
         description: str,
         enum_type: "StringSchema",
-        values: List["EnumValue"],
-        **kwargs: Any
+        values: List["EnumValue"]
     ):
-        super(EnumSchema, self).__init__(yaml_data, **kwargs)
+        super(EnumSchema, self).__init__(yaml_data)
         self.description = description
         self.enum_type = enum_type
         self.values = values
@@ -83,6 +81,7 @@ class EnumSchema(BaseSchema):
         """
         return f"str or ~{namespace}.models.{self.enum_type}"
 
+    @staticmethod
     def _get_enum_values(yaml_data: Dict[str, Any]) -> List["EnumValue"]:
         """Creates the list of values for this enum.
 
@@ -97,7 +96,7 @@ class EnumSchema(BaseSchema):
         return values
 
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, str], **kwargs: Any) -> "EnumSchema":
+    def from_yaml(cls, yaml_data: Dict[str, str], **kwargs) -> "EnumSchema":
         """Constructs an EnumSchema from yaml data.
 
         :param yaml_data: the yaml data from which we will construct this schema

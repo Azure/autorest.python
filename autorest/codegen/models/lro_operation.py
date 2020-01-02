@@ -4,8 +4,8 @@
 # license information.
 # --------------------------------------------------------------------------
 import logging
-from .operation import Operation
 from typing import Dict, List, Any, Optional
+from .operation import Operation
 from .parameter import Parameter
 from .schema_response import SchemaResponse
 from .imports import ImportType
@@ -21,7 +21,7 @@ class LROOperation(Operation):
         url: str,
         method: str,
         parameters: List[Parameter] = None,
-        responses: List[SchemaResponse] = [None],
+        responses: List[SchemaResponse] = None,
         exceptions: List[SchemaResponse] = None,
         media_types: List[str] = None,
         want_description_docstring: Optional[bool] = True,
@@ -44,6 +44,8 @@ class LROOperation(Operation):
         self.lro_options = yaml_data.get("extensions", {}).get("x-ms-long-running-operation-options", {})
 
     def set_lro_response_type(self) -> None:
+        if not self.responses:
+            return
         responses = {response.schema: response for response in self.responses if response.has_body}
         response_types = list(responses.values())
         if len(response_types) > 1:

@@ -3,8 +3,8 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from .base_schema import BaseSchema
 from typing import Any, Dict, Optional
+from .base_schema import BaseSchema
 
 class DictionarySchema(BaseSchema):
     """Schema for dictionaries that will be serialized.
@@ -14,10 +14,10 @@ class DictionarySchema(BaseSchema):
     :param element_type: The type of the value for the dictionary
     :type element_type: ~autorest.models.BaseSchema
     """
-    def __init__(self, yaml_data: Dict[str, Any], element_type: "BaseSchema", **kwargs: Any):
-        super(DictionarySchema, self).__init__(yaml_data, **kwargs)
+    def __init__(self, yaml_data: Dict[str, Any], element_type: "BaseSchema", *, additional_properties: bool = False):
+        super(DictionarySchema, self).__init__(yaml_data)
         self.element_type = element_type
-        self.additional_properties = kwargs.pop('additional_properties', False)
+        self.additional_properties = additional_properties
 
 
     def get_serialization_type(self) -> str:
@@ -57,7 +57,7 @@ class DictionarySchema(BaseSchema):
 
         element_schema = yaml_data['elementType']
 
-        from . import build_schema
+        from . import build_schema  # pylint: disable=import-outside-toplevel
         element_type = build_schema(
             yaml_data=element_schema,
             for_additional_properties=for_additional_properties,

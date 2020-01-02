@@ -49,7 +49,7 @@ class SchemaResponse(BaseModel):
         return self.binary
 
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, str], **kwargs) -> "SchemaResponse":
+    def from_yaml(cls, yaml_data: Dict[str, str]) -> "SchemaResponse":
 
         return cls(
             yaml_data=yaml_data,

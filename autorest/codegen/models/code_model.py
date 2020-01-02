@@ -9,7 +9,6 @@ from typing import List, Dict, Optional, Any, cast
 
 from .base_schema import BaseSchema
 from .enum_schema import EnumSchema
-from .primitive_schemas import PrimitiveSchema
 from .object_schema import ObjectSchema
 from .operation_group import OperationGroup
 from .operation import Operation
@@ -25,7 +24,7 @@ _LOGGER = logging.getLogger(__name__)
 class FakeSchema(BaseSchema):
     """Remove this guy eventually, just to make some fast process during dev.
     """
-    def __init__(self):
+    def __init__(self):  # pylint: disable=super-init-not-called
         ...
 
     def get_serialization_type(self):
@@ -46,7 +45,7 @@ class CredentialSchema(BaseSchema):
         return self.type
 
 
-class CodeModel:
+class CodeModel:  # pylint: disable=too-many-instance-attributes
     """Holds all of the information we have parsed out of the yaml file. The CodeModel is what gets
     serialized by the serializers.
 
@@ -198,7 +197,10 @@ class CodeModel:
                 if isinstance(operation, PagingOperation) and operation.operation_name:
                     short_op_name = operation.operation_name.split('_')[-1]
                     if short_op_name not in op_index:
-                        raise ValueError(f"Could not find {operation.operation_name} in op group {operation_group.name} I have {op_index.keys()}")
+                        raise ValueError(
+                            f"Could not find {operation.operation_name} in op group " +
+                            f"{operation_group.name} I have {op_index.keys()}"
+                        )
 
                     next_operation = op_index[short_op_name]
                     operation.next_operation = next_operation
@@ -260,7 +262,10 @@ class CodeModel:
                 while parent:
                     schema.properties = parent.properties + schema.properties
                     seen_properties = set()
-                    schema.properties = [p for p in schema.properties if p.name not in seen_properties and not seen_properties.add(p.name)]
+                    schema.properties = [
+                        p for p in schema.properties
+                        if p.name not in seen_properties and not seen_properties.add(p.name)
+                    ]
                     parent = parent.base_model
 
     def add_inheritance_to_models(self) -> None:
@@ -295,7 +300,12 @@ class CodeModel:
         # Index schemas
         for operation_group in self.operation_groups:
             for operation in operation_group.operations:
-                for obj in chain(operation.parameters, operation.responses, operation.exceptions, chain.from_iterable(response.headers for response in operation.responses)):
+                for obj in chain(
+                    operation.parameters,
+                    operation.responses,
+                    operation.exceptions,
+                    chain.from_iterable(response.headers for response in operation.responses)
+                ):
                     self._populate_schema(obj)
 
     def add_schema_link_to_global_parameters(self) -> None:
