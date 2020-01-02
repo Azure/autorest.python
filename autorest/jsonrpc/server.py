@@ -9,7 +9,7 @@ import logging
 
 from jsonrpc import dispatcher, JSONRPCResponseManager
 
-from .stdstream import read_message, write_message, StdStreamAutorestAPI
+from .stdstream import read_message, write_message
 
 
 _LOGGER = logging.getLogger(__name__)
@@ -24,6 +24,7 @@ def Process(plugin_name, session_id):
     # pylint: disable=import-outside-toplevel
     """JSON-RPC process call.
     """
+    from .stdstream import StdStreamAutorestAPI
     with contextlib.closing(StdStreamAutorestAPI(session_id)) as stdstream_connection:
 
         _LOGGER.debug("Autorest called process with plugin_name '%s' and session_id: '%s'", plugin_name, session_id)
