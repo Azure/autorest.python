@@ -7,7 +7,6 @@
 """
 import logging
 
-import yaml
 import m2r
 
 from .. import YamlUpdatePlugin
