@@ -6,11 +6,10 @@
 import contextlib
 import os
 import logging
-import sys
 
 from jsonrpc import dispatcher, JSONRPCResponseManager
 
-from .stdstream import read_message, write_message
+from .stdstream import read_message, write_message, StdStreamAutorestAPI
 
 
 _LOGGER = logging.getLogger(__name__)
@@ -22,9 +21,9 @@ def GetPluginNames():
 
 @dispatcher.add_method
 def Process(plugin_name, session_id):
+    # pylint: disable=import-outside-toplevel
     """JSON-RPC process call.
     """
-    from .stdstream import StdStreamAutorestAPI
     with contextlib.closing(StdStreamAutorestAPI(session_id)) as stdstream_connection:
 
         _LOGGER.debug("Autorest called process with plugin_name '%s' and session_id: '%s'", plugin_name, session_id)
@@ -50,7 +49,7 @@ def Process(plugin_name, session_id):
 def main():
     if os.environ.get("AUTOREST_PYTHON_ATTACH_VSCODE_DEBUG", False):
         try:
-            import ptvsd
+            import ptvsd  # pylint: disable=import-outside-toplevel
         except ImportError:
             raise SystemExit("Please pip install ptvsd in order to use VSCode debugging")
 
