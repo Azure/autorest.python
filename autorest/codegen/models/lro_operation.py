@@ -45,7 +45,6 @@ class LROOperation(Operation):
 
     def set_lro_response_type(self) -> None:
         if not self.responses:
-            self.lro_response = None
             return
         responses = {response.schema: response for response in self.responses if response.has_body}
         response_types = list(responses.values())

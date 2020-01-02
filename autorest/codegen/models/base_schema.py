@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 from abc import ABC, abstractmethod
-from typing import Any, Dict, Optional, List
+from typing import Any, Dict, List
 
 from .base_model import BaseModel
 from .imports import FileImport
@@ -21,7 +21,7 @@ class BaseSchema(BaseModel, ABC):
         self.default_value = yaml_data.get('defaultValue', None)
 
     @classmethod
-    def from_yaml(cls, yaml_data):
+    def from_yaml(cls, yaml_data, **kwargs):  # pylint: disable=unused-argument
         return cls(yaml_data=yaml_data)
 
     def imports(self):  # pylint: disable=no-self-use
@@ -42,7 +42,7 @@ class BaseSchema(BaseModel, ABC):
         ...
 
     @abstractmethod
-    def get_python_type(self, namespace: Optional[str] = None) -> str:
+    def get_python_type(self, namespace: str) -> str:
         """The python type used for RST syntax input.
 
         Special case for enum, for instance: 'str or ~namespace.EnumName'
@@ -54,7 +54,7 @@ class BaseSchema(BaseModel, ABC):
 
         Special case for enum, for instance: Union[str, "EnumName"]
         """
-        return self.get_python_type()
+        return self.get_python_type("_")
 
     def get_declaration(self, value) -> str: # pylint: disable=no-self-use
         """Return the current value from YAML as a Python string that represents the constant.

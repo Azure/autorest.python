@@ -48,7 +48,7 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
     def get_python_type_annotation(self) -> str:
         return f'\"{self.name}\"'
 
-    def get_python_type(self, namespace):  # pylint: disable=signature-differs
+    def get_python_type(self, namespace):
         return '~{}.models.{}'.format(namespace, self.name)
 
     def get_declaration(self, value):
@@ -58,7 +58,7 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
         return f"<{self.__class__.__name__} {self.name}>"
 
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, str]) -> "ObjectSchema":
+    def from_yaml(cls, yaml_data: Dict[str, str], **kwargs) -> "ObjectSchema":
         """Returns a ClassType from the dict object constructed from a yaml file.
 
         WARNING: This guy might create an infinite loop.

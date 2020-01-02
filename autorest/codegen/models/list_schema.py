@@ -22,7 +22,7 @@ class ListSchema(BaseSchema):
     def get_python_type_annotation(self):
         return f'List[{self.element_type.get_python_type_annotation()}]'
 
-    def get_python_type(self, namespace):  # pylint: disable=signature-differs
+    def get_python_type(self, namespace):
         return f'list[{self.element_type.get_python_type(namespace)}]'
 
     def get_validation_map(self):

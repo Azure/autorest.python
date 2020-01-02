@@ -74,7 +74,7 @@ class EnumSchema(BaseSchema):
         """
         return f'Union[str, \"{self.enum_type}\"]'
 
-    def get_python_type(self, namespace: str) -> str:  # pylint: disable=signature-differs
+    def get_python_type(self, namespace: str) -> str:
         """The python type used for RST syntax input and type annotation.
 
         :param str namespace: The namespace for this enum.
@@ -96,7 +96,7 @@ class EnumSchema(BaseSchema):
         return values
 
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, str]) -> "EnumSchema":
+    def from_yaml(cls, yaml_data: Dict[str, str], **kwargs) -> "EnumSchema":
         """Constructs an EnumSchema from yaml data.
 
         :param yaml_data: the yaml data from which we will construct this schema
