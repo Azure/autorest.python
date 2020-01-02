@@ -3,15 +3,13 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-import io
 import json
 import os
 import logging
-from pathlib import Path
 import sys
 from typing import BinaryIO
 
-from jsonrpc.jsonrpc2 import JSONRPC20Request, JSONRPC20Response
+from jsonrpc.jsonrpc2 import JSONRPC20Request
 
 from . import AutorestAPI, Channel
 

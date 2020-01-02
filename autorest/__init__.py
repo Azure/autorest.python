@@ -4,10 +4,9 @@
 # license information.
 # --------------------------------------------------------------------------
 import logging
+from abc import ABC, abstractmethod
 
 import yaml
-
-from abc import ABC, abstractmethod
 
 from .jsonrpc import AutorestAPI
 from ._version import VERSION

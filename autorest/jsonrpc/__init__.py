@@ -5,9 +5,10 @@
 # --------------------------------------------------------------------------
 from abc import ABC, abstractmethod
 from enum import Enum
+from typing import List
 import logging
 from pathlib import Path
-from typing import List
+
 
 
 class Channel(Enum):
@@ -61,7 +62,7 @@ class AutorestHandler(logging.Handler):
             )
         except RecursionError:  # See issue 36272
             raise
-        except Exception:
+        except Exception:  # pylint: disable=broad-except
             self.handleError(record)
 
 
@@ -119,7 +120,7 @@ class AutorestAPI(ABC):
         """Send a log message to autorest.
         """
 
-    def get_boolean_value(self, key: str, default: bool=None) -> bool:
+    def get_boolean_value(self, key: str, default: bool = None) -> bool:
         """Check if value is present on the line, and interpret it as bool if it was.
 
         If value is not not on the line, return the "default".
