@@ -39,7 +39,7 @@ class LRORetrysOperations(object):
         self._config = config
     
     def _put201_creating_succeeded200_initial(self, product=None, cls=None, **kwargs):
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._put201_creating_succeeded200_initial.metadata['url']
@@ -125,7 +125,7 @@ class LRORetrysOperations(object):
 
     
     def _put_async_relative_retry_succeeded_initial(self, product=None, cls=None, **kwargs):
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._put_async_relative_retry_succeeded_initial.metadata['url']
@@ -214,7 +214,7 @@ class LRORetrysOperations(object):
 
     
     def _delete_provisioning202_accepted200_succeeded_initial(self, cls=None, **kwargs):
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._delete_provisioning202_accepted200_succeeded_initial.metadata['url']
@@ -296,7 +296,7 @@ class LRORetrysOperations(object):
 
     
     def _delete202_retry200_initial(self, cls=None, **kwargs):
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._delete202_retry200_initial.metadata['url']
@@ -364,7 +364,7 @@ class LRORetrysOperations(object):
 
     
     def _delete_async_relative_retry_succeeded_initial(self, cls=None, **kwargs):
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._delete_async_relative_retry_succeeded_initial.metadata['url']
@@ -433,7 +433,7 @@ class LRORetrysOperations(object):
 
     
     def _post202_retry200_initial(self, product=None, cls=None, **kwargs):
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._post202_retry200_initial.metadata['url']
@@ -511,7 +511,7 @@ class LRORetrysOperations(object):
 
     
     def _post_async_relative_retry_succeeded_initial(self, product=None, cls=None, **kwargs):
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._post_async_relative_retry_succeeded_initial.metadata['url']

@@ -40,7 +40,6 @@ class AccessPolicy(Model):
         self.expiry = kwargs.get('expiry', None)
         self.permission = kwargs.get('permission', None)
 
-
 class AppleBarrel(Model):
     """A barrel of apples.
 
@@ -59,7 +58,6 @@ class AppleBarrel(Model):
         super(AppleBarrel, self).__init__(**kwargs)
         self.good_apples = kwargs.get('good_apples', None)
         self.bad_apples = kwargs.get('bad_apples', None)
-
 
 class Banana(Model):
     """A banana.
@@ -83,7 +81,6 @@ class Banana(Model):
         self.name = kwargs.get('name', None)
         self.flavor = kwargs.get('flavor', None)
         self.expiration = kwargs.get('expiration', None)
-
 
 class Blob(Model):
     """An Azure Storage blob
@@ -125,7 +122,6 @@ class Blob(Model):
         self.properties = kwargs.get('properties', None)
         self.metadata = kwargs.get('metadata', None)
 
-
 class BlobPrefix(Model):
     """BlobPrefix.
 
@@ -146,7 +142,6 @@ class BlobPrefix(Model):
     def __init__(self, **kwargs):
         super(BlobPrefix, self).__init__(**kwargs)
         self.name = kwargs.get('name', None)
-
 
 class BlobProperties(Model):
     """Properties of a blob
@@ -278,7 +273,6 @@ class BlobProperties(Model):
         self.access_tier_inferred = kwargs.get('access_tier_inferred', None)
         self.archive_status = kwargs.get('archive_status', None)
 
-
 class Blobs(Model):
     """Blobs.
 
@@ -298,7 +292,6 @@ class Blobs(Model):
         self.blob_prefix = kwargs.get('blob_prefix', None)
         self.blob = kwargs.get('blob', None)
 
-
 class ComplexTypeNoMeta(Model):
     """I am a complex type with no XML node
 
@@ -314,7 +307,6 @@ class ComplexTypeNoMeta(Model):
         super(ComplexTypeNoMeta, self).__init__(**kwargs)
         self.id = kwargs.get('id', None)
 
-
 class ComplexTypeWithMeta(Model):
     """I am a complex type with XML node
 
@@ -329,7 +321,6 @@ class ComplexTypeWithMeta(Model):
     def __init__(self, **kwargs):
         super(ComplexTypeWithMeta, self).__init__(**kwargs)
         self.id = kwargs.get('id', None)
-
 
 class Container(Model):
     """An Azure Storage container
@@ -360,7 +351,6 @@ class Container(Model):
         self.name = kwargs.get('name', None)
         self.properties = kwargs.get('properties', None)
         self.metadata = kwargs.get('metadata', None)
-
 
 class ContainerProperties(Model):
     """Properties of a container
@@ -404,7 +394,6 @@ class ContainerProperties(Model):
         self.lease_duration = kwargs.get('lease_duration', None)
         self.public_access = kwargs.get('public_access', None)
 
-
 class CorsRule(Model):
     """CORS is an HTTP feature that enables a web application running under one domain to access resources in another domain. Web browsers implement a security restriction known as same-origin policy that prevents a web page from calling APIs in a different domain; CORS provides a secure way to allow one domain (the origin domain) to call APIs in another domain
 
@@ -446,6 +435,30 @@ class CorsRule(Model):
         self.exposed_headers = kwargs.get('exposed_headers', None)
         self.max_age_in_seconds = kwargs.get('max_age_in_seconds', None)
 
+class ErrorException(HttpResponseError):
+    """Server responded with exception of type: 'Error'.
+
+    :param response: Server response to be deserialized.
+    :param error_model: A deserialized model of the response body as model.
+    """
+
+    def __init__(self, response, error_model):
+        self.error = error_model
+        super(ErrorException, self).__init__(response=response, error_model=error_model)
+
+    @classmethod
+    def from_response(cls, response, deserialize):
+        """Deserialize this response as this exception, or a subclass of this exception.
+
+        :param response: Server response to be deserialized.
+        :param deserialize: A deserializer
+        """
+        model_name = 'Error'
+        error = deserialize(model_name, response)
+        if error is None:
+            error = deserialize.dependencies[model_name]()
+        return error._EXCEPTION_TYPE(response, error)
+
 
 class Error(Model):
     """Error.
@@ -455,6 +468,7 @@ class Error(Model):
     :param message:
 	:type message: str
     """
+    _EXCEPTION_TYPE = ErrorException
 
     _attribute_map = {
         'status': {'key': 'status', 'type': 'int'},
@@ -465,23 +479,6 @@ class Error(Model):
         super(Error, self).__init__(**kwargs)
         self.status = kwargs.get('status', None)
         self.message = kwargs.get('message', None)
-
-
-class ErrorException(HttpResponseError):
-    """Server responded with exception of type: 'Error'.
-
-    :param deserialize: A deserializer
-    :param response: Server response to be deserialized.
-    """
-
-    def __init__(self, response, deserialize, *args):
-
-        model_name = 'Error'
-        self.error = deserialize(model_name, response)
-        if self.error is None:
-            self.error = deserialize.dependencies[model_name]()
-        super(ErrorException, self).__init__(response=response)
-
 
 class JSONInput(Model):
     """JSONInput.
@@ -498,7 +495,6 @@ class JSONInput(Model):
         super(JSONInput, self).__init__(**kwargs)
         self.id = kwargs.get('id', None)
 
-
 class JSONOutput(Model):
     """JSONOutput.
 
@@ -513,7 +509,6 @@ class JSONOutput(Model):
     def __init__(self, **kwargs):
         super(JSONOutput, self).__init__(**kwargs)
         self.id = kwargs.get('id', None)
-
 
 class ListBlobsResponse(Model):
     """An enumeration of blobs
@@ -571,7 +566,6 @@ class ListBlobsResponse(Model):
         self.blobs = kwargs.get('blobs', None)
         self.next_marker = kwargs.get('next_marker', None)
 
-
 class ListContainersResponse(Model):
     """An enumeration of containers
 
@@ -616,7 +610,6 @@ class ListContainersResponse(Model):
         self.containers = kwargs.get('containers', None)
         self.next_marker = kwargs.get('next_marker', None)
 
-
 class Logging(Model):
     """Azure Analytics Logging settings.
 
@@ -658,7 +651,6 @@ class Logging(Model):
         self.write = kwargs.get('write', None)
         self.retention_policy = kwargs.get('retention_policy', None)
 
-
 class Metrics(Model):
     """Metrics.
 
@@ -692,7 +684,6 @@ class Metrics(Model):
         self.include_apis = kwargs.get('include_apis', None)
         self.retention_policy = kwargs.get('retention_policy', None)
 
-
 class RetentionPolicy(Model):
     """the retention policy
 
@@ -719,7 +710,6 @@ class RetentionPolicy(Model):
         self.enabled = kwargs.get('enabled', None)
         self.days = kwargs.get('days', None)
 
-
 class RootWithRefAndMeta(Model):
     """I am root, and I ref a model WITH meta
 
@@ -739,7 +729,6 @@ class RootWithRefAndMeta(Model):
         self.ref_to_model = kwargs.get('ref_to_model', None)
         self.something = kwargs.get('something', None)
 
-
 class RootWithRefAndNoMeta(Model):
     """I am root, and I ref a model with no meta
 
@@ -758,7 +747,6 @@ class RootWithRefAndNoMeta(Model):
         super(RootWithRefAndNoMeta, self).__init__(**kwargs)
         self.ref_to_model = kwargs.get('ref_to_model', None)
         self.something = kwargs.get('something', None)
-
 
 class SignedIdentifier(Model):
     """signed identifier
@@ -786,7 +774,6 @@ class SignedIdentifier(Model):
         self.id = kwargs.get('id', None)
         self.access_policy = kwargs.get('access_policy', None)
 
-
 class Slide(Model):
     """A slide in a slideshow
 
@@ -809,7 +796,6 @@ class Slide(Model):
         self.type = kwargs.get('type', None)
         self.title = kwargs.get('title', None)
         self.items = kwargs.get('items', None)
-
 
 class Slideshow(Model):
     """Data about a slideshow
@@ -837,7 +823,6 @@ class Slideshow(Model):
         self.date_property = kwargs.get('date_property', None)
         self.author = kwargs.get('author', None)
         self.slides = kwargs.get('slides', None)
-
 
 class StorageServiceProperties(Model):
     """Storage Service Properties.
@@ -873,5 +858,4 @@ class StorageServiceProperties(Model):
         self.cors = kwargs.get('cors', None)
         self.default_service_version = kwargs.get('default_service_version', None)
         self.delete_retention_policy = kwargs.get('delete_retention_policy', None)
-
 

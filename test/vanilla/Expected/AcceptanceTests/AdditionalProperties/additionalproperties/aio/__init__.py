@@ -7,4 +7,4 @@
 # --------------------------------------------------------------------------
 
 from ._additional_properties_client_async import AdditionalPropertiesClient
-__all__ = ['']
+__all__ = ['AdditionalPropertiesClient']

@@ -10,4 +10,4 @@ from ._auto_rest_required_optional_test_service import AutoRestRequiredOptionalT
 from ._version import VERSION
 
 __version__ = VERSION
-__all__ = ['']
+__all__ = ['AutoRestRequiredOptionalTestService']

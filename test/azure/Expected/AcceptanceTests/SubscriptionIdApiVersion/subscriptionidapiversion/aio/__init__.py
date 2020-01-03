@@ -7,4 +7,4 @@
 # --------------------------------------------------------------------------
 
 from ._microsoft_azure_test_url_async import MicrosoftAzureTestUrl
-__all__ = ['']
+__all__ = ['MicrosoftAzureTestUrl']

@@ -10,4 +10,4 @@ from ._auto_rest_integer_test_service import AutoRestIntegerTestService
 from ._version import VERSION
 
 __version__ = VERSION
-__all__ = ['']
+__all__ = ['AutoRestIntegerTestService']

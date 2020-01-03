@@ -45,7 +45,7 @@ class NumberOperations(object):
         :rtype: float
         :raises: ~bodynumber.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_null.metadata['url']
@@ -66,7 +66,7 @@ class NumberOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('float', response)
 
@@ -88,7 +88,7 @@ class NumberOperations(object):
         :rtype: float
         :raises: ~bodynumber.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_invalid_float.metadata['url']
@@ -109,7 +109,7 @@ class NumberOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('float', response)
 
@@ -131,7 +131,7 @@ class NumberOperations(object):
         :rtype: float
         :raises: ~bodynumber.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_invalid_double.metadata['url']
@@ -152,7 +152,7 @@ class NumberOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('float', response)
 
@@ -174,7 +174,7 @@ class NumberOperations(object):
         :rtype: float
         :raises: ~bodynumber.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_invalid_decimal.metadata['url']
@@ -195,7 +195,7 @@ class NumberOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('float', response)
 
@@ -220,7 +220,7 @@ class NumberOperations(object):
 
         :raises: ~bodynumber.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.put_big_float.metadata['url']
@@ -244,7 +244,7 @@ class NumberOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
           return cls(response, None, {})
@@ -263,7 +263,7 @@ class NumberOperations(object):
         :rtype: float
         :raises: ~bodynumber.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_big_float.metadata['url']
@@ -284,7 +284,7 @@ class NumberOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('float', response)
 
@@ -309,7 +309,7 @@ class NumberOperations(object):
 
         :raises: ~bodynumber.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.put_big_double.metadata['url']
@@ -333,7 +333,7 @@ class NumberOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
           return cls(response, None, {})
@@ -352,7 +352,7 @@ class NumberOperations(object):
         :rtype: float
         :raises: ~bodynumber.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_big_double.metadata['url']
@@ -373,7 +373,7 @@ class NumberOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('float', response)
 
@@ -396,7 +396,7 @@ class NumberOperations(object):
 
         :raises: ~bodynumber.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
         number_body = 99999999.99
 
         # Construct URL
@@ -421,7 +421,7 @@ class NumberOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
           return cls(response, None, {})
@@ -440,7 +440,7 @@ class NumberOperations(object):
         :rtype: float
         :raises: ~bodynumber.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_big_double_positive_decimal.metadata['url']
@@ -461,7 +461,7 @@ class NumberOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('float', response)
 
@@ -484,7 +484,7 @@ class NumberOperations(object):
 
         :raises: ~bodynumber.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
         number_body = -99999999.99
 
         # Construct URL
@@ -509,7 +509,7 @@ class NumberOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
           return cls(response, None, {})
@@ -528,7 +528,7 @@ class NumberOperations(object):
         :rtype: float
         :raises: ~bodynumber.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_big_double_negative_decimal.metadata['url']
@@ -549,7 +549,7 @@ class NumberOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('float', response)
 
@@ -574,7 +574,7 @@ class NumberOperations(object):
 
         :raises: ~bodynumber.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.put_big_decimal.metadata['url']
@@ -598,7 +598,7 @@ class NumberOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
           return cls(response, None, {})
@@ -617,7 +617,7 @@ class NumberOperations(object):
         :rtype: float
         :raises: ~bodynumber.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_big_decimal.metadata['url']
@@ -638,7 +638,7 @@ class NumberOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('float', response)
 
@@ -661,7 +661,7 @@ class NumberOperations(object):
 
         :raises: ~bodynumber.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
         number_body = 99999999.99
 
         # Construct URL
@@ -686,7 +686,7 @@ class NumberOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
           return cls(response, None, {})
@@ -705,7 +705,7 @@ class NumberOperations(object):
         :rtype: float
         :raises: ~bodynumber.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_big_decimal_positive_decimal.metadata['url']
@@ -726,7 +726,7 @@ class NumberOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('float', response)
 
@@ -749,7 +749,7 @@ class NumberOperations(object):
 
         :raises: ~bodynumber.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
         number_body = -99999999.99
 
         # Construct URL
@@ -774,7 +774,7 @@ class NumberOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
           return cls(response, None, {})
@@ -793,7 +793,7 @@ class NumberOperations(object):
         :rtype: float
         :raises: ~bodynumber.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_big_decimal_negative_decimal.metadata['url']
@@ -814,7 +814,7 @@ class NumberOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('float', response)
 
@@ -839,7 +839,7 @@ class NumberOperations(object):
 
         :raises: ~bodynumber.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.put_small_float.metadata['url']
@@ -863,7 +863,7 @@ class NumberOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
           return cls(response, None, {})
@@ -882,7 +882,7 @@ class NumberOperations(object):
         :rtype: float
         :raises: ~bodynumber.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_small_float.metadata['url']
@@ -903,7 +903,7 @@ class NumberOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('float', response)
 
@@ -928,7 +928,7 @@ class NumberOperations(object):
 
         :raises: ~bodynumber.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.put_small_double.metadata['url']
@@ -952,7 +952,7 @@ class NumberOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
           return cls(response, None, {})
@@ -971,7 +971,7 @@ class NumberOperations(object):
         :rtype: float
         :raises: ~bodynumber.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_small_double.metadata['url']
@@ -992,7 +992,7 @@ class NumberOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('float', response)
 
@@ -1017,7 +1017,7 @@ class NumberOperations(object):
 
         :raises: ~bodynumber.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.put_small_decimal.metadata['url']
@@ -1041,7 +1041,7 @@ class NumberOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
           return cls(response, None, {})
@@ -1060,7 +1060,7 @@ class NumberOperations(object):
         :rtype: float
         :raises: ~bodynumber.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_small_decimal.metadata['url']
@@ -1081,7 +1081,7 @@ class NumberOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('float', response)
 

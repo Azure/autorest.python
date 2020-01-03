@@ -52,7 +52,7 @@ class AvailabilitySetsOperations:
 
         :raises: ~azure.core.HttpResponseError
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
         tags = models.AvailabilitySetUpdateParameters(tags=tags)
 
         # Construct URL

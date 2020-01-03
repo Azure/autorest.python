@@ -268,6 +268,21 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
                     ]
                     parent = parent.base_model
 
+    def _add_exceptions_from_inheritance(self) -> None:
+        """Sets a class as an exception if it's parent is an exception.
+
+        :return: None
+        :rtype: None
+        """
+        for schema in self.schemas.values():
+            if schema.base_model:
+                parent = schema.base_model
+                while parent:
+                    if parent.is_exception:
+                        schema.is_exception = True
+                        break
+                    parent = parent.base_model
+
     def add_inheritance_to_models(self) -> None:
         """Adds base classes and properties from base classes to schemas with parents.
 
@@ -279,6 +294,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
                 # right now, the base model property just holds the name of the parent class
                 schema.base_model = [b for b in self.schemas.values() if b.id == schema.base_model][0]
         self._add_properties_from_inheritance()
+        self._add_exceptions_from_inheritance()
 
     def _populate_schema(self, obj) -> None:
         schema_obj = obj.schema

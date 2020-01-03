@@ -23,7 +23,6 @@ class Bar(Model):
         super(Bar, self).__init__(**kwargs)
         self.recursive_point = kwargs.get('recursive_point', None)
 
-
 class CheckNameAvailabilityResult(Model):
     """The CheckNameAvailability operation response.
 
@@ -47,7 +46,6 @@ class CheckNameAvailabilityResult(Model):
         self.reason = kwargs.get('reason', None)
         self.message = kwargs.get('message', None)
 
-
 class CustomDomain(Model):
     """The custom domain assigned to this storage account. This can be set via Update.
 
@@ -66,7 +64,6 @@ class CustomDomain(Model):
         super(CustomDomain, self).__init__(**kwargs)
         self.name = kwargs.get('name', None)
         self.use_sub_domain = kwargs.get('use_sub_domain', None)
-
 
 class Endpoints(Model):
     """The URIs that are used to perform a retrieval of a public blob, queue or table object.
@@ -99,7 +96,6 @@ class Endpoints(Model):
         self.dummy_end_point = kwargs.get('dummy_end_point', None)
         self.foo_point = kwargs.get('foo_point', None)
 
-
 class Foo(Model):
     """The URIs that are used to perform a retrieval of a public blob, queue or table object.
 
@@ -114,7 +110,6 @@ class Foo(Model):
     def __init__(self, **kwargs):
         super(Foo, self).__init__(**kwargs)
         self.bar_point = kwargs.get('bar_point', None)
-
 
 class Resource(Model):
     """Resource.
@@ -158,7 +153,6 @@ class Resource(Model):
         self.location = kwargs.get('location', None)
         self.tags = kwargs.get('tags', None)
 
-
 class StorageAccount(Resource):
     """The storage account.
 
@@ -200,7 +194,6 @@ class StorageAccount(Resource):
         super(StorageAccount, self).__init__(**kwargs)
         self.properties = kwargs.get('properties', None)
 
-
 class StorageAccountCheckNameAvailabilityParameters(Model):
     """StorageAccountCheckNameAvailabilityParameters.
 
@@ -225,7 +218,6 @@ class StorageAccountCheckNameAvailabilityParameters(Model):
         super(StorageAccountCheckNameAvailabilityParameters, self).__init__(**kwargs)
         self.name = kwargs.get('name', None)
         self.type = kwargs.get('type', "Microsoft.Storage/storageAccounts")
-
 
 class StorageAccountCreateParameters(Resource):
     """The parameters to provide for the account.
@@ -268,7 +260,6 @@ class StorageAccountCreateParameters(Resource):
         super(StorageAccountCreateParameters, self).__init__(**kwargs)
         self.properties = kwargs.get('properties', None)
 
-
 class StorageAccountKeys(Model):
     """The access keys for the storage account.
 
@@ -288,7 +279,6 @@ class StorageAccountKeys(Model):
         self.key1 = kwargs.get('key1', None)
         self.key2 = kwargs.get('key2', None)
 
-
 class StorageAccountListResult(Model):
     """The list storage accounts operation response.
 
@@ -307,7 +297,6 @@ class StorageAccountListResult(Model):
         super(StorageAccountListResult, self).__init__(**kwargs)
         self.value = kwargs.get('value', None)
         self.next_link = kwargs.get('next_link', None)
-
 
 class StorageAccountProperties(Model):
     """StorageAccountProperties.
@@ -364,7 +353,6 @@ class StorageAccountProperties(Model):
         self.custom_domain = kwargs.get('custom_domain', None)
         self.secondary_endpoints = kwargs.get('secondary_endpoints', None)
 
-
 class StorageAccountPropertiesCreateParameters(Model):
     """StorageAccountPropertiesCreateParameters.
 
@@ -379,7 +367,6 @@ class StorageAccountPropertiesCreateParameters(Model):
     def __init__(self, **kwargs):
         super(StorageAccountPropertiesCreateParameters, self).__init__(**kwargs)
         self.account_type = kwargs.get('account_type', None)
-
 
 class StorageAccountPropertiesUpdateParameters(Model):
     """StorageAccountPropertiesUpdateParameters.
@@ -400,7 +387,6 @@ class StorageAccountPropertiesUpdateParameters(Model):
         self.account_type = kwargs.get('account_type', None)
         self.custom_domain = kwargs.get('custom_domain', None)
 
-
 class StorageAccountRegenerateKeyParameters(Model):
     """StorageAccountRegenerateKeyParameters.
 
@@ -415,7 +401,6 @@ class StorageAccountRegenerateKeyParameters(Model):
     def __init__(self, **kwargs):
         super(StorageAccountRegenerateKeyParameters, self).__init__(**kwargs)
         self.key_name = kwargs.get('key_name', None)
-
 
 class StorageAccountUpdateParameters(Resource):
     """The parameters to update on the account.
@@ -458,7 +443,6 @@ class StorageAccountUpdateParameters(Resource):
         super(StorageAccountUpdateParameters, self).__init__(**kwargs)
         self.properties = kwargs.get('properties', None)
 
-
 class SubResource(Model):
     """SubResource.
 
@@ -473,7 +457,6 @@ class SubResource(Model):
     def __init__(self, **kwargs):
         super(SubResource, self).__init__(**kwargs)
         self.id = kwargs.get('id', None)
-
 
 class Usage(Model):
     """Describes Storage Resource Usage.
@@ -502,7 +485,6 @@ class Usage(Model):
         self.limit = kwargs.get('limit', None)
         self.name = kwargs.get('name', None)
 
-
 class UsageListResult(Model):
     """The List Usages operation response.
 
@@ -517,7 +499,6 @@ class UsageListResult(Model):
     def __init__(self, **kwargs):
         super(UsageListResult, self).__init__(**kwargs)
         self.value = kwargs.get('value', None)
-
 
 class UsageName(Model):
     """The Usage Names.
@@ -537,5 +518,4 @@ class UsageName(Model):
         super(UsageName, self).__init__(**kwargs)
         self.value = kwargs.get('value', None)
         self.localized_value = kwargs.get('localized_value', None)
-
 

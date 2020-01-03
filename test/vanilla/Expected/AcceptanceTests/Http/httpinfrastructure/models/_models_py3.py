@@ -9,12 +9,38 @@
 from azure.core.exceptions import HttpResponseError
 from msrest.serialization import Model
 
+class MyExceptionException(HttpResponseError):
+    """Server responded with exception of type: 'MyException'.
+
+    :param response: Server response to be deserialized.
+    :param error_model: A deserialized model of the response body as model.
+    """
+
+    def __init__(self, response, error_model):
+        self.error = error_model
+        super(MyExceptionException, self).__init__(response=response, error_model=error_model)
+
+    @classmethod
+    def from_response(cls, response, deserialize):
+        """Deserialize this response as this exception, or a subclass of this exception.
+
+        :param response: Server response to be deserialized.
+        :param deserialize: A deserializer
+        """
+        model_name = 'MyException'
+        error = deserialize(model_name, response)
+        if error is None:
+            error = deserialize.dependencies[model_name]()
+        return error._EXCEPTION_TYPE(response, error)
+
+
 class MyException(Model):
     """MyException.
 
     :param status_code:
 	:type status_code: str
     """
+    _EXCEPTION_TYPE = MyExceptionException
 
     _attribute_map = {
         'status_code': {'key': 'statusCode', 'type': 'str'},
@@ -24,21 +50,29 @@ class MyException(Model):
         super(MyException, self).__init__(**kwargs)
         self.status_code = status_code
 
+class BException(MyExceptionException):
+    """Server responded with exception of type: 'B'.
 
-class MyExceptionException(HttpResponseError):
-    """Server responded with exception of type: 'MyException'.
-
-    :param deserialize: A deserializer
     :param response: Server response to be deserialized.
+    :param error_model: A deserialized model of the response body as model.
     """
 
-    def __init__(self, response, deserialize, *args):
+    def __init__(self, response, error_model):
+        self.error = error_model
+        super(BException, self).__init__(response=response, error_model=error_model)
 
-        model_name = 'MyException'
-        self.error = deserialize(model_name, response)
-        if self.error is None:
-            self.error = deserialize.dependencies[model_name]()
-        super(MyExceptionException, self).__init__(response=response)
+    @classmethod
+    def from_response(cls, response, deserialize):
+        """Deserialize this response as this exception, or a subclass of this exception.
+
+        :param response: Server response to be deserialized.
+        :param deserialize: A deserializer
+        """
+        model_name = 'B'
+        error = deserialize(model_name, response)
+        if error is None:
+            error = deserialize.dependencies[model_name]()
+        return error._EXCEPTION_TYPE(response, error)
 
 
 class B(MyException):
@@ -49,6 +83,7 @@ class B(MyException):
     :param text_status_code:
 	:type text_status_code: str
     """
+    _EXCEPTION_TYPE = BException
 
     _attribute_map = {
         'status_code': {'key': 'statusCode', 'type': 'str'},
@@ -58,7 +93,6 @@ class B(MyException):
     def __init__(self, *, status_code: str=None, text_status_code: str=None, **kwargs) -> None:
         super(B, self).__init__(status_code=status_code, **kwargs)
         self.text_status_code = text_status_code
-
 
 class C(Model):
     """C.
@@ -75,7 +109,6 @@ class C(Model):
         super(C, self).__init__(**kwargs)
         self.http_code = http_code
 
-
 class D(Model):
     """D.
 
@@ -91,6 +124,30 @@ class D(Model):
         super(D, self).__init__(**kwargs)
         self.http_status_code = http_status_code
 
+class ErrorException(HttpResponseError):
+    """Server responded with exception of type: 'Error'.
+
+    :param response: Server response to be deserialized.
+    :param error_model: A deserialized model of the response body as model.
+    """
+
+    def __init__(self, response, error_model):
+        self.error = error_model
+        super(ErrorException, self).__init__(response=response, error_model=error_model)
+
+    @classmethod
+    def from_response(cls, response, deserialize):
+        """Deserialize this response as this exception, or a subclass of this exception.
+
+        :param response: Server response to be deserialized.
+        :param deserialize: A deserializer
+        """
+        model_name = 'Error'
+        error = deserialize(model_name, response)
+        if error is None:
+            error = deserialize.dependencies[model_name]()
+        return error._EXCEPTION_TYPE(response, error)
+
 
 class Error(Model):
     """Error.
@@ -100,6 +157,7 @@ class Error(Model):
     :param message:
 	:type message: str
     """
+    _EXCEPTION_TYPE = ErrorException
 
     _attribute_map = {
         'status': {'key': 'status', 'type': 'int'},
@@ -110,21 +168,4 @@ class Error(Model):
         super(Error, self).__init__(**kwargs)
         self.status = status
         self.message = message
-
-
-class ErrorException(HttpResponseError):
-    """Server responded with exception of type: 'Error'.
-
-    :param deserialize: A deserializer
-    :param response: Server response to be deserialized.
-    """
-
-    def __init__(self, response, deserialize, *args):
-
-        model_name = 'Error'
-        self.error = deserialize(model_name, response)
-        if self.error is None:
-            self.error = deserialize.dependencies[model_name]()
-        super(ErrorException, self).__init__(response=response)
-
 

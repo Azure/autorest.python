@@ -46,7 +46,7 @@ class HttpServerFailureOperations:
 
         :raises: ~httpinfrastructure.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.head501.metadata['url']
@@ -66,7 +66,7 @@ class HttpServerFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
           return cls(response, None, {})
@@ -86,7 +86,7 @@ class HttpServerFailureOperations:
 
         :raises: ~httpinfrastructure.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get501.metadata['url']
@@ -106,7 +106,7 @@ class HttpServerFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
           return cls(response, None, {})
@@ -126,7 +126,7 @@ class HttpServerFailureOperations:
 
         :raises: ~httpinfrastructure.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
         boolean_value = True
 
         # Construct URL
@@ -154,7 +154,7 @@ class HttpServerFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
           return cls(response, None, {})
@@ -174,7 +174,7 @@ class HttpServerFailureOperations:
 
         :raises: ~httpinfrastructure.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
         boolean_value = True
 
         # Construct URL
@@ -202,7 +202,7 @@ class HttpServerFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
           return cls(response, None, {})

@@ -50,7 +50,7 @@ class PagingOperations(object):
         :rtype: ~paging.models.ProductResultValue
         :raises: ~azure.mgmt.core.ARMError
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -109,7 +109,7 @@ class PagingOperations(object):
         :rtype: ~paging.models.ProductResult
         :raises: ~azure.mgmt.core.ARMError
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -168,7 +168,7 @@ class PagingOperations(object):
         :rtype: ~paging.models.ProductResult
         :raises: ~azure.mgmt.core.ARMError
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -233,7 +233,7 @@ class PagingOperations(object):
         :rtype: ~paging.models.ProductResult
         :raises: ~azure.mgmt.core.ARMError
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -304,7 +304,7 @@ class PagingOperations(object):
         :rtype: ~paging.models.OdataProductResult
         :raises: ~azure.mgmt.core.ARMError
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -377,7 +377,7 @@ class PagingOperations(object):
         :rtype: ~paging.models.ProductResult
         :raises: ~azure.mgmt.core.ARMError
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -446,7 +446,7 @@ class PagingOperations(object):
         :rtype: ~paging.models.ProductResult
         :raises: ~azure.mgmt.core.ARMError
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -505,7 +505,7 @@ class PagingOperations(object):
         :rtype: ~paging.models.ProductResult
         :raises: ~azure.mgmt.core.ARMError
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -564,7 +564,7 @@ class PagingOperations(object):
         :rtype: ~paging.models.ProductResult
         :raises: ~azure.mgmt.core.ARMError
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -623,7 +623,7 @@ class PagingOperations(object):
         :rtype: ~paging.models.ProductResult
         :raises: ~azure.mgmt.core.ARMError
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -682,7 +682,7 @@ class PagingOperations(object):
         :rtype: ~paging.models.ProductResult
         :raises: ~azure.mgmt.core.ARMError
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -745,7 +745,7 @@ class PagingOperations(object):
         :rtype: ~paging.models.OdataProductResult
         :raises: ~azure.mgmt.core.ARMError
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -818,7 +818,7 @@ class PagingOperations(object):
         :rtype: ~paging.models.OdataProductResult
         :raises: ~azure.mgmt.core.ARMError
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -877,7 +877,7 @@ class PagingOperations(object):
 
     
     def _get_multiple_pages_lro_initial(self, client_request_id=None, maxresults=None, timeout=None, cls=None, **kwargs):
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._get_multiple_pages_lro_initial.metadata['url']

@@ -45,7 +45,7 @@ class FlattencomplexOperations:
         :rtype: ~bodycomplex.models.MyBaseType
         :raises: ~azure.core.HttpResponseError
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_valid.metadata['url']

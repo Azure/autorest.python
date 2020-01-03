@@ -10,4 +10,4 @@ from ._microsoft_azure_test_url import MicrosoftAzureTestUrl
 from ._version import VERSION
 
 __version__ = VERSION
-__all__ = ['']
+__all__ = ['MicrosoftAzureTestUrl']

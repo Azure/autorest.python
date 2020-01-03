@@ -33,3 +33,4 @@ aiohttp;python_full_version>="3.5.2"
 -e ./Expected/AcceptanceTests/UrlMultiCollectionFormat
 -e ./Expected/AcceptanceTests/Validation
 -e ./Expected/AcceptanceTests/Xml
+-e ./Expected/AcceptanceTests/XmsErrorResponse
