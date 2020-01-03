@@ -60,6 +60,22 @@ class B(MyException):
         self.text_status_code = kwargs.get('text_status_code', None)
 
 
+class BException(HttpResponseError):
+    """Server responded with exception of type: 'B'.
+
+    :param deserialize: A deserializer
+    :param response: Server response to be deserialized.
+    """
+
+    def __init__(self, response, deserialize, *args):
+
+        model_name = 'B'
+        self.error = deserialize(model_name, response)
+        if self.error is None:
+            self.error = deserialize.dependencies[model_name]()
+        super(BException, self).__init__(response=response)
+
+
 class C(Model):
     """C.
 

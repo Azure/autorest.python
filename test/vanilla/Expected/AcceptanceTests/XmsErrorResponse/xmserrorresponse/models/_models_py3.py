@@ -53,7 +53,7 @@ class NotFoundErrorBase(BaseError):
 	:type some_base_prop: str
     :param reason:
 	:type reason: str
-    :param what_not_found: Required. Constant filled by server. 
+    :param what_not_found: Required. Constant filled by server.
 	:type what_not_found: str
     """
 
@@ -102,7 +102,7 @@ class AnimalNotFound(NotFoundErrorBase):
 	:type some_base_prop: str
     :param reason:
 	:type reason: str
-    :param what_not_found: Required. Constant filled by server. 
+    :param what_not_found: Required. Constant filled by server.
 	:type what_not_found: str
     :param name:
 	:type name: str
@@ -125,6 +125,22 @@ class AnimalNotFound(NotFoundErrorBase):
         self.name = name
 
 
+class AnimalNotFoundException(HttpResponseError):
+    """Server responded with exception of type: 'AnimalNotFound'.
+
+    :param deserialize: A deserializer
+    :param response: Server response to be deserialized.
+    """
+
+    def __init__(self, response, deserialize, *args):
+
+        model_name = 'AnimalNotFound'
+        self.error = deserialize(model_name, response)
+        if self.error is None:
+            self.error = deserialize.dependencies[model_name]()
+        super(AnimalNotFoundException, self).__init__(response=response)
+
+
 class LinkNotFound(NotFoundErrorBase):
     """LinkNotFound.
 
@@ -134,7 +150,7 @@ class LinkNotFound(NotFoundErrorBase):
 	:type some_base_prop: str
     :param reason:
 	:type reason: str
-    :param what_not_found: Required. Constant filled by server. 
+    :param what_not_found: Required. Constant filled by server.
 	:type what_not_found: str
     :param what_sub_address:
 	:type what_sub_address: str
@@ -155,6 +171,22 @@ class LinkNotFound(NotFoundErrorBase):
         super(LinkNotFound, self).__init__(some_base_prop=some_base_prop, reason=reason, **kwargs)
         self.what_not_found = 'InvalidResourceLink'
         self.what_sub_address = what_sub_address
+
+
+class LinkNotFoundException(HttpResponseError):
+    """Server responded with exception of type: 'LinkNotFound'.
+
+    :param deserialize: A deserializer
+    :param response: Server response to be deserialized.
+    """
+
+    def __init__(self, response, deserialize, *args):
+
+        model_name = 'LinkNotFound'
+        self.error = deserialize(model_name, response)
+        if self.error is None:
+            self.error = deserialize.dependencies[model_name]()
+        super(LinkNotFoundException, self).__init__(response=response)
 
 
 class Pet(Animal):
@@ -205,7 +237,7 @@ class PetActionError(Model):
 
 	All required parameters must be populated in order to send to Azure.
 
-    :param error_type: Required. Constant filled by server. 
+    :param error_type: Required. Constant filled by server.
 	:type error_type: str
     :param error_message: the error message.
 	:type error_message: str
@@ -254,7 +286,7 @@ class PetSadError(PetActionError):
 
 	All required parameters must be populated in order to send to Azure.
 
-    :param error_type: Required. Constant filled by server. 
+    :param error_type: Required. Constant filled by server.
 	:type error_type: str
     :param error_message: the error message.
 	:type error_message: str
@@ -282,12 +314,28 @@ class PetSadError(PetActionError):
         self.reason = reason
 
 
+class PetSadErrorException(HttpResponseError):
+    """Server responded with exception of type: 'PetSadError'.
+
+    :param deserialize: A deserializer
+    :param response: Server response to be deserialized.
+    """
+
+    def __init__(self, response, deserialize, *args):
+
+        model_name = 'PetSadError'
+        self.error = deserialize(model_name, response)
+        if self.error is None:
+            self.error = deserialize.dependencies[model_name]()
+        super(PetSadErrorException, self).__init__(response=response)
+
+
 class PetHungryOrThirstyError(PetSadError):
     """PetHungryOrThirstyError.
 
 	All required parameters must be populated in order to send to Azure.
 
-    :param error_type: Required. Constant filled by server. 
+    :param error_type: Required. Constant filled by server.
 	:type error_type: str
     :param error_message: the error message.
 	:type error_message: str
@@ -312,5 +360,21 @@ class PetHungryOrThirstyError(PetSadError):
         super(PetHungryOrThirstyError, self).__init__(error_message=error_message, reason=reason, **kwargs)
         self.error_type = 'PetHungryOrThirstyError'
         self.hungry_or_thirsty = hungry_or_thirsty
+
+
+class PetHungryOrThirstyErrorException(HttpResponseError):
+    """Server responded with exception of type: 'PetHungryOrThirstyError'.
+
+    :param deserialize: A deserializer
+    :param response: Server response to be deserialized.
+    """
+
+    def __init__(self, response, deserialize, *args):
+
+        model_name = 'PetHungryOrThirstyError'
+        self.error = deserialize(model_name, response)
+        if self.error is None:
+            self.error = deserialize.dependencies[model_name]()
+        super(PetHungryOrThirstyErrorException, self).__init__(response=response)
 
 
