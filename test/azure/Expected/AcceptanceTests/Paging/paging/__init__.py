@@ -10,4 +10,4 @@ from ._auto_rest_paging_test_service import AutoRestPagingTestService
 from ._version import VERSION
 
 __version__ = VERSION
-__all__ = ['']
+__all__ = ['AutoRestPagingTestService']

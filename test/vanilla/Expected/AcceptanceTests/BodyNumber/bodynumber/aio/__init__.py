@@ -7,4 +7,4 @@
 # --------------------------------------------------------------------------
 
 from ._auto_rest_number_test_service_async import AutoRestNumberTestService
-__all__ = ['']
+__all__ = ['AutoRestNumberTestService']

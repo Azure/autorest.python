@@ -10,4 +10,4 @@ from ._auto_rest_validation_test import AutoRestValidationTest
 from ._version import VERSION
 
 __version__ = VERSION
-__all__ = ['']
+__all__ = ['AutoRestValidationTest']

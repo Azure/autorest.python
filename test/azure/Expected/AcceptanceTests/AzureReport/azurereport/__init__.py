@@ -10,4 +10,4 @@ from ._auto_rest_report_service_for_azure import AutoRestReportServiceForAzure
 from ._version import VERSION
 
 __version__ = VERSION
-__all__ = ['']
+__all__ = ['AutoRestReportServiceForAzure']

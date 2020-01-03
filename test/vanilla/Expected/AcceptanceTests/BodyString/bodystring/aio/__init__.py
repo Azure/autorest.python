@@ -7,4 +7,4 @@
 # --------------------------------------------------------------------------
 
 from ._auto_rest_swagger_bat_service_async import AutoRestSwaggerBATService
-__all__ = ['']
+__all__ = ['AutoRestSwaggerBATService']

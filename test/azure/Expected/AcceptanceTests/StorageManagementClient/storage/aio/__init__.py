@@ -7,4 +7,4 @@
 # --------------------------------------------------------------------------
 
 from ._storage_management_client_async import StorageManagementClient
-__all__ = ['']
+__all__ = ['StorageManagementClient']

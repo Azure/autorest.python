@@ -7,4 +7,4 @@
 # --------------------------------------------------------------------------
 
 from ._auto_rest_bool_test_service_async import AutoRestBoolTestService
-__all__ = ['']
+__all__ = ['AutoRestBoolTestService']

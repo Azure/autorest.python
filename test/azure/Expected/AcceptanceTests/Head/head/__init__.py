@@ -10,4 +10,4 @@ from ._auto_rest_head_test_service import AutoRestHeadTestService
 from ._version import VERSION
 
 __version__ = VERSION
-__all__ = ['']
+__all__ = ['AutoRestHeadTestService']
