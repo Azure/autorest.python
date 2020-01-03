@@ -47,7 +47,10 @@ class TestAcceptance(object):
         not_supported = {}
 
         # Please add missing features or failing tests here
-        missing_features_or_bugs = {'FileStreamVeryLarge' : 1}
+        missing_features_or_bugs = {
+            'FileStreamVeryLarge' : 1,
+            'ConstantsInBody': 1,  # https://github.com/Azure/autorest.modelerfour/issues/83
+        }
 
         print("Coverage:")
         self._print_report(report, not_supported, missing_features_or_bugs)
