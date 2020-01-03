@@ -5,6 +5,7 @@
 # --------------------------------------------------------------------------
 from typing import Any, Dict, List, Optional
 from .base_schema import BaseSchema
+from .primitive_schemas import StringSchema
 
 
 class EnumValue:
@@ -50,7 +51,7 @@ class EnumSchema(BaseSchema):
         self,
         yaml_data: Dict[str, Any],
         description: str,
-        enum_type: "StringSchema",
+        enum_type: StringSchema,
         values: List["EnumValue"]
     ):
         super(EnumSchema, self).__init__(yaml_data)
@@ -82,7 +83,7 @@ class EnumSchema(BaseSchema):
         return f"str or ~{namespace}.models.{self.enum_type}"
 
     @staticmethod
-    def _get_enum_values(yaml_data: Dict[str, Any]) -> List["EnumValue"]:
+    def _get_enum_values(yaml_data: List[Any]) -> List["EnumValue"]:
         """Creates the list of values for this enum.
 
         :param yaml_data: yaml data about the enum's values

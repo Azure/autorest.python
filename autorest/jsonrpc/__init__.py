@@ -5,7 +5,7 @@
 # --------------------------------------------------------------------------
 from abc import ABC, abstractmethod
 from enum import Enum
-from typing import List
+from typing import List, Optional
 import logging
 from pathlib import Path
 
@@ -111,7 +111,7 @@ class AutorestAPI(ABC):
         """
 
     @abstractmethod
-    def get_value(self, key: str) -> str:
+    def get_value(self, key: str) -> Optional[str]:
         """Get a value from configuration.
         """
 
@@ -120,7 +120,7 @@ class AutorestAPI(ABC):
         """Send a log message to autorest.
         """
 
-    def get_boolean_value(self, key: str, default: bool = None) -> bool:
+    def get_boolean_value(self, key: str, default: bool = None) -> Optional[bool]:
         """Check if value is present on the line, and interpret it as bool if it was.
 
         If value is not not on the line, return the "default".

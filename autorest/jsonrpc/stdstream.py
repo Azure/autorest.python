@@ -35,11 +35,11 @@ def read_message(stream: BinaryIO = sys.stdin.buffer) -> str:
     _LOGGER.debug("Trying to read the message")
     message = stream.read(bytes_size)
     assert isinstance(message, bytes)
-    message = message.decode('utf-8')
-    _LOGGER.debug("Received a %d bytes message", len(message))
+    message_str = message.decode('utf-8')
+    _LOGGER.debug("Received a %d bytes message", len(message_str))
     #_LOGGER.debug("Read %s", message)
 
-    return message
+    return message_str
 
 
 def write_message(message: str, stream: BinaryIO = sys.stdout.buffer) -> None:
