@@ -7,4 +7,4 @@
 # --------------------------------------------------------------------------
 
 from ._auto_rest_parameter_grouping_test_service_async import AutoRestParameterGroupingTestService
-__all__ = ['']
+__all__ = ['AutoRestParameterGroupingTestService']

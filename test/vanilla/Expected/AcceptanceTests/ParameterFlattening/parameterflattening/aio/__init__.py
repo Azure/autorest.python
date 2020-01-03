@@ -7,4 +7,4 @@
 # --------------------------------------------------------------------------
 
 from ._auto_rest_parameter_flattening_async import AutoRestParameterFlattening
-__all__ = ['']
+__all__ = ['AutoRestParameterFlattening']

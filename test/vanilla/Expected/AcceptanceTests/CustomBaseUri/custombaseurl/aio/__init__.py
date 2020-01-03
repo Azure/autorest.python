@@ -7,4 +7,4 @@
 # --------------------------------------------------------------------------
 
 from ._auto_rest_parameterized_host_test_client_async import AutoRestParameterizedHostTestClient
-__all__ = ['']
+__all__ = ['AutoRestParameterizedHostTestClient']

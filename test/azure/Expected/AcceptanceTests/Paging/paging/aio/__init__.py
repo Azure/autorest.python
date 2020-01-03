@@ -7,4 +7,4 @@
 # --------------------------------------------------------------------------
 
 from ._auto_rest_paging_test_service_async import AutoRestPagingTestService
-__all__ = ['']
+__all__ = ['AutoRestPagingTestService']

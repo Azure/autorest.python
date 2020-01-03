@@ -10,4 +10,4 @@ from ._auto_rest_date_time_test_service import AutoRestDateTimeTestService
 from ._version import VERSION
 
 __version__ = VERSION
-__all__ = ['']
+__all__ = ['AutoRestDateTimeTestService']

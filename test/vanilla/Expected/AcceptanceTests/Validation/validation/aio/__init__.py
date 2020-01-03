@@ -7,4 +7,4 @@
 # --------------------------------------------------------------------------
 
 from ._auto_rest_validation_test_async import AutoRestValidationTest
-__all__ = ['']
+__all__ = ['AutoRestValidationTest']
