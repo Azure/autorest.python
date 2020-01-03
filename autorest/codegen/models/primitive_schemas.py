@@ -5,6 +5,7 @@
 # --------------------------------------------------------------------------
 import logging
 from enum import Enum
+from typing import Dict, Optional, Union
 
 from .base_schema import BaseSchema
 
@@ -55,7 +56,7 @@ class NumberSchema(PrimitiveSchema):
         ]
         return [x for x in validation_constraints if x is not None]
 
-    def get_validation_map(self):
+    def get_validation_map(self) -> Optional[Dict[str, Union[int, bool]]]:
         validation_map = {}
         if self.maximum is not None:
             if self.exclusive_maximum:
@@ -108,7 +109,7 @@ class StringSchema(PrimitiveSchema):
         ]
         return [x for x in validation_constraints if x is not None]
 
-    def get_validation_map(self):
+    def get_validation_map(self) -> Optional[Dict[str, Union[int, bool]]]:
         validation_map = {}
         if self.max_length is not None:
             validation_map['max_length'] = self.max_length
@@ -219,7 +220,7 @@ class ByteArraySchema(PrimitiveSchema):
             return "base64"
         return "bytearray"
 
-    def get_python_type(self, namespace=None):
+    def get_python_type(self):
         return "bytearray"
 
     def get_declaration(self, value) -> str:

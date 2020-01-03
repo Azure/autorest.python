@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Dict
+from typing import Any, Dict
 from .base_schema import BaseSchema
 from .dictionary_schema import DictionarySchema
 from .imports import FileImport, ImportType
@@ -18,7 +18,7 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
     :param properties: the optional properties of the class.
     :type properties: dict(str, str)
     """
-    def __init__(self, yaml_data, name: str, description=None, **kwargs) -> "ObjectSchema":
+    def __init__(self, yaml_data, name: str, description: str = None, **kwargs):
         super(ObjectSchema, self).__init__(yaml_data)
         self.name = name
         self.description = description
@@ -54,7 +54,7 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
         return f"<{self.__class__.__name__} {self.name}>"
 
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, str], **kwargs) -> "ObjectSchema":
+    def from_yaml(cls, yaml_data: Dict[str, Any], **kwargs) -> "ObjectSchema":
         """Returns a ClassType from the dict object constructed from a yaml file.
 
         WARNING: This guy might create an infinite loop.
@@ -65,10 +65,11 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
         :returns: A ClassType.
         :rtype: ~autorest.models.schema.ClassType
         """
-        obj = cls(yaml_data, None, None)
-        return obj.fill_instance_from_yaml(yaml_data)
+        obj = cls(yaml_data, "", None)
+        obj.fill_instance_from_yaml(yaml_data)
+        return obj
 
-    def fill_instance_from_yaml(self, yaml_data: Dict[str, str], **kwargs) -> None:
+    def fill_instance_from_yaml(self, yaml_data: Dict[str, Any], **kwargs) -> None:
         properties = []
         base_model = None
 
