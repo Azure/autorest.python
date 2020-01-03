@@ -4,6 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 from .imports import FileImport, ImportType
+from .code_model import CodeModel
 
 
 class Client:
@@ -11,7 +12,7 @@ class Client:
     """
 
     @staticmethod
-    def pipeline_class(code_model, async_mode):
+    def pipeline_class(code_model: CodeModel, async_mode: bool) -> str:
         if code_model.options["azure_arm"]:
             if async_mode:
                 return "AsyncARMPipelineClient"
@@ -21,7 +22,7 @@ class Client:
         return "PipelineClient"
 
     @staticmethod
-    def imports(code_model, async_mode):
+    def imports(code_model: CodeModel, async_mode: bool) -> FileImport:
         file_import = FileImport()
 
         file_import.add_from_import(

@@ -6,7 +6,7 @@
 import logging
 from typing import Dict, Any, Optional
 from .base_schema import BaseSchema
-from .primitive_schemas import get_primitive_schema
+from .primitive_schemas import get_primitive_schema, PrimitiveSchema
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -23,7 +23,7 @@ class ConstantSchema(BaseSchema):
         self,
         yaml_data: Dict[str, Any],
         value: Optional[str],
-        schema: Optional["PrimitiveSchema"]
+        schema: Optional[PrimitiveSchema]
     ):
         super(ConstantSchema, self).__init__(yaml_data)
         self.value = value

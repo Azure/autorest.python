@@ -282,7 +282,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
                 schema.base_model = [b for b in self.schemas.values() if b.id == schema.base_model][0]
         self._add_properties_from_inheritance()
 
-    def _populate_schema(self, obj: Any) -> None:
+    def _populate_schema(self, obj: BaseSchema) -> None:
         schema_obj = obj.schema
         if schema_obj:
             schema_obj_id = id(obj.schema)

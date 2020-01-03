@@ -5,7 +5,7 @@
 # --------------------------------------------------------------------------
 import logging
 from pathlib import Path
-from typing import List
+from typing import Dict, List, Optional
 
 from . import AutorestAPI, Channel
 
@@ -22,7 +22,7 @@ class LocalAutorestAPI(AutorestAPI):
             reachable_files = []
         self._reachable_files = reachable_files
         self._output_folder = Path(output_folder)
-        self.values = dict()
+        self.values: Dict[str, Optional[str]] = dict()
 
     def write_file(self, filename: str, file_content: str) -> None:
         _LOGGER.debug("Writing file: %s", filename)
@@ -38,7 +38,7 @@ class LocalAutorestAPI(AutorestAPI):
     def list_inputs(self) -> List[str]:
         return self._reachable_files
 
-    def get_value(self, key: str) -> str:
+    def get_value(self, key: str) -> Optional[str]:
         return self.values.get(key, None)
 
     def message(self, channel: Channel, text: str) -> None:
