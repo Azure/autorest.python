@@ -220,7 +220,7 @@ class ByteArraySchema(PrimitiveSchema):
             return "base64"
         return "bytearray"
 
-    def get_python_type(self):
+    def get_python_type(self, namespace=None):
         return "bytearray"
 
     def get_declaration(self, value) -> str:
