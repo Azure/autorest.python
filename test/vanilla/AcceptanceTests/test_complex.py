@@ -301,6 +301,14 @@ class TestComplex(object):
 
     # COMPLEX TYPES THAT INVOLVE POLYMORPHISM
 
+    def test_get_composed_with_discriminator(self, client):
+        result = client.polymorphism.get_composed_with_discriminator()
+        assert isinstance(result.sample_fish, DotSalmon)
+
+    def test_get_composed_without_discriminator(self, client):
+        result = client.polymorphism.get_composed_without_discriminator()
+        assert isinstance(result.sample_fish, DotFish)
+
     def test_polymorphism_get_and_put_valid(self, client):
         # GET polymorphism/valid
         result = client.polymorphism.get_valid()
