@@ -45,7 +45,7 @@ class DictionaryOperations:
         :rtype: dict[str, int]
         :raises: ~bodydictionary.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_null.metadata['url']
@@ -66,7 +66,7 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('{int}', response)
 
@@ -88,7 +88,7 @@ class DictionaryOperations:
         :rtype: dict[str, int]
         :raises: ~bodydictionary.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_empty.metadata['url']
@@ -109,7 +109,7 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('{int}', response)
 
@@ -134,7 +134,7 @@ class DictionaryOperations:
 
         :raises: ~bodydictionary.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.put_empty.metadata['url']
@@ -158,7 +158,7 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
           return cls(response, None, {})
@@ -177,7 +177,7 @@ class DictionaryOperations:
         :rtype: dict[str, str]
         :raises: ~bodydictionary.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_null_value.metadata['url']
@@ -198,7 +198,7 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('{str}', response)
 
@@ -220,7 +220,7 @@ class DictionaryOperations:
         :rtype: dict[str, str]
         :raises: ~bodydictionary.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_null_key.metadata['url']
@@ -241,7 +241,7 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('{str}', response)
 
@@ -263,7 +263,7 @@ class DictionaryOperations:
         :rtype: dict[str, str]
         :raises: ~bodydictionary.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_empty_string_key.metadata['url']
@@ -284,7 +284,7 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('{str}', response)
 
@@ -306,7 +306,7 @@ class DictionaryOperations:
         :rtype: dict[str, str]
         :raises: ~bodydictionary.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_invalid.metadata['url']
@@ -327,7 +327,7 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('{str}', response)
 
@@ -349,7 +349,7 @@ class DictionaryOperations:
         :rtype: dict[str, bool]
         :raises: ~bodydictionary.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_boolean_tfft.metadata['url']
@@ -370,7 +370,7 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('{bool}', response)
 
@@ -395,7 +395,7 @@ class DictionaryOperations:
 
         :raises: ~bodydictionary.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.put_boolean_tfft.metadata['url']
@@ -419,7 +419,7 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
           return cls(response, None, {})
@@ -438,7 +438,7 @@ class DictionaryOperations:
         :rtype: dict[str, bool]
         :raises: ~bodydictionary.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_boolean_invalid_null.metadata['url']
@@ -459,7 +459,7 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('{bool}', response)
 
@@ -481,7 +481,7 @@ class DictionaryOperations:
         :rtype: dict[str, bool]
         :raises: ~bodydictionary.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_boolean_invalid_string.metadata['url']
@@ -502,7 +502,7 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('{bool}', response)
 
@@ -524,7 +524,7 @@ class DictionaryOperations:
         :rtype: dict[str, int]
         :raises: ~bodydictionary.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_integer_valid.metadata['url']
@@ -545,7 +545,7 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('{int}', response)
 
@@ -570,7 +570,7 @@ class DictionaryOperations:
 
         :raises: ~bodydictionary.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.put_integer_valid.metadata['url']
@@ -594,7 +594,7 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
           return cls(response, None, {})
@@ -613,7 +613,7 @@ class DictionaryOperations:
         :rtype: dict[str, int]
         :raises: ~bodydictionary.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_int_invalid_null.metadata['url']
@@ -634,7 +634,7 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('{int}', response)
 
@@ -656,7 +656,7 @@ class DictionaryOperations:
         :rtype: dict[str, int]
         :raises: ~bodydictionary.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_int_invalid_string.metadata['url']
@@ -677,7 +677,7 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('{int}', response)
 
@@ -699,7 +699,7 @@ class DictionaryOperations:
         :rtype: dict[str, long]
         :raises: ~bodydictionary.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_long_valid.metadata['url']
@@ -720,7 +720,7 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('{long}', response)
 
@@ -745,7 +745,7 @@ class DictionaryOperations:
 
         :raises: ~bodydictionary.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.put_long_valid.metadata['url']
@@ -769,7 +769,7 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
           return cls(response, None, {})
@@ -788,7 +788,7 @@ class DictionaryOperations:
         :rtype: dict[str, long]
         :raises: ~bodydictionary.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_long_invalid_null.metadata['url']
@@ -809,7 +809,7 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('{long}', response)
 
@@ -831,7 +831,7 @@ class DictionaryOperations:
         :rtype: dict[str, long]
         :raises: ~bodydictionary.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_long_invalid_string.metadata['url']
@@ -852,7 +852,7 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('{long}', response)
 
@@ -874,7 +874,7 @@ class DictionaryOperations:
         :rtype: dict[str, float]
         :raises: ~bodydictionary.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_float_valid.metadata['url']
@@ -895,7 +895,7 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('{float}', response)
 
@@ -920,7 +920,7 @@ class DictionaryOperations:
 
         :raises: ~bodydictionary.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.put_float_valid.metadata['url']
@@ -944,7 +944,7 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
           return cls(response, None, {})
@@ -963,7 +963,7 @@ class DictionaryOperations:
         :rtype: dict[str, float]
         :raises: ~bodydictionary.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_float_invalid_null.metadata['url']
@@ -984,7 +984,7 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('{float}', response)
 
@@ -1006,7 +1006,7 @@ class DictionaryOperations:
         :rtype: dict[str, float]
         :raises: ~bodydictionary.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_float_invalid_string.metadata['url']
@@ -1027,7 +1027,7 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('{float}', response)
 
@@ -1049,7 +1049,7 @@ class DictionaryOperations:
         :rtype: dict[str, float]
         :raises: ~bodydictionary.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_double_valid.metadata['url']
@@ -1070,7 +1070,7 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('{float}', response)
 
@@ -1095,7 +1095,7 @@ class DictionaryOperations:
 
         :raises: ~bodydictionary.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.put_double_valid.metadata['url']
@@ -1119,7 +1119,7 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
           return cls(response, None, {})
@@ -1138,7 +1138,7 @@ class DictionaryOperations:
         :rtype: dict[str, float]
         :raises: ~bodydictionary.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_double_invalid_null.metadata['url']
@@ -1159,7 +1159,7 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('{float}', response)
 
@@ -1181,7 +1181,7 @@ class DictionaryOperations:
         :rtype: dict[str, float]
         :raises: ~bodydictionary.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_double_invalid_string.metadata['url']
@@ -1202,7 +1202,7 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('{float}', response)
 
@@ -1224,7 +1224,7 @@ class DictionaryOperations:
         :rtype: dict[str, str]
         :raises: ~bodydictionary.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_string_valid.metadata['url']
@@ -1245,7 +1245,7 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('{str}', response)
 
@@ -1270,7 +1270,7 @@ class DictionaryOperations:
 
         :raises: ~bodydictionary.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.put_string_valid.metadata['url']
@@ -1294,7 +1294,7 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
           return cls(response, None, {})
@@ -1313,7 +1313,7 @@ class DictionaryOperations:
         :rtype: dict[str, str]
         :raises: ~bodydictionary.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_string_with_null.metadata['url']
@@ -1334,7 +1334,7 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('{str}', response)
 
@@ -1356,7 +1356,7 @@ class DictionaryOperations:
         :rtype: dict[str, str]
         :raises: ~bodydictionary.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_string_with_invalid.metadata['url']
@@ -1377,7 +1377,7 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('{str}', response)
 
@@ -1399,7 +1399,7 @@ class DictionaryOperations:
         :rtype: dict[str, ~datetime.date]
         :raises: ~bodydictionary.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_date_valid.metadata['url']
@@ -1420,7 +1420,7 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('{date}', response)
 
@@ -1445,7 +1445,7 @@ class DictionaryOperations:
 
         :raises: ~bodydictionary.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.put_date_valid.metadata['url']
@@ -1469,7 +1469,7 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
           return cls(response, None, {})
@@ -1488,7 +1488,7 @@ class DictionaryOperations:
         :rtype: dict[str, ~datetime.date]
         :raises: ~bodydictionary.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_date_invalid_null.metadata['url']
@@ -1509,7 +1509,7 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('{date}', response)
 
@@ -1531,7 +1531,7 @@ class DictionaryOperations:
         :rtype: dict[str, ~datetime.date]
         :raises: ~bodydictionary.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_date_invalid_chars.metadata['url']
@@ -1552,7 +1552,7 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('{date}', response)
 
@@ -1574,7 +1574,7 @@ class DictionaryOperations:
         :rtype: dict[str, ~datetime.datetime]
         :raises: ~bodydictionary.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_date_time_valid.metadata['url']
@@ -1595,7 +1595,7 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('{iso-8601}', response)
 
@@ -1620,7 +1620,7 @@ class DictionaryOperations:
 
         :raises: ~bodydictionary.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.put_date_time_valid.metadata['url']
@@ -1644,7 +1644,7 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
           return cls(response, None, {})
@@ -1663,7 +1663,7 @@ class DictionaryOperations:
         :rtype: dict[str, ~datetime.datetime]
         :raises: ~bodydictionary.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_date_time_invalid_null.metadata['url']
@@ -1684,7 +1684,7 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('{iso-8601}', response)
 
@@ -1706,7 +1706,7 @@ class DictionaryOperations:
         :rtype: dict[str, ~datetime.datetime]
         :raises: ~bodydictionary.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_date_time_invalid_chars.metadata['url']
@@ -1727,7 +1727,7 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('{iso-8601}', response)
 
@@ -1749,7 +1749,7 @@ class DictionaryOperations:
         :rtype: dict[str, ~datetime.datetime]
         :raises: ~bodydictionary.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_date_time_rfc1123_valid.metadata['url']
@@ -1770,7 +1770,7 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('{rfc-1123}', response)
 
@@ -1795,7 +1795,7 @@ class DictionaryOperations:
 
         :raises: ~bodydictionary.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.put_date_time_rfc1123_valid.metadata['url']
@@ -1819,7 +1819,7 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
           return cls(response, None, {})
@@ -1838,7 +1838,7 @@ class DictionaryOperations:
         :rtype: dict[str, ~datetime.timedelta]
         :raises: ~bodydictionary.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_duration_valid.metadata['url']
@@ -1859,7 +1859,7 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('{duration}', response)
 
@@ -1884,7 +1884,7 @@ class DictionaryOperations:
 
         :raises: ~bodydictionary.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.put_duration_valid.metadata['url']
@@ -1908,7 +1908,7 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
           return cls(response, None, {})
@@ -1927,7 +1927,7 @@ class DictionaryOperations:
         :rtype: dict[str, bytearray]
         :raises: ~bodydictionary.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_byte_valid.metadata['url']
@@ -1948,7 +1948,7 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('{bytearray}', response)
 
@@ -1973,7 +1973,7 @@ class DictionaryOperations:
 
         :raises: ~bodydictionary.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.put_byte_valid.metadata['url']
@@ -1997,7 +1997,7 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
           return cls(response, None, {})
@@ -2016,7 +2016,7 @@ class DictionaryOperations:
         :rtype: dict[str, bytearray]
         :raises: ~bodydictionary.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_byte_invalid_null.metadata['url']
@@ -2037,7 +2037,7 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('{bytearray}', response)
 
@@ -2059,7 +2059,7 @@ class DictionaryOperations:
         :rtype: dict[str, bytearray]
         :raises: ~bodydictionary.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_base64_url.metadata['url']
@@ -2080,7 +2080,7 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('{base64}', response)
 
@@ -2102,7 +2102,7 @@ class DictionaryOperations:
         :rtype: dict[str, ~bodydictionary.models.Widget]
         :raises: ~bodydictionary.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_complex_null.metadata['url']
@@ -2123,7 +2123,7 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('{Widget}', response)
 
@@ -2145,7 +2145,7 @@ class DictionaryOperations:
         :rtype: dict[str, ~bodydictionary.models.Widget]
         :raises: ~bodydictionary.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_complex_empty.metadata['url']
@@ -2166,7 +2166,7 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('{Widget}', response)
 
@@ -2188,7 +2188,7 @@ class DictionaryOperations:
         :rtype: dict[str, ~bodydictionary.models.Widget]
         :raises: ~bodydictionary.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_complex_item_null.metadata['url']
@@ -2209,7 +2209,7 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('{Widget}', response)
 
@@ -2231,7 +2231,7 @@ class DictionaryOperations:
         :rtype: dict[str, ~bodydictionary.models.Widget]
         :raises: ~bodydictionary.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_complex_item_empty.metadata['url']
@@ -2252,7 +2252,7 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('{Widget}', response)
 
@@ -2274,7 +2274,7 @@ class DictionaryOperations:
         :rtype: dict[str, ~bodydictionary.models.Widget]
         :raises: ~bodydictionary.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_complex_valid.metadata['url']
@@ -2295,7 +2295,7 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('{Widget}', response)
 
@@ -2320,7 +2320,7 @@ class DictionaryOperations:
 
         :raises: ~bodydictionary.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.put_complex_valid.metadata['url']
@@ -2344,7 +2344,7 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
           return cls(response, None, {})
@@ -2363,7 +2363,7 @@ class DictionaryOperations:
         :rtype: dict[str, list[str]]
         :raises: ~bodydictionary.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_array_null.metadata['url']
@@ -2384,7 +2384,7 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('{[str]}', response)
 
@@ -2406,7 +2406,7 @@ class DictionaryOperations:
         :rtype: dict[str, list[str]]
         :raises: ~bodydictionary.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_array_empty.metadata['url']
@@ -2427,7 +2427,7 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('{[str]}', response)
 
@@ -2449,7 +2449,7 @@ class DictionaryOperations:
         :rtype: dict[str, list[str]]
         :raises: ~bodydictionary.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_array_item_null.metadata['url']
@@ -2470,7 +2470,7 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('{[str]}', response)
 
@@ -2492,7 +2492,7 @@ class DictionaryOperations:
         :rtype: dict[str, list[str]]
         :raises: ~bodydictionary.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_array_item_empty.metadata['url']
@@ -2513,7 +2513,7 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('{[str]}', response)
 
@@ -2535,7 +2535,7 @@ class DictionaryOperations:
         :rtype: dict[str, list[str]]
         :raises: ~bodydictionary.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_array_valid.metadata['url']
@@ -2556,7 +2556,7 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('{[str]}', response)
 
@@ -2581,7 +2581,7 @@ class DictionaryOperations:
 
         :raises: ~bodydictionary.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.put_array_valid.metadata['url']
@@ -2605,7 +2605,7 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
           return cls(response, None, {})
@@ -2624,7 +2624,7 @@ class DictionaryOperations:
         :rtype: dict[str, object]
         :raises: ~bodydictionary.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_dictionary_null.metadata['url']
@@ -2645,7 +2645,7 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('{object}', response)
 
@@ -2667,7 +2667,7 @@ class DictionaryOperations:
         :rtype: dict[str, object]
         :raises: ~bodydictionary.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_dictionary_empty.metadata['url']
@@ -2688,7 +2688,7 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('{object}', response)
 
@@ -2710,7 +2710,7 @@ class DictionaryOperations:
         :rtype: dict[str, object]
         :raises: ~bodydictionary.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_dictionary_item_null.metadata['url']
@@ -2731,7 +2731,7 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('{object}', response)
 
@@ -2753,7 +2753,7 @@ class DictionaryOperations:
         :rtype: dict[str, object]
         :raises: ~bodydictionary.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_dictionary_item_empty.metadata['url']
@@ -2774,7 +2774,7 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('{object}', response)
 
@@ -2796,7 +2796,7 @@ class DictionaryOperations:
         :rtype: dict[str, object]
         :raises: ~bodydictionary.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_dictionary_valid.metadata['url']
@@ -2817,7 +2817,7 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('{object}', response)
 
@@ -2842,7 +2842,7 @@ class DictionaryOperations:
 
         :raises: ~bodydictionary.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.put_dictionary_valid.metadata['url']
@@ -2866,7 +2866,7 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
           return cls(response, None, {})

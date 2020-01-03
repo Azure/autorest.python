@@ -27,7 +27,6 @@ class ArrayWrapper(Model):
         super(ArrayWrapper, self).__init__(**kwargs)
         self.array = array
 
-
 class Basic(Model):
     """Basic.
 
@@ -51,7 +50,6 @@ class Basic(Model):
         self.name = name
         self.color = color
 
-
 class BooleanWrapper(Model):
     """BooleanWrapper.
 
@@ -71,7 +69,6 @@ class BooleanWrapper(Model):
         self.field_true = field_true
         self.field_false = field_false
 
-
 class ByteWrapper(Model):
     """ByteWrapper.
 
@@ -86,7 +83,6 @@ class ByteWrapper(Model):
     def __init__(self, *, field: bytearray=None, **kwargs) -> None:
         super(ByteWrapper, self).__init__(**kwargs)
         self.field = field
-
 
 class Pet(Model):
     """Pet.
@@ -106,7 +102,6 @@ class Pet(Model):
         super(Pet, self).__init__(**kwargs)
         self.id = id
         self.name = name
-
 
 class Cat(Pet):
     """Cat.
@@ -132,7 +127,6 @@ class Cat(Pet):
         super(Cat, self).__init__(id=id, name=name, **kwargs)
         self.color = color
         self.hates = hates
-
 
 class Fish(Model):
     """Fish.
@@ -174,7 +168,6 @@ class Fish(Model):
         self.species = species
         self.length = length
         self.siblings = siblings
-
 
 class Shark(Fish):
     """Shark.
@@ -223,7 +216,6 @@ class Shark(Fish):
         self.age = age
         self.birthday = birthday
 
-
 class Cookiecuttershark(Shark):
     """Cookiecuttershark.
 
@@ -262,7 +254,6 @@ class Cookiecuttershark(Shark):
         super(Cookiecuttershark, self).__init__(species=species, length=length, siblings=siblings, age=age, birthday=birthday, **kwargs)
         self.fishtype = 'cookiecuttershark'
 
-
 class Datetimerfc1123Wrapper(Model):
     """Datetimerfc1123Wrapper.
 
@@ -281,7 +272,6 @@ class Datetimerfc1123Wrapper(Model):
         super(Datetimerfc1123Wrapper, self).__init__(**kwargs)
         self.field = field
         self.now = now
-
 
 class DatetimeWrapper(Model):
     """DatetimeWrapper.
@@ -302,7 +292,6 @@ class DatetimeWrapper(Model):
         self.field = field
         self.now = now
 
-
 class DateWrapper(Model):
     """DateWrapper.
 
@@ -322,7 +311,6 @@ class DateWrapper(Model):
         self.field = field
         self.leap = leap
 
-
 class DictionaryWrapper(Model):
     """DictionaryWrapper.
 
@@ -337,7 +325,6 @@ class DictionaryWrapper(Model):
     def __init__(self, *, default_program: Dict[str, str]=None, **kwargs) -> None:
         super(DictionaryWrapper, self).__init__(**kwargs)
         self.default_program = default_program
-
 
 class Dog(Pet):
     """Dog.
@@ -359,7 +346,6 @@ class Dog(Pet):
     def __init__(self, *, id: int=None, name: str=None, food: str=None, **kwargs) -> None:
         super(Dog, self).__init__(id=id, name=name, **kwargs)
         self.food = food
-
 
 class DotFish(Model):
     """DotFish.
@@ -393,7 +379,6 @@ class DotFish(Model):
         self.fishtype = 'None'
         self.species = species
 
-
 class DotFishMarket(Model):
     """DotFishMarket.
 
@@ -420,7 +405,6 @@ class DotFishMarket(Model):
         self.salmons = salmons
         self.sample_fish = sample_fish
         self.fishes = fishes
-
 
 class DotSalmon(DotFish):
     """DotSalmon.
@@ -454,7 +438,6 @@ class DotSalmon(DotFish):
         self.location = location
         self.iswild = iswild
 
-
 class DoubleWrapper(Model):
     """DoubleWrapper.
 
@@ -474,7 +457,6 @@ class DoubleWrapper(Model):
         self.field1 = field1
         self.field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose = field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose
 
-
 class DurationWrapper(Model):
     """DurationWrapper.
 
@@ -490,6 +472,30 @@ class DurationWrapper(Model):
         super(DurationWrapper, self).__init__(**kwargs)
         self.field = field
 
+class ErrorException(HttpResponseError):
+    """Server responded with exception of type: 'Error'.
+
+    :param response: Server response to be deserialized.
+    :param error_model: A deserialized model of the response body as model.
+    """
+
+    def __init__(self, response, error_model):
+        self.error = error_model
+        super(ErrorException, self).__init__(response=response, error_model=error_model)
+
+    @classmethod
+    def from_response(cls, response, deserialize):
+        """Deserialize this response as this exception, or a subclass of this exception.
+
+        :param response: Server response to be deserialized.
+        :param deserialize: A deserializer
+        """
+        model_name = 'Error'
+        error = deserialize(model_name, response)
+        if error is None:
+            error = deserialize.dependencies[model_name]()
+        return error._EXCEPTION_TYPE(response, error)
+
 
 class Error(Model):
     """Error.
@@ -499,6 +505,7 @@ class Error(Model):
     :param message:
 	:type message: str
     """
+    _EXCEPTION_TYPE = ErrorException
 
     _attribute_map = {
         'status': {'key': 'status', 'type': 'int'},
@@ -509,23 +516,6 @@ class Error(Model):
         super(Error, self).__init__(**kwargs)
         self.status = status
         self.message = message
-
-
-class ErrorException(HttpResponseError):
-    """Server responded with exception of type: 'Error'.
-
-    :param deserialize: A deserializer
-    :param response: Server response to be deserialized.
-    """
-
-    def __init__(self, response, deserialize, *args):
-
-        model_name = 'Error'
-        self.error = deserialize(model_name, response)
-        if self.error is None:
-            self.error = deserialize.dependencies[model_name]()
-        super(ErrorException, self).__init__(response=response)
-
 
 class FloatWrapper(Model):
     """FloatWrapper.
@@ -545,7 +535,6 @@ class FloatWrapper(Model):
         super(FloatWrapper, self).__init__(**kwargs)
         self.field1 = field1
         self.field2 = field2
-
 
 class Goblinshark(Shark):
     """Goblinshark.
@@ -593,7 +582,6 @@ class Goblinshark(Shark):
         self.jawsize = jawsize
         self.color = color
 
-
 class IntWrapper(Model):
     """IntWrapper.
 
@@ -612,7 +600,6 @@ class IntWrapper(Model):
         super(IntWrapper, self).__init__(**kwargs)
         self.field1 = field1
         self.field2 = field2
-
 
 class LongWrapper(Model):
     """LongWrapper.
@@ -633,7 +620,6 @@ class LongWrapper(Model):
         self.field1 = field1
         self.field2 = field2
 
-
 class MyBaseHelperType(Model):
     """MyBaseHelperType.
 
@@ -648,7 +634,6 @@ class MyBaseHelperType(Model):
     def __init__(self, *, prop_bh1: str=None, **kwargs) -> None:
         super(MyBaseHelperType, self).__init__(**kwargs)
         self.prop_bh1 = prop_bh1
-
 
 class MyBaseType(Model):
     """MyBaseType.
@@ -686,7 +671,6 @@ class MyBaseType(Model):
         self.prop_b1 = prop_b1
         self.helper = helper
 
-
 class MyDerivedType(MyBaseType):
     """MyDerivedType.
 
@@ -718,7 +702,6 @@ class MyDerivedType(MyBaseType):
         self.kind = 'Kind1'
         self.prop_d1 = prop_d1
 
-
 class ReadonlyObj(Model):
     """ReadonlyObj.
 
@@ -743,7 +726,6 @@ class ReadonlyObj(Model):
         super(ReadonlyObj, self).__init__(**kwargs)
         self.id = None
         self.size = size
-
 
 class Salmon(Fish):
     """Salmon.
@@ -791,7 +773,6 @@ class Salmon(Fish):
         self.location = location
         self.iswild = iswild
 
-
 class Sawshark(Shark):
     """Sawshark.
 
@@ -834,7 +815,6 @@ class Sawshark(Shark):
         self.fishtype = 'sawshark'
         self.picture = picture
 
-
 class Siamese(Cat):
     """Siamese.
 
@@ -861,7 +841,6 @@ class Siamese(Cat):
     def __init__(self, *, id: int=None, name: str=None, color: str=None, hates: List["Dog"]=None, breed: str=None, **kwargs) -> None:
         super(Siamese, self).__init__(id=id, name=name, color=color, hates=hates, **kwargs)
         self.breed = breed
-
 
 class SmartSalmon(Salmon):
     """SmartSalmon.
@@ -908,7 +887,6 @@ class SmartSalmon(Salmon):
         self.additional_properties = additional_properties
         self.college_degree = college_degree
 
-
 class StringWrapper(Model):
     """StringWrapper.
 
@@ -931,5 +909,4 @@ class StringWrapper(Model):
         self.field = field
         self.empty = empty
         self.null = null
-
 

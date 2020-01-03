@@ -47,7 +47,7 @@ class UsageOperations(object):
         :rtype: ~storage.models.UsageListResult
         :raises: ~azure.mgmt.core.ARMError
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.list.metadata['url']

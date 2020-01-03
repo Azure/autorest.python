@@ -45,7 +45,7 @@ class ByteOperations:
         :rtype: bytearray
         :raises: ~bodybyte.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_null.metadata['url']
@@ -66,7 +66,7 @@ class ByteOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('bytearray', response)
 
@@ -88,7 +88,7 @@ class ByteOperations:
         :rtype: bytearray
         :raises: ~bodybyte.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_empty.metadata['url']
@@ -109,7 +109,7 @@ class ByteOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('bytearray', response)
 
@@ -131,7 +131,7 @@ class ByteOperations:
         :rtype: bytearray
         :raises: ~bodybyte.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_non_ascii.metadata['url']
@@ -152,7 +152,7 @@ class ByteOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('bytearray', response)
 
@@ -177,7 +177,7 @@ class ByteOperations:
 
         :raises: ~bodybyte.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.put_non_ascii.metadata['url']
@@ -201,7 +201,7 @@ class ByteOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
           return cls(response, None, {})
@@ -220,7 +220,7 @@ class ByteOperations:
         :rtype: bytearray
         :raises: ~bodybyte.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_invalid.metadata['url']
@@ -241,7 +241,7 @@ class ByteOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('bytearray', response)
 

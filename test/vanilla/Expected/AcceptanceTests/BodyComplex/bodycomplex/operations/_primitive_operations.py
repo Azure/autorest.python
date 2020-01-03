@@ -45,7 +45,7 @@ class PrimitiveOperations(object):
         :rtype: ~bodycomplex.models.IntWrapper
         :raises: ~bodycomplex.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_int.metadata['url']
@@ -66,7 +66,7 @@ class PrimitiveOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('IntWrapper', response)
 
@@ -91,7 +91,7 @@ class PrimitiveOperations(object):
 
         :raises: ~bodycomplex.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.put_int.metadata['url']
@@ -115,7 +115,7 @@ class PrimitiveOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
           return cls(response, None, {})
@@ -134,7 +134,7 @@ class PrimitiveOperations(object):
         :rtype: ~bodycomplex.models.LongWrapper
         :raises: ~bodycomplex.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_long.metadata['url']
@@ -155,7 +155,7 @@ class PrimitiveOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('LongWrapper', response)
 
@@ -180,7 +180,7 @@ class PrimitiveOperations(object):
 
         :raises: ~bodycomplex.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.put_long.metadata['url']
@@ -204,7 +204,7 @@ class PrimitiveOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
           return cls(response, None, {})
@@ -223,7 +223,7 @@ class PrimitiveOperations(object):
         :rtype: ~bodycomplex.models.FloatWrapper
         :raises: ~bodycomplex.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_float.metadata['url']
@@ -244,7 +244,7 @@ class PrimitiveOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('FloatWrapper', response)
 
@@ -269,7 +269,7 @@ class PrimitiveOperations(object):
 
         :raises: ~bodycomplex.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.put_float.metadata['url']
@@ -293,7 +293,7 @@ class PrimitiveOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
           return cls(response, None, {})
@@ -312,7 +312,7 @@ class PrimitiveOperations(object):
         :rtype: ~bodycomplex.models.DoubleWrapper
         :raises: ~bodycomplex.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_double.metadata['url']
@@ -333,7 +333,7 @@ class PrimitiveOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('DoubleWrapper', response)
 
@@ -358,7 +358,7 @@ class PrimitiveOperations(object):
 
         :raises: ~bodycomplex.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.put_double.metadata['url']
@@ -382,7 +382,7 @@ class PrimitiveOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
           return cls(response, None, {})
@@ -401,7 +401,7 @@ class PrimitiveOperations(object):
         :rtype: ~bodycomplex.models.BooleanWrapper
         :raises: ~bodycomplex.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_bool.metadata['url']
@@ -422,7 +422,7 @@ class PrimitiveOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('BooleanWrapper', response)
 
@@ -447,7 +447,7 @@ class PrimitiveOperations(object):
 
         :raises: ~bodycomplex.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.put_bool.metadata['url']
@@ -471,7 +471,7 @@ class PrimitiveOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
           return cls(response, None, {})
@@ -490,7 +490,7 @@ class PrimitiveOperations(object):
         :rtype: ~bodycomplex.models.StringWrapper
         :raises: ~bodycomplex.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_string.metadata['url']
@@ -511,7 +511,7 @@ class PrimitiveOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('StringWrapper', response)
 
@@ -536,7 +536,7 @@ class PrimitiveOperations(object):
 
         :raises: ~bodycomplex.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.put_string.metadata['url']
@@ -560,7 +560,7 @@ class PrimitiveOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
           return cls(response, None, {})
@@ -579,7 +579,7 @@ class PrimitiveOperations(object):
         :rtype: ~bodycomplex.models.DateWrapper
         :raises: ~bodycomplex.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_date.metadata['url']
@@ -600,7 +600,7 @@ class PrimitiveOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('DateWrapper', response)
 
@@ -625,7 +625,7 @@ class PrimitiveOperations(object):
 
         :raises: ~bodycomplex.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.put_date.metadata['url']
@@ -649,7 +649,7 @@ class PrimitiveOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
           return cls(response, None, {})
@@ -668,7 +668,7 @@ class PrimitiveOperations(object):
         :rtype: ~bodycomplex.models.DatetimeWrapper
         :raises: ~bodycomplex.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_date_time.metadata['url']
@@ -689,7 +689,7 @@ class PrimitiveOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('DatetimeWrapper', response)
 
@@ -714,7 +714,7 @@ class PrimitiveOperations(object):
 
         :raises: ~bodycomplex.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.put_date_time.metadata['url']
@@ -738,7 +738,7 @@ class PrimitiveOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
           return cls(response, None, {})
@@ -757,7 +757,7 @@ class PrimitiveOperations(object):
         :rtype: ~bodycomplex.models.Datetimerfc1123Wrapper
         :raises: ~bodycomplex.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_date_time_rfc1123.metadata['url']
@@ -778,7 +778,7 @@ class PrimitiveOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('Datetimerfc1123Wrapper', response)
 
@@ -803,7 +803,7 @@ class PrimitiveOperations(object):
 
         :raises: ~bodycomplex.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.put_date_time_rfc1123.metadata['url']
@@ -827,7 +827,7 @@ class PrimitiveOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
           return cls(response, None, {})
@@ -846,7 +846,7 @@ class PrimitiveOperations(object):
         :rtype: ~bodycomplex.models.DurationWrapper
         :raises: ~bodycomplex.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_duration.metadata['url']
@@ -867,7 +867,7 @@ class PrimitiveOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('DurationWrapper', response)
 
@@ -892,7 +892,7 @@ class PrimitiveOperations(object):
 
         :raises: ~bodycomplex.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
         complex_body = models.DurationWrapper(field=field)
 
         # Construct URL
@@ -917,7 +917,7 @@ class PrimitiveOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
           return cls(response, None, {})
@@ -936,7 +936,7 @@ class PrimitiveOperations(object):
         :rtype: ~bodycomplex.models.ByteWrapper
         :raises: ~bodycomplex.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_byte.metadata['url']
@@ -957,7 +957,7 @@ class PrimitiveOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('ByteWrapper', response)
 
@@ -982,7 +982,7 @@ class PrimitiveOperations(object):
 
         :raises: ~bodycomplex.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
         complex_body = models.ByteWrapper(field=field)
 
         # Construct URL
@@ -1007,7 +1007,7 @@ class PrimitiveOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
           return cls(response, None, {})

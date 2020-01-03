@@ -50,7 +50,7 @@ class PagingOperations(object):
         :rtype: ~custombaseurlpaging.models.ProductResult
         :raises: ~azure.mgmt.core.ARMError
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -121,7 +121,7 @@ class PagingOperations(object):
         :rtype: ~custombaseurlpaging.models.ProductResult
         :raises: ~azure.mgmt.core.ARMError
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         def prepare_request(next_link=None):
             if not next_link:

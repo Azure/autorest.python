@@ -47,7 +47,7 @@ class PetOperations:
         :rtype: ~extensibleenumsswagger.models.Pet
         :raises: ~azure.core.HttpResponseError
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_by_pet_id.metadata['url']
@@ -96,7 +96,7 @@ class PetOperations:
         :rtype: ~extensibleenumsswagger.models.Pet
         :raises: ~azure.core.HttpResponseError
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.add_pet.metadata['url']

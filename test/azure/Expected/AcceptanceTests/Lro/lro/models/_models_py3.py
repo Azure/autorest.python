@@ -29,7 +29,6 @@ class OperationResult(Model):
         self.status = status
         self.error = error
 
-
 class OperationResultError(Model):
     """OperationResultError.
 
@@ -48,7 +47,6 @@ class OperationResultError(Model):
         super(OperationResultError, self).__init__(**kwargs)
         self.code = code
         self.message = message
-
 
 class Resource(Model):
     """Resource.
@@ -89,7 +87,6 @@ class Resource(Model):
         self.location = location
         self.name = None
 
-
 class Product(Resource):
     """Product.
 
@@ -128,7 +125,6 @@ class Product(Resource):
         super(Product, self).__init__(tags=tags, location=location, **kwargs)
         self.properties = properties
 
-
 class ProductProperties(Model):
     """ProductProperties.
 
@@ -154,7 +150,6 @@ class ProductProperties(Model):
         self.provisioning_state = provisioning_state
         self.provisioning_state_values = None
 
-
 class Sku(Model):
     """Sku.
 
@@ -173,7 +168,6 @@ class Sku(Model):
         super(Sku, self).__init__(**kwargs)
         self.name = name
         self.id = id
-
 
 class SubResource(Model):
     """SubResource.
@@ -195,7 +189,6 @@ class SubResource(Model):
     def __init__(self, **kwargs) -> None:
         super(SubResource, self).__init__(**kwargs)
         self.id = None
-
 
 class SubProduct(SubResource):
     """SubProduct.
@@ -221,7 +214,6 @@ class SubProduct(SubResource):
         super(SubProduct, self).__init__(**kwargs)
         self.properties = properties
 
-
 class SubProductProperties(Model):
     """SubProductProperties.
 
@@ -246,5 +238,4 @@ class SubProductProperties(Model):
         super(SubProductProperties, self).__init__(**kwargs)
         self.provisioning_state = provisioning_state
         self.provisioning_state_values = None
-
 
