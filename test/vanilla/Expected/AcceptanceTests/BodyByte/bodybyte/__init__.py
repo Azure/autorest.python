@@ -10,4 +10,4 @@ from ._auto_rest_swagger_bat_byte_service import AutoRestSwaggerBATByteService
 from ._version import VERSION
 
 __version__ = VERSION
-__all__ = ['']
+__all__ = ['AutoRestSwaggerBATByteService']

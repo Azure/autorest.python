@@ -7,4 +7,4 @@
 # --------------------------------------------------------------------------
 
 from ._auto_rest_date_time_test_service_async import AutoRestDateTimeTestService
-__all__ = ['']
+__all__ = ['AutoRestDateTimeTestService']

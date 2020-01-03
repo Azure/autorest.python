@@ -7,4 +7,4 @@
 # --------------------------------------------------------------------------
 
 from ._auto_rest_resource_flattening_test_service_async import AutoRestResourceFlatteningTestService
-__all__ = ['']
+__all__ = ['AutoRestResourceFlatteningTestService']

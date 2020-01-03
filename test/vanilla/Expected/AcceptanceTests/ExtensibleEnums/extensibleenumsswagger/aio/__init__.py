@@ -7,4 +7,4 @@
 # --------------------------------------------------------------------------
 
 from ._pet_store_inc_async import PetStoreInc
-__all__ = ['']
+__all__ = ['PetStoreInc']

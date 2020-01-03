@@ -7,4 +7,4 @@
 # --------------------------------------------------------------------------
 
 from ._auto_rest_http_infrastructure_test_service_async import AutoRestHttpInfrastructureTestService
-__all__ = ['']
+__all__ = ['AutoRestHttpInfrastructureTestService']

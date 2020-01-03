@@ -10,4 +10,4 @@ from ._auto_rest_url_mutli_collection_format_test_service import AutoRestUrlMutl
 from ._version import VERSION
 
 __version__ = VERSION
-__all__ = ['']
+__all__ = ['AutoRestUrlMutliCollectionFormatTestService']

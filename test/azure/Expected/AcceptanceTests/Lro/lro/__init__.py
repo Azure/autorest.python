@@ -10,4 +10,4 @@ from ._auto_rest_long_running_operation_test_service import AutoRestLongRunningO
 from ._version import VERSION
 
 __version__ = VERSION
-__all__ = ['']
+__all__ = ['AutoRestLongRunningOperationTestService']

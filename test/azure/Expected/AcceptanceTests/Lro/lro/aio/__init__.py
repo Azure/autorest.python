@@ -7,4 +7,4 @@
 # --------------------------------------------------------------------------
 
 from ._auto_rest_long_running_operation_test_service_async import AutoRestLongRunningOperationTestService
-__all__ = ['']
+__all__ = ['AutoRestLongRunningOperationTestService']

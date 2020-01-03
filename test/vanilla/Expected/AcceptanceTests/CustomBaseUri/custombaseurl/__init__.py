@@ -10,4 +10,4 @@ from ._auto_rest_parameterized_host_test_client import AutoRestParameterizedHost
 from ._version import VERSION
 
 __version__ = VERSION
-__all__ = ['']
+__all__ = ['AutoRestParameterizedHostTestClient']

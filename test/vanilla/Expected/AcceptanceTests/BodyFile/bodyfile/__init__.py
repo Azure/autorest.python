@@ -10,4 +10,4 @@ from ._auto_rest_swagger_bat_file_service import AutoRestSwaggerBATFileService
 from ._version import VERSION
 
 __version__ = VERSION
-__all__ = ['']
+__all__ = ['AutoRestSwaggerBATFileService']

@@ -10,4 +10,4 @@ from ._auto_rest_http_infrastructure_test_service import AutoRestHttpInfrastruct
 from ._version import VERSION
 
 __version__ = VERSION
-__all__ = ['']
+__all__ = ['AutoRestHttpInfrastructureTestService']

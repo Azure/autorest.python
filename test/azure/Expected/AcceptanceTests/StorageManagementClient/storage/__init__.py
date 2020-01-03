@@ -10,4 +10,4 @@ from ._storage_management_client import StorageManagementClient
 from ._version import VERSION
 
 __version__ = VERSION
-__all__ = ['']
+__all__ = ['StorageManagementClient']

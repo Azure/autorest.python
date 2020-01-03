@@ -10,4 +10,4 @@ from ._auto_rest_azure_special_parameters_test_client import AutoRestAzureSpecia
 from ._version import VERSION
 
 __version__ = VERSION
-__all__ = ['']
+__all__ = ['AutoRestAzureSpecialParametersTestClient']
