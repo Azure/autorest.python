@@ -10,4 +10,4 @@ from ._xms_error_response_extensions import XMSErrorResponseExtensions
 from ._version import VERSION
 
 __version__ = VERSION
-__all__ = ['']
+__all__ = ['XMSErrorResponseExtensions']
