@@ -238,6 +238,14 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods
             return default_excp[0]
         return None
 
+    @property
+    def status_code_exceptions(self) -> List[SchemaResponse]:
+        return [
+            excp
+            for excp in self.exceptions
+            if list(excp.status_codes) != ["default"]
+        ]
+
     def imports(self, code_model, async_mode):
         file_import = FileImport()
 
