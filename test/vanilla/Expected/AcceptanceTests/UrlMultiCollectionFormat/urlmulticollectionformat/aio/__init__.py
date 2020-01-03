@@ -7,4 +7,4 @@
 # --------------------------------------------------------------------------
 
 from ._auto_rest_url_mutli_collection_format_test_service_async import AutoRestUrlMutliCollectionFormatTestService
-__all__ = ['']
+__all__ = ['AutoRestUrlMutliCollectionFormatTestService']

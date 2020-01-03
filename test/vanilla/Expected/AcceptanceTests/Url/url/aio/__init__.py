@@ -7,4 +7,4 @@
 # --------------------------------------------------------------------------
 
 from ._auto_rest_url_test_service_async import AutoRestUrlTestService
-__all__ = ['']
+__all__ = ['AutoRestUrlTestService']

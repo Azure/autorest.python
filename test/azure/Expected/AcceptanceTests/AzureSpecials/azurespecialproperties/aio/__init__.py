@@ -7,4 +7,4 @@
 # --------------------------------------------------------------------------
 
 from ._auto_rest_azure_special_parameters_test_client_async import AutoRestAzureSpecialParametersTestClient
-__all__ = ['']
+__all__ = ['AutoRestAzureSpecialParametersTestClient']

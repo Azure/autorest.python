@@ -7,4 +7,4 @@
 # --------------------------------------------------------------------------
 
 from ._auto_rest_required_optional_test_service_async import AutoRestRequiredOptionalTestService
-__all__ = ['']
+__all__ = ['AutoRestRequiredOptionalTestService']

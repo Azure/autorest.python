@@ -10,4 +10,4 @@ from ._pet_store_inc import PetStoreInc
 from ._version import VERSION
 
 __version__ = VERSION
-__all__ = ['']
+__all__ = ['PetStoreInc']

@@ -7,4 +7,4 @@
 # --------------------------------------------------------------------------
 
 from ._auto_rest_rfc1123_date_time_test_service_async import AutoRestRFC1123DateTimeTestService
-__all__ = ['']
+__all__ = ['AutoRestRFC1123DateTimeTestService']

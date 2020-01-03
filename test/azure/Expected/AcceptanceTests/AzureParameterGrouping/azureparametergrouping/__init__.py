@@ -10,4 +10,4 @@ from ._auto_rest_parameter_grouping_test_service import AutoRestParameterGroupin
 from ._version import VERSION
 
 __version__ = VERSION
-__all__ = ['']
+__all__ = ['AutoRestParameterGroupingTestService']
