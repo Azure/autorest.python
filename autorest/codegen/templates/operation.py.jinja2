@@ -12,7 +12,7 @@
     :rtype: None
 {% endif %}
 {% endmacro %}
-{% macro exception_name() %}{{ operation.exceptions[0].schema.name }}Exception{% endmacro %}
+{% macro exception_name() %}{{ operation.default_exception.schema.name }}Exception{% endmacro %}
 {# actual template starts here #}
 {% if code_model.options['tracing'] and operation.want_tracing %}
 {{ trace_decorator }}
@@ -36,7 +36,7 @@
 {% endfor %}
     :param callable cls: A custom type or function that will be passed the direct response
     {{ return_docstring() }}
-    {% if not operation.exceptions %}
+    {% if not operation.default_exception %}
         {% if code_model.options['azure_arm'] %}
     :raises: ~azure.mgmt.core.ARMError
         {% else %}
@@ -114,7 +114,7 @@
 
     if response.status_code not in {{ operation.success_status_code|string() }}:
         map_error(status_code=response.status_code, response=response, error_map=error_map)
-        {% if not operation.exceptions %}
+        {% if not operation.default_exception %}
             {% if code_model.options['azure_arm'] %}
         raise ARMError(response=response)
             {% else %}

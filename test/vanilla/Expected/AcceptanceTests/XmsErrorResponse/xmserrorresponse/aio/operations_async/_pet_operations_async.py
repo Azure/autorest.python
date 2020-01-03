@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 import warnings
 
-from azure.core.exceptions import map_error
+from azure.core.exceptions import HttpResponseError, map_error
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models
@@ -45,7 +45,7 @@ class PetOperations:
         :param callable cls: A custom type or function that will be passed the direct response
         :return: Pet or  or the result of cls(response)
         :rtype: ~xmserrorresponse.models.Pet or None
-        :raises: ~xmserrorresponse.models.Exception:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', None)
 
@@ -72,7 +72,7 @@ class PetOperations:
 
         if response.status_code not in [200, 202]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.Exception(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = None
         if response.status_code == 200:
