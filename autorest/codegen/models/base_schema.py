@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 from abc import ABC, abstractmethod
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Optional, Union
 
 from .base_model import BaseModel
 from .imports import FileImport
@@ -54,7 +54,7 @@ class BaseSchema(BaseModel, ABC):
 
         Special case for enum, for instance: Union[str, "EnumName"]
         """
-        return self.get_python_type(None)
+        return self.get_python_type("")
 
     def get_declaration(self, value) -> str: # pylint: disable=no-self-use
         """Return the current value from YAML as a Python string that represents the constant.
@@ -69,7 +69,7 @@ class BaseSchema(BaseModel, ABC):
         """
         return str(value)
 
-    def get_validation_map(self) -> Dict[str, Any]: # pylint: disable=no-self-use
+    def get_validation_map(self) -> Optional[Dict[str, Union[int, bool]]]: # pylint: disable=no-self-use
         return None
 
     def get_serialization_constraints(self) -> List[str]: # pylint: disable=no-self-use

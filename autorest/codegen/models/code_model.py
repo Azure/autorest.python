@@ -5,7 +5,7 @@
 # --------------------------------------------------------------------------
 from itertools import chain
 import logging
-from typing import List, Dict, Optional, Any, cast
+from typing import List, Dict, Optional, Any, cast, Set, Union
 
 from .base_schema import BaseSchema
 from .enum_schema import EnumSchema
@@ -16,6 +16,8 @@ from .lro_operation import LROOperation
 from .paging_operation import PagingOperation
 from .parameter import Parameter, ParameterLocation
 from .client import Client
+from .property import Property
+from .schema_response import SchemaResponse, HeaderResponse
 
 
 _LOGGER = logging.getLogger(__name__)
@@ -27,21 +29,21 @@ class FakeSchema(BaseSchema):
     def __init__(self):  # pylint: disable=super-init-not-called
         ...
 
-    def get_serialization_type(self):
+    def get_serialization_type(self) -> str:
         return "FAKESERIALIZATIONTYPE"
 
-    def get_python_type(self, namespace=None):
-        return namespace+"FAKEDOCSTRING"
+    def get_python_type(self, namespace: str) -> str:
+        return namespace + "FAKEDOCSTRING"
 
 
 class CredentialSchema(BaseSchema):
     def __init__(self):  # pylint: disable=super-init-not-called
         self.type = 'azure.core.credentials.TokenCredential'
 
-    def get_serialization_type(self):
+    def get_serialization_type(self) -> str:
         return self.type
 
-    def get_python_type(self, namespace=None):
+    def get_python_type(self, namespace: str) -> str:
         return self.type
 
 
@@ -87,7 +89,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
         self.base_url: Optional[str] = None
         self.service_client = Client()
 
-    def lookup_schema(self, schema_id: int) -> None:
+    def lookup_schema(self, schema_id: int) -> BaseSchema:
         """Looks to see if the schema has already been created.
 
         :param int schema_id: The yaml id of the schema
@@ -107,8 +109,8 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
         :return: None
         :rtype: None
         """
-        seen_schemas = set()
-        sorted_schemas = []
+        seen_schemas: Set[str] = set()
+        sorted_schemas: List[ObjectSchema] = []
         for schema in sorted(self.schemas.values(), key=lambda x: x.name.lower()):
             if schema.name in seen_schemas:
                 continue
@@ -148,7 +150,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
         self.global_parameters.insert(0, credential_parameter)
 
     @staticmethod
-    def _lro_initial_function(operation):
+    def _lro_initial_function(operation: Operation) -> None:
         return Operation(
             yaml_data={},
             name="_" + operation.name + "_initial",
@@ -213,12 +215,12 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
                 if operation not in next_operations
             ]
 
-    def enable_parameter_flattening(self):
+    def enable_parameter_flattening(self) -> None:
         for op_group in self.operation_groups:
             for operation in op_group.operations:
                 self._enable_parameter_flattening_for_operation(operation)
 
-    def _enable_parameter_flattening_for_operation(self, operation):
+    def _enable_parameter_flattening_for_operation(self, operation: Operation) -> None:
         if not (operation.has_request_body and isinstance(operation.body_parameter.schema, ObjectSchema)):
             return
 
@@ -261,7 +263,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
                 parent = schema.base_model
                 while parent:
                     schema.properties = parent.properties + schema.properties
-                    seen_properties = set()
+                    seen_properties: Set[Property] = set()
                     schema.properties = [
                         p for p in schema.properties
                         if p.name not in seen_properties and not seen_properties.add(p.name)
@@ -280,7 +282,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
                 schema.base_model = [b for b in self.schemas.values() if b.id == schema.base_model][0]
         self._add_properties_from_inheritance()
 
-    def _populate_schema(self, obj) -> None:
+    def _populate_schema(self, obj: Any) -> None:
         schema_obj = obj.schema
         if schema_obj:
             schema_obj_id = id(obj.schema)
@@ -301,9 +303,9 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
         for operation_group in self.operation_groups:
             for operation in operation_group.operations:
                 for obj in chain(
-                    operation.parameters,
-                    operation.responses,
-                    operation.exceptions,
+                    operation.parameters if operation.parameters else [],
+                    operation.responses if operation.parameters else [],
+                    operation.exceptions if operation.parameters else [],
                     chain.from_iterable(response.headers for response in operation.responses)
                 ):
                     self._populate_schema(obj)

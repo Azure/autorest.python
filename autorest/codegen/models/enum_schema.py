@@ -96,7 +96,7 @@ class EnumSchema(BaseSchema):
         return values
 
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, str], **kwargs) -> "EnumSchema":
+    def from_yaml(cls, yaml_data: Dict[str, Any], **kwargs) -> "EnumSchema":
         """Constructs an EnumSchema from yaml data.
 
         :param yaml_data: the yaml data from which we will construct this schema

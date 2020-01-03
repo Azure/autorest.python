@@ -4,3 +4,4 @@ invoke
 pylint
 pytest
 ptvsd
+mypy

@@ -78,7 +78,7 @@ class Parameter(BaseModel):
         return origin_name
 
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, str]) -> "SchemaResponse":
+    def from_yaml(cls, yaml_data: Dict[str, Any]) -> "Parameter":
 
         http_protocol = yaml_data["protocol"]["http"]
         return cls(
