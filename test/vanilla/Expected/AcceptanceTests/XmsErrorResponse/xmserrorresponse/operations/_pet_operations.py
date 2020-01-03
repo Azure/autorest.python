@@ -47,7 +47,12 @@ class PetOperations(object):
         :rtype: ~xmserrorresponse.models.Pet or None
         :raises: ~azure.core.HttpResponseError
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = {
+            400: HttpResponseError,
+            404: lambda response: models.NotFoundErrorBaseException.from_response(response, self._deserialize),
+            501: HttpResponseError,
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
         url = self.get_pet_by_id.metadata['url']
@@ -98,7 +103,10 @@ class PetOperations(object):
         :rtype: ~xmserrorresponse.models.PetAction
         :raises: ~xmserrorresponse.models.PetActionErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = {
+            500: lambda response: models.PetActionErrorException.from_response(response, self._deserialize),
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
         url = self.do_something.metadata['url']
@@ -123,7 +131,7 @@ class PetOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.PetActionErrorException(response, self._deserialize)
+            raise models.PetActionErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('PetAction', response)
 

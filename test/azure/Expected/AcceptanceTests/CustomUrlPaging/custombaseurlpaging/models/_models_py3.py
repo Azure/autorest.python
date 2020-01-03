@@ -29,7 +29,6 @@ class Error(Model):
         self.status = status
         self.message = message
 
-
 class Product(Model):
     """Product.
 
@@ -44,7 +43,6 @@ class Product(Model):
     def __init__(self, *, properties: "ProductProperties"=None, **kwargs) -> None:
         super(Product, self).__init__(**kwargs)
         self.properties = properties
-
 
 class ProductProperties(Model):
     """ProductProperties.
@@ -65,7 +63,6 @@ class ProductProperties(Model):
         self.id = id
         self.name = name
 
-
 class ProductResult(Model):
     """ProductResult.
 
@@ -84,5 +81,4 @@ class ProductResult(Model):
         super(ProductResult, self).__init__(**kwargs)
         self.values = values
         self.next_link = next_link
-
 

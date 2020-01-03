@@ -27,7 +27,6 @@ class Error(Model):
         self.status = kwargs.get('status', None)
         self.message = kwargs.get('message', None)
 
-
 class Product(Model):
     """Product.
 
@@ -42,7 +41,6 @@ class Product(Model):
     def __init__(self, **kwargs):
         super(Product, self).__init__(**kwargs)
         self.properties = kwargs.get('properties', None)
-
 
 class ProductProperties(Model):
     """ProductProperties.
@@ -63,7 +61,6 @@ class ProductProperties(Model):
         self.id = kwargs.get('id', None)
         self.name = kwargs.get('name', None)
 
-
 class ProductResult(Model):
     """ProductResult.
 
@@ -82,5 +79,4 @@ class ProductResult(Model):
         super(ProductResult, self).__init__(**kwargs)
         self.values = kwargs.get('values', None)
         self.next_link = kwargs.get('next_link', None)
-
 

@@ -52,7 +52,7 @@ class StorageAccountsOperations(object):
         :rtype: ~storage.models.CheckNameAvailabilityResult
         :raises: ~azure.mgmt.core.ARMError
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.check_name_availability.metadata['url']
@@ -94,7 +94,7 @@ class StorageAccountsOperations(object):
 
     
     def _create_initial(self, resource_group_name, account_name, parameters, cls=None, **kwargs):
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._create_initial.metadata['url']
@@ -201,7 +201,7 @@ class StorageAccountsOperations(object):
 
         :raises: ~azure.mgmt.core.ARMError
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.delete.metadata['url']
@@ -251,7 +251,7 @@ class StorageAccountsOperations(object):
         :rtype: ~storage.models.StorageAccount
         :raises: ~azure.mgmt.core.ARMError
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_properties.metadata['url']
@@ -307,7 +307,7 @@ class StorageAccountsOperations(object):
         :rtype: ~storage.models.StorageAccount
         :raises: ~azure.mgmt.core.ARMError
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.update.metadata['url']
@@ -365,7 +365,7 @@ class StorageAccountsOperations(object):
         :rtype: ~storage.models.StorageAccountKeys
         :raises: ~azure.mgmt.core.ARMError
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.list_keys.metadata['url']
@@ -415,7 +415,7 @@ class StorageAccountsOperations(object):
         :rtype: ~storage.models.StorageAccountListResult
         :raises: ~azure.mgmt.core.ARMError
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -480,7 +480,7 @@ class StorageAccountsOperations(object):
         :rtype: ~storage.models.StorageAccountListResult
         :raises: ~azure.mgmt.core.ARMError
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -550,7 +550,7 @@ class StorageAccountsOperations(object):
         :rtype: ~storage.models.StorageAccountKeys
         :raises: ~azure.mgmt.core.ARMError
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
         regenerate_key = models.StorageAccountRegenerateKeyParameters(key_name=key_name)
 
         # Construct URL

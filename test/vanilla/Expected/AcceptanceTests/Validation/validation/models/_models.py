@@ -37,7 +37,6 @@ class ChildProduct(Model):
         super(ChildProduct, self).__init__(**kwargs)
         self.count = kwargs.get('count', None)
 
-
 class ConstantProduct(Model):
     """The product documentation.
 
@@ -67,6 +66,30 @@ class ConstantProduct(Model):
     def __init__(self, **kwargs):
         super(ConstantProduct, self).__init__(**kwargs)
 
+class ErrorException(HttpResponseError):
+    """Server responded with exception of type: 'Error'.
+
+    :param response: Server response to be deserialized.
+    :param error_model: A deserialized model of the response body as model.
+    """
+
+    def __init__(self, response, error_model):
+        self.error = error_model
+        super(ErrorException, self).__init__(response=response, error_model=error_model)
+
+    @classmethod
+    def from_response(cls, response, deserialize):
+        """Deserialize this response as this exception, or a subclass of this exception.
+
+        :param response: Server response to be deserialized.
+        :param deserialize: A deserializer
+        """
+        model_name = 'Error'
+        error = deserialize(model_name, response)
+        if error is None:
+            error = deserialize.dependencies[model_name]()
+        return error._EXCEPTION_TYPE(response, error)
+
 
 class Error(Model):
     """Error.
@@ -78,6 +101,7 @@ class Error(Model):
     :param fields:
 	:type fields: str
     """
+    _EXCEPTION_TYPE = ErrorException
 
     _attribute_map = {
         'code': {'key': 'code', 'type': 'int'},
@@ -90,23 +114,6 @@ class Error(Model):
         self.code = kwargs.get('code', None)
         self.message = kwargs.get('message', None)
         self.fields = kwargs.get('fields', None)
-
-
-class ErrorException(HttpResponseError):
-    """Server responded with exception of type: 'Error'.
-
-    :param deserialize: A deserializer
-    :param response: Server response to be deserialized.
-    """
-
-    def __init__(self, response, deserialize, *args):
-
-        model_name = 'Error'
-        self.error = deserialize(model_name, response)
-        if self.error is None:
-            self.error = deserialize.dependencies[model_name]()
-        super(ErrorException, self).__init__(response=response)
-
 
 class Product(Model):
     """The product documentation.
@@ -166,5 +173,4 @@ class Product(Model):
         self.image = kwargs.get('image', None)
         self.child = kwargs.get('child', None)
         self.const_child = kwargs.get('const_child', None)
-
 

@@ -39,7 +39,7 @@ class LROSADsOperations(object):
         self._config = config
     
     def _put_non_retry400_initial(self, product=None, cls=None, **kwargs):
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._put_non_retry400_initial.metadata['url']
@@ -125,7 +125,7 @@ class LROSADsOperations(object):
 
     
     def _put_non_retry201_creating400_initial(self, product=None, cls=None, **kwargs):
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._put_non_retry201_creating400_initial.metadata['url']
@@ -211,7 +211,7 @@ class LROSADsOperations(object):
 
     
     def _put_non_retry201_creating400_invalid_json_initial(self, product=None, cls=None, **kwargs):
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._put_non_retry201_creating400_invalid_json_initial.metadata['url']
@@ -297,7 +297,7 @@ class LROSADsOperations(object):
 
     
     def _put_async_relative_retry400_initial(self, product=None, cls=None, **kwargs):
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._put_async_relative_retry400_initial.metadata['url']
@@ -386,7 +386,7 @@ class LROSADsOperations(object):
 
     
     def _delete_non_retry400_initial(self, cls=None, **kwargs):
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._delete_non_retry400_initial.metadata['url']
@@ -454,7 +454,7 @@ class LROSADsOperations(object):
 
     
     def _delete202_non_retry400_initial(self, cls=None, **kwargs):
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._delete202_non_retry400_initial.metadata['url']
@@ -522,7 +522,7 @@ class LROSADsOperations(object):
 
     
     def _delete_async_relative_retry400_initial(self, cls=None, **kwargs):
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._delete_async_relative_retry400_initial.metadata['url']
@@ -591,7 +591,7 @@ class LROSADsOperations(object):
 
     
     def _post_non_retry400_initial(self, product=None, cls=None, **kwargs):
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._post_non_retry400_initial.metadata['url']
@@ -669,7 +669,7 @@ class LROSADsOperations(object):
 
     
     def _post202_non_retry400_initial(self, product=None, cls=None, **kwargs):
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._post202_non_retry400_initial.metadata['url']
@@ -747,7 +747,7 @@ class LROSADsOperations(object):
 
     
     def _post_async_relative_retry400_initial(self, product=None, cls=None, **kwargs):
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._post_async_relative_retry400_initial.metadata['url']
@@ -826,7 +826,7 @@ class LROSADsOperations(object):
 
     
     def _put_error201_no_provisioning_state_payload_initial(self, product=None, cls=None, **kwargs):
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._put_error201_no_provisioning_state_payload_initial.metadata['url']
@@ -912,7 +912,7 @@ class LROSADsOperations(object):
 
     
     def _put_async_relative_retry_no_status_initial(self, product=None, cls=None, **kwargs):
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._put_async_relative_retry_no_status_initial.metadata['url']
@@ -1001,7 +1001,7 @@ class LROSADsOperations(object):
 
     
     def _put_async_relative_retry_no_status_payload_initial(self, product=None, cls=None, **kwargs):
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._put_async_relative_retry_no_status_payload_initial.metadata['url']
@@ -1090,7 +1090,7 @@ class LROSADsOperations(object):
 
     
     def _delete204_succeeded_initial(self, cls=None, **kwargs):
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._delete204_succeeded_initial.metadata['url']
@@ -1154,7 +1154,7 @@ class LROSADsOperations(object):
 
     
     def _delete_async_relative_retry_no_status_initial(self, cls=None, **kwargs):
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._delete_async_relative_retry_no_status_initial.metadata['url']
@@ -1223,7 +1223,7 @@ class LROSADsOperations(object):
 
     
     def _post202_no_location_initial(self, product=None, cls=None, **kwargs):
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._post202_no_location_initial.metadata['url']
@@ -1301,7 +1301,7 @@ class LROSADsOperations(object):
 
     
     def _post_async_relative_retry_no_payload_initial(self, product=None, cls=None, **kwargs):
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._post_async_relative_retry_no_payload_initial.metadata['url']
@@ -1380,7 +1380,7 @@ class LROSADsOperations(object):
 
     
     def _put200_invalid_json_initial(self, product=None, cls=None, **kwargs):
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._put200_invalid_json_initial.metadata['url']
@@ -1463,7 +1463,7 @@ class LROSADsOperations(object):
 
     
     def _put_async_relative_retry_invalid_header_initial(self, product=None, cls=None, **kwargs):
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._put_async_relative_retry_invalid_header_initial.metadata['url']
@@ -1552,7 +1552,7 @@ class LROSADsOperations(object):
 
     
     def _put_async_relative_retry_invalid_json_polling_initial(self, product=None, cls=None, **kwargs):
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._put_async_relative_retry_invalid_json_polling_initial.metadata['url']
@@ -1641,7 +1641,7 @@ class LROSADsOperations(object):
 
     
     def _delete202_retry_invalid_header_initial(self, cls=None, **kwargs):
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._delete202_retry_invalid_header_initial.metadata['url']
@@ -1709,7 +1709,7 @@ class LROSADsOperations(object):
 
     
     def _delete_async_relative_retry_invalid_header_initial(self, cls=None, **kwargs):
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._delete_async_relative_retry_invalid_header_initial.metadata['url']
@@ -1778,7 +1778,7 @@ class LROSADsOperations(object):
 
     
     def _delete_async_relative_retry_invalid_json_polling_initial(self, cls=None, **kwargs):
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._delete_async_relative_retry_invalid_json_polling_initial.metadata['url']
@@ -1847,7 +1847,7 @@ class LROSADsOperations(object):
 
     
     def _post202_retry_invalid_header_initial(self, product=None, cls=None, **kwargs):
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._post202_retry_invalid_header_initial.metadata['url']
@@ -1925,7 +1925,7 @@ class LROSADsOperations(object):
 
     
     def _post_async_relative_retry_invalid_header_initial(self, product=None, cls=None, **kwargs):
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._post_async_relative_retry_invalid_header_initial.metadata['url']
@@ -2004,7 +2004,7 @@ class LROSADsOperations(object):
 
     
     def _post_async_relative_retry_invalid_json_polling_initial(self, product=None, cls=None, **kwargs):
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._post_async_relative_retry_invalid_json_polling_initial.metadata['url']

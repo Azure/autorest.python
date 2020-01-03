@@ -34,6 +34,30 @@ class BaseProduct(Model):
         self.product_id = kwargs.get('product_id', None)
         self.description = kwargs.get('description', None)
 
+class ErrorException(HttpResponseError):
+    """Server responded with exception of type: 'Error'.
+
+    :param response: Server response to be deserialized.
+    :param error_model: A deserialized model of the response body as model.
+    """
+
+    def __init__(self, response, error_model):
+        self.error = error_model
+        super(ErrorException, self).__init__(response=response, error_model=error_model)
+
+    @classmethod
+    def from_response(cls, response, deserialize):
+        """Deserialize this response as this exception, or a subclass of this exception.
+
+        :param response: Server response to be deserialized.
+        :param deserialize: A deserializer
+        """
+        model_name = 'Error'
+        error = deserialize(model_name, response)
+        if error is None:
+            error = deserialize.dependencies[model_name]()
+        return error._EXCEPTION_TYPE(response, error)
+
 
 class Error(Model):
     """Error.
@@ -45,6 +69,7 @@ class Error(Model):
     :param parent_error:
 	:type parent_error: ~modelflattening.models.Error
     """
+    _EXCEPTION_TYPE = ErrorException
 
     _attribute_map = {
         'status': {'key': 'status', 'type': 'int'},
@@ -57,23 +82,6 @@ class Error(Model):
         self.status = kwargs.get('status', None)
         self.message = kwargs.get('message', None)
         self.parent_error = kwargs.get('parent_error', None)
-
-
-class ErrorException(HttpResponseError):
-    """Server responded with exception of type: 'Error'.
-
-    :param deserialize: A deserializer
-    :param response: Server response to be deserialized.
-    """
-
-    def __init__(self, response, deserialize, *args):
-
-        model_name = 'Error'
-        self.error = deserialize(model_name, response)
-        if self.error is None:
-            self.error = deserialize.dependencies[model_name]()
-        super(ErrorException, self).__init__(response=response)
-
 
 class Resource(Model):
     """Resource.
@@ -114,7 +122,6 @@ class Resource(Model):
         self.location = kwargs.get('location', None)
         self.name = None
 
-
 class FlattenedProduct(Resource):
     """Flattened product.
 
@@ -153,7 +160,6 @@ class FlattenedProduct(Resource):
         super(FlattenedProduct, self).__init__(**kwargs)
         self.properties = kwargs.get('properties', None)
 
-
 class FlattenedProductProperties(Model):
     """FlattenedProductProperties.
 
@@ -187,7 +193,6 @@ class FlattenedProductProperties(Model):
         self.provisioning_state_values = None
         self.provisioning_state = kwargs.get('provisioning_state', None)
 
-
 class GenericUrl(Model):
     """The Generic URL.
 
@@ -202,7 +207,6 @@ class GenericUrl(Model):
     def __init__(self, **kwargs):
         super(GenericUrl, self).__init__(**kwargs)
         self.generic_value = kwargs.get('generic_value', None)
-
 
 class ProductUrl(GenericUrl):
     """The product URL.
@@ -222,7 +226,6 @@ class ProductUrl(GenericUrl):
         super(ProductUrl, self).__init__(**kwargs)
         self.odatavalue = kwargs.get('odatavalue', None)
 
-
 class ProductWrapper(Model):
     """The wrapped produc.
 
@@ -237,7 +240,6 @@ class ProductWrapper(Model):
     def __init__(self, **kwargs):
         super(ProductWrapper, self).__init__(**kwargs)
         self.property = kwargs.get('property', None)
-
 
 class ResourceCollection(Model):
     """ResourceCollection.
@@ -261,7 +263,6 @@ class ResourceCollection(Model):
         self.productresource = kwargs.get('productresource', None)
         self.arrayofresources = kwargs.get('arrayofresources', None)
         self.dictionaryofresources = kwargs.get('dictionaryofresources', None)
-
 
 class SimpleProduct(BaseProduct):
     """The product documentation.
@@ -289,7 +290,6 @@ class SimpleProduct(BaseProduct):
     def __init__(self, **kwargs):
         super(SimpleProduct, self).__init__(**kwargs)
         self.details = kwargs.get('details', None)
-
 
 class SimpleProductProperties(Model):
     """The product documentation.
@@ -324,7 +324,6 @@ class SimpleProductProperties(Model):
         self.max_product_display_name = kwargs.get('max_product_display_name', None)
         self.max_product_image = kwargs.get('max_product_image', None)
 
-
 class WrappedProduct(Model):
     """The wrapped produc.
 
@@ -339,5 +338,4 @@ class WrappedProduct(Model):
     def __init__(self, **kwargs):
         super(WrappedProduct, self).__init__(**kwargs)
         self.value = kwargs.get('value', None)
-
 

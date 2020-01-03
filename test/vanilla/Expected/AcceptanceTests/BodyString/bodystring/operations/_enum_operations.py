@@ -45,7 +45,7 @@ class EnumOperations(object):
         :rtype: str or ~bodystring.models.Colors
         :raises: ~bodystring.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_not_expandable.metadata['url']
@@ -66,7 +66,7 @@ class EnumOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('str', response)
 
@@ -91,7 +91,7 @@ class EnumOperations(object):
 
         :raises: ~bodystring.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.put_not_expandable.metadata['url']
@@ -115,7 +115,7 @@ class EnumOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
           return cls(response, None, {})
@@ -134,7 +134,7 @@ class EnumOperations(object):
         :rtype: str or ~bodystring.models.Colors
         :raises: ~bodystring.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_referenced.metadata['url']
@@ -155,7 +155,7 @@ class EnumOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('str', response)
 
@@ -180,7 +180,7 @@ class EnumOperations(object):
 
         :raises: ~bodystring.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.put_referenced.metadata['url']
@@ -204,7 +204,7 @@ class EnumOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
           return cls(response, None, {})
@@ -223,7 +223,7 @@ class EnumOperations(object):
         :rtype: ~bodystring.models.RefColorConstant
         :raises: ~bodystring.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_referenced_constant.metadata['url']
@@ -244,7 +244,7 @@ class EnumOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('RefColorConstant', response)
 
@@ -269,7 +269,7 @@ class EnumOperations(object):
 
         :raises: ~bodystring.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
         enum_string_body = models.RefColorConstant(field1=field1)
 
         # Construct URL
@@ -294,7 +294,7 @@ class EnumOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
           return cls(response, None, {})

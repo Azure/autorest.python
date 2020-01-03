@@ -45,7 +45,7 @@ class InheritanceOperations(object):
         :rtype: ~bodycomplex.models.Siamese
         :raises: ~bodycomplex.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_valid.metadata['url']
@@ -66,7 +66,7 @@ class InheritanceOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('Siamese', response)
 
@@ -91,7 +91,7 @@ class InheritanceOperations(object):
 
         :raises: ~bodycomplex.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.put_valid.metadata['url']
@@ -115,7 +115,7 @@ class InheritanceOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
           return cls(response, None, {})

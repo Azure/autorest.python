@@ -45,7 +45,7 @@ class StringOperations(object):
         :rtype: str
         :raises: ~bodystring.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_null.metadata['url']
@@ -66,7 +66,7 @@ class StringOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('str', response)
 
@@ -89,7 +89,7 @@ class StringOperations(object):
 
         :raises: ~bodystring.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
         string_body = None
 
         # Construct URL
@@ -117,7 +117,7 @@ class StringOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
           return cls(response, None, {})
@@ -136,7 +136,7 @@ class StringOperations(object):
         :rtype: str
         :raises: ~bodystring.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_empty.metadata['url']
@@ -157,7 +157,7 @@ class StringOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('str', response)
 
@@ -180,7 +180,7 @@ class StringOperations(object):
 
         :raises: ~bodystring.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
         string_body = ""
 
         # Construct URL
@@ -205,7 +205,7 @@ class StringOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
           return cls(response, None, {})
@@ -224,7 +224,7 @@ class StringOperations(object):
         :rtype: str
         :raises: ~bodystring.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_mbcs.metadata['url']
@@ -245,7 +245,7 @@ class StringOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('str', response)
 
@@ -268,7 +268,7 @@ class StringOperations(object):
 
         :raises: ~bodystring.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
         string_body = "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€"
 
         # Construct URL
@@ -293,7 +293,7 @@ class StringOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
           return cls(response, None, {})
@@ -312,7 +312,7 @@ class StringOperations(object):
         :rtype: str
         :raises: ~bodystring.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_whitespace.metadata['url']
@@ -333,7 +333,7 @@ class StringOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('str', response)
 
@@ -356,7 +356,7 @@ class StringOperations(object):
 
         :raises: ~bodystring.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
         string_body = "    Now is the time for all good men to come to the aid of their country    "
 
         # Construct URL
@@ -381,7 +381,7 @@ class StringOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
           return cls(response, None, {})
@@ -400,7 +400,7 @@ class StringOperations(object):
         :rtype: str
         :raises: ~bodystring.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_not_provided.metadata['url']
@@ -421,7 +421,7 @@ class StringOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('str', response)
 
@@ -443,7 +443,7 @@ class StringOperations(object):
         :rtype: bytearray
         :raises: ~bodystring.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_base64_encoded.metadata['url']
@@ -464,7 +464,7 @@ class StringOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('base64', response)
 
@@ -486,7 +486,7 @@ class StringOperations(object):
         :rtype: bytearray
         :raises: ~bodystring.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_base64_url_encoded.metadata['url']
@@ -507,7 +507,7 @@ class StringOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('base64', response)
 
@@ -532,7 +532,7 @@ class StringOperations(object):
 
         :raises: ~bodystring.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.put_base64_url_encoded.metadata['url']
@@ -556,7 +556,7 @@ class StringOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
           return cls(response, None, {})
@@ -575,7 +575,7 @@ class StringOperations(object):
         :rtype: bytearray
         :raises: ~bodystring.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_null_base64_url_encoded.metadata['url']
@@ -596,7 +596,7 @@ class StringOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('base64', response)
 

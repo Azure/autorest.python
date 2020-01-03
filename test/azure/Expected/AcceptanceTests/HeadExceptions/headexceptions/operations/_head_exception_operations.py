@@ -42,7 +42,7 @@ class HeadExceptionOperations(object):
 
         :raises: ~azure.mgmt.core.ARMError
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.head200.metadata['url']
@@ -84,7 +84,7 @@ class HeadExceptionOperations(object):
 
         :raises: ~azure.mgmt.core.ARMError
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.head204.metadata['url']
@@ -126,7 +126,7 @@ class HeadExceptionOperations(object):
 
         :raises: ~azure.mgmt.core.ARMError
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.head404.metadata['url']

@@ -23,11 +23,12 @@
 # IN THE SOFTWARE.
 #
 # --------------------------------------------------------------------------
+import json
 import pytest
 
 
 from xmserrorresponse import XMSErrorResponseExtensions
-from xmserrorresponse.models import NotFoundErrorBaseException, AnimalNotFound, LinkNotFound, PetActionErrorException
+from xmserrorresponse.models import NotFoundErrorBaseException, AnimalNotFoundException, LinkNotFoundException, PetActionErrorException, PetSadErrorException, PetHungryOrThirstyErrorException
 
 @pytest.fixture
 def client():
@@ -47,35 +48,42 @@ class TestXmsErrorResponse(object):
 
     def test_get_by_pet_id_discriminator(self, client):
 
-        with pytest.raises(NotFoundErrorBaseException) as excinfo:
+        assert issubclass(AnimalNotFoundException, NotFoundErrorBaseException)
+        assert issubclass(LinkNotFoundException, NotFoundErrorBaseException)
+
+        with pytest.raises(AnimalNotFoundException) as excinfo:
             client.pet.get_pet_by_id("coyoteUgly")
-        assert isinstance(excinfo.value, AnimalNotFound)
         assert excinfo.value.error.reason == "the type of animal requested is not available"
 
-        with pytest.raises(NotFoundErrorBaseException) as excinfo:
+        with pytest.raises(LinkNotFoundException) as excinfo:
             client.pet.get_pet_by_id("weirdAlYankovic")
-        assert isinstance(excinfo.value, LinkNotFound)
         assert excinfo.value.error.reason == "link to pet not found"
 
     def test_get_by_pet_id_basic_types(self, client):
 
         with pytest.raises(Exception) as excinfo:
             client.pet.get_pet_by_id("ringo")
-        assert excinfo.value.error.reason == "ringo is missing"
+        assert excinfo.value.error is None  # no model attached
+        assert json.loads(excinfo.value.response.text()) == "ringo is missing"
 
         with pytest.raises(Exception) as excinfo:
             client.pet.get_pet_by_id("alien123")
-        assert excinfo.value.error.reason == 123
+        assert excinfo.value.error is None  # no model attached
+        assert json.loads(excinfo.value.response.text()) == 123
 
     def test_do_something_success(self, client):
         result = client.pet.do_something("stay")
         assert result.action_response is None
 
     def test_do_something_error(self, client):
-        with pytest.raises(PetActionErrorException) as excinfo:
+
+        assert issubclass(PetSadErrorException, PetActionErrorException)
+        assert issubclass(PetHungryOrThirstyErrorException, PetActionErrorException)
+
+        with pytest.raises(PetSadErrorException) as excinfo:
             client.pet.do_something("jump")
         assert excinfo.value.error.reason == "need more treats"
 
-        with pytest.raises(PetActionErrorException) as excinfo:
+        with pytest.raises(PetHungryOrThirstyErrorException) as excinfo:
             client.pet.do_something("fetch")
         assert excinfo.value.error.hungry_or_thirsty == "hungry and thirsty"

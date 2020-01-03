@@ -45,7 +45,7 @@ class DateOperations:
         :rtype: ~datetime.date
         :raises: ~bodydate.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_null.metadata['url']
@@ -66,7 +66,7 @@ class DateOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('date', response)
 
@@ -88,7 +88,7 @@ class DateOperations:
         :rtype: ~datetime.date
         :raises: ~bodydate.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_invalid_date.metadata['url']
@@ -109,7 +109,7 @@ class DateOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('date', response)
 
@@ -131,7 +131,7 @@ class DateOperations:
         :rtype: ~datetime.date
         :raises: ~bodydate.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_overflow_date.metadata['url']
@@ -152,7 +152,7 @@ class DateOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('date', response)
 
@@ -174,7 +174,7 @@ class DateOperations:
         :rtype: ~datetime.date
         :raises: ~bodydate.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_underflow_date.metadata['url']
@@ -195,7 +195,7 @@ class DateOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('date', response)
 
@@ -220,7 +220,7 @@ class DateOperations:
 
         :raises: ~bodydate.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.put_max_date.metadata['url']
@@ -244,7 +244,7 @@ class DateOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
           return cls(response, None, {})
@@ -263,7 +263,7 @@ class DateOperations:
         :rtype: ~datetime.date
         :raises: ~bodydate.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_max_date.metadata['url']
@@ -284,7 +284,7 @@ class DateOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('date', response)
 
@@ -309,7 +309,7 @@ class DateOperations:
 
         :raises: ~bodydate.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.put_min_date.metadata['url']
@@ -333,7 +333,7 @@ class DateOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
           return cls(response, None, {})
@@ -352,7 +352,7 @@ class DateOperations:
         :rtype: ~datetime.date
         :raises: ~bodydate.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_min_date.metadata['url']
@@ -373,7 +373,7 @@ class DateOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('date', response)
 

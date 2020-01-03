@@ -29,4 +29,3 @@ class AvailabilitySetUpdateParameters(Model):
         super(AvailabilitySetUpdateParameters, self).__init__(**kwargs)
         self.tags = kwargs.get('tags', None)
 
-

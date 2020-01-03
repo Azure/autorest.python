@@ -46,7 +46,7 @@ class HttpClientFailureOperations:
 
         :raises: ~httpinfrastructure.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.head400.metadata['url']
@@ -66,7 +66,7 @@ class HttpClientFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
           return cls(response, None, {})
@@ -86,7 +86,7 @@ class HttpClientFailureOperations:
 
         :raises: ~httpinfrastructure.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get400.metadata['url']
@@ -106,7 +106,7 @@ class HttpClientFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
           return cls(response, None, {})
@@ -126,7 +126,7 @@ class HttpClientFailureOperations:
 
         :raises: ~httpinfrastructure.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.options400.metadata['url']
@@ -146,7 +146,7 @@ class HttpClientFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
           return cls(response, None, {})
@@ -166,7 +166,7 @@ class HttpClientFailureOperations:
 
         :raises: ~httpinfrastructure.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
         boolean_value = True
 
         # Construct URL
@@ -194,7 +194,7 @@ class HttpClientFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
           return cls(response, None, {})
@@ -214,7 +214,7 @@ class HttpClientFailureOperations:
 
         :raises: ~httpinfrastructure.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
         boolean_value = True
 
         # Construct URL
@@ -242,7 +242,7 @@ class HttpClientFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
           return cls(response, None, {})
@@ -262,7 +262,7 @@ class HttpClientFailureOperations:
 
         :raises: ~httpinfrastructure.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
         boolean_value = True
 
         # Construct URL
@@ -290,7 +290,7 @@ class HttpClientFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
           return cls(response, None, {})
@@ -310,7 +310,7 @@ class HttpClientFailureOperations:
 
         :raises: ~httpinfrastructure.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
         boolean_value = True
 
         # Construct URL
@@ -338,7 +338,7 @@ class HttpClientFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
           return cls(response, None, {})
@@ -358,7 +358,7 @@ class HttpClientFailureOperations:
 
         :raises: ~httpinfrastructure.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.head401.metadata['url']
@@ -378,7 +378,7 @@ class HttpClientFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
           return cls(response, None, {})
@@ -398,7 +398,7 @@ class HttpClientFailureOperations:
 
         :raises: ~httpinfrastructure.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get402.metadata['url']
@@ -418,7 +418,7 @@ class HttpClientFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
           return cls(response, None, {})
@@ -438,7 +438,7 @@ class HttpClientFailureOperations:
 
         :raises: ~httpinfrastructure.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.options403.metadata['url']
@@ -458,7 +458,7 @@ class HttpClientFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
           return cls(response, None, {})
@@ -478,7 +478,7 @@ class HttpClientFailureOperations:
 
         :raises: ~httpinfrastructure.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get403.metadata['url']
@@ -498,7 +498,7 @@ class HttpClientFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
           return cls(response, None, {})
@@ -518,7 +518,7 @@ class HttpClientFailureOperations:
 
         :raises: ~httpinfrastructure.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
         boolean_value = True
 
         # Construct URL
@@ -546,7 +546,7 @@ class HttpClientFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
           return cls(response, None, {})
@@ -566,7 +566,7 @@ class HttpClientFailureOperations:
 
         :raises: ~httpinfrastructure.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
         boolean_value = True
 
         # Construct URL
@@ -594,7 +594,7 @@ class HttpClientFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
           return cls(response, None, {})
@@ -614,7 +614,7 @@ class HttpClientFailureOperations:
 
         :raises: ~httpinfrastructure.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
         boolean_value = True
 
         # Construct URL
@@ -642,7 +642,7 @@ class HttpClientFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
           return cls(response, None, {})
@@ -662,7 +662,7 @@ class HttpClientFailureOperations:
 
         :raises: ~httpinfrastructure.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
         boolean_value = True
 
         # Construct URL
@@ -690,7 +690,7 @@ class HttpClientFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
           return cls(response, None, {})
@@ -710,7 +710,7 @@ class HttpClientFailureOperations:
 
         :raises: ~httpinfrastructure.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
         boolean_value = True
 
         # Construct URL
@@ -738,7 +738,7 @@ class HttpClientFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
           return cls(response, None, {})
@@ -758,7 +758,7 @@ class HttpClientFailureOperations:
 
         :raises: ~httpinfrastructure.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.head410.metadata['url']
@@ -778,7 +778,7 @@ class HttpClientFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
           return cls(response, None, {})
@@ -798,7 +798,7 @@ class HttpClientFailureOperations:
 
         :raises: ~httpinfrastructure.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get411.metadata['url']
@@ -818,7 +818,7 @@ class HttpClientFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
           return cls(response, None, {})
@@ -838,7 +838,7 @@ class HttpClientFailureOperations:
 
         :raises: ~httpinfrastructure.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.options412.metadata['url']
@@ -858,7 +858,7 @@ class HttpClientFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
           return cls(response, None, {})
@@ -878,7 +878,7 @@ class HttpClientFailureOperations:
 
         :raises: ~httpinfrastructure.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get412.metadata['url']
@@ -898,7 +898,7 @@ class HttpClientFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
           return cls(response, None, {})
@@ -918,7 +918,7 @@ class HttpClientFailureOperations:
 
         :raises: ~httpinfrastructure.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
         boolean_value = True
 
         # Construct URL
@@ -946,7 +946,7 @@ class HttpClientFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
           return cls(response, None, {})
@@ -966,7 +966,7 @@ class HttpClientFailureOperations:
 
         :raises: ~httpinfrastructure.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
         boolean_value = True
 
         # Construct URL
@@ -994,7 +994,7 @@ class HttpClientFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
           return cls(response, None, {})
@@ -1014,7 +1014,7 @@ class HttpClientFailureOperations:
 
         :raises: ~httpinfrastructure.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
         boolean_value = True
 
         # Construct URL
@@ -1042,7 +1042,7 @@ class HttpClientFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
           return cls(response, None, {})
@@ -1062,7 +1062,7 @@ class HttpClientFailureOperations:
 
         :raises: ~httpinfrastructure.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get416.metadata['url']
@@ -1082,7 +1082,7 @@ class HttpClientFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
           return cls(response, None, {})
@@ -1102,7 +1102,7 @@ class HttpClientFailureOperations:
 
         :raises: ~httpinfrastructure.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
         boolean_value = True
 
         # Construct URL
@@ -1130,7 +1130,7 @@ class HttpClientFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
           return cls(response, None, {})
@@ -1150,7 +1150,7 @@ class HttpClientFailureOperations:
 
         :raises: ~httpinfrastructure.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.head429.metadata['url']
@@ -1170,7 +1170,7 @@ class HttpClientFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
           return cls(response, None, {})

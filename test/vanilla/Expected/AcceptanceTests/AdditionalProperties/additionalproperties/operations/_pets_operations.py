@@ -47,7 +47,7 @@ class PetsOperations(object):
         :rtype: ~additionalproperties.models.PetAPTrue
         :raises: ~additionalproperties.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.create_ap_true.metadata['url']
@@ -72,7 +72,7 @@ class PetsOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('PetAPTrue', response)
 
@@ -96,7 +96,7 @@ class PetsOperations(object):
         :rtype: ~additionalproperties.models.CatAPTrue
         :raises: ~additionalproperties.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.create_cat_ap_true.metadata['url']
@@ -121,7 +121,7 @@ class PetsOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('CatAPTrue', response)
 
@@ -145,7 +145,7 @@ class PetsOperations(object):
         :rtype: ~additionalproperties.models.PetAPObject
         :raises: ~additionalproperties.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.create_ap_object.metadata['url']
@@ -170,7 +170,7 @@ class PetsOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('PetAPObject', response)
 
@@ -194,7 +194,7 @@ class PetsOperations(object):
         :rtype: ~additionalproperties.models.PetAPString
         :raises: ~additionalproperties.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.create_ap_string.metadata['url']
@@ -219,7 +219,7 @@ class PetsOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('PetAPString', response)
 
@@ -243,7 +243,7 @@ class PetsOperations(object):
         :rtype: ~additionalproperties.models.PetAPInProperties
         :raises: ~additionalproperties.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.create_ap_in_properties.metadata['url']
@@ -268,7 +268,7 @@ class PetsOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('PetAPInProperties', response)
 
@@ -292,7 +292,7 @@ class PetsOperations(object):
         :rtype: ~additionalproperties.models.PetAPInPropertiesWithAPString
         :raises: ~additionalproperties.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.create_ap_in_properties_with_ap_string.metadata['url']
@@ -317,7 +317,7 @@ class PetsOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('PetAPInPropertiesWithAPString', response)
 

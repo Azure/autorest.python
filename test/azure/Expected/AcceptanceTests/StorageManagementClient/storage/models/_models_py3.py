@@ -26,7 +26,6 @@ class Bar(Model):
         super(Bar, self).__init__(**kwargs)
         self.recursive_point = recursive_point
 
-
 class CheckNameAvailabilityResult(Model):
     """The CheckNameAvailability operation response.
 
@@ -50,7 +49,6 @@ class CheckNameAvailabilityResult(Model):
         self.reason = reason
         self.message = message
 
-
 class CustomDomain(Model):
     """The custom domain assigned to this storage account. This can be set via Update.
 
@@ -69,7 +67,6 @@ class CustomDomain(Model):
         super(CustomDomain, self).__init__(**kwargs)
         self.name = name
         self.use_sub_domain = use_sub_domain
-
 
 class Endpoints(Model):
     """The URIs that are used to perform a retrieval of a public blob, queue or table object.
@@ -102,7 +99,6 @@ class Endpoints(Model):
         self.dummy_end_point = dummy_end_point
         self.foo_point = foo_point
 
-
 class Foo(Model):
     """The URIs that are used to perform a retrieval of a public blob, queue or table object.
 
@@ -117,7 +113,6 @@ class Foo(Model):
     def __init__(self, *, bar_point: "Bar"=None, **kwargs) -> None:
         super(Foo, self).__init__(**kwargs)
         self.bar_point = bar_point
-
 
 class Resource(Model):
     """Resource.
@@ -161,7 +156,6 @@ class Resource(Model):
         self.location = location
         self.tags = tags
 
-
 class StorageAccount(Resource):
     """The storage account.
 
@@ -203,7 +197,6 @@ class StorageAccount(Resource):
         super(StorageAccount, self).__init__(location=location, tags=tags, **kwargs)
         self.properties = properties
 
-
 class StorageAccountCheckNameAvailabilityParameters(Model):
     """StorageAccountCheckNameAvailabilityParameters.
 
@@ -228,7 +221,6 @@ class StorageAccountCheckNameAvailabilityParameters(Model):
         super(StorageAccountCheckNameAvailabilityParameters, self).__init__(**kwargs)
         self.name = name
         self.type = type
-
 
 class StorageAccountCreateParameters(Resource):
     """The parameters to provide for the account.
@@ -271,7 +263,6 @@ class StorageAccountCreateParameters(Resource):
         super(StorageAccountCreateParameters, self).__init__(location=location, tags=tags, **kwargs)
         self.properties = properties
 
-
 class StorageAccountKeys(Model):
     """The access keys for the storage account.
 
@@ -291,7 +282,6 @@ class StorageAccountKeys(Model):
         self.key1 = key1
         self.key2 = key2
 
-
 class StorageAccountListResult(Model):
     """The list storage accounts operation response.
 
@@ -310,7 +300,6 @@ class StorageAccountListResult(Model):
         super(StorageAccountListResult, self).__init__(**kwargs)
         self.value = value
         self.next_link = next_link
-
 
 class StorageAccountProperties(Model):
     """StorageAccountProperties.
@@ -367,7 +356,6 @@ class StorageAccountProperties(Model):
         self.custom_domain = custom_domain
         self.secondary_endpoints = secondary_endpoints
 
-
 class StorageAccountPropertiesCreateParameters(Model):
     """StorageAccountPropertiesCreateParameters.
 
@@ -382,7 +370,6 @@ class StorageAccountPropertiesCreateParameters(Model):
     def __init__(self, *, account_type: Union[str, "AccountType"]=None, **kwargs) -> None:
         super(StorageAccountPropertiesCreateParameters, self).__init__(**kwargs)
         self.account_type = account_type
-
 
 class StorageAccountPropertiesUpdateParameters(Model):
     """StorageAccountPropertiesUpdateParameters.
@@ -403,7 +390,6 @@ class StorageAccountPropertiesUpdateParameters(Model):
         self.account_type = account_type
         self.custom_domain = custom_domain
 
-
 class StorageAccountRegenerateKeyParameters(Model):
     """StorageAccountRegenerateKeyParameters.
 
@@ -418,7 +404,6 @@ class StorageAccountRegenerateKeyParameters(Model):
     def __init__(self, *, key_name: Union[str, "KeyName"]=None, **kwargs) -> None:
         super(StorageAccountRegenerateKeyParameters, self).__init__(**kwargs)
         self.key_name = key_name
-
 
 class StorageAccountUpdateParameters(Resource):
     """The parameters to update on the account.
@@ -461,7 +446,6 @@ class StorageAccountUpdateParameters(Resource):
         super(StorageAccountUpdateParameters, self).__init__(location=location, tags=tags, **kwargs)
         self.properties = properties
 
-
 class SubResource(Model):
     """SubResource.
 
@@ -476,7 +460,6 @@ class SubResource(Model):
     def __init__(self, *, id: str=None, **kwargs) -> None:
         super(SubResource, self).__init__(**kwargs)
         self.id = id
-
 
 class Usage(Model):
     """Describes Storage Resource Usage.
@@ -505,7 +488,6 @@ class Usage(Model):
         self.limit = limit
         self.name = name
 
-
 class UsageListResult(Model):
     """The List Usages operation response.
 
@@ -520,7 +502,6 @@ class UsageListResult(Model):
     def __init__(self, *, value: List["Usage"]=None, **kwargs) -> None:
         super(UsageListResult, self).__init__(**kwargs)
         self.value = value
-
 
 class UsageName(Model):
     """The Usage Names.
@@ -540,5 +521,4 @@ class UsageName(Model):
         super(UsageName, self).__init__(**kwargs)
         self.value = value
         self.localized_value = localized_value
-
 
