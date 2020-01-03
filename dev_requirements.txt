@@ -1,6 +1,6 @@
 -e .
 tox
 invoke
-pylint==2.3.1
+pylint==2.4.4
 pytest
 ptvsd
