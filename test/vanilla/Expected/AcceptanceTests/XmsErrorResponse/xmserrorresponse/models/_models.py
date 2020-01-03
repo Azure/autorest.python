@@ -53,7 +53,7 @@ class NotFoundErrorBase(BaseError):
 	:type some_base_prop: str
     :param reason:
 	:type reason: str
-    :param what_not_found: Required. Constant filled by server. 
+    :param what_not_found: Required. Constant filled by server.
 	:type what_not_found: str
     """
 
@@ -102,7 +102,7 @@ class AnimalNotFound(NotFoundErrorBase):
 	:type some_base_prop: str
     :param reason:
 	:type reason: str
-    :param what_not_found: Required. Constant filled by server. 
+    :param what_not_found: Required. Constant filled by server.
 	:type what_not_found: str
     :param name:
 	:type name: str
@@ -150,7 +150,7 @@ class LinkNotFound(NotFoundErrorBase):
 	:type some_base_prop: str
     :param reason:
 	:type reason: str
-    :param what_not_found: Required. Constant filled by server. 
+    :param what_not_found: Required. Constant filled by server.
 	:type what_not_found: str
     :param what_sub_address:
 	:type what_sub_address: str
@@ -238,7 +238,7 @@ class PetActionError(Model):
 
 	All required parameters must be populated in order to send to Azure.
 
-    :param error_type: Required. Constant filled by server. 
+    :param error_type: Required. Constant filled by server.
 	:type error_type: str
     :param error_message: the error message.
 	:type error_message: str
@@ -287,7 +287,7 @@ class PetSadError(PetActionError):
 
 	All required parameters must be populated in order to send to Azure.
 
-    :param error_type: Required. Constant filled by server. 
+    :param error_type: Required. Constant filled by server.
 	:type error_type: str
     :param error_message: the error message.
 	:type error_message: str
@@ -336,7 +336,7 @@ class PetHungryOrThirstyError(PetSadError):
 
 	All required parameters must be populated in order to send to Azure.
 
-    :param error_type: Required. Constant filled by server. 
+    :param error_type: Required. Constant filled by server.
 	:type error_type: str
     :param error_message: the error message.
 	:type error_message: str
