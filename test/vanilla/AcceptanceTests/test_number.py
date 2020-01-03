@@ -81,11 +81,11 @@ class TestNumber(object):
         assert client.number.get_small_decimal() ==  2.5976931e-101
 
     def test_get_big_decimal_negative_decimal(self, client):
-        # client.number.put_big_decimal_positive_decimal()
+        client.number.put_big_decimal_positive_decimal()
         assert client.number.get_big_decimal_negative_decimal() ==  -99999999.99
 
     def test_get_big_decimal_positive_decimal(self, client):
-        # client.number.put_big_decimal_negative_decimal()
+        client.number.put_big_decimal_negative_decimal()
         assert client.number.get_big_decimal_positive_decimal() ==  99999999.99
 
     def test_get_null(self, client):
