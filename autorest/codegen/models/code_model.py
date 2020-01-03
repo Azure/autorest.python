@@ -5,7 +5,7 @@
 # --------------------------------------------------------------------------
 from itertools import chain
 import logging
-from typing import List, Dict, Optional, Any, cast, Set, Union
+from typing import List, Dict, Optional, Any, cast, Set
 
 from .base_schema import BaseSchema
 from .enum_schema import EnumSchema
@@ -17,7 +17,6 @@ from .paging_operation import PagingOperation
 from .parameter import Parameter, ParameterLocation
 from .client import Client
 from .property import Property
-from .schema_response import SchemaResponse, HeaderResponse
 
 
 _LOGGER = logging.getLogger(__name__)
@@ -29,21 +28,21 @@ class FakeSchema(BaseSchema):
     def __init__(self):  # pylint: disable=super-init-not-called
         ...
 
-    def get_serialization_type(self) -> str:
+    def get_serialization_type(self):
         return "FAKESERIALIZATIONTYPE"
 
-    def get_python_type(self, namespace: str) -> str:
-        return namespace + "FAKEDOCSTRING"
+    def get_python_type(self, namespace=None):
+        return namespace+"FAKEDOCSTRING"
 
 
 class CredentialSchema(BaseSchema):
     def __init__(self):  # pylint: disable=super-init-not-called
         self.type = 'azure.core.credentials.TokenCredential'
 
-    def get_serialization_type(self) -> str:
+    def get_serialization_type(self):
         return self.type
 
-    def get_python_type(self, namespace: str) -> str:
+    def get_python_type(self, namespace=None):
         return self.type
 
 
@@ -150,7 +149,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
         self.global_parameters.insert(0, credential_parameter)
 
     @staticmethod
-    def _lro_initial_function(operation: Operation) -> None:
+    def _lro_initial_function(operation):
         return Operation(
             yaml_data={},
             name="_" + operation.name + "_initial",
@@ -215,12 +214,12 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
                 if operation not in next_operations
             ]
 
-    def enable_parameter_flattening(self) -> None:
+    def enable_parameter_flattening(self):
         for op_group in self.operation_groups:
             for operation in op_group.operations:
                 self._enable_parameter_flattening_for_operation(operation)
 
-    def _enable_parameter_flattening_for_operation(self, operation: Operation) -> None:
+    def _enable_parameter_flattening_for_operation(self, operation):
         if not (operation.has_request_body and isinstance(operation.body_parameter.schema, ObjectSchema)):
             return
 
@@ -298,7 +297,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
         self._add_properties_from_inheritance()
         self._add_exceptions_from_inheritance()
 
-    def _populate_schema(self, obj: BaseSchema) -> None:
+    def _populate_schema(self, obj: Any) -> None:
         schema_obj = obj.schema
         if schema_obj:
             schema_obj_id = id(obj.schema)
@@ -319,9 +318,9 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
         for operation_group in self.operation_groups:
             for operation in operation_group.operations:
                 for obj in chain(
-                    operation.parameters if operation.parameters else [],
-                    operation.responses if operation.parameters else [],
-                    operation.exceptions if operation.parameters else [],
+                    operation.parameters,
+                    operation.responses,
+                    operation.exceptions,
                     chain.from_iterable(response.headers for response in operation.responses)
                 ):
                     self._populate_schema(obj)

@@ -7,6 +7,7 @@ from enum import Enum
 from typing import Dict, Optional, List, Any
 
 from .base_model import BaseModel
+from .base_schema import BaseSchema
 
 
 class ParameterLocation(Enum):
@@ -34,7 +35,7 @@ class Parameter(BaseModel):
     def __init__(
         self,
         yaml_data: Dict[str, Any],
-        schema: Optional[Any],
+        schema: BaseSchema,
         rest_api_name: str,
         serialized_name: str,
         description: str,
