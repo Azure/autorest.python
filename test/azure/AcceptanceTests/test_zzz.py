@@ -23,36 +23,50 @@
 # IN THE SOFTWARE.
 #
 # --------------------------------------------------------------------------
-
-"""
-This file needs to be modified everytime other tests are updated. This is
-because unittest:TestLoader:discover() loads file in the order of last
-modified timestamp. We need a better way of sorting the test files.
-"""
-import unittest
 import sys
 import datetime
 import os
 import platform
-from uuid import uuid4
-from os.path import dirname, pardir, join, realpath
+import warnings
 
 from azurereport import AutoRestReportServiceForAzure
 
 
 class TestAcceptance(object):
 
-
     def test_ensure_coverage(self):
-
         client = AutoRestReportServiceForAzure(base_url="http://localhost:3000")
         report = client.get_report(platform.python_version())
 
-        skipped = [k for k, v in report.items() if v == 0]
+        # Add tests that wont be supported due to the nature of Python here
+        not_supported = {}
 
-        for s in skipped:
-            print("SKIPPED {0}".format(s))
+        # Please add missing features or failing tests here
+        missing_features_or_bugs = {
+        }
 
-        totalTests = len(report)
-        print("The test coverage is {0}/{1}.".format(totalTests - len(skipped), totalTests))
-        # assert 0 ==  len(skipped)
+        print("Coverage:")
+        self._print_report(report, not_supported, missing_features_or_bugs)
+
+
+
+
+    def _print_report(self, report, not_supported=None, missing_features_or_bugs=None):
+        if not_supported:
+            report.update(not_supported)
+            for s in not_supported.keys():
+                print("IGNORING {0}".format(s))
+
+        if missing_features_or_bugs:
+            report.update(missing_features_or_bugs)
+            for s in missing_features_or_bugs.keys():
+                print("PENDING {0}".format(s))
+
+        failed = [k for k, v in report.items() if v == 0]
+        for s in failed:
+            print("FAILED TO EXECUTE {0}".format(s))
+
+        total_tests = len(report)
+        warnings.warn ("The test coverage is {0}/{1}.".format(total_tests - len(failed), total_tests))
+
+        assert 0 == len(failed)

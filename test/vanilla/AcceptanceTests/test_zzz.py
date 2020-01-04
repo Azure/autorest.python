@@ -23,14 +23,10 @@
 # IN THE SOFTWARE.
 #
 # --------------------------------------------------------------------------
-import unittest
-import isodate
-import subprocess
 import sys
 import datetime
 import os
 import platform
-from os.path import dirname, pardir, join, realpath
 import warnings
 
 from report import AutoRestReportService
@@ -96,6 +92,3 @@ class TestAcceptance(object):
         warnings.warn ("The test coverage is {0}/{1}.".format(total_tests - len(failed), total_tests))
 
         assert 0 == len(failed)
-
-if __name__ == '__main__':
-    unittest.main()
