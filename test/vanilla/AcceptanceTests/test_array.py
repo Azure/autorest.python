@@ -272,3 +272,11 @@ class TestArray(object):
                       'test string'.encode(),
                       'Lorem ipsum'.encode()]
         assert client.array.get_base64_url() ==  test_array
+
+    def test_array_enum_valid(self, client):
+        array = client.array.get_enum_valid()
+        client.array.put_enum_valid(array)
+
+    def test_array_string_enum_valid(self, client):
+        array = client.array.get_string_enum_valid()
+        client.array.put_string_enum_valid(array)

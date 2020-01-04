@@ -449,3 +449,8 @@ class TestHttp(object):
     @pytest.mark.asyncio
     async def test_success_status_codes_404(self, client):
         await client.http_success.head404()
+
+    @pytest.mark.asyncio
+    async def test_empty_no_content(self, client):
+        await self.assert_raises_with_status(requests.codes.bad_request,
+            client.http_failure.get_no_model_empty)
