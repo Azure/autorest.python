@@ -64,8 +64,17 @@ class TestAcceptance(object):
 
         print("Coverage:")
         self._print_report(report, not_supported, missing_features_or_bugs)
+
+        missing_features_or_bugs = {
+            "putDateTimeMaxLocalNegativeOffset": 1,
+            "putDateTimeMinLocalPositiveOffset": 1,
+        }
+        for name in optional_report:
+            if "Options" in name:
+                missing_features_or_bugs[name] = 1; # https://github.com/Azure/azure-sdk-for-python/pull/9322
+
         print("Optional coverage:")
-        self._print_report(optional_report)
+        self._print_report(optional_report, not_supported, missing_features_or_bugs)
 
 
     def _print_report(self, report, not_supported=None, missing_features_or_bugs=None):
