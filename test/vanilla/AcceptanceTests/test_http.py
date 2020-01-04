@@ -410,3 +410,7 @@ class TestHttp(object):
 
     def test_success_status_codes_404(self, client):
         client.http_success.head404()
+
+    def test_empty_no_content(self, client):
+        self.assert_raises_with_status(requests.codes.bad_request,
+            client.http_failure.get_no_model_empty)
