@@ -46,7 +46,7 @@ class HttpRedirectsOperations:
 
         :raises: ~httpinfrastructure.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.head300.metadata['url']
@@ -66,7 +66,7 @@ class HttpRedirectsOperations:
 
         if response.status_code not in [200, 300]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         response_headers = {}
         if response.status_code == 300:
@@ -89,7 +89,7 @@ class HttpRedirectsOperations:
         :rtype: None or list[str]
         :raises: ~httpinfrastructure.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get300.metadata['url']
@@ -110,7 +110,7 @@ class HttpRedirectsOperations:
 
         if response.status_code not in [200, 300]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         response_headers = {}
         deserialized = None
@@ -137,7 +137,7 @@ class HttpRedirectsOperations:
 
         :raises: ~httpinfrastructure.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.head301.metadata['url']
@@ -157,7 +157,7 @@ class HttpRedirectsOperations:
 
         if response.status_code not in [200, 301]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         response_headers = {}
         if response.status_code == 301:
@@ -181,7 +181,7 @@ class HttpRedirectsOperations:
 
         :raises: ~httpinfrastructure.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get301.metadata['url']
@@ -201,7 +201,7 @@ class HttpRedirectsOperations:
 
         if response.status_code not in [200, 301]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         response_headers = {}
         if response.status_code == 301:
@@ -225,7 +225,7 @@ class HttpRedirectsOperations:
 
         :raises: ~httpinfrastructure.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
         boolean_value = True
 
         # Construct URL
@@ -253,7 +253,7 @@ class HttpRedirectsOperations:
 
         if response.status_code not in [301]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         response_headers = {}
         response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
@@ -276,7 +276,7 @@ class HttpRedirectsOperations:
 
         :raises: ~httpinfrastructure.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.head302.metadata['url']
@@ -296,7 +296,7 @@ class HttpRedirectsOperations:
 
         if response.status_code not in [200, 302]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         response_headers = {}
         if response.status_code == 302:
@@ -320,7 +320,7 @@ class HttpRedirectsOperations:
 
         :raises: ~httpinfrastructure.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get302.metadata['url']
@@ -340,7 +340,7 @@ class HttpRedirectsOperations:
 
         if response.status_code not in [200, 302]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         response_headers = {}
         if response.status_code == 302:
@@ -364,7 +364,7 @@ class HttpRedirectsOperations:
 
         :raises: ~httpinfrastructure.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
         boolean_value = True
 
         # Construct URL
@@ -392,7 +392,7 @@ class HttpRedirectsOperations:
 
         if response.status_code not in [302]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         response_headers = {}
         response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
@@ -415,7 +415,7 @@ class HttpRedirectsOperations:
 
         :raises: ~httpinfrastructure.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
         boolean_value = True
 
         # Construct URL
@@ -443,7 +443,7 @@ class HttpRedirectsOperations:
 
         if response.status_code not in [200, 303]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         response_headers = {}
         if response.status_code == 303:
@@ -467,7 +467,7 @@ class HttpRedirectsOperations:
 
         :raises: ~httpinfrastructure.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.head307.metadata['url']
@@ -487,7 +487,7 @@ class HttpRedirectsOperations:
 
         if response.status_code not in [200, 307]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         response_headers = {}
         if response.status_code == 307:
@@ -511,7 +511,7 @@ class HttpRedirectsOperations:
 
         :raises: ~httpinfrastructure.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get307.metadata['url']
@@ -531,7 +531,7 @@ class HttpRedirectsOperations:
 
         if response.status_code not in [200, 307]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         response_headers = {}
         if response.status_code == 307:
@@ -555,7 +555,7 @@ class HttpRedirectsOperations:
 
         :raises: ~httpinfrastructure.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.options307.metadata['url']
@@ -575,7 +575,7 @@ class HttpRedirectsOperations:
 
         if response.status_code not in [200, 307]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         response_headers = {}
         if response.status_code == 307:
@@ -599,7 +599,7 @@ class HttpRedirectsOperations:
 
         :raises: ~httpinfrastructure.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
         boolean_value = True
 
         # Construct URL
@@ -627,7 +627,7 @@ class HttpRedirectsOperations:
 
         if response.status_code not in [200, 307]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         response_headers = {}
         if response.status_code == 307:
@@ -651,7 +651,7 @@ class HttpRedirectsOperations:
 
         :raises: ~httpinfrastructure.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
         boolean_value = True
 
         # Construct URL
@@ -679,7 +679,7 @@ class HttpRedirectsOperations:
 
         if response.status_code not in [200, 307]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         response_headers = {}
         if response.status_code == 307:
@@ -703,7 +703,7 @@ class HttpRedirectsOperations:
 
         :raises: ~httpinfrastructure.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
         boolean_value = True
 
         # Construct URL
@@ -731,7 +731,7 @@ class HttpRedirectsOperations:
 
         if response.status_code not in [200, 307]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         response_headers = {}
         if response.status_code == 307:
@@ -755,7 +755,7 @@ class HttpRedirectsOperations:
 
         :raises: ~httpinfrastructure.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
         boolean_value = True
 
         # Construct URL
@@ -783,7 +783,7 @@ class HttpRedirectsOperations:
 
         if response.status_code not in [200, 307]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         response_headers = {}
         if response.status_code == 307:

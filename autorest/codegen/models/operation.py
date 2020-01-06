@@ -223,6 +223,26 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods
             if code != "default"
         ]
 
+    @property
+    def default_exception(self) -> SchemaResponse:
+        default_excp = [
+            excp
+            for excp in self.exceptions
+            for code in excp.status_codes
+            if code == "default"
+        ]
+        if default_excp:
+            return default_excp[0]
+        return None
+
+    @property
+    def status_code_exceptions(self) -> List[SchemaResponse]:
+        return [
+            excp
+            for excp in self.exceptions
+            if list(excp.status_codes) != ["default"]
+        ]
+
     def imports(self, code_model, async_mode):
         file_import = FileImport()
 
@@ -230,7 +250,7 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods
         file_import.add_from_import(
             "azure.core.exceptions", "map_error", ImportType.AZURECORE
         )
-        if not self.exceptions:
+        if not self.default_exception:
             if code_model.options['azure_arm']:
                 file_import.add_from_import("azure.mgmt.core.exceptions", "ARMError", ImportType.AZURECORE)
             else:

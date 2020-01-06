@@ -46,7 +46,7 @@ class FilesOperations:
 
         :raises: ~bodyfile.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_file.metadata['url']
@@ -67,7 +67,7 @@ class FilesOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = response.stream_download(self._client._pipeline)
 
@@ -90,7 +90,7 @@ class FilesOperations:
 
         :raises: ~bodyfile.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_file_large.metadata['url']
@@ -111,7 +111,7 @@ class FilesOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = response.stream_download(self._client._pipeline)
 
@@ -134,7 +134,7 @@ class FilesOperations:
 
         :raises: ~bodyfile.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_empty_file.metadata['url']
@@ -155,7 +155,7 @@ class FilesOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = response.stream_download(self._client._pipeline)
 

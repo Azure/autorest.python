@@ -30,7 +30,7 @@ class AutoRestValidationTestOperationsMixin(object):
         :rtype: ~validation.models.Product
         :raises: ~validation.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
         api_version = "1.0.0"
 
         # Construct URL
@@ -59,7 +59,7 @@ class AutoRestValidationTestOperationsMixin(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('Product', response)
 
@@ -87,7 +87,7 @@ class AutoRestValidationTestOperationsMixin(object):
         :rtype: ~validation.models.Product
         :raises: ~validation.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
         api_version = "1.0.0"
 
         # Construct URL
@@ -123,7 +123,7 @@ class AutoRestValidationTestOperationsMixin(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('Product', response)
 
@@ -146,7 +146,7 @@ class AutoRestValidationTestOperationsMixin(object):
 
         :raises: ~azure.core.HttpResponseError
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
         constant_param = "constant"
 
         # Construct URL
@@ -192,7 +192,7 @@ class AutoRestValidationTestOperationsMixin(object):
         :rtype: ~validation.models.Product
         :raises: ~azure.core.HttpResponseError
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
         constant_param = "constant"
 
         # Construct URL

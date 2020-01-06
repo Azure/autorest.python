@@ -90,12 +90,12 @@ class TestNumber(object):
 
     @pytest.mark.asyncio
     async def test_get_big_decimal_negative_decimal(self, client):
-        # await client.number.put_big_decimal_positive_decimal()
+        await client.number.put_big_decimal_positive_decimal()
         assert (await client.number.get_big_decimal_negative_decimal()) ==  -99999999.99
 
     @pytest.mark.asyncio
     async def test_get_big_decimal_positive_decimal(self, client):
-        # await client.number.put_big_decimal_negative_decimal()
+        await client.number.put_big_decimal_negative_decimal()
         assert (await client.number.get_big_decimal_positive_decimal()) ==  99999999.99
 
     @pytest.mark.asyncio

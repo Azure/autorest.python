@@ -29,7 +29,6 @@ class OdataProductResult(Model):
         self.values = values
         self.odatanext_link = odatanext_link
 
-
 class OperationResult(Model):
     """OperationResult.
 
@@ -45,7 +44,6 @@ class OperationResult(Model):
         super(OperationResult, self).__init__(**kwargs)
         self.status = status
 
-
 class Product(Model):
     """Product.
 
@@ -60,7 +58,6 @@ class Product(Model):
     def __init__(self, *, properties: "ProductProperties"=None, **kwargs) -> None:
         super(Product, self).__init__(**kwargs)
         self.properties = properties
-
 
 class ProductProperties(Model):
     """ProductProperties.
@@ -81,7 +78,6 @@ class ProductProperties(Model):
         self.id = id
         self.name = name
 
-
 class ProductResult(Model):
     """ProductResult.
 
@@ -101,7 +97,6 @@ class ProductResult(Model):
         self.values = values
         self.next_link = next_link
 
-
 class ProductResultValue(Model):
     """ProductResultValue.
 
@@ -120,5 +115,4 @@ class ProductResultValue(Model):
         super(ProductResultValue, self).__init__(**kwargs)
         self.value = value
         self.next_link = next_link
-
 

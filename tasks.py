@@ -31,7 +31,8 @@ default_mappings = {
   'AcceptanceTests/CustomBaseUriMoreOptions': ['custom-baseUrl-more-options.json', 'custombaseurlmoreoptions'],
   'AcceptanceTests/ModelFlattening': 'model-flattening.json',
   'AcceptanceTests/Xml': ['xml-service.json', 'xmlservice'],
-  'AcceptanceTests/UrlMultiCollectionFormat' : 'url-multi-collectionFormat.json'
+  'AcceptanceTests/UrlMultiCollectionFormat' : 'url-multi-collectionFormat.json',
+  'AcceptanceTests/XmsErrorResponse': 'xms-error-responses.json',
 }
 
 default_azure_mappings = {

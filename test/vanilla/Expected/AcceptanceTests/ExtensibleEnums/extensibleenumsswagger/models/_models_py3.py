@@ -39,4 +39,3 @@ class Pet(Model):
         self.days_of_week = days_of_week
         self.int_enum = int_enum
 
-

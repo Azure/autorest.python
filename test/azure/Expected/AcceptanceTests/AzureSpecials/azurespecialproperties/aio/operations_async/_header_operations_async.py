@@ -49,7 +49,7 @@ class HeaderOperations:
 
         :raises: ~azurespecialproperties.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.custom_named_request_id.metadata['url']
@@ -71,7 +71,7 @@ class HeaderOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         response_headers = {}
         response_headers['foo-request-id']=self._deserialize('str', response.headers.get('foo-request-id'))
@@ -96,7 +96,7 @@ class HeaderOperations:
 
         :raises: ~azurespecialproperties.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.custom_named_request_id_param_grouping.metadata['url']
@@ -118,7 +118,7 @@ class HeaderOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         response_headers = {}
         response_headers['foo-request-id']=self._deserialize('str', response.headers.get('foo-request-id'))
@@ -143,7 +143,7 @@ class HeaderOperations:
 
         :raises: ~azurespecialproperties.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.custom_named_request_id_head.metadata['url']
@@ -165,7 +165,7 @@ class HeaderOperations:
 
         if response.status_code not in [200, 404]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         response_headers = {}
         if response.status_code == 200:

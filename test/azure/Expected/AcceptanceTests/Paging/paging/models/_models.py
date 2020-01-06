@@ -27,7 +27,6 @@ class OdataProductResult(Model):
         self.values = kwargs.get('values', None)
         self.odatanext_link = kwargs.get('odatanext_link', None)
 
-
 class OperationResult(Model):
     """OperationResult.
 
@@ -43,7 +42,6 @@ class OperationResult(Model):
         super(OperationResult, self).__init__(**kwargs)
         self.status = kwargs.get('status', None)
 
-
 class Product(Model):
     """Product.
 
@@ -58,7 +56,6 @@ class Product(Model):
     def __init__(self, **kwargs):
         super(Product, self).__init__(**kwargs)
         self.properties = kwargs.get('properties', None)
-
 
 class ProductProperties(Model):
     """ProductProperties.
@@ -79,7 +76,6 @@ class ProductProperties(Model):
         self.id = kwargs.get('id', None)
         self.name = kwargs.get('name', None)
 
-
 class ProductResult(Model):
     """ProductResult.
 
@@ -99,7 +95,6 @@ class ProductResult(Model):
         self.values = kwargs.get('values', None)
         self.next_link = kwargs.get('next_link', None)
 
-
 class ProductResultValue(Model):
     """ProductResultValue.
 
@@ -118,5 +113,4 @@ class ProductResultValue(Model):
         super(ProductResultValue, self).__init__(**kwargs)
         self.value = kwargs.get('value', None)
         self.next_link = kwargs.get('next_link', None)
-
 

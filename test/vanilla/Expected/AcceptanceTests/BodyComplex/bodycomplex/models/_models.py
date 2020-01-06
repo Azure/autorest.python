@@ -24,7 +24,6 @@ class ArrayWrapper(Model):
         super(ArrayWrapper, self).__init__(**kwargs)
         self.array = kwargs.get('array', None)
 
-
 class Basic(Model):
     """Basic.
 
@@ -48,7 +47,6 @@ class Basic(Model):
         self.name = kwargs.get('name', None)
         self.color = kwargs.get('color', None)
 
-
 class BooleanWrapper(Model):
     """BooleanWrapper.
 
@@ -68,7 +66,6 @@ class BooleanWrapper(Model):
         self.field_true = kwargs.get('field_true', None)
         self.field_false = kwargs.get('field_false', None)
 
-
 class ByteWrapper(Model):
     """ByteWrapper.
 
@@ -83,7 +80,6 @@ class ByteWrapper(Model):
     def __init__(self, **kwargs):
         super(ByteWrapper, self).__init__(**kwargs)
         self.field = kwargs.get('field', None)
-
 
 class Pet(Model):
     """Pet.
@@ -103,7 +99,6 @@ class Pet(Model):
         super(Pet, self).__init__(**kwargs)
         self.id = kwargs.get('id', None)
         self.name = kwargs.get('name', None)
-
 
 class Cat(Pet):
     """Cat.
@@ -129,7 +124,6 @@ class Cat(Pet):
         super(Cat, self).__init__(**kwargs)
         self.color = kwargs.get('color', None)
         self.hates = kwargs.get('hates', None)
-
 
 class Fish(Model):
     """Fish.
@@ -171,7 +165,6 @@ class Fish(Model):
         self.species = kwargs.get('species', None)
         self.length = kwargs.get('length', None)
         self.siblings = kwargs.get('siblings', None)
-
 
 class Shark(Fish):
     """Shark.
@@ -220,7 +213,6 @@ class Shark(Fish):
         self.age = kwargs.get('age', None)
         self.birthday = kwargs.get('birthday', None)
 
-
 class Cookiecuttershark(Shark):
     """Cookiecuttershark.
 
@@ -259,7 +251,6 @@ class Cookiecuttershark(Shark):
         super(Cookiecuttershark, self).__init__(**kwargs)
         self.fishtype = 'cookiecuttershark'
 
-
 class Datetimerfc1123Wrapper(Model):
     """Datetimerfc1123Wrapper.
 
@@ -278,7 +269,6 @@ class Datetimerfc1123Wrapper(Model):
         super(Datetimerfc1123Wrapper, self).__init__(**kwargs)
         self.field = kwargs.get('field', None)
         self.now = kwargs.get('now', None)
-
 
 class DatetimeWrapper(Model):
     """DatetimeWrapper.
@@ -299,7 +289,6 @@ class DatetimeWrapper(Model):
         self.field = kwargs.get('field', None)
         self.now = kwargs.get('now', None)
 
-
 class DateWrapper(Model):
     """DateWrapper.
 
@@ -319,7 +308,6 @@ class DateWrapper(Model):
         self.field = kwargs.get('field', None)
         self.leap = kwargs.get('leap', None)
 
-
 class DictionaryWrapper(Model):
     """DictionaryWrapper.
 
@@ -334,7 +322,6 @@ class DictionaryWrapper(Model):
     def __init__(self, **kwargs):
         super(DictionaryWrapper, self).__init__(**kwargs)
         self.default_program = kwargs.get('default_program', None)
-
 
 class Dog(Pet):
     """Dog.
@@ -356,7 +343,6 @@ class Dog(Pet):
     def __init__(self, **kwargs):
         super(Dog, self).__init__(**kwargs)
         self.food = kwargs.get('food', None)
-
 
 class DotFish(Model):
     """DotFish.
@@ -390,7 +376,6 @@ class DotFish(Model):
         self.fishtype = None
         self.species = kwargs.get('species', None)
 
-
 class DotFishMarket(Model):
     """DotFishMarket.
 
@@ -417,7 +402,6 @@ class DotFishMarket(Model):
         self.salmons = kwargs.get('salmons', None)
         self.sample_fish = kwargs.get('sample_fish', None)
         self.fishes = kwargs.get('fishes', None)
-
 
 class DotSalmon(DotFish):
     """DotSalmon.
@@ -451,7 +435,6 @@ class DotSalmon(DotFish):
         self.location = kwargs.get('location', None)
         self.iswild = kwargs.get('iswild', None)
 
-
 class DoubleWrapper(Model):
     """DoubleWrapper.
 
@@ -471,7 +454,6 @@ class DoubleWrapper(Model):
         self.field1 = kwargs.get('field1', None)
         self.field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose = kwargs.get('field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose', None)
 
-
 class DurationWrapper(Model):
     """DurationWrapper.
 
@@ -487,6 +469,30 @@ class DurationWrapper(Model):
         super(DurationWrapper, self).__init__(**kwargs)
         self.field = kwargs.get('field', None)
 
+class ErrorException(HttpResponseError):
+    """Server responded with exception of type: 'Error'.
+
+    :param response: Server response to be deserialized.
+    :param error_model: A deserialized model of the response body as model.
+    """
+
+    def __init__(self, response, error_model):
+        self.error = error_model
+        super(ErrorException, self).__init__(response=response, error_model=error_model)
+
+    @classmethod
+    def from_response(cls, response, deserialize):
+        """Deserialize this response as this exception, or a subclass of this exception.
+
+        :param response: Server response to be deserialized.
+        :param deserialize: A deserializer
+        """
+        model_name = 'Error'
+        error = deserialize(model_name, response)
+        if error is None:
+            error = deserialize.dependencies[model_name]()
+        return error._EXCEPTION_TYPE(response, error)
+
 
 class Error(Model):
     """Error.
@@ -496,6 +502,7 @@ class Error(Model):
     :param message:
 	:type message: str
     """
+    _EXCEPTION_TYPE = ErrorException
 
     _attribute_map = {
         'status': {'key': 'status', 'type': 'int'},
@@ -506,23 +513,6 @@ class Error(Model):
         super(Error, self).__init__(**kwargs)
         self.status = kwargs.get('status', None)
         self.message = kwargs.get('message', None)
-
-
-class ErrorException(HttpResponseError):
-    """Server responded with exception of type: 'Error'.
-
-    :param deserialize: A deserializer
-    :param response: Server response to be deserialized.
-    """
-
-    def __init__(self, response, deserialize, *args):
-
-        model_name = 'Error'
-        self.error = deserialize(model_name, response)
-        if self.error is None:
-            self.error = deserialize.dependencies[model_name]()
-        super(ErrorException, self).__init__(response=response)
-
 
 class FloatWrapper(Model):
     """FloatWrapper.
@@ -542,7 +532,6 @@ class FloatWrapper(Model):
         super(FloatWrapper, self).__init__(**kwargs)
         self.field1 = kwargs.get('field1', None)
         self.field2 = kwargs.get('field2', None)
-
 
 class Goblinshark(Shark):
     """Goblinshark.
@@ -590,7 +579,6 @@ class Goblinshark(Shark):
         self.jawsize = kwargs.get('jawsize', None)
         self.color = kwargs.get('color', "gray")
 
-
 class IntWrapper(Model):
     """IntWrapper.
 
@@ -609,7 +597,6 @@ class IntWrapper(Model):
         super(IntWrapper, self).__init__(**kwargs)
         self.field1 = kwargs.get('field1', None)
         self.field2 = kwargs.get('field2', None)
-
 
 class LongWrapper(Model):
     """LongWrapper.
@@ -630,7 +617,6 @@ class LongWrapper(Model):
         self.field1 = kwargs.get('field1', None)
         self.field2 = kwargs.get('field2', None)
 
-
 class MyBaseHelperType(Model):
     """MyBaseHelperType.
 
@@ -645,7 +631,6 @@ class MyBaseHelperType(Model):
     def __init__(self, **kwargs):
         super(MyBaseHelperType, self).__init__(**kwargs)
         self.prop_bh1 = kwargs.get('prop_bh1', None)
-
 
 class MyBaseType(Model):
     """MyBaseType.
@@ -683,7 +668,6 @@ class MyBaseType(Model):
         self.prop_b1 = kwargs.get('prop_b1', None)
         self.helper = kwargs.get('helper', None)
 
-
 class MyDerivedType(MyBaseType):
     """MyDerivedType.
 
@@ -715,7 +699,6 @@ class MyDerivedType(MyBaseType):
         self.kind = 'Kind1'
         self.prop_d1 = kwargs.get('prop_d1', None)
 
-
 class ReadonlyObj(Model):
     """ReadonlyObj.
 
@@ -740,7 +723,6 @@ class ReadonlyObj(Model):
         super(ReadonlyObj, self).__init__(**kwargs)
         self.id = None
         self.size = kwargs.get('size', None)
-
 
 class Salmon(Fish):
     """Salmon.
@@ -788,7 +770,6 @@ class Salmon(Fish):
         self.location = kwargs.get('location', None)
         self.iswild = kwargs.get('iswild', None)
 
-
 class Sawshark(Shark):
     """Sawshark.
 
@@ -831,7 +812,6 @@ class Sawshark(Shark):
         self.fishtype = 'sawshark'
         self.picture = kwargs.get('picture', None)
 
-
 class Siamese(Cat):
     """Siamese.
 
@@ -858,7 +838,6 @@ class Siamese(Cat):
     def __init__(self, **kwargs):
         super(Siamese, self).__init__(**kwargs)
         self.breed = kwargs.get('breed', None)
-
 
 class SmartSalmon(Salmon):
     """SmartSalmon.
@@ -905,7 +884,6 @@ class SmartSalmon(Salmon):
         self.additional_properties = kwargs.get('additional_properties', None)
         self.college_degree = kwargs.get('college_degree', None)
 
-
 class StringWrapper(Model):
     """StringWrapper.
 
@@ -928,5 +906,4 @@ class StringWrapper(Model):
         self.field = kwargs.get('field', None)
         self.empty = kwargs.get('empty', None)
         self.null = kwargs.get('null', None)
-
 

@@ -45,7 +45,7 @@ class XmlOperations(object):
         :rtype: ~xmlservice.models.RootWithRefAndNoMeta
         :raises: ~azure.core.HttpResponseError
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_complex_type_ref_no_meta.metadata['url']
@@ -91,7 +91,7 @@ class XmlOperations(object):
 
         :raises: ~azure.core.HttpResponseError
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.put_complex_type_ref_no_meta.metadata['url']
@@ -134,7 +134,7 @@ class XmlOperations(object):
         :rtype: ~xmlservice.models.RootWithRefAndMeta
         :raises: ~azure.core.HttpResponseError
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_complex_type_ref_with_meta.metadata['url']
@@ -180,7 +180,7 @@ class XmlOperations(object):
 
         :raises: ~azure.core.HttpResponseError
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.put_complex_type_ref_with_meta.metadata['url']
@@ -223,7 +223,7 @@ class XmlOperations(object):
         :rtype: ~xmlservice.models.Slideshow
         :raises: ~xmlservice.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_simple.metadata['url']
@@ -244,7 +244,7 @@ class XmlOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         deserialized = self._deserialize('Slideshow', response)
 
@@ -269,7 +269,7 @@ class XmlOperations(object):
 
         :raises: ~xmlservice.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.put_simple.metadata['url']
@@ -293,7 +293,7 @@ class XmlOperations(object):
 
         if response.status_code not in [201]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
           return cls(response, None, {})
@@ -312,7 +312,7 @@ class XmlOperations(object):
         :rtype: ~xmlservice.models.AppleBarrel
         :raises: ~azure.core.HttpResponseError
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_wrapped_lists.metadata['url']
@@ -358,7 +358,7 @@ class XmlOperations(object):
 
         :raises: ~xmlservice.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.put_wrapped_lists.metadata['url']
@@ -382,7 +382,7 @@ class XmlOperations(object):
 
         if response.status_code not in [201]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException(response, self._deserialize)
+            raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
           return cls(response, None, {})
@@ -402,7 +402,7 @@ class XmlOperations(object):
 
         :raises: ~azure.core.HttpResponseError
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_headers.metadata['url']
@@ -444,7 +444,7 @@ class XmlOperations(object):
         :rtype: ~xmlservice.models.Slideshow
         :raises: ~azure.core.HttpResponseError
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_empty_list.metadata['url']
@@ -490,7 +490,7 @@ class XmlOperations(object):
 
         :raises: ~azure.core.HttpResponseError
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.put_empty_list.metadata['url']
@@ -533,7 +533,7 @@ class XmlOperations(object):
         :rtype: ~xmlservice.models.AppleBarrel
         :raises: ~azure.core.HttpResponseError
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_empty_wrapped_lists.metadata['url']
@@ -579,7 +579,7 @@ class XmlOperations(object):
 
         :raises: ~azure.core.HttpResponseError
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.put_empty_wrapped_lists.metadata['url']
@@ -622,7 +622,7 @@ class XmlOperations(object):
         :rtype: list[~xmlservice.models.Banana]
         :raises: ~azure.core.HttpResponseError
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_root_list.metadata['url']
@@ -668,7 +668,7 @@ class XmlOperations(object):
 
         :raises: ~azure.core.HttpResponseError
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.put_root_list.metadata['url']
@@ -711,7 +711,7 @@ class XmlOperations(object):
         :rtype: list[~xmlservice.models.Banana]
         :raises: ~azure.core.HttpResponseError
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_root_list_single_item.metadata['url']
@@ -757,7 +757,7 @@ class XmlOperations(object):
 
         :raises: ~azure.core.HttpResponseError
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.put_root_list_single_item.metadata['url']
@@ -800,7 +800,7 @@ class XmlOperations(object):
         :rtype: list[~xmlservice.models.Banana]
         :raises: ~azure.core.HttpResponseError
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_empty_root_list.metadata['url']
@@ -846,7 +846,7 @@ class XmlOperations(object):
 
         :raises: ~azure.core.HttpResponseError
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.put_empty_root_list.metadata['url']
@@ -889,7 +889,7 @@ class XmlOperations(object):
         :rtype: ~xmlservice.models.Banana
         :raises: ~azure.core.HttpResponseError
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_empty_child_element.metadata['url']
@@ -935,7 +935,7 @@ class XmlOperations(object):
 
         :raises: ~azure.core.HttpResponseError
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.put_empty_child_element.metadata['url']
@@ -978,7 +978,7 @@ class XmlOperations(object):
         :rtype: ~xmlservice.models.ListContainersResponse
         :raises: ~azure.core.HttpResponseError
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
         comp = "list"
 
         # Construct URL
@@ -1023,7 +1023,7 @@ class XmlOperations(object):
         :rtype: ~xmlservice.models.StorageServiceProperties
         :raises: ~azure.core.HttpResponseError
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
         comp = "properties"
         restype = "service"
 
@@ -1073,7 +1073,7 @@ class XmlOperations(object):
 
         :raises: ~azure.core.HttpResponseError
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
         comp = "properties"
         restype = "service"
 
@@ -1120,7 +1120,7 @@ class XmlOperations(object):
         :rtype: list[~xmlservice.models.SignedIdentifier]
         :raises: ~azure.core.HttpResponseError
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
         comp = "acl"
         restype = "container"
 
@@ -1170,7 +1170,7 @@ class XmlOperations(object):
 
         :raises: ~azure.core.HttpResponseError
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
         comp = "acl"
         restype = "container"
 
@@ -1217,7 +1217,7 @@ class XmlOperations(object):
         :rtype: ~xmlservice.models.ListBlobsResponse
         :raises: ~azure.core.HttpResponseError
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
         comp = "list"
         restype = "container"
 
@@ -1267,7 +1267,7 @@ class XmlOperations(object):
 
         :raises: ~azure.core.HttpResponseError
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
         properties = models.JSONInput(id=id)
 
         # Construct URL
@@ -1311,7 +1311,7 @@ class XmlOperations(object):
         :rtype: ~xmlservice.models.JSONOutput
         :raises: ~azure.core.HttpResponseError
         """
-        error_map = kwargs.pop('error_map', None)
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.json_output.metadata['url']
