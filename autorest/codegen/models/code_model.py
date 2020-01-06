@@ -34,6 +34,9 @@ class FakeSchema(BaseSchema):
     def get_python_type(self, namespace=None):
         return namespace+"FAKEDOCSTRING"
 
+    def get_python_type_annotation(self) -> str:
+        return self.get_python_type()
+
 
 class CredentialSchema(BaseSchema):
     def __init__(self):  # pylint: disable=super-init-not-called
@@ -44,6 +47,9 @@ class CredentialSchema(BaseSchema):
 
     def get_python_type(self, namespace=None):
         return self.type
+
+    def get_python_type_annotation(self) -> str:
+        return self.get_python_type()
 
 
 class CodeModel:  # pylint: disable=too-many-instance-attributes

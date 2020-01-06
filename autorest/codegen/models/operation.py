@@ -46,7 +46,7 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods
         self.description = description
         self.url = url
         self.method = method
-        self.parameters = parameters
+        self.parameters = parameters if parameters else []
         self.responses = responses
         self.exceptions = exceptions
         self.media_types = media_types
@@ -107,8 +107,6 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods
 
     @property
     def body_parameter(self) -> Parameter:
-        if not self.has_request_body or not self.parameters:
-            raise ValueError(f"There are no body parameters for operation {self.name}")
         # Should we check if there is two body? Modeler role right?
         return [
             parameter for parameter in self.parameters if parameter.location == ParameterLocation.Body
@@ -116,8 +114,6 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods
 
     @property
     def path_parameters(self) -> List[Parameter]:
-        if not self.parameters:
-            raise ValueError(f"There are no path parameters for operation {self.name}")
         return [
             parameter for parameter in self.parameters
             if parameter.location in [ParameterLocation.Uri, ParameterLocation.Path] and
@@ -126,24 +122,18 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods
 
     @property
     def query_parameters(self) -> List[Parameter]:
-        if not self.parameters:
-            raise ValueError(f"There are no query parameters for operation {self.name}")
         return [
             parameter for parameter in self.parameters if parameter.location == ParameterLocation.Query
         ]
 
     @property
     def headers_parameters(self) -> List[Parameter]:
-        if not self.parameters:
-            raise ValueError(f"There are no header parameters for operation {self.name}")
         return [
             parameter for parameter in self.parameters if parameter.location == ParameterLocation.Header
         ]
 
     @property
     def constant_parameters(self) -> List[Parameter]:
-        if not self.parameters:
-            raise ValueError(f"There are no constant parameters for operation {self.name}")
         return [
             parameter for parameter in self.parameters if isinstance(parameter.schema, ConstantSchema)
         ]
@@ -156,8 +146,6 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods
             """A predicate to tell if this parmater deserves to be in the signature.
             """
             return not (isinstance(parameter.schema, ConstantSchema) or parameter.implementation == "Client")
-        if not self.parameters:
-            raise ValueError(f"There are no method parameters for operation {self.name}")
         signature_parameters_required = []
         signature_parameters_optional = []
         for parameter in self.parameters:
