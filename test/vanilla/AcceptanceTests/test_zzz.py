@@ -53,7 +53,6 @@ class TestAcceptance(object):
             'putModelFlattenCustomBase': 1, # https://github.com/Azure/autorest.modelerfour/issues/14
             'postModelFlattenCustomParameter': 1, # https://github.com/Azure/autorest.modelerfour/issues/14
             'putModelFlattenCustomGroupedParameter': 1, # https://github.com/Azure/autorest.modelerfour/issues/10
-            'putDateTimeMaxUtc7MS': 1 # Python doesn't support 7 digits ms datetime
         }
         for name in report:
             if "XML" in name:
@@ -63,8 +62,9 @@ class TestAcceptance(object):
         self._print_report(report, not_supported, missing_features_or_bugs)
 
         missing_features_or_bugs = {
-            "putDateTimeMaxLocalNegativeOffset": 1,
-            "putDateTimeMinLocalPositiveOffset": 1,
+            "putDateTimeMaxLocalNegativeOffset": 1, # Python doesn't support year 1000
+            "putDateTimeMinLocalPositiveOffset": 1, # Python doesn't support BC time
+            'putDateTimeMaxUtc7MS': 1 # Python doesn't support 7 digits ms datetime
         }
         for name in optional_report:
             if "Options" in name:
