@@ -45,15 +45,24 @@ async def client():
     async with AutoRestDateTimeTestService(base_url="http://localhost:3000") as client:
         yield client
 
-class TestDatetime(object):
+class TestDatetime:
     @pytest.mark.asyncio
     async def test_utc_max_date_time(self, client):
-        max_date = isodate.parse_datetime("9999-12-31T23:59:59.999999Z")
+        max_date = isodate.parse_datetime("9999-12-31T23:59:59.999Z")
         dt = await client.datetime_model.get_utc_lowercase_max_date_time()
         assert dt ==  max_date
         dt = await client.datetime_model.get_utc_uppercase_max_date_time()
         assert dt ==  max_date
         await client.datetime_model.put_utc_max_date_time(max_date)
+
+    @pytest.mark.asyncio
+    async def test_utc_max_date_time_7digits(self, client):
+        max_date = isodate.parse_datetime("9999-12-31T23:59:59.999999Z")
+        dt = await client.datetime_model.get_utc_uppercase_max_date_time7_digits()
+        assert dt == max_date
+        with pytest.raises(Exception):
+            # Python doesn't support 7 digits
+            await client.datetime_model.put_utc_max_date_time7_digits(max_date)
 
     @pytest.mark.asyncio
     async def test_get_utc_min_date_time(self, client):
