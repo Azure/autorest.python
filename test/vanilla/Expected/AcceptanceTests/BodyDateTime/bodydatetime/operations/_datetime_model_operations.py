@@ -207,7 +207,7 @@ class DatetimeOperations(object):
 
     @distributed_trace
     def put_utc_max_date_time(self, datetime_body, cls=None, **kwargs):
-        """Put max datetime value 9999-12-31T23:59:59.9999999Z.
+        """Put max datetime value 9999-12-31T23:59:59.999Z.
 
         FIXME: add operation.summary
 
@@ -252,8 +252,54 @@ class DatetimeOperations(object):
     put_utc_max_date_time.metadata = {'url': '/datetime/max/utc'}
 
     @distributed_trace
+    def put_utc_max_date_time7_digits(self, datetime_body, cls=None, **kwargs):
+        """Put max datetime value 9999-12-31T23:59:59.9999999Z.
+
+        FIXME: add operation.summary
+
+
+        :param datetime_body: 
+        :type datetime_body: ~datetime.datetime
+        :param callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+
+        :raises: ~bodydatetime.models.ErrorException:
+        """
+        error_map = kwargs.pop('error_map', {})
+
+        # Construct URL
+        url = self.put_utc_max_date_time7_digits.metadata['url']
+
+        # Construct parameters
+        query_parameters = {}
+
+
+        # Construct headers
+        header_parameters = {}
+        header_parameters['Content-Type'] = 'application/json'
+
+
+        # Construct body
+        body_content = self._serialize.body(datetime_body, 'iso-8601')
+
+        # Construct and send request
+        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise models.ErrorException.from_response(response, self._deserialize)
+
+        if cls:
+          return cls(response, None, {})
+
+    put_utc_max_date_time7_digits.metadata = {'url': '/datetime/max/utc7ms'}
+
+    @distributed_trace
     def get_utc_lowercase_max_date_time(self, cls=None, **kwargs):
-        """Get max datetime value 9999-12-31t23:59:59.9999999z.
+        """Get max datetime value 9999-12-31t23:59:59.999z.
 
         FIXME: add operation.summary
 
@@ -296,7 +342,7 @@ class DatetimeOperations(object):
 
     @distributed_trace
     def get_utc_uppercase_max_date_time(self, cls=None, **kwargs):
-        """Get max datetime value 9999-12-31T23:59:59.9999999Z.
+        """Get max datetime value 9999-12-31T23:59:59.999Z.
 
         FIXME: add operation.summary
 
@@ -338,8 +384,51 @@ class DatetimeOperations(object):
     get_utc_uppercase_max_date_time.metadata = {'url': '/datetime/max/utc/uppercase'}
 
     @distributed_trace
+    def get_utc_uppercase_max_date_time7_digits(self, cls=None, **kwargs):
+        """Get max datetime value 9999-12-31T23:59:59.9999999Z.
+
+        FIXME: add operation.summary
+
+
+        :param callable cls: A custom type or function that will be passed the direct response
+        :return:  or the result of cls(response)
+        :rtype: ~datetime.datetime
+        :raises: ~bodydatetime.models.ErrorException:
+        """
+        error_map = kwargs.pop('error_map', {})
+
+        # Construct URL
+        url = self.get_utc_uppercase_max_date_time7_digits.metadata['url']
+
+        # Construct parameters
+        query_parameters = {}
+
+
+        # Construct headers
+        header_parameters = {}
+        header_parameters['Accept'] = 'application/json'
+
+
+        # Construct and send request
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise models.ErrorException.from_response(response, self._deserialize)
+
+        deserialized = self._deserialize('iso-8601', response)
+
+        if cls:
+          return cls(response, deserialized, {})
+
+        return deserialized
+    get_utc_uppercase_max_date_time7_digits.metadata = {'url': '/datetime/max/utc7ms/uppercase'}
+
+    @distributed_trace
     def put_local_positive_offset_max_date_time(self, datetime_body, cls=None, **kwargs):
-        """Put max datetime value with positive numoffset 9999-12-31t23:59:59.9999999+14:00.
+        """Put max datetime value with positive numoffset 9999-12-31t23:59:59.999+14:00.
 
         FIXME: add operation.summary
 
@@ -385,7 +474,7 @@ class DatetimeOperations(object):
 
     @distributed_trace
     def get_local_positive_offset_lowercase_max_date_time(self, cls=None, **kwargs):
-        """Get max datetime value with positive num offset 9999-12-31t23:59:59.9999999+14:00.
+        """Get max datetime value with positive num offset 9999-12-31t23:59:59.999+14:00.
 
         FIXME: add operation.summary
 
@@ -428,7 +517,7 @@ class DatetimeOperations(object):
 
     @distributed_trace
     def get_local_positive_offset_uppercase_max_date_time(self, cls=None, **kwargs):
-        """Get max datetime value with positive num offset 9999-12-31T23:59:59.9999999+14:00.
+        """Get max datetime value with positive num offset 9999-12-31T23:59:59.999+14:00.
 
         FIXME: add operation.summary
 
@@ -471,7 +560,7 @@ class DatetimeOperations(object):
 
     @distributed_trace
     def put_local_negative_offset_max_date_time(self, datetime_body, cls=None, **kwargs):
-        """Put max datetime value with positive numoffset 9999-12-31t23:59:59.9999999-14:00.
+        """Put max datetime value with positive numoffset 9999-12-31t23:59:59.999-14:00.
 
         FIXME: add operation.summary
 
@@ -517,7 +606,7 @@ class DatetimeOperations(object):
 
     @distributed_trace
     def get_local_negative_offset_uppercase_max_date_time(self, cls=None, **kwargs):
-        """Get max datetime value with positive num offset 9999-12-31T23:59:59.9999999-14:00.
+        """Get max datetime value with positive num offset 9999-12-31T23:59:59.999-14:00.
 
         FIXME: add operation.summary
 
@@ -560,7 +649,7 @@ class DatetimeOperations(object):
 
     @distributed_trace
     def get_local_negative_offset_lowercase_max_date_time(self, cls=None, **kwargs):
-        """Get max datetime value with positive num offset 9999-12-31t23:59:59.9999999-14:00.
+        """Get max datetime value with positive num offset 9999-12-31t23:59:59.999-14:00.
 
         FIXME: add operation.summary
 
