@@ -54,6 +54,9 @@ class ConstantSchema(BaseSchema):
         """
         return self.schema.get_python_type(namespace)
 
+    def get_python_type_annotation(self) -> str:
+        return self.schema.get_python_type_annotation()
+
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, Any], **kwargs) -> "ConstantSchema":
         """Constructs a ConstantSchema from yaml data.

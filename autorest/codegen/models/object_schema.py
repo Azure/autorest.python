@@ -47,7 +47,7 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
     def get_python_type_annotation(self) -> str:
         return f'\"{self.name}\"'
 
-    def get_python_type(self, namespace):
+    def get_python_type(self, namespace: str):
         return '~{}.models.{}'.format(namespace, self.name)
 
     def get_declaration(self, value):

@@ -49,12 +49,13 @@ class BaseSchema(BaseModel, ABC):
         """
         ...
 
+    @abstractmethod
     def get_python_type_annotation(self) -> str:
         """The python type used for type annotation
 
         Special case for enum, for instance: Union[str, "EnumName"]
         """
-        return self.get_python_type("")
+        ...
 
     def get_declaration(self, value) -> str: # pylint: disable=no-self-use
         """Return the current value from YAML as a Python string that represents the constant.

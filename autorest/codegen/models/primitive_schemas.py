@@ -27,6 +27,9 @@ class PrimitiveSchema(BaseSchema):
     def get_python_type(self, namespace=None):
         return self._to_python_type()
 
+    def get_python_type_annotation(self) -> str:
+        return self.get_python_type()
+
 
 class AnySchema(PrimitiveSchema):
     def get_serialization_type(self):
