@@ -58,8 +58,10 @@ class TestDatetime(object):
     def test_utc_max_date_time_7digits(self, client):
         max_date = isodate.parse_datetime("9999-12-31T23:59:59.999999Z")
         dt = client.datetime_model.get_utc_uppercase_max_date_time7_digits()
-        assert dt ==  max_date
-        client.datetime_model.put_utc_max_date_time7_digits(max_date)
+        assert dt == max_date
+        with pytest.raises(Exception):
+            # Python doesn't support 7 digits
+            client.datetime_model.put_utc_max_date_time7_digits(max_date)
 
     def test_get_utc_min_date_time(self, client):
         min_date = isodate.parse_datetime("0001-01-01T00:00:00Z")

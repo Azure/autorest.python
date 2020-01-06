@@ -53,6 +53,7 @@ class TestAcceptance(object):
             'putModelFlattenCustomBase': 1, # https://github.com/Azure/autorest.modelerfour/issues/14
             'postModelFlattenCustomParameter': 1, # https://github.com/Azure/autorest.modelerfour/issues/14
             'putModelFlattenCustomGroupedParameter': 1, # https://github.com/Azure/autorest.modelerfour/issues/10
+            'putDateTimeMaxUtc7MS': 1 # Python doesn't support 7 digits ms datetime
         }
         for name in report:
             if "XML" in name:
