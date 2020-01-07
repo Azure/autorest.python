@@ -54,7 +54,7 @@ class JinjaSerializer:
                 env=env
             )
 
-    def _serialize_and_write_models_folder(self, code_model, env):
+    def _serialize_and_write_models_folder(self, code_model: CodeModel, env: Environment) -> None:
         namespace_path = Path(*(code_model.namespace.split(".")))
         # Serialize the models folder
 
@@ -81,7 +81,7 @@ class JinjaSerializer:
             )
         self._autorestapi.write_file(models_path / Path("__init__.py"), model_init_serializer.model_init_file)
 
-    def _serialize_and_write_operations_folder(self, code_model, env):
+    def _serialize_and_write_operations_folder(self, code_model: CodeModel, env: Environment) -> None:
         namespace_path = Path(*(code_model.namespace.split(".")))
         # write sync operations init file
         operations_init_serializer = OperationsInitSerializer(code_model=code_model, env=env, async_mode=False)
@@ -123,14 +123,14 @@ class JinjaSerializer:
                     operation_group_async_serializer.operation_group_file
                 )
 
-    def _serialize_and_write_top_level_folder(self, code_model, env):
+    def _serialize_and_write_top_level_folder(self, code_model: CodeModel, env: Environment) -> None:
         general_serializer = GeneralSerializer(code_model=code_model, env=env, async_mode=False)
         general_serializer.serialize()
 
         namespace_parts = code_model.namespace.split(".")
-        namespace_path = None
+        namespace_path: Path = Path()
         for count, elem in enumerate(namespace_parts):
-            namespace_path = Path(elem) if not namespace_path else namespace_path / Path(elem)
+            namespace_path = Path(elem) if namespace_path == Path() else namespace_path / Path(elem)
             if count == len(namespace_parts) - 1:
                 # Write the main __init__ file
                 self._autorestapi.write_file(namespace_path / Path("__init__.py"), general_serializer.init_file)
@@ -158,7 +158,7 @@ class JinjaSerializer:
         if code_model.options["basic_setup_py"]:
             self._autorestapi.write_file(Path("setup.py"), general_serializer.setup_file)
 
-    def _serialize_and_write_aio_folder(self, code_model, env):
+    def _serialize_and_write_aio_folder(self, code_model: CodeModel, env: Environment) -> None:
         namespace_path = Path(*(code_model.namespace.split(".")))
         aio_general_serializer = GeneralSerializer(code_model=code_model, env=env, async_mode=True)
         aio_general_serializer.serialize()

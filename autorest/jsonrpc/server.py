@@ -20,7 +20,7 @@ def GetPluginNames():
     return ["codegen", "m2r", "namer"]
 
 @dispatcher.add_method
-def Process(plugin_name, session_id):
+def Process(plugin_name: str, session_id):
     # pylint: disable=import-outside-toplevel
     """JSON-RPC process call.
     """

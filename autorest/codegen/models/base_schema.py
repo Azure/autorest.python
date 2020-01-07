@@ -21,7 +21,7 @@ class BaseSchema(BaseModel, ABC):
         self.default_value = yaml_data.get('defaultValue', None)
 
     @classmethod
-    def from_yaml(cls, yaml_data, **kwargs):  # pylint: disable=unused-argument
+    def from_yaml(cls, yaml_data: Dict[str, Any], **kwargs):  # pylint: disable=unused-argument
         return cls(yaml_data=yaml_data)
 
     def imports(self):  # pylint: disable=no-self-use
@@ -57,7 +57,7 @@ class BaseSchema(BaseModel, ABC):
         """
         ...
 
-    def get_declaration(self, value) -> str: # pylint: disable=no-self-use
+    def get_declaration(self, value: Any) -> str: # pylint: disable=no-self-use
         """Return the current value from YAML as a Python string that represents the constant.
 
         Example, if schema is "bytearray" and value is "foo",

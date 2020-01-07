@@ -3,22 +3,24 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
+from jinja2 import Environment
 from .import_serializer import FileImportSerializer
+from ..models import CodeModel
 
 
 class GeneralSerializer:
-    def __init__(self, code_model, env, async_mode):
+    def __init__(self, code_model: CodeModel, env: Environment, async_mode: bool):
         self.code_model = code_model
         self.env = env
         self.async_mode = async_mode
-        self._init_file = None
-        self._service_client_file = None
-        self._config_file = None
-        self._version_file = None
-        self._setup_file = None
-        self._pkgutil_init_file = None
+        self._pkgutil_init_file: str = ""
+        self._init_file: str = ""
+        self._service_client_file: str = ""
+        self._config_file: str = ""
+        self._version_file: str = ""
+        self._setup_file: str = ""
 
-    def serialize(self):
+    def serialize(self) -> None:
         template = self.env.get_template("pkgutil_init.py.jinja2")
         self._pkgutil_init_file = template.render()
 
@@ -51,25 +53,25 @@ class GeneralSerializer:
             self._setup_file = template.render(code_model=self.code_model)
 
     @property
-    def pkgutil_init_file(self):
+    def pkgutil_init_file(self) -> str:
         return self._pkgutil_init_file
 
     @property
-    def init_file(self):
+    def init_file(self) -> str:
         return self._init_file
 
     @property
-    def service_client_file(self):
+    def service_client_file(self) -> str:
         return self._service_client_file
 
     @property
-    def config_file(self):
+    def config_file(self) -> str:
         return self._config_file
 
     @property
-    def version_file(self):
+    def version_file(self) -> str:
         return self._version_file
 
     @property
-    def setup_file(self):
+    def setup_file(self) -> str:
         return self._setup_file

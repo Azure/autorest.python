@@ -5,15 +5,16 @@
 # --------------------------------------------------------------------------
 from abc import abstractmethod
 from typing import List
-from ..models import EnumSchema, ObjectSchema
+from jinja2 import Environment
+from ..models import EnumSchema, ObjectSchema, CodeModel
 from ..models.imports import FileImport
 from .import_serializer import FileImportSerializer
 
 class ModelBaseSerializer:
-    def __init__(self, code_model, env):
+    def __init__(self, code_model: CodeModel, env: Environment):
         self.code_model = code_model
         self.env = env
-        self._model_file = None
+        self._model_file: str = ""
 
 
     def serialize(self):

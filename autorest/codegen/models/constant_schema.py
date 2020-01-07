@@ -29,10 +29,10 @@ class ConstantSchema(BaseSchema):
         self.value = value
         self.schema = schema
 
-    def get_declaration(self, value):
+    def get_declaration(self, value: Any):
         raise TypeError('Should not call get_declaration on a ConstantSchema. Call get_constant_value instead')
 
-    def get_constant_value(self):
+    def get_constant_value(self) -> str:
         """This string is used directly in template, as-is
         """
         if self.value is None:

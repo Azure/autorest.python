@@ -22,30 +22,14 @@ from .property import Property
 _LOGGER = logging.getLogger(__name__)
 
 
-class FakeSchema(BaseSchema):
-    """Remove this guy eventually, just to make some fast process during dev.
-    """
-    def __init__(self):  # pylint: disable=super-init-not-called
-        ...
-
-    def get_serialization_type(self):
-        return "FAKESERIALIZATIONTYPE"
-
-    def get_python_type(self, namespace=None):
-        return namespace+"FAKEDOCSTRING"
-
-    def get_python_type_annotation(self) -> str:
-        return self.get_python_type()
-
-
 class CredentialSchema(BaseSchema):
     def __init__(self):  # pylint: disable=super-init-not-called
         self.type = 'azure.core.credentials.TokenCredential'
 
-    def get_serialization_type(self):
+    def get_serialization_type(self) -> str:
         return self.type
 
-    def get_python_type(self, namespace=None):
+    def get_python_type(self, namespace: Optional[str] = None) -> str:
         return self.type
 
     def get_python_type_annotation(self) -> str:
@@ -79,11 +63,11 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
     """
     def __init__(self, options: Dict[str, Any]):
         self.options = options
-        self.module_name = None
-        self.class_name = None
-        self.description = None
-        self.namespace = None
-        self.namespace_path = None
+        self.module_name: str = ""
+        self.class_name: str = ""
+        self.description: str = ""
+        self.namespace: str = ""
+        self.namespace_path: str = ""
         self.schemas: Dict[int, ObjectSchema] = {}
         self.sorted_schemas: List[ObjectSchema] = []
         self.enums: Dict[int, EnumSchema] = {}
@@ -155,7 +139,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
         self.global_parameters.insert(0, credential_parameter)
 
     @staticmethod
-    def _lro_initial_function(operation):
+    def _lro_initial_function(operation: LROOperation) -> Operation:
         return Operation(
             yaml_data={},
             name="_" + operation.name + "_initial",
@@ -220,12 +204,12 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
                 if operation not in next_operations
             ]
 
-    def enable_parameter_flattening(self):
+    def enable_parameter_flattening(self) -> None:
         for op_group in self.operation_groups:
             for operation in op_group.operations:
                 self._enable_parameter_flattening_for_operation(operation)
 
-    def _enable_parameter_flattening_for_operation(self, operation):
+    def _enable_parameter_flattening_for_operation(self, operation: Operation) -> None:
         if not (operation.has_request_body and isinstance(operation.body_parameter.schema, ObjectSchema)):
             return
 
@@ -240,7 +224,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
         for prop in properties:
             fake_parameters.append(
                 Parameter(
-                    yaml_data=None,
+                    yaml_data={},
                     schema=prop.schema,
                     rest_api_name=prop.original_swagger_name,
                     serialized_name=prop.name,
@@ -312,7 +296,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
                 obj.schema = self.lookup_schema(schema_obj_id)
             except KeyError:
                 _LOGGER.critical("Unable to ref the object")
-                obj.schema = FakeSchema()
+                raise
 
     def add_schema_link_to_operation(self) -> None:
         """Puts created schemas into operation classes `schema` property
