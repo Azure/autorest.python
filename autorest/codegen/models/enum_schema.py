@@ -31,7 +31,10 @@ class EnumValue:
         :rtype: ~autorest.models.EnumValue
         """
         return cls(
-            name=yaml_data['language']['python']['name'] if has_unique_enum_name else yaml_data['language']['default']['name'],
+            name=(
+                yaml_data['language']['python']['name']
+                if has_unique_enum_name else yaml_data['language']['default']['name']
+            ),
             value=yaml_data['value'],
             description=yaml_data['language']['python'].get('description')
         )
