@@ -4,14 +4,14 @@
 # license information.
 # --------------------------------------------------------------------------
 from .model_base_serializer import ModelBaseSerializer
-from ..models import PrimitiveSchema, ListSchema, DictionarySchema, EnumSchema
-from ..models.imports import ImportType
+from ..models import PrimitiveSchema, ListSchema, DictionarySchema, EnumSchema, ObjectSchema
+from ..models.imports import ImportType, FileImport
 
 
 class ModelPython3Serializer(ModelBaseSerializer):
 
     @staticmethod
-    def _build_init_args(model):
+    def _build_init_args(model: ObjectSchema) -> None:
         init_args = []
         if model.base_model:
             properties_to_initialize = []
@@ -37,7 +37,7 @@ class ModelPython3Serializer(ModelBaseSerializer):
         model.init_args = init_args
 
     @staticmethod
-    def _build_init_line(model):
+    def _build_init_line(model: ObjectSchema) -> None:
         init_properties_declaration = []
         init_line_parameters = [
             p for p in model.properties if not p.readonly and not p.is_discriminator and not p.constant
@@ -62,13 +62,13 @@ class ModelPython3Serializer(ModelBaseSerializer):
             model.init_line = "def __init__(self, **kwargs) -> None:"
 
 
-    def _format_model_for_file(self, model):
+    def _format_model_for_file(self, model: ObjectSchema) -> None:
         for prop in model.properties:
             self._format_property_doc_string_for_file(prop)
         ModelPython3Serializer._build_init_line(model)
         ModelPython3Serializer._build_init_args(model)
 
-    def imports(self):
+    def imports(self) -> FileImport:
         file_import = super(ModelPython3Serializer, self).imports()
         for model in self.code_model.sorted_schemas:
             init_line_parameters = [p for p in model.properties if not p.readonly and not p.is_discriminator]

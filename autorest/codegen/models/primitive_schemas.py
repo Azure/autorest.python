@@ -5,7 +5,7 @@
 # --------------------------------------------------------------------------
 import logging
 from enum import Enum
-from typing import Dict, Optional, Union
+from typing import Any, Dict, List, Optional, Union
 
 from .base_schema import BaseSchema
 
@@ -18,13 +18,13 @@ class PrimitiveSchema(BaseSchema):
         "boolean": "bool",
     }
 
-    def _to_python_type(self):
+    def _to_python_type(self) -> str:
         return self._TYPE_MAPPINGS.get(self.yaml_data['type'], "str")
 
-    def get_serialization_type(self):
+    def get_serialization_type(self) -> str:
         return self._to_python_type()
 
-    def get_python_type(self, namespace=None):
+    def get_python_type(self, namespace: str = None) -> str:
         return self._to_python_type()
 
     def get_python_type_annotation(self) -> str:
@@ -32,10 +32,10 @@ class PrimitiveSchema(BaseSchema):
 
 
 class AnySchema(PrimitiveSchema):
-    def get_serialization_type(self):
+    def get_serialization_type(self) -> str:
         return 'object'
 
-    def get_python_type(self, namespace=None):
+    def get_python_type(self, namespace: str = None) -> str:
         return 'object'
 
 
@@ -49,7 +49,7 @@ class NumberSchema(PrimitiveSchema):
         self.exclusive_maximum = yaml_data.get('exclusiveMaximum')
         self.exclusive_minimum = yaml_data.get('exclusiveMinimum')
 
-    def get_serialization_constraints(self):
+    def get_serialization_constraints(self) -> List[str]:
         validation_constraints = [
             f"maximum_ex={self.maximum}" if self.maximum is not None and self.exclusive_maximum else None,
             f"maximum={self.maximum}" if self.maximum is not None and not self.exclusive_maximum else None,
@@ -76,21 +76,21 @@ class NumberSchema(PrimitiveSchema):
         return validation_map or None
 
 
-    def get_serialization_type(self):
+    def get_serialization_type(self) -> str:
         if self.yaml_data['type'] == "integer":
             if self.precision == 64:
                 return "long"
             return "int"
         return "float"
 
-    def get_python_type(self, namespace=None):
+    def get_python_type(self, namespace: str = None) -> str:
         if self.yaml_data['type'] == "integer":
             if self.precision == 64:
                 return "long"
             return "int"
         return "float"
 
-    def get_python_type_annotation(self):
+    def get_python_type_annotation(self) -> str:
         python_type = self.get_python_type()
         if python_type == "long":
             return "int"
@@ -98,13 +98,13 @@ class NumberSchema(PrimitiveSchema):
 
 
 class StringSchema(PrimitiveSchema):
-    def __init__(self, yaml_data):
+    def __init__(self, yaml_data: Dict[str, Any]):
         super(StringSchema, self).__init__(yaml_data)
         self.max_length = yaml_data.get('maxLength')
         self.min_length = yaml_data.get('minLength', 0) if yaml_data.get('maxLength') else yaml_data.get('minLength')
         self.pattern = yaml_data.get('pattern')
 
-    def get_serialization_constraints(self):
+    def get_serialization_constraints(self) -> List[str]:
         validation_constraints = [
             f"max_length={self.max_length}" if self.max_length is not None else None,
             f"min_length={self.min_length}" if self.min_length is not None else None,
@@ -135,20 +135,20 @@ class DatetimeSchema(PrimitiveSchema):
         datetime = "date-time"
         rfc1123 = "date-time-rfc1123"
 
-    def get_serialization_type(self):
+    def get_serialization_type(self) -> str:
         formats_to_attribute_type = {
             self.Formats.datetime: "iso-8601",
             self.Formats.rfc1123: "rfc-1123"
         }
         return formats_to_attribute_type[self.format]
 
-    def get_python_type(self, namespace=None):
+    def get_python_type(self, namespace: str = None) -> str:
         return "~"+self.get_python_type_annotation()
 
-    def get_python_type_annotation(self):
+    def get_python_type_annotation(self) -> str:
         return "datetime.datetime"
 
-    def get_declaration(self, value) -> str:
+    def get_declaration(self, value: Any) -> str:
         """Could be discussed, since technically I should return a datetime object,
         but msrest will do fine.
         """
@@ -157,16 +157,16 @@ class DatetimeSchema(PrimitiveSchema):
 
 class UnixTimeSchema(PrimitiveSchema):
 
-    def get_serialization_type(self):
+    def get_serialization_type(self) -> str:
         return "unix-time"
 
-    def get_python_type(self, namespace=None):
+    def get_python_type(self, namespace: str = None) -> str:
         return "~"+self.get_python_type_annotation()
 
-    def get_python_type_annotation(self):
+    def get_python_type_annotation(self) -> str:
         return "datetime.datetime"
 
-    def get_declaration(self, value) -> str:
+    def get_declaration(self, value: Any) -> str:
         """Could be discussed, since technically I should return a datetime object,
         but msrest will do fine.
         """
@@ -175,16 +175,16 @@ class UnixTimeSchema(PrimitiveSchema):
 
 class DateSchema(PrimitiveSchema):
 
-    def get_serialization_type(self):
+    def get_serialization_type(self) -> str:
         return "date"
 
-    def get_python_type(self, namespace=None):
+    def get_python_type(self, namespace: str = None) -> str:
         return "~"+self.get_python_type_annotation()
 
     def get_python_type_annotation(self):
         return "datetime.date"
 
-    def get_declaration(self, value) -> str:
+    def get_declaration(self, value: Any) -> str:
         """Could be discussed, since technically I should return a datetime object,
         but msrest will do fine.
         """
@@ -193,16 +193,16 @@ class DateSchema(PrimitiveSchema):
 
 class DurationSchema(PrimitiveSchema):
 
-    def get_serialization_type(self):
+    def get_serialization_type(self) -> str:
         return "duration"
 
-    def get_python_type(self, namespace=None):
+    def get_python_type(self, namespace: str = None) -> str:
         return "~"+self.get_python_type_annotation()
 
-    def get_python_type_annotation(self):
+    def get_python_type_annotation(self) -> str:
         return "datetime.timedelta"
 
-    def get_declaration(self, value) -> str:
+    def get_declaration(self, value: Any) -> str:
         """Could be discussed, since technically I should return a datetime object,
         but msrest will do fine.
         """
@@ -210,7 +210,7 @@ class DurationSchema(PrimitiveSchema):
 
 
 class ByteArraySchema(PrimitiveSchema):
-    def __init__(self, yaml_data):
+    def __init__(self, yaml_data: Dict[str, Any]):
         super(ByteArraySchema, self).__init__(yaml_data)
         self.format = self.Formats(yaml_data['format'])
 
@@ -218,19 +218,19 @@ class ByteArraySchema(PrimitiveSchema):
         base64url = "base64url"
         byte = "byte"
 
-    def get_serialization_type(self):
+    def get_serialization_type(self) -> str:
         if self.format == ByteArraySchema.Formats.base64url:
             return "base64"
         return "bytearray"
 
-    def get_python_type(self, namespace=None):
+    def get_python_type(self, namespace: str = None) -> str:
         return "bytearray"
 
-    def get_declaration(self, value) -> str:
+    def get_declaration(self, value: Any) -> str:
         return f'bytearray("{value}", encoding="utf-8")'
 
 
-def get_primitive_schema(yaml_data):
+def get_primitive_schema(yaml_data: Dict[str, Any]) -> "PrimitiveSchema":
     mapping = {
         'integer': NumberSchema,
         'number': NumberSchema,

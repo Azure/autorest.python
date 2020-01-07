@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Dict
+from typing import Any, Dict, List
 from .base_schema import BaseSchema
 from .dictionary_schema import DictionarySchema
 from .imports import FileImport, ImportType
@@ -18,7 +18,7 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
     :param properties: the optional properties of the class.
     :type properties: dict(str, str)
     """
-    def __init__(self, yaml_data, name: str, description: str = None, **kwargs):
+    def __init__(self, yaml_data: Dict[str, Any], name: str, description: str = "", **kwargs):
         super(ObjectSchema, self).__init__(yaml_data)
         self.name = name
         self.description = description
@@ -30,11 +30,11 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
         self.subtype_map = kwargs.pop('subtype_map', None)
         self.discriminator_name = kwargs.pop('discriminator_name', None)
         self.discriminator_value = kwargs.pop('discriminator_value', None)
-        self.property_documentation_string = None
-        self.init_line = None
-        self.init_args = None
+        self.property_documentation_string: str = ""
+        self.init_line: str = ""
+        self.init_args: List[str] = []
 
-    def imports(self):
+    def imports(self) -> FileImport:
         file_import = FileImport()
         file_import.add_from_import("msrest.serialization", "Model", ImportType.AZURECORE)
         if self.is_exception:
@@ -50,7 +50,7 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
     def get_python_type(self, namespace: str):
         return '~{}.models.{}'.format(namespace, self.name)
 
-    def get_declaration(self, value):
+    def get_declaration(self, value: Any) -> str:
         return f"{self.name}()"
 
     def __repr__(self):
@@ -68,7 +68,7 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
         :returns: A ClassType.
         :rtype: ~autorest.models.schema.ClassType
         """
-        obj = cls(yaml_data, "", None)
+        obj = cls(yaml_data, "", "")
         obj.fill_instance_from_yaml(yaml_data)
         return obj
 

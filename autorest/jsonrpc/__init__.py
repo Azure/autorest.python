@@ -5,7 +5,7 @@
 # --------------------------------------------------------------------------
 from abc import ABC, abstractmethod
 from enum import Enum
-from typing import List, Optional
+from typing import Any, List, Optional, Union
 import logging
 from pathlib import Path
 
@@ -85,7 +85,7 @@ class AutorestAPI(ABC):
             self._handler = None
 
     @abstractmethod
-    def write_file(self, filename: str, file_content: str) -> None:
+    def write_file(self, filename: Union[str, Path], file_content: str) -> None:
         """Ask autorest to write the content to the current path.
 
         pathlib.Path object are acceptable but must be relative.
@@ -95,7 +95,7 @@ class AutorestAPI(ABC):
         """
 
     @abstractmethod
-    def read_file(self, filename: str) -> str:
+    def read_file(self, filename: Union[str, Path]) -> str:
         """Ask autorest to read a file for me.
 
         pathlib.Path object are acceptable but must be relative.
@@ -111,7 +111,7 @@ class AutorestAPI(ABC):
         """
 
     @abstractmethod
-    def get_value(self, key: str) -> Optional[str]:
+    def get_value(self, key: str) -> Optional[Any]:
         """Get a value from configuration.
         """
 
@@ -120,7 +120,7 @@ class AutorestAPI(ABC):
         """Send a log message to autorest.
         """
 
-    def get_boolean_value(self, key: str, default: bool = None) -> Optional[bool]:
+    def get_boolean_value(self, key: str, default: bool = None) -> bool:
         """Check if value is present on the line, and interpret it as bool if it was.
 
         If value is not not on the line, return the "default".
@@ -128,12 +128,14 @@ class AutorestAPI(ABC):
 
         For autorest, empty dict means "it was on the line", so we want it to true.
 
-        :returns: A boolean if it was present, or None if not
-        :rtype: Optional[bool]
+        :returns: A boolean if it was present, raises if not
+        :rtype: bool
         """
         result = self.get_value(key)
         if result is None:
-            return default
+            if default is not None:
+                return default
+            raise KeyError("Couldn't find the key.")
         if result == {}: # autorest received --myoption
             return True
         if isinstance(result, bool):

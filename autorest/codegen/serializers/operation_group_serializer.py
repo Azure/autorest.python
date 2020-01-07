@@ -3,18 +3,25 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
+from jinja2 import Environment
 from .import_serializer import FileImportSerializer
-from ..models import LROOperation, PagingOperation
+from ..models import LROOperation, PagingOperation, CodeModel, OperationGroup
 
 class OperationGroupSerializer:
-    def __init__(self, code_model, env, operation_group, async_mode):
+    def __init__(
+        self,
+        code_model: CodeModel,
+        env: Environment,
+        operation_group: OperationGroup,
+        async_mode: bool
+    ):
         self.code_model = code_model
         self.env = env
         self.operation_group = operation_group
         self.async_mode = async_mode
-        self._operation_group_file = None
+        self._operation_group_file: str = ""
 
-    def serialize(self):
+    def serialize(self) -> None:
         def _is_lro(operation):
             return isinstance(operation, LROOperation)
         def _is_paging(operation):
@@ -32,7 +39,7 @@ class OperationGroupSerializer:
             async_mode=self.async_mode
         )
 
-    def filename(self):
+    def filename(self) -> str:
         basename = self.operation_group.name
         if self.operation_group.is_empty_operation_group:
             basename = self.code_model.module_name
@@ -41,5 +48,5 @@ class OperationGroupSerializer:
         return f"_{basename}_operations{async_suffix}.py"
 
     @property
-    def operation_group_file(self):
+    def operation_group_file(self) -> str:
         return self._operation_group_file

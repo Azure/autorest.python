@@ -3,14 +3,18 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
+from jinja2 import Environment
+from ..models import CodeModel
+
+
 class OperationsInitSerializer:
-    def __init__(self, code_model, env, async_mode):
+    def __init__(self, code_model: CodeModel, env: Environment, async_mode: bool):
         self.code_model = code_model
         self.env = env
         self.async_mode = async_mode
-        self._operations_init_file = None
+        self._operations_init_file: str = ""
 
-    def serialize(self):
+    def serialize(self) -> None:
         operation_group_init_template = self.env.get_template("operations_container_init.py.jinja2")
 
         self._operations_init_file = operation_group_init_template.render(
@@ -20,5 +24,5 @@ class OperationsInitSerializer:
         )
 
     @property
-    def operations_init_file(self):
+    def operations_init_file(self) -> str:
         return self._operations_init_file

@@ -4,18 +4,19 @@
 # license information.
 # --------------------------------------------------------------------------
 from abc import abstractmethod
-from ..models import EnumSchema
+from jinja2 import Environment
+from ..models import EnumSchema, CodeModel, ObjectSchema, Property
 from ..models.imports import FileImport
 from .import_serializer import FileImportSerializer
 
 class ModelBaseSerializer:
-    def __init__(self, code_model, env):
+    def __init__(self, code_model: CodeModel, env: Environment):
         self.code_model = code_model
         self.env = env
-        self._model_file = None
+        self._model_file: str = ""
 
     @staticmethod
-    def _format_model_parameter_warnings(model):
+    def _format_model_parameter_warnings(model: ObjectSchema) -> None:
         # if there are any warnings to include about parameters, we add them here
         if model.discriminator_name:
             model.description += (
@@ -29,7 +30,7 @@ class ModelBaseSerializer:
         if [x for x in model.properties if x.required]:
             model.description += "\n\n\tAll required parameters must be populated in order to send to Azure."
 
-    def _format_property_doc_string_for_file(self, prop):
+    def _format_property_doc_string_for_file(self, prop: Property) -> None:
         # building the param line of the property doc
         if prop.constant or prop.readonly:
             param_doc_string = ":ivar {}:".format(prop.name)
@@ -66,8 +67,7 @@ class ModelBaseSerializer:
         type_doc_string += prop.schema.get_python_type(self.code_model.namespace)
         prop.documentation_string = param_doc_string + "\n\t" + type_doc_string
 
-    def serialize(self):
-
+    def serialize(self) -> None:
         self.env.globals.update(str=str)
 
         for model in self.code_model.sorted_schemas:
@@ -80,16 +80,16 @@ class ModelBaseSerializer:
             imports=FileImportSerializer(self.imports())
         )
 
-    def imports(self):
+    def imports(self) -> FileImport:
         file_import = FileImport()
         for model in self.code_model.sorted_schemas:
             file_import.merge(model.imports())
         return file_import
 
     @property
-    def model_file(self):
+    def model_file(self) -> str:
         return self._model_file
 
     @abstractmethod
-    def _format_model_for_file(self, model):
-        raise NotImplementedError()
+    def _format_model_for_file(self, model: ObjectSchema) -> None:
+        ...

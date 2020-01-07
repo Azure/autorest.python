@@ -83,7 +83,7 @@ class EnumSchema(BaseSchema):
         return f"str or ~{namespace}.models.{self.enum_type}"
 
     @staticmethod
-    def _get_enum_values(yaml_data: List[Any]) -> List["EnumValue"]:
+    def _get_enum_values(yaml_data: List[Dict[str, Any]]) -> List["EnumValue"]:
         """Creates the list of values for this enum.
 
         :param yaml_data: yaml data about the enum's values

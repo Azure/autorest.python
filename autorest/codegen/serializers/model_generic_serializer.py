@@ -4,11 +4,12 @@
 # license information.
 # --------------------------------------------------------------------------
 from .model_base_serializer import ModelBaseSerializer
+from ..models import ObjectSchema
 
 
 class ModelGenericSerializer(ModelBaseSerializer):
 
-    def _format_model_for_file(self, model):
+    def _format_model_for_file(self, model: ObjectSchema) -> None:
         # only adding the warnings in the generic serializer because the function changes the model description
         # on the object, so the python3 model serializer will also have access to it
         self._format_model_parameter_warnings(model)

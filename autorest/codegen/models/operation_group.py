@@ -34,7 +34,7 @@ class OperationGroup(BaseModel):
         self.class_name = class_name
         self.operations = operations
 
-    def imports(self, async_mode):
+    def imports(self, async_mode: bool) -> FileImport:
         file_import = FileImport()
         for operation in self.operations:
             file_import.merge(operation.imports(self.code_model, async_mode))

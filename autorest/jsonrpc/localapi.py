@@ -5,7 +5,7 @@
 # --------------------------------------------------------------------------
 import logging
 from pathlib import Path
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Union
 
 from . import AutorestAPI, Channel
 
@@ -24,13 +24,13 @@ class LocalAutorestAPI(AutorestAPI):
         self._output_folder = Path(output_folder)
         self.values: Dict[str, Optional[str]] = dict()
 
-    def write_file(self, filename: str, file_content: str) -> None:
+    def write_file(self, filename: Union[str, Path], file_content: str) -> None:
         _LOGGER.debug("Writing file: %s", filename)
         with (self._output_folder / Path(filename)).open('w') as fd:
             fd.write(file_content)
         _LOGGER.debug("Written file: %s", filename)
 
-    def read_file(self, filename: str) -> str:
+    def read_file(self, filename: Union[str, Path]) -> str:
         _LOGGER.debug("Reading file: %s", filename)
         with Path(filename).open('r') as fd:
             return fd.read()

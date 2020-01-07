@@ -11,6 +11,7 @@ from .imports import FileImport, ImportType
 from .schema_response import SchemaResponse
 from .parameter import Parameter, ParameterLocation, ParameterStyle
 from .constant_schema import ConstantSchema
+from .object_schema import ObjectSchema
 
 
 _LOGGER = logging.getLogger(__name__)
@@ -27,34 +28,27 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods
         description: str,
         url: str,
         method: str,
-        parameters: List[Parameter] = None,
-        responses: List[SchemaResponse] = None,
-        exceptions: List[SchemaResponse] = None,
-        media_types: List[str] = None,
+        parameters: Optional[List[Parameter]] = None,
+        responses: Optional[List[SchemaResponse]] = None,
+        exceptions: Optional[List[SchemaResponse]] = None,
+        media_types: Optional[List[str]] = None,
         want_description_docstring: Optional[bool] = True,
         want_tracing: Optional[bool] = True
     ) -> None:
         super().__init__(yaml_data)
-        if responses is None:
-            responses = []
-        if exceptions is None:
-            exceptions = []
-        if media_types is None:
-            media_types = []
-
         self.name = name
         self.description = description
         self.url = url
         self.method = method
         self.parameters = parameters if parameters else []
-        self.responses = responses
-        self.exceptions = exceptions
-        self.media_types = media_types
+        self.responses = responses if responses else []
+        self.exceptions = exceptions if exceptions else []
+        self.media_types = media_types if media_types else []
         self.want_description_docstring = want_description_docstring
         self.want_tracing = want_tracing
 
     @property
-    def python_name(self):
+    def python_name(self) -> str:
         return self.name
 
     @staticmethod
@@ -78,7 +72,7 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods
         return ",".join(media_types)
 
     @property
-    def accept_content_type(self):
+    def accept_content_type(self) -> str:
         media_types = set(
             media_type
             for response in self.responses
@@ -87,26 +81,28 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods
         return self._suggest_content_type(list(media_types))
 
     @property
-    def request_content_type(self):
+    def request_content_type(self) -> str:
         return self._suggest_content_type(self.media_types)
 
     @property
-    def is_stream_request(self):
+    def is_stream_request(self) -> bool:
         """Is the request is a stream, like an upload."""
         # FIXME look for input
         return False
 
     @property
-    def is_stream_response(self):
+    def is_stream_response(self) -> bool:
         """Is the response expected to be streamable, like a download."""
         return any(response.is_stream_response for response in self.responses)
 
     @property
-    def has_request_body(self):
+    def has_request_body(self) -> bool:
         return any(parameter.location == ParameterLocation.Body for parameter in self.parameters)
 
     @property
     def body_parameter(self) -> Parameter:
+        if not self.has_request_body:
+            raise ValueError(f"There is no body parameter for operation {self.name}")
         # Should we check if there is two body? Modeler role right?
         return [
             parameter for parameter in self.parameters if parameter.location == ParameterLocation.Body
@@ -192,12 +188,12 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods
         f"""'{parameter.schema.get_serialization_type()}'{optional_parameters_string})""")
 
     @property
-    def serialization_context(self):
+    def serialization_context(self) -> str:
         # FIXME Do the serialization context (XML)
         return ""
 
     @property
-    def has_response_body(self):
+    def has_response_body(self) -> bool:
         """Tell if at least one response has a body.
         """
         return any(response.has_body or response.is_stream_response for response in self.responses)
@@ -209,7 +205,7 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods
         raise ValueError(f"Incorrect status code {status_code}, operation {self.name}")
 
     @property
-    def any_response_has_headers(self):
+    def any_response_has_headers(self) -> bool:
         return any(response.has_headers for response in self.responses)
 
     @property
@@ -224,7 +220,7 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods
         ]
 
     @property
-    def default_exception(self) -> SchemaResponse:
+    def default_exception(self) -> Optional[SchemaResponse]:
         default_excp = [
             excp
             for excp in self.exceptions
@@ -243,7 +239,7 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods
             if list(excp.status_codes) != ["default"]
         ]
 
-    def imports(self, code_model, async_mode):
+    def imports(self, code_model, async_mode: bool) -> FileImport:
         file_import = FileImport()
 
         # Exceptions
@@ -277,22 +273,27 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods
         return file_import
 
     @property
-    def method_signature(self):
+    def method_signature(self) -> str:
 
         signature = ", ".join([
             parameter.for_method_signature for parameter in self.method_parameters
         ])
         if signature:
-            signature = ", "+signature
+            signature = ", " + signature
         return signature
 
     @property
-    def is_flattened(self):
+    def is_flattened(self) -> bool:
         return bool([
             parameter for parameter in self.parameters if parameter.location == ParameterLocation.Other
         ])
 
-    def build_flattened_object(self):
+    def build_flattened_object(self) -> str:
+        if not isinstance(self.body_parameter.schema, ObjectSchema):
+            raise ValueError(
+                f"This method only builds flattened ObjectSchema and {self.body_parameter.schema}" +
+                f" is of type {type(self.body_parameter.schema)}"
+            )
         if not self.is_flattened:
             raise ValueError("This method can't be called if the operation doesn't need parameter flattening")
 
