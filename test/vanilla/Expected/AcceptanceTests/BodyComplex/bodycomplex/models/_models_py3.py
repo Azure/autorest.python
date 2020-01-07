@@ -555,7 +555,7 @@ class Goblinshark(Shark):
 	:type birthday: ~datetime.datetime
     :param jawsize:
 	:type jawsize: int
-    :param color: Colors possible. Possible values include: 'pink', 'gray', 'brown'. Default value: "gray".
+    :param color: Colors possible. Possible values include: 'pink', 'gray', 'brown', 'RED', 'red'. Default value: "gray".
 	:type color: str or ~bodycomplex.models.GoblinSharkColor
     """
 
