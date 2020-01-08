@@ -77,12 +77,12 @@ class ModelBaseSerializer:
         type_doc_string += prop.schema.get_python_type(namespace)
         return param_doc_string + "\n\t" + type_doc_string
 
-    @abstractmethod
     @staticmethod
+    @abstractmethod
     def init_line(model: ObjectSchema) -> str:
         ...
 
-    @abstractmethod
     @staticmethod
+    @abstractmethod
     def init_args(model: ObjectSchema) -> List[str]:
         ...
