@@ -7,6 +7,7 @@ from typing import Any, Dict
 
 from .base_model import BaseModel
 from .constant_schema import ConstantSchema
+from .imports import FileImport, ImportType
 
 
 class Property(BaseModel):
@@ -79,3 +80,9 @@ class Property(BaseModel):
             original_swagger_name=yaml_data['serializedName'],
             yaml_data=yaml_data
         )
+
+    def imports(self) -> FileImport:
+        file_import = self.schema.imports()
+        if not self.required:
+            file_import.add_from_import("typing", "Optional", ImportType.STDLIB)
+        return file_import
