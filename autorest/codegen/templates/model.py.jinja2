@@ -78,8 +78,8 @@ class {{ model.name }}(Model):
         {% endfor %}
     {% endif %}
 
-    {{ model.init_line }}
-    {% for arg in model.init_args %}
+    {{ init_line(model) }}
+    {% for arg in init_args(model) %}
         {{ arg }}
     {% endfor %}
-
+{{ "\n" }}

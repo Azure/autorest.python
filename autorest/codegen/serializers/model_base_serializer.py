@@ -4,7 +4,8 @@
 # license information.
 # --------------------------------------------------------------------------
 from abc import abstractmethod
-from ..models import EnumSchema
+from typing import List
+from ..models import EnumSchema, ObjectSchema
 from ..models.imports import FileImport
 from .import_serializer import FileImportSerializer
 
@@ -69,6 +70,8 @@ class ModelBaseSerializer:
     def serialize(self):
 
         self.env.globals.update(str=str)
+        self.env.globals.update(init_line=self.init_line)
+        self.env.globals.update(init_args=self.init_args)
 
         for model in self.code_model.sorted_schemas:
             self._format_model_for_file(model)
@@ -89,6 +92,14 @@ class ModelBaseSerializer:
     @property
     def model_file(self):
         return self._model_file
+
+    @abstractmethod
+    def init_line(model: ObjectSchema) -> str:
+        ...
+
+    @abstractmethod
+    def init_args(model: ObjectSchema) -> List[str]:
+        ...
 
     @abstractmethod
     def _format_model_for_file(self, model):

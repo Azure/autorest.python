@@ -30,9 +30,6 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
         self.subtype_map = kwargs.pop('subtype_map', None)
         self.discriminator_name = kwargs.pop('discriminator_name', None)
         self.discriminator_value = kwargs.pop('discriminator_value', None)
-        self.property_documentation_string = None
-        self.init_line = None
-        self.init_args = None
 
     def imports(self):
         file_import = FileImport()
