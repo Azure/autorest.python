@@ -33,8 +33,7 @@ class ModelPython3Serializer(ModelBaseSerializer):
             return "def __init__(self, *, {}, **kwargs) -> None:".format(
                 ", ".join(init_properties_declaration)
             )
-        else:
-            return "def __init__(self, **kwargs) -> None:"
+        return "def __init__(self, **kwargs) -> None:"
 
     @staticmethod
     def init_args(model: ObjectSchema) -> List[str]:

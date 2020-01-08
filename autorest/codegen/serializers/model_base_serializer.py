@@ -78,9 +78,11 @@ class ModelBaseSerializer:
         return param_doc_string + "\n\t" + type_doc_string
 
     @abstractmethod
+    @staticmethod
     def init_line(model: ObjectSchema) -> str:
         ...
 
     @abstractmethod
+    @staticmethod
     def init_args(model: ObjectSchema) -> List[str]:
         ...
