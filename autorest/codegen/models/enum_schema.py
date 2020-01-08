@@ -4,7 +4,6 @@
 # license information.
 # --------------------------------------------------------------------------
 from typing import Any, Dict, List, Optional
-from collections import defaultdict
 from .base_schema import BaseSchema
 
 
