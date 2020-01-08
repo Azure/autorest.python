@@ -5,6 +5,7 @@
 # --------------------------------------------------------------------------
 from typing import Any, Dict, Optional
 from .base_schema import BaseSchema
+from .imports import FileImport, ImportType
 
 class DictionarySchema(BaseSchema):
     """Schema for dictionaries that will be serialized.
@@ -69,3 +70,8 @@ class DictionarySchema(BaseSchema):
             element_type=element_type,
             additional_properties=for_additional_properties
         )
+
+    def imports(self) -> FileImport:
+        file_import = FileImport()
+        file_import.add_from_import("typing", "Dict", ImportType.STDLIB)
+        return file_import

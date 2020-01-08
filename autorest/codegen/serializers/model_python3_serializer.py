@@ -73,15 +73,6 @@ class ModelPython3Serializer(ModelBaseSerializer):
         for model in self.code_model.sorted_schemas:
             init_line_parameters = [p for p in model.properties if not p.readonly and not p.is_discriminator]
             for param in init_line_parameters:
-                if isinstance(param.schema, PrimitiveSchema):
-                    stdlib_type = param.schema.get_python_type_annotation()
-                    if stdlib_type.startswith("datetime"):
-                        file_import.add_import("datetime", ImportType.STDLIB)
-                elif isinstance(param.schema, ListSchema):
-                    file_import.add_from_import("typing", "List", ImportType.STDLIB)
-                elif isinstance(param.schema, DictionarySchema):
-                    file_import.add_from_import("typing", "Dict", ImportType.STDLIB)
-                elif isinstance(param.schema, EnumSchema):
-                    file_import.add_from_import("typing", "Union", ImportType.STDLIB)
+                file_import.merge(param.schema.imports())
 
         return file_import

@@ -6,6 +6,7 @@
 from typing import Any, Dict, List, Optional
 from collections import defaultdict
 from .base_schema import BaseSchema
+from .imports import FileImport, ImportType
 
 
 class EnumValue:
@@ -128,3 +129,8 @@ class EnumSchema(BaseSchema):
             enum_type=enum_type,
             values=values
         )
+
+    def imports(self) -> FileImport:
+        file_import = FileImport()
+        file_import.add_from_import("typing", "Union", ImportType.STDLIB)
+        return file_import

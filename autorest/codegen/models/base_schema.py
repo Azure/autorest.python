@@ -74,3 +74,6 @@ class BaseSchema(BaseModel, ABC):
 
     def get_serialization_constraints(self) -> List[str]: # pylint: disable=no-self-use
         return None
+
+    def imports(self) -> FileImport:
+        return FileImport()

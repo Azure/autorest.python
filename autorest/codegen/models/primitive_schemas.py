@@ -7,6 +7,7 @@ import logging
 from enum import Enum
 
 from .base_schema import BaseSchema
+from .imports import FileImport, ImportType
 
 
 _LOGGER = logging.getLogger(__name__)
@@ -150,6 +151,11 @@ class DatetimeSchema(PrimitiveSchema):
         """
         return f'"{value}"'
 
+    def imports(self) -> FileImport:
+        file_import = FileImport()
+        file_import.add_import("datetime", ImportType.STDLIB)
+        return file_import
+
 
 class UnixTimeSchema(PrimitiveSchema):
 
@@ -167,6 +173,11 @@ class UnixTimeSchema(PrimitiveSchema):
         but msrest will do fine.
         """
         return f'"{value}"'
+
+    def imports(self) -> FileImport:
+        file_import = FileImport()
+        file_import.add_import("datetime", ImportType.STDLIB)
+        return file_import
 
 
 class DateSchema(PrimitiveSchema):
@@ -186,6 +197,11 @@ class DateSchema(PrimitiveSchema):
         """
         return f'"{value}"'
 
+    def imports(self) -> FileImport:
+        file_import = FileImport()
+        file_import.add_import("datetime", ImportType.STDLIB)
+        return file_import
+
 
 class DurationSchema(PrimitiveSchema):
 
@@ -203,6 +219,11 @@ class DurationSchema(PrimitiveSchema):
         but msrest will do fine.
         """
         return f'"{value}"'
+
+    def imports(self) -> FileImport:
+        file_import = FileImport()
+        file_import.add_import("datetime", ImportType.STDLIB)
+        return file_import
 
 
 class ByteArraySchema(PrimitiveSchema):

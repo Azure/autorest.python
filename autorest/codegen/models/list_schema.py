@@ -5,6 +5,7 @@
 # --------------------------------------------------------------------------
 from typing import Dict
 from .base_schema import BaseSchema
+from .imports import FileImport, ImportType
 
 
 class ListSchema(BaseSchema):
@@ -62,3 +63,8 @@ class ListSchema(BaseSchema):
             min_items=yaml_data.get('minItems'),
             unique_items=yaml_data.get('uniqueItems'),
         )
+
+    def imports(self) -> FileImport:
+        file_import = FileImport()
+        file_import.add_from_import("typing", "List", ImportType.STDLIB)
+        return file_import
