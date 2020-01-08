@@ -33,11 +33,3 @@ class ModelGenericSerializer(ModelBaseSerializer):
                 else:
                     init_args.append("self.{} = '{}'".format(prop.name, model.discriminator_value))
         return init_args
-
-
-    def _format_model_for_file(self, model):
-        # only adding the warnings in the generic serializer because the function changes the model description
-        # on the object, so the python3 model serializer will also have access to it
-        self._format_model_parameter_warnings(model)
-        for prop in model.properties:
-            self._format_property_doc_string_for_file(prop)

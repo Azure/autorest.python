@@ -41,7 +41,7 @@ class {{ model.name }}(Model):
 
     {% if model.properties != None %}
         {% for p in model.properties %}
-    {{ p.documentation_string }}
+    {{ prop_documentation_string(p, code_model.namespace) }}
         {% endfor %}
     {% endif %}
     """

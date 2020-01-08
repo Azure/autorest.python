@@ -62,11 +62,6 @@ class ModelPython3Serializer(ModelBaseSerializer):
 
         return init_args
 
-
-    def _format_model_for_file(self, model):
-        for prop in model.properties:
-            self._format_property_doc_string_for_file(prop)
-
     def imports(self):
         file_import = super(ModelPython3Serializer, self).imports()
         for model in self.code_model.sorted_schemas:
