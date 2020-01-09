@@ -28,7 +28,7 @@
   },
   "files": [
     "autorest/**/*.py",
-    "autorest/**/*.py.jinja2",
+    "autorest/**/*.jinja2",
     "setup.py",
     "install.py",
     "prepare.py",
