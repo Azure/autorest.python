@@ -4,8 +4,6 @@
 # license information.
 # --------------------------------------------------------------------------
 from .model_base_serializer import ModelBaseSerializer
-from ..models import PrimitiveSchema, ListSchema, DictionarySchema, EnumSchema
-from ..models.imports import ImportType
 
 
 class ModelPython3Serializer(ModelBaseSerializer):
