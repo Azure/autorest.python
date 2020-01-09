@@ -25,7 +25,7 @@ class AutoRestParameterizedHostTestClient(object):
     """
 
     def __init__(self, host, **kwargs):
-
+        # type: (str, **Any) -> None
         base_url = 'http://{accountName}{host}'
         self._config = AutoRestParameterizedHostTestClientConfiguration(host, **kwargs)
         self._client = PipelineClient(base_url=base_url, config=self._config, **kwargs)
@@ -38,11 +38,14 @@ class AutoRestParameterizedHostTestClient(object):
             self._client, self._config, self._serialize, self._deserialize)
 
     def close(self):
+        # type: () -> None
         self._client.close()
 
     def __enter__(self):
+        # type: () -> AutoRestParameterizedHostTestClient
         self._client.__enter__()
         return self
 
     def __exit__(self, *exc_details):
+        # type: (Any) -> None
         self._client.__exit__(*exc_details)

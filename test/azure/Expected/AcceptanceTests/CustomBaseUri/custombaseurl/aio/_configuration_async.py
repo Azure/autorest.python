@@ -22,7 +22,6 @@ class AutoRestParameterizedHostTestClientConfiguration(Configuration):
     """
 
     def __init__(self, host, **kwargs):
-        
         if host is None:
             raise ValueError("Parameter 'host' must not be None.")
 

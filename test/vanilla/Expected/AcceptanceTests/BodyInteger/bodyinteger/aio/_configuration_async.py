@@ -20,7 +20,6 @@ class AutoRestIntegerTestServiceConfiguration(Configuration):
     """
 
     def __init__(self, **kwargs):
-        
 
         super(AutoRestIntegerTestServiceConfiguration, self).__init__(**kwargs)
 

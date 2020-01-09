@@ -27,7 +27,6 @@ class AutoRestParameterizedHostTestPagingClient(object):
     """
 
     def __init__(self, credential, host, **kwargs):
-
         base_url = 'http://{accountName}{host}'
         self._config = AutoRestParameterizedHostTestPagingClientConfiguration(credential, host, **kwargs)
         self._client = AsyncARMPipelineClient(base_url=base_url, config=self._config, **kwargs)

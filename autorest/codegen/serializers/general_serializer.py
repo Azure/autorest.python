@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import List
+from typing import List, Optional
 from .import_serializer import FileImportSerializer
 from ..models import Parameter
 
@@ -30,6 +30,7 @@ class GeneralSerializer:
             async_mode=self.async_mode,
         )
 
+        self.env.globals.update(service_client_init_typing_comment=GeneralSerializer.service_client_init_typing_comment)
         template = self.env.get_template("service_client.py.jinja2")
         self._service_client_file = template.render(
             code_model=self.code_model,
@@ -39,7 +40,7 @@ class GeneralSerializer:
             ),
         )
 
-        self.env.globals.update(config_typing_comment=GeneralSerializer.config_typing_comment)
+        self.env.globals.update(config_init_typing_comment=GeneralSerializer.config_init_typing_comment)
         template = self.env.get_template("config.py.jinja2")
         self._config_file = template.render(
             code_model=self.code_model,
@@ -54,10 +55,19 @@ class GeneralSerializer:
             self._setup_file = template.render(code_model=self.code_model)
 
     @staticmethod
-    def config_typing_comment(global_parameters: List[Parameter]) -> str:
+    def config_init_typing_comment(global_parameters: List[Parameter]) -> str:
         if not global_parameters:
             return "# type: (**Any) -> None"
         global_parameters_typing = [p.schema.get_python_type_annotation() for p in global_parameters]
+        return f"# type: ({', '.join(global_parameters_typing)}, **Any) -> None"
+
+    @staticmethod
+    def service_client_init_typing_comment(global_parameters: List[Parameter], base_url: Optional[str]) -> str:
+        if not global_parameters:
+            return "# type: (**Any) -> None"
+        global_parameters_typing = [p.schema.get_python_type_annotation() for p in global_parameters]
+        if base_url:
+            return f"# type: ({', '.join(global_parameters_typing)}, Optional[str], **Any) -> None"
         return f"# type: ({', '.join(global_parameters_typing)}, **Any) -> None"
 
     @property

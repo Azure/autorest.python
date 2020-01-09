@@ -24,7 +24,6 @@ class XMSErrorResponseExtensions(object):
     """
 
     def __init__(self, base_url=None, **kwargs):
-
         if not base_url:
             base_url = 'http://localhost'
         self._config = XMSErrorResponseExtensionsConfiguration(**kwargs)

@@ -34,7 +34,6 @@ class AutoRestUrlTestService(object):
     """
 
     def __init__(self, global_string_path, global_string_query=None, base_url=None, **kwargs):
-
         if not base_url:
             base_url = 'http://localhost:3000'
         self._config = AutoRestUrlTestServiceConfiguration(global_string_path, global_string_query, **kwargs)

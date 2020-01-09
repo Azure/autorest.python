@@ -20,7 +20,6 @@ class AutoRestHttpInfrastructureTestServiceConfiguration(Configuration):
     """
 
     def __init__(self, **kwargs):
-        
 
         super(AutoRestHttpInfrastructureTestServiceConfiguration, self).__init__(**kwargs)
 

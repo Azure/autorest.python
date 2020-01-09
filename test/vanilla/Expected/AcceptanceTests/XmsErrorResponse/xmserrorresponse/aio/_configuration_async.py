@@ -20,7 +20,6 @@ class XMSErrorResponseExtensionsConfiguration(Configuration):
     """
 
     def __init__(self, **kwargs):
-        
 
         super(XMSErrorResponseExtensionsConfiguration, self).__init__(**kwargs)
 

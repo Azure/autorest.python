@@ -22,7 +22,6 @@ class AutoRestHeadTestServiceConfiguration(Configuration):
     """
 
     def __init__(self, credential, **kwargs):
-        
         if credential is None:
             raise ValueError("Parameter 'credential' must not be None.")
 

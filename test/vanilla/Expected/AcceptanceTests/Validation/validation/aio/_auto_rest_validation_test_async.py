@@ -24,7 +24,6 @@ class AutoRestValidationTest(AutoRestValidationTestOperationsMixin):
     """
 
     def __init__(self, subscription_id, base_url=None, **kwargs):
-
         if not base_url:
             base_url = 'http://localhost:3000'
         self._config = AutoRestValidationTestConfiguration(subscription_id, **kwargs)

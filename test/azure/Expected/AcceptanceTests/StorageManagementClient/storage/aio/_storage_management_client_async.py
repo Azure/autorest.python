@@ -31,7 +31,6 @@ class StorageManagementClient(object):
     """
 
     def __init__(self, credential, subscription_id, base_url=None, **kwargs):
-
         if not base_url:
             base_url = 'https://management.azure.com'
         self._config = StorageManagementClientConfiguration(credential, subscription_id, **kwargs)

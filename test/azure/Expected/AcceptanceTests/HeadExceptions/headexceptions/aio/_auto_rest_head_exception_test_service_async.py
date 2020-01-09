@@ -25,7 +25,6 @@ class AutoRestHeadExceptionTestService(object):
     """
 
     def __init__(self, credential, base_url=None, **kwargs):
-
         if not base_url:
             base_url = 'http://localhost:3000'
         self._config = AutoRestHeadExceptionTestServiceConfiguration(credential, **kwargs)
