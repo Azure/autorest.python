@@ -24,7 +24,7 @@ class AutoRestParameterizedHostTestPagingClientConfiguration(Configuration):
     """
 
     def __init__(self, credential, host, **kwargs):
-
+        # type: (azure.core.credentials.TokenCredential, str, **Any) -> None
         if credential is None:
             raise ValueError("Parameter 'credential' must not be None.")
         if host is None:

@@ -20,7 +20,7 @@ class AutoRestSwaggerBATHeaderServiceConfiguration(Configuration):
     """
 
     def __init__(self, **kwargs):
-
+        
 
         super(AutoRestSwaggerBATHeaderServiceConfiguration, self).__init__(**kwargs)
 

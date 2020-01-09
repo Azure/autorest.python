@@ -24,7 +24,7 @@ class AutoRestUrlTestServiceConfiguration(Configuration):
     """
 
     def __init__(self, global_string_path, global_string_query=None, **kwargs):
-
+        
         if global_string_path is None:
             raise ValueError("Parameter 'global_string_path' must not be None.")
 

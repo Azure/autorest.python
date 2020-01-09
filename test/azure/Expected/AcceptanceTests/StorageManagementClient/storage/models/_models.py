@@ -6,6 +6,9 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
+import datetime
+from typing import Dict, List, Optional, Union
+
 from msrest.serialization import Model
 
 class Bar(Model):

@@ -13,6 +13,7 @@ from azure.core.polling import AsyncNoPolling, async_poller
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.mgmt.core.exceptions import ARMError
 from azure.mgmt.core.polling.async_arm_polling import AsyncARMPolling
+from msrest.serialization import Model
 
 from ... import models
 

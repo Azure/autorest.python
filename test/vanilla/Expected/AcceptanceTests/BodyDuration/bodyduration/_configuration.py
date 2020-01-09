@@ -20,7 +20,7 @@ class AutoRestDurationTestServiceConfiguration(Configuration):
     """
 
     def __init__(self, **kwargs):
-
+        # type: (**Any) -> None
 
         super(AutoRestDurationTestServiceConfiguration, self).__init__(**kwargs)
 

@@ -20,7 +20,7 @@ class AdditionalPropertiesClientConfiguration(Configuration):
     """
 
     def __init__(self, **kwargs):
-
+        
 
         super(AdditionalPropertiesClientConfiguration, self).__init__(**kwargs)
 

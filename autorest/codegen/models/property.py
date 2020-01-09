@@ -81,8 +81,8 @@ class Property(BaseModel):
             yaml_data=yaml_data
         )
 
-    def imports(self) -> FileImport:
+    def imports(self, async_mode) -> FileImport:
         file_import = self.schema.imports()
-        if not self.required:
+        if not self.required and not async_mode:
             file_import.add_from_import("typing", "Optional", ImportType.STDLIB)
         return file_import

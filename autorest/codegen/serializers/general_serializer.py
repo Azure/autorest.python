@@ -3,7 +3,9 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
+from typing import List
 from .import_serializer import FileImportSerializer
+from ..models import Parameter
 
 
 class GeneralSerializer:
@@ -37,6 +39,7 @@ class GeneralSerializer:
             ),
         )
 
+        self.env.globals.update(config_typing_comment=GeneralSerializer.config_typing_comment)
         template = self.env.get_template("config.py.jinja2")
         self._config_file = template.render(
             code_model=self.code_model,
@@ -49,6 +52,13 @@ class GeneralSerializer:
 
             template = self.env.get_template("setup.py.jinja2")
             self._setup_file = template.render(code_model=self.code_model)
+
+    @staticmethod
+    def config_typing_comment(global_parameters: List[Parameter]) -> str:
+        if not global_parameters:
+            return "# type: (**Any) -> None"
+        global_parameters_typing = [p.schema.get_python_type_annotation() for p in global_parameters]
+        return f"# type: ({', '.join(global_parameters_typing)}, **Any) -> None"
 
     @property
     def pkgutil_init_file(self):

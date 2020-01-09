@@ -260,6 +260,8 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods
                 file_import.add_from_import(
                     "azure.core.exceptions", "HttpResponseError", ImportType.AZURECORE
                 )
+        for parameter in self.parameters:
+            file_import.merge(parameter.schema.imports())
 
         # If ARM, I always generated a client request id
         if code_model.options['azure_arm']:

@@ -9,6 +9,7 @@ import warnings
 
 from azure.core.exceptions import map_error
 from azure.core.tracing.decorator_async import distributed_trace_async
+from msrest.serialization import Model
 
 from ... import models
 

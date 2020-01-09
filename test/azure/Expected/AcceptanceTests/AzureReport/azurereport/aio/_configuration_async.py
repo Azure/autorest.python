@@ -20,7 +20,7 @@ class AutoRestReportServiceForAzureConfiguration(Configuration):
     """
 
     def __init__(self, **kwargs):
-
+        
 
         super(AutoRestReportServiceForAzureConfiguration, self).__init__(**kwargs)
 

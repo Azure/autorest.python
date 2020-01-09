@@ -15,6 +15,7 @@ from .constant_schema import ConstantSchema
 from .imports import FileImport
 from .lro_operation import LROOperation
 from .paging_operation import PagingOperation
+from .parameter import Parameter
 
 
 __all__ = [
@@ -30,6 +31,7 @@ __all__ = [
     "PrimitiveSchema",
     "LROOperation",
     "PagingOperation",
+    "Parameter"
 ]
 
 # TODO: should this be in models.__init__ or CodeModel

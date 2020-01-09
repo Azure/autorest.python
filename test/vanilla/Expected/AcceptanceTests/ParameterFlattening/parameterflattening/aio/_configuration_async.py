@@ -20,7 +20,7 @@ class AutoRestParameterFlatteningConfiguration(Configuration):
     """
 
     def __init__(self, **kwargs):
-
+        
 
         super(AutoRestParameterFlatteningConfiguration, self).__init__(**kwargs)
 

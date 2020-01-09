@@ -73,6 +73,6 @@ class ModelPython3Serializer(ModelBaseSerializer):
         for model in self.code_model.sorted_schemas:
             init_line_parameters = [p for p in model.properties if not p.readonly and not p.is_discriminator]
             for param in init_line_parameters:
-                file_import.merge(param.imports())
+                file_import.merge(param.imports(async_mode=True))
 
         return file_import

@@ -20,7 +20,7 @@ class AutoRestReportServiceConfiguration(Configuration):
     """
 
     def __init__(self, **kwargs):
-
+        
 
         super(AutoRestReportServiceConfiguration, self).__init__(**kwargs)
 

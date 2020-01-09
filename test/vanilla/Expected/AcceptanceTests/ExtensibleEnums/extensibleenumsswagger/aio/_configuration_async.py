@@ -20,7 +20,7 @@ class PetStoreIncConfiguration(Configuration):
     """
 
     def __init__(self, **kwargs):
-
+        
 
         super(PetStoreIncConfiguration, self).__init__(**kwargs)
 

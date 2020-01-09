@@ -20,7 +20,7 @@ class AutoRestReportServiceForAzureConfiguration(Configuration):
     """
 
     def __init__(self, **kwargs):
-
+        # type: (**Any) -> None
 
         super(AutoRestReportServiceForAzureConfiguration, self).__init__(**kwargs)
 

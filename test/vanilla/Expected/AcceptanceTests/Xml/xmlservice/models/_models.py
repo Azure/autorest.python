@@ -6,6 +6,9 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
+import datetime
+from typing import Dict, List, Optional, Union
+
 from azure.core.exceptions import HttpResponseError
 from msrest.serialization import Model
 

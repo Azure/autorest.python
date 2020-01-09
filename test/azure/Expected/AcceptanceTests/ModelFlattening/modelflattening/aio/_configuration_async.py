@@ -20,7 +20,7 @@ class AutoRestResourceFlatteningTestServiceConfiguration(Configuration):
     """
 
     def __init__(self, **kwargs):
-
+        
 
         super(AutoRestResourceFlatteningTestServiceConfiguration, self).__init__(**kwargs)
 
