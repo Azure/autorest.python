@@ -20,7 +20,6 @@ class AutoRestUrlMutliCollectionFormatTestServiceConfiguration(Configuration):
     """
 
     def __init__(self, **kwargs):
-        
 
         super(AutoRestUrlMutliCollectionFormatTestServiceConfiguration, self).__init__(**kwargs)
 

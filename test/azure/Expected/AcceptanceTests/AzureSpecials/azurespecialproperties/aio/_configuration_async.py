@@ -24,7 +24,6 @@ class AutoRestAzureSpecialParametersTestClientConfiguration(Configuration):
     """
 
     def __init__(self, credential, subscription_id, **kwargs):
-        
         if credential is None:
             raise ValueError("Parameter 'credential' must not be None.")
         if subscription_id is None:

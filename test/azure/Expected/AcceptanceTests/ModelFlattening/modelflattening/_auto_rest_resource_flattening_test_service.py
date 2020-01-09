@@ -34,11 +34,14 @@ class AutoRestResourceFlatteningTestService(AutoRestResourceFlatteningTestServic
 
 
     def close(self):
+        # type: () -> None
         self._client.close()
 
     def __enter__(self):
+        # type: () -> AutoRestResourceFlatteningTestService
         self._client.__enter__()
         return self
 
     def __exit__(self, *exc_details):
+        # type: (Any) -> None
         self._client.__exit__(*exc_details)

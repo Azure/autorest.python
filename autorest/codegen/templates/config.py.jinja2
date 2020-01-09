@@ -28,7 +28,9 @@ class {{ code_model.class_name }}Configuration(Configuration):
     """
 
     def __init__(self, {{ method_signature }}**kwargs):
-        {{ config_typing_comment(code_model.global_parameters) if not async_mode }}
+        {% if not async_mode %}
+        {{ config_typing_comment(code_model.global_parameters) }}
+        {% endif %}
 {% for parameter in code_model.global_parameters|selectattr('is_required') %}
         if {{ parameter.serialized_name }} is None:
             raise ValueError("Parameter '{{ parameter.serialized_name }}' must not be None.")

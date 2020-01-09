@@ -71,11 +71,20 @@ class {{ code_model.class_name }}({{ base_class }}):
         {% endfor %}
 
     {{ keywords.def }} close(self):
+        {% if not async_mode %}
+        # type: () -> None
+        {% endif %}
         {{ keywords.await }}self._client.close()
 
     {{ keywords.def }} __{{ keywords.async_prefix }}enter__(self):
+        {% if not async_mode %}
+        # type: () -> {{ code_model.class_name }}
+        {% endif %}
         {{ keywords.await }}self._client.__{{ keywords.async_prefix }}enter__()
         return self
 
     {{ keywords.def }} __{{ keywords.async_prefix }}exit__(self, *exc_details):
+        {% if not async_mode %}
+        # type: (Any) -> None
+        {% endif %}
         {{ keywords.await }}self._client.__{{ keywords.async_prefix }}exit__(*exc_details)

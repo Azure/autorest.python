@@ -20,7 +20,6 @@ class AutoRestParameterGroupingTestServiceConfiguration(Configuration):
     """
 
     def __init__(self, **kwargs):
-        
 
         super(AutoRestParameterGroupingTestServiceConfiguration, self).__init__(**kwargs)
 
