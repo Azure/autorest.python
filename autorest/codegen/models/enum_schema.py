@@ -4,7 +4,6 @@
 # license information.
 # --------------------------------------------------------------------------
 from typing import Any, Dict, List, Optional
-from collections import defaultdict
 from .base_schema import BaseSchema
 from .imports import FileImport, ImportType
 
@@ -22,7 +21,7 @@ class EnumValue:
         self.description = description
 
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, Any], has_unique_enum_name) -> "EnumValue":
+    def from_yaml(cls, yaml_data: Dict[str, Any]) -> "EnumValue":
         """Constructs an EnumValue from yaml data.
 
         :param yaml_data: the yaml data from which we will construct this object
@@ -32,10 +31,7 @@ class EnumValue:
         :rtype: ~autorest.models.EnumValue
         """
         return cls(
-            name=(
-                yaml_data['language']['python']['name']
-                if has_unique_enum_name else yaml_data['language']['default']['name']
-            ),
+            name=yaml_data['language']['python']['name'],
             value=yaml_data['value'],
             description=yaml_data['language']['python'].get('description')
         )
@@ -96,18 +92,14 @@ class EnumSchema(BaseSchema):
         :rtype: list[~autorest.models.EnumValue]
         """
         values = []
-        enum_name_count: Dict[str, int] = defaultdict(int)
-        for enum in yaml_data:
-            enum_name_count[enum['language']['python']['name']] += 1
+        seen_enums = set()
 
         for enum in yaml_data:
-            values.append(
-                EnumValue.from_yaml(
-                    enum,
-                    has_unique_enum_name=(enum_name_count[enum['language']['python']['name']] == 1)
-                ),
-
-            )
+            enum_name = enum['language']['python']['name']
+            if enum_name in seen_enums:
+                continue
+            values.append(EnumValue.from_yaml(enum))
+            seen_enums.add(enum_name)
         return values
 
     @classmethod
