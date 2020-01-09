@@ -3,7 +3,8 @@
   "version": "5.0.0",
   "description": "The Python extension for generators in AutoRest.",
   "scripts": {
-    "start": "python -m autorest.jsonrpc.server",
+    "prepare": "python prepare.py",
+    "start": "python start.py",
     "install": "python install.py"
   },
   "repository": {
@@ -29,6 +30,8 @@
     "autorest/**/*.py",
     "setup.py",
     "install.py",
+    "prepare.py",
+    "start.py",
     "venvtools.py"
   ]
 }

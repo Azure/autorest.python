@@ -22,42 +22,28 @@ except ImportError:
 
 # Now we have pip and Py >= 3.6, go to work
 
-import os.path
 import subprocess
 from pathlib import Path
 
-from venvtools import create
+from venvtools import ExtendedEnvBuilder, python_run
 
 _ROOT_DIR = Path(__file__).parent
 
 
-def python_run(venv_context, module, command, *, additional_dir=".", error_ok=False):
-    try:
-        print("Executing: {} from {}".format(command, additional_dir))
-        subprocess.run(
-            [
-                venv_context.env_exe,
-                "-m", module
-            ] + command.split(),
-            cwd=_ROOT_DIR / additional_dir,
-        )
-        print()
-    except subprocess.CalledProcessError as err:
-        print(err, file=sys.stderr)
-        if not error_ok:
-            sys.exit(1)
-
-
 def main():
-    venv = _ROOT_DIR / "venv"
-    venv_prexists = venv.exists()
+    venv_path = _ROOT_DIR / "venv"
+    venv_prexists = venv_path.exists()
 
-    # Run the venv creation nonetheless, since it's fast if it already exists and is the best way to
-    # get the executable path cross-platform
-    venv = create(venv, with_pip=True)
-    if not venv_prexists:
-        python_run(venv, "pip", "-U pip")
-        python_run(venv, "pip", "install {}".format(_ROOT_DIR))
+    if venv_prexists:
+        env_builder = venv.EnvBuilder(with_pip=True)
+        venv_context = env_builder.ensure_directories(venv_path)
+    else:
+        env_builder = ExtendedEnvBuilder(with_pip=True)
+        env_builder.create(venv_path)
+        venv_context = env_builder.context
+
+        python_run(venv_context, "pip", "install -U pip")
+        python_run(venv_context, "pip", "install -e {}".format(_ROOT_DIR))
 
 if __name__ == "__main__":
     main()

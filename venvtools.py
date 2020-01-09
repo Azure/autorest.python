@@ -7,6 +7,12 @@ from contextlib import contextmanager
 import tempfile
 import subprocess
 import venv
+import sys
+from pathlib import Path
+
+
+_ROOT_DIR = Path(__file__).parent
+
 
 class ExtendedEnvBuilder(venv.EnvBuilder):
     """An extended env builder which saves the context, to have access
@@ -49,3 +55,20 @@ def create_venv_with_package(packages):
         if packages:
             subprocess.check_call(pip_call + packages)
         yield myenv
+
+def python_run(venv_context, module, command=None, *, additional_dir=".", error_ok=False):
+    try:
+        cmd_line= [
+            venv_context.env_exe,
+            "-m", module
+        ] + (command.split() if command else [])
+        print("Executing: {}".format(" ".join(cmd_line)), file=sys.stderr)
+        subprocess.run(
+            cmd_line,
+            cwd=_ROOT_DIR / additional_dir,
+            check=True,
+        )
+    except subprocess.CalledProcessError as err:
+        print(err, file=sys.stderr)
+        if not error_ok:
+            sys.exit(1)
