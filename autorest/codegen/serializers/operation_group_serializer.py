@@ -21,7 +21,6 @@ class OperationGroupSerializer:
             return isinstance(operation, PagingOperation)
 
         operation_group_template = self.env.get_template("operations_container.py.jinja2")
-        self.env.globals.update(is_lro=_is_lro, is_paging=_is_paging)
         if self.operation_group.is_empty_operation_group:
             operation_group_template = self.env.get_template("operations_container_mixin.py.jinja2")
 
@@ -29,7 +28,9 @@ class OperationGroupSerializer:
             code_model=self.code_model,
             operation_group=self.operation_group,
             imports=FileImportSerializer(self.operation_group.imports(self.async_mode)),
-            async_mode=self.async_mode
+            async_mode=self.async_mode,
+            is_lro=_is_lro,
+            is_paging=_is_paging
         )
 
     def filename(self):

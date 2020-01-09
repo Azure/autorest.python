@@ -17,16 +17,15 @@ class ModelBaseSerializer:
 
 
     def serialize(self):
-        self.env.globals.update(str=str)
-        self.env.globals.update(init_line=self.init_line)
-        self.env.globals.update(init_args=self.init_args)
-        self.env.globals.update(prop_documentation_string=ModelBaseSerializer.prop_documentation_string)
-
         # Generate the models
         template = self.env.get_template("model_container.py.jinja2")
         self._model_file = template.render(
             code_model=self.code_model,
-            imports=FileImportSerializer(self.imports())
+            imports=FileImportSerializer(self.imports()),
+            str=str,
+            init_line=self.init_line,
+            init_args=self.init_args,
+            prop_documentation_string=ModelBaseSerializer.prop_documentation_string
         )
 
     def imports(self):
