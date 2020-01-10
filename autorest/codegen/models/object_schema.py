@@ -142,4 +142,4 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
 
     @property
     def has_readonly_or_constant_property(self) -> bool:
-        return [x for x in self.properties if x.readonly or x.constant]
+        return any(x.readonly or x.constant for x in self.properties)
