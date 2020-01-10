@@ -49,7 +49,7 @@ class OperationResultError(Model):
 class Resource(Model):
     """Resource.
 
-	Variables are only populated by the server, and will be ignored when sending a request.
+    Variables are only populated by the server, and will be ignored when sending a request.
 
     :ivar id: Resource Id.
 	:vartype id: str
@@ -88,7 +88,7 @@ class Resource(Model):
 class Product(Resource):
     """Product.
 
-	Variables are only populated by the server, and will be ignored when sending a request.
+    Variables are only populated by the server, and will be ignored when sending a request.
 
     :ivar id: Resource Id.
 	:vartype id: str
@@ -126,7 +126,7 @@ class Product(Resource):
 class ProductProperties(Model):
     """ProductProperties.
 
-	Variables are only populated by the server, and will be ignored when sending a request.
+    Variables are only populated by the server, and will be ignored when sending a request.
 
     :param provisioning_state:
 	:type provisioning_state: str
@@ -170,7 +170,7 @@ class Sku(Model):
 class SubResource(Model):
     """SubResource.
 
-	Variables are only populated by the server, and will be ignored when sending a request.
+    Variables are only populated by the server, and will be ignored when sending a request.
 
     :ivar id: Sub Resource Id.
 	:vartype id: str
@@ -191,7 +191,7 @@ class SubResource(Model):
 class SubProduct(SubResource):
     """SubProduct.
 
-	Variables are only populated by the server, and will be ignored when sending a request.
+    Variables are only populated by the server, and will be ignored when sending a request.
 
     :ivar id: Sub Resource Id.
 	:vartype id: str
@@ -215,7 +215,7 @@ class SubProduct(SubResource):
 class SubProductProperties(Model):
     """SubProductProperties.
 
-	Variables are only populated by the server, and will be ignored when sending a request.
+    Variables are only populated by the server, and will be ignored when sending a request.
 
     :param provisioning_state:
 	:type provisioning_state: str

@@ -29,7 +29,7 @@ class ArrayOptionalWrapper(Model):
 class ArrayWrapper(Model):
     """ArrayWrapper.
 
-	All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to Azure.
 
     :param value: Required. 
 	:type value: list[str]
@@ -65,7 +65,7 @@ class ClassOptionalWrapper(Model):
 class ClassWrapper(Model):
     """ClassWrapper.
 
-	All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to Azure.
 
     :param value: Required. 
 	:type value: ~requiredoptional.models.Product
@@ -146,7 +146,7 @@ class IntOptionalWrapper(Model):
 class IntWrapper(Model):
     """IntWrapper.
 
-	All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to Azure.
 
     :param value: Required. 
 	:type value: int
@@ -167,7 +167,7 @@ class IntWrapper(Model):
 class Product(Model):
     """Product.
 
-	All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to Azure.
 
     :param id: Required. 
 	:type id: int
@@ -207,7 +207,7 @@ class StringOptionalWrapper(Model):
 class StringWrapper(Model):
     """StringWrapper.
 
-	All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to Azure.
 
     :param value: Required. 
 	:type value: str

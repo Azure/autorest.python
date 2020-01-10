@@ -38,10 +38,23 @@ class {{ model.name }}({{ basename }}):
 class {{ model.name }}(Model):
 {% endif %}
     """{{ model.description }}
+    {% if model.discriminator_name %}
+
+    You probably want to use the sub-classes and not this class directly. Known
+    sub-classes are: {{ model.subtype_map.values()|join(', ') }}.
+    {% endif %}
+    {% if model.has_readonly_or_constant_property %}
+
+    Variables are only populated by the server, and will be ignored when sending a request.
+    {% endif %}
+    {% if (model.properties | selectattr('required') | first) is defined %}
+
+    All required parameters must be populated in order to send to Azure.
+    {% endif %}
 
     {% if model.properties != None %}
         {% for p in model.properties %}
-    {{ p.documentation_string }}
+    {{ prop_documentation_string(p, code_model.namespace) }}
         {% endfor %}
     {% endif %}
     """
@@ -78,8 +91,8 @@ class {{ model.name }}(Model):
         {% endfor %}
     {% endif %}
 
-    {{ model.init_line }}
-    {% for arg in model.init_args %}
+    {{ init_line(model) }}
+    {% for arg in init_args(model) %}
         {{ arg }}
     {% endfor %}
-
+{{ "\n" }}

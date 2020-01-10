@@ -30,9 +30,6 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
         self.subtype_map = kwargs.pop('subtype_map', None)
         self.discriminator_name = kwargs.pop('discriminator_name', None)
         self.discriminator_value = kwargs.pop('discriminator_value', None)
-        self.property_documentation_string = None
-        self.init_line = None
-        self.init_args = None
 
     def imports(self):
         file_import = FileImport()
@@ -142,3 +139,7 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
             if yaml_data.get('discriminator') else None
         )
         self.discriminator_value = yaml_data.get('discriminatorValue', None)
+
+    @property
+    def has_readonly_or_constant_property(self) -> bool:
+        return any(x.readonly or x.constant for x in self.properties)

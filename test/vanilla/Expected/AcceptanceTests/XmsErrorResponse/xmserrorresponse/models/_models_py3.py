@@ -67,10 +67,10 @@ class NotFoundErrorBaseException(HttpResponseError):
 class NotFoundErrorBase(BaseError):
     """NotFoundErrorBase.
 
-	You probably want to use the sub-classes and not this class directly. Known sub-classes are: AnimalNotFound, LinkNotFound.
+    You probably want to use the sub-classes and not this class directly. Known
+    sub-classes are: AnimalNotFound, LinkNotFound.
 
-
-	All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to Azure.
 
     :param some_base_prop:
 	:type some_base_prop: str
@@ -128,7 +128,7 @@ class AnimalNotFoundException(NotFoundErrorBaseException):
 class AnimalNotFound(NotFoundErrorBase):
     """AnimalNotFound.
 
-	All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to Azure.
 
     :param some_base_prop:
 	:type some_base_prop: str
@@ -185,7 +185,7 @@ class LinkNotFoundException(NotFoundErrorBaseException):
 class LinkNotFound(NotFoundErrorBase):
     """LinkNotFound.
 
-	All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to Azure.
 
     :param some_base_prop:
 	:type some_base_prop: str
@@ -217,7 +217,7 @@ class LinkNotFound(NotFoundErrorBase):
 class Pet(Animal):
     """Pet.
 
-	Variables are only populated by the server, and will be ignored when sending a request.
+    Variables are only populated by the server, and will be ignored when sending a request.
 
     :param ani_type:
 	:type ani_type: str
@@ -280,10 +280,10 @@ class PetActionErrorException(HttpResponseError):
 class PetActionError(Model):
     """PetActionError.
 
-	You probably want to use the sub-classes and not this class directly. Known sub-classes are: PetSadError.
+    You probably want to use the sub-classes and not this class directly. Known
+    sub-classes are: PetSadError.
 
-
-	All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to Azure.
 
     :param error_type: Required. Constant filled by server. 
 	:type error_type: str
@@ -338,10 +338,10 @@ class PetSadErrorException(PetActionErrorException):
 class PetSadError(PetActionError):
     """PetSadError.
 
-	You probably want to use the sub-classes and not this class directly. Known sub-classes are: PetHungryOrThirstyError.
+    You probably want to use the sub-classes and not this class directly. Known
+    sub-classes are: PetHungryOrThirstyError.
 
-
-	All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to Azure.
 
     :param error_type: Required. Constant filled by server. 
 	:type error_type: str
@@ -399,7 +399,7 @@ class PetHungryOrThirstyErrorException(PetSadErrorException):
 class PetHungryOrThirstyError(PetSadError):
     """PetHungryOrThirstyError.
 
-	All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to Azure.
 
     :param error_type: Required. Constant filled by server. 
 	:type error_type: str
