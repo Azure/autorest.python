@@ -12,9 +12,9 @@ from msrest.serialization import Model
 class ChildProduct(Model):
     """The product documentation.
 
-	Variables are only populated by the server, and will be ignored when sending a request.
+    Variables are only populated by the server, and will be ignored when sending a request.
 
-	All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to Azure.
 
     :ivar const_property: Required. Constant string. Default value: "constant".
 	:vartype const_property: str
@@ -40,9 +40,9 @@ class ChildProduct(Model):
 class ConstantProduct(Model):
     """The product documentation.
 
-	Variables are only populated by the server, and will be ignored when sending a request.
+    Variables are only populated by the server, and will be ignored when sending a request.
 
-	All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to Azure.
 
     :ivar const_property: Required. Constant string. Default value: "constant".
 	:vartype const_property: str
@@ -118,9 +118,9 @@ class Error(Model):
 class Product(Model):
     """The product documentation.
 
-	Variables are only populated by the server, and will be ignored when sending a request.
+    Variables are only populated by the server, and will be ignored when sending a request.
 
-	All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to Azure.
 
     :param display_names: Non required array of unique items from 0 to 6 elements.
 	:type display_names: list[str]

@@ -139,3 +139,7 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
             if yaml_data.get('discriminator') else None
         )
         self.discriminator_value = yaml_data.get('discriminatorValue', None)
+
+    @property
+    def has_readonly_or_constant_property(self) -> bool:
+        return [x for x in self.properties if x.readonly or x.constant]

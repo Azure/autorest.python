@@ -126,25 +126,6 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
             sorted_schemas += ancestors
         self.sorted_schemas = sorted_schemas
 
-    @staticmethod
-    def _format_schema_parameter_warnings(schema):
-        # if there are any warnings to include about parameters, we add them here
-        if schema.discriminator_name:
-            schema.description += (
-                "\n\n\tYou probably want to use the sub-classes and not this class directly." +
-                    " Known sub-classes are: {}.\n".format(", ".join(schema.subtype_map.values())))
-
-        if [x for x in schema.properties if x.readonly or x.constant]:
-            schema.description += ("\n\n\tVariables are only populated by the server," +
-                " and will be ignored when sending a request.")
-
-        if [x for x in schema.properties if x.required]:
-            schema.description += "\n\n\tAll required parameters must be populated in order to send to Azure."
-
-    def format_schemas_parameter_warnings(self) -> None:
-        for schema in self.sorted_schemas:
-            CodeModel._format_schema_parameter_warnings(schema)
-
     def add_credential_global_parameter(self) -> None:
         """Adds a `credential` global parameter.
 

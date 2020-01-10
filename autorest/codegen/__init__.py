@@ -109,7 +109,6 @@ class CodeGenerator(Plugin):
 
             code_model.add_inheritance_to_models()
             code_model.sort_schemas()
-            code_model.format_schemas_parameter_warnings()
             code_model.add_schema_link_to_operation()
             code_model.add_schema_link_to_global_parameters()
 

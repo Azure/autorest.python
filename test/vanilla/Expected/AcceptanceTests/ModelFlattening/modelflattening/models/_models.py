@@ -12,7 +12,7 @@ from msrest.serialization import Model
 class BaseProduct(Model):
     """The product documentation.
 
-	All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to Azure.
 
     :param product_id: Required. Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles.
 	:type product_id: str
@@ -86,7 +86,7 @@ class Error(Model):
 class Resource(Model):
     """Resource.
 
-	Variables are only populated by the server, and will be ignored when sending a request.
+    Variables are only populated by the server, and will be ignored when sending a request.
 
     :ivar id: Resource Id.
 	:vartype id: str
@@ -125,7 +125,7 @@ class Resource(Model):
 class FlattenedProduct(Resource):
     """Flattened product.
 
-	Variables are only populated by the server, and will be ignored when sending a request.
+    Variables are only populated by the server, and will be ignored when sending a request.
 
     :ivar id: Resource Id.
 	:vartype id: str
@@ -163,7 +163,7 @@ class FlattenedProduct(Resource):
 class FlattenedProductProperties(Model):
     """FlattenedProductProperties.
 
-	Variables are only populated by the server, and will be ignored when sending a request.
+    Variables are only populated by the server, and will be ignored when sending a request.
 
     :param pname:
 	:type pname: str
@@ -267,7 +267,7 @@ class ResourceCollection(Model):
 class SimpleProduct(BaseProduct):
     """The product documentation.
 
-	All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to Azure.
 
     :param product_id: Required. Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles.
 	:type product_id: str
@@ -294,9 +294,9 @@ class SimpleProduct(BaseProduct):
 class SimpleProductProperties(Model):
     """The product documentation.
 
-	Variables are only populated by the server, and will be ignored when sending a request.
+    Variables are only populated by the server, and will be ignored when sending a request.
 
-	All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to Azure.
 
     :param max_product_display_name: Required. Display name of product.
 	:type max_product_display_name: str
