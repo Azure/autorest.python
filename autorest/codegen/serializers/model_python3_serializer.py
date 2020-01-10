@@ -3,13 +3,39 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
+from typing import List
 from .model_base_serializer import ModelBaseSerializer
+from ..models import ObjectSchema
 
 
 class ModelPython3Serializer(ModelBaseSerializer):
 
     @staticmethod
-    def _build_init_args(model):
+    def init_line(model: ObjectSchema) -> str:
+        init_properties_declaration = []
+        init_line_parameters = [
+            p for p in model.properties if not p.readonly and not p.is_discriminator and not p.constant
+        ]
+        init_line_parameters.sort(key=lambda x: x.required, reverse=True)
+        for param in init_line_parameters:
+            if param.required:
+                init_properties_declaration.append(
+                    "{}: {}".format(param.name, param.schema.get_python_type_annotation())
+                )
+            else:
+                default_value = "\"" + param.schema.default_value + "\"" if param.schema.default_value else "None"
+                init_properties_declaration.append(
+                    "{}: {}={}".format(param.name, param.schema.get_python_type_annotation(), default_value)
+                )
+
+        if init_properties_declaration:
+            return "def __init__(self, *, {}, **kwargs) -> None:".format(
+                ", ".join(init_properties_declaration)
+            )
+        return "def __init__(self, **kwargs) -> None:"
+
+    @staticmethod
+    def init_args(model: ObjectSchema) -> List[str]:
         init_args = []
         if model.base_model:
             properties_to_initialize = []
@@ -32,39 +58,7 @@ class ModelPython3Serializer(ModelBaseSerializer):
             elif not prop.constant:
                 init_args.append("self.{} = {}".format(prop.name, prop.name))
 
-        model.init_args = init_args
-
-    @staticmethod
-    def _build_init_line(model):
-        init_properties_declaration = []
-        init_line_parameters = [
-            p for p in model.properties if not p.readonly and not p.is_discriminator and not p.constant
-        ]
-        init_line_parameters.sort(key=lambda x: x.required, reverse=True)
-        for param in init_line_parameters:
-            if param.required:
-                init_properties_declaration.append(
-                    "{}: {}".format(param.name, param.schema.get_python_type_annotation())
-                )
-            else:
-                default_value = "\"" + param.schema.default_value + "\"" if param.schema.default_value else "None"
-                init_properties_declaration.append(
-                    "{}: {}={}".format(param.name, param.schema.get_python_type_annotation(), default_value)
-                )
-
-        if init_properties_declaration:
-            model.init_line = "def __init__(self, *, {}, **kwargs) -> None:".format(
-                ", ".join(init_properties_declaration)
-            )
-        else:
-            model.init_line = "def __init__(self, **kwargs) -> None:"
-
-
-    def _format_model_for_file(self, model):
-        for prop in model.properties:
-            self._format_property_doc_string_for_file(prop)
-        ModelPython3Serializer._build_init_line(model)
-        ModelPython3Serializer._build_init_args(model)
+        return init_args
 
     def imports(self):
         file_import = super(ModelPython3Serializer, self).imports()

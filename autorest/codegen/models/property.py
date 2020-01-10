@@ -22,7 +22,6 @@ class Property(BaseModel):
         self.is_discriminator = yaml_data.get('isDiscriminator', False)
         # this bool doesn't consider you to be constant if you are a discriminator
         self.constant = isinstance(self.schema, ConstantSchema) and not self.is_discriminator
-        self.documentation_string = None
 
         if kwargs.get('description', None):
             self.description = kwargs.pop('description')
@@ -50,21 +49,6 @@ class Property(BaseModel):
         """Return the RestAPI name correctly escaped for serialization.
         """
         return self.original_swagger_name.replace('.', '\\\\.')
-
-    def get_property_documentation_string(self) -> str:
-        if self.constant or self.readonly:
-            doc_string = ":ivar {}:".format(self.name)
-        else:
-            doc_string = ":param {}:".format(self.name)
-        if self.required:
-            doc_string += " Required."
-
-        description = self.description
-        if description and description[-1] != ".":
-            description += "."
-        if description:
-            doc_string += " " + description
-        return doc_string
 
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, Any], **kwargs) -> "Property":

@@ -3,18 +3,19 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
+from typing import List
 from .model_base_serializer import ModelBaseSerializer
+from ..models import ObjectSchema
 
 
 class ModelGenericSerializer(ModelBaseSerializer):
 
-    def _format_model_for_file(self, model):
-        # only adding the warnings in the generic serializer because the function changes the model description
-        # on the object, so the python3 model serializer will also have access to it
-        self._format_model_parameter_warnings(model)
-        for prop in model.properties:
-            self._format_property_doc_string_for_file(prop)
-        model.init_line = "def __init__(self, **kwargs):"
+    @staticmethod
+    def init_line(model: ObjectSchema) -> str:
+        return "def __init__(self, **kwargs):"
+
+    @staticmethod
+    def init_args(model: ObjectSchema) -> List[str]:
         init_args = []
         init_args.append("super({}, self).__init__(**kwargs)".format(model.name))
 
@@ -31,7 +32,7 @@ class ModelGenericSerializer(ModelBaseSerializer):
                     init_args.append("self.{} = None".format(prop.name))
                 else:
                     init_args.append("self.{} = '{}'".format(prop.name, model.discriminator_value))
-        model.init_args = init_args
+        return init_args
 
     def imports(self):
         file_import = super(ModelGenericSerializer, self).imports()

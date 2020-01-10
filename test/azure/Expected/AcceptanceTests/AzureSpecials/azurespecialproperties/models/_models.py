@@ -39,9 +39,9 @@ class ErrorException(HttpResponseError):
 class Error(Model):
     """Error.
 
-	Variables are only populated by the server, and will be ignored when sending a request.
+    Variables are only populated by the server, and will be ignored when sending a request.
 
-	All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to Azure.
 
     :param status:
 	:type status: int
