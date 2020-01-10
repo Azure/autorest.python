@@ -14,9 +14,9 @@ from msrest.serialization import Model
 class PetAPTrue(Model):
     """PetAPTrue.
 
-	Variables are only populated by the server, and will be ignored when sending a request.
+    Variables are only populated by the server, and will be ignored when sending a request.
 
-	All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to Azure.
 
     :param additional_properties: Unmatched properties from the message are deserialized to this collection.
 	:type additional_properties: dict[str, object]
@@ -50,9 +50,9 @@ class PetAPTrue(Model):
 class CatAPTrue(PetAPTrue):
     """CatAPTrue.
 
-	Variables are only populated by the server, and will be ignored when sending a request.
+    Variables are only populated by the server, and will be ignored when sending a request.
 
-	All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to Azure.
 
     :param additional_properties: Unmatched properties from the message are deserialized to this collection.
 	:type additional_properties: dict[str, object]
@@ -131,9 +131,9 @@ class Error(Model):
 class PetAPInProperties(Model):
     """PetAPInProperties.
 
-	Variables are only populated by the server, and will be ignored when sending a request.
+    Variables are only populated by the server, and will be ignored when sending a request.
 
-	All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to Azure.
 
     :param id: Required. 
 	:type id: int
@@ -167,9 +167,9 @@ class PetAPInProperties(Model):
 class PetAPInPropertiesWithAPString(Model):
     """PetAPInPropertiesWithAPString.
 
-	Variables are only populated by the server, and will be ignored when sending a request.
+    Variables are only populated by the server, and will be ignored when sending a request.
 
-	All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to Azure.
 
     :param additional_properties: Unmatched properties from the message are deserialized to this collection.
 	:type additional_properties: dict[str, str]
@@ -212,9 +212,9 @@ class PetAPInPropertiesWithAPString(Model):
 class PetAPObject(Model):
     """PetAPObject.
 
-	Variables are only populated by the server, and will be ignored when sending a request.
+    Variables are only populated by the server, and will be ignored when sending a request.
 
-	All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to Azure.
 
     :param additional_properties: Unmatched properties from the message are deserialized to this collection.
 	:type additional_properties: dict[str, object]
@@ -248,9 +248,9 @@ class PetAPObject(Model):
 class PetAPString(Model):
     """PetAPString.
 
-	Variables are only populated by the server, and will be ignored when sending a request.
+    Variables are only populated by the server, and will be ignored when sending a request.
 
-	All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to Azure.
 
     :param additional_properties: Unmatched properties from the message are deserialized to this collection.
 	:type additional_properties: dict[str, str]

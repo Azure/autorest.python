@@ -4,7 +4,8 @@
 # license information.
 # --------------------------------------------------------------------------
 from abc import abstractmethod
-from ..models import EnumSchema
+from typing import List
+from ..models import EnumSchema, ObjectSchema
 from ..models.imports import FileImport
 from .import_serializer import FileImportSerializer
 
@@ -14,22 +15,31 @@ class ModelBaseSerializer:
         self.env = env
         self._model_file = None
 
+
+    def serialize(self):
+        # Generate the models
+        template = self.env.get_template("model_container.py.jinja2")
+        self._model_file = template.render(
+            code_model=self.code_model,
+            imports=FileImportSerializer(self.imports()),
+            str=str,
+            init_line=self.init_line,
+            init_args=self.init_args,
+            prop_documentation_string=ModelBaseSerializer.prop_documentation_string
+        )
+
+    def imports(self):
+        file_import = FileImport()
+        for model in self.code_model.sorted_schemas:
+            file_import.merge(model.imports())
+        return file_import
+
+    @property
+    def model_file(self):
+        return self._model_file
+
     @staticmethod
-    def _format_model_parameter_warnings(model):
-        # if there are any warnings to include about parameters, we add them here
-        if model.discriminator_name:
-            model.description += (
-                "\n\n\tYou probably want to use the sub-classes and not this class directly." +
-                    " Known sub-classes are: {}.\n".format(", ".join(model.subtype_map.values())))
-
-        if [x for x in model.properties if x.readonly or x.constant]:
-            model.description += ("\n\n\tVariables are only populated by the server," +
-                " and will be ignored when sending a request.")
-
-        if [x for x in model.properties if x.required]:
-            model.description += "\n\n\tAll required parameters must be populated in order to send to Azure."
-
-    def _format_property_doc_string_for_file(self, prop):
+    def prop_documentation_string(prop, namespace):
         # building the param line of the property doc
         if prop.constant or prop.readonly:
             param_doc_string = ":ivar {}:".format(prop.name)
@@ -63,33 +73,15 @@ class ModelBaseSerializer:
             type_doc_string = ":vartype {}: ".format(prop.name)
         else:
             type_doc_string = ":type {}: ".format(prop.name)
-        type_doc_string += prop.schema.get_python_type(self.code_model.namespace)
-        prop.documentation_string = param_doc_string + "\n\t" + type_doc_string
+        type_doc_string += prop.schema.get_python_type(namespace)
+        return param_doc_string + "\n\t" + type_doc_string
 
-    def serialize(self):
-
-        self.env.globals.update(str=str)
-
-        for model in self.code_model.sorted_schemas:
-            self._format_model_for_file(model)
-
-        # Generate the models
-        template = self.env.get_template("model_container.py.jinja2")
-        self._model_file = template.render(
-            code_model=self.code_model,
-            imports=FileImportSerializer(self.imports())
-        )
-
-    def imports(self):
-        file_import = FileImport()
-        for model in self.code_model.sorted_schemas:
-            file_import.merge(model.imports())
-        return file_import
-
-    @property
-    def model_file(self):
-        return self._model_file
-
+    @staticmethod
     @abstractmethod
-    def _format_model_for_file(self, model):
-        raise NotImplementedError()
+    def init_line(model: ObjectSchema) -> str:
+        ...
+
+    @staticmethod
+    @abstractmethod
+    def init_args(model: ObjectSchema) -> List[str]:
+        ...

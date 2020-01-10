@@ -59,9 +59,9 @@ class Error(Model):
 class RefColorConstant(Model):
     """RefColorConstant.
 
-	Variables are only populated by the server, and will be ignored when sending a request.
+    Variables are only populated by the server, and will be ignored when sending a request.
 
-	All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to Azure.
 
     :ivar color_constant: Required. Referenced Color Constant Description. Default value: "green-color".
 	:vartype color_constant: str

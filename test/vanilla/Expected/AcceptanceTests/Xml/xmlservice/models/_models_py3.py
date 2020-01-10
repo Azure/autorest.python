@@ -15,7 +15,7 @@ from msrest.serialization import Model
 class AccessPolicy(Model):
     """An Access policy
 
-	All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to Azure.
 
     :param start: Required. the date-time the policy is active.
 	:type start: ~datetime.datetime
@@ -88,7 +88,7 @@ class Banana(Model):
 class Blob(Model):
     """An Azure Storage blob
 
-	All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to Azure.
 
     :param name: Required. 
 	:type name: str
@@ -128,7 +128,7 @@ class Blob(Model):
 class BlobPrefix(Model):
     """BlobPrefix.
 
-	All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to Azure.
 
     :param name: Required. 
 	:type name: str
@@ -149,7 +149,7 @@ class BlobPrefix(Model):
 class BlobProperties(Model):
     """Properties of a blob
 
-	All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to Azure.
 
     :param last_modified: Required. 
 	:type last_modified: ~datetime.datetime
@@ -328,7 +328,7 @@ class ComplexTypeWithMeta(Model):
 class Container(Model):
     """An Azure Storage container
 
-	All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to Azure.
 
     :param name: Required. 
 	:type name: str
@@ -358,7 +358,7 @@ class Container(Model):
 class ContainerProperties(Model):
     """Properties of a container
 
-	All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to Azure.
 
     :param last_modified: Required. 
 	:type last_modified: ~datetime.datetime
@@ -400,7 +400,7 @@ class ContainerProperties(Model):
 class CorsRule(Model):
     """CORS is an HTTP feature that enables a web application running under one domain to access resources in another domain. Web browsers implement a security restriction known as same-origin policy that prevents a web page from calling APIs in a different domain; CORS provides a secure way to allow one domain (the origin domain) to call APIs in another domain
 
-	All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to Azure.
 
     :param allowed_origins: Required. The origin domains that are permitted to make a request against the storage service via CORS. The origin domain is the domain from which the request originates. Note that the origin must be an exact case-sensitive match with the origin that the user age sends to the service. You can also use the wildcard character '*' to allow all origin domains to make requests via CORS.
 	:type allowed_origins: str
@@ -516,7 +516,7 @@ class JSONOutput(Model):
 class ListBlobsResponse(Model):
     """An enumeration of blobs
 
-	All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to Azure.
 
     :param service_endpoint: Required. 
 	:type service_endpoint: str
@@ -572,7 +572,7 @@ class ListBlobsResponse(Model):
 class ListContainersResponse(Model):
     """An enumeration of containers
 
-	All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to Azure.
 
     :param service_endpoint: Required. 
 	:type service_endpoint: str
@@ -616,7 +616,7 @@ class ListContainersResponse(Model):
 class Logging(Model):
     """Azure Analytics Logging settings.
 
-	All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to Azure.
 
     :param version: Required. The version of Storage Analytics to configure.
 	:type version: str
@@ -657,7 +657,7 @@ class Logging(Model):
 class Metrics(Model):
     """Metrics.
 
-	All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to Azure.
 
     :param version: The version of Storage Analytics to configure.
 	:type version: str
@@ -690,7 +690,7 @@ class Metrics(Model):
 class RetentionPolicy(Model):
     """the retention policy
 
-	All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to Azure.
 
     :param enabled: Required. Indicates whether a retention policy is enabled for the storage service.
 	:type enabled: bool
@@ -754,7 +754,7 @@ class RootWithRefAndNoMeta(Model):
 class SignedIdentifier(Model):
     """signed identifier
 
-	All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to Azure.
 
     :param id: Required. a unique id.
 	:type id: str

@@ -131,10 +131,10 @@ class Cat(Pet):
 class Fish(Model):
     """Fish.
 
-	You probably want to use the sub-classes and not this class directly. Known sub-classes are: Salmon, Shark.
+    You probably want to use the sub-classes and not this class directly. Known
+    sub-classes are: Salmon, Shark.
 
-
-	All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to Azure.
 
     :param fishtype: Required. Constant filled by server. 
 	:type fishtype: str
@@ -172,10 +172,10 @@ class Fish(Model):
 class Shark(Fish):
     """Shark.
 
-	You probably want to use the sub-classes and not this class directly. Known sub-classes are: Cookiecuttershark, Goblinshark, Sawshark.
+    You probably want to use the sub-classes and not this class directly. Known
+    sub-classes are: Cookiecuttershark, Goblinshark, Sawshark.
 
-
-	All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to Azure.
 
     :param fishtype: Required. Constant filled by server. 
 	:type fishtype: str
@@ -219,7 +219,7 @@ class Shark(Fish):
 class Cookiecuttershark(Shark):
     """Cookiecuttershark.
 
-	All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to Azure.
 
     :param fishtype: Required. Constant filled by server. 
 	:type fishtype: str
@@ -350,10 +350,10 @@ class Dog(Pet):
 class DotFish(Model):
     """DotFish.
 
-	You probably want to use the sub-classes and not this class directly. Known sub-classes are: DotSalmon.
+    You probably want to use the sub-classes and not this class directly. Known
+    sub-classes are: DotSalmon.
 
-
-	All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to Azure.
 
     :param fishtype: Required. Constant filled by server. 
 	:type fishtype: str
@@ -409,7 +409,7 @@ class DotFishMarket(Model):
 class DotSalmon(DotFish):
     """DotSalmon.
 
-	All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to Azure.
 
     :param fishtype: Required. Constant filled by server. 
 	:type fishtype: str
@@ -539,7 +539,7 @@ class FloatWrapper(Model):
 class Goblinshark(Shark):
     """Goblinshark.
 
-	All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to Azure.
 
     :param fishtype: Required. Constant filled by server. 
 	:type fishtype: str
@@ -638,10 +638,10 @@ class MyBaseHelperType(Model):
 class MyBaseType(Model):
     """MyBaseType.
 
-	You probably want to use the sub-classes and not this class directly. Known sub-classes are: MyDerivedType.
+    You probably want to use the sub-classes and not this class directly. Known
+    sub-classes are: MyDerivedType.
 
-
-	All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to Azure.
 
     :param kind: Required. Constant filled by server. 
 	:type kind: str
@@ -674,7 +674,7 @@ class MyBaseType(Model):
 class MyDerivedType(MyBaseType):
     """MyDerivedType.
 
-	All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to Azure.
 
     :param kind: Required. Constant filled by server. 
 	:type kind: str
@@ -705,7 +705,7 @@ class MyDerivedType(MyBaseType):
 class ReadonlyObj(Model):
     """ReadonlyObj.
 
-	Variables are only populated by the server, and will be ignored when sending a request.
+    Variables are only populated by the server, and will be ignored when sending a request.
 
     :ivar id:
 	:vartype id: str
@@ -730,10 +730,10 @@ class ReadonlyObj(Model):
 class Salmon(Fish):
     """Salmon.
 
-	You probably want to use the sub-classes and not this class directly. Known sub-classes are: SmartSalmon.
+    You probably want to use the sub-classes and not this class directly. Known
+    sub-classes are: SmartSalmon.
 
-
-	All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to Azure.
 
     :param fishtype: Required. Constant filled by server. 
 	:type fishtype: str
@@ -776,7 +776,7 @@ class Salmon(Fish):
 class Sawshark(Shark):
     """Sawshark.
 
-	All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to Azure.
 
     :param fishtype: Required. Constant filled by server. 
 	:type fishtype: str
@@ -845,7 +845,7 @@ class Siamese(Cat):
 class SmartSalmon(Salmon):
     """SmartSalmon.
 
-	All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to Azure.
 
     :param fishtype: Required. Constant filled by server. 
 	:type fishtype: str

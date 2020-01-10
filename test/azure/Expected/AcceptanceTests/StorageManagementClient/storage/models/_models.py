@@ -117,9 +117,9 @@ class Foo(Model):
 class Resource(Model):
     """Resource.
 
-	Variables are only populated by the server, and will be ignored when sending a request.
+    Variables are only populated by the server, and will be ignored when sending a request.
 
-	All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to Azure.
 
     :ivar id: Resource Id.
 	:vartype id: str
@@ -159,9 +159,9 @@ class Resource(Model):
 class StorageAccount(Resource):
     """The storage account.
 
-	Variables are only populated by the server, and will be ignored when sending a request.
+    Variables are only populated by the server, and will be ignored when sending a request.
 
-	All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to Azure.
 
     :ivar id: Resource Id.
 	:vartype id: str
@@ -200,7 +200,7 @@ class StorageAccount(Resource):
 class StorageAccountCheckNameAvailabilityParameters(Model):
     """StorageAccountCheckNameAvailabilityParameters.
 
-	All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to Azure.
 
     :param name: Required. 
 	:type name: str
@@ -225,9 +225,9 @@ class StorageAccountCheckNameAvailabilityParameters(Model):
 class StorageAccountCreateParameters(Resource):
     """The parameters to provide for the account.
 
-	Variables are only populated by the server, and will be ignored when sending a request.
+    Variables are only populated by the server, and will be ignored when sending a request.
 
-	All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to Azure.
 
     :ivar id: Resource Id.
 	:vartype id: str
@@ -408,9 +408,9 @@ class StorageAccountRegenerateKeyParameters(Model):
 class StorageAccountUpdateParameters(Resource):
     """The parameters to update on the account.
 
-	Variables are only populated by the server, and will be ignored when sending a request.
+    Variables are only populated by the server, and will be ignored when sending a request.
 
-	All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to Azure.
 
     :ivar id: Resource Id.
 	:vartype id: str
