@@ -916,7 +916,7 @@ class PagingOperations(object):
     _get_multiple_pages_lro_initial.metadata = {'url': '/paging/multiple/lro'}
 
     @distributed_trace
-    def get_multiple_pages_lro(self, client_request_id=None, maxresults=None, timeout=None, cls=None, polling=True, **kwargs):
+    def begin_get_multiple_pages_lro(self, client_request_id=None, maxresults=None, timeout=None, cls=None, polling=True, **kwargs):
         """A long-running paging operation that includes a nextLink that has 10 pages.
 
         FIXME: add operation.summary
@@ -959,5 +959,5 @@ class PagingOperations(object):
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-    get_multiple_pages_lro.metadata = {'url': '/paging/multiple/lro'}
+    begin_get_multiple_pages_lro.metadata = {'url': '/paging/multiple/lro'}
 

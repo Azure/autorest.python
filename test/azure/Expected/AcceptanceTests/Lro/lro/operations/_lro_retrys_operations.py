@@ -84,7 +84,7 @@ class LRORetrysOperations(object):
     _put201_creating_succeeded200_initial.metadata = {'url': '/lro/retryerror/put/201/creating/succeeded/200'}
 
     @distributed_trace
-    def put201_creating_succeeded200(self, product=None, cls=None, polling=True, **kwargs):
+    def begin_put201_creating_succeeded200(self, product=None, cls=None, polling=True, **kwargs):
         """Long running put request, service returns a 500, then a 201 to the initial request, with an entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’.
 
         FIXME: add operation.summary
@@ -121,7 +121,7 @@ class LRORetrysOperations(object):
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-    put201_creating_succeeded200.metadata = {'url': '/lro/retryerror/put/201/creating/succeeded/200'}
+    begin_put201_creating_succeeded200.metadata = {'url': '/lro/retryerror/put/201/creating/succeeded/200'}
 
     
     def _put_async_relative_retry_succeeded_initial(self, product=None, cls=None, **kwargs):
@@ -169,7 +169,7 @@ class LRORetrysOperations(object):
     _put_async_relative_retry_succeeded_initial.metadata = {'url': '/lro/retryerror/putasync/retry/succeeded'}
 
     @distributed_trace
-    def put_async_relative_retry_succeeded(self, product=None, cls=None, polling=True, **kwargs):
+    def begin_put_async_relative_retry_succeeded(self, product=None, cls=None, polling=True, **kwargs):
         """Long running put request, service returns a 500, then a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
         FIXME: add operation.summary
@@ -210,7 +210,7 @@ class LRORetrysOperations(object):
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-    put_async_relative_retry_succeeded.metadata = {'url': '/lro/retryerror/putasync/retry/succeeded'}
+    begin_put_async_relative_retry_succeeded.metadata = {'url': '/lro/retryerror/putasync/retry/succeeded'}
 
     
     def _delete_provisioning202_accepted200_succeeded_initial(self, cls=None, **kwargs):
@@ -255,7 +255,7 @@ class LRORetrysOperations(object):
     _delete_provisioning202_accepted200_succeeded_initial.metadata = {'url': '/lro/retryerror/delete/provisioning/202/accepted/200/succeeded'}
 
     @distributed_trace
-    def delete_provisioning202_accepted200_succeeded(self, cls=None, polling=True, **kwargs):
+    def begin_delete_provisioning202_accepted200_succeeded(self, cls=None, polling=True, **kwargs):
         """Long running delete request, service returns a 500, then a  202 to the initial request, with an entity that contains ProvisioningState=’Accepted’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’.
 
         FIXME: add operation.summary
@@ -292,7 +292,7 @@ class LRORetrysOperations(object):
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-    delete_provisioning202_accepted200_succeeded.metadata = {'url': '/lro/retryerror/delete/provisioning/202/accepted/200/succeeded'}
+    begin_delete_provisioning202_accepted200_succeeded.metadata = {'url': '/lro/retryerror/delete/provisioning/202/accepted/200/succeeded'}
 
     
     def _delete202_retry200_initial(self, cls=None, **kwargs):
@@ -329,7 +329,7 @@ class LRORetrysOperations(object):
     _delete202_retry200_initial.metadata = {'url': '/lro/retryerror/delete/202/retry/200'}
 
     @distributed_trace
-    def delete202_retry200(self, cls=None, polling=True, **kwargs):
+    def begin_delete202_retry200(self, cls=None, polling=True, **kwargs):
         """Long running delete request, service returns a 500, then a 202 to the initial request. Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’.
 
         FIXME: add operation.summary
@@ -360,7 +360,7 @@ class LRORetrysOperations(object):
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-    delete202_retry200.metadata = {'url': '/lro/retryerror/delete/202/retry/200'}
+    begin_delete202_retry200.metadata = {'url': '/lro/retryerror/delete/202/retry/200'}
 
     
     def _delete_async_relative_retry_succeeded_initial(self, cls=None, **kwargs):
@@ -398,7 +398,7 @@ class LRORetrysOperations(object):
     _delete_async_relative_retry_succeeded_initial.metadata = {'url': '/lro/retryerror/deleteasync/retry/succeeded'}
 
     @distributed_trace
-    def delete_async_relative_retry_succeeded(self, cls=None, polling=True, **kwargs):
+    def begin_delete_async_relative_retry_succeeded(self, cls=None, polling=True, **kwargs):
         """Long running delete request, service returns a 500, then a 202 to the initial request. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
         FIXME: add operation.summary
@@ -429,7 +429,7 @@ class LRORetrysOperations(object):
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-    delete_async_relative_retry_succeeded.metadata = {'url': '/lro/retryerror/deleteasync/retry/succeeded'}
+    begin_delete_async_relative_retry_succeeded.metadata = {'url': '/lro/retryerror/deleteasync/retry/succeeded'}
 
     
     def _post202_retry200_initial(self, product=None, cls=None, **kwargs):
@@ -473,7 +473,7 @@ class LRORetrysOperations(object):
     _post202_retry200_initial.metadata = {'url': '/lro/retryerror/post/202/retry/200'}
 
     @distributed_trace
-    def post202_retry200(self, product=None, cls=None, polling=True, **kwargs):
+    def begin_post202_retry200(self, product=None, cls=None, polling=True, **kwargs):
         """Long running post request, service returns a 500, then a 202 to the initial request, with 'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success.
 
         FIXME: add operation.summary
@@ -507,7 +507,7 @@ class LRORetrysOperations(object):
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-    post202_retry200.metadata = {'url': '/lro/retryerror/post/202/retry/200'}
+    begin_post202_retry200.metadata = {'url': '/lro/retryerror/post/202/retry/200'}
 
     
     def _post_async_relative_retry_succeeded_initial(self, product=None, cls=None, **kwargs):
@@ -552,7 +552,7 @@ class LRORetrysOperations(object):
     _post_async_relative_retry_succeeded_initial.metadata = {'url': '/lro/retryerror/postasync/retry/succeeded'}
 
     @distributed_trace
-    def post_async_relative_retry_succeeded(self, product=None, cls=None, polling=True, **kwargs):
+    def begin_post_async_relative_retry_succeeded(self, product=None, cls=None, polling=True, **kwargs):
         """Long running post request, service returns a 500, then a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
         FIXME: add operation.summary
@@ -586,5 +586,5 @@ class LRORetrysOperations(object):
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-    post_async_relative_retry_succeeded.metadata = {'url': '/lro/retryerror/postasync/retry/succeeded'}
+    begin_post_async_relative_retry_succeeded.metadata = {'url': '/lro/retryerror/postasync/retry/succeeded'}
 
