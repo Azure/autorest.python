@@ -31,7 +31,6 @@ class OperationGroupSerializer:
             async_mode=self.async_mode,
             is_lro=_is_lro,
             is_paging=_is_paging,
-            method_signature=OperationGroupSerializer.method_signature,
             operation_typing_comment=OperationGroupSerializer.operation_typing_comment
         )
 
@@ -46,16 +45,6 @@ class OperationGroupSerializer:
     @property
     def operation_group_file(self):
         return self._operation_group_file
-
-    @staticmethod
-    def method_signature(operation: Operation, async_mode: bool) -> str:
-        signature = ", ".join([
-            p.async_method_signature if async_mode else p.sync_method_signature
-            for p in operation.method_parameters
-        ])
-        if signature:
-            signature = ", "+signature
-        return signature
 
     @staticmethod
     def operation_typing_comment(operation: Operation, lro: bool = False) -> str:
