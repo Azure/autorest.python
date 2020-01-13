@@ -21,7 +21,7 @@ response_headers = {
 {% if code_model.options['tracing'] %}
 {{ trace_decorator }}
 {% endif %}
-{{ keywords.def }} {{ operation_name }}(self{{ method_signature(operation) }}, cls=None, polling=True, **kwargs):
+{{ keywords.def }} {{ operation_name }}(self{{ method_signature(operation, async_mode) }}, cls=None, polling=True, **kwargs):
 {% if not async_mode %}
     {{ operation_typing_comment(operation, lro=True) }}
 {% endif %}

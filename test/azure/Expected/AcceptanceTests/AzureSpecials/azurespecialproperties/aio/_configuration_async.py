@@ -23,7 +23,7 @@ class AutoRestAzureSpecialParametersTestClientConfiguration(Configuration):
     :type subscription_id: str
     """
 
-    def __init__(self, credential, subscription_id, **kwargs):
+    def __init__(self, credential: azure.core.credentials.TokenCredential, subscription_id: str, **kwargs):
         if credential is None:
             raise ValueError("Parameter 'credential' must not be None.")
         if subscription_id is None:

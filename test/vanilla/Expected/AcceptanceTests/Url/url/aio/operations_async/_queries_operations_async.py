@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
-from typing import List, Union
+from typing import List, Optional, Union
 import warnings
 
 from azure.core.exceptions import map_error
@@ -120,7 +120,7 @@ class QueriesOperations:
     get_boolean_false.metadata = {'url': '/queries/bool/false'}
 
     @distributed_trace_async
-    async def get_boolean_null(self, bool_query=None, cls=None, **kwargs):
+    async def get_boolean_null(self, bool_query: Optional[bool] = None, cls=None, **kwargs):
         """Get null Boolean value on query (query string should be absent).
 
         FIXME: add operation.summary
@@ -248,7 +248,7 @@ class QueriesOperations:
     get_int_negative_one_million.metadata = {'url': '/queries/int/-1000000'}
 
     @distributed_trace_async
-    async def get_int_null(self, int_query=None, cls=None, **kwargs):
+    async def get_int_null(self, int_query: Optional[int] = None, cls=None, **kwargs):
         """Get null integer value (no query parameter).
 
         FIXME: add operation.summary
@@ -376,7 +376,7 @@ class QueriesOperations:
     get_negative_ten_billion.metadata = {'url': '/queries/long/-10000000000'}
 
     @distributed_trace_async
-    async def get_long_null(self, long_query=None, cls=None, **kwargs):
+    async def get_long_null(self, long_query: Optional[int] = None, cls=None, **kwargs):
         """Get 'null 64 bit integer value (no query param in uri).
 
         FIXME: add operation.summary
@@ -504,7 +504,7 @@ class QueriesOperations:
     float_scientific_negative.metadata = {'url': '/queries/float/-1.034E-20'}
 
     @distributed_trace_async
-    async def float_null(self, float_query=None, cls=None, **kwargs):
+    async def float_null(self, float_query: Optional[float] = None, cls=None, **kwargs):
         """Get null numeric value (no query parameter).
 
         FIXME: add operation.summary
@@ -632,7 +632,7 @@ class QueriesOperations:
     double_decimal_negative.metadata = {'url': '/queries/double/-9999999.999'}
 
     @distributed_trace_async
-    async def double_null(self, double_query=None, cls=None, **kwargs):
+    async def double_null(self, double_query: Optional[float] = None, cls=None, **kwargs):
         """Get null numeric value (no query parameter).
 
         FIXME: add operation.summary
@@ -802,7 +802,7 @@ class QueriesOperations:
     string_empty.metadata = {'url': '/queries/string/empty'}
 
     @distributed_trace_async
-    async def string_null(self, string_query=None, cls=None, **kwargs):
+    async def string_null(self, string_query: Optional[str] = None, cls=None, **kwargs):
         """Get null (no query parameter in url).
 
         FIXME: add operation.summary
@@ -846,7 +846,7 @@ class QueriesOperations:
     string_null.metadata = {'url': '/queries/string/null'}
 
     @distributed_trace_async
-    async def enum_valid(self, enum_query=None, cls=None, **kwargs):
+    async def enum_valid(self, enum_query: Optional[Union[str, "UriColor"]] = None, cls=None, **kwargs):
         """Get using uri with query parameter 'green color'.
 
         FIXME: add operation.summary
@@ -890,7 +890,7 @@ class QueriesOperations:
     enum_valid.metadata = {'url': '/queries/enum/green%20color'}
 
     @distributed_trace_async
-    async def enum_null(self, enum_query=None, cls=None, **kwargs):
+    async def enum_null(self, enum_query: Optional[Union[str, "UriColor"]] = None, cls=None, **kwargs):
         """Get null (no query parameter in url).
 
         FIXME: add operation.summary
@@ -934,7 +934,7 @@ class QueriesOperations:
     enum_null.metadata = {'url': '/queries/enum/null'}
 
     @distributed_trace_async
-    async def byte_multi_byte(self, byte_query=None, cls=None, **kwargs):
+    async def byte_multi_byte(self, byte_query: Optional[bytearray] = None, cls=None, **kwargs):
         """Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
 
         FIXME: add operation.summary
@@ -1020,7 +1020,7 @@ class QueriesOperations:
     byte_empty.metadata = {'url': '/queries/byte/empty'}
 
     @distributed_trace_async
-    async def byte_null(self, byte_query=None, cls=None, **kwargs):
+    async def byte_null(self, byte_query: Optional[bytearray] = None, cls=None, **kwargs):
         """Get null as byte array (no query parameters in uri).
 
         FIXME: add operation.summary
@@ -1106,7 +1106,7 @@ class QueriesOperations:
     date_valid.metadata = {'url': '/queries/date/2012-01-01'}
 
     @distributed_trace_async
-    async def date_null(self, date_query=None, cls=None, **kwargs):
+    async def date_null(self, date_query: Optional[datetime.date] = None, cls=None, **kwargs):
         """Get null as date - this should result in no query parameters in uri.
 
         FIXME: add operation.summary
@@ -1192,7 +1192,7 @@ class QueriesOperations:
     date_time_valid.metadata = {'url': '/queries/datetime/2012-01-01T01%3A01%3A01Z'}
 
     @distributed_trace_async
-    async def date_time_null(self, date_time_query=None, cls=None, **kwargs):
+    async def date_time_null(self, date_time_query: Optional[datetime.datetime] = None, cls=None, **kwargs):
         """Get null as date-time, should result in no query parameters in uri.
 
         FIXME: add operation.summary
@@ -1236,7 +1236,7 @@ class QueriesOperations:
     date_time_null.metadata = {'url': '/queries/datetime/null'}
 
     @distributed_trace_async
-    async def array_string_csv_valid(self, array_query=None, cls=None, **kwargs):
+    async def array_string_csv_valid(self, array_query: Optional[List[str]] = None, cls=None, **kwargs):
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-array format.
 
         FIXME: add operation.summary
@@ -1280,7 +1280,7 @@ class QueriesOperations:
     array_string_csv_valid.metadata = {'url': '/queries/array/csv/string/valid'}
 
     @distributed_trace_async
-    async def array_string_csv_null(self, array_query=None, cls=None, **kwargs):
+    async def array_string_csv_null(self, array_query: Optional[List[str]] = None, cls=None, **kwargs):
         """Get a null array of string using the csv-array format.
 
         FIXME: add operation.summary
@@ -1324,7 +1324,7 @@ class QueriesOperations:
     array_string_csv_null.metadata = {'url': '/queries/array/csv/string/null'}
 
     @distributed_trace_async
-    async def array_string_csv_empty(self, array_query=None, cls=None, **kwargs):
+    async def array_string_csv_empty(self, array_query: Optional[List[str]] = None, cls=None, **kwargs):
         """Get an empty array [] of string using the csv-array format.
 
         FIXME: add operation.summary
@@ -1368,7 +1368,7 @@ class QueriesOperations:
     array_string_csv_empty.metadata = {'url': '/queries/array/csv/string/empty'}
 
     @distributed_trace_async
-    async def array_string_ssv_valid(self, array_query=None, cls=None, **kwargs):
+    async def array_string_ssv_valid(self, array_query: Optional[List[str]] = None, cls=None, **kwargs):
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the ssv-array format.
 
         FIXME: add operation.summary
@@ -1412,7 +1412,7 @@ class QueriesOperations:
     array_string_ssv_valid.metadata = {'url': '/queries/array/ssv/string/valid'}
 
     @distributed_trace_async
-    async def array_string_tsv_valid(self, array_query=None, cls=None, **kwargs):
+    async def array_string_tsv_valid(self, array_query: Optional[List[str]] = None, cls=None, **kwargs):
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the tsv-array format.
 
         FIXME: add operation.summary
@@ -1456,7 +1456,7 @@ class QueriesOperations:
     array_string_tsv_valid.metadata = {'url': '/queries/array/tsv/string/valid'}
 
     @distributed_trace_async
-    async def array_string_pipes_valid(self, array_query=None, cls=None, **kwargs):
+    async def array_string_pipes_valid(self, array_query: Optional[List[str]] = None, cls=None, **kwargs):
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the pipes-array format.
 
         FIXME: add operation.summary

@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
-from typing import List, Union
+from typing import List, Optional, Union
 import warnings
 
 from azure.core.exceptions import map_error

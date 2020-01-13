@@ -27,7 +27,7 @@ class MicrosoftAzureTestUrl(object):
     :param str base_url: Service URL
     """
 
-    def __init__(self, credential, subscription_id, base_url=None, **kwargs):
+    def __init__(self, , , base_url=None, **kwargs):
         if not base_url:
             base_url = 'https://management.azure.com'
         self._config = MicrosoftAzureTestUrlConfiguration(credential, subscription_id, **kwargs)

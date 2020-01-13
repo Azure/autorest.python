@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import List
+from typing import List, Optional
 
 from msrest.serialization import Model
 
@@ -24,7 +24,7 @@ class Error(Model):
         'message': {'key': 'message', 'type': 'str'},
     }
 
-    def __init__(self, *, status: int=None, message: str=None, **kwargs) -> None:
+    def __init__(self, *, status: Optional[int] = None, message: Optional[str] = None, **kwargs) -> None:
         super(Error, self).__init__(**kwargs)
         self.status = status
         self.message = message
@@ -40,7 +40,7 @@ class Product(Model):
         'properties': {'key': 'properties', 'type': 'ProductProperties'},
     }
 
-    def __init__(self, *, properties: "ProductProperties"=None, **kwargs) -> None:
+    def __init__(self, *, properties: Optional["ProductProperties"] = None, **kwargs) -> None:
         super(Product, self).__init__(**kwargs)
         self.properties = properties
 
@@ -58,7 +58,7 @@ class ProductProperties(Model):
         'name': {'key': 'name', 'type': 'str'},
     }
 
-    def __init__(self, *, id: int=None, name: str=None, **kwargs) -> None:
+    def __init__(self, *, id: Optional[int] = None, name: Optional[str] = None, **kwargs) -> None:
         super(ProductProperties, self).__init__(**kwargs)
         self.id = id
         self.name = name
@@ -77,7 +77,7 @@ class ProductResult(Model):
         'next_link': {'key': 'nextLink', 'type': 'str'},
     }
 
-    def __init__(self, *, values: List["Product"]=None, next_link: str=None, **kwargs) -> None:
+    def __init__(self, *, values: Optional[List["Product"]] = None, next_link: Optional[str] = None, **kwargs) -> None:
         super(ProductResult, self).__init__(**kwargs)
         self.values = values
         self.next_link = next_link

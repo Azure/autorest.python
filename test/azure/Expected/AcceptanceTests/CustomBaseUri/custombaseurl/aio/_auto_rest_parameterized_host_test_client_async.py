@@ -24,7 +24,7 @@ class AutoRestParameterizedHostTestClient(object):
     :type host: str
     """
 
-    def __init__(self, host, **kwargs):
+    def __init__(self, , **kwargs):
         base_url = 'http://{accountName}{host}'
         self._config = AutoRestParameterizedHostTestClientConfiguration(host, **kwargs)
         self._client = AsyncPipelineClient(base_url=base_url, config=self._config, **kwargs)

@@ -78,7 +78,7 @@ class BasicOperations:
     get_valid.metadata = {'url': '/complex/basic/valid'}
 
     @distributed_trace_async
-    async def put_valid(self, complex_body, cls=None, **kwargs):
+    async def put_valid(self, complex_body: "Basic", cls=None, **kwargs):
         """Please put {id: 2, name: 'abc', color: 'Magenta'}.
 
         FIXME: add operation.summary

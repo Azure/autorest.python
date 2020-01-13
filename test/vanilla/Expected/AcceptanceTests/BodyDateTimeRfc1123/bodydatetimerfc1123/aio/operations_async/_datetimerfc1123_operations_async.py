@@ -207,7 +207,7 @@ class Datetimerfc1123Operations:
     get_underflow.metadata = {'url': '/datetimerfc1123/underflow'}
 
     @distributed_trace_async
-    async def put_utc_max_date_time(self, datetime_body, cls=None, **kwargs):
+    async def put_utc_max_date_time(self, datetime_body: datetime.datetime, cls=None, **kwargs):
         """Put max datetime value Fri, 31 Dec 9999 23:59:59 GMT.
 
         FIXME: add operation.summary
@@ -339,7 +339,7 @@ class Datetimerfc1123Operations:
     get_utc_uppercase_max_date_time.metadata = {'url': '/datetimerfc1123/max/uppercase'}
 
     @distributed_trace_async
-    async def put_utc_min_date_time(self, datetime_body, cls=None, **kwargs):
+    async def put_utc_min_date_time(self, datetime_body: datetime.datetime, cls=None, **kwargs):
         """Put min datetime value Mon, 1 Jan 0001 00:00:00 GMT.
 
         FIXME: add operation.summary

@@ -78,7 +78,7 @@ class DurationOperations:
     get_null.metadata = {'url': '/duration/null'}
 
     @distributed_trace_async
-    async def put_positive_duration(self, duration_body, cls=None, **kwargs):
+    async def put_positive_duration(self, duration_body: datetime.timedelta, cls=None, **kwargs):
         """Put a positive duration value.
 
         FIXME: add operation.summary

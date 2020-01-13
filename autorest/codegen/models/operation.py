@@ -153,7 +153,7 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods
         signature_parameters_optional = []
         for parameter in self.parameters:
             if is_parameter_in_signature(parameter):
-                if parameter.is_required:
+                if parameter.required:
                     signature_parameters_required.append(parameter)
                 else:
                     signature_parameters_optional.append(parameter)
@@ -261,7 +261,7 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods
                     "azure.core.exceptions", "HttpResponseError", ImportType.AZURECORE
                 )
         for parameter in self.parameters:
-            file_import.merge(parameter.schema.imports())
+            file_import.merge(parameter.imports())
 
         # If ARM, I always generated a client request id
         if code_model.options['azure_arm']:

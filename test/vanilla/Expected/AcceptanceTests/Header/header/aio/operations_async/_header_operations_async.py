@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
-from typing import Union
+from typing import Optional, Union
 import warnings
 
 from azure.core.exceptions import map_error
@@ -36,7 +36,7 @@ class HeaderOperations:
         self._deserialize = deserializer
         self._config = config
     @distributed_trace_async
-    async def param_existing_key(self, user_agent, cls=None, **kwargs):
+    async def param_existing_key(self, user_agent: str, cls=None, **kwargs):
         """Send a post request with header value "User-Agent": "overwrite".
 
         FIXME: add operation.summary
@@ -122,7 +122,7 @@ class HeaderOperations:
     response_existing_key.metadata = {'url': '/header/response/existingkey'}
 
     @distributed_trace_async
-    async def param_protected_key(self, content_type, cls=None, **kwargs):
+    async def param_protected_key(self, content_type: str, cls=None, **kwargs):
         """Send a post request with header value "Content-Type": "text/html".
 
         FIXME: add operation.summary
@@ -208,7 +208,7 @@ class HeaderOperations:
     response_protected_key.metadata = {'url': '/header/response/protectedkey'}
 
     @distributed_trace_async
-    async def param_integer(self, scenario, value, cls=None, **kwargs):
+    async def param_integer(self, scenario: str, value: int, cls=None, **kwargs):
         """Send a post request with header values "scenario": "positive", "value": 1 or "scenario": "negative", "value": -2.
 
         FIXME: add operation.summary
@@ -254,7 +254,7 @@ class HeaderOperations:
     param_integer.metadata = {'url': '/header/param/prim/integer'}
 
     @distributed_trace_async
-    async def response_integer(self, scenario, cls=None, **kwargs):
+    async def response_integer(self, scenario: str, cls=None, **kwargs):
         """Get a response with header value "value": 1 or -2.
 
         FIXME: add operation.summary
@@ -300,7 +300,7 @@ class HeaderOperations:
     response_integer.metadata = {'url': '/header/response/prim/integer'}
 
     @distributed_trace_async
-    async def param_long(self, scenario, value, cls=None, **kwargs):
+    async def param_long(self, scenario: str, value: int, cls=None, **kwargs):
         """Send a post request with header values "scenario": "positive", "value": 105 or "scenario": "negative", "value": -2.
 
         FIXME: add operation.summary
@@ -346,7 +346,7 @@ class HeaderOperations:
     param_long.metadata = {'url': '/header/param/prim/long'}
 
     @distributed_trace_async
-    async def response_long(self, scenario, cls=None, **kwargs):
+    async def response_long(self, scenario: str, cls=None, **kwargs):
         """Get a response with header value "value": 105 or -2.
 
         FIXME: add operation.summary
@@ -392,7 +392,7 @@ class HeaderOperations:
     response_long.metadata = {'url': '/header/response/prim/long'}
 
     @distributed_trace_async
-    async def param_float(self, scenario, value, cls=None, **kwargs):
+    async def param_float(self, scenario: str, value: float, cls=None, **kwargs):
         """Send a post request with header values "scenario": "positive", "value": 0.07 or "scenario": "negative", "value": -3.0.
 
         FIXME: add operation.summary
@@ -438,7 +438,7 @@ class HeaderOperations:
     param_float.metadata = {'url': '/header/param/prim/float'}
 
     @distributed_trace_async
-    async def response_float(self, scenario, cls=None, **kwargs):
+    async def response_float(self, scenario: str, cls=None, **kwargs):
         """Get a response with header value "value": 0.07 or -3.0.
 
         FIXME: add operation.summary
@@ -484,7 +484,7 @@ class HeaderOperations:
     response_float.metadata = {'url': '/header/response/prim/float'}
 
     @distributed_trace_async
-    async def param_double(self, scenario, value, cls=None, **kwargs):
+    async def param_double(self, scenario: str, value: float, cls=None, **kwargs):
         """Send a post request with header values "scenario": "positive", "value": 7e120 or "scenario": "negative", "value": -3.0.
 
         FIXME: add operation.summary
@@ -530,7 +530,7 @@ class HeaderOperations:
     param_double.metadata = {'url': '/header/param/prim/double'}
 
     @distributed_trace_async
-    async def response_double(self, scenario, cls=None, **kwargs):
+    async def response_double(self, scenario: str, cls=None, **kwargs):
         """Get a response with header value "value": 7e120 or -3.0.
 
         FIXME: add operation.summary
@@ -576,7 +576,7 @@ class HeaderOperations:
     response_double.metadata = {'url': '/header/response/prim/double'}
 
     @distributed_trace_async
-    async def param_bool(self, scenario, value, cls=None, **kwargs):
+    async def param_bool(self, scenario: str, value: bool, cls=None, **kwargs):
         """Send a post request with header values "scenario": "true", "value": true or "scenario": "false", "value": false.
 
         FIXME: add operation.summary
@@ -622,7 +622,7 @@ class HeaderOperations:
     param_bool.metadata = {'url': '/header/param/prim/bool'}
 
     @distributed_trace_async
-    async def response_bool(self, scenario, cls=None, **kwargs):
+    async def response_bool(self, scenario: str, cls=None, **kwargs):
         """Get a response with header value "value": true or false.
 
         FIXME: add operation.summary
@@ -668,7 +668,7 @@ class HeaderOperations:
     response_bool.metadata = {'url': '/header/response/prim/bool'}
 
     @distributed_trace_async
-    async def param_string(self, scenario, value=None, cls=None, **kwargs):
+    async def param_string(self, scenario: str, value: Optional[str] = None, cls=None, **kwargs):
         """Send a post request with header values "scenario": "valid", "value": "The quick brown fox jumps over the lazy dog" or "scenario": "null", "value": null or "scenario": "empty", "value": "".
 
         FIXME: add operation.summary
@@ -715,7 +715,7 @@ class HeaderOperations:
     param_string.metadata = {'url': '/header/param/prim/string'}
 
     @distributed_trace_async
-    async def response_string(self, scenario, cls=None, **kwargs):
+    async def response_string(self, scenario: str, cls=None, **kwargs):
         """Get a response with header values "The quick brown fox jumps over the lazy dog" or null or "".
 
         FIXME: add operation.summary
@@ -761,7 +761,7 @@ class HeaderOperations:
     response_string.metadata = {'url': '/header/response/prim/string'}
 
     @distributed_trace_async
-    async def param_date(self, scenario, value, cls=None, **kwargs):
+    async def param_date(self, scenario: str, value: datetime.date, cls=None, **kwargs):
         """Send a post request with header values "scenario": "valid", "value": "2010-01-01" or "scenario": "min", "value": "0001-01-01".
 
         FIXME: add operation.summary
@@ -807,7 +807,7 @@ class HeaderOperations:
     param_date.metadata = {'url': '/header/param/prim/date'}
 
     @distributed_trace_async
-    async def response_date(self, scenario, cls=None, **kwargs):
+    async def response_date(self, scenario: str, cls=None, **kwargs):
         """Get a response with header values "2010-01-01" or "0001-01-01".
 
         FIXME: add operation.summary
@@ -853,7 +853,7 @@ class HeaderOperations:
     response_date.metadata = {'url': '/header/response/prim/date'}
 
     @distributed_trace_async
-    async def param_datetime(self, scenario, value, cls=None, **kwargs):
+    async def param_datetime(self, scenario: str, value: datetime.datetime, cls=None, **kwargs):
         """Send a post request with header values "scenario": "valid", "value": "2010-01-01T12:34:56Z" or "scenario": "min", "value": "0001-01-01T00:00:00Z".
 
         FIXME: add operation.summary
@@ -899,7 +899,7 @@ class HeaderOperations:
     param_datetime.metadata = {'url': '/header/param/prim/datetime'}
 
     @distributed_trace_async
-    async def response_datetime(self, scenario, cls=None, **kwargs):
+    async def response_datetime(self, scenario: str, cls=None, **kwargs):
         """Get a response with header values "2010-01-01T12:34:56Z" or "0001-01-01T00:00:00Z".
 
         FIXME: add operation.summary
@@ -945,7 +945,7 @@ class HeaderOperations:
     response_datetime.metadata = {'url': '/header/response/prim/datetime'}
 
     @distributed_trace_async
-    async def param_datetime_rfc1123(self, scenario, value=None, cls=None, **kwargs):
+    async def param_datetime_rfc1123(self, scenario: str, value: Optional[datetime.datetime] = None, cls=None, **kwargs):
         """Send a post request with header values "scenario": "valid", "value": "Wed, 01 Jan 2010 12:34:56 GMT" or "scenario": "min", "value": "Mon, 01 Jan 0001 00:00:00 GMT".
 
         FIXME: add operation.summary
@@ -992,7 +992,7 @@ class HeaderOperations:
     param_datetime_rfc1123.metadata = {'url': '/header/param/prim/datetimerfc1123'}
 
     @distributed_trace_async
-    async def response_datetime_rfc1123(self, scenario, cls=None, **kwargs):
+    async def response_datetime_rfc1123(self, scenario: str, cls=None, **kwargs):
         """Get a response with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon, 01 Jan 0001 00:00:00 GMT".
 
         FIXME: add operation.summary
@@ -1038,7 +1038,7 @@ class HeaderOperations:
     response_datetime_rfc1123.metadata = {'url': '/header/response/prim/datetimerfc1123'}
 
     @distributed_trace_async
-    async def param_duration(self, scenario, value, cls=None, **kwargs):
+    async def param_duration(self, scenario: str, value: datetime.timedelta, cls=None, **kwargs):
         """Send a post request with header values "scenario": "valid", "value": "P123DT22H14M12.011S".
 
         FIXME: add operation.summary
@@ -1084,7 +1084,7 @@ class HeaderOperations:
     param_duration.metadata = {'url': '/header/param/prim/duration'}
 
     @distributed_trace_async
-    async def response_duration(self, scenario, cls=None, **kwargs):
+    async def response_duration(self, scenario: str, cls=None, **kwargs):
         """Get a response with header values "P123DT22H14M12.011S".
 
         FIXME: add operation.summary
@@ -1130,7 +1130,7 @@ class HeaderOperations:
     response_duration.metadata = {'url': '/header/response/prim/duration'}
 
     @distributed_trace_async
-    async def param_byte(self, scenario, value, cls=None, **kwargs):
+    async def param_byte(self, scenario: str, value: bytearray, cls=None, **kwargs):
         """Send a post request with header values "scenario": "valid", "value": "啊齄丂狛狜隣郎隣兀﨩".
 
         FIXME: add operation.summary
@@ -1176,7 +1176,7 @@ class HeaderOperations:
     param_byte.metadata = {'url': '/header/param/prim/byte'}
 
     @distributed_trace_async
-    async def response_byte(self, scenario, cls=None, **kwargs):
+    async def response_byte(self, scenario: str, cls=None, **kwargs):
         """Get a response with header values "啊齄丂狛狜隣郎隣兀﨩".
 
         FIXME: add operation.summary
@@ -1222,7 +1222,7 @@ class HeaderOperations:
     response_byte.metadata = {'url': '/header/response/prim/byte'}
 
     @distributed_trace_async
-    async def param_enum(self, scenario, value=None, cls=None, **kwargs):
+    async def param_enum(self, scenario: str, value: Optional[Union[str, "GreyscaleColors"]] = None, cls=None, **kwargs):
         """Send a post request with header values "scenario": "valid", "value": "GREY" or "scenario": "null", "value": null.
 
         FIXME: add operation.summary
@@ -1269,7 +1269,7 @@ class HeaderOperations:
     param_enum.metadata = {'url': '/header/param/prim/enum'}
 
     @distributed_trace_async
-    async def response_enum(self, scenario, cls=None, **kwargs):
+    async def response_enum(self, scenario: str, cls=None, **kwargs):
         """Get a response with header values "GREY" or null.
 
         FIXME: add operation.summary

@@ -2,7 +2,8 @@
 {% set config_import = "._configuration_async" if async_mode else "._configuration" %}
 {% set operations_import = ".operations_async" if async_mode else ".operations" %}
 {% set path_to_models = ".." if async_mode else "." %}
-{% set method_signature = code_model.global_parameters|join(', ', attribute='for_method_signature') ~ (", " if code_model.global_parameters else "") %}
+{% set method_signature = code_model.global_parameters|join(', ', attribute='async_method_signature(async_mode)') ~ (", " if code_model.global_parameters else "")
+if async_mode else code_model.global_parameters|join(', ', attribute='sync_method_signature(async_mode)') ~ (", " if code_model.global_parameters else "")%}
 {% set config_signature = code_model.global_parameters|join(', ', attribute='serialized_name') ~ (", " if code_model.global_parameters else "") %}
 {% set has_mixin_operation_group = code_model.operation_groups|selectattr("is_empty_operation_group")|first %}
 {% macro mixin_operation_group_name() %}{{ code_model.class_name }}OperationsMixin{% endmacro %}

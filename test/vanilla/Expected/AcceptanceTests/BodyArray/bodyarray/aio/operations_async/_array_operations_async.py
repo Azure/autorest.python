@@ -164,7 +164,7 @@ class ArrayOperations:
     get_empty.metadata = {'url': '/array/empty'}
 
     @distributed_trace_async
-    async def put_empty(self, array_body, cls=None, **kwargs):
+    async def put_empty(self, array_body: List[str], cls=None, **kwargs):
         """Set array value empty [].
 
         FIXME: add operation.summary
@@ -253,7 +253,7 @@ class ArrayOperations:
     get_boolean_tfft.metadata = {'url': '/array/prim/boolean/tfft'}
 
     @distributed_trace_async
-    async def put_boolean_tfft(self, array_body, cls=None, **kwargs):
+    async def put_boolean_tfft(self, array_body: List[bool], cls=None, **kwargs):
         """Set array value empty [true, false, false, true].
 
         FIXME: add operation.summary
@@ -428,7 +428,7 @@ class ArrayOperations:
     get_integer_valid.metadata = {'url': '/array/prim/integer/1.-1.3.300'}
 
     @distributed_trace_async
-    async def put_integer_valid(self, array_body, cls=None, **kwargs):
+    async def put_integer_valid(self, array_body: List[int], cls=None, **kwargs):
         """Set array value empty [1, -1, 3, 300].
 
         FIXME: add operation.summary
@@ -603,7 +603,7 @@ class ArrayOperations:
     get_long_valid.metadata = {'url': '/array/prim/long/1.-1.3.300'}
 
     @distributed_trace_async
-    async def put_long_valid(self, array_body, cls=None, **kwargs):
+    async def put_long_valid(self, array_body: List[int], cls=None, **kwargs):
         """Set array value empty [1, -1, 3, 300].
 
         FIXME: add operation.summary
@@ -778,7 +778,7 @@ class ArrayOperations:
     get_float_valid.metadata = {'url': '/array/prim/float/0--0.01-1.2e20'}
 
     @distributed_trace_async
-    async def put_float_valid(self, array_body, cls=None, **kwargs):
+    async def put_float_valid(self, array_body: List[float], cls=None, **kwargs):
         """Set array value [0, -0.01, 1.2e20].
 
         FIXME: add operation.summary
@@ -953,7 +953,7 @@ class ArrayOperations:
     get_double_valid.metadata = {'url': '/array/prim/double/0--0.01-1.2e20'}
 
     @distributed_trace_async
-    async def put_double_valid(self, array_body, cls=None, **kwargs):
+    async def put_double_valid(self, array_body: List[float], cls=None, **kwargs):
         """Set array value [0, -0.01, 1.2e20].
 
         FIXME: add operation.summary
@@ -1128,7 +1128,7 @@ class ArrayOperations:
     get_string_valid.metadata = {'url': '/array/prim/string/foo1.foo2.foo3'}
 
     @distributed_trace_async
-    async def put_string_valid(self, array_body, cls=None, **kwargs):
+    async def put_string_valid(self, array_body: List[str], cls=None, **kwargs):
         """Set array value ['foo1', 'foo2', 'foo3'].
 
         FIXME: add operation.summary
@@ -1217,7 +1217,7 @@ class ArrayOperations:
     get_enum_valid.metadata = {'url': '/array/prim/enum/foo1.foo2.foo3'}
 
     @distributed_trace_async
-    async def put_enum_valid(self, array_body, cls=None, **kwargs):
+    async def put_enum_valid(self, array_body: List[Union[str, "foo_enum"]], cls=None, **kwargs):
         """Set array value ['foo1', 'foo2', 'foo3'].
 
         FIXME: add operation.summary
@@ -1306,7 +1306,7 @@ class ArrayOperations:
     get_string_enum_valid.metadata = {'url': '/array/prim/string-enum/foo1.foo2.foo3'}
 
     @distributed_trace_async
-    async def put_string_enum_valid(self, array_body, cls=None, **kwargs):
+    async def put_string_enum_valid(self, array_body: List[Union[str, "enum0"]], cls=None, **kwargs):
         """Set array value ['foo1', 'foo2', 'foo3'].
 
         FIXME: add operation.summary
@@ -1481,7 +1481,7 @@ class ArrayOperations:
     get_uuid_valid.metadata = {'url': '/array/prim/uuid/valid'}
 
     @distributed_trace_async
-    async def put_uuid_valid(self, array_body, cls=None, **kwargs):
+    async def put_uuid_valid(self, array_body: List[str], cls=None, **kwargs):
         """Set array value  ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652', 'd1399005-30f7-40d6-8da6-dd7c89ad34db', 'f42f6aa1-a5bc-4ddf-907e-5f915de43205'].
 
         FIXME: add operation.summary
@@ -1613,7 +1613,7 @@ class ArrayOperations:
     get_date_valid.metadata = {'url': '/array/prim/date/valid'}
 
     @distributed_trace_async
-    async def put_date_valid(self, array_body, cls=None, **kwargs):
+    async def put_date_valid(self, array_body: List[datetime.date], cls=None, **kwargs):
         """Set array value  ['2000-12-01', '1980-01-02', '1492-10-12'].
 
         FIXME: add operation.summary
@@ -1788,7 +1788,7 @@ class ArrayOperations:
     get_date_time_valid.metadata = {'url': '/array/prim/date-time/valid'}
 
     @distributed_trace_async
-    async def put_date_time_valid(self, array_body, cls=None, **kwargs):
+    async def put_date_time_valid(self, array_body: List[datetime.datetime], cls=None, **kwargs):
         """Set array value  ['2000-12-01t00:00:01z', '1980-01-02T00:11:35+01:00', '1492-10-12T10:15:01-08:00'].
 
         FIXME: add operation.summary
@@ -1963,7 +1963,7 @@ class ArrayOperations:
     get_date_time_rfc1123_valid.metadata = {'url': '/array/prim/date-time-rfc1123/valid'}
 
     @distributed_trace_async
-    async def put_date_time_rfc1123_valid(self, array_body, cls=None, **kwargs):
+    async def put_date_time_rfc1123_valid(self, array_body: List[datetime.datetime], cls=None, **kwargs):
         """Set array value  ['Fri, 01 Dec 2000 00:00:01 GMT', 'Wed, 02 Jan 1980 00:11:35 GMT', 'Wed, 12 Oct 1492 10:15:01 GMT'].
 
         FIXME: add operation.summary
@@ -2052,7 +2052,7 @@ class ArrayOperations:
     get_duration_valid.metadata = {'url': '/array/prim/duration/valid'}
 
     @distributed_trace_async
-    async def put_duration_valid(self, array_body, cls=None, **kwargs):
+    async def put_duration_valid(self, array_body: List[datetime.timedelta], cls=None, **kwargs):
         """Set array value  ['P123DT22H14M12.011S', 'P5DT1H0M0S'].
 
         FIXME: add operation.summary
@@ -2141,7 +2141,7 @@ class ArrayOperations:
     get_byte_valid.metadata = {'url': '/array/prim/byte/valid'}
 
     @distributed_trace_async
-    async def put_byte_valid(self, array_body, cls=None, **kwargs):
+    async def put_byte_valid(self, array_body: List[bytearray], cls=None, **kwargs):
         """Put the array value [hex(FF FF FF FA), hex(01 02 03), hex (25, 29, 43)] with each elementencoded in base 64.
 
         FIXME: add operation.summary
@@ -2488,7 +2488,7 @@ class ArrayOperations:
     get_complex_valid.metadata = {'url': '/array/complex/valid'}
 
     @distributed_trace_async
-    async def put_complex_valid(self, array_body, cls=None, **kwargs):
+    async def put_complex_valid(self, array_body: List["Product"], cls=None, **kwargs):
         """Put an array of complex type with values [{'integer': 1 'string': '2'}, {'integer': 3, 'string': '4'}, {'integer': 5, 'string': '6'}].
 
         FIXME: add operation.summary
@@ -2749,7 +2749,7 @@ class ArrayOperations:
     get_array_valid.metadata = {'url': '/array/array/valid'}
 
     @distributed_trace_async
-    async def put_array_valid(self, array_body, cls=None, **kwargs):
+    async def put_array_valid(self, array_body: List[List[str]], cls=None, **kwargs):
         """Put An array of array of strings [['1', '2', '3'], ['4', '5', '6'], ['7', '8', '9']].
 
         FIXME: add operation.summary
@@ -3010,7 +3010,7 @@ class ArrayOperations:
     get_dictionary_valid.metadata = {'url': '/array/dictionary/valid'}
 
     @distributed_trace_async
-    async def put_dictionary_valid(self, array_body, cls=None, **kwargs):
+    async def put_dictionary_valid(self, array_body: List[Dict[str, str]], cls=None, **kwargs):
         """Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3': 'three'}, {'4': 'four', '5': 'five', '6': 'six'}, {'7': 'seven', '8': 'eight', '9': 'nine'}].
 
         FIXME: add operation.summary

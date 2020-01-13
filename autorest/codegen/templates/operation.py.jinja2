@@ -20,7 +20,7 @@
 {% else %}
 
 {% endif %}
-{{ keywords.def }} {{ operation.python_name }}(self{{ method_signature(operation) }}, cls=None, **kwargs):
+{{ keywords.def }} {{ operation.python_name }}(self{{ method_signature(operation, async_mode) }}, cls=None, **kwargs):
 {% if not async_mode %}
     {{ operation_typing_comment(operation) }}
 {% endif %}
@@ -97,7 +97,7 @@
 {% if operation.has_request_body %}
     # Construct body
     {% if not operation.body_parameter.is_stream %}
-        {% if operation.body_parameter.is_required %}
+        {% if operation.body_parameter.required %}
     body_content = self._serialize.body({{ operation.body_parameter.serialized_name }}, '{{ operation.body_parameter.schema.get_serialization_type() }}'{{ request_as_xml }}{{ operation.serialization_context }})
         {% else %}
     if {{ operation.body_parameter.serialized_name }} is not None:

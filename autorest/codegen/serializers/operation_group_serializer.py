@@ -48,9 +48,10 @@ class OperationGroupSerializer:
         return self._operation_group_file
 
     @staticmethod
-    def method_signature(operation: Operation) -> str:
+    def method_signature(operation: Operation, async_mode: bool) -> str:
         signature = ", ".join([
-            parameter.for_method_signature for parameter in operation.method_parameters
+            p.async_method_signature if async_mode else p.sync_method_signature
+            for p in operation.method_parameters
         ])
         if signature:
             signature = ", "+signature
@@ -73,7 +74,7 @@ class OperationGroupSerializer:
                 return f"# type: (Optional[Any], Optional[bool], **Any) -> {response}"
             return f"# type: (Optional[Any], **Any) -> {response}"
         parameters_typing = [
-            p.schema.get_python_type_annotation() if p.is_required else f"Optional[{p.schema.get_python_type_annotation()}]"
+            p.schema.get_python_type_annotation() if p.required else f"Optional[{p.schema.get_python_type_annotation()}]"
             for p in operation.method_parameters
         ]
         if lro:
