@@ -31,7 +31,8 @@ class OperationGroupSerializer:
             async_mode=self.async_mode,
             is_lro=_is_lro,
             is_paging=_is_paging,
-            method_signature=OperationGroupSerializer.method_signature
+            method_signature=OperationGroupSerializer.method_signature,
+            operation_typing_comment=OperationGroupSerializer.operation_typing_comment
         )
 
     def filename(self):
@@ -48,10 +49,33 @@ class OperationGroupSerializer:
 
     @staticmethod
     def method_signature(operation: Operation) -> str:
-
         signature = ", ".join([
             parameter.for_method_signature for parameter in operation.method_parameters
         ])
         if signature:
             signature = ", "+signature
         return signature
+
+    @staticmethod
+    def operation_typing_comment(operation: Operation, lro: bool = False) -> str:
+        response = "None"
+        if any(r.has_body for r in operation.responses):
+            if len(operation.responses) == 1:
+                response = operation.responses[0].schema.get_python_type_annotation()
+            else:
+                response_parameters_string = ", ".join([
+                    r.schema.get_python_type_annotation() if r.has_body else "None"
+                    for r in operation.responses
+                ])
+                response = f"Union[{response_parameters_string}]"
+        if not operation.method_parameters:
+            if lro:
+                return f"# type: (Optional[Any], Optional[bool], **Any) -> {response}"
+            return f"# type: (Optional[Any], **Any) -> {response}"
+        parameters_typing = [
+            p.schema.get_python_type_annotation() if p.is_required else f"Optional[{p.schema.get_python_type_annotation()}]"
+            for p in operation.method_parameters
+        ]
+        if lro:
+            return f"# type: ({', '.join(parameters_typing)}, Optional[Any], Optional[bool], **Any) -> {response}"
+        return f"# type: ({', '.join(parameters_typing)}, Optional[Any], **Any) -> {response}"

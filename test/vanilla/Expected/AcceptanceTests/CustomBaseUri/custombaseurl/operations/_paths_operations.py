@@ -35,6 +35,7 @@ class PathsOperations(object):
         self._config = config
     @distributed_trace
     def get_empty(self, account_name, cls=None, **kwargs):
+        # type: (str, Optional[Any], **Any) -> None
         """Get a 200 to test a valid base uri.
 
         FIXME: add operation.summary

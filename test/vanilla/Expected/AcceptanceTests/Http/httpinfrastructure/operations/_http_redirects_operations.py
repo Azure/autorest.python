@@ -35,6 +35,7 @@ class HttpRedirectsOperations(object):
         self._config = config
     @distributed_trace
     def head300(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> None
         """Return 300 status code and redirect to /http/success/200.
 
         FIXME: add operation.summary
@@ -79,6 +80,7 @@ class HttpRedirectsOperations(object):
 
     @distributed_trace
     def get300(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> Union[None, List[str]]
         """Return 300 status code and redirect to /http/success/200.
 
         FIXME: add operation.summary
@@ -126,6 +128,7 @@ class HttpRedirectsOperations(object):
 
     @distributed_trace
     def head301(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> None
         """Return 301 status code and redirect to /http/success/200.
 
         FIXME: add operation.summary
@@ -170,6 +173,7 @@ class HttpRedirectsOperations(object):
 
     @distributed_trace
     def get301(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> None
         """Return 301 status code and redirect to /http/success/200.
 
         FIXME: add operation.summary
@@ -214,6 +218,7 @@ class HttpRedirectsOperations(object):
 
     @distributed_trace
     def put301(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> None
         """Put true Boolean value in request returns 301.  This request should not be automatically redirected, but should return the received 301 to the caller for evaluation.
 
         FIXME: add operation.summary
@@ -265,6 +270,7 @@ class HttpRedirectsOperations(object):
 
     @distributed_trace
     def head302(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> None
         """Return 302 status code and redirect to /http/success/200.
 
         FIXME: add operation.summary
@@ -309,6 +315,7 @@ class HttpRedirectsOperations(object):
 
     @distributed_trace
     def get302(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> None
         """Return 302 status code and redirect to /http/success/200.
 
         FIXME: add operation.summary
@@ -353,6 +360,7 @@ class HttpRedirectsOperations(object):
 
     @distributed_trace
     def patch302(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> None
         """Patch true Boolean value in request returns 302.  This request should not be automatically redirected, but should return the received 302 to the caller for evaluation.
 
         FIXME: add operation.summary
@@ -404,6 +412,7 @@ class HttpRedirectsOperations(object):
 
     @distributed_trace
     def post303(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> None
         """Post true Boolean value in request returns 303.  This request should be automatically redirected usign a get, ultimately returning a 200 status code.
 
         FIXME: add operation.summary
@@ -456,6 +465,7 @@ class HttpRedirectsOperations(object):
 
     @distributed_trace
     def head307(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> None
         """Redirect with 307, resulting in a 200 success.
 
         FIXME: add operation.summary
@@ -500,6 +510,7 @@ class HttpRedirectsOperations(object):
 
     @distributed_trace
     def get307(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> None
         """Redirect get with 307, resulting in a 200 success.
 
         FIXME: add operation.summary
@@ -544,6 +555,7 @@ class HttpRedirectsOperations(object):
 
     @distributed_trace
     def options307(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> None
         """options redirected with 307, resulting in a 200 after redirect.
 
         FIXME: add operation.summary
@@ -588,6 +600,7 @@ class HttpRedirectsOperations(object):
 
     @distributed_trace
     def put307(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> None
         """Put redirected with 307, resulting in a 200 after redirect.
 
         FIXME: add operation.summary
@@ -640,6 +653,7 @@ class HttpRedirectsOperations(object):
 
     @distributed_trace
     def patch307(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> None
         """Patch redirected with 307, resulting in a 200 after redirect.
 
         FIXME: add operation.summary
@@ -692,6 +706,7 @@ class HttpRedirectsOperations(object):
 
     @distributed_trace
     def post307(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> None
         """Post redirected with 307, resulting in a 200 after redirect.
 
         FIXME: add operation.summary
@@ -744,6 +759,7 @@ class HttpRedirectsOperations(object):
 
     @distributed_trace
     def delete307(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> None
         """Delete redirected with 307, resulting in a 200 after redirect.
 
         FIXME: add operation.summary

@@ -36,6 +36,7 @@ class ReadonlypropertyOperations(object):
         self._config = config
     @distributed_trace
     def get_valid(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> "ReadonlyObj"
         """Get complex types that have readonly properties.
 
         FIXME: add operation.summary
@@ -79,6 +80,7 @@ class ReadonlypropertyOperations(object):
 
     @distributed_trace
     def put_valid(self, size=None, cls=None, **kwargs):
+        # type: (Optional[int], Optional[Any], **Any) -> None
         """Put complex types that have readonly properties.
 
         FIXME: add operation.summary

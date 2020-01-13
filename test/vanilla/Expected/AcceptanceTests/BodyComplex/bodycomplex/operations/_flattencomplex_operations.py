@@ -35,6 +35,7 @@ class FlattencomplexOperations(object):
         self._config = config
     @distributed_trace
     def get_valid(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> "MyBaseType"
         """MISSING·OPERATION-DESCRIPTION.
 
         FIXME: add operation.summary

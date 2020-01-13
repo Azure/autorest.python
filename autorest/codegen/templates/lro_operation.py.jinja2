@@ -22,6 +22,9 @@ response_headers = {
 {{ trace_decorator }}
 {% endif %}
 {{ keywords.def }} {{ operation_name }}(self{{ method_signature(operation) }}, cls=None, polling=True, **kwargs):
+{% if not async_mode %}
+    {{ operation_typing_comment(operation, lro=True) }}
+{% endif %}
     """{{operation.description.strip() }}.
 
     {{ "FIXME: add operation.summary\n" }}

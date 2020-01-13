@@ -36,6 +36,7 @@ class Datetimerfc1123Operations(object):
         self._config = config
     @distributed_trace
     def get_null(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> datetime.datetime
         """Get null datetime value.
 
         FIXME: add operation.summary
@@ -79,6 +80,7 @@ class Datetimerfc1123Operations(object):
 
     @distributed_trace
     def get_invalid(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> datetime.datetime
         """Get invalid datetime value.
 
         FIXME: add operation.summary
@@ -122,6 +124,7 @@ class Datetimerfc1123Operations(object):
 
     @distributed_trace
     def get_overflow(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> datetime.datetime
         """Get overflow datetime value.
 
         FIXME: add operation.summary
@@ -165,6 +168,7 @@ class Datetimerfc1123Operations(object):
 
     @distributed_trace
     def get_underflow(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> datetime.datetime
         """Get underflow datetime value.
 
         FIXME: add operation.summary
@@ -208,6 +212,7 @@ class Datetimerfc1123Operations(object):
 
     @distributed_trace
     def put_utc_max_date_time(self, datetime_body, cls=None, **kwargs):
+        # type: (datetime.datetime, Optional[Any], **Any) -> None
         """Put max datetime value Fri, 31 Dec 9999 23:59:59 GMT.
 
         FIXME: add operation.summary
@@ -254,6 +259,7 @@ class Datetimerfc1123Operations(object):
 
     @distributed_trace
     def get_utc_lowercase_max_date_time(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> datetime.datetime
         """Get max datetime value fri, 31 dec 9999 23:59:59 gmt.
 
         FIXME: add operation.summary
@@ -297,6 +303,7 @@ class Datetimerfc1123Operations(object):
 
     @distributed_trace
     def get_utc_uppercase_max_date_time(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> datetime.datetime
         """Get max datetime value FRI, 31 DEC 9999 23:59:59 GMT.
 
         FIXME: add operation.summary
@@ -340,6 +347,7 @@ class Datetimerfc1123Operations(object):
 
     @distributed_trace
     def put_utc_min_date_time(self, datetime_body, cls=None, **kwargs):
+        # type: (datetime.datetime, Optional[Any], **Any) -> None
         """Put min datetime value Mon, 1 Jan 0001 00:00:00 GMT.
 
         FIXME: add operation.summary
@@ -386,6 +394,7 @@ class Datetimerfc1123Operations(object):
 
     @distributed_trace
     def get_utc_min_date_time(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> datetime.datetime
         """Get min datetime value Mon, 1 Jan 0001 00:00:00 GMT.
 
         FIXME: add operation.summary

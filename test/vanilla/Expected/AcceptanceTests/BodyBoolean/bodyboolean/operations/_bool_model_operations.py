@@ -35,6 +35,7 @@ class BoolOperations(object):
         self._config = config
     @distributed_trace
     def get_true(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> bool
         """Get true Boolean value.
 
         FIXME: add operation.summary
@@ -78,6 +79,7 @@ class BoolOperations(object):
 
     @distributed_trace
     def put_true(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> None
         """Set Boolean value true.
 
         FIXME: add operation.summary
@@ -123,6 +125,7 @@ class BoolOperations(object):
 
     @distributed_trace
     def get_false(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> bool
         """Get false Boolean value.
 
         FIXME: add operation.summary
@@ -166,6 +169,7 @@ class BoolOperations(object):
 
     @distributed_trace
     def put_false(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> None
         """Set Boolean value false.
 
         FIXME: add operation.summary
@@ -211,6 +215,7 @@ class BoolOperations(object):
 
     @distributed_trace
     def get_null(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> bool
         """Get null Boolean value.
 
         FIXME: add operation.summary
@@ -254,6 +259,7 @@ class BoolOperations(object):
 
     @distributed_trace
     def get_invalid(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> bool
         """Get invalid Boolean value.
 
         FIXME: add operation.summary

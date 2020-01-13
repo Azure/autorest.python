@@ -35,6 +35,7 @@ class NumberOperations(object):
         self._config = config
     @distributed_trace
     def get_null(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> float
         """Get null Number value.
 
         FIXME: add operation.summary
@@ -78,6 +79,7 @@ class NumberOperations(object):
 
     @distributed_trace
     def get_invalid_float(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> float
         """Get invalid float Number value.
 
         FIXME: add operation.summary
@@ -121,6 +123,7 @@ class NumberOperations(object):
 
     @distributed_trace
     def get_invalid_double(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> float
         """Get invalid double Number value.
 
         FIXME: add operation.summary
@@ -164,6 +167,7 @@ class NumberOperations(object):
 
     @distributed_trace
     def get_invalid_decimal(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> float
         """Get invalid decimal Number value.
 
         FIXME: add operation.summary
@@ -207,6 +211,7 @@ class NumberOperations(object):
 
     @distributed_trace
     def put_big_float(self, number_body, cls=None, **kwargs):
+        # type: (float, Optional[Any], **Any) -> None
         """Put big float value 3.402823e+20.
 
         FIXME: add operation.summary
@@ -253,6 +258,7 @@ class NumberOperations(object):
 
     @distributed_trace
     def get_big_float(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> float
         """Get big float value 3.402823e+20.
 
         FIXME: add operation.summary
@@ -296,6 +302,7 @@ class NumberOperations(object):
 
     @distributed_trace
     def put_big_double(self, number_body, cls=None, **kwargs):
+        # type: (float, Optional[Any], **Any) -> None
         """Put big double value 2.5976931e+101.
 
         FIXME: add operation.summary
@@ -342,6 +349,7 @@ class NumberOperations(object):
 
     @distributed_trace
     def get_big_double(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> float
         """Get big double value 2.5976931e+101.
 
         FIXME: add operation.summary
@@ -385,6 +393,7 @@ class NumberOperations(object):
 
     @distributed_trace
     def put_big_double_positive_decimal(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> None
         """Put big double value 99999999.99.
 
         FIXME: add operation.summary
@@ -430,6 +439,7 @@ class NumberOperations(object):
 
     @distributed_trace
     def get_big_double_positive_decimal(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> float
         """Get big double value 99999999.99.
 
         FIXME: add operation.summary
@@ -473,6 +483,7 @@ class NumberOperations(object):
 
     @distributed_trace
     def put_big_double_negative_decimal(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> None
         """Put big double value -99999999.99.
 
         FIXME: add operation.summary
@@ -518,6 +529,7 @@ class NumberOperations(object):
 
     @distributed_trace
     def get_big_double_negative_decimal(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> float
         """Get big double value -99999999.99.
 
         FIXME: add operation.summary
@@ -561,6 +573,7 @@ class NumberOperations(object):
 
     @distributed_trace
     def put_big_decimal(self, number_body, cls=None, **kwargs):
+        # type: (float, Optional[Any], **Any) -> None
         """Put big decimal value 2.5976931e+101.
 
         FIXME: add operation.summary
@@ -607,6 +620,7 @@ class NumberOperations(object):
 
     @distributed_trace
     def get_big_decimal(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> float
         """Get big decimal value 2.5976931e+101.
 
         FIXME: add operation.summary
@@ -650,6 +664,7 @@ class NumberOperations(object):
 
     @distributed_trace
     def put_big_decimal_positive_decimal(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> None
         """Put big decimal value 99999999.99.
 
         FIXME: add operation.summary
@@ -695,6 +710,7 @@ class NumberOperations(object):
 
     @distributed_trace
     def get_big_decimal_positive_decimal(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> float
         """Get big decimal value 99999999.99.
 
         FIXME: add operation.summary
@@ -738,6 +754,7 @@ class NumberOperations(object):
 
     @distributed_trace
     def put_big_decimal_negative_decimal(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> None
         """Put big decimal value -99999999.99.
 
         FIXME: add operation.summary
@@ -783,6 +800,7 @@ class NumberOperations(object):
 
     @distributed_trace
     def get_big_decimal_negative_decimal(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> float
         """Get big decimal value -99999999.99.
 
         FIXME: add operation.summary
@@ -826,6 +844,7 @@ class NumberOperations(object):
 
     @distributed_trace
     def put_small_float(self, number_body, cls=None, **kwargs):
+        # type: (float, Optional[Any], **Any) -> None
         """Put small float value 3.402823e-20.
 
         FIXME: add operation.summary
@@ -872,6 +891,7 @@ class NumberOperations(object):
 
     @distributed_trace
     def get_small_float(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> float
         """Get big double value 3.402823e-20.
 
         FIXME: add operation.summary
@@ -915,6 +935,7 @@ class NumberOperations(object):
 
     @distributed_trace
     def put_small_double(self, number_body, cls=None, **kwargs):
+        # type: (float, Optional[Any], **Any) -> None
         """Put small double value 2.5976931e-101.
 
         FIXME: add operation.summary
@@ -961,6 +982,7 @@ class NumberOperations(object):
 
     @distributed_trace
     def get_small_double(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> float
         """Get big double value 2.5976931e-101.
 
         FIXME: add operation.summary
@@ -1004,6 +1026,7 @@ class NumberOperations(object):
 
     @distributed_trace
     def put_small_decimal(self, number_body, cls=None, **kwargs):
+        # type: (float, Optional[Any], **Any) -> None
         """Put small decimal value 2.5976931e-101.
 
         FIXME: add operation.summary
@@ -1050,6 +1073,7 @@ class NumberOperations(object):
 
     @distributed_trace
     def get_small_decimal(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> float
         """Get small decimal value 2.5976931e-101.
 
         FIXME: add operation.summary

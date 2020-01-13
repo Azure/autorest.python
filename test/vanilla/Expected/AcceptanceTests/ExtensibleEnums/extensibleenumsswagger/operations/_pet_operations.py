@@ -36,6 +36,7 @@ class PetOperations(object):
         self._config = config
     @distributed_trace
     def get_by_pet_id(self, pet_id, cls=None, **kwargs):
+        # type: (str, Optional[Any], **Any) -> "Pet"
         """MISSING·OPERATION-DESCRIPTION.
 
         FIXME: add operation.summary
@@ -85,6 +86,7 @@ class PetOperations(object):
 
     @distributed_trace
     def add_pet(self, pet_param=None, cls=None, **kwargs):
+        # type: (Optional["Pet"], Optional[Any], **Any) -> "Pet"
         """MISSING·OPERATION-DESCRIPTION.
 
         FIXME: add operation.summary

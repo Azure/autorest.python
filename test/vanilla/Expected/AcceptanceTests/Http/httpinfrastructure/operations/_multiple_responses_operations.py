@@ -35,6 +35,7 @@ class MultipleResponsesOperations(object):
         self._config = config
     @distributed_trace
     def get200_model204_no_model_default_error200_valid(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> Union["MyException", None]
         """Send a 200 response with valid payload: {'statusCode': '200'}.
 
         FIXME: add operation.summary
@@ -80,6 +81,7 @@ class MultipleResponsesOperations(object):
 
     @distributed_trace
     def get200_model204_no_model_default_error204_valid(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> Union["MyException", None]
         """Send a 204 response with no payload.
 
         FIXME: add operation.summary
@@ -125,6 +127,7 @@ class MultipleResponsesOperations(object):
 
     @distributed_trace
     def get200_model204_no_model_default_error201_invalid(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> Union["MyException", None]
         """Send a 201 response with valid payload: {'statusCode': '201'}.
 
         FIXME: add operation.summary
@@ -170,6 +173,7 @@ class MultipleResponsesOperations(object):
 
     @distributed_trace
     def get200_model204_no_model_default_error202_none(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> Union["MyException", None]
         """Send a 202 response with no payload:.
 
         FIXME: add operation.summary
@@ -215,6 +219,7 @@ class MultipleResponsesOperations(object):
 
     @distributed_trace
     def get200_model204_no_model_default_error400_valid(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> Union["MyException", None]
         """Send a 400 response with valid error payload: {'status': 400, 'message': 'client error'}.
 
         FIXME: add operation.summary
@@ -260,6 +265,7 @@ class MultipleResponsesOperations(object):
 
     @distributed_trace
     def get200_model201_model_default_error200_valid(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> Union["MyException", "B"]
         """Send a 200 response with valid payload: {'statusCode': '200'}.
 
         FIXME: add operation.summary
@@ -308,6 +314,7 @@ class MultipleResponsesOperations(object):
 
     @distributed_trace
     def get200_model201_model_default_error201_valid(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> Union["MyException", "B"]
         """Send a 201 response with valid payload: {'statusCode': '201', 'textStatusCode': 'Created'}.
 
         FIXME: add operation.summary
@@ -356,6 +363,7 @@ class MultipleResponsesOperations(object):
 
     @distributed_trace
     def get200_model201_model_default_error400_valid(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> Union["MyException", "B"]
         """Send a 400 response with valid payload: {'code': '400', 'message': 'client error'}.
 
         FIXME: add operation.summary
@@ -404,6 +412,7 @@ class MultipleResponsesOperations(object):
 
     @distributed_trace
     def get200_model_a201_model_c404_model_ddefault_error200_valid(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> Union["MyException", "C", "D"]
         """Send a 200 response with valid payload: {'statusCode': '200'}.
 
         FIXME: add operation.summary
@@ -455,6 +464,7 @@ class MultipleResponsesOperations(object):
 
     @distributed_trace
     def get200_model_a201_model_c404_model_ddefault_error201_valid(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> Union["MyException", "C", "D"]
         """Send a 200 response with valid payload: {'httpCode': '201'}.
 
         FIXME: add operation.summary
@@ -506,6 +516,7 @@ class MultipleResponsesOperations(object):
 
     @distributed_trace
     def get200_model_a201_model_c404_model_ddefault_error404_valid(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> Union["MyException", "C", "D"]
         """Send a 200 response with valid payload: {'httpStatusCode': '404'}.
 
         FIXME: add operation.summary
@@ -557,6 +568,7 @@ class MultipleResponsesOperations(object):
 
     @distributed_trace
     def get200_model_a201_model_c404_model_ddefault_error400_valid(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> Union["MyException", "C", "D"]
         """Send a 400 response with valid payload: {'code': '400', 'message': 'client error'}.
 
         FIXME: add operation.summary
@@ -608,6 +620,7 @@ class MultipleResponsesOperations(object):
 
     @distributed_trace
     def get202_none204_none_default_error202_none(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> None
         """Send a 202 response with no payload.
 
         FIXME: add operation.summary
@@ -648,6 +661,7 @@ class MultipleResponsesOperations(object):
 
     @distributed_trace
     def get202_none204_none_default_error204_none(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> None
         """Send a 204 response with no payload.
 
         FIXME: add operation.summary
@@ -688,6 +702,7 @@ class MultipleResponsesOperations(object):
 
     @distributed_trace
     def get202_none204_none_default_error400_valid(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> None
         """Send a 400 response with valid payload: {'code': '400', 'message': 'client error'}.
 
         FIXME: add operation.summary
@@ -728,6 +743,7 @@ class MultipleResponsesOperations(object):
 
     @distributed_trace
     def get202_none204_none_default_none202_invalid(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> None
         """Send a 202 response with an unexpected payload {'property': 'value'}.
 
         FIXME: add operation.summary
@@ -768,6 +784,7 @@ class MultipleResponsesOperations(object):
 
     @distributed_trace
     def get202_none204_none_default_none204_none(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> None
         """Send a 204 response with no payload.
 
         FIXME: add operation.summary
@@ -808,6 +825,7 @@ class MultipleResponsesOperations(object):
 
     @distributed_trace
     def get202_none204_none_default_none400_none(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> None
         """Send a 400 response with no payload.
 
         FIXME: add operation.summary
@@ -848,6 +866,7 @@ class MultipleResponsesOperations(object):
 
     @distributed_trace
     def get202_none204_none_default_none400_invalid(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> None
         """Send a 400 response with an unexpected payload {'property': 'value'}.
 
         FIXME: add operation.summary
@@ -888,6 +907,7 @@ class MultipleResponsesOperations(object):
 
     @distributed_trace
     def get_default_model_a200_valid(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> "MyException"
         """Send a 200 response with valid payload: {'statusCode': '200'}.
 
         FIXME: add operation.summary
@@ -931,6 +951,7 @@ class MultipleResponsesOperations(object):
 
     @distributed_trace
     def get_default_model_a200_none(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> "MyException"
         """Send a 200 response with no payload.
 
         FIXME: add operation.summary
@@ -974,6 +995,7 @@ class MultipleResponsesOperations(object):
 
     @distributed_trace
     def get_default_model_a400_valid(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> None
         """Send a 400 response with valid payload: {'statusCode': '400'}.
 
         FIXME: add operation.summary
@@ -1014,6 +1036,7 @@ class MultipleResponsesOperations(object):
 
     @distributed_trace
     def get_default_model_a400_none(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> None
         """Send a 400 response with no payload.
 
         FIXME: add operation.summary
@@ -1054,6 +1077,7 @@ class MultipleResponsesOperations(object):
 
     @distributed_trace
     def get_default_none200_invalid(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> None
         """Send a 200 response with invalid payload: {'statusCode': '200'}.
 
         FIXME: add operation.summary
@@ -1094,6 +1118,7 @@ class MultipleResponsesOperations(object):
 
     @distributed_trace
     def get_default_none200_none(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> None
         """Send a 200 response with no payload.
 
         FIXME: add operation.summary
@@ -1134,6 +1159,7 @@ class MultipleResponsesOperations(object):
 
     @distributed_trace
     def get_default_none400_invalid(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> None
         """Send a 400 response with valid payload: {'statusCode': '400'}.
 
         FIXME: add operation.summary
@@ -1174,6 +1200,7 @@ class MultipleResponsesOperations(object):
 
     @distributed_trace
     def get_default_none400_none(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> None
         """Send a 400 response with no payload.
 
         FIXME: add operation.summary
@@ -1214,6 +1241,7 @@ class MultipleResponsesOperations(object):
 
     @distributed_trace
     def get200_model_a200_none(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> "MyException"
         """Send a 200 response with no payload, when a payload is expected - client should return a null object of thde type for model A.
 
         FIXME: add operation.summary
@@ -1257,6 +1285,7 @@ class MultipleResponsesOperations(object):
 
     @distributed_trace
     def get200_model_a200_valid(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> "MyException"
         """Send a 200 response with payload {'statusCode': '200'}.
 
         FIXME: add operation.summary
@@ -1300,6 +1329,7 @@ class MultipleResponsesOperations(object):
 
     @distributed_trace
     def get200_model_a200_invalid(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> "MyException"
         """Send a 200 response with invalid payload {'statusCodeInvalid': '200'}.
 
         FIXME: add operation.summary
@@ -1343,6 +1373,7 @@ class MultipleResponsesOperations(object):
 
     @distributed_trace
     def get200_model_a400_none(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> "MyException"
         """Send a 400 response with no payload client should treat as an http error with no error model.
 
         FIXME: add operation.summary
@@ -1386,6 +1417,7 @@ class MultipleResponsesOperations(object):
 
     @distributed_trace
     def get200_model_a400_valid(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> "MyException"
         """Send a 200 response with payload {'statusCode': '400'}.
 
         FIXME: add operation.summary
@@ -1429,6 +1461,7 @@ class MultipleResponsesOperations(object):
 
     @distributed_trace
     def get200_model_a400_invalid(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> "MyException"
         """Send a 200 response with invalid payload {'statusCodeInvalid': '400'}.
 
         FIXME: add operation.summary
@@ -1472,6 +1505,7 @@ class MultipleResponsesOperations(object):
 
     @distributed_trace
     def get200_model_a202_valid(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> "MyException"
         """Send a 202 response with payload {'statusCode': '202'}.
 
         FIXME: add operation.summary

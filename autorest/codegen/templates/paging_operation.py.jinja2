@@ -21,6 +21,9 @@
 
 {% endif %}
 def {{ operation.python_name }}(self{{ method_signature(operation) }}, cls=None, **kwargs):
+{% if not async_mode %}
+    {{ operation_typing_comment(operation) }}
+{% endif %}
 {% if operation.want_description_docstring %}
     """{{operation.description.strip() }}.
 

@@ -37,6 +37,7 @@ class PathsOperations(object):
         self._config = config
     @distributed_trace
     def get_boolean_true(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> None
         """Get true Boolean value on path.
 
         FIXME: add operation.summary
@@ -82,6 +83,7 @@ class PathsOperations(object):
 
     @distributed_trace
     def get_boolean_false(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> None
         """Get false Boolean value on path.
 
         FIXME: add operation.summary
@@ -127,6 +129,7 @@ class PathsOperations(object):
 
     @distributed_trace
     def get_int_one_million(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> None
         """Get '1000000' integer value.
 
         FIXME: add operation.summary
@@ -172,6 +175,7 @@ class PathsOperations(object):
 
     @distributed_trace
     def get_int_negative_one_million(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> None
         """Get '-1000000' integer value.
 
         FIXME: add operation.summary
@@ -217,6 +221,7 @@ class PathsOperations(object):
 
     @distributed_trace
     def get_ten_billion(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> None
         """Get '10000000000' 64 bit integer value.
 
         FIXME: add operation.summary
@@ -262,6 +267,7 @@ class PathsOperations(object):
 
     @distributed_trace
     def get_negative_ten_billion(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> None
         """Get '-10000000000' 64 bit integer value.
 
         FIXME: add operation.summary
@@ -307,6 +313,7 @@ class PathsOperations(object):
 
     @distributed_trace
     def float_scientific_positive(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> None
         """Get '1.034E+20' numeric value.
 
         FIXME: add operation.summary
@@ -352,6 +359,7 @@ class PathsOperations(object):
 
     @distributed_trace
     def float_scientific_negative(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> None
         """Get '-1.034E-20' numeric value.
 
         FIXME: add operation.summary
@@ -397,6 +405,7 @@ class PathsOperations(object):
 
     @distributed_trace
     def double_decimal_positive(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> None
         """Get '9999999.999' numeric value.
 
         FIXME: add operation.summary
@@ -442,6 +451,7 @@ class PathsOperations(object):
 
     @distributed_trace
     def double_decimal_negative(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> None
         """Get '-9999999.999' numeric value.
 
         FIXME: add operation.summary
@@ -487,6 +497,7 @@ class PathsOperations(object):
 
     @distributed_trace
     def string_unicode(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> None
         """Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value.
 
         FIXME: add operation.summary
@@ -532,6 +543,7 @@ class PathsOperations(object):
 
     @distributed_trace
     def string_url_encoded(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> None
         """Get 'begin!*'();:@ &=+$,/?#[]end.
 
         FIXME: add operation.summary
@@ -577,6 +589,7 @@ class PathsOperations(object):
 
     @distributed_trace
     def string_url_non_encoded(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> None
         """Get 'begin!*'();:@&=+$,end.
 
         FIXME: add operation.summary
@@ -622,6 +635,7 @@ class PathsOperations(object):
 
     @distributed_trace
     def string_empty(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> None
         """Get ''.
 
         FIXME: add operation.summary
@@ -667,6 +681,7 @@ class PathsOperations(object):
 
     @distributed_trace
     def string_null(self, string_path, cls=None, **kwargs):
+        # type: (str, Optional[Any], **Any) -> None
         """Get null (should throw).
 
         FIXME: add operation.summary
@@ -713,6 +728,7 @@ class PathsOperations(object):
 
     @distributed_trace
     def enum_valid(self, enum_path, cls=None, **kwargs):
+        # type: (Union[str, "UriColor"], Optional[Any], **Any) -> None
         """Get using uri with 'green color' in path parameter.
 
         FIXME: add operation.summary
@@ -759,6 +775,7 @@ class PathsOperations(object):
 
     @distributed_trace
     def enum_null(self, enum_path, cls=None, **kwargs):
+        # type: (Union[str, "UriColor"], Optional[Any], **Any) -> None
         """Get null (should throw on the client before the request is sent on wire).
 
         FIXME: add operation.summary
@@ -805,6 +822,7 @@ class PathsOperations(object):
 
     @distributed_trace
     def byte_multi_byte(self, byte_path, cls=None, **kwargs):
+        # type: (bytearray, Optional[Any], **Any) -> None
         """Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
 
         FIXME: add operation.summary
@@ -851,6 +869,7 @@ class PathsOperations(object):
 
     @distributed_trace
     def byte_empty(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> None
         """Get '' as byte array.
 
         FIXME: add operation.summary
@@ -896,6 +915,7 @@ class PathsOperations(object):
 
     @distributed_trace
     def byte_null(self, byte_path, cls=None, **kwargs):
+        # type: (bytearray, Optional[Any], **Any) -> None
         """Get null as byte array (should throw).
 
         FIXME: add operation.summary
@@ -942,6 +962,7 @@ class PathsOperations(object):
 
     @distributed_trace
     def date_valid(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> None
         """Get '2012-01-01' as date.
 
         FIXME: add operation.summary
@@ -987,6 +1008,7 @@ class PathsOperations(object):
 
     @distributed_trace
     def date_null(self, date_path, cls=None, **kwargs):
+        # type: (datetime.date, Optional[Any], **Any) -> None
         """Get null as date - this should throw or be unusable on the client side, depending on date representation.
 
         FIXME: add operation.summary
@@ -1033,6 +1055,7 @@ class PathsOperations(object):
 
     @distributed_trace
     def date_time_valid(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> None
         """Get '2012-01-01T01:01:01Z' as date-time.
 
         FIXME: add operation.summary
@@ -1078,6 +1101,7 @@ class PathsOperations(object):
 
     @distributed_trace
     def date_time_null(self, date_time_path, cls=None, **kwargs):
+        # type: (datetime.datetime, Optional[Any], **Any) -> None
         """Get null as date-time, should be disallowed or throw depending on representation of date-time.
 
         FIXME: add operation.summary
@@ -1124,6 +1148,7 @@ class PathsOperations(object):
 
     @distributed_trace
     def base64_url(self, base64_url_path, cls=None, **kwargs):
+        # type: (bytearray, Optional[Any], **Any) -> None
         """Get 'lorem' encoded value as 'bG9yZW0' (base64url).
 
         FIXME: add operation.summary
@@ -1170,6 +1195,7 @@ class PathsOperations(object):
 
     @distributed_trace
     def array_csv_in_path(self, array_path, cls=None, **kwargs):
+        # type: (List[str], Optional[Any], **Any) -> None
         """Get an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-array format.
 
         FIXME: add operation.summary
@@ -1216,6 +1242,7 @@ class PathsOperations(object):
 
     @distributed_trace
     def unix_time_url(self, unix_time_url_path, cls=None, **kwargs):
+        # type: (datetime.datetime, Optional[Any], **Any) -> None
         """Get the date 2016-04-13 encoded value as '1460505600' (Unix time).
 
         FIXME: add operation.summary

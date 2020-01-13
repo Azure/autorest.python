@@ -40,6 +40,7 @@ class LRORetrysOperations(object):
         self._config = config
     
     def _put201_creating_succeeded200_initial(self, product=None, cls=None, **kwargs):
+        # type: (Optional["Product"], Optional[Any], **Any) -> Union["Product", "Product"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -86,6 +87,7 @@ class LRORetrysOperations(object):
 
     @distributed_trace
     def begin_put201_creating_succeeded200(self, product=None, cls=None, polling=True, **kwargs):
+        # type: (Optional["Product"], Optional[Any], Optional[bool], **Any) -> Union["Product", "Product"]
         """Long running put request, service returns a 500, then a 201 to the initial request, with an entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’.
 
         FIXME: add operation.summary
@@ -126,6 +128,7 @@ class LRORetrysOperations(object):
 
     
     def _put_async_relative_retry_succeeded_initial(self, product=None, cls=None, **kwargs):
+        # type: (Optional["Product"], Optional[Any], **Any) -> "Product"
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -171,6 +174,7 @@ class LRORetrysOperations(object):
 
     @distributed_trace
     def begin_put_async_relative_retry_succeeded(self, product=None, cls=None, polling=True, **kwargs):
+        # type: (Optional["Product"], Optional[Any], Optional[bool], **Any) -> "Product"
         """Long running put request, service returns a 500, then a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
         FIXME: add operation.summary
@@ -215,6 +219,7 @@ class LRORetrysOperations(object):
 
     
     def _delete_provisioning202_accepted200_succeeded_initial(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> Union["Product", "Product"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -257,6 +262,7 @@ class LRORetrysOperations(object):
 
     @distributed_trace
     def begin_delete_provisioning202_accepted200_succeeded(self, cls=None, polling=True, **kwargs):
+        # type: (Optional[Any], Optional[bool], **Any) -> Union["Product", "Product"]
         """Long running delete request, service returns a 500, then a  202 to the initial request, with an entity that contains ProvisioningState=’Accepted’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’.
 
         FIXME: add operation.summary
@@ -297,6 +303,7 @@ class LRORetrysOperations(object):
 
     
     def _delete202_retry200_initial(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> None
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -331,6 +338,7 @@ class LRORetrysOperations(object):
 
     @distributed_trace
     def begin_delete202_retry200(self, cls=None, polling=True, **kwargs):
+        # type: (Optional[Any], Optional[bool], **Any) -> None
         """Long running delete request, service returns a 500, then a 202 to the initial request. Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’.
 
         FIXME: add operation.summary
@@ -365,6 +373,7 @@ class LRORetrysOperations(object):
 
     
     def _delete_async_relative_retry_succeeded_initial(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> None
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -400,6 +409,7 @@ class LRORetrysOperations(object):
 
     @distributed_trace
     def begin_delete_async_relative_retry_succeeded(self, cls=None, polling=True, **kwargs):
+        # type: (Optional[Any], Optional[bool], **Any) -> None
         """Long running delete request, service returns a 500, then a 202 to the initial request. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
         FIXME: add operation.summary
@@ -434,6 +444,7 @@ class LRORetrysOperations(object):
 
     
     def _post202_retry200_initial(self, product=None, cls=None, **kwargs):
+        # type: (Optional["Product"], Optional[Any], **Any) -> None
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -475,6 +486,7 @@ class LRORetrysOperations(object):
 
     @distributed_trace
     def begin_post202_retry200(self, product=None, cls=None, polling=True, **kwargs):
+        # type: (Optional["Product"], Optional[Any], Optional[bool], **Any) -> None
         """Long running post request, service returns a 500, then a 202 to the initial request, with 'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success.
 
         FIXME: add operation.summary
@@ -512,6 +524,7 @@ class LRORetrysOperations(object):
 
     
     def _post_async_relative_retry_succeeded_initial(self, product=None, cls=None, **kwargs):
+        # type: (Optional["Product"], Optional[Any], **Any) -> None
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -554,6 +567,7 @@ class LRORetrysOperations(object):
 
     @distributed_trace
     def begin_post_async_relative_retry_succeeded(self, product=None, cls=None, polling=True, **kwargs):
+        # type: (Optional["Product"], Optional[Any], Optional[bool], **Any) -> None
         """Long running post request, service returns a 500, then a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
         FIXME: add operation.summary

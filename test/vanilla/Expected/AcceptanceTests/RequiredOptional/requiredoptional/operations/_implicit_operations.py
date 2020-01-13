@@ -35,6 +35,7 @@ class ImplicitOperations(object):
         self._config = config
     @distributed_trace
     def get_required_path(self, path_parameter, cls=None, **kwargs):
+        # type: (str, Optional[Any], **Any) -> None
         """Test implicitly required path parameter.
 
         FIXME: add operation.summary
@@ -81,6 +82,7 @@ class ImplicitOperations(object):
 
     @distributed_trace
     def put_optional_query(self, query_parameter=None, cls=None, **kwargs):
+        # type: (Optional[str], Optional[Any], **Any) -> None
         """Test implicitly optional query parameter.
 
         FIXME: add operation.summary
@@ -125,6 +127,7 @@ class ImplicitOperations(object):
 
     @distributed_trace
     def put_optional_header(self, query_parameter=None, cls=None, **kwargs):
+        # type: (Optional[str], Optional[Any], **Any) -> None
         """Test implicitly optional header parameter.
 
         FIXME: add operation.summary
@@ -169,6 +172,7 @@ class ImplicitOperations(object):
 
     @distributed_trace
     def put_optional_body(self, body_parameter=None, cls=None, **kwargs):
+        # type: (Optional[str], Optional[Any], **Any) -> None
         """Test implicitly optional body parameter.
 
         FIXME: add operation.summary
@@ -218,6 +222,7 @@ class ImplicitOperations(object):
 
     @distributed_trace
     def get_required_global_path(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> None
         """Test implicitly required path parameter.
 
         FIXME: add operation.summary
@@ -262,6 +267,7 @@ class ImplicitOperations(object):
 
     @distributed_trace
     def get_required_global_query(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> None
         """Test implicitly required query parameter.
 
         FIXME: add operation.summary
@@ -303,6 +309,7 @@ class ImplicitOperations(object):
 
     @distributed_trace
     def get_optional_global_query(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> None
         """Test implicitly optional query parameter.
 
         FIXME: add operation.summary
