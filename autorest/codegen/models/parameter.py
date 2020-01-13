@@ -74,8 +74,8 @@ class Parameter(BaseModel):
     @property
     def async_method_signature(self):
         if self.required:
-            return f"{self.serialized_name}: {self.schema.get_python_type_annotation()}"
-        return f"{self.serialized_name}: Optional[{self.schema.get_python_type_annotation()}] = None"
+            return f"{self.serialized_name}: {self.schema.type_annotation}"
+        return f"{self.serialized_name}: Optional[{self.schema.type_annotation}] = None"
 
     @property
     def full_serialized_name(self):

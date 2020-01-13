@@ -58,14 +58,14 @@ class GeneralSerializer:
     def config_init_typing_comment(global_parameters: List[Parameter]) -> str:
         if not global_parameters:
             return "# type: (**Any) -> None"
-        global_parameters_typing = [p.schema.get_python_type_annotation() for p in global_parameters]
+        global_parameters_typing = [p.schema.type_annotation for p in global_parameters]
         return f"# type: ({', '.join(global_parameters_typing)}, **Any) -> None"
 
     @staticmethod
     def service_client_init_typing_comment(global_parameters: List[Parameter], base_url: Optional[str]) -> str:
         if not global_parameters:
             return "# type: (**Any) -> None"
-        global_parameters_typing = [p.schema.get_python_type_annotation() for p in global_parameters]
+        global_parameters_typing = [p.schema.type_annotation for p in global_parameters]
         if base_url:
             return f"# type: ({', '.join(global_parameters_typing)}, Optional[str], **Any) -> None"
         return f"# type: ({', '.join(global_parameters_typing)}, **Any) -> None"

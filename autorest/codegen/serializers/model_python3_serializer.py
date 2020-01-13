@@ -20,12 +20,12 @@ class ModelPython3Serializer(ModelBaseSerializer):
         for param in init_line_parameters:
             if param.required:
                 init_properties_declaration.append(
-                    "{}: {}".format(param.name, param.schema.get_python_type_annotation())
+                    "{}: {}".format(param.name, param.schema.type_annotation)
                 )
             else:
                 default_value = "\"" + param.schema.default_value + "\"" if param.schema.default_value else "None"
                 init_properties_declaration.append(
-                    "{}: Optional[{}] = {}".format(param.name, param.schema.get_python_type_annotation(), default_value)
+                    "{}: Optional[{}] = {}".format(param.name, param.schema.type_annotation, default_value)
                 )
 
         if init_properties_declaration:

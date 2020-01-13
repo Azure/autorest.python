@@ -51,10 +51,10 @@ class OperationGroupSerializer:
         response = "None"
         if any(r.has_body for r in operation.responses):
             if len(operation.responses) == 1:
-                response = operation.responses[0].schema.get_python_type_annotation()
+                response = operation.responses[0].schema.type_annotation
             else:
                 response_parameters_string = ", ".join([
-                    r.schema.get_python_type_annotation() if r.has_body else "None"
+                    r.schema.type_annotation if r.has_body else "None"
                     for r in operation.responses
                 ])
                 response = f"Union[{response_parameters_string}]"
@@ -63,7 +63,7 @@ class OperationGroupSerializer:
                 return f"# type: (Optional[Any], Optional[bool], **Any) -> {response}"
             return f"# type: (Optional[Any], **Any) -> {response}"
         parameters_typing = [
-            p.schema.get_python_type_annotation() if p.required else f"Optional[{p.schema.get_python_type_annotation()}]"
+            p.schema.type_annotation if p.required else f"Optional[{p.schema.type_annotation}]"
             for p in operation.method_parameters
         ]
         if lro:
