@@ -22,9 +22,9 @@ AutoRest needs the below config to pick this up as a plug-in - see https://githu
 #### Python code gen
 
 ``` yaml
-version: 3.0.6182
+version: 3.0.6184
 use-extension:
-  "@autorest/modelerfour": "4.2.99"
+  "@autorest/modelerfour": "4.2.106"
 
 pipeline:
 

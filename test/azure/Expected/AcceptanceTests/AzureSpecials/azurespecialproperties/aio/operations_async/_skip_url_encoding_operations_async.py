@@ -196,7 +196,7 @@ class SkipUrlEncodingOperations:
 
         # Construct parameters
         query_parameters = {}
-        query_parameters['q1'] = self._serialize.query("q1", q1, 'str')
+        query_parameters['q1'] = self._serialize.query("q1", q1, 'str', skip_quote=True)
 
 
         # Construct headers
@@ -241,7 +241,7 @@ class SkipUrlEncodingOperations:
         # Construct parameters
         query_parameters = {}
         if q1 is not None:
-            query_parameters['q1'] = self._serialize.query("q1", q1, 'str')
+            query_parameters['q1'] = self._serialize.query("q1", q1, 'str', skip_quote=True)
 
 
         # Construct headers
@@ -285,7 +285,7 @@ class SkipUrlEncodingOperations:
 
         # Construct parameters
         query_parameters = {}
-        query_parameters['q1'] = self._serialize.query("q1", q1, 'str')
+        query_parameters['q1'] = self._serialize.query("q1", q1, 'str', skip_quote=True)
 
 
         # Construct headers
@@ -328,7 +328,7 @@ class SkipUrlEncodingOperations:
 
         # Construct parameters
         query_parameters = {}
-        query_parameters['q1'] = self._serialize.query("q1", q1, 'str')
+        query_parameters['q1'] = self._serialize.query("q1", q1, 'str', skip_quote=True)
 
 
         # Construct headers

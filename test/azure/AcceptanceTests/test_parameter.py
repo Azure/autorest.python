@@ -174,7 +174,6 @@ class TestParameter(object):
         azure_client.api_version_local.get_path_local_valid()
         azure_client.api_version_local.get_swagger_local_valid()
 
-    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.modelerfour/issues/92")
     def test_skip_url_encoding(self, azure_client, unencoded_path, unencoded_query):
         azure_client.skip_url_encoding.get_method_path_valid(unencoded_path)
         azure_client.skip_url_encoding.get_path_path_valid(unencoded_path)
