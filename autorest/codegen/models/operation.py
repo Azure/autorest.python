@@ -281,15 +281,6 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods
 
         return file_import
 
-    @property
-    def method_signature(self):
-
-        signature = ", ".join([
-            parameter.for_method_signature for parameter in self.method_parameters
-        ])
-        if signature:
-            signature = ", "+signature
-        return signature
 
     @property
     def is_flattened(self):

@@ -20,7 +20,7 @@ response_headers = {
 {% if code_model.options['tracing'] %}
 {{ trace_decorator }}
 {% endif %}
-{{ keywords.def }} {{ operation.python_name }}(self{{ operation.method_signature }}, cls=None, polling=True, **kwargs):
+{{ keywords.def }} {{ operation.python_name }}(self{{ method_signature(operation) }}, cls=None, polling=True, **kwargs):
     """{{operation.description.strip() }}.
 
     {{ "FIXME: add operation.summary\n" }}

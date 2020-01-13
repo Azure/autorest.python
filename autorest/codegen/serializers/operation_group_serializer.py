@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 from .import_serializer import FileImportSerializer
-from ..models import LROOperation, PagingOperation
+from ..models import LROOperation, PagingOperation, Operation
 
 class OperationGroupSerializer:
     def __init__(self, code_model, env, operation_group, async_mode):
@@ -30,7 +30,8 @@ class OperationGroupSerializer:
             imports=FileImportSerializer(self.operation_group.imports(self.async_mode)),
             async_mode=self.async_mode,
             is_lro=_is_lro,
-            is_paging=_is_paging
+            is_paging=_is_paging,
+            method_signature=OperationGroupSerializer.method_signature
         )
 
     def filename(self):
@@ -44,3 +45,13 @@ class OperationGroupSerializer:
     @property
     def operation_group_file(self):
         return self._operation_group_file
+
+    @staticmethod
+    def method_signature(operation: Operation) -> str:
+
+        signature = ", ".join([
+            parameter.for_method_signature for parameter in operation.method_parameters
+        ])
+        if signature:
+            signature = ", "+signature
+        return signature

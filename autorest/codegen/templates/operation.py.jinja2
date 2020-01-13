@@ -20,7 +20,7 @@
 {% else %}
 
 {% endif %}
-{{ keywords.def }} {{ operation.python_name }}(self{{ operation.method_signature }}, cls=None, **kwargs):
+{{ keywords.def }} {{ operation.python_name }}(self{{ method_signature(operation) }}, cls=None, **kwargs):
 {% if operation.want_description_docstring %}
     """{{operation.description.strip() }}.
 
