@@ -1,6 +1,8 @@
 import os
+from colorama import init, Fore
 from invoke import task
 
+init()
 _AUTOREST_CMD_LINE = "autorest-beta"
 
 default_mappings = {
@@ -121,12 +123,12 @@ def regen_expected(c, opts, debug):
             args.append("--override-info.description={}".format(opts['override-info.description']))
 
         cmd_line = '{} {}'.format(_AUTOREST_CMD_LINE, " ".join(args))
-        print(f'Queuing up: {cmd_line}')
+        print(Fore.YELLOW + f'Queuing up: {cmd_line}')
         result = c.run(cmd_line, warn=True)
         if result.ok:
-            print('Call done with success')
+            print(Fore.GREEN + 'Call done with success')
         else:
-            print(f'Call failed with {result.return_code}')
+            print(Fore.RED + f'Call failed with {result.return_code}')
 
 
 @task
