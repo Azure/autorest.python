@@ -123,10 +123,16 @@ class JinjaSerializer:
             namespace_path = Path(elem) if namespace_path == Path() else namespace_path / Path(elem)
             if count == len(namespace_parts) - 1:
                 # Write the main __init__ file
-                self._autorestapi.write_file(namespace_path / Path("__init__.py"), general_serializer.serialize_init_file())
+                self._autorestapi.write_file(
+                    namespace_path / Path("__init__.py"),
+                    general_serializer.serialize_init_file()
+                )
             else:
                 # write pkgutil init file
-                self._autorestapi.write_file(namespace_path / Path("__init__.py"), general_serializer.serialize_pkgutil_init_file())
+                self._autorestapi.write_file(
+                    namespace_path / Path("__init__.py"),
+                    general_serializer.serialize_pkgutil_init_file()
+                )
 
 
         # Write the service client
@@ -139,10 +145,16 @@ class JinjaSerializer:
         if (code_model.options['package_version'] or
             not code_model.options['keep_version_file'] or
             not self._autorestapi.read_file(namespace_path / Path("_version.py"))):
-            self._autorestapi.write_file(namespace_path / Path("_version.py"), general_serializer.serialize_version_file())
+            self._autorestapi.write_file(
+                namespace_path / Path("_version.py"),
+                general_serializer.serialize_version_file()
+            )
 
         # Write the config file
-        self._autorestapi.write_file(namespace_path / Path("_configuration.py"), general_serializer.serialize_config_file())
+        self._autorestapi.write_file(
+            namespace_path / Path("_configuration.py"),
+            general_serializer.serialize_config_file()
+        )
 
         # Write the setup file
         if code_model.options["basic_setup_py"]:
@@ -164,4 +176,7 @@ class JinjaSerializer:
         )
 
         # Write the config file
-        self._autorestapi.write_file(aio_path / Path("_configuration_async.py"), aio_general_serializer.serialize_config_file())
+        self._autorestapi.write_file(
+            aio_path / Path("_configuration_async.py"),
+            aio_general_serializer.serialize_config_file()
+        )

@@ -111,7 +111,7 @@ class AutorestAPI(ABC):
         """
 
     @abstractmethod
-    def get_value(self, key: str) -> Optional[Any]:
+    def get_value(self, key: str) -> Any:
         """Get a value from configuration.
         """
 

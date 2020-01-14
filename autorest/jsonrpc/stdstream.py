@@ -8,7 +8,7 @@ import os
 import logging
 import sys
 from pathlib import Path
-from typing import BinaryIO, List, Union
+from typing import Any, BinaryIO, List, Union
 
 from jsonrpc.jsonrpc2 import JSONRPC20Request
 
@@ -101,7 +101,7 @@ class StdStreamAutorestAPI(AutorestAPI):
         write_message(request.json)
         return json.loads(read_message())["result"]
 
-    def get_value(self, key: str) -> str:
+    def get_value(self, key: str) -> Any:
         _LOGGER.debug("Calling get value to Autorest: %s", key)
         request = JSONRPC20Request(
             method="GetValue",
