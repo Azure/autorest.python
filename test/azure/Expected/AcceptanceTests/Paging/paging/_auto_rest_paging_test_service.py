@@ -6,6 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
+from azure.core.credentials import TokenCredential
 from azure.mgmt.core import ARMPipelineClient
 from msrest import Deserializer, Serializer
 
@@ -26,7 +27,7 @@ class AutoRestPagingTestService(object):
     """
 
     def __init__(self, credential, base_url=None, **kwargs):
-        # type: (azure.core.credentials.TokenCredential, Optional[str], **Any) -> None
+        # type: ("TokenCredential", Optional[str], **Any) -> None
         if not base_url:
             base_url = 'http://localhost:3000'
         self._config = AutoRestPagingTestServiceConfiguration(credential, **kwargs)

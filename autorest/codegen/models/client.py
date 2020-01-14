@@ -31,6 +31,9 @@ class Client:
             "msrest", "Deserializer", ImportType.AZURECORE
         )
 
+        if code_model.options["credential"]:
+            file_import.add_from_import("azure.core.credentials", "TokenCredential", ImportType.AZURECORE)
+
         if code_model.options["azure_arm"]:
             file_import.add_from_import(
                 "azure.mgmt.core", Client.pipeline_class(code_model, async_mode), ImportType.AZURECORE

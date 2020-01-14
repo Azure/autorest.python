@@ -5,7 +5,7 @@
 # --------------------------------------------------------------------------
 from typing import List, Optional
 from .import_serializer import FileImportSerializer
-from ..models import Parameter
+from ..models import FileImport, ImportType
 
 
 class GeneralSerializer:
@@ -42,7 +42,8 @@ class GeneralSerializer:
         template = self.env.get_template("config.py.jinja2")
         self._config_file = template.render(
             code_model=self.code_model,
-            async_mode=self.async_mode
+            async_mode=self.async_mode,
+            imports=FileImportSerializer(self.config_imports(self.async_mode))
         )
 
         if not self.async_mode:
@@ -75,3 +76,14 @@ class GeneralSerializer:
     @property
     def setup_file(self):
         return self._setup_file
+
+    def config_imports(self, async_mode):
+        file_import = FileImport()
+        file_import.add_from_import("azure.core.configuration", "Configuration", ImportType.AZURECORE)
+        file_import.add_from_import("azure.core.pipeline", "policies", ImportType.AZURECORE)
+        if self.code_model.options['package_version']:
+            file_import.add_from_import(".._version" if async_mode else "._version", "VERSION", ImportType.LOCAL)
+        if self.code_model.options['credential']:
+            file_import.add_from_import("azure.core.credentials", "TokenCredential", ImportType.AZURECORE)
+        return file_import
+

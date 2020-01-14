@@ -6,6 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
+from azure.core.credentials import TokenCredential
 from azure.mgmt.core import ARMPipelineClient
 from msrest import Deserializer, Serializer
 
@@ -27,7 +28,7 @@ class AutoRestParameterizedHostTestPagingClient(object):
     """
 
     def __init__(self, credential, host, **kwargs):
-        # type: (azure.core.credentials.TokenCredential, str, **Any) -> None
+        # type: ("TokenCredential", str, **Any) -> None
         base_url = 'http://{accountName}{host}'
         self._config = AutoRestParameterizedHostTestPagingClientConfiguration(credential, host, **kwargs)
         self._client = ARMPipelineClient(base_url=base_url, config=self._config, **kwargs)

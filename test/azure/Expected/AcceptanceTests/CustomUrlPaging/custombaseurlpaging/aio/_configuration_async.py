@@ -7,6 +7,7 @@
 # --------------------------------------------------------------------------
 
 from azure.core.configuration import Configuration
+from azure.core.credentials import TokenCredential
 from azure.core.pipeline import policies
 
 from .._version import VERSION
@@ -23,7 +24,7 @@ class AutoRestParameterizedHostTestPagingClientConfiguration(Configuration):
     :type host: str
     """
 
-    def __init__(self, credential: azure.core.credentials.TokenCredential, host: str, **kwargs):
+    def __init__(self, credential: "TokenCredential", host: str, **kwargs):
         if credential is None:
             raise ValueError("Parameter 'credential' must not be None.")
         if host is None:

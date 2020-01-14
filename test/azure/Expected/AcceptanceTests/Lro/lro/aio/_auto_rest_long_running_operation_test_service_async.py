@@ -6,6 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
+from azure.core.credentials import TokenCredential
 from azure.mgmt.core import AsyncARMPipelineClient
 from msrest import Deserializer, Serializer
 
@@ -34,7 +35,7 @@ class AutoRestLongRunningOperationTestService(object):
     :param str base_url: Service URL
     """
 
-    def __init__(self, credential: azure.core.credentials.TokenCredential, base_url=None, **kwargs):
+    def __init__(self, credential: "TokenCredential", base_url=None, **kwargs):
         if not base_url:
             base_url = 'http://localhost:3000'
         self._config = AutoRestLongRunningOperationTestServiceConfiguration(credential, **kwargs)

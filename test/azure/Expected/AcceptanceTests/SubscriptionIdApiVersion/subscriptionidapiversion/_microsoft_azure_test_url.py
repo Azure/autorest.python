@@ -6,6 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
+from azure.core.credentials import TokenCredential
 from azure.mgmt.core import ARMPipelineClient
 from msrest import Deserializer, Serializer
 
@@ -28,7 +29,7 @@ class MicrosoftAzureTestUrl(object):
     """
 
     def __init__(self, credential, subscription_id, base_url=None, **kwargs):
-        # type: (azure.core.credentials.TokenCredential, str, Optional[str], **Any) -> None
+        # type: ("TokenCredential", str, Optional[str], **Any) -> None
         if not base_url:
             base_url = 'https://management.azure.com'
         self._config = MicrosoftAzureTestUrlConfiguration(credential, subscription_id, **kwargs)

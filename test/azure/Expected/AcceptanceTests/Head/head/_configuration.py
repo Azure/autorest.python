@@ -7,6 +7,7 @@
 # --------------------------------------------------------------------------
 
 from azure.core.configuration import Configuration
+from azure.core.credentials import TokenCredential
 from azure.core.pipeline import policies
 
 from ._version import VERSION
@@ -22,7 +23,7 @@ class AutoRestHeadTestServiceConfiguration(Configuration):
     """
 
     def __init__(self, credential, **kwargs):
-        # type: (azure.core.credentials.TokenCredential, **Any) -> None
+        # type: ("TokenCredential", **Any) -> None
         if credential is None:
             raise ValueError("Parameter 'credential' must not be None.")
 

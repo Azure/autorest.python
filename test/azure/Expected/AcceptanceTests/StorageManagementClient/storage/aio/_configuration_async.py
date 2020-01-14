@@ -7,6 +7,7 @@
 # --------------------------------------------------------------------------
 
 from azure.core.configuration import Configuration
+from azure.core.credentials import TokenCredential
 from azure.core.pipeline import policies
 
 from .._version import VERSION
@@ -23,7 +24,7 @@ class StorageManagementClientConfiguration(Configuration):
     :type subscription_id: str
     """
 
-    def __init__(self, credential: azure.core.credentials.TokenCredential, subscription_id: str, **kwargs):
+    def __init__(self, credential: "TokenCredential", subscription_id: str, **kwargs):
         if credential is None:
             raise ValueError("Parameter 'credential' must not be None.")
         if subscription_id is None:

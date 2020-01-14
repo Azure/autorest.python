@@ -44,6 +44,10 @@ class CredentialSchema(BaseSchema):
     def get_python_type(self, namespace=None):
         return self.type
 
+    @property
+    def type_annotation(self):
+        return "\"TokenCredential\""
+
 
 class CodeModel:  # pylint: disable=too-many-instance-attributes
     """Holds all of the information we have parsed out of the yaml file. The CodeModel is what gets
