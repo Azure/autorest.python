@@ -16,7 +16,6 @@ from .imports import FileImport, ImportType
 from .lro_operation import LROOperation
 from .paging_operation import PagingOperation
 from .parameter import Parameter
-from .operation import Operation
 
 
 __all__ = [

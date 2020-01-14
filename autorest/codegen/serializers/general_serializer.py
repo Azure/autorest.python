@@ -3,7 +3,6 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import List, Optional
 from .import_serializer import FileImportSerializer
 from ..models import FileImport, ImportType
 
@@ -86,4 +85,3 @@ class GeneralSerializer:
         if self.code_model.options['credential']:
             file_import.add_from_import("azure.core.credentials", "TokenCredential", ImportType.AZURECORE)
         return file_import
-
