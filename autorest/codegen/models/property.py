@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Dict
+from typing import Any, Dict, Union
 
 from .base_model import BaseModel
 from .constant_schema import ConstantSchema
@@ -42,7 +42,7 @@ class Property(BaseModel):
             else:
                 self.description = yaml_description
 
-        validation_map: Dict[str, Any] = {}
+        validation_map: Dict[str, Union[bool, int, str]] = {}
         if self.required:
             validation_map['required'] = True
         if self.readonly:
