@@ -6,7 +6,7 @@
 from abc import abstractmethod
 from typing import List
 from jinja2 import Environment
-from ..models import EnumSchema, ObjectSchema, CodeModel
+from ..models import EnumSchema, ObjectSchema, CodeModel, Property
 from ..models.imports import FileImport
 from .import_serializer import FileImportSerializer
 
@@ -17,7 +17,7 @@ class ModelBaseSerializer:
         self._model_file: str = ""
 
 
-    def serialize(self):
+    def serialize(self) -> None:
         # Generate the models
         template = self.env.get_template("model_container.py.jinja2")
         self._model_file = template.render(
@@ -29,18 +29,18 @@ class ModelBaseSerializer:
             prop_documentation_string=ModelBaseSerializer.prop_documentation_string
         )
 
-    def imports(self):
+    def imports(self) -> FileImport:
         file_import = FileImport()
         for model in self.code_model.sorted_schemas:
             file_import.merge(model.imports())
         return file_import
 
     @property
-    def model_file(self):
+    def model_file(self) -> str:
         return self._model_file
 
     @staticmethod
-    def prop_documentation_string(prop, namespace):
+    def prop_documentation_string(prop: Property, namespace) -> str:
         # building the param line of the property doc
         if prop.constant or prop.readonly:
             param_doc_string = ":ivar {}:".format(prop.name)
@@ -57,7 +57,7 @@ class ModelBaseSerializer:
             else:
                 description = "Required. "
         if prop.constant:
-            description += " Default value: \"{}\".".format(prop.schema.value)
+            description += " Default value: \"{}\".".format(prop.schema.value) # type: ignore
         if prop.is_discriminator:
             description += "Constant filled by server. "
 

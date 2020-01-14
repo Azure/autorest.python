@@ -4,6 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 import logging
+import datetime
 from enum import Enum
 from typing import Any, Dict, List, Optional, Union
 
@@ -40,14 +41,14 @@ class AnySchema(PrimitiveSchema):
 
 
 class NumberSchema(PrimitiveSchema):
-    def __init__(self, yaml_data):
+    def __init__(self, yaml_data: Dict[str, Any]):
         super(NumberSchema, self).__init__(yaml_data)
-        self.precision = yaml_data['precision']
-        self.multiple = yaml_data.get('multipleOf')
-        self.maximum = yaml_data.get('maximum')
-        self.minimum = yaml_data.get('minimum')
-        self.exclusive_maximum = yaml_data.get('exclusiveMaximum')
-        self.exclusive_minimum = yaml_data.get('exclusiveMinimum')
+        self.precision: int = yaml_data['precision'] # type: ignore
+        self.multiple: int = yaml_data.get('multipleOf') # type: ignore
+        self.maximum: int = yaml_data.get('maximum') # type: ignore
+        self.minimum: int = yaml_data.get('minimum') # type: ignore
+        self.exclusive_maximum: int = yaml_data.get('exclusiveMaximum') # type: ignore
+        self.exclusive_minimum: int = yaml_data.get('exclusiveMinimum') # type: ignore
 
     def get_serialization_constraints(self) -> List[str]:
         validation_constraints = [
@@ -59,8 +60,8 @@ class NumberSchema(PrimitiveSchema):
         ]
         return [x for x in validation_constraints if x is not None]
 
-    def get_validation_map(self) -> Optional[Dict[str, Union[int, bool]]]:
-        validation_map = {}
+    def get_validation_map(self) -> Optional[Dict[str, Union[bool, int, str]]]:
+        validation_map: Dict[str, Union[bool, int, str]] = {}
         if self.maximum is not None:
             if self.exclusive_maximum:
                 validation_map['maximum_ex'] = self.maximum
@@ -100,9 +101,12 @@ class NumberSchema(PrimitiveSchema):
 class StringSchema(PrimitiveSchema):
     def __init__(self, yaml_data: Dict[str, Any]):
         super(StringSchema, self).__init__(yaml_data)
-        self.max_length = yaml_data.get('maxLength')
-        self.min_length = yaml_data.get('minLength', 0) if yaml_data.get('maxLength') else yaml_data.get('minLength')
-        self.pattern = yaml_data.get('pattern')
+        self.max_length: int = yaml_data.get('maxLength')  # type: ignore
+        self.min_length: int = (
+            yaml_data.get('minLength', 0)  # type: ignore
+            if yaml_data.get('maxLength') else yaml_data.get('minLength')
+        )
+        self.pattern: str = yaml_data.get('pattern')  # type: ignore
 
     def get_serialization_constraints(self) -> List[str]:
         validation_constraints = [
@@ -112,8 +116,8 @@ class StringSchema(PrimitiveSchema):
         ]
         return [x for x in validation_constraints if x is not None]
 
-    def get_validation_map(self) -> Optional[Dict[str, Union[int, bool]]]:
-        validation_map = {}
+    def get_validation_map(self) -> Optional[Dict[str, Union[bool, int, str]]]:
+        validation_map: Dict[str, Union[bool, int, str]] = {}
         if self.max_length is not None:
             validation_map['max_length'] = self.max_length
         if self.min_length is not None:
@@ -148,7 +152,7 @@ class DatetimeSchema(PrimitiveSchema):
     def get_python_type_annotation(self) -> str:
         return "datetime.datetime"
 
-    def get_declaration(self, value: Any) -> str:
+    def get_declaration(self, value: datetime.datetime) -> str:
         """Could be discussed, since technically I should return a datetime object,
         but msrest will do fine.
         """
@@ -166,7 +170,7 @@ class UnixTimeSchema(PrimitiveSchema):
     def get_python_type_annotation(self) -> str:
         return "datetime.datetime"
 
-    def get_declaration(self, value: Any) -> str:
+    def get_declaration(self, value: datetime.datetime) -> str:
         """Could be discussed, since technically I should return a datetime object,
         but msrest will do fine.
         """
@@ -184,7 +188,7 @@ class DateSchema(PrimitiveSchema):
     def get_python_type_annotation(self):
         return "datetime.date"
 
-    def get_declaration(self, value: Any) -> str:
+    def get_declaration(self, value: datetime.date) -> str:
         """Could be discussed, since technically I should return a datetime object,
         but msrest will do fine.
         """
@@ -202,7 +206,7 @@ class DurationSchema(PrimitiveSchema):
     def get_python_type_annotation(self) -> str:
         return "datetime.timedelta"
 
-    def get_declaration(self, value: Any) -> str:
+    def get_declaration(self, value: datetime.timedelta) -> str:
         """Could be discussed, since technically I should return a datetime object,
         but msrest will do fine.
         """
@@ -226,7 +230,7 @@ class ByteArraySchema(PrimitiveSchema):
     def get_python_type(self, namespace: str = None) -> str:
         return "bytearray"
 
-    def get_declaration(self, value: Any) -> str:
+    def get_declaration(self, value: bytearray) -> str:
         return f'bytearray("{value}", encoding="utf-8")'
 
 
@@ -243,4 +247,4 @@ def get_primitive_schema(yaml_data: Dict[str, Any]) -> "PrimitiveSchema":
         'any': AnySchema
     }
     schema_type = yaml_data['type']
-    return mapping.get(schema_type, PrimitiveSchema).from_yaml(yaml_data=yaml_data)
+    return mapping.get(schema_type, PrimitiveSchema).from_yaml(yaml_data=yaml_data) # type: ignore

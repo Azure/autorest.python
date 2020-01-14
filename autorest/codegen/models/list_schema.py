@@ -33,8 +33,8 @@ class ListSchema(BaseSchema):
     def get_python_type(self, namespace: str) -> str:
         return f'list[{self.element_type.get_python_type(namespace)}]'
 
-    def get_validation_map(self) -> Optional[Dict[str, Union[int, bool]]]:
-        validation_map = {}
+    def get_validation_map(self) -> Optional[Dict[str, Union[bool, int, str]]]:
+        validation_map: Dict[str, Union[bool, int, str]] = {}
         if self.max_items:
             validation_map['max_items'] = self.max_items
             validation_map['min_items'] = self.min_items or 0

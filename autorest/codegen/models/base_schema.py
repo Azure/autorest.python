@@ -21,10 +21,10 @@ class BaseSchema(BaseModel, ABC):
         self.default_value = yaml_data.get('defaultValue', None)
 
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, Any], **kwargs):  # pylint: disable=unused-argument
+    def from_yaml(cls, yaml_data: Dict[str, Any], **kwargs) -> "BaseSchema":  # pylint: disable=unused-argument
         return cls(yaml_data=yaml_data)
 
-    def imports(self):  # pylint: disable=no-self-use
+    def imports(self) -> FileImport:  # pylint: disable=no-self-use
         return FileImport()
 
     @abstractmethod
@@ -70,7 +70,7 @@ class BaseSchema(BaseModel, ABC):
         """
         return str(value)
 
-    def get_validation_map(self) -> Optional[Dict[str, Union[int, bool]]]: # pylint: disable=no-self-use
+    def get_validation_map(self) -> Optional[Dict[str, Union[bool, int, str]]]: # pylint: disable=no-self-use
         return None
 
     def get_serialization_constraints(self) -> Optional[List[str]]: # pylint: disable=no-self-use

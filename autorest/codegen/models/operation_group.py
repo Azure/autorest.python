@@ -54,7 +54,7 @@ class OperationGroup(BaseModel):
         return file_import
 
     @property
-    def is_empty_operation_group(self):
+    def is_empty_operation_group(self) -> bool:
         """The operation group with no name is the direct client methods.
         """
         return not self.yaml_data['language']['default']['name']

@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Dict, Union
+from typing import Any, Dict
 
 from .base_model import BaseModel
 from .constant_schema import ConstantSchema
@@ -25,11 +25,11 @@ class Property(BaseModel):
         self.schema = schema
         self.original_swagger_name = original_swagger_name
 
-        self.required = yaml_data.get('required', False)
-        self.readonly = yaml_data.get('readOnly', False)
-        self.is_discriminator = yaml_data.get('isDiscriminator', False)
+        self.required: bool = yaml_data.get('required', False)
+        self.readonly: bool = yaml_data.get('readOnly', False)
+        self.is_discriminator: bool = yaml_data.get('isDiscriminator', False)
         # this bool doesn't consider you to be constant if you are a discriminator
-        self.constant = isinstance(self.schema, ConstantSchema) and not self.is_discriminator
+        self.constant: bool = isinstance(self.schema, ConstantSchema) and not self.is_discriminator
 
         if description:
             self.description = description
@@ -42,7 +42,7 @@ class Property(BaseModel):
             else:
                 self.description = yaml_description
 
-        validation_map: Dict[str, Union[bool, int]] = {}
+        validation_map: Dict[str, Any] = {}
         if self.required:
             validation_map['required'] = True
         if self.readonly:
@@ -50,7 +50,7 @@ class Property(BaseModel):
         if self.constant:
             validation_map['constant'] = True
         if self.schema.get_validation_map():
-            validation_map.update(self.schema.get_validation_map())
+            validation_map.update(self.schema.get_validation_map()) # type: ignore
         self.validation_map = validation_map or None
 
     @property

@@ -52,9 +52,7 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods
         return self.name
 
     @staticmethod
-    def _suggest_content_type(
-        media_types: List[str]
-    ) -> str:
+    def _suggest_content_type(media_types: List[str]) -> str:
         """Return the prefered media-type.
 
         Assumes "media_types" attributes as a list exist.

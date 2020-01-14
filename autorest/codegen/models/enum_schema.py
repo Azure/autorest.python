@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Set
 from .base_schema import BaseSchema
 from .primitive_schemas import StringSchema
 
@@ -92,7 +92,7 @@ class EnumSchema(BaseSchema):
         :rtype: list[~autorest.models.EnumValue]
         """
         values = []
-        seen_enums = set()
+        seen_enums: Set[str] = set()
 
         for enum in yaml_data:
             enum_name = enum['language']['python']['name']

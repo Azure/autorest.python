@@ -76,7 +76,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
         self.global_parameters: List[Parameter] = []
         self.custom_base_url: Optional[str] = None
         self.base_url: Optional[str] = None
-        self.service_client = Client()
+        self.service_client: Client = Client()
 
     def lookup_schema(self, schema_id: int) -> BaseSchema:
         """Looks to see if the schema has already been created.
@@ -87,7 +87,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
         :raises: KeyError if schema is not found
         """
         for attr in [self.schemas, self.enums, self.primitives]:
-            for elt_key, elt_value in attr.items():
+            for elt_key, elt_value in attr.items(): # type: ignore
                 if schema_id == elt_key:
                     return elt_value
         raise KeyError("Didn't find it!!!!!")
@@ -255,7 +255,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
                     seen_properties: Set[Property] = set()
                     schema.properties = [
                         p for p in schema.properties
-                        if p.name not in seen_properties and not seen_properties.add(p.name)
+                        if p.name not in seen_properties and not seen_properties.add(p.name) # type: ignore
                     ]
                     parent = parent.base_model
 
