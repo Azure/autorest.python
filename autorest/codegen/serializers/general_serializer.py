@@ -82,6 +82,8 @@ class GeneralSerializer:
         file_import.add_from_import("azure.core.pipeline", "policies", ImportType.AZURECORE)
         if self.code_model.options['package_version']:
             file_import.add_from_import(".._version" if async_mode else "._version", "VERSION", ImportType.LOCAL)
-        if self.code_model.options['credential']:
-            file_import.add_from_import("azure.core.credentials", "TokenCredential", ImportType.AZURECORE)
+        if any(not gp.required for gp in self.code_model.global_parameters):
+            file_import.add_from_import("typing", "Optional", ImportType.STDLIB)
+        # if self.code_model.options['credential']:
+        #     file_import.add_from_import("azure.core.credentials", "TokenCredential", ImportType.AZURECORE)
         return file_import
