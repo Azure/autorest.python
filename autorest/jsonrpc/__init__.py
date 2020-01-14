@@ -128,14 +128,12 @@ class AutorestAPI(ABC):
 
         For autorest, empty dict means "it was on the line", so we want it to true.
 
-        :returns: A boolean if it was present, raises if not
-        :rtype: bool
+        :returns: A boolean if it was present, or None if not
+        :rtype: Optional[bool]
         """
         result = self.get_value(key)
         if result is None:
-            if default is not None:
-                return default
-            raise KeyError("Couldn't find the key.")
+            return default
         if result == {}: # autorest received --myoption
             return True
         if isinstance(result, bool):
