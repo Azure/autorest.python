@@ -14,13 +14,12 @@ class ModelBaseSerializer:
     def __init__(self, code_model: CodeModel, env: Environment):
         self.code_model = code_model
         self.env = env
-        self._model_file: str = ""
 
 
-    def serialize(self) -> None:
+    def serialize(self) -> str:
         # Generate the models
         template = self.env.get_template("model_container.py.jinja2")
-        self._model_file = template.render(
+        return template.render(
             code_model=self.code_model,
             imports=FileImportSerializer(self.imports()),
             str=str,
@@ -34,10 +33,6 @@ class ModelBaseSerializer:
         for model in self.code_model.sorted_schemas:
             file_import.merge(model.imports())
         return file_import
-
-    @property
-    def model_file(self) -> str:
-        return self._model_file
 
     @staticmethod
     def prop_documentation_string(prop: Property, namespace) -> str:

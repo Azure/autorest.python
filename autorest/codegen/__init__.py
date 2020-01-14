@@ -141,7 +141,7 @@ class CodeGenerator(Plugin):
             )
             license_header += "\n# --------------------------------------------------------------------------"
 
-        options = {
+        options: Dict[str, Any] = {
             'azure_arm': azure_arm,
             'credential': (
                 self._autorestapi.get_boolean_value("add-credentials", False) or

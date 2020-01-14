@@ -120,7 +120,7 @@ class AutorestAPI(ABC):
         """Send a log message to autorest.
         """
 
-    def get_boolean_value(self, key: str, default: bool = None) -> bool:
+    def get_boolean_value(self, key: str, default: bool = None) -> Optional[bool]:
         """Check if value is present on the line, and interpret it as bool if it was.
 
         If value is not not on the line, return the "default".

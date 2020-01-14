@@ -12,17 +12,12 @@ class OperationsInitSerializer:
         self.code_model = code_model
         self.env = env
         self.async_mode = async_mode
-        self._operations_init_file: str = ""
 
-    def serialize(self) -> None:
+    def serialize(self) -> str:
         operation_group_init_template = self.env.get_template("operations_container_init.py.jinja2")
 
-        self._operations_init_file = operation_group_init_template.render(
+        return operation_group_init_template.render(
             code_model=self.code_model,
             operation_groups=self.code_model.operation_groups,
             async_mode=self.async_mode
         )
-
-    @property
-    def operations_init_file(self) -> str:
-        return self._operations_init_file

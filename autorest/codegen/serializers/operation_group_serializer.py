@@ -19,9 +19,8 @@ class OperationGroupSerializer:
         self.env = env
         self.operation_group = operation_group
         self.async_mode = async_mode
-        self._operation_group_file: str = ""
 
-    def serialize(self) -> None:
+    def serialize(self) -> str:
         def _is_lro(operation):
             return isinstance(operation, LROOperation)
         def _is_paging(operation):
@@ -31,7 +30,7 @@ class OperationGroupSerializer:
         if self.operation_group.is_empty_operation_group:
             operation_group_template = self.env.get_template("operations_container_mixin.py.jinja2")
 
-        self._operation_group_file = operation_group_template.render(
+        return operation_group_template.render(
             code_model=self.code_model,
             operation_group=self.operation_group,
             imports=FileImportSerializer(self.operation_group.imports(self.async_mode)),
@@ -47,7 +46,3 @@ class OperationGroupSerializer:
         async_suffix = "_async" if self.async_mode else ""
 
         return f"_{basename}_operations{async_suffix}.py"
-
-    @property
-    def operation_group_file(self) -> str:
-        return self._operation_group_file

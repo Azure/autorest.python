@@ -10,9 +10,8 @@ class ModelInitSerializer:
     def __init__(self, code_model: CodeModel, env: Environment):
         self.code_model = code_model
         self.env = env
-        self._model_init_file: str = ""
 
-    def serialize(self) -> None:
+    def serialize(self) -> str:
         schemas = sorted(self.code_model.sorted_schemas, key=lambda x: x.name)
         enums = [e.enum_type for e in self.code_model.enums.values()] if self.code_model.enums else None
 
@@ -20,12 +19,8 @@ class ModelInitSerializer:
             enums.sort()
 
         template = self.env.get_template("model_init.py.jinja2")
-        self._model_init_file = template.render(
+        return template.render(
             code_model=self.code_model,
             schemas=schemas,
             enums=enums
         )
-
-    @property
-    def model_init_file(self) -> str:
-        return self._model_init_file
