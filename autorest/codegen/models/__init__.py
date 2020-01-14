@@ -16,6 +16,7 @@ from .imports import FileImport, ImportType
 from .lro_operation import LROOperation
 from .paging_operation import PagingOperation
 from .parameter import Parameter
+from .operation import Operation
 
 
 __all__ = [
@@ -32,6 +33,7 @@ __all__ = [
     "ImportType",
     "PrimitiveSchema",
     "LROOperation",
+    "Operation",
     "PagingOperation",
     "Parameter"
 ]
