@@ -7,7 +7,6 @@
 # --------------------------------------------------------------------------
 
 from azure.core.configuration import Configuration
-from azure.core.credentials import TokenCredential
 from azure.core.pipeline import policies
 
 from .._version import VERSION

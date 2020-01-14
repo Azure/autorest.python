@@ -68,4 +68,5 @@ class ListSchema(BaseSchema):
     def imports(self) -> FileImport:
         file_import = FileImport()
         file_import.add_from_import("typing", "List", ImportType.STDLIB)
+        file_import.merge(self.element_type.imports())
         return file_import
