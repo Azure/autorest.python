@@ -9,7 +9,7 @@ from typing import Dict, List, Any, Optional
 from .base_model import BaseModel
 from .imports import FileImport, ImportType
 from .schema_response import SchemaResponse
-from .parameter import Parameter, ParameterLocation, ParameterStyle
+from .parameter import Parameter, ParameterStyle
 from .parameter_list import ParameterList
 
 
