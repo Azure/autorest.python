@@ -16,10 +16,12 @@ class BaseProduct(Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param product_id: Required. Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles.
-	:type product_id: str
+    :param product_id: Required. Unique identifier representing a specific product
+	 for a given latitude & longitude. For example, uberX in San Francisco will have
+	 a different product_id than uberX in Los Angeles.
+    :type product_id: str
     :param description: Description of product.
-	:type description: str
+    :type description: str
     """
 
     _validation = {
@@ -65,11 +67,11 @@ class Error(Model):
     """Error.
 
     :param status:
-	:type status: int
+    :type status: int
     :param message:
-	:type message: str
+    :type message: str
     :param parent_error:
-	:type parent_error: ~modelflattening.models.Error
+    :type parent_error: ~modelflattening.models.Error
     """
     _EXCEPTION_TYPE = ErrorException
 
@@ -91,15 +93,16 @@ class Resource(Model):
     Variables are only populated by the server, and will be ignored when sending a request.
 
     :ivar id: Resource Id.
-	:vartype id: str
+    :vartype id: str
     :ivar type: Resource Type.
-	:vartype type: str
-    :param tags: A set of tags. Dictionary of <components·schemas·resource·properties·tags·additionalproperties>.
-	:type tags: dict[str, str]
+    :vartype type: str
+    :param tags: A set of tags. Dictionary of
+	 <components·schemas·resource·properties·tags·additionalproperties>.
+    :type tags: dict[str, str]
     :param location: Resource Location.
-	:type location: str
+    :type location: str
     :ivar name: Resource Name.
-	:vartype name: str
+    :vartype name: str
     """
 
     _validation = {
@@ -130,17 +133,18 @@ class FlattenedProduct(Resource):
     Variables are only populated by the server, and will be ignored when sending a request.
 
     :ivar id: Resource Id.
-	:vartype id: str
+    :vartype id: str
     :ivar type: Resource Type.
-	:vartype type: str
-    :param tags: A set of tags. Dictionary of <components·schemas·resource·properties·tags·additionalproperties>.
-	:type tags: dict[str, str]
+    :vartype type: str
+    :param tags: A set of tags. Dictionary of
+	 <components·schemas·resource·properties·tags·additionalproperties>.
+    :type tags: dict[str, str]
     :param location: Resource Location.
-	:type location: str
+    :type location: str
     :ivar name: Resource Name.
-	:vartype name: str
+    :vartype name: str
     :param properties:
-	:type properties: ~modelflattening.models.FlattenedProductProperties
+    :type properties: ~modelflattening.models.FlattenedProductProperties
     """
 
     _validation = {
@@ -168,13 +172,16 @@ class FlattenedProductProperties(Model):
     Variables are only populated by the server, and will be ignored when sending a request.
 
     :param pname:
-	:type pname: str
+    :type pname: str
     :param type:
-	:type type: str
-    :ivar provisioning_state_values:  Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created', 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'.
-	:vartype provisioning_state_values: str or ~modelflattening.models.FlattenedProductPropertiesProvisioningStateValues
+    :type type: str
+    :ivar provisioning_state_values:  Possible values include: 'Succeeded',
+	 'Failed', 'canceled', 'Accepted', 'Creating', 'Created', 'Updating', 'Updated',
+	 'Deleting', 'Deleted', 'OK'.
+    :vartype provisioning_state_values: str or
+	 ~modelflattening.models.FlattenedProductPropertiesProvisioningStateValues
     :param provisioning_state:
-	:type provisioning_state: str
+    :type provisioning_state: str
     """
 
     _validation = {
@@ -199,7 +206,7 @@ class GenericUrl(Model):
     """The Generic URL.
 
     :param generic_value: Generic URL value.
-	:type generic_value: str
+    :type generic_value: str
     """
 
     _attribute_map = {
@@ -214,9 +221,9 @@ class ProductUrl(GenericUrl):
     """The product URL.
 
     :param generic_value: Generic URL value.
-	:type generic_value: str
+    :type generic_value: str
     :param odatavalue: URL value.
-	:type odatavalue: str
+    :type odatavalue: str
     """
 
     _attribute_map = {
@@ -232,7 +239,7 @@ class ProductWrapper(Model):
     """The wrapped produc.
 
     :param property: The wrapped produc.
-	:type property: ~modelflattening.models.WrappedProduct
+    :type property: ~modelflattening.models.WrappedProduct
     """
 
     _attribute_map = {
@@ -247,11 +254,11 @@ class ResourceCollection(Model):
     """ResourceCollection.
 
     :param productresource: Flattened product.
-	:type productresource: ~modelflattening.models.FlattenedProduct
+    :type productresource: ~modelflattening.models.FlattenedProduct
     :param arrayofresources:
-	:type arrayofresources: list[~modelflattening.models.FlattenedProduct]
+    :type arrayofresources: list[~modelflattening.models.FlattenedProduct]
     :param dictionaryofresources: Dictionary of :code:`<FlattenedProduct>`.
-	:type dictionaryofresources: dict[str, ~modelflattening.models.FlattenedProduct]
+    :type dictionaryofresources: dict[str, ~modelflattening.models.FlattenedProduct]
     """
 
     _attribute_map = {
@@ -271,12 +278,14 @@ class SimpleProduct(BaseProduct):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param product_id: Required. Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles.
-	:type product_id: str
+    :param product_id: Required. Unique identifier representing a specific product
+	 for a given latitude & longitude. For example, uberX in San Francisco will have
+	 a different product_id than uberX in Los Angeles.
+    :type product_id: str
     :param description: Description of product.
-	:type description: str
+    :type description: str
     :param details: The product documentation.
-	:type details: ~modelflattening.models.SimpleProductProperties
+    :type details: ~modelflattening.models.SimpleProductProperties
     """
 
     _validation = {
@@ -301,11 +310,12 @@ class SimpleProductProperties(Model):
     All required parameters must be populated in order to send to Azure.
 
     :param max_product_display_name: Required. Display name of product.
-	:type max_product_display_name: str
-    :ivar capacity: Required. Capacity of product. For example, 4 people. Default value: "Large".
-	:vartype capacity: str
+    :type max_product_display_name: str
+    :ivar capacity: Required. Capacity of product. For example, 4 people. Default
+	 value: "Large".
+    :vartype capacity: str
     :param max_product_image: The product URL.
-	:type max_product_image: ~modelflattening.models.ProductUrl
+    :type max_product_image: ~modelflattening.models.ProductUrl
     """
 
     _validation = {
@@ -330,7 +340,7 @@ class WrappedProduct(Model):
     """The wrapped produc.
 
     :param value: the product value.
-	:type value: str
+    :type value: str
     """
 
     _attribute_map = {

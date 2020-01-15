@@ -13,10 +13,12 @@ from msrest.serialization import Model
 class OperationResult(Model):
     """OperationResult.
 
-    :param status: The status of the request. Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created', 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'.
-	:type status: str or ~lro.models.OperationResultStatus
+    :param status: The status of the request. Possible values include: 'Succeeded',
+	 'Failed', 'canceled', 'Accepted', 'Creating', 'Created', 'Updating', 'Updated',
+	 'Deleting', 'Deleted', 'OK'.
+    :type status: str or ~lro.models.OperationResultStatus
     :param error:
-	:type error: ~lro.models.OperationResultError
+    :type error: ~lro.models.OperationResultError
     """
 
     _attribute_map = {
@@ -33,9 +35,9 @@ class OperationResultError(Model):
     """OperationResultError.
 
     :param code: The error code for an operation failure.
-	:type code: int
+    :type code: int
     :param message: The detailed arror message.
-	:type message: str
+    :type message: str
     """
 
     _attribute_map = {
@@ -54,15 +56,16 @@ class Resource(Model):
     Variables are only populated by the server, and will be ignored when sending a request.
 
     :ivar id: Resource Id.
-	:vartype id: str
+    :vartype id: str
     :ivar type: Resource Type.
-	:vartype type: str
-    :param tags: A set of tags. Dictionary of <components·schemas·resource·properties·tags·additionalproperties>.
-	:type tags: dict[str, str]
+    :vartype type: str
+    :param tags: A set of tags. Dictionary of
+	 <components·schemas·resource·properties·tags·additionalproperties>.
+    :type tags: dict[str, str]
     :param location: Resource Location.
-	:type location: str
+    :type location: str
     :ivar name: Resource Name.
-	:vartype name: str
+    :vartype name: str
     """
 
     _validation = {
@@ -93,17 +96,18 @@ class Product(Resource):
     Variables are only populated by the server, and will be ignored when sending a request.
 
     :ivar id: Resource Id.
-	:vartype id: str
+    :vartype id: str
     :ivar type: Resource Type.
-	:vartype type: str
-    :param tags: A set of tags. Dictionary of <components·schemas·resource·properties·tags·additionalproperties>.
-	:type tags: dict[str, str]
+    :vartype type: str
+    :param tags: A set of tags. Dictionary of
+	 <components·schemas·resource·properties·tags·additionalproperties>.
+    :type tags: dict[str, str]
     :param location: Resource Location.
-	:type location: str
+    :type location: str
     :ivar name: Resource Name.
-	:vartype name: str
+    :vartype name: str
     :param properties:
-	:type properties: ~lro.models.ProductProperties
+    :type properties: ~lro.models.ProductProperties
     """
 
     _validation = {
@@ -131,9 +135,12 @@ class ProductProperties(Model):
     Variables are only populated by the server, and will be ignored when sending a request.
 
     :param provisioning_state:
-	:type provisioning_state: str
-    :ivar provisioning_state_values:  Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created', 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'.
-	:vartype provisioning_state_values: str or ~lro.models.ProductPropertiesProvisioningStateValues
+    :type provisioning_state: str
+    :ivar provisioning_state_values:  Possible values include: 'Succeeded',
+	 'Failed', 'canceled', 'Accepted', 'Creating', 'Created', 'Updating', 'Updated',
+	 'Deleting', 'Deleted', 'OK'.
+    :vartype provisioning_state_values: str or
+	 ~lro.models.ProductPropertiesProvisioningStateValues
     """
 
     _validation = {
@@ -154,9 +161,9 @@ class Sku(Model):
     """Sku.
 
     :param name:
-	:type name: str
+    :type name: str
     :param id:
-	:type id: str
+    :type id: str
     """
 
     _attribute_map = {
@@ -175,7 +182,7 @@ class SubResource(Model):
     Variables are only populated by the server, and will be ignored when sending a request.
 
     :ivar id: Sub Resource Id.
-	:vartype id: str
+    :vartype id: str
     """
 
     _validation = {
@@ -196,9 +203,9 @@ class SubProduct(SubResource):
     Variables are only populated by the server, and will be ignored when sending a request.
 
     :ivar id: Sub Resource Id.
-	:vartype id: str
+    :vartype id: str
     :param properties:
-	:type properties: ~lro.models.SubProductProperties
+    :type properties: ~lro.models.SubProductProperties
     """
 
     _validation = {
@@ -220,9 +227,12 @@ class SubProductProperties(Model):
     Variables are only populated by the server, and will be ignored when sending a request.
 
     :param provisioning_state:
-	:type provisioning_state: str
-    :ivar provisioning_state_values:  Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created', 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'.
-	:vartype provisioning_state_values: str or ~lro.models.SubProductPropertiesProvisioningStateValues
+    :type provisioning_state: str
+    :ivar provisioning_state_values:  Possible values include: 'Succeeded',
+	 'Failed', 'canceled', 'Accepted', 'Creating', 'Created', 'Updating', 'Updated',
+	 'Deleting', 'Deleted', 'OK'.
+    :vartype provisioning_state_values: str or
+	 ~lro.models.SubProductPropertiesProvisioningStateValues
     """
 
     _validation = {

@@ -16,7 +16,7 @@ class ArrayWrapper(Model):
     """ArrayWrapper.
 
     :param array:
-	:type array: list[str]
+    :type array: list[str]
     """
 
     _attribute_map = {
@@ -31,11 +31,12 @@ class Basic(Model):
     """Basic.
 
     :param id: Basic Id.
-	:type id: int
-    :param name: Name property with a very long description that does not fit on a single line and a line break.
-	:type name: str
+    :type id: int
+    :param name: Name property with a very long description that does not fit on a
+	 single line and a line break.
+    :type name: str
     :param color:  Possible values include: 'cyan', 'Magenta', 'YELLOW', 'blacK'.
-	:type color: str or ~bodycomplex.models.CMYKColors
+    :type color: str or ~bodycomplex.models.CMYKColors
     """
 
     _attribute_map = {
@@ -54,9 +55,9 @@ class BooleanWrapper(Model):
     """BooleanWrapper.
 
     :param field_true:
-	:type field_true: bool
+    :type field_true: bool
     :param field_false:
-	:type field_false: bool
+    :type field_false: bool
     """
 
     _attribute_map = {
@@ -73,7 +74,7 @@ class ByteWrapper(Model):
     """ByteWrapper.
 
     :param field:
-	:type field: bytearray
+    :type field: bytearray
     """
 
     _attribute_map = {
@@ -88,9 +89,9 @@ class Pet(Model):
     """Pet.
 
     :param id:
-	:type id: int
+    :type id: int
     :param name:
-	:type name: str
+    :type name: str
     """
 
     _attribute_map = {
@@ -107,13 +108,13 @@ class Cat(Pet):
     """Cat.
 
     :param id:
-	:type id: int
+    :type id: int
     :param name:
-	:type name: str
+    :type name: str
     :param color:
-	:type color: str
+    :type color: str
     :param hates:
-	:type hates: list[~bodycomplex.models.Dog]
+    :type hates: list[~bodycomplex.models.Dog]
     """
 
     _attribute_map = {
@@ -136,14 +137,14 @@ class Fish(Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param fishtype: Required. Constant filled by server. 
-	:type fishtype: str
+    :param fishtype: Required. Constant filled by server.
+    :type fishtype: str
     :param species:
-	:type species: str
-    :param length: Required. 
-	:type length: float
+    :type species: str
+    :param length: Required.
+    :type length: float
     :param siblings:
-	:type siblings: list[~bodycomplex.models.Fish]
+    :type siblings: list[~bodycomplex.models.Fish]
     """
 
     _validation = {
@@ -177,18 +178,18 @@ class Shark(Fish):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param fishtype: Required. Constant filled by server. 
-	:type fishtype: str
+    :param fishtype: Required. Constant filled by server.
+    :type fishtype: str
     :param species:
-	:type species: str
-    :param length: Required. 
-	:type length: float
+    :type species: str
+    :param length: Required.
+    :type length: float
     :param siblings:
-	:type siblings: list[~bodycomplex.models.Fish]
+    :type siblings: list[~bodycomplex.models.Fish]
     :param age:
-	:type age: int
-    :param birthday: Required. 
-	:type birthday: ~datetime.datetime
+    :type age: int
+    :param birthday: Required.
+    :type birthday: ~datetime.datetime
     """
 
     _validation = {
@@ -221,18 +222,18 @@ class Cookiecuttershark(Shark):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param fishtype: Required. Constant filled by server. 
-	:type fishtype: str
+    :param fishtype: Required. Constant filled by server.
+    :type fishtype: str
     :param species:
-	:type species: str
-    :param length: Required. 
-	:type length: float
+    :type species: str
+    :param length: Required.
+    :type length: float
     :param siblings:
-	:type siblings: list[~bodycomplex.models.Fish]
+    :type siblings: list[~bodycomplex.models.Fish]
     :param age:
-	:type age: int
-    :param birthday: Required. 
-	:type birthday: ~datetime.datetime
+    :type age: int
+    :param birthday: Required.
+    :type birthday: ~datetime.datetime
     """
 
     _validation = {
@@ -258,9 +259,9 @@ class Datetimerfc1123Wrapper(Model):
     """Datetimerfc1123Wrapper.
 
     :param field:
-	:type field: ~datetime.datetime
+    :type field: ~datetime.datetime
     :param now:
-	:type now: ~datetime.datetime
+    :type now: ~datetime.datetime
     """
 
     _attribute_map = {
@@ -277,9 +278,9 @@ class DatetimeWrapper(Model):
     """DatetimeWrapper.
 
     :param field:
-	:type field: ~datetime.datetime
+    :type field: ~datetime.datetime
     :param now:
-	:type now: ~datetime.datetime
+    :type now: ~datetime.datetime
     """
 
     _attribute_map = {
@@ -296,9 +297,9 @@ class DateWrapper(Model):
     """DateWrapper.
 
     :param field:
-	:type field: ~datetime.date
+    :type field: ~datetime.date
     :param leap:
-	:type leap: ~datetime.date
+    :type leap: ~datetime.date
     """
 
     _attribute_map = {
@@ -314,8 +315,9 @@ class DateWrapper(Model):
 class DictionaryWrapper(Model):
     """DictionaryWrapper.
 
-    :param default_program: Dictionary of <components·schemas·dictionary_wrapper·properties·defaultprogram·additionalproperties>.
-	:type default_program: dict[str, str]
+    :param default_program: Dictionary of
+	 <components·schemas·dictionary_wrapper·properties·defaultprogram·additionalproperties>.
+    :type default_program: dict[str, str]
     """
 
     _attribute_map = {
@@ -330,11 +332,11 @@ class Dog(Pet):
     """Dog.
 
     :param id:
-	:type id: int
+    :type id: int
     :param name:
-	:type name: str
+    :type name: str
     :param food:
-	:type food: str
+    :type food: str
     """
 
     _attribute_map = {
@@ -355,10 +357,10 @@ class DotFish(Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param fishtype: Required. Constant filled by server. 
-	:type fishtype: str
+    :param fishtype: Required. Constant filled by server.
+    :type fishtype: str
     :param species:
-	:type species: str
+    :type species: str
     """
 
     _validation = {
@@ -383,13 +385,13 @@ class DotFishMarket(Model):
     """DotFishMarket.
 
     :param sample_salmon:
-	:type sample_salmon: ~bodycomplex.models.DotSalmon
+    :type sample_salmon: ~bodycomplex.models.DotSalmon
     :param salmons:
-	:type salmons: list[~bodycomplex.models.DotSalmon]
+    :type salmons: list[~bodycomplex.models.DotSalmon]
     :param sample_fish:
-	:type sample_fish: ~bodycomplex.models.DotFish
+    :type sample_fish: ~bodycomplex.models.DotFish
     :param fishes:
-	:type fishes: list[~bodycomplex.models.DotFish]
+    :type fishes: list[~bodycomplex.models.DotFish]
     """
 
     _attribute_map = {
@@ -411,14 +413,14 @@ class DotSalmon(DotFish):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param fishtype: Required. Constant filled by server. 
-	:type fishtype: str
+    :param fishtype: Required. Constant filled by server.
+    :type fishtype: str
     :param species:
-	:type species: str
+    :type species: str
     :param location:
-	:type location: str
+    :type location: str
     :param iswild:
-	:type iswild: bool
+    :type iswild: bool
     """
 
     _validation = {
@@ -442,9 +444,12 @@ class DoubleWrapper(Model):
     """DoubleWrapper.
 
     :param field1:
-	:type field1: float
-    :param field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose:
-	:type field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose: float
+    :type field1: float
+    :param
+	 field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose:
+    :type
+	 field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose:
+	 float
     """
 
     _attribute_map = {
@@ -461,7 +466,7 @@ class DurationWrapper(Model):
     """DurationWrapper.
 
     :param field:
-	:type field: ~datetime.timedelta
+    :type field: ~datetime.timedelta
     """
 
     _attribute_map = {
@@ -501,9 +506,9 @@ class Error(Model):
     """Error.
 
     :param status:
-	:type status: int
+    :type status: int
     :param message:
-	:type message: str
+    :type message: str
     """
     _EXCEPTION_TYPE = ErrorException
 
@@ -521,9 +526,9 @@ class FloatWrapper(Model):
     """FloatWrapper.
 
     :param field1:
-	:type field1: float
+    :type field1: float
     :param field2:
-	:type field2: float
+    :type field2: float
     """
 
     _attribute_map = {
@@ -541,22 +546,23 @@ class Goblinshark(Shark):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param fishtype: Required. Constant filled by server. 
-	:type fishtype: str
+    :param fishtype: Required. Constant filled by server.
+    :type fishtype: str
     :param species:
-	:type species: str
-    :param length: Required. 
-	:type length: float
+    :type species: str
+    :param length: Required.
+    :type length: float
     :param siblings:
-	:type siblings: list[~bodycomplex.models.Fish]
+    :type siblings: list[~bodycomplex.models.Fish]
     :param age:
-	:type age: int
-    :param birthday: Required. 
-	:type birthday: ~datetime.datetime
+    :type age: int
+    :param birthday: Required.
+    :type birthday: ~datetime.datetime
     :param jawsize:
-	:type jawsize: int
-    :param color: Colors possible. Possible values include: 'pink', 'gray', 'brown', 'RED'. Default value: "gray".
-	:type color: str or ~bodycomplex.models.GoblinSharkColor
+    :type jawsize: int
+    :param color: Colors possible. Possible values include: 'pink', 'gray', 'brown',
+	 'RED'. Default value: "gray".
+    :type color: str or ~bodycomplex.models.GoblinSharkColor
     """
 
     _validation = {
@@ -586,9 +592,9 @@ class IntWrapper(Model):
     """IntWrapper.
 
     :param field1:
-	:type field1: int
+    :type field1: int
     :param field2:
-	:type field2: int
+    :type field2: int
     """
 
     _attribute_map = {
@@ -605,9 +611,9 @@ class LongWrapper(Model):
     """LongWrapper.
 
     :param field1:
-	:type field1: long
+    :type field1: long
     :param field2:
-	:type field2: long
+    :type field2: long
     """
 
     _attribute_map = {
@@ -624,7 +630,7 @@ class MyBaseHelperType(Model):
     """MyBaseHelperType.
 
     :param prop_bh1:
-	:type prop_bh1: str
+    :type prop_bh1: str
     """
 
     _attribute_map = {
@@ -643,12 +649,12 @@ class MyBaseType(Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param kind: Required. Constant filled by server. 
-	:type kind: str
+    :param kind: Required. Constant filled by server.
+    :type kind: str
     :param prop_b1:
-	:type prop_b1: str
+    :type prop_b1: str
     :param helper:
-	:type helper: ~bodycomplex.models.MyBaseHelperType
+    :type helper: ~bodycomplex.models.MyBaseHelperType
     """
 
     _validation = {
@@ -676,14 +682,14 @@ class MyDerivedType(MyBaseType):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param kind: Required. Constant filled by server. 
-	:type kind: str
+    :param kind: Required. Constant filled by server.
+    :type kind: str
     :param prop_b1:
-	:type prop_b1: str
+    :type prop_b1: str
     :param helper:
-	:type helper: ~bodycomplex.models.MyBaseHelperType
+    :type helper: ~bodycomplex.models.MyBaseHelperType
     :param prop_d1:
-	:type prop_d1: str
+    :type prop_d1: str
     """
 
     _validation = {
@@ -708,9 +714,9 @@ class ReadonlyObj(Model):
     Variables are only populated by the server, and will be ignored when sending a request.
 
     :ivar id:
-	:vartype id: str
+    :vartype id: str
     :param size:
-	:type size: int
+    :type size: int
     """
 
     _validation = {
@@ -735,18 +741,18 @@ class Salmon(Fish):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param fishtype: Required. Constant filled by server. 
-	:type fishtype: str
+    :param fishtype: Required. Constant filled by server.
+    :type fishtype: str
     :param species:
-	:type species: str
-    :param length: Required. 
-	:type length: float
+    :type species: str
+    :param length: Required.
+    :type length: float
     :param siblings:
-	:type siblings: list[~bodycomplex.models.Fish]
+    :type siblings: list[~bodycomplex.models.Fish]
     :param location:
-	:type location: str
+    :type location: str
     :param iswild:
-	:type iswild: bool
+    :type iswild: bool
     """
 
     _validation = {
@@ -778,20 +784,20 @@ class Sawshark(Shark):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param fishtype: Required. Constant filled by server. 
-	:type fishtype: str
+    :param fishtype: Required. Constant filled by server.
+    :type fishtype: str
     :param species:
-	:type species: str
-    :param length: Required. 
-	:type length: float
+    :type species: str
+    :param length: Required.
+    :type length: float
     :param siblings:
-	:type siblings: list[~bodycomplex.models.Fish]
+    :type siblings: list[~bodycomplex.models.Fish]
     :param age:
-	:type age: int
-    :param birthday: Required. 
-	:type birthday: ~datetime.datetime
+    :type age: int
+    :param birthday: Required.
+    :type birthday: ~datetime.datetime
     :param picture:
-	:type picture: bytearray
+    :type picture: bytearray
     """
 
     _validation = {
@@ -819,15 +825,15 @@ class Siamese(Cat):
     """Siamese.
 
     :param id:
-	:type id: int
+    :type id: int
     :param name:
-	:type name: str
+    :type name: str
     :param color:
-	:type color: str
+    :type color: str
     :param hates:
-	:type hates: list[~bodycomplex.models.Dog]
+    :type hates: list[~bodycomplex.models.Dog]
     :param breed:
-	:type breed: str
+    :type breed: str
     """
 
     _attribute_map = {
@@ -847,22 +853,23 @@ class SmartSalmon(Salmon):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param fishtype: Required. Constant filled by server. 
-	:type fishtype: str
+    :param fishtype: Required. Constant filled by server.
+    :type fishtype: str
     :param species:
-	:type species: str
-    :param length: Required. 
-	:type length: float
+    :type species: str
+    :param length: Required.
+    :type length: float
     :param siblings:
-	:type siblings: list[~bodycomplex.models.Fish]
+    :type siblings: list[~bodycomplex.models.Fish]
     :param location:
-	:type location: str
+    :type location: str
     :param iswild:
-	:type iswild: bool
-    :param additional_properties: Unmatched properties from the message are deserialized to this collection.
-	:type additional_properties: dict[str, object]
+    :type iswild: bool
+    :param additional_properties: Unmatched properties from the message are
+	 deserialized to this collection.
+    :type additional_properties: dict[str, object]
     :param college_degree:
-	:type college_degree: str
+    :type college_degree: str
     """
 
     _validation = {
@@ -891,11 +898,11 @@ class StringWrapper(Model):
     """StringWrapper.
 
     :param field:
-	:type field: str
+    :type field: str
     :param empty:
-	:type empty: str
+    :type empty: str
     :param null:
-	:type null: str
+    :type null: str
     """
 
     _attribute_map = {

@@ -16,7 +16,7 @@ class AvailabilitySetUpdateParameters(Model):
     All required parameters must be populated in order to send to Azure.
 
     :param tags: Required. A set of tags. A description about the set of tags.
-	:type tags: dict[str, str]
+    :type tags: dict[str, str]
     """
 
     _validation = {

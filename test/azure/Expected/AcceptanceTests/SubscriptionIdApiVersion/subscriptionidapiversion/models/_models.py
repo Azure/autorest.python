@@ -38,9 +38,9 @@ class Error(Model):
     """Error.
 
     :param code:
-	:type code: int
+    :type code: int
     :param message:
-	:type message: str
+    :type message: str
     """
     _EXCEPTION_TYPE = ErrorException
 
@@ -58,9 +58,9 @@ class SampleResourceGroup(Model):
     """SampleResourceGroup.
 
     :param name: resource group name 'testgroup101'.
-	:type name: str
+    :type name: str
     :param location: resource group location 'West US'.
-	:type location: str
+    :type location: str
     """
 
     _attribute_map = {

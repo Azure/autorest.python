@@ -18,14 +18,15 @@ class PetAPTrue(Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param additional_properties: Unmatched properties from the message are deserialized to this collection.
-	:type additional_properties: dict[str, object]
-    :param id: Required. 
-	:type id: int
+    :param additional_properties: Unmatched properties from the message are
+	 deserialized to this collection.
+    :type additional_properties: dict[str, object]
+    :param id: Required.
+    :type id: int
     :param name:
-	:type name: str
+    :type name: str
     :ivar status:
-	:vartype status: bool
+    :vartype status: bool
     """
 
     _validation = {
@@ -54,16 +55,17 @@ class CatAPTrue(PetAPTrue):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param additional_properties: Unmatched properties from the message are deserialized to this collection.
-	:type additional_properties: dict[str, object]
-    :param id: Required. 
-	:type id: int
+    :param additional_properties: Unmatched properties from the message are
+	 deserialized to this collection.
+    :type additional_properties: dict[str, object]
+    :param id: Required.
+    :type id: int
     :param name:
-	:type name: str
+    :type name: str
     :ivar status:
-	:vartype status: bool
+    :vartype status: bool
     :param friendly:
-	:type friendly: bool
+    :type friendly: bool
     """
 
     _validation = {
@@ -112,9 +114,9 @@ class Error(Model):
     """Error.
 
     :param status:
-	:type status: int
+    :type status: int
     :param message:
-	:type message: str
+    :type message: str
     """
     _EXCEPTION_TYPE = ErrorException
 
@@ -135,14 +137,15 @@ class PetAPInProperties(Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param id: Required. 
-	:type id: int
+    :param id: Required.
+    :type id: int
     :param name:
-	:type name: str
+    :type name: str
     :ivar status:
-	:vartype status: bool
-    :param additional_properties: Dictionary of <components·schemas·petapinproperties·properties·additionalproperties·additionalproperties>.
-	:type additional_properties: dict[str, float]
+    :vartype status: bool
+    :param additional_properties: Dictionary of
+	 <components·schemas·petapinproperties·properties·additionalproperties·additionalproperties>.
+    :type additional_properties: dict[str, float]
     """
 
     _validation = {
@@ -171,18 +174,20 @@ class PetAPInPropertiesWithAPString(Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param additional_properties: Unmatched properties from the message are deserialized to this collection.
-	:type additional_properties: dict[str, str]
-    :param id: Required. 
-	:type id: int
+    :param additional_properties: Unmatched properties from the message are
+	 deserialized to this collection.
+    :type additional_properties: dict[str, str]
+    :param id: Required.
+    :type id: int
     :param name:
-	:type name: str
+    :type name: str
     :ivar status:
-	:vartype status: bool
-    :param odatalocation: Required. 
-	:type odatalocation: str
-    :param additional_properties1: Dictionary of <components·schemas·petapinproperties·properties·additionalproperties·additionalproperties>.
-	:type additional_properties1: dict[str, float]
+    :vartype status: bool
+    :param odatalocation: Required.
+    :type odatalocation: str
+    :param additional_properties1: Dictionary of
+	 <components·schemas·petapinproperties·properties·additionalproperties·additionalproperties>.
+    :type additional_properties1: dict[str, float]
     """
 
     _validation = {
@@ -216,14 +221,15 @@ class PetAPObject(Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param additional_properties: Unmatched properties from the message are deserialized to this collection.
-	:type additional_properties: dict[str, object]
-    :param id: Required. 
-	:type id: int
+    :param additional_properties: Unmatched properties from the message are
+	 deserialized to this collection.
+    :type additional_properties: dict[str, object]
+    :param id: Required.
+    :type id: int
     :param name:
-	:type name: str
+    :type name: str
     :ivar status:
-	:vartype status: bool
+    :vartype status: bool
     """
 
     _validation = {
@@ -252,14 +258,15 @@ class PetAPString(Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param additional_properties: Unmatched properties from the message are deserialized to this collection.
-	:type additional_properties: dict[str, str]
-    :param id: Required. 
-	:type id: int
+    :param additional_properties: Unmatched properties from the message are
+	 deserialized to this collection.
+    :type additional_properties: dict[str, str]
+    :param id: Required.
+    :type id: int
     :param name:
-	:type name: str
+    :type name: str
     :ivar status:
-	:vartype status: bool
+    :vartype status: bool
     """
 
     _validation = {

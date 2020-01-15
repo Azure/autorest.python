@@ -38,9 +38,9 @@ class Error(Model):
     """Error.
 
     :param status:
-	:type status: int
+    :type status: int
     :param message:
-	:type message: str
+    :type message: str
     """
     _EXCEPTION_TYPE = ErrorException
 
@@ -58,9 +58,9 @@ class Product(Model):
     """Product.
 
     :param integer:
-	:type integer: int
+    :type integer: int
     :param string:
-	:type string: str
+    :type string: str
     """
 
     _attribute_map = {

@@ -18,11 +18,11 @@ class AccessPolicy(Model):
     All required parameters must be populated in order to send to Azure.
 
     :param start: Required. the date-time the policy is active.
-	:type start: ~datetime.datetime
+    :type start: ~datetime.datetime
     :param expiry: Required. the date-time the policy expires.
-	:type expiry: ~datetime.datetime
+    :type expiry: ~datetime.datetime
     :param permission: Required. the permissions for the acl policy.
-	:type permission: str
+    :type permission: str
     """
 
     _validation = {
@@ -47,9 +47,9 @@ class AppleBarrel(Model):
     """A barrel of apples.
 
     :param good_apples:
-	:type good_apples: list[str]
+    :type good_apples: list[str]
     :param bad_apples:
-	:type bad_apples: list[str]
+    :type bad_apples: list[str]
     """
 
     _attribute_map = {
@@ -66,11 +66,11 @@ class Banana(Model):
     """A banana.
 
     :param name:
-	:type name: str
+    :type name: str
     :param flavor:
-	:type flavor: str
+    :type flavor: str
     :param expiration: The time at which you should reconsider eating this banana.
-	:type expiration: ~datetime.datetime
+    :type expiration: ~datetime.datetime
     """
 
     _attribute_map = {
@@ -90,16 +90,17 @@ class Blob(Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param name: Required. 
-	:type name: str
-    :param deleted: Required. 
-	:type deleted: bool
-    :param snapshot: Required. 
-	:type snapshot: str
+    :param name: Required.
+    :type name: str
+    :param deleted: Required.
+    :type deleted: bool
+    :param snapshot: Required.
+    :type snapshot: str
     :param properties: Required. Properties of a blob.
-	:type properties: ~xmlservice.models.BlobProperties
-    :param metadata: Dictionary of <paths·xml-headers·get·responses·200·headers·custom_header·schema>.
-	:type metadata: dict[str, str]
+    :type properties: ~xmlservice.models.BlobProperties
+    :param metadata: Dictionary of <paths·xml-
+	 headers·get·responses·200·headers·custom_header·schema>.
+    :type metadata: dict[str, str]
     """
 
     _validation = {
@@ -130,8 +131,8 @@ class BlobPrefix(Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param name: Required. 
-	:type name: str
+    :param name: Required.
+    :type name: str
     """
 
     _validation = {
@@ -151,62 +152,67 @@ class BlobProperties(Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param last_modified: Required. 
-	:type last_modified: ~datetime.datetime
-    :param etag: Required. 
-	:type etag: str
+    :param last_modified: Required.
+    :type last_modified: ~datetime.datetime
+    :param etag: Required.
+    :type etag: str
     :param content_length: Size in bytes.
-	:type content_length: long
+    :type content_length: long
     :param content_type:
-	:type content_type: str
+    :type content_type: str
     :param content_encoding:
-	:type content_encoding: str
+    :type content_encoding: str
     :param content_language:
-	:type content_language: str
+    :type content_language: str
     :param content_md5:
-	:type content_md5: str
+    :type content_md5: str
     :param content_disposition:
-	:type content_disposition: str
+    :type content_disposition: str
     :param cache_control:
-	:type cache_control: str
+    :type cache_control: str
     :param blob_sequence_number:
-	:type blob_sequence_number: int
-    :param blob_type:  Possible values include: 'BlockBlob', 'PageBlob', 'AppendBlob'.
-	:type blob_type: str or ~xmlservice.models.BlobType
+    :type blob_sequence_number: int
+    :param blob_type:  Possible values include: 'BlockBlob', 'PageBlob',
+	 'AppendBlob'.
+    :type blob_type: str or ~xmlservice.models.BlobType
     :param lease_status:  Possible values include: 'locked', 'unlocked'.
-	:type lease_status: str or ~xmlservice.models.LeaseStatusType
-    :param lease_state:  Possible values include: 'available', 'leased', 'expired', 'breaking', 'broken'.
-	:type lease_state: str or ~xmlservice.models.LeaseStateType
+    :type lease_status: str or ~xmlservice.models.LeaseStatusType
+    :param lease_state:  Possible values include: 'available', 'leased', 'expired',
+	 'breaking', 'broken'.
+    :type lease_state: str or ~xmlservice.models.LeaseStateType
     :param lease_duration:  Possible values include: 'infinite', 'fixed'.
-	:type lease_duration: str or ~xmlservice.models.LeaseDurationType
+    :type lease_duration: str or ~xmlservice.models.LeaseDurationType
     :param copy_id:
-	:type copy_id: str
-    :param copy_status:  Possible values include: 'pending', 'success', 'aborted', 'failed'.
-	:type copy_status: str or ~xmlservice.models.CopyStatusType
+    :type copy_id: str
+    :param copy_status:  Possible values include: 'pending', 'success', 'aborted',
+	 'failed'.
+    :type copy_status: str or ~xmlservice.models.CopyStatusType
     :param copy_source:
-	:type copy_source: str
+    :type copy_source: str
     :param copy_progress:
-	:type copy_progress: str
+    :type copy_progress: str
     :param copy_completion_time:
-	:type copy_completion_time: ~datetime.datetime
+    :type copy_completion_time: ~datetime.datetime
     :param copy_status_description:
-	:type copy_status_description: str
+    :type copy_status_description: str
     :param server_encrypted:
-	:type server_encrypted: bool
+    :type server_encrypted: bool
     :param incremental_copy:
-	:type incremental_copy: bool
+    :type incremental_copy: bool
     :param destination_snapshot:
-	:type destination_snapshot: str
+    :type destination_snapshot: str
     :param deleted_time:
-	:type deleted_time: ~datetime.datetime
+    :type deleted_time: ~datetime.datetime
     :param remaining_retention_days:
-	:type remaining_retention_days: int
-    :param access_tier:  Possible values include: 'P4', 'P6', 'P10', 'P20', 'P30', 'P40', 'P50', 'Hot', 'Cool', 'Archive'.
-	:type access_tier: str or ~xmlservice.models.AccessTier
+    :type remaining_retention_days: int
+    :param access_tier:  Possible values include: 'P4', 'P6', 'P10', 'P20', 'P30',
+	 'P40', 'P50', 'Hot', 'Cool', 'Archive'.
+    :type access_tier: str or ~xmlservice.models.AccessTier
     :param access_tier_inferred:
-	:type access_tier_inferred: bool
-    :param archive_status:  Possible values include: 'rehydrate-pending-to-hot', 'rehydrate-pending-to-cool'.
-	:type archive_status: str or ~xmlservice.models.ArchiveStatus
+    :type access_tier_inferred: bool
+    :param archive_status:  Possible values include: 'rehydrate-pending-to-hot',
+	 'rehydrate-pending-to-cool'.
+    :type archive_status: str or ~xmlservice.models.ArchiveStatus
     """
 
     _validation = {
@@ -280,9 +286,9 @@ class Blobs(Model):
     """Blobs.
 
     :param blob_prefix:
-	:type blob_prefix: list[~xmlservice.models.BlobPrefix]
+    :type blob_prefix: list[~xmlservice.models.BlobPrefix]
     :param blob:
-	:type blob: list[~xmlservice.models.Blob]
+    :type blob: list[~xmlservice.models.Blob]
     """
 
     _attribute_map = {
@@ -299,7 +305,7 @@ class ComplexTypeNoMeta(Model):
     """I am a complex type with no XML node
 
     :param id: The id of the res.
-	:type id: str
+    :type id: str
     """
 
     _attribute_map = {
@@ -314,7 +320,7 @@ class ComplexTypeWithMeta(Model):
     """I am a complex type with XML node
 
     :param id: The id of the res.
-	:type id: str
+    :type id: str
     """
 
     _attribute_map = {
@@ -330,12 +336,13 @@ class Container(Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param name: Required. 
-	:type name: str
+    :param name: Required.
+    :type name: str
     :param properties: Required. Properties of a container.
-	:type properties: ~xmlservice.models.ContainerProperties
-    :param metadata: Dictionary of <paths·xml-headers·get·responses·200·headers·custom_header·schema>.
-	:type metadata: dict[str, str]
+    :type properties: ~xmlservice.models.ContainerProperties
+    :param metadata: Dictionary of <paths·xml-
+	 headers·get·responses·200·headers·custom_header·schema>.
+    :type metadata: dict[str, str]
     """
 
     _validation = {
@@ -360,18 +367,19 @@ class ContainerProperties(Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param last_modified: Required. 
-	:type last_modified: ~datetime.datetime
-    :param etag: Required. 
-	:type etag: str
+    :param last_modified: Required.
+    :type last_modified: ~datetime.datetime
+    :param etag: Required.
+    :type etag: str
     :param lease_status:  Possible values include: 'locked', 'unlocked'.
-	:type lease_status: str or ~xmlservice.models.LeaseStatusType
-    :param lease_state:  Possible values include: 'available', 'leased', 'expired', 'breaking', 'broken'.
-	:type lease_state: str or ~xmlservice.models.LeaseStateType
+    :type lease_status: str or ~xmlservice.models.LeaseStatusType
+    :param lease_state:  Possible values include: 'available', 'leased', 'expired',
+	 'breaking', 'broken'.
+    :type lease_state: str or ~xmlservice.models.LeaseStateType
     :param lease_duration:  Possible values include: 'infinite', 'fixed'.
-	:type lease_duration: str or ~xmlservice.models.LeaseDurationType
+    :type lease_duration: str or ~xmlservice.models.LeaseDurationType
     :param public_access:  Possible values include: 'container', 'blob'.
-	:type public_access: str or ~xmlservice.models.PublicAccessType
+    :type public_access: str or ~xmlservice.models.PublicAccessType
     """
 
     _validation = {
@@ -398,20 +406,33 @@ class ContainerProperties(Model):
         self.public_access = public_access
 
 class CorsRule(Model):
-    """CORS is an HTTP feature that enables a web application running under one domain to access resources in another domain. Web browsers implement a security restriction known as same-origin policy that prevents a web page from calling APIs in a different domain; CORS provides a secure way to allow one domain (the origin domain) to call APIs in another domain
+    """CORS is an HTTP feature that enables a web application running under one domain
+	to access resources in another domain. Web browsers implement a security
+	restriction known as same-origin policy that prevents a web page from calling
+	APIs in a different domain; CORS provides a secure way to allow one domain (the
+	origin domain) to call APIs in another domain
 
     All required parameters must be populated in order to send to Azure.
 
-    :param allowed_origins: Required. The origin domains that are permitted to make a request against the storage service via CORS. The origin domain is the domain from which the request originates. Note that the origin must be an exact case-sensitive match with the origin that the user age sends to the service. You can also use the wildcard character '*' to allow all origin domains to make requests via CORS.
-	:type allowed_origins: str
-    :param allowed_methods: Required. The methods (HTTP request verbs) that the origin domain may use for a CORS request. (comma separated).
-	:type allowed_methods: str
-    :param allowed_headers: Required. the request headers that the origin domain may specify on the CORS request.
-	:type allowed_headers: str
-    :param exposed_headers: Required. The response headers that may be sent in the response to the CORS request and exposed by the browser to the request issuer.
-	:type exposed_headers: str
-    :param max_age_in_seconds: Required. The maximum amount time that a browser should cache the preflight OPTIONS request.
-	:type max_age_in_seconds: int
+    :param allowed_origins: Required. The origin domains that are permitted to make
+	 a request against the storage service via CORS. The origin domain is the domain
+	 from which the request originates. Note that the origin must be an exact case-
+	 sensitive match with the origin that the user age sends to the service. You can
+	 also use the wildcard character '*' to allow all origin domains to make requests
+	 via CORS.
+    :type allowed_origins: str
+    :param allowed_methods: Required. The methods (HTTP request verbs) that the
+	 origin domain may use for a CORS request. (comma separated).
+    :type allowed_methods: str
+    :param allowed_headers: Required. the request headers that the origin domain may
+	 specify on the CORS request.
+    :type allowed_headers: str
+    :param exposed_headers: Required. The response headers that may be sent in the
+	 response to the CORS request and exposed by the browser to the request issuer.
+    :type exposed_headers: str
+    :param max_age_in_seconds: Required. The maximum amount time that a browser
+	 should cache the preflight OPTIONS request.
+    :type max_age_in_seconds: int
     """
 
     _validation = {
@@ -467,9 +488,9 @@ class Error(Model):
     """Error.
 
     :param status:
-	:type status: int
+    :type status: int
     :param message:
-	:type message: str
+    :type message: str
     """
     _EXCEPTION_TYPE = ErrorException
 
@@ -487,7 +508,7 @@ class JSONInput(Model):
     """JSONInput.
 
     :param id:
-	:type id: int
+    :type id: int
     """
 
     _attribute_map = {
@@ -502,7 +523,7 @@ class JSONOutput(Model):
     """JSONOutput.
 
     :param id:
-	:type id: int
+    :type id: int
     """
 
     _attribute_map = {
@@ -518,22 +539,22 @@ class ListBlobsResponse(Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param service_endpoint: Required. 
-	:type service_endpoint: str
-    :param container_name: Required. 
-	:type container_name: str
-    :param prefix: Required. 
-	:type prefix: str
-    :param marker: Required. 
-	:type marker: str
-    :param max_results: Required. 
-	:type max_results: int
-    :param delimiter: Required. 
-	:type delimiter: str
-    :param blobs: Required. 
-	:type blobs: ~xmlservice.models.Blobs
-    :param next_marker: Required. 
-	:type next_marker: str
+    :param service_endpoint: Required.
+    :type service_endpoint: str
+    :param container_name: Required.
+    :type container_name: str
+    :param prefix: Required.
+    :type prefix: str
+    :param marker: Required.
+    :type marker: str
+    :param max_results: Required.
+    :type max_results: int
+    :param delimiter: Required.
+    :type delimiter: str
+    :param blobs: Required.
+    :type blobs: ~xmlservice.models.Blobs
+    :param next_marker: Required.
+    :type next_marker: str
     """
 
     _validation = {
@@ -574,18 +595,18 @@ class ListContainersResponse(Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param service_endpoint: Required. 
-	:type service_endpoint: str
-    :param prefix: Required. 
-	:type prefix: str
+    :param service_endpoint: Required.
+    :type service_endpoint: str
+    :param prefix: Required.
+    :type prefix: str
     :param marker:
-	:type marker: str
-    :param max_results: Required. 
-	:type max_results: int
+    :type marker: str
+    :param max_results: Required.
+    :type max_results: int
     :param containers:
-	:type containers: list[~xmlservice.models.Container]
-    :param next_marker: Required. 
-	:type next_marker: str
+    :type containers: list[~xmlservice.models.Container]
+    :param next_marker: Required.
+    :type next_marker: str
     """
 
     _validation = {
@@ -619,15 +640,15 @@ class Logging(Model):
     All required parameters must be populated in order to send to Azure.
 
     :param version: Required. The version of Storage Analytics to configure.
-	:type version: str
+    :type version: str
     :param delete: Required. Indicates whether all delete requests should be logged.
-	:type delete: bool
+    :type delete: bool
     :param read: Required. Indicates whether all read requests should be logged.
-	:type read: bool
+    :type read: bool
     :param write: Required. Indicates whether all write requests should be logged.
-	:type write: bool
+    :type write: bool
     :param retention_policy: Required. the retention policy.
-	:type retention_policy: ~xmlservice.models.RetentionPolicy
+    :type retention_policy: ~xmlservice.models.RetentionPolicy
     """
 
     _validation = {
@@ -660,13 +681,15 @@ class Metrics(Model):
     All required parameters must be populated in order to send to Azure.
 
     :param version: The version of Storage Analytics to configure.
-	:type version: str
-    :param enabled: Required. Indicates whether metrics are enabled for the Blob service.
-	:type enabled: bool
-    :param include_apis: Indicates whether metrics should generate summary statistics for called API operations.
-	:type include_apis: bool
+    :type version: str
+    :param enabled: Required. Indicates whether metrics are enabled for the Blob
+	 service.
+    :type enabled: bool
+    :param include_apis: Indicates whether metrics should generate summary
+	 statistics for called API operations.
+    :type include_apis: bool
     :param retention_policy: the retention policy.
-	:type retention_policy: ~xmlservice.models.RetentionPolicy
+    :type retention_policy: ~xmlservice.models.RetentionPolicy
     """
 
     _validation = {
@@ -692,10 +715,12 @@ class RetentionPolicy(Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param enabled: Required. Indicates whether a retention policy is enabled for the storage service.
-	:type enabled: bool
-    :param days: Indicates the number of days that metrics or logging or soft-deleted data should be retained. All data older than this value will be deleted.
-	:type days: int
+    :param enabled: Required. Indicates whether a retention policy is enabled for
+	 the storage service.
+    :type enabled: bool
+    :param days: Indicates the number of days that metrics or logging or soft-
+	 deleted data should be retained. All data older than this value will be deleted.
+    :type days: int
     """
 
     _validation = {
@@ -717,9 +742,9 @@ class RootWithRefAndMeta(Model):
     """I am root, and I ref a model WITH meta
 
     :param ref_to_model: I am a complex type with XML node.
-	:type ref_to_model: ~xmlservice.models.ComplexTypeWithMeta
+    :type ref_to_model: ~xmlservice.models.ComplexTypeWithMeta
     :param something: Something else (just to avoid flattening).
-	:type something: str
+    :type something: str
     """
 
     _attribute_map = {
@@ -736,9 +761,9 @@ class RootWithRefAndNoMeta(Model):
     """I am root, and I ref a model with no meta
 
     :param ref_to_model: I am a complex type with no XML node.
-	:type ref_to_model: ~xmlservice.models.ComplexTypeNoMeta
+    :type ref_to_model: ~xmlservice.models.ComplexTypeNoMeta
     :param something: Something else (just to avoid flattening).
-	:type something: str
+    :type something: str
     """
 
     _attribute_map = {
@@ -757,9 +782,9 @@ class SignedIdentifier(Model):
     All required parameters must be populated in order to send to Azure.
 
     :param id: Required. a unique id.
-	:type id: str
+    :type id: str
     :param access_policy: Required. An Access policy.
-	:type access_policy: ~xmlservice.models.AccessPolicy
+    :type access_policy: ~xmlservice.models.AccessPolicy
     """
 
     _validation = {
@@ -781,11 +806,11 @@ class Slide(Model):
     """A slide in a slideshow
 
     :param type:
-	:type type: str
+    :type type: str
     :param title:
-	:type title: str
+    :type title: str
     :param items:
-	:type items: list[str]
+    :type items: list[str]
     """
 
     _attribute_map = {
@@ -804,13 +829,13 @@ class Slideshow(Model):
     """Data about a slideshow
 
     :param title:
-	:type title: str
+    :type title: str
     :param date_property:
-	:type date_property: str
+    :type date_property: str
     :param author:
-	:type author: str
+    :type author: str
     :param slides:
-	:type slides: list[~xmlservice.models.Slide]
+    :type slides: list[~xmlservice.models.Slide]
     """
 
     _attribute_map = {
@@ -831,17 +856,19 @@ class StorageServiceProperties(Model):
     """Storage Service Properties.
 
     :param logging: Azure Analytics Logging settings.
-	:type logging: ~xmlservice.models.Logging
+    :type logging: ~xmlservice.models.Logging
     :param hour_metrics:
-	:type hour_metrics: ~xmlservice.models.Metrics
+    :type hour_metrics: ~xmlservice.models.Metrics
     :param minute_metrics:
-	:type minute_metrics: ~xmlservice.models.Metrics
+    :type minute_metrics: ~xmlservice.models.Metrics
     :param cors: The set of CORS rules.
-	:type cors: list[~xmlservice.models.CorsRule]
-    :param default_service_version: The default version to use for requests to the Blob service if an incoming request's version is not specified. Possible values include version 2008-10-27 and all more recent versions.
-	:type default_service_version: str
+    :type cors: list[~xmlservice.models.CorsRule]
+    :param default_service_version: The default version to use for requests to the
+	 Blob service if an incoming request's version is not specified. Possible values
+	 include version 2008-10-27 and all more recent versions.
+    :type default_service_version: str
     :param delete_retention_policy: the retention policy.
-	:type delete_retention_policy: ~xmlservice.models.RetentionPolicy
+    :type delete_retention_policy: ~xmlservice.models.RetentionPolicy
     """
 
     _attribute_map = {

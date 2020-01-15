@@ -13,7 +13,7 @@ class Animal(Model):
     """Animal.
 
     :param ani_type:
-	:type ani_type: str
+    :type ani_type: str
     """
 
     _attribute_map = {
@@ -28,7 +28,7 @@ class BaseError(Model):
     """BaseError.
 
     :param some_base_prop:
-	:type some_base_prop: str
+    :type some_base_prop: str
     """
 
     _attribute_map = {
@@ -73,11 +73,11 @@ class NotFoundErrorBase(BaseError):
     All required parameters must be populated in order to send to Azure.
 
     :param some_base_prop:
-	:type some_base_prop: str
+    :type some_base_prop: str
     :param reason:
-	:type reason: str
-    :param what_not_found: Required. Constant filled by server. 
-	:type what_not_found: str
+    :type reason: str
+    :param what_not_found: Required. Constant filled by server.
+    :type what_not_found: str
     """
     _EXCEPTION_TYPE = NotFoundErrorBaseException
 
@@ -131,13 +131,13 @@ class AnimalNotFound(NotFoundErrorBase):
     All required parameters must be populated in order to send to Azure.
 
     :param some_base_prop:
-	:type some_base_prop: str
+    :type some_base_prop: str
     :param reason:
-	:type reason: str
-    :param what_not_found: Required. Constant filled by server. 
-	:type what_not_found: str
+    :type reason: str
+    :param what_not_found: Required. Constant filled by server.
+    :type what_not_found: str
     :param name:
-	:type name: str
+    :type name: str
     """
     _EXCEPTION_TYPE = AnimalNotFoundException
 
@@ -188,13 +188,13 @@ class LinkNotFound(NotFoundErrorBase):
     All required parameters must be populated in order to send to Azure.
 
     :param some_base_prop:
-	:type some_base_prop: str
+    :type some_base_prop: str
     :param reason:
-	:type reason: str
-    :param what_not_found: Required. Constant filled by server. 
-	:type what_not_found: str
+    :type reason: str
+    :param what_not_found: Required. Constant filled by server.
+    :type what_not_found: str
     :param what_sub_address:
-	:type what_sub_address: str
+    :type what_sub_address: str
     """
     _EXCEPTION_TYPE = LinkNotFoundException
 
@@ -220,9 +220,9 @@ class Pet(Animal):
     Variables are only populated by the server, and will be ignored when sending a request.
 
     :param ani_type:
-	:type ani_type: str
+    :type ani_type: str
     :ivar name: Gets the Pet by id.
-	:vartype name: str
+    :vartype name: str
     """
 
     _validation = {
@@ -242,7 +242,7 @@ class PetAction(Model):
     """PetAction.
 
     :param action_response: action feedback.
-	:type action_response: str
+    :type action_response: str
     """
 
     _attribute_map = {
@@ -286,10 +286,10 @@ class PetActionError(Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param error_type: Required. Constant filled by server. 
-	:type error_type: str
+    :param error_type: Required. Constant filled by server.
+    :type error_type: str
     :param error_message: the error message.
-	:type error_message: str
+    :type error_message: str
     """
     _EXCEPTION_TYPE = PetActionErrorException
 
@@ -344,12 +344,12 @@ class PetSadError(PetActionError):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param error_type: Required. Constant filled by server. 
-	:type error_type: str
+    :param error_type: Required. Constant filled by server.
+    :type error_type: str
     :param error_message: the error message.
-	:type error_message: str
+    :type error_message: str
     :param reason: why is the pet sad.
-	:type reason: str
+    :type reason: str
     """
     _EXCEPTION_TYPE = PetSadErrorException
 
@@ -402,14 +402,14 @@ class PetHungryOrThirstyError(PetSadError):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param error_type: Required. Constant filled by server. 
-	:type error_type: str
+    :param error_type: Required. Constant filled by server.
+    :type error_type: str
     :param error_message: the error message.
-	:type error_message: str
+    :type error_message: str
     :param reason: why is the pet sad.
-	:type reason: str
+    :type reason: str
     :param hungry_or_thirsty: is the pet hungry or thirsty or both.
-	:type hungry_or_thirsty: str
+    :type hungry_or_thirsty: str
     """
     _EXCEPTION_TYPE = PetHungryOrThirstyErrorException
 

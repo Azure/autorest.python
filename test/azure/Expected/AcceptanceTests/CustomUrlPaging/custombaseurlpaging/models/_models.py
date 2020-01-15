@@ -12,9 +12,9 @@ class Error(Model):
     """Error.
 
     :param status:
-	:type status: int
+    :type status: int
     :param message:
-	:type message: str
+    :type message: str
     """
 
     _attribute_map = {
@@ -31,7 +31,7 @@ class Product(Model):
     """Product.
 
     :param properties:
-	:type properties: ~custombaseurlpaging.models.ProductProperties
+    :type properties: ~custombaseurlpaging.models.ProductProperties
     """
 
     _attribute_map = {
@@ -46,9 +46,9 @@ class ProductProperties(Model):
     """ProductProperties.
 
     :param id:
-	:type id: int
+    :type id: int
     :param name:
-	:type name: str
+    :type name: str
     """
 
     _attribute_map = {
@@ -65,9 +65,9 @@ class ProductResult(Model):
     """ProductResult.
 
     :param values:
-	:type values: list[~custombaseurlpaging.models.Product]
+    :type values: list[~custombaseurlpaging.models.Product]
     :param next_link:
-	:type next_link: str
+    :type next_link: str
     """
 
     _attribute_map = {

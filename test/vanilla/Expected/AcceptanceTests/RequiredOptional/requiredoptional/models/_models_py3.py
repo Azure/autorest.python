@@ -15,7 +15,7 @@ class ArrayOptionalWrapper(Model):
     """ArrayOptionalWrapper.
 
     :param value:
-	:type value: list[str]
+    :type value: list[str]
     """
 
     _attribute_map = {
@@ -31,8 +31,8 @@ class ArrayWrapper(Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param value: Required. 
-	:type value: list[str]
+    :param value: Required.
+    :type value: list[str]
     """
 
     _validation = {
@@ -51,7 +51,7 @@ class ClassOptionalWrapper(Model):
     """ClassOptionalWrapper.
 
     :param value:
-	:type value: ~requiredoptional.models.Product
+    :type value: ~requiredoptional.models.Product
     """
 
     _attribute_map = {
@@ -67,8 +67,8 @@ class ClassWrapper(Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param value: Required. 
-	:type value: ~requiredoptional.models.Product
+    :param value: Required.
+    :type value: ~requiredoptional.models.Product
     """
 
     _validation = {
@@ -112,9 +112,9 @@ class Error(Model):
     """Error.
 
     :param status:
-	:type status: int
+    :type status: int
     :param message:
-	:type message: str
+    :type message: str
     """
     _EXCEPTION_TYPE = ErrorException
 
@@ -132,7 +132,7 @@ class IntOptionalWrapper(Model):
     """IntOptionalWrapper.
 
     :param value:
-	:type value: int
+    :type value: int
     """
 
     _attribute_map = {
@@ -148,8 +148,8 @@ class IntWrapper(Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param value: Required. 
-	:type value: int
+    :param value: Required.
+    :type value: int
     """
 
     _validation = {
@@ -169,10 +169,10 @@ class Product(Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param id: Required. 
-	:type id: int
+    :param id: Required.
+    :type id: int
     :param name:
-	:type name: str
+    :type name: str
     """
 
     _validation = {
@@ -193,7 +193,7 @@ class StringOptionalWrapper(Model):
     """StringOptionalWrapper.
 
     :param value:
-	:type value: str
+    :type value: str
     """
 
     _attribute_map = {
@@ -209,8 +209,8 @@ class StringWrapper(Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param value: Required. 
-	:type value: str
+    :param value: Required.
+    :type value: str
     """
 
     _validation = {

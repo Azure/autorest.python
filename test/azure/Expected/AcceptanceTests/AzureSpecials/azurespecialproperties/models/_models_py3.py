@@ -42,11 +42,11 @@ class Error(Model):
     All required parameters must be populated in order to send to Azure.
 
     :param status:
-	:type status: int
+    :type status: int
     :ivar constant_id: Required.  Default value: "1".
-	:vartype constant_id: float
+    :vartype constant_id: float
     :param message:
-	:type message: str
+    :type message: str
     """
     _EXCEPTION_TYPE = ErrorException
 
@@ -71,9 +71,9 @@ class OdataFilter(Model):
     """OdataFilter.
 
     :param id:
-	:type id: int
+    :type id: int
     :param name:
-	:type name: str
+    :type name: str
     """
 
     _attribute_map = {
