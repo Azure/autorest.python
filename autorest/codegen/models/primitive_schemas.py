@@ -220,9 +220,13 @@ class ByteArraySchema(PrimitiveSchema):
         return "bytearray"
 
     def get_python_type(self, namespace=None):
+        if self.format == ByteArraySchema.Formats.base64url:
+            return "bytes"
         return "bytearray"
 
     def get_declaration(self, value) -> str:
+        if self.format == ByteArraySchema.Formats.base64url:
+            return f'bytes("{value}", encoding="utf-8")'
         return f'bytearray("{value}", encoding="utf-8")'
 
 
