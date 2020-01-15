@@ -29,6 +29,7 @@ class ParameterStyle(Enum):
     deepObject = "deepObject"
     tabDelimited = "tabDelimited"
     json = "json"
+    binary = "binary"
 
 
 class Parameter(BaseModel):
