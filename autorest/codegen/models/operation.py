@@ -10,7 +10,7 @@ from .base_model import BaseModel
 from .imports import FileImport, ImportType
 from .schema_response import SchemaResponse
 from .parameter import Parameter, ParameterLocation, ParameterStyle
-from .constant_schema import ConstantSchema
+from .parameter_list import ParameterList
 
 
 _LOGGER = logging.getLogger(__name__)
@@ -46,7 +46,7 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods
         self.description = description
         self.url = url
         self.method = method
-        self.parameters = parameters
+        self.parameters = ParameterList(parameters)
         self.responses = responses
         self.exceptions = exceptions
         self.media_types = media_types
@@ -100,68 +100,6 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods
     def is_stream_response(self):
         """Is the response expected to be streamable, like a download."""
         return any(response.is_stream_response for response in self.responses)
-
-    @property
-    def has_request_body(self):
-        return any(parameter.location == ParameterLocation.Body for parameter in self.parameters)
-
-    @property
-    def body_parameter(self) -> Parameter:
-        if not self.has_request_body:
-            raise ValueError(f"There is no body parameter for operation {self.name}")
-        # Should we check if there is two body? Modeler role right?
-        return [
-            parameter for parameter in self.parameters if parameter.location == ParameterLocation.Body
-        ][0]
-
-    @property
-    def path_parameters(self) -> List[Parameter]:
-        return [
-            parameter for parameter in self.parameters
-            if parameter.location in [ParameterLocation.Uri, ParameterLocation.Path] and
-            parameter.rest_api_name != "$host"
-        ]
-
-    @property
-    def query_parameters(self) -> List[Parameter]:
-        return [
-            parameter for parameter in self.parameters if parameter.location == ParameterLocation.Query
-        ]
-
-    @property
-    def headers_parameters(self) -> List[Parameter]:
-        return [
-            parameter for parameter in self.parameters if parameter.location == ParameterLocation.Header
-        ]
-
-    @property
-    def constant_parameters(self) -> List[Parameter]:
-        return [
-            parameter for parameter in self.parameters if isinstance(parameter.schema, ConstantSchema)
-        ]
-
-    @property
-    def method_parameters(self) -> List[Parameter]:
-        """The list of parameter used in method signature.
-        """
-        def is_parameter_in_signature(parameter):
-            """A predicate to tell if this parmater deserves to be in the signature.
-            """
-            return not (isinstance(parameter.schema, ConstantSchema) or parameter.implementation == "Client")
-
-        signature_parameters_required = []
-        signature_parameters_optional = []
-        for parameter in self.parameters:
-            if is_parameter_in_signature(parameter):
-                if parameter.is_required:
-                    signature_parameters_required.append(parameter)
-                else:
-                    signature_parameters_optional.append(parameter)
-
-        signature_parameters = signature_parameters_required + signature_parameters_optional
-        if self.is_flattened:
-            signature_parameters.remove(self.body_parameter)
-        return signature_parameters
 
     @staticmethod
     def build_serialize_data_call(parameter: Parameter, function_name: str) -> str:
@@ -271,40 +209,13 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods
             file_import.add_import("warnings", ImportType.STDLIB)
 
         # Models
-        if self.has_request_body or self.has_response_body or self.exceptions:
+        if self.parameters.has_body or self.has_response_body or self.exceptions:
             if async_mode:
                 file_import.add_from_import("...", "models", ImportType.LOCAL)
             else:
                 file_import.add_from_import("..", "models", ImportType.LOCAL)
 
         return file_import
-
-    @property
-    def method_signature(self):
-
-        signature = ", ".join([
-            parameter.for_method_signature for parameter in self.method_parameters
-        ])
-        if signature:
-            signature = ", "+signature
-        return signature
-
-    @property
-    def is_flattened(self):
-        return bool([
-            parameter for parameter in self.parameters if parameter.location == ParameterLocation.Other
-        ])
-
-    def build_flattened_object(self):
-        if not self.is_flattened:
-            raise ValueError("This method can't be called if the operation doesn't need parameter flattening")
-
-        parameters = [
-            parameter for parameter in self.parameters if parameter.location == ParameterLocation.Other
-        ]
-        parameter_string = ",".join([f"{param.serialized_name}={param.serialized_name}" for param in parameters])
-
-        return f"{self.body_parameter.serialized_name} = models.{self.body_parameter.schema.name}({parameter_string})"
 
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, str]) -> "Operation":
