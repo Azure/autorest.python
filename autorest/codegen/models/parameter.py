@@ -5,6 +5,7 @@
 # --------------------------------------------------------------------------
 from enum import Enum
 from typing import Dict, Optional, List, Any
+from .imports import FileImport, ImportType
 
 from .base_model import BaseModel
 
@@ -39,7 +40,7 @@ class Parameter(BaseModel):
         serialized_name: str,
         description: str,
         implementation: str,
-        is_required: bool,
+        required: bool,
         location: ParameterLocation,
         skip_url_encoding: bool,
         constraints: List[Any],
@@ -51,7 +52,7 @@ class Parameter(BaseModel):
         self.serialized_name = serialized_name
         self.description = description
         self._implementation = implementation
-        self.is_required = is_required
+        self.required = required
         self.location = location
         self.skip_url_encoding = skip_url_encoding
         self.constraints = constraints
@@ -65,10 +66,16 @@ class Parameter(BaseModel):
         return self._implementation
 
     @property
-    def for_method_signature(self):
-        if self.is_required:
+    def sync_method_signature(self):
+        if self.required:
             return self.serialized_name
         return f"{self.serialized_name}=None"
+
+    @property
+    def async_method_signature(self):
+        if self.required:
+            return f"{self.serialized_name}: {self.schema.type_annotation}"
+        return f"{self.serialized_name}: Optional[{self.schema.type_annotation}] = None"
 
     @property
     def full_serialized_name(self):
@@ -91,9 +98,15 @@ class Parameter(BaseModel):
             serialized_name=yaml_data['language']['python']['name'],
             description=yaml_data["language"]["python"]["description"],
             implementation=yaml_data["implementation"],
-            is_required=yaml_data.get("required", False),
+            required=yaml_data.get("required", False),
             location=ParameterLocation(http_protocol["in"]),
             skip_url_encoding=yaml_data.get("extensions", {}).get("x-ms-skip-url-encoding", False),
             constraints=[], # FIXME constraints
             style=ParameterStyle(http_protocol["style"]) if "style" in http_protocol else None,
         )
+
+    def imports(self) -> FileImport:
+        file_import = self.schema.imports()
+        if not self.required:
+            file_import.add_from_import("typing", "Optional", ImportType.STDLIB)
+        return file_import

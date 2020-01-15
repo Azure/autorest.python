@@ -35,6 +35,7 @@ class FilesOperations(object):
         self._config = config
     @distributed_trace
     def get_file(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> None
         """Get file.
 
         FIXME: add operation.summary
@@ -79,6 +80,7 @@ class FilesOperations(object):
 
     @distributed_trace
     def get_file_large(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> None
         """Get a large file.
 
         FIXME: add operation.summary
@@ -123,6 +125,7 @@ class FilesOperations(object):
 
     @distributed_trace
     def get_empty_file(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> None
         """Get empty file.
 
         FIXME: add operation.summary

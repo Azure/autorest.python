@@ -34,7 +34,7 @@ class AutoRestLongRunningOperationTestService(object):
     :param str base_url: Service URL
     """
 
-    def __init__(self, credential, base_url=None, **kwargs):
+    def __init__(self, credential: "TokenCredential", base_url=None, **kwargs):
         if not base_url:
             base_url = 'http://localhost:3000'
         self._config = AutoRestLongRunningOperationTestServiceConfiguration(credential, **kwargs)

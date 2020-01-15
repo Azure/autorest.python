@@ -36,6 +36,7 @@ class PetsOperations(object):
         self._config = config
     @distributed_trace
     def create_ap_true(self, create_parameters, cls=None, **kwargs):
+        # type: ("PetAPTrue", Optional[Any], **Any) -> "PetAPTrue"
         """Create a Pet which contains more properties than what is defined..
 
         FIXME: add operation.summary
@@ -85,6 +86,7 @@ class PetsOperations(object):
 
     @distributed_trace
     def create_cat_ap_true(self, create_parameters, cls=None, **kwargs):
+        # type: ("CatAPTrue", Optional[Any], **Any) -> "CatAPTrue"
         """Create a CatAPTrue which contains more properties than what is defined..
 
         FIXME: add operation.summary
@@ -134,6 +136,7 @@ class PetsOperations(object):
 
     @distributed_trace
     def create_ap_object(self, create_parameters, cls=None, **kwargs):
+        # type: ("PetAPObject", Optional[Any], **Any) -> "PetAPObject"
         """Create a Pet which contains more properties than what is defined..
 
         FIXME: add operation.summary
@@ -183,6 +186,7 @@ class PetsOperations(object):
 
     @distributed_trace
     def create_ap_string(self, create_parameters, cls=None, **kwargs):
+        # type: ("PetAPString", Optional[Any], **Any) -> "PetAPString"
         """Create a Pet which contains more properties than what is defined..
 
         FIXME: add operation.summary
@@ -232,6 +236,7 @@ class PetsOperations(object):
 
     @distributed_trace
     def create_ap_in_properties(self, create_parameters, cls=None, **kwargs):
+        # type: ("PetAPInProperties", Optional[Any], **Any) -> "PetAPInProperties"
         """Create a Pet which contains more properties than what is defined..
 
         FIXME: add operation.summary
@@ -281,6 +286,7 @@ class PetsOperations(object):
 
     @distributed_trace
     def create_ap_in_properties_with_ap_string(self, create_parameters, cls=None, **kwargs):
+        # type: ("PetAPInPropertiesWithAPString", Optional[Any], **Any) -> "PetAPInPropertiesWithAPString"
         """Create a Pet which contains more properties than what is defined..
 
         FIXME: add operation.summary

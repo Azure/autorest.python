@@ -5,6 +5,7 @@
 # --------------------------------------------------------------------------
 from typing import List
 from .model_base_serializer import ModelBaseSerializer
+from ..models import ObjectSchema
 
 
 class ModelPython3Serializer(ModelBaseSerializer):
@@ -19,12 +20,12 @@ class ModelPython3Serializer(ModelBaseSerializer):
         for param in init_line_parameters:
             if param.required:
                 init_properties_declaration.append(
-                    "{}: {}".format(param.name, param.schema.get_python_type_annotation())
+                    "{}: {}".format(param.name, param.schema.type_annotation)
                 )
             else:
                 default_value = "\"" + param.schema.default_value + "\"" if param.schema.default_value else "None"
                 init_properties_declaration.append(
-                    "{}: {}={}".format(param.name, param.schema.get_python_type_annotation(), default_value)
+                    "{}: Optional[{}] = {}".format(param.name, param.schema.type_annotation, default_value)
                 )
 
         if init_properties_declaration:
@@ -64,6 +65,6 @@ class ModelPython3Serializer(ModelBaseSerializer):
         for model in self.code_model.sorted_schemas:
             init_line_parameters = [p for p in model.properties if not p.readonly and not p.is_discriminator]
             for param in init_line_parameters:
-                file_import.merge(param.imports(async_mode=True))
+                file_import.merge(param.imports())
 
         return file_import

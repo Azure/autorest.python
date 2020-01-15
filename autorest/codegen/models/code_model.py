@@ -44,6 +44,10 @@ class CredentialSchema(BaseSchema):
     def get_python_type(self, namespace=None):
         return self.type
 
+    @property
+    def type_annotation(self):
+        return "\"TokenCredential\""
+
 
 class CodeModel:  # pylint: disable=too-many-instance-attributes
     """Holds all of the information we have parsed out of the yaml file. The CodeModel is what gets
@@ -140,7 +144,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
             rest_api_name="credential",
             implementation="Client",
             description="Credential needed for the client to connect to Azure.",
-            is_required=True,
+            required=True,
             location=ParameterLocation.Other,
             skip_url_encoding=True,
             constraints=[]
@@ -239,7 +243,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
                     serialized_name=prop.name,
                     description=prop.description,
                     implementation="Method",
-                    is_required=prop.required,
+                    required=prop.required,
                     location=ParameterLocation.Other,
                     skip_url_encoding=False, # Doesn't matter here
                     constraints=[], # FIXME inject validation map

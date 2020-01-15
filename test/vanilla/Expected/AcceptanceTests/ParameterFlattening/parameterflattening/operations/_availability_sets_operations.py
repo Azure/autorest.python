@@ -37,6 +37,7 @@ class AvailabilitySetsOperations(object):
         self._config = config
     @distributed_trace
     def update(self, resource_group_name, availability_set_name, tags, cls=None, **kwargs):
+        # type: (str, str, Dict[str, str], Optional[Any], **Any) -> None
         """Updates the tags for an availability set..
 
         FIXME: add operation.summary

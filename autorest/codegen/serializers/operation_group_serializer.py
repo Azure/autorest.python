@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 from .import_serializer import FileImportSerializer
-from ..models import LROOperation, PagingOperation
+from ..models import LROOperation, PagingOperation, Operation
 
 class OperationGroupSerializer:
     def __init__(self, code_model, env, operation_group, async_mode):
@@ -30,7 +30,8 @@ class OperationGroupSerializer:
             imports=FileImportSerializer(self.operation_group.imports(self.async_mode)),
             async_mode=self.async_mode,
             is_lro=_is_lro,
-            is_paging=_is_paging
+            is_paging=_is_paging,
+            operation_typing_comment=OperationGroupSerializer.operation_typing_comment
         )
 
     def filename(self):
@@ -44,3 +45,27 @@ class OperationGroupSerializer:
     @property
     def operation_group_file(self):
         return self._operation_group_file
+
+    @staticmethod
+    def operation_typing_comment(operation: Operation, lro: bool = False) -> str:
+        response = "None"
+        if any(r.has_body for r in operation.responses):
+            if len(operation.responses) == 1:
+                response = operation.responses[0].schema.type_annotation
+            else:
+                response_parameters_string = ", ".join([
+                    r.schema.type_annotation if r.has_body else "None"
+                    for r in operation.responses
+                ])
+                response = f"Union[{response_parameters_string}]"
+        if not operation.method_parameters:
+            if lro:
+                return f"# type: (Optional[Any], Optional[bool], **Any) -> {response}"
+            return f"# type: (Optional[Any], **Any) -> {response}"
+        parameters_typing = [
+            p.schema.type_annotation if p.required else f"Optional[{p.schema.type_annotation}]"
+            for p in operation.method_parameters
+        ]
+        if lro:
+            return f"# type: ({', '.join(parameters_typing)}, Optional[Any], Optional[bool], **Any) -> {response}"
+        return f"# type: ({', '.join(parameters_typing)}, Optional[Any], **Any) -> {response}"

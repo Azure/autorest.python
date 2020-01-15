@@ -29,13 +29,14 @@ class DictionarySchema(BaseSchema):
         """
         return "{{{}}}".format(self.element_type.get_serialization_type())
 
-    def get_python_type_annotation(self) -> str:
+    @property
+    def type_annotation(self) -> str:
         """The python type used for type annotation
 
         :return: The type annotation for this schema
         :rtype: str
         """
-        return f'Dict[str, {self.element_type.get_python_type_annotation()}]'
+        return f'Dict[str, {self.element_type.type_annotation}]'
 
     def get_python_type(self, namespace: Optional[str] = None) -> str:
         """The python type used for RST syntax input and type annotation.
@@ -74,4 +75,5 @@ class DictionarySchema(BaseSchema):
     def imports(self) -> FileImport:
         file_import = FileImport()
         file_import.add_from_import("typing", "Dict", ImportType.STDLIB)
+        file_import.merge(self.element_type.imports())
         return file_import

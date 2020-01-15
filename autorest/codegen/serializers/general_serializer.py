@@ -3,9 +3,8 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import List, Optional
 from .import_serializer import FileImportSerializer
-from ..models import Parameter
+from ..models import FileImport, ImportType
 
 
 class GeneralSerializer:
@@ -30,7 +29,6 @@ class GeneralSerializer:
             async_mode=self.async_mode,
         )
 
-        self.env.globals.update(service_client_init_typing_comment=GeneralSerializer.service_client_init_typing_comment)
         template = self.env.get_template("service_client.py.jinja2")
         self._service_client_file = template.render(
             code_model=self.code_model,
@@ -40,11 +38,11 @@ class GeneralSerializer:
             ),
         )
 
-        self.env.globals.update(config_init_typing_comment=GeneralSerializer.config_init_typing_comment)
         template = self.env.get_template("config.py.jinja2")
         self._config_file = template.render(
             code_model=self.code_model,
-            async_mode=self.async_mode
+            async_mode=self.async_mode,
+            imports=FileImportSerializer(self.config_imports(self.async_mode))
         )
 
         if not self.async_mode:
@@ -53,22 +51,6 @@ class GeneralSerializer:
 
             template = self.env.get_template("setup.py.jinja2")
             self._setup_file = template.render(code_model=self.code_model)
-
-    @staticmethod
-    def config_init_typing_comment(global_parameters: List[Parameter]) -> str:
-        if not global_parameters:
-            return "# type: (**Any) -> None"
-        global_parameters_typing = [p.schema.get_python_type_annotation() for p in global_parameters]
-        return f"# type: ({', '.join(global_parameters_typing)}, **Any) -> None"
-
-    @staticmethod
-    def service_client_init_typing_comment(global_parameters: List[Parameter], base_url: Optional[str]) -> str:
-        if not global_parameters:
-            return "# type: (**Any) -> None"
-        global_parameters_typing = [p.schema.get_python_type_annotation() for p in global_parameters]
-        if base_url:
-            return f"# type: ({', '.join(global_parameters_typing)}, Optional[str], **Any) -> None"
-        return f"# type: ({', '.join(global_parameters_typing)}, **Any) -> None"
 
     @property
     def pkgutil_init_file(self):
@@ -93,3 +75,15 @@ class GeneralSerializer:
     @property
     def setup_file(self):
         return self._setup_file
+
+    def config_imports(self, async_mode):
+        file_import = FileImport()
+        file_import.add_from_import("azure.core.configuration", "Configuration", ImportType.AZURECORE)
+        file_import.add_from_import("azure.core.pipeline", "policies", ImportType.AZURECORE)
+        if self.code_model.options['package_version']:
+            file_import.add_from_import(".._version" if async_mode else "._version", "VERSION", ImportType.LOCAL)
+        if any(not gp.required for gp in self.code_model.global_parameters):
+            file_import.add_from_import("typing", "Optional", ImportType.STDLIB)
+        # if self.code_model.options['credential']:
+        #     file_import.add_from_import("azure.core.credentials", "TokenCredential", ImportType.AZURECORE)
+        return file_import

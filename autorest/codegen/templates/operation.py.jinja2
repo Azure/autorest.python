@@ -3,6 +3,8 @@
 {% set trace_decorator = "@distributed_trace_async" if async_mode else "@distributed_trace" %}
 {% set stream_request_parameter = "stream=" ~ ("True" if operation.is_stream_response else "False") %}
 {% set request_as_xml = ", is_xml=False" if "xml" in operation.request_content_type else "" %}
+{% set method_signature = (", " if operation.method_parameters else "") ~ operation.method_parameters|join(', ', attribute='async_method_signature')
+if async_mode else (", " if operation.method_parameters else "") ~ operation.method_parameters|join(', ', attribute='sync_method_signature')%}
 {% macro return_docstring() %}
 {% if operation.responses | selectattr('has_body') | first %}
 :return: {{ operation.responses|map(attribute='schema')|map(attribute='name')|join(' or ') }} or the result of cls(response)
@@ -20,7 +22,10 @@
 {% else %}
 
 {% endif %}
-{{ keywords.def }} {{ operation.python_name }}(self{{ operation.method_signature }}, cls=None, **kwargs):
+{{ keywords.def }} {{ operation.python_name }}(self{{ method_signature }}, cls=None, **kwargs):
+{% if not async_mode %}
+    {{ operation_typing_comment(operation) }}
+{% endif %}
 {% if operation.want_description_docstring %}
     """{{operation.description.strip() }}.
 
@@ -94,7 +99,7 @@
 {% if operation.has_request_body %}
     # Construct body
     {% if not operation.body_parameter.is_stream %}
-        {% if operation.body_parameter.is_required %}
+        {% if operation.body_parameter.required %}
     body_content = self._serialize.body({{ operation.body_parameter.serialized_name }}, '{{ operation.body_parameter.schema.get_serialization_type() }}'{{ request_as_xml }}{{ operation.serialization_context }})
         {% else %}
     if {{ operation.body_parameter.serialized_name }} is not None:

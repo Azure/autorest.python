@@ -28,8 +28,9 @@ class ListSchema(BaseSchema):
     def get_serialization_type(self):
         return '[{}]'.format(self.element_type.get_serialization_type())
 
-    def get_python_type_annotation(self):
-        return f'List[{self.element_type.get_python_type_annotation()}]'
+    @property
+    def type_annotation(self) -> str:
+        return f'List[{self.element_type.type_annotation}]'
 
     def get_python_type(self, namespace):
         return f'list[{self.element_type.get_python_type(namespace)}]'
@@ -67,4 +68,5 @@ class ListSchema(BaseSchema):
     def imports(self) -> FileImport:
         file_import = FileImport()
         file_import.add_from_import("typing", "List", ImportType.STDLIB)
+        file_import.merge(self.element_type.imports())
         return file_import

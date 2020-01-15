@@ -35,7 +35,7 @@ class GroupOperations:
         self._deserialize = deserializer
         self._config = config
     @distributed_trace_async
-    async def get_sample_resource_group(self, resource_group_name, cls=None, **kwargs):
+    async def get_sample_resource_group(self, resource_group_name: str, cls=None, **kwargs):
         """Provides a resouce group with name 'testgroup101' and location 'West US'..
 
         FIXME: add operation.summary

@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 from .base_model import BaseModel
-from .code_model import CodeModel
+from .code_model import CodeModel, CredentialSchema
 from .object_schema import ObjectSchema
 from .dictionary_schema import DictionarySchema
 from .list_schema import ListSchema
@@ -12,24 +12,28 @@ from .primitive_schemas import get_primitive_schema, PrimitiveSchema
 from .enum_schema import EnumSchema
 from .base_schema import BaseSchema
 from .constant_schema import ConstantSchema
-from .imports import FileImport
+from .imports import FileImport, ImportType
 from .lro_operation import LROOperation
 from .paging_operation import PagingOperation
 from .parameter import Parameter
+from .operation import Operation
 
 
 __all__ = [
     "BaseModel",
     "BaseSchema",
     "CodeModel",
+    "CredentialSchema",
     "ConstantSchema",
     "ObjectSchema",
     "DictionarySchema",
     "ListSchema",
     "EnumSchema",
     "FileImport",
+    "ImportType",
     "PrimitiveSchema",
     "LROOperation",
+    "Operation",
     "PagingOperation",
     "Parameter"
 ]

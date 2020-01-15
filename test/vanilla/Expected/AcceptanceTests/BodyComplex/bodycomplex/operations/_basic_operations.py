@@ -36,6 +36,7 @@ class BasicOperations(object):
         self._config = config
     @distributed_trace
     def get_valid(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> "Basic"
         """Get complex type {id: 2, name: 'abc', color: 'YELLOW'}.
 
         FIXME: add operation.summary
@@ -79,6 +80,7 @@ class BasicOperations(object):
 
     @distributed_trace
     def put_valid(self, complex_body, cls=None, **kwargs):
+        # type: ("Basic", Optional[Any], **Any) -> None
         """Please put {id: 2, name: 'abc', color: 'Magenta'}.
 
         FIXME: add operation.summary
@@ -127,6 +129,7 @@ class BasicOperations(object):
 
     @distributed_trace
     def get_invalid(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> "Basic"
         """Get a basic complex type that is invalid for the local strong type.
 
         FIXME: add operation.summary
@@ -170,6 +173,7 @@ class BasicOperations(object):
 
     @distributed_trace
     def get_empty(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> "Basic"
         """Get a basic complex type that is empty.
 
         FIXME: add operation.summary
@@ -213,6 +217,7 @@ class BasicOperations(object):
 
     @distributed_trace
     def get_null(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> "Basic"
         """Get a basic complex type whose properties are null.
 
         FIXME: add operation.summary
@@ -256,6 +261,7 @@ class BasicOperations(object):
 
     @distributed_trace
     def get_not_provided(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> "Basic"
         """Get a basic complex type while the server doesn't provide a response payload.
 
         FIXME: add operation.summary

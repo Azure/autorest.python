@@ -293,7 +293,7 @@ class IntOperations:
     get_underflow_int64.metadata = {'url': '/int/underflowint64'}
 
     @distributed_trace_async
-    async def put_max32(self, int_body, cls=None, **kwargs):
+    async def put_max32(self, int_body: int, cls=None, **kwargs):
         """Put max int32 value.
 
         FIXME: add operation.summary
@@ -339,7 +339,7 @@ class IntOperations:
     put_max32.metadata = {'url': '/int/max/32'}
 
     @distributed_trace_async
-    async def put_max64(self, int_body, cls=None, **kwargs):
+    async def put_max64(self, int_body: int, cls=None, **kwargs):
         """Put max int64 value.
 
         FIXME: add operation.summary
@@ -385,7 +385,7 @@ class IntOperations:
     put_max64.metadata = {'url': '/int/max/64'}
 
     @distributed_trace_async
-    async def put_min32(self, int_body, cls=None, **kwargs):
+    async def put_min32(self, int_body: int, cls=None, **kwargs):
         """Put min int32 value.
 
         FIXME: add operation.summary
@@ -431,7 +431,7 @@ class IntOperations:
     put_min32.metadata = {'url': '/int/min/32'}
 
     @distributed_trace_async
-    async def put_min64(self, int_body, cls=None, **kwargs):
+    async def put_min64(self, int_body: int, cls=None, **kwargs):
         """Put min int64 value.
 
         FIXME: add operation.summary
@@ -520,7 +520,7 @@ class IntOperations:
     get_unix_time.metadata = {'url': '/int/unixtime'}
 
     @distributed_trace_async
-    async def put_unix_time_date(self, int_body, cls=None, **kwargs):
+    async def put_unix_time_date(self, int_body: datetime.datetime, cls=None, **kwargs):
         """Put datetime encoded as Unix time.
 
         FIXME: add operation.summary

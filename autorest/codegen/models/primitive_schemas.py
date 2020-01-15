@@ -87,7 +87,8 @@ class NumberSchema(PrimitiveSchema):
             return "int"
         return "float"
 
-    def get_python_type_annotation(self):
+    @property
+    def type_annotation(self) -> str:
         python_type = self.get_python_type()
         if python_type == "long":
             return "int"
@@ -140,9 +141,10 @@ class DatetimeSchema(PrimitiveSchema):
         return formats_to_attribute_type[self.format]
 
     def get_python_type(self, namespace=None):
-        return "~"+self.get_python_type_annotation()
+        return "~" + self.type_annotation
 
-    def get_python_type_annotation(self):
+    @property
+    def type_annotation(self) -> str:
         return "datetime.datetime"
 
     def get_declaration(self, value) -> str:
@@ -163,9 +165,10 @@ class UnixTimeSchema(PrimitiveSchema):
         return "unix-time"
 
     def get_python_type(self, namespace=None):
-        return "~"+self.get_python_type_annotation()
+        return "~" + self.type_annotation
 
-    def get_python_type_annotation(self):
+    @property
+    def type_annotation(self) -> str:
         return "datetime.datetime"
 
     def get_declaration(self, value) -> str:
@@ -186,9 +189,10 @@ class DateSchema(PrimitiveSchema):
         return "date"
 
     def get_python_type(self, namespace=None):
-        return "~"+self.get_python_type_annotation()
+        return "~" + self.type_annotation
 
-    def get_python_type_annotation(self):
+    @property
+    def type_annotation(self) -> str:
         return "datetime.date"
 
     def get_declaration(self, value) -> str:
@@ -209,9 +213,10 @@ class DurationSchema(PrimitiveSchema):
         return "duration"
 
     def get_python_type(self, namespace=None):
-        return "~"+self.get_python_type_annotation()
+        return "~" + self.type_annotation
 
-    def get_python_type_annotation(self):
+    @property
+    def type_annotation(self) -> str:
         return "datetime.timedelta"
 
     def get_declaration(self, value) -> str:

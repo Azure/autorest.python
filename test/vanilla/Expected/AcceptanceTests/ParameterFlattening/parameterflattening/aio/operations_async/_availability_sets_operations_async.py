@@ -36,7 +36,7 @@ class AvailabilitySetsOperations:
         self._deserialize = deserializer
         self._config = config
     @distributed_trace_async
-    async def update(self, resource_group_name, availability_set_name, tags, cls=None, **kwargs):
+    async def update(self, resource_group_name: str, availability_set_name: str, tags: Dict[str, str], cls=None, **kwargs):
         """Updates the tags for an availability set..
 
         FIXME: add operation.summary

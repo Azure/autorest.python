@@ -67,7 +67,8 @@ class EnumSchema(BaseSchema):
         """
         return "str"
 
-    def get_python_type_annotation(self) -> str:
+    @property
+    def type_annotation(self) -> str:
         """The python type used for type annotation
 
         :return: The type annotation for this schema

@@ -35,7 +35,7 @@ class AutoRestLongRunningOperationTestService(object):
     """
 
     def __init__(self, credential, base_url=None, **kwargs):
-        # type: (azure.core.credentials.TokenCredential, Optional[str], **Any) -> None
+        # type: ("TokenCredential", Optional[str], **Any) -> None
         if not base_url:
             base_url = 'http://localhost:3000'
         self._config = AutoRestLongRunningOperationTestServiceConfiguration(credential, **kwargs)

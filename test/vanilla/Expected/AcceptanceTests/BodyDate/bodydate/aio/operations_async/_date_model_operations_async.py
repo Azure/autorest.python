@@ -207,7 +207,7 @@ class DateOperations:
     get_underflow_date.metadata = {'url': '/date/underflowdate'}
 
     @distributed_trace_async
-    async def put_max_date(self, date_body, cls=None, **kwargs):
+    async def put_max_date(self, date_body: datetime.date, cls=None, **kwargs):
         """Put max date value 9999-12-31.
 
         FIXME: add operation.summary
@@ -296,7 +296,7 @@ class DateOperations:
     get_max_date.metadata = {'url': '/date/max'}
 
     @distributed_trace_async
-    async def put_min_date(self, date_body, cls=None, **kwargs):
+    async def put_min_date(self, date_body: datetime.date, cls=None, **kwargs):
         """Put min date value 0000-01-01.
 
         FIXME: add operation.summary

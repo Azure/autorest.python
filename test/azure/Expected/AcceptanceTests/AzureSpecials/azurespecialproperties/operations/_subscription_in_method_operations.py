@@ -36,6 +36,7 @@ class SubscriptionInMethodOperations(object):
         self._config = config
     @distributed_trace
     def post_method_local_valid(self, subscription_id, cls=None, **kwargs):
+        # type: (str, Optional[Any], **Any) -> None
         """POST method with subscriptionId modeled in the method.  pass in subscription id = '1234-5678-9012-3456' to succeed.
 
         FIXME: add operation.summary
@@ -83,6 +84,7 @@ class SubscriptionInMethodOperations(object):
 
     @distributed_trace
     def post_method_local_null(self, subscription_id, cls=None, **kwargs):
+        # type: (str, Optional[Any], **Any) -> None
         """POST method with subscriptionId modeled in the method.  pass in subscription id = null, client-side validation should prevent you from making this call.
 
         FIXME: add operation.summary
@@ -130,6 +132,7 @@ class SubscriptionInMethodOperations(object):
 
     @distributed_trace
     def post_path_local_valid(self, subscription_id, cls=None, **kwargs):
+        # type: (str, Optional[Any], **Any) -> None
         """POST method with subscriptionId modeled in the method.  pass in subscription id = '1234-5678-9012-3456' to succeed.
 
         FIXME: add operation.summary
@@ -177,6 +180,7 @@ class SubscriptionInMethodOperations(object):
 
     @distributed_trace
     def post_swagger_local_valid(self, subscription_id, cls=None, **kwargs):
+        # type: (str, Optional[Any], **Any) -> None
         """POST method with subscriptionId modeled in the method.  pass in subscription id = '1234-5678-9012-3456' to succeed.
 
         FIXME: add operation.summary

@@ -6,6 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
+from typing import Optional
 import warnings
 
 from azure.core.exceptions import map_error
@@ -79,7 +80,7 @@ class PrimitiveOperations:
     get_int.metadata = {'url': '/complex/primitive/integer'}
 
     @distributed_trace_async
-    async def put_int(self, complex_body, cls=None, **kwargs):
+    async def put_int(self, complex_body: "IntWrapper", cls=None, **kwargs):
         """Put complex types with integer properties.
 
         FIXME: add operation.summary
@@ -168,7 +169,7 @@ class PrimitiveOperations:
     get_long.metadata = {'url': '/complex/primitive/long'}
 
     @distributed_trace_async
-    async def put_long(self, complex_body, cls=None, **kwargs):
+    async def put_long(self, complex_body: "LongWrapper", cls=None, **kwargs):
         """Put complex types with long properties.
 
         FIXME: add operation.summary
@@ -257,7 +258,7 @@ class PrimitiveOperations:
     get_float.metadata = {'url': '/complex/primitive/float'}
 
     @distributed_trace_async
-    async def put_float(self, complex_body, cls=None, **kwargs):
+    async def put_float(self, complex_body: "FloatWrapper", cls=None, **kwargs):
         """Put complex types with float properties.
 
         FIXME: add operation.summary
@@ -346,7 +347,7 @@ class PrimitiveOperations:
     get_double.metadata = {'url': '/complex/primitive/double'}
 
     @distributed_trace_async
-    async def put_double(self, complex_body, cls=None, **kwargs):
+    async def put_double(self, complex_body: "DoubleWrapper", cls=None, **kwargs):
         """Put complex types with double properties.
 
         FIXME: add operation.summary
@@ -435,7 +436,7 @@ class PrimitiveOperations:
     get_bool.metadata = {'url': '/complex/primitive/bool'}
 
     @distributed_trace_async
-    async def put_bool(self, complex_body, cls=None, **kwargs):
+    async def put_bool(self, complex_body: "BooleanWrapper", cls=None, **kwargs):
         """Put complex types with bool properties.
 
         FIXME: add operation.summary
@@ -524,7 +525,7 @@ class PrimitiveOperations:
     get_string.metadata = {'url': '/complex/primitive/string'}
 
     @distributed_trace_async
-    async def put_string(self, complex_body, cls=None, **kwargs):
+    async def put_string(self, complex_body: "StringWrapper", cls=None, **kwargs):
         """Put complex types with string properties.
 
         FIXME: add operation.summary
@@ -613,7 +614,7 @@ class PrimitiveOperations:
     get_date.metadata = {'url': '/complex/primitive/date'}
 
     @distributed_trace_async
-    async def put_date(self, complex_body, cls=None, **kwargs):
+    async def put_date(self, complex_body: "DateWrapper", cls=None, **kwargs):
         """Put complex types with date properties.
 
         FIXME: add operation.summary
@@ -702,7 +703,7 @@ class PrimitiveOperations:
     get_date_time.metadata = {'url': '/complex/primitive/datetime'}
 
     @distributed_trace_async
-    async def put_date_time(self, complex_body, cls=None, **kwargs):
+    async def put_date_time(self, complex_body: "DatetimeWrapper", cls=None, **kwargs):
         """Put complex types with datetime properties.
 
         FIXME: add operation.summary
@@ -791,7 +792,7 @@ class PrimitiveOperations:
     get_date_time_rfc1123.metadata = {'url': '/complex/primitive/datetimerfc1123'}
 
     @distributed_trace_async
-    async def put_date_time_rfc1123(self, complex_body, cls=None, **kwargs):
+    async def put_date_time_rfc1123(self, complex_body: "Datetimerfc1123Wrapper", cls=None, **kwargs):
         """Put complex types with datetimeRfc1123 properties.
 
         FIXME: add operation.summary
@@ -880,7 +881,7 @@ class PrimitiveOperations:
     get_duration.metadata = {'url': '/complex/primitive/duration'}
 
     @distributed_trace_async
-    async def put_duration(self, field=None, cls=None, **kwargs):
+    async def put_duration(self, field: Optional[datetime.timedelta] = None, cls=None, **kwargs):
         """Put complex types with duration properties.
 
         FIXME: add operation.summary
@@ -970,7 +971,7 @@ class PrimitiveOperations:
     get_byte.metadata = {'url': '/complex/primitive/byte'}
 
     @distributed_trace_async
-    async def put_byte(self, field=None, cls=None, **kwargs):
+    async def put_byte(self, field: Optional[bytearray] = None, cls=None, **kwargs):
         """Put complex types with byte properties.
 
         FIXME: add operation.summary

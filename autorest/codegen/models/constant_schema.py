@@ -7,6 +7,7 @@ import logging
 from typing import Dict, Any, Optional
 from .base_schema import BaseSchema
 from .primitive_schemas import get_primitive_schema
+from .imports import FileImport
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -71,3 +72,8 @@ class ConstantSchema(BaseSchema):
             value=yaml_data.get("value", {}).get("value", None),
             schema=get_primitive_schema(yaml_data['valueType'])
         )
+
+    def imports(self) -> FileImport:
+        file_import = FileImport()
+        file_import.merge(self.schema.imports())
+        return file_import

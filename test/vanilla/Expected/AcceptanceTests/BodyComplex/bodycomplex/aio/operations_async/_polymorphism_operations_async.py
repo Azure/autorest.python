@@ -78,7 +78,7 @@ class PolymorphismOperations:
     get_valid.metadata = {'url': '/complex/polymorphism/valid'}
 
     @distributed_trace_async
-    async def put_valid(self, complex_body, cls=None, **kwargs):
+    async def put_valid(self, complex_body: "Fish", cls=None, **kwargs):
         """Put complex types that are polymorphic.
 
         FIXME: add operation.summary
@@ -328,7 +328,7 @@ class PolymorphismOperations:
     get_complicated.metadata = {'url': '/complex/polymorphism/complicated'}
 
     @distributed_trace_async
-    async def put_complicated(self, complex_body, cls=None, **kwargs):
+    async def put_complicated(self, complex_body: "Salmon", cls=None, **kwargs):
         """Put complex types that are polymorphic, but not at the root of the hierarchy; also have additional properties.
 
         FIXME: add operation.summary
@@ -374,7 +374,7 @@ class PolymorphismOperations:
     put_complicated.metadata = {'url': '/complex/polymorphism/complicated'}
 
     @distributed_trace_async
-    async def put_missing_discriminator(self, complex_body, cls=None, **kwargs):
+    async def put_missing_discriminator(self, complex_body: "Salmon", cls=None, **kwargs):
         """Put complex types that are polymorphic, omitting the discriminator.
 
         FIXME: add operation.summary
@@ -423,7 +423,7 @@ class PolymorphismOperations:
     put_missing_discriminator.metadata = {'url': '/complex/polymorphism/missingdiscriminator'}
 
     @distributed_trace_async
-    async def put_valid_missing_required(self, complex_body, cls=None, **kwargs):
+    async def put_valid_missing_required(self, complex_body: "Fish", cls=None, **kwargs):
         """Put complex types that are polymorphic, attempting to omit required 'birthday' field - the request should not be allowed from the client.
 
         FIXME: add operation.summary

@@ -35,7 +35,7 @@ class PetsOperations:
         self._deserialize = deserializer
         self._config = config
     @distributed_trace_async
-    async def create_ap_true(self, create_parameters, cls=None, **kwargs):
+    async def create_ap_true(self, create_parameters: "PetAPTrue", cls=None, **kwargs):
         """Create a Pet which contains more properties than what is defined..
 
         FIXME: add operation.summary
@@ -84,7 +84,7 @@ class PetsOperations:
     create_ap_true.metadata = {'url': '/additionalProperties/true'}
 
     @distributed_trace_async
-    async def create_cat_ap_true(self, create_parameters, cls=None, **kwargs):
+    async def create_cat_ap_true(self, create_parameters: "CatAPTrue", cls=None, **kwargs):
         """Create a CatAPTrue which contains more properties than what is defined..
 
         FIXME: add operation.summary
@@ -133,7 +133,7 @@ class PetsOperations:
     create_cat_ap_true.metadata = {'url': '/additionalProperties/true-subclass'}
 
     @distributed_trace_async
-    async def create_ap_object(self, create_parameters, cls=None, **kwargs):
+    async def create_ap_object(self, create_parameters: "PetAPObject", cls=None, **kwargs):
         """Create a Pet which contains more properties than what is defined..
 
         FIXME: add operation.summary
@@ -182,7 +182,7 @@ class PetsOperations:
     create_ap_object.metadata = {'url': '/additionalProperties/type/object'}
 
     @distributed_trace_async
-    async def create_ap_string(self, create_parameters, cls=None, **kwargs):
+    async def create_ap_string(self, create_parameters: "PetAPString", cls=None, **kwargs):
         """Create a Pet which contains more properties than what is defined..
 
         FIXME: add operation.summary
@@ -231,7 +231,7 @@ class PetsOperations:
     create_ap_string.metadata = {'url': '/additionalProperties/type/string'}
 
     @distributed_trace_async
-    async def create_ap_in_properties(self, create_parameters, cls=None, **kwargs):
+    async def create_ap_in_properties(self, create_parameters: "PetAPInProperties", cls=None, **kwargs):
         """Create a Pet which contains more properties than what is defined..
 
         FIXME: add operation.summary
@@ -280,7 +280,7 @@ class PetsOperations:
     create_ap_in_properties.metadata = {'url': '/additionalProperties/in/properties'}
 
     @distributed_trace_async
-    async def create_ap_in_properties_with_ap_string(self, create_parameters, cls=None, **kwargs):
+    async def create_ap_in_properties_with_ap_string(self, create_parameters: "PetAPInPropertiesWithAPString", cls=None, **kwargs):
         """Create a Pet which contains more properties than what is defined..
 
         FIXME: add operation.summary
