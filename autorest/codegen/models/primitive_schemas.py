@@ -29,7 +29,7 @@ class PrimitiveSchema(BaseSchema):
         return self._to_python_type()
 
     def get_python_type_annotation(self) -> str:
-        return self.get_python_type()
+        return self.get_python_type(None)
 
 
 class AnySchema(PrimitiveSchema):
@@ -92,7 +92,7 @@ class NumberSchema(PrimitiveSchema):
         return "float"
 
     def get_python_type_annotation(self) -> str:
-        python_type = self.get_python_type()
+        python_type = self.get_python_type(None)
         if python_type == "long":
             return "int"
         return python_type

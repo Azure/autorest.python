@@ -33,7 +33,7 @@ class CredentialSchema(BaseSchema):
         return self.type
 
     def get_python_type_annotation(self) -> str:
-        return self.get_python_type()
+        return self.get_python_type(None)
 
 
 class CodeModel:  # pylint: disable=too-many-instance-attributes

@@ -38,7 +38,11 @@ class JinjaSerializer:
             lstrip_blocks=True,
         )
 
-        namespace_path = Path('.') if code_model.options['no_namespace_folders'] else Path(*(code_model.namespace.split(".")))
+        namespace_path = (
+            Path('.')
+            if code_model.options['no_namespace_folders']
+            else Path(*(code_model.namespace.split(".")))
+        )
 
         if code_model.schemas:
             self._serialize_and_write_models_folder(
