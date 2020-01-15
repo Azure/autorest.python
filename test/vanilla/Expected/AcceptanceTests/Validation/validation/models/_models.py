@@ -9,6 +9,7 @@
 from azure.core.exceptions import HttpResponseError
 from msrest.serialization import Model
 
+
 class ChildProduct(Model):
     """The product documentation.
 
@@ -36,6 +37,7 @@ class ChildProduct(Model):
     def __init__(self, **kwargs):
         super(ChildProduct, self).__init__(**kwargs)
         self.count = kwargs.get('count', None)
+
 
 class ConstantProduct(Model):
     """The product documentation.
@@ -65,6 +67,7 @@ class ConstantProduct(Model):
 
     def __init__(self, **kwargs):
         super(ConstantProduct, self).__init__(**kwargs)
+
 
 class ErrorException(HttpResponseError):
     """Server responded with exception of type: 'Error'.
@@ -114,6 +117,7 @@ class Error(Model):
         self.code = kwargs.get('code', None)
         self.message = kwargs.get('message', None)
         self.fields = kwargs.get('fields', None)
+
 
 class Product(Model):
     """The product documentation.
@@ -174,4 +178,3 @@ class Product(Model):
         self.image = kwargs.get('image', None)
         self.child = kwargs.get('child', None)
         self.const_child = kwargs.get('const_child', None)
-

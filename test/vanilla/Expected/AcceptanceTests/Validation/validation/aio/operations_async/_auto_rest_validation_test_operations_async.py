@@ -14,12 +14,12 @@ from ... import models
 
 
 class AutoRestValidationTestOperationsMixin:
+    
     @distributed_trace_async
     async def validation_of_method_parameters(self, resource_group_name, id, cls=None, **kwargs):
         """Validates input parameters on the method. See swagger for details..
 
         FIXME: add operation.summary
-
 
         :param resource_group_name: Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
         :type resource_group_name: str
@@ -68,13 +68,12 @@ class AutoRestValidationTestOperationsMixin:
 
         return deserialized
     validation_of_method_parameters.metadata = {'url': '/fakepath/{subscriptionId}/{resourceGroupName}/{id}'}
-
+    
     @distributed_trace_async
     async def validation_of_body(self, resource_group_name, id, body=None, cls=None, **kwargs):
         """Validates body parameters on the method. See swagger for details..
 
         FIXME: add operation.summary
-
 
         :param resource_group_name: Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
         :type resource_group_name: str
@@ -132,18 +131,16 @@ class AutoRestValidationTestOperationsMixin:
 
         return deserialized
     validation_of_body.metadata = {'url': '/fakepath/{subscriptionId}/{resourceGroupName}/{id}'}
-
+    
     @distributed_trace_async
     async def get_with_constant_in_path(self, cls=None, **kwargs):
         """MISSING·OPERATION-DESCRIPTION.
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
@@ -177,13 +174,12 @@ class AutoRestValidationTestOperationsMixin:
           return cls(response, None, {})
 
     get_with_constant_in_path.metadata = {'url': '/validation/constantsInPath/{constantParam}/value'}
-
+    
     @distributed_trace_async
     async def post_with_constant_in_body(self, body=None, cls=None, **kwargs):
         """MISSING·OPERATION-DESCRIPTION.
 
         FIXME: add operation.summary
-
 
         :param body: 
         :type body: ~validation.models.Product
@@ -234,4 +230,3 @@ class AutoRestValidationTestOperationsMixin:
 
         return deserialized
     post_with_constant_in_body.metadata = {'url': '/validation/constantsInPath/{constantParam}/value'}
-

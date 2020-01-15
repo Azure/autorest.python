@@ -877,6 +877,7 @@ class PagingOperations:
     get_multiple_pages_fragment_with_grouping_next_link.metadata = {'url': '/paging/multiple/fragmentwithgrouping/{tenant}'}
 
     
+
     async def _get_multiple_pages_lro_initial(self, client_request_id=None, maxresults=None, timeout=None, cls=None, **kwargs):
         error_map = kwargs.pop('error_map', {})
 
@@ -915,7 +916,6 @@ class PagingOperations:
 
         return deserialized
     _get_multiple_pages_lro_initial.metadata = {'url': '/paging/multiple/lro'}
-
     @distributed_trace_async
     async def get_multiple_pages_lro(self, client_request_id=None, maxresults=None, timeout=None, cls=None, polling=True, **kwargs):
         """A long-running paging operation that includes a nextLink that has 10 pages.

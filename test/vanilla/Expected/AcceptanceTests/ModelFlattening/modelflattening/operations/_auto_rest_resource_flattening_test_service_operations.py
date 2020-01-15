@@ -14,19 +14,18 @@ from .. import models
 
 
 class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
+    
     @distributed_trace
     def put_array(self, resource_array=None, cls=None, **kwargs):
         """Put External Resource as an Array.
 
         FIXME: add operation.summary
 
-
         :param resource_array: External Resource as an Array to put
         :type resource_array: list[~modelflattening.models.Resource]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~modelflattening.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -62,13 +61,12 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
           return cls(response, None, {})
 
     put_array.metadata = {'url': '/model-flatten/array'}
-
+    
     @distributed_trace
     def get_array(self, cls=None, **kwargs):
         """Get External Resource as an Array.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -105,20 +103,18 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
 
         return deserialized
     get_array.metadata = {'url': '/model-flatten/array'}
-
+    
     @distributed_trace
     def put_wrapped_array(self, resource_array=None, cls=None, **kwargs):
         """No need to have a route in Express server for this operation. Used to verify the type flattened is not removed if it's referenced in an array.
 
         FIXME: add operation.summary
 
-
         :param resource_array: External Resource as an Array to put
         :type resource_array: list[~modelflattening.models.WrappedProduct]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~modelflattening.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -154,13 +150,12 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
           return cls(response, None, {})
 
     put_wrapped_array.metadata = {'url': '/model-flatten/wrappedarray'}
-
+    
     @distributed_trace
     def get_wrapped_array(self, cls=None, **kwargs):
         """No need to have a route in Express server for this operation. Used to verify the type flattened is not removed if it's referenced in an array.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -197,20 +192,18 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
 
         return deserialized
     get_wrapped_array.metadata = {'url': '/model-flatten/wrappedarray'}
-
+    
     @distributed_trace
     def put_dictionary(self, resource_dictionary=None, cls=None, **kwargs):
         """Put External Resource as a Dictionary.
 
         FIXME: add operation.summary
 
-
         :param resource_dictionary: External Resource as a Dictionary to put
         :type resource_dictionary: dict[str, ~modelflattening.models.FlattenedProduct]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~modelflattening.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -246,13 +239,12 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
           return cls(response, None, {})
 
     put_dictionary.metadata = {'url': '/model-flatten/dictionary'}
-
+    
     @distributed_trace
     def get_dictionary(self, cls=None, **kwargs):
         """Get External Resource as a Dictionary.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -289,20 +281,18 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
 
         return deserialized
     get_dictionary.metadata = {'url': '/model-flatten/dictionary'}
-
+    
     @distributed_trace
     def put_resource_collection(self, resource_complex_object=None, cls=None, **kwargs):
         """Put External Resource as a ResourceCollection.
 
         FIXME: add operation.summary
 
-
         :param resource_complex_object: External Resource as a ResourceCollection to put
         :type resource_complex_object: ~modelflattening.models.ResourceCollection
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~modelflattening.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -338,13 +328,12 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
           return cls(response, None, {})
 
     put_resource_collection.metadata = {'url': '/model-flatten/resourcecollection'}
-
+    
     @distributed_trace
     def get_resource_collection(self, cls=None, **kwargs):
         """Get External Resource as a ResourceCollection.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: ResourceCollection or the result of cls(response)
@@ -381,13 +370,12 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
 
         return deserialized
     get_resource_collection.metadata = {'url': '/model-flatten/resourcecollection'}
-
+    
     @distributed_trace
     def put_simple_product(self, simple_body_product=None, cls=None, **kwargs):
         """Put Simple Product with client flattening true on the model.
 
         FIXME: add operation.summary
-
 
         :param simple_body_product: Simple body product to put
         :type simple_body_product: ~modelflattening.models.SimpleProduct
@@ -433,13 +421,12 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
 
         return deserialized
     put_simple_product.metadata = {'url': '/model-flatten/customFlattening'}
-
+    
     @distributed_trace
     def post_flattened_simple_product(self, simple_body_product=None, cls=None, **kwargs):
         """Put Flattened Simple Product with client flattening true on the parameter.
 
         FIXME: add operation.summary
-
 
         :param simple_body_product: Simple body product to post
         :type simple_body_product: ~modelflattening.models.SimpleProduct
@@ -485,13 +472,12 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
 
         return deserialized
     post_flattened_simple_product.metadata = {'url': '/model-flatten/customFlattening'}
-
+    
     @distributed_trace
     def put_simple_product_with_grouping(self, name, simple_body_product=None, cls=None, **kwargs):
         """Put Simple Product with client flattening true on the model.
 
         FIXME: add operation.summary
-
 
         :param name: Product name with value 'groupproduct'
         :type name: str
@@ -543,4 +529,3 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
 
         return deserialized
     put_simple_product_with_grouping.metadata = {'url': '/model-flatten/customFlattening/parametergrouping/{name}/'}
-

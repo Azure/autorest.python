@@ -24,22 +24,17 @@ class AutoRestParameterizedHostTestPagingClientConfiguration(Configuration):
     """
 
     def __init__(self, credential, host, **kwargs):
-
         if credential is None:
             raise ValueError("Parameter 'credential' must not be None.")
         if host is None:
             raise ValueError("Parameter 'host' must not be None.")
-
         super(AutoRestParameterizedHostTestPagingClientConfiguration, self).__init__(**kwargs)
 
         self.credential = credential
         self.host = host
         self.credential_scopes = ['https://management.azure.com/.default']
         self._configure(**kwargs)
-
         self.user_agent_policy.add_user_agent('azsdk-python-autorestparameterizedhosttestpagingclient/{}'.format(VERSION))
-
-
 
     def _configure(self, **kwargs):
         self.user_agent_policy = kwargs.get('user_agent_policy') or policies.UserAgentPolicy(**kwargs)

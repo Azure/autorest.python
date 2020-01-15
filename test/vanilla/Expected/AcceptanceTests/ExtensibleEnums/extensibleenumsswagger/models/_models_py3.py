@@ -10,6 +10,7 @@ from typing import Union
 
 from msrest.serialization import Model
 
+
 class Pet(Model):
     """Pet.
 
@@ -41,4 +42,3 @@ class Pet(Model):
         self.name = name
         self.days_of_week = days_of_week
         self.int_enum = int_enum
-

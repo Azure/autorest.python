@@ -33,12 +33,12 @@ class ParameterGroupingOperations:
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
+    
     @distributed_trace_async
     async def post_required(self, path, body, custom_header=None, query=None, cls=None, **kwargs):
         """Post a bunch of required parameters grouped.
 
         FIXME: add operation.summary
-
 
         :param path: Path parameter
         :type path: str
@@ -51,7 +51,6 @@ class ParameterGroupingOperations:
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~azureparametergrouping.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -92,13 +91,12 @@ class ParameterGroupingOperations:
           return cls(response, None, {})
 
     post_required.metadata = {'url': '/parameterGrouping/postRequired/{path}'}
-
+    
     @distributed_trace_async
     async def post_optional(self, custom_header=None, query=None, cls=None, **kwargs):
         """Post a bunch of optional parameters grouped.
 
         FIXME: add operation.summary
-
 
         :param custom_header: MISSING·PARAMETER-DESCRIPTION
         :type custom_header: str
@@ -107,7 +105,6 @@ class ParameterGroupingOperations:
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~azureparametergrouping.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -140,13 +137,12 @@ class ParameterGroupingOperations:
           return cls(response, None, {})
 
     post_optional.metadata = {'url': '/parameterGrouping/postOptional'}
-
+    
     @distributed_trace_async
     async def post_multi_param_groups(self, header_one=None, query_one=None, header_two=None, query_two=None, cls=None, **kwargs):
         """Post parameters from multiple different parameter groups.
 
         FIXME: add operation.summary
-
 
         :param header_one: MISSING·PARAMETER-DESCRIPTION
         :type header_one: str
@@ -159,7 +155,6 @@ class ParameterGroupingOperations:
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~azureparametergrouping.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -196,13 +191,12 @@ class ParameterGroupingOperations:
           return cls(response, None, {})
 
     post_multi_param_groups.metadata = {'url': '/parameterGrouping/postMultipleParameterGroups'}
-
+    
     @distributed_trace_async
     async def post_shared_parameter_group_object(self, header_one=None, query_one=None, cls=None, **kwargs):
         """Post parameters with a shared parameter group object.
 
         FIXME: add operation.summary
-
 
         :param header_one: MISSING·PARAMETER-DESCRIPTION
         :type header_one: str
@@ -211,7 +205,6 @@ class ParameterGroupingOperations:
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~azureparametergrouping.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -244,4 +237,3 @@ class ParameterGroupingOperations:
           return cls(response, None, {})
 
     post_shared_parameter_group_object.metadata = {'url': '/parameterGrouping/sharedParameterGroupObject'}
-

@@ -29,17 +29,16 @@ class HeadExceptionOperations:
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
+    
     @distributed_trace_async
     async def head200(self, cls=None, **kwargs):
         """Return 200 status code if successful.
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~azure.mgmt.core.ARMError
         """
         error_map = kwargs.pop('error_map', {})
@@ -70,18 +69,16 @@ class HeadExceptionOperations:
 
         return 200 <= response.status_code <= 299
     head200.metadata = {'url': '/http/success/200'}
-
+    
     @distributed_trace_async
     async def head204(self, cls=None, **kwargs):
         """Return 204 status code if successful.
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~azure.mgmt.core.ARMError
         """
         error_map = kwargs.pop('error_map', {})
@@ -112,18 +109,16 @@ class HeadExceptionOperations:
 
         return 200 <= response.status_code <= 299
     head204.metadata = {'url': '/http/success/204'}
-
+    
     @distributed_trace_async
     async def head404(self, cls=None, **kwargs):
         """Return 404 status code if successful.
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~azure.mgmt.core.ARMError
         """
         error_map = kwargs.pop('error_map', {})
@@ -154,4 +149,3 @@ class HeadExceptionOperations:
 
         return 200 <= response.status_code <= 299
     head404.metadata = {'url': '/http/success/404'}
-

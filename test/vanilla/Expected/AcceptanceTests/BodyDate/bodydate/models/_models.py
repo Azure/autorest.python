@@ -9,6 +9,7 @@
 from azure.core.exceptions import HttpResponseError
 from msrest.serialization import Model
 
+
 class ErrorException(HttpResponseError):
     """Server responded with exception of type: 'Error'.
 
@@ -53,4 +54,3 @@ class Error(Model):
         super(Error, self).__init__(**kwargs)
         self.status = kwargs.get('status', None)
         self.message = kwargs.get('message', None)
-

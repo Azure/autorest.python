@@ -9,6 +9,7 @@
 from azure.core.exceptions import HttpResponseError
 from msrest.serialization import Model
 
+
 class BaseProduct(Model):
     """The product documentation.
 
@@ -35,6 +36,7 @@ class BaseProduct(Model):
         super(BaseProduct, self).__init__(**kwargs)
         self.product_id = kwargs.get('product_id', None)
         self.description = kwargs.get('description', None)
+
 
 class ErrorException(HttpResponseError):
     """Server responded with exception of type: 'Error'.
@@ -85,6 +87,7 @@ class Error(Model):
         self.message = kwargs.get('message', None)
         self.parent_error = kwargs.get('parent_error', None)
 
+
 class Resource(Model):
     """Resource.
 
@@ -125,6 +128,7 @@ class Resource(Model):
         self.location = kwargs.get('location', None)
         self.name = None
 
+
 class FlattenedProduct(Resource):
     """Flattened product.
 
@@ -164,6 +168,7 @@ class FlattenedProduct(Resource):
         super(FlattenedProduct, self).__init__(**kwargs)
         self.properties = kwargs.get('properties', None)
 
+
 class FlattenedProductProperties(Model):
     """FlattenedProductProperties.
 
@@ -200,6 +205,7 @@ class FlattenedProductProperties(Model):
         self.provisioning_state_values = None
         self.provisioning_state = kwargs.get('provisioning_state', None)
 
+
 class GenericUrl(Model):
     """The Generic URL.
 
@@ -214,6 +220,7 @@ class GenericUrl(Model):
     def __init__(self, **kwargs):
         super(GenericUrl, self).__init__(**kwargs)
         self.generic_value = kwargs.get('generic_value', None)
+
 
 class ProductUrl(GenericUrl):
     """The product URL.
@@ -233,6 +240,7 @@ class ProductUrl(GenericUrl):
         super(ProductUrl, self).__init__(**kwargs)
         self.odatavalue = kwargs.get('odatavalue', None)
 
+
 class ProductWrapper(Model):
     """The wrapped produc.
 
@@ -247,6 +255,7 @@ class ProductWrapper(Model):
     def __init__(self, **kwargs):
         super(ProductWrapper, self).__init__(**kwargs)
         self.property = kwargs.get('property', None)
+
 
 class ResourceCollection(Model):
     """ResourceCollection.
@@ -270,6 +279,7 @@ class ResourceCollection(Model):
         self.productresource = kwargs.get('productresource', None)
         self.arrayofresources = kwargs.get('arrayofresources', None)
         self.dictionaryofresources = kwargs.get('dictionaryofresources', None)
+
 
 class SimpleProduct(BaseProduct):
     """The product documentation.
@@ -299,6 +309,7 @@ class SimpleProduct(BaseProduct):
     def __init__(self, **kwargs):
         super(SimpleProduct, self).__init__(**kwargs)
         self.details = kwargs.get('details', None)
+
 
 class SimpleProductProperties(Model):
     """The product documentation.
@@ -334,6 +345,7 @@ class SimpleProductProperties(Model):
         self.max_product_display_name = kwargs.get('max_product_display_name', None)
         self.max_product_image = kwargs.get('max_product_image', None)
 
+
 class WrappedProduct(Model):
     """The wrapped produc.
 
@@ -348,4 +360,3 @@ class WrappedProduct(Model):
     def __init__(self, **kwargs):
         super(WrappedProduct, self).__init__(**kwargs)
         self.value = kwargs.get('value', None)
-

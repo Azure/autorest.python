@@ -17,14 +17,12 @@ from . import models
 class AutoRestValidationTest(AutoRestValidationTestOperationsMixin):
     """Test Infrastructure for AutoRest. No server backend exists for these tests.
 
-
     :param subscription_id: Subscription ID.
     :type subscription_id: str
     :param str base_url: Service URL
     """
 
     def __init__(self, subscription_id, base_url=None, **kwargs):
-
         if not base_url:
             base_url = 'http://localhost:3000'
         self._config = AutoRestValidationTestConfiguration(subscription_id, **kwargs)

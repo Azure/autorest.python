@@ -33,12 +33,12 @@ class DurationOperations(object):
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
+    
     @distributed_trace
     def get_null(self, cls=None, **kwargs):
         """Get null duration value.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -75,20 +75,18 @@ class DurationOperations(object):
 
         return deserialized
     get_null.metadata = {'url': '/duration/null'}
-
+    
     @distributed_trace
     def put_positive_duration(self, duration_body, cls=None, **kwargs):
         """Put a positive duration value.
 
         FIXME: add operation.summary
 
-
         :param duration_body: 
         :type duration_body: ~datetime.timedelta
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodyduration.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -121,13 +119,12 @@ class DurationOperations(object):
           return cls(response, None, {})
 
     put_positive_duration.metadata = {'url': '/duration/positiveduration'}
-
+    
     @distributed_trace
     def get_positive_duration(self, cls=None, **kwargs):
         """Get a positive duration value.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -164,13 +161,12 @@ class DurationOperations(object):
 
         return deserialized
     get_positive_duration.metadata = {'url': '/duration/positiveduration'}
-
+    
     @distributed_trace
     def get_invalid(self, cls=None, **kwargs):
         """Get an invalid duration value.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -207,4 +203,3 @@ class DurationOperations(object):
 
         return deserialized
     get_invalid.metadata = {'url': '/duration/invalid'}
-

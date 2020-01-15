@@ -11,6 +11,7 @@ from typing import Dict
 from azure.core.exceptions import HttpResponseError
 from msrest.serialization import Model
 
+
 class PetAPTrue(Model):
     """PetAPTrue.
 
@@ -48,6 +49,7 @@ class PetAPTrue(Model):
         self.name = name
         self.status = None
 
+
 class CatAPTrue(PetAPTrue):
     """CatAPTrue.
 
@@ -84,6 +86,7 @@ class CatAPTrue(PetAPTrue):
     def __init__(self, *, id: int, additional_properties: Dict[str, object]=None, name: str=None, friendly: bool=None, **kwargs) -> None:
         super(CatAPTrue, self).__init__(additional_properties=additional_properties, id=id, name=name, **kwargs)
         self.friendly = friendly
+
 
 class ErrorException(HttpResponseError):
     """Server responded with exception of type: 'Error'.
@@ -130,6 +133,7 @@ class Error(Model):
         self.status = status
         self.message = message
 
+
 class PetAPInProperties(Model):
     """PetAPInProperties.
 
@@ -166,6 +170,7 @@ class PetAPInProperties(Model):
         self.name = name
         self.status = None
         self.additional_properties = additional_properties
+
 
 class PetAPInPropertiesWithAPString(Model):
     """PetAPInPropertiesWithAPString.
@@ -214,6 +219,7 @@ class PetAPInPropertiesWithAPString(Model):
         self.odatalocation = odatalocation
         self.additional_properties1 = additional_properties1
 
+
 class PetAPObject(Model):
     """PetAPObject.
 
@@ -251,6 +257,7 @@ class PetAPObject(Model):
         self.name = name
         self.status = None
 
+
 class PetAPString(Model):
     """PetAPString.
 
@@ -287,4 +294,3 @@ class PetAPString(Model):
         self.id = id
         self.name = name
         self.status = None
-

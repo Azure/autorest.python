@@ -17,14 +17,12 @@ from . import models
 class AutoRestIntegerTestService(object):
     """Test Infrastructure for AutoRest
 
-
     :ivar int_model: IntOperations operations
     :vartype int_model: bodyinteger.operations.IntOperations
     :param str base_url: Service URL
     """
 
     def __init__(self, base_url=None, **kwargs):
-
         if not base_url:
             base_url = 'http://localhost:3000'
         self._config = AutoRestIntegerTestServiceConfiguration(**kwargs)

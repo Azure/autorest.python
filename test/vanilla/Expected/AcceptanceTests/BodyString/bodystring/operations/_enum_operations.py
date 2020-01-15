@@ -33,12 +33,12 @@ class EnumOperations(object):
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
+    
     @distributed_trace
     def get_not_expandable(self, cls=None, **kwargs):
         """Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'..
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -75,20 +75,18 @@ class EnumOperations(object):
 
         return deserialized
     get_not_expandable.metadata = {'url': '/string/enum/notExpandable'}
-
+    
     @distributed_trace
     def put_not_expandable(self, string_body, cls=None, **kwargs):
         """Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
         FIXME: add operation.summary
 
-
         :param string_body: 
         :type string_body: str or ~bodystring.models.Colors
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodystring.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -121,13 +119,12 @@ class EnumOperations(object):
           return cls(response, None, {})
 
     put_not_expandable.metadata = {'url': '/string/enum/notExpandable'}
-
+    
     @distributed_trace
     def get_referenced(self, cls=None, **kwargs):
         """Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'..
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -164,20 +161,18 @@ class EnumOperations(object):
 
         return deserialized
     get_referenced.metadata = {'url': '/string/enum/Referenced'}
-
+    
     @distributed_trace
     def put_referenced(self, enum_string_body, cls=None, **kwargs):
         """Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
         FIXME: add operation.summary
 
-
         :param enum_string_body: 
         :type enum_string_body: str or ~bodystring.models.Colors
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodystring.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -210,13 +205,12 @@ class EnumOperations(object):
           return cls(response, None, {})
 
     put_referenced.metadata = {'url': '/string/enum/Referenced'}
-
+    
     @distributed_trace
     def get_referenced_constant(self, cls=None, **kwargs):
         """Get value 'green-color' from the constant..
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: RefColorConstant or the result of cls(response)
@@ -253,20 +247,18 @@ class EnumOperations(object):
 
         return deserialized
     get_referenced_constant.metadata = {'url': '/string/enum/ReferencedConstant'}
-
+    
     @distributed_trace
     def put_referenced_constant(self, field1=None, cls=None, **kwargs):
         """Sends value 'green-color' from a constant.
 
         FIXME: add operation.summary
 
-
         :param field1: Sample string.
         :type field1: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodystring.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -300,4 +292,3 @@ class EnumOperations(object):
           return cls(response, None, {})
 
     put_referenced_constant.metadata = {'url': '/string/enum/ReferencedConstant'}
-

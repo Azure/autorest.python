@@ -16,19 +16,13 @@ class AutoRestSwaggerBATHeaderServiceConfiguration(Configuration):
     """Configuration for AutoRestSwaggerBATHeaderService
     Note that all parameters used to create this instance are saved as instance
     attributes.
-
     """
 
     def __init__(self, **kwargs):
-
-
         super(AutoRestSwaggerBATHeaderServiceConfiguration, self).__init__(**kwargs)
 
         self._configure(**kwargs)
-
         self.user_agent_policy.add_user_agent('azsdk-python-autorestswaggerbatheaderservice/{}'.format(VERSION))
-
-
 
     def _configure(self, **kwargs):
         self.user_agent_policy = kwargs.get('user_agent_policy') or policies.UserAgentPolicy(**kwargs)

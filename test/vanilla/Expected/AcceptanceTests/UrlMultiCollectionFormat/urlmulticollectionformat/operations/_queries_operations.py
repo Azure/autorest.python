@@ -33,19 +33,18 @@ class QueriesOperations(object):
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
+    
     @distributed_trace
     def array_string_multi_null(self, array_query=None, cls=None, **kwargs):
         """Get a null array of string using the multi-array format.
 
         FIXME: add operation.summary
 
-
         :param array_query: a null array of string using the multi-array format
         :type array_query: list[str]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~urlmulticollectionformat.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -76,20 +75,18 @@ class QueriesOperations(object):
           return cls(response, None, {})
 
     array_string_multi_null.metadata = {'url': '/queries/array/multi/string/null'}
-
+    
     @distributed_trace
     def array_string_multi_empty(self, array_query=None, cls=None, **kwargs):
         """Get an empty array [] of string using the multi-array format.
 
         FIXME: add operation.summary
 
-
         :param array_query: an empty array [] of string using the multi-array format
         :type array_query: list[str]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~urlmulticollectionformat.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -120,20 +117,18 @@ class QueriesOperations(object):
           return cls(response, None, {})
 
     array_string_multi_empty.metadata = {'url': '/queries/array/multi/string/empty'}
-
+    
     @distributed_trace
     def array_string_multi_valid(self, array_query=None, cls=None, **kwargs):
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the mult-array format.
 
         FIXME: add operation.summary
 
-
         :param array_query: an empty array [] of string using the multi-array format
         :type array_query: list[str]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~urlmulticollectionformat.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -164,4 +159,3 @@ class QueriesOperations(object):
           return cls(response, None, {})
 
     array_string_multi_valid.metadata = {'url': '/queries/array/multi/string/valid'}
-

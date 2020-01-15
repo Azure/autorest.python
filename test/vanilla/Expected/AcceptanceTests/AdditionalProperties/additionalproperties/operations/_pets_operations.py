@@ -33,12 +33,12 @@ class PetsOperations(object):
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
+    
     @distributed_trace
     def create_ap_true(self, create_parameters, cls=None, **kwargs):
         """Create a Pet which contains more properties than what is defined..
 
         FIXME: add operation.summary
-
 
         :param create_parameters: 
         :type create_parameters: ~additionalproperties.models.PetAPTrue
@@ -81,13 +81,12 @@ class PetsOperations(object):
 
         return deserialized
     create_ap_true.metadata = {'url': '/additionalProperties/true'}
-
+    
     @distributed_trace
     def create_cat_ap_true(self, create_parameters, cls=None, **kwargs):
         """Create a CatAPTrue which contains more properties than what is defined..
 
         FIXME: add operation.summary
-
 
         :param create_parameters: 
         :type create_parameters: ~additionalproperties.models.CatAPTrue
@@ -130,13 +129,12 @@ class PetsOperations(object):
 
         return deserialized
     create_cat_ap_true.metadata = {'url': '/additionalProperties/true-subclass'}
-
+    
     @distributed_trace
     def create_ap_object(self, create_parameters, cls=None, **kwargs):
         """Create a Pet which contains more properties than what is defined..
 
         FIXME: add operation.summary
-
 
         :param create_parameters: 
         :type create_parameters: ~additionalproperties.models.PetAPObject
@@ -179,13 +177,12 @@ class PetsOperations(object):
 
         return deserialized
     create_ap_object.metadata = {'url': '/additionalProperties/type/object'}
-
+    
     @distributed_trace
     def create_ap_string(self, create_parameters, cls=None, **kwargs):
         """Create a Pet which contains more properties than what is defined..
 
         FIXME: add operation.summary
-
 
         :param create_parameters: 
         :type create_parameters: ~additionalproperties.models.PetAPString
@@ -228,13 +225,12 @@ class PetsOperations(object):
 
         return deserialized
     create_ap_string.metadata = {'url': '/additionalProperties/type/string'}
-
+    
     @distributed_trace
     def create_ap_in_properties(self, create_parameters, cls=None, **kwargs):
         """Create a Pet which contains more properties than what is defined..
 
         FIXME: add operation.summary
-
 
         :param create_parameters: 
         :type create_parameters: ~additionalproperties.models.PetAPInProperties
@@ -277,13 +273,12 @@ class PetsOperations(object):
 
         return deserialized
     create_ap_in_properties.metadata = {'url': '/additionalProperties/in/properties'}
-
+    
     @distributed_trace
     def create_ap_in_properties_with_ap_string(self, create_parameters, cls=None, **kwargs):
         """Create a Pet which contains more properties than what is defined..
 
         FIXME: add operation.summary
-
 
         :param create_parameters: 
         :type create_parameters: ~additionalproperties.models.PetAPInPropertiesWithAPString
@@ -326,4 +321,3 @@ class PetsOperations(object):
 
         return deserialized
     create_ap_in_properties_with_ap_string.metadata = {'url': '/additionalProperties/in/properties/with/additionalProperties/string'}
-

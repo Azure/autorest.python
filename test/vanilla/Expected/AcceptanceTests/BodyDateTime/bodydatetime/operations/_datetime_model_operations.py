@@ -33,12 +33,12 @@ class DatetimeOperations(object):
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
+    
     @distributed_trace
     def get_null(self, cls=None, **kwargs):
         """Get null datetime value.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -75,13 +75,12 @@ class DatetimeOperations(object):
 
         return deserialized
     get_null.metadata = {'url': '/datetime/null'}
-
+    
     @distributed_trace
     def get_invalid(self, cls=None, **kwargs):
         """Get invalid datetime value.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -118,13 +117,12 @@ class DatetimeOperations(object):
 
         return deserialized
     get_invalid.metadata = {'url': '/datetime/invalid'}
-
+    
     @distributed_trace
     def get_overflow(self, cls=None, **kwargs):
         """Get overflow datetime value.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -161,13 +159,12 @@ class DatetimeOperations(object):
 
         return deserialized
     get_overflow.metadata = {'url': '/datetime/overflow'}
-
+    
     @distributed_trace
     def get_underflow(self, cls=None, **kwargs):
         """Get underflow datetime value.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -204,20 +201,18 @@ class DatetimeOperations(object):
 
         return deserialized
     get_underflow.metadata = {'url': '/datetime/underflow'}
-
+    
     @distributed_trace
     def put_utc_max_date_time(self, datetime_body, cls=None, **kwargs):
         """Put max datetime value 9999-12-31T23:59:59.999Z.
 
         FIXME: add operation.summary
 
-
         :param datetime_body: 
         :type datetime_body: ~datetime.datetime
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodydatetime.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -250,20 +245,18 @@ class DatetimeOperations(object):
           return cls(response, None, {})
 
     put_utc_max_date_time.metadata = {'url': '/datetime/max/utc'}
-
+    
     @distributed_trace
     def put_utc_max_date_time7_digits(self, datetime_body, cls=None, **kwargs):
         """Put max datetime value 9999-12-31T23:59:59.9999999Z.
 
         FIXME: add operation.summary
 
-
         :param datetime_body: 
         :type datetime_body: ~datetime.datetime
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodydatetime.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -296,13 +289,12 @@ class DatetimeOperations(object):
           return cls(response, None, {})
 
     put_utc_max_date_time7_digits.metadata = {'url': '/datetime/max/utc7ms'}
-
+    
     @distributed_trace
     def get_utc_lowercase_max_date_time(self, cls=None, **kwargs):
         """Get max datetime value 9999-12-31t23:59:59.999z.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -339,13 +331,12 @@ class DatetimeOperations(object):
 
         return deserialized
     get_utc_lowercase_max_date_time.metadata = {'url': '/datetime/max/utc/lowercase'}
-
+    
     @distributed_trace
     def get_utc_uppercase_max_date_time(self, cls=None, **kwargs):
         """Get max datetime value 9999-12-31T23:59:59.999Z.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -382,13 +373,12 @@ class DatetimeOperations(object):
 
         return deserialized
     get_utc_uppercase_max_date_time.metadata = {'url': '/datetime/max/utc/uppercase'}
-
+    
     @distributed_trace
     def get_utc_uppercase_max_date_time7_digits(self, cls=None, **kwargs):
         """Get max datetime value 9999-12-31T23:59:59.9999999Z.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -425,20 +415,18 @@ class DatetimeOperations(object):
 
         return deserialized
     get_utc_uppercase_max_date_time7_digits.metadata = {'url': '/datetime/max/utc7ms/uppercase'}
-
+    
     @distributed_trace
     def put_local_positive_offset_max_date_time(self, datetime_body, cls=None, **kwargs):
         """Put max datetime value with positive numoffset 9999-12-31t23:59:59.999+14:00.
 
         FIXME: add operation.summary
 
-
         :param datetime_body: 
         :type datetime_body: ~datetime.datetime
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodydatetime.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -471,13 +459,12 @@ class DatetimeOperations(object):
           return cls(response, None, {})
 
     put_local_positive_offset_max_date_time.metadata = {'url': '/datetime/max/localpositiveoffset'}
-
+    
     @distributed_trace
     def get_local_positive_offset_lowercase_max_date_time(self, cls=None, **kwargs):
         """Get max datetime value with positive num offset 9999-12-31t23:59:59.999+14:00.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -514,13 +501,12 @@ class DatetimeOperations(object):
 
         return deserialized
     get_local_positive_offset_lowercase_max_date_time.metadata = {'url': '/datetime/max/localpositiveoffset/lowercase'}
-
+    
     @distributed_trace
     def get_local_positive_offset_uppercase_max_date_time(self, cls=None, **kwargs):
         """Get max datetime value with positive num offset 9999-12-31T23:59:59.999+14:00.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -557,20 +543,18 @@ class DatetimeOperations(object):
 
         return deserialized
     get_local_positive_offset_uppercase_max_date_time.metadata = {'url': '/datetime/max/localpositiveoffset/uppercase'}
-
+    
     @distributed_trace
     def put_local_negative_offset_max_date_time(self, datetime_body, cls=None, **kwargs):
         """Put max datetime value with positive numoffset 9999-12-31t23:59:59.999-14:00.
 
         FIXME: add operation.summary
 
-
         :param datetime_body: 
         :type datetime_body: ~datetime.datetime
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodydatetime.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -603,13 +587,12 @@ class DatetimeOperations(object):
           return cls(response, None, {})
 
     put_local_negative_offset_max_date_time.metadata = {'url': '/datetime/max/localnegativeoffset'}
-
+    
     @distributed_trace
     def get_local_negative_offset_uppercase_max_date_time(self, cls=None, **kwargs):
         """Get max datetime value with positive num offset 9999-12-31T23:59:59.999-14:00.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -646,13 +629,12 @@ class DatetimeOperations(object):
 
         return deserialized
     get_local_negative_offset_uppercase_max_date_time.metadata = {'url': '/datetime/max/localnegativeoffset/uppercase'}
-
+    
     @distributed_trace
     def get_local_negative_offset_lowercase_max_date_time(self, cls=None, **kwargs):
         """Get max datetime value with positive num offset 9999-12-31t23:59:59.999-14:00.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -689,20 +671,18 @@ class DatetimeOperations(object):
 
         return deserialized
     get_local_negative_offset_lowercase_max_date_time.metadata = {'url': '/datetime/max/localnegativeoffset/lowercase'}
-
+    
     @distributed_trace
     def put_utc_min_date_time(self, datetime_body, cls=None, **kwargs):
         """Put min datetime value 0001-01-01T00:00:00Z.
 
         FIXME: add operation.summary
 
-
         :param datetime_body: 
         :type datetime_body: ~datetime.datetime
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodydatetime.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -735,13 +715,12 @@ class DatetimeOperations(object):
           return cls(response, None, {})
 
     put_utc_min_date_time.metadata = {'url': '/datetime/min/utc'}
-
+    
     @distributed_trace
     def get_utc_min_date_time(self, cls=None, **kwargs):
         """Get min datetime value 0001-01-01T00:00:00Z.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -778,20 +757,18 @@ class DatetimeOperations(object):
 
         return deserialized
     get_utc_min_date_time.metadata = {'url': '/datetime/min/utc'}
-
+    
     @distributed_trace
     def put_local_positive_offset_min_date_time(self, datetime_body, cls=None, **kwargs):
         """Put min datetime value 0001-01-01T00:00:00+14:00.
 
         FIXME: add operation.summary
 
-
         :param datetime_body: 
         :type datetime_body: ~datetime.datetime
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodydatetime.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -824,13 +801,12 @@ class DatetimeOperations(object):
           return cls(response, None, {})
 
     put_local_positive_offset_min_date_time.metadata = {'url': '/datetime/min/localpositiveoffset'}
-
+    
     @distributed_trace
     def get_local_positive_offset_min_date_time(self, cls=None, **kwargs):
         """Get min datetime value 0001-01-01T00:00:00+14:00.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -867,20 +843,18 @@ class DatetimeOperations(object):
 
         return deserialized
     get_local_positive_offset_min_date_time.metadata = {'url': '/datetime/min/localpositiveoffset'}
-
+    
     @distributed_trace
     def put_local_negative_offset_min_date_time(self, datetime_body, cls=None, **kwargs):
         """Put min datetime value 0001-01-01T00:00:00-14:00.
 
         FIXME: add operation.summary
 
-
         :param datetime_body: 
         :type datetime_body: ~datetime.datetime
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodydatetime.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -913,13 +887,12 @@ class DatetimeOperations(object):
           return cls(response, None, {})
 
     put_local_negative_offset_min_date_time.metadata = {'url': '/datetime/min/localnegativeoffset'}
-
+    
     @distributed_trace
     def get_local_negative_offset_min_date_time(self, cls=None, **kwargs):
         """Get min datetime value 0001-01-01T00:00:00-14:00.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -956,4 +929,3 @@ class DatetimeOperations(object):
 
         return deserialized
     get_local_negative_offset_min_date_time.metadata = {'url': '/datetime/min/localnegativeoffset'}
-

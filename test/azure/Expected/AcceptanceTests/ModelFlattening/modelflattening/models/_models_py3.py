@@ -11,6 +11,7 @@ from typing import Dict, List
 from azure.core.exceptions import HttpResponseError
 from msrest.serialization import Model
 
+
 class BaseProduct(Model):
     """The product documentation.
 
@@ -37,6 +38,7 @@ class BaseProduct(Model):
         super(BaseProduct, self).__init__(**kwargs)
         self.product_id = product_id
         self.description = description
+
 
 class ErrorException(HttpResponseError):
     """Server responded with exception of type: 'Error'.
@@ -87,6 +89,7 @@ class Error(Model):
         self.message = message
         self.parent_error = parent_error
 
+
 class Resource(Model):
     """Resource.
 
@@ -127,6 +130,7 @@ class Resource(Model):
         self.location = location
         self.name = None
 
+
 class FlattenedProduct(Resource):
     """Flattened product.
 
@@ -166,6 +170,7 @@ class FlattenedProduct(Resource):
         super(FlattenedProduct, self).__init__(tags=tags, location=location, **kwargs)
         self.properties = properties
 
+
 class FlattenedProductProperties(Model):
     """FlattenedProductProperties.
 
@@ -202,6 +207,7 @@ class FlattenedProductProperties(Model):
         self.provisioning_state_values = None
         self.provisioning_state = provisioning_state
 
+
 class GenericUrl(Model):
     """The Generic URL.
 
@@ -216,6 +222,7 @@ class GenericUrl(Model):
     def __init__(self, *, generic_value: str=None, **kwargs) -> None:
         super(GenericUrl, self).__init__(**kwargs)
         self.generic_value = generic_value
+
 
 class ProductUrl(GenericUrl):
     """The product URL.
@@ -235,6 +242,7 @@ class ProductUrl(GenericUrl):
         super(ProductUrl, self).__init__(generic_value=generic_value, **kwargs)
         self.odatavalue = odatavalue
 
+
 class ProductWrapper(Model):
     """The wrapped produc.
 
@@ -249,6 +257,7 @@ class ProductWrapper(Model):
     def __init__(self, *, property: "WrappedProduct"=None, **kwargs) -> None:
         super(ProductWrapper, self).__init__(**kwargs)
         self.property = property
+
 
 class ResourceCollection(Model):
     """ResourceCollection.
@@ -272,6 +281,7 @@ class ResourceCollection(Model):
         self.productresource = productresource
         self.arrayofresources = arrayofresources
         self.dictionaryofresources = dictionaryofresources
+
 
 class SimpleProduct(BaseProduct):
     """The product documentation.
@@ -301,6 +311,7 @@ class SimpleProduct(BaseProduct):
     def __init__(self, *, product_id: str, description: str=None, details: "SimpleProductProperties"=None, **kwargs) -> None:
         super(SimpleProduct, self).__init__(product_id=product_id, description=description, **kwargs)
         self.details = details
+
 
 class SimpleProductProperties(Model):
     """The product documentation.
@@ -336,6 +347,7 @@ class SimpleProductProperties(Model):
         self.max_product_display_name = max_product_display_name
         self.max_product_image = max_product_image
 
+
 class WrappedProduct(Model):
     """The wrapped produc.
 
@@ -350,4 +362,3 @@ class WrappedProduct(Model):
     def __init__(self, *, value: str=None, **kwargs) -> None:
         super(WrappedProduct, self).__init__(**kwargs)
         self.value = value
-

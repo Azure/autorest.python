@@ -33,12 +33,12 @@ class Datetimerfc1123Operations:
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
+    
     @distributed_trace_async
     async def get_null(self, cls=None, **kwargs):
         """Get null datetime value.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -75,13 +75,12 @@ class Datetimerfc1123Operations:
 
         return deserialized
     get_null.metadata = {'url': '/datetimerfc1123/null'}
-
+    
     @distributed_trace_async
     async def get_invalid(self, cls=None, **kwargs):
         """Get invalid datetime value.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -118,13 +117,12 @@ class Datetimerfc1123Operations:
 
         return deserialized
     get_invalid.metadata = {'url': '/datetimerfc1123/invalid'}
-
+    
     @distributed_trace_async
     async def get_overflow(self, cls=None, **kwargs):
         """Get overflow datetime value.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -161,13 +159,12 @@ class Datetimerfc1123Operations:
 
         return deserialized
     get_overflow.metadata = {'url': '/datetimerfc1123/overflow'}
-
+    
     @distributed_trace_async
     async def get_underflow(self, cls=None, **kwargs):
         """Get underflow datetime value.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -204,20 +201,18 @@ class Datetimerfc1123Operations:
 
         return deserialized
     get_underflow.metadata = {'url': '/datetimerfc1123/underflow'}
-
+    
     @distributed_trace_async
     async def put_utc_max_date_time(self, datetime_body, cls=None, **kwargs):
         """Put max datetime value Fri, 31 Dec 9999 23:59:59 GMT.
 
         FIXME: add operation.summary
 
-
         :param datetime_body: 
         :type datetime_body: ~datetime.datetime
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodydatetimerfc1123.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -250,13 +245,12 @@ class Datetimerfc1123Operations:
           return cls(response, None, {})
 
     put_utc_max_date_time.metadata = {'url': '/datetimerfc1123/max'}
-
+    
     @distributed_trace_async
     async def get_utc_lowercase_max_date_time(self, cls=None, **kwargs):
         """Get max datetime value fri, 31 dec 9999 23:59:59 gmt.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -293,13 +287,12 @@ class Datetimerfc1123Operations:
 
         return deserialized
     get_utc_lowercase_max_date_time.metadata = {'url': '/datetimerfc1123/max/lowercase'}
-
+    
     @distributed_trace_async
     async def get_utc_uppercase_max_date_time(self, cls=None, **kwargs):
         """Get max datetime value FRI, 31 DEC 9999 23:59:59 GMT.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -336,20 +329,18 @@ class Datetimerfc1123Operations:
 
         return deserialized
     get_utc_uppercase_max_date_time.metadata = {'url': '/datetimerfc1123/max/uppercase'}
-
+    
     @distributed_trace_async
     async def put_utc_min_date_time(self, datetime_body, cls=None, **kwargs):
         """Put min datetime value Mon, 1 Jan 0001 00:00:00 GMT.
 
         FIXME: add operation.summary
 
-
         :param datetime_body: 
         :type datetime_body: ~datetime.datetime
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodydatetimerfc1123.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -382,13 +373,12 @@ class Datetimerfc1123Operations:
           return cls(response, None, {})
 
     put_utc_min_date_time.metadata = {'url': '/datetimerfc1123/min'}
-
+    
     @distributed_trace_async
     async def get_utc_min_date_time(self, cls=None, **kwargs):
         """Get min datetime value Mon, 1 Jan 0001 00:00:00 GMT.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -425,4 +415,3 @@ class Datetimerfc1123Operations:
 
         return deserialized
     get_utc_min_date_time.metadata = {'url': '/datetimerfc1123/min'}
-

@@ -33,17 +33,16 @@ class HttpServerFailureOperations(object):
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
+    
     @distributed_trace
     def head501(self, cls=None, **kwargs):
         """Return 501 status code - should be represented in the client as an error.
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -72,18 +71,16 @@ class HttpServerFailureOperations(object):
           return cls(response, None, {})
 
     head501.metadata = {'url': '/http/failure/server/501'}
-
+    
     @distributed_trace
     def get501(self, cls=None, **kwargs):
         """Return 501 status code - should be represented in the client as an error.
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -112,18 +109,16 @@ class HttpServerFailureOperations(object):
           return cls(response, None, {})
 
     get501.metadata = {'url': '/http/failure/server/501'}
-
+    
     @distributed_trace
     def post505(self, cls=None, **kwargs):
         """Return 505 status code - should be represented in the client as an error.
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -160,18 +155,16 @@ class HttpServerFailureOperations(object):
           return cls(response, None, {})
 
     post505.metadata = {'url': '/http/failure/server/505'}
-
+    
     @distributed_trace
     def delete505(self, cls=None, **kwargs):
         """Return 505 status code - should be represented in the client as an error.
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -208,4 +201,3 @@ class HttpServerFailureOperations(object):
           return cls(response, None, {})
 
     delete505.metadata = {'url': '/http/failure/server/505'}
-

@@ -9,6 +9,7 @@
 from azure.core.exceptions import HttpResponseError
 from msrest.serialization import Model
 
+
 class ErrorException(HttpResponseError):
     """Server responded with exception of type: 'Error'.
 
@@ -54,6 +55,7 @@ class Error(Model):
         self.status = kwargs.get('status', None)
         self.message = kwargs.get('message', None)
 
+
 class RefColorConstant(Model):
     """RefColorConstant.
 
@@ -82,4 +84,3 @@ class RefColorConstant(Model):
     def __init__(self, **kwargs):
         super(RefColorConstant, self).__init__(**kwargs)
         self.field1 = kwargs.get('field1', None)
-

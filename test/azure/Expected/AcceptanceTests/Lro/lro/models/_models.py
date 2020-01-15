@@ -8,6 +8,7 @@
 
 from msrest.serialization import Model
 
+
 class OperationResult(Model):
     """OperationResult.
 
@@ -29,6 +30,7 @@ class OperationResult(Model):
         self.status = kwargs.get('status', None)
         self.error = kwargs.get('error', None)
 
+
 class OperationResultError(Model):
     """OperationResultError.
 
@@ -47,6 +49,7 @@ class OperationResultError(Model):
         super(OperationResultError, self).__init__(**kwargs)
         self.code = kwargs.get('code', None)
         self.message = kwargs.get('message', None)
+
 
 class Resource(Model):
     """Resource.
@@ -88,6 +91,7 @@ class Resource(Model):
         self.location = kwargs.get('location', None)
         self.name = None
 
+
 class Product(Resource):
     """Product.
 
@@ -127,6 +131,7 @@ class Product(Resource):
         super(Product, self).__init__(**kwargs)
         self.properties = kwargs.get('properties', None)
 
+
 class ProductProperties(Model):
     """ProductProperties.
 
@@ -155,6 +160,7 @@ class ProductProperties(Model):
         self.provisioning_state = kwargs.get('provisioning_state', None)
         self.provisioning_state_values = None
 
+
 class Sku(Model):
     """Sku.
 
@@ -173,6 +179,7 @@ class Sku(Model):
         super(Sku, self).__init__(**kwargs)
         self.name = kwargs.get('name', None)
         self.id = kwargs.get('id', None)
+
 
 class SubResource(Model):
     """SubResource.
@@ -194,6 +201,7 @@ class SubResource(Model):
     def __init__(self, **kwargs):
         super(SubResource, self).__init__(**kwargs)
         self.id = None
+
 
 class SubProduct(SubResource):
     """SubProduct.
@@ -218,6 +226,7 @@ class SubProduct(SubResource):
     def __init__(self, **kwargs):
         super(SubProduct, self).__init__(**kwargs)
         self.properties = kwargs.get('properties', None)
+
 
 class SubProductProperties(Model):
     """SubProductProperties.
@@ -246,4 +255,3 @@ class SubProductProperties(Model):
         super(SubProductProperties, self).__init__(**kwargs)
         self.provisioning_state = kwargs.get('provisioning_state', None)
         self.provisioning_state_values = None
-

@@ -33,12 +33,12 @@ class BoolOperations:
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
+    
     @distributed_trace_async
     async def get_true(self, cls=None, **kwargs):
         """Get true Boolean value.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -75,18 +75,16 @@ class BoolOperations:
 
         return deserialized
     get_true.metadata = {'url': '/bool/true'}
-
+    
     @distributed_trace_async
     async def put_true(self, cls=None, **kwargs):
         """Set Boolean value true.
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodyboolean.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -120,13 +118,12 @@ class BoolOperations:
           return cls(response, None, {})
 
     put_true.metadata = {'url': '/bool/true'}
-
+    
     @distributed_trace_async
     async def get_false(self, cls=None, **kwargs):
         """Get false Boolean value.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -163,18 +160,16 @@ class BoolOperations:
 
         return deserialized
     get_false.metadata = {'url': '/bool/false'}
-
+    
     @distributed_trace_async
     async def put_false(self, cls=None, **kwargs):
         """Set Boolean value false.
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodyboolean.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -208,13 +203,12 @@ class BoolOperations:
           return cls(response, None, {})
 
     put_false.metadata = {'url': '/bool/false'}
-
+    
     @distributed_trace_async
     async def get_null(self, cls=None, **kwargs):
         """Get null Boolean value.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -251,13 +245,12 @@ class BoolOperations:
 
         return deserialized
     get_null.metadata = {'url': '/bool/null'}
-
+    
     @distributed_trace_async
     async def get_invalid(self, cls=None, **kwargs):
         """Get invalid Boolean value.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -294,4 +287,3 @@ class BoolOperations:
 
         return deserialized
     get_invalid.metadata = {'url': '/bool/invalid'}
-

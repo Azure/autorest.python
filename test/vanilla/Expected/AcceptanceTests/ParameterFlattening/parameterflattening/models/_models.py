@@ -8,6 +8,7 @@
 
 from msrest.serialization import Model
 
+
 class AvailabilitySetUpdateParameters(Model):
     """AvailabilitySetUpdateParameters.
 
@@ -28,4 +29,3 @@ class AvailabilitySetUpdateParameters(Model):
     def __init__(self, **kwargs):
         super(AvailabilitySetUpdateParameters, self).__init__(**kwargs)
         self.tags = kwargs.get('tags', None)
-

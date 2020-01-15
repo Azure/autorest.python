@@ -33,12 +33,12 @@ class DictionaryOperations(object):
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
+    
     @distributed_trace
     def get_valid(self, cls=None, **kwargs):
         """Get complex types with dictionary property.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: DictionaryWrapper or the result of cls(response)
@@ -75,20 +75,18 @@ class DictionaryOperations(object):
 
         return deserialized
     get_valid.metadata = {'url': '/complex/dictionary/typed/valid'}
-
+    
     @distributed_trace
     def put_valid(self, default_program=None, cls=None, **kwargs):
         """Put complex types with dictionary property.
 
         FIXME: add operation.summary
 
-
         :param default_program: Dictionary of <components·schemas·dictionary_wrapper·properties·defaultprogram·additionalproperties>
         :type default_program: dict[str, str]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodycomplex.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -122,13 +120,12 @@ class DictionaryOperations(object):
           return cls(response, None, {})
 
     put_valid.metadata = {'url': '/complex/dictionary/typed/valid'}
-
+    
     @distributed_trace
     def get_empty(self, cls=None, **kwargs):
         """Get complex types with dictionary property which is empty.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: DictionaryWrapper or the result of cls(response)
@@ -165,20 +162,18 @@ class DictionaryOperations(object):
 
         return deserialized
     get_empty.metadata = {'url': '/complex/dictionary/typed/empty'}
-
+    
     @distributed_trace
     def put_empty(self, default_program=None, cls=None, **kwargs):
         """Put complex types with dictionary property which is empty.
 
         FIXME: add operation.summary
 
-
         :param default_program: Dictionary of <components·schemas·dictionary_wrapper·properties·defaultprogram·additionalproperties>
         :type default_program: dict[str, str]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodycomplex.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -212,13 +207,12 @@ class DictionaryOperations(object):
           return cls(response, None, {})
 
     put_empty.metadata = {'url': '/complex/dictionary/typed/empty'}
-
+    
     @distributed_trace
     def get_null(self, cls=None, **kwargs):
         """Get complex types with dictionary property which is null.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: DictionaryWrapper or the result of cls(response)
@@ -255,13 +249,12 @@ class DictionaryOperations(object):
 
         return deserialized
     get_null.metadata = {'url': '/complex/dictionary/typed/null'}
-
+    
     @distributed_trace
     def get_not_provided(self, cls=None, **kwargs):
         """Get complex types with dictionary property while server doesn't provide a response payload.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: DictionaryWrapper or the result of cls(response)
@@ -298,4 +291,3 @@ class DictionaryOperations(object):
 
         return deserialized
     get_not_provided.metadata = {'url': '/complex/dictionary/typed/notprovided'}
-

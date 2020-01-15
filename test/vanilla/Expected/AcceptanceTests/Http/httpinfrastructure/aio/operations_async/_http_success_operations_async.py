@@ -33,17 +33,16 @@ class HttpSuccessOperations:
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
+    
     @distributed_trace_async
     async def head200(self, cls=None, **kwargs):
         """Return 200 status code if successful.
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -72,13 +71,12 @@ class HttpSuccessOperations:
           return cls(response, None, {})
 
     head200.metadata = {'url': '/http/success/200'}
-
+    
     @distributed_trace_async
     async def get200(self, cls=None, **kwargs):
         """Get 200 success.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -115,13 +113,12 @@ class HttpSuccessOperations:
 
         return deserialized
     get200.metadata = {'url': '/http/success/200'}
-
+    
     @distributed_trace_async
     async def options200(self, cls=None, **kwargs):
         """Options 200 success.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -158,18 +155,16 @@ class HttpSuccessOperations:
 
         return deserialized
     options200.metadata = {'url': '/http/success/200'}
-
+    
     @distributed_trace_async
     async def put200(self, cls=None, **kwargs):
         """Put boolean value true returning 200 success.
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -206,18 +201,16 @@ class HttpSuccessOperations:
           return cls(response, None, {})
 
     put200.metadata = {'url': '/http/success/200'}
-
+    
     @distributed_trace_async
     async def patch200(self, cls=None, **kwargs):
         """Patch true Boolean value in request returning 200.
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -254,18 +247,16 @@ class HttpSuccessOperations:
           return cls(response, None, {})
 
     patch200.metadata = {'url': '/http/success/200'}
-
+    
     @distributed_trace_async
     async def post200(self, cls=None, **kwargs):
         """Post bollean value true in request that returns a 200.
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -302,18 +293,16 @@ class HttpSuccessOperations:
           return cls(response, None, {})
 
     post200.metadata = {'url': '/http/success/200'}
-
+    
     @distributed_trace_async
     async def delete200(self, cls=None, **kwargs):
         """Delete simple boolean value true returns 200.
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -350,18 +339,16 @@ class HttpSuccessOperations:
           return cls(response, None, {})
 
     delete200.metadata = {'url': '/http/success/200'}
-
+    
     @distributed_trace_async
     async def put201(self, cls=None, **kwargs):
         """Put true Boolean value in request returns 201.
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -398,18 +385,16 @@ class HttpSuccessOperations:
           return cls(response, None, {})
 
     put201.metadata = {'url': '/http/success/201'}
-
+    
     @distributed_trace_async
     async def post201(self, cls=None, **kwargs):
         """Post true Boolean value in request returns 201 (Created).
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -446,18 +431,16 @@ class HttpSuccessOperations:
           return cls(response, None, {})
 
     post201.metadata = {'url': '/http/success/201'}
-
+    
     @distributed_trace_async
     async def put202(self, cls=None, **kwargs):
         """Put true Boolean value in request returns 202 (Accepted).
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -494,18 +477,16 @@ class HttpSuccessOperations:
           return cls(response, None, {})
 
     put202.metadata = {'url': '/http/success/202'}
-
+    
     @distributed_trace_async
     async def patch202(self, cls=None, **kwargs):
         """Patch true Boolean value in request returns 202.
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -542,18 +523,16 @@ class HttpSuccessOperations:
           return cls(response, None, {})
 
     patch202.metadata = {'url': '/http/success/202'}
-
+    
     @distributed_trace_async
     async def post202(self, cls=None, **kwargs):
         """Post true Boolean value in request returns 202 (Accepted).
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -590,18 +569,16 @@ class HttpSuccessOperations:
           return cls(response, None, {})
 
     post202.metadata = {'url': '/http/success/202'}
-
+    
     @distributed_trace_async
     async def delete202(self, cls=None, **kwargs):
         """Delete true Boolean value in request returns 202 (accepted).
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -638,18 +615,16 @@ class HttpSuccessOperations:
           return cls(response, None, {})
 
     delete202.metadata = {'url': '/http/success/202'}
-
+    
     @distributed_trace_async
     async def head204(self, cls=None, **kwargs):
         """Return 204 status code if successful.
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -678,18 +653,16 @@ class HttpSuccessOperations:
           return cls(response, None, {})
 
     head204.metadata = {'url': '/http/success/204'}
-
+    
     @distributed_trace_async
     async def put204(self, cls=None, **kwargs):
         """Put true Boolean value in request returns 204 (no content).
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -726,18 +699,16 @@ class HttpSuccessOperations:
           return cls(response, None, {})
 
     put204.metadata = {'url': '/http/success/204'}
-
+    
     @distributed_trace_async
     async def patch204(self, cls=None, **kwargs):
         """Patch true Boolean value in request returns 204 (no content).
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -774,18 +745,16 @@ class HttpSuccessOperations:
           return cls(response, None, {})
 
     patch204.metadata = {'url': '/http/success/204'}
-
+    
     @distributed_trace_async
     async def post204(self, cls=None, **kwargs):
         """Post true Boolean value in request returns 204 (no content).
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -822,18 +791,16 @@ class HttpSuccessOperations:
           return cls(response, None, {})
 
     post204.metadata = {'url': '/http/success/204'}
-
+    
     @distributed_trace_async
     async def delete204(self, cls=None, **kwargs):
         """Delete true Boolean value in request returns 204 (no content).
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -870,18 +837,16 @@ class HttpSuccessOperations:
           return cls(response, None, {})
 
     delete204.metadata = {'url': '/http/success/204'}
-
+    
     @distributed_trace_async
     async def head404(self, cls=None, **kwargs):
         """Return 404 status code.
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -910,4 +875,3 @@ class HttpSuccessOperations:
           return cls(response, None, {})
 
     head404.metadata = {'url': '/http/success/404'}
-

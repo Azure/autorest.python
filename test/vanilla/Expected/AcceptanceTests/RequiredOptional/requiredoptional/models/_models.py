@@ -9,6 +9,7 @@
 from azure.core.exceptions import HttpResponseError
 from msrest.serialization import Model
 
+
 class ArrayOptionalWrapper(Model):
     """ArrayOptionalWrapper.
 
@@ -23,6 +24,7 @@ class ArrayOptionalWrapper(Model):
     def __init__(self, **kwargs):
         super(ArrayOptionalWrapper, self).__init__(**kwargs)
         self.value = kwargs.get('value', None)
+
 
 class ArrayWrapper(Model):
     """ArrayWrapper.
@@ -45,6 +47,7 @@ class ArrayWrapper(Model):
         super(ArrayWrapper, self).__init__(**kwargs)
         self.value = kwargs.get('value', None)
 
+
 class ClassOptionalWrapper(Model):
     """ClassOptionalWrapper.
 
@@ -59,6 +62,7 @@ class ClassOptionalWrapper(Model):
     def __init__(self, **kwargs):
         super(ClassOptionalWrapper, self).__init__(**kwargs)
         self.value = kwargs.get('value', None)
+
 
 class ClassWrapper(Model):
     """ClassWrapper.
@@ -80,6 +84,7 @@ class ClassWrapper(Model):
     def __init__(self, **kwargs):
         super(ClassWrapper, self).__init__(**kwargs)
         self.value = kwargs.get('value', None)
+
 
 class ErrorException(HttpResponseError):
     """Server responded with exception of type: 'Error'.
@@ -126,6 +131,7 @@ class Error(Model):
         self.status = kwargs.get('status', None)
         self.message = kwargs.get('message', None)
 
+
 class IntOptionalWrapper(Model):
     """IntOptionalWrapper.
 
@@ -140,6 +146,7 @@ class IntOptionalWrapper(Model):
     def __init__(self, **kwargs):
         super(IntOptionalWrapper, self).__init__(**kwargs)
         self.value = kwargs.get('value', None)
+
 
 class IntWrapper(Model):
     """IntWrapper.
@@ -161,6 +168,7 @@ class IntWrapper(Model):
     def __init__(self, **kwargs):
         super(IntWrapper, self).__init__(**kwargs)
         self.value = kwargs.get('value', None)
+
 
 class Product(Model):
     """Product.
@@ -187,6 +195,7 @@ class Product(Model):
         self.id = kwargs.get('id', None)
         self.name = kwargs.get('name', None)
 
+
 class StringOptionalWrapper(Model):
     """StringOptionalWrapper.
 
@@ -201,6 +210,7 @@ class StringOptionalWrapper(Model):
     def __init__(self, **kwargs):
         super(StringOptionalWrapper, self).__init__(**kwargs)
         self.value = kwargs.get('value', None)
+
 
 class StringWrapper(Model):
     """StringWrapper.
@@ -222,4 +232,3 @@ class StringWrapper(Model):
     def __init__(self, **kwargs):
         super(StringWrapper, self).__init__(**kwargs)
         self.value = kwargs.get('value', None)
-

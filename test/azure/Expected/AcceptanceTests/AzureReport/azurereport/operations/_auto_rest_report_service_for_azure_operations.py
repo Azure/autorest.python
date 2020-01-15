@@ -14,12 +14,12 @@ from .. import models
 
 
 class AutoRestReportServiceForAzureOperationsMixin(object):
+    
     @distributed_trace
     def get_report(self, qualifier=None, cls=None, **kwargs):
         """Get test coverage report.
 
         FIXME: add operation.summary
-
 
         :param qualifier: If specified, qualifies the generated report further (e.g. '2.7' vs '3.5' in for Python). The only effect is, that generators that run all tests several times, can distinguish the generated reports.
         :type qualifier: str
@@ -60,4 +60,3 @@ class AutoRestReportServiceForAzureOperationsMixin(object):
 
         return deserialized
     get_report.metadata = {'url': '/report/azure'}
-

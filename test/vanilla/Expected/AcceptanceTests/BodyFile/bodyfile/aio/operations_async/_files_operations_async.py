@@ -33,17 +33,16 @@ class FilesOperations:
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
+    
     @distributed_trace_async
     async def get_file(self, cls=None, **kwargs):
         """Get file.
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodyfile.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -76,18 +75,16 @@ class FilesOperations:
 
         return deserialized
     get_file.metadata = {'url': '/files/stream/nonempty'}
-
+    
     @distributed_trace_async
     async def get_file_large(self, cls=None, **kwargs):
         """Get a large file.
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodyfile.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -120,18 +117,16 @@ class FilesOperations:
 
         return deserialized
     get_file_large.metadata = {'url': '/files/stream/verylarge'}
-
+    
     @distributed_trace_async
     async def get_empty_file(self, cls=None, **kwargs):
         """Get empty file.
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodyfile.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -164,4 +159,3 @@ class FilesOperations:
 
         return deserialized
     get_empty_file.metadata = {'url': '/files/stream/empty'}
-

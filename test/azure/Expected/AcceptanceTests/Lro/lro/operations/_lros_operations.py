@@ -38,6 +38,7 @@ class LROsOperations(object):
         self._deserialize = deserializer
         self._config = config
     
+
     def _put200_succeeded_initial(self, product=None, cls=None, **kwargs):
         error_map = kwargs.pop('error_map', {})
 
@@ -79,7 +80,6 @@ class LROsOperations(object):
 
         return deserialized
     _put200_succeeded_initial.metadata = {'url': '/lro/put/200/succeeded'}
-
     @distributed_trace
     def begin_put200_succeeded(self, product=None, cls=None, polling=True, **kwargs):
         """Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Succeeded’..
@@ -121,6 +121,7 @@ class LROsOperations(object):
     begin_put200_succeeded.metadata = {'url': '/lro/put/200/succeeded'}
 
     
+
     def _put200_succeeded_no_state_initial(self, product=None, cls=None, **kwargs):
         error_map = kwargs.pop('error_map', {})
 
@@ -160,7 +161,6 @@ class LROsOperations(object):
 
         return deserialized
     _put200_succeeded_no_state_initial.metadata = {'url': '/lro/put/200/succeeded/nostate'}
-
     @distributed_trace
     def begin_put200_succeeded_no_state(self, product=None, cls=None, polling=True, **kwargs):
         """Long running put request, service returns a 200 to the initial request, with an entity that does not contain ProvisioningState=’Succeeded’..
@@ -202,6 +202,7 @@ class LROsOperations(object):
     begin_put200_succeeded_no_state.metadata = {'url': '/lro/put/200/succeeded/nostate'}
 
     
+
     def _put202_retry200_initial(self, product=None, cls=None, **kwargs):
         error_map = kwargs.pop('error_map', {})
 
@@ -241,7 +242,6 @@ class LROsOperations(object):
 
         return deserialized
     _put202_retry200_initial.metadata = {'url': '/lro/put/202/retry/200'}
-
     @distributed_trace
     def begin_put202_retry200(self, product=None, cls=None, polling=True, **kwargs):
         """Long running put request, service returns a 202 to the initial request, with a location header that points to a polling URL that returns a 200 and an entity that doesn't contains ProvisioningState.
@@ -283,6 +283,7 @@ class LROsOperations(object):
     begin_put202_retry200.metadata = {'url': '/lro/put/202/retry/200'}
 
     
+
     def _put201_creating_succeeded200_initial(self, product=None, cls=None, **kwargs):
         error_map = kwargs.pop('error_map', {})
 
@@ -327,7 +328,6 @@ class LROsOperations(object):
 
         return deserialized
     _put201_creating_succeeded200_initial.metadata = {'url': '/lro/put/201/creating/succeeded/200'}
-
     @distributed_trace
     def begin_put201_creating_succeeded200(self, product=None, cls=None, polling=True, **kwargs):
         """Long running put request, service returns a 201 to the initial request, with an entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’.
@@ -369,6 +369,7 @@ class LROsOperations(object):
     begin_put201_creating_succeeded200.metadata = {'url': '/lro/put/201/creating/succeeded/200'}
 
     
+
     def _put200_updating_succeeded204_initial(self, product=None, cls=None, **kwargs):
         error_map = kwargs.pop('error_map', {})
 
@@ -408,7 +409,6 @@ class LROsOperations(object):
 
         return deserialized
     _put200_updating_succeeded204_initial.metadata = {'url': '/lro/put/200/updating/succeeded/200'}
-
     @distributed_trace
     def begin_put200_updating_succeeded204(self, product=None, cls=None, polling=True, **kwargs):
         """Long running put request, service returns a 201 to the initial request, with an entity that contains ProvisioningState=’Updating’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’.
@@ -450,6 +450,7 @@ class LROsOperations(object):
     begin_put200_updating_succeeded204.metadata = {'url': '/lro/put/200/updating/succeeded/200'}
 
     
+
     def _put201_creating_failed200_initial(self, product=None, cls=None, **kwargs):
         error_map = kwargs.pop('error_map', {})
 
@@ -494,7 +495,6 @@ class LROsOperations(object):
 
         return deserialized
     _put201_creating_failed200_initial.metadata = {'url': '/lro/put/201/created/failed/200'}
-
     @distributed_trace
     def begin_put201_creating_failed200(self, product=None, cls=None, polling=True, **kwargs):
         """Long running put request, service returns a 201 to the initial request, with an entity that contains ProvisioningState=’Created’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Failed’.
@@ -536,6 +536,7 @@ class LROsOperations(object):
     begin_put201_creating_failed200.metadata = {'url': '/lro/put/201/created/failed/200'}
 
     
+
     def _put200_acceptedcanceled200_initial(self, product=None, cls=None, **kwargs):
         error_map = kwargs.pop('error_map', {})
 
@@ -575,7 +576,6 @@ class LROsOperations(object):
 
         return deserialized
     _put200_acceptedcanceled200_initial.metadata = {'url': '/lro/put/200/accepted/canceled/200'}
-
     @distributed_trace
     def begin_put200_acceptedcanceled200(self, product=None, cls=None, polling=True, **kwargs):
         """Long running put request, service returns a 201 to the initial request, with an entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Canceled’.
@@ -617,6 +617,7 @@ class LROsOperations(object):
     begin_put200_acceptedcanceled200.metadata = {'url': '/lro/put/200/accepted/canceled/200'}
 
     
+
     def _put_no_header_in_retry_initial(self, product=None, cls=None, **kwargs):
         error_map = kwargs.pop('error_map', {})
 
@@ -658,7 +659,6 @@ class LROsOperations(object):
 
         return deserialized
     _put_no_header_in_retry_initial.metadata = {'url': '/lro/put/noheader/202/200'}
-
     @distributed_trace
     def begin_put_no_header_in_retry(self, product=None, cls=None, polling=True, **kwargs):
         """Long running put request, service returns a 202 to the initial request with location header. Subsequent calls to operation status do not contain location header..
@@ -702,6 +702,7 @@ class LROsOperations(object):
     begin_put_no_header_in_retry.metadata = {'url': '/lro/put/noheader/202/200'}
 
     
+
     def _put_async_retry_succeeded_initial(self, product=None, cls=None, **kwargs):
         error_map = kwargs.pop('error_map', {})
 
@@ -745,7 +746,6 @@ class LROsOperations(object):
 
         return deserialized
     _put_async_retry_succeeded_initial.metadata = {'url': '/lro/putasync/retry/succeeded'}
-
     @distributed_trace
     def begin_put_async_retry_succeeded(self, product=None, cls=None, polling=True, **kwargs):
         """Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
@@ -791,6 +791,7 @@ class LROsOperations(object):
     begin_put_async_retry_succeeded.metadata = {'url': '/lro/putasync/retry/succeeded'}
 
     
+
     def _put_async_no_retry_succeeded_initial(self, product=None, cls=None, **kwargs):
         error_map = kwargs.pop('error_map', {})
 
@@ -833,7 +834,6 @@ class LROsOperations(object):
 
         return deserialized
     _put_async_no_retry_succeeded_initial.metadata = {'url': '/lro/putasync/noretry/succeeded'}
-
     @distributed_trace
     def begin_put_async_no_retry_succeeded(self, product=None, cls=None, polling=True, **kwargs):
         """Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
@@ -878,6 +878,7 @@ class LROsOperations(object):
     begin_put_async_no_retry_succeeded.metadata = {'url': '/lro/putasync/noretry/succeeded'}
 
     
+
     def _put_async_retry_failed_initial(self, product=None, cls=None, **kwargs):
         error_map = kwargs.pop('error_map', {})
 
@@ -921,7 +922,6 @@ class LROsOperations(object):
 
         return deserialized
     _put_async_retry_failed_initial.metadata = {'url': '/lro/putasync/retry/failed'}
-
     @distributed_trace
     def begin_put_async_retry_failed(self, product=None, cls=None, polling=True, **kwargs):
         """Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
@@ -967,6 +967,7 @@ class LROsOperations(object):
     begin_put_async_retry_failed.metadata = {'url': '/lro/putasync/retry/failed'}
 
     
+
     def _put_async_no_retrycanceled_initial(self, product=None, cls=None, **kwargs):
         error_map = kwargs.pop('error_map', {})
 
@@ -1009,7 +1010,6 @@ class LROsOperations(object):
 
         return deserialized
     _put_async_no_retrycanceled_initial.metadata = {'url': '/lro/putasync/noretry/canceled'}
-
     @distributed_trace
     def begin_put_async_no_retrycanceled(self, product=None, cls=None, polling=True, **kwargs):
         """Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
@@ -1054,6 +1054,7 @@ class LROsOperations(object):
     begin_put_async_no_retrycanceled.metadata = {'url': '/lro/putasync/noretry/canceled'}
 
     
+
     def _put_async_no_header_in_retry_initial(self, product=None, cls=None, **kwargs):
         error_map = kwargs.pop('error_map', {})
 
@@ -1095,7 +1096,6 @@ class LROsOperations(object):
 
         return deserialized
     _put_async_no_header_in_retry_initial.metadata = {'url': '/lro/putasync/noheader/201/200'}
-
     @distributed_trace
     def begin_put_async_no_header_in_retry(self, product=None, cls=None, polling=True, **kwargs):
         """Long running put request, service returns a 202 to the initial request with Azure-AsyncOperation header. Subsequent calls to operation status do not contain Azure-AsyncOperation header..
@@ -1139,6 +1139,7 @@ class LROsOperations(object):
     begin_put_async_no_header_in_retry.metadata = {'url': '/lro/putasync/noheader/201/200'}
 
     
+
     def _put_non_resource_initial(self, sku=None, cls=None, **kwargs):
         error_map = kwargs.pop('error_map', {})
 
@@ -1178,7 +1179,6 @@ class LROsOperations(object):
 
         return deserialized
     _put_non_resource_initial.metadata = {'url': '/lro/putnonresource/202/200'}
-
     @distributed_trace
     def begin_put_non_resource(self, sku=None, cls=None, polling=True, **kwargs):
         """Long running put request with non resource..
@@ -1220,6 +1220,7 @@ class LROsOperations(object):
     begin_put_non_resource.metadata = {'url': '/lro/putnonresource/202/200'}
 
     
+
     def _put_async_non_resource_initial(self, sku=None, cls=None, **kwargs):
         error_map = kwargs.pop('error_map', {})
 
@@ -1259,7 +1260,6 @@ class LROsOperations(object):
 
         return deserialized
     _put_async_non_resource_initial.metadata = {'url': '/lro/putnonresourceasync/202/200'}
-
     @distributed_trace
     def begin_put_async_non_resource(self, sku=None, cls=None, polling=True, **kwargs):
         """Long running put request with non resource..
@@ -1301,6 +1301,7 @@ class LROsOperations(object):
     begin_put_async_non_resource.metadata = {'url': '/lro/putnonresourceasync/202/200'}
 
     
+
     def _put_sub_resource_initial(self, properties=None, cls=None, **kwargs):
         error_map = kwargs.pop('error_map', {})
         product = models.SubProduct(properties=properties)
@@ -1341,7 +1342,6 @@ class LROsOperations(object):
 
         return deserialized
     _put_sub_resource_initial.metadata = {'url': '/lro/putsubresource/202/200'}
-
     @distributed_trace
     def begin_put_sub_resource(self, properties=None, cls=None, polling=True, **kwargs):
         """Long running put request with sub resource..
@@ -1383,6 +1383,7 @@ class LROsOperations(object):
     begin_put_sub_resource.metadata = {'url': '/lro/putsubresource/202/200'}
 
     
+
     def _put_async_sub_resource_initial(self, properties=None, cls=None, **kwargs):
         error_map = kwargs.pop('error_map', {})
         product = models.SubProduct(properties=properties)
@@ -1423,7 +1424,6 @@ class LROsOperations(object):
 
         return deserialized
     _put_async_sub_resource_initial.metadata = {'url': '/lro/putsubresourceasync/202/200'}
-
     @distributed_trace
     def begin_put_async_sub_resource(self, properties=None, cls=None, polling=True, **kwargs):
         """Long running put request with sub resource..
@@ -1465,6 +1465,7 @@ class LROsOperations(object):
     begin_put_async_sub_resource.metadata = {'url': '/lro/putsubresourceasync/202/200'}
 
     
+
     def _delete_provisioning202_accepted200_succeeded_initial(self, cls=None, **kwargs):
         error_map = kwargs.pop('error_map', {})
 
@@ -1505,7 +1506,6 @@ class LROsOperations(object):
 
         return deserialized
     _delete_provisioning202_accepted200_succeeded_initial.metadata = {'url': '/lro/delete/provisioning/202/accepted/200/succeeded'}
-
     @distributed_trace
     def begin_delete_provisioning202_accepted200_succeeded(self, cls=None, polling=True, **kwargs):
         """Long running delete request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Accepted’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’.
@@ -1547,6 +1547,7 @@ class LROsOperations(object):
     begin_delete_provisioning202_accepted200_succeeded.metadata = {'url': '/lro/delete/provisioning/202/accepted/200/succeeded'}
 
     
+
     def _delete_provisioning202_deleting_failed200_initial(self, cls=None, **kwargs):
         error_map = kwargs.pop('error_map', {})
 
@@ -1587,7 +1588,6 @@ class LROsOperations(object):
 
         return deserialized
     _delete_provisioning202_deleting_failed200_initial.metadata = {'url': '/lro/delete/provisioning/202/deleting/200/failed'}
-
     @distributed_trace
     def begin_delete_provisioning202_deleting_failed200(self, cls=None, polling=True, **kwargs):
         """Long running delete request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Failed’.
@@ -1629,6 +1629,7 @@ class LROsOperations(object):
     begin_delete_provisioning202_deleting_failed200.metadata = {'url': '/lro/delete/provisioning/202/deleting/200/failed'}
 
     
+
     def _delete_provisioning202_deletingcanceled200_initial(self, cls=None, **kwargs):
         error_map = kwargs.pop('error_map', {})
 
@@ -1669,7 +1670,6 @@ class LROsOperations(object):
 
         return deserialized
     _delete_provisioning202_deletingcanceled200_initial.metadata = {'url': '/lro/delete/provisioning/202/deleting/200/canceled'}
-
     @distributed_trace
     def begin_delete_provisioning202_deletingcanceled200(self, cls=None, polling=True, **kwargs):
         """Long running delete request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Canceled’.
@@ -1711,6 +1711,7 @@ class LROsOperations(object):
     begin_delete_provisioning202_deletingcanceled200.metadata = {'url': '/lro/delete/provisioning/202/deleting/200/canceled'}
 
     
+
     def _delete204_succeeded_initial(self, cls=None, **kwargs):
         error_map = kwargs.pop('error_map', {})
 
@@ -1739,7 +1740,6 @@ class LROsOperations(object):
           return cls(response, None, {})
 
     _delete204_succeeded_initial.metadata = {'url': '/lro/delete/204/succeeded'}
-
     @distributed_trace
     def begin_delete204_succeeded(self, cls=None, polling=True, **kwargs):
         """Long running delete succeeds and returns right away.
@@ -1775,6 +1775,7 @@ class LROsOperations(object):
     begin_delete204_succeeded.metadata = {'url': '/lro/delete/204/succeeded'}
 
     
+
     def _delete202_retry200_initial(self, cls=None, **kwargs):
         error_map = kwargs.pop('error_map', {})
 
@@ -1814,7 +1815,6 @@ class LROsOperations(object):
 
         return deserialized
     _delete202_retry200_initial.metadata = {'url': '/lro/delete/202/retry/200'}
-
     @distributed_trace
     def begin_delete202_retry200(self, cls=None, polling=True, **kwargs):
         """Long running delete request, service returns a 202 to the initial request. Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’.
@@ -1853,6 +1853,7 @@ class LROsOperations(object):
     begin_delete202_retry200.metadata = {'url': '/lro/delete/202/retry/200'}
 
     
+
     def _delete202_no_retry204_initial(self, cls=None, **kwargs):
         error_map = kwargs.pop('error_map', {})
 
@@ -1892,7 +1893,6 @@ class LROsOperations(object):
 
         return deserialized
     _delete202_no_retry204_initial.metadata = {'url': '/lro/delete/202/noretry/204'}
-
     @distributed_trace
     def begin_delete202_no_retry204(self, cls=None, polling=True, **kwargs):
         """Long running delete request, service returns a 202 to the initial request. Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’.
@@ -1931,6 +1931,7 @@ class LROsOperations(object):
     begin_delete202_no_retry204.metadata = {'url': '/lro/delete/202/noretry/204'}
 
     
+
     def _delete_no_header_in_retry_initial(self, cls=None, **kwargs):
         error_map = kwargs.pop('error_map', {})
 
@@ -1963,7 +1964,6 @@ class LROsOperations(object):
           return cls(response, None, response_headers)
 
     _delete_no_header_in_retry_initial.metadata = {'url': '/lro/delete/noheader'}
-
     @distributed_trace
     def begin_delete_no_header_in_retry(self, cls=None, polling=True, **kwargs):
         """Long running delete request, service returns a location header in the initial request. Subsequent calls to operation status do not contain location header..
@@ -1999,6 +1999,7 @@ class LROsOperations(object):
     begin_delete_no_header_in_retry.metadata = {'url': '/lro/delete/noheader'}
 
     
+
     def _delete_async_no_header_in_retry_initial(self, cls=None, **kwargs):
         error_map = kwargs.pop('error_map', {})
 
@@ -2031,7 +2032,6 @@ class LROsOperations(object):
           return cls(response, None, response_headers)
 
     _delete_async_no_header_in_retry_initial.metadata = {'url': '/lro/deleteasync/noheader/202/204'}
-
     @distributed_trace
     def begin_delete_async_no_header_in_retry(self, cls=None, polling=True, **kwargs):
         """Long running delete request, service returns an Azure-AsyncOperation header in the initial request. Subsequent calls to operation status do not contain Azure-AsyncOperation header..
@@ -2067,6 +2067,7 @@ class LROsOperations(object):
     begin_delete_async_no_header_in_retry.metadata = {'url': '/lro/deleteasync/noheader/202/204'}
 
     
+
     def _delete_async_retry_succeeded_initial(self, cls=None, **kwargs):
         error_map = kwargs.pop('error_map', {})
 
@@ -2100,7 +2101,6 @@ class LROsOperations(object):
           return cls(response, None, response_headers)
 
     _delete_async_retry_succeeded_initial.metadata = {'url': '/lro/deleteasync/retry/succeeded'}
-
     @distributed_trace
     def begin_delete_async_retry_succeeded(self, cls=None, polling=True, **kwargs):
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
@@ -2136,6 +2136,7 @@ class LROsOperations(object):
     begin_delete_async_retry_succeeded.metadata = {'url': '/lro/deleteasync/retry/succeeded'}
 
     
+
     def _delete_async_no_retry_succeeded_initial(self, cls=None, **kwargs):
         error_map = kwargs.pop('error_map', {})
 
@@ -2169,7 +2170,6 @@ class LROsOperations(object):
           return cls(response, None, response_headers)
 
     _delete_async_no_retry_succeeded_initial.metadata = {'url': '/lro/deleteasync/noretry/succeeded'}
-
     @distributed_trace
     def begin_delete_async_no_retry_succeeded(self, cls=None, polling=True, **kwargs):
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
@@ -2205,6 +2205,7 @@ class LROsOperations(object):
     begin_delete_async_no_retry_succeeded.metadata = {'url': '/lro/deleteasync/noretry/succeeded'}
 
     
+
     def _delete_async_retry_failed_initial(self, cls=None, **kwargs):
         error_map = kwargs.pop('error_map', {})
 
@@ -2238,7 +2239,6 @@ class LROsOperations(object):
           return cls(response, None, response_headers)
 
     _delete_async_retry_failed_initial.metadata = {'url': '/lro/deleteasync/retry/failed'}
-
     @distributed_trace
     def begin_delete_async_retry_failed(self, cls=None, polling=True, **kwargs):
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
@@ -2274,6 +2274,7 @@ class LROsOperations(object):
     begin_delete_async_retry_failed.metadata = {'url': '/lro/deleteasync/retry/failed'}
 
     
+
     def _delete_async_retrycanceled_initial(self, cls=None, **kwargs):
         error_map = kwargs.pop('error_map', {})
 
@@ -2307,7 +2308,6 @@ class LROsOperations(object):
           return cls(response, None, response_headers)
 
     _delete_async_retrycanceled_initial.metadata = {'url': '/lro/deleteasync/retry/canceled'}
-
     @distributed_trace
     def begin_delete_async_retrycanceled(self, cls=None, polling=True, **kwargs):
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
@@ -2343,6 +2343,7 @@ class LROsOperations(object):
     begin_delete_async_retrycanceled.metadata = {'url': '/lro/deleteasync/retry/canceled'}
 
     
+
     def _post200_with_payload_initial(self, cls=None, **kwargs):
         error_map = kwargs.pop('error_map', {})
 
@@ -2380,7 +2381,6 @@ class LROsOperations(object):
 
         return deserialized
     _post200_with_payload_initial.metadata = {'url': '/lro/post/payload/200'}
-
     @distributed_trace
     def begin_post200_with_payload(self, cls=None, polling=True, **kwargs):
         """Long running post request, service returns a 202 to the initial request, with 'Location' header. Poll returns a 200 with a response body after success..
@@ -2419,6 +2419,7 @@ class LROsOperations(object):
     begin_post200_with_payload.metadata = {'url': '/lro/post/payload/200'}
 
     
+
     def _post202_retry200_initial(self, product=None, cls=None, **kwargs):
         error_map = kwargs.pop('error_map', {})
 
@@ -2458,7 +2459,6 @@ class LROsOperations(object):
           return cls(response, None, response_headers)
 
     _post202_retry200_initial.metadata = {'url': '/lro/post/202/retry/200'}
-
     @distributed_trace
     def begin_post202_retry200(self, product=None, cls=None, polling=True, **kwargs):
         """Long running post request, service returns a 202 to the initial request, with 'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success.
@@ -2497,6 +2497,7 @@ class LROsOperations(object):
     begin_post202_retry200.metadata = {'url': '/lro/post/202/retry/200'}
 
     
+
     def _post202_no_retry204_initial(self, product=None, cls=None, **kwargs):
         error_map = kwargs.pop('error_map', {})
 
@@ -2539,7 +2540,6 @@ class LROsOperations(object):
 
         return deserialized
     _post202_no_retry204_initial.metadata = {'url': '/lro/post/202/noretry/204'}
-
     @distributed_trace
     def begin_post202_no_retry204(self, product=None, cls=None, polling=True, **kwargs):
         """Long running post request, service returns a 202 to the initial request, with 'Location' header, 204 with noresponse body after success.
@@ -2584,6 +2584,7 @@ class LROsOperations(object):
     begin_post202_no_retry204.metadata = {'url': '/lro/post/202/noretry/204'}
 
     
+
     def _post_double_headers_final_location_get_initial(self, cls=None, **kwargs):
         error_map = kwargs.pop('error_map', {})
 
@@ -2616,7 +2617,6 @@ class LROsOperations(object):
 
         return deserialized
     _post_double_headers_final_location_get_initial.metadata = {'url': '/lro/LROPostDoubleHeadersFinalLocationGet'}
-
     @distributed_trace
     def begin_post_double_headers_final_location_get(self, cls=None, polling=True, **kwargs):
         """Long running post request, service returns a 202 to the initial request with both Location and Azure-Async header. Poll Azure-Async and it's success. Should poll Location to get the final object.
@@ -2655,6 +2655,7 @@ class LROsOperations(object):
     begin_post_double_headers_final_location_get.metadata = {'url': '/lro/LROPostDoubleHeadersFinalLocationGet'}
 
     
+
     def _post_double_headers_final_azure_header_get_initial(self, cls=None, **kwargs):
         error_map = kwargs.pop('error_map', {})
 
@@ -2687,7 +2688,6 @@ class LROsOperations(object):
 
         return deserialized
     _post_double_headers_final_azure_header_get_initial.metadata = {'url': '/lro/LROPostDoubleHeadersFinalAzureHeaderGet'}
-
     @distributed_trace
     def begin_post_double_headers_final_azure_header_get(self, cls=None, polling=True, **kwargs):
         """Long running post request, service returns a 202 to the initial request with both Location and Azure-Async header. Poll Azure-Async and it's success. Should NOT poll Location to get the final object.
@@ -2726,6 +2726,7 @@ class LROsOperations(object):
     begin_post_double_headers_final_azure_header_get.metadata = {'url': '/lro/LROPostDoubleHeadersFinalAzureHeaderGet'}
 
     
+
     def _post_double_headers_final_azure_header_get_default_initial(self, cls=None, **kwargs):
         error_map = kwargs.pop('error_map', {})
 
@@ -2758,7 +2759,6 @@ class LROsOperations(object):
 
         return deserialized
     _post_double_headers_final_azure_header_get_default_initial.metadata = {'url': '/lro/LROPostDoubleHeadersFinalAzureHeaderGetDefault'}
-
     @distributed_trace
     def begin_post_double_headers_final_azure_header_get_default(self, cls=None, polling=True, **kwargs):
         """Long running post request, service returns a 202 to the initial request with both Location and Azure-Async header. Poll Azure-Async and it's success. Should NOT poll Location to get the final object if you support initial Autorest behavior..
@@ -2797,6 +2797,7 @@ class LROsOperations(object):
     begin_post_double_headers_final_azure_header_get_default.metadata = {'url': '/lro/LROPostDoubleHeadersFinalAzureHeaderGetDefault'}
 
     
+
     def _post_async_retry_succeeded_initial(self, product=None, cls=None, **kwargs):
         error_map = kwargs.pop('error_map', {})
 
@@ -2844,7 +2845,6 @@ class LROsOperations(object):
 
         return deserialized
     _post_async_retry_succeeded_initial.metadata = {'url': '/lro/postasync/retry/succeeded'}
-
     @distributed_trace
     def begin_post_async_retry_succeeded(self, product=None, cls=None, polling=True, **kwargs):
         """Long running post request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
@@ -2886,6 +2886,7 @@ class LROsOperations(object):
     begin_post_async_retry_succeeded.metadata = {'url': '/lro/postasync/retry/succeeded'}
 
     
+
     def _post_async_no_retry_succeeded_initial(self, product=None, cls=None, **kwargs):
         error_map = kwargs.pop('error_map', {})
 
@@ -2933,7 +2934,6 @@ class LROsOperations(object):
 
         return deserialized
     _post_async_no_retry_succeeded_initial.metadata = {'url': '/lro/postasync/noretry/succeeded'}
-
     @distributed_trace
     def begin_post_async_no_retry_succeeded(self, product=None, cls=None, polling=True, **kwargs):
         """Long running post request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
@@ -2975,6 +2975,7 @@ class LROsOperations(object):
     begin_post_async_no_retry_succeeded.metadata = {'url': '/lro/postasync/noretry/succeeded'}
 
     
+
     def _post_async_retry_failed_initial(self, product=None, cls=None, **kwargs):
         error_map = kwargs.pop('error_map', {})
 
@@ -3015,7 +3016,6 @@ class LROsOperations(object):
           return cls(response, None, response_headers)
 
     _post_async_retry_failed_initial.metadata = {'url': '/lro/postasync/retry/failed'}
-
     @distributed_trace
     def begin_post_async_retry_failed(self, product=None, cls=None, polling=True, **kwargs):
         """Long running post request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
@@ -3054,6 +3054,7 @@ class LROsOperations(object):
     begin_post_async_retry_failed.metadata = {'url': '/lro/postasync/retry/failed'}
 
     
+
     def _post_async_retrycanceled_initial(self, product=None, cls=None, **kwargs):
         error_map = kwargs.pop('error_map', {})
 
@@ -3094,7 +3095,6 @@ class LROsOperations(object):
           return cls(response, None, response_headers)
 
     _post_async_retrycanceled_initial.metadata = {'url': '/lro/postasync/retry/canceled'}
-
     @distributed_trace
     def begin_post_async_retrycanceled(self, product=None, cls=None, polling=True, **kwargs):
         """Long running post request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.

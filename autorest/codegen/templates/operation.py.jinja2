@@ -6,15 +6,16 @@
 {% macro return_docstring() %}
 {% if operation.responses | selectattr('has_body') | first %}
 :return: {{ operation.responses|map(attribute='schema')|map(attribute='name')|join(' or ') }} or the result of cls(response)
-    :rtype: {% for response in operation.responses %}{{response.schema.get_python_type(code_model.namespace) if response.has_body else "None"}}{% if not loop.last %} or {% endif %}{% endfor %}
+:rtype: {% for response in operation.responses %}{{response.schema.get_python_type(code_model.namespace) if response.has_body else "None"}}{% if not loop.last %} or {% endif %}{% endfor %}
 {% else %}
 :return: None or the result of cls(response)
-    :rtype: None
-{% endif %}
+:rtype: None
+{%- endif -%}
 {% endmacro %}
 {% macro exception_name() %}{{ operation.default_exception.schema.name }}Exception{% endmacro %}
 {% set core_excep_name = 'ARMError' if code_model.options['azure_arm'] else 'HttpResponseError' %}
 {# actual template starts here #}
+
 {% if code_model.options['tracing'] and operation.want_tracing %}
 {{ trace_decorator }}
 {% else %}
@@ -24,7 +25,7 @@
 {% if operation.want_description_docstring %}
     """{{operation.description.strip() }}.
 
-    {{ "FIXME: add operation.summary\n" }}
+    FIXME: add operation.summary
 
 {% if operation.deprecated -%}
     .. warning::
@@ -36,7 +37,7 @@
     :type {{ parameter.serialized_name }}: {{ parameter.schema.get_python_type(code_model.namespace) }}
 {% endfor %}
     :param callable cls: A custom type or function that will be passed the direct response
-    {{ return_docstring() }}
+    {{ return_docstring()|indent }}
     {% if not operation.default_exception %}
         {% if code_model.options['azure_arm'] %}
     :raises: ~azure.mgmt.core.ARMError

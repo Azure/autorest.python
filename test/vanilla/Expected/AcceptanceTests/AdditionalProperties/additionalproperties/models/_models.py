@@ -9,6 +9,7 @@
 from azure.core.exceptions import HttpResponseError
 from msrest.serialization import Model
 
+
 class PetAPTrue(Model):
     """PetAPTrue.
 
@@ -46,6 +47,7 @@ class PetAPTrue(Model):
         self.name = kwargs.get('name', None)
         self.status = None
 
+
 class CatAPTrue(PetAPTrue):
     """CatAPTrue.
 
@@ -82,6 +84,7 @@ class CatAPTrue(PetAPTrue):
     def __init__(self, **kwargs):
         super(CatAPTrue, self).__init__(**kwargs)
         self.friendly = kwargs.get('friendly', None)
+
 
 class ErrorException(HttpResponseError):
     """Server responded with exception of type: 'Error'.
@@ -128,6 +131,7 @@ class Error(Model):
         self.status = kwargs.get('status', None)
         self.message = kwargs.get('message', None)
 
+
 class PetAPInProperties(Model):
     """PetAPInProperties.
 
@@ -164,6 +168,7 @@ class PetAPInProperties(Model):
         self.name = kwargs.get('name', None)
         self.status = None
         self.additional_properties = kwargs.get('additional_properties', None)
+
 
 class PetAPInPropertiesWithAPString(Model):
     """PetAPInPropertiesWithAPString.
@@ -212,6 +217,7 @@ class PetAPInPropertiesWithAPString(Model):
         self.odatalocation = kwargs.get('odatalocation', None)
         self.additional_properties1 = kwargs.get('additional_properties1', None)
 
+
 class PetAPObject(Model):
     """PetAPObject.
 
@@ -249,6 +255,7 @@ class PetAPObject(Model):
         self.name = kwargs.get('name', None)
         self.status = None
 
+
 class PetAPString(Model):
     """PetAPString.
 
@@ -285,4 +292,3 @@ class PetAPString(Model):
         self.id = kwargs.get('id', None)
         self.name = kwargs.get('name', None)
         self.status = None
-

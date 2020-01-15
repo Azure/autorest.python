@@ -33,12 +33,12 @@ class ReadonlypropertyOperations(object):
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
+    
     @distributed_trace
     def get_valid(self, cls=None, **kwargs):
         """Get complex types that have readonly properties.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: ReadonlyObj or the result of cls(response)
@@ -75,20 +75,18 @@ class ReadonlypropertyOperations(object):
 
         return deserialized
     get_valid.metadata = {'url': '/complex/readonlyproperty/valid'}
-
+    
     @distributed_trace
     def put_valid(self, size=None, cls=None, **kwargs):
         """Put complex types that have readonly properties.
 
         FIXME: add operation.summary
 
-
         :param size: 
         :type size: int
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodycomplex.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -122,4 +120,3 @@ class ReadonlypropertyOperations(object):
           return cls(response, None, {})
 
     put_valid.metadata = {'url': '/complex/readonlyproperty/valid'}
-

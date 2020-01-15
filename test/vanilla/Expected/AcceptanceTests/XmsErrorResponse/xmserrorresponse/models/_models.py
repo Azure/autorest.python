@@ -9,6 +9,7 @@
 from azure.core.exceptions import HttpResponseError
 from msrest.serialization import Model
 
+
 class Animal(Model):
     """Animal.
 
@@ -24,6 +25,7 @@ class Animal(Model):
         super(Animal, self).__init__(**kwargs)
         self.ani_type = kwargs.get('ani_type', None)
 
+
 class BaseError(Model):
     """BaseError.
 
@@ -38,6 +40,7 @@ class BaseError(Model):
     def __init__(self, **kwargs):
         super(BaseError, self).__init__(**kwargs)
         self.some_base_prop = kwargs.get('some_base_prop', None)
+
 
 class NotFoundErrorBaseException(HttpResponseError):
     """Server responded with exception of type: 'NotFoundErrorBase'.
@@ -100,6 +103,7 @@ class NotFoundErrorBase(BaseError):
         self.reason = kwargs.get('reason', None)
         self.what_not_found = 'NotFoundErrorBase'
 
+
 class AnimalNotFoundException(NotFoundErrorBaseException):
     """Server responded with exception of type: 'AnimalNotFound'.
 
@@ -156,6 +160,7 @@ class AnimalNotFound(NotFoundErrorBase):
         super(AnimalNotFound, self).__init__(**kwargs)
         self.what_not_found = 'AnimalNotFound'
         self.name = kwargs.get('name', None)
+
 
 class LinkNotFoundException(NotFoundErrorBaseException):
     """Server responded with exception of type: 'LinkNotFound'.
@@ -214,6 +219,7 @@ class LinkNotFound(NotFoundErrorBase):
         self.what_not_found = 'InvalidResourceLink'
         self.what_sub_address = kwargs.get('what_sub_address', None)
 
+
 class Pet(Animal):
     """Pet.
 
@@ -238,6 +244,7 @@ class Pet(Animal):
         super(Pet, self).__init__(**kwargs)
         self.name = None
 
+
 class PetAction(Model):
     """PetAction.
 
@@ -252,6 +259,7 @@ class PetAction(Model):
     def __init__(self, **kwargs):
         super(PetAction, self).__init__(**kwargs)
         self.action_response = kwargs.get('action_response', None)
+
 
 class PetActionErrorException(HttpResponseError):
     """Server responded with exception of type: 'PetActionError'.
@@ -310,6 +318,7 @@ class PetActionError(Model):
         super(PetActionError, self).__init__(**kwargs)
         self.error_type = None
         self.error_message = kwargs.get('error_message', None)
+
 
 class PetSadErrorException(PetActionErrorException):
     """Server responded with exception of type: 'PetSadError'.
@@ -372,6 +381,7 @@ class PetSadError(PetActionError):
         self.error_type = 'PetSadError'
         self.reason = kwargs.get('reason', None)
 
+
 class PetHungryOrThirstyErrorException(PetSadErrorException):
     """Server responded with exception of type: 'PetHungryOrThirstyError'.
 
@@ -428,4 +438,3 @@ class PetHungryOrThirstyError(PetSadError):
         super(PetHungryOrThirstyError, self).__init__(**kwargs)
         self.error_type = 'PetHungryOrThirstyError'
         self.hungry_or_thirsty = kwargs.get('hungry_or_thirsty', None)
-

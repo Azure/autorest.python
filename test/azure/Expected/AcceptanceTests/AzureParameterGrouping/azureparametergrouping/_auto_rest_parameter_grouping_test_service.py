@@ -17,14 +17,12 @@ from . import models
 class AutoRestParameterGroupingTestService(object):
     """Test Infrastructure for AutoRest
 
-
     :ivar parameter_grouping: ParameterGroupingOperations operations
     :vartype parameter_grouping: azureparametergrouping.operations.ParameterGroupingOperations
     :param str base_url: Service URL
     """
 
     def __init__(self, base_url=None, **kwargs):
-
         if not base_url:
             base_url = 'http://localhost:3000'
         self._config = AutoRestParameterGroupingTestServiceConfiguration(**kwargs)

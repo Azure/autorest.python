@@ -9,6 +9,7 @@
 from azure.core.exceptions import HttpResponseError
 from msrest.serialization import Model
 
+
 class MyExceptionException(HttpResponseError):
     """Server responded with exception of type: 'MyException'.
 
@@ -49,6 +50,7 @@ class MyException(Model):
     def __init__(self, *, status_code: str=None, **kwargs) -> None:
         super(MyException, self).__init__(**kwargs)
         self.status_code = status_code
+
 
 class BException(MyExceptionException):
     """Server responded with exception of type: 'B'.
@@ -94,6 +96,7 @@ class B(MyException):
         super(B, self).__init__(status_code=status_code, **kwargs)
         self.text_status_code = text_status_code
 
+
 class C(Model):
     """C.
 
@@ -109,6 +112,7 @@ class C(Model):
         super(C, self).__init__(**kwargs)
         self.http_code = http_code
 
+
 class D(Model):
     """D.
 
@@ -123,6 +127,7 @@ class D(Model):
     def __init__(self, *, http_status_code: str=None, **kwargs) -> None:
         super(D, self).__init__(**kwargs)
         self.http_status_code = http_status_code
+
 
 class ErrorException(HttpResponseError):
     """Server responded with exception of type: 'Error'.
@@ -168,4 +173,3 @@ class Error(Model):
         super(Error, self).__init__(**kwargs)
         self.status = status
         self.message = message
-

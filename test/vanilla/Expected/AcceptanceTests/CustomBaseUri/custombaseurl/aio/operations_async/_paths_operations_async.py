@@ -33,19 +33,18 @@ class PathsOperations:
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
+    
     @distributed_trace_async
     async def get_empty(self, account_name, cls=None, **kwargs):
         """Get a 200 to test a valid base uri.
 
         FIXME: add operation.summary
 
-
         :param account_name: Account Name
         :type account_name: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~custombaseurl.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -79,4 +78,3 @@ class PathsOperations:
           return cls(response, None, {})
 
     get_empty.metadata = {'url': '/customuri'}
-

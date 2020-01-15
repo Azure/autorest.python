@@ -11,6 +11,7 @@ from typing import List
 from azure.core.exceptions import HttpResponseError
 from msrest.serialization import Model
 
+
 class ChildProduct(Model):
     """The product documentation.
 
@@ -38,6 +39,7 @@ class ChildProduct(Model):
     def __init__(self, *, count: int=None, **kwargs) -> None:
         super(ChildProduct, self).__init__(**kwargs)
         self.count = count
+
 
 class ConstantProduct(Model):
     """The product documentation.
@@ -67,6 +69,7 @@ class ConstantProduct(Model):
 
     def __init__(self, **kwargs) -> None:
         super(ConstantProduct, self).__init__(**kwargs)
+
 
 class ErrorException(HttpResponseError):
     """Server responded with exception of type: 'Error'.
@@ -116,6 +119,7 @@ class Error(Model):
         self.code = code
         self.message = message
         self.fields = fields
+
 
 class Product(Model):
     """The product documentation.
@@ -176,4 +180,3 @@ class Product(Model):
         self.image = image
         self.child = child
         self.const_child = const_child
-

@@ -33,12 +33,12 @@ class DateOperations(object):
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
+    
     @distributed_trace
     def get_null(self, cls=None, **kwargs):
         """Get null date value.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -75,13 +75,12 @@ class DateOperations(object):
 
         return deserialized
     get_null.metadata = {'url': '/date/null'}
-
+    
     @distributed_trace
     def get_invalid_date(self, cls=None, **kwargs):
         """Get invalid date value.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -118,13 +117,12 @@ class DateOperations(object):
 
         return deserialized
     get_invalid_date.metadata = {'url': '/date/invaliddate'}
-
+    
     @distributed_trace
     def get_overflow_date(self, cls=None, **kwargs):
         """Get overflow date value.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -161,13 +159,12 @@ class DateOperations(object):
 
         return deserialized
     get_overflow_date.metadata = {'url': '/date/overflowdate'}
-
+    
     @distributed_trace
     def get_underflow_date(self, cls=None, **kwargs):
         """Get underflow date value.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -204,20 +201,18 @@ class DateOperations(object):
 
         return deserialized
     get_underflow_date.metadata = {'url': '/date/underflowdate'}
-
+    
     @distributed_trace
     def put_max_date(self, date_body, cls=None, **kwargs):
         """Put max date value 9999-12-31.
 
         FIXME: add operation.summary
 
-
         :param date_body: 
         :type date_body: ~datetime.date
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodydate.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -250,13 +245,12 @@ class DateOperations(object):
           return cls(response, None, {})
 
     put_max_date.metadata = {'url': '/date/max'}
-
+    
     @distributed_trace
     def get_max_date(self, cls=None, **kwargs):
         """Get max date value 9999-12-31.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -293,20 +287,18 @@ class DateOperations(object):
 
         return deserialized
     get_max_date.metadata = {'url': '/date/max'}
-
+    
     @distributed_trace
     def put_min_date(self, date_body, cls=None, **kwargs):
         """Put min date value 0000-01-01.
 
         FIXME: add operation.summary
 
-
         :param date_body: 
         :type date_body: ~datetime.date
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodydate.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -339,13 +331,12 @@ class DateOperations(object):
           return cls(response, None, {})
 
     put_min_date.metadata = {'url': '/date/min'}
-
+    
     @distributed_trace
     def get_min_date(self, cls=None, **kwargs):
         """Get min date value 0000-01-01.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -382,4 +373,3 @@ class DateOperations(object):
 
         return deserialized
     get_min_date.metadata = {'url': '/date/min'}
-

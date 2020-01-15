@@ -35,17 +35,16 @@ class XMsClientRequestIdOperations(object):
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
+    
     @distributed_trace
     def get(self, cls=None, **kwargs):
         """Get method that overwrites x-ms-client-request header with value 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0..
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~azure.mgmt.core.ARMError
         """
         error_map = kwargs.pop('error_map', {})
@@ -75,20 +74,18 @@ class XMsClientRequestIdOperations(object):
           return cls(response, None, {})
 
     get.metadata = {'url': '/azurespecials/overwrite/x-ms-client-request-id/method/'}
-
+    
     @distributed_trace
     def param_get(self, x_ms_client_request_id, cls=None, **kwargs):
         """Get method that overwrites x-ms-client-request header with value 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0..
 
         FIXME: add operation.summary
 
-
         :param x_ms_client_request_id: This should appear as a method parameter, use value '9C4D50EE-2D56-4CD3-8152-34347DC9F2B0'
         :type x_ms_client_request_id: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~azurespecialproperties.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -119,4 +116,3 @@ class XMsClientRequestIdOperations(object):
           return cls(response, None, {})
 
     param_get.metadata = {'url': '/azurespecials/overwrite/x-ms-client-request-id/via-param/method/'}
-

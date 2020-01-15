@@ -9,6 +9,7 @@
 from azure.core.exceptions import HttpResponseError
 from msrest.serialization import Model
 
+
 class ErrorException(HttpResponseError):
     """Server responded with exception of type: 'Error'.
 
@@ -67,6 +68,7 @@ class Error(Model):
         self.status = status
         self.message = message
 
+
 class OdataFilter(Model):
     """OdataFilter.
 
@@ -85,4 +87,3 @@ class OdataFilter(Model):
         super(OdataFilter, self).__init__(**kwargs)
         self.id = id
         self.name = name
-

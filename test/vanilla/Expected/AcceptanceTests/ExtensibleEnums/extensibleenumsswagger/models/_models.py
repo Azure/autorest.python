@@ -8,6 +8,7 @@
 
 from msrest.serialization import Model
 
+
 class Pet(Model):
     """Pet.
 
@@ -39,4 +40,3 @@ class Pet(Model):
         self.name = kwargs.get('name', None)
         self.days_of_week = kwargs.get('days_of_week', "Friday")
         self.int_enum = kwargs.get('int_enum', None)
-

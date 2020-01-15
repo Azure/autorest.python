@@ -16,7 +16,6 @@ from .operations_async import HeadExceptionOperations
 class AutoRestHeadExceptionTestService(object):
     """Test Infrastructure for AutoRest
 
-
     :ivar head_exception: HeadExceptionOperations operations
     :vartype head_exception: headexceptions.aio.operations_async.HeadExceptionOperations
     :param credential: Credential needed for the client to connect to Azure.
@@ -25,7 +24,6 @@ class AutoRestHeadExceptionTestService(object):
     """
 
     def __init__(self, credential, base_url=None, **kwargs):
-
         if not base_url:
             base_url = 'http://localhost:3000'
         self._config = AutoRestHeadExceptionTestServiceConfiguration(credential, **kwargs)
