@@ -35,7 +35,7 @@ class AutoRestUrlTestService(object):
     :param str base_url: Service URL
     """
 
-    def __init__(self, global_string_path: str, global_string_query: Optional[str] = None, base_url=None, **kwargs):
+    def __init__(self, global_string_path: str, global_string_query: Optional[str] = None, base_url: Optional[str] = None, **kwargs):
         if not base_url:
             base_url = 'http://localhost:3000'
         self._config = AutoRestUrlTestServiceConfiguration(global_string_path, global_string_query, **kwargs)

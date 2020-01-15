@@ -2,8 +2,8 @@
 {% set config_import = "._configuration_async" if async_mode else "._configuration" %}
 {% set operations_import = ".operations_async" if async_mode else ".operations" %}
 {% set path_to_models = ".." if async_mode else "." %}
-{% set method_signature = code_model.global_parameters|join(', ', attribute='async_method_signature') ~ (", " if code_model.global_parameters else "")
-if async_mode else code_model.global_parameters|join(', ', attribute='sync_method_signature') ~ (", " if code_model.global_parameters else "")%}
+{% set method_signature = code_model.global_parameters|join(', ', attribute='async_method_signature') ~ (", " if code_model.global_parameters else "") ~ ('' if not code_model.base_url else 'base_url: Optional[str] = None, ')
+if async_mode else code_model.global_parameters|join(', ', attribute='sync_method_signature') ~ (", " if code_model.global_parameters else "") ~ ('' if not code_model.base_url else 'base_url=None, ')%}
 {% set init_typing_comment = ("# type: (") ~ code_model.global_parameters|map(attribute='schema')|join(', ', attribute='type_annotation') ~ (", " if code_model.global_parameters else "") ~ ("Optional[str], " if code_model.base_url else "") ~ ("**Any) -> None") %}
 {% set config_signature = code_model.global_parameters|join(', ', attribute='serialized_name') ~ (", " if code_model.global_parameters else "") %}
 {% set has_mixin_operation_group = code_model.operation_groups|selectattr("is_empty_operation_group")|first %}
@@ -45,7 +45,7 @@ class {{ code_model.class_name }}({{ base_class }}):
     {% endif %}
     """
 
-    def __init__(self, {{ method_signature }}{{ '' if not code_model.base_url else 'base_url=None, ' }}**kwargs):
+    def __init__(self, {{ method_signature }}**kwargs):
         {% if not async_mode %}
         {{ init_typing_comment }}
         {% endif %}
