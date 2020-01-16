@@ -6,7 +6,7 @@
 import logging
 import datetime
 from enum import Enum
-from typing import Any, Dict, List, Optional, Union
+from typing import cast, Any, Dict, List, Optional, Union
 
 from .base_schema import BaseSchema
 
@@ -43,12 +43,12 @@ class AnySchema(PrimitiveSchema):
 class NumberSchema(PrimitiveSchema):
     def __init__(self, yaml_data: Dict[str, Any]):
         super(NumberSchema, self).__init__(yaml_data)
-        self.precision: int = yaml_data['precision'] # type: ignore
-        self.multiple: int = yaml_data.get('multipleOf') # type: ignore
-        self.maximum: int = yaml_data.get('maximum') # type: ignore
-        self.minimum: int = yaml_data.get('minimum') # type: ignore
-        self.exclusive_maximum: int = yaml_data.get('exclusiveMaximum') # type: ignore
-        self.exclusive_minimum: int = yaml_data.get('exclusiveMinimum') # type: ignore
+        self.precision = cast(int, yaml_data['precision'])
+        self.multiple = cast(int, yaml_data.get('multipleOf'))
+        self.maximum = cast(int, yaml_data.get('maximum'))
+        self.minimum = cast(int, yaml_data.get('minimum'))
+        self.exclusive_maximum = cast(int, yaml_data.get('exclusiveMaximum'))
+        self.exclusive_minimum = cast(int, yaml_data.get('exclusiveMinimum'))
 
     def get_serialization_constraints(self) -> List[str]:
         validation_constraints = [
@@ -101,12 +101,12 @@ class NumberSchema(PrimitiveSchema):
 class StringSchema(PrimitiveSchema):
     def __init__(self, yaml_data: Dict[str, Any]):
         super(StringSchema, self).__init__(yaml_data)
-        self.max_length: int = yaml_data.get('maxLength')  # type: ignore
-        self.min_length: int = (
-            yaml_data.get('minLength', 0)  # type: ignore
+        self.max_length = cast(int, yaml_data.get('maxLength'))
+        self.min_length= cast(int, (
+            yaml_data.get('minLength', 0)
             if yaml_data.get('maxLength') else yaml_data.get('minLength')
-        )
-        self.pattern: str = yaml_data.get('pattern')  # type: ignore
+        ))
+        self.pattern = cast(int, yaml_data.get('pattern'))
 
     def get_serialization_constraints(self) -> List[str]:
         validation_constraints = [
@@ -251,4 +251,5 @@ def get_primitive_schema(yaml_data: Dict[str, Any]) -> "PrimitiveSchema":
         'any': AnySchema
     }
     schema_type = yaml_data['type']
-    return mapping.get(schema_type, PrimitiveSchema).from_yaml(yaml_data=yaml_data) # type: ignore
+    primitive_schema = cast(PrimitiveSchema, mapping.get(schema_type, PrimitiveSchema).from_yaml(yaml_data=yaml_data))
+    return primitive_schema

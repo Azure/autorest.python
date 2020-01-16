@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Dict, Union
+from typing import cast, Any, Dict, Union
 
 from .base_model import BaseModel
 from .constant_schema import ConstantSchema
@@ -50,7 +50,8 @@ class Property(BaseModel):
         if self.constant:
             validation_map['constant'] = True
         if self.schema.get_validation_map():
-            validation_map.update(self.schema.get_validation_map()) # type: ignore
+            validation_map_from_schema = cast(Dict[str, Union[bool, int, str]], self.schema.get_validation_map())
+            validation_map.update(validation_map_from_schema)
         self.validation_map = validation_map or None
 
     @property

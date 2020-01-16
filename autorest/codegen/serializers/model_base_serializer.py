@@ -4,9 +4,9 @@
 # license information.
 # --------------------------------------------------------------------------
 from abc import abstractmethod
-from typing import List
+from typing import cast, List
 from jinja2 import Environment
-from ..models import EnumSchema, ObjectSchema, CodeModel, Property
+from ..models import EnumSchema, ObjectSchema, CodeModel, Property, ConstantSchema
 from ..models.imports import FileImport
 from .import_serializer import FileImportSerializer
 
@@ -53,7 +53,8 @@ class ModelBaseSerializer:
             else:
                 description = "Required. "
         if prop.constant:
-            description += " Default value: \"{}\".".format(prop.schema.value) # type: ignore
+            constant_prop = cast(ConstantSchema, prop.schema)
+            description += " Default value: \"{}\".".format(constant_prop.value)
         if prop.is_discriminator:
             description += "Constant filled by server. "
         if isinstance(prop.schema, EnumSchema):

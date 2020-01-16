@@ -5,10 +5,11 @@
 # --------------------------------------------------------------------------
 from collections.abc import MutableSequence
 import logging
-from typing import List, Callable
+from typing import cast, List, Callable
 
 from .parameter import Parameter, ParameterLocation
 from .constant_schema import ConstantSchema
+from .object_schema import ObjectSchema
 
 
 _LOGGER = logging.getLogger(__name__)
@@ -127,5 +128,5 @@ class ParameterList(MutableSequence):
 
         parameters = self.get_from_location(ParameterLocation.Flattened)
         parameter_string = ",".join([f"{param.serialized_name}={param.serialized_name}" for param in parameters])
-
-        return f"{self.body.serialized_name} = models.{self.body.schema.name}({parameter_string})"  # type: ignore
+        object_schema = cast(ObjectSchema, self.body.schema)
+        return f"{self.body.serialized_name} = models.{object_schema.name}({parameter_string})"
