@@ -49,7 +49,7 @@ class OperationGroupSerializer:
         return f"_{basename}_operations{async_suffix}.py"
 
     @staticmethod
-    def operation_typing_comment(operation: Operation, lro: bool = False) -> str:
+    def operation_typing_comment(operation: Operation) -> str:
         response = "None"
         if any(r.has_body for r in operation.responses):
             if len(operation.responses) == 1:
@@ -61,13 +61,13 @@ class OperationGroupSerializer:
                 ])
                 response = f"Union[{response_parameters_string}]"
         if not operation.parameters.method:
-            if lro:
+            if isinstance(operation, LROOperation):
                 return f"# type: (Optional[Any], Optional[bool], **Any) -> {response}"
             return f"# type: (Optional[Any], **Any) -> {response}"
         parameters_typing = [
             p.schema.type_annotation if p.required else f"Optional[{p.schema.type_annotation}]"
             for p in operation.parameters.method
         ]
-        if lro:
+        if isinstance(operation, LROOperation):
             return f"# type: ({', '.join(parameters_typing)}, Optional[Any], Optional[bool], **Any) -> {response}"
         return f"# type: ({', '.join(parameters_typing)}, Optional[Any], **Any) -> {response}"
