@@ -133,16 +133,19 @@ def regen_expected(c, opts, debug):
         print(Fore.YELLOW + f'Queuing up: {cmd_line}')
         cmds.append(cmd_line)
 
-    # Execute actual taks in parallel
-    with Pool() as pool:
-        pool.map(run_autorest, cmds)
+    if len(cmds) == 1:
+        run_autorest(cmds[0])
+    else:
+        # Execute actual taks in parallel
+        with Pool() as pool:
+            pool.map(run_autorest, cmds)
 
 def run_autorest(cmd_line):
     result = run(cmd_line, warn=True, hide=True)
     if result.ok or result.return_code is None:
         print(Fore.GREEN + f'Call "{cmd_line}" done with success')
     else:
-        print(Fore.RED + f'Call "{cmd_line}" failed with {result.return_code}\n{result.stdout}')
+        print(Fore.RED + f'Call "{cmd_line}" failed with {result.return_code}\n{result.stdout}\n{result.stderr}')
     return result
 
 
