@@ -1317,9 +1317,9 @@ class LROsOperations:
 
 
     
-    async def _put_sub_resource_initial(self, properties=None, cls=None, **kwargs):
+    async def _put_sub_resource_initial(self, provisioning_state=None, cls=None, **kwargs):
         error_map = kwargs.pop('error_map', {})
-        product = models.SubProduct(properties=properties)
+        product = models.SubProduct(provisioning_state=provisioning_state)
 
         # Construct URL
         url = self._put_sub_resource_initial.metadata['url']
@@ -1359,14 +1359,14 @@ class LROsOperations:
     _put_sub_resource_initial.metadata = {'url': '/lro/putsubresource/202/200'}
 
     @distributed_trace_async
-    async def put_sub_resource(self, properties=None, cls=None, polling=True, **kwargs):
+    async def put_sub_resource(self, provisioning_state=None, cls=None, polling=True, **kwargs):
         """Long running put request with sub resource..
 
         FIXME: add operation.summary
 
 
-        :param properties: 
-        :type properties: ~lro.models.SubProductProperties
+        :param provisioning_state: 
+        :type provisioning_state: str
         :param callable cls: A custom type or function that will be passed the direct response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
@@ -1376,7 +1376,7 @@ class LROsOperations:
         :raises ~azure.mgmt.core.ARMError:
         """
         raw_result = await self._put_sub_resource_initial(
-            properties=properties,
+            provisioning_state=provisioning_state,
             cls=lambda x,y,z: x,
             **kwargs
         )
@@ -1400,9 +1400,9 @@ class LROsOperations:
 
 
     
-    async def _put_async_sub_resource_initial(self, properties=None, cls=None, **kwargs):
+    async def _put_async_sub_resource_initial(self, provisioning_state=None, cls=None, **kwargs):
         error_map = kwargs.pop('error_map', {})
-        product = models.SubProduct(properties=properties)
+        product = models.SubProduct(provisioning_state=provisioning_state)
 
         # Construct URL
         url = self._put_async_sub_resource_initial.metadata['url']
@@ -1442,14 +1442,14 @@ class LROsOperations:
     _put_async_sub_resource_initial.metadata = {'url': '/lro/putsubresourceasync/202/200'}
 
     @distributed_trace_async
-    async def put_async_sub_resource(self, properties=None, cls=None, polling=True, **kwargs):
+    async def put_async_sub_resource(self, provisioning_state=None, cls=None, polling=True, **kwargs):
         """Long running put request with sub resource..
 
         FIXME: add operation.summary
 
 
-        :param properties: 
-        :type properties: ~lro.models.SubProductProperties
+        :param provisioning_state: 
+        :type provisioning_state: str
         :param callable cls: A custom type or function that will be passed the direct response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
@@ -1459,7 +1459,7 @@ class LROsOperations:
         :raises ~azure.mgmt.core.ARMError:
         """
         raw_result = await self._put_async_sub_resource_initial(
-            properties=properties,
+            provisioning_state=provisioning_state,
             cls=lambda x,y,z: x,
             **kwargs
         )

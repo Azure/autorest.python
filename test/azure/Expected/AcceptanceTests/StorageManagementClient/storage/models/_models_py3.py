@@ -190,8 +190,45 @@ class StorageAccount(Resource):
     :type location: str
     :param tags: A set of tags. Resource tags.
     :type tags: dict[str, str]
-    :param properties:
-    :type properties: ~storage.models.StorageAccountProperties
+    :param provisioning_state: Gets the status of the storage account at the time
+     the operation was called. Possible values include: 'Creating', 'ResolvingDNS',
+     'Succeeded'.
+    :type provisioning_state: str or ~storage.models.ProvisioningState
+    :param account_type: Gets or sets the account type. Possible values include:
+     'Standard_LRS', 'Standard_ZRS', 'Standard_GRS', 'Standard_RAGRS', 'Premium_LRS'.
+    :type account_type: str or ~storage.models.AccountType
+    :param primary_endpoints: The URIs that are used to perform a retrieval of a
+     public blob, queue or table object.
+    :type primary_endpoints: ~storage.models.Endpoints
+    :param primary_location: Gets the location of the primary for the storage
+     account.
+    :type primary_location: str
+    :param status_of_primary: Gets the status indicating whether the primary
+     location of the storage account is available or unavailable. Possible values
+     include: 'Available', 'Unavailable'.
+    :type status_of_primary: str or ~storage.models.AccountStatus
+    :param last_geo_failover_time: Gets the timestamp of the most recent instance of
+     a failover to the secondary location. Only the most recent timestamp is
+     retained. This element is not returned if there has never been a failover
+     instance. Only available if the accountType is StandardGRS or StandardRAGRS.
+    :type last_geo_failover_time: ~datetime.datetime
+    :param secondary_location: Gets the location of the geo replicated secondary for
+     the storage account. Only available if the accountType is StandardGRS or
+     StandardRAGRS.
+    :type secondary_location: str
+    :param status_of_secondary: Gets the status indicating whether the primary
+     location of the storage account is available or unavailable. Possible values
+     include: 'Available', 'Unavailable'.
+    :type status_of_secondary: str or ~storage.models.AccountStatus
+    :param creation_time: Gets the creation date and time of the storage account in
+     UTC.
+    :type creation_time: ~datetime.datetime
+    :param custom_domain: The custom domain assigned to this storage account. This
+     can be set via Update.
+    :type custom_domain: ~storage.models.CustomDomain
+    :param secondary_endpoints: The URIs that are used to perform a retrieval of a
+     public blob, queue or table object.
+    :type secondary_endpoints: ~storage.models.Endpoints
     """
 
     _validation = {
@@ -207,12 +244,32 @@ class StorageAccount(Resource):
         'type': {'key': 'type', 'type': 'str'},
         'location': {'key': 'location', 'type': 'str'},
         'tags': {'key': 'tags', 'type': '{str}'},
-        'properties': {'key': 'properties', 'type': 'StorageAccountProperties'},
+        'provisioning_state': {'key': 'properties.provisioningState', 'type': 'str'},
+        'account_type': {'key': 'properties.accountType', 'type': 'str'},
+        'primary_endpoints': {'key': 'properties.primaryEndpoints', 'type': 'Endpoints'},
+        'primary_location': {'key': 'properties.primaryLocation', 'type': 'str'},
+        'status_of_primary': {'key': 'properties.statusOfPrimary', 'type': 'str'},
+        'last_geo_failover_time': {'key': 'properties.lastGeoFailoverTime', 'type': 'iso-8601'},
+        'secondary_location': {'key': 'properties.secondaryLocation', 'type': 'str'},
+        'status_of_secondary': {'key': 'properties.statusOfSecondary', 'type': 'str'},
+        'creation_time': {'key': 'properties.creationTime', 'type': 'iso-8601'},
+        'custom_domain': {'key': 'properties.customDomain', 'type': 'CustomDomain'},
+        'secondary_endpoints': {'key': 'properties.secondaryEndpoints', 'type': 'Endpoints'},
     }
 
-    def __init__(self, *, location: str, tags: Dict[str, str]=None, properties: "StorageAccountProperties"=None, **kwargs) -> None:
+    def __init__(self, *, location: str, tags: Dict[str, str]=None, provisioning_state: Union[str, "ProvisioningState"]=None, account_type: Union[str, "AccountType"]=None, primary_endpoints: "Endpoints"=None, primary_location: str=None, status_of_primary: Union[str, "AccountStatus"]=None, last_geo_failover_time: datetime.datetime=None, secondary_location: str=None, status_of_secondary: Union[str, "AccountStatus"]=None, creation_time: datetime.datetime=None, custom_domain: "CustomDomain"=None, secondary_endpoints: "Endpoints"=None, **kwargs) -> None:
         super(StorageAccount, self).__init__(location=location, tags=tags, **kwargs)
-        self.properties = properties
+        self.provisioning_state = provisioning_state
+        self.account_type = account_type
+        self.primary_endpoints = primary_endpoints
+        self.primary_location = primary_location
+        self.status_of_primary = status_of_primary
+        self.last_geo_failover_time = last_geo_failover_time
+        self.secondary_location = secondary_location
+        self.status_of_secondary = status_of_secondary
+        self.creation_time = creation_time
+        self.custom_domain = custom_domain
+        self.secondary_endpoints = secondary_endpoints
 
 
 class StorageAccountCheckNameAvailabilityParameters(Model):
@@ -258,8 +315,9 @@ class StorageAccountCreateParameters(Resource):
     :type location: str
     :param tags: A set of tags. Resource tags.
     :type tags: dict[str, str]
-    :param properties:
-    :type properties: ~storage.models.StorageAccountPropertiesCreateParameters
+    :param account_type: Gets or sets the account type. Possible values include:
+     'Standard_LRS', 'Standard_ZRS', 'Standard_GRS', 'Standard_RAGRS', 'Premium_LRS'.
+    :type account_type: str or ~storage.models.AccountType
     """
 
     _validation = {
@@ -275,12 +333,12 @@ class StorageAccountCreateParameters(Resource):
         'type': {'key': 'type', 'type': 'str'},
         'location': {'key': 'location', 'type': 'str'},
         'tags': {'key': 'tags', 'type': '{str}'},
-        'properties': {'key': 'properties', 'type': 'StorageAccountPropertiesCreateParameters'},
+        'account_type': {'key': 'properties.accountType', 'type': 'str'},
     }
 
-    def __init__(self, *, location: str, tags: Dict[str, str]=None, properties: "StorageAccountPropertiesCreateParameters"=None, **kwargs) -> None:
+    def __init__(self, *, location: str, tags: Dict[str, str]=None, account_type: Union[str, "AccountType"]=None, **kwargs) -> None:
         super(StorageAccountCreateParameters, self).__init__(location=location, tags=tags, **kwargs)
-        self.properties = properties
+        self.account_type = account_type
 
 
 class StorageAccountKeys(Model):
@@ -469,8 +527,12 @@ class StorageAccountUpdateParameters(Resource):
     :type location: str
     :param tags: A set of tags. Resource tags.
     :type tags: dict[str, str]
-    :param properties:
-    :type properties: ~storage.models.StorageAccountPropertiesUpdateParameters
+    :param account_type: Gets or sets the account type. Possible values include:
+     'Standard_LRS', 'Standard_ZRS', 'Standard_GRS', 'Standard_RAGRS', 'Premium_LRS'.
+    :type account_type: str or ~storage.models.AccountType
+    :param custom_domain: The custom domain assigned to this storage account. This
+     can be set via Update.
+    :type custom_domain: ~storage.models.CustomDomain
     """
 
     _validation = {
@@ -486,12 +548,14 @@ class StorageAccountUpdateParameters(Resource):
         'type': {'key': 'type', 'type': 'str'},
         'location': {'key': 'location', 'type': 'str'},
         'tags': {'key': 'tags', 'type': '{str}'},
-        'properties': {'key': 'properties', 'type': 'StorageAccountPropertiesUpdateParameters'},
+        'account_type': {'key': 'properties.accountType', 'type': 'str'},
+        'custom_domain': {'key': 'properties.customDomain', 'type': 'CustomDomain'},
     }
 
-    def __init__(self, *, location: str, tags: Dict[str, str]=None, properties: "StorageAccountPropertiesUpdateParameters"=None, **kwargs) -> None:
+    def __init__(self, *, location: str, tags: Dict[str, str]=None, account_type: Union[str, "AccountType"]=None, custom_domain: "CustomDomain"=None, **kwargs) -> None:
         super(StorageAccountUpdateParameters, self).__init__(location=location, tags=tags, **kwargs)
-        self.properties = properties
+        self.account_type = account_type
+        self.custom_domain = custom_domain
 
 
 class SubResource(Model):

@@ -26,6 +26,10 @@ version: 3.0.6185
 use-extension:
   "@autorest/modelerfour": "4.3.121"
 
+modelerfour:
+  flatten-models: true
+  flatten-payloads: false
+
 pipeline:
 
 # --- extension remodeler ---

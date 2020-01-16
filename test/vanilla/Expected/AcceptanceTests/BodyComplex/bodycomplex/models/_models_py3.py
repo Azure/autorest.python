@@ -679,8 +679,8 @@ class MyBaseType(Model):
     :type kind: str
     :param prop_b1:
     :type prop_b1: str
-    :param helper:
-    :type helper: ~bodycomplex.models.MyBaseHelperType
+    :param prop_bh1:
+    :type prop_bh1: str
     """
 
     _validation = {
@@ -690,18 +690,18 @@ class MyBaseType(Model):
     _attribute_map = {
         'kind': {'key': 'kind', 'type': 'str'},
         'prop_b1': {'key': 'propB1', 'type': 'str'},
-        'helper': {'key': 'helper', 'type': 'MyBaseHelperType'},
+        'prop_bh1': {'key': 'helper.propBH1', 'type': 'str'},
     }
 
     _subtype_map = {
         'kind': {'Kind1': 'MyDerivedType'}
     }
 
-    def __init__(self, *, prop_b1: str=None, helper: "MyBaseHelperType"=None, **kwargs) -> None:
+    def __init__(self, *, prop_b1: str=None, prop_bh1: str=None, **kwargs) -> None:
         super(MyBaseType, self).__init__(**kwargs)
         self.kind = 'None'
         self.prop_b1 = prop_b1
-        self.helper = helper
+        self.prop_bh1 = prop_bh1
 
 
 class MyDerivedType(MyBaseType):
@@ -713,8 +713,8 @@ class MyDerivedType(MyBaseType):
     :type kind: str
     :param prop_b1:
     :type prop_b1: str
-    :param helper:
-    :type helper: ~bodycomplex.models.MyBaseHelperType
+    :param prop_bh1:
+    :type prop_bh1: str
     :param prop_d1:
     :type prop_d1: str
     """
@@ -726,12 +726,12 @@ class MyDerivedType(MyBaseType):
     _attribute_map = {
         'kind': {'key': 'kind', 'type': 'str'},
         'prop_b1': {'key': 'propB1', 'type': 'str'},
-        'helper': {'key': 'helper', 'type': 'MyBaseHelperType'},
+        'prop_bh1': {'key': 'helper.propBH1', 'type': 'str'},
         'prop_d1': {'key': 'propD1', 'type': 'str'},
     }
 
-    def __init__(self, *, prop_b1: str=None, helper: "MyBaseHelperType"=None, prop_d1: str=None, **kwargs) -> None:
-        super(MyDerivedType, self).__init__(prop_b1=prop_b1, helper=helper, **kwargs)
+    def __init__(self, *, prop_b1: str=None, prop_bh1: str=None, prop_d1: str=None, **kwargs) -> None:
+        super(MyDerivedType, self).__init__(prop_b1=prop_b1, prop_bh1=prop_bh1, **kwargs)
         self.kind = 'Kind1'
         self.prop_d1 = prop_d1
 
