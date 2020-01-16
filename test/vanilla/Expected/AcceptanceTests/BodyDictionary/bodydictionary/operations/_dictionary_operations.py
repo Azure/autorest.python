@@ -1998,7 +1998,7 @@ class DictionaryOperations(object):
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
-        :rtype: dict[str, bytearray]
+        :rtype: dict[str, bytes]
         :raises: ~bodydictionary.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})

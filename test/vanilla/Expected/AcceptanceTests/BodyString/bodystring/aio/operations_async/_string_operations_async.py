@@ -427,7 +427,7 @@ class StringOperations:
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
-        :rtype: bytearray
+        :rtype: bytes
         :raises: ~bodystring.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -469,7 +469,7 @@ class StringOperations:
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
-        :rtype: bytearray
+        :rtype: bytes
         :raises: ~bodystring.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -510,7 +510,7 @@ class StringOperations:
         FIXME: add operation.summary
 
         :param string_body: 
-        :type string_body: bytearray
+        :type string_body: bytes
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -555,7 +555,7 @@ class StringOperations:
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
-        :rtype: bytearray
+        :rtype: bytes
         :raises: ~bodystring.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})

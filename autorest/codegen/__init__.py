@@ -13,6 +13,7 @@ from .models.code_model import CodeModel
 from .models import build_schema
 from .models.operation_group import OperationGroup
 from .models.parameter import Parameter
+from .models.parameter_list import ParameterList
 from .serializers import JinjaSerializer
 
 
@@ -66,9 +67,9 @@ class CodeGenerator(Plugin):
 
 
         # Global parameters
-        code_model.global_parameters = [
+        code_model.global_parameters = ParameterList([
             Parameter.from_yaml(param) for param in yaml_code_model.get('globalParameters', [])
-        ]
+        ], implementation="Client")
 
         # Custom URL
         dollar_host = [parameter for parameter in code_model.global_parameters if parameter.rest_api_name == "$host"]

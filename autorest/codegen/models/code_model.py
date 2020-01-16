@@ -16,6 +16,7 @@ from .lro_operation import LROOperation
 from .paging_operation import PagingOperation
 from .parameter import Parameter, ParameterLocation
 from .client import Client
+from .parameter_list import ParameterList
 
 
 _LOGGER = logging.getLogger(__name__)
@@ -82,7 +83,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
         self.enums: Dict[int, EnumSchema] = {}
         self.primitives: Dict[int, BaseSchema] = {}
         self.operation_groups: List[OperationGroup] = []
-        self.global_parameters: List[Parameter] = []
+        self.global_parameters: ParameterList = ParameterList()
         self.custom_base_url: Optional[str] = None
         self.base_url: Optional[str] = None
         self.service_client = Client()
@@ -155,7 +156,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
             description="",
             url=operation.url,
             method=operation.method,
-            parameters=operation.parameters,
+            parameters=operation.parameters.parameters,
             responses=operation.responses,
             exceptions=operation.exceptions,
             media_types=operation.media_types,
@@ -219,10 +220,10 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
                 self._enable_parameter_flattening_for_operation(operation)
 
     def _enable_parameter_flattening_for_operation(self, operation):
-        if not (operation.has_request_body and isinstance(operation.body_parameter.schema, ObjectSchema)):
+        if not (operation.parameters.has_body and isinstance(operation.parameters.body.schema, ObjectSchema)):
             return
 
-        body_schema = cast(ObjectSchema, operation.body_parameter.schema)
+        body_schema = cast(ObjectSchema, operation.parameters.body.schema)
         properties = [prop for prop in body_schema.properties if not (prop.constant or prop.readonly)]
 
         if len(properties) > self.options.get("payload-flattening-threshold", 0):
@@ -240,14 +241,14 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
                     description=prop.description,
                     implementation="Method",
                     is_required=prop.required,
-                    location=ParameterLocation.Other,
+                    location=ParameterLocation.Flattened,
                     skip_url_encoding=False, # Doesn't matter here
                     constraints=[], # FIXME inject validation map
                 )
             )
 
         # Insert after the body parameter these fake parameters
-        body_parameter_index = operation.parameters.index(operation.body_parameter)
+        body_parameter_index = operation.parameters.index(operation.parameters.body)
         operation.parameters[body_parameter_index:body_parameter_index] = fake_parameters
 
     def _add_properties_from_inheritance(self) -> None:
