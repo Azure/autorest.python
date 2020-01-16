@@ -102,7 +102,7 @@ class StringSchema(PrimitiveSchema):
     def __init__(self, yaml_data: Dict[str, Any]):
         super(StringSchema, self).__init__(yaml_data)
         self.max_length = cast(int, yaml_data.get('maxLength'))
-        self.min_length= cast(int, (
+        self.min_length = cast(int, (
             yaml_data.get('minLength', 0)
             if yaml_data.get('maxLength') else yaml_data.get('minLength')
         ))
